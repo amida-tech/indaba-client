@@ -1,5 +1,5 @@
-const navHandlers = {};
+const initialState = {};
 
-export default (state, action) => {
+export const NavReducer = (state = initialState, action) => {
     return state;
 };

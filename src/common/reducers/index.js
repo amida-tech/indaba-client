@@ -1,1 +1,1 @@
-export NavReducer from './navReducer';
+export { NavReducer } from './navReducer';
