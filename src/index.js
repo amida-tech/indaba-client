@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+// ^ disabling ESLINT errors for stuff we aren't using yet... we will use it in the future.
 /** Modules **/
 import React from 'react';
 import ReactDOM from 'react-dom';
