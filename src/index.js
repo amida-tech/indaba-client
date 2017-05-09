@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 // ^ disabling ESLINT errors for stuff we aren't using yet... we will use it in the future.
 /** Modules **/
 import React from 'react';
@@ -42,6 +42,12 @@ const Wrapper = props => {
         <App />
         <DevTools />
     </div>
+};
+
+const routing = (state = frozen, action) => {
+  return action.type === LOCATION_CHANGE ?
+    state.merge({ locationBeforeTransitions: action.payload }) :
+    state;
 };
 
 const store = createStore(
