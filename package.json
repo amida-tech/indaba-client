@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "immutable": "3.8.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
@@ -19,7 +18,6 @@
   },
   "devDependencies": {
     "grommet": "^1.4.0",
-    "immutable": "^3.8.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {
