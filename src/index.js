@@ -16,6 +16,7 @@ import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
 import createLogger from 'redux-logger';
 import { createDevTools, persistState } from 'redux-devtools';
+import routes from './routes';
 
 /** User Imports **/
 import Reducers from './reducers';
@@ -56,11 +57,19 @@ const store = createStore(
     DevTools.instrument() // Store Enhancers
 );
 
-
-
 ReactDOM.render(
     <Provider store={store} >
         <Wrapper />
+            <Router>
+                <Route>
+                    {routes.map(route =>
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                        />
+                    )}
+                </Route>
+            </Router>
     </Provider>,
     document.getElementById('root')
 );
