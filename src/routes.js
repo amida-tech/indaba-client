@@ -1,4 +1,4 @@
-import { WorkflowContainer } from './workflow';
+import { WorkflowContainer } from './views/Workflow';
 
 export default [
     {

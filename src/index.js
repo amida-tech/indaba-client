@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions, routerReducer } from 'react-router-redux';
 import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
 import { createStore, combineReducers } from 'redux';
-import WorkflowContainer from './workflow/components';
+//import WorkflowContainer from './workflow/components';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';

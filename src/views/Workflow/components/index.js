@@ -9,11 +9,10 @@ class WorkflowContainer extends Component {
     }
 }
 
-WorkflowContainer.displayName = 'Workflow';
+//WorkflowContainer.displayName = 'Workflow';
 
-const mapStateToProps = function(store) {
+const mapStateToProps = function(state) {
   return {
-    data: store
     //vocab: state.getIn(['settings', 'language', 'vocabulary'])
   };
 }
