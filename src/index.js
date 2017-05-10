@@ -42,22 +42,21 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
 const Wrapper = props => {
     return (<div>
         <Router history={history}>
-            <Route
-              path="/workflow"
-              component={WorkflowContainer} />
+          {routes.map(route =>
+              <Route
+                  key={route.path}
+                  path={route.path}
+              />
+          )}
         </Router>
         <App />
         <DevTools />
     </div>);
 };
 
-// {routes.map(route =>
-//     <Route
-//         key={route.path}
-//         path={route.path}
-//     />
-// )}
-
+// <Route
+//   path="/workflow"
+//   component={WorkflowContainer} />
 
 const store = createStore(
     combineReducers({
