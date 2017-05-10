@@ -5,9 +5,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
-import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions } from 'react-router-redux';
-import { Router, Route, browserHistory } from 'react-router';
-import { createStore } from 'redux';
+import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions, routerReducer } from 'react-router-redux';
+import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
+import { createStore, combineReducers } from 'redux';
+import WorkflowContainer from './workflow/components';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
@@ -39,37 +40,41 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
 );
 
 const Wrapper = props => {
-    return <div>
+    return (<div>
+        <Router history={history}>
+            <Route
+              path="/workflow"
+              component={WorkflowContainer} />
+        </Router>
         <App />
         <DevTools />
-    </div>
+    </div>);
 };
 
-const routing = (state = frozen, action) => {
-  return action.type === LOCATION_CHANGE ?
-    state.merge({ locationBeforeTransitions: action.payload }) :
-    state;
-};
+// {routes.map(route =>
+//     <Route
+//         key={route.path}
+//         path={route.path}
+//     />
+// )}
+
 
 const store = createStore(
-    Reducers,
+    combineReducers({
+      Reducers, // TODO: Come back to and make better.
+      routing: routerReducer
+    }),
     {}, // Middleware
     DevTools.instrument() // Store Enhancers
 );
 
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: state => store.getState().routing
+});
+
 ReactDOM.render(
-    <Provider store={store} >
+    <Provider store={store}>
         <Wrapper />
-            <Router>
-                <Route>
-                    {routes.map(route =>
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                        />
-                    )}
-                </Route>
-            </Router>
     </Provider>,
     document.getElementById('root')
 );

@@ -9,6 +9,13 @@ class WorkflowContainer extends Component {
     }
 }
 
-WorkflowContainer.displayName = 'workflowPrototype';
+WorkflowContainer.displayName = 'Workflow';
 
-export default WorkflowContainer;
+const mapStateToProps = function(store) {
+  return {
+    data: store
+    //vocab: state.getIn(['settings', 'language', 'vocabulary'])
+  };
+}
+
+export default connect(mapStateToProps)(WorkflowContainer);//connect(mapStateToProps)(WorkflowContainer);
