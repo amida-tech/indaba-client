@@ -39,6 +39,19 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
   </DockMonitor>
 );
 
+const store = createStore(
+    combineReducers({
+      Reducers, // TODO: Come back to and make better.
+      routing: routerReducer // This needs to be in the /common/reducers directory.
+    }),
+    {}, // Middleware
+    DevTools.instrument() // Store Enhancers
+);
+
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: state => store.getState().routing
+});
+
 const Wrapper = props => {
     return (<div>
         <Router history={history}>
@@ -49,27 +62,10 @@ const Wrapper = props => {
               />
           )}
         </Router>
-        <App />
         <DevTools />
     </div>);
 };
 
-// <Route
-//   path="/workflow"
-//   component={WorkflowContainer} />
-
-const store = createStore(
-    combineReducers({
-      Reducers, // TODO: Come back to and make better.
-      routing: routerReducer
-    }),
-    {}, // Middleware
-    DevTools.instrument() // Store Enhancers
-);
-
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: state => store.getState().routing
-});
 
 ReactDOM.render(
     <Provider store={store}>
