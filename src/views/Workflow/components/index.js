@@ -3,18 +3,14 @@ import { connect } from 'react-redux';
 
 class WorkflowContainer extends Component {
     render() {
-        return (
-            <div>Hello World</div>
-        );
+        return <div>Hello World</div>
     }
 }
 
-//WorkflowContainer.displayName = 'Workflow';
-
-const mapStateToProps = function(state) {
+const mapStateToProps = (state, ownProps) => {
   return {
-    //vocab: state.getIn(['settings', 'language', 'vocabulary'])
+    vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
   };
 }
 
-export default connect(mapStateToProps)(WorkflowContainer);//connect(mapStateToProps)(WorkflowContainer);
+export default connect(mapStateToProps)(WorkflowContainer);

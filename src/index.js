@@ -39,6 +39,10 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
   </DockMonitor>
 );
 
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: state => store.getState().routing
+});
+
 const Wrapper = props => {
     return (<div>
         <Router history={history}>
@@ -49,7 +53,6 @@ const Wrapper = props => {
               />
           )}
         </Router>
-        <App />
         <DevTools />
     </div>);
 };
@@ -67,10 +70,6 @@ const store = createStore(
     ), // Middleware
     DevTools.instrument() // Store Enhancers
 );
-
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: state => store.getState().routing
-});
 
 ReactDOM.render(
     <Provider store={store}>
