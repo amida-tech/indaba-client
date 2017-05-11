@@ -5,17 +5,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
-import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions, routerReducer } from 'react-router-redux';
+import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions } from 'react-router-redux';
 import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
-import { createStore, combineReducers } from 'redux';
-//import WorkflowContainer from './workflow/components';
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import { createDevTools, persistState } from 'redux-devtools';
 import routes from './routes';
 
@@ -54,16 +54,17 @@ const Wrapper = props => {
     </div>);
 };
 
-// <Route
-//   path="/workflow"
-//   component={WorkflowContainer} />
+const initialMiddleware = [createLogger()];
 
 const store = createStore(
-    combineReducers({
-      Reducers, // TODO: Come back to and make better.
-      routing: routerReducer
-    }),
-    {}, // Middleware
+    Reducers,
+    compose(
+      applyMiddleware(
+        routerMiddleware(browserHistory),
+        initialMiddleware,
+        thunk
+      )
+    ), // Middleware
     DevTools.instrument() // Store Enhancers
 );
 

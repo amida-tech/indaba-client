@@ -1,4 +1,7 @@
-import { WorkflowContainer } from './views/Workflow';
+import { WorkflowContainer } from './views/Workflow/components';
+
+console.log("Does workflow Container exist in routes?");
+console.log(WorkflowContainer);
 
 export default [
     {

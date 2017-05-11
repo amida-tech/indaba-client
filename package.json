@@ -18,7 +18,8 @@
   },
   "devDependencies": {
     "grommet": "^1.4.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "redux-thunk": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
