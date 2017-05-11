@@ -1,11 +1,13 @@
-import WorkflowContainer from './views/Workflow';
+import DashboardContainer from './views/Dashboard';
 import LoginContainer from './views/Login';
+import ProjectManagementContainer from './views/ProjectManagement'
 
 export default [
     {
       path: '/',
       title: 'Dashboard',
-      transTerm: 'DASHBOARD'
+      transTerm: 'DASHBOARD',
+      component: DashboardContainer
     },
     {
       path: '/login',
@@ -14,9 +16,9 @@ export default [
       component: LoginContainer
     },
     {
-        path: '/workflow',
-        title: 'Workflow',
-        transTerm: 'WORKFLOW',
-        component: WorkflowContainer
+        path: '/projectmanager',
+        title: 'Project Manager',
+        transTerm: 'PROJECTMANAGEMENT',
+        component: ProjectManagementContainer
     }
 ];

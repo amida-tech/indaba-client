@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class WorkflowContainer extends Component {
+class DashboardContainer extends Component {
     render() {
-        return <div>Hello World</div>
+        return <div>You are a dashing fellow.</div>
     }
 }
 
@@ -13,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-export default connect(mapStateToProps)(WorkflowContainer);
+export default connect(mapStateToProps)(DashboardContainer);
