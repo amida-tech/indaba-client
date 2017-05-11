@@ -1,13 +1,17 @@
-import { WorkflowContainer } from './views/Workflow/components';
-
-console.log("Does workflow Container exist in routes?");
-console.log(WorkflowContainer);
+import WorkflowContainer from './views/Workflow';
+import LoginContainer from './views/Login';
 
 export default [
     {
       path: '/',
       title: 'Dashboard',
       transTerm: 'DASHBOARD'
+    },
+    {
+      path: '/login',
+      title: 'Login',
+      transTerm: 'LOGIN',
+      component: LoginContainer
     },
     {
         path: '/workflow',

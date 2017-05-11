@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styles/styles.scss';
-import Modal from './common/Modal';
 
 class App extends Component {
   render() {

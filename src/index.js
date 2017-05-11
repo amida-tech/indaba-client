@@ -39,6 +39,19 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
   </DockMonitor>
 );
 
+const store = createStore(
+    Reducers,
+    {},
+    compose(
+      applyMiddleware(
+        routerMiddleware(browserHistory),
+        createLogger(),
+        thunk
+      ),
+      DevTools.instrument()
+    ) // Middleware
+);
+
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: state => store.getState().routing
 });
@@ -50,26 +63,13 @@ const Wrapper = props => {
               <Route
                   key={route.path}
                   path={route.path}
+                  component={route.component}
               />
           )}
         </Router>
         <DevTools />
     </div>);
 };
-
-const initialMiddleware = [createLogger()];
-
-const store = createStore(
-    Reducers,
-    compose(
-      applyMiddleware(
-        routerMiddleware(browserHistory),
-        initialMiddleware,
-        thunk
-      )
-    ), // Middleware
-    DevTools.instrument() // Store Enhancers
-);
 
 ReactDOM.render(
     <Provider store={store}>
