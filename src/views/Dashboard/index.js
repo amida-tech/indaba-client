@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ProjectManagementContainer extends Component {
+class DashboardContainer extends Component {
     render() {
-        return <div>I am in your project. Managing your micros.</div>
+        return <div>You are a dashing fellow.</div>
     }
 }
 
@@ -13,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-export default connect(mapStateToProps)(ProjectManagementContainer);
+export default connect(mapStateToProps)(DashboardContainer);

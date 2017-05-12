@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 // ^ disabling ESLINT errors for stuff we aren't using yet... we will use it in the future.
 /** Modules **/
 import React from 'react';
@@ -6,19 +6,21 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions } from 'react-router-redux';
-import { Router, Route, browserHistory } from 'react-router';
-import { createStore } from 'redux';
+import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import { createDevTools, persistState } from 'redux-devtools';
+import routes from './routes';
 
 /** User Imports **/
-import Reducers from './reducers';
+import reducers from './reducers';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
@@ -37,23 +39,39 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
   </DockMonitor>
 );
 
-const Wrapper = props => {
-    return <div>
-        <App />
-        <DevTools />
-    </div>
-};
-
 const store = createStore(
-    Reducers,
-    {}, // Middleware
-    DevTools.instrument() // Store Enhancers
+    reducers,
+    compose(
+      applyMiddleware(
+        routerMiddleware(browserHistory),
+        createLogger(),
+        thunk
+      ),
+      DevTools.instrument()
+    ) // Middleware
 );
 
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: state => store.getState().routing
+});
 
+const Wrapper = props => {
+    return (<div>
+        <Router history={history}>
+          {routes.map(route =>
+              <Route
+                  key={route.path}
+                  path={route.path}
+                  component={route.component}
+              />
+          )}
+        </Router>
+        <DevTools />
+    </div>);
+};
 
 ReactDOM.render(
-    <Provider store={store} >
+    <Provider store={store}>
         <Wrapper />
     </Provider>,
     document.getElementById('root')
