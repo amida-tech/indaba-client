@@ -1,4 +1,4 @@
-const en = require('../../i18n/en.json'); //Temporary.
+import en from '../../i18n/en';
 
 const initialState = {
   language: {

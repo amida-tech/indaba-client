@@ -20,7 +20,7 @@ import { createDevTools, persistState } from 'redux-devtools';
 import routes from './routes';
 
 /** User Imports **/
-import Reducers from './reducers';
+import reducers from './reducers';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
@@ -40,8 +40,7 @@ let DevTools = IS_PROD ? NOOP : createDevTools(
 );
 
 const store = createStore(
-    Reducers,
-    {},
+    reducers,
     compose(
       applyMiddleware(
         routerMiddleware(browserHistory),
