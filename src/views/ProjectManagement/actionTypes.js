@@ -1,0 +1,4 @@
+// Summary reducer calls.
+export const GET_WORKFLOW = 'GET_WORKFLOW';
+export const UPDATE_WORKFLOW_PROJECT = 'UPDATE_WORKFLOW_PROJECT';
+export const UPDATE_WORKFLOW_SURVEY = 'UPDATE_WORKFLOW_SURVEY';

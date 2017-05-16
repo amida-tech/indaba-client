@@ -24,8 +24,10 @@ import reducers from './reducers';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
+// TODO: Figure out the production/development configuration setup later.
 
-let DevTools = IS_PROD ? NOOP : createDevTools(
+
+let DevTools = createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
@@ -55,24 +57,35 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: state => store.getState().routing
 });
 
-const Wrapper = props => {
-    return (<div>
-        <Router history={history}>
-          {routes.map(route =>
-              <Route
-                  key={route.path}
-                  path={route.path}
-                  component={route.component}
-              />
-          )}
-        </Router>
-        <DevTools />
-    </div>);
-};
+// const Wrapper = props => {
+//     return (<div>
+//         <Router history={history}>
+//           {routes.map(route =>
+//               <Route
+//                   key={route.path}
+//                   path={route.path}
+//                   component={route.component}
+//               />
+//           )}
+//         </Router>
+//         <DevTools />
+//     </div>);
+// };
 
 ReactDOM.render(
     <Provider store={store}>
-        <Wrapper />
+      <div>
+          <Router history={history}>
+            {routes.map(route =>
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    component={route.component}
+                />
+            )}
+          </Router>
+          <DevTools />
+      </div>
     </Provider>,
     document.getElementById('root')
 );

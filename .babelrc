@@ -1,0 +1,10 @@
+/*
+  ./.babelrc
+  //babel-icious
+*/
+
+{
+  "presets":[
+    "es2016", "react"
+  ]
+}

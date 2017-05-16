@@ -1,6 +1,6 @@
 import DashboardContainer from './views/Dashboard';
 import LoginContainer from './views/Login';
-import ProjectManagementContainer from './views/ProjectManagement'
+import { ProjectManagementContainer } from './views/ProjectManagement';
 
 export default [
     {
@@ -16,7 +16,7 @@ export default [
       component: LoginContainer
     },
     {
-        path: '/projectmanager',
+        path: '/project',
         title: 'Project Manager',
         transTerm: 'PROJECTMANAGEMENT',
         component: ProjectManagementContainer
