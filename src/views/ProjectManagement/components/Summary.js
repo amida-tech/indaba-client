@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 class Summary extends Component {
   render() {
     return (
-      <div>
-        {this.props.vocab.PROJECT.PROJECT}
-        {this.props.vocab.PROJECT.STATUS}
-        {this.props.vocab.PROJECT.SURVEY}
-        {this.props.vocab.PROJECT.STATUS}
-        <button className="btn btn-primary">Whatever.</button>
+      <div className="row">
+        <div className="col-sm-5">
+          {this.props.vocab.PROJECT.PROJECT} {this.props.vocab.PROJECT.STATUS}
+        </div>
+        <div className="col-sm-5">
+          {this.props.vocab.PROJECT.SURVEY} {this.props.vocab.PROJECT.STATUS}
+        </div>
       </div>
     );
   }

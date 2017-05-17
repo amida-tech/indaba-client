@@ -19,10 +19,11 @@ import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
 import { createLogger } from 'redux-logger';
 import { createDevTools, persistState } from 'redux-devtools';
-import routes from './routes';
 
 /** User Imports **/
 import reducers from './reducers';
+import routes from './routes';
+import layouts from './layouts';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
@@ -59,24 +60,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: state => store.getState().routing
 });
 
-// const Wrapper = props => {
-//     return (<div>
-//         <Router history={history}>
-//           {routes.map(route =>
-//               <Route
-//                   key={route.path}
-//                   path={route.path}
-//                   component={route.component}
-//               />
-//           )}
-//         </Router>
-//         <DevTools />
-//     </div>);
-// };
-
 ReactDOM.render(
     <Provider store={store}>
-      <div>
+      <div className="main-page">
           <Router history={history}>
             {routes.map(route =>
                 <Route

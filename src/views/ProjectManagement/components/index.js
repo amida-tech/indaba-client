@@ -7,7 +7,6 @@ class ProjectManagementContainer extends Component {
     render() {
         return (
           <div>
-            <div>I am in your project. Managing your micros.</div>
             <div><Summary {...this.props} /></div>
             <div><Workflow {...this.props} /></div>
           </div>
