@@ -12,6 +12,10 @@ export function updateWorkflowStatus() {
   return dispatch => dispatch(_updateWorkflowSurvey());
 }
 
+export function editSummaryDescription() {
+  return dispatch => dispatch(_editSummaryDescription());
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW
@@ -32,4 +36,11 @@ function _updateWorkflowSurvey(survey) {
     type: actionTypes.UPDATE_WORKFLOW_SURVEY,
     payload: survey
   };
+}
+
+function _editSummaryDescription(id) {
+  return {
+    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
+    id
+  }
 }
