@@ -6,7 +6,7 @@ const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
     routing: routerReducer,
-    projectmanagement: ProjectManagementReducer
+    project: ProjectManagementReducer
 };
 
 export default combineReducers(reducers);

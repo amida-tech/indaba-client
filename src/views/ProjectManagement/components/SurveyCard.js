@@ -13,8 +13,8 @@ class SurveyCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    name: state.projectmanagement.survey.name,
-    status: state.projectmanagement.survey.status
+    name: state.project.survey.name,
+    status: state.project.survey.status
 })
 
 export default connect(mapStateToProps)(SurveyCard);

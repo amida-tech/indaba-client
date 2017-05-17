@@ -14,8 +14,8 @@ class DescriptionCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  description: state.projectmanagement.project.description,
-  id: state.projectmanagement.project.id
+  description: state.project.project.description,
+  id: state.project.project.id
 })
 const mapDispatchToProps = (dispatch) => ({
   onEditDetails: editSummaryDescription()(dispatch)

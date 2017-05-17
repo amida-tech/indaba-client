@@ -13,8 +13,8 @@ class ProjectCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    name: state.projectmanagement.project.name,
-    status: state.projectmanagement.project.status
+    name: state.project.project.name,
+    status: state.project.project.status
 })
 
 export default connect(mapStateToProps)(ProjectCard);
