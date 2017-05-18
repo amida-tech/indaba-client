@@ -29,8 +29,10 @@
     "babel-preset-react": "^6.24.1",
     "exports-loader": "^0.6.4",
     "grommet": "^1.4.0",
+    "node-sass": "^4.5.3",
     "react-scripts": "0.9.5",
-    "redux-thunk": "^1.0.0"
+    "redux-thunk": "^1.0.0",
+    "sass-loader": "^6.0.5"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
