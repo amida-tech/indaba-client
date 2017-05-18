@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ProjectCard from './ProjectCard';
 import SurveyCard from'./SurveyCard';
-import DescriptionCard from './DescriptionCard';
 import { connect } from 'react-redux';
 
 class Summary extends Component {
@@ -10,7 +9,6 @@ class Summary extends Component {
       <div className="row">
         <ProjectCard />
         <SurveyCard />
-        <DescriptionCard />
       </div>
     );
   }

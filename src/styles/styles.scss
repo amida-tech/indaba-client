@@ -3,12 +3,23 @@
 }
 
 .card {
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  padding: 0.6em;
+  border: 1px solid #DADCDE;
+  border-radius: 2px;
+  padding: 0.8em 0 1.2em 2em;
+  font-family: 'Proxima Nova';
 
-  div {
-    color: lightgray;
+  .card-title {
+    color: #A4AEBF;
+    font-weight: 600;
+    font-size: 12px;
     text-transform: uppercase;
+    line-height: 14px;
+  }
+
+  .card-value {
+    color: #7E848F;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 0.2em;
   }
 }
