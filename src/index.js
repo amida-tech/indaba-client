@@ -9,6 +9,8 @@ import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions 
 import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap-theme.css';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
@@ -17,22 +19,25 @@ import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
 import { createLogger } from 'redux-logger';
 import { createDevTools, persistState } from 'redux-devtools';
-import routes from './routes';
 
 /** User Imports **/
 import reducers from './reducers';
+import routes from './routes';
+import layouts from './layouts';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
+// TODO: Figure out the production/development configuration setup later.
 
-let DevTools = IS_PROD ? NOOP : createDevTools(
+
+let DevTools = createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
     changeMonitorKey="ctrl-m"
     fluid={true}
     defaultSize={0}
-    defaultIsVisible={false}>
+    defaultIsVisible={true}>
       <LogMonitor />
       <SliderMonitor />
       <ChartMonitor />
@@ -55,24 +60,20 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: state => store.getState().routing
 });
 
-const Wrapper = props => {
-    return (<div>
-        <Router history={history}>
-          {routes.map(route =>
-              <Route
-                  key={route.path}
-                  path={route.path}
-                  component={route.component}
-              />
-          )}
-        </Router>
-        <DevTools />
-    </div>);
-};
-
 ReactDOM.render(
     <Provider store={store}>
-        <Wrapper />
+      <div className="main-page">
+          <Router history={history}>
+            {routes.map(route =>
+                <Route
+                    key={route.path}
+                    path={route.path}
+                    component={route.component}
+                />
+            )}
+          </Router>
+          <DevTools />
+      </div>
     </Provider>,
     document.getElementById('root')
 );

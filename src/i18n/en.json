@@ -1,8 +1,15 @@
 {
-  "HOME": "Home",
-  "SIGN_IN": "Sign In",
-  "EMAIL": "Email",
-  "USERNAME": "Username",
-  "FIRST_NAME": "First Name",
-  "LAST_NAME": "Last Name"
+  "COMMON": {
+    "HOME": "Home",
+    "SIGN_IN": "Sign In",
+    "EMAIL": "Email",
+    "USERNAME": "Username",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name"
+  },
+  "PROJECT": {
+    "PROJECT": "Project",
+    "SURVEY": "Survey",
+    "STATUS": "Status"
+  }
 }

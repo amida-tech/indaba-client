@@ -7,10 +7,11 @@ class LoginContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-  //  vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
-  };
+// const mapStateToProps = (state, ownProps) => {
+  function mapStateToProps(store) {
+    return {
+    //  vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
+    };
 }
 
 export default connect(mapStateToProps)(LoginContainer);
