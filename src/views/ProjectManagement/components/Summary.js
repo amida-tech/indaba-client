@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 class Summary extends Component {
   render() {
     return (
-      <div>
-        <ProjectCard/>
-        <SurveyCard/>
-        <DescriptionCard/>
+      <div className="row">
+        <ProjectCard />
+        <SurveyCard />
+        <DescriptionCard />
       </div>
     );
   }

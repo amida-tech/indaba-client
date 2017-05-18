@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class ProjectCard extends Component {
   render() {
     return (
-      <div>
+      <div className='col-md-4'>
         <div>Project<div>{this.props.name}</div></div>
         <div>Project Status<div>{this.props.status}</div></div>
       </div>

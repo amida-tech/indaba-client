@@ -5,7 +5,7 @@ import { editSummaryDescription } from '../actions';
 class DescriptionCard extends Component {
   render() {
     return (
-      <div>
+      <div className='col-md-4'>
         <div>Description<div>{this.props.description}</div></div>
         <div><a onClick={() => this.props.onEditDetails(this.props.id)}>Edit Details</a></div>
       </div>
