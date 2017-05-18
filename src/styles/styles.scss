@@ -1,3 +1,14 @@
 .main-page {
 	margin: 10px 50px 10px 50px;
 }
+
+.card {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 0.6em;
+
+  div {
+    color: lightgray;
+    text-transform: uppercase;
+  }
+}

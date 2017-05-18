@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Summary from './Summary';
-import Workflow from './Workflow';
+import WorflowContainer from './Workflow';
 
 class ProjectManagementContainer extends Component {
+//<div><Summary {...this.props} /></div>
     render() {
         return (
           <div>
-            <div><Summary {...this.props} /></div>
-            <div><Workflow {...this.props} /></div>
+            <WorflowContainer />
           </div>
         )
     }
