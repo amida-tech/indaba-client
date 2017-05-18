@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .main-page {
-	margin: 10px 50px 10px 50px;
+  font-family: 'Montserrat';
+
+  hr.divider {
+    margin-top: 0;
+    border-top-color: #D8D8D8;
+  }
 }
 
 .card {
   border: 1px solid #DADCDE;
   border-radius: 2px;
   padding: 0.8em 0 1.2em 2em;
-  font-family: 'Montserrat';
 
   .card-title {
     color: #A4AEBF;
@@ -22,6 +26,32 @@
     color: #7E848F;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 0.2em;
+    margin-top: 0.6em;
+  }
+}
+
+.subnav-spacer {
+  margin-left: 6em;
+}
+.summary-spacer {
+  margin-left: 4em;
+}
+
+.subnav {
+  width: 40em;
+
+  .subnav-entry {
+    font-size: 14px;
+    line-height: 18px;
+    color: #727882;
+    text-align: center;
+
+    margin-top: 2em;
+    padding-bottom: 22px;
+
+    &.selected {
+      border-bottom: 5px solid #3B9F22;
+      padding-bottom: 17px;
+    }
   }
 }

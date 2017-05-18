@@ -1,7 +1,9 @@
 import * as t from './actionTypes';
 
 export const initialState = {
-  showSummary: true, 
+  subnav: {
+    selected: "workflow"
+  },
   project: {
     id: 0,
     name: "Pizza Lovers Anonymous",

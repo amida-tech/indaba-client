@@ -6,9 +6,13 @@ import { connect } from 'react-redux';
 class Summary extends Component {
   render() {
     return (
-      <div className="row">
-        <ProjectCard />
-        <SurveyCard />
+      <div className='summary-spacer'>
+        <div className='container'>
+          <div className="row">
+            <ProjectCard />
+            <SurveyCard />
+          </div>
+        </div>
       </div>
     );
   }
