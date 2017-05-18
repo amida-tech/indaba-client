@@ -12,8 +12,8 @@ export function updateWorkflowStatus() {
   return dispatch => dispatch(_updateWorkflowSurvey());
 }
 
-export function editSummaryDescription() {
-  return dispatch => dispatch(_editSummaryDescription());
+export function editSummaryDescription(id) {
+  return _editSummaryDescription(id);
 }
 
 function _getWorkflow() {

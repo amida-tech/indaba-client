@@ -7,7 +7,7 @@ class ProjectManagementContainer extends Component {
     render() {
         return (
           <div>
-            <div><Summary {...this.props} /></div>
+            <div className='container-fluid'><Summary {...this.props} /></div>
             <div><Workflow {...this.props} /></div>
           </div>
         )
