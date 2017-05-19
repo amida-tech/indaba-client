@@ -26,6 +26,13 @@ export function subnavigate(id) {
   };
 }
 
+export function showModal(id) {
+  return {
+    type: actionTypes.SHOW_MODAL,
+    id
+  };
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW

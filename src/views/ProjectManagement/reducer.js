@@ -1,8 +1,8 @@
 import * as t from './actionTypes';
 
 export const initialState = {
-  subnav: {
-    selected: "workflow"
+  navigation: {
+    subnav: "workflow"
   },
   project: {
     id: 0,
@@ -26,7 +26,10 @@ export default (state = initialState, action) => {
     case t.UPDATE_WORKFLOW_SURVEY:
       return Object.assign({}, state, action.payload.survey);
     case t.SUBNAVIGATE:
-      return Object.assign({}, state, {subnav: {selected: action.id}});
+      return Object.assign({}, state, {navigation: {subnav: action.id}});
+    case t.SHOW_MODAL:
+      return Object.assign({}, state,
+        {navigation: Object.assign({}, state.navigation, {modal: action.id})});
     default:
       return state;
   }

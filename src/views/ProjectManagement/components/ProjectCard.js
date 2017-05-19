@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardValueDropdown from './CardValueDropdown';
+import { showModal } from '../actions';
 
 const ProjectStatusOptions = [
   {
@@ -25,7 +26,11 @@ class ProjectCard extends Component {
             </div>
             <div className='col-md-4'>
               <div className='card-title'>Status</div>
-              <CardValueDropdown value={this.props.status} options={ProjectStatusOptions}/>
+              <CardValueDropdown
+                value={this.props.status}
+                options={ProjectStatusOptions}
+                onClick={this.props.onDropdownClick}
+                />
             </div>
           </div>
         </div>
@@ -35,8 +40,11 @@ class ProjectCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    name: state.project.project.name,
-    status: state.project.project.status
-})
+  name: state.project.project.name,
+  status: state.project.project.status
+});
+const mapDispatchToProps = (dispatch) => ({
+  onDropdownClick: (id) => dispatch(showModal(id))
+});
 
-export default connect(mapStateToProps)(ProjectCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectCard);

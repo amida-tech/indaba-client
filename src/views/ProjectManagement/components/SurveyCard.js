@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardValueDropdown from './CardValueDropdown';
+import { showModal } from '../actions';
 
 const SurveyStatusOptions = [
   {
@@ -25,7 +26,11 @@ class SurveyCard extends Component {
             </div>
             <div className='col-md-4'>
               <div className='card-title'>Status</div>
-              <CardValueDropdown value={this.props.status} options={SurveyStatusOptions}/>
+              <CardValueDropdown
+                value={this.props.status}
+                options={SurveyStatusOptions}
+                onClick={this.props.onDropdownClick}
+                />
             </div>
           </div>
         </div>
@@ -37,6 +42,9 @@ class SurveyCard extends Component {
 const mapStateToProps = (state, ownProps) => ({
     name: state.project.survey.name,
     status: state.project.survey.status
-})
+});
+const mapDispatchToProps = (dispatch) => ({
+  onDropdownClick: (id) => dispatch(showModal(id))
+});
 
-export default connect(mapStateToProps)(SurveyCard);
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyCard);
