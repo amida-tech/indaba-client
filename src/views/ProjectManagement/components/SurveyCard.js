@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CardValueDropdown from './CardValueDropdown';
+
+const SurveyStatusOptions = [
+  {
+    label: "Edit survey in draft mode",
+    value: "edit"
+  },
+  {
+    label: "Publish survey",
+    value: "publish"
+  }
+]
 
 class SurveyCard extends Component {
   render() {
@@ -13,7 +25,7 @@ class SurveyCard extends Component {
             </div>
             <div className='col-md-4'>
               <div className='card-title'>Status</div>
-              <div className='card-value'>{this.props.status}</div>
+              <CardValueDropdown value={this.props.status} options={SurveyStatusOptions}/>
             </div>
           </div>
         </div>
