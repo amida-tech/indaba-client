@@ -12,8 +12,25 @@ export function updateWorkflowStatus() {
   return dispatch => dispatch(_updateWorkflowSurvey());
 }
 
-export function editSummaryDescription() {
-  return dispatch => dispatch(_editSummaryDescription());
+export function editSummaryDescription(id) {
+  return {
+    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
+    id
+  };
+}
+
+export function subnavigate(id) {
+  return {
+    type: actionTypes.SUBNAVIGATE,
+    id
+  };
+}
+
+export function showModal(id) {
+  return {
+    type: actionTypes.SHOW_MODAL,
+    id
+  };
 }
 
 function _getWorkflow() {
@@ -36,11 +53,4 @@ function _updateWorkflowSurvey(survey) {
     type: actionTypes.UPDATE_WORKFLOW_SURVEY,
     payload: survey
   };
-}
-
-function _editSummaryDescription(id) {
-  return {
-    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
-    id
-  }
 }

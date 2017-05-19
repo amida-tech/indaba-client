@@ -7,7 +7,7 @@ class WorkflowContainer extends Component {
   render() {
     return (
       <div>
-        GODDAMMIT.
+        Workflowing.
       </div>
     );
   }

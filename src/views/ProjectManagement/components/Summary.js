@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import ProjectCard from './ProjectCard';
 import SurveyCard from'./SurveyCard';
-import DescriptionCard from './DescriptionCard';
 import { connect } from 'react-redux';
 
 class Summary extends Component {
   render() {
     return (
-      <div>
-        <ProjectCard/>
-        <SurveyCard/>
-        <DescriptionCard/>
+      <div className='summary-spacer'>
+        <div className='container-fluid'>
+          <div className="row">
+            <ProjectCard />
+            <SurveyCard />
+          </div>
+        </div>
       </div>
     );
   }
