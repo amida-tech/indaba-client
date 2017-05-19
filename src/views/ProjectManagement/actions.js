@@ -13,7 +13,17 @@ export function updateWorkflowStatus() {
 }
 
 export function editSummaryDescription(id) {
-  return _editSummaryDescription(id);
+  return {
+    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
+    id
+  };
+}
+
+export function subnavigate(id) {
+  return {
+    type: actionTypes.SUBNAVIGATE,
+    id
+  };
 }
 
 function _getWorkflow() {
@@ -36,11 +46,4 @@ function _updateWorkflowSurvey(survey) {
     type: actionTypes.UPDATE_WORKFLOW_SURVEY,
     payload: survey
   };
-}
-
-function _editSummaryDescription(id) {
-  return {
-    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
-    id
-  }
 }

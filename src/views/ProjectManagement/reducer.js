@@ -25,6 +25,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, action.payload.project);
     case t.UPDATE_WORKFLOW_SURVEY:
       return Object.assign({}, state, action.payload.survey);
+    case t.SUBNAVIGATE:
+      return Object.assign({}, state, {subnav: {selected: action.id}});
     default:
       return state;
   }

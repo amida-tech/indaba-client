@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { subnavigate } from '../actions';
 
 const subNavEntries = [{
   label: 'Workflow',
@@ -18,7 +19,11 @@ const subNavEntries = [{
 class SubNavEntry extends Component {
   render() {
     return (
-      <div className={`subnav-entry col-md-1 ${this.props.selected ? 'selected' : ''}`}>{this.props.label}</div>
+      <div
+        className={`subnav-entry col-md-1 ${this.props.selected ? ' selected' : ''}`}
+        onClick={this.props.onClick}>
+        {this.props.label}
+      </div>
     );
   }
 }
@@ -30,7 +35,11 @@ class SubNav extends Component {
         <div className='container subnav'>
           <div className='row'>
             {subNavEntries.map(entry =>
-              <SubNavEntry label={entry.label} key={entry.key} selected={this.props.selected === entry.key}/>)}
+              <SubNavEntry
+                {...entry}
+                selected={this.props.selected === entry.key}
+                onClick={() => this.props.onclick(entry.key)}
+                />)}
           </div>
         </div>
       </div>
@@ -41,6 +50,8 @@ class SubNav extends Component {
 const mapStateToProps = (state) => ({
   selected: state.project.subnav.selected
 });
+const mapDispatchToProps = (dispatch) => ({
+  onclick: (id) => dispatch(subnavigate(id))
+});
 
-
-export default connect(mapStateToProps)(SubNav);
+export default connect(mapStateToProps, mapDispatchToProps)(SubNav);
