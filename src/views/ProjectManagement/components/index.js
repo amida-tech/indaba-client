@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SubNav from './SubNav';
 import Summary from './Summary';
 import WorkflowContainer from './Workflow';
 
 class ProjectManagementContainer extends Component {
-//<div><Summary {...this.props} /></div>
     render() {
         return (
           <div>
-            <WorkflowContainer />
+            <SubNav />
+            <hr className='divider' />
+            <Summary {...this.props} />
+            <div><WorkflowContainer {...this.props} /></div>
           </div>
         )
     }
