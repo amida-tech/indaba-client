@@ -7,7 +7,7 @@ class Summary extends Component {
   render() {
     return (
       <div className='summary-spacer'>
-        <div className='container'>
+        <div className='container-fluid'>
           <div className="row">
             <ProjectCard />
             <SurveyCard />
