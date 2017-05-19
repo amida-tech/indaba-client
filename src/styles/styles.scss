@@ -30,15 +30,16 @@
   }
 }
 
-.subnav-spacer {
-  margin-left: 6em;
+@media (min-width: 992px) {
+  .subnav-spacer {
+    width: 800px;
+  }
 }
 .summary-spacer {
   margin-left: 4em;
 }
 
 .subnav {
-  width: 40em;
 
   .subnav-entry {
     font-size: 14px;

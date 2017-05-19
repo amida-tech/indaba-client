@@ -20,7 +20,7 @@ class SubNavEntry extends Component {
   render() {
     return (
       <div
-        className={`subnav-entry col-md-1 ${this.props.selected ? ' selected' : ''}`}
+        className={`subnav-entry col-md-2 ${this.props.selected ? ' selected' : ''} ${this.props.first ? ' col-md-offset-1' : ''}`}
         onClick={this.props.onClick}>
         {this.props.label}
       </div>
@@ -32,11 +32,12 @@ class SubNav extends Component {
   render() {
     return (
       <div className='subnav-spacer'>
-        <div className='container subnav'>
+        <div className='container-fluid subnav'>
           <div className='row'>
-            {subNavEntries.map(entry =>
+            {subNavEntries.map((entry, i) =>
               <SubNavEntry
                 {...entry}
+                first={i===0}
                 selected={this.props.selected === entry.key}
                 onClick={() => this.props.onclick(entry.key)}
                 />)}
