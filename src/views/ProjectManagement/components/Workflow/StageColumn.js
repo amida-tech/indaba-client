@@ -8,12 +8,16 @@ const Types = {
 
 const stageSpotTarget = {
   canDrop(props, monitor) {
+    return true;
     // Checks if we can make the drop.
   },
   hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
   },
   drop(props, monitor, component) {
+    console.log("BEHOLD!");
+    console.log(component);
+    const item = component;
     // Dispatch to inform the state and DB of changes.
   }
 }
@@ -29,9 +33,14 @@ function collect(connect, monitor){
 
 class StageColumn extends Component {
   render() {
-    return(
-      <div>
-        Oh yeah.
+    const { position } = this.props;
+    const { item } = this.props;
+    const { isOver, canDrop, connectDropTarget } = this.props;
+
+    return connectDropTarget(
+      <div className="stagecolumn workflow">
+        Assign Task
+        {isOver && canDrop}
       </div>
     )
   }
