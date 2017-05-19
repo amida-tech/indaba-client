@@ -31,14 +31,14 @@ function collect(connect, monitor){
   };
 }
 
-class StageColumn extends Component {
+class StageSlot extends Component {
   render() {
     const { position } = this.props;
     const { item } = this.props;
     const { isOver, canDrop, connectDropTarget } = this.props;
 
     return connectDropTarget(
-      <div className="stagecolumn workflow">
+      <div className="stageslot workflow">
         Assign Task
         {isOver && canDrop}
       </div>
@@ -46,4 +46,4 @@ class StageColumn extends Component {
   }
 }
 
-export default DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect)(StageColumn);
+export default DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect)(StageSlot);
