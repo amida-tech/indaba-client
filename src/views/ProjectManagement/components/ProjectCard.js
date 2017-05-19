@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CardValueDropdown from './CardValueDropdown';
 
 const ProjectStatusOptions = [
   {
@@ -11,26 +12,6 @@ const ProjectStatusOptions = [
     value: 'activate'
   }
 ];
-
-class CardValueDropdown extends Component {
-  render() {
-    return (
-      <div className='card-value card-value-select' tabIndex="0">
-        {this.props.value}
-        <span className='card-value-select-arrow'></span>
-        <div className='card-value-options'>
-          {this.props.options.map(option =>
-            <div
-              className='card-value-option'
-              key={option.value}
-              onClick={() => this.props.onClick(option.value)}>
-              {option.label}
-            </div>)}
-          </div>
-      </div>
-    )
-  }
-}
 
 class ProjectCard extends Component {
   render() {
