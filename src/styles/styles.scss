@@ -2,6 +2,10 @@
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
 
+// grommet brand colors
+$brand-color: #4EB276;
+@import 'grommet/scss/grommet-core/index.scss';
+
 .main-page {
   font-family: 'Montserrat';
   background-color: $page-background-color;
@@ -97,5 +101,24 @@ $page-background-color: #FCFAFA;
       border-bottom: 5px solid #3B9F22;
       padding-bottom: 17px;
     }
+  }
+}
+
+.layer-content {
+  background-color: #F2F2F2;
+
+  .layer-title {
+    padding-left: 1em;
+    text-align: left;
+    font-size: 18px;
+    line-height: 48px;
+    border-bottom: 1px solid $border-color;
+    color: #7E848F;
+  }
+
+  .layer-body-container {
+    background-color: #FAFAFA;
+    padding: 1.5em 1em 1.5em 1em;
+    border-bottom: 1px solid $border-color;
   }
 }
