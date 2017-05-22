@@ -33,6 +33,20 @@ export function showModal(id) {
   };
 }
 
+export function closeModal() {
+  return {
+    type: actionTypes.CLOSE_MODAL
+  }
+}
+
+export function addSubject(subject) {
+  return {
+    type: actionTypes.ADD_SUBJECT,
+    subject
+  }
+};
+
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW

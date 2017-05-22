@@ -30,6 +30,10 @@ export default (state = initialState, action) => {
     case t.SHOW_MODAL:
       return Object.assign({}, state,
         {navigation: Object.assign({}, state.navigation, {modal: action.id})});
+    case t.CLOSE_MODAL:
+      const newState = Object.assign({}, state);
+      delete newState.navigation.modal;
+      return newState;
     default:
       return state;
   }
