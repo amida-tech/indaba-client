@@ -32,14 +32,23 @@ function collect(connect, monitor){
 }
 
 class StageSlot extends Component {
+  componentWillReceiveProps(nextProps){
+    this.props = nextProps;
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    console.log(this.props.name);
+    const display = this.props.name ? this.props.name : "Assign Task";
     const { position } = this.props;
     const { item } = this.props;
     const { isOver, canDrop, connectDropTarget } = this.props;
-
     return connectDropTarget(
       <div className="stageslot workflow">
-        Assign Task
+        {display}
         {isOver && canDrop}
       </div>
     )

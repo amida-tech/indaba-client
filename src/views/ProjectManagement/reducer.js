@@ -28,15 +28,27 @@ export const initialState = {
   assignees: [{
       id: 0,
       name: "Jon McLane",
-      role: 0
+      role: 0,
+      stage: 0,
+      subject: 0
     },{
       id: 1,
       name: "Ellen Ripley",
-      role: 0
+      role: 0,
+      stage: 0,
+      subject: 1
     },{
       id: 2,
       name: "Indiana Jones",
-      role: 1
+      role: 1,
+      stage: 1,
+      subject: 0
+    },{
+      id: 3,
+      name: "Tony Stark",
+      role: 1,
+      stage: 1,
+      subject: 2
     }]
   },
   survey: {
