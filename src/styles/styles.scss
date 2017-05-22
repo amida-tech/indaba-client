@@ -13,6 +13,7 @@ $brand-color: #4EB276;
   hr.divider {
     margin-top: 0;
     border-top-color: #D8D8D8;
+    clear: both;
   }
 }
 
@@ -120,5 +121,13 @@ $brand-color: #4EB276;
     background-color: #FAFAFA;
     padding: 1.5em 1em 1.5em 1em;
     border-bottom: 1px solid $border-color;
+  }
+}
+
+.add-button-panel {
+  margin-right: 1em;
+  button {
+    margin-left: 5px;
+    float: right;
   }
 }

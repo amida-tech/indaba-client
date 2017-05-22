@@ -7,9 +7,9 @@ import { showModal } from '../../actions';
 class AddButtons extends Component {
   render() {
     return (
-      <div>
-        <Button primary={true} label='Add New Stage'/>
+      <div className='add-button-panel'>
         <Button primary={true} label='Add Subject' onClick={this.props.onAddSubjectClick}/>
+        <Button primary={true} label='Add New Stage'/>
       </div>
     )
   }
