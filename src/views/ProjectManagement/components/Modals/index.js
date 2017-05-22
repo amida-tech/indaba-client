@@ -14,4 +14,8 @@ class ModalContent extends Component {
   }
 }
 
+export const modalIDs = {
+  ADD_SUBJECT_MODAL: 'addsubject'
+}
+
 export default ModalContent;
