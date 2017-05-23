@@ -41,7 +41,6 @@ class StageSlot extends Component {
   }
 
   render() {
-    console.log(this.props.name);
     const display = this.props.name ? this.props.name : "Assign Task";
     const { position } = this.props;
     const { item } = this.props;

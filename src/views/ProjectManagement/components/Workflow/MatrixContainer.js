@@ -4,7 +4,6 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import StageSlot from './StageSlot';
 import AssigneeCard from './AssigneeCard';
-import Sidebar from './Sidebar';
 
 class MatrixContainer extends Component {
   /*
@@ -27,7 +26,9 @@ class MatrixContainer extends Component {
           <div className="row" key={"SubjectHeader-"+key}>
             <div className="col-md-2" key={key}>{subject}</div>
             {this.props.data.project.workflow.stages.map(stage =>
-              <div className="col-md-2"><StageSlot {...this._assignmentCheck(stage, subject, key, assignees)} /></div>
+              <div className="col-md-2" key={"StageSlot-"+key+stage.id}>
+                <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)} />
+              </div>
               )
             }
           </div>
