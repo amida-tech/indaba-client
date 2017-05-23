@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
+$font-color: #A4AEBF;
+$font-inverse-color: #FAF5F5;
 
 // grommet brand colors
 $brand-color: #4EB276;
@@ -12,6 +14,7 @@ $brand-color: #4EB276;
 
   hr.divider {
     margin-top: 0;
+    margin-bottom: 0;
     border-top-color: #D8D8D8;
     clear: both;
   }
@@ -23,7 +26,7 @@ $brand-color: #4EB276;
   padding: 0.8em 0 1.2em 2em;
 
   .card-title {
-    color: #A4AEBF;
+    color: $font-color;
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
@@ -125,9 +128,50 @@ $brand-color: #4EB276;
 }
 
 .add-button-panel {
-  margin-right: 1em;
+  margin: 1em;
+  float: right;
+
   button {
     margin-left: 5px;
-    float: right;
+  }
+}
+
+.fancy-radio {
+  float: left;
+  border-radius: 2px;
+  border: 1px solid $border-color;
+
+  .fancy-option {
+    display: inline-block;
+
+    &:not(:last-child) {
+      border-right: 1px solid $border-color
+    }
+
+    input[type='radio'] {
+      display: none;
+      margin: 0;
+
+      &:checked ~ label {
+        background-color: $brand-color;
+        color: $font-inverse-color;
+      }
+    }
+
+    &:first-child label {
+      border-radius: 2px 0 0 2px;
+    }
+    &:last-child label {
+      border-radius: 0 2px 2px 0;
+    }
+
+    label {
+      margin: 0;
+      padding: 0.4em;
+      text-transform: uppercase;
+      color: $font-color;
+      font-size: 12px;
+      font-weight: bold;
+    }
   }
 }

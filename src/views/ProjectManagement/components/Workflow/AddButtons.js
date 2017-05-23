@@ -8,8 +8,8 @@ class AddButtons extends Component {
   render() {
     return (
       <div className='add-button-panel'>
-        <Button primary={true} label='Add Subject' onClick={this.props.onAddSubjectClick}/>
         <Button primary={true} label='Add New Stage'/>
+        <Button primary={true} label='Add Subject' onClick={this.props.onAddSubjectClick}/>
       </div>
     )
   }

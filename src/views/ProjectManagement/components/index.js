@@ -5,6 +5,7 @@ import Summary from './Summary';
 import WorkflowContainer from './Workflow';
 import Modal from '../../../common/Modal';
 import ModalContent from './Modals';
+import FilterBar from './Workflow/FilterBar.js';
 import AddButtons from './Workflow/AddButtons';
 import { addSubject, closeModal } from '../actions';
 
@@ -22,7 +23,7 @@ class ProjectManagementContainer extends Component {
         {modal}
         <SubNav />
         <hr className='divider' />
-        <AddButtons />
+        <FilterBar />
         <hr className='divider' />
         <Summary {...this.props} />
         <div><WorkflowContainer {...this.props} /></div>
