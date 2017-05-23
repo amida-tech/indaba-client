@@ -2,7 +2,8 @@ import * as t from './actionTypes';
 
 export const initialState = {
   navigation: {
-    subnav: "workflow"
+    subnav: "workflow",
+    modal: "addsubject"
   },
   project: {
     id: 0,

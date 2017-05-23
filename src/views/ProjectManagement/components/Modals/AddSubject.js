@@ -4,7 +4,7 @@ import { Button } from 'grommet';
 class AddSubject extends Component {
   render() {
     return (
-      <div className='layer-content'>
+      <div className='layer-content add-subject-layer'>
         <div className='layer-title'>Add Subject</div>
         <div className='layer-body-container'>
           <input type='text' placeholder='Subject Title'/>

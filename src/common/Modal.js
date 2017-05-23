@@ -4,8 +4,8 @@ import { Layer } from 'grommet';
 class Modal extends Component {
   render() {
     return (
-      <Layer align="center"
-        closer={true}
+      <Layer align="top"
+        closer={false}
         flush={true}
         onClose={this.props.onClose}>
         {this.props.content}

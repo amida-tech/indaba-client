@@ -6,6 +6,8 @@ $font-inverse-color: #FAF5F5;
 
 // grommet brand colors
 $brand-color: #4EB276;
+$layer-overlay-background-color: rgba(white, 0.8);
+$layer-background-color: none;
 @import 'grommet/scss/grommet-core/index.scss';
 
 .main-page {
@@ -114,9 +116,15 @@ $brand-color: #4EB276;
 }
 
 .layer-content {
-  background-color: #F2F2F2;
+  // margin-top: 20em;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
+  // space at the top for positioning, space on the other side to show box-shadow
+  margin: 10em 1em 1em 1em;
 
   .layer-title {
+    background-color: #F2F2F2;
     padding-left: 1em;
     text-align: left;
     font-size: 18px;
@@ -125,10 +133,23 @@ $brand-color: #4EB276;
     color: #7E848F;
   }
 
+  .layer-footer {
+    background-color: #F2F2F2;
+  }
+
   .layer-body-container {
     background-color: #FAFAFA;
-    padding: 1.5em 1em 1.5em 1em;
+    padding: 2em 1em 2em 1em;
     border-bottom: 1px solid $border-color;
+  }
+
+  // specific layers
+  &.add-subject-layer {
+    width: 30em;
+
+    input {
+      width: 100%;
+    }
   }
 }
 
