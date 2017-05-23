@@ -11,11 +11,8 @@ import { addSubject, closeModal } from '../actions';
 class ProjectManagementContainer extends Component {
   render() {
     const modal = this.props.modal ?
-      <Modal
-        onClose={this.props.onCancel}
-        content={
-          <ModalContent
-            id={this.props.modal} {...this.props} /> }/> :
+    <ModalContent
+      id={this.props.modal} {...this.props} /> :
       null;
     return (
       <div>
