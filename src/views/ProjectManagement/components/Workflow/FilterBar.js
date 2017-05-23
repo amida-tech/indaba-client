@@ -29,7 +29,7 @@ class FancyOption extends Component {
     return (
       <div className='fancy-option'>
         <input type='radio' name={this.props.name} id={this.props.id}/>
-        <label uppercase={true} htmlFor={this.props.id}>{this.props.label}</label>
+        <label htmlFor={this.props.id}>{this.props.label}</label>
       </div>
     );
   }
@@ -48,7 +48,7 @@ class FancyRadio extends Component {
 class FilterBar extends Component {
   render() {
     return (
-      <div>
+      <div className='filter-bar'>
         <FancyRadio options={Filters}/>
         <AddButtons />
       </div>
