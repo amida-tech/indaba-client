@@ -34,8 +34,9 @@ export default (state = initialState, action) => {
       const newState = Object.assign({}, state);
       delete newState.navigation.modal;
       return newState;
-    case t.SET_FILTER:
-      return Object.assign({}, state, {filter: action.filter});
+    case t.TOGGLE_FILTER:
+      return Object.assign({}, state,
+        { filter: (state.filter === action.filter) ? null : action.filter });
     default:
       return state;
   }

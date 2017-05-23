@@ -46,9 +46,9 @@ export function addSubject(subject) {
   }
 }
 
-export function setFilter(filter) {
+export function toggleFilter(filter) {
   return {
-    type: actionTypes.SET_FILTER,
+    type: actionTypes.TOGGLE_FILTER,
     filter
   }
 }
