@@ -44,7 +44,14 @@ export function addSubject(subject) {
     type: actionTypes.ADD_SUBJECT,
     subject
   }
-};
+}
+
+export function setFilter(filter) {
+  return {
+    type: actionTypes.SET_FILTER,
+    filter
+  }
+}
 
 
 function _getWorkflow() {

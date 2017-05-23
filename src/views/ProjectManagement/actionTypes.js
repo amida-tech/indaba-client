@@ -7,3 +7,4 @@ export const SUBNAVIGATE = 'SUBNAVIGATE';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const ADD_SUBJECT = 'ADD_SUBJECT';
+export const SET_FILTER = 'SET_FILTER';
