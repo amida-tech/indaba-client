@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import StageSlot from './StageSlot';
 import AssigneeCard from './AssigneeCard';
+import Sidebar from './Sidebar';
 
 class MatrixContainer extends Component {
   /*
