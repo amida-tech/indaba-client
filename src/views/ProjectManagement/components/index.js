@@ -23,9 +23,9 @@ class ProjectManagementContainer extends Component {
         {modal}
         <SubNav />
         <hr className='divider' />
-        <FilterWrapper />
-        <hr className='divider' />
         <Summary {...this.props} />
+        <hr className='divider' />
+        <FilterWrapper />
         <div><WorkflowContainer {...this.props} /></div>
       </div>
     )
