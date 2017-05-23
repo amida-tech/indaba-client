@@ -121,7 +121,7 @@ $layer-background-color: none;
   border-radius: 3px;
   box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
   // space at the top for positioning, space on the other side to show box-shadow
-  margin: 10em 1em 1em 1em;
+  margin: 4em 1em 1em 1em;
 
   .layer-title {
     background-color: #F2F2F2;
@@ -135,6 +135,31 @@ $layer-background-color: none;
 
   .layer-footer {
     background-color: #F2F2F2;
+    line-height: 3em;
+    padding-right: 1em;
+    overflow: auto;
+
+    .layer-footer-button-wrapper {
+      float: right;
+
+      .layer-footer-button {
+        padding: 0.5em 1.2em 0.5em 1.2em;
+        line-height: 1.2em;
+        vertical-align: middle;
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 14px;
+        background-color: #D8D8D8;
+        color: #7E848F;
+        margin-left: 1em;
+
+        &.layer-footer-button-primary {
+          background-color: $brand-color;
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   .layer-body-container {
@@ -150,6 +175,7 @@ $layer-background-color: none;
     input {
       width: 100%;
     }
+
   }
 }
 

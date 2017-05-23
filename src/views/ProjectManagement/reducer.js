@@ -38,6 +38,11 @@ export default (state = initialState, action) => {
     case t.TOGGLE_FILTER:
       return Object.assign({}, state,
         { filter: (state.filter === action.filter) ? null : action.filter });
+    case t.ADD_SUBJECT:
+      // TODO add subject to workflow state
+      const newSubjectState = Object.assign({}, state);
+      delete newSubjectState.navigation.modal;
+      return newSubjectState;
     default:
       return state;
   }
