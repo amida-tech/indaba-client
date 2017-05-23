@@ -21,14 +21,14 @@ const Filters = [{
   key: 'flagged'
 }];
 
-class FancyRadio extends Component {
+class FilterBar extends Component {
   render() {
     return (
-      <div className='fancy-radio'>
+      <div className='filter-bar'>
         {this.props.options.map((option) => (
           <div
             key={option.key}
-            className={`fancy-option ${(this.props.filter === option.key) ? ' filter-checked' : ''}`}
+            className={`filter ${(this.props.filter === option.key) ? ' filter-checked' : ''}`}
             onClick={() => this.props.onToggleFilter(option.key)}>
             {option.label}
           </div>
@@ -38,11 +38,11 @@ class FancyRadio extends Component {
   }
 };
 
-class FilterBar extends Component {
+class FilterWrapper extends Component {
   render() {
     return (
-      <div className='filter-bar'>
-        <FancyRadio options={Filters} filter={this.props.filter} onToggleFilter={this.props.onToggleFilter}/>
+      <div className='filter-wrapper'>
+        <FilterBar options={Filters} filter={this.props.filter} onToggleFilter={this.props.onToggleFilter}/>
         <AddButtons />
       </div>
     );
@@ -56,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
   onToggleFilter: (filter) => dispatch(toggleFilter(filter))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterBar)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterWrapper)

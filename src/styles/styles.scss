@@ -127,7 +127,7 @@ $brand-color: #4EB276;
   }
 }
 
-.filter-bar {
+.filter-wrapper {
   height: 5em;
   margin: 0 2em 0 2em;
 }
@@ -141,11 +141,11 @@ $brand-color: #4EB276;
   }
 }
 
-.fancy-radio {
+.filter-bar {
   float: left;
   line-height: 5em;
 
-  .fancy-option {
+  .filter {
     display: inline-block;
     padding: 0.4em 1em 0.4em 1em;
     vertical-align: middle;
