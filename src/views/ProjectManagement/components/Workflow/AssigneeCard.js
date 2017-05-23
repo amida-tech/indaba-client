@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
+import ProjectActions from '../../actions';
 /* Take in props for name, function for whatever edit will be,
    state of completion and the date the task is due. Based on
    the last two factors, decide whether to flag as late, not
@@ -26,8 +27,16 @@ const cardSource = {
     if (!monitor.didDrop()) {
        return;
     }
-    const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
+    const assignment = {
+      'id': props.id,
+      'name': props.name,
+      'role': props.role,
+      'stage': dropResult.stage,
+      'subject': dropResult.subject
+    };
+    console.log(component.store);
+    console.log(assignment);
   }
 }
 
@@ -39,14 +48,24 @@ function collect(connect, monitor) {
 }
 
 class AssigneeCard extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidUpdate(prevProps){
+    console.log(this.props);
+  }
+
   render() {
+    console.log(this.props);
+    const name = this.props.name;
     const { id } = this.props;
     const { isDragging, connectDragSource } = this.props;
 
     return connectDragSource (
       <div className="assigneecard workflow">
-        Assignee {id}
-        {isDragging && '(Stop touching me!)'}
+        {name}
+        {isDragging && '(Wendy! I can fly!)'}
       </div>
     );
   }

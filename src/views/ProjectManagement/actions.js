@@ -33,6 +33,14 @@ export function showModal(id) {
   };
 }
 
+export function assignTask(assignment) {
+  console.log("I'm in your code! Signed, the task master.");
+  return {
+    type: actionTypes.ASSIGN_TASK,
+    assignment
+  }
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW

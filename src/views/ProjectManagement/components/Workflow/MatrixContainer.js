@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import StageSlot from './StageSlot';
 import AssigneeCard from './AssigneeCard';
+import Sidebar from './Sidebar';
 
 class MatrixContainer extends Component {
   /*
@@ -36,8 +37,9 @@ class MatrixContainer extends Component {
       </div>
     );
     return(
-      <div>
-      {Grid}
+      <div className="row">
+        <div className="col-md-4">{Grid}</div>
+        <div className="col-md-3"><Sidebar {...this.props} /></div>
       </div>
     )
   }
@@ -46,11 +48,12 @@ class MatrixContainer extends Component {
     for(var i = 0; i < assignees.length; i++){
       if(assignees[i].subject === key && assignees[i].stage === stage.id){
         var goal = assignees[i];
+        console.log(goal);
         assignees = assignees.splice(i,1);
         return(goal);
       }
     }
-    return(null);
+    return({'stage': stage.id, 'subject': key});
   }
 }
 

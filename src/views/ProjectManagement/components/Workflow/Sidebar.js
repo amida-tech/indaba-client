@@ -5,6 +5,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import AssigneeCard from './AssigneeCard';
 
 import List from 'grommet/components/List';
+import ListItem from 'grommet/components/ListItem';
 import SearchInput from 'grommet/components/SearchInput';
 import Box from 'grommet/components/Box';
 import Select from 'grommet/components/Select';
@@ -22,7 +23,13 @@ class Sidebar extends Component {
         <SearchInput placeHolder={this.props.vocab.COMMON.SEARCH}/>
         <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
           options={this.props.data.project.workflow.roles} />
-        <List />
+        <List>
+          {this.props.data.project.workflow.unassigned.map(unassignee =>
+            <ListItem key={"Unassigned-"+unassignee.id}>
+              <AssigneeCard {React.cloneElement(this.props, {...unassignee})} />
+            </ListItem>
+          )}
+        </List>
       </Box>
     )
   }

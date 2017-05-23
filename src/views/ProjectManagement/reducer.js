@@ -49,7 +49,20 @@ export const initialState = {
       role: 1,
       stage: 1,
       subject: 2
-    }]
+    }],
+  unassigned: [{
+    id: 4,
+    name: "Johnny Quest",
+    role: 0
+  },{
+    id: 5,
+    name: "Buck Rogers",
+    role: 0
+  },{
+    id: 6,
+    name: "Marvin Martian",
+    role: 1
+  }]
   },
   survey: {
     id: 0,
