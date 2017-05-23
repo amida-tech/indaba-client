@@ -6,43 +6,33 @@ import { toggleFilter } from '../../actions';
 
 const Filters = [{
   label: 'Unassigned',
-  id: 'unassigned',
   key: 'unassigned'
 }, {
   label: 'Late',
-  id: 'late',
   key: 'late'
 }, {
   label: 'In Progress',
-  id: 'inprogress',
   key: 'inprogress'
 }, {
   label: 'Not Started',
-  id: 'notstarted',
   key: 'notstarted'
 }, {
   label: 'Flagged',
-  id: 'flagged',
   key: 'flagged'
 }];
-
-class FancyOption extends Component {
-  render() {
-    return (
-      <div
-        className={`fancy-option ${this.props.checked ? ' filter-checked' : ''}`}
-        onClick={() => this.props.onToggleFilter(this.props.id)}>
-        {this.props.label}
-      </div>
-    );
-  }
-};
 
 class FancyRadio extends Component {
   render() {
     return (
       <div className='fancy-radio'>
-        {this.props.options.map((option) => (<FancyOption {...option} name='filter' checked={this.props.filter === option.id} onToggleFilter={this.props.onToggleFilter}/>))}
+        {this.props.options.map((option) => (
+          <div
+            key={option.key}
+            className={`fancy-option ${(this.props.filter === option.key) ? ' filter-checked' : ''}`}
+            onClick={() => this.props.onToggleFilter(option.key)}>
+            {option.label}
+          </div>
+        ))}
       </div>
     );
   }
