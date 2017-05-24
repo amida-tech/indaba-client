@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import AddSubject from './AddSubject';
-import ProjectStatusChange from './ProjectStatusChange';
+import StatusChange from './StatusChange';
 
 const modalIDToComponent = {
   'addsubject': AddSubject,
-  'activate': ProjectStatusChange
+  'statuschange': StatusChange
 };
 
 class ModalContent extends Component {

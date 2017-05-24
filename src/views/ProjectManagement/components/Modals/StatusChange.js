@@ -4,7 +4,7 @@ import { setProjectStatus } from '../../actions';
 import { Tabs, Tab } from 'grommet';
 import Modal from '../../../../common/Modal';
 
-class ProjectStatusChange extends Component {
+class StatusChange extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,4 +94,4 @@ const mapDispatchToProps = dispatch => ({
   onSetProjectStatus: (status) => dispatch(setProjectStatus(status))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectStatusChange);
+export default connect(mapStateToProps, mapDispatchToProps)(StatusChange);

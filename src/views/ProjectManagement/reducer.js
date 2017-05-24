@@ -4,7 +4,7 @@ import _ from 'lodash';
 export const initialState = {
   navigation: {
     subnav: "workflow",
-    modal: "activate"
+    modal: "statuschange"
   },
   workflow: {
     id: 0,

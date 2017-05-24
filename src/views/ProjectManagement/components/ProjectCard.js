@@ -6,7 +6,7 @@ import { showModal } from '../actions';
 const ProjectStatusOptions = [
   {
     label: 'Deactivate',
-    value: 'deactivate'
+    value: 'activate2'
   },
   {
     label: 'Activate',
