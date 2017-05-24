@@ -194,7 +194,40 @@ hr.divider {
     input {
       width: 100%;
     }
+  }
 
+  &.project-status-change-layer {
+    .project-status-field {
+      float: left;
+    }
+    .project-status-value-bar input {
+      float: right;
+    }
+    .project-status-text {
+      color: $brand-color;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .project-status-label {
+      color: $font-color;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .project-status-description p {
+      font-weight: 600;
+      color: #7E848F;
+    }
+    .project-status-confirmation {
+      p {
+        font-weight: 600;
+        color: #7E848F;
+        margin-bottom: 1em;
+      }
+      label {
+        font-weight: normal;
+        color: #7E848F;
+      }
+    }
   }
 }
 

@@ -21,8 +21,8 @@ class ProjectStatusChange extends Component {
           title='Project'>
           <div className='project-status-value-bar'>
             <div className='project-status-field'>
-              <span className='project-status-text'>{this.state.status}</span>
-              <span className='project-status-label'>Project Status</span>
+              <div className='project-status-text'>{this.state.status}</div>
+              <div className='project-status-label'>Project Status</div>
             </div>
             <input
               type='checkbox'
