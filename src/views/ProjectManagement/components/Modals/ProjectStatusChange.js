@@ -24,8 +24,8 @@ class ProjectStatusChange extends Component {
           <div className='project-status-section project-status-value'>
             <input
               type='checkbox'
-              checked={this.state.status === 'Active'}
-              onChange={x => this.setStatus(x.target.checked)}/>
+              checked={this.state.active}
+              onChange={event => this.setCheck('active', event.target.checked)}/>
             <div className='project-status-field'>
               <div className='project-status-text'>{this.state.active ? 'Active' : 'Inactive'}</div>
               <div className='project-status-label'>Project Status</div>
