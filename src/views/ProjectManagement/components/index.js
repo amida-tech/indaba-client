@@ -33,7 +33,7 @@ ProjectManagementContainer.displayName = 'Project Manager';
 const mapStateToProps = (state, ownProps) => ({
   data: state,
   vocab: state.settings.language.vocabulary,
-  modal: state.project.navigation.modal && state.project.navigation.modal.id
+  modal: state.project.navigation.modal
 });
 const mapDispatchToProps = (dispatch) => ({
   onAddSubject: (subject) => {

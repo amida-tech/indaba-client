@@ -7,20 +7,38 @@ $font-inverse-color: #FAF5F5;
 
 // grommet brand colors
 $brand-color: #4EB276;
+$brand-font-family: 'Montserrat';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
 @import 'grommet/scss/grommet-core/index.scss';
 
-.main-page {
+body {
   font-family: 'Montserrat';
   background-color: $page-background-color;
+}
 
-  hr.divider {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-top-color: #D8D8D8;
-    clear: both;
+// Grommet overrides
+.grommet {
+  .grommetux-tab {
+    width: 50%;
+
+    .grommetux-tab__label {
+      color: #7E848F;
+      font-size: 16px;
+      border: none;
+    }
+
+    &.grommetux-tab--active {
+      border-bottom: 3px solid $brand-color;
+    }
   }
+}
+
+hr.divider {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-top-color: #D8D8D8;
+  clear: both;
 }
 
 .card {

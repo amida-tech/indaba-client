@@ -4,6 +4,7 @@ import _ from 'lodash';
 export const initialState = {
   navigation: {
     subnav: "workflow",
+    modal: "activate"
   },
   workflow: {
     id: 0,
@@ -96,7 +97,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {navigation: {subnav: action.id}});
     case t.SHOW_MODAL:
       return Object.assign({}, state,
-        {navigation: Object.assign({}, state.navigation, {modal: {id: action.id}})});
+        {navigation: Object.assign({}, state.navigation, {modal: action.id})});
     case t.CLOSE_MODAL:
       var newState = Object.assign({}, state);
       delete newState.navigation.modal;

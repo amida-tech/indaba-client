@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AddButtons from './AddButtons';
-import { Label } from 'grommet';
 import { toggleFilter } from '../../actions';
 
 const Filters = [{

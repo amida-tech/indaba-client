@@ -5,13 +5,29 @@ import { Tabs, Tab } from 'grommet';
 import Modal from '../../../../common/Modal';
 
 class ProjectStatusChange extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: this.props.status
+    };
+  }
+  setStatus(active) {
+    this.setState(Object.assign({}, this.state, {status: active ? 'Active' : 'Inactive'}));
+  }
   render() {
     const body = (
       <Tabs justify='start'>
         <Tab
           title='Project'>
           <div className='project-status-value-bar'>
-            <span className='project-status-text'>{this.props.status}</span>
+            <div className='project-status-field'>
+              <span className='project-status-text'>{this.state.status}</span>
+              <span className='project-status-label'>Project Status</span>
+            </div>
+            <input
+              type='checkbox'
+              checked={this.state.status === 'Active'}
+              onChange={x => this.setStatus(x.target.checked)}/>
           </div>
           <hr className='divider'/>
           <div className='project-status-description'>
@@ -41,13 +57,14 @@ class ProjectStatusChange extends Component {
       <Modal
         class='project-status-change-layer'
         title='Change Status'
-        content={body} />
+        content={body}
+        data={this.props.data}/>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  active: state.project.status
+  status: state.project.workflow.status
 });
 const mapDispatchToProps = dispatch => ({
   onSetProjectStatus: (status) => dispatch(setProjectStatus(status))
