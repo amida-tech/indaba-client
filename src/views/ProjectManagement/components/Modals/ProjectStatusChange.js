@@ -8,7 +8,10 @@ class ProjectStatusChange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: this.props.status === 'Active'
+      active: this.props.status === 'Active',
+      draftConfirm: false,
+      accessConfirm: false,
+      usersConfirm: false
     };
   }
   setCheck(name, checked) {
@@ -44,9 +47,24 @@ class ProjectStatusChange extends Component {
           <div className='project-status-section'>
             <div className='project-status-confirmation'>
               <p>Deactivate the project? Check boxes to confirm.</p>
-              <label><input type='checkbox'/> Survey can be switched to draft mode while project is active.</label><br/>
-              <label><input type='checkbox'/> All access to project will be restored.</label><br/>
-              <label><input type='checkbox'/> All users will be notified of this action.</label>
+              <label>
+                <input type='checkbox'
+                  checked={this.state.draftConfirm}
+                  onChange={event => this.setCheck('draftConfirm', event.target.checked)}/>
+                Survey can be switched to draft mode while project is active.
+              </label><br/>
+              <label>
+                <input type='checkbox'
+                  checked={this.state.accessConfirm}
+                  onChange={event => this.setCheck('accessConfirm', event.target.checked)}/>
+                All access to project will be restored.
+              </label><br/>
+              <label>
+                <input type='checkbox'
+                  checked={this.state.usersConfirm}
+                  onChange={event => this.setCheck('usersConfirm', event.target.checked)}/>
+                All users will be notified of this action.
+              </label>
             </div>
           </div>
         </Tab>
