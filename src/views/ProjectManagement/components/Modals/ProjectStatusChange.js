@@ -8,11 +8,13 @@ class ProjectStatusChange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status
+      active: this.props.status === 'Active'
     };
   }
-  setStatus(active) {
-    this.setState(Object.assign({}, this.state, {status: active ? 'Active' : 'Inactive'}));
+  setCheck(name, checked) {
+    var newState = Object.assign({}, this.state);
+    newState[name] = checked;
+    this.setState(newState);
   }
   render() {
     const body = (
@@ -25,7 +27,7 @@ class ProjectStatusChange extends Component {
               checked={this.state.status === 'Active'}
               onChange={x => this.setStatus(x.target.checked)}/>
             <div className='project-status-field'>
-              <div className='project-status-text'>{this.state.status}</div>
+              <div className='project-status-text'>{this.state.active ? 'Active' : 'Inactive'}</div>
               <div className='project-status-label'>Project Status</div>
             </div>
           </div>
