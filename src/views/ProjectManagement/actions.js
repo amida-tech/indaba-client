@@ -60,6 +60,13 @@ export function toggleFilter(filter) {
   }
 }
 
+export function setProjectStatus(status) {
+  return {
+    type: actionTypes.SET_PROJECT_STATUS,
+    status
+  }
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW
