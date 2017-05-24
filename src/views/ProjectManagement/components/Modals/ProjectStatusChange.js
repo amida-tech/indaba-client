@@ -19,29 +19,33 @@ class ProjectStatusChange extends Component {
       <Tabs justify='start'>
         <Tab
           title='Project'>
-          <div className='project-status-value-bar'>
-            <div className='project-status-field'>
-              <div className='project-status-text'>{this.state.status}</div>
-              <div className='project-status-label'>Project Status</div>
-            </div>
+          <div className='project-status-section project-status-value'>
             <input
               type='checkbox'
               checked={this.state.status === 'Active'}
               onChange={x => this.setStatus(x.target.checked)}/>
+            <div className='project-status-field'>
+              <div className='project-status-text'>{this.state.status}</div>
+              <div className='project-status-label'>Project Status</div>
+            </div>
           </div>
           <hr className='divider'/>
-          <div className='project-status-description'>
-            <p>Deactivate the project when you need to make changes to the workflow.</p>
-            <p>You can switch the survey to draft mode while the project is inactive.</p>
-            <p>Reactivate the project once workflow changes have been made and you're
-            ready to notify the user of the change.</p>
+          <div className='project-status-section'>
+            <div className='project-status-description'>
+              <p>Deactivate the project when you need to make changes to the workflow.</p>
+              <p>You can switch the survey to draft mode while the project is inactive.</p>
+              <p>Reactivate the project once workflow changes have been made and you're
+                ready to notify the user of the change.</p>
+            </div>
           </div>
           <hr className='divider'/>
-          <div className='project-status-confirmation'>
-            <p>Deactivate the project? Check boxes to confirm.</p>
-            <label><input type='checkbox'/> Survey can be switched to draft mode while project is active.</label><br/>
-            <label><input type='checkbox'/> All access to project will be restored.</label><br/>
-            <label><input type='checkbox'/> All users will be notified of this action.</label>
+          <div className='project-status-section'>
+            <div className='project-status-confirmation'>
+              <p>Deactivate the project? Check boxes to confirm.</p>
+              <label><input type='checkbox'/> Survey can be switched to draft mode while project is active.</label><br/>
+              <label><input type='checkbox'/> All access to project will be restored.</label><br/>
+              <label><input type='checkbox'/> All users will be notified of this action.</label>
+            </div>
           </div>
         </Tab>
         <Tab

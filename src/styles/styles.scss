@@ -26,6 +26,9 @@ body {
       color: #7E848F;
       font-size: 16px;
       border: none;
+      padding-left: 1em;
+      padding-bottom: 0;
+      font-weight: 600;
     }
 
     &.grommetux-tab--active {
@@ -183,7 +186,6 @@ hr.divider {
 
   .layer-body-container {
     background-color: #FAFAFA;
-    padding: 2em 1em 2em 1em;
     border-bottom: 1px solid $border-color;
   }
 
@@ -194,13 +196,16 @@ hr.divider {
     input {
       width: 100%;
     }
+    .layer-body-container {
+      padding: 2em 1em 2em 1em;
+    }
   }
 
   &.project-status-change-layer {
-    .project-status-field {
-      float: left;
+    .project-status-section {
+      padding: 0 1.5em 0.3em 1.5em;
     }
-    .project-status-value-bar input {
+    .project-status-value input {
       float: right;
     }
     .project-status-text {
