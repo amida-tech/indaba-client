@@ -12,13 +12,13 @@ class StatusChange extends Component {
     this.state = {
       tab: 0,
       survey: {
-        published: this.props.surveyStatus === 'Published',
+        published: this.props.surveyStatus !== 'Published',
         accessConfirm: false,
         usersConfirm: false,
         editConfirm: false,
       },
       project: {
-        active: this.props.projectStatus === 'Active',
+        active: this.props.projectStatus !== 'Active',
         draftConfirm: false,
         accessConfirm: false,
         usersConfirm: false
