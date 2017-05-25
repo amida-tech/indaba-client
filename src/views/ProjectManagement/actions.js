@@ -67,6 +67,13 @@ export function setProjectStatus(status) {
   }
 }
 
+export function setSurveyStatus(status) {
+  return {
+    type: actionTypes.SET_SURVEY_STATUS,
+    status
+  }
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW

@@ -19,15 +19,14 @@ class StatusChange extends Component {
       },
       project: {
         active: this.props.projectStatus === 'Active',
-        draftConfirm: false,
-        accessConfirm: false,
-        usersConfirm: false
+        draftConfirm: true,
+        accessConfirm: true,
+        usersConfirm: true
       }
     };
   }
   projectConfirmed() {
-    return
-      this.state.project.draftConfirm &&
+    return this.state.project.draftConfirm &&
       this.state.project.accessConfirm &&
       this.state.project.usersConfirm;
   }
@@ -42,19 +41,18 @@ class StatusChange extends Component {
     this.setState(newState);
   }
   surveyConfirmed() {
-    return
-      this.state.survey.accessConfirm &&
+    return this.state.survey.accessConfirm &&
       this.state.survey.usersConfirm &&
       this.state.survey.editConfirm;
   }
   save() {
     if (this.state.tab === 0) {
       if (this.projectConfirmed()) {
-        this.props.setProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
+        this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
       }
     } else {
       if (this.surveyConfirmed()) {
-        this.props.setSurveyStatus(this.state.survey.published ? 'Published' : 'Draft')
+        this.props.onSetSurveyStatus(this.state.survey.published ? 'Published' : 'Draft')
       }
     }
   }
@@ -76,7 +74,8 @@ class StatusChange extends Component {
         class='project-status-change-layer'
         title='Change Status'
         content={body}
-        data={this.props.data}/>
+        data={this.props.data}
+        onSave={this.save.bind(this)}/>
     );
   }
 }
@@ -86,7 +85,8 @@ const mapStateToProps = state => ({
   surveyStatus: state.project.survey.status
 });
 const mapDispatchToProps = dispatch => ({
-  onSetProjectStatus: (status) => dispatch(setProjectStatus(status))
+  onSetProjectStatus: (status) => dispatch(setProjectStatus(status)),
+  onSetSurveyStatus: (status) => dispatch(setSurveyStatus(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusChange);

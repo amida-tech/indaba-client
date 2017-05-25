@@ -110,6 +110,12 @@ export default (state = initialState, action) => {
       newState.workflow.subjects.push(action.subject);
       delete newState.navigation.modal;
       return newState;
+    case t.SET_PROJECT_STATUS:
+      return Object.assign({}, state,
+        { project: Object.assign({}, state.project, { status: action.status })})
+    case t.SET_SURVEY_STATUS:
+      return Object.assign({}, state,
+        { survey: Object.assign({}, state.survey, { status: action.status })})
     default:
       return state;
   }
