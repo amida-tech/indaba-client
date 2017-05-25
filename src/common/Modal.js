@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Layer from 'grommet/components/Layer';
+import { Layer } from 'grommet';
 
 class Modal extends Component {
   render() {
     return (
-      <Layer align="center" closer={true}>
-        Stuff will go here.
+      <Layer align="top"
+        closer={false}
+        flush={true}
+        onClose={this.props.onClose}>
+        {this.props.content}
       </Layer>
     );
   }

@@ -6,3 +6,6 @@ export const EDIT_SUMMARY_DESCRIPTION = 'EDIT_SUMMARY_DESCRIPTION';
 export const SUBNAVIGATE = 'SUBNAVIGATE';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const ASSIGN_TASK = 'ASSIGN_TASK';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const ADD_SUBJECT = 'ADD_SUBJECT';
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';

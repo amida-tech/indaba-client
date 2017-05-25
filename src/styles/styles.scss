@@ -2,6 +2,14 @@
 @import 'grommet/scss/grommet-core/index.scss';
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
+$font-color: #A4AEBF;
+$font-inverse-color: #FAF5F5;
+
+// grommet brand colors
+$brand-color: #4EB276;
+$layer-overlay-background-color: rgba(white, 0.8);
+$layer-background-color: none;
+@import 'grommet/scss/grommet-core/index.scss';
 
 .main-page {
   font-family: 'Montserrat';
@@ -9,7 +17,9 @@ $page-background-color: #FCFAFA;
 
   hr.divider {
     margin-top: 0;
+    margin-bottom: 0;
     border-top-color: #D8D8D8;
+    clear: both;
   }
 }
 
@@ -19,7 +29,7 @@ $page-background-color: #FCFAFA;
   padding: 0.8em 0 1.2em 2em;
 
   .card-title {
-    color: #A4AEBF;
+    color: $font-color;
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
@@ -83,6 +93,11 @@ $page-background-color: #FCFAFA;
   }
 }
 
+.summary-spacer {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 .subnav {
 
   .subnav-entry {
@@ -97,6 +112,119 @@ $page-background-color: #FCFAFA;
     &.selected {
       border-bottom: 5px solid #3B9F22;
       padding-bottom: 17px;
+    }
+  }
+}
+
+.layer-content {
+  // margin-top: 20em;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
+  // space at the top for positioning, space on the other side to show box-shadow
+  margin: 4em 1em 1em 1em;
+
+  .layer-title {
+    background-color: #F2F2F2;
+    padding-left: 1em;
+    text-align: left;
+    font-size: 18px;
+    line-height: 48px;
+    border-bottom: 1px solid $border-color;
+    color: #7E848F;
+  }
+
+  .layer-footer {
+    background-color: #F2F2F2;
+    line-height: 3em;
+    padding-right: 1em;
+    overflow: auto;
+
+    .layer-footer-button-wrapper {
+      float: right;
+
+      .layer-footer-button {
+        padding: 0.5em 1.2em 0.5em 1.2em;
+        line-height: 1.2em;
+        vertical-align: middle;
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 14px;
+        background-color: #D8D8D8;
+        color: #7E848F;
+        margin-left: 1em;
+
+        &.layer-footer-button-primary {
+          background-color: $brand-color;
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .layer-body-container {
+    background-color: #FAFAFA;
+    padding: 2em 1em 2em 1em;
+    border-bottom: 1px solid $border-color;
+  }
+
+  // specific layers
+  &.add-subject-layer {
+    width: 30em;
+
+    input {
+      width: 100%;
+    }
+
+  }
+}
+
+.filter-wrapper {
+  height: 5em;
+  margin: 0 2em 0 2em;
+}
+
+.add-button-panel {
+  float: right;
+  line-height: 5em;
+
+  button {
+    margin-left: 5px;
+  }
+}
+
+.filter-bar {
+  float: left;
+  line-height: 5em;
+
+  .filter {
+    display: inline-block;
+    padding: 0.4em 1em 0.4em 1em;
+    vertical-align: middle;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    color: $font-color;
+    font-size: 12px;
+    font-weight: bold;
+
+    border-color: $border-color;
+    border-style: solid;
+
+    &:not(:last-child) {
+      border-width: 1px 0 1px 1px;
+    }
+    &:last-child {
+      border-width: 1px;
+      border-radius: 0 2px 2px 0;
+    }
+    &:first-child {
+      border-radius: 2px 0 0 2px;
+    }
+
+    &.filter-checked {
+      background-color: $brand-color;
+      color: $font-inverse-color;
     }
   }
 }
