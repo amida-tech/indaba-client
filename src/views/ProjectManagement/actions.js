@@ -33,6 +33,27 @@ export function showModal(id) {
   };
 }
 
+export function closeModal() {
+  return {
+    type: actionTypes.CLOSE_MODAL
+  }
+}
+
+export function addSubject(subject) {
+  return {
+    type: actionTypes.ADD_SUBJECT,
+    subject
+  }
+}
+
+export function toggleFilter(filter) {
+  return {
+    type: actionTypes.TOGGLE_FILTER,
+    filter
+  }
+}
+
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW

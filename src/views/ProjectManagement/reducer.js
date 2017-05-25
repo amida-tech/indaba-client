@@ -2,7 +2,7 @@ import * as t from './actionTypes';
 
 export const initialState = {
   navigation: {
-    subnav: "workflow"
+    subnav: "workflow",
   },
   project: {
     id: 0,
@@ -30,6 +30,18 @@ export default (state = initialState, action) => {
     case t.SHOW_MODAL:
       return Object.assign({}, state,
         {navigation: Object.assign({}, state.navigation, {modal: action.id})});
+    case t.CLOSE_MODAL:
+      const newState = Object.assign({}, state);
+      delete newState.navigation.modal;
+      return newState;
+    case t.TOGGLE_FILTER:
+      return Object.assign({}, state,
+        { filter: (state.filter === action.filter) ? null : action.filter });
+    case t.ADD_SUBJECT:
+      // TODO add subject to workflow state
+      const newSubjectState = Object.assign({}, state);
+      delete newSubjectState.navigation.modal;
+      return newSubjectState;
     default:
       return state;
   }
