@@ -19,9 +19,9 @@ class StatusChange extends Component {
       },
       project: {
         active: this.props.projectStatus === 'Active',
-        draftConfirm: true,
-        accessConfirm: true,
-        usersConfirm: true
+        draftConfirm: false,
+        accessConfirm: false,
+        usersConfirm: false
       }
     };
   }
