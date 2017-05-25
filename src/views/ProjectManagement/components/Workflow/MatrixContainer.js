@@ -13,9 +13,7 @@ class MatrixContainer extends Component {
   */
 
   render() {
-    console.log("JAMES");
-    console.log(this.props.data.project);
-    const assignees = this.props.data.project.workflow.assignees;
+    const assignees = this.props.data.project.workflow.assignees.slice();
     let slot = null;
     const Grid = (
       <div className="container" key="MatrixContainer">

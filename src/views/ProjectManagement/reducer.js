@@ -1,4 +1,5 @@
 import * as t from './actionTypes';
+import _ from 'lodash';
 
 export const initialState = {
   navigation: {
@@ -77,21 +78,16 @@ export default (state = initialState, action) => {
     case t.GET_WORKFLOW:
       return Object.assign({}, state, action.payload);
     case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
-      let unassigned = state.workflow.unassigned.slice();
-      var i = unassigned.length;
+      let newState = Object.assign({}, state);
+      newState.workflow.assignees.push(action.payload);
+      var i = newState.workflow.unassigned.length;
       while (i--){
-        if(unassigned[i].id === action.payload.id){
-          unassigned.splice(i,1);
+        if(newState.workflow.unassigned[i].id === action.payload.id){
+          newState.workflow.unassigned.splice(i,1);
           break;
         }
       }
-      let assigned = state.workflow.assignees.slice();
-      assigned.push(action.payload)
-      return Object.assign({}, state,
-          {
-            'assignees': assigned,
-            'unassigned' : unassigned
-          });
+      return newState;
     case t.UPDATE_WORKFLOW_PROJECT:
       return Object.assign({}, state, action.payload.project);
     case t.UPDATE_WORKFLOW_SURVEY:
