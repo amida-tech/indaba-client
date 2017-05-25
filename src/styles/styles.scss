@@ -91,23 +91,19 @@ hr.divider {
     position: relative;
     z-index: 2;
 
-    &:focus {
-      outline: none;
+    .card-value-options.card-value-options-open {
+      display: block;
+      border: 1px solid $border-color;
+      background-color: $page-background-color;
+      box-shadow: 0 2px 4px 0 #7E848F;
 
-      .card-value-options {
-        display: block;
-        border: 1px solid $border-color;
-        background-color: $page-background-color;
-        box-shadow: 0 2px 4px 0 #7E848F;
+      .card-value-option {
+        font-size: 14px;
+        padding: 3px 5px 3px 5px;
+        white-space: nowrap;
 
-        .card-value-option {
-          font-size: 14px;
-          padding: 3px 5px 3px 5px;
-          white-space: nowrap;
-
-          &:not(:last-child) {
-            border-bottom: 1px solid $border-color;
-          }
+        &:not(:last-child) {
+          border-bottom: 1px solid $border-color;
         }
       }
     }

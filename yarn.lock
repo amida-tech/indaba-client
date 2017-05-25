@@ -5202,6 +5202,12 @@ react-bootstrap@^0.31.0:
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
+react-click-outside@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-click-outside/-/react-click-outside-2.3.1.tgz#318737ebdf081a4a3bcd46825663674cbe9836eb"
+  dependencies:
+    hoist-non-react-statics "^1.2.0"
+
 react-desc@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-desc/-/react-desc-1.1.0.tgz#d9e65ae52401f548be69c3d6644e1425ac11dc04"
