@@ -12,7 +12,6 @@ const Types = {
 
 const cardSource = {
   canDrag(props) {
-    //console.log(props.isReady);
     return true;
   },
   isDragging(props, monitor) {
@@ -34,7 +33,7 @@ const cardSource = {
       'stage': dropResult.stage,
       'subject': dropResult.subject
     };
-    props.dispatch(assignTask(assignment));
+    props.assignTask(assignment);
   }
 }
 

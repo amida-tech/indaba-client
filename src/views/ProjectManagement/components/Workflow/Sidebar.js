@@ -10,11 +10,6 @@ import SearchInput from 'grommet/components/SearchInput';
 import Box from 'grommet/components/Box';
 import Select from 'grommet/components/Select';
 
-//placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
-// <select>
-//   {this.props.data.project.workflow.roles.map(role =>
-//     <option>{role}</option>)}
-// </select>
 class Sidebar extends Component {
   render() { // TODO: Find a far better way to do this.
     const unassigned = this.props.data.project.workflow.unassigned.map(unassignee =>
@@ -38,4 +33,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar
+export default Sidebar;

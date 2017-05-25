@@ -8,14 +8,16 @@ class AddButtons extends Component {
   render() {
     return (
       <div className='add-button-panel'>
-        <Button primary={true} label='Add New Stage'/>
-        <Button primary={true} label='Add Subject' onClick={this.props.onAddSubjectClick}/>
+        <Button primary={true} label={this.props.vocab.PROJECT.ADD_NEW_STAGE}/>
+        <Button primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
+          onClick={this.props.onAddSubjectClick}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary
 });
 
 const mapDispatchToProps = dispatch => ({

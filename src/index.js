@@ -35,7 +35,7 @@ let DevTools = createDevTools(
     changePositionKey="ctrl-q"
     changeMonitorKey="ctrl-m"
     fluid={true}
-    defaultSize={0}
+    defaultSize={0.2}
     defaultIsVisible={true}>
       <LogMonitor />
       <SliderMonitor />

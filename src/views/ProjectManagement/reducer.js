@@ -105,10 +105,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state,
         { filter: (state.filter === action.filter) ? null : action.filter });
     case t.ADD_SUBJECT:
-      // TODO add subject to workflow state
-      const newSubjectState = Object.assign({}, state);
-      delete newSubjectState.navigation.modal;
-      return newSubjectState;
+      var newState = Object.assign({}, state);
+      newState.workflow.subjects.push(action.subject);
+      delete newState.navigation.modal;
+      return newState;
     default:
       return state;
   }

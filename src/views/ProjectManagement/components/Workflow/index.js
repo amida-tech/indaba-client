@@ -3,7 +3,7 @@ import { DragSource, DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
 import MatrixContainer from './MatrixContainer';
 import Sidebar from './Sidebar';
-import ProjectActions from '../../actions';
+import * as ProjectActions from '../../actions';
 
 class WorkflowContainer extends Component {
   render() {
