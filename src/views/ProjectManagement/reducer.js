@@ -4,7 +4,6 @@ import _ from 'lodash';
 export const initialState = {
   navigation: {
     subnav: "workflow",
-    modal: "statuschange"
   },
   workflow: {
     id: 0,
@@ -112,10 +111,12 @@ export default (state = initialState, action) => {
       return newState;
     case t.SET_PROJECT_STATUS:
       return Object.assign({}, state,
-        { project: Object.assign({}, state.project, { status: action.status })})
+        { project: Object.assign({}, state.project, { status: action.status })},
+        { navigation: Object.assign({}, state.navigation, {modal: null})})
     case t.SET_SURVEY_STATUS:
       return Object.assign({}, state,
-        { survey: Object.assign({}, state.survey, { status: action.status })})
+        { survey: Object.assign({}, state.survey, { status: action.status })},
+        { navigation: Object.assign({}, state.navigation, {modal: null})})
     default:
       return state;
   }
