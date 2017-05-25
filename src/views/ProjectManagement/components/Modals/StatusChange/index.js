@@ -75,7 +75,8 @@ class StatusChange extends Component {
         title='Change Status'
         content={body}
         data={this.props.data}
-        onSave={this.save.bind(this)}/>
+        onSave={this.save.bind(this)}
+        onCancel={this.props.onCancel}/>
     );
   }
 }
