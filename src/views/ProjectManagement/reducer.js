@@ -76,6 +76,22 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case t.GET_WORKFLOW:
       return Object.assign({}, state, action.payload);
+    case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
+      let unassigned = state.workflow.unassigned.slice();
+      var i = unassigned.length;
+      while (i--){
+        if(unassigned[i].id === action.payload.id){
+          unassigned.splice(i,1);
+          break;
+        }
+      }
+      let assigned = state.workflow.assignees.slice();
+      assigned.push(action.payload)
+      return Object.assign({}, state,
+          {
+            'assignees': assigned,
+            'unassigned' : unassigned
+          });
     case t.UPDATE_WORKFLOW_PROJECT:
       return Object.assign({}, state, action.payload.project);
     case t.UPDATE_WORKFLOW_SURVEY:

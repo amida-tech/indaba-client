@@ -16,7 +16,10 @@ import Select from 'grommet/components/Select';
 //     <option>{role}</option>)}
 // </select>
 class Sidebar extends Component {
-  render() {
+  render() { // TODO: Find a far better way to do this.
+    const unassigned = this.props.data.project.workflow.unassigned.map(unassignee =>
+      React.createElement(AssigneeCard, this.props, unassignee)
+    );
     return (
       <Box appCentered={false}>
         {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
@@ -24,9 +27,9 @@ class Sidebar extends Component {
         <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
           options={this.props.data.project.workflow.roles} />
         <List>
-          {this.props.data.project.workflow.unassigned.map(unassignee =>
-            <ListItem key={"Unassigned-"+unassignee.id}>
-              <AssigneeCard {React.cloneElement(this.props, {...unassignee})} />
+          {unassigned.map(unassignee =>
+            <ListItem key={"Unassigned-"+unassignee.props.children.id}>
+              {unassignee}
             </ListItem>
           )}
         </List>

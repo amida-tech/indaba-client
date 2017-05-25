@@ -13,6 +13,8 @@ class MatrixContainer extends Component {
   */
 
   render() {
+    console.log("JAMES");
+    console.log(this.props.data.project);
     const assignees = this.props.data.project.workflow.assignees;
     let slot = null;
     const Grid = (
@@ -38,7 +40,7 @@ class MatrixContainer extends Component {
     );
     return(
       <div className="row">
-        <div className="col-md-4">{Grid}</div>
+        <div className="col-md-5">{Grid}</div>
         <div className="col-md-3"><Sidebar {...this.props} /></div>
       </div>
     )
@@ -48,10 +50,8 @@ class MatrixContainer extends Component {
     for(var i = 0; i < assignees.length; i++){
       if(assignees[i].subject === key && assignees[i].stage === stage.id){
         var goal = assignees[i];
-        console.log(goal);
-        assignees = assignees.splice(i,1);
         return(goal);
-      }
+      } // TODO: Was splicing assignees before but this altered state. Investigate.
     }
     return({'stage': stage.id, 'subject': key});
   }
