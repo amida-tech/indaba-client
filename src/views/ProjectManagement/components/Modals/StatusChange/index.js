@@ -4,6 +4,7 @@ import { Tabs, Tab } from 'grommet';
 import { setProjectStatus } from '../../../actions';
 import Modal from '../../../../../common/Modal';
 import ProjectTab from './ProjectTab';
+import SurveyTab from './SurveyTab';
 
 class StatusChange extends Component {
   render() {
@@ -11,14 +12,11 @@ class StatusChange extends Component {
       <Tabs justify='start'>
         <Tab
           title='Project'>
-          <ProjectTab />
+          <ProjectTab status={this.props.projectStatus}/>
         </Tab>
         <Tab
           title='Survey'>
-          <div className='project-status-value-bar'>
-            <span className='project-status-text'>{this.props.status}</span>
-          </div>
-          <hr className='divider' />
+          <SurveyTab status={this.props.surveyStatus}/>
         </Tab>
       </Tabs>
     );
@@ -33,7 +31,8 @@ class StatusChange extends Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.project.workflow.status
+  projectStatus: state.project.workflow.status,
+  surveyStatus: state.project.survey.status
 });
 const mapDispatchToProps = dispatch => ({
   onSetProjectStatus: (status) => dispatch(setProjectStatus(status))
