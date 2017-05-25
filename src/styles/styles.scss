@@ -20,6 +20,10 @@ body {
 
 // Grommet overrides
 .grommet {
+  .grommetux-tabs {
+    border-bottom: none;
+  }
+
   .grommetux-tab {
     width: 50%;
 
@@ -31,6 +35,8 @@ body {
       padding-bottom: 0;
       font-weight: 600;
     }
+
+    border-bottom: 3px solid $border-color;
 
     &.grommetux-tab--active {
       border-bottom: 3px solid $brand-color;
