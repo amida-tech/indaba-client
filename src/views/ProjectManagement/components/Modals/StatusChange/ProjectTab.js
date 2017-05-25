@@ -1,30 +1,16 @@
 import React, { Component } from 'react';
 
 class ProjectTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: this.props.status === 'Active',
-      draftConfirm: false,
-      accessConfirm: false,
-      usersConfirm: false
-    };
-  }
-  setCheck(name, checked) {
-    var newState = Object.assign({}, this.state);
-    newState[name] = checked;
-    this.setState(newState);
-  }
   render() {
     return (
       <div>
         <div className='project-status-section project-status-value'>
           <input
             type='checkbox'
-            checked={this.state.active}
-            onChange={event => this.setCheck('active', event.target.checked)}/>
+            checked={this.props.active}
+            onChange={event => this.props.onCheck('active', event.target.checked)}/>
           <div className='project-status-field'>
-            <div className='project-status-text'>{this.state.active ? 'Active' : 'Inactive'}</div>
+            <div className='project-status-text'>{this.props.active ? 'Active' : 'Inactive'}</div>
             <div className='project-status-label'>Project Status</div>
           </div>
         </div>
@@ -40,26 +26,28 @@ class ProjectTab extends Component {
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
-            <p>{this.state.active ? 'Activate' : 'Dectivate'} the project? Check boxes to confirm.</p>
+            <p>{this.props.active ? 'Activate' : 'Dectivate'} the project? Check boxes to confirm.</p>
             <label>
               <input type='checkbox'
-                checked={this.state.draftConfirm}
-                onChange={event => this.setCheck('draftConfirm', event.target.checked)}/>
+                checked={this.props.draftConfirm}
+                onChange={
+                  event => { this.props.onCheck('draftConfirm', event.target.checked) }
+                }/>
               Survey can be switched to draft mode while project is inactive.
             </label><br/>
             <label>
               <input type='checkbox'
-                checked={this.state.accessConfirm}
-                onChange={event => this.setCheck('accessConfirm', event.target.checked)}/>
-              {this.state.active ?
+                checked={this.props.accessConfirm}
+                onChange={event => this.props.onCheck('accessConfirm', event.target.checked)}/>
+              {this.props.active ?
                 'All access to project will be restored.' :
                 'All access to project will be suspended until activated.'
               }
             </label><br/>
             <label>
               <input type='checkbox'
-                checked={this.state.usersConfirm}
-                onChange={event => this.setCheck('usersConfirm', event.target.checked)}/>
+                checked={this.props.usersConfirm}
+                onChange={event => this.props.onCheck('usersConfirm', event.target.checked)}/>
               All users will be notified of this action.
             </label>
           </div>
