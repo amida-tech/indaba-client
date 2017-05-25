@@ -40,12 +40,12 @@ class ProjectTab extends Component {
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
-            <p>{this.state.active ? 'Deactivate' : 'Activate'} the project? Check boxes to confirm.</p>
+            <p>{this.state.active ? 'Activate' : 'Dectivate'} the project? Check boxes to confirm.</p>
             <label>
               <input type='checkbox'
                 checked={this.state.draftConfirm}
                 onChange={event => this.setCheck('draftConfirm', event.target.checked)}/>
-              Survey can be switched to draft mode while project is active.
+              Survey can be switched to draft mode while project is inactive.
             </label><br/>
             <label>
               <input type='checkbox'
