@@ -40,7 +40,7 @@ class ProjectTab extends Component {
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
-            <p>Deactivate the project? Check boxes to confirm.</p>
+            <p>{this.state.active ? 'Deactivate' : 'Activate'} the project? Check boxes to confirm.</p>
             <label>
               <input type='checkbox'
                 checked={this.state.draftConfirm}
@@ -51,7 +51,10 @@ class ProjectTab extends Component {
               <input type='checkbox'
                 checked={this.state.accessConfirm}
                 onChange={event => this.setCheck('accessConfirm', event.target.checked)}/>
-              All access to project will be restored.
+              {this.state.active ?
+                'All access to project will be restored.' :
+                'All access to project will be suspended until activated.'
+              }
             </label><br/>
             <label>
               <input type='checkbox'

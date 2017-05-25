@@ -208,8 +208,10 @@ hr.divider {
     .project-status-value input {
       float: right;
     }
-    .project-status-text {
+    input:checked~.project-status-field>.project-status-text {
       color: $brand-color;
+    }
+    .project-status-text {
       font-size: 18px;
       font-weight: 600;
     }
