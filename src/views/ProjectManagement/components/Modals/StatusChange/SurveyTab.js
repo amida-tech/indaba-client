@@ -3,6 +3,9 @@ import ConfirmationCheckbox from './ConfirmationCheckbox';
 
 class SurveyTab extends Component {
   render() {
+    const vocab = this.props.vocab;
+    const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
+    const confirmVocab = this.props.published ? surveyVocab.PUBLISHED : surveyVocab.DRAFT;
     return (
       <div>
         <div className='project-status-section project-status-value'>
@@ -14,40 +17,42 @@ class SurveyTab extends Component {
             onChange={event => this.props.onCheck('published', event.target.checked)}/>
           <label htmlFor='survey-status-check' className='toggle'></label>
           <div className='project-status-field'>
-            <div className='project-status-text'>{this.props.published ? 'Published' : 'Draft Mode'}</div>
-            <div className='project-status-label'>Survey Status</div>
+            <div className='project-status-text'>
+              {this.props.published ? vocab.SURVEY.STATUS_PUBLISHED : vocab.SURVEY.STATUS_DRAFT}
+            </div>
+            <div className='project-status-label'>{surveyVocab.VALUE_LABEL}</div>
           </div>
         </div>
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-description'>
-            <p>Publish the survey when you're ready for assignees to access it.</p>
-            <p>Once published, you must deactivate the project to edit the survey.</p>
-            <p>This action does not change the project status.</p>
+            <p>{surveyVocab.INSTRUCTION_PUBLISH}</p>
+            <p>{surveyVocab.INSTRUCTION_DRAFT_CONSTRAINT}</p>
+            <p>{surveyVocab.INSTRUCTION_PROJECT_STATUS}</p>
           </div>
         </div>
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
-            <p>{this.props.published ? 'Unpublish' : 'Publish'} the survey? Check boxes to confirm.</p>
+            <p>{confirmVocab.TITLE}</p>
             <ConfirmationCheckbox
               checked={this.props.accessConfirm}
               onCheck={this.props.onCheck}
               name='accessConfirm'
-              label= 'All assignee access to survey will be suspended until republished.'
+              label={confirmVocab.CHECKBOX_ACCESS}
               />
             <br/>
             <ConfirmationCheckbox
               checked={this.props.usersConfirm}
               onCheck={this.props.onCheck}
               name='usersConfirm'
-              label='All Users assigned to survey will be notified of this action.'/>
+              label={confirmVocab.CHECKBOX_USERS}/>
             <br/>
             <ConfirmationCheckbox
               checked={this.props.editConfirm}
               onCheck={this.props.onCheck}
               name='editConfirm'
-              label= 'Only you and specified users can edit survey in draft mode.' />
+              label={confirmVocab.CHECKBOX_EDIT} />
           </div>
         </div>
       </div>
