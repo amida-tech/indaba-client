@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ConfirmationCheckbox from './ConfirmationCheckbox';
 
 class SurveyTab extends Component {
   render() {
@@ -29,24 +30,24 @@ class SurveyTab extends Component {
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
             <p>{this.props.published ? 'Unpublish' : 'Publish'} the survey? Check boxes to confirm.</p>
-            <label>
-              <input type='checkbox'
-                checked={this.props.accessConfirm}
-                onChange={event => this.props.onCheck('accessConfirm', event.target.checked)}/>
-              All assignee access to survey will be suspended until republished.
-            </label><br/>
-            <label>
-              <input type='checkbox'
-                checked={this.props.usersConfirm}
-                onChange={event => this.props.onCheck('usersConfirm', event.target.checked)}/>
-              All Users assigned to survey will be notified of this action.
-            </label><br/>
-            <label>
-              <input type='checkbox'
-                checked={this.props.editConfirm}
-                onChange={event => this.props.onCheck('editConfirm', event.target.checked)}/>
-              Only you and specified users can edit survey in draft mode.
-            </label>
+            <ConfirmationCheckbox
+              checked={this.props.accessConfirm}
+              onCheck={this.props.onCheck}
+              name='accessConfirm'
+              label= 'All assignee access to survey will be suspended until republished.'
+              />
+            <br/>
+            <ConfirmationCheckbox
+              checked={this.props.usersConfirm}
+              onCheck={this.props.onCheck}
+              name='usersConfirm'
+              label='All Users assigned to survey will be notified of this action.'/>
+            <br/>
+            <ConfirmationCheckbox
+              checked={this.props.editConfirm}
+              onCheck={this.props.onCheck}
+              name='editConfirm'
+              label= 'Only you and specified users can edit survey in draft mode.' />
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ConfirmationCheckbox from './ConfirmationCheckbox';
 
 class ProjectTab extends Component {
   render() {
@@ -30,29 +31,25 @@ class ProjectTab extends Component {
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
             <p>{this.props.active ? 'Activate' : 'Dectivate'} the project? Check boxes to confirm.</p>
-            <label>
-              <input type='checkbox'
-                checked={this.props.draftConfirm}
-                onChange={
-                  event => { this.props.onCheck('draftConfirm', event.target.checked) }
-                }/>
-              Survey can be switched to draft mode while project is inactive.
-            </label><br/>
-            <label>
-              <input type='checkbox'
-                checked={this.props.accessConfirm}
-                onChange={event => this.props.onCheck('accessConfirm', event.target.checked)}/>
-              {this.props.active ?
+            <ConfirmationCheckbox
+              checked={this.props.draftConfirm}
+              onCheck={this.props.onCheck}
+              name='draftConfirm'
+              label='Survey can be switched to draft mode while project is inactive.' />
+            <br/>
+            <ConfirmationCheckbox
+              checked={this.props.accessConfirm}
+              onCheck={this.props.onCheck}
+              name='accessConfirm'
+              label={this.props.active ?
                 'All access to project will be restored.' :
-                'All access to project will be suspended until activated.'
-              }
-            </label><br/>
-            <label>
-              <input type='checkbox'
-                checked={this.props.usersConfirm}
-                onChange={event => this.props.onCheck('usersConfirm', event.target.checked)}/>
-              All users will be notified of this action.
-            </label>
+                'All access to project will be suspended until activated.'}/>
+            <br/>
+            <ConfirmationCheckbox
+              checked={this.props.usersConfirm}
+              onCheck={this.props.onCheck}
+              name='usersConfirm'
+              label='All users will be notified of this action.' />
           </div>
         </div>
       </div>

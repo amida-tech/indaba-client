@@ -205,6 +205,15 @@ hr.divider {
   }
 
   &.project-status-change-layer {
+    .ion-replaced-checkbox {
+      display: none;
+
+      &~.android-checkbox {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5em;
+      }
+    }
     .toggle-native-check {
       display: none;
 
