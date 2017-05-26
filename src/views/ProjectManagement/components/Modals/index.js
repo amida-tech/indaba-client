@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import AddSubject from './AddSubject';
 
 const modalIDToComponent = {
-  'addsubject': AddSubject
+  'addsubject': AddSubject,
+  'addstage': AddStage
 };
 
 class ModalContent extends Component {
@@ -15,7 +16,8 @@ class ModalContent extends Component {
 }
 
 export const modalIDs = {
-  ADD_SUBJECT_MODAL: 'addsubject'
+  ADD_SUBJECT_MODAL: 'addsubject',
+  ADD_STAGE_MODAL: 'addstage'
 }
 
 export default ModalContent;

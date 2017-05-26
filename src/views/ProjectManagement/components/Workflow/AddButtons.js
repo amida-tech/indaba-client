@@ -8,7 +8,8 @@ class AddButtons extends Component {
   render() {
     return (
       <div className='add-button-panel'>
-        <Button primary={true} label={this.props.vocab.PROJECT.ADD_NEW_STAGE}/>
+        <Button primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
+          onClick={this.props.onAddStageClick}/>
         <Button primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
           onClick={this.props.onAddSubjectClick}/>
       </div>
@@ -21,7 +22,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddSubjectClick: () => dispatch(showModal(modalIDs.ADD_SUBJECT_MODAL))
+  onAddSubjectClick: () => dispatch(showModal(modalIDs.ADD_SUBJECT_MODAL)),
+  onAddStageClick: () => dispatch(showModal(modalIDs.ADD_STAGE_MODAL))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddButtons);
