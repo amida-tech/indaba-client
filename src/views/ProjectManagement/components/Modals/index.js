@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddSubject from './AddSubject';
+import AddStage from './AddStage';
 
 const modalIDToComponent = {
   'addsubject': AddSubject,
