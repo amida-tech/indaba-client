@@ -9,8 +9,9 @@ import SurveyTab from './SurveyTab';
 class StatusChange extends Component {
   constructor(props) {
     super(props);
+    const taborder = ['project', 'survey'];
     this.state = {
-      tab: 0,
+      tabIndex: taborder.indexOf(this.props.tab),
       survey: {
         published: this.props.surveyStatus !== 'Published',
         accessConfirm: false,
@@ -46,7 +47,7 @@ class StatusChange extends Component {
       this.state.survey.editConfirm;
   }
   save() {
-    if (this.state.tab === 0) {
+    if (this.state.tabIndex === 0) {
       if (this.projectConfirmed()) {
         this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
       }
@@ -58,7 +59,10 @@ class StatusChange extends Component {
   }
   render() {
     const body = (
-      <Tabs justify='start' onActive={(tab) => this.setState(Object.assign({}, this.state, {tab}))}>
+      <Tabs
+        justify='start'
+        onActive={(t) => this.setState(Object.assign({}, this.state, {tabIndex: t}))}
+        activeIndex={this.state.tabIndex}>
         <Tab
           title='Project'>
           <ProjectTab {...this.state.project} onCheck={ this.projectCheck.bind(this) }/>

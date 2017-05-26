@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
+import { modalIDs } from './Modals';
 
 const SurveyStatusOptions = {
   Published: [{
     label: "Edit survey in draft mode",
-    value: "statuschange"
+    value: modalIDs.SURVEY_STATUS_MODAL
   }],
   Draft: [{
     label: "Publish survey",
-    value: "statuschange"
+    value: modalIDs.SURVEY_STATUS_MODAL
   }]
 };
 
