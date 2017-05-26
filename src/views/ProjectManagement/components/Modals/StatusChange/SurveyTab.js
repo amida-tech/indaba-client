@@ -6,9 +6,12 @@ class SurveyTab extends Component {
       <div>
         <div className='project-status-section project-status-value'>
           <input
+            id='survey-status-check'
             type='checkbox'
+            className='toggle-native-check'
             checked={this.props.published}
             onChange={event => this.props.onCheck('published', event.target.checked)}/>
+          <label htmlFor='survey-status-check' className='toggle'></label>
           <div className='project-status-field'>
             <div className='project-status-text'>{this.props.published ? 'Published' : 'Draft Mode'}</div>
             <div className='project-status-label'>Survey Status</div>

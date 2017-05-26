@@ -6,9 +6,12 @@ class ProjectTab extends Component {
       <div>
         <div className='project-status-section project-status-value'>
           <input
+            id='project-status-check'
+            className='toggle-native-check'
             type='checkbox'
             checked={this.props.active}
             onChange={event => this.props.onCheck('active', event.target.checked)}/>
+          <label htmlFor='project-status-check' className='toggle'></label>
           <div className='project-status-field'>
             <div className='project-status-text'>{this.props.active ? 'Active' : 'Inactive'}</div>
             <div className='project-status-label'>Project Status</div>
