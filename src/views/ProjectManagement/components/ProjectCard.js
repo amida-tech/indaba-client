@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
+import { modalIDs } from './Modals';
 
-const ProjectStatusOptions = [
-  {
+const ProjectStatusOptions = {
+  Active : [{
     label: 'Deactivate',
-    value: 'deactivate'
-  },
-  {
+    value: modalIDs.PROJECT_STATUS_MODAL
+  }],
+  Inactive : [{
     label: 'Activate',
-    value: 'activate'
-  }
-];
+    value: modalIDs.PROJECT_STATUS_MODAL
+  }]
+};
 
 class ProjectCard extends Component {
   render() {
@@ -28,9 +29,8 @@ class ProjectCard extends Component {
               <div className='card-title'>Status</div>
               <CardValueDropdown
                 value={this.props.status}
-                options={ProjectStatusOptions}
-                onClick={this.props.onDropdownClick}
-                />
+                options={ProjectStatusOptions[this.props.status]}
+                onClick={this.props.onDropdownClick} />
             </div>
           </div>
         </div>

@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
+import { modalIDs } from './Modals';
 
-const SurveyStatusOptions = [
-  {
+const SurveyStatusOptions = {
+  Published: [{
     label: "Edit survey in draft mode",
-    value: "edit"
-  },
-  {
+    value: modalIDs.SURVEY_STATUS_MODAL
+  }],
+  Draft: [{
     label: "Publish survey",
-    value: "publish"
-  }
-]
+    value: modalIDs.SURVEY_STATUS_MODAL
+  }]
+};
 
 class SurveyCard extends Component {
   render() {
@@ -28,7 +29,7 @@ class SurveyCard extends Component {
               <div className='card-title'>Status</div>
               <CardValueDropdown
                 value={this.props.status}
-                options={SurveyStatusOptions}
+                options={SurveyStatusOptions[this.props.status]}
                 onClick={this.props.onDropdownClick}
                 />
             </div>

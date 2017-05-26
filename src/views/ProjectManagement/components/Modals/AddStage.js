@@ -16,7 +16,8 @@ class AddStage extends Component {
     const LayerFooterButton = (
           <div
             className={`layer-footer-button ${this.props.primary ? 'layer-footer-button-primary' : ''}`}
-            onClick={this.props.onClick}>{this.props.label}</div>
+            onClick={this.props.onClick}>{this.props.label}
+          </div>
         );
     const vocab = this.props.data.settings.language.vocabulary;
     return (
