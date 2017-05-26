@@ -22,11 +22,11 @@ class SurveyCard extends Component {
         <div className='card'>
           <div className='row'>
             <div className='col-md-8'>
-              <div className='card-title'>{this.vocab.PROJECT.SURVEY}</div>
+              <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
               <div className='card-value'>{this.props.name}</div>
             </div>
             <div className='col-md-4'>
-              <div className='card-title'>{this.vocab.PROJECT.STATUS}</div>
+              <div className='card-title'>{this.props.vocab.PROJECT.STATUS}</div>
               <CardValueDropdown
                 value={this.props.status}
                 options={SurveyStatusOptions[this.props.status]}
@@ -42,7 +42,7 @@ class SurveyCard extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   name: state.project.survey.name,
-  status: state.project.survey.status
+  status: state.project.survey.status,
   vocab: state.settings.language.vocabulary
 });
 const mapDispatchToProps = (dispatch) => ({

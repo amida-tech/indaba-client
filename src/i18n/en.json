@@ -26,7 +26,12 @@
     "STATUS_ACTIVE": "Active",
     "STATUS_INACTIVE": "Inactive",
     "ACTIVATE": "Activate",
-    "DEACTIVATE": "Deactivate"
+    "DEACTIVATE": "Deactivate",
+    "FILTER_UNASSIGNED": "Unassigned",
+    "FILTER_LATE": "Late",
+    "FILTER_IN_PROGRESS": "In Progress",
+    "FILTER_NOT_STARTED": "Not Started",
+    "FILTER_FLAGGED": "Flagged"
   },
   "SURVEY": {
     "STATUS_DRAFT": "Draft",
