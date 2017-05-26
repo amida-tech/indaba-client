@@ -2,25 +2,53 @@
 @import 'grommet/scss/grommet-core/index.scss';
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
+$header-font-color: #7E848F;
 $font-color: #A4AEBF;
 $font-inverse-color: #FAF5F5;
 
 // grommet brand colors
 $brand-color: #4EB276;
+$brand-font-family: 'Montserrat';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
 @import 'grommet/scss/grommet-core/index.scss';
 
-.main-page {
+body {
   font-family: 'Montserrat';
   background-color: $page-background-color;
+}
 
-  hr.divider {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-top-color: #D8D8D8;
-    clear: both;
+// Grommet overrides
+.grommet {
+  .grommetux-tabs {
+    border-bottom: none;
   }
+
+  .grommetux-tab {
+    width: 50%;
+
+    .grommetux-tab__label {
+      color: $header-font-color;
+      font-size: 16px;
+      border: none;
+      padding-left: 1em;
+      padding-bottom: 0;
+      font-weight: 600;
+    }
+
+    border-bottom: 3px solid $border-color;
+
+    &.grommetux-tab--active {
+      border-bottom: 3px solid $brand-color;
+    }
+  }
+}
+
+hr.divider {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-top-color: #D8D8D8;
+  clear: both;
 }
 
 .card {
@@ -37,7 +65,7 @@ $layer-background-color: none;
   }
 
   .card-value {
-    color: #7E848F;
+    color: $header-font-color;
     font-size: 18px;
     line-height: 22px;
     margin-top: 0.6em;
@@ -60,27 +88,23 @@ $layer-background-color: none;
   }
 
   .card-value-select {
-    position: relative;
-    z-index: 2;
 
-    &:focus {
-      outline: none;
+    .card-value-options.card-value-options-open {
+      display: block;
+      border: 1px solid $border-color;
+      background-color: $page-background-color;
+      box-shadow: 0 2px 4px 0 #7E848F;
+      top: 0.5em;
+      right: -1em;
+      z-index: 2;
 
-      .card-value-options {
-        display: block;
-        border: 1px solid $border-color;
-        background-color: $page-background-color;
-        box-shadow: 0 2px 4px 0 #7E848F;
-        right: 0;
+      .card-value-option {
+        font-size: 14px;
+        padding: 3px 5px 3px 5px;
+        white-space: nowrap;
 
-        .card-value-option {
-          font-size: 14px;
-          padding: 3px 5px 3px 5px;
-          white-space: nowrap;
-
-          &:not(:last-child) {
-            border-bottom: 1px solid $border-color;
-          }
+        &:not(:last-child) {
+          border-bottom: 1px solid $border-color;
         }
       }
     }
@@ -131,7 +155,7 @@ $layer-background-color: none;
     font-size: 18px;
     line-height: 48px;
     border-bottom: 1px solid $border-color;
-    color: #7E848F;
+    color: $header-font-color;
   }
 
   .layer-footer {
@@ -151,7 +175,7 @@ $layer-background-color: none;
         display: inline-block;
         font-size: 14px;
         background-color: #D8D8D8;
-        color: #7E848F;
+        color: $header-font-color;
         margin-left: 1em;
 
         &.layer-footer-button-primary {
@@ -165,7 +189,6 @@ $layer-background-color: none;
 
   .layer-body-container {
     background-color: #FAFAFA;
-    padding: 2em 1em 2em 1em;
     border-bottom: 1px solid $border-color;
   }
 
@@ -176,7 +199,89 @@ $layer-background-color: none;
     input {
       width: 100%;
     }
+    .layer-body-container {
+      padding: 2em 1em 2em 1em;
+    }
+  }
 
+  &.project-status-change-layer {
+    .ion-replaced-checkbox {
+      display: none;
+
+      &~.android-checkbox {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5em;
+      }
+    }
+    .toggle-native-check {
+      display: none;
+
+      &:checked~.toggle {
+        border-color: $brand-color;
+      }
+      &:checked~.toggle:after {
+        background-color: $brand-color;
+        left: 30px;
+      }
+
+    }
+    .toggle {
+      width: 54px;
+      height: 24px;
+      border: 2px solid $font-color;
+      border-radius: 12px;
+      float: right;
+      margin-top: 6px;
+      position: relative;
+    }
+    .toggle:after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      left: 0px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: $font-color;
+      transition: left 0.2s;
+    }
+    .project-status-section {
+      padding: 0 1.5em 0.3em 1.5em;
+    }
+    .project-status-value input {
+      float: right;
+    }
+    input:checked~.project-status-field>.project-status-text {
+      color: $brand-color;
+    }
+    .project-status-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: $header-font-color;
+    }
+    .project-status-label {
+      color: $font-color;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .project-status-description p {
+      font-weight: 600;
+      color: $header-font-color;
+    }
+    .project-status-confirmation {
+      p {
+        font-weight: 600;
+        color: $header-font-color;
+        margin-bottom: 1em;
+      }
+      input {
+        margin-right: 1em;
+      }
+      label {
+        font-weight: normal;
+        color: $header-font-color;
+      }
+    }
   }
 }
 
