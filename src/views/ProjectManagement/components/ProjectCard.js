@@ -26,7 +26,7 @@ class ProjectCard extends Component {
               <div className='card-value'>{this.props.name}</div>
             </div>
             <div className='col-md-4'>
-              <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
+              <div className='card-title'>{this.props.vocab.PROJECT.STATUS}</div>
               <CardValueDropdown
                 value={this.props.status}
                 options={ProjectStatusOptions[this.props.status]}
