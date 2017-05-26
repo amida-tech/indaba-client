@@ -64,14 +64,14 @@ class StatusChange extends Component {
         onActive={(t) => this.setState(Object.assign({}, this.state, {tabIndex: t}))}
         activeIndex={this.state.tabIndex}>
         <Tab
-          title='Project'>
+          title={this.props.vocab.PROJECT.PROJECT}>
           <ProjectTab
             {...this.state.project}
             vocab={this.props.vocab}
             onCheck={ this.projectCheck.bind(this) }/>
         </Tab>
         <Tab
-          title='Survey'>
+          title={this.props.vocab.PROJECT.SURVEY}>
           <SurveyTab
             {...this.state.survey}
             vocab={this.props.vocab}
@@ -82,7 +82,7 @@ class StatusChange extends Component {
     return (
       <Modal
         class='project-status-change-layer'
-        title='Change Status'
+        title={this.props.vocab.MODAL.STATUS_CHANGE_MODAL.TITLE}
         content={body}
         data={this.props.data}
         onSave={this.save.bind(this)}
