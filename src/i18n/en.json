@@ -22,6 +22,57 @@
     "SUBJECT_TITLE": "Subject Title",
     "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
     "FILTER_BY_GROUP": "Filter by groups",
-    "INVITE_BY_EMAIL": "Not Listed? Invite by email"
+    "INVITE_BY_EMAIL": "Not Listed? Invite by email",
+    "STATUS_ACTIVE": "Active",
+    "STATUS_INACTIVE": "Inactive",
+    "ACTIVATE": "Activate",
+    "DEACTIVATE": "Deactivate"
+  },
+  "SURVEY": {
+    "STATUS_DRAFT": "Draft",
+    "STATUS_PUBLISHED": "Published",
+    "PUBLISH": "Publish survey",
+    "UNPUBLISH": "Edit survey in draft mode"
+  },
+  "MODAL": {
+    "STATUS_CHANGE_MODAL": {
+      "TITLE": "Change Status",
+      "PROJECT_TAB": {
+        "VALUE_LABEL": "Project Status",
+        "INSTRUCTION_DEACTIVATE": "Deactivate the project when you need to make changes to the workflow.",
+        "INSTRUCTION_DRAFT_CONSTRAINT": "You can switch the survey to draft mode while the project is inactive.",
+        "INSTRUCTION_REACTIVATE": "Reactivate the project once workflow chnages have been made and you're ready to notify the user of the change.",
+        "ACTIVE": {
+          "TITLE": "Activate the project? Check boxes to confirm.",
+          "CHECKBOX_DRAFT": "Survey can be switched to draft mode while project is inactive.",
+          "CHECKBOX_ACCESS": "All access to project will be restored.",
+          "CHECKBOX_USERS": "All users will be notified of this action."
+        },
+        "INACTIVE": {
+          "TITLE": "Deactivate the project? Check boxes to confirm.",
+          "CHECKBOX_DRAFT": "Survey can be switched to draft mode while project is inactive.",
+          "CHECKBOX_ACCESS": "All access to project will be suspended until activated.",
+          "CHECKBOX_USERS": "All users will be notified of this action."
+        }
+      },
+      "SURVEY_TAB": {
+        "VALUE_LABEL": "Survey Status",
+        "INSTRUCTION_PUBLISH": "Publish the survey when you're ready for assignees to access it.",
+        "INSTRUCTION_DRAFT_CONSTRAINT": "Once published, you must deactivate the project to edit the survey.",
+        "INSTRUCTION_PROJECT_STATUS": "This action does not change the project status.",
+        "DRAFT": {
+          "TITLE": "Unpublish the survey? Check boxes to confirm.",
+          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
+          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
+          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+        },
+        "PUBLISHED": {
+          "TITLE": "Publish the survey? Check boxes to confirm.",
+          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
+          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
+          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+        }
+      }
+    }
   }
 }
