@@ -5,11 +5,23 @@
     "EMAIL": "Email",
     "USERNAME": "Username",
     "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name"
+    "LAST_NAME": "Last Name",
+    "ENTER_EMAIL": "Enter Email",
+    "CLEAR": "Clear",
+    "INVITE": "Invite",
+    "SEARCH": "Search",
+    "SAVE": "Save",
+    "CANCEL": "Cancel"
   },
   "PROJECT": {
     "PROJECT": "Project",
     "SURVEY": "Survey",
-    "STATUS": "Status"
+    "STATUS": "Status",
+    "ADD_SUBJECT": "Add Subject",
+    "ADD_NEW_STAGE": "Add New Stage",
+    "SUBJECT_TITLE": "Subject Title",
+    "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
+    "FILTER_BY_GROUP": "Filter by groups",
+    "INVITE_BY_EMAIL": "Not Listed? Invite by email"
   }
 }

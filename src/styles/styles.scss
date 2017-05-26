@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import 'grommet/scss/grommet-core/index.scss';
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
 $font-color: #A4AEBF;
@@ -181,7 +182,7 @@ $layer-background-color: none;
 
 .filter-wrapper {
   height: 5em;
-  margin: 0 2em 0 2em;
+  margin: 0 30em 0 2em;
 }
 
 .add-button-panel {
@@ -227,3 +228,26 @@ $layer-background-color: none;
     }
   }
 }
+
+.workflow {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 0.6em;
+
+  div {
+    color: lightgray;
+    text-transform: uppercase;
+  }
+}
+
+  .test{
+    font-size: 22px;
+  }
+
+	.assigneecard {
+		height: 50px;
+		width: 120px;
+	}
+
+	.stageslot {
+	}

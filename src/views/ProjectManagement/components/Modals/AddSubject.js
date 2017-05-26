@@ -21,18 +21,19 @@ class AddSubject extends Component {
     this.setState({value: event.target.value});
   }
   render() {
+    const vocab = this.props.data.settings.language.vocabulary;
     return (
       <div className='layer-content add-subject-layer'>
-        <div className='layer-title'>Add Subject</div>
+        <div className='layer-title'>{vocab.PROJECT.ADD_SUBJECT}</div>
         <div className='layer-body-container'>
-          <input type='text' placeholder='Subject Title' onChange={this.handleChange}/>
+          <input type='text' placeholder={vocab.PROJECT.SUBJECT_TITLE} onChange={this.handleChange}/>
         </div>
         <div className='layer-footer'>
           <div className='layer-footer-button-wrapper'>
-            <LayerFooterButton onClick={this.props.onCancel} label='Cancel'/>
+            <LayerFooterButton onClick={this.props.onCancel} label={vocab.COMMON.CANCEL}/>
             <LayerFooterButton
               onClick={() => this.props.onAddSubject(this.state.value)}
-              label='Save'
+              label={vocab.COMMON.SAVE}
               primary={true}/>
           </div>
         </div>

@@ -6,7 +6,6 @@ import WorkflowContainer from './Workflow';
 import Modal from '../../../common/Modal';
 import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper.js';
-import AddButtons from './Workflow/AddButtons';
 import { addSubject, closeModal } from '../actions';
 
 class ProjectManagementContainer extends Component {
@@ -36,7 +35,7 @@ ProjectManagementContainer.displayName = 'Project Manager';
 
 const mapStateToProps = (state, ownProps) => ({
   data: state,
-  //vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
+  vocab: state.settings.language.vocabulary,
   modal: state.project.navigation.modal
 });
 const mapDispatchToProps = (dispatch) => ({

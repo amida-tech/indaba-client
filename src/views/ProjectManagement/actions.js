@@ -33,6 +33,13 @@ export function showModal(id) {
   };
 }
 
+export function assignTask(assignment) {
+  return {
+    type: actionTypes.ASSIGN_TASK,
+    payload: assignment
+  }
+}
+
 export function closeModal() {
   return {
     type: actionTypes.CLOSE_MODAL
@@ -52,7 +59,6 @@ export function toggleFilter(filter) {
     filter
   }
 }
-
 
 function _getWorkflow() {
   return {

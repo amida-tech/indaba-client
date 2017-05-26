@@ -40,8 +40,8 @@ class ProjectCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  name: state.project.project.name,
-  status: state.project.project.status
+  name: state.project.workflow.name,
+  status: state.project.workflow.status
 });
 const mapDispatchToProps = (dispatch) => ({
   onDropdownClick: (id) => dispatch(showModal(id))
