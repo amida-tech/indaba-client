@@ -3,6 +3,9 @@ import ConfirmationCheckbox from './ConfirmationCheckbox';
 
 class ProjectTab extends Component {
   render() {
+    const vocab = this.props.vocab;
+    const projectVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.PROJECT_TAB;
+    const confirmVocab = this.props.active ? projectVocab.ACTIVE : projectVocab.INACTIVE;
     return (
       <div>
         <div className='project-status-section project-status-value'>
@@ -14,42 +17,42 @@ class ProjectTab extends Component {
             onChange={event => this.props.onCheck('active', event.target.checked)}/>
           <label htmlFor='project-status-check' className='toggle'></label>
           <div className='project-status-field'>
-            <div className='project-status-text'>{this.props.active ? 'Active' : 'Inactive'}</div>
-            <div className='project-status-label'>Project Status</div>
+            <div className='project-status-text'>
+              {this.props.active ? vocab.PROJECT.STATUS_ACTIVE : vocab.PROJECT.STATUS_INACTIVE}</div>
+            <div className='project-status-label'>
+              {projectVocab.VALUE_LABEL}
+            </div>
           </div>
         </div>
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-description'>
-            <p>Deactivate the project when you need to make changes to the workflow.</p>
-            <p>You can switch the survey to draft mode while the project is inactive.</p>
-            <p>Reactivate the project once workflow changes have been made and you're
-              ready to notify the user of the change.</p>
+            <p>{projectVocab.INSTRUCTION_DEACTIVATE}</p>
+            <p>{projectVocab.INSTRUCTION_DRAFT_CONSTRAINT}</p>
+            <p>{projectVocab.INSTRUCTION_REACTIVATE}</p>
           </div>
         </div>
         <hr className='divider'/>
         <div className='project-status-section'>
           <div className='project-status-confirmation'>
-            <p>{this.props.active ? 'Activate' : 'Dectivate'} the project? Check boxes to confirm.</p>
+            <p>{confirmVocab.TITLE}</p>
             <ConfirmationCheckbox
               checked={this.props.draftConfirm}
               onCheck={this.props.onCheck}
               name='draftConfirm'
-              label='Survey can be switched to draft mode while project is inactive.' />
+              label={confirmVocab.CHECKBOX_DRAFT} />
             <br/>
             <ConfirmationCheckbox
               checked={this.props.accessConfirm}
               onCheck={this.props.onCheck}
               name='accessConfirm'
-              label={this.props.active ?
-                'All access to project will be restored.' :
-                'All access to project will be suspended until activated.'}/>
+              label={confirmVocab.CHECKBOX_ACCESS}/>
             <br/>
             <ConfirmationCheckbox
               checked={this.props.usersConfirm}
               onCheck={this.props.onCheck}
               name='usersConfirm'
-              label='All users will be notified of this action.' />
+              label={confirmVocab.CHECKBOX_USERS} />
           </div>
         </div>
       </div>

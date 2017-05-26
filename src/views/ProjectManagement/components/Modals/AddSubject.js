@@ -12,7 +12,7 @@ class AddSubject extends Component {
     this.setState({value: event.target.value});
   }
   render() {
-    const vocab = this.props.data.settings.language.vocabulary;
+    const vocab = this.props.vocab;
     const body = (<input type='text' placeholder={vocab.PROJECT.SUBJECT_TITLE} onChange={this.handleChange}/>);
     return (
       <Modal

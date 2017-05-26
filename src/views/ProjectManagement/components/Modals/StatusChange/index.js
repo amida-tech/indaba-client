@@ -65,11 +65,17 @@ class StatusChange extends Component {
         activeIndex={this.state.tabIndex}>
         <Tab
           title='Project'>
-          <ProjectTab {...this.state.project} onCheck={ this.projectCheck.bind(this) }/>
+          <ProjectTab
+            {...this.state.project}
+            vocab={this.props.vocab}
+            onCheck={ this.projectCheck.bind(this) }/>
         </Tab>
         <Tab
           title='Survey'>
-          <SurveyTab {...this.state.survey} onCheck={ this.surveyCheck.bind(this) }/>
+          <SurveyTab
+            {...this.state.survey}
+            vocab={this.props.vocab}
+            onCheck={ this.surveyCheck.bind(this) }/>
         </Tab>
       </Tabs>
     );
