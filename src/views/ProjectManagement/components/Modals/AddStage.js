@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
 
-class LayerFooterButton extends Component {
-  render() {
-    return (
-      <div
-        className={`layer-footer-button ${this.props.primary ? 'layer-footer-button-primary' : ''}`}
-        onClick={this.props.onClick}>{this.props.label}</div>
-    )
-  }
-}
+
 
 class AddStage extends Component {
   constructor(props) {
@@ -21,6 +13,11 @@ class AddStage extends Component {
     this.setState({value: event.target.value});
   }
   render() {
+    const LayerFooterButton = (
+          <div
+            className={`layer-footer-button ${this.props.primary ? 'layer-footer-button-primary' : ''}`}
+            onClick={this.props.onClick}>{this.props.label}</div>
+        );
     const vocab = this.props.data.settings.language.vocabulary;
     return (
       <div className='layer-content add-subject-layer'>
