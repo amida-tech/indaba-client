@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
 import { modalIDs } from './Modals';
@@ -19,22 +20,17 @@ class SurveyCard extends Component {
 
     return (
       <div className='col-md-6'>
-        <div className='card'>
-          <div className='row'>
-            <div className='col-md-8'>
-              <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-              <div className='card-value'>{this.props.name}</div>
-            </div>
-            <div className='col-md-4'>
-              <div className='card-title'>{this.props.vocab.PROJECT.STATUS}</div>
-              <CardValueDropdown
-                value={this.props.status}
-                options={SurveyStatusOptions[this.props.status]}
-                onClick={this.props.onDropdownClick}
-                />
-            </div>
+        <Box className='card' direction='row' justify='between' align='center' pad='medium'>
+          <div style={{display: 'inline-block'}}>
+            <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
+            <div className='card-value'>{this.props.name}</div>
           </div>
-        </div>
+          <CardValueDropdown
+            value={this.props.status}
+            options={SurveyStatusOptions[this.props.status]}
+            onClick={this.props.onDropdownClick}
+            />
+        </Box>
       </div>
     );
   }
