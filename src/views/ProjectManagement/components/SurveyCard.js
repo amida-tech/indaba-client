@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import IonIcon from 'react-ionicons';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
@@ -27,10 +28,17 @@ class SurveyCard extends Component {
         pad='medium'
         full='horizontal'
         margin={{horziontal: 'small'}}>
-        <div style={{display: 'inline-block'}}>
-          <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-          <div className='card-value'>{this.props.name}</div>
-        </div>
+        <Box direction='row' align='center'>
+          <IonIcon
+            icon='ion-ios-paper-outline'
+            color='#4EB276'
+            fontSize='4em'
+            className='status-card-icon' />
+          <div className='survey-left-column'>
+            <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
+            <div className='card-value'>{this.props.name}</div>
+          </div>
+        </Box>
         <CardValueDropdown
           value={this.props.status}
           options={SurveyStatusOptions[this.props.status]}

@@ -56,6 +56,14 @@ hr.divider {
   border-radius: 2px;
   padding: 1.2em 0 1.2em;
 
+  .project-card-left {
+    margin-left: 2em;
+  }
+
+  .status-card-icon {
+    margin: -2em 0 -2em 0.8em;
+  }
+
   .card-title {
     color: $font-color;
     font-weight: 600;
