@@ -19,7 +19,7 @@ class CardValueDropdown extends Component {
     return (
       <div className='card-value card-value-select' onClick={this.toggleFocus.bind(this)}>
         {this.props.value}
-        <IonIcon icon='ion-ios-arrow-down' className='card-value-select-arrow' />
+        <IonIcon icon='ion-ios-arrow-down' className='card-value-select-arrow' color='#A4AEBF'/>
         <div
           className={`card-value-options ${this.state.focus ? 'card-value-options-open' : ''}`}>
           {this.props.options.map(option =>
