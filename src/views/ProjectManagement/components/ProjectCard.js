@@ -19,18 +19,22 @@ class ProjectCard extends Component {
     };
 
     return (
-      <div className='col-md-6 card'>
-        <Box direction='row' justify='between' align='center'>
-          <div className='card-left'>
-            <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
-            <div className='card-value'>{this.props.name}</div>
-          </div>
-          <CardValueDropdown
-            value={this.props.status}
-            options={ProjectStatusOptions[this.props.status]}
-            onClick={this.props.onDropdownClick} />
-        </Box>
-      </div>
+      <Box
+        direction='row'
+        justify='between'
+        align='center'
+        className='card'
+        full='horizontal'
+        margin={{horizontal: 'small'}}>
+        <div className='card-left'>
+          <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
+          <div className='card-value'>{this.props.name}</div>
+        </div>
+        <CardValueDropdown
+          value={this.props.status}
+          options={ProjectStatusOptions[this.props.status]}
+          onClick={this.props.onDropdownClick} />
+      </Box>
     );
   }
 }

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Box } from 'grommet';
 import ProjectCard from './ProjectCard';
 import SurveyCard from'./SurveyCard';
-import { connect } from 'react-redux';
 
 class Summary extends Component {
   render() {
     return (
-      <div className='summary-spacer'>
-        <div className='container-fluid'>
-          <div className="row">
-            <ProjectCard />
-            <SurveyCard />
-          </div>
-        </div>
-      </div>
+      <Box
+        className='summary-spacer'
+        direction='row'
+        align='center'
+        justify='center'
+        pad={{horizontal: 'medium'}}>
+        <ProjectCard />
+        <SurveyCard />
+      </Box>
     );
   }
 }

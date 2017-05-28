@@ -19,19 +19,24 @@ class SurveyCard extends Component {
     };
 
     return (
-      <div className='col-md-6'>
-        <Box className='card' direction='row' justify='between' align='center' pad='medium'>
-          <div style={{display: 'inline-block'}}>
-            <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-            <div className='card-value'>{this.props.name}</div>
-          </div>
-          <CardValueDropdown
-            value={this.props.status}
-            options={SurveyStatusOptions[this.props.status]}
-            onClick={this.props.onDropdownClick}
-            />
-        </Box>
-      </div>
+      <Box
+        className='card'
+        direction='row'
+        justify='between'
+        align='center'
+        pad='medium'
+        full='horizontal'
+        margin={{horziontal: 'small'}}>
+        <div style={{display: 'inline-block'}}>
+          <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
+          <div className='card-value'>{this.props.name}</div>
+        </div>
+        <CardValueDropdown
+          value={this.props.status}
+          options={SurveyStatusOptions[this.props.status]}
+          onClick={this.props.onDropdownClick}
+          />
+      </Box>
     );
   }
 }
