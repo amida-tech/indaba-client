@@ -91,14 +91,14 @@ hr.divider {
   }
 
   .card-value-select {
+    position: relative;
 
     .card-value-options.card-value-options-open {
       display: block;
       border: 1px solid $border-color;
       background-color: $page-background-color;
       box-shadow: 0 2px 4px 0 #7E848F;
-      top: 0.5em;
-      right: -1em;
+      right: 0;
       z-index: 2;
 
       .card-value-option {
