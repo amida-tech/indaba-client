@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Box } from 'grommet';
 import enhanceWithClickOutside from 'react-click-outside';
 import IonIcon from 'react-ionicons';
 
@@ -17,7 +18,7 @@ class CardValueDropdown extends Component {
   }
   render() {
     return (
-      <div className='card-value card-value-select' onClick={this.toggleFocus.bind(this)}>
+      <Box direction='row' responsive={false} className='card-value card-value-select' onClick={this.toggleFocus.bind(this)}>
         {this.props.value}
         <IonIcon icon='ion-ios-arrow-down' className='card-value-select-arrow' color='#A4AEBF'/>
         <div
@@ -30,7 +31,7 @@ class CardValueDropdown extends Component {
               {option.label}
             </div>)}
         </div>
-      </div>
+      </Box>
     )
   }
 }
