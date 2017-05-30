@@ -10,6 +10,7 @@ import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import './styles/styles.scss';
+import 'react-select/dist/react-select.css';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';

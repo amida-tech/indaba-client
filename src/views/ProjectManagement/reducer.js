@@ -24,7 +24,13 @@ export const initialState = {
       userGroup: "Managers",
       permissions: "Read and Write"
     }],
-  roles: ["Researchers", "Managers"],
+  roles: [{
+      role: "Researchers",
+      permissions: 3
+      },{
+      role: "Managers",
+      permissions: 5
+    }],
   subjects: ["Berlin", "Chicago", "K'unlun"],
   assignees: [{
       id: 0,
