@@ -400,6 +400,16 @@ hr.divider {
   }
 }
 
+.matrix-outer.row .grid-column {
+  overflow-x: auto;
+  white-space: nowrap;
+
+  .col-md-4 {
+    display: inline-block;
+    float: none;
+  }
+}
+
 .invite-user {
   .invite-user-header {
     margin: 1em 0.3em;

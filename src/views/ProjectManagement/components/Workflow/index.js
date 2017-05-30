@@ -8,9 +8,7 @@ import * as ProjectActions from '../../actions';
 class WorkflowContainer extends Component {
   render() {
     return (
-      <div>
-        <MatrixContainer {...this.props}/>
-      </div>
+      <MatrixContainer {...this.props}/>
     );
   }
 }
