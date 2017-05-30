@@ -25,8 +25,7 @@ class ProjectCard extends Component {
         align='center'
         className='card'
         full='horizontal'
-        responsive={false}
-        margin='small'>
+        responsive={false}>
         <div className='project-card-left'>
           <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
           <div className='card-value'>{this.props.name}</div>
