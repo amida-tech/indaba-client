@@ -30,6 +30,13 @@ export const initialState = {
       endStage: "5/3/2017",
       userGroup: "Managers",
       permissions: "Read and Write"
+    }, {
+      id: 3,
+      title: "Third Review",
+      startStage: "5/4/2017",
+      endStage: "6/3/2017",
+      userGroup: "Managers",
+      permissions: "Read and Write"
     }],
   roles: [{
       role: "Researchers",

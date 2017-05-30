@@ -16,29 +16,34 @@ class MatrixContainer extends Component {
     const assignees = this.props.data.project.workflow.assignees.slice();
     let slot = null;
     const Grid = (
-      <div className="container-fluid" key="MatrixContainer">
-        <div className="row" key="StageHeader">
-          <div className="col-md-4" key="blank"> </div>
-          {this.props.data.project.workflow.stages.map(stage =>
-            <div className="col-md-4" key={stage.id}>{stage.title}</div>
-          )}
-        </div>
-        {this.props.data.project.workflow.subjects.map((subject, key) =>
-          <div className="row" key={"SubjectHeader-"+key}>
-            <div className="col-md-4" key={key}>{subject}</div>
+      <table className="table table-bordered workflow-table" key="MatrixContainer">
+        <thead>
+          <tr key="StageHeader">
+            <th></th>
             {this.props.data.project.workflow.stages.map(stage =>
-              <div className="col-md-4" key={"StageSlot-"+key+stage.id}>
-                <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)} />
-              </div>)
-            }
-          </div>
-        )}
-      </div>
+              <th key={stage.id}>{stage.title}</th>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.data.project.workflow.subjects.map((subject,key) =>
+            <tr key={`SubjectHeader-${key}`}>
+              <td key={key}>{subject}</td>
+              {this.props.data.project.workflow.stages.map(stage =>
+                <td key={`StageSlot-${key}-${stage.id}`}>
+                  <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)}/>
+                </td>)}
+              </tr>
+          )}
+        </tbody>
+      </table>
     );
     return(
-      <div className="row matrix-outer">
-        <div className="col-md-5 grid-column">{Grid}</div>
-        <div className="col-md-3"><Sidebar {...this.props} /></div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-5 grid-column">{Grid}</div>
+          <div className="col-md-3"><Sidebar {...this.props} /></div>
+        </div>
       </div>
     )
   }

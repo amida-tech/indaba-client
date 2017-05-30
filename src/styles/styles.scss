@@ -400,14 +400,11 @@ hr.divider {
   }
 }
 
-.matrix-outer.row .grid-column {
+.grid-column {
   overflow-x: auto;
-  white-space: nowrap;
-
-  .col-md-4 {
-    display: inline-block;
-    float: none;
-  }
+}
+.workflow-table {
+  width: 800px;
 }
 
 .invite-user {
