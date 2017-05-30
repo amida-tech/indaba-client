@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
 import { modalIDs } from './Modals';
@@ -18,23 +19,23 @@ class ProjectCard extends Component {
     };
 
     return (
-      <div className='col-md-6'>
-        <div className='card'>
-          <div className='row'>
-            <div className='col-md-8'>
-              <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
-              <div className='card-value'>{this.props.name}</div>
-            </div>
-            <div className='col-md-4'>
-              <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-              <CardValueDropdown
-                value={this.props.status}
-                options={ProjectStatusOptions[this.props.status]}
-                onClick={this.props.onDropdownClick} />
-            </div>
-          </div>
+      <Box
+        direction='row'
+        justify='between'
+        align='center'
+        className='card'
+        full='horizontal'
+        margin={{left: 'small', top: 'small'}}
+        responsive={false}>
+        <div className='project-card-left'>
+          <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
+          <div className='card-value'>{this.props.name}</div>
         </div>
-      </div>
+        <CardValueDropdown
+          value={this.props.status}
+          options={ProjectStatusOptions[this.props.status]}
+          onClick={this.props.onDropdownClick} />
+      </Box>
     );
   }
 }
