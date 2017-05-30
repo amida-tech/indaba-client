@@ -5,6 +5,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import StageSlot from './StageSlot';
 import AssigneeCard from './AssigneeCard';
 import Sidebar from './Sidebar';
+import StageSummary from './StageSummary';
 
 class MatrixContainer extends Component {
   /*
@@ -26,6 +27,13 @@ class MatrixContainer extends Component {
           </tr>
         </thead>
         <tbody>
+          <tr key={'Summary'}>
+            <td key='empty-subject-summary-row'></td>
+            {this.props.data.project.workflow.stages.map(stage =>
+              <td key={`StageSummary-${stage.id}`}>
+                <StageSummary stage={stage} vocab={this.props.vocab}/>
+              </td>)}
+          </tr>
           {this.props.data.project.workflow.subjects.map((subject,key) =>
             <tr key={`SubjectHeader-${key}`}>
               <td key={key} className='grid-subject'>{subject}</td>
