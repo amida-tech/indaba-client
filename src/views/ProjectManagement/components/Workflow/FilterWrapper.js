@@ -3,23 +3,6 @@ import { connect } from 'react-redux';
 import AddButtons from './AddButtons';
 import { toggleFilter } from '../../actions';
 
-const Filters = [{
-  label: 'Unassigned',
-  key: 'unassigned'
-}, {
-  label: 'Late',
-  key: 'late'
-}, {
-  label: 'In Progress',
-  key: 'inprogress'
-}, {
-  label: 'Not Started',
-  key: 'notstarted'
-}, {
-  label: 'Flagged',
-  key: 'flagged'
-}];
-
 class FilterBar extends Component {
   render() {
     return (
@@ -39,6 +22,23 @@ class FilterBar extends Component {
 
 class FilterWrapper extends Component {
   render() {
+    const Filters = [{
+      label: this.props.vocab.PROJECT.FILTER_UNASSIGNED,
+      key: 'unassigned'
+    }, {
+      label: this.props.vocab.PROJECT.FILTER_LATE,
+      key: 'late'
+    }, {
+      label: this.props.vocab.PROJECT.FILTER_IN_PROGRESS,
+      key: 'inprogress'
+    }, {
+      label: this.props.vocab.PROJECT.FILTER_NOT_STARTED,
+      key: 'notstarted'
+    }, {
+      label: this.props.vocab.PROJECT.FILTER_FLAGGED,
+      key: 'flagged'
+    }];
+
     return (
       <div className='filter-wrapper'>
         <FilterBar options={Filters} filter={this.props.filter} onToggleFilter={this.props.onToggleFilter}/>
@@ -49,7 +49,8 @@ class FilterWrapper extends Component {
 }
 
 const mapStateToProps = state => ({
-  filter: state.project.filter
+  filter: state.project.filter,
+  vocab: state.settings.language.vocabulary
 });
 const mapDispatchToProps = dispatch => ({
   onToggleFilter: (filter) => dispatch(toggleFilter(filter))

@@ -4,29 +4,29 @@ import CardValueDropdown from './CardValueDropdown';
 import { showModal } from '../actions';
 import { modalIDs } from './Modals';
 
-const ProjectStatusOptions = {
-  Active : [{
-    label: 'Deactivate',
-    value: modalIDs.PROJECT_STATUS_MODAL
-  }],
-  Inactive : [{
-    label: 'Activate',
-    value: modalIDs.PROJECT_STATUS_MODAL
-  }]
-};
-
 class ProjectCard extends Component {
   render() {
+    const ProjectStatusOptions = {
+      Active : [{
+        label: this.props.vocab.PROJECT.DEACTIVATE,
+        value: modalIDs.PROJECT_STATUS_MODAL
+      }],
+      Inactive : [{
+        label: this.props.vocab.PROJECT.ACTIVATE,
+        value: modalIDs.PROJECT_STATUS_MODAL
+      }]
+    };
+
     return (
       <div className='col-md-6'>
         <div className='card'>
           <div className='row'>
             <div className='col-md-8'>
-              <div className='card-title'>Project</div>
+              <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
               <div className='card-value'>{this.props.name}</div>
             </div>
             <div className='col-md-4'>
-              <div className='card-title'>Status</div>
+              <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
               <CardValueDropdown
                 value={this.props.status}
                 options={ProjectStatusOptions[this.props.status]}
@@ -41,7 +41,8 @@ class ProjectCard extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   name: state.project.workflow.name,
-  status: state.project.workflow.status
+  status: state.project.workflow.status,
+  vocab: state.settings.language.vocabulary
 });
 const mapDispatchToProps = (dispatch) => ({
   onDropdownClick: (id) => dispatch(showModal(id))
