@@ -14,6 +14,9 @@ class InviteUser extends Component {
     this.setState(Object.assign({}, this.state,
       {[field]: evt.target.value}));
   }
+  clear() {
+    this.setState({firstName: '', lastName: '', email: ''});
+  }
   render() {
     return (
       <div className='invite-user'>
@@ -24,20 +27,23 @@ class InviteUser extends Component {
           <Box className='invite-user-name-inputs' direction='row' pad={{between: 'small'}}>
             <TextInput
               placeHolder={this.props.vocab.COMMON.FIRST_NAME}
-              onDOMChange={(evt) => this.setField('firstName', evt)}/>
+              onDOMChange={(evt) => this.setField('firstName', evt)}
+              value={this.state.firstName}/>
             <TextInput
               placeHolder={this.props.vocab.COMMON.LAST_NAME}
-              onDOMChange={(evt) => this.setField('lastName', evt)}/>
+              onDOMChange={(evt) => this.setField('lastName', evt)}
+              value={this.state.lastName}/>
           </Box>
           <TextInput
             placeHolder={this.props.vocab.COMMON.EMAIL}
-            onDOMChange={(evt) => this.setField('email', evt)}/>
+            onDOMChange={(evt) => this.setField('email', evt)}
+            value={this.state.email}/>
           <Box
             direction='row'
             justify='end'
             pad={{between: 'small'}}
             margin={{top: 'small'}}>
-            <Button secondary={true} label='Clear'/>
+            <Button secondary={true} label='Clear' onClick={this.clear.bind(this)}/>
             <Button primary={true} label='Invite'/>
           </Box>
         </Box>
