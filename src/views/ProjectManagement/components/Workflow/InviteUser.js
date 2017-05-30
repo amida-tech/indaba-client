@@ -25,7 +25,7 @@ class InviteUser extends Component {
         <Box
           direction='column'
           pad={{between: 'small'}}>
-          <div className='invite-user-header'>Not Listed? Invite by email</div>
+          <div className='invite-user-header'>{this.props.vocab.PROJECT.INVITE_INSTRUCTION}</div>
           <Box className='invite-user-name-inputs' direction='row' pad={{between: 'small'}}>
             <TextInput
               placeHolder={this.props.vocab.COMMON.FIRST_NAME}
@@ -45,8 +45,8 @@ class InviteUser extends Component {
             justify='end'
             pad={{between: 'small'}}
             margin={{top: 'small'}}>
-            <Button secondary={true} label='Clear' onClick={this.clear.bind(this)}/>
-            <Button primary={true} label='Invite' onClick={() => this.props.onInviteUser(this.state)}/>
+            <Button secondary={true} label={this.props.vocab.COMMON.CLEAR} onClick={this.clear.bind(this)}/>
+            <Button primary={true} label={this.props.vocab.COMMON.INVITE} onClick={() => this.props.onInviteUser(this.state)}/>
           </Box>
         </Box>
       </div>
