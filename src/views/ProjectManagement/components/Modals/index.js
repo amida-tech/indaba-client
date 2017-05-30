@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import AddSubject from './AddSubject';
 import AddStage from './AddStage';
-
-const modalIDToComponent = {
-  'addsubject': AddSubject,
-  'addstage': AddStage
 import StatusChange from './StatusChange';
 
 const modalIDToComponent = {
   addsubject: {
-    component: AddSubject,
+    component: AddSubject
+  },
+  addstage: {
+    component: AddStage
   },
   projectstatuschange: {
     component: StatusChange,
@@ -23,7 +22,6 @@ const modalIDToComponent = {
       tab: 'survey'
     }
   }
->>>>>>> develop
 };
 
 class ModalContent extends Component {
@@ -37,12 +35,9 @@ class ModalContent extends Component {
 
 export const modalIDs = {
   ADD_SUBJECT_MODAL: 'addsubject',
-<<<<<<< HEAD
-  ADD_STAGE_MODAL: 'addstage'
-=======
+  ADD_STAGE_MODAL: 'addstage',
   PROJECT_STATUS_MODAL: 'projectstatuschange',
   SURVEY_STATUS_MODAL: 'surveystatuschange'
->>>>>>> develop
 }
 
 export default ModalContent;
