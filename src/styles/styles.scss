@@ -10,6 +10,20 @@ $brand-color: #4EB276;
 $brand-font-family: 'Montserrat';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
+// TODO still need override
+$brand-neutral-colors: (#0A64A0, #DC2878, #501EB4, #49516F);
+$brand-accent-colors: (#00CCEB, #FF7D28);
+$brand-link-color: #865CD6;
+$brand-status-colors: (
+  critical: #FF324D,
+  error: #FF324D,
+  warning: #FFD602,
+  ok: #8CC800,
+  unknown: #a8a8a8,
+  disabled: #a8a8a8
+) !default;
+$brand-grey-colors: (#000001, #333333, #3B3B3B, #434343, #666666);
+
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
