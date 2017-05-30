@@ -43,6 +43,14 @@ body {
   }
 }
 .invite-user {
+  .grommetux-box--direction-column.grommetux-box--pad-between-small >
+    *:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .grommetux-box--direction-row.grommetux-box--pad-between-small >
+    *:not(:last-child) {
+    margin-right: 4px;
+  }
   .grommetux-text-input {
     padding: 7px 4px;
     border-radius: 0;
@@ -351,8 +359,13 @@ hr.divider {
   }
 }
 
-.invite-user-header {
-  margin: 1em 0.3em;
+.invite-user {
+  .invite-user-header {
+    margin: 1em 0.3em;
+  }
+  .invite-user-name-inputs input {
+    width: 50%;
+  }
 }
 
   .test{
