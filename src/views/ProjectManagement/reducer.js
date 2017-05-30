@@ -115,6 +115,11 @@ export default (state = initialState, action) => {
       newState.workflow.subjects.push(action.subject);
       delete newState.navigation.modal;
       return newState;
+    case t.ADD_STAGE:
+      var newState = Object.assign({}, state);
+      newState.workflow.stages.push(action.stage);
+      delete newState.navigation.modal;
+      return newState;
     case t.SET_PROJECT_STATUS:
       return Object.assign({}, state,
         { workflow: Object.assign({}, state.workflow, { status: action.status })},

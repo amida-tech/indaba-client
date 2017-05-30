@@ -7,6 +7,7 @@ class AddStage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.data.project.workflow.stages.length,
       title: '',
       roles:[],
       permissions: 0,
