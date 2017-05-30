@@ -4,7 +4,7 @@ import StatusChange from './StatusChange';
 
 const modalIDToComponent = {
   addsubject: {
-    component: AddSubject,
+    component: AddSubject
   },
   projectstatuschange: {
     component: StatusChange,
