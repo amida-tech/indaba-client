@@ -54,7 +54,15 @@ hr.divider {
 .card {
   border: 1px solid $border-color;
   border-radius: 2px;
-  padding: 0.8em 0 1.2em 2em;
+  padding: 1.2em 0 1.2em;
+
+  .project-card-left {
+    margin-left: 2em;
+  }
+
+  .status-card-icon {
+    margin: -2em 0 -2em 0.8em;
+  }
 
   .card-title {
     color: $font-color;
@@ -68,34 +76,30 @@ hr.divider {
     color: $header-font-color;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 0.6em;
   }
 
   .card-value-options {
     display: none;
     position: absolute;
+    top: 1.2em;
   }
 
   .card-value-select-arrow {
-    border-color: #999 transparent transparent;
-    border-style: solid;
-    border-width: 5px 5px 0;
     display: inline-block;
-    margin-top: -ceil(2.5);
-    position: relative;
-    left: 11px;
-    top: -3px;
+    vertical-align: middle;
+    margin-right: 1em;
+    margin-left: 0.3em;
   }
 
   .card-value-select {
+    position: relative;
 
     .card-value-options.card-value-options-open {
       display: block;
       border: 1px solid $border-color;
       background-color: $page-background-color;
       box-shadow: 0 2px 4px 0 #7E848F;
-      top: 0.5em;
-      right: -1em;
+      right: 0;
       z-index: 2;
 
       .card-value-option {
@@ -117,11 +121,6 @@ hr.divider {
   }
 }
 
-.summary-spacer {
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-
 .subnav {
 
   .subnav-entry {
@@ -136,6 +135,7 @@ hr.divider {
     &.selected {
       border-bottom: 5px solid #3B9F22;
       padding-bottom: 17px;
+      color: $brand-color;
     }
   }
 }
