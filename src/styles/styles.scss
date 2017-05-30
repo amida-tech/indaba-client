@@ -135,6 +135,7 @@ hr.divider {
     &.selected {
       border-bottom: 5px solid #3B9F22;
       padding-bottom: 17px;
+      color: $brand-color;
     }
   }
 }
