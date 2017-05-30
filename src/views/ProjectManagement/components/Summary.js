@@ -12,6 +12,7 @@ class Summary extends Component {
         direction='row'
         align='center'
         justify='center'
+        margin={{vertical: 'medium'}}
         pad={{horizontal: 'medium'}}>
         <ProjectCard />
         <SurveyCard />
