@@ -28,7 +28,7 @@ class SurveyCard extends Component {
         pad='medium'
         full='horizontal'
         responsive={false}
-        margin={{left: 'small'}}>
+        margin={{left: 'small', top: 'small'}}>
         <Box direction='row' align='center' responsive={false}>
           <IonIcon
             icon='ion-ios-paper-outline'
