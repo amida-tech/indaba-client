@@ -26,10 +26,10 @@ export const initialState = {
     }],
   roles: [{
       role: "Researchers",
-      permissions: 3
+      permissions: 2
       },{
       role: "Managers",
-      permissions: 5
+      permissions: 4
     }],
   subjects: ["Berlin", "Chicago", "K'unlun"],
   assignees: [{
