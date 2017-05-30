@@ -406,6 +406,14 @@ hr.divider {
 .workflow-table {
   width: 800px;
 }
+.grid-subject {
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.table-bordered .grid-subject {
+  vertical-align: middle;
+}
 
 .invite-user {
   .invite-user-header {

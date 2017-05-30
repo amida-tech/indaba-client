@@ -28,7 +28,7 @@ class MatrixContainer extends Component {
         <tbody>
           {this.props.data.project.workflow.subjects.map((subject,key) =>
             <tr key={`SubjectHeader-${key}`}>
-              <td key={key}>{subject}</td>
+              <td key={key} className='grid-subject'>{subject}</td>
               {this.props.data.project.workflow.stages.map(stage =>
                 <td key={`StageSlot-${key}-${stage.id}`}>
                   <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)}/>
