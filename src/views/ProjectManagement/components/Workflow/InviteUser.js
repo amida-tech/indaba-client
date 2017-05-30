@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Box, TextInput, Button } from 'grommet';
+import { inviteUser } from '../../actions';
 
 class InviteUser extends Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class InviteUser extends Component {
             pad={{between: 'small'}}
             margin={{top: 'small'}}>
             <Button secondary={true} label='Clear' onClick={this.clear.bind(this)}/>
-            <Button primary={true} label='Invite'/>
+            <Button primary={true} label='Invite' onClick={() => this.props.onInviteUser(this.state)}/>
           </Box>
         </Box>
       </div>
@@ -52,4 +54,11 @@ class InviteUser extends Component {
   }
 }
 
-export default InviteUser;
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => ({
+  onInviteUser: (user) => dispatch(inviteUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InviteUser);

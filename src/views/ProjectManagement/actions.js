@@ -74,6 +74,13 @@ export function setSurveyStatus(status) {
   }
 }
 
+export function inviteUser(user) {
+  return {
+    type: actionTypes.INVITE_USER,
+    user
+  }
+}
+
 function _getWorkflow() {
   return {
     type: actionTypes.GET_WORKFLOW
