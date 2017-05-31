@@ -8,6 +8,7 @@ export const SHOW_MODAL = 'SHOW_MODAL';
 export const ASSIGN_TASK = 'ASSIGN_TASK';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const ADD_SUBJECT = 'ADD_SUBJECT';
+export const ADD_STAGE = 'ADD_STAGE';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
 export const SET_SURVEY_STATUS = 'SET_SURVEY_STATUS';

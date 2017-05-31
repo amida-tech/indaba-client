@@ -24,7 +24,13 @@ export const initialState = {
       userGroup: "Managers",
       permissions: "Read and Write"
     }],
-  roles: ["Researchers", "Managers"],
+  roles: [{
+      role: "Researchers",
+      permissions: 2
+      },{
+      role: "Managers",
+      permissions: 4
+    }],
   subjects: ["Berlin", "Chicago", "K'unlun"],
   assignees: [{
       id: 0,
@@ -107,6 +113,11 @@ export default (state = initialState, action) => {
     case t.ADD_SUBJECT:
       var newState = Object.assign({}, state);
       newState.workflow.subjects.push(action.subject);
+      delete newState.navigation.modal;
+      return newState;
+    case t.ADD_STAGE:
+      var newState = Object.assign({}, state);
+      newState.workflow.stages.push(action.stage);
       delete newState.navigation.modal;
       return newState;
     case t.SET_PROJECT_STATUS:

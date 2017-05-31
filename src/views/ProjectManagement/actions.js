@@ -53,6 +53,13 @@ export function addSubject(subject) {
   }
 }
 
+export function addStage(stage) {
+  return {
+    type: actionTypes.ADD_STAGE,
+    stage
+  }
+}
+
 export function toggleFilter(filter) {
   return {
     type: actionTypes.TOGGLE_FILTER,
