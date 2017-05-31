@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import IonIcon from 'react-ionicons';
 
 const Types = {
   ASSIGNEECARD: 'AssigneeCard'
@@ -13,6 +14,7 @@ const stageSpotTarget = {
     // ... Maybe make the assignee card opaque?
   },
   drop(props, monitor, component) {
+    console.log(props);
     return(props); // Dispatch to inform the state and DB of changes.
   }
 }
@@ -36,7 +38,25 @@ class StageSlot extends Component {
   }
 
   render() {
-    const display = this.props.name ? this.props.name : "Assign Task";
+    const display = this.props.name ?
+      <div className="container">
+          <div className="row">
+            <div className="col-sm-2">{this.props.name}</div>
+            <div className="col-sm-1"><IonIcon icon='ion-ios-more'/></div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2">{this.props.vocab.ASSIGN_TASK}</div>
+            <div className="col-sm-1"><IonIcon icon='ion-ios-flag'/></div>
+          </div>
+          <div className="row">
+            <div className="col-sm-1"></div>
+          </div>
+      </div> :
+      <div>
+        <label className="inline">
+          <IonIcon icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
+        </label>
+      </div>;
     const { position } = this.props;
     const { isOver, canDrop, connectDropTarget } = this.props;
     return connectDropTarget(

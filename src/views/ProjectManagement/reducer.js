@@ -37,25 +37,37 @@ export const initialState = {
       name: "Jon McLane",
       role: 0,
       stage: 0,
-      subject: 0
+      subject: 0,
+      status: "Not Started",
+      startDate: "1/1/2017",
+      endDate: "2/1/2017"
     },{
       id: 1,
       name: "Ellen Ripley",
       role: 0,
       stage: 0,
-      subject: 1
+      subject: 1,
+      status: "Not Started",
+      startDate: "1/1/2017",
+      endDate: "2/1/2017"
     },{
       id: 2,
       name: "Indiana Jones",
       role: 1,
       stage: 1,
-      subject: 0
+      subject: 0,
+      status: "In Progress",
+      startDate: "5/7/2017",
+      endDate: "8/7/2017"
     },{
       id: 3,
       name: "Tony Stark",
       role: 1,
       stage: 1,
-      subject: 2
+      subject: 2,
+      status: "Finished",
+      startDate: "3/3/2017",
+      endDate: "4/3/2017"
     }],
   unassigned: [{
     id: 4,

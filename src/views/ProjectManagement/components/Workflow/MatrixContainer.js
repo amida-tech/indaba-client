@@ -18,16 +18,16 @@ class MatrixContainer extends Component {
     const Grid = (
       <div className="container" key="MatrixContainer">
         <div className="row" key="StageHeader">
-          <div className="col-md-2" key="blank"> </div>
+          <div className="col-md-1" key="blank"> </div>
           {this.props.data.project.workflow.stages.map(stage =>
-            <div className="col-md-2" key={stage.id}>{stage.title}</div>
+            <div className="col-md-3" key={stage.id}>{stage.title}</div>
           )}
         </div>
         {this.props.data.project.workflow.subjects.map((subject, key) =>
           <div className="row" key={"SubjectHeader-"+key}>
-            <div className="col-md-2" key={key}>{subject}</div>
+            <div className="col-md-1" key={key}>{subject}</div>
             {this.props.data.project.workflow.stages.map(stage =>
-              <div className="col-md-2" key={"StageSlot-"+key+stage.id}>
+              <div className="col-md-3" key={"StageSlot-"+key+stage.id}>
                 <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)} />
               </div>
               )
@@ -38,7 +38,7 @@ class MatrixContainer extends Component {
     );
     return(
       <div className="row">
-        <div className="col-md-5">{Grid}</div>
+        <div className="col-md-7">{Grid}</div>
         <div className="col-md-3"><Sidebar {...this.props} /></div>
       </div>
     )
@@ -48,10 +48,13 @@ class MatrixContainer extends Component {
     for(var i = 0; i < assignees.length; i++){
       if(assignees[i].subject === key && assignees[i].stage === stage.id){
         var goal = assignees[i];
+        //goal.stageInfo = stage;
+        goal.vocab = this.props.vocab.PROJECT.CARD;
         return(goal);
       } // TODO: Was splicing assignees before but this altered state. Investigate.
     }
-    return({'stage': stage.id, 'subject': key});
+    return({'stage': stage.id, 'subject': key, 'startDate': stage.startStage,
+      'endDate': stage.endStage, 'vocab' : this.props.vocab.PROJECT.CARD});
   }
 }
 

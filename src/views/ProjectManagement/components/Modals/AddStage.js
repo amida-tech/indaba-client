@@ -24,7 +24,6 @@ class AddStage extends Component {
 
   handleTitleChange(event){
     this.setState({'title': event.target.value});
-    console.log(this);
   }
 
   handleSelectChange(selection) {

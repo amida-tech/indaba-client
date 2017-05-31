@@ -26,12 +26,17 @@ const cardSource = {
        return;
     }
     const dropResult = monitor.getDropResult();
+    console.log(props.children);
+    console.log(dropResult);
     const assignment = {
       'id': props.children.id,
       'name': props.children.name,
       'role': props.children.role,
       'stage': dropResult.stage,
-      'subject': dropResult.subject
+      'subject': dropResult.subject,
+      'status': dropResult.vocab.NOT_STARTED,
+      'startDate': dropResult.startDate,
+      'endDate': dropResult.endDate
     };
     props.assignTask(assignment);
   }
