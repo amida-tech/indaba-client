@@ -29,6 +29,7 @@ $brand-grey-colors: (#000001, #333333, #3B3B3B, #434343, #666666);
 body {
   font-family: 'Montserrat';
   background-color: $page-background-color;
+  color: $header-font-color;
 }
 
 // Grommet overrides
@@ -413,6 +414,19 @@ hr.divider {
 }
 .table-bordered .grid-subject {
   vertical-align: middle;
+}
+
+.stage-summary {
+  margin: 1.8em 0;
+  .stage-summary-value {
+    font-size: 16px;
+    color: $header-font-color;
+  }
+  .stage-summary-label {
+    font-size: 12px;
+    color: $font-color;
+    text-transform: uppercase;
+  }
 }
 
 .invite-user {
