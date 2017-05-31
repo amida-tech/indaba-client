@@ -403,9 +403,16 @@ hr.divider {
 
 .grid-column {
   overflow-x: auto;
+  border-right: 1px solid $border-color;
 }
 .workflow-table {
   width: 800px;
+
+  margin-bottom: 0;
+  border-right: none;
+  th:last-child, td:last-child, tr, tbody {
+    border-right: none;
+  }
 }
 .grid-subject {
   text-align: center;
