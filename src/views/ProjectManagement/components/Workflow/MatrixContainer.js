@@ -47,7 +47,7 @@ class MatrixContainer extends Component {
       </table>
     );
     return(
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-sm-8 grid-column">{Grid}</div>
           <div className="col-sm-4"><Sidebar {...this.props} /></div>
