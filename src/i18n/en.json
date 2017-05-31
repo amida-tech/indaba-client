@@ -51,7 +51,8 @@
     "FILTER_LATE": "Late",
     "FILTER_IN_PROGRESS": "In Progress",
     "FILTER_NOT_STARTED": "Not Started",
-    "FILTER_FLAGGED": "Flagged"
+    "FILTER_FLAGGED": "Flagged",
+    "INVITE_INSTRUCTION": "Not Listed? Invite by email"
   },
   "SURVEY": {
     "STATUS_DRAFT": "Draft",

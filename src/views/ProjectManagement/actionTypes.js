@@ -12,3 +12,4 @@ export const ADD_STAGE = 'ADD_STAGE';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
 export const SET_SURVEY_STATUS = 'SET_SURVEY_STATUS';
+export const INVITE_USER = 'INVITE_USER';

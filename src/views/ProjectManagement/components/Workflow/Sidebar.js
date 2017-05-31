@@ -3,6 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import AssigneeCard from './AssigneeCard';
+import InviteUser from './InviteUser';
 
 import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
@@ -28,6 +29,7 @@ class Sidebar extends Component {
             </ListItem>
           )}
         </List>
+        <InviteUser vocab={this.props.vocab} />
       </Box>
     )
   }

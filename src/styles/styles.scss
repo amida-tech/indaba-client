@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import 'grommet/scss/grommet-core/index.scss';
 $border-color: #DADCDE;
 $page-background-color: #FCFAFA;
 $header-font-color: #7E848F;
@@ -43,6 +42,21 @@ body {
     }
   }
 }
+.invite-user {
+  .grommetux-box--direction-column.grommetux-box--pad-between-small >
+    *:not(:last-child) {
+    margin-bottom: 4px;
+  }
+  .grommetux-box--direction-row.grommetux-box--pad-between-small >
+    *:not(:last-child) {
+    margin-right: 4px;
+  }
+  .grommetux-text-input {
+    padding: 7px 4px;
+    border-radius: 0;
+  }
+}
+
 
 hr.divider {
   margin-top: 0;
@@ -342,6 +356,15 @@ hr.divider {
   div {
     color: lightgray;
     text-transform: uppercase;
+  }
+}
+
+.invite-user {
+  .invite-user-header {
+    margin: 1em 0.3em;
+  }
+  .invite-user-name-inputs input {
+    width: 50%;
   }
 }
 
