@@ -218,6 +218,33 @@ hr.divider {
     }
   }
 
+  &.add-stage-layer {
+    width: 60em;
+
+    input[type=text] {
+      width: 100%;
+    }
+    input[type=radio] {
+      margin-top: 5px;
+    }
+    span {
+      margin-left: 15px;
+    }
+    .container {
+      width: 100%;
+      margin: 10px;
+    }
+    .Select-control {
+      width: 100%;
+    }
+    .Select-input {
+      border-color: red !important;
+    }
+    .layer-body-container {
+      padding: 1em 1em 1em 1em;
+    }
+  }
+
   &.project-status-change-layer {
     .ion-replaced-checkbox {
       display: none;
