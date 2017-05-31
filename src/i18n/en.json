@@ -54,6 +54,12 @@
     "FILTER_FLAGGED": "Flagged",
     "INVITE_INSTRUCTION": "Not Listed? Invite by email"
   },
+  "STAGE": {
+    "START_STAGE": "Start stage",
+    "END_STAGE": "End stage",
+    "USER_GROUP": "User group",
+    "PERMISSIONS": "Permissions"
+  },
   "SURVEY": {
     "STATUS_DRAFT": "Draft",
     "STATUS_PUBLISHED": "Published",
