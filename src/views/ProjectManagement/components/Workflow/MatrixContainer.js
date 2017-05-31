@@ -30,7 +30,7 @@ class MatrixContainer extends Component {
           <tr key={'Summary'}>
             <td key='empty-subject-summary-row'></td>
             {this.props.data.project.workflow.stages.map(stage =>
-              <td key={`StageSummary-${stage.id}`}>
+              <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
                 <StageSummary stage={stage} vocab={this.props.vocab}/>
               </td>)}
           </tr>
@@ -38,7 +38,7 @@ class MatrixContainer extends Component {
             <tr key={`SubjectHeader-${key}`}>
               <td key={key} className='grid-subject'>{subject}</td>
               {this.props.data.project.workflow.stages.map(stage =>
-                <td key={`StageSlot-${key}-${stage.id}`}>
+                <td key={`StageSlot-${key}-${stage.id}`} className='stage-slot-cell'>
                   <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)}/>
                 </td>)}
               </tr>

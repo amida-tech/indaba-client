@@ -408,6 +408,10 @@ hr.divider {
 .workflow-table {
   width: 800px;
 
+  .stage-slot-cell, .stage-summary-cell {
+    background-color: white;
+  }
+
   margin-bottom: 0;
   border-right: none;
   th:last-child, td:last-child, tr, tbody {

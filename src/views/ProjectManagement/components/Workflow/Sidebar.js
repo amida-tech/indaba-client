@@ -17,8 +17,10 @@ class Sidebar extends Component {
       React.createElement(AssigneeCard, this.props, unassignee)
     );
     return (
-      <Box appCentered={false}>
-        {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
+      <Box appCentered={false}
+        separator='all'
+        pad={{between: 'small', vertical: 'small', horizontal: 'small'}}>
+        <div>{this.props.vocab.PROJECT.DND_INSTRUCTIONS}</div>
         <SearchInput placeHolder={this.props.vocab.COMMON.SEARCH}/>
         <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
           options={this.props.data.project.workflow.roles} />
