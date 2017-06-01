@@ -10,11 +10,25 @@ import StageSummary from './StageSummary';
 const _assigneeLookup = (stage, subjectKey, assignees) =>
   assignees.find(
     (element) => element.subject === subjectKey && element.stage === stage.id) ||
-    {stage: stage.id, subject: subjectKey};
+    {stage: stage.id, subject: subjectKey, unassigned: true};
 
 class FilteredRow extends Component {
+  assigneeIsFilteredOut(assigneeData) {
+    switch (this.props.filter) {
+      case 'unassigned':
+        return !assigneeData.unassigned;
+      default:
+        return false;
+    }
+  }
+  rowIsFilteredOut(assigneesData) {
+    return assigneesData.every(this.assigneeIsFilteredOut.bind(this));
+  }
   render() {
-    return (
+    const assigneeData =
+      this.props.stages.map(
+        stage => _assigneeLookup(stage, this.props.subject.key, this.props.assignees));
+    return this.rowIsFilteredOut(assigneeData) ? null : (
       <tr key={`SubjectHeader-${this.props.subject.key}`}>
         <td key={this.props.subject.key} className='grid-subject'>
           {this.props.subject.name}
@@ -60,7 +74,8 @@ class MatrixContainer extends Component {
             <FilteredRow key={key}
               subject={{name: subject, key}}
               stages={this.props.data.project.workflow.stages}
-              assignees={assignees}/>
+              assignees={assignees}
+              filter={this.props.data.project.filter}/>
           )}
         </tbody>
       </table>
