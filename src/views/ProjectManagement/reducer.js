@@ -77,7 +77,8 @@ export const initialState = {
       role: 1,
       stage: 1,
       subject: 0,
-      flag: true
+      flag: true,
+      dueDate: "9/9/2017"
     },{
       id: 3,
       name: "Tony Stark",
