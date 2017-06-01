@@ -76,7 +76,8 @@ export const initialState = {
       name: "Indiana Jones",
       role: 1,
       stage: 1,
-      subject: 0
+      subject: 0,
+      flag: true
     },{
       id: 3,
       name: "Tony Stark",
