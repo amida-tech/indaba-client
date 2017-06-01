@@ -55,6 +55,7 @@ class FilteredRow extends Component {
             className='stage-slot-cell'>
             <StageSlot {...assignee}
               filtered={this.assigneeIsFilteredOut(assignee)}
+              stage={this.props.stages.find(s => s.id === assignee.stage)}
               vocab={this.props.vocab.PROJECT.CARD}/>
           </td>
         )}

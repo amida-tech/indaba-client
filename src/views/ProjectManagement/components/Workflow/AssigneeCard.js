@@ -32,9 +32,7 @@ const cardSource = {
       'role': props.children.role,
       'stage': dropResult.stage,
       'subject': dropResult.subject,
-      'status': dropResult.vocab.NOT_STARTED,
-      'startDate': dropResult.startDate,
-      'endDate': dropResult.endDate
+      'status': dropResult.vocab.NOT_STARTED
     };
     props.assignTask(assignment);
   }

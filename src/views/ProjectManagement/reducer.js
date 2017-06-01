@@ -53,8 +53,6 @@ export const initialState = {
       stage: 0,
       subject: 0,
       status: 0,
-      startDate: "1/1/2017",
-      endDate: "2/1/2017",
       response: [{
         question: 0,
         value: 'No, I love it'
@@ -68,8 +66,6 @@ export const initialState = {
       stage: 0,
       subject: 1,
       status: 0,
-      startDate: "1/1/2017",
-      endDate: "2/1/2017",
       response: [{
         question: 0,
         value: 'Yes'
@@ -84,8 +80,6 @@ export const initialState = {
       stage: 1,
       subject: 0,
       status: 1,
-      startDate: "5/7/2017",
-      endDate: "8/7/2017",
       flag: true,
       dueDate: "9/9/2017"
     },{
@@ -95,8 +89,6 @@ export const initialState = {
       stage: 1,
       subject: 2,
       status: 2,
-      startDate: "3/3/2017",
-      endDate: "4/4/2017"
     }],
   unassigned: [{
     id: 4,

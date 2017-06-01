@@ -37,7 +37,8 @@ class StageSlot extends Component {
 
   constructor(props) {
     super(props);
-    var diff = Math.round((new Date(this.props.endDate).getTime()
+    var dueDate = this.props.dueDate || this.props.stage.endStage;
+    var diff = Math.round((new Date(dueDate).getTime()
       - new Date().getTime())/day);
     var late = (diff <= 0);
     this.state = {
@@ -53,8 +54,8 @@ class StageSlot extends Component {
       return (this.props.vocab.LATE);
     } else if (this.state.diff === 1){
       return (this.props.vocab.DUE_TOMORROW);
-    } else if (this.state.diff <= 7) {
-      return (this.props.vocab.DUE_IN + diff + this.props.vocab.DAYS);
+    } else if (this.state.diff > 1) {
+      return (this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS);
     }
   }
 
