@@ -33,11 +33,11 @@ class FilteredRow extends Component {
       case 'unassigned':
         return !assigneeData.unassigned;
       case 'late':
-        return this.dueDateInPast(assigneeData) && !this.responsesComplete(assigneeData);
+        return !(this.dueDateInPast(assigneeData) && !this.responsesComplete(assigneeData));
       case 'inprogress':
-        return this.responsesExist(assigneeData) && !this.responsesComplete(assigneeData);
+        return !(this.responsesExist(assigneeData) && !this.responsesComplete(assigneeData));
       case 'notstarted':
-        return !this.responsesExist(assigneeData);
+        return this.responsesExist(assigneeData);
       case 'flagged':
         return !assigneeData.flag;
       default:
