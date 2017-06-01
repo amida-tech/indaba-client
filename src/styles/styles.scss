@@ -493,19 +493,21 @@ hr.divider {
   }
 }
 
-  .test{
-    font-size: 22px;
+.test{
+  font-size: 22px;
+}
+
+.assigneecard {
+	height: 50px;
+	width: 120px;
+}
+
+.center {
+  float: left;
+}
+
+.stageslot {
+  &.stageslot-filtered {
+    opacity: 0.5;
   }
-
-	.assigneecard {
-		height: 50px;
-		width: 120px;
-	}
-
-	.stageslot {
-
-	}
-
-  .center {
-    float: left;
-  }
+}

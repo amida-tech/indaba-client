@@ -90,7 +90,7 @@ class StageSlot extends Component {
     const { position } = this.props;
     const { isOver, canDrop, connectDropTarget } = this.props;
     return connectDropTarget(
-      <div className="stageslot workflow">
+      <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
         {display}
         {isOver && canDrop}
       </div>
