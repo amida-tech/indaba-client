@@ -7,6 +7,28 @@ import AssigneeCard from './AssigneeCard';
 import Sidebar from './Sidebar';
 import StageSummary from './StageSummary';
 
+const _assigneeLookup = (stage, subjectKey, assignees) =>
+  assignees.find(
+    (element) => element.subject === subjectKey && element.stage === stage.id) ||
+    {stage: stage.id, subject: subjectKey};
+
+class FilteredRow extends Component {
+  render() {
+    return (
+      <tr key={`SubjectHeader-${this.props.subject.key}`}>
+        <td key={this.props.subject.key} className='grid-subject'>
+          {this.props.subject.name}
+        </td>
+        {this.props.stages.map(stage =>
+          <td key={`StageSlot-${this.props.subject.key}-${stage.id}`}
+            className='stage-slot-cell'>
+            <StageSlot {..._assigneeLookup(stage, this.props.subject.key, this.props.assignees)}/>
+          </td>)}
+        </tr>
+    )
+  }
+}
+
 class MatrixContainer extends Component {
   /*
    So under the subject headers, we should add the individual stage slots,
@@ -35,13 +57,10 @@ class MatrixContainer extends Component {
               </td>)}
           </tr>
           {this.props.data.project.workflow.subjects.map((subject,key) =>
-            <tr key={`SubjectHeader-${key}`}>
-              <td key={key} className='grid-subject'>{subject}</td>
-              {this.props.data.project.workflow.stages.map(stage =>
-                <td key={`StageSlot-${key}-${stage.id}`} className='stage-slot-cell'>
-                  <StageSlot {...this._assigneeLookup(stage, key, assignees)}/>
-                </td>)}
-              </tr>
+            <FilteredRow key={key}
+              subject={{name: subject, key}}
+              stages={this.props.data.project.workflow.stages}
+              assignees={assignees}/>
           )}
         </tbody>
       </table>
@@ -56,11 +75,6 @@ class MatrixContainer extends Component {
     )
   }
 
-  _assigneeLookup(stage, subjectKey, assignees) {
-    return assignees.find(
-      (element) => element.subject === subjectKey && element.stage === stage.id) ||
-      {stage: stage.id, subject: subjectKey};
-  }
 }
 
 export default DragDropContext(HTML5Backend)(MatrixContainer);
