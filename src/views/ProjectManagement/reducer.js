@@ -123,7 +123,8 @@ export default (state = initialState, action) => {
       return newState;
     case t.TOGGLE_FILTER:
       var newState = Object.assign({}, state);
-      newState.workflow.filter = action.filter;
+      newState.workflow.filter =
+        action.filter === newState.workflow.filter ? null : action.filter;
       return newState;
     case t.ADD_SUBJECT:
       var newState = Object.assign({}, state);
