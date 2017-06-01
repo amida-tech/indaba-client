@@ -55,6 +55,12 @@ export const initialState = {
       status: 0,
       startDate: "1/1/2017",
       endDate: "2/1/2017",
+      response: [{
+        question: 0,
+        value: 'No, I love it'
+      }, {
+        question: 1
+      }]
     },{
       id: 1,
       name: "Ellen Ripley",
@@ -64,6 +70,13 @@ export const initialState = {
       status: 0,
       startDate: "1/1/2017",
       endDate: "2/1/2017",
+      response: [{
+        question: 0,
+        value: 'Yes'
+      }, {
+        question: 1,
+        value: 'Pepperoni'
+      }]
     },{
       id: 2,
       name: "Indiana Jones",

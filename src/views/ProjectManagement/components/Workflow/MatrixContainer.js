@@ -16,15 +16,11 @@ const _assigneeLookup = (stage, subjectKey, assignees) =>
 class FilteredRow extends Component {
   // methods to determine filter status
   responsesExist(assigneeData) {
-    // TODO
-    // return assigneeData.responses
-    return false;
+    return !!assigneeData.response;
   };
   responsesComplete(assigneeData) {
-    // TODO
-    // return assigneeData.responses &&
-    // assigneeData.responses.every((response) => response.value);
-    return false;
+    return assigneeData.response &&
+      assigneeData.response.every((response) => !!response.value);
   };
   isLate(assigneeData) {
     var stage = this.props.stages.find(stage => stage.id === assigneeData.stage);
@@ -39,7 +35,7 @@ class FilteredRow extends Component {
       case 'late':
         return this.isLate(assigneeData);
       case 'inprogress':
-        return this.responsesExist(assigneeData) && !responsesComplete(assigneeData);
+        return this.responsesExist(assigneeData) && !this.responsesComplete(assigneeData);
       case 'notstarted':
         return !this.responsesExist(assigneeData);
       case 'flagged':
