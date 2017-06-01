@@ -134,8 +134,9 @@ export default (state = initialState, action) => {
       delete newState.navigation.modal;
       return newState;
     case t.TOGGLE_FILTER:
-      return Object.assign({}, state,
-        { filter: (state.filter === action.filter) ? null : action.filter });
+      var newState = Object.assign({}, state);
+      newState.workflow.filter = action.filter;
+      return newState;
     case t.ADD_SUBJECT:
       var newState = Object.assign({}, state);
       newState.workflow.subjects.push(action.subject);

@@ -106,7 +106,7 @@ class MatrixContainer extends Component {
               stages={this.props.data.project.workflow.stages}
               assignees={assignees}
               vocab={this.props.vocab}
-              filter={this.props.data.project.filter}/>
+              filter={this.props.data.project.workflow.filter}/>
           )}
         </tbody>
       </table>
