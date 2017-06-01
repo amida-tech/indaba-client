@@ -22,10 +22,10 @@ class FilteredRow extends Component {
     return assigneeData.response &&
       assigneeData.response.every((response) => !!response.value);
   };
-  isLate(assigneeData) {
+  dueDateInPast(assigneeData) {
     var stage = this.props.stages.find(stage => stage.id === assigneeData.stage);
     const dueDate = assigneeData.dueDate || stage.endStage;
-    return Date.parse(dueDate) < Date.now()
+    return Date.parse(dueDate) < Date.now();
   };
 
   assigneeIsFilteredOut(assigneeData) {
@@ -33,7 +33,7 @@ class FilteredRow extends Component {
       case 'unassigned':
         return !assigneeData.unassigned;
       case 'late':
-        return this.isLate(assigneeData);
+        return this.dueDateInPast(assigneeData) && !this.responsesComplete(assigneeData);
       case 'inprogress':
         return this.responsesExist(assigneeData) && !this.responsesComplete(assigneeData);
       case 'notstarted':
