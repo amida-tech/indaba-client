@@ -51,13 +51,26 @@ export const initialState = {
       name: "Jon McLane",
       role: 0,
       stage: 0,
-      subject: 0
+      subject: 0,
+      response: [{
+        question: 0,
+        value: 'No, I love it'
+      }, {
+        question: 1
+      }]
     },{
       id: 1,
       name: "Ellen Ripley",
       role: 0,
       stage: 0,
-      subject: 1
+      subject: 1,
+      response: [{
+        question: 0,
+        value: 'Yes'
+      }, {
+        question: 1,
+        value: 'Pepperoni'
+      }]
     },{
       id: 2,
       name: "Indiana Jones",
