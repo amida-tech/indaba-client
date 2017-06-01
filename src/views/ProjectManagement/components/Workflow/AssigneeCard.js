@@ -26,8 +26,6 @@ const cardSource = {
        return;
     }
     const dropResult = monitor.getDropResult();
-    console.log(props.children);
-    console.log(dropResult);
     const assignment = {
       'id': props.children.id,
       'name': props.children.name,
