@@ -14,10 +14,36 @@ const _assigneeLookup = (stage, subjectKey, assignees) =>
       endDate: stage.endStage, unassigned: true};
 
 class FilteredRow extends Component {
+  // methods to determine filter status
+  responsesExist(assigneeData) {
+    // TODO
+    // return assigneeData.responses
+    return false;
+  };
+  responsesComplete(assigneeData) {
+    // TODO
+    // return assigneeData.responses &&
+    // assigneeData.responses.every((response) => response.value);
+    return false;
+  };
+  isLate(assigneeData) {
+    var stage = this.props.stages.find(stage => stage.id === assigneeData.stage);
+    const dueDate = assigneeData.dueDate || stage.endStage;
+    return Date.parse(dueDate) < Date.now()
+  };
+
   assigneeIsFilteredOut(assigneeData) {
     switch (this.props.filter) {
       case 'unassigned':
         return !assigneeData.unassigned;
+      case 'late':
+        return this.isLate(assigneeData);
+      case 'inprogress':
+        return this.responsesExist(assigneeData) && !responsesComplete(assigneeData);
+      case 'notstarted':
+        return !this.responsesExist(assigneeData);
+      case 'flagged':
+        return !assigneeData.flag;
       default:
         return false;
     }
