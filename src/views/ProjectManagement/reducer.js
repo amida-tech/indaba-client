@@ -86,6 +86,7 @@ export const initialState = {
       status: 1,
       startDate: "5/7/2017",
       endDate: "8/7/2017",
+      flag: true
     },{
       id: 3,
       name: "Tony Stark",
