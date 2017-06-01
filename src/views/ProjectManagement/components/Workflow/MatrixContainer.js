@@ -34,13 +34,15 @@ class FilteredRow extends Component {
         <td key={this.props.subject.key} className='grid-subject'>
           {this.props.subject.name}
         </td>
-        {this.props.stages.map(stage =>
-          <td key={`StageSlot-${this.props.subject.key}-${stage.id}`}
+        {assigneeData.map(assignee =>
+          <td key={`StageSlot-${assignee.subject}-${assignee.stage}`}
             className='stage-slot-cell'>
-            <StageSlot {..._assigneeLookup(stage, this.props.subject.key, this.props.assignees)}
+            <StageSlot {...assignee}
+              filtered={this.assigneeIsFilteredOut(assignee)}
               vocab={this.props.vocab.PROJECT.CARD}/>
-          </td>)}
-        </tr>
+          </td>
+        )}
+      </tr>
     )
   }
 }
