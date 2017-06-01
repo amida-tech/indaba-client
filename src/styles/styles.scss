@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 $border-color: #DADCDE;
-$page-background-color: #FCFAFA;
+$page-background-color: #FAFAFA;
 $header-font-color: #7E848F;
 $font-color: #A4AEBF;
 $font-inverse-color: #FAF5F5;
@@ -10,11 +10,26 @@ $brand-color: #4EB276;
 $brand-font-family: 'Montserrat';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
+// TODO still need override
+$brand-neutral-colors: (#0A64A0, #DC2878, #501EB4, #49516F);
+$brand-accent-colors: (#00CCEB, #FF7D28);
+$brand-link-color: #865CD6;
+$brand-status-colors: (
+  critical: #FF324D,
+  error: #FF324D,
+  warning: #FFD602,
+  ok: #8CC800,
+  unknown: #a8a8a8,
+  disabled: #a8a8a8
+) !default;
+$brand-grey-colors: (#000001, #333333, #3B3B3B, #434343, #666666);
+
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
   font-family: 'Montserrat';
   background-color: $page-background-color;
+  color: $header-font-color;
 }
 
 // Grommet overrides
@@ -42,6 +57,15 @@ body {
     }
   }
 }
+.grommetux-text-input,
+.grommetux-search .grommetux-search__input,
+.grommetux-select__input {
+  padding: 7px 4px;
+  border-radius: 0;
+}
+.grommetux-search--fill {
+  width: 100%;
+}
 .invite-user {
   .grommetux-box--direction-column.grommetux-box--pad-between-small >
     *:not(:last-child) {
@@ -50,10 +74,6 @@ body {
   .grommetux-box--direction-row.grommetux-box--pad-between-small >
     *:not(:last-child) {
     margin-right: 4px;
-  }
-  .grommetux-text-input {
-    padding: 7px 4px;
-    border-radius: 0;
   }
 }
 
@@ -218,6 +238,33 @@ hr.divider {
     }
   }
 
+  &.add-stage-layer {
+    width: 60em;
+
+    input[type=text] {
+      width: 100%;
+    }
+    input[type=radio] {
+      margin-top: 5px;
+    }
+    span {
+      margin-left: 15px;
+    }
+    .container {
+      width: 100%;
+      margin: 10px;
+    }
+    .Select-control {
+      width: 100%;
+    }
+    .Select-input {
+      border-color: red !important;
+    }
+    .layer-body-container {
+      padding: 1em 1em 1em 1em;
+    }
+  }
+
   &.project-status-change-layer {
     .ion-replaced-checkbox {
       display: none;
@@ -301,7 +348,7 @@ hr.divider {
 
 .filter-wrapper {
   height: 5em;
-  margin: 0 30em 0 2em;
+  margin: 0 2em 0 2em;
 }
 
 .add-button-panel {
@@ -359,12 +406,86 @@ hr.divider {
   }
 }
 
-.invite-user {
-  .invite-user-header {
-    margin: 1em 0.3em;
+.grid-column {
+  overflow-x: auto;
+  border-right: 1px solid $border-color;
+}
+.workflow-table {
+  width: 800px;
+
+  .stage-slot-cell, .stage-summary-cell {
+    background-color: white;
   }
-  .invite-user-name-inputs input {
-    width: 50%;
+
+  .name-row {
+    margin-bottom:5px;
+  }
+
+  .due-row {
+    margin-top:10px;
+  }
+
+  .role-span {
+    font-size:9px;
+  }
+
+  .right-icon {
+    float: right;
+  }
+
+  .left-icon {
+    float: left;
+    margin-right: 5px;
+  }
+
+  margin-bottom: 0;
+  border-right: none;
+  th:last-child, td:last-child, tr, tbody {
+    border-right: none;
+  }
+}
+.grid-subject {
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.table-bordered .grid-subject {
+  vertical-align: middle;
+}
+
+.stage-summary {
+  margin: 1.8em 0;
+  .stage-summary-value {
+    font-size: 14px;
+    color: $header-font-color;
+  }
+  .stage-summary-label {
+    font-size: 12px;
+    color: $font-color;
+    text-transform: uppercase;
+  }
+}
+
+.sidebar {
+  &>* {
+    padding: 5px;
+  }
+  .sidebar-instruction {
+    border-bottom: 1px solid $border-color;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+  }
+  .sidebar-user-search {
+    margin-bottom: 5px;
+  }
+
+  .invite-user {
+    .invite-user-header {
+      padding: 0.4em 0;
+    }
+    .invite-user-name-inputs input {
+      width: 50%;
+    }
   }
 }
 
@@ -378,6 +499,7 @@ hr.divider {
 	}
 
 	.stageslot {
+
 	}
 
   .center {

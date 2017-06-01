@@ -39,22 +39,22 @@ class StageSlot extends Component {
 
   render() {
     const display = this.props.name ?
-      <div className="container">
-          <div className="row">
-            <div className="col-sm-2">{this.props.name}</div>
-            <div className="col-sm-1"><IonIcon icon='ion-ios-more'/></div>
-          </div>
-          <div className="row">
-            <div className="col-sm-2">{this.props.vocab.ASSIGN_TASK}</div>
-            <div className="col-sm-1"><IonIcon icon='ion-ios-flag'/></div>
-          </div>
-          <div className="row">
-            <div className="col-sm-1"></div>
-          </div>
+      <div>
+        <div className='name-row'>
+          <span>{this.props.name}</span>
+          <IonIcon className='right-icon' icon='ion-ios-more'/>
+        </div>
+        <div>
+          <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
+          <IonIcon className='right-icon' icon='ion-ios-flag'/>
+        </div>
+        <div className='due-row'>
+          Whatever
+        </div>
       </div> :
       <div>
-        <label className="inline">
-          <IonIcon icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
+        <label className='inline'>
+          <IonIcon className='left-icon' icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
         </label>
       </div>;
     const { position } = this.props;

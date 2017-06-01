@@ -65,20 +65,24 @@ class AddStage extends Component {
         {vocab.PROJECT.PERMISSIONS}
         <div className="container" onChange={this.handlePermissionsChange}>
           <label className="radio-inline">
-            <input type="radio" style={{marginTop: '5px'}} name="permissions" value="0" defaultChecked />
-            <span style={{marginLeft: '15px'}}> {vocab.PROJECT.READ_ONLY}</span>
+            <input type="radio" name="permissions" value="0" defaultChecked />
+            <span>{vocab.PROJECT.READ_ONLY}</span>
           </label>
           <label className="radio-inline">
-            <input type="radio" name="permissions" value="1" />{vocab.PROJECT.PROVIDE_RESPONSES}
+            <input type="radio" name="permissions" value="1" />
+              <span>{vocab.PROJECT.PROVIDE_RESPONSES}</span>
           </label>
           <label className="radio-inline">
-            <input type="radio" name="permissions" value="2" />{vocab.PROJECT.READ_AND_WRITE}
+            <input type="radio" name="permissions" value="2" />
+              <span>{vocab.PROJECT.READ_AND_WRITE}</span>
           </label>
           <label className="radio-inline">
-            <input type="radio" name="permissions" value="3" /> {vocab.PROJECT.EDIT}
+            <input type="radio" name="permissions" value="3" />
+              <span>{vocab.PROJECT.EDIT}</span>
           </label>
           <label className="radio-inline">
-            <input type="radio" name="permissions" value="4" /> {vocab.PROJECT.ALL_PERMISSIONS}
+            <input type="radio" name="permissions" value="4" />
+              <span>{vocab.PROJECT.ALL_PERMISSIONS}</span>
           </label>
         </div>
         <div>
@@ -87,12 +91,12 @@ class AddStage extends Component {
         {vocab.PROJECT.DATE_RANGE}
         <div className="container">
           <div className="row">
-            <div className="col-md-4">{vocab.PROJECT.START_DATE}</div>
-            <div className="col-md-4">{vocab.PROJECT.END_DATE}</div>
+            <div className="col-md-6">{vocab.PROJECT.START_DATE}</div>
+            <div className="col-md-6">{vocab.PROJECT.END_DATE}</div>
           </div>
           <div className="row">
-            <div className="col-md-4"><input type="date" name="startDate" onChange={this.handleStartDateChange}/></div>
-            <div className="col-md-4"><input type="date" name="endDate" onChange={this.handleEndDateChange}/></div>
+            <div className="col-md-6"><input type="date" name="startDate" onChange={this.handleStartDateChange}/></div>
+            <div className="col-md-6"><input type="date" name="endDate" onChange={this.handleEndDateChange}/></div>
           </div>
         </div>
       </div>
@@ -100,7 +104,7 @@ class AddStage extends Component {
       return (
         <Modal
           title={vocab.PROJECT.STAGE_SETTINGS}
-          class=''
+          class='add-stage-layer'
           content={body}
           onCancel={this.props.onCancel}
           data={this.props.data}
