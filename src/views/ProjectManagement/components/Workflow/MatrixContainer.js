@@ -60,10 +60,13 @@ class MatrixContainer extends Component {
     for(var i = 0; i < assignees.length; i++){
       if(assignees[i].subject === key && assignees[i].stage === stage.id){
         var goal = assignees[i];
+        //goal.stageInfo = stage;
+        goal.vocab = this.props.vocab.PROJECT.CARD;
         return(goal);
       } // TODO: Was splicing assignees before but this altered state. Investigate.
     }
-    return({'stage': stage.id, 'subject': key});
+    return({'stage': stage.id, 'subject': key, 'startDate': stage.startStage,
+      'endDate': stage.endStage, 'vocab' : this.props.vocab.PROJECT.CARD});
   }
 }
 
