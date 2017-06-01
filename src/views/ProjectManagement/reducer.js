@@ -51,19 +51,34 @@ export const initialState = {
       name: "Jon McLane",
       role: 0,
       stage: 0,
-      subject: 0
+      subject: 0,
+      response: [{
+        question: 0,
+        value: 'No, I love it'
+      }, {
+        question: 1
+      }]
     },{
       id: 1,
       name: "Ellen Ripley",
       role: 0,
       stage: 0,
-      subject: 1
+      subject: 1,
+      response: [{
+        question: 0,
+        value: 'Yes'
+      }, {
+        question: 1,
+        value: 'Pepperoni'
+      }]
     },{
       id: 2,
       name: "Indiana Jones",
       role: 1,
       stage: 1,
-      subject: 0
+      subject: 0,
+      flag: true,
+      dueDate: "9/9/2017"
     },{
       id: 3,
       name: "Tony Stark",
@@ -122,8 +137,10 @@ export default (state = initialState, action) => {
       delete newState.navigation.modal;
       return newState;
     case t.TOGGLE_FILTER:
-      return Object.assign({}, state,
-        { filter: (state.filter === action.filter) ? null : action.filter });
+      var newState = Object.assign({}, state);
+      newState.workflow.filter =
+        action.filter === newState.workflow.filter ? null : action.filter;
+      return newState;
     case t.ADD_SUBJECT:
       var newState = Object.assign({}, state);
       newState.workflow.subjects.push(action.subject);

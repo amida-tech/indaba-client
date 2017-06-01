@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import StageSlot from './StageSlot';
 import AssigneeCard from './AssigneeCard';
 import Sidebar from './Sidebar';
 import StageSummary from './StageSummary';
+import FilteredRow from './FilteredRow';
 
 class MatrixContainer extends Component {
   /*
@@ -35,13 +35,11 @@ class MatrixContainer extends Component {
               </td>)}
           </tr>
           {this.props.data.project.workflow.subjects.map((subject,key) =>
-            <tr key={`SubjectHeader-${key}`}>
-              <td key={key} className='grid-subject'>{subject}</td>
-              {this.props.data.project.workflow.stages.map(stage =>
-                <td key={`StageSlot-${key}-${stage.id}`} className='stage-slot-cell'>
-                  <StageSlot {...this._assignmentCheck(stage, subject, key, assignees)}/>
-                </td>)}
-              </tr>
+            <FilteredRow key={key}
+              subject={{name: subject, key}}
+              stages={this.props.data.project.workflow.stages}
+              assignees={assignees}
+              filter={this.props.data.project.workflow.filter}/>
           )}
         </tbody>
       </table>
@@ -56,15 +54,6 @@ class MatrixContainer extends Component {
     )
   }
 
-  _assignmentCheck(stage, subject, key, assignees) {
-    for(var i = 0; i < assignees.length; i++){
-      if(assignees[i].subject === key && assignees[i].stage === stage.id){
-        var goal = assignees[i];
-        return(goal);
-      } // TODO: Was splicing assignees before but this altered state. Investigate.
-    }
-    return({'stage': stage.id, 'subject': key});
-  }
 }
 
 export default DragDropContext(HTML5Backend)(MatrixContainer);
