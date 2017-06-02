@@ -41,10 +41,7 @@ class StageSlot extends Component {
     var diff = Math.round((new Date(dueDate).getTime()
       - new Date().getTime())/day);
     var late = (diff <= 0);
-    this.state = {
-      'diff': diff,
-      'late': late
-    }
+    this.state = { diff, late };
   }
 
   displayDueTime(){
