@@ -9,7 +9,7 @@ const Types = {
 
 const stageSpotTarget = {
   canDrop(props, monitor) { // Checks if we can make the drop.
-    return (props.name === undefined);
+    return (props.assignee.unassigned === true);
   },
   hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
