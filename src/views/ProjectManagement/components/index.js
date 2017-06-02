@@ -6,7 +6,7 @@ import WorkflowContainer from './Workflow';
 import Modal from '../../../common/Modal';
 import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper.js';
-import { addSubject, addStage, closeModal } from '../actions';
+import { addSubject, addStage, updateTask, closeModal } from '../actions';
 
 class ProjectManagementContainer extends Component {
   render() {
@@ -41,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAddStage: (stage) => {
     dispatch(addStage(stage));
+  },
+  onUpdateTask: (task) => {
+    dispatch(updateTask(task));
   },
   onCancel: () => dispatch(closeModal())
 });

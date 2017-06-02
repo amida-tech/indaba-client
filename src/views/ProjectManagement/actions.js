@@ -60,6 +60,13 @@ export function addStage(stage) {
   }
 }
 
+export function updateTask(task) {
+  return {
+    type: actionTypes.UPDATE_TASK,
+    task
+  }
+}
+
 export function toggleFilter(filter) {
   return {
     type: actionTypes.TOGGLE_FILTER,

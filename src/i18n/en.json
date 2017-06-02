@@ -30,6 +30,7 @@
     "PROJECT": "Project",
     "SURVEY": "Survey",
     "STATUS": "Status",
+    "TASK_VIEW": "Task View",
     "ALL_PERMISSIONS": "All Permissions",
     "READ_AND_WRITE": "Read and Write",
     "PROVIDE_RESPONSES": "Provide Responses",

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
+import { modalIDs } from '../Modals';
+import { showModal } from '../../actions';
 
 const Types = {
   ASSIGNEECARD: 'AssigneeCard'
@@ -44,6 +48,11 @@ class StageSlot extends Component {
       'diff': diff,
       'late': late
     }
+    this.onTaskViewClick = this.onTaskViewClick.bind(this);
+  }
+
+  onTaskViewClick() {
+    this.props.dispatch(showModal(modalIDs.TASK_VIEW_MODAL));
   }
 
   displayDueTime(){
@@ -72,7 +81,7 @@ class StageSlot extends Component {
       <div>
         <div className='name-row'>
           <span>{this.props.name}</span>
-          <IonIcon className='right-icon' icon='ion-ios-more'/>
+          <button onClick={this.onTaskViewClick}><IonIcon className='right-icon' icon='ion-ios-more'/></button>
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
@@ -98,4 +107,7 @@ class StageSlot extends Component {
   }
 }
 
-export default DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect)(StageSlot);
+export default compose(
+  DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
+  connect()
+)(StageSlot);

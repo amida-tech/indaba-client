@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddSubject from './AddSubject';
 import AddStage from './AddStage';
+import TaskView from './TaskView';
 import StatusChange from './StatusChange';
 
 const modalIDToComponent = {
@@ -9,6 +10,9 @@ const modalIDToComponent = {
   },
   addstage: {
     component: AddStage
+  },
+  taskview: {
+    component: TaskView
   },
   projectstatuschange: {
     component: StatusChange,
@@ -36,6 +40,7 @@ class ModalContent extends Component {
 export const modalIDs = {
   ADD_SUBJECT_MODAL: 'addsubject',
   ADD_STAGE_MODAL: 'addstage',
+  TASK_VIEW_MODAL: 'taskview',
   PROJECT_STATUS_MODAL: 'projectstatuschange',
   SURVEY_STATUS_MODAL: 'surveystatuschange'
 }
