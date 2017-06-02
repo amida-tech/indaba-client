@@ -37,7 +37,7 @@ class StageSlot extends Component {
 
   constructor(props) {
     super(props);
-    var dueDate = this.props.dueDate || this.props.stageData.endStage;
+    var dueDate = this.props.assignee.dueDate || this.props.stageData.endStage;
     var diff = Math.round((new Date(dueDate).getTime()
       - new Date().getTime())/day);
     var late = (diff <= 0);
@@ -45,7 +45,7 @@ class StageSlot extends Component {
   }
 
   displayDueTime(){
-    if(this.props.status === 2) {
+    if(this.props.assignee.status === 2) {
       return (this.props.vocab.DONE);
     } else if(this.state.diff <= 0) {
       return (this.props.vocab.LATE);
@@ -57,7 +57,7 @@ class StageSlot extends Component {
   }
 
   displayStatus(){
-    if(this.props.status === 2) {
+    if(this.props.assignee.status === 2) {
       return (this.props.vocab.DONE);
     }
     if(this.state.late) {
@@ -66,15 +66,15 @@ class StageSlot extends Component {
   }
 
   render() {
-    const display = this.props.name ?
+    const display = this.props.assignee.name ?
       <div>
         <div className='name-row'>
-          <span>{this.props.name}</span>
+          <span>{this.props.assignee.name}</span>
           <IonIcon className='right-icon' icon='ion-ios-more'/>
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-          {this.props.status === 2 && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+          {this.props.assignee.status === 2 && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>
         <div className='due-row'>
           <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>

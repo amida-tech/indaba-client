@@ -43,7 +43,7 @@ class FilteredRow extends Component {
         {assigneeData.map(assignee =>
           <td key={`StageSlot-${assignee.subject}-${assignee.stage}`}
             className='stage-slot-cell'>
-            <StageSlot {...assignee}
+            <StageSlot assignee={assignee}
               filtered={this.assigneeIsFilteredOut(assignee)}
               stageData={this.props.stages.find(s => s.id === assignee.stage)}
               vocab={this.props.vocab.PROJECT.CARD}/>
