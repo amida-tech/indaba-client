@@ -8,16 +8,10 @@ import { modalIDs } from './Modals';
 
 class SurveyCard extends Component {
   render() {
-    const SurveyStatusOptions = {
-      Published: [{
-        label: this.props.vocab.SURVEY.UNPUBLISH,
-        value: modalIDs.SURVEY_STATUS_MODAL
-      }],
-      Draft: [{
-        label: this.props.vocab.SURVEY.PUBLISH,
-        value: modalIDs.SURVEY_STATUS_MODAL
-      }]
-    };
+    const SurveyStatusOptions = [{
+      label: this.props.vocab.PROJECT.CHANGE_STATUS,
+      value: modalIDs.SURVEY_STATUS_MODAL
+    }];
 
     return (
       <Box
@@ -42,7 +36,7 @@ class SurveyCard extends Component {
         </Box>
         <CardValueDropdown
           value={this.props.status}
-          options={SurveyStatusOptions[this.props.status]}
+          options={SurveyStatusOptions}
           onClick={this.props.onDropdownClick}
           />
       </Box>

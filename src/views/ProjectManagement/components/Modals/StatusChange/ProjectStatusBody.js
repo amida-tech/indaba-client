@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ConfirmationCheckbox from './ConfirmationCheckbox';
 
-class ProjectTab extends Component {
+class ProjectStatusBody extends Component {
   render() {
     const vocab = this.props.vocab;
     const projectVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.PROJECT_TAB;
@@ -60,4 +60,4 @@ class ProjectTab extends Component {
   }
 }
 
-export default ProjectTab;
+export default ProjectStatusBody;

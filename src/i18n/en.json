@@ -30,6 +30,7 @@
     "PROJECT": "Project",
     "SURVEY": "Survey",
     "STATUS": "Status",
+    "CHANGE_STATUS": "Change Status",
     "ALL_PERMISSIONS": "All Permissions",
     "READ_AND_WRITE": "Read and Write",
     "PROVIDE_RESPONSES": "Provide Responses",
@@ -80,8 +81,8 @@
   },
   "MODAL": {
     "STATUS_CHANGE_MODAL": {
-      "TITLE": "Change Status",
       "PROJECT_TAB": {
+        "TITLE": "Change Project Status",
         "VALUE_LABEL": "Project Status",
         "INSTRUCTION_DEACTIVATE": "Deactivate the project when you need to make changes to the workflow.",
         "INSTRUCTION_DRAFT_CONSTRAINT": "You can switch the survey to draft mode while the project is inactive.",
@@ -100,6 +101,7 @@
         }
       },
       "SURVEY_TAB": {
+        "TITLE": "Change Survey Status",
         "VALUE_LABEL": "Survey Status",
         "INSTRUCTION_PUBLISH": "Publish the survey when you're ready for assignees to access it.",
         "INSTRUCTION_DRAFT_CONSTRAINT": "Once published, you must deactivate the project to edit the survey.",
