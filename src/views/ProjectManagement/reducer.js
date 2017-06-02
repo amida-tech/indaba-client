@@ -39,9 +39,11 @@ export const initialState = {
       permissions: "Read and Write"
     }],
   roles: [{
+      id: 0,
       role: "Researchers",
       permissions: 2
       },{
+      id: 1,
       role: "Managers",
       permissions: 4
     }],
