@@ -38,11 +38,11 @@ class StageSlot extends Component {
     super(props);
     const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
     var late = (diff <= 0);
-    this.state = { diff, late };
+    this.state = { diff, late, done: TaskStatus.responsesComplete(this.props.assignee)};
   }
 
   displayDueTime(){
-    if(this.props.assignee.status === 2) {
+    if(this.state.done) {
       return (this.props.vocab.DONE);
     } else if(this.state.diff <= 0) {
       return (this.props.vocab.LATE);
@@ -54,11 +54,11 @@ class StageSlot extends Component {
   }
 
   displayStatus(){
-    if(this.props.assignee.status === 2) {
-      return (this.props.vocab.DONE);
+    if(this.state.done) {
+      return this.props.vocab.DONE;
     }
     if(this.state.late) {
-      return (this.props.vocab.LATE);
+      return this.props.vocab.LATE;
     }
   }
 
@@ -71,7 +71,7 @@ class StageSlot extends Component {
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-          {this.props.assignee.status === 2 && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+          {this.props.done && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>
         <div className='due-row'>
           <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>

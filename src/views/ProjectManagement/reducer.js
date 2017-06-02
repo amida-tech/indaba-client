@@ -52,7 +52,6 @@ export const initialState = {
       role: 0,
       stage: 0,
       subject: 0,
-      status: 0,
       response: [{
         question: 0,
         value: 'No, I love it'
@@ -65,7 +64,6 @@ export const initialState = {
       role: 0,
       stage: 0,
       subject: 1,
-      status: 0,
       response: [{
         question: 0,
         value: 'Yes'
@@ -79,7 +77,6 @@ export const initialState = {
       role: 1,
       stage: 1,
       subject: 0,
-      status: 1,
       flag: true,
       dueDate: "9/9/2017"
     },{
@@ -88,7 +85,6 @@ export const initialState = {
       role: 1,
       stage: 1,
       subject: 2,
-      status: 2,
     }],
   unassigned: [{
     id: 4,
