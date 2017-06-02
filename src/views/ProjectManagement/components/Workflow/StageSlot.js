@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import { modalIDs } from '../Modals';
-import { showModal } from '../../actions';
+import { showModalProps } from '../../actions';
 
 const Types = {
   ASSIGNEECARD: 'AssigneeCard'
@@ -52,7 +52,7 @@ class StageSlot extends Component {
   }
 
   onTaskViewClick() {
-    this.props.dispatch(showModal(modalIDs.TASK_VIEW_MODAL));
+    this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL, this.props));
   }
 
   displayDueTime(){

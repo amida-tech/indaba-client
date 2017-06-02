@@ -33,6 +33,13 @@ export function showModal(id) {
   };
 }
 
+export function showModalProps(id, props) {
+  return {
+    type: actionTypes.SHOW_MODAL_PROPS,
+    id, props
+  };
+}
+
 export function assignTask(assignment) {
   return {
     type: actionTypes.ASSIGN_TASK,

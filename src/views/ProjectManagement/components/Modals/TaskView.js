@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
+import { connect} from 'react-redux';
 import Modal from '../../../../common/Modal';
 
 class TaskView extends Component {
@@ -8,6 +9,7 @@ class TaskView extends Component {
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
   }
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -26,4 +28,13 @@ class TaskView extends Component {
   }
 };
 
-export default TaskView;
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps);
+  return ({})
+};
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskView);
