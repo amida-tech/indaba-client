@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ConfirmationCheckbox from './ConfirmationCheckbox';
 
-class SurveyTab extends Component {
+class SurveyStatusBody extends Component {
   render() {
     const vocab = this.props.vocab;
     const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
@@ -60,4 +60,4 @@ class SurveyTab extends Component {
   }
 }
 
-export default SurveyTab;
+export default SurveyStatusBody;
