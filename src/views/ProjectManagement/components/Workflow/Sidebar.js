@@ -12,8 +12,20 @@ import Box from 'grommet/components/Box';
 import Select from 'grommet/components/Select';
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {query: ''};
+  }
+  searchFilter(query, value) {
+    return !query || value.toLowerCase().includes(query.toLowerCase());
+  }
+  onSearch(evt) {
+    this.setState({query: evt.target.value});
+  }
   render() { // TODO: Find a far better way to do this.
-    const unassigned = this.props.data.project.workflow.unassigned.map(unassignee =>
+    const unassigned = this.props.data.project.workflow.unassigned
+    .filter((u) => this.searchFilter(this.state.query, u.name))
+    .map(unassignee =>
       React.createElement(AssigneeCard, this.props, unassignee)
     );
     return (
@@ -25,6 +37,7 @@ class Sidebar extends Component {
           <Search className='sidebar-user-search'
             fill={true}
             placeHolder={this.props.vocab.COMMON.SEARCH}
+            onDOMChange={this.onSearch.bind(this)}
             inline={true}/>
           <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
             options={this.props.data.project.workflow.roles} />
