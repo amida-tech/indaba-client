@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
 import IonIcon from 'react-ionicons';
+import TaskStatus from '../../../../utils/TaskStatus';
 
 const Types = {
   ASSIGNEECARD: 'AssigneeCard'
 };
-
-const day = 24*60*60*1000;
 
 const stageSpotTarget = {
   canDrop(props, monitor) { // Checks if we can make the drop.
@@ -37,9 +36,7 @@ class StageSlot extends Component {
 
   constructor(props) {
     super(props);
-    var dueDate = this.props.assignee.dueDate || this.props.stageData.endStage;
-    var diff = Math.round((new Date(dueDate).getTime()
-      - new Date().getTime())/day);
+    const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
     var late = (diff <= 0);
     this.state = { diff, late };
   }
