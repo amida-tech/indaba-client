@@ -37,7 +37,7 @@ class StageSlot extends Component {
 
   constructor(props) {
     super(props);
-    var dueDate = this.props.dueDate || this.props.stage.endStage;
+    var dueDate = this.props.dueDate || this.props.stageData.endStage;
     var diff = Math.round((new Date(dueDate).getTime()
       - new Date().getTime())/day);
     var late = (diff <= 0);
