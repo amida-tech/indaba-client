@@ -49,7 +49,7 @@ class FilterWrapper extends Component {
 }
 
 const mapStateToProps = state => ({
-  filter: state.project.filter,
+  filter: state.project.workflow.filter,
   vocab: state.settings.language.vocabulary
 });
 const mapDispatchToProps = dispatch => ({
