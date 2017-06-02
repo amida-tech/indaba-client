@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StageSlot from './StageSlot';
+import TaskStatus from '../../../../utils/TaskStatus';
 
 const _assigneeLookup = (stage, subjectKey, assignees) =>
   assignees.find(
@@ -8,30 +9,19 @@ const _assigneeLookup = (stage, subjectKey, assignees) =>
       endDate: stage.endStage, unassigned: true};
 
 class FilteredRow extends Component {
-  // methods to determine filter status
-  responsesExist(assigneeData) {
-    return !!assigneeData.response;
-  };
-  responsesComplete(assigneeData) {
-    return assigneeData.response &&
-      assigneeData.response.every((response) => !!response.value);
-  };
-  dueDateInPast(assigneeData) {
-    var stage = this.props.stages.find(stage => stage.id === assigneeData.stage);
-    const dueDate = assigneeData.dueDate || stage.endStage;
-    return Date.parse(dueDate) < Date.now();
-  };
 
   assigneeIsFilteredOut(assigneeData) {
     switch (this.props.filter) {
       case 'unassigned':
         return !assigneeData.unassigned;
       case 'late':
-        return !(this.dueDateInPast(assigneeData) && !this.responsesComplete(assigneeData));
+        return !(TaskStatus.dueDateInPast(assigneeData, this.props.stages) &&
+                !TaskStatus.responsesComplete(assigneeData));
       case 'inprogress':
-        return !(this.responsesExist(assigneeData) && !this.responsesComplete(assigneeData));
+        return !(TaskStatus.responsesExist(assigneeData) &&
+                !TaskStatus.responsesComplete(assigneeData));
       case 'notstarted':
-        return this.responsesExist(assigneeData);
+        return TaskStatus.responsesExist(assigneeData);
       case 'flagged':
         return !assigneeData.flag;
       default:
