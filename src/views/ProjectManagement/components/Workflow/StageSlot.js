@@ -71,7 +71,7 @@ class StageSlot extends Component {
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-          {this.props.done && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+          {this.state.done && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>
         <div className='due-row'>
           <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>
