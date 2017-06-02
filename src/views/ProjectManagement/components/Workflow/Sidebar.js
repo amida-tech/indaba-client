@@ -16,18 +16,28 @@ class Sidebar extends Component {
     super(props);
     this.state = {query: ''};
   }
-  searchFilter(query, value) {
-    return !query || value.toLowerCase().includes(query.toLowerCase());
+  searchFilter(value) {
+    return !this.state.query || value.toLowerCase().includes(this.state.query.toLowerCase());
+  }
+  groupFilter(unassignee) {
+    return !this.state.group || unassignee.role === this.state.group.id;
   }
   onSearch(evt) {
-    this.setState({query: evt.target.value});
+    this.setState(Object.assign({}, this.state, {query: evt.target.value}));
   }
-  render() { // TODO: Find a far better way to do this.
+  onGroupFilter(evt) {
+    this.setState(Object.assign({}, this.state, {group: evt.option.value}))
+  }
+  render() {
     const unassigned = this.props.data.project.workflow.unassigned
-    .filter((u) => this.searchFilter(this.state.query, u.name))
+    .filter((u) => this.searchFilter(u.name))
+    .filter((u) => this.groupFilter(u))
     .map(unassignee =>
       React.createElement(AssigneeCard, this.props, unassignee)
     );
+
+    var groupFilters = this.props.data.project.workflow.roles.map(r=>({label: r.role, value: r}));
+    groupFilters.push({label: 'Any', value: null})
     return (
       <Box appCentered={false}
         separator='all'
@@ -40,7 +50,9 @@ class Sidebar extends Component {
             onDOMChange={this.onSearch.bind(this)}
             inline={true}/>
           <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
-            options={this.props.data.project.workflow.roles.map(r=>({label: r.role, value: r}))} />
+            options={groupFilters}
+            value={this.state.group && this.state.group.role}
+            onChange={this.onGroupFilter.bind(this)}/>
           <List>
             {unassigned.map(unassignee =>
               <ListItem key={"Unassigned-"+unassignee.props.children.id}>
