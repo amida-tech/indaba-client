@@ -40,7 +40,7 @@ class Sidebar extends Component {
             onDOMChange={this.onSearch.bind(this)}
             inline={true}/>
           <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
-            options={this.props.data.project.workflow.roles} />
+            options={this.props.data.project.workflow.roles.map(r=>({label: r.role, value: r}))} />
           <List>
             {unassigned.map(unassignee =>
               <ListItem key={"Unassigned-"+unassignee.props.children.id}>
