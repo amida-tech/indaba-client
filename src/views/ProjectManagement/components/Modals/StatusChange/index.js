@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Tab } from 'grommet';
 import { setProjectStatus, setSurveyStatus } from '../../../actions';
 import Modal from '../../../../../common/Modal';
-import ProjectTab from './ProjectTab';
-import SurveyTab from './SurveyTab';
+import ProjectStatusBody from './ProjectStatusBody';
+import SurveyStatusBody from './SurveyStatusBody';
 
 class StatusChange extends Component {
   constructor(props) {
     super(props);
-    const taborder = ['project', 'survey'];
     this.state = {
-      tabIndex: taborder.indexOf(this.props.tab),
       survey: {
-        published: this.props.surveyStatus !== 'Published',
+        published: this.props.surveyStatus === 'Published',
         accessConfirm: false,
         usersConfirm: false,
         editConfirm: false,
       },
       project: {
-        active: this.props.projectStatus !== 'Active',
+        active: this.props.projectStatus === 'Active',
         draftConfirm: false,
         accessConfirm: false,
         usersConfirm: false
@@ -47,7 +44,7 @@ class StatusChange extends Component {
       this.state.survey.editConfirm;
   }
   save() {
-    if (this.state.tabIndex === 0) {
+    if (this.props.entity === 'project') {
       if (this.projectConfirmed()) {
         this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
       }
@@ -58,31 +55,16 @@ class StatusChange extends Component {
     }
   }
   render() {
-    const body = (
-      <Tabs
-        justify='start'
-        onActive={(t) => this.setState(Object.assign({}, this.state, {tabIndex: t}))}
-        activeIndex={this.state.tabIndex}>
-        <Tab
-          title={this.props.vocab.PROJECT.PROJECT}>
-          <ProjectTab
-            {...this.state.project}
-            vocab={this.props.vocab}
-            onCheck={ this.projectCheck.bind(this) }/>
-        </Tab>
-        <Tab
-          title={this.props.vocab.PROJECT.SURVEY}>
-          <SurveyTab
-            {...this.state.survey}
-            vocab={this.props.vocab}
-            onCheck={ this.surveyCheck.bind(this) }/>
-        </Tab>
-      </Tabs>
-    );
+    const body = this.props.entity === 'project' ?
+      (<ProjectStatusBody {...this.state.project} vocab={this.props.vocab} onCheck={this.projectCheck.bind(this)} />) :
+      (<SurveyStatusBody {...this.state.survey} vocab={this.props.vocab} onCheck={this.surveyCheck.bind(this)} />);
+    const title = this.props.entity === 'project' ?
+      this.props.vocab.MODAL.STATUS_CHANGE_MODAL.PROJECT_TAB.TITLE :
+      this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB.TITLE;
     return (
       <Modal
         class='project-status-change-layer'
-        title={this.props.vocab.MODAL.STATUS_CHANGE_MODAL.TITLE}
+        title={title}
         content={body}
         data={this.props.data}
         onSave={this.save.bind(this)}

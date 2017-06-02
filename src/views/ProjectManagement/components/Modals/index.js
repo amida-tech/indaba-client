@@ -13,13 +13,13 @@ const modalIDToComponent = {
   projectstatuschange: {
     component: StatusChange,
     props: {
-      tab: 'project'
+      entity: 'project'
     }
   },
   surveystatuschange: {
     component: StatusChange,
     props: {
-      tab: 'survey'
+      entity: 'survey'
     }
   }
 };

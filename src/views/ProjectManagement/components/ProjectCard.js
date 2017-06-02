@@ -7,16 +7,10 @@ import { modalIDs } from './Modals';
 
 class ProjectCard extends Component {
   render() {
-    const ProjectStatusOptions = {
-      Active : [{
-        label: this.props.vocab.PROJECT.DEACTIVATE,
-        value: modalIDs.PROJECT_STATUS_MODAL
-      }],
-      Inactive : [{
-        label: this.props.vocab.PROJECT.ACTIVATE,
-        value: modalIDs.PROJECT_STATUS_MODAL
-      }]
-    };
+    const ProjectStatusOptions = [{
+      label: this.props.vocab.PROJECT.CHANGE_STATUS,
+      value: modalIDs.PROJECT_STATUS_MODAL
+    }];
 
     return (
       <Box
@@ -33,7 +27,7 @@ class ProjectCard extends Component {
         </div>
         <CardValueDropdown
           value={this.props.status}
-          options={ProjectStatusOptions[this.props.status]}
+          options={ProjectStatusOptions}
           onClick={this.props.onDropdownClick} />
       </Box>
     );
