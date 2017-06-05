@@ -13,9 +13,9 @@ class NavContainer extends Component {
                   direction='row'>
                     <Box direction='row'>
                         <div className='nav-indaba-logo'>|indaba-icon|</div>
-                        <Link to='/project'>Project</Link>
-                        <Link to='/users'></Link>
-                        <Link to='/subjects'></Link>
+                        <Link to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
+                        <Link to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
+                        <Link to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
                         <Button>Create</Button>
                     </Box>
                     <Box direction='row'>
@@ -28,6 +28,8 @@ class NavContainer extends Component {
     }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary,
+});
 
 export default connect(mapStateToProps)(NavContainer);
