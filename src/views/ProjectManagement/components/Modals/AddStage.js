@@ -55,7 +55,7 @@ class AddStage extends Component {
           onChange={this.handleTitleChange}/>
         <Select
           placeholder={vocab.PROJECT.ASSIGN_USER_GROUPS}
-          name="role-select"
+          name='role-select'
           value={this.state.roles}
           options={roles}
           clearable={true}
@@ -63,25 +63,25 @@ class AddStage extends Component {
           onChange={this.handleSelectChange}
         />
         {vocab.PROJECT.PERMISSIONS}
-        <div className="container" onChange={this.handlePermissionsChange}>
-          <label className="radio-inline">
-            <input type="radio" name="permissions" value="0" defaultChecked />
+        <div className='container' onChange={this.handlePermissionsChange}>
+          <label className='radio-inline'>
+            <input type='radio' name='permissions' value='0' defaultChecked />
             <span>{vocab.PROJECT.READ_ONLY}</span>
           </label>
-          <label className="radio-inline">
-            <input type="radio" name="permissions" value="1" />
+          <label className='radio-inline'>
+            <input type='radio' name='permissions' value='1' />
               <span>{vocab.PROJECT.PROVIDE_RESPONSES}</span>
           </label>
-          <label className="radio-inline">
-            <input type="radio" name="permissions" value="2" />
+          <label className='radio-inline'>
+            <input type='radio' name='permissions' value='2' />
               <span>{vocab.PROJECT.READ_AND_WRITE}</span>
           </label>
-          <label className="radio-inline">
-            <input type="radio" name="permissions" value="3" />
+          <label className='radio-inline'>
+            <input type='radio' name='permissions' value='3' />
               <span>{vocab.PROJECT.EDIT}</span>
           </label>
-          <label className="radio-inline">
-            <input type="radio" name="permissions" value="4" />
+          <label className='radio-inline'>
+            <input type='radio' name='permissions' value='4' />
               <span>{vocab.PROJECT.ALL_PERMISSIONS}</span>
           </label>
         </div>
@@ -89,14 +89,14 @@ class AddStage extends Component {
           {description}
         </div>
         {vocab.PROJECT.DATE_RANGE}
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">{vocab.PROJECT.START_DATE}</div>
-            <div className="col-md-6">{vocab.PROJECT.END_DATE}</div>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-6'>{vocab.PROJECT.START_DATE}</div>
+            <div className='col-md-6'>{vocab.PROJECT.END_DATE}</div>
           </div>
-          <div className="row">
-            <div className="col-md-6"><input type="date" name="startDate" onChange={this.handleStartDateChange}/></div>
-            <div className="col-md-6"><input type="date" name="endDate" onChange={this.handleEndDateChange}/></div>
+          <div className='row'>
+            <div className='col-md-6'><input type='date' name='startDate' onChange={this.handleStartDateChange}/></div>
+            <div className='col-md-6'><input type='date' name='endDate' onChange={this.handleEndDateChange}/></div>
           </div>
         </div>
       </div>

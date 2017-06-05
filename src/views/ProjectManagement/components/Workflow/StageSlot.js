@@ -48,7 +48,8 @@ class StageSlot extends Component {
   }
 
   onTaskViewClick() {
-    this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL, this.props));
+    this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL,
+      {'assignee':this.props.assignee, 'stageData':this.props.stageData}));
   }
 
   displayDueTime(){
@@ -77,7 +78,9 @@ class StageSlot extends Component {
       <div>
         <div className='name-row'>
           <span>{this.props.assignee.name}</span>
-          <button onClick={this.onTaskViewClick}><IonIcon className='right-icon' icon='ion-ios-more'/></button>
+          <button className='masked-button right-icon' onClick={this.onTaskViewClick}>
+            <IonIcon icon='ion-ios-more'/>
+          </button>
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>

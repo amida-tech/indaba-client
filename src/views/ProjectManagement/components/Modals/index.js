@@ -29,6 +29,7 @@ const modalIDToComponent = {
 };
 
 class ModalContent extends Component {
+
   render() {
     const ContentComponent = modalIDToComponent[this.props.id].component;
     return (

@@ -136,7 +136,7 @@ export default (state = initialState, action) => {
         {navigation: Object.assign({}, state.navigation, {modal: action.id})});
     case t.SHOW_MODAL_PROPS:
       return Object.assign({}, state,
-        {navigation: Object.assign({}, state.navigation, {modal: action.id, props: action.props})});
+        {navigation: Object.assign({}, state.navigation, {modal: action.id, modalData: action.props})});
     case t.CLOSE_MODAL:
       var newState = Object.assign({}, state);
       delete newState.navigation.modal;

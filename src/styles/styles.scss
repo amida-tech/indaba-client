@@ -227,6 +227,25 @@ hr.divider {
   }
 
   // specific layers
+  &.update-task-layer {
+    width: 100vw;
+    height: 100vh;
+
+    .name {
+      font-size: 22px;
+    }
+
+    .detail-box {
+      display: inline-block;
+      box-sizing: content-box;
+      width: 20%;
+
+      .grommetux-date-time__input {
+        padding-right: 0 !important;
+      }
+    }
+  }
+
   &.add-subject-layer {
     width: 30em;
 
@@ -256,9 +275,17 @@ hr.divider {
     }
     .Select-control {
       width: 100%;
-    }
-    .Select-input {
-      border-color: red !important;
+
+      input[role=combobox] {
+        border: none;
+        color: transparent;
+        text-shadow: 0 0 0 gray;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
+      }
     }
     .layer-body-container {
       padding: 1em 1em 1em 1em;
@@ -406,6 +433,14 @@ hr.divider {
   overflow-x: auto;
   border-right: 1px solid $border-color;
 }
+
+.masked-button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none !important;
+  padding: 0;
+}
+
 .workflow-table {
   width: 800px;
 
@@ -414,14 +449,7 @@ hr.divider {
   }
 
   .name-row {
-    margin-bottom:5px;
-    button {
-      float:right;
-      background-color: Transparent;
-      background-repeat:no-repeat;
-      border: none;
-      padding: 0;
-    }
+    margin-bottom:7px;
   }
 
   .due-row {
@@ -494,10 +522,6 @@ hr.divider {
       width: 50%;
     }
   }
-}
-
-.test{
-  font-size: 22px;
 }
 
 .assigneecard {
