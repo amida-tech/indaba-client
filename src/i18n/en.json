@@ -12,7 +12,10 @@
     "SEARCH": "Search",
     "SAVE": "Save",
     "CANCEL": "Cancel",
-    "DESCRIPTION": "Decription"
+    "DESCRIPTION": "Decription",
+    "ALL_USERS": "All Users",
+    "ALL_SUBJECTS": "All Subjects",
+    "CREATE": "Create"
   },
   "PROJECT": {
     "CARD": {
@@ -28,6 +31,7 @@
       "MORE_OPTIONS": "More Options"
     },
     "PROJECT": "Project",
+    "PROJECTS": "Projects",
     "SURVEY": "Survey",
     "SUBJECT": "Subject",
     "STATUS": "Status",

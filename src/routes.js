@@ -1,24 +1,23 @@
+import React from 'react';
+import { Route } from 'react-router';
 import DashboardContainer from './views/Dashboard';
 import LoginContainer from './views/Login';
 import { ProjectManagementContainer } from './views/ProjectManagement';
+import App from './views/App';
 
-export default [
-    {
-      path: '/',
-      title: 'Dashboard',
-      transTerm: 'DASHBOARD',
-      component: DashboardContainer
-    },
-    {
-      path: '/login',
-      title: 'Login',
-      transTerm: 'LOGIN',
-      component: LoginContainer
-    },
-    {
-        path: '/project',
-        title: 'Project Manager',
-        transTerm: 'PROJECTMANAGEMENT',
-        component: ProjectManagementContainer
-    }
-];
+export default (
+    <Route
+        key='/'
+        path='/'
+        component={App}
+        indexRoute={DashboardContainer}>
+        <Route
+            key='/project'
+            path='/project'
+            component={ProjectManagementContainer}/>
+        <Route
+            key='/login'
+            path='/login'
+            component={LoginContainer}/>
+    </Route>
+);
