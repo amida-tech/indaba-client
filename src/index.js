@@ -64,13 +64,7 @@ ReactDOM.render(
     <Provider store={store}>
       <div className="main-page">
           <Router history={history}>
-            {routes.map(route =>
-                <Route
-                    key={route.path}
-                    path={route.path}
-                    component={route.component}
-                />
-            )}
+              {routes}
           </Router>
           <DevTools />
       </div>
