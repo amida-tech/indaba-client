@@ -11,7 +11,9 @@ class NavContainer extends Component {
                 <Box
                   justify='between'>
                     <div>
-                        <div className=''></div>
+                        <div className='indaba-logo'>&copy;</div>
+                    </div>
+                    <div>
                     </div>
                 </Box>
             </nav>
