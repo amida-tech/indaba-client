@@ -4,6 +4,7 @@ import AddStage from './AddStage';
 import TaskView from './TaskView';
 import StatusChange from './StatusChange';
 import CreateNewProject from './CreateNewProject';
+import NewProjectTitle from './NewProjectTitle';
 
 const modalIDToComponent = {
     addsubject: {
@@ -30,6 +31,9 @@ const modalIDToComponent = {
     createnewproject: {
         component: CreateNewProject,
     },
+    newprojecttitle: {
+        component: NewProjectTitle,
+    },
 };
 
 class ModalContent extends Component {
@@ -49,6 +53,7 @@ export const modalIDs = {
     PROJECT_STATUS_MODAL: 'projectstatuschange',
     SURVEY_STATUS_MODAL: 'surveystatuschange',
     CREATE_NEW_PROJECT: 'createnewproject',
+    NEW_PROJECT_TITLE: 'newprojecttitle',
 };
 
 
