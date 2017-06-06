@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Box, Button } from 'grommet';
-
+import { showModal } from '../ProjectManagement/actions';
+import { modalIDs } from '../ProjectManagement/components/Modals';
 
 class NavContainer extends Component {
     render() {
@@ -16,7 +17,8 @@ class NavContainer extends Component {
                         <Link to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
                         <Link to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
                         <Link to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
-                        <Button>Create</Button>
+                        <Button label={this.props.vocab.COMMON.CREATE}
+                            onClick={this.props.onCreateClick}/>
                     </Box>
                     <Box direction='row'>
                         <div className='nav-mail'>|envelope-icon|</div>
@@ -31,5 +33,8 @@ class NavContainer extends Component {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
+const mapDispatchToProps = dispatch => ({
+    onCreateClick: () => dispatch(showModal(modalIDs.CREATE_NEW_PROJECT))
+});
 
-export default connect(mapStateToProps)(NavContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavContainer);

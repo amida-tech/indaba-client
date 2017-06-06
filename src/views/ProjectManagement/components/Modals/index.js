@@ -42,7 +42,7 @@ export const modalIDs = {
     ADD_STAGE_MODAL: 'addstage',
     PROJECT_STATUS_MODAL: 'projectstatuschange',
     SURVEY_STATUS_MODAL: 'surveystatuschange',
-    CREATE_NEW_PROJECT: 'CreateNewProject',
+    CREATE_NEW_PROJECT: 'createnewproject',
 };
 
 export default ModalContent;
