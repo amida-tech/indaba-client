@@ -231,12 +231,17 @@ hr.divider {
   }
 
   // specific layers
-  &.update-task-layer {
-    width: 100vw;
+  &.task-view-layer {
+    width: 90vw;
     height: 100vh;
 
     .name {
       font-size: 22px;
+    }
+
+    .container {
+      width: 100%;
+      margin: 10px;
     }
 
     .detail-box {
@@ -247,6 +252,10 @@ hr.divider {
       .grommetux-date-time__input {
         padding-right: 0 !important;
       }
+    }
+
+    .sidebar {
+
     }
   }
 
@@ -453,7 +462,11 @@ hr.divider {
   }
 
   .name-row {
-    margin-bottom:7px;
+    margin-bottom:8px;
+
+    span {
+      cursor: pointer;
+    }
   }
 
   .due-row {
@@ -505,7 +518,7 @@ hr.divider {
   }
 }
 
-.sidebar {
+.user-sidebar {
   &>* {
     padding: 5px;
   }

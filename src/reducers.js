@@ -5,6 +5,7 @@ import { ProjectManagementReducer } from './views/ProjectManagement';
 const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
+    user: CommonReducers.UserReducer,
     routing: routerReducer,
     project: ProjectManagementReducer
 };

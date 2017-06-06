@@ -3,110 +3,125 @@ import _ from 'lodash';
 
 export const initialState = {
   navigation: {
-    subnav: "workflow",
+      subnav: "workflow",
   },
   workflow: {
-    id: 0,
-    name: "Pizza Lovers Anonymous",
-    status: "Active",
-    stages: [{
       id: 0,
-      title: "Fill Out The Survey",
-      startStage: "1/1/2017",
-      endStage: "2/1/2017",
-      userGroup: "Researchers",
-      permissions: "Read Only"
+      name: "Pizza Lovers Anonymous",
+      status: "Active",
+      stages: [{
+          id: 0,
+          title: "Fill Out The Survey",
+          startStage: "1/1/2017",
+          endStage: "2/1/2017",
+          userGroup: "Researchers",
+          permissions: "Read Only"
     },{
-      id: 1,
-      title: "First Review",
-      startStage: "3/3/2017",
-      endStage: "4/3/2017",
-      userGroup: "Managers",
-      permissions: "Read and Write"
+        id: 1,
+        title: "First Review",
+        startStage: "3/3/2017",
+        endStage: "4/3/2017",
+        userGroup: "Managers",
+        permissions: "Read and Write"
     }, {
-      id: 2,
-      title: "Second Review",
-      startStage: "4/4/2017",
-      endStage: "5/3/2017",
-      userGroup: "Managers",
-      permissions: "Read and Write"
+        id: 2,
+        title: "Second Review",
+        startStage: "4/4/2017",
+        endStage: "5/3/2017",
+        userGroup: "Managers",
+        permissions: "Read and Write"
     }, {
-      id: 3,
-      title: "Third Review",
-      startStage: "5/4/2017",
-      endStage: "6/3/2017",
-      userGroup: "Managers",
-      permissions: "Read and Write"
+        id: 3,
+        title: "Third Review",
+        startStage: "5/4/2017",
+        endStage: "6/3/2017",
+        userGroup: "Managers",
+        permissions: "Read and Write"
     }],
   roles: [{
-      id: 0,
-      role: "Researchers",
-      permissions: 2
-      },{
-      id: 1,
-      role: "Managers",
-      permissions: 4
-    }],
+        id: 0,
+        role: "Researchers",
+        permissions: 2
+        },{
+            id: 1,
+            role: "Managers",
+            permissions: 4
+        }],
   subjects: ["Berlin", "Chicago", "K'unlun"],
   assignees: [{
-      id: 0,
-      name: "Jon McLane",
-      role: 0,
-      stage: 0,
-      subject: 0,
-      response: [{
-        question: 0,
-        value: 'No, I love it'
+        id: 0,
+        name: "Jon McLane",
+        role: 0,
+        stage: 0,
+        subject: 0,
+        response: [{
+            question: 0,
+            value: 'No, I love it',
+            review: true
       }, {
         question: 1
       }]
     },{
-      id: 1,
-      name: "Ellen Ripley",
-      role: 0,
-      stage: 0,
-      subject: 1,
-      response: [{
-        question: 0,
-        value: 'Yes'
-      }, {
-        question: 1,
-        value: 'Pepperoni'
-      }]
+        id: 1,
+        name: "Ellen Ripley",
+        role: 0,
+        stage: 0,
+        subject: 1,
+        response: [{
+            question: 0,
+            value: 'Yes',
+            flag: true,
+            review: true
+        }, {
+            question: 1,
+            value: 'Pepperoni',
+            review: false,
+            comment: 'Gross topping.'
+        }]
     },{
-      id: 2,
-      name: "Indiana Jones",
-      role: 1,
-      stage: 1,
-      subject: 0,
-      flag: true,
-      dueDate: "9/9/2017"
+        id: 2,
+        name: "Indiana Jones",
+        role: 1,
+        stage: 1,
+        subject: 0,
+        dueDate: "9/9/2017",
+        response: [{
+            question: 0,
+            value: 'Yes',
+            flag: true,
+            review: false,
+            comment: 'What was the question?'
+        }, {
+            question: 1,
+            value: 'Sausage',
+            review: true
+        }]
     },{
-      id: 3,
-      name: "Tony Stark",
-      role: 1,
-      stage: 1,
-      subject: 2,
+        id: 3,
+        name: "Tony Stark",
+        role: 1,
+        stage: 1,
+        subject: 2,
     }],
-  unassigned: [{
-    id: 4,
-    name: "Johnny Quest",
-    role: 0
-  },{
-    id: 5,
-    name: "Buck Rogers",
-    role: 0
-  },{
-    id: 6,
-    name: "Marvin Martian",
-    role: 1
-  }]
+    unassigned: [{
+        id: 4,
+        name: "Johnny Quest",
+        role: 0
+    },{
+      id: 5,
+        name: "Buck Rogers",
+        role: 0
+    },{
+        id: 6,
+        name: "Marvin Martian",
+        role: 1
+    }]
   },
   survey: {
-    id: 0,
-    name: "How much do you like pizza?",
-    status: "Published",
-    description: "If you don't like pizza, what are you doing here."
+      id: 0,
+      name: "How much do you like pizza?",
+      status: "Published",
+      description: "If you don't like pizza, what are you doing here."
   }
 };
 

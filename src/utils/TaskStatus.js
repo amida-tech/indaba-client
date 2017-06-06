@@ -4,8 +4,12 @@ export default {
     return !!assignee.response;
   },
   responsesComplete(assignee) {
-    return assignee.response &&
-      assignee.response.every((response) => !!response.value);
+      return assignee.response &&
+        assignee.response.every((response) => !!response.value);
+  },
+  responsesFlagged(assignee) {
+      return assignee.response &&
+        assignee.response.some((response) => response.flag);
   },
   dueDateInPast(assignee, stages) {
     const dueDate = assignee.dueDate ||

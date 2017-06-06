@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import AssigneeCard from './AssigneeCard';
-import Sidebar from './Sidebar';
+import UserSidebar from './UserSidebar';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
 
@@ -39,6 +39,7 @@ class MatrixContainer extends Component {
               subject={{name: subject, key}}
               stages={this.props.data.project.workflow.stages}
               assignees={assignees}
+              user={this.props.data.user}
               vocab={this.props.vocab}
               filter={this.props.data.project.workflow.filter}/>
           )}
@@ -49,7 +50,7 @@ class MatrixContainer extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-8 grid-column">{Grid}</div>
-          <div className="col-sm-4"><Sidebar {...this.props} /></div>
+          <div className="col-sm-4"><UserSidebar {...this.props} /></div>
         </div>
       </div>
     )
