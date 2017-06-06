@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import DashboardContainer from './views/Dashboard';
 import LoginContainer from './views/Login';
 import { ProjectManagementContainer } from './views/ProjectManagement';
+import CreateProjectWizard from './views/CreateProjectWizard';
 import App from './views/App';
 
 export default (
@@ -19,5 +20,9 @@ export default (
             key='/login'
             path='/login'
             component={LoginContainer}/>
+        <Route
+            key='/create-new-project'
+            path='/create-new-project'
+            component={CreateProjectWizard}/>
     </Route>
 );

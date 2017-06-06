@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Button } from 'grommet';
 import Modal from '../../../../common/Modal';
 import { showModal } from '../../actions';
@@ -10,13 +11,14 @@ class CreateNewProject extends Component {
         const vocab = this.props.vocab.MODAL.CREATE_NEW_PROJECT_MODAL;
         return (
             <Modal
-                class='create-new-project-layer'
-                data={this.props.data}>
+                class='create-new-project-layer'>
                 <div>
                     <div>
-                        <Button label={vocab.CREATE_NEW_PROJECT}
-                            primary
-                            onClick={this.props.onCreateNewProjectClick}/>
+                        <Link
+                            to={{ pathname: '/create-new-project',
+                                state: { showTitleModal: true } }}>
+                                {vocab.CREATE_NEW_PROJECT}
+                        </Link>
                         <p>{vocab.CREATE_INSTRUCTION}</p>
                     </div>
                     <hr className='divider'/>
