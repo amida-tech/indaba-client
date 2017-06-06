@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import DashboardContainer from './views/Dashboard';
 import LoginContainer from './views/Login';
 import { ProjectManagementContainer } from './views/ProjectManagement';
-import CreateProjectWizard from './views/CreateProjectWizard';
+import { CreateProjectWizard } from './views/CreateProjectWizard';
 import App from './views/App';
 
 export default (

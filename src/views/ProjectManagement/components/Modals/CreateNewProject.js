@@ -14,10 +14,8 @@ class CreateNewProject extends Component {
                 class='create-new-project-layer'>
                 <div>
                     <div>
-                        <Link
-                            to={{ pathname: '/create-new-project',
-                                state: { showTitleModal: true } }}>
-                                {vocab.CREATE_NEW_PROJECT}
+                        <Link to='/create-new-project'>
+                             {vocab.CREATE_NEW_PROJECT}
                         </Link>
                         <p>{vocab.CREATE_INSTRUCTION}</p>
                     </div>
