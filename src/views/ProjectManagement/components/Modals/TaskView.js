@@ -30,7 +30,6 @@ class TaskView extends Component {
     }
 
     render() {
-        console.log(this.props);
         const body = (
             <div className='container'>
                 <div className='row'>

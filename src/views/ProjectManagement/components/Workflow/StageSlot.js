@@ -35,10 +35,6 @@ function collect(connect, monitor){
 
 class StageSlot extends Component {
 
-  componentWillReceiveProps(nextProps){
-      this.props = nextProps;
-  }
-
   constructor(props) {
       super(props);
       const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
