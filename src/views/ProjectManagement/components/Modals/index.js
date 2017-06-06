@@ -7,29 +7,29 @@ import CreateNewProject from './CreateNewProject';
 
 const modalIDToComponent = {
     addsubject: {
-        component: AddSubject
+        component: AddSubject,
     },
     addstage: {
-        component: AddStage
+        component: AddStage,
     },
     taskview: {
-        component: TaskView
+        component: TaskView,
     },
     projectstatuschange: {
         component: StatusChange,
         props: {
-            entity: 'project'
-        }
+            entity: 'project',
+        },
     },
     surveystatuschange: {
         component: StatusChange,
         props: {
-            entity: 'survey'
-        }
+            entity: 'survey',
+        },
     },
     createnewproject: {
-        component: CreateNewProject
-    }
+        component: CreateNewProject,
+    },
 };
 
 class ModalContent extends Component {
@@ -48,7 +48,7 @@ export const modalIDs = {
     TASK_VIEW_MODAL: 'taskview',
     PROJECT_STATUS_MODAL: 'projectstatuschange',
     SURVEY_STATUS_MODAL: 'surveystatuschange',
-    CREATE_NEW_PROJECT: 'createnewproject'
+    CREATE_NEW_PROJECT: 'createnewproject',
 };
 
 
