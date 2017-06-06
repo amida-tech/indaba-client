@@ -6,8 +6,7 @@ class NewProjectTitle extends Component {
     render() {
         return <Modal
             title='Project Title'
-            class='new-project-title-layer'
-            data={this.props.data}>
+            class='new-project-title-layer'>
             <div>
                 <TextInput placeholder='Title'/>
                 <div className='new-project-title-layer-description-container'>

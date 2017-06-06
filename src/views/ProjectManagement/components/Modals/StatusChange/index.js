@@ -60,7 +60,6 @@ class StatusChange extends Component {
             <Modal
                 class='project-status-change-layer'
                 title={title}
-                data={this.props.data}
                 onSave={this.save.bind(this)}
                 onCancel={this.props.onCancel}>
                 {this.props.entity === 'project' ?

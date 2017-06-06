@@ -18,7 +18,6 @@ class AddSubject extends Component {
                 title={vocab.PROJECT.ADD_SUBJECT}
                 class='add-subject-layer'
                 onCancel={this.props.onCancel}
-                data={this.props.data}
                 onSave={() => this.props.onAddSubject(this.state.value)}>
                 <input
                     type='text'
