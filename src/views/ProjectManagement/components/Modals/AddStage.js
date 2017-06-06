@@ -45,10 +45,9 @@ class AddStage extends Component {
     render() {
         const vocab = this.props.vocab;
         const roles = this.props.data.project.workflow.roles.map((role, key) =>
-        ({ value: role.role, label: role.role, key }),
-      );
+            ({ value: role.role, label: role.role, key }),
+        );
         const description = vocab.PROJECT.DESC_ARRAY[this.state.permissions];
-
         return (
             <Modal
                 title={vocab.PROJECT.STAGE_SETTINGS}

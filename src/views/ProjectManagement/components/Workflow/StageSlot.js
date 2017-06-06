@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
+import { modalIDs } from '../Modals';
+import { showModalProps } from '../../actions';
 import TaskStatus from '../../../../utils/TaskStatus';
 
 const Types = {
@@ -30,48 +34,60 @@ function collect(connect, monitor){
 
 class StageSlot extends Component {
 
-  componentWillReceiveProps(nextProps){
-    this.props = nextProps;
+  constructor(props) {
+      super(props);
+      const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
+      const late = (diff <= 0);
+      this.state = {
+          diff,
+          late,
+          done: TaskStatus.responsesComplete(this.props.assignee),
+          flag: TaskStatus.responsesFlagged(this.props.assignee)
+      };
+      this.onTaskViewClick = this.onTaskViewClick.bind(this);
   }
 
-  constructor(props) {
-    super(props);
-    const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
-    var late = (diff <= 0);
-    this.state = { diff, late, done: TaskStatus.responsesComplete(this.props.assignee)};
+  onTaskViewClick() {
+      this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL,
+          {assignee:this.props.assignee, stageData:this.props.stageData}));
+  }
+
+  onTaskOptionClick() {
   }
 
   displayDueTime(){
-    if(this.state.done) {
-      return (this.props.vocab.DONE);
-    } else if(this.state.diff <= 0) {
-      return (this.props.vocab.LATE);
-    } else if (this.state.diff === 1){
-      return (this.props.vocab.DUE_TOMORROW);
-    } else if (this.state.diff > 1) {
-      return (this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS);
+      if(this.state.done) {
+          return (this.props.vocab.DONE);
+      } else if(this.state.diff <= 0) {
+          return (this.props.vocab.LATE);
+      } else if (this.state.diff === 1){
+          return (this.props.vocab.DUE_TOMORROW);
+      } else if (this.state.diff > 1) {
+          return (this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS);
     }
   }
 
   displayStatus(){
-    if(this.state.done) {
-      return this.props.vocab.DONE;
-    }
-    if(this.state.late) {
-      return this.props.vocab.LATE;
-    }
+      if(this.state.done) {
+          return this.props.vocab.DONE;
+      }
+      if(this.state.late) {
+          return this.props.vocab.LATE;
+      }
   }
 
   render() {
     const display = this.props.assignee.name ?
       <div>
         <div className='name-row'>
-          <span>{this.props.assignee.name}</span>
-          <IonIcon className='right-icon' icon='ion-ios-more'/>
+          <span onClick={this.onTaskViewClick}>{this.props.assignee.name}</span>
+          <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
+            <IonIcon icon='ion-ios-more'/>
+          </button>
         </div>
         <div>
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-          {this.state.done && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+          {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>
         <div className='due-row'>
           <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>
@@ -93,4 +109,7 @@ class StageSlot extends Component {
   }
 }
 
-export default DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect)(StageSlot);
+export default compose(
+  DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
+  connect()
+)(StageSlot);

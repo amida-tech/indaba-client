@@ -231,6 +231,34 @@ hr.divider {
   }
 
   // specific layers
+  &.task-view-layer {
+    width: 90vw;
+    height: 100vh;
+
+    .name {
+      font-size: 22px;
+    }
+
+    .container {
+      width: 100%;
+      margin: 10px;
+    }
+
+    .detail-box {
+      display: inline-block;
+      box-sizing: content-box;
+      width: 20%;
+
+      .grommetux-date-time__input {
+        padding-right: 0 !important;
+      }
+    }
+
+    .sidebar {
+
+    }
+  }
+
   &.add-subject-layer {
     width: 30em;
 
@@ -260,9 +288,17 @@ hr.divider {
     }
     .Select-control {
       width: 100%;
-    }
-    .Select-input {
-      border-color: red !important;
+
+      input[role=combobox] {
+        border: none;
+        color: transparent;
+        text-shadow: 0 0 0 gray;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+        }
+      }
     }
     .layer-body-container {
       padding: 1em 1em 1em 1em;
@@ -427,6 +463,14 @@ hr.divider {
   overflow-x: auto;
   border-right: 1px solid $border-color;
 }
+
+.masked-button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none !important;
+  padding: 0;
+}
+
 .workflow-table {
   width: 800px;
 
@@ -435,7 +479,11 @@ hr.divider {
   }
 
   .name-row {
-    margin-bottom:5px;
+    margin-bottom:8px;
+
+    span {
+      cursor: pointer;
+    }
   }
 
   .due-row {
@@ -487,7 +535,7 @@ hr.divider {
   }
 }
 
-.sidebar {
+.user-sidebar {
   &>* {
     padding: 5px;
   }
@@ -508,10 +556,6 @@ hr.divider {
       width: 50%;
     }
   }
-}
-
-.test{
-  font-size: 22px;
 }
 
 .assigneecard {

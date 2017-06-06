@@ -16,7 +16,7 @@ class Modal extends Component {
     render() {
         const vocab = this.props.vocab;
         return (
-            <Layer align="top"
+            <Layer align='top'
                 closer={false}
                 flush={true}
                 onClose={this.props.onCancel}>

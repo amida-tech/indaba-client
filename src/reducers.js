@@ -7,6 +7,7 @@ import { CreateProjectWizardReducer} from './views/CreateProjectWizard';
 const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
+    user: CommonReducers.UserReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
     projectwizard: CreateProjectWizardReducer

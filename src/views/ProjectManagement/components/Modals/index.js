@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddSubject from './AddSubject';
 import AddStage from './AddStage';
+import TaskView from './TaskView';
 import StatusChange from './StatusChange';
 import CreateNewProject from './CreateNewProject';
 import NewProjectTitle from './NewProjectTitle';
@@ -11,6 +12,9 @@ const modalIDToComponent = {
     },
     addstage: {
         component: AddStage,
+    },
+    taskview: {
+        component: TaskView,
     },
     projectstatuschange: {
         component: StatusChange,
@@ -33,10 +37,11 @@ const modalIDToComponent = {
 };
 
 class ModalContent extends Component {
+
     render() {
         const ContentComponent = modalIDToComponent[this.props.id].component;
         return (
-        <ContentComponent {...this.props} {...modalIDToComponent[this.props.id].props}/>
+            <ContentComponent {...this.props} {...modalIDToComponent[this.props.id].props}/>
         );
     }
 }
@@ -44,10 +49,12 @@ class ModalContent extends Component {
 export const modalIDs = {
     ADD_SUBJECT_MODAL: 'addsubject',
     ADD_STAGE_MODAL: 'addstage',
+    TASK_VIEW_MODAL: 'taskview',
     PROJECT_STATUS_MODAL: 'projectstatuschange',
     SURVEY_STATUS_MODAL: 'surveystatuschange',
     CREATE_NEW_PROJECT: 'createnewproject',
     NEW_PROJECT_TITLE: 'newprojecttitle',
 };
+
 
 export default ModalContent;

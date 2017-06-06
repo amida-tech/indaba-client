@@ -5,7 +5,7 @@ import Summary from './Summary';
 import WorkflowContainer from './Workflow';
 import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper';
-import { addSubject, addStage, closeModal } from '../actions';
+import { addSubject, addStage, updateTask, closeModal } from '../actions';
 
 class ProjectManagementContainer extends Component {
     render() {
@@ -34,6 +34,7 @@ const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     modal: state.project.navigation.modal,
 });
+
 const mapDispatchToProps = dispatch => ({
     onAddSubject: (subject) => {
         dispatch(addSubject(subject));
