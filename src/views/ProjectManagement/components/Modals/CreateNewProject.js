@@ -8,26 +8,24 @@ import { modalIDs } from '../Modals';
 class CreateNewProject extends Component {
     render() {
         const vocab = this.props.vocab.MODAL.CREATE_NEW_PROJECT_MODAL;
-        const body = (
-            <div>
-                <div>
-                    <Button label={vocab.CREATE_NEW_PROJECT}
-                        primary
-                        onClick={this.props.onCreateNewProjectClick}/>
-                    <p>{vocab.CREATE_INSTRUCTION}</p>
-                </div>
-                <hr className='divider'/>
-                <div>
-                    <Button label={vocab.IMPORT_PROJECT}/>
-                    <p>{vocab.IMPORT_INSTRUCTION}</p>
-                </div>
-            </div>
-        );
         return (
             <Modal
-              class='create-new-project-layer'
-              content={body}
-              data={this.props.data}/>
+                class='create-new-project-layer'
+                data={this.props.data}>
+                <div>
+                    <div>
+                        <Button label={vocab.CREATE_NEW_PROJECT}
+                            primary
+                            onClick={this.props.onCreateNewProjectClick}/>
+                        <p>{vocab.CREATE_INSTRUCTION}</p>
+                    </div>
+                    <hr className='divider'/>
+                    <div>
+                        <Button label={vocab.IMPORT_PROJECT}/>
+                        <p>{vocab.IMPORT_INSTRUCTION}</p>
+                    </div>
+                </div>
+            </Modal>
         );
     }
 }

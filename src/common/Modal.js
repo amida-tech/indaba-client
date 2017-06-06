@@ -22,7 +22,7 @@ class Modal extends Component {
                 <div className={`layer-content ${this.props.class || ''}`}>
                     {this.props.title && <div className='layer-title'>{this.props.title}</div>}
                     <div className='layer-body-container'>
-                        {this.props.content}
+                        {this.props.children}
                     </div>
                     {(this.props.onCancel || this.props.onSave) &&
                         <div className='layer-footer'>
