@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Layer } from 'grommet';
 
 class LayerFooterButton extends Component {
@@ -13,7 +14,7 @@ class LayerFooterButton extends Component {
 
 class Modal extends Component {
     render() {
-        const vocab = this.props.data.settings.language.vocabulary;
+        const vocab = this.props.vocab;
         return (
             <Layer align="top"
                 closer={false}
@@ -37,4 +38,8 @@ class Modal extends Component {
     }
 }
 
-export default Modal;
+const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary,
+});
+
+export default connect(mapStateToProps)(Modal);
