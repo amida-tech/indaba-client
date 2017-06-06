@@ -49,7 +49,7 @@ class StageSlot extends Component {
 
   onTaskViewClick() {
       this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL,
-          {'assignee':this.props.assignee, 'stageData':this.props.stageData}));
+          {assignee:this.props.assignee, stageData:this.props.stageData}));
   }
 
   onTaskOptionClick() {
