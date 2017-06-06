@@ -28,15 +28,15 @@ const modalIDToComponent = {
         }
     },
     createnewproject: {
-        component: CreateNewProject,
+        component: CreateNewProject
     }
 };
 
 class ModalContent extends Component {
 
-  render() {
-    const ContentComponent = modalIDToComponent[this.props.id].component;
-    return (
+    render() {
+        const ContentComponent = modalIDToComponent[this.props.id].component;
+        return (
             <ContentComponent {...this.props} {...modalIDToComponent[this.props.id].props}/>
         );
     }
@@ -48,8 +48,8 @@ export const modalIDs = {
     TASK_VIEW_MODAL: 'taskview',
     PROJECT_STATUS_MODAL: 'projectstatuschange',
     SURVEY_STATUS_MODAL: 'surveystatuschange',
-    CREATE_NEW_PROJECT: 'createnewproject',
-}
+    CREATE_NEW_PROJECT: 'createnewproject'
+};
 
 
 export default ModalContent;

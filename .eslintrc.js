@@ -15,7 +15,8 @@ module.exports = {
         "no-underscore-dangle": 0,
         "class-methods-use-this": 0,
         "babel/new-cap": 0,
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "comma-dangle": ["error", "never"]
     },
     "parserOptions": {
         "sourceType": "module",

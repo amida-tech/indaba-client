@@ -19,7 +19,6 @@ const stageSpotTarget = {
     // ... Maybe make the assignee card opaque?
   },
   drop(props, monitor, component) {
-    console.log(props);
     return(props); // Dispatch to inform the state and DB of changes.
   }
 }
@@ -54,7 +53,6 @@ class StageSlot extends Component {
   }
 
   onTaskOptionClick() {
-      console.log("coming soon");
   }
 
   displayDueTime(){
