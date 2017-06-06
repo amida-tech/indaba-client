@@ -128,6 +128,12 @@
           "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
         }
       }
+    },
+    "CREATE_NEW_PROJECT_MODAL": {
+        "CREATE_NEW_PROJECT": "Create New Project",
+        "IMPORT_PROJECT": "Import Project",
+        "CREATE_INSTRUCTION": "Projects can be used to track workflow progress, manage users and collaborate with your team.",
+        "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
     }
   }
 }

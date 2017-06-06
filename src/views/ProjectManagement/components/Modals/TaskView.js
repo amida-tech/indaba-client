@@ -63,7 +63,7 @@ class TaskView extends Component {
                         </div>
                     </div>
                     <div className='col-sm-4'>
-                        <FlagSidebar className='sidebar' />
+                        <FlagSidebar />
                     </div>
                 </div>
             </div>

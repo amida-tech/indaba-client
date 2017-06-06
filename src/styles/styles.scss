@@ -384,6 +384,12 @@ hr.divider {
       }
     }
   }
+  &.create-new-project-layer {
+    &>div>div>div {
+      padding: 2em 2em 0 2em;
+      text-align: center;
+    }
+  }
 }
 
 .filter-wrapper {

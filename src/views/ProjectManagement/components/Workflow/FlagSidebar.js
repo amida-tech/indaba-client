@@ -5,7 +5,6 @@ import ListItem from 'grommet/components/ListItem';
 class FlagSidebar extends Component {
     constructor(props) {
         super(props);
-        this.state = {query: ''};
     }
 
     render() {
