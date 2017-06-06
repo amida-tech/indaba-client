@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button } from 'grommet';
 import Modal from '../../../../common/Modal';
+import { showModal } from '../../actions';
+import { modalIDs } from '../Modals';
 
 class CreateNewProject extends Component {
     render() {
@@ -8,7 +11,9 @@ class CreateNewProject extends Component {
         const body = (
             <div>
                 <div>
-                    <Button label={vocab.CREATE_NEW_PROJECT} primary={true}/>
+                    <Button label={vocab.CREATE_NEW_PROJECT}
+                        primary
+                        onClick={this.props.onCreateNewProjectClick}/>
                     <p>{vocab.CREATE_INSTRUCTION}</p>
                 </div>
                 <hr className='divider'/>
@@ -27,4 +32,9 @@ class CreateNewProject extends Component {
     }
 }
 
-export default CreateNewProject;
+const mapStateToProps = () => ({});
+const mapDispathToProps = dispatch => ({
+    onCreateNewProjectClick: () => dispatch(showModal(modalIDs.NEW_PROJECT_TITLE)),
+});
+
+export default connect(mapStateToProps, mapDispathToProps)(CreateNewProject);
