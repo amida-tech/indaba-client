@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ModalContent from '../../ProjectManagement/components/Modals';
 import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
+import AddSubjects from './AddSubjects';
 
 class CreateProjectWizard extends Component {
     render() {
@@ -16,7 +17,7 @@ class CreateProjectWizard extends Component {
                     <Tab title='Create Survey'>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab title='Add Subjects'>Add subjects!</Tab>
+                    <Tab title='Add Subjects'><AddSubjects /></Tab>
                     <Tab title='Add Users'>Add users!</Tab>
                     <Tab title='Add Stages'>Add stages!</Tab>
                 </Tabs>
