@@ -23,7 +23,7 @@ class AddSubjectControl extends Component {
         this.setState({ userInput: '' });
     }
     render() {
-        return <div>
+        return (<div>
             <Box direction='row' justify='between'>
                 <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                 <div>{this.props.vocab.COMMON.ACTIONS}</div>
@@ -43,7 +43,7 @@ class AddSubjectControl extends Component {
                     </span>
                 </Box>,
             )}
-        </div>;
+        </div>);
     }
 }
 
