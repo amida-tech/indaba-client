@@ -5,12 +5,12 @@ class WizardFooter extends Component {
     render() {
         return (<Footer justify='between'>
             <div>
-                <Button label='Go Back' />
+                <Button label='Go Back' onClick={this.props.onBack}/>
             </div>
             <Box direction='row' pad={{ between: 'small' }}>
-                <Button label='Cancel' />
-                <Button label='Skip This Step' />
-                <Button primary label='Continue' />
+                <Button label='Cancel' onClick={this.props.onCancel}/>
+                <Button label='Skip This Step' onClick={this.props.onSkip}/>
+                <Button primary label='Continue' onClick={this.props.onContinue}/>
             </Box>
         </Footer>);
     }

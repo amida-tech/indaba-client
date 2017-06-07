@@ -67,7 +67,6 @@ class AddSubjects extends Component {
                 onDeleteSubject={this.props.onDeleteSubject}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
-            <WizardFooter />
         </div>);
     }
 }
