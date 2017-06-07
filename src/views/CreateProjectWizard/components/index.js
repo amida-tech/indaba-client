@@ -7,6 +7,7 @@ import ModalContent from '../../ProjectManagement/components/Modals';
 import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
+import AddUsers from './AddUsers';
 import WizardFooter from './WizardFooter';
 
 const NUM_WIZARD_STEPS = 4;
@@ -48,7 +49,7 @@ class CreateProjectWizard extends Component {
                         <SurveyEditorStep />
                     </Tab>
                     <Tab title='Add Subjects'><AddSubjects /></Tab>
-                    <Tab title='Add Users'>Add users!</Tab>
+                    <Tab title='Add Users'><AddUsers /></Tab>
                     <Tab title='Add Stages'>Add stages!</Tab>
                 </Tabs>
                 <WizardFooter
