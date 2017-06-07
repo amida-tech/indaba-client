@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
-import Modal from '../../../../common/Modal';
+import DateTime from 'grommet/components/DateTime';
 import Select from 'react-select';
+
+import Modal from '../../../../common/Modal';
 
 class AddStage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.data.project.workflow.stages.length,
+            // id: props.data.project.workflow.stages.length,
             title: '',
-            roles: [],
+            userGroups: [],
             permissions: 0,
-            startDate: null,
-            endDate: null,
+            startStage: '',
+            endStage: '',
         };
 
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handlePermissionsChange = this.handlePermissionsChange.bind(this);
-        this.handleStartDateChange = this.handleStartDateChange.bind(this);
-        this.handleEndDateChange = this.handleEndDateChange.bind(this);
+        this.handleStartStageChange = this.handleStartStageChange.bind(this);
+        this.handleEndStageChange = this.handleEndStageChange.bind(this);
+        this.isValid = this.isValid.bind(this);
     }
 
     handleTitleChange(event) {
@@ -27,25 +30,36 @@ class AddStage extends Component {
     }
 
     handleSelectChange(selection) {
-        this.setState({ roles: selection });
+        this.setState({ userGroups: selection });
     }
 
     handlePermissionsChange(event) {
         this.setState({ permissions: event.target.value });
     }
 
-    handleStartDateChange(event) {
-        this.setState({ startDate: event.target.value });
+    handleStartStageChange(event) {
+        this.setState({ startStage: event });
     }
 
-    handleEndDateChange(event) {
-        this.setState({ endDate: event.target.value });
+    handleEndStageChange(event) {
+        this.setState({ endStage: event });
+    }
+
+    isValid(){
+        if(this.state.title === '' ||
+            this.state.userGroups.length === 0 ||
+            this.state.permissions === undefined ||
+            this.state.startStage === '' ||
+            this.state.endStage === '') {
+                return false;
+        }
+        return true;
     }
 
     render() {
         const vocab = this.props.vocab;
         const roles = this.props.data.project.workflow.roles.map((role, key) =>
-            ({ value: role.role, label: role.role, key }),
+            ({ value: role, label: role, key }),
         );
         const description = vocab.PROJECT.DESC_ARRAY[this.state.permissions];
         return (
@@ -53,63 +67,53 @@ class AddStage extends Component {
                 title={vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
+                isValid={this.isValid()}
                 onSave={() => this.props.onAddStage(this.state)}>
                 <div>
                     <input type='text' placeholder={vocab.PROJECT.STAGE_TITLE}
                         onChange={this.handleTitleChange}/>
                     <Select
                         placeholder={vocab.PROJECT.ASSIGN_USER_GROUPS}
-                        name="role-select"
-                        value={this.state.roles}
+                        name='user-group-select'
+                        value={this.state.userGroups}
                         options={roles}
                         clearable={true}
                         multi
                         onChange={this.handleSelectChange}
                         />
                     {vocab.PROJECT.PERMISSIONS}
-                    <div className="container" onChange={this.handlePermissionsChange}>
-                        <label className="radio-inline">
-                            <input type="radio" name="permissions" value="0" defaultChecked />
-                            <span>{vocab.PROJECT.READ_ONLY}</span>
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" name="permissions" value="1" />
-                            <span>{vocab.PROJECT.PROVIDE_RESPONSES}</span>
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" name="permissions" value="2" />
-                            <span>{vocab.PROJECT.READ_AND_WRITE}</span>
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" name="permissions" value="3" />
-                            <span>{vocab.PROJECT.EDIT}</span>
-                        </label>
-                        <label className="radio-inline">
-                            <input type="radio" name="permissions" value="4" />
-                            <span>{vocab.PROJECT.ALL_PERMISSIONS}</span>
-                        </label>
+                    <div className='container' onChange={this.handlePermissionsChange}>
+                        {vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
+                            <label className='radio-inline' key={index}>
+                                <input type='radio'
+                                    name='permissions'
+                                    value={index}
+                                    defaultChecked={!index} />
+                                <span>{permission}</span>
+                            </label>
+                        )}
                     </div>
                     <div>
                         {description}
                     </div>
                     {vocab.PROJECT.DATE_RANGE}
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6">{vocab.PROJECT.START_DATE}</div>
-                            <div className="col-md-6">{vocab.PROJECT.END_DATE}</div>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col-md-6'>{vocab.PROJECT.START_DATE}</div>
+                            <div className='col-md-6'>{vocab.PROJECT.END_DATE}</div>
                         </div>
-                        <div className="row">
-                            <div className="col-md-6">
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    onChange={this.handleStartDateChange}/>
+                        <div className='row'>
+                            <div className='col-md-6'>
+                                <DateTime id='StartStage'
+                                    format='MM/DD/YYYY'
+                                    value={this.state.startStage}
+                                    onChange={this.handleStartStageChange}/>
                             </div>
-                            <div className="col-md-6">
-                                <input
-                                    type="date"
-                                    name="endDate"
-                                    onChange={this.handleEndDateChange}/>
+                            <div className='col-md-6'>
+                                <DateTime id='endStage'
+                                    format='MM/DD/YYYY'
+                                    value={this.state.endStage}
+                                    onChange={this.handleEndStageChange}/>
                             </div>
                         </div>
                     </div>

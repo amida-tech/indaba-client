@@ -8,18 +8,13 @@ import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
 
 class MatrixContainer extends Component {
-  /*
-   So under the subject headers, we should add the individual stage slots,
-   which in turn will be passed the assignee cards.
-  */
-
   render() {
     const assignees = this.props.data.project.workflow.assignees.slice();
     let slot = null;
     const Grid = (
-      <table className="table table-bordered workflow-table" key="MatrixContainer">
+      <table className='table table-bordered workflow-table' key='MatrixContainer'>
         <thead>
-          <tr key="StageHeader">
+          <tr key='StageHeader'>
             <th></th>
             {this.props.data.project.workflow.stages.map(stage =>
               <th key={stage.id}>{stage.title}</th>
@@ -31,7 +26,8 @@ class MatrixContainer extends Component {
             <td key='empty-subject-summary-row'></td>
             {this.props.data.project.workflow.stages.map(stage =>
               <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
-                <StageSummary stage={stage} vocab={this.props.vocab}/>
+                <StageSummary stage={stage}
+                    vocab={this.props.vocab}/>
               </td>)}
           </tr>
           {this.props.data.project.workflow.subjects.map((subject,key) =>
@@ -47,10 +43,10 @@ class MatrixContainer extends Component {
       </table>
     );
     return(
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-8 grid-column">{Grid}</div>
-          <div className="col-sm-4"><UserSidebar {...this.props} /></div>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-sm-8 grid-column'>{Grid}</div>
+          <div className='col-sm-4'><UserSidebar {...this.props} /></div>
         </div>
       </div>
     )

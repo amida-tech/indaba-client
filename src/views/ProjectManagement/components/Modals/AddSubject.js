@@ -7,21 +7,25 @@ class AddSubject extends Component {
         super(props);
         this.state = { value: '' };
         this.handleChange = this.handleChange.bind(this);
+        this.isValid = this.isValid.bind(this);
     }
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
+    isValid(){
+        return (this.state.value.length > 0);
+    }
     render() {
-        const vocab = this.props.vocab;
         return (
             <Modal
-                title={vocab.PROJECT.ADD_SUBJECT}
+                title={this.props.vocab.PROJECT.ADD_SUBJECT}
                 class='add-subject-layer'
                 onCancel={this.props.onCancel}
+                isValid={this.isValid()}
                 onSave={() => this.props.onAddSubject(this.state.value)}>
                 <input
                     type='text'
-                    placeholder={vocab.PROJECT.SUBJECT_TITLE}
+                    placeholder={this.props.vocab.PROJECT.SUBJECT_TITLE}
                     onChange={this.handleChange}/>
             </Modal>
         );

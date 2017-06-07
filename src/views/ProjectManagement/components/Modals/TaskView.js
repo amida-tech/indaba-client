@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Button } from 'grommet';
+//import { Button } from 'grommet';
 import IonIcon from 'react-ionicons';
 import DateTime from 'grommet/components/DateTime';
 
@@ -9,9 +9,9 @@ import FlagSidebar from '../Workflow/FlagSidebar';
 class TaskView extends Component {
     constructor(props) {
         super(props);
-        const assignee = props.data.project.navigation.modalData.assignee;
+        var assignee = props.data.project.navigation.modalData.assignee;
         this.state = {
-            assignee,
+            assignee: props.data.project.navigation.modalData.assignee,
             stageData: props.data.project.navigation.modalData.stageData,
             subject: props.data.project.workflow.subjects[assignee.subject],
             surveyName: props.data.project.workflow.name
@@ -21,17 +21,23 @@ class TaskView extends Component {
     }
 
     handleChange(event) {
-        this.setState({ value: event.target.value });
+        this.setState({value: event.target.value});
     }
 
-    handleTaskDueDateChange(event) {
-        const newState = this.state;
-        newState.assignee.dueDate = event.target.value;
+    handleTaskDueDateChange(event){
+        var newState = this.state;
+        newState.assignee.dueDate = event;
         this.setState(newState);
     }
 
     render() {
-        const body = (
+    return (
+        <Modal
+            title={this.props.vocab.PROJECT.TASK_VIEW}
+            class='task-view-layer'
+            onCancel={this.props.onCancel}
+            data={this.props.data}
+            onSave={() => this.props.onUpdateTask(this.state.value)}>
             <div className='container'>
                 <div className='row'>
                     <div className='col-sm-8'>
@@ -72,16 +78,7 @@ class TaskView extends Component {
                     </div>
                 </div>
             </div>
-    );
-
-        return (
-        <Modal
-            title={this.props.vocab.PROJECT.TASK_VIEW}
-            class='task-view-layer'
-            content={body}
-            onCancel={this.props.onCancel}
-            data={this.props.data}
-            onSave={() => this.props.onUpdateTask(this.state.value)} />
+        </Modal>
         );
     }
 }
