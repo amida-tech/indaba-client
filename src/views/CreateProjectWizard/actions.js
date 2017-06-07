@@ -7,9 +7,9 @@ export function setProjectTitle(title) {
     };
 }
 
-export function addSubject(subject) {
+export function addSubjects(subject) {
     return {
-        type: actionTypes.ADD_SUBJECT,
+        type: actionTypes.ADD_SUBJECTS,
         subject,
     };
 }

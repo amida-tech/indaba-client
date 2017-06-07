@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import { addSubject } from '../actions';
+import { addSubjects } from '../actions';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -16,7 +16,9 @@ class AddSubjectControl extends Component {
         this.setState({ userInput: evt.target.value });
     }
     handlePlusClick() {
-        this.props.onAddSubject(this.state.userInput);
+        const splitUsers = this.state.userInput.split(/\s*,\s*/)
+            .filter(user => user !== '');
+        this.props.onAddSubjects(splitUsers);
         this.setState({ userInput: '' });
     }
     render() {
@@ -54,7 +56,7 @@ class AddSubjects extends Component {
             <hr className='divider'/>
             <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
             <AddSubjectControl
-                onAddSubject={this.props.onAddSubject}
+                onAddSubjects={this.props.onAddSubjects}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
         </div>;
@@ -66,7 +68,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddSubject: subject => dispatch(addSubject(subject)),
+    onAddSubjects: subject => dispatch(addSubjects(subject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSubjects);
