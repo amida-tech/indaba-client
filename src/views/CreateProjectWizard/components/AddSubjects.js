@@ -22,10 +22,8 @@ class AddSubjectControl extends Component {
     render() {
         return <div>
             <Box direction='row' justify='between'>
-                <div>Subjects are units of analysis.
-                    For example, cities, programs, or companies.
-                    Separate subjects with a comma.</div>
-                <div>Actions</div>
+                <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
+                <div>{this.props.vocab.COMMON.ACTIONS}</div>
             </Box>
             <Box direction='row'>
                 <TextInput value={this.state.userInput}
@@ -51,20 +49,21 @@ class AddSubjects extends Component {
             <hr className='divider'/>
             <Box direction='row' justify='end'
                 pad={{ vertical: 'small', horizontal: 'medium' }}>
-                <Button label='Import Subjects' />
+                <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
             </Box>
             <hr className='divider'/>
-            <p>Add survey subjects or use the import manager to add subjects
-                from a previous project.</p>
+            <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
             <AddSubjectControl
                 onAddSubject={this.props.onAddSubject}
-                subjects={this.props.subjects}/>
+                subjects={this.props.subjects}
+                vocab={this.props.vocab}/>
         </div>;
     }
 }
 
 const mapStateToProps = state => ({
     subjects: state.projectwizard.subjects,
+    vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
     onAddSubject: subject => dispatch(addSubject(subject)),
