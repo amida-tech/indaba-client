@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Box, Button, Tabs, Tab } from 'grommet';
+import { Box, Button, Tabs, Tab, TextInput } from 'grommet';
 import Summary from '../../../common/components/Summary';
 
 class UsersTab extends Component {
     render() {
         return (
-            <Tab title={this.props.vocab.PROJECT.USERS}></Tab>
+            <div>
+                <Box direction='row'>
+                    <TextInput placeholder={this.props.vocab.PROJECT.NEW_USER_FIRST_NAME}/>
+                    <TextInput placeholder={this.props.vocab.PROJECT.NEW_USER_LAST_NAME}/>
+                    <TextInput placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
+                    <Button label={this.props.vocab.COMMON.INVITE}/>
+                </Box>
+                <Box direction='row'>
+                    <TextInput
+                        fill='horizontal'
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER} />
+                </Box>
+            </div>
         );
     }
 }
 
 class UserGroupsTab extends Component {
     render() {
-        return (
-            <Tab title={this.props.vocab.PROJECT.USER_GROUPS}></Tab>
-        );
+        return (<div></div>);
     }
 }
 
@@ -37,8 +47,12 @@ class AddUsers extends Component {
                     <p key={sentence}>{sentence}</p>,
                 )}
                 <Tabs>
-                    <UsersTab vocab={this.props.vocab} />
-                    <UserGroupsTab vocab={this.props.vocab} />
+                    <Tab title={this.props.vocab.PROJECT.USERS}>
+                        <UsersTab vocab={this.props.vocab} />
+                    </Tab>
+                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                        <UserGroupsTab vocab={this.props.vocab} />
+                    </Tab>
                 </Tabs>
             </div>);
     }

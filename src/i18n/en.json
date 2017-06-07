@@ -85,7 +85,11 @@
     "ADD_USERS_CLARIFICATION": ["Users are assigned to a project.", "Usergroups are multiple people who share the same role."],
     "IMPORT_USERS": "Import Users",
     "USERS": "Users",
-    "USER_GROUPS": "User Groups"
+    "USER_GROUPS": "User Groups",
+    "NEW_USER_FIRST_NAME": "New User First Name",
+    "NEW_USER_LAST_NAME": "New User Last Name",
+    "NEW_USER_EMAIL": "New User Email",
+    "SEARCH_FOR_A_USER": "Search for a user"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
