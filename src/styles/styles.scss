@@ -215,6 +215,7 @@ hr.divider {
         background-color: #D8D8D8;
         color: $header-font-color;
         margin-left: 1em;
+        cursor:pointer;
 
         &.layer-footer-button-primary {
           background-color: $brand-color;

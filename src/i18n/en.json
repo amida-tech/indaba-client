@@ -38,12 +38,13 @@
     "TASK_VIEW": "Task View",
     "TASK_DUE_DATE": "Task Due Date",
     "CHANGE_STATUS": "Change Status",
-    "ALL_PERMISSIONS": "All Permissions",
-    "READ_AND_WRITE": "Read and Write",
-    "PROVIDE_RESPONSES": "Provide Responses",
-    "BACK_TO_WORKFLOW": "Back to Workflow",
-    "READ_ONLY": "Read Only",
-    "EDIT": "Edit",
+    "PERM_ARRAY": [
+        "Read Only",
+        "Provide Responses",
+        "Read and Write",
+        "Edit",
+        "All Permissions"
+    ],
     "DESC_ARRAY": [
         "Read only description",
         "Provide responses description",
@@ -51,6 +52,7 @@
         "Edit description",
         "All permissions description"
       ],
+    "BACK_TO_WORKFLOW": "Back to Workflow",
     "DATE_RANGE": "Date Range",
     "START_DATE": "Start Date (Stage is unavailable until this date)",
     "END_DATE": "End Date (Stage is unavailable until this date)",
