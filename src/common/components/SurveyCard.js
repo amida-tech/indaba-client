@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
-import { modalIDs } from './Modals';
+import { modalIDs } from '../../views/ProjectManagement/components/Modals';
 
 class SurveyCard extends Component {
     render() {

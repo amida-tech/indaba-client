@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
-import { modalIDs } from './Modals';
+import { modalIDs } from '../../views/ProjectManagement/components/Modals';
 
 class ProjectCard extends Component {
     render() {

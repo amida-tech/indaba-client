@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SubNav from './SubNav';
-import Summary from './Summary';
+import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper';
