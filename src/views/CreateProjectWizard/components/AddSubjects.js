@@ -4,6 +4,7 @@ import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubjects, deleteSubject } from '../actions';
 import Summary from '../../../common/components/Summary';
+import WizardFooter from './WizardFooter';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class AddSubjectControl extends Component {
 
 class AddSubjects extends Component {
     render() {
-        return <div>
+        return (<div>
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
@@ -66,7 +67,8 @@ class AddSubjects extends Component {
                 onDeleteSubject={this.props.onDeleteSubject}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
-        </div>;
+            <WizardFooter />
+        </div>);
     }
 }
 
