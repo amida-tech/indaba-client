@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { Button } from 'grommet';
 import IonIcon from 'react-ionicons';
 import DateTime from 'grommet/components/DateTime';
 
@@ -16,12 +15,7 @@ class TaskView extends Component {
             subject: props.data.project.workflow.subjects[assignee.subject],
             surveyName: props.data.project.workflow.name
         };
-        this.handleChange = this.handleChange.bind(this);
         this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({value: event.target.value});
     }
 
     handleTaskDueDateChange(event){

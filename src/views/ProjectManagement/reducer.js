@@ -1,5 +1,4 @@
 import * as t from './actionTypes';
-// import _ from 'lodash';
 
 export const initialState = {
     navigation: {
@@ -112,6 +111,7 @@ export const initialState = {
     survey: {
         id: 0,
         name: 'How much do you like pizza?',
+        instructions: 'Don\'t order with pineapple.',
         status: 'Published',
         description: 'If you don\'t like pizza, what are you doing here.',
     },
