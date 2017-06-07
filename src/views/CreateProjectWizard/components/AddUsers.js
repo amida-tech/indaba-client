@@ -41,7 +41,7 @@ class UsersTab extends Component {
                         value={this.state.firstName}/>
                     <TextInput
                         placeHolder={this.props.vocab.PROJECT.NEW_USER_LAST_NAME}
-                        onDOMChnage={this.handleLastNameInput}
+                        onDOMChange={this.handleLastNameInput}
                         value={this.state.lastName}/>
                     <TextInput
                         placeHolder={this.props.vocab.PROJECT.NEW_USER_EMAIL}
