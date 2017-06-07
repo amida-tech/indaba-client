@@ -4,7 +4,6 @@ import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubjects, deleteSubject } from '../actions';
 import Summary from '../../../common/components/Summary';
-import WizardFooter from './WizardFooter';
 
 class AddSubjectControl extends Component {
     constructor(props) {
