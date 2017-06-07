@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubjects, deleteSubject } from '../actions';
+import Summary from '../../../common/components/Summary';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -49,7 +50,10 @@ class AddSubjectControl extends Component {
 class AddSubjects extends Component {
     render() {
         return <div>
-            &lt;Summary /&gt;
+            <Summary
+                project={this.props.project}
+                survey={this.props.survey}
+                vocab={this.props.vocab} />
             <hr className='divider'/>
             <Box direction='row' justify='end'
                 pad={{ vertical: 'small', horizontal: 'medium' }}>
@@ -69,6 +73,8 @@ class AddSubjects extends Component {
 const mapStateToProps = state => ({
     subjects: state.projectwizard.subjects,
     vocab: state.settings.language.vocabulary,
+    project: state.projectwizard.project,
+    survey: state.projectwizard.survey,
 });
 const mapDispatchToProps = dispatch => ({
     onAddSubjects: subjects => dispatch(addSubjects(subjects)),

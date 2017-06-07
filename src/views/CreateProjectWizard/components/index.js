@@ -11,7 +11,7 @@ class CreateProjectWizard extends Component {
     render() {
         return (
             <div>
-                {!_.get(this.props.wizard, 'title') &&
+                {!_.get(this.props.wizard, 'project.name') &&
                     <ModalContent id='newprojecttitle' onSave={this.props.onSetTitle}/>}
                 <Tabs>
                     <Tab title='Create Survey'>
