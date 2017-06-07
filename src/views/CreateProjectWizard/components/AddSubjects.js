@@ -4,10 +4,6 @@ import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubject } from '../actions';
 
-class SubjectListEntry extends Component {
-
-}
-
 class AddSubjectControl extends Component {
     constructor(props) {
         super(props);
