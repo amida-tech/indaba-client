@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import { addSubjects } from '../actions';
+import { addSubjects, deleteSubject } from '../actions';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -37,7 +37,9 @@ class AddSubjectControl extends Component {
             {this.props.subjects && this.props.subjects.map(subject =>
                 <Box direction='row' key={subject}>
                     {subject}
-                    <IonIcon icon='ion-android-delete'/>
+                    <span onClick={() => this.props.onDeleteSubject(subject)}>
+                        <IonIcon icon='ion-android-delete'/>
+                    </span>
                 </Box>,
             )}
         </div>;
@@ -57,6 +59,7 @@ class AddSubjects extends Component {
             <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
             <AddSubjectControl
                 onAddSubjects={this.props.onAddSubjects}
+                onDeleteSubject={this.props.onDeleteSubject}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
         </div>;
@@ -68,7 +71,8 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddSubjects: subject => dispatch(addSubjects(subject)),
+    onAddSubjects: subjects => dispatch(addSubjects(subjects)),
+    onDeleteSubject: subject => dispatch(deleteSubject(subject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSubjects);
