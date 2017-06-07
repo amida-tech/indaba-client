@@ -6,3 +6,10 @@ export function setProjectTitle(title) {
         title,
     };
 }
+
+export function addSubject(subject) {
+    return {
+        type: actionTypes.ADD_SUBJECT,
+        subject,
+    };
+}

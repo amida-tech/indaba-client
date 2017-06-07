@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
+import { addSubject } from '../actions';
 
 class SubjectListEntry extends Component {
 
 }
 
 class AddSubjectControl extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { userInput: '' };
+
+        this.handleUserTextInput = this.handleUserTextInput.bind(this);
+        this.handlePlusClick = this.handlePlusClick.bind(this);
+    }
+    handleUserTextInput(evt) {
+        this.setState({ userInput: evt.target.value });
+    }
+    handlePlusClick() {
+        this.props.onAddSubject(this.state.userInput);
+        this.setState({ userInput: '' });
+    }
     render() {
         return <div>
             <Box direction='row' justify='between'>
@@ -15,7 +31,19 @@ class AddSubjectControl extends Component {
                     Separate subjects with a comma.</div>
                 <div>Actions</div>
             </Box>
-            <Box><TextInput /><IonIcon icon='ion-ios-plus'/></Box>
+            <Box direction='row'>
+                <TextInput value={this.state.userInput}
+                    onDOMChange={this.handleUserTextInput}/>
+                <span onClick={this.handlePlusClick}>
+                    <IonIcon icon='ion-ios-plus'/>
+                </span>
+            </Box>
+            {this.props.subjects && this.props.subjects.map(subject =>
+                <Box direction='row' key={subject}>
+                    {subject}
+                    <IonIcon icon='ion-android-delete'/>
+                </Box>,
+            )}
         </div>;
     }
 }
@@ -32,9 +60,18 @@ class AddSubjects extends Component {
             <hr className='divider'/>
             <p>Add survey subjects or use the import manager to add subjects
                 from a previous project.</p>
-            <AddSubjectControl />
+            <AddSubjectControl
+                onAddSubject={this.props.onAddSubject}
+                subjects={this.props.subjects}/>
         </div>;
     }
 }
 
-export default AddSubjects;
+const mapStateToProps = state => ({
+    subjects: state.projectwizard.subjects,
+});
+const mapDispatchToProps = dispatch => ({
+    onAddSubject: subject => dispatch(addSubject(subject)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddSubjects);
