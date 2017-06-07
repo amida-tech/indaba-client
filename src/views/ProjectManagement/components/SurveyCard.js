@@ -1,56 +1,45 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import IonIcon from 'react-ionicons';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
-import { showModal } from '../actions';
 import { modalIDs } from './Modals';
 
 class SurveyCard extends Component {
-  render() {
-    const SurveyStatusOptions = [{
-      label: this.props.vocab.PROJECT.CHANGE_STATUS,
-      value: modalIDs.SURVEY_STATUS_MODAL
-    }];
+    render() {
+        const SurveyStatusOptions = [{
+            label: this.props.vocab.PROJECT.CHANGE_STATUS,
+            value: modalIDs.SURVEY_STATUS_MODAL,
+        }];
 
-    return (
-      <Box
-        className='card'
-        direction='row'
-        justify='between'
-        align='center'
-        pad='medium'
-        full='horizontal'
-        responsive={false}
-        margin={{left: 'small', top: 'small'}}>
-        <Box direction='row' align='center' responsive={false}>
-          <IonIcon
-            icon='ion-ios-paper-outline'
-            color='#4EB276'
-            fontSize='4em'
-            className='status-card-icon' />
-          <div className='survey-left-column'>
-            <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-            <div className='card-value'>{this.props.name}</div>
-          </div>
-        </Box>
-        <CardValueDropdown
-          value={this.props.status}
-          options={SurveyStatusOptions}
-          onClick={this.props.onDropdownClick}
-          />
-      </Box>
-    );
-  }
+        return (
+            <Box
+                className='card'
+                direction='row'
+                justify='between'
+                align='center'
+                pad='medium'
+                full='horizontal'
+                responsive={false}
+                margin={{ left: 'small', top: 'small' }}>
+                <Box direction='row' align='center' responsive={false}>
+                    <IonIcon
+                        icon='ion-ios-paper-outline'
+                        color='#4EB276'
+                        fontSize='4em'
+                        className='status-card-icon' />
+                    <div className='survey-left-column'>
+                        <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
+                        <div className='card-value'>{this.props.name}</div>
+                    </div>
+                </Box>
+                <CardValueDropdown
+                    value={this.props.status}
+                    options={SurveyStatusOptions}
+                    onClick={this.props.onStatusChangeClick}
+                    />
+            </Box>
+        );
+    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  name: state.project.survey.name,
-  status: state.project.survey.status,
-  vocab: state.settings.language.vocabulary
-});
-const mapDispatchToProps = (dispatch) => ({
-  onDropdownClick: (id) => dispatch(showModal(id))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SurveyCard);
+export default SurveyCard;
