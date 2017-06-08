@@ -66,6 +66,8 @@ class AddUserGroup extends Component {
                 userIndex => this.props.users[userIndex]) } }));
     }
     handleAddAll() {
+        this.setState(update(this.state, { groupUserIds: {
+            $set: [...this.props.users] } }));
     }
     handleRemove() {
     }
