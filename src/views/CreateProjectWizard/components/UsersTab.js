@@ -32,6 +32,7 @@ class UsersTab extends Component {
         this.setState(update(this.state, { query: { $set: evt.target.value } }));
     }
     handleSearchSelect(selection) {
+        this.setState(update(this.state, { query: { $set: '' } }));
         this.props.onAddUserToProject(selection.suggestion.value);
     }
     searchFilter(user) {
