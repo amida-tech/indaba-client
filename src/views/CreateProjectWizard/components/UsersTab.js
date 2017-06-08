@@ -16,6 +16,7 @@ class UsersTab extends Component {
         this.handleLastNameInput = this.handleLastNameInput.bind(this);
         this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handleSearchInput = this.handleSearchInput.bind(this);
+        this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
     }
     handleFirstNameInput(evt) {
@@ -29,6 +30,9 @@ class UsersTab extends Component {
     }
     handleSearchInput(evt) {
         this.setState(update(this.state, { query: { $set: evt.target.value } }));
+    }
+    handleSearchSelect(selection) {
+        this.props.onAddUserToProject(selection.suggestion.value);
     }
     searchFilter(user) {
         return !this.state.query ||
@@ -58,7 +62,8 @@ class UsersTab extends Component {
                         onDOMChange={this.handleSearchInput}
                         value={this.state.query}
                         suggestions={this.props.users.filter(this.searchFilter)
-                            .map(user => ({ label: user.name, value: user }))} />
+                            .map(user => ({ label: user.name, value: user }))}
+                        onSelect={this.handleSearchSelect}/>
                 </Box>
                 <List>
                 </List>

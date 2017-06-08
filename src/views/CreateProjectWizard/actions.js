@@ -20,3 +20,10 @@ export function deleteSubject(subject) {
         subject,
     };
 }
+
+export function addUserToProject(user) {
+    return {
+        type: actionTypes.ADD_USER_TO_PROJECT,
+        user,
+    };
+}

@@ -8,6 +8,7 @@ const initialState = {
     survey: {
         status: 'Draft',
     },
+    users: [],
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +21,8 @@ export default (state = initialState, action) => {
     case t.DELETE_SUBJECT:
         return update(state, { subjects:
             { $splice: [[state.subjects.indexOf(action.subject), 1]] } });
+    case t.ADD_USER_TO_PROJECT:
+        return update(state, { users: { $push: [action.user.id] } });
     default:
         return state;
     }

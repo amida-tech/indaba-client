@@ -4,6 +4,7 @@ import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import AddUserGroup from './AddUserGroup';
+import { addUserToProject } from '../actions';
 
 class UserGroupsTab extends Component {
     render() {
@@ -30,7 +31,10 @@ class AddUsers extends Component {
                 )}
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
-                        <UsersTab vocab={this.props.vocab} users={this.props.users}/>
+                        <UsersTab
+                            vocab={this.props.vocab}
+                            users={this.props.users}
+                            onAddUserToProject={this.props.onAddUserToProject}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab vocab={this.props.vocab} />
@@ -46,5 +50,8 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     users: state.user.users,
 });
+const mapDispatchToProps = dispatch => ({
+    onAddUserToProject: user => dispatch(addUserToProject(user)),
+});
 
-export default connect(mapStateToProps)(AddUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
