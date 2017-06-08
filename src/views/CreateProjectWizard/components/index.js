@@ -5,18 +5,19 @@ import _ from 'lodash';
 import ModalContent from '../../ProjectManagement/components/Modals';
 import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
+import AddSubjects from './AddSubjects';
 
 class CreateProjectWizard extends Component {
     render() {
         return (
             <div>
-                {!_.get(this.props.wizard, 'title') &&
+                {!_.get(this.props.wizard, 'project.name') &&
                     <ModalContent id='newprojecttitle' onSave={this.props.onSetTitle}/>}
                 <Tabs>
                     <Tab title='Create Survey'>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab title='Add Subjects'>Add subjects!</Tab>
+                    <Tab title='Add Subjects'><AddSubjects /></Tab>
                     <Tab title='Add Users'>Add users!</Tab>
                     <Tab title='Add Stages'>Add stages!</Tab>
                 </Tabs>

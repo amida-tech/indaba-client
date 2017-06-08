@@ -6,3 +6,17 @@ export function setProjectTitle(title) {
         title,
     };
 }
+
+export function addSubjects(subjects) {
+    return {
+        type: actionTypes.ADD_SUBJECTS,
+        subjects,
+    };
+}
+
+export function deleteSubject(subject) {
+    return {
+        type: actionTypes.DELETE_SUBJECT,
+        subject,
+    };
+}

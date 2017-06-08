@@ -15,7 +15,8 @@
     "DESCRIPTION": "Decription",
     "ALL_USERS": "All Users",
     "ALL_SUBJECTS": "All Subjects",
-    "CREATE": "Create"
+    "CREATE": "Create",
+    "ACTIONS": "Actions"
   },
   "PROJECT": {
     "CARD": {
@@ -77,7 +78,10 @@
     "FILTER_IN_PROGRESS": "In Progress",
     "FILTER_NOT_STARTED": "Not Started",
     "FILTER_FLAGGED": "Flagged",
-    "INVITE_INSTRUCTION": "Not Listed? Invite by email"
+    "INVITE_INSTRUCTION": "Not Listed? Invite by email",
+    "ADD_SUBJECT_INSTRUCTION": "Add survey subjects or use the import manager to add subjects from a previous project.",
+    "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma.",
+    "IMPORT_SUBJECTS": "Import Subjects"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

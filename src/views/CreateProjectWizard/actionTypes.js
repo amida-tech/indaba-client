@@ -1,1 +1,3 @@
 export const SET_PROJECT_TITLE = 'SET_PROJECT_TITLE';
+export const ADD_SUBJECTS = 'ADD_SUBJECTS';
+export const DELETE_SUBJECT = 'DELETE_SUBJECT';
