@@ -26,10 +26,13 @@ class AddUserGroup extends Component {
     handleGroupQuery(evt) {
         this.setState(update(this.state, { groupQuery: { $set: evt.target.value } }));
     }
+    filterUser(user) {
+        return user.name.toLowerCase().includes(this.state.usersQuery.toLowerCase());
+    }
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
         return (
-            <ListItem key={user.id}>{user.name}</ListItem>
+            <ListItem key={user.id} style={{ display: this.filterUser(user) ? undefined : 'none' }}>{user.name}</ListItem>
         );
     }
     render() {
