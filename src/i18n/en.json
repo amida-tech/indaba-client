@@ -86,6 +86,8 @@
     "IMPORT_USERS": "Import Users",
     "USERS": "Users",
     "USER_GROUPS": "User Groups",
+    "ADD_USER_GROUP": "Add User Group",
+    "ENTER_GROUP_NAME": "Enter Group Name",
     "NEW_USER_FIRST_NAME": "New User First Name",
     "NEW_USER_LAST_NAME": "New User Last Name",
     "NEW_USER_EMAIL": "New User Email",

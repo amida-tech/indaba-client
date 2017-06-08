@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import UsersTab from './UsersTab';
+import AddUserGroup from './AddUserGroup';
 
 class UserGroupsTab extends Component {
     render() {
