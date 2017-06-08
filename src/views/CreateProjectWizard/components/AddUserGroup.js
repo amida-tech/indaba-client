@@ -86,7 +86,7 @@ class AddUserGroup extends Component {
                             {this.props.vocab.STAGE.USER_GROUP}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                items={[]} />
+                                items={this.state.groupUserIds.map(this.createUserListItem)} />
                         </Box>
                     </Box>
                 </Box>
