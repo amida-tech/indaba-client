@@ -41,7 +41,6 @@ class AddUserGroup extends Component {
         super(props);
         this.state = {
             groupName: '',
-            groupQuery: '',
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
@@ -92,9 +91,9 @@ class AddUserGroup extends Component {
                         <Box separator='all'
                             pad='small'>
                             {this.props.vocab.STAGE.USER_GROUP}
-                            <TextInput
+                            <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                onDOMChange={this.handleGroupQuery}/>
+                                items={[]} />
                         </Box>
                     </Box>
                 </Box>
