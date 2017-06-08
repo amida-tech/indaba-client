@@ -42,11 +42,11 @@ class AddUserGroup extends Component {
         this.state = {
             groupName: '',
             groupUserIds: [],
-            allUsersSelected: [],
+            projectUsersSelected: [],
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
-        this.handleAllUsersSelect = this.handleAllUsersSelect.bind(this);
+        this.handleProjectUsersSelect = this.handleProjectUsersSelect.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleAddAll = this.handleAddAll.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
@@ -56,13 +56,13 @@ class AddUserGroup extends Component {
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
     }
-    handleAllUsersSelect(selection) {
-        this.setState(update(this.state, { allUsersSelected:
+    handleProjectUsersSelect(selection) {
+        this.setState(update(this.state, { projectUsersSelected:
             { $set: selection.length ? selection : [selection] } }));
     }
     handleAdd() {
         this.setState(update(this.state, { groupUserIds: {
-            $push: this.state.allUsersSelected.map(
+            $push: this.state.projectUsersSelected.map(
                 userIndex => this.props.users[userIndex]) } }));
     }
     handleAddAll() {
@@ -95,7 +95,7 @@ class AddUserGroup extends Component {
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.props.users.map(this.createUserListItem)}
-                                onSelect={this.handleAllUsersSelect} />
+                                onSelect={this.handleProjectUsersSelect} />
                         </Box>
                         <Box justify='center'
                             pad='small'>
