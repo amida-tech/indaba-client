@@ -30,7 +30,7 @@ class AddUsers extends Component {
                 )}
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
-                        <UsersTab vocab={this.props.vocab} />
+                        <UsersTab vocab={this.props.vocab} users={this.props.users}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab vocab={this.props.vocab} />
@@ -44,6 +44,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     project: state.projectwizard.project,
     survey: state.projectwizard.survey,
+    users: state.user.users,
 });
 
 export default connect(mapStateToProps)(AddUsers);

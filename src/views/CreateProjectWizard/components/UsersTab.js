@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
-import { Box, TextInput, Button } from 'grommet';
+import { Box, TextInput, Button, List, SearchInput } from 'grommet';
 
 class UsersTab extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class UsersTab extends Component {
         this.handleLastNameInput = this.handleLastNameInput.bind(this);
         this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handleSearchInput = this.handleSearchInput.bind(this);
+        this.searchFilter = this.searchFilter.bind(this);
     }
     handleFirstNameInput(evt) {
         this.setState(update(this.state, { firstName: { $set: evt.target.value } }));
@@ -28,6 +29,10 @@ class UsersTab extends Component {
     }
     handleSearchInput(evt) {
         this.setState(update(this.state, { query: { $set: evt.target.value } }));
+    }
+    searchFilter(user) {
+        return !this.state.query ||
+            user.name.toLowerCase().includes(this.state.query.toLowerCase());
     }
     render() {
         return (
@@ -48,11 +53,15 @@ class UsersTab extends Component {
                     <Button label={this.props.vocab.COMMON.INVITE}/>
                 </Box>
                 <Box direction='row'>
-                    <TextInput
+                    <SearchInput
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         onDOMChange={this.handleSearchInput}
-                        value={this.state.query}/>
+                        value={this.state.query}
+                        suggestions={this.props.users.filter(this.searchFilter)
+                            .map(user => ({ label: user.name, value: user }))} />
                 </Box>
+                <List>
+                </List>
             </div>
         );
     }
