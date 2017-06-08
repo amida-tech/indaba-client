@@ -4,5 +4,6 @@ you start working on a new view, please create a new scss and drop an
 import here. We'll organize the structure of this better later, but
 dragging and dropping files is easier then stripping through scss files. */
 
-@import './_styles.scss';
+@import './styles.scss';
 @import './questions.scss';
+@import './user.scss';

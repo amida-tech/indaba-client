@@ -18,6 +18,7 @@ class UsersTab extends Component {
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
+        this.renderUserEntry = this.renderUserEntry.bind(this);
     }
     handleFirstNameInput(evt) {
         this.setState(update(this.state, { firstName: { $set: evt.target.value } }));
@@ -38,6 +39,19 @@ class UsersTab extends Component {
     searchFilter(user) {
         return !this.state.query ||
             user.name.toLowerCase().includes(this.state.query.toLowerCase());
+    }
+    renderUserEntry(userId) {
+        const user = this.props.allUsers.find(u => u.id === userId);
+        const initials = user.name.split(' ').map(component => component.slice(0, 1)).join('');
+        return (
+            <ListItem key={userId}
+                direction='row'
+                pad={{ between: 'small', horizontal: 'large', vertical: 'small' }}
+                className='user-list-entry'>
+                <div className='user-list-entry--badge'>{initials}</div>
+                <div>{user.name}</div>
+            </ListItem>
+        );
     }
     render() {
         return (
@@ -67,11 +81,7 @@ class UsersTab extends Component {
                         onSelect={this.handleSearchSelect}/>
                 </Box>
                 <List>
-                    {this.props.projectUsers.map(userId =>
-                        <ListItem key={userId}>
-                            {this.props.allUsers.find(user => user.id === userId).name}
-                        </ListItem>,
-                    )}
+                    {this.props.projectUsers.map(this.renderUserEntry)}
                 </List>
             </div>
         );
