@@ -1,0 +1,8 @@
+/* Going forward, we need to start breaking up the scss files by views to
+make maintenance easier. styles.scss has already gotten way too big. When
+you start working on a new view, please create a new scss and drop an
+import here. We'll organize the structure of this better later, but
+dragging and dropping files is easier then stripping through scss files. */
+
+@import './styles.scss';
+@import './questions.scss';

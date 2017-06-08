@@ -1,27 +1,50 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import DateTime from 'grommet/components/DateTime';
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import Modal from '../../../../common/Modal';
 import FlagSidebar from '../Workflow/FlagSidebar';
+import * as Questions from '../../../../common/Questions';
 
 class TaskView extends Component {
     constructor(props) {
         super(props);
-        var assignee = props.data.project.navigation.modalData.assignee;
+        const assignee = props.data.project.navigation.modalData.assignee;
+        const survey = assignee.response ?
+            props.data.project.survey.questions.map((question) =>
+                this.surveyMapper(assignee.response, question)) :
+                props.data.project.survey.questions;
         this.state = {
-            assignee: props.data.project.navigation.modalData.assignee,
+            assignee: assignee,
             stageData: props.data.project.navigation.modalData.stageData,
             subject: props.data.project.workflow.subjects[assignee.subject],
-            surveyName: props.data.project.workflow.name
+            survey: survey,
+            active: []
         };
         this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
+        this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
+        this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
+    }
+
+    surveyMapper(response, question) {
+        const match = response.filter(obj => obj.id === question.id);
+        return (match.length > 0) ? Object.assign({}, question, match[0]) : question;
     }
 
     handleTaskDueDateChange(event){
         var newState = this.state;
         newState.assignee.dueDate = event;
         this.setState(newState);
+    }
+
+    handleAccordionExpandAll(event){
+        this.setState({ active: [0,1,2] });
+    }
+
+    handleAccordionCollapseAll(event){
+        this.setState({ active: [] });
     }
 
     render() {
@@ -65,6 +88,21 @@ class TaskView extends Component {
                                 <span>{this.state.surveyName}</span><br/>
                                 <span>{this.props.vocab.PROJECT.SURVEY}</span>
                             </div>
+                        </div>
+                        <div>
+                            <button onClick={this.handleAccordionExpandAll}>EXPAND</button>
+                            <button onClick={this.handleAccordionCollapseAll}>COLLAPSE</button>
+                            <Accordion active={this.state.active} openMulti={true}>
+                                <AccordionPanel heading='question'>
+                                    <Questions.MultipleChoice />
+                                </AccordionPanel>
+                                <AccordionPanel heading='stuff'>
+                                    ninebreaker
+                                </AccordionPanel>
+                                <AccordionPanel heading='octo'>
+                                    deck
+                                </AccordionPanel>
+                            </Accordion>
                         </div>
                     </div>
                     <div className='col-sm-4'>

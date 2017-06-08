@@ -35,6 +35,7 @@
     "SURVEY": "Survey",
     "SUBJECT": "Subject",
     "STATUS": "Status",
+    "QUESTION": "Question",
     "TASK_VIEW": "Task View",
     "TASK_DUE_DATE": "Task Due Date",
     "CHANGE_STATUS": "Change Status",

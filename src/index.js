@@ -9,7 +9,7 @@ import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import './styles/styles.scss';
+import './styles/main.scss';
 import 'react-select/dist/react-select.css';
 
 /** Developer Tools **/
