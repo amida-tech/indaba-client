@@ -47,13 +47,29 @@ class AddUserGroup extends Component {
 
         this.handleGroupName = this.handleGroupName.bind(this);
         this.handleAllUsersSelect = this.handleAllUsersSelect.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleAddAll = this.handleAddAll.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
         this.createUserListItem = this.createUserListItem.bind(this);
     }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
     }
     handleAllUsersSelect(selection) {
-        this.setState(update(this.state, { allUsersSelected: { $set: selection } }));
+        this.setState(update(this.state, { allUsersSelected:
+            { $set: selection.length ? selection : [selection] } }));
+    }
+    handleAdd() {
+        this.setState(update(this.state, { groupUserIds: {
+            $push: this.state.allUsersSelected.map(
+                userIndex => this.props.users[userIndex]) } }));
+    }
+    handleAddAll() {
+    }
+    handleRemove() {
+    }
+    handleRemoveAll() {
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
@@ -83,10 +99,14 @@ class AddUserGroup extends Component {
                         </Box>
                         <Box justify='center'
                             pad='small'>
-                            <div>&gt;</div>
-                            <div>&gt;&gt;</div>
-                            <div>&lt;</div>
-                            <div>&lt;&lt;</div>
+                            <div className='trade-list--add'
+                                onClick={this.handleAdd}>&gt;</div>
+                            <div className='trade-list--add-all'
+                                onClick={this.handleAddAll}>&gt;&gt;</div>
+                            <div className='trade-list--remove'
+                                onClick={this.handleRemove}>&lt;</div>
+                            <div className='trade-list--remove-all'
+                                onClick={this.handleRemoveAll}>&lt;&lt;</div>
                         </Box>
                         <Box separator='all'
                             pad='small'>
