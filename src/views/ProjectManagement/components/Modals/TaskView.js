@@ -11,17 +11,26 @@ import * as Questions from '../../../../common/Questions';
 class TaskView extends Component {
     constructor(props) {
         super(props);
-        var assignee = props.data.project.navigation.modalData.assignee;
+        const assignee = props.data.project.navigation.modalData.assignee;
+        const survey = assignee.response ?
+            props.data.project.survey.questions.map((question) =>
+                this.surveyMapper(assignee.response, question)) :
+                props.data.project.survey.questions;
         this.state = {
-            assignee: props.data.project.navigation.modalData.assignee,
+            assignee: assignee,
             stageData: props.data.project.navigation.modalData.stageData,
             subject: props.data.project.workflow.subjects[assignee.subject],
-            surveyName: props.data.project.workflow.name,
+            survey: survey,
             active: []
         };
         this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
         this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
         this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
+    }
+
+    surveyMapper(response, question) {
+        const match = response.filter(obj => obj.id === question.id);
+        return (match.length > 0) ? Object.assign({}, question, match[0]) : question;
     }
 
     handleTaskDueDateChange(event){

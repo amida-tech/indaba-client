@@ -46,11 +46,11 @@ export const initialState = {
             stage: 0,
             subject: 0,
             response: [{
-                question: 0,
-                value: 'No, I love it',
+                id: 0,
+                value: false,
                 review: true,
             }, {
-                question: 1,
+                id: 1,
             }],
         }, {
             id: 1,
@@ -59,13 +59,13 @@ export const initialState = {
             stage: 0,
             subject: 1,
             response: [{
-                question: 0,
-                value: 'Yes',
+                id: 0,
+                value: true,
                 flag: true,
                 review: true,
             }, {
-                question: 1,
-                value: 'Pepperoni',
+                id: 1,
+                value: 1,
                 review: false,
                 comment: 'Gross topping.',
             }],
@@ -77,14 +77,14 @@ export const initialState = {
             subject: 0,
             dueDate: '9/9/2017',
             response: [{
-                question: 0,
-                value: 'Yes',
+                id: 0,
+                value: true,
                 flag: true,
                 review: false,
                 comment: 'What was the question?',
             }, {
-                question: 1,
-                value: 'Sausage',
+                questionId: 1,
+                value: 0,
                 review: true,
             }],
         }, {
@@ -114,6 +114,49 @@ export const initialState = {
         instructions: 'Don\'t order with pineapple.',
         status: 'Published',
         description: 'If you don\'t like pizza, what are you doing here.',
+        questions: [{
+            id: 0,
+            question: 'Have you ever had pizza?',
+            type: 'Checkbox'
+        },{
+            id: 1,
+            question: 'Which topping on a supreme do you like the least?',
+            type: 'MultipleChoice', // TODO: Consider giving key value against an enum.
+            answers: [
+                'Sausage',
+                'Pepperoni',
+                'Onions',
+                'Green Peppers',
+                'Olives']
+        },{
+            id: 2,
+            question: 'How many toppings do you normally get?',
+            type: 'Number'
+        },{
+            id: 3,
+            question: 'Tell us your favorite pizza experience.',
+            type: 'LongText'
+        },{
+            id: 4,
+            question: 'Which toppings do you like? (Click all that apply.)',
+            type: 'Checkbox',
+            answers: [
+                'Sausage',
+                'Pepperoni',
+                'Onions',
+                'Green Peppers',
+                'Olives']
+        },{
+            id: 5,
+            question: 'Which toppings do you like the most?',
+            type: 'Dropdown',
+            answers: [
+                'Sausage',
+                'Pepperoni',
+                'Onions',
+                'Green Peppers',
+                'Olives']
+        }] // Still need to add Bulletpoint and scale
     },
 };
 
