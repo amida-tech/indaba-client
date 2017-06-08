@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
-import { Box, TextInput, Button, List, SearchInput } from 'grommet';
+import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
 
 class UsersTab extends Component {
     constructor(props) {
@@ -61,11 +61,16 @@ class UsersTab extends Component {
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         onDOMChange={this.handleSearchInput}
                         value={this.state.query}
-                        suggestions={this.props.users.filter(this.searchFilter)
+                        suggestions={this.props.allUsers.filter(this.searchFilter)
                             .map(user => ({ label: user.name, value: user }))}
                         onSelect={this.handleSearchSelect}/>
                 </Box>
                 <List>
+                    {this.props.projectUsers.map(userId =>
+                        <ListItem key={userId}>
+                            {this.props.allUsers.find(user => user.id === userId).name}
+                        </ListItem>,
+                    )}
                 </List>
             </div>
         );

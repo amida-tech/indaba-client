@@ -33,7 +33,8 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
-                            users={this.props.users}
+                            allUsers={this.props.allUsers}
+                            projectUsers={this.props.projectUsers}
                             onAddUserToProject={this.props.onAddUserToProject}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
@@ -48,7 +49,8 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     project: state.projectwizard.project,
     survey: state.projectwizard.survey,
-    users: state.user.users,
+    allUsers: state.user.users,
+    projectUsers: state.projectwizard.users,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToProject(user)),
