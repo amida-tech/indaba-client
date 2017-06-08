@@ -29,7 +29,7 @@ class UsersTab extends Component {
         this.setState(update(this.state, { lastName: { $set: evt.target.value } }));
     }
     handleEmailInput(evt) {
-        this.setState(update(this.state, { lastName: { $set: evt.target.value } }));
+        this.setState(update(this.state, { email: { $set: evt.target.value } }));
     }
     handleSearchInput(evt) {
         this.setState(update(this.state, { query: { $set: evt.target.value } }));
