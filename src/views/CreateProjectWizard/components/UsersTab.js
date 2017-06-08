@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
+import IonIcon from 'react-ionicons';
 
 class UsersTab extends Component {
     constructor(props) {
@@ -46,10 +47,14 @@ class UsersTab extends Component {
         return (
             <ListItem key={userId}
                 direction='row'
-                pad={{ between: 'small', horizontal: 'large', vertical: 'small' }}
+                pad={{ horizontal: 'large', vertical: 'small' }}
+                justify='between'
                 className='user-list-entry'>
-                <div className='user-list-entry--badge'>{initials}</div>
-                <div>{user.name}</div>
+                <Box direction='row' align='center' pad={{ between: 'small' }}>
+                    <div className='user-list-entry--badge'>{initials}</div>
+                    <div>{user.name}</div>
+                </Box>
+                <IonIcon icon='ion-android-delete' color='#7E848F'/>
             </ListItem>
         );
     }

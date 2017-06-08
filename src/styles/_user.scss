@@ -1,8 +1,8 @@
 .user-list-entry {
     .user-list-entry--badge {
-        background-color: gray;
+        background-color: $header-font-color;
         border-radius: 50%;
         color: white;
-        border: 5px solid gray;
+        border: 5px solid $header-font-color;
     }
 }
