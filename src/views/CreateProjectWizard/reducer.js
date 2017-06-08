@@ -23,6 +23,9 @@ export default (state = initialState, action) => {
             { $splice: [[state.subjects.indexOf(action.subject), 1]] } });
     case t.ADD_USER_TO_PROJECT:
         return update(state, { users: { $push: [action.user.id] } });
+    case t.REMOVE_USER_FROM_PROJECT:
+        return update(state, { users:
+            { $splice: [[state.users.indexOf(action.userId), 1]] } });
     default:
         return state;
     }

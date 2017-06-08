@@ -27,3 +27,10 @@ export function addUserToProject(user) {
         user,
     };
 }
+
+export function removeUserFromProject(userId) {
+    return {
+        type: actionTypes.REMOVE_USER_FROM_PROJECT,
+        userId,
+    };
+}

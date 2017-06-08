@@ -18,6 +18,7 @@ class UsersTab extends Component {
         this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
+        this.handleUserRemove = this.handleUserRemove.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
         this.renderUserEntry = this.renderUserEntry.bind(this);
     }
@@ -37,6 +38,9 @@ class UsersTab extends Component {
         this.setState(update(this.state, { query: { $set: '' } }));
         this.props.onAddUserToProject(selection.suggestion.value);
     }
+    handleUserRemove(userId) {
+        this.props.onRemoveUserFromProject(userId);
+    }
     searchFilter(user) {
         return !this.state.query ||
             user.name.toLowerCase().includes(this.state.query.toLowerCase());
@@ -54,7 +58,9 @@ class UsersTab extends Component {
                     <div className='user-list-entry--badge'>{initials}</div>
                     <div>{user.name}</div>
                 </Box>
-                <IonIcon icon='ion-android-delete' color='#7E848F'/>
+                <div onClick={() => this.handleUserRemove(userId)}>
+                    <IonIcon icon='ion-android-delete' color='#7E848F'/>
+                </div>
             </ListItem>
         );
     }
