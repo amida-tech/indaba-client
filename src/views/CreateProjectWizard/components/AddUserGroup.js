@@ -44,17 +44,10 @@ class AddUserGroup extends Component {
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
-        this.handleGroupQuery = this.handleGroupQuery.bind(this);
         this.createUserListItem = this.createUserListItem.bind(this);
     }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
-    }
-    handleUsersQuery(evt) {
-        this.setState(update(this.state, { usersQuery: { $set: evt.target.value } }));
-    }
-    handleGroupQuery(evt) {
-        this.setState(update(this.state, { groupQuery: { $set: evt.target.value } }));
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
