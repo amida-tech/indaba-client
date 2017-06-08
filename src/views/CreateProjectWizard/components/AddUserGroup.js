@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, Box } from 'grommet';
+import { TextInput, Box, List, ListItem } from 'grommet';
 import update from 'immutability-helper';
 import Modal from '../../../common/Modal';
 
@@ -41,6 +41,12 @@ class AddUserGroup extends Component {
                             <TextInput
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 onDOMChange={this.handleUsersQuery}/>
+                            <List>
+                                {this.props.users.map(user =>
+                                <ListItem key={user.id}>
+                                    {user.name}
+                                </ListItem>)}
+                            </List>
                         </Box>
                         <Box justify='center'
                             pad='small'>
