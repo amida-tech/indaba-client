@@ -94,7 +94,9 @@ class AddUserGroup extends Component {
                             {this.props.vocab.COMMON.ALL_USERS}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                items={this.props.users.map(this.createUserListItem)}
+                                items={this.props.users
+                                    .filter(userId => !this.state.groupUserIds.includes(userId))
+                                    .map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect} />
                         </Box>
                         <Box justify='center'
