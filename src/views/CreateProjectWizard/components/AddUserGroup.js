@@ -15,6 +15,7 @@ class AddUserGroup extends Component {
         this.handleGroupName = this.handleGroupName.bind(this);
         this.handleUsersQuery = this.handleUsersQuery.bind(this);
         this.handleGroupQuery = this.handleGroupQuery.bind(this);
+        this.renderUserEntry = this.renderUserEntry.bind(this);
     }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
@@ -24,6 +25,12 @@ class AddUserGroup extends Component {
     }
     handleGroupQuery(evt) {
         this.setState(update(this.state, { groupQuery: { $set: evt.target.value } }));
+    }
+    renderUserEntry(userId) {
+        const user = this.props.allUsers.find(u => u.id === userId);
+        return (
+            <ListItem key={user.id}>{user.name}</ListItem>
+        );
     }
     render() {
         return (
@@ -41,11 +48,8 @@ class AddUserGroup extends Component {
                             <TextInput
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 onDOMChange={this.handleUsersQuery}/>
-                            <List>
-                                {this.props.users.map(user =>
-                                <ListItem key={user.id}>
-                                    {user.name}
-                                </ListItem>)}
+                            <List selectable='multiple'>
+                                {this.props.users.map(userId => this.renderUserEntry(userId))}
                             </List>
                         </Box>
                         <Box justify='center'
