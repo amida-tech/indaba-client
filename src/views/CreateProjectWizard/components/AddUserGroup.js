@@ -41,13 +41,19 @@ class AddUserGroup extends Component {
         super(props);
         this.state = {
             groupName: '',
+            groupUserIds: [],
+            allUsersSelected: [],
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
+        this.handleAllUsersSelect = this.handleAllUsersSelect.bind(this);
         this.createUserListItem = this.createUserListItem.bind(this);
     }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
+    }
+    handleAllUsersSelect(selection) {
+        this.setState(update(this.state, { allUsersSelected: { $set: selection } }));
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
@@ -72,7 +78,8 @@ class AddUserGroup extends Component {
                             {this.props.vocab.COMMON.ALL_USERS}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                items={this.props.users.map(this.createUserListItem)} />
+                                items={this.props.users.map(this.createUserListItem)}
+                                onSelect={this.handleAllUsersSelect} />
                         </Box>
                         <Box justify='center'
                             pad='small'>
