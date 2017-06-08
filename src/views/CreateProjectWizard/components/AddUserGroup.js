@@ -3,19 +3,50 @@ import { TextInput, Box, List, ListItem } from 'grommet';
 import update from 'immutability-helper';
 import Modal from '../../../common/Modal';
 
+class FilteredList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: '',
+        };
+        this.handleQuery = this.handleQuery.bind(this);
+    }
+    filter(item) {
+        return item.searchKey.toLowerCase().includes(this.state.query.toLowerCase());
+    }
+    handleQuery(evt) {
+        this.setState(update(this.state, { query: { $set: evt.target.value } }));
+    }
+    render() {
+        return (<Box pad={{ between: 'small' }}>
+            <TextInput
+                placeHolder={this.props.placeHolder}
+                onDOMChange={this.handleQuery}/>
+            <List selectable='multiple'
+                onSelect={this.props.onSelect}>
+                {this.props.items.map(item => (
+                    <ListItem
+                        key={item.searchKey}
+                        style={{ display: this.filter(item) ? undefined : 'none' }}>
+                        {item.label}
+                    </ListItem>
+                ))}
+            </List>
+        </Box>);
+    }
+}
+
 class AddUserGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
             groupName: '',
-            usersQuery: '',
             groupQuery: '',
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
-        this.handleUsersQuery = this.handleUsersQuery.bind(this);
         this.handleGroupQuery = this.handleGroupQuery.bind(this);
-        this.renderUserEntry = this.renderUserEntry.bind(this);
+        this.createUserListItem = this.createUserListItem.bind(this);
     }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
@@ -26,14 +57,13 @@ class AddUserGroup extends Component {
     handleGroupQuery(evt) {
         this.setState(update(this.state, { groupQuery: { $set: evt.target.value } }));
     }
-    filterUser(user) {
-        return user.name.toLowerCase().includes(this.state.usersQuery.toLowerCase());
-    }
-    renderUserEntry(userId) {
+    createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
-        return (
-            <ListItem key={user.id} style={{ display: this.filterUser(user) ? undefined : 'none' }}>{user.name}</ListItem>
-        );
+        return {
+            searchKey: user.name,
+            value: user,
+            label: user.name,
+        };
     }
     render() {
         return (
@@ -48,12 +78,9 @@ class AddUserGroup extends Component {
                         <Box separator='all'
                             pad='small'>
                             {this.props.vocab.COMMON.ALL_USERS}
-                            <TextInput
+                            <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                onDOMChange={this.handleUsersQuery}/>
-                            <List selectable='multiple'>
-                                {this.props.users.map(userId => this.renderUserEntry(userId))}
-                            </List>
+                                items={this.props.users.map(this.createUserListItem)} />
                         </Box>
                         <Box justify='center'
                             pad='small'>
