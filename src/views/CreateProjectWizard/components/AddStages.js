@@ -16,8 +16,20 @@ class AddStages extends Component {
                 <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </Box>
             <hr className='divider' />
-            <p>{this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}</p>
+            <p className='wizard-clarification'>
+                {this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}
+            </p>
             <hr className='divider' />
+            <Box direction='row'>
+                <div className='add-stage-placeholder'>
+                    <div className='workflow-stage-title'>
+                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                    </div>
+                    <div className='workflow-stage-summary'>
+                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
+                    </div>
+                </div>
+            </Box>
         </div>);
     }
 }
