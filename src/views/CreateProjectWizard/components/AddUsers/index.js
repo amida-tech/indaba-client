@@ -67,7 +67,8 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            userGroups={this.props.userGroups} />
+                            userGroups={this.props.userGroups}
+                            allUsers={this.props.allUsers}/>
                     </Tab>
                 </Tabs>
             </div>);
