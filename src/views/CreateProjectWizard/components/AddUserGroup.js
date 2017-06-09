@@ -26,7 +26,7 @@ class FilteredList extends Component {
                 onSelect={this.props.onSelect}>
                 {this.props.items.map(item => (
                     <ListItem
-                        key={item.searchKey}
+                        key={item.key}
                         style={{ display: this.filter(item) ? undefined : 'none' }}>
                         {item.label}
                     </ListItem>
@@ -109,6 +109,7 @@ class AddUserGroup extends Component {
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
         return {
+            key: user.id,
             searchKey: user.name,
             value: user,
             label: user.name,
