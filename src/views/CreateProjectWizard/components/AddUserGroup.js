@@ -61,9 +61,11 @@ class AddUserGroup extends Component {
             { $set: selection.length ? selection : [selection] } }));
     }
     handleAdd() {
+        const nonGroupIds = this.props.users
+            .filter(userId => !this.state.groupUserIds.includes(userId));
         this.setState(update(this.state, { groupUserIds: {
             $push: this.state.projectUsersSelected.map(
-                userIndex => this.props.users[userIndex]) } }));
+                userIndex => nonGroupIds[userIndex]) } }));
     }
     handleAddAll() {
         this.setState(update(this.state, { groupUserIds: {
