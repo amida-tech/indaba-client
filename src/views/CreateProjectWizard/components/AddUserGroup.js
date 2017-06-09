@@ -43,10 +43,12 @@ class AddUserGroup extends Component {
             groupName: '',
             groupUserIds: [],
             projectUsersSelected: [],
+            groupUsersSelected: [],
         };
 
         this.handleGroupName = this.handleGroupName.bind(this);
         this.handleProjectUsersSelect = this.handleProjectUsersSelect.bind(this);
+        this.handleGroupUsersSelect = this.handleGroupUsersSelect.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleAddAll = this.handleAddAll.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
@@ -60,11 +62,15 @@ class AddUserGroup extends Component {
         this.setState(update(this.state, { projectUsersSelected:
             { $set: selection.length ? selection : [selection] } }));
     }
+    handleGroupUsersSelect(selection) {
+        this.setState(update(this.state, { groupUsersSelected:
+            { $set: selection.length ? selection : [selection] } }));
+    }
     handleAdd() {
         const nonGroupIds = this.props.users
             .filter(userId => !this.state.groupUserIds.includes(userId));
-        this.setState(update(this.state, { groupUserIds: {
-            $push: this.state.projectUsersSelected.map(
+        this.setState(update(this.state, {
+            groupUserIds: { $push: this.state.projectUsersSelected.map(
                 userIndex => nonGroupIds[userIndex]) } }));
     }
     handleAddAll() {
@@ -72,8 +78,14 @@ class AddUserGroup extends Component {
             $set: [...this.props.users] } }));
     }
     handleRemove() {
+        const selectedIds = this.state.groupUsersSelected
+            .map(index => this.state.groupUserIds[index]);
+        this.setState(update(this.state, { groupUserIds: {
+            $set: this.state.groupUserIds.filter(userId => !selectedIds.includes(userId)),
+        } }));
     }
     handleRemoveAll() {
+        this.setState(update(this.state, { groupUserIds: { $set: [] } }));
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
@@ -101,7 +113,7 @@ class AddUserGroup extends Component {
                                 items={this.props.users
                                     .filter(userId => !this.state.groupUserIds.includes(userId))
                                     .map(this.createUserListItem)}
-                                onSelect={this.handleProjectUsersSelect} />
+                                onSelect={this.handleProjectUsersSelect}/>
                         </Box>
                         <Box justify='center'
                             pad='small'>
@@ -119,7 +131,8 @@ class AddUserGroup extends Component {
                             {this.props.vocab.STAGE.USER_GROUP}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                items={this.state.groupUserIds.map(this.createUserListItem)} />
+                                items={this.state.groupUserIds.map(this.createUserListItem)}
+                                onSelect={this.handleGroupUsersSelect}/>
                         </Box>
                     </Box>
                 </Box>
