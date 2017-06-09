@@ -18,11 +18,12 @@ class UserGroupsTab extends Component {
                     <div className='user-group-list__name'>
                         {group.name}
                     </div>
-                    <div className='user-group-list__badge-string'>
+                    <Box direction='row'
+                        className='user-group-list__badge-string'>
                         {group.users.map(userId =>
                             <UserBadge key={userId} user={this.lookupUser(userId)}/>,
                         )}
-                    </div>
+                    </Box>
                     <div className='user-group-list__delete'>
                         <IonIcon icon='ion-android-delete' />
                     </div>
