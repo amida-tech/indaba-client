@@ -23,7 +23,8 @@ class UserGroupsTab extends Component {
                             <UserBadge key={userId} user={this.lookupUser(userId)}/>,
                         )}
                     </div>
-                    <div className='user-group-list__delete'>
+                    <div className='user-group-list__delete'
+                        onClick={() => this.props.onRemoveUserGroup(group.id)}>
                         <IonIcon icon='ion-android-delete' />
                     </div>
                 </Box>)}

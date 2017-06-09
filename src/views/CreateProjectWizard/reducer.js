@@ -33,6 +33,12 @@ export default (state = initialState, action) => {
                 $push: [update(action.group, { id: { $set: state.userGroups.length } })],
             },
         });
+    case t.REMOVE_USER_GROUP:
+        return update(state, {
+            userGroups: {
+                $set: state.userGroups.filter(group => group.id !== action.id),
+            },
+        });
     default:
         return state;
     }

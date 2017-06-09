@@ -6,7 +6,12 @@ import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
 import AddUserGroup from './AddUserGroup';
-import { addUserToProject, removeUserFromProject, addUserGroup } from '../../actions';
+import {
+    addUserToProject,
+    removeUserFromProject,
+    addUserGroup,
+    removeUserGroup,
+} from '../../actions';
 
 class AddUsers extends Component {
     constructor(props) {
@@ -72,7 +77,8 @@ class AddUsers extends Component {
                         <UserGroupsTab
                             vocab={this.props.vocab}
                             userGroups={this.props.userGroups}
-                            allUsers={this.props.allUsers}/>
+                            allUsers={this.props.allUsers}
+                            onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
                 </Tabs>
             </div>);
@@ -91,6 +97,7 @@ const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToProject(user)),
     onRemoveUserFromProject: userId => dispatch(removeUserFromProject(userId)),
     onAddUserGroup: group => dispatch(addUserGroup(group)),
+    onRemoveUserGroup: id => dispatch(removeUserGroup(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);

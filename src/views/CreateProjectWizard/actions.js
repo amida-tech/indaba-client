@@ -41,3 +41,10 @@ export function addUserGroup(group) {
         group,
     };
 }
+
+export function removeUserGroup(id) {
+    return {
+        type: actionTypes.REMOVE_USER_GROUP,
+        id,
+    };
+}
