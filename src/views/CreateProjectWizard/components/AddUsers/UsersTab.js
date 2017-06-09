@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
 import IonIcon from 'react-ionicons';
+import UserBadge from './UserBadge';
 
 class UsersTab extends Component {
     constructor(props) {
@@ -47,7 +48,6 @@ class UsersTab extends Component {
     }
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
-        const initials = user.name.split(' ').map(component => component.slice(0, 1)).join('');
         return (
             <ListItem key={userId}
                 direction='row'
@@ -55,7 +55,7 @@ class UsersTab extends Component {
                 justify='between'
                 className='user-list-entry'>
                 <Box direction='row' align='center' pad={{ between: 'small' }}>
-                    <div className='user-list-entry--badge'>{initials}</div>
+                    <UserBadge user={user}/>
                     <div>{user.name}</div>
                 </Box>
                 <div onClick={() => this.handleUserRemove(userId)}>
