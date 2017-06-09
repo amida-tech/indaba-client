@@ -55,6 +55,9 @@ class AddUserGroup extends Component {
         this.handleRemoveAll = this.handleRemoveAll.bind(this);
         this.createUserListItem = this.createUserListItem.bind(this);
     }
+    nonGroupIds() {
+        return this.props.users.filter(userId => !this.state.groupUserIds.includes(userId));
+    }
     handleGroupName(evt) {
         this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
     }
@@ -67,8 +70,7 @@ class AddUserGroup extends Component {
             { $set: selection.length ? selection : [selection] } }));
     }
     handleAdd() {
-        const nonGroupIds = this.props.users
-            .filter(userId => !this.state.groupUserIds.includes(userId));
+        const nonGroupIds = this.nonGroupIds();
         this.setState(update(this.state, {
             groupUserIds: {
                 $push: this.state.projectUsersSelected.map(
@@ -113,6 +115,7 @@ class AddUserGroup extends Component {
         };
     }
     render() {
+        const nonGroupIds = this.nonGroupIds();
         return (
             <Modal
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
@@ -127,9 +130,7 @@ class AddUserGroup extends Component {
                             {this.props.vocab.COMMON.ALL_USERS}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
-                                items={this.props.users
-                                    .filter(userId => !this.state.groupUserIds.includes(userId))
-                                    .map(this.createUserListItem)}
+                                items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}/>
                         </Box>
                         <Box justify='center'
