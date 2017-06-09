@@ -16,6 +16,8 @@ class AddStages extends Component {
                 <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </Box>
             <hr className='divider' />
+            <p>{this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}</p>
+            <hr className='divider' />
         </div>);
     }
 }

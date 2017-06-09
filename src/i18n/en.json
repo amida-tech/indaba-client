@@ -104,7 +104,8 @@
     "NEW_USER_EMAIL": "New User Email",
     "SEARCH_FOR_A_USER": "Search for a user",
     "SEARCH_FOR_USER_GROUPS": "Search for user groups",
-    "IMPORT_STAGE": "Import Stage"
+    "IMPORT_STAGE": "Import Stage",
+    "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
