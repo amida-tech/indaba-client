@@ -1,10 +1,10 @@
-.user-list-entry__badge {
+.user-badge {
     background-color: $header-font-color;
     border-radius: 50%;
     color: white;
     border: 5px solid $header-font-color;
 }
 
-.user-group-list__badge-string>.user-list-entry__badge {
+.user-group-list__badge-string>.user-badge {
     margin-left: 4px;
 }

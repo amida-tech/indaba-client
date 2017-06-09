@@ -4,7 +4,7 @@ class UserBadge extends Component {
     render() {
         const initials = this.props.user.name.split(' ')
             .map(n => n.slice(0, 1)).join('');
-        return (<div className='user-list-entry__badge'>{initials}</div>);
+        return (<div className='user-badge'>{initials}</div>);
     }
 }
 
