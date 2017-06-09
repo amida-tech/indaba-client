@@ -78,8 +78,12 @@ class AddUserGroup extends Component {
         }));
     }
     handleAddAll() {
-        this.setState(update(this.state, { groupUserIds: {
-            $set: [...this.props.users] } }));
+        this.setState(update(this.state, {
+            groupUserIds: {
+                $set: [...this.props.users] },
+            projectUsersSelected: {
+                $set: [] },
+        }));
     }
     handleRemove() {
         const selectedIds = this.state.groupUsersSelected
@@ -93,7 +97,12 @@ class AddUserGroup extends Component {
         }));
     }
     handleRemoveAll() {
-        this.setState(update(this.state, { groupUserIds: { $set: [] } }));
+        this.setState(update(this.state, {
+            groupUserIds: {
+                $set: [] },
+            groupUsersSelected: {
+                $set: [] },
+        }));
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);
