@@ -82,7 +82,7 @@ class AddUserGroup extends Component {
     handleAddAll() {
         this.setState(update(this.state, {
             groupUserIds: {
-                $set: [...this.props.users] },
+                $push: [...this.nonGroupIds()] },
             projectUsersSelected: {
                 $set: [] },
         }));
