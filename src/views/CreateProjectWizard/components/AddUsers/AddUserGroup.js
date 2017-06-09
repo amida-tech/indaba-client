@@ -91,10 +91,11 @@ class AddUserGroup extends Component {
         return (
             <Modal
                 onCancel={this.props.onCancel}
-                onSave={() => this.props.onSave({
-                    name: this.state.groupName,
-                    users: this.state.groupUserIds,
-                })}
+                onSave={(this.state.groupName !== '') &&
+                    (() => this.props.onSave({
+                        name: this.state.groupName,
+                        users: this.state.groupUserIds,
+                    }))}
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
                 <Box pad={{ between: 'small', horizontal: 'small', vertical: 'small' }}>
                     {this.props.vocab.STAGE.GROUP_NAME}
