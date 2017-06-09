@@ -27,6 +27,12 @@ export default (state = initialState, action) => {
     case t.REMOVE_USER_FROM_PROJECT:
         return update(state, { users:
             { $splice: [[state.users.indexOf(action.userId), 1]] } });
+    case t.ADD_USER_GROUP:
+        return update(state, {
+            userGroups: {
+                $push: [update(action.group, { id: { $set: state.userGroups.length } })],
+            },
+        });
     default:
         return state;
     }

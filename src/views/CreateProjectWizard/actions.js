@@ -34,3 +34,10 @@ export function removeUserFromProject(userId) {
         userId,
     };
 }
+
+export function addUserGroup(group) {
+    return {
+        type: actionTypes.ADD_USER_GROUP,
+        group,
+    };
+}

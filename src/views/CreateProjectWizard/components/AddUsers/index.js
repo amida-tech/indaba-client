@@ -6,7 +6,7 @@ import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
 import AddUserGroup from './AddUserGroup';
-import { addUserToProject, removeUserFromProject } from '../../actions';
+import { addUserToProject, removeUserFromProject, addUserGroup } from '../../actions';
 
 class AddUsers extends Component {
     constructor(props) {
@@ -36,7 +36,11 @@ class AddUsers extends Component {
                         vocab={this.props.vocab}
                         users={this.props.projectUsers}
                         allUsers={this.props.allUsers}
-                        onCancel={() => this.handleCreateModal(false)}/>}
+                        onCancel={() => this.handleCreateModal(false)}
+                        onSave={(group) => {
+                            this.props.onAddUserGroup(group);
+                            this.handleCreateModal(false);
+                        }}/>}
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
@@ -86,6 +90,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToProject(user)),
     onRemoveUserFromProject: userId => dispatch(removeUserFromProject(userId)),
+    onAddUserGroup: group => dispatch(addUserGroup(group)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
