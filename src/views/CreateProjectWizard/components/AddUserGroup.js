@@ -70,8 +70,12 @@ class AddUserGroup extends Component {
         const nonGroupIds = this.props.users
             .filter(userId => !this.state.groupUserIds.includes(userId));
         this.setState(update(this.state, {
-            groupUserIds: { $push: this.state.projectUsersSelected.map(
-                userIndex => nonGroupIds[userIndex]) } }));
+            groupUserIds: {
+                $push: this.state.projectUsersSelected.map(
+                    userIndex => nonGroupIds[userIndex]) },
+            projectUsersSelected: {
+                $set: [] },
+        }));
     }
     handleAddAll() {
         this.setState(update(this.state, { groupUserIds: {
@@ -80,9 +84,13 @@ class AddUserGroup extends Component {
     handleRemove() {
         const selectedIds = this.state.groupUsersSelected
             .map(index => this.state.groupUserIds[index]);
-        this.setState(update(this.state, { groupUserIds: {
-            $set: this.state.groupUserIds.filter(userId => !selectedIds.includes(userId)),
-        } }));
+        this.setState(update(this.state, {
+            groupUserIds: {
+                $set: this.state.groupUserIds
+                    .filter(userId => !selectedIds.includes(userId)) },
+            groupUsersSelected: {
+                $set: [] },
+        }));
     }
     handleRemoveAll() {
         this.setState(update(this.state, { groupUserIds: { $set: [] } }));
