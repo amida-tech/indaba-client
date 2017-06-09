@@ -13,6 +13,14 @@ class UserGroupsTab extends Component {
 }
 
 class AddUsers extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { tab: 0 };
+        this.handleTabChange = this.handleTabChange.bind(this);
+    }
+    handleTabChange(tab) {
+        this.setState({ tab });
+    }
     render() {
         return (
             <div>
@@ -23,14 +31,18 @@ class AddUsers extends Component {
                     vocab={this.props.vocab} />
                 <hr className='divider' />
                 <Box direction='row' justify='end'
-                    pad={{ vertical: 'small', horizontal: 'medium' }}>
+                    pad={{ vertical: 'small', horizontal: 'medium', between: 'small' }}>
+                    {this.state.tab === 1 &&
+                        <Button
+                            label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
+                            primary/>}
                     <Button label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </Box>
                 <hr className='divider' />
                 {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
                     <p key={sentence}>{sentence}</p>,
                 )}
-                <Tabs>
+                <Tabs onActive={this.handleTabChange}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
