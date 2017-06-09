@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
-import update from 'immutability-helper';
 import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
@@ -24,14 +23,10 @@ class AddUsers extends Component {
         this.handleCreateModal = this.handleCreateModal.bind(this);
     }
     handleTabChange(tab) {
-        this.setState(update(this.state,
-            { tab: { $set: tab } },
-        ));
+        this.setState({ tab });
     }
     handleCreateModal(show) {
-        this.setState(update(this.state,
-            { createModal: { $set: show } },
-        ));
+        this.setState({ createModal: show });
     }
     render() {
         return (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TextInput, Box } from 'grommet';
-import update from 'immutability-helper';
 import Modal from '../../../../common/Modal';
 import FilteredList from './FilteredList';
 
@@ -27,55 +26,51 @@ class AddUserGroup extends Component {
         return this.props.users.filter(userId => !this.state.groupUserIds.includes(userId));
     }
     handleGroupName(evt) {
-        this.setState(update(this.state, { groupName: { $set: evt.target.value } }));
+        this.setState({ groupName: evt.target.value });
     }
     handleProjectUsersSelect(selection) {
-        this.setState(update(this.state, { projectUsersSelected:
-            { $set: selection.length ? selection : [selection] } }));
+        this.setState({ projectUsersSelected: selection.length ? selection : [selection] });
     }
     handleGroupUsersSelect(selection) {
-        this.setState(update(this.state, { groupUsersSelected:
-            { $set: selection.length ? selection : [selection] } }));
+        this.setState({ groupUsersSelected: selection.length ? selection : [selection] });
     }
     handleAdd() {
         const nonGroupIds = this.nonGroupIds();
-        this.setState(update(this.state, {
-            groupUserIds: {
-                $push: this.state.projectUsersSelected.map(
-                    userIndex => nonGroupIds[userIndex]) },
-            projectUsersSelected: {
-                $set: [] },
-        }));
+        const newGroupUserIds = [...this.state.groupUserIds];
+        newGroupUserIds.push(this.state.projectUsersSelected.map(
+            userIndex => nonGroupIds[userIndex],
+        ));
+        this.setState({
+            groupUserIds: [
+                ...this.state.groupUserIds,
+                ...this.state.projectUsersSelected.map(userIndex => nonGroupIds[userIndex]),
+            ],
+            projectUsersSelected: [] },
+        );
     }
     handleAddAll() {
-        this.setState(update(this.state, {
-            groupUserIds: {
-                $push: [...this.nonGroupIds()] },
-            projectUsersSelected: {
-                $set: [] },
-        }));
+        this.setState({
+            groupUserIds:
+                [...this.state.groupUserIds, ...this.nonGroupIds()],
+            projectUsersSelected: [],
+        });
     }
     handleRemove() {
         const selectedIds = this.state.groupUsersSelected
             .map(index => this.state.groupUserIds[index]);
-        this.setState(update(this.state, {
-            groupUserIds: {
-                $set: this.state.groupUserIds
-                    .filter(userId => !selectedIds.includes(userId)) },
-            groupUsersSelected: {
-                $set: [] },
-        }));
+        this.setState({
+            groupUserIds: this.state.groupUserIds
+                    .filter(userId => !selectedIds.includes(userId)),
+            groupUsersSelected: [],
+            projectUsersSelected: [],
+        });
     }
     handleRemoveAll() {
-        this.setState(update(this.state, {
-            groupUserIds: {
-                $set: [] },
-            groupUsersSelected: {
-                $set: [] },
-            projectUsersSelected: {
-                $set: [],
-            },
-        }));
+        this.setState({
+            groupUserIds: [],
+            groupUsersSelected: [],
+            projectUsersSelected: [],
+        });
     }
     createUserListItem(userId) {
         const user = this.props.allUsers.find(u => u.id === userId);

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import update from 'immutability-helper';
 import { Box, TextInput, List, ListItem } from 'grommet';
 
 class FilteredList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-        };
+        this.state = { query: '' };
         this.handleQuery = this.handleQuery.bind(this);
     }
     filter(item) {
         return item.searchKey.toLowerCase().includes(this.state.query.toLowerCase());
     }
     handleQuery(evt) {
-        this.setState(update(this.state, { query: { $set: evt.target.value } }));
+        this.setState({ query: evt.target.value });
     }
     render() {
         // list selection breaks if selected is passed in as undefined inline

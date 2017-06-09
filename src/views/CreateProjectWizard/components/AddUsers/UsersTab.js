@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import update from 'immutability-helper';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import UserBadge from './UserBadge';
@@ -24,19 +23,19 @@ class UsersTab extends Component {
         this.renderUserEntry = this.renderUserEntry.bind(this);
     }
     handleFirstNameInput(evt) {
-        this.setState(update(this.state, { firstName: { $set: evt.target.value } }));
+        this.setState({ firstName: evt.target.value });
     }
     handleLastNameInput(evt) {
-        this.setState(update(this.state, { lastName: { $set: evt.target.value } }));
+        this.setState({ lastName: evt.target.value });
     }
     handleEmailInput(evt) {
-        this.setState(update(this.state, { email: { $set: evt.target.value } }));
+        this.setState({ email: evt.target.value });
     }
     handleSearchInput(evt) {
-        this.setState(update(this.state, { query: { $set: evt.target.value } }));
+        this.setState({ query: evt.target.value });
     }
     handleSearchSelect(selection) {
-        this.setState(update(this.state, { query: { $set: '' } }));
+        this.setState({ query: '' });
         this.props.onAddUserToProject(selection.suggestion.value);
     }
     handleUserRemove(userId) {
