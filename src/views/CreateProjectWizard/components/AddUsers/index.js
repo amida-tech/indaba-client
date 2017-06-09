@@ -65,7 +65,9 @@ class AddUsers extends Component {
                             onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <UserGroupsTab vocab={this.props.vocab} />
+                        <UserGroupsTab
+                            vocab={this.props.vocab}
+                            userGroups={this.props.userGroups} />
                     </Tab>
                 </Tabs>
             </div>);
@@ -78,6 +80,7 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
+    userGroups: state.projectwizard.userGroups,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToProject(user)),

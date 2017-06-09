@@ -8,7 +8,8 @@ const initialState = {
     survey: {
         status: 'Draft',
     },
-    users: [],
+    users: [0, 1],
+    userGroups: [],
 };
 
 export default (state = initialState, action) => {
