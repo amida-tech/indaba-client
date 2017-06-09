@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
-import Summary from '../../../common/components/Summary';
+import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import AddUserGroup from './AddUserGroup';
-import { addUserToProject, removeUserFromProject } from '../actions';
+import { addUserToProject, removeUserFromProject } from '../../actions';
 
 class UserGroupsTab extends Component {
     render() {
@@ -16,6 +16,7 @@ class AddUsers extends Component {
     render() {
         return (
             <div>
+                {true && <AddUserGroup vocab={this.props.vocab} users={this.props.projectUsers} allUsers={this.props.allUsers}/>}
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
