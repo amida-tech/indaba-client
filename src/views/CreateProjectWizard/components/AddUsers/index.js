@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
+import update from 'immutability-helper';
 import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
 import AddUserGroup from './AddUserGroup';
@@ -15,16 +16,31 @@ class UserGroupsTab extends Component {
 class AddUsers extends Component {
     constructor(props) {
         super(props);
-        this.state = { tab: 0 };
+        this.state = {
+            tab: 0,
+            createModal: false,
+        };
         this.handleTabChange = this.handleTabChange.bind(this);
+        this.handleCreateModal = this.handleCreateModal.bind(this);
     }
     handleTabChange(tab) {
-        this.setState({ tab });
+        this.setState(update(this.state,
+            { tab: { $set: tab } },
+        ));
+    }
+    handleCreateModal(show) {
+        this.setState(update(this.state,
+            { createModal: { $set: show } },
+        ));
     }
     render() {
         return (
             <div>
-                {true && <AddUserGroup vocab={this.props.vocab} users={this.props.projectUsers} allUsers={this.props.allUsers}/>}
+                {this.state.createModal &&
+                    <AddUserGroup
+                        vocab={this.props.vocab}
+                        users={this.props.projectUsers}
+                        allUsers={this.props.allUsers}/>}
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
@@ -35,7 +51,8 @@ class AddUsers extends Component {
                     {this.state.tab === 1 &&
                         <Button
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
-                            primary/>}
+                            primary
+                            onClick={() => this.handleCreateModal(true)}/>}
                     <Button label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </Box>
                 <hr className='divider' />
