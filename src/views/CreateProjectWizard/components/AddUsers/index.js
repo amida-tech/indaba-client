@@ -4,14 +4,9 @@ import { Box, Button, Tabs, Tab } from 'grommet';
 import update from 'immutability-helper';
 import Summary from '../../../../common/components/Summary';
 import UsersTab from './UsersTab';
+import UserGroupsTab from './UserGroupsTab';
 import AddUserGroup from './AddUserGroup';
 import { addUserToProject, removeUserFromProject } from '../../actions';
-
-class UserGroupsTab extends Component {
-    render() {
-        return (<div></div>);
-    }
-}
 
 class AddUsers extends Component {
     constructor(props) {
