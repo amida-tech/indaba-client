@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 
 class AddStages extends Component {
@@ -10,6 +11,11 @@ class AddStages extends Component {
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
+            <Box direction='row' justify='end'
+                pad={{ vertical: 'small', horizontal: 'medium' }}>
+                <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
+            </Box>
+            <hr className='divider' />
         </div>);
     }
 }

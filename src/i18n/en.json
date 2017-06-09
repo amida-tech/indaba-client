@@ -103,7 +103,8 @@
     "NEW_USER_LAST_NAME": "New User Last Name",
     "NEW_USER_EMAIL": "New User Email",
     "SEARCH_FOR_A_USER": "Search for a user",
-    "SEARCH_FOR_USER_GROUPS": "Search for user groups"
+    "SEARCH_FOR_USER_GROUPS": "Search for user groups",
+    "IMPORT_STAGE": "Import Stage"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
