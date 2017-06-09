@@ -8,6 +8,7 @@ import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
+import AddStages from './AddStages';
 import WizardFooter from './WizardFooter';
 
 const NUM_WIZARD_STEPS = 4;
@@ -50,7 +51,7 @@ class CreateProjectWizard extends Component {
                     </Tab>
                     <Tab title='Add Subjects'><AddSubjects /></Tab>
                     <Tab title='Add Users'><AddUsers /></Tab>
-                    <Tab title='Add Stages'>Add stages!</Tab>
+                    <Tab title='Add Stages'><AddStages /></Tab>
                 </Tabs>
                 <WizardFooter
                     onBack={this.state.step !== 0 ? this.handleBack : undefined}
