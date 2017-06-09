@@ -40,7 +40,8 @@ class AddUsers extends Component {
                     <AddUserGroup
                         vocab={this.props.vocab}
                         users={this.props.projectUsers}
-                        allUsers={this.props.allUsers}/>}
+                        allUsers={this.props.allUsers}
+                        onCancel={() => this.handleCreateModal(false)}/>}
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}

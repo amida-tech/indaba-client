@@ -90,6 +90,8 @@ class AddUserGroup extends Component {
         const nonGroupIds = this.nonGroupIds();
         return (
             <Modal
+                onCancel={this.props.onCancel}
+                onSave={this.props.onSave}
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
                 <Box pad={{ between: 'small', horizontal: 'small', vertical: 'small' }}>
                     {this.props.vocab.STAGE.GROUP_NAME}
