@@ -18,12 +18,23 @@ class FilteredList extends Component {
         this.setState(update(this.state, { query: { $set: evt.target.value } }));
     }
     render() {
+        // list selection breaks if selected is passed in as undefined inline
+        const listProps = {
+            selectable: 'multiple',
+            onSelect: this.props.onSelect,
+        };
+        if (this.props.selected) {
+            listProps.selected =
+                this.props.selected.length === 1 ?
+                this.props.selected[0] :
+                this.props.selected;
+        }
+
         return (<Box pad={{ between: 'small' }}>
             <TextInput
                 placeHolder={this.props.placeHolder}
                 onDOMChange={this.handleQuery}/>
-            <List selectable='multiple'
-                onSelect={this.props.onSelect}>
+            <List {...listProps}>
                 {this.props.items.map(item => (
                     <ListItem
                         key={item.key}
@@ -104,6 +115,9 @@ class AddUserGroup extends Component {
                 $set: [] },
             groupUsersSelected: {
                 $set: [] },
+            projectUsersSelected: {
+                $set: [],
+            },
         }));
     }
     createUserListItem(userId) {
@@ -132,7 +146,8 @@ class AddUserGroup extends Component {
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={nonGroupIds.map(this.createUserListItem)}
-                                onSelect={this.handleProjectUsersSelect}/>
+                                onSelect={this.handleProjectUsersSelect}
+                                selected={this.state.projectUsersSelected}/>
                         </Box>
                         <Box justify='center'
                             pad='small'>
