@@ -6,7 +6,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import Modal from '../../../../common/Modal';
 import FlagSidebar from '../Workflow/FlagSidebar';
-import * as Questions from '../../../../common/Questions';
+import ReviewPane from '../../../../common/ReviewPane';
 
 class TaskView extends Component {
     constructor(props) {
@@ -94,13 +94,7 @@ class TaskView extends Component {
                             <button onClick={this.handleAccordionCollapseAll}>COLLAPSE</button>
                             <Accordion active={this.state.active} openMulti={true}>
                                 <AccordionPanel heading='question'>
-                                    <Questions.MultipleChoice />
-                                </AccordionPanel>
-                                <AccordionPanel heading='stuff'>
-                                    ninebreaker
-                                </AccordionPanel>
-                                <AccordionPanel heading='octo'>
-                                    deck
+                                    <ReviewPane />
                                 </AccordionPanel>
                             </Accordion>
                         </div>

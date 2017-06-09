@@ -39,6 +39,9 @@
     "TASK_VIEW": "Task View",
     "TASK_DUE_DATE": "Task Due Date",
     "CHANGE_STATUS": "Change Status",
+    "AGREE": "Agree",
+    "DISAGREE": "Disagree (Comment Required)",
+    "COMMENT_TIP": "Enter your comment here",
     "PERM_ARRAY": [
         "Read Only",
         "Provide Responses",
