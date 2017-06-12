@@ -6,7 +6,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import Modal from '../../../../common/Modal';
 import FlagSidebar from '../Workflow/FlagSidebar';
-import * as Questions from '../../../../common/Questions';
+import ReviewPane from '../../../../common/ReviewPane';
 
 class TaskView extends Component {
     constructor(props) {
@@ -21,6 +21,7 @@ class TaskView extends Component {
             stageData: props.data.project.navigation.modalData.stageData,
             subject: props.data.project.workflow.subjects[assignee.subject],
             survey: survey,
+            allActive: survey.map((k, i) => i),
             active: []
         };
         this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
@@ -30,7 +31,9 @@ class TaskView extends Component {
 
     surveyMapper(response, question) {
         const match = response.filter(obj => obj.id === question.id);
-        return (match.length > 0) ? Object.assign({}, question, match[0]) : question;
+        return (match.length > 0) ?
+            Object.assign({}, question, match[0], {taskView: true}) :
+            Object.assign({}, question, {taskView: true});
     }
 
     handleTaskDueDateChange(event){
@@ -40,7 +43,7 @@ class TaskView extends Component {
     }
 
     handleAccordionExpandAll(event){
-        this.setState({ active: [0,1,2] });
+        this.setState({ active: this.state.allActive });
     }
 
     handleAccordionCollapseAll(event){
@@ -93,15 +96,12 @@ class TaskView extends Component {
                             <button onClick={this.handleAccordionExpandAll}>EXPAND</button>
                             <button onClick={this.handleAccordionCollapseAll}>COLLAPSE</button>
                             <Accordion active={this.state.active} openMulti={true}>
-                                <AccordionPanel heading='question'>
-                                    <Questions.MultipleChoice />
-                                </AccordionPanel>
-                                <AccordionPanel heading='stuff'>
-                                    ninebreaker
-                                </AccordionPanel>
-                                <AccordionPanel heading='octo'>
-                                    deck
-                                </AccordionPanel>
+                                {this.state.survey.map((question, i) =>
+                                    <AccordionPanel
+                                        heading={this.props.vocab.PROJECT.QUESTION+' '+(i+1)}
+                                        key={'question-'+i}>
+                                        <ReviewPane {...question}/>
+                                    </AccordionPanel>)}
                             </Accordion>
                         </div>
                     </div>

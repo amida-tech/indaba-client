@@ -5,7 +5,7 @@ export class Date extends Component {
     render() {
         return (
             <div>
-                Vorks.
+                {this.props.question}
             </div>
         )
     }

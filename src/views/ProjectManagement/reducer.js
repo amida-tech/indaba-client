@@ -68,6 +68,11 @@ export const initialState = {
                 value: 1,
                 review: false,
                 comment: 'Gross topping.',
+            }, {
+                id: 2,
+                value: 5,
+                review: false,
+                comment: 'So much food.'
             }],
         }, {
             id: 2,
