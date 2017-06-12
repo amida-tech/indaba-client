@@ -113,7 +113,9 @@
     "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
     "SELECT_TO_EDIT_STAGE": "Select to edit stage",
     "CREATE_SURVEY": "Create Survey",
-    "COMPLETE_PROJECT": "Complete Project"
+    "COMPLETE_PROJECT": "Complete Project",
+    "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
+    "GO_TO_PROJECT": "Go To Project"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

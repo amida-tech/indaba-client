@@ -10,6 +10,7 @@ import AddUsers from './AddUsers';
 import AddStages from './AddStages';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
+import WizardComplete from './WizardComplete';
 import { ProjectManagementContainer } from '../../ProjectManagement';
 
 const NUM_WIZARD_STEPS = 4;
@@ -47,18 +48,28 @@ class CreateProjectWizard extends Component {
         this.setState(update(this.state, { step: { $set: newStep } }));
     }
     render() {
-        return (
-            !this.state.complete) ?
-            (<div>
+        return !this.state.complete ? (
+            <div className='project-wizard'>
                 {!_.get(this.props.wizard, 'project.name') &&
                     <NewProjectTitle onSave={this.props.onSetTitle} />}
-                <Tabs activeIndex={this.state.step} onActive={this.goToStep}>
-                    <Tab title={this.props.vocab.PROJECT.CREATE_SURVEY}>
+                <Tabs className='project-wizard-tabs'
+                    activeIndex={this.state.step}
+                    onActive={this.goToStep}>
+                    <Tab className='project-wizard-tabs--tab'
+                        title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab title={this.props.vocab.PROJECT.ADD_SUBJECTS}><AddSubjects /></Tab>
-                    <Tab title={this.props.vocab.PROJECT.ADD_USERS}><AddUsers /></Tab>
-                    <Tab title={this.props.vocab.PROJECT.ADD_STAGES}><AddStages /></Tab>
+                    <Tab className='project-wizard-tabs--tab'
+                        title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
+                        <AddSubjects /></Tab>
+                    <Tab className='project-wizard-tabs--tab'
+                        title={this.props.vocab.PROJECT.ADD_USERS}>
+                        <AddUsers />
+                    </Tab>
+                    <Tab className='project-wizard-tabs--tab'
+                        title={this.props.vocab.PROJECT.ADD_STAGES}>
+                        <AddStages />
+                    </Tab>
                 </Tabs>
                 <WizardFooter
                     vocab={this.props.vocab}
@@ -68,8 +79,11 @@ class CreateProjectWizard extends Component {
                         this.handleSkip : undefined}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
-            </div>) :
-            (<ProjectManagementContainer />);
+            </div>) : (
+            <div className='project-wizard--complete'>
+                <WizardComplete vocab={this.props.vocab} />
+                <ProjectManagementContainer />
+            </div>);
     }
 }
 
