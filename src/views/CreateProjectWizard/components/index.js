@@ -46,14 +46,16 @@ class CreateProjectWizard extends Component {
                 {!_.get(this.props.wizard, 'project.name') &&
                     <NewProjectTitle onSave={this.props.onSetTitle} />}
                 <Tabs activeIndex={this.state.step} onActive={this.goToStep}>
-                    <Tab title='Create Survey'>
+                    <Tab title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab title='Add Subjects'><AddSubjects /></Tab>
-                    <Tab title='Add Users'><AddUsers /></Tab>
-                    <Tab title='Add Stages'><AddStages /></Tab>
+                    <Tab title={this.props.vocab.PROJECT.ADD_SUBJECTS}><AddSubjects /></Tab>
+                    <Tab title={this.props.vocab.PROJECT.ADD_USERS}><AddUsers /></Tab>
+                    <Tab title={this.props.vocab.PROJECT.ADD_STAGES}><AddStages /></Tab>
                 </Tabs>
                 <WizardFooter
+                    vocab={this.props.vocab}
+                    finalStep={this.state.step === NUM_WIZARD_STEPS - 1}
                     onBack={this.state.step !== 0 ? this.handleBack : undefined}
                     onSkip={this.state.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
@@ -67,6 +69,7 @@ class CreateProjectWizard extends Component {
 
 const mapStateToProps = state => ({
     wizard: state.projectwizard,
+    vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
     onSetTitle: title => dispatch(setProjectTitle(title)),
