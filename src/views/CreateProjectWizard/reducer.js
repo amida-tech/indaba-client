@@ -8,6 +8,8 @@ const initialState = {
     survey: {
         status: 'Draft',
     },
+    users: [0, 1],
+    userGroups: [],
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +22,23 @@ export default (state = initialState, action) => {
     case t.DELETE_SUBJECT:
         return update(state, { subjects:
             { $splice: [[state.subjects.indexOf(action.subject), 1]] } });
+    case t.ADD_USER_TO_PROJECT:
+        return update(state, { users: { $push: [action.user.id] } });
+    case t.REMOVE_USER_FROM_PROJECT:
+        return update(state, { users:
+            { $splice: [[state.users.indexOf(action.userId), 1]] } });
+    case t.ADD_USER_GROUP:
+        return update(state, {
+            userGroups: {
+                $push: [update(action.group, { id: { $set: state.userGroups.length } })],
+            },
+        });
+    case t.REMOVE_USER_GROUP:
+        return update(state, {
+            userGroups: {
+                $set: state.userGroups.filter(group => group.id !== action.id),
+            },
+        });
     default:
         return state;
     }

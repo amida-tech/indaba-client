@@ -5,7 +5,6 @@ class SurveyEditorStep extends Component {
     render() {
         return (<div>
             &lt;Survey Editor /&gt;
-            <WizardFooter />
         </div>);
     }
 }

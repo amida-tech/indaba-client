@@ -91,7 +91,19 @@
     "INVITE_INSTRUCTION": "Not Listed? Invite by email",
     "ADD_SUBJECT_INSTRUCTION": "Add survey subjects or use the import manager to add subjects from a previous project.",
     "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma.",
-    "IMPORT_SUBJECTS": "Import Subjects"
+    "IMPORT_SUBJECTS": "Import Subjects",
+    "ADD_USERS_CLARIFICATION": ["Users are assigned to a project.", "Usergroups are multiple people who share the same role."],
+    "IMPORT_USERS": "Import Users",
+    "USERS": "Users",
+    "USER_GROUPS": "User Groups",
+    "ADD_USER_GROUP": "Add User Group",
+    "CREATE_USER_GROUP": "Create User Group",
+    "ENTER_GROUP_NAME": "Enter Group Name",
+    "NEW_USER_FIRST_NAME": "New User First Name",
+    "NEW_USER_LAST_NAME": "New User Last Name",
+    "NEW_USER_EMAIL": "New User Email",
+    "SEARCH_FOR_A_USER": "Search for a user",
+    "SEARCH_FOR_USER_GROUPS": "Search for user groups"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

@@ -4,7 +4,6 @@ import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubjects, deleteSubject } from '../actions';
 import Summary from '../../../common/components/Summary';
-import WizardFooter from './WizardFooter';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class AddSubjectControl extends Component {
         this.setState({ userInput: '' });
     }
     render() {
-        return <div>
+        return (<div>
             <Box direction='row' justify='between'>
                 <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                 <div>{this.props.vocab.COMMON.ACTIONS}</div>
@@ -44,7 +43,7 @@ class AddSubjectControl extends Component {
                     </span>
                 </Box>,
             )}
-        </div>;
+        </div>);
     }
 }
 
@@ -67,7 +66,6 @@ class AddSubjects extends Component {
                 onDeleteSubject={this.props.onDeleteSubject}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
-            <WizardFooter />
         </div>);
     }
 }

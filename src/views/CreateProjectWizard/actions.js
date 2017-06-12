@@ -20,3 +20,31 @@ export function deleteSubject(subject) {
         subject,
     };
 }
+
+export function addUserToProject(user) {
+    return {
+        type: actionTypes.ADD_USER_TO_PROJECT,
+        user,
+    };
+}
+
+export function removeUserFromProject(userId) {
+    return {
+        type: actionTypes.REMOVE_USER_FROM_PROJECT,
+        userId,
+    };
+}
+
+export function addUserGroup(group) {
+    return {
+        type: actionTypes.ADD_USER_GROUP,
+        group,
+    };
+}
+
+export function removeUserGroup(id) {
+    return {
+        type: actionTypes.REMOVE_USER_GROUP,
+        id,
+    };
+}
