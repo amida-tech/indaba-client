@@ -28,13 +28,6 @@ class ReviewPane extends Component {
     }
 
     render() {
-        const questionProps = Object.assign({}, {
-            id: this.props.id,
-            question: this.props.question,
-            answers: this.props.answers,
-            value: this.props.value,
-            vocab: this.props.vocab
-        });
         const Question = Questions[this.state.type];
         return (
             <Box>
@@ -42,7 +35,7 @@ class ReviewPane extends Component {
                 <button className='masked-button right-icon' onClick={this.handleFlagClick}>
                     <IonIcon className='right-icon' icon='ion-ios-flag'/>
                 </button>}
-                <Question {...questionProps}/>
+                <Question {...this.props}/>
                 <div className='review-panel'>
                     <label className='radio-inline'>
                         <input type='radio'
