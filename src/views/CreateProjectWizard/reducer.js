@@ -42,7 +42,8 @@ export default (state = initialState, action) => {
         });
     case t.ADD_STAGE:
         return update(state, { project: {
-            stages: { $push: [action.stage] },
+            stages: { $push: [update(action.stage, {
+                id: { $set: state.project.stages.length } })] },
         } });
     default:
         return state;

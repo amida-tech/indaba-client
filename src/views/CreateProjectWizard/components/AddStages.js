@@ -37,7 +37,8 @@ class AddStages extends Component {
             <hr className='divider' />
             <Box direction='row'>
                 {this.props.project.stages.map((stage) => {
-                    return <StageSummary stage={stage} vocab={this.props.vocab}/>;
+                    return <StageSummary stage={stage} vocab={this.props.vocab}
+                        key={stage.id}/>;
                 })}
                 <div className='add-stage-placeholder'
                     onClick={() => this.setState({ addStageModal: true })}>
