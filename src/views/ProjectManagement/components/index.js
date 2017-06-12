@@ -4,7 +4,6 @@ import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import FilterWrapper from './Workflow/FilterWrapper';
-import { addSubject, addStage } from '../actions';
 import StatusChange from './Modals/StatusChange';
 
 class ProjectManagementContainer extends Component {
@@ -48,12 +47,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onAddSubject: (subject) => {
-        dispatch(addSubject(subject));
-    },
-    onAddStage: (stage) => {
-        dispatch(addStage(stage));
-    },
     onCancel: () => this.setState({ statusModalId: false }),
 });
 

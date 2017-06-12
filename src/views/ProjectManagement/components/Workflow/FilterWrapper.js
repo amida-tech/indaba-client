@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'grommet';
-import { toggleFilter } from '../../actions';
+import { toggleFilter, addSubject, addStage } from '../../actions';
+import AddSubject from '../Modals/AddSubject';
+import AddStage from '../Modals/AddStage';
 
 class FilterBar extends Component {
     render() {
@@ -28,9 +30,22 @@ class FilterWrapper extends Component {
     }
     makeModal(id) {
         if (id === 'add_stage') {
-            return <AddStage />;
+            return <AddStage
+                vocab={this.props.vocab}
+                onCancel={() => this.setState({ showModalId: false })}
+                onAddStage={(stage) => {
+                    this.setState({ showModalId: false });
+                    this.props.onAddStage(stage);
+                }}
+                roles={this.props.roles} />;
         } else if (id === 'add_subject') {
-            return <AddSubject />;
+            return <AddSubject
+                vocab={this.props.vocab}
+                onCancel={() => this.setState({ showModalId: false })}
+                onAddSubject={(subject) => {
+                    this.setState({ showModalId: false });
+                    this.props.onAddSubject(subject);
+                }} />;
         }
         return null;
     }
@@ -60,9 +75,9 @@ class FilterWrapper extends Component {
                     onToggleFilter={this.props.onToggleFilter}/>
                 <div className='add-button-panel'>
                     <Button primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
-                        onClick={this.props.onAddStageClick}/>
+                        onClick={() => this.setState({ showModalId: 'add_stage' })}/>
                     <Button primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
-                        onClick={this.props.onAddSubjectClick}/>
+                        onClick={() => this.setState({ showModalId: 'add_subject' })}/>
                 </div>
             </div>
         );
@@ -72,9 +87,12 @@ class FilterWrapper extends Component {
 const mapStateToProps = state => ({
     filter: state.project.workflow.filter,
     vocab: state.settings.language.vocabulary,
+    roles: state.project.workflow.roles,
 });
 const mapDispatchToProps = dispatch => ({
     onToggleFilter: filter => dispatch(toggleFilter(filter)),
+    onAddSubject: subject => dispatch(addSubject(subject)),
+    onAddStage: stage => dispatch(addStage(stage)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterWrapper);
