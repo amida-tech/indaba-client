@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
-import { modalIDs } from '../../views/ProjectManagement/components/Modals';
 
 class SurveyCard extends Component {
     render() {
         const SurveyStatusOptions = [{
             label: this.props.vocab.PROJECT.CHANGE_STATUS,
-            value: modalIDs.SURVEY_STATUS_MODAL,
+            value: 'surveystatusmodal',
         }];
 
         return (

@@ -3,25 +3,32 @@ import { connect } from 'react-redux';
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
-import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper';
-import { addSubject, addStage, closeModal, showModal } from '../actions';
+import { addSubject, addStage } from '../actions';
+import StatusChange from './Modals/StatusChange';
 
 class ProjectManagementContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { statusModalId: false,
+        };
+    }
     render() {
-        const modal = this.props.modal ?
-        <ModalContent
-            id={this.props.modal} {...this.props} /> :
-            null;
+        const modalEntities = {
+            projectstatuschange: 'project',
+            surveystatuschnage: 'survey',
+        };
         return (
                 <div>
-                    {modal}
+                    { this.state.statusModalId &&
+                        <StatusChange vocab={this.props.vocab}
+                            entity={modalEntities[this.state.statusModalId]}/> }
                     <SubNav />
                     <hr className='divider' />
                     <Summary
                         project={this.props.data.project.workflow}
                         survey={this.props.data.project.survey}
-                        onStatusChangeClick={this.props.onStatusChangeClick}
+                        onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
                     <FilterWrapper />
@@ -33,7 +40,7 @@ class ProjectManagementContainer extends Component {
 
 ProjectManagementContainer.displayName = 'Project Manager';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
     data: state,
     vocab: state.settings.language.vocabulary,
     modal: state.project.navigation.modal,
@@ -46,10 +53,7 @@ const mapDispatchToProps = dispatch => ({
     onAddStage: (stage) => {
         dispatch(addStage(stage));
     },
-    onStatusChangeClick: (id) => {
-        dispatch(showModal(id));
-    },
-    onCancel: () => dispatch(closeModal()),
+    onCancel: () => this.setState({ statusModalId: false }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

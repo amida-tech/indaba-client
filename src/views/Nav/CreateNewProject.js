@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Button } from 'grommet';
-import Modal from '../../../../common/Modal';
-import { showModal } from '../../actions';
-import { modalIDs } from '../Modals';
+import Modal from '../../common/Modal';
 
 class CreateNewProject extends Component {
     render() {
@@ -30,9 +28,4 @@ class CreateNewProject extends Component {
     }
 }
 
-const mapStateToProps = () => ({});
-const mapDispathToProps = dispatch => ({
-    onCreateNewProjectClick: () => dispatch(showModal(modalIDs.NEW_PROJECT_TITLE)),
-});
-
-export default connect(mapStateToProps, mapDispathToProps)(CreateNewProject);
+export default CreateNewProject;

@@ -20,7 +20,7 @@ export const initialState = {
             title: 'First Review',
             startStage: '3/3/2017',
             endStage: '4/3/2017',
-            userGroups: ['Managers','Researchers'],
+            userGroups: ['Managers', 'Researchers'],
             permissions: 2,
         }, {
             id: 2,
@@ -37,7 +37,7 @@ export const initialState = {
             userGroups: ['Managers'],
             permissions: 2,
         }],
-        roles: ['Researchers','Managers'],
+        roles: ['Researchers', 'Managers'],
         subjects: ['Berlin', 'Chicago', 'K\'unlun'],
         assignees: [{
             id: 0,
@@ -122,8 +122,8 @@ export const initialState = {
         questions: [{
             id: 0,
             question: 'Have you ever had pizza?',
-            type: 'Checkbox'
-        },{
+            type: 'Checkbox',
+        }, {
             id: 1,
             question: 'Which topping on a supreme do you like the least?',
             type: 'MultipleChoice', // TODO: Consider giving key value against an enum.
@@ -132,16 +132,16 @@ export const initialState = {
                 'Pepperoni',
                 'Onions',
                 'Green Peppers',
-                'Olives']
-        },{
+                'Olives'],
+        }, {
             id: 2,
             question: 'How many toppings do you normally get?',
-            type: 'Number'
-        },{
+            type: 'Number',
+        }, {
             id: 3,
             question: 'Tell us your favorite pizza experience.',
-            type: 'LongText'
-        },{
+            type: 'LongText',
+        }, {
             id: 4,
             question: 'Which toppings do you like? (Click all that apply.)',
             type: 'Checkbox',
@@ -150,8 +150,8 @@ export const initialState = {
                 'Pepperoni',
                 'Onions',
                 'Green Peppers',
-                'Olives']
-        },{
+                'Olives'],
+        }, {
             id: 5,
             question: 'Which toppings do you like the most?',
             type: 'Dropdown',
@@ -160,8 +160,8 @@ export const initialState = {
                 'Pepperoni',
                 'Onions',
                 'Green Peppers',
-                'Olives']
-        }] // Still need to add Bulletpoint and scale
+                'Olives'],
+        }], // Still need to add Bulletpoint and scale
     },
 };
 
@@ -186,16 +186,9 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, action.payload.survey);
     case t.SUBNAVIGATE:
         return Object.assign({}, state, { navigation: { subnav: action.id } });
-    case t.SHOW_MODAL:
-        return Object.assign({}, state,
-        { navigation: Object.assign({}, state.navigation, { modal: action.id }) });
     case t.SHOW_MODAL_PROPS:
         return Object.assign({}, state,
         { navigation: Object.assign({}, state.navigation, { modal: action.id, modalData: action.props }) });
-    case t.CLOSE_MODAL:
-        var newState = Object.assign({}, state);
-        delete newState.navigation.modal;
-        return newState;
     case t.TOGGLE_FILTER:
         var newState = Object.assign({}, state);
         newState.workflow.filter =

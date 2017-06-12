@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
 import _ from 'lodash';
 import update from 'immutability-helper';
-import ModalContent from '../../ProjectManagement/components/Modals';
 import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
