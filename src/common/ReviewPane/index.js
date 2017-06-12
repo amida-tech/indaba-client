@@ -8,14 +8,6 @@ import * as Questions from '../Questions';
 class ReviewPane extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            id: props.id,
-            type: props.type,
-            taskView: props.taskView,
-            review: props.review || true,
-            comment: props.comment,
-            flag: props.flag
-        };
         this.handleClickReview = this.handleClickReview.bind(this);
         this.handleFlagClick = this.handleFlagClick.bind(this);
     }
@@ -28,10 +20,10 @@ class ReviewPane extends Component {
     }
 
     render() {
-        const Question = Questions[this.state.type];
+        const Question = Questions[this.props.type];
         return (
             <Box>
-                {!this.state.taskView &&
+                {!this.props.taskView &&
                 <button className='masked-button right-icon' onClick={this.handleFlagClick}>
                     <IonIcon className='right-icon' icon='ion-ios-flag'/>
                 </button>}
@@ -40,7 +32,7 @@ class ReviewPane extends Component {
                     <label className='radio-inline'>
                         <input type='radio'
                             id='review-agree'
-                            checked={this.state.review}
+                            checked={this.props.review}
                             name='review-assessment'
                             value={true}
                             onChange={this.handleClickReview} />
@@ -49,7 +41,7 @@ class ReviewPane extends Component {
                     <label className='radio-inline'>
                         <input type='radio'
                             id='review-disagree'
-                            checked={!this.state.review}
+                            checked={!this.props.review}
                             name='review-assessment'
                             value={false}
                             onChange={this.handleClickReview} />
@@ -58,8 +50,8 @@ class ReviewPane extends Component {
                     <input type='text'
                         className='comment'
                         id='review-comment'
-                        disabled={this.state.review}
-                        placeholder={this.state.comment || this.props.vocab.COMMENT_TIP} />
+                        disabled={this.props.review}
+                        placeholder={this.props.comment || this.props.vocab.COMMENT_TIP} />
                 </div>
             </Box>
         )
