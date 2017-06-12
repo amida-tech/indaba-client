@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 $border-color: #DADCDE;
 $page-background-color: #FAFAFA;
 $header-font-color: #7E848F;
@@ -7,7 +7,7 @@ $font-inverse-color: #FAF5F5;
 
 // grommet brand colors
 $brand-color: #4EB276;
-$brand-font-family: 'Montserrat';
+$brand-font-family: 'Roboto';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
 // TODO still need override
@@ -27,7 +27,7 @@ $brand-grey-colors: (#000001, #333333, #3B3B3B, #434343, #666666);
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
-  font-family: 'Montserrat';
+  font-family: 'Roboto';
   background-color: $page-background-color;
   color: $header-font-color;
 }
@@ -407,7 +407,7 @@ hr.divider {
 .filter-wrapper {
   height: 5em;
   margin: 0 2em 0 2em;
-}
+  }
 
 .add-button-panel {
   float: right;
@@ -431,6 +431,7 @@ hr.divider {
     color: $font-color;
     font-size: 12px;
     font-weight: bold;
+    background-color: #ffffff;
 
     border-color: $border-color;
     border-style: solid;
@@ -455,7 +456,7 @@ hr.divider {
 
 .workflow {
   div {
-    color: lightgray;
+    color:$font-color;
     text-transform: uppercase;
   }
 }
@@ -473,39 +474,44 @@ hr.divider {
 }
 
 .workflow-table {
-  width: 800px;
+  width: 100%;
 
   .stage-slot-cell, .stage-summary-cell {
     background-color: white;
   }
 
   .name-row {
-    margin-bottom:8px;
+    text-transform: none;
+    color:$header-font-color;
+    font-size:18px;
 
     span {
-      cursor: pointer;
+        cursor: pointer;
     }
   }
 
   .due-row {
-    margin-top:10px;
-    font-size: 10px;
+    font-size: 12px;
     span {
       float: right;
+      color: $font-color;
     }
   }
 
   .role-span {
-    font-size:9px;
+    font-size:12px;
+    align-items: flex-start;
   }
 
   .right-icon {
-    float: right;
+    float:right;
+
   }
 
   .left-icon {
     float: left;
     margin-right: 5px;
+    fill: #A4AEBF;
   }
 
   margin-bottom: 0;
