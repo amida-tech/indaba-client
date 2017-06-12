@@ -3,8 +3,8 @@ import { DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
-import { showModalProps } from '../../actions';
 import TaskStatus from '../../../../utils/TaskStatus';
+import TaskView from '../Modals/TaskView';
 
 const Types = {
     ASSIGNEECARD: 'AssigneeCard',
@@ -42,13 +42,22 @@ class StageSlot extends Component {
             late,
             done: TaskStatus.responsesComplete(this.props.assignee),
             flag: TaskStatus.responsesFlagged(this.props.assignee),
+            showTaskModal: false,
         };
         this.onTaskViewClick = this.onTaskViewClick.bind(this);
     }
 
+    renderTaskViewModal() {
+        if (!this.state.showTaskModal) return null;
+        return <TaskView
+            vocab={this.props.vocab}
+            assignee={this.props.assignee}
+            stageData={this.props.stageData}
+            onCancel={() => this.setState({ showTaskModal: false })} />;
+    }
+
     onTaskViewClick() {
-        this.props.dispatch(showModalProps(modalIDs.TASK_VIEW_MODAL,
-          { assignee: this.props.assignee, stageData: this.props.stageData }));
+        this.setState({ showTaskModal: true });
     }
 
     onTaskOptionClick() {
@@ -78,6 +87,7 @@ class StageSlot extends Component {
     render() {
         const display = this.props.assignee.name ?
       <div>
+          {this.renderTaskViewModal()}
         <div className='name-row'>
           <span onClick={this.onTaskViewClick}>{this.props.assignee.name}</span>
           <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>

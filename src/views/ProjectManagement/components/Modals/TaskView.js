@@ -12,14 +12,14 @@ import ReviewPane from '../../../../common/ReviewPane';
 class TaskView extends Component {
     constructor(props) {
         super(props);
-        const assignee = props.data.project.navigation.modalData.assignee;
+        const assignee = props.assignee;
         const survey = assignee.response ?
             props.data.project.survey.questions.map((question) =>
                 this.surveyMapper(assignee.response, question)) :
                 props.data.project.survey.questions;
         this.state = {
             assignee: assignee,
-            stageData: props.data.project.navigation.modalData.stageData,
+            stageData: props.stageData,
             subject: props.data.project.workflow.subjects[assignee.subject],
             survey: survey,
             allActive: survey.map((k, i) => i),
@@ -117,7 +117,8 @@ class TaskView extends Component {
 }
 
 const mapStateToProps = state => ({
-    data: state
+    data: state,
+    vocab: state.settings.language.vocabulary
 });
 
 export default connect(mapStateToProps)(TaskView);
