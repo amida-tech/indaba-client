@@ -11,7 +11,9 @@ class AddStages extends Component {
     }
     render() {
         return (<div className='add-stages-step'>
-            {this.state.addStageModal && <AddStage />}
+            {this.state.addStageModal && <AddStage
+                vocab={this.props.vocab}
+                roles={this.props.roles}/>}
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
@@ -45,6 +47,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     project: state.projectwizard.project,
     survey: state.projectwizard.survey,
+    roles: state.projectwizard.userGroups.map(group => group.name),
 });
 
 export default connect(mapStateToProps)(AddStages);
