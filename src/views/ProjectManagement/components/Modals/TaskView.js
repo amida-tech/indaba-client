@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import IonIcon from 'react-ionicons';
 import DateTime from 'grommet/components/DateTime';
 import Accordion from 'grommet/components/Accordion';
@@ -115,4 +116,8 @@ class TaskView extends Component {
     }
 }
 
-export default TaskView;
+const mapStateToProps = state => ({
+    data: state
+});
+
+export default connect(mapStateToProps)(TaskView);
