@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
 import _ from 'lodash';
 import update from 'immutability-helper';
-import ModalContent from '../../ProjectManagement/components/Modals';
 import { setProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
+import AddStages from './AddStages';
+import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 
 const NUM_WIZARD_STEPS = 4;
@@ -43,14 +44,14 @@ class CreateProjectWizard extends Component {
         return (
             <div>
                 {!_.get(this.props.wizard, 'project.name') &&
-                    <ModalContent id='newprojecttitle' onSave={this.props.onSetTitle}/>}
+                    <NewProjectTitle onSave={this.props.onSetTitle} />}
                 <Tabs activeIndex={this.state.step} onActive={this.goToStep}>
                     <Tab title='Create Survey'>
                         <SurveyEditorStep />
                     </Tab>
                     <Tab title='Add Subjects'><AddSubjects /></Tab>
                     <Tab title='Add Users'><AddUsers /></Tab>
-                    <Tab title='Add Stages'>Add stages!</Tab>
+                    <Tab title='Add Stages'><AddStages /></Tab>
                 </Tabs>
                 <WizardFooter
                     onBack={this.state.step !== 0 ? this.handleBack : undefined}

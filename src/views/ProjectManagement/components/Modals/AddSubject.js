@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'grommet';
 import Modal from '../../../../common/Modal';
 
 class AddSubject extends Component {
@@ -12,7 +11,7 @@ class AddSubject extends Component {
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
-    isValid(){
+    isValid() {
         return (this.state.value.length > 0);
     }
     render() {

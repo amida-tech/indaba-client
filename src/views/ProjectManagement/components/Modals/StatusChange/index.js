@@ -25,8 +25,8 @@ class StatusChange extends Component {
     }
     projectConfirmed() {
         return this.state.project.draftConfirm &&
-      this.state.project.accessConfirm &&
-      this.state.project.usersConfirm;
+        this.state.project.accessConfirm &&
+        this.state.project.usersConfirm;
     }
     projectCheck(name, checked) {
         const newState = Object.assign({}, this.state);
@@ -40,16 +40,18 @@ class StatusChange extends Component {
     }
     surveyConfirmed() {
         return this.state.survey.accessConfirm &&
-      this.state.survey.usersConfirm &&
-      this.state.survey.editConfirm;
+        this.state.survey.usersConfirm &&
+        this.state.survey.editConfirm;
     }
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
                 this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
+                this.props.onStatusChangeClose();
             }
         } else if (this.surveyConfirmed()) {
             this.props.onSetSurveyStatus(this.state.survey.published ? 'Published' : 'Draft');
+            this.props.onStatusChangeClose();
         }
     }
     render() {
@@ -61,7 +63,7 @@ class StatusChange extends Component {
                 class='project-status-change-layer'
                 title={title}
                 onSave={this.save.bind(this)}
-                onCancel={this.props.onCancel}>
+                onCancel={this.props.onStatusChangeClose}>
                 {this.props.entity === 'project' ?
                     <ProjectStatusBody {...this.state.project}
                         vocab={this.props.vocab}

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { Button } from 'grommet';
-import Modal from '../../../../common/Modal';
-import { showModal } from '../../actions';
-import { modalIDs } from '../Modals';
+import Modal from '../../common/Modal';
 
 class CreateNewProject extends Component {
     render() {
@@ -14,9 +10,10 @@ class CreateNewProject extends Component {
                 class='create-new-project-layer'>
                 <div>
                     <div>
-                        <Link to='/create-new-project'>
-                             {vocab.CREATE_NEW_PROJECT}
-                        </Link>
+                        <Button path='/create-new-project'
+                            onClick={this.props.onCancel}
+                            primary
+                            label={vocab.CREATE_NEW_PROJECT} />
                         <p>{vocab.CREATE_INSTRUCTION}</p>
                     </div>
                     <hr className='divider'/>
@@ -30,9 +27,4 @@ class CreateNewProject extends Component {
     }
 }
 
-const mapStateToProps = () => ({});
-const mapDispathToProps = dispatch => ({
-    onCreateNewProjectClick: () => dispatch(showModal(modalIDs.NEW_PROJECT_TITLE)),
-});
-
-export default connect(mapStateToProps, mapDispathToProps)(CreateNewProject);
+export default CreateNewProject;

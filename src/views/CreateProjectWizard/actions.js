@@ -48,3 +48,10 @@ export function removeUserGroup(id) {
         id,
     };
 }
+
+export function addStage(stage) {
+    return {
+        type: actionTypes.ADD_STAGE,
+        stage,
+    };
+}

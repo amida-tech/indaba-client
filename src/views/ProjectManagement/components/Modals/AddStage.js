@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'grommet';
 import DateTime from 'grommet/components/DateTime';
 import Select from 'react-select';
 
@@ -44,20 +43,20 @@ class AddStage extends Component {
         this.setState({ endStage: event });
     }
 
-    isValid(){
-        if(this.state.title === '' ||
+    isValid() {
+        if (this.state.title === '' ||
             this.state.userGroups.length === 0 ||
             this.state.permissions === undefined ||
             this.state.startStage === '' ||
             this.state.endStage === '') {
-                return false;
+            return false;
         }
         return true;
     }
 
     render() {
         const vocab = this.props.vocab;
-        const roles = this.props.data.project.workflow.roles.map((role, key) =>
+        const roles = this.props.roles.map((role, key) =>
             ({ value: role, label: role, key }),
         );
         const description = vocab.PROJECT.DESC_ARRAY[this.state.permissions];
@@ -89,7 +88,7 @@ class AddStage extends Component {
                                     value={index}
                                     defaultChecked={!index} />
                                 <span>{permission}</span>
-                            </label>
+                            </label>,
                         )}
                     </div>
                     <div>

@@ -4,6 +4,7 @@ import * as t from './actionTypes';
 const initialState = {
     project: {
         status: 'Inactive',
+        stages: [],
     },
     survey: {
         status: 'Draft',
@@ -39,6 +40,11 @@ export default (state = initialState, action) => {
                 $set: state.userGroups.filter(group => group.id !== action.id),
             },
         });
+    case t.ADD_STAGE:
+        return update(state, { project: {
+            stages: { $push: [update(action.stage, {
+                id: { $set: state.project.stages.length } })] },
+        } });
     default:
         return state;
     }
