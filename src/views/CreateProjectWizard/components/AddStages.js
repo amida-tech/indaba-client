@@ -15,7 +15,11 @@ class AddStages extends Component {
             {this.state.addStageModal && <AddStage
                 vocab={this.props.vocab}
                 roles={this.props.roles}
-                onAddStage={this.props.onAddStage}/>}
+                onCancel={() => this.setState({ addStageModal: false })}
+                onAddStage={(stage) => {
+                    this.setState({ addStageModal: false });
+                    this.props.onAddStage(stage);
+                }}/>}
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
