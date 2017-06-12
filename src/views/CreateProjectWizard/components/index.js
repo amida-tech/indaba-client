@@ -8,7 +8,7 @@ import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
-import NewProjectTitle from '../../ProjectManagement/components/Modals/NewProjectTitle';
+import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 
 const NUM_WIZARD_STEPS = 4;
