@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'grommet';
 import DateTime from 'grommet/components/DateTime';
 import Select from 'react-select';
 
