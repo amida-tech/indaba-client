@@ -26,12 +26,12 @@ class ProjectManagementContainer extends Component {
                     <SubNav />
                     <hr className='divider' />
                     <Summary
-                        project={this.props.data.project.workflow}
-                        survey={this.props.data.project.survey}
+                        project={this.props.project.workflow}
+                        survey={this.props.project.survey}
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
-                    <FilterWrapper />
+                    <FilterWrapper project={this.props.project}/>
                     <div><WorkflowContainer {...this.props} /></div>
                 </div>
         );
@@ -40,14 +40,10 @@ class ProjectManagementContainer extends Component {
 
 ProjectManagementContainer.displayName = 'Project Manager';
 
-const mapStateToProps = state => ({
-    data: state,
+const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     modal: state.project.navigation.modal,
+    project: state.project.projects.find(p => `${p.id}` === ownProps.params.id),
 });
 
-const mapDispatchToProps = dispatch => ({
-    onCancel: () => this.setState({ statusModalId: false }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);
+export default connect(mapStateToProps)(ProjectManagementContainer);
