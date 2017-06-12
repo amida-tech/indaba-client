@@ -407,7 +407,6 @@ hr.divider {
 .filter-wrapper {
   height: 5em;
   margin: 0 2em 0 2em;
-  background-color: #ffffff;
   }
 
 .add-button-panel {
@@ -432,6 +431,7 @@ hr.divider {
     color: $font-color;
     font-size: 12px;
     font-weight: bold;
+    background-color: #ffffff;
 
     border-color: $border-color;
     border-style: solid;
@@ -456,7 +456,7 @@ hr.divider {
 
 .workflow {
   div {
-    color: lightgray;
+    color:$font-color;
     text-transform: uppercase;
   }
 }
@@ -483,6 +483,7 @@ hr.divider {
   .name-row {
     text-transform: none;
     color:$header-font-color;
+    font-size:18px;
 
     span {
         cursor: pointer;
@@ -503,7 +504,8 @@ hr.divider {
   }
 
   .right-icon {
-    float: right;
+    float:right;
+
   }
 
   .left-icon {
