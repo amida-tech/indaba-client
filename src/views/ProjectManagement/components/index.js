@@ -15,13 +15,14 @@ class ProjectManagementContainer extends Component {
     }
     render() {
         const modalEntities = {
-            projectstatuschange: 'project',
-            surveystatuschnage: 'survey',
+            projectstatusmodal: 'project',
+            surveystatusmodal: 'survey',
         };
         return (
                 <div>
                     { this.state.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
+                            onStatusChangeClose={() => this.setState({ statusModalId: false })}
                             entity={modalEntities[this.state.statusModalId]}/> }
                     <SubNav />
                     <hr className='divider' />
