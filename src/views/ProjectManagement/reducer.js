@@ -186,9 +186,6 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, action.payload.survey);
     case t.SUBNAVIGATE:
         return Object.assign({}, state, { navigation: { subnav: action.id } });
-    case t.SHOW_MODAL_PROPS:
-        return Object.assign({}, state,
-        { navigation: Object.assign({}, state.navigation, { modal: action.id, modalData: action.props }) });
     case t.TOGGLE_FILTER:
         var newState = Object.assign({}, state);
         newState.workflow.filter =
