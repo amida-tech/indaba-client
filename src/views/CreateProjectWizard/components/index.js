@@ -10,6 +10,7 @@ import AddUsers from './AddUsers';
 import AddStages from './AddStages';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
+import { ProjectManagementContainer } from '../../ProjectManagement';
 
 const NUM_WIZARD_STEPS = 4;
 
@@ -18,6 +19,7 @@ class CreateProjectWizard extends Component {
         super(props);
         this.state = {
             step: 0,
+            complete: false,
         };
         this.handleBack = this.handleBack.bind(this);
         this.handleSkip = this.handleSkip.bind(this);
@@ -34,7 +36,11 @@ class CreateProjectWizard extends Component {
     handleCancel() {
     }
     handleContinue() {
-        this.goToStep(this.state.step + 1);
+        if (this.state.step < NUM_WIZARD_STEPS - 1) {
+            this.goToStep(this.state.step + 1);
+        } else {
+            this.setState({ complete: true });
+        }
     }
     goToStep(step) {
         const newStep = Math.min(Math.max(step, 0), NUM_WIZARD_STEPS);
@@ -42,7 +48,8 @@ class CreateProjectWizard extends Component {
     }
     render() {
         return (
-            <div>
+            !this.state.complete) ?
+            (<div>
                 {!_.get(this.props.wizard, 'project.name') &&
                     <NewProjectTitle onSave={this.props.onSetTitle} />}
                 <Tabs activeIndex={this.state.step} onActive={this.goToStep}>
@@ -60,10 +67,9 @@ class CreateProjectWizard extends Component {
                     onSkip={this.state.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
                     onCancel={this.handleCancel}
-                    onContinue={this.state.step < (NUM_WIZARD_STEPS - 1) ?
-                        this.handleContinue : undefined} />
-            </div>
-        );
+                    onContinue={ this.handleContinue } />
+            </div>) :
+            (<ProjectManagementContainer />);
     }
 }
 
