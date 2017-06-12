@@ -8,6 +8,7 @@ import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
+import NewProjectTitle from '../../ProjectManagement/components/Modals/NewProjectTitle';
 import WizardFooter from './WizardFooter';
 
 const NUM_WIZARD_STEPS = 4;
@@ -43,7 +44,7 @@ class CreateProjectWizard extends Component {
         return (
             <div>
                 {!_.get(this.props.wizard, 'project.name') &&
-                    <ModalContent id='newprojecttitle' onSave={this.props.onSetTitle}/>}
+                    <NewProjectTitle onSave={this.props.onSetTitle} />}
                 <Tabs activeIndex={this.state.step} onActive={this.goToStep}>
                     <Tab title='Create Survey'>
                         <SurveyEditorStep />

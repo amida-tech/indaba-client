@@ -7,13 +7,14 @@ import CreateNewProject from './CreateNewProject';
 class NavContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {showCreateNewProject: false}
+        this.state = { showCreateNewProject: false };
     }
     render() {
         return (
             <nav className='nav'>
                 {this.state.showCreateNewProject &&
-                <CreateNewProject vocab={this.props.vocab}/>}
+                <CreateNewProject vocab={this.props.vocab}
+                    onCancel={() => this.setState({ showCreateNewProject: false })}/>}
                 <Box
                   justify='between'
                   direction='row'>
@@ -23,7 +24,7 @@ class NavContainer extends Component {
                         <Link to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
                         <Link to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
                         <Button label={this.props.vocab.COMMON.CREATE}
-                            onClick={() => this.setState({showCreateNewProject: true})}/>
+                            onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
                     <Box direction='row'>
                         <div className='nav-mail'>|envelope-icon|</div>
