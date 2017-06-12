@@ -17,6 +17,13 @@
     "ALL_SUBJECTS": "All Subjects",
     "CREATE": "Create"
   },
+  "COMMON_BUTTONS": {
+      "YES": "Yes",
+      "NO": "No",
+      "AGREE": "Agree",
+      "DISAGREE": "Disagree (Comment Required)",
+      "COMMENT_TIP": "Enter your comment here"
+  },
   "PROJECT": {
     "CARD": {
       "ASSIGN_TASK": "Assign Task",

@@ -4,7 +4,7 @@ export class LongText extends Component {
     render() {
         return (
             <div>
-                Vorks.
+                {this.props.question}
             </div>
         )
     }

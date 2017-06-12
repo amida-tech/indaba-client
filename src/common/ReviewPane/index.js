@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Box from 'grommet';
+import Box from 'grommet/components/Box';
 import IonIcon from 'react-ionicons';
 
 import * as Questions from '../Questions';
@@ -9,37 +9,64 @@ class ReviewPane extends Component {
     constructor(props){
         super(props);
         this.state = {
-            type: 'Date'
+            id: props.id,
+            type: props.type,
+            taskView: props.taskView,
+            review: props.review || true,
+            comment: props.comment,
+            flag: props.flag
         };
         this.handleClickReview = this.handleClickReview.bind(this);
+        this.handleFlagClick = this.handleFlagClick.bind(this);
     }
 
     handleClickReview(event) {
-        console.log(event.target.value);
+        this.setState({review: event.target.value === 'true' ? true : false});
+    }
+
+    handleFlagClick(event) {
     }
 
     render() {
+        const questionProps = Object.assign({}, {
+            id: this.props.id,
+            question: this.props.question,
+            answers: this.props.answers,
+            value: this.props.value,
+            vocab: this.props.vocab
+        });
         const Question = Questions[this.state.type];
         return (
             <Box>
-                <IonIcon className='right-icon' icon='ion-ios-flag'/>
+                {!this.state.taskView &&
+                <button className='masked-button right-icon' onClick={this.handleFlagClick}>
+                    <IonIcon className='right-icon' icon='ion-ios-flag'/>
+                </button>}
+                <Question {...questionProps}/>
                 <div className='review-panel'>
                     <label className='radio-inline'>
                         <input type='radio'
                             id='review-agree'
+                            checked={this.state.review}
                             name='review-assessment'
-                            value='true'
+                            value={true}
                             onChange={this.handleClickReview} />
-                        <span>{this.props.vocab.PROJECT.AGREE}</span>
+                        <span>{this.props.vocab.AGREE}</span>
                     </label>
                     <label className='radio-inline'>
                         <input type='radio'
                             id='review-disagree'
+                            checked={!this.state.review}
                             name='review-assessment'
-                            value='false'
+                            value={false}
                             onChange={this.handleClickReview} />
-                        <span>{this.props.vocab.PROJECT.DISAGREE}</span>
+                        <span>{this.props.vocab.DISAGREE}</span>
                     </label>
+                    <input type='text'
+                        className='comment'
+                        id='review-comment'
+                        disabled={this.state.review}
+                        placeholder={this.state.comment || this.props.vocab.COMMENT_TIP} />
                 </div>
             </Box>
         )
@@ -47,7 +74,7 @@ class ReviewPane extends Component {
 }
 
 const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
+    vocab: state.settings.language.vocabulary.COMMON_BUTTONS,
 });
 
 export default connect(mapStateToProps)(ReviewPane);
