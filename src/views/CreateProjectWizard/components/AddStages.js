@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import AddStage from '../../ProjectManagement/components/Modals/AddStage';
+import { addStage } from '../actions';
 
 class AddStages extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class AddStages extends Component {
         return (<div className='add-stages-step'>
             {this.state.addStageModal && <AddStage
                 vocab={this.props.vocab}
-                roles={this.props.roles}/>}
+                roles={this.props.roles}
+                onAddStage={this.props.onAddStage}/>}
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
@@ -50,4 +52,8 @@ const mapStateToProps = state => ({
     roles: state.projectwizard.userGroups.map(group => group.name),
 });
 
-export default connect(mapStateToProps)(AddStages);
+const mapDispatchToProps = dispatch => ({
+    onAddStage: stage => dispatch(addStage(stage)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddStages);
