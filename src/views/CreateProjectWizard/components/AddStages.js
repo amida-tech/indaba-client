@@ -4,6 +4,7 @@ import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import AddStage from '../../ProjectManagement/components/Modals/AddStage';
 import { addStage } from '../actions';
+import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
 class AddStages extends Component {
     constructor(props) {
@@ -35,6 +36,9 @@ class AddStages extends Component {
             </p>
             <hr className='divider' />
             <Box direction='row'>
+                {this.props.project.stages.map((stage) => {
+                    return <StageSummary stage={stage} vocab={this.props.vocab}/>;
+                })}
                 <div className='add-stage-placeholder'
                     onClick={() => this.setState({ addStageModal: true })}>
                     <div className='workflow-stage-title'>
