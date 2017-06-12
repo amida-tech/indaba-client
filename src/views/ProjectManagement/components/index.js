@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SubNav from './SubNav';
-import Summary from './Summary';
+import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import ModalContent from './Modals';
 import FilterWrapper from './Workflow/FilterWrapper';
-import { addSubject, addStage, updateTask, closeModal } from '../actions';
+import { addSubject, addStage, closeModal, showModal } from '../actions';
 
 class ProjectManagementContainer extends Component {
     render() {
@@ -18,7 +18,11 @@ class ProjectManagementContainer extends Component {
                     {modal}
                     <SubNav />
                     <hr className='divider' />
-                    <Summary {...this.props} />
+                    <Summary
+                        project={this.props.data.project.workflow}
+                        survey={this.props.data.project.survey}
+                        onStatusChangeClick={this.props.onStatusChangeClick}
+                        vocab={this.props.vocab} />
                     <hr className='divider' />
                     <FilterWrapper />
                     <div><WorkflowContainer {...this.props} /></div>
@@ -41,6 +45,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onAddStage: (stage) => {
         dispatch(addStage(stage));
+    },
+    onStatusChangeClick: (id) => {
+        dispatch(showModal(id));
     },
     onCancel: () => dispatch(closeModal()),
 });
