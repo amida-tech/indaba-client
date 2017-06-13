@@ -5,23 +5,19 @@ $block-class:'task-view';
         height: 100vh;
 
         &__text-container {
-
-        }
-
-        &__name {
-            font-size: 22px;
-        }
-
-        .container {
             width: 100%;
             margin: 10px;
-        }
+            display: flex;
+            flex-direction: row;
 
-        &__detail-box {
-            display: inline-block;
-            box-sizing: content-box;
-            width: 20%;
-         }
+            &--details-and-survey {
+                width: 65%;
+            }
+
+            &--flag-sidebar {
+                width: 35%;
+            }
+        }
 
         .grommetux-date-time__input {
         padding-right: 0 !important;

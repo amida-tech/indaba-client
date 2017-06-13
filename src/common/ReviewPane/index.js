@@ -22,14 +22,14 @@ class ReviewPane extends Component {
     render() {
         const Question = Questions[this.props.type];
         return (
-            <Box>
+            <Box className='review-pane'>
                 {!this.props.taskView &&
-                <button className='masked-button right-icon' onClick={this.handleFlagClick}>
-                    <IonIcon className='right-icon' icon='ion-ios-flag'/>
+                <button className='review-pane__flag-button' onClick={this.handleFlagClick}>
+                    <IonIcon className='review-pane__flag-button--icon' icon='ion-ios-flag'/>
                 </button>}
                 <Question {...this.props}/>
-                <div className='review-panel'>
-                    <label className='radio-inline'>
+                <div className='review-pane__controls'>
+                    <label className='review-pane__controls--radio'>
                         <input type='radio'
                             id='review-agree'
                             checked={this.props.review}
@@ -38,7 +38,7 @@ class ReviewPane extends Component {
                             onChange={this.handleClickReview} />
                         <span>{this.props.vocab.AGREE}</span>
                     </label>
-                    <label className='radio-inline'>
+                    <label className='review-pane__controls--radio'>
                         <input type='radio'
                             id='review-disagree'
                             checked={!this.props.review}
@@ -46,9 +46,9 @@ class ReviewPane extends Component {
                             value={false}
                             onChange={this.handleClickReview} />
                         <span>{this.props.vocab.DISAGREE}</span>
-                    </label>
+                    </label> <br />
                     <input type='text'
-                        className='comment'
+                        className='review-pane__controls--comment'
                         id='review-comment'
                         disabled={this.props.review}
                         placeholder={this.props.comment || this.props.vocab.COMMENT_TIP} />

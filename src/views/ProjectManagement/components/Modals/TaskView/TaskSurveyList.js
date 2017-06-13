@@ -4,7 +4,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import ReviewPane from '../../../../../common/ReviewPane';
 
-class SurveyReviewList extends Component {
+class TaskSurveyList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,9 +24,17 @@ class SurveyReviewList extends Component {
 
     render() {
         return (
-            <div>
+            <div className='task-survey-list'>
                 <button onClick={this.handleAccordionExpandAll}>{this.props.vocab.PROJECT.EXPAND_ALL}</button>
                 <button onClick={this.handleAccordionCollapseAll}>{this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
+                <div className='task-survey-list__instructions'>
+                    <span className='task-survey-list__instructions--header'>
+                        {this.props.vocab.PROJECT.INSTRUCTIONS}
+                    </span>
+                    <span className='task-survey-list__instructions--explained'>
+                        {this.props.instructions}
+                    </span>
+                </div>
                 <Accordion active={this.state.active} openMulti={true}>
                     {this.props.survey.map((question, i) =>
                         <AccordionPanel
@@ -40,4 +48,4 @@ class SurveyReviewList extends Component {
     }
 }
 
-export default SurveyReviewList;
+export default TaskSurveyList;

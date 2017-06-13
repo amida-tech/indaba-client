@@ -15,21 +15,21 @@ class TaskDetails extends Component {
 
     render() {
         return (
-            <div>
-                <div className='task-view__text-container'>
-                    <span className='task-view__name'>{this.props.assignee.name}</span><br/>
+            <div className='task-details'>
+                <div className='task-details__header'>
+                    <span className='task-details__header--name'>{this.props.assignee.name}</span><br/>
                     <span>{this.props.vocab.PROJECT.TASK_VIEW}</span>
                 </div>
                 <div className='task-view__detail-block'>
-                    <div className='task-view__detail-box'>
+                    <div className='task-details__detail-block--box'>
                         <span>{this.props.stageData.title}</span><br/>
                         <span>{this.props.vocab.PROJECT.STAGE}</span>
                     </div>
-                    <div className='task-view__detail-box'>
+                    <div className='task-details__detail-block--box'>
                         <span>{this.props.subject}</span><br/>
                         <span>{this.props.vocab.PROJECT.SUBJECT}</span>
                     </div>
-                    <div className='task-view__detail-box'>
+                    <div className='task-details__detail-block--box'>
                         <DateTime id='taskDueDate'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
@@ -37,7 +37,7 @@ class TaskDetails extends Component {
                             this.props.stageData.endStage}/><br/>
                         <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
                     </div>
-                    <div className='task-view__detail-box'>
+                    <div className='task-details__detail-block--box'>
                         <span>{this.props.surveyName}</span><br/>
                         <span>{this.props.vocab.PROJECT.SURVEY}</span>
                     </div>

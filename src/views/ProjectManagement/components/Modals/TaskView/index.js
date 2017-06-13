@@ -7,7 +7,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 import Modal from '../../../../../common/Modal';
 import FlagSidebar from '../../Workflow/FlagSidebar';
 import TaskDetails from './TaskDetails';
-import SurveyReviewList from './SurveyReviewList';
+import TaskSurveyList from './TaskSurveyList';
 
 class TaskView extends Component {
     constructor(props) {
@@ -41,28 +41,27 @@ class TaskView extends Component {
             onCancel={this.props.onCancel}
             data={this.props.data}
             onSave={() => this.props.onUpdateTask(this.state.value)}>
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-sm-8'>
-                        <button className='masked-button left-icon'
-                            onClick={this.props.onCancel}>
-                            <IonIcon icon='ion-android-arrow-back'/>
-                            {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
-                        </button>
-                        <TaskDetails
-                            surveyName={this.props.data.project.survey.name}
-                            subject={this.state.subject}
-                            assignee={this.state.assignee}
-                            vocab={this.props.vocab}
-                            stageData={this.props.stageData}/>
-                        <SurveyReviewList
-                            survey={this.state.survey}
-                            allActive={this.state.allActive}
-                            vocab={this.props.vocab} />
-                    </div>
-                    <div className='col-sm-4'>
-                        <FlagSidebar />
-                    </div>
+            <div className='task-view__text-container'>
+                <div className='task-view__text-container--details-and-survey'>
+                    <button className='masked-button left-icon'
+                        onClick={this.props.onCancel}>
+                        <IonIcon icon='ion-android-arrow-back'/>
+                        {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
+                    </button>
+                    <TaskDetails
+                        surveyName={this.props.data.project.survey.name}
+                        subject={this.state.subject}
+                        assignee={this.state.assignee}
+                        vocab={this.props.vocab}
+                        stageData={this.props.stageData}/>
+                    <TaskSurveyList
+                        survey={this.state.survey}
+                        instructions={this.props.data.project.survey.instructions}
+                        allActive={this.state.allActive}
+                        vocab={this.props.vocab} />
+                </div>
+                <div className='task-view__text-container--flag-sidebar'>
+                    <FlagSidebar />
                 </div>
             </div>
         </Modal>

@@ -1,0 +1,25 @@
+$block-class:'review-pane';
+@at-root {
+    .#{$block-class} {
+
+        &__flag-button {
+
+            &--icon {
+
+            }
+        }
+
+        &__controls {
+            margin-top: 10px;
+
+            &--radio {
+                margin-left: 2em;
+            }
+
+            &--comment {
+                width: 50%;
+                height: 7em;
+            }
+        }
+    }
+}
