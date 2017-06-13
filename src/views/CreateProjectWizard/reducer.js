@@ -49,6 +49,8 @@ export default (state = initialState, action) => {
             stages: { $push: [update(action.stage, {
                 id: { $set: state.workflow.stages.length } })] },
         } });
+    case t.ADD_PROJECT_FROM_WIZARD:
+        return initialState;
     default:
         return state;
     }

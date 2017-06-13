@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
 import _ from 'lodash';
 import update from 'immutability-helper';
-import { setWizardProjectTitle } from '../actions';
+import {
+    setWizardProjectTitle,
+    addProjectFromWizard,
+} from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
@@ -40,6 +43,7 @@ class CreateProjectWizard extends Component {
         if (this.state.step < NUM_WIZARD_STEPS - 1) {
             this.goToStep(this.state.step + 1);
         } else {
+            this.props.onCompleteProject(this.props.wizard);
             this.setState({ complete: true });
         }
     }
@@ -93,6 +97,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     onSetTitle: title => dispatch(setWizardProjectTitle(title)),
+    onCompleteProject: project => dispatch(addProjectFromWizard(project)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

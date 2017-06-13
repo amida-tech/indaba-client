@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import * as t from './actionTypes';
+import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 
 export const initialState = {
     navigation: {
@@ -204,6 +205,11 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: { survey: {
             status: { $set: action.status },
         } } } });
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, {
+            projects: { $push: [update(action.project, { $merge: {
+                id: state.projects.length } })],
+            } });
     default:
         return state;
     }

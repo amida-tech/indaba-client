@@ -55,3 +55,10 @@ export function addStageToWizard(stage) {
         stage,
     };
 }
+
+export function addProjectFromWizard(project) {
+    return {
+        type: actionTypes.ADD_PROJECT_FROM_WIZARD,
+        project,
+    };
+}
