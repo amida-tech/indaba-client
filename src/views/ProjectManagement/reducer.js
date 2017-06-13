@@ -184,16 +184,6 @@ export default (state = initialState, action) => {
             workflow: {
                 assignees: { $push: [action.payload] },
                 unassigned: { $set: project.workflow.unassigned.filter(un => un.id !== action.payload.id) } } } } });
-        var newState = Object.assign({}, state);
-        newState.workflow.assignees.push(action.payload);
-        var i = newState.workflow.unassigned.length;
-        while (i--) {
-            if (newState.workflow.unassigned[i].id === action.payload.id) {
-                newState.workflow.unassigned.splice(i, 1);
-                break;
-            }
-        }
-        return newState;
     case t.UPDATE_WORKFLOW_PROJECT:
         return Object.assign({}, state, action.payload.project);
     case t.UPDATE_WORKFLOW_SURVEY:
