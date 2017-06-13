@@ -50,7 +50,7 @@ class CreateProjectWizard extends Component {
     render() {
         return !this.state.complete ? (
             <div className='project-wizard'>
-                {!_.get(this.props.wizard, 'project.name') &&
+                {!_.get(this.props.wizard, 'workflow.name') &&
                     <NewProjectTitle onSave={this.props.onSetTitle} />}
                 <Tabs className='project-wizard-tabs'
                     activeIndex={this.state.step}

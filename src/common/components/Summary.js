@@ -14,7 +14,7 @@ class Summary extends Component {
                 margin={{ vertical: 'medium', right: 'small' }}
                 pad={{ horizontal: 'medium' }}>
                 <ProjectCard
-                    {...this.props.project}
+                    {...this.props.workflow}
                     vocab={this.props.vocab}
                     onStatusChangeClick={this.props.onStatusChangeClick}/>
                 <SurveyCard

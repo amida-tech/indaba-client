@@ -31,7 +31,7 @@ class ProjectManagementContainer extends Component {
                     <SubNav />
                     <hr className='divider' />
                     <Summary
-                        project={this.props.project.workflow}
+                        workflow={this.props.project.workflow}
                         survey={this.props.project.survey}
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />

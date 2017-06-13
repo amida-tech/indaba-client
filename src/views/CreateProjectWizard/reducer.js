@@ -2,7 +2,7 @@ import update from 'immutability-helper';
 import * as t from './actionTypes';
 
 const initialState = {
-    project: {
+    workflow: {
         status: 'Inactive',
         stages: [],
     },

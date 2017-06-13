@@ -22,7 +22,7 @@ class AddStages extends Component {
                     this.props.onAddStage(stage);
                 }}/>}
             <Summary
-                project={this.props.project}
+                workflow={this.props.workflow}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -36,7 +36,7 @@ class AddStages extends Component {
             </p>
             <hr className='divider' />
             <Box direction='row'>
-                {this.props.project.stages.map((stage) => {
+                {this.props.workflow.stages.map((stage) => {
                     return <StageSummary stage={stage} vocab={this.props.vocab}
                         key={stage.id}/>;
                 })}
@@ -56,7 +56,7 @@ class AddStages extends Component {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
+    workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
     roles: state.projectwizard.userGroups.map(group => group.name),
 });
