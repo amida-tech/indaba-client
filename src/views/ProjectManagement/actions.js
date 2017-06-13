@@ -62,6 +62,14 @@ export function updateTask(task) {
     };
 }
 
+export function updateTaskDueDate(assigneeId, dueDate) {
+    return {
+        type: actionTypes.UPDATE_TASK_DUE_DATE,
+        assigneeId,
+        dueDate,
+    }
+}
+
 export function toggleFilter(filter) {
     return {
         type: actionTypes.TOGGLE_FILTER,

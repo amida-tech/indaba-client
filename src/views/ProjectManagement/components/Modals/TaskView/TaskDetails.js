@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
+import { updateTaskDueDate } from '../../../actions';
 
 class TaskDetails extends Component {
     constructor(props) {
         super(props);
+        this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
+    }
+
+    handleTaskDueDateChange(event){
+        this.props.updateTaskDueDate(this.props.assignee.id, event);
     }
 
     render() {
@@ -25,8 +32,8 @@ class TaskDetails extends Component {
                     <div className='task-view__detail-box'>
                         <DateTime id='taskDueDate'
                             format='MM/DD/YYYY'
-                            onChange= {this.props.handleTaskDueDateChange}
-                            value = {this.props.assignee.dueDate ||
+                            onChange={this.handleTaskDueDateChange}
+                            value={this.props.assignee.dueDate ||
                             this.props.stageData.endStage}/><br/>
                         <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
                     </div>
@@ -40,4 +47,8 @@ class TaskDetails extends Component {
     }
 }
 
-export default TaskDetails;
+const mapDispatchToProps = dispatch => ({
+  updateTaskDueDate: (assignee, dueDate) => dispatch(updateTaskDueDate(assignee, dueDate))
+});
+
+export default connect(null, mapDispatchToProps)(TaskDetails);

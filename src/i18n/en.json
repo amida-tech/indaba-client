@@ -45,6 +45,8 @@
     "STATUS": "Status",
     "QUESTION": "Question",
     "TASK_VIEW": "Task View",
+    "EXPAND_ALL": "Expand All",
+    "COLLAPSE_ALL": "Collapse All",
     "TASK_DUE_DATE": "Task Due Date",
     "CHANGE_STATUS": "Change Status",
     "AGREE": "Agree",

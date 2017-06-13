@@ -1,4 +1,5 @@
 import * as t from './actionTypes';
+import update from 'immutability-helper';
 
 export const initialState = {
     navigation: {
@@ -167,56 +168,55 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case t.GET_WORKFLOW:
-        return Object.assign({}, state, action.payload);
-    case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
-        var newState = Object.assign({}, state);
-        newState.workflow.assignees.push(action.payload);
-        var i = newState.workflow.unassigned.length;
-        while (i--) {
-            if (newState.workflow.unassigned[i].id === action.payload.id) {
-                newState.workflow.unassigned.splice(i, 1);
-                break;
+        case t.GET_WORKFLOW:
+            return Object.assign({}, state, action.payload);
+        case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
+            var newState = Object.assign({}, state);
+            newState.workflow.assignees.push(action.payload);
+            var i = newState.workflow.unassigned.length;
+            while (i--) {
+                if (newState.workflow.unassigned[i].id === action.payload.id) {
+                    newState.workflow.unassigned.splice(i, 1);
+                    break;
+                }
             }
-        }
-        return newState;
-    case t.UPDATE_WORKFLOW_PROJECT:
-        return Object.assign({}, state, action.payload.project);
-    case t.UPDATE_WORKFLOW_SURVEY:
-        return Object.assign({}, state, action.payload.survey);
-    case t.SUBNAVIGATE:
-        return Object.assign({}, state, { navigation: { subnav: action.id } });
-    case t.SHOW_MODAL_PROPS:
-        return Object.assign({}, state,
-        { navigation: Object.assign({}, state.navigation, { modal: action.id, modalData: action.props }) });
-    case t.TOGGLE_FILTER:
-        var newState = Object.assign({}, state);
-        newState.workflow.filter =
-        action.filter === newState.workflow.filter ? null : action.filter;
-        return newState;
-    case t.ADD_SUBJECT:
-        var newState = Object.assign({}, state);
-        newState.workflow.subjects.push(action.subject);
-        delete newState.navigation.modal;
-        return newState;
-    case t.ADD_STAGE:
-        var newState = Object.assign({}, state);
-        newState.workflow.stages.push(action.stage);
-        delete newState.navigation.modal;
-        return newState;
-    case t.UPDATE_TASK:
-        var newState = Object.assign({}, state);
-      // Find in assignees and replace.
-        return newState;
-    case t.SET_PROJECT_STATUS:
-        return Object.assign({}, state,
-        { workflow: Object.assign({}, state.workflow, { status: action.status }) },
-        { navigation: Object.assign({}, state.navigation, { modal: null }) });
-    case t.SET_SURVEY_STATUS:
-        return Object.assign({}, state,
-        { survey: Object.assign({}, state.survey, { status: action.status }) },
-        { navigation: Object.assign({}, state.navigation, { modal: null }) });
-    default:
-        return state;
+            return newState;
+        case t.UPDATE_WORKFLOW_PROJECT:
+            return Object.assign({}, state, action.payload.project);
+        case t.UPDATE_WORKFLOW_SURVEY:
+            return Object.assign({}, state, action.payload.survey);
+        case t.SUBNAVIGATE:
+            return Object.assign({}, state, { navigation: { subnav: action.id } });
+        case t.SHOW_MODAL_PROPS:
+            return Object.assign({}, state,
+            { navigation: Object.assign({}, state.navigation, { modal: action.id, modalData: action.props }) });
+        case t.TOGGLE_FILTER:
+            var newState = Object.assign({}, state);
+            newState.workflow.filter =
+            action.filter === newState.workflow.filter ? null : action.filter;
+            return newState;
+        case t.ADD_SUBJECT:
+            var newState = Object.assign({}, state);
+            newState.workflow.subjects.push(action.subject);
+            delete newState.navigation.modal;
+            return newState;
+        case t.ADD_STAGE:
+            var newState = Object.assign({}, state);
+            newState.workflow.stages.push(action.stage);
+            delete newState.navigation.modal;
+            return newState;
+        case t.UPDATE_TASK_DUE_DATE:
+            return update(state, { workflow: { assignees: {[action.assigneeId]: 
+                    { $merge: { dueDate: action.dueDate } }}}});
+        case t.SET_PROJECT_STATUS:
+            return Object.assign({}, state,
+            { workflow: Object.assign({}, state.workflow, { status: action.status }) },
+            { navigation: Object.assign({}, state.navigation, { modal: null }) });
+        case t.SET_SURVEY_STATUS:
+            return Object.assign({}, state,
+            { survey: Object.assign({}, state.survey, { status: action.status }) },
+            { navigation: Object.assign({}, state.navigation, { modal: null }) });
+        default:
+            return state;
     }
 };

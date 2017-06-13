@@ -6,8 +6,8 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import Modal from '../../../../../common/Modal';
 import FlagSidebar from '../../Workflow/FlagSidebar';
-import ReviewPane from '../../../../../common/ReviewPane';
 import TaskDetails from './TaskDetails';
+import SurveyReviewList from './SurveyReviewList';
 
 class TaskView extends Component {
     constructor(props) {
@@ -24,9 +24,6 @@ class TaskView extends Component {
             allActive: survey.map((k, i) => i),
             active: []
         };
-        this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
-        this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
-        this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
     }
 
     surveyMapper(response, question) {
@@ -34,20 +31,6 @@ class TaskView extends Component {
         return (match.length > 0) ?
             Object.assign({}, question, match[0], {taskView: true}) :
             Object.assign({}, question, {taskView: true});
-    }
-
-    handleTaskDueDateChange(event){
-        var newState = this.state;
-        newState.assignee.dueDate = event;
-        this.setState(newState);
-    }
-
-    handleAccordionExpandAll(event){
-        this.setState({ active: this.state.allActive });
-    }
-
-    handleAccordionCollapseAll(event){
-        this.setState({ active: [] });
     }
 
     render() {
@@ -71,20 +54,11 @@ class TaskView extends Component {
                             subject={this.state.subject}
                             assignee={this.state.assignee}
                             vocab={this.props.vocab}
-                            stageData={this.props.stageData}
-                            handleTaskDueDateChange={this.handleTaskDueDateChange}/>
-                        <div>
-                            <button onClick={this.handleAccordionExpandAll}>EXPAND</button>
-                            <button onClick={this.handleAccordionCollapseAll}>COLLAPSE</button>
-                            <Accordion active={this.state.active} openMulti={true}>
-                                {this.state.survey.map((question, i) =>
-                                    <AccordionPanel
-                                        heading={this.props.vocab.PROJECT.QUESTION+' '+(i+1)}
-                                        key={'question-'+i}>
-                                        <ReviewPane {...question}/>
-                                    </AccordionPanel>)}
-                            </Accordion>
-                        </div>
+                            stageData={this.props.stageData}/>
+                        <SurveyReviewList
+                            survey={this.state.survey}
+                            allActive={this.state.allActive}
+                            vocab={this.props.vocab} />
                     </div>
                     <div className='col-sm-4'>
                         <FlagSidebar />
