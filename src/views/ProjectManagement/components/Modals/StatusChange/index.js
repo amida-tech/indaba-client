@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setProjectStatus, setSurveyStatus } from '../../../actions';
 import Modal from '../../../../../common/Modal';
 import ProjectStatusBody from './ProjectStatusBody';
 import SurveyStatusBody from './SurveyStatusBody';
@@ -76,13 +74,4 @@ class StatusChange extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    projectStatus: state.project.workflow.status,
-    surveyStatus: state.project.survey.status,
-});
-const mapDispatchToProps = dispatch => ({
-    onSetProjectStatus: status => dispatch(setProjectStatus(status)),
-    onSetSurveyStatus: status => dispatch(setSurveyStatus(status)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StatusChange);
+export default StatusChange;

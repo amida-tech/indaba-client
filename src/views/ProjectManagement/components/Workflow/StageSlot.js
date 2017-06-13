@@ -53,6 +53,7 @@ class StageSlot extends Component {
             vocab={this.props.vocab}
             assignee={this.props.assignee}
             stageData={this.props.stageData}
+            project={this.props.project}
             onCancel={() => this.setState({ showTaskModal: false })} />;
     }
 

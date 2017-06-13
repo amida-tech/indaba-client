@@ -14,13 +14,13 @@ class TaskView extends Component {
         super(props);
         const assignee = props.assignee;
         const survey = assignee.response ?
-            props.data.project.survey.questions.map((question) =>
+            props.project.survey.questions.map((question) =>
                 this.surveyMapper(assignee.response, question)) :
-                props.data.project.survey.questions;
+                props.project.survey.questions;
         this.state = {
             assignee: assignee,
             stageData: props.stageData,
-            subject: props.data.project.workflow.subjects[assignee.subject],
+            subject: props.project.workflow.subjects[assignee.subject],
             survey: survey,
             allActive: survey.map((k, i) => i),
             active: []
@@ -57,7 +57,6 @@ class TaskView extends Component {
             title={this.props.vocab.PROJECT.TASK_VIEW}
             class='task-view-layer'
             onCancel={this.props.onCancel}
-            data={this.props.data}
             onSave={() => this.props.onUpdateTask(this.state.value)}>
             <div className='container'>
                 <div className='row'>
@@ -117,7 +116,6 @@ class TaskView extends Component {
 }
 
 const mapStateToProps = state => ({
-    data: state,
     vocab: state.settings.language.vocabulary
 });
 

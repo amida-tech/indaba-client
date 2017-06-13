@@ -14,7 +14,7 @@ import Select from 'grommet/components/Select';
 class UserSidebar extends Component {
     constructor(props) {
         super(props);
-        this.state = {query: ''};
+        this.state = { query: '' };
     }
 
     searchFilter(value) {
@@ -26,23 +26,23 @@ class UserSidebar extends Component {
     }
 
     onSearch(evt) {
-        this.setState(Object.assign({}, this.state, {query: evt.target.value}));
+        this.setState(Object.assign({}, this.state, { query: evt.target.value }));
     }
 
     onGroupFilter(evt) {
-        this.setState(Object.assign({}, this.state, {group: evt.option.value}))
+        this.setState(Object.assign({}, this.state, { group: evt.option.value }));
     }
 
     render() {
-        const unassigned = this.props.data.project.workflow.unassigned
-        .filter((u) => this.searchFilter(u.name))
-        .filter((u) => this.groupFilter(u))
+        const unassigned = this.props.project.workflow.unassigned
+        .filter(u => this.searchFilter(u.name))
+        .filter(u => this.groupFilter(u))
         .map(unassignee =>
-            React.createElement(AssigneeCard, this.props, unassignee)
+            React.createElement(AssigneeCard, this.props, unassignee),
         );
 
-        var groupFilters = this.props.data.project.workflow.roles.map(r=>({label: r.role, value: r}));
-        groupFilters.push({label: 'Any', value: null})
+        const groupFilters = this.props.project.workflow.roles.map(r => ({ label: r.role, value: r }));
+        groupFilters.push({ label: 'Any', value: null });
         return (
             <Box appCentered={false}
                 separator='all'
@@ -60,9 +60,9 @@ class UserSidebar extends Component {
                     onChange={this.onGroupFilter.bind(this)}/>
                 <List>
                     {unassigned.map(unassignee =>
-                    <ListItem key={"Unassigned-"+unassignee.props.children.id}>
+                    <ListItem key={`Unassigned-${unassignee.props.children.id}`}>
                         {unassignee}
-                    </ListItem>
+                    </ListItem>,
                     )}
                 </List>
             </div>
@@ -70,7 +70,7 @@ class UserSidebar extends Component {
                 <InviteUser className='sidebard-invite-user' vocab={this.props.vocab} />
             </div>
             </Box>
-        )
+        );
     }
 }
 

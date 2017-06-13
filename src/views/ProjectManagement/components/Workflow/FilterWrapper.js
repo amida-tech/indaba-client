@@ -37,7 +37,7 @@ class FilterWrapper extends Component {
                     this.setState({ showModalId: false });
                     this.props.onAddStage(stage);
                 }}
-                roles={this.props.roles} />;
+                roles={this.props.project.workflow.roles} />;
         } else if (id === 'add_subject') {
             return <AddSubject
                 vocab={this.props.vocab}
@@ -71,7 +71,7 @@ class FilterWrapper extends Component {
             <div className='filter-wrapper'>
                 {this.makeModal(this.state.showModalId)}
                 <FilterBar options={Filters}
-                    filter={this.props.filter}
+                    filter={this.props.project.filter}
                     onToggleFilter={this.props.onToggleFilter}/>
                 <div className='add-button-panel'>
                     <Button primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
@@ -85,14 +85,12 @@ class FilterWrapper extends Component {
 }
 
 const mapStateToProps = state => ({
-    filter: state.project.workflow.filter,
     vocab: state.settings.language.vocabulary,
-    roles: state.project.workflow.roles,
 });
-const mapDispatchToProps = dispatch => ({
-    onToggleFilter: filter => dispatch(toggleFilter(filter)),
-    onAddSubject: subject => dispatch(addSubject(subject)),
-    onAddStage: stage => dispatch(addStage(stage)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onToggleFilter: filter => dispatch(toggleFilter(filter, ownProps.project.id)),
+    onAddSubject: subject => dispatch(addSubject(subject, ownProps.project.id)),
+    onAddStage: stage => dispatch(addStage(stage, ownProps.project.id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterWrapper);

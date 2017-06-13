@@ -6,10 +6,10 @@ import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
 import AddUserGroup from './AddUserGroup';
 import {
-    addUserToProject,
-    removeUserFromProject,
-    addUserGroup,
-    removeUserGroup,
+    addUserToWizard,
+    removeUserFromWizard,
+    addUserGroupToWizard,
+    removeUserGroupFromWizard,
 } from '../../actions';
 
 class AddUsers extends Component {
@@ -37,8 +37,8 @@ class AddUsers extends Component {
                         users={this.props.projectUsers}
                         allUsers={this.props.allUsers}
                         onCancel={() => this.handleCreateModal(false)}
-                        onSave={(group) => {
-                            this.props.onAddUserGroup(group);
+                        onSave={(role) => {
+                            this.props.onAddUserGroup(role);
                             this.handleCreateModal(false);
                         }}/>}
                 <Summary
@@ -71,7 +71,7 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            userGroups={this.props.userGroups}
+                            roles={this.props.roles}
                             allUsers={this.props.allUsers}
                             onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
@@ -86,13 +86,13 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
-    userGroups: state.projectwizard.userGroups,
+    roles: state.projectwizard.workflow.roles,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddUserToProject: user => dispatch(addUserToProject(user)),
-    onRemoveUserFromProject: userId => dispatch(removeUserFromProject(userId)),
-    onAddUserGroup: group => dispatch(addUserGroup(group)),
-    onRemoveUserGroup: id => dispatch(removeUserGroup(id)),
+    onAddUserToProject: user => dispatch(addUserToWizard(user)),
+    onRemoveUserFromProject: userId => dispatch(removeUserFromWizard(userId)),
+    onAddUserGroup: group => dispatch(addUserGroupToWizard(group)),
+    onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);

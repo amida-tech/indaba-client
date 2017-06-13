@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import AddStage from '../../ProjectManagement/components/Modals/AddStage';
-import { addStage } from '../actions';
+import { addStageToWizard } from '../actions';
 import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
 class AddStages extends Component {
@@ -22,7 +22,7 @@ class AddStages extends Component {
                     this.props.onAddStage(stage);
                 }}/>}
             <Summary
-                project={this.props.project}
+                workflow={this.props.workflow}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -36,7 +36,7 @@ class AddStages extends Component {
             </p>
             <hr className='divider' />
             <Box direction='row'>
-                {this.props.project.stages.map((stage) => {
+                {this.props.workflow.stages.map((stage) => {
                     return <StageSummary stage={stage} vocab={this.props.vocab}
                         key={stage.id}/>;
                 })}
@@ -56,13 +56,13 @@ class AddStages extends Component {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
+    workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
-    roles: state.projectwizard.userGroups.map(group => group.name),
+    roles: state.projectwizard.workflow.roles.map(role => role.name),
 });
 
 const mapDispatchToProps = dispatch => ({
-    onAddStage: stage => dispatch(addStage(stage)),
+    onAddStage: stage => dispatch(addStageToWizard(stage)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddStages);

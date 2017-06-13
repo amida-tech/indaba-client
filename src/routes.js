@@ -13,8 +13,8 @@ export default (
         component={App}
         indexRoute={DashboardContainer}>
         <Route
-            key='/project'
-            path='/project'
+            key='/project(/:id)'
+            path='/project(/:id)'
             component={ProjectManagementContainer}/>
         <Route
             key='/login'
