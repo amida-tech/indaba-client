@@ -5,6 +5,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import FilterWrapper from './Workflow/FilterWrapper';
 import StatusChange from './Modals/StatusChange';
+import { setProjectStatus, setSurveyStatus } from '../actions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
@@ -22,7 +23,11 @@ class ProjectManagementContainer extends Component {
                     { this.state.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             onStatusChangeClose={() => this.setState({ statusModalId: false })}
-                            entity={modalEntities[this.state.statusModalId]}/> }
+                            entity={modalEntities[this.state.statusModalId]}
+                            projectStatus={this.props.project.workflow.status}
+                            surveyStatus={this.props.project.survey.status}
+                            onSetProjectStatus={this.props.onSetProjectStatus}
+                            onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
                     <SubNav />
                     <hr className='divider' />
                     <Summary
@@ -46,4 +51,12 @@ const mapStateToProps = (state, ownProps) => ({
     project: state.project.projects.find(p => `${p.id}` === ownProps.params.id),
 });
 
-export default connect(mapStateToProps)(ProjectManagementContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const id = parseInt(ownProps.params.id, 10);
+    return {
+        onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
+        onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);
