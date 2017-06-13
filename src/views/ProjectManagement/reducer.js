@@ -171,10 +171,8 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let project;
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(p => p.id === action.projectId);
-        project = state.projects.find(p => p.id === action.projectId);
     }
     switch (action.type) {
     case t.GET_WORKFLOW:
@@ -183,7 +181,7 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: {
             workflow: {
                 assignees: { $push: [action.payload] },
-                unassigned: { $set: project.workflow.unassigned.filter(un => un.id !== action.payload.id) } } } } });
+                unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } } });
     case t.UPDATE_WORKFLOW_PROJECT:
         return Object.assign({}, state, action.payload.project);
     case t.UPDATE_WORKFLOW_SURVEY:
