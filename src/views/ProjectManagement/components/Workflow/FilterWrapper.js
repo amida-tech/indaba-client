@@ -37,7 +37,7 @@ class FilterWrapper extends Component {
                     this.setState({ showModalId: false });
                     this.props.onAddStage(stage);
                 }}
-                roles={this.props.project.worklow.roles} />;
+                roles={this.props.project.workflow.roles} />;
         } else if (id === 'add_subject') {
             return <AddSubject
                 vocab={this.props.vocab}
