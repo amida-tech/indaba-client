@@ -6,10 +6,10 @@ import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
 import AddUserGroup from './AddUserGroup';
 import {
-    addUserToProject,
-    removeUserFromProject,
-    addUserGroup,
-    removeUserGroup,
+    addUserToWizard,
+    removeUserFromWizard,
+    addUserGroupToWizard,
+    removeUserGroupFromWizard,
 } from '../../actions';
 
 class AddUsers extends Component {
@@ -89,10 +89,10 @@ const mapStateToProps = state => ({
     userGroups: state.projectwizard.userGroups,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddUserToProject: user => dispatch(addUserToProject(user)),
-    onRemoveUserFromProject: userId => dispatch(removeUserFromProject(userId)),
-    onAddUserGroup: group => dispatch(addUserGroup(group)),
-    onRemoveUserGroup: id => dispatch(removeUserGroup(id)),
+    onAddUserToProject: user => dispatch(addUserToWizard(user)),
+    onRemoveUserFromProject: userId => dispatch(removeUserFromWizard(userId)),
+    onAddUserGroup: group => dispatch(addUserGroupToWizard(group)),
+    onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);

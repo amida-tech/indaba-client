@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
 import _ from 'lodash';
 import update from 'immutability-helper';
-import { setProjectTitle } from '../actions';
+import { setWizardProjectTitle } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
@@ -92,7 +92,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
-    onSetTitle: title => dispatch(setProjectTitle(title)),
+    onSetTitle: title => dispatch(setWizardProjectTitle(title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

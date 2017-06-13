@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import AddStage from '../../ProjectManagement/components/Modals/AddStage';
-import { addStage } from '../actions';
+import { addStageToWizard } from '../actions';
 import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
 class AddStages extends Component {
@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onAddStage: stage => dispatch(addStage(stage)),
+    onAddStage: stage => dispatch(addStageToWizard(stage)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddStages);

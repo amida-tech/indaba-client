@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import { addSubjects, deleteSubject } from '../actions';
+import { addSubjectsToWizard, deleteSubjectFromWizard } from '../actions';
 import Summary from '../../../common/components/Summary';
 
 class AddSubjectControl extends Component {
@@ -77,8 +77,8 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddSubjects: subjects => dispatch(addSubjects(subjects)),
-    onDeleteSubject: subject => dispatch(deleteSubject(subject)),
+    onAddSubjects: subjects => dispatch(addSubjectsToWizard(subjects)),
+    onDeleteSubject: subject => dispatch(deleteSubjectFromWizard(subject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSubjects);
