@@ -191,7 +191,8 @@ export default (state = initialState, action) => {
         } } } });
     case t.ADD_STAGE:
         return update(state, { projects: { [projectIndex]: { workflow: {
-            stages: { $push: [action.stage] },
+            stages: { $push: [update(action.stage, { $merge: {
+                id: state.projects[projectIndex].workflow.stages.length } })] },
         } } } });
     case t.UPDATE_TASK:
         return Object.assign({}, state);
