@@ -71,7 +71,7 @@ class FilterWrapper extends Component {
             <div className='filter-wrapper'>
                 {this.makeModal(this.state.showModalId)}
                 <FilterBar options={Filters}
-                    filter={this.props.project.workflow.filter}
+                    filter={this.props.project.filter}
                     onToggleFilter={this.props.onToggleFilter}/>
                 <div className='add-button-panel'>
                     <Button primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}

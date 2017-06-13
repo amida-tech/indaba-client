@@ -175,24 +175,16 @@ export default (state = initialState, action) => {
         projectIndex = state.projects.findIndex(p => p.id === action.projectId);
     }
     switch (action.type) {
-    case t.GET_WORKFLOW:
-        return Object.assign({}, state, action.payload);
     case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
         return update(state, { projects: { [projectIndex]: {
             workflow: {
                 assignees: { $push: [action.payload] },
                 unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } } });
-    case t.UPDATE_WORKFLOW_PROJECT:
-        return Object.assign({}, state, action.payload.project);
-    case t.UPDATE_WORKFLOW_SURVEY:
-        return Object.assign({}, state, action.payload.survey);
     case t.SUBNAVIGATE:
-        return Object.assign({}, state, { navigation: { subnav: action.id } });
+        return update(state, { navigation: { subnav: { $set: action.id } } });
     case t.TOGGLE_FILTER:
-        var newState = Object.assign({}, state);
-        newState.workflow.filter =
-        action.filter === newState.workflow.filter ? null : action.filter;
-        return newState;
+        return update(state, { projects: { [projectIndex]: {
+            filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case t.ADD_SUBJECT:
         var newState = Object.assign({}, state);
         newState.workflow.subjects.push(action.subject);
