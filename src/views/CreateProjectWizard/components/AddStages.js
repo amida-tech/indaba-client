@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
-    roles: state.projectwizard.userGroups.map(group => group.name),
+    roles: state.projectwizard.workflow.roles.map(role => role.name),
 });
 
 const mapDispatchToProps = dispatch => ({

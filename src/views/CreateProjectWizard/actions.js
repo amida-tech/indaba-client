@@ -35,10 +35,10 @@ export function removeUserFromWizard(userId) {
     };
 }
 
-export function addUserGroupToWizard(group) {
+export function addUserGroupToWizard(role) {
     return {
         type: actionTypes.ADD_USER_GROUP_TO_WIZARD,
-        group,
+        role,
     };
 }
 

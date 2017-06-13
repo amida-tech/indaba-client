@@ -8,16 +8,16 @@ const initialState = {
         assignees: [],
         unassigned: [],
         subjects: [],
+        roles: [{
+            id: 0,
+            name: 'great',
+            users: [0, 1],
+        }],
     },
     survey: {
         status: 'Draft',
     },
     users: [0, 1],
-    userGroups: [{
-        id: 0,
-        name: 'great',
-        users: [0, 1],
-    }],
 };
 
 export default (state = initialState, action) => {
@@ -36,16 +36,15 @@ export default (state = initialState, action) => {
         return update(state, { users:
             { $splice: [[state.users.indexOf(action.userId), 1]] } });
     case t.ADD_USER_GROUP_TO_WIZARD:
-        return update(state, {
-            userGroups: {
-                $push: [update(action.group, { id: { $set: state.userGroups.length } })],
-            },
-        });
+        return update(state, { workflow: {
+            roles: {
+                $push: [update(action.role, { id: { $set: state.workflow.roles.length } })] },
+        } });
     case t.REMOVE_USER_GROUP_FROM_WIZARD:
-        return update(state, {
-            userGroups: {
-                $set: state.userGroups.filter(group => group.id !== action.id),
-            },
+        return update(state, { workflow: {
+            roles: {
+                $set: state.workflow.roles.filter(role => role.id !== action.id),
+            } },
         });
     case t.ADD_STAGE_TO_WIZARD:
         return update(state, { workflow: {
