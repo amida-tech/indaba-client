@@ -5,6 +5,9 @@ const initialState = {
     workflow: {
         status: 'Inactive',
         stages: [],
+        assignees: [],
+        unassigned: [],
+        subjects: [],
     },
     survey: {
         status: 'Draft',

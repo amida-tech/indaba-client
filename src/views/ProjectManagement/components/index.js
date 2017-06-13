@@ -45,15 +45,18 @@ class ProjectManagementContainer extends Component {
 
 ProjectManagementContainer.displayName = 'Project Manager';
 
-const mapStateToProps = (state, ownProps) => ({
-    vocab: state.settings.language.vocabulary,
-    modal: state.project.navigation.modal,
-    project: state.project.projects.find(p => `${p.id}` === ownProps.params.id) ||
-        state.project.projects[0],
-});
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
+    return {
+        vocab: state.settings.language.vocabulary,
+        modal: state.project.navigation.modal,
+        project: state.project.projects.find(p => `${p.id}` === id) ||
+            state.project.projects[0],
+    };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const id = parseInt(ownProps.params.id, 10);
+    const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10);
     return {
         onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),

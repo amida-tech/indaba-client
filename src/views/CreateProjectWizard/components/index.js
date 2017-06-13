@@ -86,7 +86,7 @@ class CreateProjectWizard extends Component {
             </div>) : (
             <div className='project-wizard--complete'>
                 <WizardComplete vocab={this.props.vocab} />
-                <ProjectManagementContainer />
+                <ProjectManagementContainer id='1'/>
             </div>);
     }
 }
