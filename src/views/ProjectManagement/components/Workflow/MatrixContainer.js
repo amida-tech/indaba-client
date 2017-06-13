@@ -37,6 +37,7 @@ class MatrixContainer extends Component {
               assignees={assignees}
               user={this.props.data.user}
               vocab={this.props.vocab}
+              project={this.props.project}
               filter={this.props.project.workflow.filter}/>,
           )}
         </tbody>
