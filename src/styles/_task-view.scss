@@ -1,0 +1,30 @@
+$block-class:'task-view';
+@at-root {
+    .#{$block-class} {
+        width: 90vw;
+        height: 100vh;
+
+        &__text-container {
+
+        }
+
+        &__name {
+            font-size: 22px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 10px;
+        }
+
+        &__detail-box {
+            display: inline-block;
+            box-sizing: content-box;
+            width: 20%;
+         }
+
+        .grommetux-date-time__input {
+        padding-right: 0 !important;
+        }
+    }
+}

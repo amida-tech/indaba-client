@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IonIcon from 'react-ionicons';
-import DateTime from 'grommet/components/DateTime';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
-import Modal from '../../../../common/Modal';
-import FlagSidebar from '../Workflow/FlagSidebar';
-import ReviewPane from '../../../../common/ReviewPane';
+import Modal from '../../../../../common/Modal';
+import FlagSidebar from '../../Workflow/FlagSidebar';
+import ReviewPane from '../../../../../common/ReviewPane';
+import TaskDetails from './TaskDetails';
 
 class TaskView extends Component {
     constructor(props) {
         super(props);
-        const assignee = props.assignee;
-        const survey = assignee.response ?
+        const survey = props.assignee.response ?
             props.data.project.survey.questions.map((question) =>
-                this.surveyMapper(assignee.response, question)) :
+                this.surveyMapper(props.assignee.response, question)) :
                 props.data.project.survey.questions;
         this.state = {
-            assignee: assignee,
+            assignee:  props.assignee,
             stageData: props.stageData,
-            subject: props.data.project.workflow.subjects[assignee.subject],
+            subject: props.data.project.workflow.subjects[props.assignee.subject],
             survey: survey,
             allActive: survey.map((k, i) => i),
             active: []
@@ -55,7 +54,7 @@ class TaskView extends Component {
     return (
         <Modal
             title={this.props.vocab.PROJECT.TASK_VIEW}
-            class='task-view-layer'
+            class='task-view'
             onCancel={this.props.onCancel}
             data={this.props.data}
             onSave={() => this.props.onUpdateTask(this.state.value)}>
@@ -67,32 +66,13 @@ class TaskView extends Component {
                             <IonIcon icon='ion-android-arrow-back'/>
                             {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                         </button>
-                        <div>
-                            <span className='name'>{this.state.assignee.name}</span><br/>
-                            <span>{this.props.vocab.PROJECT.TASK_VIEW}</span>
-                        </div>
-                        <div className='detail-block'>
-                            <div className='detail-box'>
-                                <span>{this.state.stageData.title}</span><br/>
-                                <span>{this.props.vocab.PROJECT.STAGE}</span>
-                            </div>
-                            <div className='detail-box'>
-                                <span>{this.state.subject}</span><br/>
-                                <span>{this.props.vocab.PROJECT.SUBJECT}</span>
-                            </div>
-                            <div className='detail-box'>
-                                <DateTime id='taskDueDate'
-                                    format='MM/DD/YYYY'
-                                    onChange={this.handleTaskDueDateChange}
-                                    value = {this.state.assignee.dueDate ||
-                                        this.state.stageData.endStage}/><br/>
-                                <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
-                            </div>
-                            <div className='detail-box'>
-                                <span>{this.state.surveyName}</span><br/>
-                                <span>{this.props.vocab.PROJECT.SURVEY}</span>
-                            </div>
-                        </div>
+                        <TaskDetails
+                            surveyName={this.props.data.project.survey.name}
+                            subject={this.state.subject}
+                            assignee={this.state.assignee}
+                            vocab={this.props.vocab}
+                            stageData={this.props.stageData}
+                            handleTaskDueDateChange={this.handleTaskDueDateChange}/>
                         <div>
                             <button onClick={this.handleAccordionExpandAll}>EXPAND</button>
                             <button onClick={this.handleAccordionCollapseAll}>COLLAPSE</button>
