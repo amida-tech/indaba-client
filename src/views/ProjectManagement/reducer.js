@@ -175,7 +175,7 @@ export default (state = initialState, action) => {
         projectIndex = state.projects.findIndex(p => p.id === action.projectId);
     }
     switch (action.type) {
-    case t.ASSIGN_TASK: // Remove from unassigned, add to assigned.
+    case t.ASSIGN_TASK:
         return update(state, { projects: { [projectIndex]: {
             workflow: {
                 assignees: { $push: [action.payload] },
@@ -186,27 +186,23 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case t.ADD_SUBJECT:
-        var newState = Object.assign({}, state);
-        newState.workflow.subjects.push(action.subject);
-        delete newState.navigation.modal;
-        return newState;
+        return update(state, { projects: { [projectIndex]: { workflow: {
+            subjects: { $push: [action.subject] },
+        } } } });
     case t.ADD_STAGE:
-        var newState = Object.assign({}, state);
-        newState.workflow.stages.push(action.stage);
-        delete newState.navigation.modal;
-        return newState;
+        return update(state, { projects: { [projectIndex]: { workflow: {
+            stages: { $push: [action.stage] },
+        } } } });
     case t.UPDATE_TASK:
-        var newState = Object.assign({}, state);
-      // Find in assignees and replace.
-        return newState;
+        return Object.assign({}, state);
     case t.SET_PROJECT_STATUS:
-        return Object.assign({}, state,
-        { workflow: Object.assign({}, state.workflow, { status: action.status }) },
-        { navigation: Object.assign({}, state.navigation, { modal: null }) });
+        return update(state, { projects: { [projectIndex]: { workflow: {
+            status: { $set: action.status },
+        } } } });
     case t.SET_SURVEY_STATUS:
-        return Object.assign({}, state,
-        { survey: Object.assign({}, state.survey, { status: action.status }) },
-        { navigation: Object.assign({}, state.navigation, { modal: null }) });
+        return update(state, { projects: { [projectIndex]: { survey: {
+            status: { $set: action.status },
+        } } } });
     default:
         return state;
     }
