@@ -51,7 +51,7 @@ class AddSubjects extends Component {
     render() {
         return (<div>
             <Summary
-                project={this.props.project}
+                workflow={this.props.workflow}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -71,9 +71,9 @@ class AddSubjects extends Component {
 }
 
 const mapStateToProps = state => ({
-    subjects: state.projectwizard.subjects,
+    subjects: state.projectwizard.workflow.subjects,
     vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
+    workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
 });
 const mapDispatchToProps = dispatch => ({

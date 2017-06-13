@@ -10,19 +10,23 @@ const initialState = {
         status: 'Draft',
     },
     users: [0, 1],
-    userGroups: [],
+    userGroups: [{
+        id: 0,
+        name: 'great',
+        users: [0, 1],
+    }],
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
     case t.SET_PROJECT_TITLE:
-        return update(state, { project: { name: { $set: action.title } } });
+        return update(state, { workflow: { name: { $set: action.title } } });
     case t.ADD_SUBJECTS:
-        return Object.assign({}, state,
-            { subjects: [...(state.subjects || []), ...action.subjects] });
+        return update(state, { workflow:
+            { subjects: { $set: [...(state.workflow.subjects || []), ...action.subjects] } } });
     case t.DELETE_SUBJECT:
-        return update(state, { subjects:
-            { $splice: [[state.subjects.indexOf(action.subject), 1]] } });
+        return update(state, { subjects: { workflow:
+            { $splice: [[state.workflow.subjects.indexOf(action.subject), 1]] } } });
     case t.ADD_USER_TO_PROJECT:
         return update(state, { users: { $push: [action.user.id] } });
     case t.REMOVE_USER_FROM_PROJECT:
@@ -43,7 +47,7 @@ export default (state = initialState, action) => {
     case t.ADD_STAGE:
         return update(state, { project: {
             stages: { $push: [update(action.stage, {
-                id: { $set: state.project.stages.length } })] },
+                id: { $set: state.workflow.stages.length } })] },
         } });
     default:
         return state;
