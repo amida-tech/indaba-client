@@ -1,8 +1,8 @@
 ### Indaba Versioning
 
 Legacy - version of Indaba that Amida bought.
-Old - front- and back-ends built by NTR
-New - This version currently being built.  In semantic versioning, 
+New - front- and back-ends built by NTR
+Best - This version currently being built.  In semantic versioning, 
       we are working on `version 0.1.0`.
 
 
