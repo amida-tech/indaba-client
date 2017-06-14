@@ -1,7 +1,8 @@
 $block-class:'task-details';
 @at-root {
     .#{$block-class} {
-
+        margin:10px;
+        
         &__header {
 
             &--name {

@@ -38,8 +38,8 @@ class TaskSurveyList extends Component {
                 <Accordion active={this.state.active} openMulti={true}>
                     {this.props.survey.map((question, i) =>
                         <AccordionPanel
-                            heading={this.props.vocab.PROJECT.QUESTION+' '+(i+1)}
-                            key={'question-'+i}>
+                            heading={this.props.vocab.PROJECT.QUESTION_+(i+1)}
+                            key={'accordionpanel'+question+i}>
                             <ReviewPane {...question}/>
                         </AccordionPanel>)}
                 </Accordion>

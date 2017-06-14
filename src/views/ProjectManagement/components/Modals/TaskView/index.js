@@ -61,7 +61,9 @@ class TaskView extends Component {
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-view__text-container--flag-sidebar'>
-                    <FlagSidebar />
+                    <FlagSidebar
+                        vocab={this.props.vocab}
+                        survey={this.state.survey}/>
                 </div>
             </div>
         </Modal>

@@ -1,0 +1,35 @@
+$block-class:'flag-sidebar';
+@at-root {
+    .#{$block-class} {
+        margin: 1em;
+
+        &__title {
+            font-size: 20px;
+        }
+
+        &__head-row {
+
+            &--button{
+                margin-left: 3em;
+            }
+        }
+
+        &__review-container {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__questions {
+            width:20%;
+
+            &--inactive{
+                color: #d3d3d3;
+            }
+        }
+
+        &__comments {
+            width:80%;
+        }
+    }
+}

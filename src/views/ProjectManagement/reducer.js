@@ -73,7 +73,18 @@ export const initialState = {
                 id: 2,
                 value: 5,
                 review: false,
-                comment: 'So much food.'
+                comment: 'So much food.',
+            }, {
+                id: 3,
+                value: 'It was the best of pizza, it was the worst of pizza.',
+                flag: true,
+                review: true,
+            }, {
+                id: 4,
+                value: [0,2],
+                flag: true,
+                review: false,
+                comment: 'Bad combo.'
             }],
         }, {
             id: 2,
@@ -206,7 +217,7 @@ export default (state = initialState, action) => {
             delete newState.navigation.modal;
             return newState;
         case t.UPDATE_TASK_DUE_DATE:
-            return update(state, { workflow: { assignees: {[action.assigneeId]: 
+            return update(state, { workflow: { assignees: {[action.assigneeId]:
                     { $merge: { dueDate: action.dueDate } }}}});
         case t.SET_PROJECT_STATUS:
             return Object.assign({}, state,
