@@ -3,21 +3,27 @@ import { connect } from 'react-redux';
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
-import FilterWrapper from './Workflow/FilterWrapper';
 import StatusChange from './Modals/StatusChange';
 import { setProjectStatus, setSurveyStatus } from '../actions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { statusModalId: false,
-        };
+        this.state = { statusModalId: false };
     }
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
             surveystatusmodal: 'survey',
         };
+        let body;
+        switch (this.props.tab) {
+        case 'workflow':
+            body = <WorkflowContainer {...this.props} />;
+            break;
+        default:
+            body = null;
+        }
         return (
                 <div>
                     { this.state.statusModalId &&
@@ -36,8 +42,7 @@ class ProjectManagementContainer extends Component {
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
-                    <FilterWrapper project={this.props.project}/>
-                    <div><WorkflowContainer {...this.props} /></div>
+                    {body}
                 </div>
         );
     }
@@ -49,9 +54,9 @@ const mapStateToProps = (state, ownProps) => {
     const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
     return {
         vocab: state.settings.language.vocabulary,
-        modal: state.project.navigation.modal,
         project: state.project.projects.find(p => `${p.id}` === id) ||
             state.project.projects[0],
+        tab: state.project.navigation.subnav,
     };
 };
 
