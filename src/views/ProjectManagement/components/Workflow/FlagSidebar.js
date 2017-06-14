@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import { List, ListItem, Box, Button } from 'grommet';
+import { connect } from 'react-redux';
+import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
+
+import TaskStatus from '../../../../utils/TaskStatus';
 
 class FlagSidebar extends Component {
     constructor(props) {
         super(props);
+        const issues = props.survey.filter(question => question.flag === true);
         this.state = {
-            flags: props.survey.filter(question => question.flag === true)
+            flags: issues,
+            displayed: issues.length > 0 ? issues[0].flagHistory : null,
+            notifyUser: 0,
+            notifyUsername: props.user.users[0].name,
         }
         this.handleFlagSelect = this.handleFlagSelect.bind(this);
+        this.handleNotifyUserChange = this.handleNotifyUserChange.bind(this);
     }
 
     handleFlagSelect(event){
-        console.log(event);
+        this.setState({ displayed: this.props.survey[event].flagHistory });
+    }
+
+    handleNotifyUserChange(event){
+        this.setState( {
+            notifyUser: event.option.value,
+            notifyUsername: event.option.label,
+        });
     }
 
     render() {
@@ -40,10 +55,46 @@ class FlagSidebar extends Component {
                                 </ListItem>
                         })}
                     </List>
+                    <div className='flag-sidebar__review-controls'>
+                        {this.state.displayed && this.state.displayed.map((reply, i) => {
+                            return (
+                                <div className='flag-sidebar__review-comment'
+                                    key={'flag-comment'+i}>
+                                    <div className='flag-sidebar__review-comment--time'>
+                                        {TaskStatus.formatDateTime(reply.timestamp)}
+                                    </div>
+                                    <div className='flag-sidebar__review-comment--comment'>
+                                        {reply.comment}
+                                    </div>
+                                    <div className='flag-sidebar__review-comment--signature'>
+                                        –{this.props.user.users[reply.userId].name}
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <TextInput
+                            placeHolder={this.props.vocab.PROJECT.REPLY} />
+                        <CheckBox className='flag-sidebar__checkbox'
+                            label={this.props.vocab.PROJECT.MARK_RESOLVED} />
+                        <div className='flag-sidebar__notify'>
+                            {this.props.vocab.PROJECT.NOTIFY_USER}
+                            <Select
+                                value={this.state.notifyUsername}
+                                options={this.props.user.users.map(user => ({
+                                    label: user.name,
+                                    value: user.id,
+                                }))}
+                                onChange={this.handleNotifyUserChange} />
+                        </div>
+                    </div>
                 </div>
             </Box>
         )
     }
 }
 
-export default FlagSidebar;
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default connect(mapStateToProps)(FlagSidebar);

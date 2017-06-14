@@ -20,6 +20,28 @@ $block-class:'flag-sidebar';
             flex-direction: row;
         }
 
+        &__review-controls {
+            width: 70%;
+            display: block;
+        }
+
+        &__review-comment {
+            background: #ffffff;
+            padding: 1em;
+
+            &--time {
+                margin-bottom: 3px;
+                color: green;
+                weight: bold;
+            }
+
+            &--comment {
+            }
+
+            &--signature {
+            }
+        }
+
         &__questions {
             width:20%;
 
@@ -30,6 +52,22 @@ $block-class:'flag-sidebar';
 
         &__comments {
             width:80%;
+        }
+
+        &__checkbox {
+            margin-top: 1em;
+        }
+
+        &__notify {
+            margin-top: 1em;
+        }
+
+        .grommetux-text-input {
+            width: 100%;
+            height: 10em;
+            border: 0;
+            background: #ffffff;
+            padding: 1em;
         }
     }
 }
