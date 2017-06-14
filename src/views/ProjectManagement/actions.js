@@ -62,14 +62,6 @@ export function updateTask(task) {
     };
 }
 
-export function updateTaskDueDate(assigneeId, dueDate) {
-    return {
-        type: actionTypes.UPDATE_TASK_DUE_DATE,
-        assigneeId,
-        dueDate,
-    }
-}
-
 export function toggleFilter(filter) {
     return {
         type: actionTypes.TOGGLE_FILTER,
@@ -118,4 +110,21 @@ function _updateWorkflowSurvey(survey) {
         type: actionTypes.UPDATE_WORKFLOW_SURVEY,
         payload: survey,
     };
+}
+
+// Task View (declare independence later)
+export function updateTaskDueDate(assigneeId, dueDate) {
+   return {
+       type: actionTypes.UPDATE_TASK_DUE_DATE,
+       assigneeId,
+       dueDate,
+   }
+}
+
+// Task View
+export function updateFlaggedQuestion(data){
+   return {
+       type: actionTypes.UPDATE_FLAGGED_QUESTION,
+       data,
+   }
 }

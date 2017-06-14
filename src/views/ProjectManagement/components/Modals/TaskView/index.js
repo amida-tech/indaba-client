@@ -9,13 +9,30 @@ import FlagSidebar from '../../Workflow/FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
 
+function surveyMapperHelper(response, question) {
+    const match = response.filter(obj => obj.id === question.id);
+    return (match.length > 0) ?
+        Object.assign({}, question, match[0], {taskView: true}) :
+        Object.assign({}, question, {taskView: true});
+}
+
+function surveyMapper(response, questions) {
+    return (response ?
+        questions.map(question =>
+            surveyMapperHelper(response, question)) : questions);
+}
+
 class TaskView extends Component {
+    componentWillReceiveProps(nextProps) {
+        const nextSurvey = surveyMapper(nextProps.assignee.response,
+            nextProps.data.project.survey.questions)
+        this.setState({ survey: nextSurvey });
+    }
+
     constructor(props) {
         super(props);
-        const survey = props.assignee.response ?
-            props.data.project.survey.questions.map((question) =>
-                this.surveyMapper(props.assignee.response, question)) :
-                props.data.project.survey.questions;
+        const survey = surveyMapper(props.assignee.response,
+            props.data.project.survey.questions)
         this.state = {
             assignee:  props.assignee,
             stageData: props.stageData,
@@ -24,13 +41,6 @@ class TaskView extends Component {
             allActive: survey.map((k, i) => i),
             active: []
         };
-    }
-
-    surveyMapper(response, question) {
-        const match = response.filter(obj => obj.id === question.id);
-        return (match.length > 0) ?
-            Object.assign({}, question, match[0], {taskView: true}) :
-            Object.assign({}, question, {taskView: true});
     }
 
     render() {
@@ -62,6 +72,7 @@ class TaskView extends Component {
                 </div>
                 <div className='task-view__text-container--flag-sidebar'>
                     <FlagSidebar
+                        assignee={this.props.assignee}
                         vocab={this.props.vocab}
                         survey={this.state.survey}/>
                 </div>

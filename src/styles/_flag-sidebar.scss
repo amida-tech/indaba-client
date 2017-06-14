@@ -45,6 +45,11 @@ $block-class:'flag-sidebar';
         &__questions {
             width:20%;
 
+            &--selected {
+                background: #008000;
+                color: #ffffff;
+            }
+
             &--inactive{
                 color: #d3d3d3;
             }
@@ -60,6 +65,15 @@ $block-class:'flag-sidebar';
 
         &__notify {
             margin-top: 1em;
+        }
+
+        &__button-row {
+            margin-top: 5px;
+            float: right;
+
+            &--send {
+                margin-left: 5px;
+            }
         }
 
         .grommetux-text-input {

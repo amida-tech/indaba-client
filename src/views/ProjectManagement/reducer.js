@@ -243,6 +243,18 @@ export default (state = initialState, action) => {
         case t.UPDATE_TASK_DUE_DATE:
             return update(state, { workflow: { assignees: {[action.assigneeId]:
                     { $merge: { dueDate: action.dueDate } }}}});
+        case t.UPDATE_FLAGGED_QUESTION:
+            const findUser = state.workflow.assignees.findIndex(
+                user => (user.id === action.data.assigneeId));
+            return update(state, { workflow: { assignees: {[findUser]:
+                { response: {[action.data.questionId]:
+                    { flag: { $set: !action.data.resolved },
+                    flagHistory: { $push: [ {
+                        timestamp: new Date(),
+                        comment: action.data.comment,
+                        userId: action.data.signatureId,
+                    }]}}}
+                }}}});
         case t.SET_PROJECT_STATUS:
             return Object.assign({}, state,
             { workflow: Object.assign({}, state.workflow, { status: action.status }) },
