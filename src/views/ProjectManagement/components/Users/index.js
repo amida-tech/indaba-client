@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, SearchInput } from 'grommet';
+import { Button, SearchInput, Tabs, Tab } from 'grommet';
 
 class Users extends Component {
     constructor(props) {
@@ -22,6 +22,12 @@ class Users extends Component {
                 <hr className='divider'/>
                 <SearchInput
                     onDOMChange={evt => this.setState({ query: evt.target.value })}/>
+                <Tabs>
+                    <Tab title={this.props.vocab.PROJECT.USERS}>
+                    </Tab>
+                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                    </Tab>
+                </Tabs>
             </div>
         );
     }
