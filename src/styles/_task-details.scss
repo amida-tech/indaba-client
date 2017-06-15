@@ -5,20 +5,18 @@ $block-class:'task-details';
 
         &__header {
 
+            &-name {
+                font-size: 22px;
+            }
         }
 
-        &__header-name {
-            font-size: 22px;
-        }
+        &__info {
 
-        &__detail-block {
-
-        }
-
-        &__detail-box {
-            display: inline-block;
-            box-sizing: content-box;
-            width: 25%;
+            &-box {
+                display: inline-block;
+                box-sizing: content-box;
+                width: 25%;
+            }
         }
     }
 }

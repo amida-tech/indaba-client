@@ -8,11 +8,9 @@ $block-class:'flag-sidebar';
         }
 
         &__head-group {
-
-        }
-
-        &__head-group-button{
-            margin-left: 3em;
+            &-button{
+                margin-left: 3em;
+            }
         }
 
         &__review-container {
@@ -26,27 +24,27 @@ $block-class:'flag-sidebar';
             display: block;
         }
 
-        &__review-commentary {
+        &__commentary {
             background: #ffffff;
             padding: 1em;
-        }
 
-        &__review-timestamp {
-            margin-bottom: 3px;
-            color: green;
-            weight: bold;
-        }
+            &-timestamp {
+                margin-bottom: 3px;
+                color: green;
+                weight: bold;
+            }
 
-        &__review-comment {
+            &-comment {
 
-        }
+            }
 
-        &__review-signature {
+            &-signature {
 
+            }
         }
 
         &__questions {
-            width:20%;
+            width:25%;
 
             &--selected {
                 background: #008000;
@@ -56,10 +54,6 @@ $block-class:'flag-sidebar';
             &--inactive{
                 color: #d3d3d3;
             }
-        }
-
-        &__comments {
-            width:80%;
         }
 
         &__checkbox {
@@ -73,10 +67,10 @@ $block-class:'flag-sidebar';
         &__button-group {
             margin-top: 5px;
             float: right;
-        }
 
-        &__button-group-send {
-            margin-left: 5px;
+            &-send {
+                margin-left: 5px;
+            }
         }
 
         .grommetux-text-input {

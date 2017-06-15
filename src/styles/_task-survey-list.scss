@@ -5,14 +5,15 @@ $block-class:'task-survey-list';
 
         &__instructions {
             margin-top: 1em;
-        }
-        &__instructions-header {
-            color: #A4AEBF;
-            text-transform: uppercase;
-        }
 
-        &__instructions-explained {
-            display: block;
+            &-header {
+                color: #A4AEBF;
+                text-transform: uppercase;
+            }
+
+            &-explained {
+                display: block;
+            }
         }
     }
 }

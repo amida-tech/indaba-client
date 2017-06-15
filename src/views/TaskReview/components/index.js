@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import IonIcon from 'react-ionicons';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
@@ -24,8 +24,6 @@ function surveyMapper(response, questions) {
 
 class TaskReview extends Component {
     componentWillReceiveProps(nextProps) {
-        console.log("Nextprops");
-        console.log(nextProps);
         const nextSurvey = surveyMapper(nextProps.assignee.response,
             nextProps.data.project.projects[0].survey.questions)
         this.setState({ survey: nextSurvey });
@@ -48,11 +46,10 @@ class TaskReview extends Component {
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'>
-                    <button className='masked-button left-icon'
-                        onClick={this.props.onCancel}>
+                    <Link to={'/project/' + this.props.project.id}>
                         <IonIcon icon='ion-android-arrow-back'/>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
-                    </button>
+                    </Link>
                     <TaskDetails
                         surveyName={this.props.project.survey.name}
                         subject={this.state.subject}
@@ -75,11 +72,12 @@ class TaskReview extends Component {
     }
 }
 
+// Using == over === because they're not the same type. Need to fix!
 const mapStateToProps = (state, ownProps) => ({
-        assignee: state.project.projects[ownProps.params.projectId]
-            .workflow.assignees[ownProps.params.userId],
-        project: state.project.projects[ownProps.params.projectId],
-        vocab: state.settings.language.vocabulary
-    });
+    assignee: state.project.projects[ownProps.params.projectId]
+        .workflow.assignees.filter(user => user.id == ownProps.params.userId)[0],
+    project: state.project.projects[ownProps.params.projectId],
+    vocab: state.settings.language.vocabulary
+})
 
 export default withRouter(connect(mapStateToProps)(TaskReview));

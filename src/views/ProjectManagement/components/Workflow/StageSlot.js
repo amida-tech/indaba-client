@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
@@ -78,12 +79,15 @@ class StageSlot extends Component {
         const display = this.props.assignee.name ?
       <div>
         <div className='name-row'>
-          <span>{this.props.assignee.name}</span>
+            <Link to={'/task-review/' + this.props.project.id+'/'+this.props.assignee.id}>
+                <span>{this.props.assignee.name}</span>
+            </Link>
           <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
             <IonIcon icon='ion-ios-more'/>
           </button>
         </div>
         <div>
+
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
           {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>

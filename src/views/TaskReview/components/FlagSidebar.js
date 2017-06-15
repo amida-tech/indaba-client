@@ -112,15 +112,15 @@ class FlagSidebar extends Component {
                     <div className='flag-sidebar__review-controls'>
                         {this.state.activeFlag && this.state.activeFlag.map((reply, i) => {
                             return (
-                                <div className='flag-sidebar__review-commentary'
+                                <div className='flag-sidebar__commentary'
                                     key={'flag-comment'+i}>
-                                    <div className='flag-sidebar__review-timestamp'>
+                                    <div className='flag-sidebar__commentary-timestamp'>
                                         {TaskStatus.formatDateTime(reply.timestamp)}
                                     </div>
-                                    <div className='flag-sidebar__review-comment'>
+                                    <div className='flag-sidebar__commentary-comment'>
                                         {reply.comment}
                                     </div>
-                                    <div className='flag-sidebar__review-signature'>
+                                    <div className='flag-sidebar__commentary-signature'>
                                         –{this.props.user.users[reply.userId].name}
                                     </div>
                                 </div>

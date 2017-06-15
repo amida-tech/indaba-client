@@ -21,16 +21,16 @@ class TaskDetails extends Component {
                     <span className='task-details__header-name'>{this.props.assignee.name}</span><br/>
                     <span>{this.props.vocab.PROJECT.TASK_VIEW}</span>
                 </div>
-                <div className='task-view__detail-block'>
-                    <div className='task-details__detail-box'>
+                <div className='task-details__info'>
+                    <div className='task-details__info-box'>
                         <span>{this.props.stage.title}</span><br/>
                         <span>{this.props.vocab.PROJECT.STAGE}</span>
                     </div>
-                    <div className='task-details__detail-box'>
+                    <div className='task-details__info-box'>
                         <span>{this.props.subject}</span><br/>
                         <span>{this.props.vocab.PROJECT.SUBJECT}</span>
                     </div>
-                    <div className='task-details__detail-box'>
+                    <div className='task-details__info-box'>
                         <DateTime id='taskDueDate'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
@@ -38,7 +38,7 @@ class TaskDetails extends Component {
                             this.props.stage.endStage}/><br/>
                         <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
                     </div>
-                    <div className='task-details__detail-box'>
+                    <div className='task-details__info-box'>
                         <span>{this.props.surveyName}</span><br/>
                         <span>{this.props.vocab.PROJECT.SURVEY}</span>
                     </div>
