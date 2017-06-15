@@ -28,6 +28,12 @@ export default {
         return ((formDate.getMonth()+1) + '/' + formDate.getDate()
             + '/' +formDate.getFullYear());
     },
+    formatDateTime(dateTime) {
+        const formDate = new Date(dateTime);
+        return ((formDate.getMonth()+1) + '/' + formDate.getDate()
+            + '/' +formDate.getFullYear() + ' ' + formDate.getHours() + ':'
+            + formDate.getMinutes() + (formDate.getHours() > 12 ? 'pm': 'am'));
+    },
     formatUserGroups(userGroups) {
         return (userGroups.toString().replace(/,/, ', '));
     }

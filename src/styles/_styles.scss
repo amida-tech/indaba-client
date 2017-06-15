@@ -231,35 +231,6 @@ hr.divider {
     border-bottom: 1px solid $border-color;
   }
 
-  // specific layers
-  &.task-view-layer {
-    width: 90vw;
-    height: 100vh;
-
-    .name {
-      font-size: 22px;
-    }
-
-    .container {
-      width: 100%;
-      margin: 10px;
-    }
-
-    .detail-box {
-      display: inline-block;
-      box-sizing: content-box;
-      width: 20%;
-
-      .grommetux-date-time__input {
-        padding-right: 0 !important;
-      }
-    }
-
-    .sidebar {
-
-    }
-  }
-
   &.add-subject-layer {
     width: 30em;
 

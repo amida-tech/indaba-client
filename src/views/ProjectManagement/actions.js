@@ -77,3 +77,21 @@ export function inviteUser(user, projectId) {
         projectId,
     };
 }
+
+// Task View (declare independence later)
+export function updateTaskDueDate(assigneeId, projectId, dueDate) {
+   return {
+       type: actionTypes.UPDATE_TASK_DUE_DATE,
+       assigneeId,
+       projectId,
+       dueDate,
+   }
+}
+
+// Task View
+export function updateFlaggedQuestion(data){
+   return {
+       type: actionTypes.UPDATE_FLAGGED_QUESTION,
+       data,
+   }
+}

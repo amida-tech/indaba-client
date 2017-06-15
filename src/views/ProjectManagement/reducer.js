@@ -40,11 +40,11 @@ export const initialState = {
                 endStage: '6/3/2017',
                 userGroups: ['Managers'],
                 permissions: 2,
-            }],
+            }], //stages end
             roles: ['Researchers', 'Managers'],
             subjects: ['Berlin', 'Chicago', 'K\'unlun'],
             assignees: [{
-                id: 0,
+                id: 2,
                 name: 'Jon McLane',
                 role: 0,
                 stage: 0,
@@ -57,15 +57,24 @@ export const initialState = {
                     id: 1,
                 }],
             }, {
-                id: 1,
-                name: 'Ellen Ripley',
-                role: 0,
-                stage: 0,
-                subject: 1,
+				id: 3,
+				name: 'Ellen Ripley',
+				role: 0,
+				stage: 0,
+				subject: 1,
                 response: [{
                     id: 0,
                     value: true,
                     flag: true,
+                    flagHistory: [{
+                        timestamp: 'Sun Jun 11 2017 08:15:15 GMT-0400 (Eastern Daylight Time)',
+                        comment: 'YELLOW FLAG!',
+                        userId: 3,
+                    },{
+                        timestamp: 'Mon Jun 12 2017 09:43:15 GMT-0400 (Eastern Daylight Time)',
+                        comment: 'Well too bad cupcake!',
+                        userId: 1,
+                    }],
                     review: true,
                 }, {
                     id: 1,
@@ -77,9 +86,30 @@ export const initialState = {
                     value: 5,
                     review: false,
                     comment: 'So much food.',
+                }, {
+                    id: 3,
+                    value: 'It was the best of pizza, it was the worst of pizza.',
+                    flag: true,
+                    flagHistory: [{
+                        timestamp: 'Wed Jun 14 2017 10:42:15 GMT-0400 (Eastern Daylight Time)',
+                        comment: 'I dislike this.',
+                        userId: 3,
+                    }],
+                    review: true,
+                }, {
+                    id: 4,
+                    value: [0,2],
+                    flag: true,
+                    flagHistory: [{
+                        timestamp: 'Tue Jun 13 2017 11:42:15 GMT-0400 (Eastern Daylight Time)',
+                        comment: 'I REALLY dislike this.',
+                        userId: 3,
+                    }],
+                    review: false,
+                    comment: 'Bad combo.'
                 }],
             }, {
-                id: 2,
+                id: 4,
                 name: 'Indiana Jones',
                 role: 1,
                 stage: 1,
@@ -89,6 +119,11 @@ export const initialState = {
                     id: 0,
                     value: true,
                     flag: true,
+					flagHistory: [{
+						timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
+						comment: 'I like flags.',
+						userId: 2,
+					}],
                     review: false,
                     comment: 'What was the question?',
                 }, {
@@ -97,25 +132,25 @@ export const initialState = {
                     review: true,
                 }],
             }, {
-                id: 3,
+                id: 5,
                 name: 'Tony Stark',
                 role: 1,
                 stage: 1,
                 subject: 2,
-            }],
+            }], // assignees
             unassigned: [{
-                id: 4,
+                id: 6,
                 name: 'Johnny Quest',
                 role: 0,
             }, {
-                id: 5,
+                id: 7,
                 name: 'Buck Rogers',
                 role: 0,
             }, {
-                id: 6,
+                id: 8,
                 name: 'Marvin Martian',
                 role: 1,
-            }],
+            }], // unassignees
         },
         survey: {
             id: 0,
@@ -167,11 +202,17 @@ export const initialState = {
                     'Olives'],
             }], // Still need to add Bulletpoint and scale
         },
-    }],
+    }]
 };
+
+function findUser(state, assigneeId) {
+
+}
 
 export default (state = initialState, action) => {
     let projectIndex;
+    let findUser;
+
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(p => p.id === action.projectId);
     }
@@ -210,6 +251,26 @@ export default (state = initialState, action) => {
             projects: { $push: [update(action.project, { $merge: {
                 id: state.projects.length } })],
             } });
+	case t.UPDATE_TASK_DUE_DATE:
+        findUser = state.projects[action.projectId]
+            .workflow.assignees.findIndex(user =>
+                (user.id === action.assigneeId));
+		return update(state, { projects: {[action.projectId]:
+            { workflow: { assignees: {[findUser]:
+				{ $merge: { dueDate: action.dueDate } }}}}}});
+	case t.UPDATE_FLAGGED_QUESTION:
+		findUser = state.projects[action.data.projectId]
+            .workflow.assignees.findIndex(user =>
+                (user.id === action.data.assigneeId));
+		return update(state, { projects: {[action.data.projectId]:
+            { workflow: { assignees: {[findUser]:
+			{ response: {[action.data.questionId]:
+				{ flag: { $set: !action.data.resolved },
+				flagHistory: { $push: [{
+					timestamp: action.data.timestamp,
+					comment: action.data.comment,
+					userId: action.data.signatureId,
+				}]}}}}}}}}});
     default:
         return state;
     }

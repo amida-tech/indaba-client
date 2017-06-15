@@ -59,8 +59,8 @@ class AssigneeCard extends Component {
 
     return connectDragSource (
       <div className="assigneecard workflow">
-        {name}
-        {isDragging && '(Wendy! I can fly!)'}
+        { name }
+        { isDragging }
       </div>
     );
   }
