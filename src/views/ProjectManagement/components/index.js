@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import StatusChange from './Modals/StatusChange';
-import { setProjectStatus, setSurveyStatus } from '../actions';
+import {
+    setProjectStatus,
+    setSurveyStatus,
+    deleteSubject,
+} from '../actions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
@@ -24,7 +29,8 @@ class ProjectManagementContainer extends Component {
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
-                subjects={this.props.project.workflow.subjects}/>;
+                subjects={this.props.project.workflow.subjects}
+                onDeleteSubject={this.props.onDeleteSubject}/>;
             break;
         default:
             body = null;
@@ -55,6 +61,16 @@ class ProjectManagementContainer extends Component {
 
 ProjectManagementContainer.displayName = 'Project Manager';
 
+ProjectManagementContainer.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
+    tab: PropTypes.string.isRequired,
+
+    onSetProjectStatus: PropTypes.func.isRequired,
+    onSetSurveyStatus: PropTypes.func.isRequired,
+    onDeleteSubject: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
     return {
@@ -66,10 +82,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10);
+    const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10) || 0;
     return {
         onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
+        onDeleteSubject: subject => dispatch(deleteSubject(subject, id)),
     };
 };
 

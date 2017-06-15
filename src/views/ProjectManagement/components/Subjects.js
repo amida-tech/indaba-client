@@ -20,9 +20,10 @@ class SubjectList extends Component {
                         <div className='subject-list-entry__name'>
                             {subject}
                         </div>
-                        <IonIcon
-                            icon='ion-android-delete'
-                            className='subject-list-entry__delete'/>
+                        <div className='subject-list-entry__delete'
+                            onClick={() => this.props.onDeleteClick(subject)}>
+                            <IonIcon icon='ion-android-delete'/>
+                        </div>
                     </div>)
                 }
             </div>);
@@ -30,8 +31,9 @@ class SubjectList extends Component {
 }
 
 SubjectList.propTypes = {
-    filter: PropTypes.string.isRequired,
+    query: PropTypes.string.isRequired,
     subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
 };
 
 class Subjects extends Component {
@@ -47,14 +49,18 @@ class Subjects extends Component {
                     primary/>
                 <hr className='divider' />
                 <SearchInput onDOMChange={evt => this.setState({ query: evt.target.value })}/>
-                <SubjectList subjects={this.props.subjects} query={this.state.query}/>
+                <SubjectList
+                    subjects={this.props.subjects}
+                    query={this.state.query}
+                    onDeleteClick={this.props.onDeleteSubject}/>
             </div>);
     }
 }
 
 Subjects.propTypes = {
     vocab: PropTypes.object.isRequired,
-    subject: PropTypes.arrayOf(PropTypes.string).isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onDeleteSubject: PropTypes.func.isRequired,
 };
 
 export default Subjects;

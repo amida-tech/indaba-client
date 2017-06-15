@@ -57,11 +57,11 @@ export const initialState = {
                     id: 1,
                 }],
             }, {
-				id: 3,
-				name: 'Ellen Ripley',
-				role: 0,
-				stage: 0,
-				subject: 1,
+                id: 3,
+                name: 'Ellen Ripley',
+                role: 0,
+                stage: 0,
+                subject: 1,
                 response: [{
                     id: 0,
                     value: true,
@@ -70,7 +70,7 @@ export const initialState = {
                         timestamp: 'Sun Jun 11 2017 08:15:15 GMT-0400 (Eastern Daylight Time)',
                         comment: 'YELLOW FLAG!',
                         userId: 3,
-                    },{
+                    }, {
                         timestamp: 'Mon Jun 12 2017 09:43:15 GMT-0400 (Eastern Daylight Time)',
                         comment: 'Well too bad cupcake!',
                         userId: 1,
@@ -98,7 +98,7 @@ export const initialState = {
                     review: true,
                 }, {
                     id: 4,
-                    value: [0,2],
+                    value: [0, 2],
                     flag: true,
                     flagHistory: [{
                         timestamp: 'Tue Jun 13 2017 11:42:15 GMT-0400 (Eastern Daylight Time)',
@@ -106,7 +106,7 @@ export const initialState = {
                         userId: 3,
                     }],
                     review: false,
-                    comment: 'Bad combo.'
+                    comment: 'Bad combo.',
                 }],
             }, {
                 id: 4,
@@ -119,11 +119,11 @@ export const initialState = {
                     id: 0,
                     value: true,
                     flag: true,
-					flagHistory: [{
-						timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
-						comment: 'I like flags.',
-						userId: 2,
-					}],
+                    flagHistory: [{
+                        timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
+                        comment: 'I like flags.',
+                        userId: 2,
+                    }],
                     review: false,
                     comment: 'What was the question?',
                 }, {
@@ -202,7 +202,7 @@ export const initialState = {
                     'Olives'],
             }], // Still need to add Bulletpoint and scale
         },
-    }]
+    }],
 };
 
 function findUser(state, assigneeId) {
@@ -231,6 +231,11 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: { workflow: {
             subjects: { $push: [action.subject] },
         } } } });
+    case t.DELETE_SUBJECT:
+        console.log(action.projectId);
+        return update(state, { projects: { [projectIndex]: { workflow: {
+            subjects: { $apply: ss => ss.filter(s => s !== action.subject) },
+        } } } });
     case t.ADD_STAGE:
         return update(state, { projects: { [projectIndex]: { workflow: {
             stages: { $push: [update(action.stage, { $merge: {
@@ -251,26 +256,26 @@ export default (state = initialState, action) => {
             projects: { $push: [update(action.project, { $merge: {
                 id: state.projects.length } })],
             } });
-	case t.UPDATE_TASK_DUE_DATE:
+    case t.UPDATE_TASK_DUE_DATE:
         findUser = state.projects[action.projectId]
             .workflow.assignees.findIndex(user =>
                 (user.id === action.assigneeId));
-		return update(state, { projects: {[action.projectId]:
-            { workflow: { assignees: {[findUser]:
-				{ $merge: { dueDate: action.dueDate } }}}}}});
-	case t.UPDATE_FLAGGED_QUESTION:
-		findUser = state.projects[action.data.projectId]
+        return update(state, { projects: { [action.projectId]:
+        { workflow: { assignees: { [findUser]:
+				{ $merge: { dueDate: action.dueDate } } } } } } });
+    case t.UPDATE_FLAGGED_QUESTION:
+        findUser = state.projects[action.data.projectId]
             .workflow.assignees.findIndex(user =>
                 (user.id === action.data.assigneeId));
-		return update(state, { projects: {[action.data.projectId]:
-            { workflow: { assignees: {[findUser]:
-			{ response: {[action.data.questionId]:
-				{ flag: { $set: !action.data.resolved },
-				flagHistory: { $push: [{
-					timestamp: action.data.timestamp,
-					comment: action.data.comment,
-					userId: action.data.signatureId,
-				}]}}}}}}}}});
+        return update(state, { projects: { [action.data.projectId]:
+        { workflow: { assignees: { [findUser]:
+        { response: { [action.data.questionId]:
+        { flag: { $set: !action.data.resolved },
+            flagHistory: { $push: [{
+                timestamp: action.data.timestamp,
+                comment: action.data.comment,
+                userId: action.data.signatureId,
+            }] } } } } } } } } });
     default:
         return state;
     }
