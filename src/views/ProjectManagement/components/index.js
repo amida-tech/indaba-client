@@ -40,7 +40,10 @@ class ProjectManagementContainer extends Component {
             break;
         case 'users':
             body = <Users
-                vocab={this.props.vocab}/>;
+                vocab={this.props.vocab}
+                users={this.props.project.users.map(
+                    uId => this.props.users.find(u => u.id === uId))}
+                groups={this.props.project.workflow.roles}/>;
             break;
         default:
             body = null;
@@ -93,6 +96,7 @@ const mapStateToProps = (state, ownProps) => {
         ui: state.project.ui,
         survey: _.find(state.surveys, survey => survey.projectId === project.id),
         tab: state.project.ui.subnav,
+        users: state.user.users,
     };
 };
 

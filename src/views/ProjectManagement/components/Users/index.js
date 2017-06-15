@@ -26,7 +26,7 @@ class Users extends Component {
                     onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
-                        <UsersTab vocab={this.props.vocab} />
+                        <UsersTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                     </Tab>
@@ -38,6 +38,8 @@ class Users extends Component {
 
 Users.propTypes = {
     vocab: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Users;

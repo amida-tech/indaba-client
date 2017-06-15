@@ -1,27 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+class UserListEntry extends Component {
+    render() {
+        const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
+            .map(g => g.name).join(', ');
+        return (
+            <div className='user-list-row'>
+                <div className='user-list-entry__cell'>
+                    {this.props.user.firstName}
+                </div>
+                <div className='user-list-entry__cell'>
+                    {this.props.user.lastName}
+                </div>
+                <div className='user-list-entry__cell'>
+                    {groups}
+                </div>
+            </div>
+        );
+    }
+}
+
+UserListEntry.propTypes = {
+    user: PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+    }).isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 class UsersTab extends Component {
     render() {
         return (
             <div className='pm-users-tab'>
-                <div className='pm-users-list-row'>
-                    <div className='pm-users-list-row__cell'>
+                <div className='pm-users-list-header'>
+                    <div className='pm-users-list-header__cell'>
                         {this.props.vocab.COMMON.FIRST_NAME}
                     </div>
-                    <div className='pm-users-list-row__cell'>
+                    <div className='pm-users-list-header__cell'>
                         {this.props.vocab.COMMON.LAST_NAME}
                     </div>
-                    <div className='pm-user-list-row__cell'>
+                    <div className='pm-user-list-header__cell'>
                         {this.props.vocab.PROJECT.USER_GROUPS}
                     </div>
-                    <div className='pm-user-list-row__cell'>
+                    <div className='pm-user-list-header__cell'>
                         {this.props.vocab.PROJECT.SUBJECT}
                     </div>
-                    <div className='pm-user-list-row__cell'>
+                    <div className='pm-user-list-header__cell'>
                         {this.props.vocab.COMMON.ACTIONS}
                     </div>
                 </div>
+                {this.props.users.map(user =>
+                    <UserListEntry user={user}
+                        groups={this.props.groups}
+                        key={user.id}/>)}
             </div>
         );
     }
@@ -29,6 +61,8 @@ class UsersTab extends Component {
 
 UsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default UsersTab;
