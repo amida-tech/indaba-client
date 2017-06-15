@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
-import { updateTaskDueDate } from '../../../actions';
+
+import { updateTaskDueDate } from '../actions';
 
 class TaskDetails extends Component {
     constructor(props) {
@@ -17,27 +18,27 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <span className='task-details__header--name'>{this.props.assignee.name}</span><br/>
+                    <span className='task-details__header-name'>{this.props.assignee.name}</span><br/>
                     <span>{this.props.vocab.PROJECT.TASK_VIEW}</span>
                 </div>
-                <div className='task-view__detail-block'>
-                    <div className='task-details__detail-block--box'>
-                        <span>{this.props.stageData.title}</span><br/>
+                <div className='task-details__info'>
+                    <div className='task-details__info-box'>
+                        <span>{this.props.stage.title}</span><br/>
                         <span>{this.props.vocab.PROJECT.STAGE}</span>
                     </div>
-                    <div className='task-details__detail-block--box'>
+                    <div className='task-details__info-box'>
                         <span>{this.props.subject}</span><br/>
                         <span>{this.props.vocab.PROJECT.SUBJECT}</span>
                     </div>
-                    <div className='task-details__detail-block--box'>
+                    <div className='task-details__info-box'>
                         <DateTime id='taskDueDate'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
                             value={this.props.assignee.dueDate ||
-                            this.props.stageData.endStage}/><br/>
+                            this.props.stage.endStage}/><br/>
                         <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
                     </div>
-                    <div className='task-details__detail-block--box'>
+                    <div className='task-details__info-box'>
                         <span>{this.props.surveyName}</span><br/>
                         <span>{this.props.vocab.PROJECT.SURVEY}</span>
                     </div>

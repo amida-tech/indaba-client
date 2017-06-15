@@ -6,12 +6,12 @@ $block-class:'task-survey-list';
         &__instructions {
             margin-top: 1em;
 
-            &--header {
+            &-header {
                 color: #A4AEBF;
                 text-transform: uppercase;
             }
 
-            &--explained {
+            &-explained {
                 display: block;
             }
         }

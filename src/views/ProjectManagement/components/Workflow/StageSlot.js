@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import TaskStatus from '../../../../utils/TaskStatus';
-import TaskView from '../Modals/TaskView';
 
 const Types = {
     ASSIGNEECARD: 'AssigneeCard',
@@ -47,16 +47,6 @@ class StageSlot extends Component {
         this.onTaskViewClick = this.onTaskViewClick.bind(this);
     }
 
-    renderTaskViewModal() {
-        if (!this.state.showTaskModal) return null;
-        return <TaskView
-            vocab={this.props.vocab}
-            assignee={this.props.assignee}
-            stageData={this.props.stageData}
-            project={this.props.project}
-            onCancel={() => this.setState({ showTaskModal: false })} />;
-    }
-
     onTaskViewClick() {
         this.setState({ showTaskModal: true });
     }
@@ -88,14 +78,16 @@ class StageSlot extends Component {
     render() {
         const display = this.props.assignee.name ?
       <div>
-          {this.renderTaskViewModal()}
         <div className='name-row'>
-          <span onClick={this.onTaskViewClick}>{this.props.assignee.name}</span>
+            <Link to={'/task-review/' + this.props.project.id+'/'+this.props.assignee.id}>
+                <span>{this.props.assignee.name}</span>
+            </Link>
           <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
             <IonIcon icon='ion-ios-more'/>
           </button>
         </div>
         <div>
+
           <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
           {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
         </div>
