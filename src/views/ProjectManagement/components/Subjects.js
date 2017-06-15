@@ -35,6 +35,10 @@ SubjectList.propTypes = {
 };
 
 class Subjects extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { query: '' };
+    }
     render() {
         return (
             <div className='subjects-tab'>
@@ -42,8 +46,8 @@ class Subjects extends Component {
                     label={this.props.vocab.PROJECT.ADD_SUBJECT}
                     primary/>
                 <hr className='divider' />
-                <SearchInput />
-                <SubjectList subjects={this.props.subjects} query=''/>
+                <SearchInput onDOMChange={evt => this.setState({ query: evt.target.value })}/>
+                <SubjectList subjects={this.props.subjects} query={this.state.query}/>
             </div>);
     }
 }
