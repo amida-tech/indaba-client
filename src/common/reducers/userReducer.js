@@ -5,31 +5,49 @@ const initialState = {
     name: 'Super Mario',
     users: [{
         id: 0,
-        name: 'Tyler Durden',
+        firstName: 'Tyler',
+        lastName: 'Durden',
+        permissions: 4,
     }, {
         id: 1,
-        name: 'Robert Paulson',
-    },{
+        firstName: 'Robert',
+        lastName: 'Paulson',
+        permissions: 0,
+    }, {
         id: 2,
-        name: 'Jon McLane',
-    },{
+        firstName: 'Jon',
+        lastName: 'McLane',
+        permissions: 0,
+    }, {
         id: 3,
-        name: 'Ellen Ripley',
-    },{
+        firstName: 'Ellen',
+        lastName: 'Ripley',
+        permissions: 0,
+    }, {
         id: 4,
-        name: 'Indiana Jones',
-    },{
+        firstName: 'Indiana',
+        lastName: 'Jones',
+        permissions: 0,
+    }, {
         id: 5,
-        name: 'Tony Stark',
-    },{
+        firstName: 'Tony',
+        lastName: 'Stark',
+        permissions: 0,
+    }, {
         id: 6,
-        name: 'Johnny Quest',
+        firstName: 'Johnny',
+        lastName: 'Quest',
+        permissions: 0,
     }, {
         id: 7,
-        name: 'Buck Rogers',
+        firstName: 'Buck',
+        lastName: 'Rogers',
+        permissions: 0,
     }, {
         id: 8,
-        name: 'Marvin Martian',
+        firstName: 'Marvin',
+        lastName: 'Martian',
+        permissions: 0,
     }],
 };
 

@@ -1,11 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { renderInitials } from '../../../../utils/User';
 
-class UserBadge extends Component {
-    render() {
-        const initials = this.props.user.name.split(' ')
-            .map(n => n.slice(0, 1)).join('');
-        return (<div className='user-badge'>{initials}</div>);
-    }
-}
+const UserBadge = props => <div className='user-badge'>{renderInitials(props.user)}</div>;
 
 export default UserBadge;

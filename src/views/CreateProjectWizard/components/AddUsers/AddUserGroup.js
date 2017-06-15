@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextInput, Box } from 'grommet';
 import Modal from '../../../../common/Modal';
 import FilteredList from './FilteredList';
+import { renderName } from '../../../../utils/User';
 
 class AddUserGroup extends Component {
     constructor(props) {
@@ -76,9 +77,9 @@ class AddUserGroup extends Component {
         const user = this.props.allUsers.find(user => user.id === userId);
         return {
             key: user.id,
-            searchKey: user.name,
+            searchKey: renderName(user),
             value: user,
-            label: user.name,
+            label: renderName(user),
         };
     }
     render() {
