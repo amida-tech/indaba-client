@@ -7,6 +7,7 @@ import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
+import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import {
     updateStatusChange,
@@ -28,17 +29,21 @@ class ProjectManagementContainer extends Component {
         };
         let body;
         switch (this.props.tab) {
-            case 'workflow':
-                body = <WorkflowContainer {...this.props} />;
-                break;
-            case 'subject':
-                body = <Subjects vocab={this.props.vocab}
+        case 'workflow':
+            body = <WorkflowContainer {...this.props} />;
+            break;
+        case 'subject':
+            body = <Subjects vocab={this.props.vocab}
                     subjects={this.props.project.subjects}
                     onDeleteSubject={this.props.onDeleteSubject}
                     onAddSubject={this.props.onAddSubject}/>;
-                break;
-            default:
-                body = null;
+            break;
+        case 'users':
+            body = <Users />;
+            break;
+        default:
+            body = null;
+            break;
         }
         return (
                 <div>
@@ -83,9 +88,9 @@ const mapStateToProps = (state, ownProps) => {
             `${project.id}` === id) || state.project.projects[0];
     return {
         vocab: state.settings.language.vocabulary,
-        project: project,
+        project,
         ui: state.project.ui,
-        survey: _.find(state.surveys, (survey) => survey.projectId === project.id),
+        survey: _.find(state.surveys, survey => survey.projectId === project.id),
         tab: state.project.ui.subnav,
     };
 };
