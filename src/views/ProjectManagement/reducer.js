@@ -232,7 +232,6 @@ export default (state = initialState, action) => {
             subjects: { $push: [action.subject] },
         } } } });
     case t.DELETE_SUBJECT:
-        console.log(action.projectId);
         return update(state, { projects: { [projectIndex]: { workflow: {
             subjects: { $apply: ss => ss.filter(s => s !== action.subject) },
         } } } });
