@@ -5,17 +5,17 @@ import MatrixContainer from './MatrixContainer';
 import * as ProjectActions from '../../actions';
 
 class WorkflowContainer extends Component {
-  render() {
-    return (
+    render() {
+        return (
       <MatrixContainer {...this.props}/>
-    );
-  }
+        );
+    }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
     return {
         assignTask: (assignment) => {
-            dispatch(ProjectActions.assignTask(assignment));
+            dispatch(ProjectActions.assignTask(assignment, ownProps.project.id));
         },
     };
 }
@@ -23,8 +23,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
     return {
         data: state,
-        vocab: state.settings.language.vocabulary
-    }
+        vocab: state.settings.language.vocabulary,
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkflowContainer);

@@ -10,7 +10,7 @@ class TaskDetails extends Component {
     }
 
     handleTaskDueDateChange(event){
-        this.props.updateTaskDueDate(this.props.assignee.id, event);
+        this.props.updateTaskDueDate(this.props.assignee.id, 0, event);
     }
 
     render() {
@@ -48,7 +48,8 @@ class TaskDetails extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateTaskDueDate: (assignee, dueDate) => dispatch(updateTaskDueDate(assignee, dueDate))
+  updateTaskDueDate: (assigneeId, projectId, dueDate) =>
+    dispatch(updateTaskDueDate(assigneeId, projectId, dueDate))
 });
 
 export default connect(null, mapDispatchToProps)(TaskDetails);

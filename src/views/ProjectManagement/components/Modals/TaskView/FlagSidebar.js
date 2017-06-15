@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
-import { updateFlaggedQuestion } from '../../actions';
+import { updateFlaggedQuestion } from '../../../actions';
 
-import TaskStatus from '../../../../utils/TaskStatus';
+import TaskStatus from '../../../../../utils/TaskStatus';
 
 function stateInitializer(props, state) {
     const issues = props.survey.filter(question => question.flag === true);
     return state = {
         survey: props.survey,
+        projectId: 0,
         flags: props.survey.filter(question => question.flag === true),
         activeFlag: issues.length > 0 ? issues[0].flagHistory : null,
         activeId: issues.length > 0 ? issues[0].id : null,
@@ -69,13 +70,14 @@ class FlagSidebar extends Component {
     onSend(){
         // Change project id down the road.
         this.props.updateFlaggedQuestion({
-            projectId: 0,
+            projectId: this.state.projectId,
             questionId: this.state.activeId,
             assigneeId: this.props.assignee.id,
             notifyUserId: this.state.notifyUserId,
             comment: this.state.comment,
             resolved: this.state.resolved,
             signatureId: this.props.user.currentId,
+            timestamp: new Date(),
         });
     }
 

@@ -5,6 +5,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import FilterWrapper from './Workflow/FilterWrapper';
 import StatusChange from './Modals/StatusChange';
+import { setProjectStatus, setSurveyStatus } from '../actions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
@@ -22,16 +23,20 @@ class ProjectManagementContainer extends Component {
                     { this.state.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             onStatusChangeClose={() => this.setState({ statusModalId: false })}
-                            entity={modalEntities[this.state.statusModalId]}/> }
+                            entity={modalEntities[this.state.statusModalId]}
+                            projectStatus={this.props.project.workflow.status}
+                            surveyStatus={this.props.project.survey.status}
+                            onSetProjectStatus={this.props.onSetProjectStatus}
+                            onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
                     <SubNav />
                     <hr className='divider' />
                     <Summary
-                        project={this.props.data.project.workflow}
-                        survey={this.props.data.project.survey}
+                        workflow={this.props.project.workflow}
+                        survey={this.props.project.survey}
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
-                    <FilterWrapper />
+                    <FilterWrapper project={this.props.project}/>
                     <div><WorkflowContainer {...this.props} /></div>
                 </div>
         );
@@ -40,14 +45,22 @@ class ProjectManagementContainer extends Component {
 
 ProjectManagementContainer.displayName = 'Project Manager';
 
-const mapStateToProps = state => ({
-    data: state,
-    vocab: state.settings.language.vocabulary,
-    modal: state.project.navigation.modal,
-});
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
+    return {
+        vocab: state.settings.language.vocabulary,
+        modal: state.project.navigation.modal,
+        project: state.project.projects.find(p => `${p.id}` === id) ||
+            state.project.projects[0],
+    };
+};
 
-const mapDispatchToProps = dispatch => ({
-    onCancel: () => this.setState({ statusModalId: false }),
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10);
+    return {
+        onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
+        onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

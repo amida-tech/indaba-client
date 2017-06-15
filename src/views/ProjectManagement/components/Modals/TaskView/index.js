@@ -5,7 +5,7 @@ import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import Modal from '../../../../../common/Modal';
-import FlagSidebar from '../../Workflow/FlagSidebar';
+import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
 
@@ -25,18 +25,18 @@ function surveyMapper(response, questions) {
 class TaskView extends Component {
     componentWillReceiveProps(nextProps) {
         const nextSurvey = surveyMapper(nextProps.assignee.response,
-            nextProps.data.project.survey.questions)
+            nextProps.data.project.projects[0].survey.questions)
         this.setState({ survey: nextSurvey });
     }
 
     constructor(props) {
         super(props);
         const survey = surveyMapper(props.assignee.response,
-            props.data.project.survey.questions)
+            props.data.project.projects[0].survey.questions)
         this.state = {
             assignee:  props.assignee,
             stageData: props.stageData,
-            subject: props.data.project.workflow.subjects[props.assignee.subject],
+            subject: props.data.project.projects[0].workflow.subjects[props.assignee.subject],
             survey: survey,
             allActive: survey.map((k, i) => i),
             active: []
@@ -59,22 +59,22 @@ class TaskView extends Component {
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </button>
                     <TaskDetails
-                        surveyName={this.props.data.project.survey.name}
+                        surveyName={this.props.data.project.projects[0].survey.name}
                         subject={this.state.subject}
                         assignee={this.state.assignee}
                         vocab={this.props.vocab}
                         stageData={this.props.stageData}/>
                     <TaskSurveyList
                         survey={this.state.survey}
-                        instructions={this.props.data.project.survey.instructions}
+                        instructions={this.props.data.project.projects[0].survey.instructions}
                         allActive={this.state.allActive}
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-view__text-container--flag-sidebar'>
-                    <FlagSidebar
-                        assignee={this.props.assignee}
-                        vocab={this.props.vocab}
-                        survey={this.state.survey}/>
+                <FlagSidebar
+                    assignee={this.props.assignee}
+                    vocab={this.props.vocab}
+                    survey={this.state.survey}/>
                 </div>
             </div>
         </Modal>

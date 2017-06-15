@@ -17,7 +17,9 @@
     "ALL_USERS": "All Users",
     "ALL_SUBJECTS": "All Subjects",
     "CREATE": "Create",
-    "ACTIONS": "Actions"
+    "ACTIONS": "Actions",
+    "SKIP_THIS_STEP": "Skip This Step",
+    "CONTINUE": "Continue"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -79,7 +81,9 @@
     "END_DATE": "End Date (Stage is unavailable until this date)",
     "STAGE": "Stage",
     "ADD_SUBJECT": "Add Subject",
+    "ADD_SUBJECTS": "Add Subjects",
     "ADD_STAGE": "Add New Stage",
+    "ADD_STAGES": "Add Stages",
     "SUBJECT_TITLE": "Subject Title",
     "STAGE_TITLE": "Stage Title",
     "STAGE_SETTINGS": "Stage Settings",
@@ -106,6 +110,7 @@
     "USERS": "Users",
     "USER_GROUPS": "User Groups",
     "ADD_USER_GROUP": "Add User Group",
+    "ADD_USERS": "Add Users",
     "CREATE_USER_GROUP": "Create User Group",
     "ENTER_GROUP_NAME": "Enter Group Name",
     "NEW_USER_FIRST_NAME": "New User First Name",
@@ -115,7 +120,11 @@
     "SEARCH_FOR_USER_GROUPS": "Search for user groups",
     "IMPORT_STAGE": "Import Stage",
     "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
-    "SELECT_TO_EDIT_STAGE": "Select to edit stage"
+    "SELECT_TO_EDIT_STAGE": "Select to edit stage",
+    "CREATE_SURVEY": "Create Survey",
+    "COMPLETE_PROJECT": "Complete Project",
+    "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
+    "GO_TO_PROJECT": "Go To Project"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
