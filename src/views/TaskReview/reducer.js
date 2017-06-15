@@ -2,8 +2,8 @@ import update from 'immutability-helper';
 import * as t from './actionTypes';
 
 export default (state = initialState, action) => {
-    console.log(state);
-    console.log(action);
+    let findUser;
+    
     switch (action.type) {
         case t.UPDATE_TASK_DUE_DATE:
             findUser = state.projects[action.projectId]
