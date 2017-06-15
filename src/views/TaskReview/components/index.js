@@ -40,9 +40,7 @@ class TaskReview extends Component {
             assignee:  props.assignee,
             stage: props.project.workflow.stages[props.assignee.stage],
             subject: props.project.workflow.subjects[props.assignee.subject],
-            survey: survey,
-            allActive: survey.map((k, i) => i),
-            active: []
+            survey: survey
         };
     }
 
@@ -64,7 +62,6 @@ class TaskReview extends Component {
                     <TaskSurveyList
                         survey={this.state.survey}
                         instructions={this.props.project.survey.instructions}
-                        allActive={this.state.allActive}
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-review__flag-sidebar'>

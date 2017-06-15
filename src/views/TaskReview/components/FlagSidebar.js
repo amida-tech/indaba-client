@@ -114,7 +114,7 @@ class FlagSidebar extends Component {
                             return (
                                 <div className='flag-sidebar__review-commentary'
                                     key={'flag-comment'+i}>
-                                    <div className='flag-sidebar__review-time'>
+                                    <div className='flag-sidebar__review-timestamp'>
                                         {TaskStatus.formatDateTime(reply.timestamp)}
                                     </div>
                                     <div className='flag-sidebar__review-comment'>

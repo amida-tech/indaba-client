@@ -8,6 +8,7 @@ class TaskSurveyList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            allActive: this.props.survey.map((k, i) => i),
             active: []
         }
         this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
@@ -15,7 +16,7 @@ class TaskSurveyList extends Component {
     }
 
     handleAccordionExpandAll(event){
-        this.setState({ active: this.props.allActive });
+        this.setState({ active: this.state.allActive });
     }
 
     handleAccordionCollapseAll(event){
