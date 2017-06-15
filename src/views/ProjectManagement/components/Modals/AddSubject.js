@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from '../../../../common/Modal';
 
 class AddSubject extends Component {
@@ -30,5 +31,11 @@ class AddSubject extends Component {
         );
     }
 }
+
+AddSubject.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    onAddSubject: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
+};
 
 export default AddSubject;

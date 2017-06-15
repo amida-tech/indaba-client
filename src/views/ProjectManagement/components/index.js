@@ -10,6 +10,7 @@ import {
     setProjectStatus,
     setSurveyStatus,
     deleteSubject,
+    addSubject,
 } from '../actions';
 
 class ProjectManagementContainer extends Component {
@@ -30,7 +31,8 @@ class ProjectManagementContainer extends Component {
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
                 subjects={this.props.project.workflow.subjects}
-                onDeleteSubject={this.props.onDeleteSubject}/>;
+                onDeleteSubject={this.props.onDeleteSubject}
+                onAddSubject={this.props.onAddSubject}/>;
             break;
         default:
             body = null;
@@ -69,6 +71,7 @@ ProjectManagementContainer.propTypes = {
     onSetProjectStatus: PropTypes.func.isRequired,
     onSetSurveyStatus: PropTypes.func.isRequired,
     onDeleteSubject: PropTypes.func.isRequired,
+    onAddSubject: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -87,6 +90,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
         onDeleteSubject: subject => dispatch(deleteSubject(subject, id)),
+        onAddSubject: subject => dispatch(addSubject(subject, id)),
     };
 };
 
