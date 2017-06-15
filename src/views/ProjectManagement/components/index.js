@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
+import Subjects from './Subjects';
 import StatusChange from './Modals/StatusChange';
 import { setProjectStatus, setSurveyStatus } from '../actions';
 
@@ -20,6 +21,9 @@ class ProjectManagementContainer extends Component {
         switch (this.props.tab) {
         case 'workflow':
             body = <WorkflowContainer {...this.props} />;
+            break;
+        case 'subject':
+            body = <Subjects />;
             break;
         default:
             body = null;
