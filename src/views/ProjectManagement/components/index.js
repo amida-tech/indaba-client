@@ -23,7 +23,8 @@ class ProjectManagementContainer extends Component {
             body = <WorkflowContainer {...this.props} />;
             break;
         case 'subject':
-            body = <Subjects vocab={this.props.vocab}/>;
+            body = <Subjects vocab={this.props.vocab}
+                subjects={this.props.project.workflow.subjects}/>;
             break;
         default:
             body = null;

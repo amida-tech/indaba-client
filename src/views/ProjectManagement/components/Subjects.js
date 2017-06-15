@@ -1,6 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
+import { Button, SearchInput } from 'grommet';
+import IonIcon from 'react-ionicons';
+
+class SubjectList extends Component {
+    constructor(props) {
+        super(props);
+        this.filter = this.filter.bind(this);
+    }
+    filter(subject) {
+        return subject.toLowerCase().includes(this.props.query.toLowerCase());
+    }
+    render() {
+        return (
+            <div>
+                {this.props.subjects.filter(this.filter).map(subject =>
+                    <div className='subject-list-entry'
+                        key={subject}>
+                        <div className='subject-list-entry__name'>
+                            {subject}
+                        </div>
+                        <IonIcon
+                            icon='ion-android-delete'
+                            className='subject-list-entry__delete'/>
+                    </div>)
+                }
+            </div>);
+    }
+}
+
+SubjectList.propTypes = {
+    filter: PropTypes.string.isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 class Subjects extends Component {
     render() {
@@ -9,12 +41,16 @@ class Subjects extends Component {
                 <Button
                     label={this.props.vocab.PROJECT.ADD_SUBJECT}
                     primary/>
+                <hr className='divider' />
+                <SearchInput />
+                <SubjectList subjects={this.props.subjects} query=''/>
             </div>);
     }
 }
 
 Subjects.propTypes = {
     vocab: PropTypes.object.isRequired,
+    subject: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Subjects;
