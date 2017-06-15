@@ -11,9 +11,9 @@ $brand-font-family: 'Roboto';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
 // TODO still need override
-$brand-neutral-colors: (#0A64A0, #DC2878, #501EB4, #49516F);
-$brand-accent-colors: (#00CCEB, #FF7D28);
-$brand-link-color: #865CD6;
+$brand-neutral-colors: (#308253, #DC2878, #501EB4, #49516F);
+$brand-accent-colors: (#4EB276, #FF7D28);
+$brand-link-color: #00854e;
 $brand-status-colors: (
   critical: #FF324D,
   error: #FF324D,
@@ -57,7 +57,10 @@ body {
     }
   }
 }
-.grommetux-text-input,
+.grommetux-text-input{
+    margin-bottom: 1em;
+}
+,
 .grommetux-search .grommetux-search__input,
 .grommetux-select__input {
   padding: 7px 4px;
@@ -74,6 +77,7 @@ body {
   .grommetux-box--direction-row.grommetux-box--pad-between-small >
     *:not(:last-child) {
     margin-right: 4px;
+
   }
 }
 
@@ -180,6 +184,7 @@ hr.divider {
 
 .layer-content {
   // margin-top: 20em;
+  max-height:100%;
   border: 1px solid $border-color;
   border-radius: 3px;
   box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
@@ -201,9 +206,13 @@ hr.divider {
     line-height: 3em;
     padding-right: 1em;
     overflow: auto;
+    margin-top: 150px;
+
+
 
     .layer-footer-button-wrapper {
       float: right;
+
 
       .layer-footer-button {
         padding: 0.5em 1.2em 0.5em 1.2em;
@@ -229,7 +238,8 @@ hr.divider {
   .layer-body-container {
     background-color: #FAFAFA;
     border-bottom: 1px solid $border-color;
-  }
+    min-height:100%;
+
 
   // specific layers
   &.task-view-layer {
@@ -259,12 +269,13 @@ hr.divider {
 
     }
   }
-
+}
   &.add-subject-layer {
     width: 30em;
 
     input {
       width: 100%;
+
     }
     .layer-body-container {
       padding: 2em 1em 2em 1em;
@@ -273,15 +284,18 @@ hr.divider {
 
   &.add-stage-layer {
     width: 60em;
+    min-height:500px;
 
     input[type=text] {
       width: 100%;
+      margin-bottom: 10px;
     }
     input[type=radio] {
       margin-top: 5px;
+
     }
     span {
-      margin-left: 15px;
+     margin-left: 15px;
     }
     .container {
       width: 100%;
@@ -289,6 +303,7 @@ hr.divider {
     }
     .Select-control {
       width: 100%;
+      margin-bottom: 5px;
 
       input[role=combobox] {
         border: none;
@@ -302,7 +317,8 @@ hr.divider {
       }
     }
     .layer-body-container {
-      padding: 1em 1em 1em 1em;
+      padding: 1em 1em 0 1em;
+
     }
   }
 
@@ -463,7 +479,8 @@ hr.divider {
 
 .grid-column {
   overflow-x: auto;
-  border-right: 1px solid $border-color;
+  border-right:none;
+
 }
 
 .masked-button {
@@ -478,6 +495,9 @@ hr.divider {
 
   .stage-slot-cell, .stage-summary-cell {
     background-color: white;
+    cursor: pointer;
+
+
   }
 
   .name-row {
@@ -505,6 +525,8 @@ hr.divider {
 
   .right-icon {
     float:right;
+    fill: $brand-color;
+
 
   }
 
@@ -517,7 +539,7 @@ hr.divider {
   margin-bottom: 0;
   border-right: none;
   th:last-child, td:last-child, tr, tbody {
-    border-right: none;
+
   }
 }
 .grid-subject {
@@ -534,11 +556,13 @@ hr.divider {
   .stage-summary-value {
     font-size: 14px;
     color: $header-font-color;
+
   }
   .stage-summary-label {
     font-size: 12px;
     color: $font-color;
     text-transform: uppercase;
+    text-align: justify;
   }
 }
 

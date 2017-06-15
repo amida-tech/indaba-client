@@ -45,8 +45,8 @@ class MatrixContainer extends Component {
     return(
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-sm-8 grid-column'>{Grid}</div>
-          <div className='col-sm-4'><UserSidebar {...this.props} /></div>
+        <div className='col-sm-8 grid-column'>{Grid}</div>
+       <div className='col-sm-4'><UserSidebar {...this.props} /></div>
         </div>
       </div>
     )
