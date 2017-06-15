@@ -2,7 +2,6 @@ $block-class:'task-view';
 @at-root {
     .#{$block-class} {
         width: 90vw;
-        height: 100vh;
 
         &__text-container {
             display: flex;
