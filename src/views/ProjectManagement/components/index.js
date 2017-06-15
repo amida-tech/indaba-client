@@ -39,7 +39,8 @@ class ProjectManagementContainer extends Component {
                     onAddSubject={this.props.onAddSubject}/>;
             break;
         case 'users':
-            body = <Users />;
+            body = <Users
+                vocab={this.props.vocab}/>;
             break;
         default:
             body = null;
