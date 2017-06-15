@@ -7,11 +7,12 @@ $block-class:'flag-sidebar';
             font-size: 20px;
         }
 
-        &__head-row {
+        &__head-group {
 
-            &--button{
-                margin-left: 3em;
-            }
+        }
+
+        &__head-group-button{
+            margin-left: 3em;
         }
 
         &__review-container {
@@ -25,21 +26,23 @@ $block-class:'flag-sidebar';
             display: block;
         }
 
-        &__review-comment {
+        &__review-commentary {
             background: #ffffff;
             padding: 1em;
+        }
 
-            &--time {
-                margin-bottom: 3px;
-                color: green;
-                weight: bold;
-            }
+        &__review-timestamp {
+            margin-bottom: 3px;
+            color: green;
+            weight: bold;
+        }
 
-            &--comment {
-            }
+        &__review-comment {
 
-            &--signature {
-            }
+        }
+
+        &__review-signature {
+
         }
 
         &__questions {
@@ -67,13 +70,13 @@ $block-class:'flag-sidebar';
             margin-top: 1em;
         }
 
-        &__button-row {
+        &__button-group {
             margin-top: 5px;
             float: right;
+        }
 
-            &--send {
-                margin-left: 5px;
-            }
+        &__button-group-send {
+            margin-left: 5px;
         }
 
         .grommetux-text-input {

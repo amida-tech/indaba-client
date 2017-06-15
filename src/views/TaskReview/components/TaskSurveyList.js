@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
-import ReviewPane from '../../../../../common/ReviewPane';
+import ReviewPane from '../../../common/ReviewPane';
 
 class TaskSurveyList extends Component {
     constructor(props) {
@@ -28,10 +28,10 @@ class TaskSurveyList extends Component {
                 <button onClick={this.handleAccordionExpandAll}>{this.props.vocab.PROJECT.EXPAND_ALL}</button>
                 <button onClick={this.handleAccordionCollapseAll}>{this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                 <div className='task-survey-list__instructions'>
-                    <span className='task-survey-list__instructions--header'>
+                    <span className='task-survey-list__instructions-header'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                     </span>
-                    <span className='task-survey-list__instructions--explained'>
+                    <span className='task-survey-list__instructions-explained'>
                         {this.props.instructions}
                     </span>
                 </div>
