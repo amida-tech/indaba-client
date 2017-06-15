@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, SearchInput, Tabs, Tab } from 'grommet';
 
+import UsersTab from './UsersTab';
+
 class Users extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,7 @@ class Users extends Component {
                     onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
+                        <UsersTab vocab={this.props.vocab} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                     </Tab>
