@@ -30,6 +30,14 @@ export function addSubject(subject, projectId) {
     };
 }
 
+export function deleteSubject(subject, projectId) {
+    return {
+        type: actionTypes.DELETE_SUBJECT,
+        subject,
+        projectId,
+    };
+}
+
 export function addStage(stage, projectId) {
     return {
         type: actionTypes.ADD_STAGE,

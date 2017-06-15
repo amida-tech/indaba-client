@@ -42,7 +42,7 @@ class AddUsers extends Component {
                             this.handleCreateModal(false);
                         }}/>}
                 <Summary
-                    project={this.props.project}
+                    workflow={this.props.workflow}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
@@ -82,7 +82,7 @@ class AddUsers extends Component {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
+    workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
