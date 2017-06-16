@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { Box } from 'grommet';
+import _ from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 
 class StageSummary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userGroups: this.props.stage.userGroups.map(group => this.props.userGroups[group])
+        }
+    }
+
   render() {
     return (
       <div className='stage-summary'>
@@ -21,7 +29,7 @@ class StageSummary extends Component {
           </div>
           <div className='stage-right'>
             <div className='stage-summary-value'>
-                {TaskStatus.formatUserGroups(this.props.stage.userGroups)}
+                {TaskStatus.formatUserGroups(this.state.userGroups)}
             </div>
             <div className='stage-summary-label'>
                 {this.props.vocab.STAGE.USER_GROUP}

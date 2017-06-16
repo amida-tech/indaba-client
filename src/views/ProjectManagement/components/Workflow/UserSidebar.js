@@ -34,14 +34,14 @@ class UserSidebar extends Component {
     }
 
     render() {
-        const unassigned = this.props.project.workflow.unassigned
+        const unassigned = this.props.users
         .filter(u => this.searchFilter(u.name))
         .filter(u => this.groupFilter(u))
         .map(unassignee =>
             React.createElement(AssigneeCard, this.props, unassignee),
         );
 
-        const groupFilters = this.props.project.workflow.roles.map(r => ({ label: r.role, value: r }));
+        const groupFilters = this.props.project.userGroups.map(r => ({ label: r.role, value: r }));
         groupFilters.push({ label: 'Any', value: null });
         return (
             <Box appCentered={false}

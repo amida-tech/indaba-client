@@ -30,7 +30,7 @@ class ProjectManagementContainer extends Component {
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
-                subjects={this.props.project.workflow.subjects}
+                subjects={this.props.project.subjects}
                 onDeleteSubject={this.props.onDeleteSubject}
                 onAddSubject={this.props.onAddSubject}/>;
             break;
@@ -43,14 +43,14 @@ class ProjectManagementContainer extends Component {
                         <StatusChange vocab={this.props.vocab}
                             onStatusChangeClose={() => this.setState({ statusModalId: false })}
                             entity={modalEntities[this.state.statusModalId]}
-                            projectStatus={this.props.project.workflow.status}
-                            surveyStatus={this.props.project.survey.status}
+                            projectStatus={this.props.project.status}
+                            surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.onSetProjectStatus}
                             onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
                     <SubNav />
                     <hr className='divider' />
                     <Summary
-                        workflow={this.props.project.workflow}
+                        project={this.props.project}
                         survey={this.props.project.survey}
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
@@ -76,10 +76,12 @@ ProjectManagementContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
+    const project = state.project.projects.find(p => `${p.id}` === id) ||
+        state.project.projects[0];
     return {
         vocab: state.settings.language.vocabulary,
-        project: state.project.projects.find(p => `${p.id}` === id) ||
-            state.project.projects[0],
+        project: project,
+        survey: state.project.surveys[project.surveyId],
         tab: state.project.navigation.subnav,
     };
 };

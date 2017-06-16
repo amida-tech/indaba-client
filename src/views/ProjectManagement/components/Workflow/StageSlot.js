@@ -12,7 +12,7 @@ const Types = {
 
 const stageSpotTarget = {
     canDrop(props, monitor) { // Checks if we can make the drop.
-        return (props.assignee.unassigned === true);
+        return (props.task.unassigned === true);
     },
     hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
@@ -35,13 +35,13 @@ class StageSlot extends Component {
 
     constructor(props) {
         super(props);
-        const diff = TaskStatus.daysUntilDue(this.props.assignee, [this.props.stageData]);
+        const diff = TaskStatus.daysUntilDue(this.props.task, [this.props.stageData]);
         const late = (diff <= 0);
         this.state = {
             diff,
             late,
-            done: TaskStatus.responsesComplete(this.props.assignee),
-            flag: TaskStatus.responsesFlagged(this.props.assignee),
+            done: TaskStatus.responsesComplete(this.props.task),
+            flag: TaskStatus.responsesFlagged(this.props.task),
             showTaskModal: false,
         };
         this.onTaskViewClick = this.onTaskViewClick.bind(this);
@@ -76,11 +76,11 @@ class StageSlot extends Component {
     }
 
     render() {
-        const display = this.props.assignee.name ?
+        const display = this.props.user ?
       <div>
         <div className='name-row'>
-            <Link to={'/task-review/' + this.props.project.id+'/'+this.props.assignee.id}>
-                <span>{this.props.assignee.name}</span>
+            <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
+                <span>{this.props.user.name}</span>
             </Link>
           <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
             <IonIcon icon='ion-ios-more'/>

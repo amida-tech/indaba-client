@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
@@ -24,20 +25,20 @@ function surveyMapper(response, questions) {
 
 class TaskReview extends Component {
     componentWillReceiveProps(nextProps) {
-        const nextSurvey = surveyMapper(nextProps.assignee.response,
-            nextProps.data.project.projects[0].survey.questions)
+        const nextSurvey = surveyMapper(nextProps.task.response,
+             nextProps.survey.questions)
         this.setState({ survey: nextSurvey });
     }
 
     constructor(props) {
         super(props);
         const survey = surveyMapper(
-            props.assignee.response,
-            props.project.survey.questions)
+            props.task.response,
+            props.survey.questions);
         this.state = {
-            assignee:  props.assignee,
-            stage: props.project.workflow.stages[props.assignee.stage],
-            subject: props.project.workflow.subjects[props.assignee.subject],
+            task:  props.task,
+            stage: props.project.stages[props.task.stage],
+            subject: props.project.subjects[props.task.subject],
             survey: survey
         };
     }
@@ -51,19 +52,20 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
-                        surveyName={this.props.project.survey.name}
+                        surveyName={this.props.survey.name}
                         subject={this.state.subject}
-                        assignee={this.state.assignee}
+                        task={this.state.task}
+                        user={this.props.user}
                         vocab={this.props.vocab}
                         stage={this.state.stage}/>
                     <TaskSurveyList
                         survey={this.state.survey}
-                        instructions={this.props.project.survey.instructions}
+                        instructions={this.props.survey.instructions}
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
-                    assignee={this.props.assignee}
+                    task={this.props.task}
                     vocab={this.props.vocab}
                     survey={this.state.survey}/>
                 </div>
@@ -73,11 +75,18 @@ class TaskReview extends Component {
 }
 
 // Using == over === because they're not the same type. Need to fix!
-const mapStateToProps = (state, ownProps) => ({
-    assignee: state.project.projects[ownProps.params.projectId]
-        .workflow.assignees.filter(user => user.id == ownProps.params.userId)[0],
-    project: state.project.projects[ownProps.params.projectId],
-    vocab: state.settings.language.vocabulary
-})
+
+const mapStateToProps = (state, ownProps) => {
+    const project = _.find(state.project.projects,
+        (p) => p.id == ownProps.params.projectId) || state.project.projects[0];
+    const userId = parseInt(ownProps.params.userId);
+    return {
+        user: _.find(state.user.users, (u) => u.id === userId),
+        task: _.find(project.tasks, (t) => t.id === userId),
+        project: project,
+        survey: state.project.surveys[project.surveyId],
+        vocab: state.settings.language.vocabulary
+    }
+};
 
 export default withRouter(connect(mapStateToProps)(TaskReview));

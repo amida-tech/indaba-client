@@ -196,33 +196,32 @@ export default (state = initialState, action) => {
     switch (action.type) {
     case t.ASSIGN_TASK:
         return update(state, { projects: { [projectIndex]: {
-            workflow: {
                 assignees: { $push: [action.payload] },
-                unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } } });
+                unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } });
     case t.SUBNAVIGATE:
         return update(state, { navigation: { subnav: { $set: action.id } } });
     case t.TOGGLE_FILTER:
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case t.ADD_SUBJECT:
-        return update(state, { projects: { [projectIndex]: { workflow: {
+        return update(state, { projects: { [projectIndex]: {
             subjects: { $push: [action.subject] },
-        } } } });
+        } } });
     case t.DELETE_SUBJECT:
-        return update(state, { projects: { [projectIndex]: { workflow: {
+        return update(state, { projects: { [projectIndex]: {
             subjects: { $apply: ss => ss.filter(s => s !== action.subject) },
-        } } } });
+        } } });
     case t.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: { workflow: {
+        return update(state, { projects: { [projectIndex]: {
             stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].workflow.stages.length } })] },
-        } } } });
+                id: state.projects[projectIndex].stages.length } })] },
+        } } });
     case t.UPDATE_TASK:
         return Object.assign({}, state);
     case t.SET_PROJECT_STATUS:
-        return update(state, { projects: { [projectIndex]: { workflow: {
+        return update(state, { projects: { [projectIndex]: {
             status: { $set: action.status },
-        } } } });
+        } } });
     case t.SET_SURVEY_STATUS:
         return update(state, { projects: { [projectIndex]: { survey: {
             status: { $set: action.status },
