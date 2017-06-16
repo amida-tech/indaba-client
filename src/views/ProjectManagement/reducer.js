@@ -90,7 +90,16 @@ export const initialState = {
 			userGroups: [1], //Index of userGroups
 			permissions: 2,
 		}], //stages end
-		userGroups: ['Researchers', 'Managers'],
+		userGroups: [
+            {
+                id: 0,
+                name: 'Researchers',
+                users: [2,3],
+            },{
+                id: 1,
+                name: 'Managers',
+                users: [0,1],
+            }],
 		subjects: ['Berlin', 'Chicago', 'K\'unlun'],
 		tasks: [{ //Changed from assignees.
 			id: 2,
