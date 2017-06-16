@@ -1,0 +1,22 @@
+$block-class:'task-details';
+@at-root {
+    .#{$block-class} {
+        margin:10px;
+
+        &__header {
+
+            &-name {
+                font-size: 22px;
+            }
+        }
+
+        &__info {
+
+            &-box {
+                display: inline-block;
+                box-sizing: content-box;
+                width: 25%;
+            }
+        }
+    }
+}

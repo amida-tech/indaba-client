@@ -4,27 +4,30 @@ import TaskStatus from '../../../../utils/TaskStatus';
 
 const _assigneeLookup = (stage, subjectKey, assignees) =>
     assignees.find(
-        (element) => element.subject === subjectKey && element.stage === stage.id) ||
-        {stage: stage.id, subject: subjectKey, startDate: stage.startStage,
-            endDate: stage.endStage, unassigned: true};
+        element => element.subject === subjectKey && element.stage === stage.id) ||
+        { stage: stage.id,
+            subject: subjectKey,
+            startDate: stage.startStage,
+            endDate: stage.endStage,
+            unassigned: true };
 
 class FilteredRow extends Component {
     assigneeIsFilteredOut(assigneeData) {
         switch (this.props.filter) {
-            case 'unassigned':
-                return !assigneeData.unassigned;
-            case 'late':
-                return !(TaskStatus.dueDateInPast(assigneeData, this.props.stages) &&
+        case 'unassigned':
+            return !assigneeData.unassigned;
+        case 'late':
+            return !(TaskStatus.dueDateInPast(assigneeData, this.props.stages) &&
                     !TaskStatus.responsesComplete(assigneeData));
-            case 'inprogress':
-                return !(TaskStatus.responsesExist(assigneeData) &&
+        case 'inprogress':
+            return !(TaskStatus.responsesExist(assigneeData) &&
                     !TaskStatus.responsesComplete(assigneeData));
-            case 'notstarted':
-                return TaskStatus.responsesExist(assigneeData);
-            case 'flagged':
-                return !TaskStatus.responsesFlagged(assigneeData);
-            default:
-                return false;
+        case 'notstarted':
+            return TaskStatus.responsesExist(assigneeData);
+        case 'flagged':
+            return !TaskStatus.responsesFlagged(assigneeData);
+        default:
+            return false;
         }
     }
 
@@ -49,11 +52,12 @@ class FilteredRow extends Component {
                     user={this.props.user}
                     filtered={this.assigneeIsFilteredOut(assignee)}
                     stageData={this.props.stages.find(s => s.id === assignee.stage)}
+                    project={this.props.project}
                     vocab={this.props.vocab.PROJECT.CARD}/>
-                </td>
+                </td>,
             )}
             </tr>
-        )
+        );
     }
 }
 

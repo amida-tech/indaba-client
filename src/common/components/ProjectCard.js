@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Box } from 'grommet';
 import CardValueDropdown from './CardValueDropdown';
-import { modalIDs } from '../../views/ProjectManagement/components/Modals';
 
 class ProjectCard extends Component {
     render() {
         const ProjectStatusOptions = [{
             label: this.props.vocab.PROJECT.CHANGE_STATUS,
-            value: modalIDs.PROJECT_STATUS_MODAL,
+            value: 'projectstatusmodal',
         }];
 
         return (

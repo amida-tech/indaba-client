@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { DragSource, DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
+import FilterWrapper from './FilterWrapper';
 import MatrixContainer from './MatrixContainer';
 import * as ProjectActions from '../../actions';
 
 class WorkflowContainer extends Component {
-  render() {
-    return (
-      <MatrixContainer {...this.props}/>
-    );
-  }
+    render() {
+        return (
+            <div className='worklow-container'>
+                <FilterWrapper project={this.props.project} />
+                <MatrixContainer {...this.props}/>
+            </div>
+        );
+    }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
     return {
         assignTask: (assignment) => {
-            dispatch(ProjectActions.assignTask(assignment));
+            dispatch(ProjectActions.assignTask(assignment, ownProps.project.id));
         },
     };
 }
@@ -23,8 +26,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
     return {
         data: state,
-        vocab: state.settings.language.vocabulary
-    }
+        vocab: state.settings.language.vocabulary,
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkflowContainer);

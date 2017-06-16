@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setProjectStatus, setSurveyStatus } from '../../../actions';
 import Modal from '../../../../../common/Modal';
 import ProjectStatusBody from './ProjectStatusBody';
 import SurveyStatusBody from './SurveyStatusBody';
@@ -25,8 +23,8 @@ class StatusChange extends Component {
     }
     projectConfirmed() {
         return this.state.project.draftConfirm &&
-      this.state.project.accessConfirm &&
-      this.state.project.usersConfirm;
+        this.state.project.accessConfirm &&
+        this.state.project.usersConfirm;
     }
     projectCheck(name, checked) {
         const newState = Object.assign({}, this.state);
@@ -40,16 +38,18 @@ class StatusChange extends Component {
     }
     surveyConfirmed() {
         return this.state.survey.accessConfirm &&
-      this.state.survey.usersConfirm &&
-      this.state.survey.editConfirm;
+        this.state.survey.usersConfirm &&
+        this.state.survey.editConfirm;
     }
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
                 this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
+                this.props.onStatusChangeClose();
             }
         } else if (this.surveyConfirmed()) {
             this.props.onSetSurveyStatus(this.state.survey.published ? 'Published' : 'Draft');
+            this.props.onStatusChangeClose();
         }
     }
     render() {
@@ -61,7 +61,7 @@ class StatusChange extends Component {
                 class='project-status-change-layer'
                 title={title}
                 onSave={this.save.bind(this)}
-                onCancel={this.props.onCancel}>
+                onCancel={this.props.onStatusChangeClose}>
                 {this.props.entity === 'project' ?
                     <ProjectStatusBody {...this.state.project}
                         vocab={this.props.vocab}
@@ -74,13 +74,4 @@ class StatusChange extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    projectStatus: state.project.workflow.status,
-    surveyStatus: state.project.survey.status,
-});
-const mapDispatchToProps = dispatch => ({
-    onSetProjectStatus: status => dispatch(setProjectStatus(status)),
-    onSetSurveyStatus: status => dispatch(setSurveyStatus(status)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StatusChange);
+export default StatusChange;

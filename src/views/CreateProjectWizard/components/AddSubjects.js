@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import { addSubjects, deleteSubject } from '../actions';
+import { addSubjectsToWizard, deleteSubjectFromWizard } from '../actions';
 import Summary from '../../../common/components/Summary';
-import WizardFooter from './WizardFooter';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class AddSubjectControl extends Component {
         this.setState({ userInput: '' });
     }
     render() {
-        return <div>
+        return (<div>
             <Box direction='row' justify='between'>
                 <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                 <div>{this.props.vocab.COMMON.ACTIONS}</div>
@@ -44,7 +43,7 @@ class AddSubjectControl extends Component {
                     </span>
                 </Box>,
             )}
-        </div>;
+        </div>);
     }
 }
 
@@ -52,7 +51,7 @@ class AddSubjects extends Component {
     render() {
         return (<div>
             <Summary
-                project={this.props.project}
+                workflow={this.props.workflow}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -67,20 +66,19 @@ class AddSubjects extends Component {
                 onDeleteSubject={this.props.onDeleteSubject}
                 subjects={this.props.subjects}
                 vocab={this.props.vocab}/>
-            <WizardFooter />
         </div>);
     }
 }
 
 const mapStateToProps = state => ({
-    subjects: state.projectwizard.subjects,
+    subjects: state.projectwizard.workflow.subjects,
     vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
+    workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
 });
 const mapDispatchToProps = dispatch => ({
-    onAddSubjects: subjects => dispatch(addSubjects(subjects)),
-    onDeleteSubject: subject => dispatch(deleteSubject(subject)),
+    onAddSubjects: subjects => dispatch(addSubjectsToWizard(subjects)),
+    onDeleteSubject: subject => dispatch(deleteSubjectFromWizard(subject)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddSubjects);

@@ -5,6 +5,12 @@ import here. We'll organize the structure of this better later, but
 dragging and dropping files is easier then stripping through scss files. */
 
 @import './styles.scss';
+@import './user.scss';
+@import './task-review.scss';
+@import './task-details.scss';
+@import './task-survey-list.scss';
+@import './review-pane.scss';
+@import './flag-sidebar.scss';
 @import './questions.scss';
 @import './survey-card.scss';
 @import './modal.scss';

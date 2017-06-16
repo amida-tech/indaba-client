@@ -118,6 +118,7 @@ hr.divider {
     color: $header-font-color;
     font-size: 18px;
     line-height: 22px;
+    margin-right: 1em;
   }
 
   .card-value-options {
@@ -129,7 +130,6 @@ hr.divider {
   .card-value-select-arrow {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 1em;
     margin-left: 0.3em;
   }
 

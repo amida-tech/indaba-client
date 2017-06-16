@@ -1,125 +1,87 @@
 import * as actionTypes from './actionTypes';
 
-export function getWorkflow() {
-  return dispatch => dispatch(_getWorkflow());
-}
-
-export function updateWorkflowProject() {
-  return dispatch => dispatch(_updateWorkflowProject());
-}
-
-export function updateWorkflowStatus() {
-  return dispatch => dispatch(_updateWorkflowSurvey());
-}
-
 export function editSummaryDescription(id) {
-  return {
-    type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
-    id
-  };
+    return {
+        type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
+        id,
+    };
 }
 
 export function subnavigate(id) {
-  return {
-    type: actionTypes.SUBNAVIGATE,
-    id
-  };
+    return {
+        type: actionTypes.SUBNAVIGATE,
+        id,
+    };
 }
 
-export function showModal(id) {
-  return {
-    type: actionTypes.SHOW_MODAL,
-    id
-  };
+export function assignTask(assignment, projectId) {
+    return {
+        type: actionTypes.ASSIGN_TASK,
+        payload: assignment,
+        projectId,
+    };
 }
 
-export function showModalProps(id, props) {
-  return {
-    type: actionTypes.SHOW_MODAL_PROPS,
-    id, props
-  };
+export function addSubject(subject, projectId) {
+    return {
+        type: actionTypes.ADD_SUBJECT,
+        subject,
+        projectId,
+    };
 }
 
-export function assignTask(assignment) {
-  return {
-    type: actionTypes.ASSIGN_TASK,
-    payload: assignment
-  }
+export function deleteSubject(subject, projectId) {
+    return {
+        type: actionTypes.DELETE_SUBJECT,
+        subject,
+        projectId,
+    };
 }
 
-export function closeModal() {
-  return {
-    type: actionTypes.CLOSE_MODAL
-  }
+export function addStage(stage, projectId) {
+    return {
+        type: actionTypes.ADD_STAGE,
+        stage,
+        projectId,
+    };
 }
 
-export function addSubject(subject) {
-  return {
-    type: actionTypes.ADD_SUBJECT,
-    subject
-  }
+export function updateTask(task, projectId) {
+    return {
+        type: actionTypes.UPDATE_TASK,
+        task,
+        projectId,
+    };
 }
 
-export function addStage(stage) {
-  return {
-    type: actionTypes.ADD_STAGE,
-    stage
-  }
+export function toggleFilter(filter, projectId) {
+    return {
+        type: actionTypes.TOGGLE_FILTER,
+        filter,
+        projectId,
+    };
 }
 
-export function updateTask(task) {
-  return {
-    type: actionTypes.UPDATE_TASK,
-    task
-  }
+export function setProjectStatus(status, projectId) {
+    return {
+        type: actionTypes.SET_PROJECT_STATUS,
+        status,
+        projectId,
+    };
 }
 
-export function toggleFilter(filter) {
-  return {
-    type: actionTypes.TOGGLE_FILTER,
-    filter
-  }
+export function setSurveyStatus(status, projectId) {
+    return {
+        type: actionTypes.SET_SURVEY_STATUS,
+        status,
+        projectId,
+    };
 }
 
-export function setProjectStatus(status) {
-  return {
-    type: actionTypes.SET_PROJECT_STATUS,
-    status
-  }
-}
-
-export function setSurveyStatus(status) {
-  return {
-    type: actionTypes.SET_SURVEY_STATUS,
-    status
-  }
-}
-
-export function inviteUser(user) {
-  return {
-    type: actionTypes.INVITE_USER,
-    user
-  }
-}
-
-function _getWorkflow() {
-  return {
-    type: actionTypes.GET_WORKFLOW
-  };
-}
-
-// Split via update successes and failures.
-function _updateWorkflowProject(project) {
-  return {
-    type: actionTypes.UPDATE_WORKFLOW_PROJECT,
-    payload: project
-  };
-}
-
-// Split via update successes and failures.
-function _updateWorkflowSurvey(survey) {
-  return {
-    type: actionTypes.UPDATE_WORKFLOW_SURVEY,
-    payload: survey
-  };
+export function inviteUser(user, projectId) {
+    return {
+        type: actionTypes.INVITE_USER,
+        user,
+        projectId,
+    };
 }

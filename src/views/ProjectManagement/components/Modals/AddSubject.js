@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'grommet';
+import PropTypes from 'prop-types';
 import Modal from '../../../../common/Modal';
 
 class AddSubject extends Component {
@@ -12,7 +12,7 @@ class AddSubject extends Component {
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
-    isValid(){
+    isValid() {
         return (this.state.value.length > 0);
     }
     render() {
@@ -31,5 +31,11 @@ class AddSubject extends Component {
         );
     }
 }
+
+AddSubject.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    onAddSubject: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
+};
 
 export default AddSubject;
