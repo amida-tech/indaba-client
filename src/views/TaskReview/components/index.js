@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router';
 import IonIcon from 'react-ionicons';
 import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 
-import Modal from '../../../../../common/Modal';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
@@ -22,7 +22,7 @@ function surveyMapper(response, questions) {
             surveyMapperHelper(response, question)) : questions);
 }
 
-class TaskView extends Component {
+class TaskReview extends Component {
     componentWillReceiveProps(nextProps) {
         const nextSurvey = surveyMapper(nextProps.assignee.response,
             nextProps.data.project.projects[0].survey.questions)
@@ -31,60 +31,53 @@ class TaskView extends Component {
 
     constructor(props) {
         super(props);
-        const survey = surveyMapper(props.assignee.response,
-            props.data.project.projects[0].survey.questions)
+        const survey = surveyMapper(
+            props.assignee.response,
+            props.project.survey.questions)
         this.state = {
             assignee:  props.assignee,
-            stageData: props.stageData,
-            subject: props.data.project.projects[0].workflow.subjects[props.assignee.subject],
-            survey: survey,
-            allActive: survey.map((k, i) => i),
-            active: []
+            stage: props.project.workflow.stages[props.assignee.stage],
+            subject: props.project.workflow.subjects[props.assignee.subject],
+            survey: survey
         };
     }
 
     render() {
-    return (
-        <Modal
-            title={this.props.vocab.PROJECT.TASK_VIEW}
-            class='task-view'
-            onCancel={this.props.onCancel}
-            data={this.props.data}
-            onSave={() => this.props.onUpdateTask(this.state.value)}>
-            <div className='task-view__text-container'>
-                <div className='task-view__text-container--details-and-survey'>
-                    <button className='masked-button left-icon'
-                        onClick={this.props.onCancel}>
+        return (
+            <div className='task-review'>
+                <div className='task-review__details-and-survey'>
+                    <Link to={'/project/' + this.props.project.id}>
                         <IonIcon icon='ion-android-arrow-back'/>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
-                    </button>
+                    </Link>
                     <TaskDetails
-                        surveyName={this.props.data.project.projects[0].survey.name}
+                        surveyName={this.props.project.survey.name}
                         subject={this.state.subject}
                         assignee={this.state.assignee}
                         vocab={this.props.vocab}
-                        stageData={this.props.stageData}/>
+                        stage={this.state.stage}/>
                     <TaskSurveyList
                         survey={this.state.survey}
-                        instructions={this.props.data.project.projects[0].survey.instructions}
-                        allActive={this.state.allActive}
+                        instructions={this.props.project.survey.instructions}
                         vocab={this.props.vocab} />
                 </div>
-                <div className='task-view__text-container--flag-sidebar'>
+                <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     assignee={this.props.assignee}
                     vocab={this.props.vocab}
                     survey={this.state.survey}/>
                 </div>
             </div>
-        </Modal>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    data: state,
+// Using == over === because they're not the same type. Need to fix!
+const mapStateToProps = (state, ownProps) => ({
+    assignee: state.project.projects[ownProps.params.projectId]
+        .workflow.assignees.filter(user => user.id == ownProps.params.userId)[0],
+    project: state.project.projects[ownProps.params.projectId],
     vocab: state.settings.language.vocabulary
-});
+})
 
-export default connect(mapStateToProps)(TaskView);
+export default withRouter(connect(mapStateToProps)(TaskReview));

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
-import { updateFlaggedQuestion } from '../../../actions';
+import { updateFlaggedQuestion } from '../actions';
 
-import TaskStatus from '../../../../../utils/TaskStatus';
+import TaskStatus from '../../../utils/TaskStatus';
 
 function stateInitializer(props, state) {
     const issues = props.survey.filter(question => question.flag === true);
@@ -87,9 +87,9 @@ class FlagSidebar extends Component {
                 <span className='flag-sidebar__title'>
                     {this.props.vocab.PROJECT.FLAGS}
                 </span>
-                <div className='flag-sidebar__head-row'>
+                <div className='flag-sidebar__head-group'>
                     {this.state.flags.length}{this.props.vocab.PROJECT.FLAGS_REPORTED}
-                    <Button className='flag-sidebar__head-row--button'
+                    <Button className='flag-sidebar__head-group-button'
                         primary={true}
                         label={this.props.vocab.PROJECT.ADD_STAGE} />
                 </div>
@@ -112,15 +112,15 @@ class FlagSidebar extends Component {
                     <div className='flag-sidebar__review-controls'>
                         {this.state.activeFlag && this.state.activeFlag.map((reply, i) => {
                             return (
-                                <div className='flag-sidebar__review-comment'
+                                <div className='flag-sidebar__commentary'
                                     key={'flag-comment'+i}>
-                                    <div className='flag-sidebar__review-comment--time'>
+                                    <div className='flag-sidebar__commentary-timestamp'>
                                         {TaskStatus.formatDateTime(reply.timestamp)}
                                     </div>
-                                    <div className='flag-sidebar__review-comment--comment'>
+                                    <div className='flag-sidebar__commentary-comment'>
                                         {reply.comment}
                                     </div>
-                                    <div className='flag-sidebar__review-comment--signature'>
+                                    <div className='flag-sidebar__commentary-signature'>
                                         –{this.props.user.users[reply.userId].name}
                                     </div>
                                 </div>
@@ -144,12 +144,12 @@ class FlagSidebar extends Component {
                                 }))}
                                 onChange={this.handleNotifyUserChange} />
                         </div>
-                        <div className='flag-sidebar__button-row'>
-                            <Button className='flag-sidebar__button-row--cancel'
+                        <div className='flag-sidebar__button-group'>
+                            <Button className='flag-sidebar__button-group-cancel'
                                 primary={false}
                                 label={this.props.vocab.COMMON.CANCEL}
                                 onClick={this.onCancel} />
-                            <Button className='flag-sidebar__button-row--send'
+                            <Button className='flag-sidebar__button-group-send'
                                 primary={true}
                                 label={this.props.vocab.COMMON.SEND}
                                 onClick={this.onSend} />
