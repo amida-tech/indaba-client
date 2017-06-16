@@ -94,7 +94,6 @@ export const initialState = {
 		subjects: ['Berlin', 'Chicago', 'K\'unlun'],
 		tasks: [{ //Changed from assignees.
 			id: 2,
-			userGroup: 0,
 			stage: 0,
 			subject: 0,
 			response: [{
@@ -106,7 +105,6 @@ export const initialState = {
 			}],
 		}, {
 			id: 3,
-			userGroup: 0,
 			stage: 0,
 			subject: 1,
 			response: [{
@@ -157,7 +155,6 @@ export const initialState = {
 			}],
 		}, {
 			id: 4,
-			userGroup: 1,
 			stage: 1,
 			subject: 0,
 			dueDate: '9/9/2017',
@@ -179,7 +176,6 @@ export const initialState = {
 			}],
 		}, {
 			id: 5,
-			userGroup: 1,
 			stage: 1,
 			subject: 2,
 		}],
