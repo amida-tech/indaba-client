@@ -74,12 +74,11 @@ class TaskReview extends Component {
     }
 }
 
-// Using == over === because they're not the same type. Need to fix!
-
 const mapStateToProps = (state, ownProps) => {
+    const userId = parseInt(ownProps.params.userId, 10);
+    const projectId = parseInt(ownProps.params.projectId, 10);
     const project = _.find(state.project.projects,
-        (p) => p.id == ownProps.params.projectId) || state.project.projects[0];
-    const userId = parseInt(ownProps.params.userId);
+        (p) => p.id === projectId) || state.project.projects[0];
     return {
         user: _.find(state.user.users, (u) => u.id === userId),
         task: _.find(project.tasks, (t) => t.id === userId),
