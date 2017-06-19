@@ -22,11 +22,6 @@ function surveyMapper(response, questions) {
 }
 
 class TaskReview extends Component {
-    componentWillReceiveProps(nextProps) {
-        this.task = nextProps.task;
-        this.survey = nextProps.survey;
-    }
-
     render() {
         const displaySurvey = surveyMapper(this.props.task.response,
             this.props.survey.questions);
