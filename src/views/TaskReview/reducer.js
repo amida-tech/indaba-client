@@ -5,14 +5,14 @@ export default (state = initialState, action) => {
     let findUser;
 
     switch (action.type) {
-        case t.UPDATE_TASK_DUE_DATE:
+        case type.UPDATE_TASK_DUE_DATE:
             findUser = state.projects[action.projectId]
                 .tasks.findIndex(user =>
                     (user.id === action.assigneeId));
             return update(state, { projects: { [action.projectId]:
             { tasks: { [findUser]:
     				{ $merge: { dueDate: action.dueDate } } } } } });
-        case t.UPDATE_FLAGGED_QUESTION:
+        case type.UPDATE_FLAGGED_QUESTION:
             findUser = state.projects[action.data.projectId]
                 .assignees.findIndex(user =>
                     (user.id === action.data.assigneeId));

@@ -41,7 +41,7 @@ class UserSidebar extends Component {
             React.createElement(AssigneeCard, this.props, unassignee),
         );
 
-        const groupFilters = this.props.project.userGroups.map(r => ({ label: r.role, value: r }));
+        const groupFilters = this.props.project.userGroups.map(group => ({ label: group.role, value: group }));
         groupFilters.push({ label: 'Any', value: null });
         return (
             <Box appCentered={false}
