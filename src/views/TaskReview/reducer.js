@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import * as t from './actionTypes';
+import * as type from './actionTypes';
 
 export default (state = initialState, action) => {
     let findUser;

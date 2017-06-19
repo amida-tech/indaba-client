@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import * as t from './actionTypes';
+import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 
 export const initialState = {
@@ -197,7 +197,7 @@ export default (state = initialState, action) => {
 
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
-            projectype.id === action.projectId);
+            project.id === action.projectId);
     }
     switch (action.type) {
     case type.ASSIGN_TASK:

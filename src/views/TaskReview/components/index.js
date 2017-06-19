@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
-import Accordion from 'grommet/components/Accordion';
-import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
@@ -26,20 +24,14 @@ function surveyMapper(response, questions) {
 class TaskReview extends Component {
     componentWillReceiveProps(nextProps) {
         const nextSurvey = surveyMapper(nextProps.task.response,
-             nextProps.survey.questions)
+             nextProps.survey.questions);
         this.setState({ survey: nextSurvey });
     }
 
     constructor(props) {
         super(props);
-        const survey = surveyMapper(
-            props.task.response,
-            props.survey.questions);
         this.state = {
-            task:  props.task,
-            stage: props.project.stages[props.task.stage],
-            subject: props.project.subjects[props.task.subject],
-            survey: survey
+            survey: surveyMapper(props.task.response, props.survey.questions)
         };
     }
 
@@ -53,11 +45,11 @@ class TaskReview extends Component {
                     </Link>
                     <TaskDetails
                         surveyName={this.props.survey.name}
-                        subject={this.state.subject}
-                        task={this.state.task}
+                        subject={this.props.project.subjects[this.props.task.subject]}
+                        task={this.props.task}
                         user={this.props.user}
                         vocab={this.props.vocab}
-                        stage={this.state.stage}/>
+                        stage={this.props.project.stages[this.props.task.stage]}/>
                     <TaskSurveyList
                         survey={this.state.survey}
                         instructions={this.props.survey.instructions}
@@ -85,7 +77,7 @@ const mapStateToProps = (state, ownProps) => {
         project: project,
         survey: state.project.surveys[project.surveyId],
         vocab: state.settings.language.vocabulary
-    }
+    };
 };
 
 export default withRouter(connect(mapStateToProps)(TaskReview));
