@@ -8,6 +8,7 @@ class ProjectCard extends Component {
             label: this.props.vocab.PROJECT.CHANGE_STATUS,
             value: 'projectstatusmodal',
         }];
+
         return (
             <Box
                 direction='row'
@@ -19,10 +20,10 @@ class ProjectCard extends Component {
                 responsive={false}>
                 <div className='project-card-left'>
                     <div className='card-title'>{this.props.vocab.PROJECT.PROJECT}</div>
-                    <div className='card-value'>{this.props.project.name}</div>
+                    <div className='card-value'>{this.props.name}</div>
                 </div>
                 <CardValueDropdown
-                    value={this.props.project.status}
+                    value={this.props.status}
                     options={ProjectStatusOptions}
                     onClick={this.props.onStatusChangeClick} />
             </Box>
