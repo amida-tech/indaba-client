@@ -51,7 +51,7 @@ class ProjectManagementContainer extends Component {
                     <hr className='divider' />
                     <Summary
                         project={this.props.project}
-                        survey={this.props.project.survey}
+                        survey={this.props.survey}
                         onStatusChangeClick={id => this.setState({ statusModalId: id })}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
