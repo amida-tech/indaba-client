@@ -23,19 +23,13 @@ function surveyMapper(response, questions) {
 
 class TaskReview extends Component {
     componentWillReceiveProps(nextProps) {
-        const nextSurvey = surveyMapper(nextProps.task.response,
-             nextProps.survey.questions);
-        this.setState({ survey: nextSurvey });
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            survey: surveyMapper(props.task.response, props.survey.questions)
-        };
+        this.task = nextProps.task;
+        this.survey = nextProps.survey;
     }
 
     render() {
+        const displaySurvey = surveyMapper(this.props.task.response,
+            this.props.survey.questions);
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'>
@@ -51,7 +45,7 @@ class TaskReview extends Component {
                         vocab={this.props.vocab}
                         stage={this.props.project.stages[this.props.task.stage]}/>
                     <TaskSurveyList
-                        survey={this.state.survey}
+                        survey={displaySurvey}
                         instructions={this.props.survey.instructions}
                         vocab={this.props.vocab} />
                 </div>
@@ -59,7 +53,7 @@ class TaskReview extends Component {
                 <FlagSidebar
                     task={this.props.task}
                     vocab={this.props.vocab}
-                    survey={this.state.survey}/>
+                    survey={displaySurvey}/>
                 </div>
             </div>
         );
