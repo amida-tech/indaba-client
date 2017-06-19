@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import StageSlot from './StageSlot';
 import TaskStatus from '../../../../utils/TaskStatus';
+import _ from 'lodash';
 
-const _assigneeLookup = (stage, subjectKey, assignees) =>
-    assignees.find(
+const _taskLookup = (stage, subjectKey, tasks) =>
+    tasks.find(
         element => element.subject === subjectKey && element.stage === stage.id) ||
         { stage: stage.id,
             subject: subjectKey,
@@ -12,46 +13,47 @@ const _assigneeLookup = (stage, subjectKey, assignees) =>
             unassigned: true };
 
 class FilteredRow extends Component {
-    assigneeIsFilteredOut(assigneeData) {
+    taskIsFilteredOut(taskData) {
         switch (this.props.filter) {
         case 'unassigned':
-            return !assigneeData.unassigned;
+            return !taskData.unassigned;
         case 'late':
-            return !(TaskStatus.dueDateInPast(assigneeData, this.props.stages) &&
-                    !TaskStatus.responsesComplete(assigneeData));
+            return !(TaskStatus.dueDateInPast(taskData, this.props.stages) &&
+                    !TaskStatus.responsesComplete(taskData));
         case 'inprogress':
-            return !(TaskStatus.responsesExist(assigneeData) &&
-                    !TaskStatus.responsesComplete(assigneeData));
+            return !(TaskStatus.responsesExist(taskData) &&
+                    !TaskStatus.responsesComplete(taskData));
         case 'notstarted':
-            return TaskStatus.responsesExist(assigneeData);
+            return TaskStatus.responsesExist(taskData);
         case 'flagged':
-            return !TaskStatus.responsesFlagged(assigneeData);
+            return !TaskStatus.responsesFlagged(taskData);
         default:
             return false;
         }
     }
 
-    rowIsFilteredOut(assigneesData) {
-        return assigneesData.every(this.assigneeIsFilteredOut.bind(this));
+    rowIsFilteredOut(taskData) {
+        return taskData.every(this.taskIsFilteredOut.bind(this));
     }
 
     render() {
-        const assigneeData =
+        const taskData =
             this.props.stages.map(
-                stage => _assigneeLookup(stage, this.props.subject.key,
-                this.props.assignees));
-        return this.rowIsFilteredOut(assigneeData) ? null : (
+                stage => _taskLookup(stage, this.props.subject.key,
+                this.props.tasks));
+        return this.rowIsFilteredOut(taskData) ? null : (
             <tr key={`SubjectHeader-${this.props.subject.key}`}>
             <td key={this.props.subject.key} className='grid-subject'>
                 {this.props.subject.name}
             </td>
-            {assigneeData.map(assignee =>
-                <td key={`StageSlot-${assignee.subject}-${assignee.stage}`}
+            {taskData.map(task =>
+                <td key={`StageSlot-${task.subject}-${task.stage}`}
                     className='stage-slot-cell'>
-                <StageSlot assignee={assignee}
-                    user={this.props.user}
-                    filtered={this.assigneeIsFilteredOut(assignee)}
-                    stageData={this.props.stages.find(s => s.id === assignee.stage)}
+                <StageSlot task={task}
+                    user={_.find(this.props.users, (user) => user.id === task.id)}
+                    filtered={this.taskIsFilteredOut(task)}
+                    stageData={this.props.stages.find(stage =>
+                        stage.id === task.stage)}
                     project={this.props.project}
                     vocab={this.props.vocab.PROJECT.CARD}/>
                 </td>,

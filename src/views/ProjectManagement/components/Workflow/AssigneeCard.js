@@ -30,8 +30,8 @@ const cardSource = {
       'id': props.children.id,
       'name': props.children.name,
       'role': props.children.role,
-      'stage': dropResult.assignee.stage,
-      'subject': dropResult.assignee.subject
+      'stage': dropResult.task.stage,
+      'subject': dropResult.task.subject
     };
     props.assignTask(assignment);
   }
