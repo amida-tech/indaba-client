@@ -12,42 +12,17 @@ import Box from 'grommet/components/Box';
 import Select from 'grommet/components/Select';
 
 class UserSidebar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { query: '' };
-    }
-
-    searchFilter(value) {
-        return !this.state.query || value.toLowerCase().includes(this.state.query.toLowerCase());
-    }
-
-    groupFilter(unassignee) {
-        return !this.state.group || unassignee.role === this.state.group.id;
-    }
-
     onSearch(evt) {
         this.setState(Object.assign({}, this.state, { query: evt.target.value }));
     }
 
-    onGroupFilter(evt) {
-        this.setState(Object.assign({}, this.state, { group: evt.option.value }));
-    }
+
+        onGroupFilter(evt) {
+            this.setState(Object.assign({}, this.state, { group: evt.option.value }));
+        }
 
     render() {
-        const unassigned = this.props.users
-        .filter(user => this.searchFilter(user.name))
-        .filter(user => this.groupFilter(user))
-        .map(unassignee =>
-            React.createElement(AssigneeCard, this.props, unassignee),
-        );
-
-        const groupFilters = this.props.project.userGroups.map(group => ({ label: group.role, value: group }));
-        groupFilters.push({ label: 'Any', value: null });
         return (
-            <Box appCentered={false}
-                separator='all'
-                className='user-sidebar'>
-            <div className='sidebar-instruction'>{this.props.vocab.PROJECT.DND_INSTRUCTIONS}</div>
             <div className='sidebar-user-picker'>
                 <Search className='sidebar-user-search'
                     fill={true}
@@ -66,10 +41,6 @@ class UserSidebar extends Component {
                     )}
                 </List>
             </div>
-            <div>
-                <InviteUser className='sidebard-invite-user' vocab={this.props.vocab} />
-            </div>
-            </Box>
         );
     }
 }
