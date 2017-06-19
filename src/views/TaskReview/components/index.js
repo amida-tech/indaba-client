@@ -78,10 +78,10 @@ const mapStateToProps = (state, ownProps) => {
     const userId = parseInt(ownProps.params.userId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
     const project = _.find(state.project.projects,
-        (p) => p.id === projectId) || state.project.projects[0];
+        (project) => project.id === projectId) || state.project.projects[0];
     return {
-        user: _.find(state.user.users, (u) => u.id === userId),
-        task: _.find(project.tasks, (t) => t.id === userId),
+        user: _.find(state.user.users, (user) => user.id === userId),
+        task: _.find(project.tasks, (task) => task.id === userId),
         project: project,
         survey: state.project.surveys[project.surveyId],
         vocab: state.settings.language.vocabulary

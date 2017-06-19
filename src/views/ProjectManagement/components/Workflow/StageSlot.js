@@ -76,37 +76,38 @@ class StageSlot extends Component {
     }
 
     render() {
-        const display = this.props.user ?
-      <div>
-        <div className='name-row'>
-            <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
-                <span>{this.props.user.name}</span>
-            </Link>
-          <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
-            <IonIcon icon='ion-ios-more'/>
-          </button>
-        </div>
-        <div>
-
-          <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-          {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
-        </div>
-        <div className='due-row'>
-          <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>
-        </div>
-      </div> :
-      <div>
-        <label className='inline'>
-          <IonIcon className='left-icon' icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
-        </label>
-      </div>;
-        const { position } = this.props;
-        const { isOver, canDrop, connectDropTarget } = this.props;
-        return connectDropTarget(
-      <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
-        {display}
+    const { position } = this.props;
+    const { isOver, canDrop, connectDropTarget } = this.props;
+    return connectDropTarget(
+        <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
+            {this.props.user &&
+                <div>
+                    <div className='name-row'>
+                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
+                            <span>{this.props.user.name}</span>
+                        </Link>
+                        <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
+                            <IonIcon icon='ion-ios-more'/>
+                        </button>
+                    </div>
+                    <div>
+                        <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
+                        {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+                    </div>
+                    <div className='due-row'>
+                        <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>
+                    </div>
+             </div>
+         }
+         {!this.props.user &&
+             <div>
+                 <label className='inline'>
+                     <IonIcon className='left-icon' icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
+                 </label>
+             </div>
+         }
         {isOver && canDrop}
-      </div>,
+        </div>,
     );
     }
 }

@@ -196,7 +196,8 @@ export default (state = initialState, action) => {
     let findUser;
 
     if (action.projectId !== undefined) {
-        projectIndex = state.projects.findIndex(p => p.id === action.projectId);
+        projectIndex = state.projects.findIndex(project =>
+            project.id === action.projectId);
     }
     switch (action.type) {
     case t.ASSIGN_TASK:
@@ -214,7 +215,7 @@ export default (state = initialState, action) => {
         } } });
     case t.DELETE_SUBJECT:
         return update(state, { projects: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(s => s !== action.subject) },
+            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
         } } });
     case t.ADD_STAGE:
         return update(state, { projects: { [projectIndex]: {

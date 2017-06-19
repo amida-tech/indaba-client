@@ -55,13 +55,12 @@ class MatrixContainer extends Component {
     }
 }
 
-//Use lodash here James to get the proper project.
 const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10);
     return {
         users: state.user.users,
-        project: _.find(state.project.projects, (p) => p.id === projectId)
-            || state.project.projects[0],
+        project: _.find(state.project.projects, (project) =>
+            project.id === projectId) || state.project.projects[0],
         vocab: state.settings.language.vocabulary
     }
 }

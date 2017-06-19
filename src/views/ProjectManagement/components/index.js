@@ -76,8 +76,8 @@ ProjectManagementContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.id !== undefined ? ownProps.id : ownProps.params.id;
-    const project = state.project.projects.find(p => `${p.id}` === id) ||
-        state.project.projects[0];
+    const project = state.project.projects.find(project =>
+            `${project.id}` === id) || state.project.projects[0];
     return {
         vocab: state.settings.language.vocabulary,
         project: project,

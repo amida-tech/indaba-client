@@ -50,9 +50,10 @@ class FilteredRow extends Component {
                 <td key={`StageSlot-${task.subject}-${task.stage}`}
                     className='stage-slot-cell'>
                 <StageSlot task={task}
-                    user={_.find(this.props.users, (u) => u.id === task.id)}
+                    user={_.find(this.props.users, (user) => user.id === task.id)}
                     filtered={this.taskIsFilteredOut(task)}
-                    stageData={this.props.stages.find(s => s.id === task.stage)}
+                    stageData={this.props.stages.find(stage =>
+                        stage.id === task.stage)}
                     project={this.props.project}
                     vocab={this.props.vocab.PROJECT.CARD}/>
                 </td>,

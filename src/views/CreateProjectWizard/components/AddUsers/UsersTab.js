@@ -46,7 +46,7 @@ class UsersTab extends Component {
             user.name.toLowerCase().includes(this.state.query.toLowerCase());
     }
     renderUserEntry(userId) {
-        const user = this.props.allUsers.find(u => u.id === userId);
+        const user = this.props.allUsers.find(user => user.id === userId);
         return (
             <ListItem key={userId}
                 direction='row'

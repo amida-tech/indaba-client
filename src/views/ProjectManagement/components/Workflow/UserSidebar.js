@@ -35,8 +35,8 @@ class UserSidebar extends Component {
 
     render() {
         const unassigned = this.props.users
-        .filter(u => this.searchFilter(u.name))
-        .filter(u => this.groupFilter(u))
+        .filter(user => this.searchFilter(user.name))
+        .filter(user => this.groupFilter(user))
         .map(unassignee =>
             React.createElement(AssigneeCard, this.props, unassignee),
         );
