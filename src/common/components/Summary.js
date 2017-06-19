@@ -13,14 +13,8 @@ class Summary extends Component {
                 justify='center'
                 margin={{ vertical: 'medium', right: 'small' }}
                 pad={{ horizontal: 'medium' }}>
-                <ProjectCard
-                    {...this.props.project}
-                    vocab={this.props.vocab}
-                    onStatusChangeClick={this.props.onStatusChangeClick}/>
-                <SurveyCard
-                    {...this.props.survey}
-                    vocab={this.props.vocab}
-                    onStatusChangeClick={this.props.onStatusChangeClick}/>
+                <ProjectCard {...this.props} />
+                <SurveyCard {...this.props} />
             </Box>
         );
     }

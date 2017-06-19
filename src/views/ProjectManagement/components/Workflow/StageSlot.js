@@ -12,7 +12,7 @@ const Types = {
 
 const stageSpotTarget = {
     canDrop(props, monitor) { // Checks if we can make the drop.
-        return (props.task.unassigned === true);
+        return props.task.unassigned === true;
     },
     hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
@@ -76,8 +76,7 @@ class StageSlot extends Component {
     }
 
     render() {
-    const { position } = this.props;
-    const { isOver, canDrop, connectDropTarget } = this.props;
+    const { position, isOver, canDrop, connectDropTarget } = this.props;
     return connectDropTarget(
         <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
             {this.props.user &&
