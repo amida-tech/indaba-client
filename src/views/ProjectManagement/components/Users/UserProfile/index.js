@@ -13,26 +13,34 @@ import TasksTab from './TasksTab';
 import PreferenceTab from './PreferenceTab';
 
 class UserProfile extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleFirstNameChanged = this.handleFirstNameChanged.bind(this);
+        this.handleLastNameChanged = this.handleLastNameChanged.bind(this);
+    }
+    handleFirstNameChanged(firstName) {}
+    handleLastNameChanged(lastName) {}
     render() {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}>
-                <div className='user-profile'>
-                    <UserNameInput user={this.props.user} vocab={this.props.vocab}/>
-                    <Tabs>
-                        <Tab title={this.props.vocab.COMMON.ACCOUNT}>
-                            <AccountTab />
-                        </Tab>
-                        <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                            <UserGroupsTab />
-                        </Tab>
-                        <Tab title={this.props.vocab.PROJECT.TASKS}>
-                            <TasksTab />
-                        </Tab>
-                        <Tab title={this.props.vocab.COMMON.PREFERENCE}>
-                            <PreferenceTab />
-                        </Tab>
-                    </Tabs>
-                </div>
+                <UserNameInput {...this.props}
+                    onFirstNameChanged={this.handleFirstNameChanged}
+                    onLastNameChnaged={this.handleLastNameChanged}/>
+                <Tabs>
+                    <Tab title={this.props.vocab.COMMON.ACCOUNT}>
+                        <AccountTab />
+                    </Tab>
+                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                        <UserGroupsTab />
+                    </Tab>
+                    <Tab title={this.props.vocab.PROJECT.TASKS}>
+                        <TasksTab />
+                    </Tab>
+                    <Tab title={this.props.vocab.COMMON.PREFERENCE}>
+                        <PreferenceTab />
+                    </Tab>
+                </Tabs>
             </Modal>
         );
     }
