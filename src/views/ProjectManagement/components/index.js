@@ -43,7 +43,7 @@ class ProjectManagementContainer extends Component {
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
                     uId => this.props.users.find(u => u.id === uId))}
-                groups={this.props.project.workflow.roles}/>;
+                groups={this.props.project.userGroups}/>;
             break;
         default:
             body = null;
