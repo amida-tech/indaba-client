@@ -10,8 +10,6 @@ class SurveyCard extends Component {
             value: 'surveystatusmodal',
         }];
 
-        console.log(this.props);
-
         return (
             <Box
                 className='card'

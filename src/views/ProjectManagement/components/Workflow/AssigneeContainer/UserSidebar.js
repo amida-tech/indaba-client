@@ -1,48 +1,44 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
+import PropTypes from 'prop-types';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import AssigneeCard from './AssigneeCard';
-import InviteUser from './InviteUser';
-
-import List from 'grommet/components/List';
-import ListItem from 'grommet/components/ListItem';
-import Search from 'grommet/components/Search';
-import Box from 'grommet/components/Box';
-import Select from 'grommet/components/Select';
+import { List, ListItem, Search, Box, Select } from 'grommet';
 
 class UserSidebar extends Component {
-    onSearch(evt) {
-        this.setState(Object.assign({}, this.state, { query: evt.target.value }));
-    }
-
-
-        onGroupFilter(evt) {
-            this.setState(Object.assign({}, this.state, { group: evt.option.value }));
-        }
-
     render() {
         return (
-            <div className='sidebar-user-picker'>
-                <Search className='sidebar-user-search'
+            <div className='user-sidebar'>
+                <div className='user-sidebar__instructions'>
+                    {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
+                </div>
+                <Search className='user-sidebar__user-search'
                     fill={true}
                     placeHolder={this.props.vocab.COMMON.SEARCH}
-                    onDOMChange={this.onSearch.bind(this)}
+                    onDOMChange={this.props.onSearch}
                     inline={true}/>
                 <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
-                    options={groupFilters}
-                    value={this.state.group && this.state.group.role}
-                    onChange={this.onGroupFilter.bind(this)}/>
+                    options={this.props.groupFilters}
+                    value={this.props.search.group && this.props.search.group.name}
+                    onChange={this.props.onGroupFilter}/>
                 <List>
-                    {unassigned.map(unassignee =>
-                    <ListItem key={`Unassigned-${unassignee.props.children.id}`}>
-                        {unassignee}
-                    </ListItem>,
+                    {this.props.unassigned.map(unassignee =>
+                        <ListItem key={`Unassigned-${unassignee.props.children.id}`}>
+                            {unassignee}
+                        </ListItem>,
                     )}
                 </List>
             </div>
         );
     }
+}
+
+UserSidebar.propTypes = {
+    search: PropTypes.object.isRequired,
+    unassigned: PropTypes.array.isRequired,
+    groupFilters: PropTypes.array.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    onGroupFilter: PropTypes.func.isRequired,
 }
 
 export default UserSidebar;

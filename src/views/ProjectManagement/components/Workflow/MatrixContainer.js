@@ -5,7 +5,6 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import AssigneeCard from './AssigneeCard';
 import AssigneeContainer from './AssigneeContainer';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
