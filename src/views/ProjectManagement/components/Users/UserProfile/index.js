@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Tabs, Tab } from 'grommet';
 
 import Modal from '../../../../../common/Modal';
 
@@ -30,7 +31,7 @@ class UserProfile extends Component {
 }
 
 UserProfile.propTypes = {
-    user: PropTypes.object.isRequired,
+    userId: PropTypes.number.isRequired,
 };
 
 export default UserProfile;

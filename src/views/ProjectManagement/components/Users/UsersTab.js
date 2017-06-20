@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import UserProfile from './UserProfile';
+
 class UserListEntry extends Component {
     render() {
         const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
             .map(g => g.name).join(', ');
         return (
             <div className='user-list-row'>
-                <div className='user-list-entry__cell'>
+                <div className='user-list-entry__cell'
+                    onClick={this.props.onNameClick}>
                     {this.props.user.firstName}
                 </div>
                 <div className='user-list-entry__cell'>
@@ -27,12 +30,24 @@ UserListEntry.propTypes = {
         lastName: PropTypes.string,
     }).isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onNameClick: PropTypes.func.isRequired,
 };
 
 class UsersTab extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { userProfileId: false };
+        this.showUserProfileModal = this.showUserProfileModal.bind(this);
+    }
+    showUserProfileModal(userId) {
+        this.setState({ userProfileId: userId });
+    }
     render() {
         return (
             <div className='pm-users-tab'>
+                {this.state.userProfileId !== false &&
+                    <UserProfile userId={this.state.userProfileId}/>
+                }
                 <div className='pm-users-list-header'>
                     <div className='pm-users-list-header__cell'>
                         {this.props.vocab.COMMON.FIRST_NAME}
@@ -53,7 +68,8 @@ class UsersTab extends Component {
                 {this.props.users.map(user =>
                     <UserListEntry user={user}
                         groups={this.props.groups}
-                        key={user.id}/>)}
+                        key={user.id}
+                        onNameClick={() => this.showUserProfileModal(user.id)}/>)}
             </div>
         );
     }
