@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'grommet';
 
+import { renderName } from '../../../../../utils/User';
+
 import Modal from '../../../../../common/Modal';
+import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
 import UserGroupsTab from './UserGroupsTab';
 import TasksTab from './TasksTab';
@@ -14,7 +17,7 @@ class UserProfile extends Component {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}>
                 <div className='user-profile'>
-                    <input type='text' className='user-profile__name-input'/>
+                    <UserNameInput name={renderName(this.props.user)} />
                     <Tabs>
                         <Tab title={this.props.vocab.COMMON.ACCOUNT}>
                             <AccountTab />
