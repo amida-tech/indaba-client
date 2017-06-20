@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'grommet';
 
 import Modal from '../../../../../common/Modal';
+import AccountTab from './AccountTab';
+import UserGroupsTab from './UserGroupsTab';
+import TasksTab from './TasksTab';
+import PreferenceTab from './PreferenceTab';
 
 class UserProfile extends Component {
     render() {
