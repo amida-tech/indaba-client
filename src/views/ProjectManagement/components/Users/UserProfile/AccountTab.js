@@ -19,8 +19,16 @@ class AccountTab extends Component {
                         value={this.props.user.title}/>
                 </label>
                 <label className='account-tab__label'>
+                    {this.props.vocab.PROJECT.ACCOUNT_SINCE}
+
                     {this.props.user.activationDate ||
                         this.props.vocab.PROJECT.NOT_ACCEPTED}
+                    {!this.props.user.activationDate &&
+                        <button
+                            className='account-tab__button'>
+                            {this.props.vocab.PROJECT.RESEND_INVITATION}
+                        </button>
+                    }
                 </label>
             </div>
         );

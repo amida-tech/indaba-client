@@ -110,6 +110,7 @@
     "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
     "FILTER_BY_GROUP": "Filter by groups",
     "INVITE_BY_EMAIL": "Not Listed? Invite by email",
+    "RESEND_INVITATION": "Resend Invitation",
     "STATUS_ACTIVE": "Active",
     "STATUS_INACTIVE": "Inactive",
     "ACTIVATE": "Activate",
