@@ -64,7 +64,7 @@ class AssigneeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    search: state.project.navigation.search,
+    search: state.project.navigation.userSidebarSearch,
 });
 
 const mapDispatchToProps = dispatch => ({

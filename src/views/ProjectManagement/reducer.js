@@ -5,7 +5,7 @@ import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 export const initialState = {
     navigation: {
         subnav: 'workflow',
-        search: {
+        userSidebarSearch: {
             query: '',
             groups: {},
         },
@@ -242,11 +242,11 @@ export default (state = initialState, action) => {
                 id: state.projects.length } })],
             } });
     case type.UPDATE_USER_SEARCH_GROUP:
-        return(update(state, { navigation: { search: {
+        return(update(state, { navigation: { userSidebarSearch: {
             group: { $set: action.group },
         } } } ) );
     case type.UPDATE_USER_SEARCH_QUERY:
-        return update(state, { navigation: { search: {
+        return update(state, { navigation: { userSidebarSearch: {
             query: { $set: action.query } } } } );
     default:
         return state;
