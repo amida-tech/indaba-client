@@ -27,7 +27,7 @@ class AssigneeContainer extends Component {
     }
 
     onSearch(evt) {
-        this.props.updateUserQuery(evt.target.value);
+        this.props.updateUserSearchQuery(evt.target.value);
     }
 
     onGroupFilter(evt) {
