@@ -13,13 +13,13 @@ class UserGroupListEntry extends Component {
                 <div className='user-group-list-entry__name'>
                     {this.props.group.name}
                 </div>
-                <div className='user-group-list__badge-string'>
+                <div className='user-group-list-entry__badge-string'>
                     {users.map(user =>
                         <UserBadge key={user.id} user={user}/>,
                     )}
                 </div>
                 {this.props.onDeleteClick &&
-                <div className='user-group-list__delete'
+                <div className='user-group-list-entry__delete'
                     onClick={() => this.props.onDeleteClick(this.props.group.id)}>
                     <IonIcon icon='ion-android-delete' />
                 </div>}
