@@ -1,5 +1,3 @@
-import en from '../../i18n/en';
-
 const initialState = {
     id: 0,
     name: 'Super Mario',
