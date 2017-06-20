@@ -12,7 +12,7 @@ class SurveyCard extends Component {
 
         return (
             <Box
-                className='card'
+                className='survey-card'
                 direction='row'
                 justify='between'
                 align='center'

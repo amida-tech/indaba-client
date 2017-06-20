@@ -1,0 +1,29 @@
+$block-class:'survey-card';
+
+@at-root {
+    .#{$block-class}{
+        @extend .card;
+        border: 1px solid $border-color;
+        border-radius: 2px;
+        padding: 1.2em 0 1.2em;
+
+
+  &__status-card-icon {
+    margin: -2em 0 -2em 0.8em;
+  }
+
+  &__card-title {
+    color: $font-color;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 14px;
+  }
+
+  &__card-value {
+    color: $header-font-color;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+}
