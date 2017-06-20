@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
 import PropTypes from 'prop-types';
-import HTML5Backend from 'react-dnd-html5-backend';
 
-import { List, ListItem, Search, Box, Select } from 'grommet';
+import { List, ListItem, Search, Select } from 'grommet';
 
 class UserSidebar extends Component {
     render() {
@@ -40,6 +38,6 @@ UserSidebar.propTypes = {
     groupFilters: PropTypes.array.isRequired,
     onSearch: PropTypes.func.isRequired,
     onGroupFilter: PropTypes.func.isRequired,
-}
+};
 
 export default UserSidebar;

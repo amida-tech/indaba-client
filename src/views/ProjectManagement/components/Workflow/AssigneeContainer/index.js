@@ -59,12 +59,12 @@ class AssigneeContainer extends Component {
                 <InviteUser
                     vocab={this.props.vocab} />
             </Box>
-        )
+        );
     }
 }
 
 const mapStateToProps = state => ({
-    search: state.project.navigation.search
+    search: state.project.navigation.search,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -77,6 +77,6 @@ AssigneeContainer.propTypes = {
     search: PropTypes.object.isRequired,
     updateUserSearchGroup: PropTypes.func.isRequired,
     updateUserSearchQuery: PropTypes.func.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AssigneeContainer);
