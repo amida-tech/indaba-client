@@ -224,15 +224,4 @@ $font-color: #A4AEBF;
       text-align: center;
     }
   }
-  &.new-project-title-layer .layer-body-container {
-      padding: 2em 2em 10em 2em;
-
-      .new-project-title-layer-description-container {
-        padding-top: 2em;
-
-        textarea {
-            resize: none;
-        }
-      }
-  }
 }

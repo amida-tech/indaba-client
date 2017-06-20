@@ -1,14 +1,21 @@
 import update from 'immutability-helper';
-import * as t from './actionTypes';
+import * as type from './actionTypes';
 
 const initialState = {
-    workflow: {
+    ui: {
+        projectTitle: {
+            show: true,
+        },
+    },
+    project: {
+        name: '',
+        summary: '',
         status: 'Inactive',
         stages: [],
         assignees: [],
         unassigned: [],
         subjects: [],
-        roles: [{
+        userGroups: [{
             id: 0,
             name: 'great',
             users: [0, 1],
@@ -22,36 +29,41 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case t.SET_WIZARD_PROJECT_TITLE:
-        return update(state, { workflow: { name: { $set: action.title } } });
-    case t.ADD_SUBJECTS_TO_WIZARD:
-        return update(state, { workflow:
-            { subjects: { $set: [...(state.workflow.subjects || []), ...action.subjects] } } });
-    case t.DELETE_SUBJECT_FROM_WIZARD:
-        return update(state, { subjects: { workflow:
-            { $splice: [[state.workflow.subjects.indexOf(action.subject), 1]] } } });
-    case t.ADD_USER_TO_WIZARD:
+    case type.UPDATE_WIZARD_PROJECT_TITLE:
+        return update(state, { project: { name: { $set: action.title } } });
+    case type.UPDATE_WIZARD_PROJECT_SUMMARY:
+        return update(state, { project: { summary: { $set: action.summary } } });
+    case type.SET_WIZARD_PROJECT_TITLE:
+        return update(state, { ui: { projectTitle: { show: { $set: false } } } });
+    case type.ADD_SUBJECTS_TO_WIZARD:
+        return update(state, { project:
+            { subjects: { $set: [...(state.project.subjects || []), ...action.subjects] } } });
+    case type.DELETE_SUBJECT_FROM_WIZARD:
+        return update(state, { subjects: { project:
+            { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
+    case type.ADD_USER_TO_WIZARD:
         return update(state, { users: { $push: [action.user.id] } });
-    case t.REMOVE_USER_FROM_WIZARD:
+    case type.REMOVE_USER_FROM_WIZARD:
         return update(state, { users:
             { $splice: [[state.users.indexOf(action.userId), 1]] } });
-    case t.ADD_USER_GROUP_TO_WIZARD:
-        return update(state, { workflow: {
-            roles: {
-                $push: [update(action.role, { id: { $set: state.workflow.roles.length } })] },
+    case type.ADD_USER_GROUP_TO_WIZARD:
+        return update(state, { project: {
+            userGroups: {
+                $push: [update(action.userGroup, {
+                    id: { $set: state.project.userGroups.length } })] },
         } });
-    case t.REMOVE_USER_GROUP_FROM_WIZARD:
-        return update(state, { workflow: {
-            roles: {
-                $set: state.workflow.roles.filter(role => role.id !== action.id),
+    case type.REMOVE_USER_GROUP_FROM_WIZARD:
+        return update(state, { project: {
+            userGroups: {
+                $set: state.project.userGroups.filter(group => group.id !== action.id),
             } },
         });
-    case t.ADD_STAGE_TO_WIZARD:
-        return update(state, { workflow: {
+    case type.ADD_STAGE_TO_WIZARD:
+        return update(state, { project: {
             stages: { $push: [update(action.stage, {
-                id: { $set: state.workflow.stages.length } })] },
+                id: { $set: state.project.stages.length } })] },
         } });
-    case t.ADD_PROJECT_FROM_WIZARD:
+    case type.ADD_PROJECT_FROM_WIZARD:
         return initialState;
     default:
         return state;

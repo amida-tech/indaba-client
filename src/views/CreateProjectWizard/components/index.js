@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
-import _ from 'lodash';
 import update from 'immutability-helper';
+
 import {
+    updateWizardProjectTitle,
+    updateWizardProjectSummary,
     setWizardProjectTitle,
     addProjectFromWizard,
 } from '../actions';
@@ -54,8 +56,15 @@ class CreateProjectWizard extends Component {
     render() {
         return !this.state.complete ? (
             <div className='project-wizard'>
-                {!_.get(this.props.wizard, 'workflow.name') &&
-                    <NewProjectTitle onSave={this.props.onSetTitle} />}
+                {this.props.wizard.ui.projectTitle.show &&
+                    <NewProjectTitle
+                        title={this.props.wizard.project.name}
+                        summary={this.props.wizard.project.summary}
+                        updateTitle={this.props.updateWizardProjectTitle}
+                        updateSummary={this.props.updateWizardProjectSummary}
+                        onSave={this.props.onSetTitle}
+                        vocab={this.props.vocab} />
+                }
                 <Tabs className='project-wizard-tabs'
                     activeIndex={this.state.step}
                     onActive={this.goToStep}>
@@ -96,7 +105,9 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
 const mapDispatchToProps = dispatch => ({
-    onSetTitle: title => dispatch(setWizardProjectTitle(title)),
+    updateWizardProjectTitle: title => dispatch(updateWizardProjectTitle(title)),
+    updateWizardProjectSummary: summary => dispatch(updateWizardProjectSummary(summary)),
+    onSetTitle: () => dispatch(setWizardProjectTitle()),
     onCompleteProject: project => dispatch(addProjectFromWizard(project)),
 });
 

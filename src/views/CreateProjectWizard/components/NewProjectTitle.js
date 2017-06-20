@@ -5,22 +5,31 @@ import Modal from '../../../common/Modal';
 class NewProjectTitle extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: '',
-        };
+        this.handleTitleEntry = this.handleTitleEntry.bind(this);
+        this.handleSummaryEntry = this.handleSummaryEntry.bind(this);
     }
-    handleTitleChange(evt) {
-        this.setState({ title: evt.target.value });
+
+    handleTitleEntry(event) {
+        this.props.updateTitle(event.target.value);
     }
+
+    handleSummaryEntry(event) {
+        this.props.updateSummary(event.target.value);
+    }
+
     render() {
         return <Modal
-            title='Project Title'
+            title={this.props.vocab.PROJECT.PROJECT_TITLE}
             class='new-project-title-layer'
-            onSave={() => this.props.onSave(this.state.title)}>
-            <div>
-                <TextInput placeholder='Title' onDOMChange={this.handleTitleChange.bind(this)}/>
-                <div className='new-project-title-layer-description-container'>
-                    <textarea className='new-project-title-layer-description'/>
+            onSave={() => this.props.onSave()}>
+            <div className='new-project-title'>
+                <TextInput className='new-project-title__name'
+                    placeHolder={this.props.vocab.PROJECT.TITLE}
+                    onDOMChange={this.handleTitleEntry} />
+                <div className='new-project-title__summary-container'>
+                    <textarea className='new-project-title__summary'
+                        placeholder={this.props.vocab.PROJECT.SUMMARY}
+                        onChange={this.handleSummaryEntry} />
                 </div>
             </div>
         </Modal>;

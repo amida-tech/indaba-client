@@ -1,9 +1,22 @@
 import * as actionTypes from './actionTypes';
 
-export function setWizardProjectTitle(title) {
+export function updateWizardProjectTitle(title) {
+    return {
+        type: actionTypes.UPDATE_WIZARD_PROJECT_TITLE,
+        title,
+    };
+}
+
+export function updateWizardProjectSummary(summary) {
+    return {
+        type: actionTypes.UPDATE_WIZARD_PROJECT_SUMMARY,
+        summary,
+    };
+}
+
+export function setWizardProjectTitle() {
     return {
         type: actionTypes.SET_WIZARD_PROJECT_TITLE,
-        title,
     };
 }
 
@@ -35,10 +48,10 @@ export function removeUserFromWizard(userId) {
     };
 }
 
-export function addUserGroupToWizard(role) {
+export function addUserGroupToWizard(userGroup) {
     return {
         type: actionTypes.ADD_USER_GROUP_TO_WIZARD,
-        role,
+        userGroup,
     };
 }
 
