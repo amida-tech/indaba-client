@@ -145,7 +145,11 @@
     "COMPLETE_PROJECT": "Complete Project",
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
     "GO_TO_PROJECT": "Go To Project",
-    "TASKS": "Tasks"
+    "TASKS": "Tasks",
+    "USER_TITLE": "Title",
+    "OPTIONAL_MESSAGE": "Optional, only you can see this",
+    "ACCOUNT_SINCE": "Account Since",
+    "NOT_ACCEPTED": "The user has not accepted this invitation"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

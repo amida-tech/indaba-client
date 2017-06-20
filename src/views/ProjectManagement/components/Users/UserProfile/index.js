@@ -29,7 +29,7 @@ class UserProfile extends Component {
                     onLastNameChnaged={this.handleLastNameChanged}/>
                 <Tabs>
                     <Tab title={this.props.vocab.COMMON.ACCOUNT}>
-                        <AccountTab />
+                        <AccountTab {...this.props}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab />
