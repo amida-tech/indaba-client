@@ -20,7 +20,9 @@
     "ACTIONS": "Actions",
     "SKIP_THIS_STEP": "Skip This Step",
     "CONTINUE": "Continue",
-    "ANY": "Any"
+    "ANY": "Any",
+    "ACCOUNT": "Account",
+    "PREFERENCE": "Preference"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -128,6 +130,7 @@
     "ADD_USER_GROUP": "Add User Group",
     "ADD_USERS": "Add Users",
     "ADD_USER": "Add User",
+    "USER_PROFILE": "User Profile",
     "CREATE_USER_GROUP": "Create User Group",
     "ENTER_GROUP_NAME": "Enter Group Name",
     "NEW_USER_FIRST_NAME": "New User First Name",
@@ -141,7 +144,8 @@
     "CREATE_SURVEY": "Create Survey",
     "COMPLETE_PROJECT": "Complete Project",
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
-    "GO_TO_PROJECT": "Go To Project"
+    "GO_TO_PROJECT": "Go To Project",
+    "TASKS": "Tasks"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

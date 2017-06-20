@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'grommet';
 
@@ -11,24 +12,24 @@ import PreferenceTab from './PreferenceTab';
 class UserProfile extends Component {
     render() {
         return (
-            <Modal>
+            <Modal title={this.props.vocab.PROJECT.USER_PROFILE}>
                 <div className='user-profile'>
                     <input type='text' className='user-profile__name-input'/>
+                    <Tabs>
+                        <Tab title={this.props.vocab.COMMON.ACCOUNT}>
+                            <AccountTab />
+                        </Tab>
+                        <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                            <UserGroupsTab />
+                        </Tab>
+                        <Tab title={this.props.vocab.PROJECT.TASKS}>
+                            <TasksTab />
+                        </Tab>
+                        <Tab title={this.props.vocab.COMMON.PREFERENCE}>
+                            <PreferenceTab />
+                        </Tab>
+                    </Tabs>
                 </div>
-                <Tabs>
-                    <Tab>
-                        <AccountTab />
-                    </Tab>
-                    <Tab>
-                        <UserGroupsTab />
-                    </Tab>
-                    <Tab>
-                        <TasksTab />
-                    </Tab>
-                    <Tab>
-                        <PreferenceTab />
-                    </Tab>
-                </Tabs>
             </Modal>
         );
     }
@@ -36,6 +37,12 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
     userId: PropTypes.number.isRequired,
+    user: PropTypes.object.isRequired,
 };
 
-export default UserProfile;
+const mapStateToProps = (state, ownProps) => ({
+    vocab: state.settings.language.vocabulary,
+    user: state.user.users.find(user => user.id === ownProps.userId),
+});
+
+export default connect(mapStateToProps)(UserProfile);
