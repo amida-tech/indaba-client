@@ -28,7 +28,7 @@ class AddStage extends Component {
     }
 
     handleSelectChange(selection) {
-        this.setState({ userGroups: selection });
+        this.setState({ userGroups: selection.map(selectionItem => selectionItem.value) });
     }
 
     handlePermissionsChange(event) {
@@ -56,8 +56,8 @@ class AddStage extends Component {
 
     render() {
         const vocab = this.props.vocab;
-        const roles = this.props.roles.map((role, key) =>
-            ({ value: role, label: role, key }),
+        const groups = this.props.userGroups.map((group, key) =>
+            ({ value: group.id, label: group.name, key }),
         );
         const description = vocab.PROJECT.DESC_ARRAY[this.state.permissions];
         return (
@@ -74,7 +74,7 @@ class AddStage extends Component {
                         placeholder={vocab.PROJECT.ASSIGN_USER_GROUPS}
                         name='user-group-select'
                         value={this.state.userGroups}
-                        options={roles}
+                        options={groups}
                         clearable={true}
                         multi
                         onChange={this.handleSelectChange}
