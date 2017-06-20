@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class UserNameInput extends Component {
     render() {
         return (
-            <div className='name-input'>
-                <input type='text' className='name-input__text-input' value={this.props.name}/>
+            <div className='user-name-input'>
+                <input type='text' className='user-name-input__text-input' value={this.props.name}/>
             </div>
         );
     }
