@@ -5,8 +5,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import AssigneeCard from './AssigneeCard';
-import UserSidebar from './UserSidebar';
+import AssigneeContainer from './AssigneeContainer';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
 
@@ -48,7 +47,7 @@ class MatrixContainer extends Component {
                         </tbody>
                       </table>
                   </div>
-                  <div className='col-sm-4'><UserSidebar {...this.props} /></div>
+                  <div className='col-sm-4'><AssigneeContainer {...this.props} /></div>
                 </div>
             </div>
         );

@@ -1,0 +1,13 @@
+$block-class:'invite-user';
+@at-root {
+    .#{$block-class} {
+
+        &__header {
+            padding: 0.4em 0;
+        }
+
+        &__name-inputs input {
+            width: 50%;
+        }
+    }
+}

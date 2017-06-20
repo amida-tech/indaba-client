@@ -5,6 +5,10 @@ import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 export const initialState = {
     navigation: {
         subnav: 'workflow',
+        userSidebarSearch: {
+            query: '',
+            groups: {},
+        },
     },
     surveys: [{
 		id: 0,
@@ -237,6 +241,13 @@ export default (state = initialState, action) => {
             projects: { $push: [update(action.project, { $merge: {
                 id: state.projects.length } })],
             } });
+    case type.UPDATE_USER_SEARCH_GROUP:
+        return(update(state, { navigation: { userSidebarSearch: {
+            group: { $set: action.group },
+        } } } ) );
+    case type.UPDATE_USER_SEARCH_QUERY:
+        return update(state, { navigation: { userSidebarSearch: {
+            query: { $set: action.query } } } } );
     default:
         return state;
     }

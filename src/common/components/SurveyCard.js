@@ -28,11 +28,11 @@ class SurveyCard extends Component {
                         className='status-card-icon' />
                     <div className='survey-left-column'>
                         <div className='card-title'>{this.props.vocab.PROJECT.SURVEY}</div>
-                        <div className='card-value'>{this.props.survey.name}</div>
+                        <div className='card-value'>{this.props.name}</div>
                     </div>
                 </Box>
                 <CardValueDropdown
-                    value={this.props.survey.status}
+                    value={this.props.status}
                     options={SurveyStatusOptions}
                     onClick={this.props.onStatusChangeClick}
                     />
