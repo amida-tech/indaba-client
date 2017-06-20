@@ -34,6 +34,7 @@ class UserSidebar extends Component {
 }
 
 UserSidebar.propTypes = {
+    vocab: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     unassigned: PropTypes.array.isRequired,
     groupFilters: PropTypes.array.isRequired,

@@ -56,7 +56,7 @@ class AssigneeContainer extends Component {
                     search={this.props.search}
                     onGroupFilter={this.onGroupFilter}
                     vocab={this.props.vocab} />
-                <InviteUser 
+                <InviteUser
                     vocab={this.props.vocab} />
             </Box>
         )
@@ -73,6 +73,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 AssigneeContainer.propTypes = {
+    vocab: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     updateUserSearchGroup: PropTypes.func.isRequired,
     updateUserSearchQuery: PropTypes.func.isRequired,
