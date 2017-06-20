@@ -4,54 +4,55 @@ import { Box } from 'grommet';
 import TaskStatus from '../../../../utils/TaskStatus';
 
 class StageSummary extends Component {
-  render() {
-    return (
-      <div className='stage-summary'>
-        <Box direction='row'
-          justify='between'
-          responsive={false}
-          className='stage-summary-row'>
-          <div className='stage-left'>
-            <div className='stage-summary-value'>
-                {TaskStatus.formatDate(this.props.stage.startStage)}
+    render() {
+        const userGroups = this.props.stage.userGroups.map(group => this.props.userGroups[group]);
+        return (
+            <div className='stage-summary'>
+                <Box direction='row'
+                    justify='between'
+                    responsive={false}
+                    className='stage-summary-row'>
+                    <div className='stage-left'>
+                        <div className='stage-summary-value'>
+                            {TaskStatus.formatDate(this.props.stage.startStage)}
+                        </div>
+                        <div className='stage-summary-label'>
+                            {this.props.vocab.STAGE.START_STAGE}
+                        </div>
+                    </div>
+                    <div className='stage-right'>
+                        <div className='stage-summary-value'>
+                            {TaskStatus.formatUserGroups(userGroups)}
+                        </div>
+                        <div className='stage-summary-label'>
+                            {this.props.vocab.STAGE.USER_GROUP}
+                        </div>
+                    </div>
+                </Box>
+                <Box direction='row'
+                    justify='between'
+                    responsive={false}
+                    className='stage-summary-row'>
+                    <div className='stage-left'>
+                        <div className='stage-summary-value'>
+                            {TaskStatus.formatDate(this.props.stage.endStage)}
+                        </div>
+                        <div className='stage-summary-label'>
+                            {this.props.vocab.STAGE.END_STAGE}
+                        </div>
+                    </div>
+                    <div className='stage-right'>
+                        <div className='stage-summary-value'>
+                            {this.props.vocab.PROJECT.PERM_ARRAY[this.props.stage.permissions]}
+                        </div>
+                        <div className='stage-summary-label'>
+                            {this.props.vocab.STAGE.PERMISSIONS}
+                        </div>
+                    </div>
+                </Box>
             </div>
-            <div className='stage-summary-label'>
-                {this.props.vocab.STAGE.START_STAGE}
-            </div>
-          </div>
-          <div className='stage-right'>
-            <div className='stage-summary-value'>
-                {TaskStatus.formatUserGroups(this.props.stage.userGroups)}
-            </div>
-            <div className='stage-summary-label'>
-                {this.props.vocab.STAGE.USER_GROUP}
-            </div>
-          </div>
-        </Box>
-        <Box direction='row'
-          justify='between'
-          responsive={false}
-          className='stage-summary-row'>
-          <div className='stage-left'>
-            <div className='stage-summary-value'>
-                {TaskStatus.formatDate(this.props.stage.endStage)}
-            </div>
-            <div className='stage-summary-label'>
-                {this.props.vocab.STAGE.END_STAGE}
-            </div>
-          </div>
-          <div className='stage-right'>
-            <div className='stage-summary-value'>
-                {this.props.vocab.PROJECT.PERM_ARRAY[this.props.stage.permissions]}
-            </div>
-            <div className='stage-summary-label'>
-                {this.props.vocab.STAGE.PERMISSIONS}
-            </div>
-          </div>
-        </Box>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default StageSummary;

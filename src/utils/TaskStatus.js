@@ -1,25 +1,25 @@
 export default {
 // methods to determine filter status
-    responsesExist(assignee) {
-        return !!assignee.response;
+    responsesExist(task) {
+        return !!task.response;
     },
-    responsesComplete(assignee) {
-        return assignee.response &&
-            assignee.response.every((response) => !!response.value);
+    responsesComplete(task) {
+        return task.response &&
+            task.response.every((response) => !!response.value);
     },
-    responsesFlagged(assignee) {
-        return assignee.response &&
-            assignee.response.some((response) => response.flag);
+    responsesFlagged(task) {
+        return task.response &&
+            task.response.some((response) => response.flag);
     },
-    dueDateInPast(assignee, stages) {
-        const dueDate = assignee.dueDate ||
-            stages.find(stage => stage.id === assignee.stage).endStage;
+    dueDateInPast(task, stages) {
+        const dueDate = task.dueDate ||
+            stages.find(stage => stage.id === task.stage).endStage;
         return Date.parse(dueDate) < Date.now();
     },
-    daysUntilDue(assignee, stages) {
+    daysUntilDue(task, stages) {
         const day = 24*60*60*1000;
-        const dueDate = assignee.dueDate ||
-            stages.find(stage => stage.id === assignee.stage).endStage;
+        const dueDate = task.dueDate ||
+            stages.find(stage => stage.id === task.stage).endStage;
         return Math.round((new Date(dueDate).getTime()
             - new Date().getTime())/day);
     },
@@ -35,6 +35,6 @@ export default {
             + formDate.getMinutes() + (formDate.getHours() > 12 ? 'pm': 'am'));
     },
     formatUserGroups(userGroups) {
-        return (userGroups.toString().replace(/,/, ', '));
+        return (userGroups.map(group => group.name).toString().replace(/,/, ', '));
     }
 };

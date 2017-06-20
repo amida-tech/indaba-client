@@ -328,34 +328,6 @@ hr.divider {
   }
 }
 
-.user-sidebar {
-  &>* {
-    padding: 5px;
-  }
-  .sidebar-instruction {
-    border-bottom: 1px solid $border-color;
-    padding-top: 0.4em;
-    padding-bottom: 0.4em;
-  }
-  .sidebar-user-search {
-    margin-bottom: 5px;
-  }
-
-  .invite-user {
-    .invite-user-header {
-      padding: 0.4em 0;
-    }
-    .invite-user-name-inputs input {
-      width: 50%;
-    }
-  }
-}
-
-.assigneecard {
-	height: 50px;
-	width: 120px;
-}
-
 .center {
   float: left;
 }

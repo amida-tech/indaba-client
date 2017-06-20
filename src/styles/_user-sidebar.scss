@@ -1,0 +1,19 @@
+$block-class:'user-sidebar';
+@at-root {
+    .#{$block-class} {
+
+        &>* {
+            padding: 5px;
+        }
+
+        &__instructions {
+            border-bottom: 1px solid $border-color;
+            padding-top: 0.4em;
+            padding-bottom: 0.4em;
+        }
+
+        &__user-search {
+            margin-bottom: 5px;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+$block-class:'assignee-card';
+@at-root {
+    .#{$block-class} {
+        height: 50px;
+        width: 120px;
+    }
+}
