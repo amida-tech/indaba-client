@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import UserBadge from './UserBadge';
+import UserBadge from '../../../../common/components/UserBadge';
 import { renderName } from '../../../../utils/User';
 
 class UsersTab extends Component {
