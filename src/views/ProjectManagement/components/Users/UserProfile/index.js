@@ -17,7 +17,7 @@ class UserProfile extends Component {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}>
                 <div className='user-profile'>
-                    <UserNameInput name={renderName(this.props.user)} />
+                    <UserNameInput user={this.props.user} vocab={this.props.vocab}/>
                     <Tabs>
                         <Tab title={this.props.vocab.COMMON.ACCOUNT}>
                             <AccountTab />
