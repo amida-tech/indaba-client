@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
+import _ from 'lodash';
 import IonIcon from 'react-ionicons';
-import Accordion from 'grommet/components/Accordion';
-import AccordionPanel from 'grommet/components/AccordionPanel';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
@@ -23,26 +22,9 @@ function surveyMapper(response, questions) {
 }
 
 class TaskReview extends Component {
-    componentWillReceiveProps(nextProps) {
-        const nextSurvey = surveyMapper(nextProps.assignee.response,
-            nextProps.data.project.projects[0].survey.questions)
-        this.setState({ survey: nextSurvey });
-    }
-
-    constructor(props) {
-        super(props);
-        const survey = surveyMapper(
-            props.assignee.response,
-            props.project.survey.questions)
-        this.state = {
-            assignee:  props.assignee,
-            stage: props.project.workflow.stages[props.assignee.stage],
-            subject: props.project.workflow.subjects[props.assignee.subject],
-            survey: survey
-        };
-    }
-
     render() {
+        const displaySurvey = surveyMapper(this.props.task.response,
+            this.props.survey.questions);
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'>
@@ -50,33 +32,40 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
-                        surveyName={this.props.project.survey.name}
-                        subject={this.state.subject}
-                        assignee={this.state.assignee}
+                        surveyName={this.props.survey.name}
+                        subject={this.props.project.subjects[this.props.task.subject]}
+                        task={this.props.task}
+                        user={this.props.user}
                         vocab={this.props.vocab}
-                        stage={this.state.stage}/>
+                        stage={this.props.project.stages[this.props.task.stage]}/>
                     <TaskSurveyList
-                        survey={this.state.survey}
-                        instructions={this.props.project.survey.instructions}
+                        survey={displaySurvey}
+                        instructions={this.props.survey.instructions}
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
-                    assignee={this.props.assignee}
+                    task={this.props.task}
                     vocab={this.props.vocab}
-                    survey={this.state.survey}/>
+                    survey={displaySurvey}/>
                 </div>
             </div>
         );
     }
 }
 
-// Using == over === because they're not the same type. Need to fix!
-const mapStateToProps = (state, ownProps) => ({
-    assignee: state.project.projects[ownProps.params.projectId]
-        .workflow.assignees.filter(user => user.id == ownProps.params.userId)[0],
-    project: state.project.projects[ownProps.params.projectId],
-    vocab: state.settings.language.vocabulary
-})
+const mapStateToProps = (state, ownProps) => {
+    const userId = parseInt(ownProps.params.userId, 10);
+    const projectId = parseInt(ownProps.params.projectId, 10);
+    const project = _.find(state.project.projects,
+        (project) => project.id === projectId) || state.project.projects[0];
+    return {
+        user: _.find(state.user.users, (user) => user.id === userId),
+        task: _.find(project.tasks, (task) => task.id === userId),
+        project: project,
+        survey: state.project.surveys[project.surveyId],
+        vocab: state.settings.language.vocabulary
+    };
+};
 
 export default withRouter(connect(mapStateToProps)(TaskReview));

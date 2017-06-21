@@ -127,7 +127,7 @@ class FlagSidebar extends Component {
                                 </div>
                             )
                         })}
-                        <textarea className='flag-sidebar__discussion-text' default={this.props.vocab.PROJECT.REPLY} value={this.state.comment} onDOMChange={this.handleChange} />
+                        <textarea className='flag-sidebar__discussion-text' default={this.props.vocab.PROJECT.REPLY} value={this.state.comment} onChange={this.handleChange} />
 
                         <CheckBox className='flag-sidebar__checkbox'
                             label={this.props.vocab.PROJECT.MARK_RESOLVED}

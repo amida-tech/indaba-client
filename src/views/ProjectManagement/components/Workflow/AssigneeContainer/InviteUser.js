@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, TextInput, Button } from 'grommet';
-import { inviteUser } from '../../actions';
+import { inviteUser } from '../../../actions';
 
 class InviteUser extends Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class InviteUser extends Component {
         <Box
           direction='column'
           pad={{between: 'small'}}>
-          <div className='invite-user-header'>{this.props.vocab.PROJECT.INVITE_INSTRUCTION}</div>
-          <Box className='invite-user-name-inputs' direction='row' pad={{between: 'small'}}>
+          <div className='invite-user__header'>{this.props.vocab.PROJECT.INVITE_INSTRUCTION}</div>
+          <Box className='invite-user__name-inputs' direction='row' pad={{between: 'small'}}>
             <TextInput
               placeHolder={this.props.vocab.COMMON.FIRST_NAME}
               onDOMChange={(evt) => this.setField('firstName', evt)}
@@ -54,11 +54,10 @@ class InviteUser extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-});
+// const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   onInviteUser: (user) => dispatch(inviteUser(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InviteUser);
+export default connect(null, mapDispatchToProps)(InviteUser);

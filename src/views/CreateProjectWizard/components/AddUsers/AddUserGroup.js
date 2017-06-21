@@ -73,7 +73,7 @@ class AddUserGroup extends Component {
         });
     }
     createUserListItem(userId) {
-        const user = this.props.allUsers.find(u => u.id === userId);
+        const user = this.props.allUsers.find(user => user.id === userId);
         return {
             key: user.id,
             searchKey: user.name,

@@ -85,3 +85,17 @@ export function inviteUser(user, projectId) {
         projectId,
     };
 }
+
+export function updateUserSearchGroup(group) {
+    return {
+        type: actionTypes.UPDATE_USER_SEARCH_GROUP,
+        group
+    };
+}
+
+export function updateUserSearchQuery(query) {
+    return {
+        type: actionTypes.UPDATE_USER_SEARCH_QUERY,
+        query
+    };
+}

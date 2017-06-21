@@ -11,7 +11,7 @@ class TaskDetails extends Component {
     }
 
     handleTaskDueDateChange(event){
-        this.props.updateTaskDueDate(this.props.assignee.id, 0, event);
+        this.props.updateTaskDueDate(this.props.task.id, 0, event);
     }
 
     render() {
@@ -19,7 +19,7 @@ class TaskDetails extends Component {
             <div className='task-details'>
                 <div className='task-details__header'>
                     <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
-                    <div className='task-details__header-name'>{this.props.assignee.name}</div>
+                    <div className='task-details__header-name'>{this.props.user.name}</div>
                 </div>
                 <div className='task-details__info'>
 
@@ -38,9 +38,8 @@ class TaskDetails extends Component {
                         <DateTime id='taskDueDate' className='task-details__info-box-datetime'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
-                            value={this.props.assignee.dueDate ||
-                            this.props.stage.endStage}/>
-
+                            value={this.props.task.dueDate ||
+                            this.props.stage.endStage}/><br/>
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SURVEY}</div>
