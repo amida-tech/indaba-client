@@ -129,6 +129,8 @@
     "USERS": "Users",
     "USER_GROUPS": "User Groups",
     "ADD_USER_GROUP": "Add User Group",
+    "GROUP_NAME": "Group Name",
+    "GROUP_MEMBERS": "Group Members",
     "ADD_USERS": "Add Users",
     "ADD_USER": "Add User",
     "USER_PROFILE": "User Profile",

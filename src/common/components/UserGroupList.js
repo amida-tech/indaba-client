@@ -38,6 +38,20 @@ class UserGroupList extends Component {
     render() {
         return (
             <div className='user-group-list'>
+                {
+                    this.props.columnHeaders &&
+                    <div className='user-group-list__header'>
+                        <div className='user-group-list__column-title'>
+                            {this.props.vocab.PROJECT.GROUP_NAME}
+                        </div>
+                        <div className='user-group-list__column-title'>
+                            {this.props.vocab.PROJECT.GROUP_MEMBERS}
+                        </div>
+                        <div className='user-group-list__column-title'>
+                            {this.props.vocab.COMMON.ACTIONS}
+                        </div>
+                    </div>
+                }
                 {this.props.groups.map(group =>
                     <UserGroupListEntry
                         key={group.id}
@@ -50,8 +64,10 @@ class UserGroupList extends Component {
 }
 
 UserGroupList.propTypes = {
+    columnHeaders: PropTypes.bool,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
     onDeleteClick: PropTypes.func,
 };
 

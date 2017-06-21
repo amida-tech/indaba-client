@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import UserGroupList from '../../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
     render() {
+        const groups = this.props.groups.filter(group => group.users.includes(this.props.userId));
         return (
-            <div className='user-groups-tab'>
-            </div>
+            <UserGroupList {...this.props} groups={groups}/>
         );
     }
 }
+
+UserGroupsTab.propTypes = {
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default UserGroupsTab;

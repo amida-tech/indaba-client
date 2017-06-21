@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'grommet';
 
-import { renderName } from '../../../../../utils/User';
-
 import Modal from '../../../../../common/Modal';
 import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
@@ -32,7 +30,7 @@ class UserProfile extends Component {
                         <AccountTab {...this.props}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <UserGroupsTab />
+                        <UserGroupsTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.TASKS}>
                         <TasksTab />
@@ -49,6 +47,8 @@ class UserProfile extends Component {
 UserProfile.propTypes = {
     userId: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({

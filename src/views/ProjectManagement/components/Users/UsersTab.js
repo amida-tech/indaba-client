@@ -46,7 +46,8 @@ class UsersTab extends Component {
         return (
             <div className='pm-users-tab'>
                 {this.state.userProfileId !== false &&
-                    <UserProfile userId={this.state.userProfileId}/>
+                    <UserProfile userId={this.state.userProfileId}
+                        {...this.props}/>
                 }
                 <div className='pm-users-list-header'>
                     <div className='pm-users-list-header__cell'>
