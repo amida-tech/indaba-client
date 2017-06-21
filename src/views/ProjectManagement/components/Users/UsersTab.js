@@ -33,6 +33,26 @@ UserListEntry.propTypes = {
     onNameClick: PropTypes.func.isRequired,
 };
 
+const UserListHeader = props => (
+    <div className='pm-users-list-header'>
+        <div className='pm-users-list-header__cell'>
+            {props.vocab.COMMON.FIRST_NAME}
+        </div>
+        <div className='pm-users-list-header__cell'>
+            {props.vocab.COMMON.LAST_NAME}
+        </div>
+        <div className='pm-user-list-header__cell'>
+            {props.vocab.PROJECT.USER_GROUPS}
+        </div>
+        <div className='pm-user-list-header__cell'>
+            {props.vocab.PROJECT.SUBJECT}
+        </div>
+        <div className='pm-user-list-header__cell'>
+            {props.vocab.COMMON.ACTIONS}
+        </div>
+    </div>
+);
+
 class UsersTab extends Component {
     constructor(props) {
         super(props);
@@ -50,23 +70,7 @@ class UsersTab extends Component {
                         {...this.props}
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
-                <div className='pm-users-list-header'>
-                    <div className='pm-users-list-header__cell'>
-                        {this.props.vocab.COMMON.FIRST_NAME}
-                    </div>
-                    <div className='pm-users-list-header__cell'>
-                        {this.props.vocab.COMMON.LAST_NAME}
-                    </div>
-                    <div className='pm-user-list-header__cell'>
-                        {this.props.vocab.PROJECT.USER_GROUPS}
-                    </div>
-                    <div className='pm-user-list-header__cell'>
-                        {this.props.vocab.PROJECT.SUBJECT}
-                    </div>
-                    <div className='pm-user-list-header__cell'>
-                        {this.props.vocab.COMMON.ACTIONS}
-                    </div>
-                </div>
+                <UserListHeader vocab={this.props.vocab} />
                 {this.props.users.map(user =>
                     <UserListEntry user={user}
                         groups={this.props.groups}
