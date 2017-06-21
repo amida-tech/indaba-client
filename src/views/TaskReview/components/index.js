@@ -16,8 +16,7 @@ function surveyMapperHelper(response, question) {
 }
 
 function surveyMapper(response, questions) {
-    return (response ?
-        questions.map(question =>
+    return (response ? questions.map(question =>
             surveyMapperHelper(response, question)) : questions);
 }
 
@@ -33,6 +32,7 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
+                        projectId={this.props.project.id}
                         surveyName={this.props.survey.name}
                         subject={this.props.project.subjects[this.props.task.subject]}
                         task={this.props.task}
@@ -55,6 +55,8 @@ class TaskReview extends Component {
     }
 }
 
+// Thinking it might be a good idea to shave down what is needed here so above
+// can just {...this.props} along.
 const mapStateToProps = (state, ownProps) => {
     const userId = parseInt(ownProps.params.userId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);

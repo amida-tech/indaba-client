@@ -11,7 +11,8 @@ class TaskDetails extends Component {
     }
 
     handleTaskDueDateChange(event){
-        this.props.updateTaskDueDate(this.props.task.id, 0, event);
+        this.props.updateTaskDueDate(this.props.task.id,
+            parseInt(this.props.projectId, 10), event);
     }
 
     render() {
