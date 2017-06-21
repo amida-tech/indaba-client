@@ -48,7 +48,7 @@ class UserProfile extends Component {
 UserProfile.propTypes = {
     userId: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
-    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCancel: PropTypes.func.isRequired,
 };

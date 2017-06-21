@@ -42,8 +42,8 @@ class ProjectManagementContainer extends Component {
             body = <Users
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
-                    uId => this.props.users.find(u => u.id === uId))}
-                groups={this.props.project.userGroups}/>;
+                    userId => this.props.users.find(user => user.id === userId))}
+                project={this.props.project}/>;
             break;
         default:
             body = null;

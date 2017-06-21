@@ -5,7 +5,8 @@ import UserGroupList from '../../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
     render() {
-        const groups = this.props.groups.filter(group => group.users.includes(this.props.userId));
+        const groups = this.props.project.userGroups
+            .filter(group => group.users.includes(this.props.userId));
         return (
             <UserGroupList {...this.props} groups={groups}/>
         );
@@ -13,7 +14,7 @@ class UserGroupsTab extends Component {
 }
 
 UserGroupsTab.propTypes = {
-    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
 };

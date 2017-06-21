@@ -73,7 +73,7 @@ class UsersTab extends Component {
                 <UserListHeader vocab={this.props.vocab} />
                 {this.props.users.map(user =>
                     <UserListEntry user={user}
-                        groups={this.props.groups}
+                        groups={this.props.project.userGroups}
                         key={user.id}
                         onNameClick={() => this.showUserProfileModal(user.id)}/>)}
             </div>
@@ -83,7 +83,7 @@ class UsersTab extends Component {
 
 UsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
-    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
