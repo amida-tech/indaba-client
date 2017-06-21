@@ -1,3 +1,6 @@
+import update from 'immutability-helper';
+import * as actionTypes from '../actionTypes/userActionTypes';
+
 const initialState = {
     id: 0,
     name: 'Super Mario',
@@ -52,5 +55,17 @@ const initialState = {
 };
 
 export const UserReducer = (state = initialState, action) => {
-    return state;
+    const userIndex = state.users.findIndex(user => user.id === action.userId);
+    switch (action.type) {
+    case actionTypes.SET_USER_FIRST_NAME:
+        return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
+    case actionTypes.SET_USER_LAST_NAME:
+        return update(state, { users: { [userIndex]: { lastName: { $set: action.lastName } } } });
+    case actionTypes.SET_USER_EMAIL:
+        return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
+    case actionTypes.SET_USER_TITLE:
+        return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
+    default:
+        return state;
+    }
 };

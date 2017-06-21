@@ -10,6 +10,11 @@ import UserGroupsTab from './UserGroupsTab';
 import TasksTab from './TasksTab';
 import PreferenceTab from './PreferenceTab';
 
+import {
+    setUserFirstName,
+    setUserLastName,
+} from '../../../../../common/actions/userActions';
+
 class UserProfile extends Component {
     constructor(props) {
         super(props);
@@ -17,15 +22,19 @@ class UserProfile extends Component {
         this.handleFirstNameChanged = this.handleFirstNameChanged.bind(this);
         this.handleLastNameChanged = this.handleLastNameChanged.bind(this);
     }
-    handleFirstNameChanged(firstName) {}
-    handleLastNameChanged(lastName) {}
+    handleFirstNameChanged(firstName) {
+        this.props.onSetFirstName(this.props.userId, firstName);
+    }
+    handleLastNameChanged(lastName) {
+        this.props.onSetLastName(this.props.userId, lastName);
+    }
     render() {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
                 onCancel={this.props.onCancel}>
                 <UserNameInput {...this.props}
                     onFirstNameChanged={this.handleFirstNameChanged}
-                    onLastNameChnaged={this.handleLastNameChanged}/>
+                    onLastNameChanged={this.handleLastNameChanged}/>
                 <Tabs>
                     <Tab title={this.props.vocab.COMMON.ACCOUNT}>
                         <AccountTab {...this.props}/>
@@ -58,4 +67,9 @@ const mapStateToProps = (state, ownProps) => ({
     user: state.user.users.find(user => user.id === ownProps.userId),
 });
 
-export default connect(mapStateToProps)(UserProfile);
+const mapDispatchToProps = dispatch => ({
+    onSetFirstName: (userId, firstName) => dispatch(setUserFirstName(userId, firstName)),
+    onSetLastName: (userId, lastName) => dispatch(setUserLastName(userId, lastName)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

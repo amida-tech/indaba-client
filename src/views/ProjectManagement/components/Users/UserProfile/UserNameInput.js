@@ -9,13 +9,15 @@ class UserNameInput extends Component {
                     {this.props.vocab.COMMON.FIRST_NAME}
                     <input type='text'
                         className='user-name-input__text-input'
-                        value={this.props.user.firstName}/>
+                        value={this.props.user.firstName}
+                        onChange={evt => this.props.onFirstNameChanged(evt.target.value)}/>
                 </label>
                 <label className='user-name-input__label'>
                     {this.props.vocab.COMMON.LAST_NAME}
                     <input type='text'
                         className='user-name-input__text-input'
-                        value={this.props.user.lastName}/>
+                        value={this.props.user.lastName}
+                        onChange={evt => this.props.onLastNameChanged(evt.target.value)}/>
                 </label>
             </div>
         );
@@ -27,7 +29,8 @@ UserNameInput.propTypes = {
         firstName: PropTypes.string,
         lastName: PropTypes.string,
     }).isRequired,
-    onNameChange: PropTypes.func.isRequired,
+    onFirstNameChanged: PropTypes.func.isRequired,
+    onLastNameChanged: PropTypes.func.isRequired,
     vocab: PropTypes.object.isRequired,
 };
 
