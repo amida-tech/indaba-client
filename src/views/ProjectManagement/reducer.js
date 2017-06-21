@@ -9,6 +9,7 @@ export const initialState = {
             query: '',
             groups: {},
         },
+        taskOptionShow: false,
     },
     surveys: [{
 		id: 0,
