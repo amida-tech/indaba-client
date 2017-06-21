@@ -34,7 +34,7 @@ class UserProfile extends Component {
                         <UserGroupsTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.TASKS}>
-                        <TasksTab />
+                        <TasksTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.COMMON.PREFERENCE}>
                         <PreferenceTab />
