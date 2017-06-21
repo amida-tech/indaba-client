@@ -99,3 +99,9 @@ export function updateUserSearchQuery(query) {
         query
     };
 }
+
+export function showTaskOptionModal() {
+    return {
+        type: actionTypes.SHOW_TASK_OPTION_MODAL
+    }
+}

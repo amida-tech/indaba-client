@@ -82,7 +82,7 @@ class StageSlot extends Component {
             {this.props.user &&
                 <div>
                     <div className='name-row'>
-                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
+                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.userId}>
                             <span>{this.props.user.name}</span>
                         </Link>
                         <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>

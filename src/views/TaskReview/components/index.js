@@ -62,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
         (project) => project.id === projectId) || state.project.projects[0];
     return {
         user: _.find(state.user.users, (user) => user.id === userId),
-        task: _.find(project.tasks, (task) => task.id === userId),
+        task: _.find(project.tasks, (task) => task.userId === userId),
         project: project,
         survey: state.project.surveys[project.surveyId],
         vocab: state.settings.language.vocabulary
