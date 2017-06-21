@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput } from 'grommet';
 import Modal from '../../../common/Modal';
+import PropTypes from 'prop-types';
 
 class NewProjectTitle extends Component {
     constructor(props) {
@@ -35,5 +36,11 @@ class NewProjectTitle extends Component {
         </Modal>;
     }
 }
+
+NewProjectTitle.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    updateTitle: PropTypes.func.isRequired,
+    updateSummary: PropTypes.func.isRequired,
+};
 
 export default NewProjectTitle;
