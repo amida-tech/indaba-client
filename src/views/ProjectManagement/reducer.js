@@ -3,7 +3,7 @@ import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 
 export const initialState = {
-    navigation: {
+    ui: {
         subnav: 'workflow',
         userSidebarSearch: {
             query: '',
@@ -204,18 +204,17 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let findUser;
-
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
             project.id === action.projectId);
     }
+    
     switch (action.type) {
     case type.ASSIGN_TASK:
         return update(state, { projects: { [projectIndex]: {
                 tasks: { $push: [action.payload] } } } });
     case type.SUBNAVIGATE:
-        return update(state, { navigation: { subnav: { $set: action.id } } });
+        return update(state, { ui: { subnav: { $set: action.id } } });
     case type.TOGGLE_FILTER:
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
@@ -248,12 +247,15 @@ export default (state = initialState, action) => {
                 id: state.projects.length } })],
             } });
     case type.UPDATE_USER_SEARCH_GROUP:
-        return(update(state, { navigation: { userSidebarSearch: {
+        return(update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
         } } } ) );
     case type.UPDATE_USER_SEARCH_QUERY:
-        return update(state, { navigation: { userSidebarSearch: {
+        return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } } );
+    case type.SHOW_TASK_OPTION_MODAL:
+        return update(state, { ui: { taskOption: {
+            show: { $set: false } } } } );
     default:
         return state;
     }

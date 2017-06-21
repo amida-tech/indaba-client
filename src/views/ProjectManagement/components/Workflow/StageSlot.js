@@ -52,6 +52,7 @@ class StageSlot extends Component {
     }
 
     onTaskOptionClick() {
+
     }
 
     displayDueTime() {

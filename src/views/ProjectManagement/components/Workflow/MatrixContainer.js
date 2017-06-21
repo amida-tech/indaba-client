@@ -64,8 +64,12 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    
+}
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     withRouter,
     DragDropContext(HTML5Backend)
 )(MatrixContainer);
