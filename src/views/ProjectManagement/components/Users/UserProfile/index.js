@@ -21,7 +21,8 @@ class UserProfile extends Component {
     handleLastNameChanged(lastName) {}
     render() {
         return (
-            <Modal title={this.props.vocab.PROJECT.USER_PROFILE}>
+            <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
+                onCancel={this.props.onCancel}>
                 <UserNameInput {...this.props}
                     onFirstNameChanged={this.handleFirstNameChanged}
                     onLastNameChnaged={this.handleLastNameChanged}/>
@@ -49,6 +50,7 @@ UserProfile.propTypes = {
     user: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onCancel: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({

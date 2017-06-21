@@ -47,7 +47,8 @@ class UsersTab extends Component {
             <div className='pm-users-tab'>
                 {this.state.userProfileId !== false &&
                     <UserProfile userId={this.state.userProfileId}
-                        {...this.props}/>
+                        {...this.props}
+                        onCancel={() => this.setState({ userProfileId: false })}/>
                 }
                 <div className='pm-users-list-header'>
                     <div className='pm-users-list-header__cell'>
