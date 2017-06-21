@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
+import PropTypes from 'prop-types';
 
 import { updateTaskDueDate } from '../actions';
 
@@ -11,8 +12,7 @@ class TaskDetails extends Component {
     }
 
     handleTaskDueDateChange(event){
-        this.props.updateTaskDueDate(this.props.task.id,
-            parseInt(this.props.projectId, 10), event);
+        this.props.updateTaskDueDate(this.props.task.id, this.props.projectId, event);
     }
 
     render() {
@@ -48,6 +48,17 @@ class TaskDetails extends Component {
         )
     }
 }
+
+TaskDetails.propTypes = {
+    stage: PropTypes.object.isRequired,
+    vocab: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    surveyName: PropTypes.string.isRequired,
+    subject: PropTypes.string.isRequired,
+    projectId: PropTypes.number.isRequired,
+    updateTaskDueDate: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   updateTaskDueDate: (assigneeId, projectId, dueDate) =>

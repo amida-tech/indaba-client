@@ -32,7 +32,7 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
-                        projectId={this.props.project.id}
+                        projectId={this.props.projectId}
                         surveyName={this.props.survey.name}
                         subject={this.props.project.subjects[this.props.task.subject]}
                         task={this.props.task}
@@ -66,6 +66,7 @@ const mapStateToProps = (state, ownProps) => {
         user: _.find(state.user.users, (user) => user.id === userId),
         task: _.find(project.tasks, (task) => task.id === userId),
         project: project,
+        projectId: projectId,
         survey: state.project.surveys[project.surveyId],
         vocab: state.settings.language.vocabulary
     };
