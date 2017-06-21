@@ -1,4 +1,5 @@
 $font-color: #A4AEBF;
+$brand-neutral-colors: (#308253, #4EB276);
 
 $block-class:'flag-sidebar';
 @at-root {
@@ -7,12 +8,13 @@ $block-class:'flag-sidebar';
         margin: 1em;
 
         &__title {
-            font-size: 22px;
             margin-left: 10px;
+            font-size: 22px;
+
         }
 
         &__head-group {
-            margin-left: 20px;
+            margin-left: 10px;
             display: flex;
             flex-flow: nowrap;
             justify-content: space-between;
@@ -21,8 +23,9 @@ $block-class:'flag-sidebar';
 
             &-button{
                 //margin-left: 1em;
-                border-radius: 2px;
                 padding: 0px;
+                border-radius: 2px;
+
             }
         }
 
@@ -38,12 +41,13 @@ $block-class:'flag-sidebar';
 
         &__review-controls {
             width: 80%
-;            display: block;
+;           display: block;
         }
 
         &__commentary {
-            background: #ffffff;
             padding: 1em;
+            background: #ffffff;
+
 
             &-timestamp {
                 margin-bottom: 3px;
@@ -60,15 +64,26 @@ $block-class:'flag-sidebar';
             }
         }
 
-        &__questions {
-            width:25%;
-            font-size: 12px;
+        &__question-list {
+            min-width: 120px;
+        }
 
-            &--selected {
-                background: #399862;
+        &__questions {  //flag-sidebar__questions
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 2)
+
+            }
+
+
+            &--selected { //flag-sidebar__questions flag-sidebar__questions--selected
+                background-color: #399862;
                 color: #ffffff;
                 font-size: 12px;
-                
+
             }
 
             &--inactive{
@@ -77,6 +92,12 @@ $block-class:'flag-sidebar';
 
 
             }
+        }
+
+        &__discussion-text {
+            width: 100%;
+            resize: none;
+            height: 100%;
         }
 
         &__checkbox {

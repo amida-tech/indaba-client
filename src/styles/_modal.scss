@@ -2,30 +2,33 @@ $header-font-color: #7E848F;
 $border-color: #DADCDE;
 $brand-color: #4EB276;
 $font-color: #A4AEBF;
+$header-footer: #F2F2F2;
 
 .layer-content {
   // margin-top: 20em;
+  margin: 4em 1em 1em 1em;
   max-height:100%;
   border: 1px solid $border-color;
   border-radius: 3px;
   box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
   // space at the top for positioning, space on the other side to show box-shadow
-  margin: 4em 1em 1em 1em;
+
 
   .layer-title {
-    background-color: #F2F2F2;
+
     padding-left: 1em;
-    text-align: left;
-    font-size: 18px;
+    background-color: #F2F2F2;
     line-height: 48px;
     border-bottom: 1px solid $border-color;
     color: $header-font-color;
+    text-align: left;
+    font-size: 18px;
   }
 
   .layer-footer {
-    background-color: #F2F2F2;
-    line-height: 3em;
     padding-right: 1em;
+    background-color: $header-footer;
+    line-height: 3em;
     overflow: auto;
 
     .layer-footer-button-wrapper {
@@ -33,6 +36,7 @@ $font-color: #A4AEBF;
 
 
       .layer-footer-button {
+        margin-left: 1em;
         padding: 0.5em 1.2em 0.5em 1.2em;
         line-height: 1.2em;
         vertical-align: middle;
@@ -41,7 +45,6 @@ $font-color: #A4AEBF;
         font-size: 14px;
         background-color: #D8D8D8;
         color: $header-font-color;
-        margin-left: 1em;
         cursor:pointer;
 
         &.layer-footer-button-primary {
@@ -69,8 +72,9 @@ $font-color: #A4AEBF;
     }
 
     .container {
-      width: 100%;
       margin: 10px;
+      width: 100%;
+
     }
 
     .detail-box {
@@ -104,8 +108,9 @@ $font-color: #A4AEBF;
     width: 60em;
 
     input[type=text] {
-      width: 100%;
       margin-bottom: 10px;
+      width: 100%;
+
     }
     input[type=radio] {
       margin-top: 5px;
@@ -115,12 +120,14 @@ $font-color: #A4AEBF;
      margin-left: 15px;
     }
     .container {
-      width: 100%;
       margin: 10px;
+      width: 100%;
+
     }
     .Select-control {
-      width: 100%;
       margin-bottom: 5px;
+      width: 100%;
+
 
       input[role=combobox] {
         border: none;
@@ -144,9 +151,10 @@ $font-color: #A4AEBF;
       display: none;
 
       &~.android-checkbox {
+        margin-right: 0.5em;
         display: inline-block;
         vertical-align: middle;
-        margin-right: 0.5em;
+
       }
     }
     .toggle-native-check {
@@ -162,6 +170,7 @@ $font-color: #A4AEBF;
 
     }
     .toggle {
+      margin-top: 6px;
       width: 54px;
       height: 24px;
       border: 2px solid $font-color;
