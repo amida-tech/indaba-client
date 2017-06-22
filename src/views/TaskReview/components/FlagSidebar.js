@@ -72,7 +72,7 @@ class FlagSidebar extends Component {
         this.props.updateFlaggedQuestion({
             projectId: this.state.projectId,
             questionId: this.state.activeId,
-            assigneeId: this.props.assignee.id,
+            assigneeId: this.props.task.id,
             notifyUserId: this.state.notifyUserId,
             comment: this.state.comment,
             resolved: this.state.resolved,

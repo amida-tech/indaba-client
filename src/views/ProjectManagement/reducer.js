@@ -9,8 +9,13 @@ export const initialState = {
             query: '',
             groups: {},
         },
-        taskOption: {
+        taskOptions: {
             show: false,
+            choice: null,
+            notify: true,
+            message: '',
+            reassignID: null,
+            task: {},
         },
     },
     surveys: [{
@@ -208,7 +213,7 @@ export default (state = initialState, action) => {
         projectIndex = state.projects.findIndex(project =>
             project.id === action.projectId);
     }
-    
+
     switch (action.type) {
     case type.ASSIGN_TASK:
         return update(state, { projects: { [projectIndex]: {
@@ -253,9 +258,38 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } } );
-    case type.SHOW_TASK_OPTION_MODAL:
-        return update(state, { ui: { taskOption: {
-            show: { $set: false } } } } );
+    case type.SHOW_TASK_OPTIONS_MODAL:
+        return update(state, { ui: { taskOptions: {
+            show: { $set: true },
+            task: { $set: action.task },
+        } } } );
+    case type.CLOSE_TASK_OPTIONS_MODAL:
+        return update(state, { ui: { taskOptions: {
+            show: { $set: false },
+            task: { $set: {} },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_CHOICE:
+        return update(state, { ui: { taskOptions: {
+            choice: { $set: action.choice },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
+        return update(state, { ui: { taskOptions: {
+            reassignID: { $set: action.reassignID },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_NOTIFY:
+        return update(state, { ui: { taskOptions: {
+            notify: { $set: action.notify },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_MESSAGE:
+        return update(state, { ui: { taskOptions: {
+            message: { $set: action.message },
+        } } } );
+    case type.SET_TASK_OPTIONS:
+        // UPDATE LATER.
+        return update(state, { ui: { taskOptions: {
+            show: { $set: false },
+            task: { $set: {} },
+        } } } );
     default:
         return state;
     }
