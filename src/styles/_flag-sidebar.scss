@@ -4,13 +4,11 @@ $brand-neutral-colors: (#308253, #4EB276);
 $block-class:'flag-sidebar';
 @at-root {
     .#{$block-class} {
-
         margin: 1em;
 
         &__title {
             margin-left: 10px;
             font-size: 22px;
-
         }
 
         &__head-group {
@@ -20,12 +18,10 @@ $block-class:'flag-sidebar';
             justify-content: space-between;
             align-items: center;
 
-
-            &-button{
+            &-button {
                 //margin-left: 1em;
                 padding: 0px;
                 border-radius: 2px;
-
             }
         }
 
@@ -36,18 +32,16 @@ $block-class:'flag-sidebar';
             flex-flow: nowrap;
             justify-content: flex-end;
             position: relative;
-
         }
 
         &__review-controls {
             width: 80%;
-;           display: block;
+            display: block;
         }
 
         &__commentary {
             padding: 1em;
             background: #ffffff;
-
 
             &-timestamp {
                 margin-bottom: 3px;
@@ -56,11 +50,9 @@ $block-class:'flag-sidebar';
             }
 
             &-comment {
-
             }
 
             &-signature {
-
             }
         }
 
@@ -74,8 +66,7 @@ $block-class:'flag-sidebar';
             overflow: hidden;
 
             &:hover {
-                background-color: nth($brand-neutral-colors, 2)
-
+                background-color: nth($brand-neutral-colors, 2);
             }
 
 
@@ -83,14 +74,11 @@ $block-class:'flag-sidebar';
                 background-color: #399862;
                 color: #ffffff;
                 font-size: 12px;
-
             }
 
-            &--inactive{
+            &--inactive {
                 color: #d3d3d3;
                 font-size: 12px;
-
-
             }
         }
 
@@ -105,8 +93,6 @@ $block-class:'flag-sidebar';
             display: flex;
             justify-content: flex-end;
             flex-flow: nowrap;
-
-
         }
 
         &__notify {
@@ -130,12 +116,10 @@ $block-class:'flag-sidebar';
             background: #ffffff;
             padding: 1em;
             margin-right: 0px;
-
-
-
         }
     }
 }
-.grommetux-check-box__label{
+
+.grommetux-check-box__label {
     margin-right: 0px;
 }
