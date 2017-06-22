@@ -26,7 +26,7 @@ class MatrixContainer extends Component {
                 {this.props.ui.taskOptions.show &&
                     <TaskOptions
                         vocab={this.props.vocab.PROJECT.OPTIONS_MODAL}
-                        task={this.props.ui.taskOptions.task}
+                        taskOptions={this.props.ui.taskOptions}
                         users={this.props.users}
                         projectId={this.props.project.id}
                         calls={this.props.calls} />}

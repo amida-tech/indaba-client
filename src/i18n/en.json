@@ -51,7 +51,7 @@
         "SKIP": "Skip stage and leave as unassigned.",
         "SKIP_PARAGRAPH": "Skipping a stage will not affect the survey in any way. The task will be left as unassigned.",
         "NOTIFY": "Notify User. (User will receive default message unless changed.)",
-        "WILL_BE_NOTIFIED": " will be notified.",
+        "_WILL_BE_NOTIFIED": " will be notified.",
         "NOTIFY_MESSAGE": "Your task has been forced to the next step. If you have questions, contact the project manager."
     },
     "PROJECT": "Project",

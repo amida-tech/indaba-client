@@ -4,5 +4,17 @@ $block-class:'task-options';
         &__reassign-select {
             overflow: auto;
         }
+
+        &__divider {
+            @extend .divider;
+        }
+
+        &__notice {
+
+        }
+
+        &__message {
+            width: 100%;
+        }
     }
 }

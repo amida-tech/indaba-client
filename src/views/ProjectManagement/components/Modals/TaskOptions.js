@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormField, RadioButton, Select } from 'grommet';
+import { FormField, RadioButton, CheckBox, TextInput, Select } from 'grommet';
 import Modal from '../../../../common/Modal';
 
 class TaskOptions extends Component {
@@ -17,17 +17,14 @@ class TaskOptions extends Component {
     }
 
     updateReassignId(event){
-        console.log(event);
-        this.props.calls.updateTaskOptionsReassignId(event.target.value);
+        this.props.calls.updateTaskOptionsReassignId(event.option.value);
     }
 
     updateNotify(event){
-        console.log(event);
         this.props.calls.updateTaskOptionsNotify(event.target.value);
     }
 
     updateMessage(event){
-        console.log(event);
         this.props.calls.updateTaskOptionsMessage(event.target.value);
     }
 
@@ -36,13 +33,11 @@ class TaskOptions extends Component {
     }
 
     render() {
-        console.log(this.props);
-        const userOptions = this.props.users.map(user => (user.id === this.props.task.userId ?
+        const userOptions = this.props.users.map(user => (user.id === this.props.taskOptions.task.userId ?
             {value: user.id, label: this.props.users[user.id].name + this.props.vocab._CURRENTLY_ASSIGNED } :
             {value: user.id, label: this.props.users[user.id].name}
         ));
-
-        console.log(userOptions);
+        const isReassigned = this.props.users[this.props.taskOptions.reassignId];
         return (
             <Modal
                 title={this.props.vocab.TITLE}
@@ -64,10 +59,13 @@ class TaskOptions extends Component {
                         label={this.props.vocab.REASSIGN}
                         value='reassign'
                         onChange={this.updateChoice} />
-                    <Select
+                    <Select value={isReassigned ? isReassigned.name : ''}
+                        placeHolder={this.props.users[this.props.taskOptions.task.userId].name
+                            + this.props.vocab._CURRENTLY_ASSIGNED}
                         options={userOptions}
                         onChange={this.updateReassignId} />
                         <RadioButton id='skip'
+                            disabled={true}
                             name='taskOptions'
                             label={this.props.vocab.SKIP}
                             value='skip'
@@ -75,10 +73,20 @@ class TaskOptions extends Component {
                     <div className='task-options__skip-explain'>
                         {this.props.vocab.SKIP_PARAGRAPH}
                     </div>
-                    <hr className='divider'/>
+                    <hr className='task-options__divider'/>
+                    <CheckBox
+                        label={this.props.vocab.NOTIFY}
+                        checked={false}
+                        onChange={this.updateNotify} />
+                    <div className='task-options__notice'>
+                        {this.props.users[this.props.taskOptions.task.userId].name
+                            + this.props.vocab._WILL_BE_NOTIFIED}
+                    </div>
+                    <TextInput className='task-options__message'
+                        value={this.props.vocab.NOTIFY_MESSAGE}
+                        onDOMChange={this.updateMessage}/>
                 </div>
             </Modal>
-
         );
     }
 }
@@ -86,7 +94,7 @@ class TaskOptions extends Component {
 TaskOptions.propTypes = {
     projectId: PropTypes.number.isRequired,
     users: PropTypes.array.isRequired,
-    task: PropTypes.object.isRequired,
+    taskOptions: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     calls: PropTypes.object.isRequired,
 };

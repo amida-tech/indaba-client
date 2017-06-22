@@ -14,7 +14,7 @@ export const initialState = {
             choice: null,
             notify: true,
             message: '',
-            reassignID: null,
+            reassignId: null,
             task: {},
         },
     },
@@ -274,7 +274,7 @@ export default (state = initialState, action) => {
         } } } );
     case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
         return update(state, { ui: { taskOptions: {
-            reassignID: { $set: action.reassignID },
+            reassignId: { $set: action.reassignId },
         } } } );
     case type.UPDATE_TASK_OPTIONS_NOTIFY:
         return update(state, { ui: { taskOptions: {
