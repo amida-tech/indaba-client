@@ -19,29 +19,32 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <span className='task-details__header-name'>{this.props.user.name}</span><br/>
-                    <span>{this.props.vocab.PROJECT.TASK_VIEW}</span>
+                    <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
+                    <div className='task-details__header-name'>{this.props.user.name}</div>
                 </div>
                 <div className='task-details__info'>
+
                     <div className='task-details__info-box'>
-                        <span>{this.props.stage.title}</span><br/>
-                        <span>{this.props.vocab.PROJECT.STAGE}</span>
+                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.STAGE}</div>
+                        <div className='task-details__info-box-title'>{this.props.stage.title}</div>
+                    </div>
+
+                    <div className='task-details__info-box'>
+                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SUBJECT}</div>
+                        <div className='task-details__info-box-title'>{this.props.subject}</div>
+
                     </div>
                     <div className='task-details__info-box'>
-                        <span>{this.props.subject}</span><br/>
-                        <span>{this.props.vocab.PROJECT.SUBJECT}</span>
-                    </div>
-                    <div className='task-details__info-box'>
-                        <DateTime id='taskDueDate'
+                    <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.TASK_DUE_DATE}</div>
+                        <DateTime id='taskDueDate' className='task-details__info-box-datetime'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
                             value={this.props.task.dueDate ||
                             this.props.stage.endStage}/><br/>
-                        <span>{this.props.vocab.PROJECT.TASK_DUE_DATE}</span>
                     </div>
                     <div className='task-details__info-box'>
-                        <span>{this.props.surveyName}</span><br/>
-                        <span>{this.props.vocab.PROJECT.SURVEY}</span>
+                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SURVEY}</div>
+                        <div className='task-details__info-box-survey'>{this.props.surveyName}</div>
                     </div>
                 </div>
             </div>
