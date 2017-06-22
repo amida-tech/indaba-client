@@ -151,8 +151,6 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: {
                 assignees: { $push: [action.payload] },
                 unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } });
-    case type.SUBNAVIGATE:
-        return update(state, { ui: { subnav: { $set: action.id } } });
     case type.TOGGLE_FILTER:
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
@@ -184,13 +182,6 @@ export default (state = initialState, action) => {
             projects: { $push: [update(action.project, { $merge: {
                 id: state.projects.length } })],
             } });
-    case type.UPDATE_USER_SEARCH_GROUP:
-        return(update(state, { ui: { userSidebarSearch: {
-            group: { $set: action.group },
-        } } } ) );
-    case type.UPDATE_USER_SEARCH_QUERY:
-        return update(state, { ui: { userSidebarSearch: {
-            query: { $set: action.query } } } } );
     default:
         return state;
     }

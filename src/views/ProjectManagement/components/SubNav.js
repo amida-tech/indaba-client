@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { subnavigate } from '../actions';
+import { subnavigate } from '../../../../src/common/actions';
 
 const subNavEntries = [{
   label: 'Workflow',
@@ -49,7 +49,7 @@ class SubNav extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  selected: state.project.navigation.subnav
+  selected: state.ui.subnav
 })
 const mapDispatchToProps = (dispatch) => ({
   onclick: (id) => dispatch(subnavigate(id))

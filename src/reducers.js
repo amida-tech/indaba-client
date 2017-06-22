@@ -9,7 +9,7 @@ const reducers = {
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
     surveys: CommonReducers.SurveysReducer,
-    ui: CommonReducers.uiReducer,
+    ui: CommonReducers.UIReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
     projectwizard: CreateProjectWizardReducer

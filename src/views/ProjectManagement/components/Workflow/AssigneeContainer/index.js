@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
-import { updateUserSearchGroup, updateUserSearchQuery } from '../../../actions';
+import {
+    updateUserSearchGroup,
+    updateUserSearchQuery
+} from '../../../../../common/actions';
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
@@ -63,9 +66,11 @@ class AssigneeContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    search: state.ui.userSidebarSearch,
-});
+const mapStateToProps = state => {
+    return {
+        search: state.ui.userSidebarSearch,
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
     updateUserSearchGroup: group => dispatch(updateUserSearchGroup(group)),
