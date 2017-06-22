@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, TextInput, Button } from 'grommet';
-import { inviteUser } from '../../../actions';
+import { inviteUser } from '../../../../../../src/common/actions';
 
 class InviteUser extends Component {
   constructor(props) {

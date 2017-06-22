@@ -1,15 +1,7 @@
 import * as actionTypes from './actionTypes';
-
 export function editSummaryDescription(id) {
     return {
         type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
-        id,
-    };
-}
-
-export function subnavigate(id) {
-    return {
-        type: actionTypes.SUBNAVIGATE,
         id,
     };
 }
@@ -75,27 +67,5 @@ export function setSurveyStatus(status, projectId) {
         type: actionTypes.SET_SURVEY_STATUS,
         status,
         projectId,
-    };
-}
-
-export function inviteUser(user, projectId) {
-    return {
-        type: actionTypes.INVITE_USER,
-        user,
-        projectId,
-    };
-}
-
-export function updateUserSearchGroup(group) {
-    return {
-        type: actionTypes.UPDATE_USER_SEARCH_GROUP,
-        group
-    };
-}
-
-export function updateUserSearchQuery(query) {
-    return {
-        type: actionTypes.UPDATE_USER_SEARCH_QUERY,
-        query
     };
 }
