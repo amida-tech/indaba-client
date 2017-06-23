@@ -79,7 +79,7 @@ export function setProjectStatus(status, projectId) {
 
 export function deleteUserGroup(groupId, projectId) {
     return {
-        type: actionTypes.DELETE_USER_GRUOP,
+        type: actionTypes.DELETE_USER_GROUP,
         groupId,
         projectId,
     };
