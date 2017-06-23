@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import UserStatus from './UserStatus';
+
 import { renderName } from '../../../../../utils/User';
 
 class PMUserListRow extends Component {
@@ -23,6 +25,9 @@ class PMUserListRow extends Component {
                 <div className='pm-user-list-row__cell'>
                     {subjects}
                 </div>
+                <div className='pm-user-list-row__cell'>
+                    <UserStatus user={this.props.user} vocab={this.props.vocab}/>
+                </div>
             </div>
         );
     }
@@ -36,7 +41,8 @@ PMUserListRow.propTypes = {
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     onNameClick: PropTypes.func.isRequired,
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-    subjects: PropTypes.arrayOf(PropTypes.string),
+    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default PMUserListRow;

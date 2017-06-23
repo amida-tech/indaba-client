@@ -23,7 +23,8 @@
     "CONTINUE": "Continue",
     "ANY": "Any",
     "ACCOUNT": "Account",
-    "PREFERENCE": "Preference"
+    "PREFERENCE": "Preference",
+    "PENDING": "Pending"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

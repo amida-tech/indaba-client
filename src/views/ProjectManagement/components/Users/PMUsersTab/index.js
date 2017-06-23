@@ -29,7 +29,8 @@ class PMUsersTab extends Component {
                         key={user.id}
                         tasks={this.props.project.tasks}
                         subjects={this.props.project.subjects}
-                        onNameClick={() => this.showUserProfileModal(user.id)}/>)}
+                        onNameClick={() => this.showUserProfileModal(user.id)}
+                        vocab={this.props.vocab}/>)}
             </div>
         );
     }
