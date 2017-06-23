@@ -51,6 +51,7 @@ class PMUsersTab extends Component {
                         type='text'
                         className='pm-users-tab__text-input'
                         placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
+                    <button>{this.props.vocab.COMMON.INVITE}</button>
                 </form>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
