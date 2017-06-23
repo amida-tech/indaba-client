@@ -1,6 +1,7 @@
 import * as actionTypes from '../actionTypes/tasksActionTypes';
 
 export function assignTask(assignment, projectId) {
+    console.log(actionTypes)
     return {
         type: actionTypes.ASSIGN_TASK,
         payload: assignment,

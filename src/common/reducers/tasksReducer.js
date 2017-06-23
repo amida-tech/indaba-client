@@ -98,9 +98,11 @@ const initialState = [
 
 export const TasksReducer = (state = initialState, action) => {
     const taskIndex = _.findIndex(state, (task) => task.id === action.taskId);
+    console.log(state);
+    console.log(action.payload);
     switch(action.type) {
         case type.ASSIGN_TASK:
-            return update(state, { tasks: { $push: [action.payload] } });
+            return update(state, { $push: [action.payload] });
         case type.UPDATE_TASK:
             return Objectype.assign({}, state);
         case type.UPDATE_TASK_DUE_DATE:

@@ -8,12 +8,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import StatusChange from './Modals/StatusChange';
-import {
-    updateStatusChange,
-    setProjectStatus,
-    deleteSubject,
-    addSubject,
-} from '../actions';
+import { updateStatusChange, setProjectStatus, deleteSubject, addSubject } from '../actions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {

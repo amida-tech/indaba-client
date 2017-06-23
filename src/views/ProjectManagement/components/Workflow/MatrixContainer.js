@@ -54,7 +54,7 @@ class MatrixContainer extends Component {
                             <FilteredRow key={key}
                               subject={{ name: subject, key }}
                               stages={this.props.project.stages}
-                              tasks={this.props.project.tasks}
+                              tasks={this.props.tasks}
                               users={this.props.users}
                               vocab={this.props.vocab}
                               project={this.props.project}
@@ -75,6 +75,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ui: state.project.ui,
         users: state.user.users,
+        tasks: state.tasks,
         project: _.find(state.project.projects, (project) =>
             project.id === projectId) || state.project.projects[0],
         vocab: state.settings.language.vocabulary

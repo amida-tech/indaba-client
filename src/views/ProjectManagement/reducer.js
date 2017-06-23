@@ -75,69 +75,69 @@ export default (state = initialState, action) => {
     }
 
     switch (action.type) {
-    case type.SUBNAVIGATE: // ui related.
-        return update(state, { ui: { subnav: { $set: action.id } } });
-    case type.TOGGLE_FILTER:
-        return update(state, { projects: { [projectIndex]: {
-            filter: { $apply: f => (f !== action.filter) && action.filter } } } });
-    case type.UPDATE_STATUS_CHANGE:
-        return update(state, { ui: { statusModalId: { $set: action.status } } });
-    case type.UPDATE_USER_SEARCH_GROUP:
-        return(update(state, { ui: { userSidebarSearch: {
-            group: { $set: action.group },
-        } } } ) );
-    case type.UPDATE_USER_SEARCH_QUERY:
-        return update(state, { ui: { userSidebarSearch: {
-            query: { $set: action.query } } } } );
-    case type.SHOW_TASK_OPTIONS_MODAL:
-        return update(state, { ui: { taskOptions: {
-            show: { $set: true },
-            task: { $set: action.task },
-        } } } );
-    case type.CLOSE_TASK_OPTIONS_MODAL:
-        return update(state, { ui: { taskOptions: {
-            show: { $set: false },
-            task: { $set: {} },
-        } } } );
-    case type.UPDATE_TASK_OPTIONS_CHOICE:
-        return update(state, { ui: { taskOptions: {
-            choice: { $set: action.choice },
-        } } } );
-    case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
-        return update(state, { ui: { taskOptions: {
-            reassignId: { $set: action.reassignId },
-        } } } );
-    case type.UPDATE_TASK_OPTIONS_NOTIFY:
-        return update(state, { ui: { taskOptions: {
-            notify: { $set: action.notify },
-        } } } );
-    case type.UPDATE_TASK_OPTIONS_MESSAGE:
-        return update(state, { ui: { taskOptions: {
-            message: { $set: action.message },
-        } } } );
-    case type.SET_PROJECT_STATUS: // project related.
-        return update(state, { projects: { [projectIndex]: {
-            status: { $set: action.status },
-        } } });
-    case type.ADD_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
-        } } });
-    case type.DELETE_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
-        } } });
-    case type.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: {
-            stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].stages.length } })] },
-        } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [update(action.project, { $merge: {
-                id: state.projects.length } })],
-            } });
-    default:
-        return state;
+        case type.SUBNAVIGATE: // ui related.
+            return update(state, { ui: { subnav: { $set: action.id } } });
+        case type.TOGGLE_FILTER:
+            return update(state, { projects: { [projectIndex]: {
+                filter: { $apply: f => (f !== action.filter) && action.filter } } } });
+        case type.UPDATE_STATUS_CHANGE:
+            return update(state, { ui: { statusModalId: { $set: action.status } } });
+        case type.UPDATE_USER_SEARCH_GROUP:
+            return(update(state, { ui: { userSidebarSearch: {
+                group: { $set: action.group },
+            } } } ) );
+        case type.UPDATE_USER_SEARCH_QUERY:
+            return update(state, { ui: { userSidebarSearch: {
+                query: { $set: action.query } } } } );
+        case type.SHOW_TASK_OPTIONS_MODAL:
+            return update(state, { ui: { taskOptions: {
+                show: { $set: true },
+                task: { $set: action.task },
+            } } } );
+        case type.CLOSE_TASK_OPTIONS_MODAL:
+            return update(state, { ui: { taskOptions: {
+                show: { $set: false },
+                task: { $set: {} },
+            } } } );
+        case type.UPDATE_TASK_OPTIONS_CHOICE:
+            return update(state, { ui: { taskOptions: {
+                choice: { $set: action.choice },
+            } } } );
+        case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
+            return update(state, { ui: { taskOptions: {
+                reassignId: { $set: action.reassignId },
+            } } } );
+        case type.UPDATE_TASK_OPTIONS_NOTIFY:
+            return update(state, { ui: { taskOptions: {
+                notify: { $set: action.notify },
+            } } } );
+        case type.UPDATE_TASK_OPTIONS_MESSAGE:
+            return update(state, { ui: { taskOptions: {
+                message: { $set: action.message },
+            } } } );
+        case type.SET_PROJECT_STATUS: // project related.
+            return update(state, { projects: { [projectIndex]: {
+                status: { $set: action.status },
+            } } });
+        case type.ADD_SUBJECT:
+            return update(state, { projects: { [projectIndex]: {
+                subjects: { $push: [action.subject] },
+            } } });
+        case type.DELETE_SUBJECT:
+            return update(state, { projects: { [projectIndex]: {
+                subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
+            } } });
+        case type.ADD_STAGE:
+            return update(state, { projects: { [projectIndex]: {
+                stages: { $push: [update(action.stage, { $merge: {
+                    id: state.projects[projectIndex].stages.length } })] },
+            } } });
+        case ADD_PROJECT_FROM_WIZARD:
+            return update(state, {
+                projects: { $push: [update(action.project, { $merge: {
+                    id: state.projects.length } })],
+                } });
+        default:
+            return state;
     }
 };
