@@ -1,3 +1,4 @@
+import en from '../../i18n/en';
 import update from 'immutability-helper';
 import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
@@ -13,7 +14,7 @@ export const initialState = {
             show: false,
             choice: null,
             notify: true,
-            message: '',
+            message: en.PROJECT.OPTIONS_MODAL.NOTIFY_MESSAGE,
             reassignId: null,
             task: {},
         },
