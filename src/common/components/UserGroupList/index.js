@@ -26,7 +26,8 @@ class UserGroupList extends Component {
                         key={group.id}
                         group={group}
                         onDeleteClick={this.props.onDeleteClick}
-                        onGroupClick={this.props.onGroupClick && (() => this.props.onGroupClick(group.id))}
+                        onGroupClick={this.props.onGroupClick &&
+                            (() => this.props.onGroupClick(group.id))}
                         users={this.props.users}/>)}
             </div>
         );

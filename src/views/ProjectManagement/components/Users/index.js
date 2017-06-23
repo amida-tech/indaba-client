@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Tabs, Tab } from 'grommet';
+import update from 'immutability-helper';
 
 import PMUsersTab from './PMUsersTab';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
@@ -15,13 +16,18 @@ class Users extends Component {
     render() {
         return (
             <div className='users-tab'>
-                {this.state.showAddUserGroup &&
+                {this.state.showAddUserGroup !== false &&
                     <SelectGroupUsers
                         allUsers={this.props.users}
                         users={this.props.project.users}
                         vocab={this.props.vocab}
                         onCancel={() => this.setState({ showAddUserGroup: false })}
-                        onSave={this.props.onAddGroup}/>
+                        group={this.props.project.userGroups
+                            .find(group => group.id === this.state.showAddUserGroup)}
+                        onSave={this.state.showAddUserGroup === true ?
+                            this.props.onAddGroup :
+                            group => this.props.onUpdateGroup(update(group,
+                                { $merge: { id: this.state.showAddUserGroup } })) }/>
                 }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
@@ -40,7 +46,9 @@ class Users extends Component {
                             groups={this.props.project.userGroups}
                             users={this.props.users}
                             vocab={this.props.vocab}
-                            onDeleteClick={this.props.onDeleteGroup}/>
+                            onDeleteClick={this.props.onDeleteGroup}
+                            onGroupClick={groupId =>
+                                this.setState({ showAddUserGroup: groupId })} />
                     </Tab>
                 </Tabs>
             </div>
@@ -54,6 +62,7 @@ Users.propTypes = {
     project: PropTypes.object.isRequired,
     onDeleteGroup: PropTypes.func.isRequired,
     onAddGroup: PropTypes.func.isRequired,
+    onUpdateGroup: PropTypes.func.isRequired,
 };
 
 export default Users;
