@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import StatusChange from './Modals/StatusChange';
 import {
+    updateStatusChange,
     setProjectStatus,
-    setSurveyStatus,
     deleteSubject,
     addSubject,
 } from '../actions';
+import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { statusModalId: false };
     }
+
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
@@ -25,24 +28,24 @@ class ProjectManagementContainer extends Component {
         };
         let body;
         switch (this.props.tab) {
-        case 'workflow':
-            body = <WorkflowContainer {...this.props} />;
-            break;
-        case 'subject':
-            body = <Subjects vocab={this.props.vocab}
-                subjects={this.props.project.subjects}
-                onDeleteSubject={this.props.onDeleteSubject}
-                onAddSubject={this.props.onAddSubject}/>;
-            break;
-        default:
-            body = null;
+            case 'workflow':
+                body = <WorkflowContainer {...this.props} />;
+                break;
+            case 'subject':
+                body = <Subjects vocab={this.props.vocab}
+                    subjects={this.props.project.subjects}
+                    onDeleteSubject={this.props.onDeleteSubject}
+                    onAddSubject={this.props.onAddSubject}/>;
+                break;
+            default:
+                body = null;
         }
         return (
                 <div>
-                    { this.state.statusModalId &&
+                    { this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
-                            onStatusChangeClose={() => this.setState({ statusModalId: false })}
-                            entity={modalEntities[this.state.statusModalId]}
+                            onStatusChangeClose={() => this.props.updateStatusChange(false)}
+                            entity={modalEntities[this.props.ui.statusModalId]}
                             projectStatus={this.props.project.status}
                             surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.onSetProjectStatus}
@@ -52,7 +55,7 @@ class ProjectManagementContainer extends Component {
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
-                        onStatusChangeClick={id => this.setState({ statusModalId: id })}
+                        onStatusChangeClick={id => this.props.updateStatusChange(id)}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
                     {body}
@@ -81,14 +84,16 @@ const mapStateToProps = (state, ownProps) => {
     return {
         vocab: state.settings.language.vocabulary,
         project: project,
-        survey: state.project.surveys[project.surveyId],
-        tab: state.project.navigation.subnav,
+        ui: state.project.ui,
+        survey: _.find(state.surveys, (survey) => survey.id === project.surveyId),
+        tab: state.project.ui.subnav,
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10) || 0;
     return {
+        updateStatusChange: status => dispatch(updateStatusChange(status)),
         onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
         onDeleteSubject: subject => dispatch(deleteSubject(subject, id)),
