@@ -16,7 +16,6 @@ export const initialState = {
 		id: 0,
 		name: 'Pizza Lovers Anonymous',
 		status: 'Active',
-		surveyId: 0, // Associated survey.
 		stages: [{
 			id: 0,
 			title: 'Fill Out The Survey',
