@@ -2,35 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import UserProfile from './UserProfile';
-
-import { renderName } from '../../../../../utils/User';
-
-class UserListRow extends Component {
-    render() {
-        const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
-            .map(g => g.name).join(', ');
-        return (
-            <div className='pm-user-list-row'>
-                <div className='pm-user-list-row__cell'
-                    onClick={this.props.onNameClick}>
-                    {renderName(this.props.user)}
-                </div>
-                <div className='pm-user-list-row__cell'>
-                    {groups}
-                </div>
-            </div>
-        );
-    }
-}
-
-UserListRow.propTypes = {
-    user: PropTypes.shape({
-        firstName: PropTypes.string,
-        lastName: PropTypes.string,
-    }).isRequired,
-    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onNameClick: PropTypes.func.isRequired,
-};
+import PMUserListRow from './PMUserListRow';
 
 const UserListHeader = props => (
     <div className='pm-users-list-header'>
@@ -66,7 +38,7 @@ class PMUsersTab extends Component {
                 }
                 <UserListHeader vocab={this.props.vocab} />
                 {this.props.users.map(user =>
-                    <UserListRow user={user}
+                    <PMUserListRow user={user}
                         groups={this.props.project.userGroups}
                         key={user.id}
                         onNameClick={() => this.showUserProfileModal(user.id)}/>)}
