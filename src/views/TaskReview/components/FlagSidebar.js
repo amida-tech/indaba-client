@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
-import { updateFlaggedQuestion } from '../actions';
+import { updateFlaggedQuestion } from '../../ProjectManagement/actions';
 
 import TaskStatus from '../../../utils/TaskStatus';
 
@@ -68,11 +68,13 @@ class FlagSidebar extends Component {
     }
 
     onSend(){
+        console.log("SENDING");
+        console.log(this.props);
         // Change project id down the road.
         this.props.updateFlaggedQuestion({
             projectId: this.state.projectId,
             questionId: this.state.activeId,
-            assigneeId: this.props.assignee.id,
+            assigneeId: this.props.task.userid,
             notifyUserId: this.state.notifyUserId,
             comment: this.state.comment,
             resolved: this.state.resolved,

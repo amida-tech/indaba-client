@@ -197,7 +197,7 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let findUser;
+    let findTask;
 
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
@@ -248,6 +248,27 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { navigation: { userSidebarSearch: {
             query: { $set: action.query } } } } );
+    case type.UPDATE_TASK_DUE_DATE:
+        findTask = state.projects[action.projectId]
+            .tasks.findIndex(task =>
+                (task.id === action.taskId));
+        return update(state, { projects: { [action.projectId]:
+        { tasks: { [findTask]:
+				{ $merge: { dueDate: action.dueDate } } } } } });
+    case type.UPDATE_FLAGGED_QUESTION:
+        console.log(action.data);
+        findTask = state.projects[action.data.projectId]
+            .tasks.findIndex(task =>
+                (task.id === action.data.assigneeId));
+        return update(state, { projects: { [action.data.projectId]:
+        { tasks: { [findTask]:
+        { response: { [action.data.questionId]:
+        { flag: { $set: !action.data.resolved },
+            flagHistory: { $push: [{
+                timestamp: action.data.timestamp,
+                comment: action.data.comment,
+                userId: action.data.signatureId,
+            }] } } } } } } } });
     default:
         return state;
     }

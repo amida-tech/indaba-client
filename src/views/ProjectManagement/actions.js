@@ -99,3 +99,20 @@ export function updateUserSearchQuery(query) {
         query
     };
 }
+
+// Flag Sidebar.
+export function updateTaskDueDate(taskId, projectId, dueDate) {
+   return {
+       type: actionTypes.UPDATE_TASK_DUE_DATE,
+       taskId,
+       projectId,
+       dueDate,
+   };
+}
+
+export function updateFlaggedQuestion(data){
+   return {
+       type: actionTypes.UPDATE_FLAGGED_QUESTION,
+       data,
+   };
+}
