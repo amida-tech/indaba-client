@@ -24,7 +24,8 @@ class Users extends Component {
                         <UserGroupList columnHeaders={true}
                             groups={this.props.project.userGroups}
                             users={this.props.users}
-                            vocab={this.props.vocab} />
+                            vocab={this.props.vocab}
+                            onDeleteClick={this.props.onDeleteGroup}/>
                     </Tab>
                 </Tabs>
             </div>
@@ -36,6 +37,7 @@ Users.propTypes = {
     vocab: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     project: PropTypes.object.isRequired,
+    onDeleteGroup: PropTypes.object.isRequired,
 };
 
 export default Users;
