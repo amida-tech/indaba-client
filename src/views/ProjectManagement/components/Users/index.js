@@ -10,28 +10,27 @@ import UserGroupList from '../../../../common/components/UserGroupList';
 class Users extends Component {
     constructor(props) {
         super(props);
-
-        this.state = { showAddUserGroup: false };
+        this.state = { modalName: false };
     }
     render() {
         return (
             <div className='users-tab'>
-                {this.state.showAddUserGroup !== false &&
+                {this.state.modalName !== false &&
                     <SelectGroupUsers
                         allUsers={this.props.users}
                         users={this.props.project.users}
                         vocab={this.props.vocab}
-                        onCancel={() => this.setState({ showAddUserGroup: false })}
+                        onCancel={() => this.setState({ modalName: false })}
                         group={this.props.project.userGroups
-                            .find(group => group.id === this.state.showAddUserGroup)}
+                            .find(group => group.id === this.state.modalId)}
                         onSave={(group) => {
-                            if (this.state.showAddUserGroup === true) {
+                            if (this.state.modalName === 'addgroup') {
                                 this.props.onAddGroup(group);
                             } else {
                                 this.props.onUpdateGroup(update(group,
-                                    { $merge: { id: this.state.showAddUserGroup } }));
+                                    { $merge: { id: this.state.modalId } }));
                             }
-                            this.setState({ showAddUserGroup: false });
+                            this.setState({ modalName: false });
                         }}/>
                 }
                 <Button
@@ -40,7 +39,7 @@ class Users extends Component {
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER_GROUP}
                     primary
-                    onClick={() => this.setState({ showAddUserGroup: true })}/>
+                    onClick={() => this.setState({ modalName: 'addgroup' })}/>
                 <hr className='divider'/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
@@ -53,7 +52,7 @@ class Users extends Component {
                             vocab={this.props.vocab}
                             onDeleteClick={this.props.onDeleteGroup}
                             onGroupClick={groupId =>
-                                this.setState({ showAddUserGroup: groupId })} />
+                                this.setState({ modalName: 'updategroup', modalId: groupId }) } />
                     </Tab>
                 </Tabs>
             </div>
