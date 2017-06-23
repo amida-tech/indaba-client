@@ -204,7 +204,8 @@ export default (state = initialState, action) => {
             } } } });
     case type.ADD_USER_GROUP:
         return update(state, { projects: { [projectIndex]: {
-            userGroups: { $push: [update(action.group, { $merge: { id: uuidv1() } })] },
+            userGroups: { $push: [update(action.group, { $merge: {
+                id: state.projects[projectIndex].userGroups.length } })] },
         } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, {
