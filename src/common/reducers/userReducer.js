@@ -15,6 +15,7 @@ const initialState = {
         firstName: 'Robert',
         lastName: 'Paulson',
         email: 'bobbyp@dove.com',
+        invited: true,
     }, {
         id: 2,
         firstName: 'John',
