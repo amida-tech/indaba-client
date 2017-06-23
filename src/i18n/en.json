@@ -153,6 +153,7 @@
     "TASKS": "Tasks",
     "USER_TITLE": "Title",
     "OPTIONAL_MESSAGE": "Optional, only you can see this",
+    "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
     "NOT_ACCEPTED": "The user has not accepted this invitation"
   },

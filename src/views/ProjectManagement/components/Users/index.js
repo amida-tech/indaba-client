@@ -4,6 +4,7 @@ import { Button, Tabs, Tab } from 'grommet';
 import update from 'immutability-helper';
 
 import PMUsersTab from './PMUsersTab';
+import AddUserModal from '../../../../common/components/AddUserModal';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UserGroupList from '../../../../common/components/UserGroupList';
 
@@ -34,9 +35,14 @@ class Users extends Component {
                             this.setState({ modalName: false });
                         }}/>
                 }
+                {
+                    this.state.modalName === 'adduser' &&
+                    <AddUserModal vocab={this.props.vocab}/>
+                }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
-                    primary/>
+                    primary
+                    onClick={() => this.setState({ modalName: 'adduser' })}/>
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER_GROUP}
                     primary

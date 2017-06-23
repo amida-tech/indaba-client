@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../Modal';
+import Modal from '../../Modal';
+import AddUserForm from './AddUserForm';
 
 class AddUserModal extends Component {
     render() {
         return (
-            <Modal onCancel={this.props.onCancel}
-                onSave={this.props.onSave}
-                title={this.vocab.PROJECT.ADD_USER}
-                vocab={this.vocab}>
+            <Modal {...this.props}
+                title={this.props.vocab.PROJECT.ADD_USER}>
+                <AddUserForm vocab={this.props.vocab}/>
             </Modal>
         );
     }
