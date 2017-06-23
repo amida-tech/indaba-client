@@ -12,6 +12,15 @@
 2. Run development server: `yarn start`
 3. Load site at http://localhost:3000
 
+## Development
+Before committing any changes, run the following command:
+```sh
+$ yarn eslint
+```
+This runs `eslint --fix src`, which will correct some, but not all, style errors.
+The command outputs any `eslint` errors that could not be automatically corrected.
+These should be manually corrected before committing your changes.
+
 ## Indaba Version Nomenclature
 - Legacy - version of Indaba that Amida bought.
 - New - front- and back-ends built by NTR
