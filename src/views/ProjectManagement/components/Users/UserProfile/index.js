@@ -13,31 +13,23 @@ import PreferenceTab from './PreferenceTab';
 import {
     setUserFirstName,
     setUserLastName,
+    setUserEmail,
+    setUserTitle,
 } from '../../../../../common/actions/userActions';
 
 class UserProfile extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleFirstNameChanged = this.handleFirstNameChanged.bind(this);
-        this.handleLastNameChanged = this.handleLastNameChanged.bind(this);
-    }
-    handleFirstNameChanged(firstName) {
-        this.props.onSetFirstName(this.props.userId, firstName);
-    }
-    handleLastNameChanged(lastName) {
-        this.props.onSetLastName(this.props.userId, lastName);
-    }
     render() {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
                 onCancel={this.props.onCancel}>
                 <UserNameInput {...this.props}
-                    onFirstNameChanged={this.handleFirstNameChanged}
-                    onLastNameChanged={this.handleLastNameChanged}/>
+                    onFirstNameChange={this.props.onSetFirstName}
+                    onLastNameChange={this.props.onSetLastName}/>
                 <Tabs>
                     <Tab title={this.props.vocab.COMMON.ACCOUNT}>
-                        <AccountTab {...this.props}/>
+                        <AccountTab {...this.props}
+                            onEmailChange={this.props.onSetEmail}
+                            onTitleChange={this.props.onSetTitle}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab {...this.props} />
@@ -67,9 +59,11 @@ const mapStateToProps = (state, ownProps) => ({
     user: state.user.users.find(user => user.id === ownProps.userId),
 });
 
-const mapDispatchToProps = dispatch => ({
-    onSetFirstName: (userId, firstName) => dispatch(setUserFirstName(userId, firstName)),
-    onSetLastName: (userId, lastName) => dispatch(setUserLastName(userId, lastName)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onSetFirstName: firstName => dispatch(setUserFirstName(ownProps.userId, firstName)),
+    onSetLastName: lastName => dispatch(setUserLastName(ownProps.userId, lastName)),
+    onSetEmail: email => dispatch(setUserEmail(ownProps.userId, email)),
+    onSetTitle: title => dispatch(setUserTitle(ownProps.userId, title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
