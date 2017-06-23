@@ -7,6 +7,10 @@ class PMUserListRow extends Component {
     render() {
         const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
             .map(g => g.name).join(', ');
+        const subjects = this.props.tasks.filter(task =>
+            task.id === this.props.user.id)
+            .map(task => this.props.subjects[task.subject])
+            .join(', ');
         return (
             <div className='pm-user-list-row'>
                 <div className='pm-user-list-row__cell'
@@ -17,6 +21,7 @@ class PMUserListRow extends Component {
                     {groups}
                 </div>
                 <div className='pm-user-list-row__cell'>
+                    {subjects}
                 </div>
             </div>
         );
@@ -30,6 +35,8 @@ PMUserListRow.propTypes = {
     }).isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     onNameClick: PropTypes.func.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default PMUserListRow;
