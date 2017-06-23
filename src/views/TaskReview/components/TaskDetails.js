@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
-import { updateTaskDueDate } from '../../ProjectManagement/actions';
+import { updateTaskDueDate } from '../../../common/actions/tasksActions';
 
 class TaskDetails extends Component {
     constructor(props) {

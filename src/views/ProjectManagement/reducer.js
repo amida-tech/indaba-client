@@ -63,103 +63,11 @@ export const initialState = {
                 users: [0,1],
             }],
 		subjects: ['Berlin', 'Chicago', 'K\'unlun'],
-		tasks: [{ //Changed from assignees.
-            id: 0,
-            userId: 2,
-			stage: 0,
-			subject: 0,
-			response: [{
-				id: 0,
-				value: false,
-				review: true,
-			}, {
-				id: 1,
-			}],
-		}, {
-            id: 1,
-			userId: 3,
-			stage: 0,
-			subject: 1,
-			response: [{
-				id: 0,
-				value: true,
-				flag: true,
-				flagHistory: [{
-					timestamp: 'Sun Jun 11 2017 08:15:15 GMT-0400 (Eastern Daylight Time)',
-					comment: 'YELLOW FLAG!',
-					userId: 3,
-				}, {
-					timestamp: 'Mon Jun 12 2017 09:43:15 GMT-0400 (Eastern Daylight Time)',
-					comment: 'Well too bad cupcake!',
-					userId: 1,
-				}],
-				review: true,
-			}, {
-				id: 1,
-				value: 1,
-				review: false,
-				comment: 'Gross topping.',
-			}, {
-				id: 2,
-				value: 5,
-				review: false,
-				comment: 'So much food.',
-			}, {
-				id: 3,
-				value: 'It was the best of pizza, it was the worst of pizza.',
-				flag: true,
-				flagHistory: [{
-					timestamp: 'Wed Jun 14 2017 10:42:15 GMT-0400 (Eastern Daylight Time)',
-					comment: 'I dislike this.',
-					userId: 3,
-				}],
-				review: true,
-			}, {
-				id: 4,
-				value: [0, 2],
-				flag: true,
-				flagHistory: [{
-					timestamp: 'Tue Jun 13 2017 11:42:15 GMT-0400 (Eastern Daylight Time)',
-					comment: 'I REALLY dislike this.',
-					userId: 3,
-				}],
-				review: false,
-				comment: 'Bad combo.',
-			}],
-		}, {
-            id: 2,
-			userId: 4,
-			stage: 1,
-			subject: 0,
-			dueDate: '9/9/2017',
-			response: [{
-				id: 0,
-				value: true,
-				flag: true,
-				flagHistory: [{
-					timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
-					comment: 'I like flags.',
-					userId: 2,
-				}],
-				review: false,
-				comment: 'What was the question?',
-			}, {
-				questionId: 1,
-				value: 0,
-				review: true,
-			}],
-		}, {
-            id: 3,
-			userId: 5,
-			stage: 1,
-			subject: 2,
-		}],
     }],
 };
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let findTask;
 
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
@@ -167,40 +75,13 @@ export default (state = initialState, action) => {
     }
 
     switch (action.type) {
-    case type.ASSIGN_TASK:
-        return update(state, { projects: { [projectIndex]: {
-                tasks: { $push: [action.payload] } } } });
-    case type.SUBNAVIGATE:
+    case type.SUBNAVIGATE: // ui related.
         return update(state, { ui: { subnav: { $set: action.id } } });
     case type.TOGGLE_FILTER:
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
-    case type.ADD_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
-        } } });
-    case type.DELETE_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
-        } } });
-    case type.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: {
-            stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].stages.length } })] },
-        } } });
-    case type.UPDATE_TASK:
-        return Objectype.assign({}, state);
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
-    case type.SET_PROJECT_STATUS:
-        return update(state, { projects: { [projectIndex]: {
-            status: { $set: action.status },
-        } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [update(action.project, { $merge: {
-                id: state.projects.length } })],
-            } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return(update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
@@ -208,27 +89,6 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } } );
-    case type.UPDATE_TASK_DUE_DATE:
-        findTask = state.projects[action.projectId]
-            .tasks.findIndex(task =>
-                (task.id === action.taskId));
-        return update(state, { projects: { [action.projectId]:
-        { tasks: { [findTask]:
-				{ $merge: { dueDate: action.dueDate } } } } } });
-    case type.UPDATE_FLAGGED_QUESTION:
-        console.log(action.data);
-        findTask = state.projects[action.data.projectId]
-            .tasks.findIndex(task =>
-                (task.id === action.data.assigneeId));
-        return update(state, { projects: { [action.data.projectId]:
-        { tasks: { [findTask]:
-        { response: { [action.data.questionId]:
-        { flag: { $set: !action.data.resolved },
-            flagHistory: { $push: [{
-                timestamp: action.data.timestamp,
-                comment: action.data.comment,
-                userId: action.data.signatureId,
-            }] } } } } } } } });
     case type.SHOW_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: true },
@@ -255,12 +115,28 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             message: { $set: action.message },
         } } } );
-    case type.SET_TASK_OPTIONS:
-        // UPDATE LATER.
-        return update(state, { ui: { taskOptions: {
-            show: { $set: false },
-            task: { $set: {} },
-        } } } );
+    case type.SET_PROJECT_STATUS: // project related.
+        return update(state, { projects: { [projectIndex]: {
+            status: { $set: action.status },
+        } } });
+    case type.ADD_SUBJECT:
+        return update(state, { projects: { [projectIndex]: {
+            subjects: { $push: [action.subject] },
+        } } });
+    case type.DELETE_SUBJECT:
+        return update(state, { projects: { [projectIndex]: {
+            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
+        } } });
+    case type.ADD_STAGE:
+        return update(state, { projects: { [projectIndex]: {
+            stages: { $push: [update(action.stage, { $merge: {
+                id: state.projects[projectIndex].stages.length } })] },
+        } } });
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, {
+            projects: { $push: [update(action.project, { $merge: {
+                id: state.projects.length } })],
+            } });
     default:
         return state;
     }

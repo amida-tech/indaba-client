@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
-import { updateFlaggedQuestion } from '../../ProjectManagement/actions';
+
+import { updateFlaggedQuestion } from '../../../common/actions/tasksActions';
 
 import TaskStatus from '../../../utils/TaskStatus';
 

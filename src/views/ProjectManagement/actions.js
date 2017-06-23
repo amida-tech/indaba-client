@@ -14,14 +14,6 @@ export function subnavigate(id) {
     };
 }
 
-export function assignTask(assignment, projectId) {
-    return {
-        type: actionTypes.ASSIGN_TASK,
-        payload: assignment,
-        projectId,
-    };
-}
-
 export function addSubject(subject, projectId) {
     return {
         type: actionTypes.ADD_SUBJECT,
@@ -42,14 +34,6 @@ export function addStage(stage, projectId) {
     return {
         type: actionTypes.ADD_STAGE,
         stage,
-        projectId,
-    };
-}
-
-export function updateTask(task, projectId) {
-    return {
-        type: actionTypes.UPDATE_TASK,
-        task,
         projectId,
     };
 }
@@ -99,23 +83,6 @@ export function updateUserSearchQuery(query) {
     };
 }
 
-// Flag Sidebar.
-export function updateTaskDueDate(taskId, projectId, dueDate) {
-   return {
-       type: actionTypes.UPDATE_TASK_DUE_DATE,
-       taskId,
-       projectId,
-       dueDate,
-   };
-}
-
-export function updateFlaggedQuestion(data){
-   return {
-       type: actionTypes.UPDATE_FLAGGED_QUESTION,
-       data,
-   };
-}
-
 // Task Options Modal:
 export function showTaskOptionsModal(task) {
     return {
@@ -130,7 +97,6 @@ export function closeTaskOptionsModal() {
     };
 }
 
-// There has got to be a better way to do this...
 export function updateTaskOptionsChoice(choice) {
     return {
         type: actionTypes.UPDATE_TASK_OPTIONS_CHOICE,
@@ -156,11 +122,5 @@ export function updateTaskOptionsMessage(message) {
     return {
         type: actionTypes.UPDATE_TASK_OPTIONS_MESSAGE,
         message,
-    };
-}
-
-export function setTaskOptions() {
-    return {
-        type: actionTypes.SET_TASK_OPTIONS,
     };
 }

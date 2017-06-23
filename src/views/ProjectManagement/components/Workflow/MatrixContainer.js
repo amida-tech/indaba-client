@@ -15,8 +15,8 @@ import {
     updateTaskOptionsReassignId,
     updateTaskOptionsNotify,
     updateTaskOptionsMessage,
-    setTaskOptions,
 } from '../../actions';
+import { setTaskOptions } from '../../../../common/actions/tasksActions';
 
 class MatrixContainer extends Component {
     render() {

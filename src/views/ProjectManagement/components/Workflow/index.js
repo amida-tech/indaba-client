@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FilterWrapper from './FilterWrapper';
 import MatrixContainer from './MatrixContainer';
-import * as ProjectActions from '../../actions';
+import * as TasksActions from '../../../../common/actions/tasksActions';
 
 class WorkflowContainer extends Component {
     render() {
