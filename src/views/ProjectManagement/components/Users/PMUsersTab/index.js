@@ -3,21 +3,7 @@ import PropTypes from 'prop-types';
 
 import UserProfile from './UserProfile';
 import PMUserListRow from './PMUserListRow';
-
-const UserListHeader = props => (
-    <div className='pm-users-list-header'>
-        <div className='pm-users-list-header__cell'></div>
-        <div className='pm-user-list-header__cell'>
-            {props.vocab.PROJECT.USER_GROUPS}
-        </div>
-        <div className='pm-user-list-header__cell'>
-            {props.vocab.PROJECT.SUBJECT}
-        </div>
-        <div className='pm-user-list-header__cell'>
-            {props.vocab.COMMON.ACTIONS}
-        </div>
-    </div>
-);
+import PMUserListHeader from './PMUserListHeader';
 
 class PMUsersTab extends Component {
     constructor(props) {
@@ -36,7 +22,7 @@ class PMUsersTab extends Component {
                         {...this.props}
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
-                <UserListHeader vocab={this.props.vocab} />
+                <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users.map(user =>
                     <PMUserListRow user={user}
                         groups={this.props.project.userGroups}
