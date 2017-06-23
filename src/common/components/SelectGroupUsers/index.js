@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { TextInput, Box } from 'grommet';
-import Modal from '../../../../common/Modal';
-import FilteredList from './FilteredList';
-import { renderName } from '../../../../utils/User';
+import PropTypes from 'prop-types';
 
-class AddUserGroup extends Component {
+import { TextInput, Box } from 'grommet';
+import Modal from '../../../common/Modal';
+import FilteredList from './FilteredList';
+import { renderName } from '../../../utils/User';
+
+class SelectGroupUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -134,4 +136,12 @@ class AddUserGroup extends Component {
     }
 }
 
-export default AddUserGroup;
+SelectGroupUsers.propTypes = {
+    users: PropTypes.arrayOf(PropTypes.number).isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+};
+
+export default SelectGroupUsers;
