@@ -53,7 +53,7 @@ const UserListHeader = props => (
     </div>
 );
 
-class UsersTab extends Component {
+class PMUsersTab extends Component {
     constructor(props) {
         super(props);
         this.state = { userProfileId: false };
@@ -81,10 +81,10 @@ class UsersTab extends Component {
     }
 }
 
-UsersTab.propTypes = {
+PMUsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default UsersTab;
+export default PMUsersTab;
