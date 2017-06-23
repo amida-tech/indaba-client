@@ -24,10 +24,15 @@ class Users extends Component {
                         onCancel={() => this.setState({ showAddUserGroup: false })}
                         group={this.props.project.userGroups
                             .find(group => group.id === this.state.showAddUserGroup)}
-                        onSave={this.state.showAddUserGroup === true ?
-                            this.props.onAddGroup :
-                            group => this.props.onUpdateGroup(update(group,
-                                { $merge: { id: this.state.showAddUserGroup } })) }/>
+                        onSave={(group) => {
+                            if (this.state.showAddUserGroup === true) {
+                                this.props.onAddGroup(group);
+                            } else {
+                                this.props.onUpdateGroup(update(group,
+                                    { $merge: { id: this.state.showAddUserGroup } }));
+                            }
+                            this.setState({ showAddUserGroup: false });
+                        }}/>
                 }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
