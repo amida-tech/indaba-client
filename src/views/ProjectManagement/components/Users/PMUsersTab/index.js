@@ -34,12 +34,7 @@ UserListRow.propTypes = {
 
 const UserListHeader = props => (
     <div className='pm-users-list-header'>
-        <div className='pm-users-list-header__cell'>
-            {props.vocab.COMMON.FIRST_NAME}
-        </div>
-        <div className='pm-users-list-header__cell'>
-            {props.vocab.COMMON.LAST_NAME}
-        </div>
+        <div className='pm-users-list-header__cell'></div>
         <div className='pm-user-list-header__cell'>
             {props.vocab.PROJECT.USER_GROUPS}
         </div>
