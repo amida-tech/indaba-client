@@ -43,10 +43,13 @@
       "MORE_OPTIONS": "More Options"
     },
     "PROJECT": "Project",
+    "PROJECT_TITLE": "Project Title",
     "PROJECTS": "Projects",
     "SURVEY": "Survey",
+    "TITLE": "Title",
     "SUBJECT": "Subject",
     "STATUS": "Status",
+    "SUMMARY": "Summary",
     "FLAGS": "Flags",
     "MARK_RESOLVED": "Mark Resolved",
     "NOTIFY_USER": "Notify user to respond to flag",
