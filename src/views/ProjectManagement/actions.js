@@ -77,6 +77,14 @@ export function setProjectStatus(status, projectId) {
     };
 }
 
+export function deleteUserGroup(groupId, projectId) {
+    return {
+        type: actionTypes.DELETE_USER_GRUOP,
+        groupId,
+        projectId,
+    };
+}
+
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
@@ -88,14 +96,14 @@ export function inviteUser(user, projectId) {
 export function updateUserSearchGroup(group) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_GROUP,
-        group
+        group,
     };
 }
 
 export function updateUserSearchQuery(query) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_QUERY,
-        query
+        query,
     };
 }
 

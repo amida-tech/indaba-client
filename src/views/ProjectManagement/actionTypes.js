@@ -10,7 +10,8 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
 
 // Status Change
-export const UPDATE_STATUS_CHANGE = 'UPDATE_STATUS_CHANGE'; 
+export const UPDATE_STATUS_CHANGE = 'UPDATE_STATUS_CHANGE';
+export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
 
 // User Sidebar:
 export const INVITE_USER = 'INVITE_USER';

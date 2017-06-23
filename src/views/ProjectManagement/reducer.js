@@ -188,13 +188,18 @@ export default (state = initialState, action) => {
                 id: state.projects[projectIndex].stages.length } })] },
         } } });
     case type.UPDATE_TASK:
-        return Objectype.assign({}, state);
+        return Object.assign({}, state);
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
     case type.SET_PROJECT_STATUS:
         return update(state, { projects: { [projectIndex]: {
             status: { $set: action.status },
         } } });
+    case type.DELETE_USER_GROUP:
+        return update(state, { projects: { [projectIndex]: {
+            userGroups: { $apply: userGroups =>
+                userGroups.filter(userGroup => userGroup.id !== action.groupId),
+            } } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, {
             projects: { $push: [update(action.project, { $merge: {
