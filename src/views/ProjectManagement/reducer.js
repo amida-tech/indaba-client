@@ -162,6 +162,8 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     let projectIndex;
+    let groupIndex;
+
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
             project.id === action.projectId);
@@ -207,6 +209,12 @@ export default (state = initialState, action) => {
             userGroups: { $push: [update(action.group, { $merge: {
                 id: state.projects[projectIndex].userGroups.length } })] },
         } } });
+    case type.UPDATE_USER_GROUP:
+        groupIndex = state.projects[projectIndex].userGroups
+            .findIndex(group => group.id === action.group.id);
+        return update(state, { projects: { [projectIndex]: { userGroups: {
+            [groupIndex]: { $set: action.group },
+        } } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, {
             projects: { $push: [update(action.project, { $merge: {

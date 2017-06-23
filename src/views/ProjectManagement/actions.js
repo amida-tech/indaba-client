@@ -93,6 +93,14 @@ export function addUserGroup(group, projectId) {
     };
 }
 
+export function updateUserGruop(group, projectId) {
+    return {
+        type: actionTypes.UPDATE_USER_GROUP,
+        group,
+        projectId,
+    };
+}
+
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
