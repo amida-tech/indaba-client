@@ -82,7 +82,7 @@ const mapStateToProps = (state, ownProps) => {
         vocab: state.settings.language.vocabulary,
         project: project,
         survey: state.project.surveys[project.surveyId],
-        tab: state.project.navigation.subnav,
+        tab: state.project.ui.subnav,
     };
 };
 
