@@ -11,7 +11,7 @@ class NavContainer extends Component {
     }
     render() {
         return (
-            <nav className='nav'>
+            <nav className='primary-nav'>
                 {this.state.showCreateNewProject &&
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.setState({ showCreateNewProject: false })}/>}
@@ -19,11 +19,11 @@ class NavContainer extends Component {
                   justify='between'
                   direction='row'>
                     <Box direction='row'>
-                        <div className='nav-indaba-logo'>|indaba-icon|</div>
-                        <Link to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
-                        <Link to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
-                        <Link to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
-                        <Button label={this.props.vocab.COMMON.CREATE}
+                        <div className='primary-nav__indaba-logo primary-nav__item'>|indaba-icon|</div>
+                        <Link className='primary-nav__item' to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
+                        <Link className='primary-nav__item' to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
+                        <Link className='primary-nav__item' to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
+                        <Button className='primary-nav__item primary-nav__button' label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
                     <Box direction='row'>
