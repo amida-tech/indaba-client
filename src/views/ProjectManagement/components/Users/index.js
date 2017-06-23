@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Tabs, Tab } from 'grommet';
 
 import PMUsersTab from './PMUsersTab';
+import UserGroupList from '../../../../common/components/UserGroupList';
 
 class Users extends Component {
     render() {
@@ -20,6 +21,10 @@ class Users extends Component {
                         <PMUsersTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                        <UserGroupList columnHeaders={true}
+                            groups={this.props.project.userGroups}
+                            users={this.props.users}
+                            vocab={this.props.vocab} />
                     </Tab>
                 </Tabs>
             </div>
