@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 
-import UserBadge from './UserBadge';
+import UserBadge from '../UserBadge';
 
 class UserGroupListEntry extends Component {
     render() {
@@ -67,7 +67,7 @@ UserGroupList.propTypes = {
     columnHeaders: PropTypes.bool,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    vocab: PropTypes.object.isRequired,
+    vocab: PropTypes.object,
     onDeleteClick: PropTypes.func,
 };
 
