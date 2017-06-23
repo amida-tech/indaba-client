@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import UserGroupList from '../../../../../common/components/UserGroupList';
+import UserGroupList from '../../../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
     render() {

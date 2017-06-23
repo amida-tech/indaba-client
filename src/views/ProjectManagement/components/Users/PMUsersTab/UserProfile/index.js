@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'grommet';
 
-import Modal from '../../../../../common/Modal';
+import Modal from '../../../../../../common/Modal';
 import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
 import UserGroupsTab from './UserGroupsTab';
@@ -15,7 +15,7 @@ import {
     setUserLastName,
     setUserEmail,
     setUserTitle,
-} from '../../../../../common/actions/userActions';
+} from '../../../../../../common/actions/userActions';
 
 class UserProfile extends Component {
     render() {
