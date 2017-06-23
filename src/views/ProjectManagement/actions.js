@@ -85,6 +85,14 @@ export function deleteUserGroup(groupId, projectId) {
     };
 }
 
+export function addUserGroup(group, projectId) {
+    return {
+        type: actionTypes.ADD_USER_GROUP,
+        group,
+        projectId,
+    };
+}
+
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
