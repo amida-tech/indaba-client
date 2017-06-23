@@ -9,6 +9,7 @@ export default props => (
         <div className='pm-user-list-header__cell'>
             {props.vocab.PROJECT.SUBJECT}
         </div>
+        <div className='pm-user-list-header__cell'></div>
         <div className='pm-user-list-header__cell'>
             {props.vocab.COMMON.ACTIONS}
         </div>
