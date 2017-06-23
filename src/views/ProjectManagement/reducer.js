@@ -10,7 +10,14 @@ export const initialState = {
             groups: {},
         },
         statusModalId: false,
-
+        taskOptions: {
+            show: false,
+            choice: null,
+            notify: true,
+            message: '',
+            reassignId: null,
+            task: {},
+        },
     },
 	projects: [{
 		id: 0,
@@ -57,7 +64,8 @@ export const initialState = {
             }],
 		subjects: ['Berlin', 'Chicago', 'K\'unlun'],
 		tasks: [{ //Changed from assignees.
-			id: 2,
+            id: 0,
+            userId: 2,
 			stage: 0,
 			subject: 0,
 			response: [{
@@ -68,7 +76,8 @@ export const initialState = {
 				id: 1,
 			}],
 		}, {
-			id: 3,
+            id: 1,
+			userId: 3,
 			stage: 0,
 			subject: 1,
 			response: [{
@@ -118,7 +127,8 @@ export const initialState = {
 				comment: 'Bad combo.',
 			}],
 		}, {
-			id: 4,
+            id: 2,
+			userId: 4,
 			stage: 1,
 			subject: 0,
 			dueDate: '9/9/2017',
@@ -139,7 +149,8 @@ export const initialState = {
 				review: true,
 			}],
 		}, {
-			id: 5,
+            id: 3,
+			userId: 5,
 			stage: 1,
 			subject: 2,
 		}],
@@ -148,17 +159,15 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let findUser;
-
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
             project.id === action.projectId);
     }
+
     switch (action.type) {
     case type.ASSIGN_TASK:
         return update(state, { projects: { [projectIndex]: {
-                assignees: { $push: [action.payload] },
-                unassigned: { $apply: u => u.filter(un => un.id !== action.payload.id) } } } });
+                tasks: { $push: [action.payload] } } } });
     case type.SUBNAVIGATE:
         return update(state, { ui: { subnav: { $set: action.id } } });
     case type.TOGGLE_FILTER:
@@ -180,7 +189,6 @@ export default (state = initialState, action) => {
     case type.UPDATE_TASK:
         return Objectype.assign({}, state);
     case type.UPDATE_STATUS_CHANGE:
-        console.log(action.status);
         return update(state, { ui: { statusModalId: { $set: action.status } } });
     case type.SET_PROJECT_STATUS:
         return update(state, { projects: { [projectIndex]: {
@@ -198,6 +206,38 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } } );
+    case type.SHOW_TASK_OPTIONS_MODAL:
+        return update(state, { ui: { taskOptions: {
+            show: { $set: true },
+            task: { $set: action.task },
+        } } } );
+    case type.CLOSE_TASK_OPTIONS_MODAL:
+        return update(state, { ui: { taskOptions: {
+            show: { $set: false },
+            task: { $set: {} },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_CHOICE:
+        return update(state, { ui: { taskOptions: {
+            choice: { $set: action.choice },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
+        return update(state, { ui: { taskOptions: {
+            reassignId: { $set: action.reassignId },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_NOTIFY:
+        return update(state, { ui: { taskOptions: {
+            notify: { $set: action.notify },
+        } } } );
+    case type.UPDATE_TASK_OPTIONS_MESSAGE:
+        return update(state, { ui: { taskOptions: {
+            message: { $set: action.message },
+        } } } );
+    case type.SET_TASK_OPTIONS:
+        // UPDATE LATER.
+        return update(state, { ui: { taskOptions: {
+            show: { $set: false },
+            task: { $set: {} },
+        } } } );
     default:
         return state;
     }

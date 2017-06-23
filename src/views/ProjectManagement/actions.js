@@ -98,3 +98,52 @@ export function updateUserSearchQuery(query) {
         query
     };
 }
+
+// Task Options Modal:
+export function showTaskOptionsModal(task) {
+    return {
+        type: actionTypes.SHOW_TASK_OPTIONS_MODAL,
+        task,
+    };
+}
+
+export function closeTaskOptionsModal() {
+    return {
+        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL
+    };
+}
+
+// There has got to be a better way to do this...
+export function updateTaskOptionsChoice(choice) {
+    return {
+        type: actionTypes.UPDATE_TASK_OPTIONS_CHOICE,
+        choice,
+    };
+}
+
+export function updateTaskOptionsReassignId(reassignId) {
+    return {
+        type: actionTypes.UPDATE_TASK_OPTIONS_REASSIGN_ID,
+        reassignId,
+    };
+}
+
+export function updateTaskOptionsNotify(notify) {
+    return {
+        type: actionTypes.UPDATE_TASK_OPTIONS_NOTIFY,
+        notify,
+    };
+}
+
+export function updateTaskOptionsMessage(message) {
+    return {
+        type: actionTypes.UPDATE_TASK_OPTIONS_MESSAGE,
+        message,
+    };
+}
+
+export function setTaskOptions() {
+    return {
+        type: actionTypes.SET_TASK_OPTIONS,
+    };
+}

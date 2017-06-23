@@ -42,6 +42,18 @@
       "DUE_TOMORROW": "Due Tomorrow",
       "MORE_OPTIONS": "More Options"
     },
+    "OPTIONS_MODAL": {
+        "TITLE": "Task Options",
+        "FORCE": "Force Complete (You Can't Undo This)",
+        "FORCE_PARAGRAPH": "Force compelte to push the survey to the next stage. The person assigned to the next stage cannot start that task until its specified start date. To edit the start date of the next step, click on the date of the task cell.",
+        "REASSIGN": "Reassign (Does not apply if task is force completed.)",
+        "_CURRENTLY_ASSIGNED": " (Currently Assigned)",
+        "SKIP": "Skip stage and leave as unassigned.",
+        "SKIP_PARAGRAPH": "Skipping a stage will not affect the survey in any way. The task will be left as unassigned.",
+        "NOTIFY": "Notify User. (User will receive default message unless changed.)",
+        "_WILL_BE_NOTIFIED": " will be notified.",
+        "NOTIFY_MESSAGE": "Your task has been forced to the next step. If you have questions, contact the project manager."
+    },
     "PROJECT": "Project",
     "PROJECT_TITLE": "Project Title",
     "PROJECTS": "Projects",

@@ -1,0 +1,20 @@
+$block-class:'task-options';
+@at-root {
+    .#{$block-class} {
+        &__reassign-select {
+            overflow: auto;
+        }
+
+        &__divider {
+            @extend .divider;
+        }
+
+        &__notice {
+
+        }
+
+        &__message {
+            width: 100%;
+        }
+    }
+}
