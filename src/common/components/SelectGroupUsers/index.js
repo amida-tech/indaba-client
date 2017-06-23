@@ -76,7 +76,7 @@ class SelectGroupUsers extends Component {
         });
     }
     createUserListItem(userId) {
-        const user = this.props.allUsers.find(user => user.id === userId);
+        const user = this.props.allUsers.find(allUser => allUser.id === userId);
         return {
             key: user.id,
             searchKey: renderName(user),
