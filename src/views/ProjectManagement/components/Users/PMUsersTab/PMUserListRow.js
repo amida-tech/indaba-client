@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import IonIcon from 'react-ionicons';
 import UserStatus from './UserStatus';
 
 import { renderName } from '../../../../../utils/User';
@@ -27,6 +28,10 @@ class PMUserListRow extends Component {
                 </div>
                 <div className='pm-user-list-row__cell'>
                     <UserStatus user={this.props.user} vocab={this.props.vocab}/>
+                </div>
+                <div className='pm-user-list-row__cell'>
+                    <IonIcon icon='ion-android-delete' color='#A4AEBF'/>
+                    <IonIcon icon='ion-android-mail' color='#A4AEBF' />
                 </div>
             </div>
         );
