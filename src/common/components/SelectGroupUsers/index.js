@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import { TextInput, Box } from 'grommet';
 import Modal from '../../../common/Modal';
@@ -10,8 +11,8 @@ class SelectGroupUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupName: '',
-            groupUserIds: [],
+            groupName: _.get(this.props, 'group.name', ''),
+            groupUserIds: _.get(this.props, 'group.users', []),
             projectUsersSelected: [],
             groupUsersSelected: [],
         };
@@ -99,7 +100,8 @@ class SelectGroupUsers extends Component {
                     {this.props.vocab.STAGE.GROUP_NAME}
                     <TextInput
                         placeHolder={this.props.vocab.PROJECT.ENTER_GROUP_NAME}
-                        onDOMChange={this.handleGroupName}/>
+                        onDOMChange={this.handleGroupName}
+                        value={this.state.groupName}/>
                     <Box direction='row'>
                         <Box separator='all'
                             pad='small'>
@@ -142,6 +144,10 @@ SelectGroupUsers.propTypes = {
     vocab: PropTypes.object.isRequired,
     onCancel: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+    group: PropTypes.shape({
+        name: PropTypes.string,
+        users: PropTypes.arrayOf(PropTypes.number),
+    }),
 };
 
 export default SelectGroupUsers;
