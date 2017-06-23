@@ -10,10 +10,12 @@ class UserGroupListEntry extends Component {
             userId => this.props.users.find(user => user.id === userId));
         return (
             <div className='user-group-list-entry'>
-                <div className='user-group-list-entry__name'>
+                <div className='user-group-list-entry__name'
+                    onClick={this.props.onGroupClick}>
                     {this.props.group.name}
                 </div>
-                <div className='user-group-list-entry__badge-string'>
+                <div className='user-group-list-entry__badge-string'
+                    onClick={this.props.onGroupClick}>
                     {users.map(user =>
                         <UserBadge key={user.id} user={user}/>,
                     )}
@@ -32,6 +34,7 @@ UserGroupListEntry.propTypes = {
     group: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteClick: PropTypes.func,
+    onGroupClick: PropTypes.func,
 };
 
 export default UserGroupListEntry;
