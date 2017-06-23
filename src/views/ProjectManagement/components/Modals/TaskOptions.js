@@ -4,6 +4,10 @@ import { FormField, RadioButton, CheckBox, TextInput, Select } from 'grommet';
 import Modal from '../../../../common/Modal';
 
 class TaskOptions extends Component {
+    componentWillMount() {
+        this.props.calls.updateTaskOptionsMessage(this.props.vocab.NOTIFY_MESSAGE);
+    }
+
     constructor(props) {
         super(props);
     }

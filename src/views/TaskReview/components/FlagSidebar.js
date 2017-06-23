@@ -94,17 +94,18 @@ class FlagSidebar extends Component {
                         label={this.props.vocab.PROJECT.ADD_STAGE} />
                 </div>
                 <div className='flag-sidebar__review-container'>
-                    <List>
+                    <List className='flag-sidebar__question-list'>
                         {this.state.survey.map((q, i) => {
                             return (this.state.flags.includes(q)) ?
+                            // TODO: this could probably go into state over conditionally rendering.
                                 <ListItem key={'listitem'+q+i}
                                     className={i === this.state.activeId ?
-                                        'flag-sidebar__questions--selected' : ''}
+                                        'flag-sidebar__questions flag-sidebar__questions--selected' : 'flag-sidebar__questions'}
                                     onClick={this.handleFlagSelect.bind(this, i)}>
                                     {this.props.vocab.PROJECT.QUESTION_ + (i+1) }
                                 </ListItem> :
                                 <ListItem key={'listitem'+q+i}
-                                    className='flag-sidebar__questions--inactive'>
+                                    className='flag-sidebar__questions flag-sidebar__questions--inactive'>
                                     {this.props.vocab.PROJECT.QUESTION_ + (i+1) }
                                 </ListItem>
                         })}
@@ -126,10 +127,10 @@ class FlagSidebar extends Component {
                                 </div>
                             )
                         })}
-                        <TextInput
-                            placeHolder={this.props.vocab.PROJECT.REPLY}
+                        <textarea className='flag-sidebar__discussion-text'
+                            default={this.props.vocab.PROJECT.REPLY}
                             value={this.state.comment}
-                            onDOMChange={this.handleComment} />
+                            onChange={this.handleComment} />
                         <CheckBox className='flag-sidebar__checkbox'
                             label={this.props.vocab.PROJECT.MARK_RESOLVED}
                             checked={this.state.resolved}

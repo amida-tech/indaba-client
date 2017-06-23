@@ -20,7 +20,6 @@ import {
 
 class MatrixContainer extends Component {
     render() {
-        console.log(this.props);
         return (
             <div className='container-fluid'>
                 {this.props.ui.taskOptions.show &&

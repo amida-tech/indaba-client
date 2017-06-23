@@ -1,6 +1,7 @@
 $block-class:'review-pane';
 @at-root {
     .#{$block-class} {
+        margin-right: 10px;
 
         &__flag-button {
 

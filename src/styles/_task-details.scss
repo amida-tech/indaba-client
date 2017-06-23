@@ -1,22 +1,76 @@
 $block-class:'task-details';
 @at-root {
     .#{$block-class} {
-        margin:10px;
+        margin:20px;
+        padding: 5px 10px 0px 10px;
+        width: 100%;
 
         &__header {
+            margin-bottom: 10px;
+        }
 
-            &-name {
-                font-size: 22px;
+        &__header-name {
+            font-size: 30px;
+
+            &-label {
+                padding-bottom: 2px;
+                font-color: $font-color;
+                font-weight: 100;
+                font-size: 12px;
+                text-transform: uppercase;
+                line-height: 14px;
             }
         }
 
-        &__info {
+        &__info-box {
+            padding: 10px 30px 10px 0;
+            width: 25%;
+            display: inline-block;
+            box-sizing: border-box;
+            position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: left;
 
-            &-box {
-                display: inline-block;
-                box-sizing: content-box;
-                width: 25%;
+            &-label { //come back and create
+                padding-bottom: 5px;
+                font-size: 12px;
+                text-transform: uppercase;
+                line-height: 14px;
+                color: $font-color;
+                font-weight: 100;
+            }
+
+            &-survey {
+                font-size: 18px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &:hover {
+                    overflow: visible;
+                    white-space: nowrap;
+                }
+            }
+
+            &-title {
+                margin: 0;
+                font-size: 18px;
             }
         }
     }
+}
+
+.grommetux-date-time__input {
+    padding: 0px;
+    border: none;
+    font-size: 16px;
+
+    &:focus {
+        padding: 0px;
+    }
+}
+
+.grommetux-button__icon .grommetux-control-icon {
+    vertical-align: vertical;
 }

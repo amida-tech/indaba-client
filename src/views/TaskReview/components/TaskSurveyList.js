@@ -26,8 +26,10 @@ class TaskSurveyList extends Component {
     render() {
         return (
             <div className='task-survey-list'>
+            <div className='task-survey-list__wrapper'>
                 <button onClick={this.handleAccordionExpandAll}>{this.props.vocab.PROJECT.EXPAND_ALL}</button>
                 <button onClick={this.handleAccordionCollapseAll}>{this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
+                </div>
                 <div className='task-survey-list__instructions'>
                     <span className='task-survey-list__instructions-header'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
