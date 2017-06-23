@@ -15,7 +15,8 @@ class Users extends Component {
     render() {
         return (
             <div className='users-tab'>
-                {this.state.modalName !== false &&
+                {(this.state.modalName === 'addgroup' ||
+                    this.state.modalName === 'updategroup') &&
                     <SelectGroupUsers
                         allUsers={this.props.users}
                         users={this.props.project.users}
