@@ -11,8 +11,8 @@ import TaskSurveyList from './TaskSurveyList';
 function surveyMapperHelper(response, question) {
     const match = response.filter(obj => obj.id === question.id);
     return (match.length > 0) ?
-        Object.assign({}, question, match[0], {taskView: true}) :
-        Object.assign({}, question, {taskView: true});
+        Object.assign({}, question, match[0], { taskView: true }) :
+        Object.assign({}, question, { taskView: true });
 }
 
 function surveyMapper(response, questions) {
@@ -27,7 +27,7 @@ class TaskReview extends Component {
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'>
-                    <Link to={'/project/' + this.props.project.id}>
+                    <Link to={`/project/${this.props.project.id}`}>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
@@ -60,14 +60,14 @@ const mapStateToProps = (state, ownProps) => {
     const userId = parseInt(ownProps.params.userId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
     const project = _.find(state.project.projects,
-        (project) => project.id === projectId) || state.project.projects[0];
+        project => project.id === projectId) || state.project.projects[0];
     return {
-        user: _.find(state.user.users, (user) => user.id === userId),
-        task: _.find(project.tasks, (task) => task.id === userId),
-        project: project,
-        projectId: projectId,
+        user: _.find(state.user.users, user => user.id === userId),
+        task: _.find(project.tasks, task => task.id === userId),
+        project,
+        projectId,
         survey: state.project.surveys[project.surveyId],
-        vocab: state.settings.language.vocabulary
+        vocab: state.settings.language.vocabulary,
     };
 };
 

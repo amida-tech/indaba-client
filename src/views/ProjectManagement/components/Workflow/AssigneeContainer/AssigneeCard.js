@@ -9,7 +9,7 @@ import { assignTask } from '../../../actions';
 */
 
 const Types = {
-    ASSIGNEECARD: 'AssigneeCard'
+    ASSIGNEECARD: 'AssigneeCard',
 };
 
 const cardSource = {
@@ -20,29 +20,29 @@ const cardSource = {
         return monitor.getItem().id === props.children.id;
     },
     beginDrag(props, monitor, component) {
-        return {id: props.children.id};
+        return { id: props.children.id };
     },
     endDrag(props, monitor, component) {
         if (!monitor.didDrop()) {
             return;
-    }
+        }
 
-    const dropResult = monitor.getDropResult();
-    const assignment = {
-        id: props.children.id,
-        name: props.children.name,
-        role: props.children.role,
-        stage: dropResult.task.stage,
-        subject: dropResult.task.subject
-    };
-    props.assignTask(assignment);
-  }
-}
+        const dropResult = monitor.getDropResult();
+        const assignment = {
+            id: props.children.id,
+            name: props.children.name,
+            role: props.children.role,
+            stage: dropResult.task.stage,
+            subject: dropResult.task.subject,
+        };
+        props.assignTask(assignment);
+    },
+};
 
 function collect(connect, monitor) {
     return {
         connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
+        isDragging: monitor.isDragging(),
     };
 }
 
@@ -55,11 +55,11 @@ class AssigneeCard extends Component {
         const { id } = this.props.children;
         const { isDragging, connectDragSource } = this.props;
 
-        return connectDragSource (
+        return connectDragSource(
             <div className='assignee-card'>
                 { this.props.children.name }
                 { isDragging }
-            </div>
+            </div>,
         );
     }
 }

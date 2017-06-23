@@ -80,7 +80,7 @@ const mapStateToProps = (state, ownProps) => {
             `${project.id}` === id) || state.project.projects[0];
     return {
         vocab: state.settings.language.vocabulary,
-        project: project,
+        project,
         survey: state.project.surveys[project.surveyId],
         tab: state.project.navigation.subnav,
     };

@@ -9,7 +9,7 @@ export class MultipleChoice extends Component {
                 <div className='question-panel'>
                     {this.props.answers.map((answer, index) =>
                         <div className=''
-                            key={'question'+this.props.id+index}>
+                            key={`question${this.props.id}${index}`}>
                             <label>
                                 <input type='radio'
                                     id=''
@@ -17,10 +17,10 @@ export class MultipleChoice extends Component {
                                     name='question'/>
                                 <span>{answer}</span>
                             </label>
-                        </div>
+                        </div>,
                     )}
                 </div>
             </Box>
-        )
+        );
     }
 }

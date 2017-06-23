@@ -4,22 +4,22 @@ import { connect } from 'react-redux';
 
 class Layout extends Component {
 
-  render() {
-    return (
+    render() {
+        return (
       <div>
         <NavContainer {...this.props} />
       </div>
-    );
-  }
+        );
+    }
 }
 
 Layout.displayName = 'Layout';
 
 function mapStateToProps(state, ownProps) {
-  return {
-    data: state,
-    vocab: state.settings.language.vocabulary
-  };
+    return {
+        data: state,
+        vocab: state.settings.language.vocabulary,
+    };
 }
 
 export default connect(mapStateToProps)(Layout);

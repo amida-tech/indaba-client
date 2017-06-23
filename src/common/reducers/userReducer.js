@@ -9,19 +9,19 @@ const initialState = {
     }, {
         id: 1,
         name: 'Robert Paulson',
-    },{
+    }, {
         id: 2,
         name: 'Jon McLane',
-    },{
+    }, {
         id: 3,
         name: 'Ellen Ripley',
-    },{
+    }, {
         id: 4,
         name: 'Indiana Jones',
-    },{
+    }, {
         id: 5,
         name: 'Tony Stark',
-    },{
+    }, {
         id: 6,
         name: 'Johnny Quest',
     }, {

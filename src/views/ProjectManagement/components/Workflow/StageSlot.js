@@ -76,13 +76,13 @@ class StageSlot extends Component {
     }
 
     render() {
-    const { position, isOver, canDrop, connectDropTarget } = this.props;
-    return connectDropTarget(
+        const { position, isOver, canDrop, connectDropTarget } = this.props;
+        return connectDropTarget(
         <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
             {this.props.user &&
                 <div>
                     <div className='name-row'>
-                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
+                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
                             <span>{this.props.user.name}</span>
                         </Link>
                         <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>

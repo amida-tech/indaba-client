@@ -9,17 +9,17 @@ class TaskSurveyList extends Component {
         super(props);
         this.state = {
             allActive: this.props.survey.map((k, i) => i),
-            active: []
-        }
+            active: [],
+        };
         this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
         this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
     }
 
-    handleAccordionExpandAll(event){
+    handleAccordionExpandAll(event) {
         this.setState({ active: this.state.allActive });
     }
 
-    handleAccordionCollapseAll(event){
+    handleAccordionCollapseAll(event) {
         this.setState({ active: [] });
     }
 
@@ -41,13 +41,13 @@ class TaskSurveyList extends Component {
                 <Accordion active={this.state.active} openMulti={true}>
                     {this.props.survey.map((question, i) =>
                         <AccordionPanel
-                            heading={this.props.vocab.PROJECT.QUESTION_+(i+1)}
-                            key={'accordionpanel'+question+i}>
+                            heading={this.props.vocab.PROJECT.QUESTION_ + (i + 1)}
+                            key={`accordionpanel${question}${i}`}>
                             <ReviewPane {...question}/>
                         </AccordionPanel>)}
                 </Accordion>
             </div>
-        )
+        );
     }
 }
 

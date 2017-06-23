@@ -11,7 +11,7 @@ class TaskDetails extends Component {
         this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
     }
 
-    handleTaskDueDateChange(event){
+    handleTaskDueDateChange(event) {
         this.props.updateTaskDueDate(this.props.task.id, this.props.projectId, event);
     }
 
@@ -48,7 +48,7 @@ class TaskDetails extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
@@ -64,8 +64,8 @@ TaskDetails.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  updateTaskDueDate: (assigneeId, projectId, dueDate) =>
-    dispatch(updateTaskDueDate(assigneeId, projectId, dueDate))
+    updateTaskDueDate: (assigneeId, projectId, dueDate) =>
+    dispatch(updateTaskDueDate(assigneeId, projectId, dueDate)),
 });
 
 export default connect(null, mapDispatchToProps)(TaskDetails);

@@ -58,14 +58,14 @@ const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10);
     return {
         users: state.user.users,
-        project: _.find(state.project.projects, (project) =>
+        project: _.find(state.project.projects, project =>
             project.id === projectId) || state.project.projects[0],
-        vocab: state.settings.language.vocabulary
-    }
-}
+        vocab: state.settings.language.vocabulary,
+    };
+};
 
 export default compose(
     connect(mapStateToProps),
     withRouter,
-    DragDropContext(HTML5Backend)
+    DragDropContext(HTML5Backend),
 )(MatrixContainer);
