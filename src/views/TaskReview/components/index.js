@@ -54,19 +54,19 @@ class TaskReview extends Component {
     }
 }
 
-// Thinking it might be a good idea to shave down what is needed here so above
-// can just {...this.props} along.
+// We really need to think about how we might be handling tasks in the future. 
 const mapStateToProps = (state, ownProps) => {
-    const userId = parseInt(ownProps.params.userId, 10);
+    const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const project = _.find(state.project.projects,
-        (project) => project.id === projectId) || state.project.projects[0];
+    const task = _.find(_.find(state.tasks, (projectTasks) =>
+        projectTasks.projectId === projectId).tasks, (task) => task.id === taskId);
     return {
-        user: _.find(state.user.users, (user) => user.id === userId),
-        task: _.find(project.tasks, (task) => task.userId === userId),
-        project: project,
         projectId: projectId,
-        survey: _.find(state.surveys, (survey) => survey.projectId === project.id),
+        project: _.find(state.project.projects,
+            (project) => project.id === projectId) || state.project.projects[0],
+        user: _.find(state.user.users, (user) => user.id === task.userId),
+        task: task,
+        survey: _.find(state.surveys, (survey) => survey.projectId === projectId),
         vocab: state.settings.language.vocabulary
     };
 };

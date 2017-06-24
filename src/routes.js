@@ -18,8 +18,8 @@ export default (
             path='/project(/:id)'
             component={ProjectManagementContainer}/>
         <Route
-            key='/task-review(/:projectId)(/:userId)'
-            path='/task-review(/:projectId)(/:userId)'
+            key='/task-review(/:projectId)(/:taskId)'
+            path='/task-review(/:projectId)(/:taskId)'
             component={TaskReview}/>
         <Route
             key='/login'

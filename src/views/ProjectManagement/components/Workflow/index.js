@@ -17,8 +17,8 @@ class WorkflowContainer extends Component {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        assignTask: (assignment) => {
-            dispatch(TasksActions.assignTask(assignment, ownProps.project.id));
+        assignTask: (user, task) => {
+            dispatch(TasksActions.assignTask(user, task, ownProps.project.id));
         },
     };
 }

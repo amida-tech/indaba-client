@@ -64,8 +64,8 @@ TaskDetails.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  updateTaskDueDate: (assigneeId, projectId, dueDate) =>
-    dispatch(updateTaskDueDate(assigneeId, projectId, dueDate))
+  updateTaskDueDate: (taskId, projectId, dueDate) =>
+    dispatch(updateTaskDueDate(taskId, projectId, dueDate))
 });
 
 export default connect(null, mapDispatchToProps)(TaskDetails);

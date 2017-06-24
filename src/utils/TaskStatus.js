@@ -3,9 +3,10 @@ export default {
     responsesExist(task) {
         return !!task.response;
     },
-    responsesComplete(task) {
+    responsesComplete(task, surveySize) {
         return task.response &&
-            task.response.every((response) => !!response.value);
+            task.response.every((response) => !!response.value) &&
+                task.response.length === surveySize;
     },
     responsesFlagged(task) {
         return task.response &&

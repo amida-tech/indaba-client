@@ -25,17 +25,15 @@ const cardSource = {
     endDrag(props, monitor, component) {
         if (!monitor.didDrop()) {
             return;
-    }
-
+        }
     const dropResult = monitor.getDropResult();
     const assignment = {
-        id: props.children.id,
-        name: props.children.name,
+        userId: props.children.id,
         role: props.children.role,
         stage: dropResult.task.stage,
         subject: dropResult.task.subject
     };
-    props.assignTask(assignment);
+    props.assignTask(props.children.id, dropResult.task);
   }
 }
 

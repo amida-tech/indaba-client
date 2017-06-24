@@ -2,8 +2,9 @@ import update from 'immutability-helper';
 import * as type from '../actionTypes/tasksActionTypes';
 import _ from 'lodash';
 
-const initialState = [
-    {
+const initialState = [{
+    projectId: 0,
+    tasks: [{
         id: 0,
         userId: 2,
         stage: 0,
@@ -93,32 +94,36 @@ const initialState = [
         userId: 5,
         stage: 1,
         subject: 2,
-    },
-];
+    }],
+}];
 
 export const TasksReducer = (state = initialState, action) => {
-    const taskIndex = _.findIndex(state, (task) => task.id === action.taskId);
-    console.log(state);
-    console.log(action.payload);
+    let projectIndex = _.findIndex(state, (projectTasks) =>
+        projectTasks.projectId === action.projectId);
+    let taskIndex = state[projectIndex] ? 
+        _.findIndex(state[projectIndex].tasks, (task) => task.id === action.taskId):
+        null;
     switch(action.type) {
-        case type.ASSIGN_TASK:
-            return update(state, { $push: [action.payload] });
-        case type.UPDATE_TASK:
+        case type.ASSIGN_TASK: // Works now.
+            const newTask = {
+                id: state[projectIndex].tasks.length,
+                userId: action.userId,
+                stage: action.task.stage,
+                subject: action.task.subject,
+            };
+            return update(state, { [projectIndex]: { tasks: { $push: [newTask] } } });
+        case type.UPDATE_TASK: // Not really used yet. May not be.
             return Objectype.assign({}, state);
         case type.UPDATE_TASK_DUE_DATE:
-            findTask = state.projects[action.projectId]
-                .tasks.findIndex(task =>
-                    (task.id === action.taskId));
-            return update(state, { projects: { [action.projectId]:
-            { tasks: { [findTask]:
-    				{ $merge: { dueDate: action.dueDate } } } } } });
-        case type.UPDATE_FLAGGED_QUESTION:
+            const what = update(state, { [projectIndex]: { tasks: { [taskIndex]:
+    				{ $set: { dueDate: action.dueDate } } } } });
+            console.log(what);
+            return update(state, { [projectIndex]: { tasks: { [taskIndex]:
+    				{ $merge: { dueDate: action.dueDate } } } } });
+        case type.UPDATE_FLAGGED_QUESTION: // Come back to when refactoring FlagSidebar.
             console.log(action.data);
-            findTask = state.projects[action.data.projectId]
-                .tasks.findIndex(task =>
-                    (task.id === action.data.assigneeId));
             return update(state, { projects: { [action.data.projectId]:
-            { tasks: { [findTask]:
+            { tasks: { [taskIndex]:
             { response: { [action.data.questionId]:
             { flag: { $set: !action.data.resolved },
                 flagHistory: { $push: [{

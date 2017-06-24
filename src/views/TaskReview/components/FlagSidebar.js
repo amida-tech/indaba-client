@@ -69,8 +69,6 @@ class FlagSidebar extends Component {
     }
 
     onSend(){
-        console.log("SENDING");
-        console.log(this.props);
         // Change project id down the road.
         this.props.updateFlaggedQuestion({
             projectId: this.state.projectId,

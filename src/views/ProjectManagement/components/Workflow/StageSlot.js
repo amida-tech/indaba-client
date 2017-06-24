@@ -14,7 +14,7 @@ const Types = {
 
 const stageSpotTarget = {
     canDrop(props, monitor) { // Checks if we can make the drop.
-        return props.task.unassigned === true;
+        return props.task.userId === undefined;
     },
     hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
@@ -41,7 +41,7 @@ class StageSlot extends Component {
         this.state = {
             diff,
             late,
-            done: TaskStatus.responsesComplete(this.props.task),
+            done: TaskStatus.responsesComplete(this.props.task, this.props.surveySize),
             flag: TaskStatus.responsesFlagged(this.props.task),
         };
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
@@ -79,7 +79,7 @@ class StageSlot extends Component {
             {this.props.user &&
                 <div>
                     <div className='name-row'>
-                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.userId}>
+                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.id}>
                             <span>{this.props.user.name}</span>
                         </Link>
                         <button className='masked-button right-icon'

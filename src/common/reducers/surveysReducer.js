@@ -42,16 +42,6 @@ const initialState = [
 				'Onions',
 				'Green Peppers',
 				'Olives'],
-		}, {
-			id: 5,
-			question: 'Which toppings do you like the most?',
-			type: 'Dropdown',
-			answers: [
-				'Sausage',
-				'Pepperoni',
-				'Onions',
-				'Green Peppers',
-				'Olives'],
 		}], // Still need to add Bulletpoint and scale
 	}
 ];

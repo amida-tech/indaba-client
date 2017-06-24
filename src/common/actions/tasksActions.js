@@ -1,10 +1,10 @@
 import * as actionTypes from '../actionTypes/tasksActionTypes';
 
-export function assignTask(assignment, projectId) {
-    console.log(actionTypes)
+export function assignTask(userId, task, projectId) {
     return {
         type: actionTypes.ASSIGN_TASK,
-        payload: assignment,
+        userId,
+        task,
         projectId,
     };
 }
@@ -17,21 +17,21 @@ export function updateTask(task, projectId) {
     };
 }
 
-// Flag Sidebar.
 export function updateTaskDueDate(taskId, projectId, dueDate) {
-   return {
-       type: actionTypes.UPDATE_TASK_DUE_DATE,
-       taskId,
-       projectId,
-       dueDate,
-   };
+    return {
+        type: actionTypes.UPDATE_TASK_DUE_DATE,
+        taskId,
+        projectId,
+        dueDate,
+    };
 }
 
+// Flag sidebar.
 export function updateFlaggedQuestion(data){
-   return {
-       type: actionTypes.UPDATE_FLAGGED_QUESTION,
-       data,
-   };
+    return {
+        type: actionTypes.UPDATE_FLAGGED_QUESTION,
+        data,
+    };
 }
 
 export function setTaskOptions() {
