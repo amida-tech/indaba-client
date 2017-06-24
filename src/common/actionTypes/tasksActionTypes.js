@@ -1,5 +1,4 @@
 export const ASSIGN_TASK = 'ASSIGN_TASK';
-export const UPDATE_TASK = 'UPDATE_TASK';
 export const UPDATE_TASK_DUE_DATE = 'UPDATE_TASK_DUE_DATE';
 
 // Flag Sidebar

@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
-import { updateTaskDueDate } from '../../../common/actions/tasksActions';
-
 class TaskDetails extends Component {
     constructor(props) {
         super(props);
-        this.handleTaskDueDateChange = this.handleTaskDueDateChange.bind(this);
-    }
-
-    handleTaskDueDateChange(event){
-        this.props.updateTaskDueDate(this.props.task.id, this.props.projectId, event);
     }
 
     render() {
+        console.log("TaskDetails");
+        console.log(this.props.updateTaskDueDate);
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
@@ -38,7 +33,8 @@ class TaskDetails extends Component {
                     <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.TASK_DUE_DATE}</div>
                         <DateTime id='taskDueDate' className='task-details__info-box-datetime'
                             format='MM/DD/YYYY'
-                            onChange={this.handleTaskDueDateChange}
+                            onChange={(event) =>
+                                this.props.updateTaskDueDate(this.props.task.id, this.props.projectId, event)}
                             value={this.props.task.dueDate ||
                             this.props.stage.endStage}/><br/>
                     </div>
@@ -63,9 +59,4 @@ TaskDetails.propTypes = {
     updateTaskDueDate: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  updateTaskDueDate: (taskId, projectId, dueDate) =>
-    dispatch(updateTaskDueDate(taskId, projectId, dueDate))
-});
-
-export default connect(null, mapDispatchToProps)(TaskDetails);
+export default TaskDetails;

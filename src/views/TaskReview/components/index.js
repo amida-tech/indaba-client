@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
+import { updateTaskDueDate } from '../../../common/actions/tasksActions';
 
 function surveyMapperHelper(response, question) {
     const match = response.filter(obj => obj.id === question.id);
@@ -37,7 +39,8 @@ class TaskReview extends Component {
                         task={this.props.task}
                         user={this.props.user}
                         vocab={this.props.vocab}
-                        stage={this.props.project.stages[this.props.task.stage]}/>
+                        stage={this.props.project.stages[this.props.task.stage]}
+                        updateTaskDueDate={this.props.updateTaskDueDate} />
                     <TaskSurveyList
                         survey={displaySurvey}
                         instructions={this.props.survey.instructions}
@@ -54,7 +57,7 @@ class TaskReview extends Component {
     }
 }
 
-// We really need to think about how we might be handling tasks in the future. 
+// We really need to think about how we might be handling tasks in the future.
 const mapStateToProps = (state, ownProps) => {
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
@@ -71,4 +74,9 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default withRouter(connect(mapStateToProps)(TaskReview));
+const mapDispatchToProps = dispatch => ({
+    updateTaskDueDate: (taskId, projectId, dueDate) =>
+        dispatch(updateTaskDueDate(taskId, projectId, dueDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

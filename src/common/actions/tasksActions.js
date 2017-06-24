@@ -9,14 +9,6 @@ export function assignTask(userId, task, projectId) {
     };
 }
 
-export function updateTask(task, projectId) {
-    return {
-        type: actionTypes.UPDATE_TASK,
-        task,
-        projectId,
-    };
-}
-
 export function updateTaskDueDate(taskId, projectId, dueDate) {
     return {
         type: actionTypes.UPDATE_TASK_DUE_DATE,

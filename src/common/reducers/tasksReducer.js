@@ -100,24 +100,19 @@ const initialState = [{
 export const TasksReducer = (state = initialState, action) => {
     let projectIndex = _.findIndex(state, (projectTasks) =>
         projectTasks.projectId === action.projectId);
-    let taskIndex = state[projectIndex] ? 
+    let taskIndex = state[projectIndex] ?
         _.findIndex(state[projectIndex].tasks, (task) => task.id === action.taskId):
         null;
     switch(action.type) {
         case type.ASSIGN_TASK: // Works now.
             const newTask = {
-                id: state[projectIndex].tasks.length,
+                id: state[projectIndex].tasks.length, // TODO: Assign new IDs.
                 userId: action.userId,
                 stage: action.task.stage,
                 subject: action.task.subject,
             };
             return update(state, { [projectIndex]: { tasks: { $push: [newTask] } } });
-        case type.UPDATE_TASK: // Not really used yet. May not be.
-            return Objectype.assign({}, state);
         case type.UPDATE_TASK_DUE_DATE:
-            const what = update(state, { [projectIndex]: { tasks: { [taskIndex]:
-    				{ $set: { dueDate: action.dueDate } } } } });
-            console.log(what);
             return update(state, { [projectIndex]: { tasks: { [taskIndex]:
     				{ $merge: { dueDate: action.dueDate } } } } });
         case type.UPDATE_FLAGGED_QUESTION: // Come back to when refactoring FlagSidebar.
