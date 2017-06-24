@@ -9,8 +9,6 @@ class TaskDetails extends Component {
     }
 
     render() {
-        console.log("TaskDetails");
-        console.log(this.props.updateTaskDueDate);
         return (
             <div className='task-details'>
                 <div className='task-details__header'>

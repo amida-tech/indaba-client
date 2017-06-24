@@ -116,7 +116,6 @@ export const TasksReducer = (state = initialState, action) => {
             return update(state, { [projectIndex]: { tasks: { [taskIndex]:
     				{ $merge: { dueDate: action.dueDate } } } } });
         case type.UPDATE_FLAGGED_QUESTION: // Come back to when refactoring FlagSidebar.
-            console.log(action.data);
             return update(state, { projects: { [action.data.projectId]:
             { tasks: { [taskIndex]:
             { response: { [action.data.questionId]:
