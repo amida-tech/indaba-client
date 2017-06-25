@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavContainer from './Nav';
+import NavContainer from './PrimaryNav';
 
 class App extends Component {
     render() {
