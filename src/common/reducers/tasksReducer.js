@@ -3,18 +3,18 @@ import * as type from '../actionTypes/tasksActionTypes';
 import _ from 'lodash';
 
 const initialState = [{
-    projectId: 0,
+    projectId: 101,
     tasks: [{
         id: 0,
         userId: 2,
         stage: 0,
         subject: 0,
         response: [{
-            id: 0,
+            id: 17,
             value: false,
             review: true,
         }, {
-            id: 1,
+            id: 21,
         }],
     }, {
         id: 1,
@@ -22,7 +22,7 @@ const initialState = [{
         stage: 0,
         subject: 1,
         response: [{
-            id: 0,
+            id: 17,
             value: true,
             flag: true,
             flagHistory: [{
@@ -36,17 +36,17 @@ const initialState = [{
             }],
             review: true,
         }, {
-            id: 1,
+            id: 21,
             value: 1,
             review: false,
             comment: 'Gross topping.',
         }, {
-            id: 2,
+            id: 18,
             value: 5,
             review: false,
             comment: 'So much food.',
         }, {
-            id: 3,
+            id: 23,
             value: 'It was the best of pizza, it was the worst of pizza.',
             flag: true,
             flagHistory: [{
@@ -56,7 +56,7 @@ const initialState = [{
             }],
             review: true,
         }, {
-            id: 4,
+            id: 34,
             value: [0, 2],
             flag: true,
             flagHistory: [{
@@ -74,7 +74,7 @@ const initialState = [{
         subject: 0,
         dueDate: '9/9/2017',
         response: [{
-            id: 0,
+            id: 17,
             value: true,
             flag: true,
             flagHistory: [{
@@ -85,7 +85,7 @@ const initialState = [{
             review: false,
             comment: 'What was the question?',
         }, {
-            questionId: 1,
+            id: 21,
             value: 0,
             review: true,
         }],

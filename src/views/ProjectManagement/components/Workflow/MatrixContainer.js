@@ -72,7 +72,8 @@ class MatrixContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || 0;
+    const projectId = parseInt(ownProps.params.projectId, 10) ||
+        state.project.projects[0].id;
     return {
         ui: state.project.ui,
         users: state.user.users,

@@ -20,7 +20,7 @@ export const initialState = {
         },
     },
 	projects: [{
-		id: 0,
+		id: 101,
 		name: 'Pizza Lovers Anonymous',
 		status: 'Active',
 		stages: [{
