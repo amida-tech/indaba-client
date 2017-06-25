@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { Box, Button } from 'grommet';
 import CreateNewProject from './CreateNewProject';
 
-class NavContainer extends Component {
+class PrimaryNavContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { showCreateNewProject: false };
@@ -40,4 +40,4 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
 
-export default connect(mapStateToProps)(NavContainer);
+export default connect(mapStateToProps)(PrimaryNavContainer);
