@@ -19,7 +19,11 @@ class PrimaryNavContainer extends Component {
                   justify='between'
                   direction='row'>
                     <Box direction='row'>
-                        <div className='primary-nav__indaba-logo primary-nav__item'>|indaba-icon|</div>
+                        <div className='primary-nav__item'>
+                            <Link to="/">
+                                <img src="/src/assets/indaba_logo.svg" className="primary-nav__indaba-logo"/>
+                            </Link>
+                        </div>
                         <Link className='primary-nav__item' to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
                         <Link className='primary-nav__item' to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
                         <Link className='primary-nav__item' to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
@@ -27,8 +31,8 @@ class PrimaryNavContainer extends Component {
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
                     <Box direction='row'>
-                        <div className='nav-mail'>|envelope-icon|</div>
-                        <div className='nav-account'>|face-icon|</div>
+                        <div className='primary-nav__icon'></div>
+                        <div className='primary-nav__icon'>|face-icon|</div>
                     </Box>
                 </Box>
             </nav>
