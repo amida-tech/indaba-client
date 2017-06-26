@@ -87,7 +87,7 @@ AddUsers.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    projectUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
     roles: PropTypes.array.isRequired,
 };
 
