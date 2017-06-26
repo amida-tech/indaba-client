@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
@@ -80,13 +82,22 @@ class AddUsers extends Component {
     }
 }
 
+AddUsers.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    workflow: PropTypes.object.isRequired,
+    survey: PropTypes.object.isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    projectUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    roles: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     workflow: state.projectwizard.workflow,
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
-    roles: state.projectwizard.workflow.roles,
+    roles: state.projectwizard.project.roles,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),
