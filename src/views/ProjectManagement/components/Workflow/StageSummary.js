@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Box } from 'grommet';
 import _ from 'lodash';
 
@@ -56,5 +58,11 @@ class StageSummary extends Component {
         );
     }
 }
+
+StageSummary.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    stage: PropTypes.object.isRequired,
+    userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default StageSummary;
