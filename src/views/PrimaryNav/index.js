@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Box, Button } from 'grommet';
 import CreateNewProject from './CreateNewProject';
-import {Icon} from 'react-fa'
+import {Icon} from 'react-fa';
 
 
 class PrimaryNavContainer extends Component {
