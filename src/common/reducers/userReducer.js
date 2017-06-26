@@ -1,34 +1,34 @@
 import en from '../../i18n/en';
 
 const initialState = {
-    id: 0,
+    id: 7,
     name: 'Super Mario',
     users: [{
-        id: 0,
+        id: 13,
         name: 'Tyler Durden',
     }, {
-        id: 1,
+        id: 71,
         name: 'Robert Paulson',
     },{
-        id: 2,
+        id: 22,
         name: 'Jon McLane',
     },{
-        id: 3,
+        id: 31,
         name: 'Ellen Ripley',
     },{
-        id: 4,
+        id: 41,
         name: 'Indiana Jones',
     },{
-        id: 5,
+        id: 25,
         name: 'Tony Stark',
     },{
-        id: 6,
+        id: 66,
         name: 'Johnny Quest',
     }, {
-        id: 7,
+        id: 87,
         name: 'Buck Rogers',
     }, {
-        id: 8,
+        id: 98,
         name: 'Marvin Martian',
     }],
 };

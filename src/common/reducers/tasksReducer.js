@@ -5,8 +5,8 @@ import _ from 'lodash';
 const initialState = [{
     projectId: 101,
     tasks: [{
-        id: 0,
-        userId: 2,
+        id: 81,
+        userId: 22,
         stage: 0,
         subject: 0,
         response: [{
@@ -17,8 +17,8 @@ const initialState = [{
             id: 21,
         }],
     }, {
-        id: 1,
-        userId: 3,
+        id: 109,
+        userId: 31,
         stage: 0,
         subject: 1,
         response: [{
@@ -28,11 +28,11 @@ const initialState = [{
             flagHistory: [{
                 timestamp: 'Sun Jun 11 2017 08:15:15 GMT-0400 (Eastern Daylight Time)',
                 comment: 'YELLOW FLAG!',
-                userId: 3,
+                userId: 31,
             }, {
                 timestamp: 'Mon Jun 12 2017 09:43:15 GMT-0400 (Eastern Daylight Time)',
                 comment: 'Well too bad cupcake!',
-                userId: 1,
+                userId: 71,
             }],
             review: true,
         }, {
@@ -52,7 +52,7 @@ const initialState = [{
             flagHistory: [{
                 timestamp: 'Wed Jun 14 2017 10:42:15 GMT-0400 (Eastern Daylight Time)',
                 comment: 'I dislike this.',
-                userId: 3,
+                userId: 31,
             }],
             review: true,
         }, {
@@ -62,14 +62,14 @@ const initialState = [{
             flagHistory: [{
                 timestamp: 'Tue Jun 13 2017 11:42:15 GMT-0400 (Eastern Daylight Time)',
                 comment: 'I REALLY dislike this.',
-                userId: 3,
+                userId: 31,
             }],
             review: false,
             comment: 'Bad combo.',
         }],
     }, {
-        id: 2,
-        userId: 4,
+        id: 222,
+        userId: 41,
         stage: 1,
         subject: 0,
         dueDate: '9/9/2017',
@@ -90,8 +90,8 @@ const initialState = [{
             review: true,
         }],
     }, {
-        id: 3,
-        userId: 5,
+        id: 13,
+        userId: 25,
         stage: 1,
         subject: 2,
     }],

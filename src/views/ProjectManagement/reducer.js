@@ -28,39 +28,39 @@ export const initialState = {
 			title: 'Fill Out The Survey',
 			startStage: '1/1/2017',
 			endStage: '2/1/2017',
-			userGroups: [0],
+			userGroups: [11],
 			permissions: 0,
 		}, {
 			id: 1,
 			title: 'First Review',
 			startStage: '3/3/2017',
 			endStage: '4/3/2017',
-			userGroups: [0, 1],
+			userGroups: [11, 13],
 			permissions: 2,
 		}, {
 			id: 2,
 			title: 'Second Review',
 			startStage: '4/4/2017',
 			endStage: '5/3/2017',
-			userGroups: [1],
+			userGroups: [13],
 			permissions: 2,
 		}, {
 			id: 3,
 			title: 'Third Review',
 			startStage: '5/4/2017',
 			endStage: '6/3/2017',
-			userGroups: [1], //Index of userGroups
+			userGroups: [13], //Index of userGroups
 			permissions: 2,
 		}], //stages end
 		userGroups: [
             {
-                id: 0,
+                id: 11,
                 name: 'Researchers',
-                users: [2,3],
+                users: [22,31],
             },{
-                id: 1,
+                id: 13,
                 name: 'Managers',
-                users: [0,1],
+                users: [13,71],
             }],
 		subjects: ['Berlin', 'Chicago', 'K\'unlun'],
     }],
