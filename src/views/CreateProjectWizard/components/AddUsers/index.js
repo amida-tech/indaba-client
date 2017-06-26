@@ -73,7 +73,7 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            roles={this.props.roles}
+                            groups={this.props.groups}
                             allUsers={this.props.allUsers}
                             onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
