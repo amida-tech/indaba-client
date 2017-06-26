@@ -44,7 +44,7 @@ class AddUsers extends Component {
                             this.handleCreateModal(false);
                         }}/>}
                 <Summary
-                    workflow={this.props.workflow}
+                    project={this.props.project}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
@@ -84,7 +84,7 @@ class AddUsers extends Component {
 
 AddUsers.propTypes = {
     vocab: PropTypes.object.isRequired,
-    workflow: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
     projectUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -93,11 +93,11 @@ AddUsers.propTypes = {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    workflow: state.projectwizard.workflow,
+    project: state.projectwizard.project,
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
-    roles: state.projectwizard.project.roles,
+    userGroups: state.projectwizard.project.userGroups,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),
