@@ -88,7 +88,7 @@ AddUsers.propTypes = {
     survey: PropTypes.object.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
     projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
-    roles: PropTypes.array.isRequired,
+    groups: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -97,7 +97,7 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     projectUsers: state.projectwizard.users,
-    userGroups: state.projectwizard.project.userGroups,
+    groups: state.projectwizard.project.userGroups,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),
