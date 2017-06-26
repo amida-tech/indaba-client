@@ -7,12 +7,16 @@ import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
+import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import {
     updateStatusChange,
     setProjectStatus,
     deleteSubject,
     addSubject,
+    deleteUserGroup,
+    addUserGroup,
+    updateUserGroup,
 } from '../actions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
@@ -28,17 +32,28 @@ class ProjectManagementContainer extends Component {
         };
         let body;
         switch (this.props.tab) {
-            case 'workflow':
-                body = <WorkflowContainer {...this.props} />;
-                break;
-            case 'subject':
-                body = <Subjects vocab={this.props.vocab}
+        case 'workflow':
+            body = <WorkflowContainer {...this.props} />;
+            break;
+        case 'subject':
+            body = <Subjects vocab={this.props.vocab}
                     subjects={this.props.project.subjects}
                     onDeleteSubject={this.props.onDeleteSubject}
                     onAddSubject={this.props.onAddSubject}/>;
-                break;
-            default:
-                body = null;
+            break;
+        case 'users':
+            body = <Users
+                vocab={this.props.vocab}
+                users={this.props.project.users.map(
+                    userId => this.props.users.find(user => user.id === userId))}
+                project={this.props.project}
+                onDeleteGroup={this.props.onDeleteGroup}
+                onAddGroup={this.props.onAddGroup}
+                onUpdateGroup={this.props.onUpdateGroup}/>;
+            break;
+        default:
+            body = null;
+            break;
         }
         return (
                 <div>
@@ -83,10 +98,11 @@ const mapStateToProps = (state, ownProps) => {
             `${project.id}` === id) || state.project.projects[0];
     return {
         vocab: state.settings.language.vocabulary,
-        project: project,
+        project,
         ui: state.project.ui,
-        survey: _.find(state.surveys, (survey) => survey.projectId === project.id),
+        survey: _.find(state.surveys, survey => survey.projectId === project.id),
         tab: state.project.ui.subnav,
+        users: state.user.users,
     };
 };
 
@@ -98,6 +114,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
         onDeleteSubject: subject => dispatch(deleteSubject(subject, id)),
         onAddSubject: subject => dispatch(addSubject(subject, id)),
+        onDeleteGroup: groupId => dispatch(deleteUserGroup(groupId, id)),
+        onAddGroup: group => dispatch(addUserGroup(group, id)),
+        onUpdateGroup: group => dispatch(updateUserGroup(group, id)),
     };
 };
 

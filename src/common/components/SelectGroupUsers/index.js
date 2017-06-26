@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { TextInput, Box } from 'grommet';
-import Modal from '../../../../common/Modal';
-import FilteredList from './FilteredList';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-class AddUserGroup extends Component {
+import { TextInput, Box } from 'grommet';
+import Modal from '../../../common/Modal';
+import FilteredList from './FilteredList';
+import { renderName } from '../../../utils/User';
+
+class SelectGroupUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupName: '',
-            groupUserIds: [],
+            groupName: _.get(this.props, 'group.name', ''),
+            groupUserIds: _.get(this.props, 'group.users', []),
             projectUsersSelected: [],
             groupUsersSelected: [],
         };
@@ -73,12 +77,12 @@ class AddUserGroup extends Component {
         });
     }
     createUserListItem(userId) {
-        const user = this.props.allUsers.find(user => user.id === userId);
+        const user = this.props.allUsers.find(allUser => allUser.id === userId);
         return {
             key: user.id,
-            searchKey: user.name,
+            searchKey: renderName(user),
             value: user,
-            label: user.name,
+            label: renderName(user),
         };
     }
     render() {
@@ -96,7 +100,8 @@ class AddUserGroup extends Component {
                     {this.props.vocab.STAGE.GROUP_NAME}
                     <TextInput
                         placeHolder={this.props.vocab.PROJECT.ENTER_GROUP_NAME}
-                        onDOMChange={this.handleGroupName}/>
+                        onDOMChange={this.handleGroupName}
+                        value={this.state.groupName}/>
                     <Box direction='row'>
                         <Box separator='all'
                             pad='small'>
@@ -133,4 +138,16 @@ class AddUserGroup extends Component {
     }
 }
 
-export default AddUserGroup;
+SelectGroupUsers.propTypes = {
+    users: PropTypes.arrayOf(PropTypes.number).isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    group: PropTypes.shape({
+        name: PropTypes.string,
+        users: PropTypes.arrayOf(PropTypes.number),
+    }),
+};
+
+export default SelectGroupUsers;

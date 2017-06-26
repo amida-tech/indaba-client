@@ -4,6 +4,7 @@ import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'gromme
 import { updateFlaggedQuestion } from '../actions';
 
 import TaskStatus from '../../../utils/TaskStatus';
+import { renderName } from '../../../utils/User';
 
 function stateInitializer(props, state) {
     const issues = props.survey.filter(question => question.flag === true);
@@ -16,8 +17,8 @@ function stateInitializer(props, state) {
         notifyUserId: 0,
         comment: '',
         resolved: false,
-        notifyUsername: props.user.users[0].name,
-    }
+        notifyUsername: renderName(props.user.users[0]),
+    };
 }
 
 class FlagSidebar extends Component {
@@ -32,42 +33,42 @@ class FlagSidebar extends Component {
         this.handleComment = this.handleComment.bind(this);
         this.handleMarkResolved = this.handleMarkResolved.bind(this);
         this.handleNotifyUserChange = this.handleNotifyUserChange.bind(this);
-        this.onCancel= this.onCancel.bind(this);
-        this.onSend= this.onSend.bind(this);
+        this.onCancel = this.onCancel.bind(this);
+        this.onSend = this.onSend.bind(this);
     }
 
-    handleFlagSelect(event){
+    handleFlagSelect(event) {
         this.setState({
             activeFlag: this.props.survey[event].flagHistory,
             activeId: event,
         });
     }
 
-    handleComment(event){
+    handleComment(event) {
         this.setState({ comment: event.target.value });
     }
 
-    handleMarkResolved(event){
+    handleMarkResolved(event) {
         this.setState({ resolved: !this.state.resolved });
     }
 
-    handleNotifyUserChange(event){
-        this.setState( {
+    handleNotifyUserChange(event) {
+        this.setState({
             notifyUserId: event.option.value,
             notifyUsername: event.option.label,
         });
     }
 
-    onCancel(){
+    onCancel() {
         this.setState({
             notifyUserId: 0,
             comment: '',
             resolved: false,
-            notifyUsername: this.props.user.users[0].name,
+            notifyUsername: renderName(this.props.user.users[0]),
         });
     }
 
-    onSend(){
+    onSend() {
         // Change project id down the road.
         this.props.updateFlaggedQuestion({
             projectId: this.state.projectId,
@@ -97,24 +98,23 @@ class FlagSidebar extends Component {
                     <List className='flag-sidebar__question-list'>
                         {this.state.survey.map((q, i) => {
                             return (this.state.flags.includes(q)) ?
-                            // TODO: this could probably go into state over conditionally rendering.
-                                <ListItem key={'listitem'+q+i}
+                                <ListItem key={`listitem${q}${i}`}
                                     className={i === this.state.activeId ?
                                         'flag-sidebar__questions flag-sidebar__questions--selected' : 'flag-sidebar__questions'}
                                     onClick={this.handleFlagSelect.bind(this, i)}>
-                                    {this.props.vocab.PROJECT.QUESTION_ + (i+1) }
+                                    {this.props.vocab.PROJECT.QUESTION_ + (i + 1) }
                                 </ListItem> :
-                                <ListItem key={'listitem'+q+i}
+                                <ListItem key={`listitem${q}${i}`}
                                     className='flag-sidebar__questions flag-sidebar__questions--inactive'>
-                                    {this.props.vocab.PROJECT.QUESTION_ + (i+1) }
-                                </ListItem>
+                                    {this.props.vocab.PROJECT.QUESTION_ + (i + 1) }
+                                </ListItem>;
                         })}
                     </List>
                     <div className='flag-sidebar__review-controls'>
                         {this.state.activeFlag && this.state.activeFlag.map((reply, i) => {
                             return (
                                 <div className='flag-sidebar__commentary'
-                                    key={'flag-comment'+i}>
+                                    key={`flag-comment${i}`}>
                                     <div className='flag-sidebar__commentary-timestamp'>
                                         {TaskStatus.formatDateTime(reply.timestamp)}
                                     </div>
@@ -122,10 +122,10 @@ class FlagSidebar extends Component {
                                         {reply.comment}
                                     </div>
                                     <div className='flag-sidebar__commentary-signature'>
-                                        –{this.props.user.users[reply.userId].name}
+                                        –{renderName(this.props.user.users[reply.userId])}
                                     </div>
                                 </div>
-                            )
+                            );
                         })}
                         <textarea className='flag-sidebar__discussion-text'
                             default={this.props.vocab.PROJECT.REPLY}
@@ -140,7 +140,7 @@ class FlagSidebar extends Component {
                             <Select
                                 value={this.state.notifyUsername}
                                 options={this.props.user.users.map(user => ({
-                                    label: user.name,
+                                    label: renderName(user),
                                     value: user.id,
                                 }))}
                                 onChange={this.handleNotifyUserChange} />
@@ -158,7 +158,7 @@ class FlagSidebar extends Component {
                     </div>
                 </div>
             </Box>
-        )
+        );
     }
 }
 
@@ -167,7 +167,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateFlaggedQuestion: (assignee, dueDate) => dispatch(updateFlaggedQuestion(assignee, dueDate))
-})
+    updateFlaggedQuestion: (assignee, dueDate) => dispatch(updateFlaggedQuestion(assignee, dueDate)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlagSidebar);
