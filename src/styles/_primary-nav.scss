@@ -33,6 +33,14 @@ $block-class:'primary-nav';
             min-width: 10px;
         }
         &__icon {
+            color: $nav-text-color;
+            padding: 10px;
+            margin-right: 20px;
+        }
+        &__envelope {
+            margin-right: 22px;
+        }
+        &__user {
 
         }
     }

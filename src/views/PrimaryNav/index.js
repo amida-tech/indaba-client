@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Box, Button } from 'grommet';
 import CreateNewProject from './CreateNewProject';
+import {Icon} from 'react-fa'
+
 
 class PrimaryNavContainer extends Component {
     constructor(props) {
@@ -30,9 +32,9 @@ class PrimaryNavContainer extends Component {
                         <Button className='primary-nav__item primary-nav__button' label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
-                    <Box direction='row'>
-                        <div className='primary-nav__icon'></div>
-                        <div className='primary-nav__icon'>|face-icon|</div>
+                    <Box className='primary-nav__icon' direction='row'>
+                        <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
+                        <Icon className='primary-nav__user' name="user-o" size="2x" />
                     </Box>
                 </Box>
             </nav>
