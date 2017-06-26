@@ -7,10 +7,18 @@ export function storeFlaggedIssues(flags) {
     };
 }
 
-export function setActiveFlag(active) {
+export function setActiveFlag(active, timestamp) {
     return {
         type: actionTypes.SET_ACTIVE_FLAG,
         active,
+        timestamp,
+    };
+}
+
+export function setSignatureId(signatureId) {
+    return {
+        type: actionTypes.SET_SIGNATURE_ID,
+        signatureId,
     };
 }
 
@@ -28,9 +36,15 @@ export function updateMarkResolved(resolved) {
     };
 }
 
-export function updateNotifyUser(notifyUserId) {
+export function updateNotifyUser(notifyUser) {
     return {
         type: actionTypes.UPDATE_NOTIFY_USER,
-        notifyUserId,
+        notifyUser,
+    };
+}
+
+export function cancelFlaggedUpdate() {
+    return {
+        type: actionTypes.CANCEL_FLAGGED_UPDATE,
     };
 }

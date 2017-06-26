@@ -4,7 +4,6 @@ $brand-neutral-colors: (#308253, #4EB276);
 $block-class:'flag-controls';
 @at-root {
     .#{$block-class} {
-        width: 80%;
         display: block;
 
         &__checkbox {

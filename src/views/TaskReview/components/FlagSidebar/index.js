@@ -11,27 +11,20 @@ class FlagSidebar extends Component {
         const issues = this.props.survey.filter(question => question.flag === true);
         this.props.actions.storeFlaggedIssues(issues);
         this.props.actions.setActiveFlag(issues[0]);
-        // return state = {
-        //     flags: issues,
-        //     activeFlag: issues.length > 0 ? issues[0].flagHistory : null,
-        //     activeId: issues.length > 0 ? issues[0].id : null,
-        //     notifyUserId: 0,
-        //     comment: '',
-        //     resolved: false,
-        //     notifyUsername: props.user.users[0].name,
-        // }
-    }
-    constructor(props) {
-        super(props);
+        this.props.actions.updateNotifyUser(this.props.users[0]);
+        this.props.actions.setSignatureId(this.props.signatureId);
     }
 
     render() {
         return (
             <Box className='flag-sidebar'>
                 <FlagHeader {...this.props} />
-                <div className='flag-sidebar__questions-answers'>
+                <div className='flag-sidebar__container'>
                     <FlagQuestionList {...this.props} />
-                    <FlagCommentary {...this.props} />
+                    <div className='flag-sidebar__controls'>
+                        <FlagCommentary {...this.props} />
+                        <FlagControls {...this.props} />
+                    </div>
                 </div>
             </Box>
         );
@@ -39,7 +32,3 @@ class FlagSidebar extends Component {
 }
 
 export default FlagSidebar;
-
-
-//
-// <FlagControls {...this.props} />

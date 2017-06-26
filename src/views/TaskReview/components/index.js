@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
-import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
@@ -14,8 +13,8 @@ import * as actions from '../actions';
 function surveyMapperHelper(response, question) {
     const match = response.filter(obj => obj.id === question.id);
     return (match.length > 0) ?
-        Object.assign({}, question, match[0], {taskView: true}) :
-        Object.assign({}, question, {taskView: true});
+        Object.assign({}, question, match[0], { taskView: true }) :
+        Object.assign({}, question, { taskView: true });
 }
 
 function surveyMapper(response, questions) {
@@ -30,7 +29,7 @@ class TaskReview extends Component {
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'>
-                    <Link to={'/project/' + this.props.project.id}>
+                    <Link to={`/project/${this.props.project.id}`}>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
@@ -60,18 +59,19 @@ class TaskReview extends Component {
 const mapStateToProps = (state, ownProps) => {
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const task = _.find(_.find(state.tasks, (projectTasks) =>
-        projectTasks.projectId === projectId).tasks, (task) => task.id === taskId);
+    const task = _.find(_.find(state.tasks, projectTasks =>
+        projectTasks.projectId === projectId).tasks, current => current.id === taskId);
     return {
-        projectId: projectId,
+        projectId,
         project: _.find(state.project.projects,
-            (project) => project.id === projectId) || state.project.projects[0],
-        taskedUser: _.find(state.user.users, (user) => user.id === task.userId),
+            project => project.id === projectId) || state.project.projects[0],
+        taskedUser: _.find(state.user.users, user => user.id === task.userId),
         users: state.user.users,
-        task: task,
-        survey: _.find(state.surveys, (survey) => survey.projectId === projectId),
+        signatureId: state.user.id,
+        task,
+        survey: _.find(state.surveys, survey => survey.projectId === projectId),
         ui: state.taskreview.ui,
-        vocab: state.settings.language.vocabulary
+        vocab: state.settings.language.vocabulary,
     };
 };
 
@@ -79,7 +79,8 @@ const mapDispatchToProps = dispatch => ({
     tasksActions: {
         updateTaskDueDate: (taskId, projectId, dueDate) =>
             dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
-        updateFlaggedQuestion: (data) => dispatch(updateFlaggedQuestion(data)),
+        updateFlaggedQuestion: (taskId, projectId, data) =>
+            dispatch(updateFlaggedQuestion(taskId, projectId, data)),
     },
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });

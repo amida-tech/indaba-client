@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
-import * as type from '../actionTypes/tasksActionTypes';
 import _ from 'lodash';
+
+import * as type from '../actionTypes/tasksActionTypes';
 
 const initialState = [{
     projectId: 101,
@@ -98,41 +99,38 @@ const initialState = [{
 }];
 
 export const TasksReducer = (state = initialState, action) => {
-    let projectIndex = _.findIndex(state, (projectTasks) =>
+    const projectIndex = _.findIndex(state, projectTasks =>
         projectTasks.projectId === action.projectId);
-    let taskIndex = state[projectIndex] ?
-        _.findIndex(state[projectIndex].tasks, (task) => task.id === action.taskId):
+    const taskIndex = state[projectIndex] ?
+        _.findIndex(state[projectIndex].tasks, task => task.id === action.taskId) :
         null;
-    switch(action.type) {
-        case type.ASSIGN_TASK: // Works now.
-            const newTask = {
-                id: state[projectIndex].tasks.length, // TODO: Assign new IDs.
-                userId: action.userId,
-                stage: action.task.stage,
-                subject: action.task.subject,
-            };
-            return update(state, { [projectIndex]: { tasks: { $push: [newTask] } } });
-        case type.UPDATE_TASK_DUE_DATE:
-            return update(state, { [projectIndex]: { tasks: { [taskIndex]:
-    				{ $merge: { dueDate: action.dueDate } } } } });
-        case type.UPDATE_FLAGGED_QUESTION: // Come back to when refactoring FlagSidebar.
-        console.log(action);
-            return update(state, { projects: { [action.data.projectId]:
-            { tasks: { [taskIndex]:
-            { response: { [action.data.questionId]:
-            { flag: { $set: !action.data.resolved },
-                flagHistory: { $push: [{
-                    timestamp: action.data.timestamp,
-                    comment: action.data.comment,
-                    userId: action.data.signatureId,
-                }] } } } } } } } });
-        case type.SET_TASK_OPTIONS:
-            // UPDATE LATER.
-            return update(state, { ui: { taskOptions: {
-                show: { $set: false },
-                task: { $set: {} },
-            } } } );
-        default:
-            return state;
+    switch (action.type) {
+    case type.ASSIGN_TASK: {
+        const newTask = {
+            id: state[projectIndex].tasks.length, // TODO: Assign new IDs.
+            userId: action.userId,
+            stage: action.task.stage,
+            subject: action.task.subject,
+        };
+        return update(state, { [projectIndex]: { tasks: { $push: [newTask] } } });
+    }
+    case type.UPDATE_TASK_DUE_DATE:
+        return update(state, { [projectIndex]: { tasks: { [taskIndex]:
+            { $merge: { dueDate: action.dueDate } } } } });
+    case type.UPDATE_FLAGGED_QUESTION: // TODO: FIX
+        return update(state, { [projectIndex]: { tasks: { [taskIndex]:
+        { response: { [action.data.active]:
+        { $set: { flag: !action.data.resolved },
+        } } } } } });
+    case type.SET_TASK_OPTIONS: // UPDATE LATER.
+        return state;
+    default:
+        return state;
     }
 };
+
+// flagHistory: { $push: [{
+//     timestamp: action.data.timestamp,
+//     comment: action.data.comment,
+//     userId: action.data.signatureId,
+// }] }

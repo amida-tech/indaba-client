@@ -4,8 +4,6 @@ $brand-neutral-colors: (#308253, #4EB276);
 $block-class:'flag-commentary';
 @at-root {
     .#{$block-class} {
-        width: 80%;
-        display: block;
 
         &__frame {
             padding: 1em;

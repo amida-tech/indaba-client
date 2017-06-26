@@ -19,9 +19,11 @@ export function updateTaskDueDate(taskId, projectId, dueDate) {
 }
 
 // Flag sidebar.
-export function updateFlaggedQuestion(data){
+export function updateFlaggedQuestion(taskId, projectId, data) {
     return {
         type: actionTypes.UPDATE_FLAGGED_QUESTION,
+        taskId,
+        projectId,
         data,
     };
 }

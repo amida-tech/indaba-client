@@ -6,13 +6,18 @@ $block-class:'flag-sidebar';
     .#{$block-class} {
         margin: 1em;
 
-        &__questions-answers {
+        &__container {
             margin-top: 1em;
             display: flex;
             flex-direction: row;
             flex-flow: nowrap;
             justify-content: flex-end;
             position: relative;
+        }
+
+        &__controls {
+            width: 80%;
+            display: block;
         }
 
     }
