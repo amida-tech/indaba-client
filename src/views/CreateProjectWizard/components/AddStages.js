@@ -40,6 +40,7 @@ class AddStages extends Component {
             <Box direction='row'>
                 {this.props.project.stages.map((stage) => {
                     return <StageSummary stage={stage} vocab={this.props.vocab}
+                        userGroups={this.props.groups}
                         key={stage.id}/>;
                 })}
                 <div className='add-stage-placeholder'
