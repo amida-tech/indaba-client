@@ -1,5 +1,4 @@
 import update from 'immutability-helper';
-import uuidv1 from 'uuid/v1';
 
 import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
@@ -20,6 +19,7 @@ export const initialState = {
             reassignId: null,
             task: {},
         },
+        userGroupListSearchQuery: '',
     },
     projects: [{
         id: 101,
@@ -93,6 +93,9 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } });
+    case type.UPDATE_USER_GROUP_LIST_SEARCH_QUERY:
+        return update(state, { ui: {
+            userGroupListSearchQuery: { $set: action.query } } });
     case type.SHOW_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: true },

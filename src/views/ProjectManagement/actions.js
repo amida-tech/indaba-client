@@ -107,6 +107,13 @@ export function updateUserSearchQuery(query) {
     };
 }
 
+export function updateUserGroupListSearchQuery(query) {
+    return {
+        type: actionTypes.UPDATE_USER_GROUP_LIST_SEARCH_QUERY,
+        query,
+    };
+}
+
 // Task Options Modal:
 export function showTaskOptionsModal(task) {
     return {
@@ -117,7 +124,7 @@ export function showTaskOptionsModal(task) {
 
 export function closeTaskOptionsModal() {
     return {
-        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL
+        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
 
