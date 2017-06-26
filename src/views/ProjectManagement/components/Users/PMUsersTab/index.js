@@ -31,11 +31,6 @@ class PMUsersTab extends Component {
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
                 <form>
-                    <Field name='search'
-                        component='input'
-                        type='text'
-                        className='pm-users-tab__text-input'
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}/>
                     <Field name='firstName'
                         component='input'
                         type='text'
@@ -52,6 +47,11 @@ class PMUsersTab extends Component {
                         className='pm-users-tab__text-input'
                         placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
                     <button type='button'>{this.props.vocab.COMMON.INVITE}</button>
+                    <Field name='search'
+                        component='input'
+                        type='text'
+                        className='pm-users-tab__text-input'
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}/>
                 </form>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
