@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'grommet';
-import _ from 'lodash';
 
 import { updateFlaggedQuestion } from '../../../common/actions/tasksActions';
+
 import TaskStatus from '../../../utils/TaskStatus';
 
 function stateInitializer(props, state) {
@@ -123,7 +123,7 @@ class FlagSidebar extends Component {
                                         {reply.comment}
                                     </div>
                                     <div className='flag-sidebar__commentary-signature'>
-                                        –{_.find(this.props.user.users, (user) => (user.id === reply.userId)).name}
+                                        –{this.props.user.users[reply.userId].name}
                                     </div>
                                 </div>
                             )

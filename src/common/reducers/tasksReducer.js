@@ -80,7 +80,7 @@ const initialState = [{
             flagHistory: [{
                 timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
                 comment: 'I like flags.',
-                userId: 2,
+                userId: 22,
             }],
             review: false,
             comment: 'What was the question?',
