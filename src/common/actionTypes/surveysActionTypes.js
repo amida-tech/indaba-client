@@ -1,0 +1,1 @@
+export const SET_SURVEY_STATUS = 'SET_SURVEY_STATUS';

@@ -8,6 +8,7 @@ const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
+    surveys: CommonReducers.SurveysReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
     projectwizard: CreateProjectWizardReducer

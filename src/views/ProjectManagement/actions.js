@@ -62,17 +62,16 @@ export function toggleFilter(filter, projectId) {
     };
 }
 
-export function setProjectStatus(status, projectId) {
+export function updateStatusChange(status) {
     return {
-        type: actionTypes.SET_PROJECT_STATUS,
+        type: actionTypes.UPDATE_STATUS_CHANGE,
         status,
-        projectId,
     };
 }
 
-export function setSurveyStatus(status, projectId) {
+export function setProjectStatus(status, projectId) {
     return {
-        type: actionTypes.SET_SURVEY_STATUS,
+        type: actionTypes.SET_PROJECT_STATUS,
         status,
         projectId,
     };
