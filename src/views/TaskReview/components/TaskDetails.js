@@ -21,31 +21,36 @@ class TaskDetails extends Component {
                     <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
                     <div className='task-details__header-name'>{this.props.user.name}</div>
                 </div>
-                <div className='task-details__info'>
+                <table className='task-details__info'>
 
-                    <div className='task-details__info-box'>
-                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.STAGE}</div>
-                        <div className='task-details__info-box-title'>{this.props.stage.title}</div>
-                    </div>
+                <thead className='task-details__info-box'>
+                        <td className='task-details__info-box-label'>{this.props.vocab.PROJECT.STAGE}</td>
+                        <tr>
+                        <td className='task-details__info-box-title'>{this.props.stage.title}</td>
+                        </tr>
+                    </thead>
 
-                    <div className='task-details__info-box'>
-                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SUBJECT}</div>
-                        <div className='task-details__info-box-title'>{this.props.subject}</div>
-
-                    </div>
-                    <div className='task-details__info-box'>
-                    <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.TASK_DUE_DATE}</div>
+                    <thead className='task-details__info-box'>
+                        <td className='task-details__info-box-label'>{this.props.vocab.PROJECT.SUBJECT}</td>
+                        <tr>
+                        <td className='task-details__info-box-title'>{this.props.subject}</td>
+                        </tr>
+                    </thead>
+                    <thead className='task-details__info-box'>
+                    <td className='task-details__info-box-label'>{this.props.vocab.PROJECT.TASK_DUE_DATE}</td>
                         <DateTime id='taskDueDate' className='task-details__info-box-datetime'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
                             value={this.props.task.dueDate ||
                             this.props.stage.endStage}/><br/>
-                    </div>
-                    <div className='task-details__info-box'>
-                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SURVEY}</div>
-                        <div className='task-details__info-box-survey'>{this.props.surveyName}</div>
-                    </div>
-                </div>
+                    </thead>
+                    <thead className='task-details__info-box'>
+                        <td className='task-details__info-box-label'>{this.props.vocab.PROJECT.SURVEY}</td>
+                        <tr>
+                        <td className='task-details__info-box-survey'>{this.props.surveyName}</td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         )
     }

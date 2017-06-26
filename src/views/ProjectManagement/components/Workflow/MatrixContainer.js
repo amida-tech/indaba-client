@@ -47,7 +47,7 @@ class MatrixContainer extends Component {
                         </tbody>
                       </table>
                   </div>
-                  <div className='col-sm-4'><AssigneeContainer {...this.props} /></div>
+                  <div className='user-sidebar'><AssigneeContainer {...this.props} /></div>
                 </div>
             </div>
         );

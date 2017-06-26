@@ -4,11 +4,10 @@ $block-class:'task-survey-list';
             margin: 1em;
 
         &__wrapper {
+            padding-bottom: 1em;
             display: flex;
             justify-content: flex-end;
-            padding: 8px;
             border-bottom: 1px solid $border-color;
-            border-top: 1px solid $border-color;
             width: 100%;
         }
         &__instructions {

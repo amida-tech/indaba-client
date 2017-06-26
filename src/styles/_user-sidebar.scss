@@ -4,6 +4,8 @@ $block-class:'user-sidebar';
 
         &>* {
             padding: 5px;
+            min-width: 500px;
+            overflow: hidden;
         }
 
         &__instructions {
