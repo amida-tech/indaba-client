@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { Box, Button } from 'grommet';
 import Summary from '../../../common/components/Summary';
 import AddStage from '../../ProjectManagement/components/Modals/AddStage';
@@ -15,14 +17,14 @@ class AddStages extends Component {
         return (<div className='add-stages-step'>
             {this.state.addStageModal && <AddStage
                 vocab={this.props.vocab}
-                roles={this.props.roles}
+                userGroups={this.props.groups}
                 onCancel={() => this.setState({ addStageModal: false })}
                 onAddStage={(stage) => {
                     this.setState({ addStageModal: false });
                     this.props.onAddStage(stage);
                 }}/>}
             <Summary
-                workflow={this.props.workflow}
+                project={this.props.project}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -36,7 +38,7 @@ class AddStages extends Component {
             </p>
             <hr className='divider' />
             <Box direction='row'>
-                {this.props.workflow.stages.map((stage) => {
+                {this.props.project.stages.map((stage) => {
                     return <StageSummary stage={stage} vocab={this.props.vocab}
                         key={stage.id}/>;
                 })}
@@ -54,11 +56,18 @@ class AddStages extends Component {
     }
 }
 
+AddStages.propTypes = {
+    project: PropTypes.object.isRequired,
+    survey: PropTypes.object.isRequired,
+    vocab: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    workflow: state.projectwizard.workflow,
+    project: state.projectwizard.project,
     survey: state.projectwizard.survey,
-    roles: state.projectwizard.workflow.roles.map(role => role.name),
+    groups: state.projectwizard.project.userGroups,
 });
 
 const mapDispatchToProps = dispatch => ({
