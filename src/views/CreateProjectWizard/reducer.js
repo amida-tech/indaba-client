@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
         return update(state, { project:
             { subjects: { $set: [...(state.project.subjects || []), ...action.subjects] } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
-        return update(state, { subjects: { project:
+        return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
     case type.ADD_USER_TO_WIZARD:
         return update(state, { users: { $push: [action.user.id] } });
