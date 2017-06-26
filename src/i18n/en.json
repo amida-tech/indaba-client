@@ -66,7 +66,7 @@
     "MARK_RESOLVED": "Mark Resolved",
     "NOTIFY_USER": "Notify user to respond to flag",
     "REPLY": "Reply",
-    "FLAGS_REPORTED": " flag(s) reported on this stage",
+    "_FLAGS_REPORTED": " flag(s) reported on this stage",
     "QUESTION_": "Question ",
     "TASK_VIEW": "Task View",
     "EXPAND_ALL": "Expand All",

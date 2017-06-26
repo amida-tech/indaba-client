@@ -7,18 +7,8 @@ import { updateFlaggedQuestion } from '../../../common/actions/tasksActions';
 import TaskStatus from '../../../utils/TaskStatus';
 
 function stateInitializer(props, state) {
-    const issues = props.survey.filter(question => question.flag === true);
-    return state = {
-        survey: props.survey,
-        projectId: 0,
-        flags: props.survey.filter(question => question.flag === true),
-        activeFlag: issues.length > 0 ? issues[0].flagHistory : null,
-        activeId: issues.length > 0 ? issues[0].id : null,
-        notifyUserId: 0,
-        comment: '',
-        resolved: false,
-        notifyUsername: props.user.users[0].name,
-    }
+
+
 }
 
 class FlagSidebar extends Component {
@@ -171,4 +161,4 @@ const mapDispatchToProps = dispatch => ({
     updateFlaggedQuestion: (assignee, dueDate) => dispatch(updateFlaggedQuestion(assignee, dueDate))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlagSidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(OLDOLDOLD);
