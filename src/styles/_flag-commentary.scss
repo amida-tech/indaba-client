@@ -1,5 +1,6 @@
 $font-color: #A4AEBF;
 $brand-neutral-colors: (#308253, #4EB276);
+$timestamp-green: #429664;
 
 $block-class:'flag-commentary';
 @at-root {
@@ -12,7 +13,7 @@ $block-class:'flag-commentary';
 
         &__timestamp {
             margin-bottom: 3px;
-            color: green;
+            color: $timestamp-green;
             weight: bold;
         }
 
