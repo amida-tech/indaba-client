@@ -10,7 +10,6 @@ dragging and dropping files is easier then stripping through scss files. */
 @import './task-details.scss';
 @import './task-survey-list.scss';
 @import './review-pane.scss';
-@import './flag-sidebar.scss';
 @import './questions.scss';
 @import './survey-card.scss';
 
@@ -22,3 +21,18 @@ dragging and dropping files is easier then stripping through scss files. */
 @import './invite-user.scss';
 @import './assignee-card.scss';
 @import './primary-nav.scss';
+
+@import './flag-sidebar.scss';
+@import './flag-header.scss';
+@import './flag-commentary.scss';
+@import './flag-controls.scss';
+@import './flag-question-list.scss';
+
+@import './account-tab.scss';
+@import './preference-tab.scss';
+@import './tasks-tab';
+@import './pm-user-list-header.scss';
+@import './pm-user-list-row.scss';
+@import './user-name-input.scss';
+
+@import './subject-list-entry.scss';

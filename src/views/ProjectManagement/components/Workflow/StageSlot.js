@@ -7,6 +7,7 @@ import IonIcon from 'react-ionicons';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import { showTaskOptionsModal } from '../../actions';
+import { renderName } from '../../../../utils/User';
 
 const Types = {
     ASSIGNEECARD: 'AssigneeCard',
@@ -14,7 +15,7 @@ const Types = {
 
 const stageSpotTarget = {
     canDrop(props, monitor) { // Checks if we can make the drop.
-        return props.task.unassigned === true;
+        return props.task.userId === undefined;
     },
     hover(props, monitor, component) {
     // ... Maybe make the assignee card opaque?
@@ -41,13 +42,13 @@ class StageSlot extends Component {
         this.state = {
             diff,
             late,
-            done: TaskStatus.responsesComplete(this.props.task),
+            done: TaskStatus.responsesComplete(this.props.task, this.props.surveySize),
             flag: TaskStatus.responsesFlagged(this.props.task),
         };
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
     }
 
-    handleTaskOptions(){
+    handleTaskOptions() {
         this.props.showTaskOptionsModal(this.props.task);
     }
 
@@ -73,14 +74,14 @@ class StageSlot extends Component {
     }
 
     render() {
-    const { position, isOver, canDrop, connectDropTarget } = this.props;
-    return connectDropTarget(
+        const { position, isOver, canDrop, connectDropTarget } = this.props;
+        return connectDropTarget(
         <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
             {this.props.user &&
                 <div>
                     <div className='name-row'>
-                        <Link to={'/task-review/' + this.props.project.id+'/'+this.props.task.userId}>
-                            <span>{this.props.user.name}</span>
+                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
+                            <span>{renderName(this.props.user)}</span>
                         </Link>
                         <button className='masked-button right-icon'
                             onClick={this.handleTaskOptions}>
@@ -92,14 +93,17 @@ class StageSlot extends Component {
                         {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
                     </div>
                     <div className='due-row'>
-                        <div>{this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span></div>
+                        <div>
+                            {this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span>
+                        </div>
                     </div>
              </div>
          }
          {!this.props.user &&
              <div>
                  <label className='inline'>
-                     <IonIcon className='left-icon' icon='ion-ios-plus'/>{this.props.vocab.ASSIGN_TASK}
+                     <IonIcon className='left-icon' icon='ion-ios-plus'/>
+                    {this.props.vocab.ASSIGN_TASK}
                  </label>
              </div>
          }
@@ -110,7 +114,7 @@ class StageSlot extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    showTaskOptionsModal: (task) => dispatch(showTaskOptionsModal(task)),
+    showTaskOptionsModal: task => dispatch(showTaskOptionsModal(task)),
 });
 
 export default compose(

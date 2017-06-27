@@ -1,17 +1,50 @@
 import * as actionTypes from './actionTypes';
 
-export function updateTaskDueDate(assigneeId, projectId, dueDate) {
-   return {
-       type: actionTypes.UPDATE_TASK_DUE_DATE,
-       assigneeId,
-       projectId,
-       dueDate,
-   };
+export function storeFlaggedIssues(flags) {
+    return {
+        type: actionTypes.STORE_FLAGGED_ISSUES,
+        flags,
+    };
 }
 
-export function updateFlaggedQuestion(data){
-   return {
-       type: actionTypes.UPDATE_FLAGGED_QUESTION,
-       data,
-   };
+export function setActiveFlag(active, timestamp) {
+    return {
+        type: actionTypes.SET_ACTIVE_FLAG,
+        active,
+        timestamp,
+    };
+}
+
+export function setSignatureId(signatureId) {
+    return {
+        type: actionTypes.SET_SIGNATURE_ID,
+        signatureId,
+    };
+}
+
+export function updateFlagComment(comment) {
+    return {
+        type: actionTypes.UPDATE_FLAG_COMMENT,
+        comment,
+    };
+}
+
+export function updateMarkResolved(resolved) {
+    return {
+        type: actionTypes.UPDATE_MARK_RESOLVED,
+        resolved,
+    };
+}
+
+export function updateNotifyUser(notifyUser) {
+    return {
+        type: actionTypes.UPDATE_NOTIFY_USER,
+        notifyUser,
+    };
+}
+
+export function cancelFlaggedUpdate() {
+    return {
+        type: actionTypes.CANCEL_FLAGGED_UPDATE,
+    };
 }

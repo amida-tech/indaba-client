@@ -1,17 +1,22 @@
-import * as CommonReducers from './common/reducers';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
+import * as CommonReducers from './common/reducers';
 import { ProjectManagementReducer } from './views/ProjectManagement';
-import { CreateProjectWizardReducer} from './views/CreateProjectWizard';
+import { TaskReviewReducer } from './views/TaskReview';
+import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
     surveys: CommonReducers.SurveysReducer,
+    tasks: CommonReducers.TasksReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
-    projectwizard: CreateProjectWizardReducer
+    taskreview: TaskReviewReducer,
+    projectwizard: CreateProjectWizardReducer,
+    form: formReducer,
 };
 
 export default combineReducers(reducers);

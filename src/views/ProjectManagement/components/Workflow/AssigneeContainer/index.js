@@ -8,6 +8,8 @@ import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
 
+import { renderName } from '../../../../../utils/User';
+
 class AssigneeContainer extends Component {
 
     constructor(props) {
@@ -36,7 +38,7 @@ class AssigneeContainer extends Component {
 
     render() {
         const unassigned = this.props.users
-            .filter(user => this.searchFilter(user.name))
+            .filter(user => this.searchFilter(renderName(user)))
             .filter(user => this.groupFilter(user))
             .map(unassignee =>
                 React.createElement(AssigneeCard, this.props, unassignee),

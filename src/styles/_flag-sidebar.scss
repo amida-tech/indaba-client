@@ -6,26 +6,7 @@ $block-class:'flag-sidebar';
     .#{$block-class} {
         margin: 1em;
 
-        &__title {
-            margin-left: 10px;
-            font-size: 22px;
-        }
-
-        &__head-group {
-            margin-left: 10px;
-            display: flex;
-            flex-flow: nowrap;
-            justify-content: space-between;
-            align-items: center;
-
-            &-button {
-                //margin-left: 1em;
-                padding: 0px;
-                border-radius: 2px;
-            }
-        }
-
-        &__review-container {
+        &__container {
             margin-top: 1em;
             display: flex;
             flex-direction: row;
@@ -34,92 +15,10 @@ $block-class:'flag-sidebar';
             position: relative;
         }
 
-        &__review-controls {
+        &__controls {
             width: 80%;
             display: block;
         }
 
-        &__commentary {
-            padding: 1em;
-            background: #ffffff;
-
-            &-timestamp {
-                margin-bottom: 3px;
-                color: green;
-                weight: bold;
-            }
-
-            &-comment {
-            }
-
-            &-signature {
-            }
-        }
-
-        &__question-list {
-            min-width: 120px;
-        }
-
-        &__questions {  //flag-sidebar__questions
-            font-size: 12px;
-            white-space: nowrap;
-            overflow: hidden;
-
-            &:hover {
-                background-color: nth($brand-neutral-colors, 2);
-            }
-
-
-            &--selected { //flag-sidebar__questions flag-sidebar__questions--selected
-                background-color: #399862;
-                color: #ffffff;
-                font-size: 12px;
-            }
-
-            &--inactive {
-                color: #d3d3d3;
-                font-size: 12px;
-            }
-        }
-
-        &__discussion-text {
-            width: 100%;
-            resize: none;
-            height: 100%;
-        }
-
-        &__checkbox {
-            margin-top: 1em;
-            display: flex;
-            justify-content: flex-end;
-            flex-flow: nowrap;
-        }
-
-        &__notify {
-            margin-top: 0em;
-            margin-bottom: 1em;
-        }
-
-        &__button-group {
-            margin-top: 5px;
-            float: right;
-
-            &-send {
-                margin-left: 5px;
-            }
-        }
-
-        .grommetux-text-input {
-            width: 100%;
-            height: 20em;
-            border: 0;
-            background: #ffffff;
-            padding: 1em;
-            margin-right: 0px;
-        }
     }
-}
-
-.grommetux-check-box__label {
-    margin-right: 0px;
 }
