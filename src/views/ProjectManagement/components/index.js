@@ -91,10 +91,8 @@ ProjectManagementContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10);
-    const project = projectId !== undefined ?
-        _.find(state.project.projects, current => current.id === projectId) :
-        state.project.projects[0];
+    const projectId = parseInt(ownProps.params.projectId, 10) || state.project.projects[0].id;
+    const project = _.find(state.project.projects, current => current.id === projectId);
     return {
         project,
         tasks: _.find(state.tasks, task => task.projectId === project.id).tasks,
