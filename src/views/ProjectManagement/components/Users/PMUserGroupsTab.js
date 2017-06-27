@@ -12,7 +12,8 @@ class PMUserGroupsTab extends Component {
         return (
             <div className='pm-user-groups-tab'>
                 <input type='text' className='pm-user-groups-tab__search'
-                    onChange={evt => this.props.onSearch(evt.target.value)}/>
+                    onChange={evt => this.props.onSearch(evt.target.value)}
+                    placeholder={this.props.vocab.COMMON.SEARCH}/>
                 <UserGroupList columnHeaders={true}
                     groups={this.props.project.userGroups
                         .filter(group => this.filterGroup(group, this.props.query))}
