@@ -8,6 +8,7 @@ const initialState = {
         },
     },
     project: {
+        id: 41,
         name: '',
         summary: '',
         status: 'Inactive',
@@ -22,6 +23,8 @@ const initialState = {
         }],
     },
     survey: {
+        id: 8,
+        projectId: 41,
         status: 'Draft',
     },
     users: [0, 1],
