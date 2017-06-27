@@ -4,15 +4,16 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
+import _ from 'lodash';
 
-import TaskOptions from '../Modals/TaskOptions.js';
+import TaskOptions from '../Modals/TaskOptions';
 import AssigneeContainer from './AssigneeContainer';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
 import {
     closeTaskOptionsModal,
     updateTaskOptionsChoice,
-    updateTaskOptionsReassignId,
+    updateTaskOptionsReassignUser,
     updateTaskOptionsNotify,
     updateTaskOptionsMessage,
 } from '../../actions';
@@ -77,28 +78,29 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ui: state.project.ui,
         users: state.user.users,
-        tasks: _.find(state.tasks, (tasks) => tasks.projectId === projectId).tasks,
-        project: _.find(state.project.projects, (project) =>
+        tasks: _.find(state.tasks, tasks => tasks.projectId === projectId).tasks,
+        project: _.find(state.project.projects, project =>
             project.id === projectId) || state.project.projects[0],
-        surveySize: _.find(state.surveys, (survey) =>
+        surveySize: _.find(state.surveys, survey =>
             survey.projectId === projectId).questions.length,
-        vocab: state.settings.language.vocabulary
-    }
+        vocab: state.settings.language.vocabulary,
+    };
 };
 
 const mapDispatchToProps = dispatch => ({
     calls: {
         closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),
-        updateTaskOptionsChoice: (choice) => dispatch(updateTaskOptionsChoice(choice)),
-        updateTaskOptionsReassignId: (reassignId) => dispatch(updateTaskOptionsReassignId(reassignId)),
-        updateTaskOptionsNotify: (notify) => dispatch(updateTaskOptionsNotify(notify)),
-        updateTaskOptionsMessage: (message) => dispatch(updateTaskOptionsMessage(message)),
+        updateTaskOptionsChoice: choice => dispatch(updateTaskOptionsChoice(choice)),
+        updateTaskOptionsReassignUser: reassignUser =>
+            dispatch(updateTaskOptionsReassignUser(reassignUser)),
+        updateTaskOptionsNotify: notify => dispatch(updateTaskOptionsNotify(notify)),
+        updateTaskOptionsMessage: message => dispatch(updateTaskOptionsMessage(message)),
         setTaskOptions: () => dispatch(setTaskOptions()),
-    }
+    },
 });
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    DragDropContext(HTML5Backend)
+    DragDropContext(HTML5Backend),
 )(MatrixContainer);

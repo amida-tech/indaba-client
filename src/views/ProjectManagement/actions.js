@@ -117,7 +117,7 @@ export function showTaskOptionsModal(task) {
 
 export function closeTaskOptionsModal() {
     return {
-        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL
+        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
 
@@ -128,10 +128,10 @@ export function updateTaskOptionsChoice(choice) {
     };
 }
 
-export function updateTaskOptionsReassignId(reassignId) {
+export function updateTaskOptionsReassignUser(reassignUser) {
     return {
-        type: actionTypes.UPDATE_TASK_OPTIONS_REASSIGN_ID,
-        reassignId,
+        type: actionTypes.UPDATE_TASK_OPTIONS_REASSIGN_USER,
+        reassignUser,
     };
 }
 
