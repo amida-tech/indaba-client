@@ -15,8 +15,8 @@ import {
     updateTaskOptionsReassignId,
     updateTaskOptionsNotify,
     updateTaskOptionsMessage,
-    setTaskOptions,
 } from '../../actions';
+import { setTaskOptions } from '../../../../common/actions/tasksActions';
 
 class MatrixContainer extends Component {
     render() {
@@ -53,8 +53,9 @@ class MatrixContainer extends Component {
                           {this.props.project.subjects.map((subject, key) =>
                             <FilteredRow key={key}
                               subject={{ name: subject, key }}
+                              surveySize={this.props.surveySize}
                               stages={this.props.project.stages}
-                              tasks={this.props.project.tasks}
+                              tasks={this.props.tasks}
                               users={this.props.users}
                               vocab={this.props.vocab}
                               project={this.props.project}
@@ -71,29 +72,33 @@ class MatrixContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10);
+    const projectId = parseInt(ownProps.params.projectId, 10) ||
+        state.project.projects[0].id;
     return {
         ui: state.project.ui,
         users: state.user.users,
-        project: _.find(state.project.projects, project =>
+        tasks: _.find(state.tasks, (tasks) => tasks.projectId === projectId).tasks,
+        project: _.find(state.project.projects, (project) =>
             project.id === projectId) || state.project.projects[0],
-        vocab: state.settings.language.vocabulary,
-    };
+        surveySize: _.find(state.surveys, (survey) =>
+            survey.projectId === projectId).questions.length,
+        vocab: state.settings.language.vocabulary
+    }
 };
 
 const mapDispatchToProps = dispatch => ({
     calls: {
         closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),
-        updateTaskOptionsChoice: choice => dispatch(updateTaskOptionsChoice(choice)),
-        updateTaskOptionsReassignId: reassignId => dispatch(updateTaskOptionsReassignId(reassignId)),
-        updateTaskOptionsNotify: notify => dispatch(updateTaskOptionsNotify(notify)),
-        updateTaskOptionsMessage: message => dispatch(updateTaskOptionsMessage(message)),
+        updateTaskOptionsChoice: (choice) => dispatch(updateTaskOptionsChoice(choice)),
+        updateTaskOptionsReassignId: (reassignId) => dispatch(updateTaskOptionsReassignId(reassignId)),
+        updateTaskOptionsNotify: (notify) => dispatch(updateTaskOptionsNotify(notify)),
+        updateTaskOptionsMessage: (message) => dispatch(updateTaskOptionsMessage(message)),
         setTaskOptions: () => dispatch(setTaskOptions()),
-    },
+    }
 });
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    DragDropContext(HTML5Backend),
+    DragDropContext(HTML5Backend)
 )(MatrixContainer);

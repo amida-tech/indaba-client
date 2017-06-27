@@ -22,7 +22,8 @@ class UserGroupListEntry extends Component {
                 </div>
                 {this.props.onDeleteClick &&
                 <div className='user-group-list-entry__delete'
-                    onClick={() => this.props.onDeleteClick(this.props.group.id)}>
+                    onClick={() =>
+                        this.props.onDeleteClick(this.props.group.id, this.props.projectId)}>
                     <IonIcon icon='ion-android-delete' />
                 </div>}
             </div>

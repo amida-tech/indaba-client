@@ -6,29 +6,25 @@ import _ from 'lodash';
 const _taskLookup = (stage, subjectKey, tasks) =>
     tasks.find(
         element => element.subject === subjectKey && element.stage === stage.id) ||
-        { stage: stage.id,
-            subject: subjectKey,
-            startDate: stage.startStage,
-            endDate: stage.endStage,
-            unassigned: true };
+        { stage: stage.id, subject: subjectKey };
 
 class FilteredRow extends Component {
     taskIsFilteredOut(taskData) {
         switch (this.props.filter) {
-        case 'unassigned':
-            return !taskData.unassigned;
-        case 'late':
-            return !(TaskStatus.dueDateInPast(taskData, this.props.stages) &&
-                    !TaskStatus.responsesComplete(taskData));
-        case 'inprogress':
-            return !(TaskStatus.responsesExist(taskData) &&
-                    !TaskStatus.responsesComplete(taskData));
-        case 'notstarted':
-            return TaskStatus.responsesExist(taskData);
-        case 'flagged':
-            return !TaskStatus.responsesFlagged(taskData);
-        default:
-            return false;
+            case 'unassigned':
+                return taskData.userId;
+            case 'late':
+                return !(TaskStatus.dueDateInPast(taskData, this.props.stages) &&
+                        !TaskStatus.responsesComplete(taskData, this.props.surveySize));
+            case 'inprogress':
+                return !(TaskStatus.responsesExist(taskData) &&
+                        !TaskStatus.responsesComplete(taskData, this.props.surveySize));
+            case 'notstarted':
+                return TaskStatus.responsesExist(taskData);
+            case 'flagged':
+                return !TaskStatus.responsesFlagged(taskData);
+            default:
+                return false;
         }
     }
 
@@ -50,10 +46,11 @@ class FilteredRow extends Component {
                 <td key={`StageSlot-${task.subject}-${task.stage}`}
                     className='stage-slot-cell'>
                 <StageSlot task={task}
-                    user={_.find(this.props.users, user => user.id === task.userId)}
+                    user={_.find(this.props.users, (user) => user.id === task.userId)}
                     filtered={this.taskIsFilteredOut(task)}
                     stageData={this.props.stages.find(stage =>
                         stage.id === task.stage)}
+                    surveySize={this.props.surveySize}
                     project={this.props.project}
                     vocab={this.props.vocab.PROJECT.CARD}/>
                 </td>,

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import _ from 'lodash';
-import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
+import { updateTaskDueDate, updateFlaggedQuestion } from '../../../common/actions/tasksActions';
+import * as actions from '../actions';
 
 function surveyMapperHelper(response, question) {
     const match = response.filter(obj => obj.id === question.id);
@@ -35,9 +37,10 @@ class TaskReview extends Component {
                         surveyName={this.props.survey.name}
                         subject={this.props.project.subjects[this.props.task.subject]}
                         task={this.props.task}
-                        user={this.props.user}
+                        taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
-                        stage={this.props.project.stages[this.props.task.stage]}/>
+                        stage={this.props.project.stages[this.props.task.stage]}
+                        updateTaskDueDate={this.props.updateTaskDueDate} />
                     <TaskSurveyList
                         survey={displaySurvey}
                         instructions={this.props.survey.instructions}
@@ -45,8 +48,7 @@ class TaskReview extends Component {
                 </div>
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
-                    task={this.props.task}
-                    vocab={this.props.vocab}
+                    {...this.props}
                     survey={displaySurvey}/>
                 </div>
             </div>
@@ -54,21 +56,33 @@ class TaskReview extends Component {
     }
 }
 
-// Thinking it might be a good idea to shave down what is needed here so above
-// can just {...this.props} along.
 const mapStateToProps = (state, ownProps) => {
-    const userId = parseInt(ownProps.params.userId, 10);
+    const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const project = _.find(state.project.projects,
-        project => project.id === projectId) || state.project.projects[0];
+    const task = _.find(_.find(state.tasks, projectTasks =>
+        projectTasks.projectId === projectId).tasks, current => current.id === taskId);
     return {
-        user: _.find(state.user.users, user => user.id === userId),
-        task: _.find(project.tasks, task => task.userId === userId),
-        project,
         projectId,
-        survey: _.find(state.surveys, survey => survey.projectId === project.id),
+        project: _.find(state.project.projects,
+            project => project.id === projectId) || state.project.projects[0],
+        taskedUser: _.find(state.user.users, user => user.id === task.userId),
+        users: state.user.users,
+        signatureId: state.user.id,
+        task,
+        survey: _.find(state.surveys, survey => survey.projectId === projectId),
+        ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
     };
 };
 
-export default withRouter(connect(mapStateToProps)(TaskReview));
+const mapDispatchToProps = dispatch => ({
+    tasksActions: {
+        updateTaskDueDate: (taskId, projectId, dueDate) =>
+            dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
+        updateFlaggedQuestion: (taskId, projectId, data) =>
+            dispatch(updateFlaggedQuestion(taskId, projectId, data)),
+    },
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

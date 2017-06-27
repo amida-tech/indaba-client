@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import * as CommonReducers from './common/reducers';
 import { ProjectManagementReducer } from './views/ProjectManagement';
+import { TaskReviewReducer } from './views/TaskReview';
 import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 
 const reducers = {
@@ -10,8 +11,10 @@ const reducers = {
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
     surveys: CommonReducers.SurveysReducer,
+    tasks: CommonReducers.TasksReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
+    taskreview: TaskReviewReducer,
     projectwizard: CreateProjectWizardReducer,
     form: formReducer,
 };

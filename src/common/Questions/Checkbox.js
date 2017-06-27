@@ -13,6 +13,6 @@ export class Checkbox extends Component {
                         this.props.vocab.NO}
                     toggle={true}/>
             </Box>
-        );
+        )
     }
 }

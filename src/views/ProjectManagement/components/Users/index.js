@@ -27,10 +27,10 @@ class Users extends Component {
                             .find(group => group.id === this.state.modalId)}
                         onSave={(group) => {
                             if (this.state.modalName === 'addgroup') {
-                                this.props.onAddGroup(group);
+                                this.props.onAddGroup(group, this.props.project.id);
                             } else {
                                 this.props.onUpdateGroup(update(group,
-                                    { $merge: { id: this.state.modalId } }));
+                                    { $merge: { id: this.state.modalId } }), this.props.project.id);
                             }
                             this.setState({ modalName: false });
                         }}/>
@@ -57,6 +57,7 @@ class Users extends Component {
                             groups={this.props.project.userGroups}
                             users={this.props.users}
                             vocab={this.props.vocab}
+                            projectId={this.props.project.id}
                             onDeleteClick={this.props.onDeleteGroup}
                             onGroupClick={groupId =>
                                 this.setState({ modalName: 'updategroup', modalId: groupId }) } />

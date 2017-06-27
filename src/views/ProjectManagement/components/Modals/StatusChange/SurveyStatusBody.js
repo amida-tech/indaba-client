@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ConfirmationCheckbox from './ConfirmationCheckbox';
 
 class SurveyStatusBody extends Component {
-    render() {
-        const vocab = this.props.vocab;
-        const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
-        const confirmVocab = this.props.published ? surveyVocab.PUBLISHED : surveyVocab.DRAFT;
-        return (
+  render() {
+    const vocab = this.props.vocab;
+    const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
+    const confirmVocab = this.props.published ? surveyVocab.PUBLISHED : surveyVocab.DRAFT;
+    return (
       <div>
         <div className='project-status-section project-status-value'>
           <input
@@ -56,8 +56,8 @@ class SurveyStatusBody extends Component {
           </div>
         </div>
       </div>
-        );
-    }
+    );
+  }
 }
 
 export default SurveyStatusBody;

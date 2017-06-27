@@ -2,53 +2,53 @@ import update from 'immutability-helper';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
 const initialState = {
-    id: 0,
+    id: 7,
     name: 'Super Mario',
     users: [{
-        id: 0,
+        id: 13,
         firstName: 'Tyler',
         lastName: 'Durden',
         email: 't.durden@visa.com',
         activationDate: '1/1/2016',
     }, {
-        id: 1,
+        id: 71,
         firstName: 'Robert',
         lastName: 'Paulson',
         email: 'bobbyp@dove.com',
         invited: true,
     }, {
-        id: 2,
+        id: 22,
         firstName: 'John',
         lastName: 'McClane',
         email: 'johnm@nypd.gov',
         title: 'Detective Lieutenant',
     }, {
-        id: 3,
+        id: 31,
         firstName: 'Ellen',
         lastName: 'Ripley',
         email: 'believeit@snopes.com',
     }, {
-        id: 4,
+        id: 41,
         firstName: 'Indiana',
         lastName: 'Jones',
         email: 'digem@cmu.edu',
     }, {
-        id: 5,
+        id: 25,
         firstName: 'Tony',
         lastName: 'Stark',
         email: 'FeMan@stark.com',
     }, {
-        id: 6,
+        id: 66,
         firstName: 'Johnny',
         lastName: 'Quest',
         email: 'john@gmail.com',
     }, {
-        id: 7,
+        id: 87,
         firstName: 'Buck',
         lastName: 'Rogers',
         email: 'thebuckster@americanradgas.com',
     }, {
-        id: 8,
+        id: 98,
         firstName: 'Marvin',
         lastName: 'Martian',
         email: 'bleepblorp@mars.com',
