@@ -10,17 +10,15 @@ const initialState = {
     project: {
         id: 41,
         name: '',
-        summary: '',
         status: 'Inactive',
+        users: [0, 1],
         stages: [],
-        assignees: [],
-        unassigned: [],
-        subjects: [],
         userGroups: [{
             id: 0,
             name: 'great',
             users: [0, 1],
         }],
+        subjects: [],
     },
     survey: {
         id: 8,
