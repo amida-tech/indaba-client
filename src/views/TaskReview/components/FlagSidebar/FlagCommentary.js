@@ -4,6 +4,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import TaskStatus from '../../../../utils/TaskStatus';
+import { renderName } from '../../../../utils/User';
 
 class FlagCommentary extends Component {
     render() {
@@ -21,7 +22,8 @@ class FlagCommentary extends Component {
                                 {reply.comment}
                             </div>
                             <div className='flag-commentary__signature'>
-                                –{_.find(this.props.users, user => user.id === reply.userId).name}
+                                –{renderName(_.find(this.props.users, user =>
+                                    user.id === reply.userId))}
                             </div>
                         </div>
                         );
