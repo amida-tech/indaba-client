@@ -1,5 +1,5 @@
 $nav-text-color: #FFF;
-$nav-create-button-background: #007f00;
+$nav-create-button-background: #308253;
 
 $block-class:'primary-nav';
 @at-root {
@@ -27,8 +27,6 @@ $block-class:'primary-nav';
             border: 1px;
             color: $nav-text-color;
             border-radius: 3px;
-            margin-top: 5px;
-            margin-bottom: 10px;
             min-width: 10px;
         }
         &__icon {
