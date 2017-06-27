@@ -1,7 +1,7 @@
 $block-class:'user-sidebar';
+
 @at-root {
     .#{$block-class} {
-
         &>* {
             padding: 5px;
         }

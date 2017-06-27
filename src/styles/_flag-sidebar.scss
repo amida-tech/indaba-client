@@ -1,7 +1,8 @@
-$font-color: #A4AEBF;
-$brand-neutral-colors: (#308253, #4EB276);
+$font-color: #a4aebf;
+$brand-neutral-colors: (#308253, #4eb276);
 
 $block-class:'flag-sidebar';
+
 @at-root {
     .#{$block-class} {
         margin: 1em;
