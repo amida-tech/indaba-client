@@ -117,7 +117,7 @@ export const TasksReducer = (state = initialState, action) => {
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { [projectIndex]: { tasks: { [taskIndex]:
             { $merge: { dueDate: action.dueDate } } } } });
-    case type.UPDATE_FLAGGED_QUESTION: // TODO: FIX
+    case type.UPDATE_FLAGGED_QUESTION:
         return update(state, { [projectIndex]: { tasks: { [taskIndex]:
         { response: { [action.data.active]:
         { $set: { flag: !action.data.resolved },
