@@ -19,8 +19,10 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.setState({ showCreateNewProject: false })}/>}
                 <Box
                   justify='between'
-                  direction='row'>
-                    <Box direction='row' align='center'>
+                  direction='row'
+                  align='center'
+                  full="vertical">
+                    <Box direction='row' align='baseline'>
                         <div className='primary-nav__item'>
                             <Link to="/">
                                 <img src="/src/assets/indaba_logo.svg" className="primary-nav__indaba-logo"/>
@@ -32,7 +34,7 @@ class PrimaryNavContainer extends Component {
                         <Button className='primary-nav__item primary-nav__button primary-nav__item--bold' label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
-                    <Box className='primary-nav__icon' direction='row' align='center'>
+                    <Box className='primary-nav__icon' direction='row' align='baseline'>
                         <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
                         <Icon className='primary-nav__user' name="user-o" size="2x" />
                     </Box>
