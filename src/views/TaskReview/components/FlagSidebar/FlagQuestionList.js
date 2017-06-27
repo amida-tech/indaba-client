@@ -28,7 +28,7 @@ class FlagQuestionList extends Component {
 }
 
 FlagQuestionList.propTypes = {
-    survey: PropTypes.array.isRequired,
+    survey: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 

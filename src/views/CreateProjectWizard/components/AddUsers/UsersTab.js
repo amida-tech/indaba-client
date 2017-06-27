@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import UserBadge from './UserBadge';
+import UserBadge from '../../../../common/components/UserBadge';
+import { renderName } from '../../../../utils/User';
 
 class UsersTab extends Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class UsersTab extends Component {
     }
     searchFilter(user) {
         return !this.state.query ||
-            user.name.toLowerCase().includes(this.state.query.toLowerCase());
+            renderName(user).toLowerCase().includes(this.state.query.toLowerCase());
     }
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(user => user.id === userId);
@@ -55,7 +56,7 @@ class UsersTab extends Component {
                 className='user-list-entry'>
                 <Box direction='row' align='center' pad={{ between: 'small' }}>
                     <UserBadge user={user}/>
-                    <div>{user.name}</div>
+                    <div>{renderName(user)}</div>
                 </Box>
                 <div onClick={() => this.handleUserRemove(userId)}>
                     <IonIcon icon='ion-android-delete' color='#7E848F'/>
@@ -87,7 +88,8 @@ class UsersTab extends Component {
                         onDOMChange={this.handleSearchInput}
                         value={this.state.query}
                         suggestions={this.props.allUsers.filter(this.searchFilter)
-                            .map(user => ({ label: user.name, value: user }))}
+                            .map(user => ({ label: renderName(user),
+                                value: user }))}
                         onSelect={this.handleSearchSelect}/>
                 </Box>
                 <List>

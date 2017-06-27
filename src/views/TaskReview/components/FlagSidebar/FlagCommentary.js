@@ -36,9 +36,12 @@ class FlagCommentary extends Component {
 }
 
 FlagCommentary.propTypes = {
-    actions: PropTypes.object.isRequired,
-    users: PropTypes.array.isRequired,
-    ui: PropTypes.object.isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    ui: PropTypes.shape({
+        flags: PropTypes.array,
+        flagSideBar: PropTypes.object,
+    }).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 

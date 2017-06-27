@@ -21,7 +21,10 @@ class FlagHeader extends Component {
 }
 
 FlagHeader.propTypes = {
-    ui: PropTypes.object.isRequired,
+    ui: PropTypes.shape({
+        flags: PropTypes.array,
+        flagSideBar: PropTypes.object,
+    }).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 

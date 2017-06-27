@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
+import { renderName } from '../../../utils/User';
+
 class TaskDetails extends Component {
     render() {
         return (
@@ -11,7 +13,7 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_VIEW}
                     </div>
                     <div className='task-details__header-name'>
-                        {this.props.taskedUser.name}
+                        {renderName(this.props.taskedUser)}
                     </div>
                 </div>
                 <div className='task-details__info'>
@@ -61,12 +63,12 @@ class TaskDetails extends Component {
 
 TaskDetails.propTypes = {
     stage: PropTypes.object.isRequired,
-    vocab: PropTypes.object.isRequired,
     task: PropTypes.object.isRequired,
     taskedUser: PropTypes.object.isRequired,
     surveyName: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default TaskDetails;

@@ -1,36 +1,72 @@
+import update from 'immutability-helper';
+import * as actionTypes from '../actionTypes/userActionTypes';
+
 const initialState = {
     id: 7,
     name: 'Super Mario',
     users: [{
         id: 13,
-        name: 'Tyler Durden',
+        firstName: 'Tyler',
+        lastName: 'Durden',
+        email: 't.durden@visa.com',
+        activationDate: '1/1/2016',
     }, {
         id: 71,
-        name: 'Robert Paulson',
+        firstName: 'Robert',
+        lastName: 'Paulson',
+        email: 'bobbyp@dove.com',
+        invited: true,
     }, {
         id: 22,
-        name: 'Jon McLane',
+        firstName: 'John',
+        lastName: 'McClane',
+        email: 'johnm@nypd.gov',
+        title: 'Detective Lieutenant',
     }, {
         id: 31,
-        name: 'Ellen Ripley',
+        firstName: 'Ellen',
+        lastName: 'Ripley',
+        email: 'believeit@snopes.com',
     }, {
         id: 41,
-        name: 'Indiana Jones',
+        firstName: 'Indiana',
+        lastName: 'Jones',
+        email: 'digem@cmu.edu',
     }, {
         id: 25,
-        name: 'Tony Stark',
+        firstName: 'Tony',
+        lastName: 'Stark',
+        email: 'FeMan@stark.com',
     }, {
         id: 66,
-        name: 'Johnny Quest',
+        firstName: 'Johnny',
+        lastName: 'Quest',
+        email: 'john@gmail.com',
     }, {
         id: 87,
-        name: 'Buck Rogers',
+        firstName: 'Buck',
+        lastName: 'Rogers',
+        email: 'thebuckster@americanradgas.com',
     }, {
         id: 98,
-        name: 'Marvin Martian',
+        firstName: 'Marvin',
+        lastName: 'Martian',
+        email: 'bleepblorp@mars.com',
     }],
 };
 
 export const UserReducer = (state = initialState, action) => {
-    return state;
+    const userIndex = state.users.findIndex(user => user.id === action.userId);
+    switch (action.type) {
+    case actionTypes.SET_USER_FIRST_NAME:
+        return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
+    case actionTypes.SET_USER_LAST_NAME:
+        return update(state, { users: { [userIndex]: { lastName: { $set: action.lastName } } } });
+    case actionTypes.SET_USER_EMAIL:
+        return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
+    case actionTypes.SET_USER_TITLE:
+        return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
+    default:
+        return state;
+    }
 };

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
+
 import { assignTask } from '../../../actions';
+import { renderName } from '../../../../../utils/User';
 
 /* Take in props for name, function for whatever edit will be,
    state of completion and the date the task is due. Based on
@@ -9,7 +11,7 @@ import { assignTask } from '../../../actions';
 */
 
 const Types = {
-    ASSIGNEECARD: 'AssigneeCard'
+    ASSIGNEECARD: 'AssigneeCard',
 };
 
 const cardSource = {
@@ -20,27 +22,27 @@ const cardSource = {
         return monitor.getItem().id === props.children.id;
     },
     beginDrag(props, monitor, component) {
-        return {id: props.children.id};
+        return { id: props.children.id };
     },
     endDrag(props, monitor, component) {
         if (!monitor.didDrop()) {
             return;
         }
-    const dropResult = monitor.getDropResult();
-    const assignment = {
-        userId: props.children.id,
-        role: props.children.role,
-        stage: dropResult.task.stage,
-        subject: dropResult.task.subject
-    };
-    props.assignTask(props.children.id, dropResult.task);
-  }
-}
+        const dropResult = monitor.getDropResult();
+        const assignment = {
+            userId: props.children.id,
+            role: props.children.role,
+            stage: dropResult.task.stage,
+            subject: dropResult.task.subject,
+        };
+        props.assignTask(props.children.id, dropResult.task);
+    },
+};
 
 function collect(connect, monitor) {
     return {
         connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
+        isDragging: monitor.isDragging(),
     };
 }
 
@@ -53,11 +55,11 @@ class AssigneeCard extends Component {
         const { id } = this.props.children;
         const { isDragging, connectDragSource } = this.props;
 
-        return connectDragSource (
+        return connectDragSource(
             <div className='assignee-card'>
-                { this.props.children.name }
+                { renderName(this.props.children) }
                 { isDragging }
-            </div>
+            </div>,
         );
     }
 }

@@ -41,11 +41,14 @@ class FlagControls extends Component {
 }
 
 FlagControls.propTypes = {
-    actions: PropTypes.object.isRequired,
-    tasksActions: PropTypes.object.isRequired,
-    users: PropTypes.array.isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    tasksActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
     task: PropTypes.object.isRequired,
-    ui: PropTypes.object.isRequired,
+    ui: PropTypes.shape({
+        flags: PropTypes.array,
+        flagSideBar: PropTypes.object,
+    }).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 

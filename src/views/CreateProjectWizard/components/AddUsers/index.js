@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
+import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
-import AddUserGroup from './AddUserGroup';
 import {
     addUserToWizard,
     removeUserFromWizard,
@@ -32,7 +32,7 @@ class AddUsers extends Component {
         return (
             <div>
                 {this.state.createModal &&
-                    <AddUserGroup
+                    <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.projectUsers}
                         allUsers={this.props.allUsers}
