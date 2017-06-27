@@ -20,19 +20,19 @@ class PrimaryNavContainer extends Component {
                 <Box
                   justify='between'
                   direction='row'>
-                    <Box direction='row'>
+                    <Box direction='row' align='center'>
                         <div className='primary-nav__item'>
                             <Link to="/">
                                 <img src="/src/assets/indaba_logo.svg" className="primary-nav__indaba-logo"/>
                             </Link>
                         </div>
-                        <Link className='primary-nav__item' to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
+                        <Link className='primary-nav__item primary-nav__item--bold' to='/project'>{this.props.vocab.PROJECT.PROJECTS}</Link>
                         <Link className='primary-nav__item' to='/users'>{this.props.vocab.COMMON.ALL_USERS}</Link>
                         <Link className='primary-nav__item' to='/subjects'>{this.props.vocab.COMMON.ALL_SUBJECTS}</Link>
-                        <Button className='primary-nav__item primary-nav__button' label={this.props.vocab.COMMON.CREATE}
+                        <Button className='primary-nav__item primary-nav__button primary-nav__item--bold' label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
-                    <Box className='primary-nav__icon' direction='row'>
+                    <Box className='primary-nav__icon' direction='row' align='center'>
                         <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
                         <Icon className='primary-nav__user' name="user-o" size="2x" />
                     </Box>
