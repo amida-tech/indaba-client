@@ -13,13 +13,17 @@
 3. Load site at http://localhost:3000
 
 ## Development
-Before committing any changes, run the following command:
+Before committing any changes, run the following commands:
 ```sh
 $ yarn eslint
+$ yarn stylelint
 ```
 This runs `eslint --fix src`, which will correct some, but not all, style errors.
 The command outputs any `eslint` errors that could not be automatically corrected.
 These should be manually corrected before committing your changes.
+
+It also runs `stylelint src/styles/*.scss`, which identifies any SCSS in violation
+of the style guidelines laid out in `.stylelintrc.yml`.
 
 ## Indaba Version Nomenclature
 - Legacy - version of Indaba that Amida bought.

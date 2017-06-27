@@ -46,13 +46,16 @@
     "node-sass": "^4.5.3",
     "react-scripts": "0.9.5",
     "redux-thunk": "^1.0.0",
-    "sass-loader": "^6.0.5"
+    "sass-loader": "^6.0.5",
+    "stylelint": "^7.11.1",
+    "stylelint-config-standard": "^16.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "eslint": "./node_modules/.bin/eslint --fix src"
+    "eslint": "./node_modules/.bin/eslint --fix src",
+	"stylelint": "./node_modules/.bin/stylelint src/styles/*.scss"
   }
 }
