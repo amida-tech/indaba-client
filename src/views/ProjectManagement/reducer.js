@@ -22,141 +22,50 @@ export const initialState = {
         },
     },
     projects: [{
-        id: 0,
+        id: 101,
         name: 'Pizza Lovers Anonymous',
         status: 'Active',
-        users: [0, 1, 2, 3],
+        users: [13, 71, 22, 31],
         stages: [{
             id: 0,
             title: 'Fill Out The Survey',
             startStage: '1/1/2017',
             endStage: '2/1/2017',
-            userGroups: [0],
+            userGroups: [11],
             permissions: 0,
         }, {
             id: 1,
             title: 'First Review',
             startStage: '3/3/2017',
             endStage: '4/3/2017',
-            userGroups: [0, 1],
+            userGroups: [11, 13],
             permissions: 2,
         }, {
             id: 2,
             title: 'Second Review',
             startStage: '4/4/2017',
             endStage: '5/3/2017',
-            userGroups: [1],
+            userGroups: [13],
             permissions: 2,
         }, {
             id: 3,
             title: 'Third Review',
             startStage: '5/4/2017',
             endStage: '6/3/2017',
-            userGroups: [1], // Index of userGroups
+            userGroups: [13], // Index of userGroups
             permissions: 2,
         }], // stages end
         userGroups: [
             {
-                id: 0,
+                id: 11,
                 name: 'Researchers',
-                users: [2, 3],
+                users: [22, 31],
             }, {
-                id: 1,
+                id: 13,
                 name: 'Managers',
-                users: [0, 1],
+                users: [13, 71],
             }],
         subjects: ['Berlin', 'Chicago', 'K\'unlun'],
-        tasks: [{ // Changed from assignees.
-            id: 0,
-            userId: 2,
-            stage: 0,
-            subject: 0,
-            response: [{
-                id: 0,
-                value: false,
-                review: true,
-            }, {
-                id: 1,
-            }],
-        }, {
-            id: 1,
-            userId: 3,
-            stage: 0,
-            subject: 1,
-            response: [{
-                id: 0,
-                value: true,
-                flag: true,
-                flagHistory: [{
-                    timestamp: 'Sun Jun 11 2017 08:15:15 GMT-0400 (Eastern Daylight Time)',
-                    comment: 'YELLOW FLAG!',
-                    userId: 3,
-                }, {
-                    timestamp: 'Mon Jun 12 2017 09:43:15 GMT-0400 (Eastern Daylight Time)',
-                    comment: 'Well too bad cupcake!',
-                    userId: 1,
-                }],
-                review: true,
-            }, {
-                id: 1,
-                value: 1,
-                review: false,
-                comment: 'Gross topping.',
-            }, {
-                id: 2,
-                value: 5,
-                review: false,
-                comment: 'So much food.',
-            }, {
-                id: 3,
-                value: 'It was the best of pizza, it was the worst of pizza.',
-                flag: true,
-                flagHistory: [{
-                    timestamp: 'Wed Jun 14 2017 10:42:15 GMT-0400 (Eastern Daylight Time)',
-                    comment: 'I dislike this.',
-                    userId: 3,
-                }],
-                review: true,
-            }, {
-                id: 4,
-                value: [0, 2],
-                flag: true,
-                flagHistory: [{
-                    timestamp: 'Tue Jun 13 2017 11:42:15 GMT-0400 (Eastern Daylight Time)',
-                    comment: 'I REALLY dislike this.',
-                    userId: 3,
-                }],
-                review: false,
-                comment: 'Bad combo.',
-            }],
-        }, {
-            id: 2,
-            userId: 4,
-            stage: 1,
-            subject: 0,
-            dueDate: '9/9/2017',
-            response: [{
-                id: 0,
-                value: true,
-                flag: true,
-                flagHistory: [{
-                    timestamp: 'Mon Jun 12 2017 12:34:15 GMT-0400 (Eastern Daylight Time)',
-                    comment: 'I like flags.',
-                    userId: 2,
-                }],
-                review: false,
-                comment: 'What was the question?',
-            }, {
-                questionId: 1,
-                value: 0,
-                review: true,
-            }],
-        }, {
-            id: 3,
-            userId: 5,
-            stage: 1,
-            subject: 2,
-        }],
     }],
 };
 
@@ -170,56 +79,13 @@ export default (state = initialState, action) => {
     }
 
     switch (action.type) {
-    case type.ASSIGN_TASK:
-        return update(state, { projects: { [projectIndex]: {
-            tasks: { $push: [action.payload] } } } });
-    case type.SUBNAVIGATE:
+    case type.SUBNAVIGATE: // ui related.
         return update(state, { ui: { subnav: { $set: action.id } } });
     case type.TOGGLE_FILTER:
         return update(state, { projects: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
-    case type.ADD_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
-        } } });
-    case type.DELETE_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
-        } } });
-    case type.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: {
-            stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].stages.length } })] },
-        } } });
-    case type.UPDATE_TASK:
-        return Object.assign({}, state);
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
-    case type.SET_PROJECT_STATUS:
-        return update(state, { projects: { [projectIndex]: {
-            status: { $set: action.status },
-        } } });
-    case type.DELETE_USER_GROUP:
-        return update(state, { projects: { [projectIndex]: {
-            userGroups: { $apply: userGroups =>
-                userGroups.filter(userGroup => userGroup.id !== action.groupId),
-            } } } });
-    case type.ADD_USER_GROUP:
-        return update(state, { projects: { [projectIndex]: {
-            userGroups: { $push: [update(action.group, { $merge: {
-                id: state.projects[projectIndex].userGroups.length } })] },
-        } } });
-    case type.UPDATE_USER_GROUP:
-        groupIndex = state.projects[projectIndex].userGroups
-            .findIndex(group => group.id === action.group.id);
-        return update(state, { projects: { [projectIndex]: { userGroups: {
-            [groupIndex]: { $set: action.group },
-        } } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [update(action.project, { $merge: {
-                id: state.projects.length } })],
-            } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
@@ -253,12 +119,44 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             message: { $set: action.message },
         } } });
-    case type.SET_TASK_OPTIONS:
-        // UPDATE LATER.
-        return update(state, { ui: { taskOptions: {
-            show: { $set: false },
-            task: { $set: {} },
+    case type.SET_PROJECT_STATUS: // project related.
+        return update(state, { projects: { [projectIndex]: {
+            status: { $set: action.status },
         } } });
+    case type.ADD_SUBJECT:
+        return update(state, { projects: { [projectIndex]: {
+            subjects: { $push: [action.subject] },
+        } } });
+    case type.DELETE_SUBJECT:
+        return update(state, { projects: { [projectIndex]: {
+            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
+        } } });
+    case type.ADD_STAGE:
+        return update(state, { projects: { [projectIndex]: {
+            stages: { $push: [update(action.stage, { $merge: {
+                id: state.projects[projectIndex].stages.length } })] },
+        } } });
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, {
+            projects: { $push: [update(action.project, { $merge: {
+                id: state.projects.length } })],
+            } });
+    case type.DELETE_USER_GROUP:
+        return update(state, { projects: { [projectIndex]: {
+            userGroups: { $apply: userGroups =>
+                    userGroups.filter(userGroup => userGroup.id !== action.groupId),
+            } } } });
+    case type.ADD_USER_GROUP:
+        return update(state, { projects: { [projectIndex]: {
+            userGroups: { $push: [update(action.group, { $merge: {
+                id: state.projects[projectIndex].userGroups.length } })] },
+        } } });
+    case type.UPDATE_USER_GROUP:
+        groupIndex = state.projects[projectIndex].userGroups
+                .findIndex(group => group.id === action.group.id);
+        return update(state, { projects: { [projectIndex]: { userGroups: {
+            [groupIndex]: { $set: action.group },
+        } } } });
     default:
         return state;
     }

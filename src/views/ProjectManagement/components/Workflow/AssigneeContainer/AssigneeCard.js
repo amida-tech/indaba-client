@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
-import { assignTask } from '../../../actions';
 
+import { assignTask } from '../../../actions';
 import { renderName } from '../../../../../utils/User';
 
 /* Take in props for name, function for whatever edit will be,
@@ -28,16 +28,14 @@ const cardSource = {
         if (!monitor.didDrop()) {
             return;
         }
-
         const dropResult = monitor.getDropResult();
         const assignment = {
-            id: props.children.id,
-            name: renderName(props.children),
+            userId: props.children.id,
             role: props.children.role,
             stage: dropResult.task.stage,
             subject: dropResult.task.subject,
         };
-        props.assignTask(assignment);
+        props.assignTask(props.children.id, dropResult.task);
     },
 };
 

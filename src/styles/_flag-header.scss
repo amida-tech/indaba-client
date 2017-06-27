@@ -1,0 +1,27 @@
+$font-color: #A4AEBF;
+$brand-neutral-colors: (#308253, #4EB276);
+
+$block-class:'flag-header';
+@at-root {
+    .#{$block-class} {
+
+        &__title {
+            margin-left: 10px;
+            font-size: 22px;
+        }
+
+        &__info {
+            margin-left: 10px;
+            display: flex;
+            flex-flow: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            
+            &-button {
+                //margin-left: 1em;
+                padding: 0px;
+                border-radius: 2px;
+            }
+        }
+    }
+}

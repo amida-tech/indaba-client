@@ -25,6 +25,7 @@ class UserGroupList extends Component {
                     <UserGroupListEntry
                         key={group.id}
                         group={group}
+                        projectId={this.props.projectId}
                         onDeleteClick={this.props.onDeleteClick}
                         onGroupClick={this.props.onGroupClick &&
                             (() => this.props.onGroupClick(group.id))}
