@@ -43,7 +43,7 @@ Modal.propTypes = {
     onCancel: PropTypes.func,
     onSave: PropTypes.func,
     vocab: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
