@@ -24,8 +24,12 @@ const initialState = {
         id: 8,
         projectId: 41,
         status: 'Draft',
+        questions: [],
     },
-    users: [0, 1],
+    task: {
+        projectId: 41,
+        tasks: [],
+    },
 };
 
 export default (state = initialState, action) => {
