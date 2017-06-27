@@ -1,0 +1,31 @@
+$font-color: #A4AEBF;
+$brand-neutral-colors: (#308253, #4EB276);
+
+$block-class:'flag-question-list';
+@at-root {
+    .#{$block-class} {
+        min-width: 120px;
+
+        &__item {
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 2);
+            }
+
+
+            &--selected {
+                background-color: #399862;
+                color: #ffffff;
+                font-size: 12px;
+            }
+
+            &--inactive {
+                color: #d3d3d3;
+                font-size: 12px;
+            }
+        }
+    }
+}

@@ -1,8 +1,7 @@
-$nav-text-color: #fff;
+$nav-text-color: #FFF;
 $nav-create-button-background: #007f00;
 
 $block-class:'primary-nav';
-
 @at-root {
     .#{$block-class} {
         background-color: $brand-color;
@@ -11,24 +10,20 @@ $block-class:'primary-nav';
         &__indaba-logo {
 
         }
-
         &__item {
             color: $nav-text-color;
             padding: 10px;
             margin-left: 20px;
             opacity: 0.7;
-
             &:hover{
                 opacity: 1;
                 text-decoration: none;
                 color: $nav-text-color;
             }
-
             &--primary-nav-item-active {
                 opacity: 1;
             }
         }
-
         &__button {
             background-color: $nav-create-button-background;
             border: 1px;

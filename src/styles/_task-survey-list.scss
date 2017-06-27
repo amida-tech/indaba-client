@@ -1,8 +1,7 @@
 $block-class:'task-survey-list';
-
 @at-root {
     .#{$block-class} {
-        margin: 1em;
+            margin: 1em;
 
         &__wrapper {
             display: flex;
@@ -17,7 +16,7 @@ $block-class:'task-survey-list';
             margin-top: 1em;
 
             &-header {
-                color: #a4aebf;
+                color: #A4AEBF;
                 text-transform: uppercase;
             }
 
