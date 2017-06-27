@@ -48,11 +48,11 @@ class SubNav extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-  selected: state.project.ui.subnav
-})
-const mapDispatchToProps = (dispatch) => ({
-  onclick: (id) => dispatch(subnavigate(id))
+const mapStateToProps = state => ({
+    selected: state.project.ui.subnav,
+});
+const mapDispatchToProps = dispatch => ({
+    onclick: id => dispatch(subnavigate(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubNav);

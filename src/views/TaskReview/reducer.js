@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
                     (user.id === action.assigneeId));
         return update(state, { projects: { [action.projectId]:
         { tasks: { [findUser]:
-    				{ $merge: { dueDate: action.dueDate } } } } } });
+            { $merge: { dueDate: action.dueDate } } } } } });
     case type.UPDATE_FLAGGED_QUESTION:
         findUser = state.projects[action.data.projectId]
                 .assignees.findIndex(user =>

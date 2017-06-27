@@ -18,8 +18,8 @@ class TaskOptions extends Component {
 
     render() {
         const userOptions = this.props.users.map(user => (user.id === this.props.taskOptions.task.userId ?
-            {value: user.id, label: this.props.users[user.id].name + this.props.vocab._CURRENTLY_ASSIGNED } :
-            {value: user.id, label: this.props.users[user.id].name}
+            { value: user.id, label: this.props.users[user.id].name + this.props.vocab._CURRENTLY_ASSIGNED } :
+            { value: user.id, label: this.props.users[user.id].name }
         ));
         const isReassigned = this.props.users[this.props.taskOptions.reassignId];
         return (
@@ -34,7 +34,7 @@ class TaskOptions extends Component {
                         name='taskOptions'
                         label={this.props.vocab.FORCE}
                         value='force'
-                        onChange={(event) =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
                     <div className='task-options__force-explain'>
                         {this.props.vocab.FORCE_PARAGRAPH}
@@ -43,20 +43,20 @@ class TaskOptions extends Component {
                         name='taskOptions'
                         label={this.props.vocab.REASSIGN}
                         value='reassign'
-                        onChange={(event) =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
                     <Select value={isReassigned ? isReassigned.name : ''}
                         placeHolder={this.props.users[this.props.taskOptions.task.userId].name
                             + this.props.vocab._CURRENTLY_ASSIGNED}
                         options={userOptions}
-                        onChange={(event) =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsReassignId(event.option.value)} />
                         <RadioButton id='skip'
                             disabled={true}
                             name='taskOptions'
                             label={this.props.vocab.SKIP}
                             value='skip'
-                            onChange={(event) =>
+                            onChange={event =>
                                 this.props.calls.updateTaskOptionsChoice(event.target.value)} />
                     <div className='task-options__skip-explain'>
                         {this.props.vocab.SKIP_PARAGRAPH}
@@ -65,7 +65,7 @@ class TaskOptions extends Component {
                     <CheckBox
                         label={this.props.vocab.NOTIFY}
                         checked={this.props.taskOptions.notify}
-                        onChange={(event) =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsNotify(event.target.checked)} />
                     <div className='task-options__notice'>
                         {this.props.users[this.props.taskOptions.task.userId].name
@@ -73,7 +73,7 @@ class TaskOptions extends Component {
                     </div>
                     <TextInput className='task-options__message'
                         value={this.props.taskOptions.message}
-                        onDOMChange={(event) =>
+                        onDOMChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
                 </div>
             </Modal>

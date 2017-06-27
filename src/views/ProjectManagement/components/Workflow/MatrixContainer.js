@@ -77,19 +77,19 @@ const mapStateToProps = (state, ownProps) => {
         users: state.user.users,
         project: _.find(state.project.projects, project =>
             project.id === projectId) || state.project.projects[0],
-        vocab: state.settings.language.vocabulary
-    }
+        vocab: state.settings.language.vocabulary,
+    };
 };
 
 const mapDispatchToProps = dispatch => ({
     calls: {
         closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),
-        updateTaskOptionsChoice: (choice) => dispatch(updateTaskOptionsChoice(choice)),
-        updateTaskOptionsReassignId: (reassignId) => dispatch(updateTaskOptionsReassignId(reassignId)),
-        updateTaskOptionsNotify: (notify) => dispatch(updateTaskOptionsNotify(notify)),
-        updateTaskOptionsMessage: (message) => dispatch(updateTaskOptionsMessage(message)),
+        updateTaskOptionsChoice: choice => dispatch(updateTaskOptionsChoice(choice)),
+        updateTaskOptionsReassignId: reassignId => dispatch(updateTaskOptionsReassignId(reassignId)),
+        updateTaskOptionsNotify: notify => dispatch(updateTaskOptionsNotify(notify)),
+        updateTaskOptionsMessage: message => dispatch(updateTaskOptionsMessage(message)),
         setTaskOptions: () => dispatch(setTaskOptions()),
-    }
+    },
 });
 
 export default compose(

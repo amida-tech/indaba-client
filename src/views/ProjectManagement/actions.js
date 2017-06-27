@@ -133,7 +133,7 @@ export function showTaskOptionsModal(task) {
 
 export function closeTaskOptionsModal() {
     return {
-        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL
+        type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
 

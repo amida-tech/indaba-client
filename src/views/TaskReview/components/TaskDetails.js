@@ -21,23 +21,33 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
-                    <div className='task-details__header-name'>{renderName(this.props.user)}</div>
+                    <div className='task-details__header-name-label'>
+                        {this.props.vocab.PROJECT.TASK_VIEW}
+                    </div>
+                    <div className='task-details__header-name'>
+                        {renderName(this.props.user)}
+                    </div>
                 </div>
                 <div className='task-details__info'>
 
                     <div className='task-details__info-box'>
-                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.STAGE}</div>
+                        <div className='task-details__info-box-label'>
+                            {this.props.vocab.PROJECT.STAGE}
+                        </div>
                         <div className='task-details__info-box-title'>{this.props.stage.title}</div>
                     </div>
 
                     <div className='task-details__info-box'>
-                        <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.SUBJECT}</div>
+                        <div className='task-details__info-box-label'>
+                            {this.props.vocab.PROJECT.SUBJECT}
+                        </div>
                         <div className='task-details__info-box-title'>{this.props.subject}</div>
-
                     </div>
+
                     <div className='task-details__info-box'>
-                    <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.TASK_DUE_DATE}</div>
+                        <div className='task-details__info-box-label'>
+                            {this.props.vocab.PROJECT.TASK_DUE_DATE}
+                        </div>
                         <DateTime id='taskDueDate' className='task-details__info-box-datetime'
                             format='MM/DD/YYYY'
                             onChange={this.handleTaskDueDateChange}
