@@ -17,13 +17,14 @@ class TaskDetails extends Component {
 
     render() {
         return (
+        
             <div className='task-details'>
                 <div className='task-details__header'>
                     <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
                     <div className='task-details__header-name'>{this.props.user.name}</div>
                 </div>
+                 
                 <div className='task-details__info'>
-
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>{this.props.vocab.PROJECT.STAGE}</div>
                         <div className='task-details__info-box-title'>{this.props.stage.title}</div>
@@ -48,6 +49,8 @@ class TaskDetails extends Component {
                     </div>
                 </div>
             </div>
+        
+           
         )
     }
 }

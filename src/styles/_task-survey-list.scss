@@ -1,15 +1,16 @@
 $block-class:'task-survey-list';
 @at-root {
     .#{$block-class} {
-            margin: 1em;
+           
 
         &__wrapper {
             display: flex;
             justify-content: flex-end;
             padding: 8px;
-            border-bottom: 1px solid $border-color;
-            border-top: 1px solid $border-color;
+            border: 1px solid $border-color;
+            border-radius: 2px;
             width: 100%;
+            background-color: nth($brand-grey-colors, 1)
         }
 
         &__instructions {
