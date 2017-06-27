@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
+import { renderName } from '../../../utils/User';
+
 import { updateTaskDueDate } from '../actions';
 
 class TaskDetails extends Component {
@@ -20,7 +22,7 @@ class TaskDetails extends Component {
             <div className='task-details'>
                 <div className='task-details__header'>
                     <div className='task-details__header-name-label'>{this.props.vocab.PROJECT.TASK_VIEW}</div>
-                    <div className='task-details__header-name'>{this.props.user.name}</div>
+                    <div className='task-details__header-name'>{renderName(this.props.user)}</div>
                 </div>
                 <div className='task-details__info'>
 

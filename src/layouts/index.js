@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavContainer from '../views/Nav';
+import NavContainer from '../views/PrimaryNav';
 import { connect } from 'react-redux';
 
 class Layout extends Component {

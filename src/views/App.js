@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import NavContainer from './Nav';
+import PrimaryNavContainer from './PrimaryNav';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <NavContainer />
+                <PrimaryNavContainer />
                 {this.props.children}
             </div>
         );

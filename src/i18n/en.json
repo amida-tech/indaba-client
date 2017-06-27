@@ -15,12 +15,16 @@
     "CANCEL": "Cancel",
     "DESCRIPTION": "Decription",
     "ALL_USERS": "All Users",
+    "SUBJECTS": "Subjects",
     "ALL_SUBJECTS": "All Subjects",
     "CREATE": "Create",
     "ACTIONS": "Actions",
     "SKIP_THIS_STEP": "Skip This Step",
     "CONTINUE": "Continue",
-    "ANY": "Any"
+    "ANY": "Any",
+    "ACCOUNT": "Account",
+    "PREFERENCE": "Preference",
+    "PENDING": "Pending"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -41,6 +45,18 @@
       "DAYS": " Days",
       "DUE_TOMORROW": "Due Tomorrow",
       "MORE_OPTIONS": "More Options"
+    },
+    "OPTIONS_MODAL": {
+        "TITLE": "Task Options",
+        "FORCE": "Force Complete (You Can't Undo This)",
+        "FORCE_PARAGRAPH": "Force compelte to push the survey to the next stage. The person assigned to the next stage cannot start that task until its specified start date. To edit the start date of the next step, click on the date of the task cell.",
+        "REASSIGN": "Reassign (Does not apply if task is force completed.)",
+        "_CURRENTLY_ASSIGNED": " (Currently Assigned)",
+        "SKIP": "Skip stage and leave as unassigned.",
+        "SKIP_PARAGRAPH": "Skipping a stage will not affect the survey in any way. The task will be left as unassigned.",
+        "NOTIFY": "Notify User. (User will receive default message unless changed.)",
+        "_WILL_BE_NOTIFIED": " will be notified.",
+        "NOTIFY_MESSAGE": "Your task has been forced to the next step. If you have questions, contact the project manager."
     },
     "PROJECT": "Project",
     "PROJECT_TITLE": "Project Title",
@@ -96,6 +112,7 @@
     "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
     "FILTER_BY_GROUP": "Filter by groups",
     "INVITE_BY_EMAIL": "Not Listed? Invite by email",
+    "RESEND_INVITATION": "Resend Invitation",
     "STATUS_ACTIVE": "Active",
     "STATUS_INACTIVE": "Inactive",
     "ACTIVATE": "Activate",
@@ -114,7 +131,11 @@
     "USERS": "Users",
     "USER_GROUPS": "User Groups",
     "ADD_USER_GROUP": "Add User Group",
+    "GROUP_NAME": "Group Name",
+    "GROUP_MEMBERS": "Group Members",
     "ADD_USERS": "Add Users",
+    "ADD_USER": "Add User",
+    "USER_PROFILE": "User Profile",
     "CREATE_USER_GROUP": "Create User Group",
     "ENTER_GROUP_NAME": "Enter Group Name",
     "NEW_USER_FIRST_NAME": "New User First Name",
@@ -128,7 +149,13 @@
     "CREATE_SURVEY": "Create Survey",
     "COMPLETE_PROJECT": "Complete Project",
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
-    "GO_TO_PROJECT": "Go To Project"
+    "GO_TO_PROJECT": "Go To Project",
+    "TASKS": "Tasks",
+    "USER_TITLE": "Title",
+    "OPTIONAL_MESSAGE": "Optional, only you can see this",
+    "TITLE_OPTIONAL": "Title (Optional)",
+    "ACCOUNT_SINCE": "Account Since",
+    "NOT_ACCEPTED": "The user has not accepted this invitation"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
+import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import {
+    updateStatusChange,
     setProjectStatus,
-    setSurveyStatus,
     deleteSubject,
     addSubject,
+    deleteUserGroup,
+    addUserGroup,
+    updateUserGroup,
 } from '../actions';
+import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { statusModalId: false };
     }
+
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
@@ -30,19 +37,30 @@ class ProjectManagementContainer extends Component {
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
-                subjects={this.props.project.subjects}
-                onDeleteSubject={this.props.onDeleteSubject}
-                onAddSubject={this.props.onAddSubject}/>;
+                    subjects={this.props.project.subjects}
+                    onDeleteSubject={this.props.onDeleteSubject}
+                    onAddSubject={this.props.onAddSubject}/>;
+            break;
+        case 'users':
+            body = <Users
+                vocab={this.props.vocab}
+                users={this.props.project.users.map(
+                    userId => this.props.users.find(user => user.id === userId))}
+                project={this.props.project}
+                onDeleteGroup={this.props.onDeleteGroup}
+                onAddGroup={this.props.onAddGroup}
+                onUpdateGroup={this.props.onUpdateGroup}/>;
             break;
         default:
             body = null;
+            break;
         }
         return (
                 <div>
-                    { this.state.statusModalId &&
+                    { this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
-                            onStatusChangeClose={() => this.setState({ statusModalId: false })}
-                            entity={modalEntities[this.state.statusModalId]}
+                            onStatusChangeClose={() => this.props.updateStatusChange(false)}
+                            entity={modalEntities[this.props.ui.statusModalId]}
                             projectStatus={this.props.project.status}
                             surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.onSetProjectStatus}
@@ -52,7 +70,7 @@ class ProjectManagementContainer extends Component {
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
-                        onStatusChangeClick={id => this.setState({ statusModalId: id })}
+                        onStatusChangeClick={id => this.props.updateStatusChange(id)}
                         vocab={this.props.vocab} />
                     <hr className='divider' />
                     {body}
@@ -81,18 +99,24 @@ const mapStateToProps = (state, ownProps) => {
     return {
         vocab: state.settings.language.vocabulary,
         project,
-        survey: state.project.surveys[project.surveyId],
-        tab: state.project.navigation.subnav,
+        ui: state.project.ui,
+        survey: _.find(state.surveys, survey => survey.projectId === project.id),
+        tab: state.project.ui.subnav,
+        users: state.user.users,
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     const id = parseInt(ownProps.id !== undefined ? ownProps.id : ownProps.params.id, 10) || 0;
     return {
+        updateStatusChange: status => dispatch(updateStatusChange(status)),
         onSetProjectStatus: status => dispatch(setProjectStatus(status, id)),
         onSetSurveyStatus: status => dispatch(setSurveyStatus(status, id)),
         onDeleteSubject: subject => dispatch(deleteSubject(subject, id)),
         onAddSubject: subject => dispatch(addSubject(subject, id)),
+        onDeleteGroup: groupId => dispatch(deleteUserGroup(groupId, id)),
+        onAddGroup: group => dispatch(addUserGroup(group, id)),
+        onUpdateGroup: group => dispatch(updateUserGroup(group, id)),
     };
 };
 

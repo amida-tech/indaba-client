@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 import { assignTask } from '../../../actions';
 
+import { renderName } from '../../../../../utils/User';
+
 /* Take in props for name, function for whatever edit will be,
    state of completion and the date the task is due. Based on
    the last two factors, decide whether to flag as late, not
@@ -30,7 +32,7 @@ const cardSource = {
         const dropResult = monitor.getDropResult();
         const assignment = {
             id: props.children.id,
-            name: props.children.name,
+            name: renderName(props.children),
             role: props.children.role,
             stage: dropResult.task.stage,
             subject: dropResult.task.subject,
@@ -57,7 +59,7 @@ class AssigneeCard extends Component {
 
         return connectDragSource(
             <div className='assignee-card'>
-                { this.props.children.name }
+                { renderName(this.props.children) }
                 { isDragging }
             </div>,
         );

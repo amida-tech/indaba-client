@@ -4,6 +4,7 @@ import { List, ListItem, Box, Button, TextInput, CheckBox, Select } from 'gromme
 import { updateFlaggedQuestion } from '../actions';
 
 import TaskStatus from '../../../utils/TaskStatus';
+import { renderName } from '../../../utils/User';
 
 function stateInitializer(props, state) {
     const issues = props.survey.filter(question => question.flag === true);
@@ -16,7 +17,7 @@ function stateInitializer(props, state) {
         notifyUserId: 0,
         comment: '',
         resolved: false,
-        notifyUsername: props.user.users[0].name,
+        notifyUsername: renderName(props.user.users[0]),
     };
 }
 
@@ -63,7 +64,7 @@ class FlagSidebar extends Component {
             notifyUserId: 0,
             comment: '',
             resolved: false,
-            notifyUsername: this.props.user.users[0].name,
+            notifyUsername: renderName(this.props.user.users[0]),
         });
     }
 
@@ -72,7 +73,7 @@ class FlagSidebar extends Component {
         this.props.updateFlaggedQuestion({
             projectId: this.state.projectId,
             questionId: this.state.activeId,
-            assigneeId: this.props.assignee.id,
+            assigneeId: this.props.task.id,
             notifyUserId: this.state.notifyUserId,
             comment: this.state.comment,
             resolved: this.state.resolved,
@@ -97,7 +98,6 @@ class FlagSidebar extends Component {
                     <List className='flag-sidebar__question-list'>
                         {this.state.survey.map((q, i) => {
                             return (this.state.flags.includes(q)) ?
-                            // TODO: this could probably go into state over conditionally rendering.
                                 <ListItem key={`listitem${q}${i}`}
                                     className={i === this.state.activeId ?
                                         'flag-sidebar__questions flag-sidebar__questions--selected' : 'flag-sidebar__questions'}
@@ -122,7 +122,7 @@ class FlagSidebar extends Component {
                                         {reply.comment}
                                     </div>
                                     <div className='flag-sidebar__commentary-signature'>
-                                        –{this.props.user.users[reply.userId].name}
+                                        –{renderName(this.props.user.users[reply.userId])}
                                     </div>
                                 </div>
                             );
@@ -140,7 +140,7 @@ class FlagSidebar extends Component {
                             <Select
                                 value={this.state.notifyUsername}
                                 options={this.props.user.users.map(user => ({
-                                    label: user.name,
+                                    label: renderName(user),
                                     value: user.id,
                                 }))}
                                 onChange={this.handleNotifyUserChange} />

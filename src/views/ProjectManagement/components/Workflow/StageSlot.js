@@ -4,7 +4,10 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
+
 import TaskStatus from '../../../../utils/TaskStatus';
+import { showTaskOptionsModal } from '../../actions';
+import { renderName } from '../../../../utils/User';
 
 const Types = {
     ASSIGNEECARD: 'AssigneeCard',
@@ -32,7 +35,6 @@ function collect(connect, monitor) {
 }
 
 class StageSlot extends Component {
-
     constructor(props) {
         super(props);
         const diff = TaskStatus.daysUntilDue(this.props.task, [this.props.stageData]);
@@ -42,16 +44,12 @@ class StageSlot extends Component {
             late,
             done: TaskStatus.responsesComplete(this.props.task),
             flag: TaskStatus.responsesFlagged(this.props.task),
-            showTaskModal: false,
         };
-        this.onTaskViewClick = this.onTaskViewClick.bind(this);
+        this.handleTaskOptions = this.handleTaskOptions.bind(this);
     }
 
-    onTaskViewClick() {
-        this.setState({ showTaskModal: true });
-    }
-
-    onTaskOptionClick() {
+    handleTaskOptions() {
+        this.props.showTaskOptionsModal(this.props.task);
     }
 
     displayDueTime() {
@@ -82,10 +80,11 @@ class StageSlot extends Component {
             {this.props.user &&
                 <div>
                     <div className='name-row'>
-                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
-                            <span>{this.props.user.name}</span>
+                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.userId}`}>
+                            <span>{renderName(this.props.user)}</span>
                         </Link>
-                        <button className='masked-button right-icon' onClick={this.onTaskOptionClick}>
+                        <button className='masked-button right-icon'
+                            onClick={this.handleTaskOptions}>
                             <IonIcon icon='ion-ios-more'/>
                         </button>
                     </div>
@@ -111,7 +110,11 @@ class StageSlot extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    showTaskOptionsModal: task => dispatch(showTaskOptionsModal(task)),
+});
+
 export default compose(
   DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
-  connect(),
+  connect(null, mapDispatchToProps),
 )(StageSlot);
