@@ -44,11 +44,13 @@ class StatusChange extends Component {
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
-                this.props.onSetProjectStatus(this.state.project.active ? 'Active' : 'Inactive');
+                this.props.onSetProjectStatus(this.state.project.active ?
+                    'Active' : 'Inactive', this.props.project.id);
                 this.props.onStatusChangeClose();
             }
         } else if (this.surveyConfirmed()) {
-            this.props.onSetSurveyStatus(this.state.survey.published ? 'Published' : 'Draft');
+            this.props.onSetSurveyStatus(this.state.survey.published ?
+                'Published' : 'Draft', this.props.project.id);
             this.props.onStatusChangeClose();
         }
     }

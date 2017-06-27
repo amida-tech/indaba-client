@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FilterWrapper from './FilterWrapper';
 import MatrixContainer from './MatrixContainer';
-import * as ProjectActions from '../../actions';
+import * as TasksActions from '../../../../common/actions/tasksActions';
 
 class WorkflowContainer extends Component {
     render() {
@@ -17,8 +17,8 @@ class WorkflowContainer extends Component {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        assignTask: (assignment) => {
-            dispatch(ProjectActions.assignTask(assignment, ownProps.project.id));
+        assignTask: (user, task) => {
+            dispatch(TasksActions.assignTask(user, task, ownProps.project.id));
         },
     };
 }

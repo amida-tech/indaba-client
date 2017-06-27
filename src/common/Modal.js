@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Layer } from 'grommet';
 
 class LayerFooterButton extends Component {
@@ -37,6 +38,13 @@ class Modal extends Component {
         );
     }
 }
+
+Modal.propTypes = {
+    onCancel: PropTypes.func,
+    onSave: PropTypes.func,
+    vocab: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+};
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,

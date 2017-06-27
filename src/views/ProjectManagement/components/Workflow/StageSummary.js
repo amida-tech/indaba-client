@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Box } from 'grommet';
+import _ from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 
 class StageSummary extends Component {
     render() {
-        const userGroups = this.props.stage.userGroups.map(group => this.props.userGroups[group]);
+        const userGroups = this.props.stage.userGroups.map(stageGroup =>
+            _.find(this.props.userGroups, (userGroup) => userGroup.id === stageGroup));
         return (
             <div className='stage-summary'>
                 <Box direction='row'

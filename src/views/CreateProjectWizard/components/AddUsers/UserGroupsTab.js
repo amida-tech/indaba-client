@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Box, TextInput } from 'grommet';
-import IonIcon from 'react-ionicons';
-import UserBadge from './UserBadge';
+import UserGroupList from '../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
     constructor(props) {
@@ -9,9 +8,10 @@ class UserGroupsTab extends Component {
         this.state = {
             query: '',
         };
+        this.filterGroup = this.filterGroup.bind(this);
     }
-    filterGroup(role) {
-        return role.name.toLowerCase().includes(this.state.query.toLowerCase());
+    filterGroup(group) {
+        return group.name.toLowerCase().includes(this.state.query.toLowerCase());
     }
     lookupUser(userId) {
         return this.props.allUsers.find(user => user.id === userId);
@@ -24,24 +24,9 @@ class UserGroupsTab extends Component {
                     <TextInput placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_USER_GROUPS}
                         onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 </div>
-                {this.props.roles.map(role =>
-                    this.filterGroup(role) &&
-                <Box key={role.id}
-                    direction='row'
-                    justify='between'>
-                    <div className='user-group-list__name'>
-                        {role.name}
-                    </div>
-                    <div className='user-group-list__badge-string'>
-                        {role.users.map(userId =>
-                            <UserBadge key={userId} user={this.lookupUser(userId)}/>,
-                        )}
-                    </div>
-                    <div className='user-group-list__delete'
-                        onClick={() => this.props.onRemoveUserGroup(role.id)}>
-                        <IonIcon icon='ion-android-delete' />
-                    </div>
-                </Box>)}
+                <UserGroupList groups={this.props.roles.filter(this.filterGroup)}
+                    users={this.props.allUsers}
+                    onDeleteClick={this.props.onRemoveUserGroup}/>
             </Box>
         );
     }

@@ -1,0 +1,38 @@
+$font-color: #A4AEBF;
+$brand-neutral-colors: (#308253, #4EB276);
+$timestamp-green: #429664;
+
+$block-class:'flag-commentary';
+@at-root {
+    .#{$block-class} {
+
+        &__frame {
+            padding: 1em;
+            background: #ffffff;
+        }
+
+        &__timestamp {
+            margin-bottom: 3px;
+            color: $timestamp-green;
+            weight: bold;
+        }
+
+        &__comment {
+
+        }
+
+        &__signature {
+
+        }
+
+        &__discussion {
+            width: 100%;
+            height: 20em;
+            resize: none;
+            border: 0;
+            background: #ffffff;
+            padding: 1em;
+            margin-right: 0px;
+        }
+    }
+}

@@ -14,14 +14,6 @@ export function subnavigate(id) {
     };
 }
 
-export function assignTask(assignment, projectId) {
-    return {
-        type: actionTypes.ASSIGN_TASK,
-        payload: assignment,
-        projectId,
-    };
-}
-
 export function addSubject(subject, projectId) {
     return {
         type: actionTypes.ADD_SUBJECT,
@@ -42,14 +34,6 @@ export function addStage(stage, projectId) {
     return {
         type: actionTypes.ADD_STAGE,
         stage,
-        projectId,
-    };
-}
-
-export function updateTask(task, projectId) {
-    return {
-        type: actionTypes.UPDATE_TASK,
-        task,
         projectId,
     };
 }
@@ -77,6 +61,30 @@ export function setProjectStatus(status, projectId) {
     };
 }
 
+export function deleteUserGroup(groupId, projectId) {
+    return {
+        type: actionTypes.DELETE_USER_GROUP,
+        groupId,
+        projectId,
+    };
+}
+
+export function addUserGroup(group, projectId) {
+    return {
+        type: actionTypes.ADD_USER_GROUP,
+        group,
+        projectId,
+    };
+}
+
+export function updateUserGroup(group, projectId) {
+    return {
+        type: actionTypes.UPDATE_USER_GROUP,
+        group,
+        projectId,
+    };
+}
+
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
@@ -88,14 +96,14 @@ export function inviteUser(user, projectId) {
 export function updateUserSearchGroup(group) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_GROUP,
-        group
+        group,
     };
 }
 
 export function updateUserSearchQuery(query) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_QUERY,
-        query
+        query,
     };
 }
 
@@ -113,7 +121,6 @@ export function closeTaskOptionsModal() {
     };
 }
 
-// There has got to be a better way to do this...
 export function updateTaskOptionsChoice(choice) {
     return {
         type: actionTypes.UPDATE_TASK_OPTIONS_CHOICE,
@@ -139,11 +146,5 @@ export function updateTaskOptionsMessage(message) {
     return {
         type: actionTypes.UPDATE_TASK_OPTIONS_MESSAGE,
         message,
-    };
-}
-
-export function setTaskOptions() {
-    return {
-        type: actionTypes.SET_TASK_OPTIONS,
     };
 }

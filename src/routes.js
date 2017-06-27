@@ -14,12 +14,12 @@ export default (
         component={App}
         indexRoute={DashboardContainer}>
         <Route
-            key='/project(/:id)'
-            path='/project(/:id)'
+            key='/project(/:projectId)'
+            path='/project(/:projectId)'
             component={ProjectManagementContainer}/>
         <Route
-            key='/task-review(/:projectId)(/:userId)'
-            path='/task-review(/:projectId)(/:userId)'
+            key='/task-review(/:projectId)(/:taskId)'
+            path='/task-review(/:projectId)(/:taskId)'
             component={TaskReview}/>
         <Route
             key='/login'
