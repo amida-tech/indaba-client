@@ -8,20 +8,18 @@ $block-class:'primary-nav';
         height: 3.5em;
 
         &__indaba-logo {
-
+            width: 100px;
         }
         &__item {
             color: $nav-text-color;
-            padding: 10px;
             margin-left: 20px;
-            opacity: 0.7;
-            &:hover{
-                opacity: 1;
+            &:hover {
+                opacity: 0.7;
                 text-decoration: none;
                 color: $nav-text-color;
             }
-            &--primary-nav-item-active {
-                opacity: 1;
+            &--bold {
+                font-weight: bolder;
             }
         }
         &__button {
@@ -30,7 +28,15 @@ $block-class:'primary-nav';
             color: $nav-text-color;
             border-radius: 3px;
             margin-top: 5px;
+            margin-bottom: 10px;
             min-width: 10px;
+        }
+        &__icon {
+            color: $nav-text-color;
+            margin-right: 20px;
+        }
+        &__envelope {
+            margin-right: 22px;
         }
     }
 }
