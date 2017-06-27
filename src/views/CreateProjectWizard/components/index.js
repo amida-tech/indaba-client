@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
     updateWizardProjectTitle: title => dispatch(updateWizardProjectTitle(title)),
     updateWizardProjectSummary: summary => dispatch(updateWizardProjectSummary(summary)),
     onSetTitle: () => dispatch(setWizardProjectTitle()),
-    onCompleteProject: project => dispatch(addProjectFromWizard(project)),
+    onCompleteProject: wizard => dispatch(addProjectFromWizard(wizard)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

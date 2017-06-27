@@ -86,6 +86,9 @@ export default (state = initialState, action) => {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, {
+            projects: { $push: [action.wizard.project] } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
