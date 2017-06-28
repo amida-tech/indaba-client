@@ -36,7 +36,7 @@ class AddUsers extends Component {
                 {this.state.createModal &&
                     <SelectGroupUsers
                         vocab={this.props.vocab}
-                        users={this.props.projectUsers}
+                        users={this.props.project.users}
                         allUsers={this.props.allUsers}
                         onCancel={() => this.handleCreateModal(false)}
                         onSave={(role) => {
@@ -66,7 +66,7 @@ class AddUsers extends Component {
                         <UsersTab
                             vocab={this.props.vocab}
                             allUsers={this.props.allUsers}
-                            projectUsers={this.props.projectUsers}
+                            projectUsers={this.props.project.users}
                             onAddUserToProject={this.props.onAddUserToProject}
                             onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>
                     </Tab>
@@ -87,7 +87,6 @@ AddUsers.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
     groups: PropTypes.array.isRequired,
 };
 
@@ -96,7 +95,6 @@ const mapStateToProps = state => ({
     project: state.projectwizard.project,
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
-    projectUsers: state.projectwizard.users,
     groups: state.projectwizard.project.userGroups,
 });
 const mapDispatchToProps = dispatch => ({

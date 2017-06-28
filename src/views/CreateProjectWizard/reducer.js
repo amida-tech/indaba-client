@@ -11,13 +11,9 @@ const initialState = {
         id: 41,
         name: '',
         status: 'Inactive',
-        users: [0, 1],
+        users: [],
         stages: [],
-        userGroups: [{
-            id: 0,
-            name: 'great',
-            users: [0, 1],
-        }],
+        userGroups: [],
         subjects: [],
     },
     survey: {
@@ -47,10 +43,10 @@ export default (state = initialState, action) => {
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
     case type.ADD_USER_TO_WIZARD:
-        return update(state, { users: { $push: [action.user.id] } });
+        return update(state, { project: { users: { $push: [action.user.id] } } });
     case type.REMOVE_USER_FROM_WIZARD:
-        return update(state, { users:
-            { $splice: [[state.users.indexOf(action.userId), 1]] } });
+        return update(state, { project: { users:
+            { $splice: [[state.project.users.indexOf(action.userId), 1]] } } });
     case type.ADD_USER_GROUP_TO_WIZARD:
         return update(state, { project: {
             userGroups: {
