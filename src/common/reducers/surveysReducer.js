@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
-import * as type from '../actionTypes/surveysActionTypes';
 import _ from 'lodash';
+
+import * as type from '../actionTypes/surveysActionTypes';
 
 const initialState = [
     {

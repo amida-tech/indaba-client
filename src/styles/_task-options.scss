@@ -1,4 +1,5 @@
 $block-class:'task-options';
+
 @at-root {
     .#{$block-class} {
         &__reassign-select {
@@ -7,10 +8,6 @@ $block-class:'task-options';
 
         &__divider {
             @extend .divider;
-        }
-
-        &__notice {
-
         }
 
         &__message {

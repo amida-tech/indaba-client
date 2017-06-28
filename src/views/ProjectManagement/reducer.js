@@ -1,5 +1,4 @@
 import update from 'immutability-helper';
-import uuidv1 from 'uuid/v1';
 
 import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';

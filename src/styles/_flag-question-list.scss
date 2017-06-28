@@ -1,7 +1,8 @@
-$font-color: #A4AEBF;
-$brand-neutral-colors: (#308253, #4EB276);
+$font-color: #a4aebf;
+$brand-neutral-colors: (#308253, #4eb276);
 
 $block-class:'flag-question-list';
+
 @at-root {
     .#{$block-class} {
         min-width: 120px;
@@ -15,10 +16,9 @@ $block-class:'flag-question-list';
                 background-color: nth($brand-neutral-colors, 2);
             }
 
-
             &--selected {
                 background-color: #399862;
-                color: #ffffff;
+                color: #fff;
                 font-size: 12px;
             }
 

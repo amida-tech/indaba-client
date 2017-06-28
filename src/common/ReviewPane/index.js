@@ -9,14 +9,10 @@ class ReviewPane extends Component {
     constructor(props) {
         super(props);
         this.handleClickReview = this.handleClickReview.bind(this);
-        this.handleFlagClick = this.handleFlagClick.bind(this);
     }
 
     handleClickReview(event) {
         this.setState({ review: event.target.value === 'true' });
-    }
-
-    handleFlagClick(event) {
     }
 
     render() {
@@ -24,7 +20,7 @@ class ReviewPane extends Component {
         return (
             <Box className='review-pane'>
                 {!this.props.taskView &&
-                <button className='review-pane__flag-button' onClick={this.handleFlagClick}>
+                <button className='review-pane__flag-button'>
                     <IonIcon className='review-pane__flag-button--icon' icon='ion-ios-flag'/>
                 </button>}
                 <Question {...this.props}/>

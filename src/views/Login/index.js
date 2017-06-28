@@ -8,7 +8,7 @@ class LoginContainer extends Component {
 }
 
 // const mapStateToProps = (state, ownProps) => {
-function mapStateToProps(store) {
+function mapStateToProps() { // Need arg: store
     return {
     //  vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
     };

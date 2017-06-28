@@ -29,8 +29,13 @@ class Modal extends Component {
                     {(this.props.onCancel || this.props.onSave) &&
                         <div className='layer-footer'>
                             <div className='layer-footer-button-wrapper'>
-                                <LayerFooterButton label={vocab.COMMON.CANCEL} onClick={this.props.onCancel}/>
-                                <LayerFooterButton label={vocab.COMMON.SAVE} primary={true} onClick={this.props.onSave}/>
+                                <LayerFooterButton
+                                    label={vocab.COMMON.CANCEL}
+                                    onClick={this.props.onCancel}/>
+                                <LayerFooterButton
+                                    label={vocab.COMMON.SAVE}
+                                    primary={true}
+                                    onClick={this.props.onSave}/>
                             </div>
                     </div>}
                 </div>

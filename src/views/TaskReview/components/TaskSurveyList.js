@@ -15,11 +15,11 @@ class TaskSurveyList extends Component {
         this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
     }
 
-    handleAccordionExpandAll(event) {
+    handleAccordionExpandAll() {
         this.setState({ active: this.state.allActive });
     }
 
-    handleAccordionCollapseAll(event) {
+    handleAccordionCollapseAll() {
         this.setState({ active: [] });
     }
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TextInput } from 'grommet';
-import Modal from '../../../common/Modal';
 import PropTypes from 'prop-types';
+
+import Modal from '../../../common/Modal';
 
 class NewProjectTitle extends Component {
     constructor(props) {

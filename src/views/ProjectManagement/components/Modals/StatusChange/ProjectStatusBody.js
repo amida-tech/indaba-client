@@ -18,7 +18,9 @@ class ProjectStatusBody extends Component {
           <label htmlFor='project-status-check' className='toggle'></label>
           <div className='project-status-field'>
             <div className='project-status-text'>
-              {this.props.active ? vocab.PROJECT.STATUS_ACTIVE : vocab.PROJECT.STATUS_INACTIVE}</div>
+              {this.props.active ?
+                  vocab.PROJECT.STATUS_ACTIVE :
+                  vocab.PROJECT.STATUS_INACTIVE}</div>
             <div className='project-status-label'>
               {projectVocab.VALUE_LABEL}
             </div>
