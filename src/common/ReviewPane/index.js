@@ -6,14 +6,14 @@ import IonIcon from 'react-ionicons';
 import * as Questions from '../Questions';
 
 class ReviewPane extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleClickReview = this.handleClickReview.bind(this);
         this.handleFlagClick = this.handleFlagClick.bind(this);
     }
 
     handleClickReview(event) {
-        this.setState({review: event.target.value === 'true' ? true : false});
+        this.setState({ review: event.target.value === 'true' });
     }
 
     handleFlagClick(event) {
@@ -54,7 +54,7 @@ class ReviewPane extends Component {
                         placeholder={this.props.comment || this.props.vocab.COMMENT_TIP} />
                 </div>
             </Box>
-        )
+        );
     }
 }
 

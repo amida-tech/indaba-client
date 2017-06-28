@@ -7,7 +7,7 @@ import TaskStatus from '../../../../utils/TaskStatus';
 class StageSummary extends Component {
     render() {
         const userGroups = this.props.stage.userGroups.map(stageGroup =>
-            _.find(this.props.userGroups, (userGroup) => userGroup.id === stageGroup));
+            _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
             <div className='stage-summary'>
                 <Box direction='row'
