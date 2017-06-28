@@ -17,7 +17,7 @@ export const initialState = {
             choice: null,
             notify: true,
             message: '',
-            reassignId: null,
+            reassignUser: null,
             task: {},
         },
     },
@@ -107,9 +107,9 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             choice: { $set: action.choice },
         } } });
-    case type.UPDATE_TASK_OPTIONS_REASSIGN_ID:
+    case type.UPDATE_TASK_OPTIONS_REASSIGN_USER:
         return update(state, { ui: { taskOptions: {
-            reassignId: { $set: action.reassignId },
+            reassignUser: { $set: action.reassignUser },
         } } });
     case type.UPDATE_TASK_OPTIONS_NOTIFY:
         return update(state, { ui: { taskOptions: {
