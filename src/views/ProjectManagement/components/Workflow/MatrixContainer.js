@@ -22,7 +22,7 @@ import { setTaskOptions } from '../../../../common/actions/tasksActions';
 class MatrixContainer extends Component {
     render() {
         return (
-            <div className='container-fluid'>
+            <div className='matrix-container'>
                 {this.props.ui.taskOptions.show &&
                     <TaskOptions
                         vocab={this.props.vocab.PROJECT.OPTIONS_MODAL}
@@ -30,8 +30,7 @@ class MatrixContainer extends Component {
                         users={this.props.users}
                         projectId={this.props.project.id}
                         calls={this.props.calls} />}
-                <div className='row'>
-                  <div className='col-sm-8 grid-column'>
+                  <div className='matrix-container__task-matrix'>
                       <table className='table table-bordered workflow-table' key='MatrixContainer'>
                         <thead>
                           <tr key='StageHeader'>
@@ -65,8 +64,8 @@ class MatrixContainer extends Component {
                         </tbody>
                       </table>
                   </div>
-                  <div className='user-sidebar'><AssigneeContainer {...this.props} /></div>
-                </div>
+                  <div className='matrix-container__sidebar'><AssigneeContainer {...this.props} /></div>
+
             </div>
         );
     }

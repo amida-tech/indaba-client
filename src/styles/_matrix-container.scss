@@ -1,0 +1,16 @@
+
+$block-class:'matrix-container';
+@at-root {
+    .#{$block-class} {
+
+    display: flex;
+    flex-direction: row;
+        &__task-matrix {
+            overflow: scroll;
+        }
+        &__sidebar {
+            flex: 1;
+            min-width: 320px;
+        }
+    }
+}
