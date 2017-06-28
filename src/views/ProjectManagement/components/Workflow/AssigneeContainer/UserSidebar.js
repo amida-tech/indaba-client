@@ -15,7 +15,7 @@ class UserSidebar extends Component {
                     placeHolder={this.props.vocab.COMMON.SEARCH}
                     onDOMChange={this.props.onSearch}
                     inline={true}/>
-                <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
+                <Select className='user-sidebar__user-filter-by-group' placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
                     value={this.props.search.group && this.props.search.group.name}
                     onChange={this.props.onGroupFilter}/>
