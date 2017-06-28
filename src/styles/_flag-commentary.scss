@@ -1,5 +1,6 @@
 $font-color: #A4AEBF;
 $brand-neutral-colors: (#308253, #4EB276);
+$timestamp-green: #429664;
 
 $block-class:'flag-commentary';
 @at-root {
@@ -8,35 +9,30 @@ $block-class:'flag-commentary';
         &__frame {
             padding: 1em;
             background: #ffffff;
+        }
 
-            &__timestamp {
-                margin-bottom: 3px;
-                color: green;
-                weight: bold;
-            }
+        &__timestamp {
+            margin-bottom: 3px;
+            color: $timestamp-green;
+            weight: bold;
+        }
 
-            &__comment {
+        &__comment {
 
-            }
+        }
 
-            &__signature {
+        &__signature {
 
-            }
         }
 
         &__discussion {
             width: 100%;
+            height: 20em;
             resize: none;
-            height: 100%;
+            border: 0;
+            background: #ffffff;
+            padding: 1em;
+            margin-right: 0px;
         }
-    }
-
-    .grommetux-text-input {
-        width: 100%;
-        height: 20em;
-        border: 0;
-        background: #ffffff;
-        padding: 1em;
-        margin-right: 0px;
     }
 }
