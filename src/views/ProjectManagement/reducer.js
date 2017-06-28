@@ -1,5 +1,4 @@
 import update from 'immutability-helper';
-import uuidv1 from 'uuid/v1';
 
 import * as type from './actionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
@@ -139,11 +138,6 @@ export default (state = initialState, action) => {
             stages: { $push: [update(action.stage, { $merge: {
                 id: state.projects[projectIndex].stages.length } })] },
         } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [update(action.project, { $merge: {
-                id: state.projects.length } })],
-            } });
     case type.DELETE_USER_GROUP:
         return update(state, { projects: { [projectIndex]: {
             userGroups: { $apply: userGroups =>
