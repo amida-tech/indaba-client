@@ -7,6 +7,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body',
 });
 
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const StyleLintPluginConfig = new StyleLintPlugin({
+    files: 'src/styles/*.scss',
+});
+
 module.exports = {
     devServer: {
         port: 3000,
@@ -37,10 +42,19 @@ module.exports = {
                             includePaths: ['./node_modules'],
                         },
                     },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            fix: true,
+                        }
+                    },
                 ],
             },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
         ],
     },
-    plugins: [HtmlWebpackPluginConfig],
+    plugins: [
+        HtmlWebpackPluginConfig,
+        StyleLintPluginConfig,
+    ],
 };
