@@ -7,6 +7,6 @@ export class Date extends Component {
             <div>
                 {this.props.question}
             </div>
-        )
+        );
     }
 }
