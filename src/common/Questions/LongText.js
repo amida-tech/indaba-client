@@ -6,6 +6,6 @@ export class LongText extends Component {
             <div>
                 {this.props.question}
             </div>
-        )
+        );
     }
 }
