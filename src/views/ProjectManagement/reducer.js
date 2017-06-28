@@ -19,6 +19,7 @@ export const initialState = {
             reassignUser: null,
             task: {},
         },
+        userGroupListSearchQuery: '',
     },
     projects: [{
         id: 101,
@@ -92,6 +93,9 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_SEARCH_QUERY:
         return update(state, { ui: { userSidebarSearch: {
             query: { $set: action.query } } } });
+    case type.UPDATE_USER_GROUP_LIST_SEARCH_QUERY:
+        return update(state, { ui: {
+            userGroupListSearchQuery: { $set: action.query } } });
     case type.SHOW_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: true },

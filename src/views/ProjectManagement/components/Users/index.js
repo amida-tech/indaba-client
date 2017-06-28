@@ -4,9 +4,9 @@ import { Button, Tabs, Tab } from 'grommet';
 import update from 'immutability-helper';
 
 import PMUsersTab from './PMUsersTab';
+import PMUserGroupsTab from './PMUserGroupsTab';
 import AddUserModal from '../../../../common/components/AddUserModal';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
-import UserGroupList from '../../../../common/components/UserGroupList';
 
 class Users extends Component {
     constructor(props) {
@@ -53,8 +53,8 @@ class Users extends Component {
                         <PMUsersTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <UserGroupList columnHeaders={true}
-                            groups={this.props.project.userGroups}
+                        <PMUserGroupsTab columnHeaders={true}
+                            project={this.props.project}
                             users={this.props.users}
                             vocab={this.props.vocab}
                             projectId={this.props.project.id}
