@@ -2,18 +2,27 @@ $block-class:'user-sidebar';
 @at-root {
     .#{$block-class} {
 
-        &>* {
-            padding: 5px;
-        }
+        max-height: calc(100vh-300px);
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        justify-content: space-around;
+
 
         &__instructions {
+            position: relative;
             border-bottom: 1px solid $border-color;
-            padding-top: 0.4em;
-            padding-bottom: 0.4em;
-        }
+            margin-bottom: 1em;
+            padding: 1em;
+            margin-bottom: 1em;
+
+
+
 
         &__user-search {
-            margin-bottom: 5px;
+            //margin-bottom: 5px;
         }
     }
+}
 }
