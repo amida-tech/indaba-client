@@ -86,6 +86,9 @@ export default (state = initialState, action) => {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, {
+            projects: { $push: [action.wizard.project] } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
@@ -139,11 +142,6 @@ export default (state = initialState, action) => {
             stages: { $push: [update(action.stage, { $merge: {
                 id: state.projects[projectIndex].stages.length } })] },
         } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [update(action.project, { $merge: {
-                id: state.projects.length } })],
-            } });
     case type.DELETE_USER_GROUP:
         return update(state, { projects: { [projectIndex]: {
             userGroups: { $apply: userGroups =>

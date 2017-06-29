@@ -95,7 +95,7 @@ class CreateProjectWizard extends Component {
             </div>) : (
             <div className='project-wizard--complete'>
                 <WizardComplete vocab={this.props.vocab} />
-                <ProjectManagementContainer id='1'/>
+                <ProjectManagementContainer params={{ projectId: '41' }}/>
             </div>);
     }
 }
@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
     updateWizardProjectTitle: title => dispatch(updateWizardProjectTitle(title)),
     updateWizardProjectSummary: summary => dispatch(updateWizardProjectSummary(summary)),
     onSetTitle: () => dispatch(setWizardProjectTitle()),
-    onCompleteProject: project => dispatch(addProjectFromWizard(project)),
+    onCompleteProject: wizard => dispatch(addProjectFromWizard(wizard)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

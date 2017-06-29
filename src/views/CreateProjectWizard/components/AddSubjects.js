@@ -38,9 +38,9 @@ class AddSubjectControl extends Component {
             {this.props.subjects && this.props.subjects.map(subject =>
                 <Box direction='row' key={subject}>
                     {subject}
-                    <span onClick={() => this.props.onDeleteSubject(subject)}>
+                    <div onClick={() => this.props.onDeleteSubject(subject)}>
                         <IonIcon icon='ion-android-delete'/>
-                    </span>
+                    </div>
                 </Box>,
             )}
         </div>);
@@ -51,7 +51,7 @@ class AddSubjects extends Component {
     render() {
         return (<div>
             <Summary
-                workflow={this.props.workflow}
+                project={this.props.project}
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
@@ -71,9 +71,9 @@ class AddSubjects extends Component {
 }
 
 const mapStateToProps = state => ({
-    subjects: state.projectwizard.workflow.subjects,
+    subjects: state.projectwizard.project.subjects,
     vocab: state.settings.language.vocabulary,
-    workflow: state.projectwizard.workflow,
+    project: state.projectwizard.project,
     survey: state.projectwizard.survey,
 });
 const mapDispatchToProps = dispatch => ({
