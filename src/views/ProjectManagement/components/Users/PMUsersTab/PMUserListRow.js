@@ -10,10 +10,10 @@ class PMUserListRow extends Component {
     render() {
         const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
             .map(g => g.name).join(', ');
-        const subjects = this.props.tasks.filter(task =>
-            task.userId === this.props.user.id)
-            .map(task => this.props.subjects[task.subject])
-            .join(', ');
+        const subjects = this.props.subjects.filter(subject =>
+            this.props.tasks.some(task => task.userId === this.props.user.id &&
+                task.subject === this.props.subjects.indexOf(subject)),
+        );
         return (
             <div className='pm-user-list-row'>
                 <div className='pm-user-list-row__cell'
