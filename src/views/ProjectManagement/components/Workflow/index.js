@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     };
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         data: state,
         vocab: state.settings.language.vocabulary,

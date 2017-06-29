@@ -45,8 +45,10 @@ class InviteUser extends Component {
             justify='end'
             pad={{ between: 'small' }}
             margin={{ top: 'small' }}>
-            <Button secondary={true} label={this.props.vocab.COMMON.CLEAR} onClick={this.clear.bind(this)}/>
-            <Button primary={true} label={this.props.vocab.COMMON.INVITE} onClick={() => this.props.onInviteUser(this.state)}/>
+            <Button secondary={true} label={this.props.vocab.COMMON.CLEAR} onClick={
+                this.clear.bind(this)}/>
+            <Button primary={true} label={this.props.vocab.COMMON.INVITE} onClick={() =>
+                this.props.onInviteUser(this.state)}/>
           </Box>
         </Box>
       </div>

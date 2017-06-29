@@ -7,7 +7,7 @@ class DashboardContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = () => { // Needed args: state
     return {
     // vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
     };

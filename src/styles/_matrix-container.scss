@@ -1,9 +1,8 @@
-
+$sidebar-width: 320px;
 $block-class:'matrix-container';
 
 @at-root {
     .#{$block-class} {
-        $sidebar-width: 320px;
         display: flex;
         flex-direction: row;
         // flex: 1;

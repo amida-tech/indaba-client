@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 
-import { assignTask } from '../../../actions';
 import { renderName } from '../../../../../utils/User';
 
 /* Take in props for name, function for whatever edit will be,
@@ -15,26 +14,20 @@ const Types = {
 };
 
 const cardSource = {
-    canDrag(props) {
+    canDrag() { // Possible arg: props
         return true;
     },
     isDragging(props, monitor) {
         return monitor.getItem().id === props.children.id;
     },
-    beginDrag(props, monitor, component) {
+    beginDrag(props) { // Possible arg: monitor, component
         return { id: props.children.id };
     },
-    endDrag(props, monitor, component) {
+    endDrag(props, monitor) { // Possible arg: component
         if (!monitor.didDrop()) {
             return;
         }
         const dropResult = monitor.getDropResult();
-        const assignment = {
-            userId: props.children.id,
-            role: props.children.role,
-            stage: dropResult.task.stage,
-            subject: dropResult.task.subject,
-        };
         props.assignTask(props.children.id, dropResult.task);
     },
 };
@@ -47,12 +40,8 @@ function collect(connect, monitor) {
 }
 
 class AssigneeCard extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
-        const { id } = this.props.children;
         const { isDragging, connectDragSource } = this.props;
 
         return connectDragSource(

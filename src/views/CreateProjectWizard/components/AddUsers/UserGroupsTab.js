@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Box, TextInput } from 'grommet';
 import UserGroupList from '../../../../common/components/UserGroupList';
 
@@ -24,12 +26,20 @@ class UserGroupsTab extends Component {
                     <TextInput placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_USER_GROUPS}
                         onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 </div>
-                <UserGroupList groups={this.props.roles.filter(this.filterGroup)}
+                <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
                     users={this.props.allUsers}
                     onDeleteClick={this.props.onRemoveUserGroup}/>
             </Box>
         );
     }
 }
+
+UserGroupsTab.propTypes = {
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+
+    onRemoveUserGroup: PropTypes.func.isRequired,
+};
 
 export default UserGroupsTab;

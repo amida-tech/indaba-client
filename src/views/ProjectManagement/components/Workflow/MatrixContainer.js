@@ -64,8 +64,9 @@ class MatrixContainer extends Component {
                         </tbody>
                       </table>
                   </div>
-                  <div className='matrix-container__sidebar'><AssigneeContainer {...this.props} /></div>
-
+                  <div className='matrix-container__sidebar'>
+                    <AssigneeContainer {...this.props} />
+                </div>
             </div>
         );
     }

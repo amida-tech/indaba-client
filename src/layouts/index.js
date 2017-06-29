@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import NavContainer from '../views/PrimaryNav';
 import { connect } from 'react-redux';
+
+import NavContainer from '../views/PrimaryNav';
 
 class Layout extends Component {
 
@@ -15,7 +16,7 @@ class Layout extends Component {
 
 Layout.displayName = 'Layout';
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         data: state,
         vocab: state.settings.language.vocabulary,
