@@ -14,7 +14,7 @@ class TasksTab extends Component {
                     </div>
                 </div>
                 {this.props.project.stages.map(stage =>
-                    this.props.tasks.some(task => task.id === this.props.userId
+                    this.props.tasks.some(task => task.userId === this.props.userId
                         && task.stage === stage.id) &&
                     <div className='task-list__row' key={stage.id}>
                         <div className='task-list__cell'>
@@ -22,7 +22,7 @@ class TasksTab extends Component {
                         </div>
                         <div className='task-list__cell'>
                             {this.props.tasks.filter(task =>
-                                task.id === this.props.userId &&
+                                task.userId === this.props.userId &&
                                 task.stage === stage.id)
                                 .map(task => this.props.project.subjects[task.subject])
                                 .join(',')
