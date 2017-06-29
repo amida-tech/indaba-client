@@ -1,10 +1,9 @@
-$font-color: #A4AEBF;
-$brand-neutral-colors: (#308253, #4EB276);
-
+$font-color: #a4aebf;
+$brand-neutral-colors: (#308253, #4eb276);
 $block-class:'flag-header';
+
 @at-root {
     .#{$block-class} {
-
         &__title {
             margin-left: 10px;
             font-size: 22px;
@@ -16,10 +15,10 @@ $block-class:'flag-header';
             flex-flow: nowrap;
             justify-content: space-between;
             align-items: center;
-            
+
             &-button {
                 //margin-left: 1em;
-                padding: 0px;
+                padding: 0;
                 border-radius: 2px;
             }
         }

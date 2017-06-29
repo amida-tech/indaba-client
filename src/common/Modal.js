@@ -34,7 +34,8 @@ class Modal extends Component {
                                     onClick={this.props.onCancel}/>
                                 <LayerFooterButton
                                     label={vocab.COMMON.SAVE}
-                                    primary={true} onClick={this.props.onSave}/>
+                                    primary={true}
+                                    onClick={this.props.onSave}/>
                             </div>
                     </div>}
                 </div>

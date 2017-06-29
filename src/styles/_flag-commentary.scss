@@ -1,28 +1,20 @@
-$font-color: #A4AEBF;
-$brand-neutral-colors: (#308253, #4EB276);
+$font-color: #a4aebf;
+$brand-neutral-colors: (#308253, #4eb276);
 $timestamp-green: #429664;
 
 $block-class:'flag-commentary';
+
 @at-root {
     .#{$block-class} {
-
         &__frame {
             padding: 1em;
-            background: #ffffff;
+            background: #fff;
         }
 
         &__timestamp {
             margin-bottom: 3px;
             color: $timestamp-green;
-            weight: bold;
-        }
-
-        &__comment {
-
-        }
-
-        &__signature {
-
+            font-weight: bold;
         }
 
         &__discussion {
@@ -30,9 +22,9 @@ $block-class:'flag-commentary';
             height: 20em;
             resize: none;
             border: 0;
-            background: #ffffff;
+            background: #fff;
             padding: 1em;
-            margin-right: 0px;
+            margin-right: 0;
         }
     }
 }
