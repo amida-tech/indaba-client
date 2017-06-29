@@ -3,8 +3,6 @@ import _ from 'lodash';
 import * as type from '../actionTypes/surveysActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 
-import * as type from '../actionTypes/surveysActionTypes';
-
 const initialState = [
     {
         id: 78,
