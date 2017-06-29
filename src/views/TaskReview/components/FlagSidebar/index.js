@@ -10,7 +10,7 @@ class FlagSidebar extends Component {
     componentWillMount() {
         const issues = this.props.survey.filter(question => question.flag === true);
         this.props.actions.storeFlaggedIssues(issues);
-        this.props.actions.setActiveFlag(issues[0], new Date());
+        this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
         this.props.actions.updateNotifyUser(this.props.users[0]);
         this.props.actions.setSignatureId(this.props.profile.id);
     }

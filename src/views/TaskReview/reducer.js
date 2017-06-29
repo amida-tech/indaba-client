@@ -8,7 +8,7 @@ export const initialState = {
     ui: {
         flags: [],
         flagSidebar: {
-            active: 0,
+            active: 0, // Id of flag above.
             comment: '',
             resolved: false,
             notifyUser: {
@@ -53,23 +53,29 @@ export default (state = initialState, action) => {
             } } });
     case UPDATE_FLAGGED_QUESTION: {
         const flagIndex = _.findIndex(state.ui.flags, flag =>
-            flag.id === action.data.active.id);
-
-// You're on the right track below.
-        const what = update(state, { ui: {
-            flags: { $splice: [[flagIndex, 1]] },
-            flagSidebar: { $set: { active: state.ui.flags[0] } } } });
-        console.log(what);
-
-        return (action.data.resolved ?
-            update(state, { ui: {
+            flag.id === action.data.active);
+        if (action.data.resolved) {
+            let nextId = 0;
+            if (flagIndex === 0 && state.ui.flags.length > 1) {
+                nextId = state.ui.flags[1].id;
+            } else if (flagIndex > 0) {
+                nextId = state.ui.flags[0].id;
+            }
+            console.log(nextId);
+            return update(state, { ui: {
                 flags: { $splice: [[flagIndex, 1]] },
-                flagSidebar: { $merge: { active: state.ui.flags[0] } } } }) :
-            update(state, { ui: { flags: { [flagIndex]: { flagHistory: { $push: [{
+                flagSidebar: { active: { $set: nextId } } } });
+        }
+        return update(state, { ui: {
+            flags: { [flagIndex]: { flagHistory: { $push: [{
                 timestamp: action.data.timestamp,
                 comment: action.data.comment,
                 userId: action.data.signatureId,
-            }] } } } } }));
+            }] } } },
+            flagSidebar: {
+                active: { $set: action.data.active },
+                timestamp: { $set: action.data.timestamp },
+            } } });
     }
     default:
         return state;

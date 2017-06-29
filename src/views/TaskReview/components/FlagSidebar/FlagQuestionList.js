@@ -9,8 +9,8 @@ class FlagQuestionList extends Component {
         this.onChangeQuestion = this.onChangeQuestion.bind(this);
     }
 
-    onChangeQuestion(question) {
-        this.props.actions.setActiveFlag(question, new Date());
+    onChangeQuestion(id) {
+        this.props.actions.setActiveFlag(id, new Date());
     }
 
     render() {
@@ -20,10 +20,10 @@ class FlagQuestionList extends Component {
                     return (_.some(this.props.ui.flags, flag =>
                         flag.id === question.id)) ?
                         <ListItem key={`listitem${question}${index}`}
-                            className={question.id === this.props.ui.flagSidebar.active.id ?
+                            className={question.id === this.props.ui.flagSidebar.active ?
                                 'flag-question-list__item flag-question-list__item--selected' :
                                 'flag-question-list__item flag-question-list__item'}
-                            onClick={this.onChangeQuestion.bind(event, question)}>
+                            onClick={this.onChangeQuestion.bind(event, question.id)}>
                             {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
                         </ListItem> :
                         <ListItem key={`listitem${question}${index}`}

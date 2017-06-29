@@ -83,19 +83,18 @@ const initialState = [{
 export const DiscussReducer = (state = initialState, action) => {
     const taskIndex = _.findIndex(state, discuss => discuss.taskId === action.taskId);
     const questionIndex = state[taskIndex] ?
-        _.findIndex(state[taskIndex].discuss, chat => chat.id === action.data.active.id) :
+        _.findIndex(state[taskIndex].discuss, chat => chat.id === action.data.active) :
         null;
 
     switch (action.type) {
-    case type.UPDATE_FLAGGED_QUESTION: {
+    case type.UPDATE_FLAGGED_QUESTION:
         return update(state, { [taskIndex]: { discuss: { [questionIndex]: {
-            $merge: { flag: !action.data.resolved },
+            flag: { $set: !action.data.resolved },
             flagHistory: { $push: [{
                 timestamp: action.data.timestamp,
                 comment: action.data.comment,
                 userId: action.data.signatureId,
             }] } } } } });
-    }
     default:
         return state;
     }
