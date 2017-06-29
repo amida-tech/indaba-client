@@ -1,11 +1,14 @@
 import update from 'immutability-helper';
+import _ from 'lodash';
+
 import * as type from './actionTypes';
+import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
 
 export const initialState = {
     ui: {
         flags: [],
         flagSidebar: {
-            active: 0,
+            active: 0, // Id of flag above.
             comment: '',
             resolved: false,
             notifyUser: {
@@ -48,6 +51,35 @@ export default (state = initialState, action) => {
                 resolved: { $set: false },
                 timestamp: { $set: null },
             } } });
+    case UPDATE_FLAGGED_QUESTION: {
+        const flagIndex = _.findIndex(state.ui.flags, flag =>
+            flag.id === action.data.active);
+        if (action.data.resolved) {
+            let nextId = 0; // Determines the next active question, if any.
+            if (flagIndex === 0 && state.ui.flags.length > 1) {
+                nextId = state.ui.flags[1].id;
+            } else if (flagIndex > 0) {
+                nextId = state.ui.flags[0].id;
+            }
+            return update(state, { ui: {
+                flags: { $splice: [[flagIndex, 1]] },
+                flagSidebar: {
+                    active: { $set: nextId },
+                    comment: { $set: '' },
+                    resolved: { $set: false },
+                } } });
+        }
+        return update(state, { ui: {
+            flags: { [flagIndex]: { flagHistory: { $push: [{
+                timestamp: action.data.timestamp,
+                comment: action.data.comment,
+                userId: action.data.signatureId,
+            }] } } },
+            flagSidebar: {
+                comment: { $set: '' },
+                resolved: { $set: false },
+            } } });
+    }
     default:
         return state;
     }

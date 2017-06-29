@@ -4,6 +4,15 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 class FlagQuestionList extends Component {
+    constructor(props) {
+        super(props);
+        this.onChangeQuestion = this.onChangeQuestion.bind(this);
+    }
+
+    onChangeQuestion(id) {
+        this.props.actions.setActiveFlag(id, new Date());
+    }
+
     render() {
         return (
             <List className='flag-question-list'>
@@ -11,10 +20,10 @@ class FlagQuestionList extends Component {
                     return (_.some(this.props.ui.flags, flag =>
                         flag.id === question.id)) ?
                         <ListItem key={`listitem${question}${index}`}
-                            className={question.id === this.props.ui.flagSidebar.active.id ?
+                            className={question.id === this.props.ui.flagSidebar.active ?
                                 'flag-question-list__item flag-question-list__item--selected' :
                                 'flag-question-list__item flag-question-list__item'}
-                            onClick={this.props.actions.setActiveFlag.bind(event, question)}>
+                            onClick={this.onChangeQuestion.bind(event, question.id)}>
                             {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
                         </ListItem> :
                         <ListItem key={`listitem${question}${index}`}
