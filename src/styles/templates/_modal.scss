@@ -1,35 +1,32 @@
-$header-font-color: #7E848F;
-$border-color: #DADCDE;
-$brand-color: #4EB276;
-$font-color: #A4AEBF;
-$header-footer: #F2F2F2;
+$header-font-color: #7e848f;
+$border-color: #dadcde;
+$brand-color: #4eb276;
+$font-color: #a4aebf;
+$header-footer: #f2f2f2;
 
 .layer-content {
-  // margin-top: 20em;
-  margin: 4em 1em 1em 1em;
-  max-height:100%;
-  border: 1px solid $border-color;
-  border-radius: 3px;
-  box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
-  // space at the top for positioning, space on the other side to show box-shadow
+    margin: 4em 1em 1em;
+    max-height: 100%;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    box-shadow: 2px 0 6px 0 rgba(128,134,145,0.6);
+    // space at the top for positioning, space on the other side to show box-shadow
 
+    .layer-title {
+        padding-left: 1em;
+        background-color: #f2f2f2;
+        line-height: 48px;
+        border-bottom: 1px solid $border-color;
+        color: $header-font-color;
+        text-align: left;
+        font-size: 18px;
+    }
 
-  .layer-title {
-
-    padding-left: 1em;
-    background-color: #F2F2F2;
-    line-height: 48px;
-    border-bottom: 1px solid $border-color;
-    color: $header-font-color;
-    text-align: left;
-    font-size: 18px;
-  }
-
-  .layer-footer {
-    padding-right: 1em;
-    background-color: $header-footer;
-    line-height: 3em;
-    overflow: auto;
+    .layer-footer {
+        padding-right: 1em;
+        background-color: $header-footer;
+        line-height: 3em;
+        overflow: auto;
 
     .layer-footer-button-wrapper {
       float: right;

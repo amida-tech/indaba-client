@@ -25,23 +25,25 @@ class TaskOptions extends Component {
         return (
             <Modal
                 title={this.props.vocab.TITLE}
-                class='task-options-layer'
+                class='task-options'
                 onCancel={this.props.calls.closeTaskOptionsModal}
                 isValid={this.isValid()}
                 onSave={() => this.props.calls.setTaskOptions}>
-                <div className='task-options'>
+                <div className='task-options__body'>
                     <RadioButton id='force'
                         name='taskOptions'
                         label={this.props.vocab.FORCE}
+                        className="task-options__header"
                         value='force'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
-                    <div className='task-options__force-explain'>
+                    <div className='task-options__header-paragraph'>
                         {this.props.vocab.FORCE_PARAGRAPH}
                     </div>
                     <RadioButton id='reassign'
                         name='taskOptions'
                         label={this.props.vocab.REASSIGN}
+                        className="task-options__header"
                         value='reassign'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
@@ -50,20 +52,23 @@ class TaskOptions extends Component {
                         placeHolder= {renderName(currentUser)
                             + this.props.vocab._CURRENTLY_ASSIGNED}
                         options={userOptions}
+                        className='task-options__header-text-box'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsReassignUser(event.option.value)} />
                         <RadioButton id='skip'
                             disabled={true}
                             name='taskOptions'
                             label={this.props.vocab.SKIP}
+                            className="task-options__header"
                             value='skip'
                             onChange={event =>
                                 this.props.calls.updateTaskOptionsChoice(event.target.value)} />
-                    <div className='task-options__skip-explain'>
+                    <div className='task-options__header-paragraph'>
                         {this.props.vocab.SKIP_PARAGRAPH}
                     </div>
                     <hr className='task-options__divider'/>
                     <CheckBox
+                        className="task-options__header"
                         label={this.props.vocab.NOTIFY}
                         checked={this.props.taskOptions.notify}
                         onChange={event =>
@@ -71,7 +76,8 @@ class TaskOptions extends Component {
                     <div className='task-options__notice'>
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
-                    <TextInput className='task-options__message'
+                    <TextInput
+                        className='task-options__header-text-box'
                         value={this.props.taskOptions.message}
                         onDOMChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
