@@ -33,7 +33,7 @@ class WizardComplete extends Component {
                 <Button className='wizard-complete__button'
                     primary
                     label={this.props.vocab.PROJECT.GO_TO_PROJECT}
-                    path='/project/1'/>
+                    path='/project/41'/>
             </div>
         </Modal>;
     }

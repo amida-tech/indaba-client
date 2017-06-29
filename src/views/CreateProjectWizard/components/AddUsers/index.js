@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
@@ -34,7 +36,7 @@ class AddUsers extends Component {
                 {this.state.createModal &&
                     <SelectGroupUsers
                         vocab={this.props.vocab}
-                        users={this.props.projectUsers}
+                        users={this.props.project.users}
                         allUsers={this.props.allUsers}
                         onCancel={() => this.handleCreateModal(false)}
                         onSave={(role) => {
@@ -42,7 +44,7 @@ class AddUsers extends Component {
                             this.handleCreateModal(false);
                         }}/>}
                 <Summary
-                    workflow={this.props.workflow}
+                    project={this.props.project}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
@@ -64,14 +66,14 @@ class AddUsers extends Component {
                         <UsersTab
                             vocab={this.props.vocab}
                             allUsers={this.props.allUsers}
-                            projectUsers={this.props.projectUsers}
+                            projectUsers={this.props.project.users}
                             onAddUserToProject={this.props.onAddUserToProject}
                             onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            roles={this.props.roles}
+                            groups={this.props.groups}
                             allUsers={this.props.allUsers}
                             onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
@@ -80,13 +82,20 @@ class AddUsers extends Component {
     }
 }
 
+AddUsers.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
+    survey: PropTypes.object.isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    groups: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
-    workflow: state.projectwizard.workflow,
+    project: state.projectwizard.project,
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
-    projectUsers: state.projectwizard.users,
-    roles: state.projectwizard.workflow.roles,
+    groups: state.projectwizard.project.userGroups,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),

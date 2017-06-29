@@ -29,43 +29,45 @@ class MatrixContainer extends Component {
                         taskOptions={this.props.ui.taskOptions}
                         users={this.props.users}
                         projectId={this.props.project.id}
-                        calls={this.props.calls} />}
+                        calls={this.props.calls} />
+                }
                 <div className='row'>
-                  <div className='col-sm-8 grid-column'>
-                      <table className='table table-bordered workflow-table' key='MatrixContainer'>
-                        <thead>
-                          <tr key='StageHeader'>
-                            <th></th>
-                            {this.props.project.stages.map(stage =>
-                              <th key={stage.id}>{stage.title}</th>,
-                            )}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr key={'Summary'}>
-                            <td key='empty-subject-summary-row'></td>
-                            {this.props.project.stages.map(stage =>
-                              <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
-                                <StageSummary stage={stage}
-                                    userGroups={this.props.project.userGroups}
-                                    vocab={this.props.vocab}/>
-                              </td>)}
-                          </tr>
-                          {this.props.project.subjects.map((subject, key) =>
-                            <FilteredRow key={key}
-                              subject={{ name: subject, key }}
-                              surveySize={this.props.surveySize}
-                              stages={this.props.project.stages}
-                              tasks={this.props.tasks}
-                              users={this.props.users}
-                              vocab={this.props.vocab}
-                              project={this.props.project}
-                              filter={this.props.project.filter}/>,
-                          )}
-                        </tbody>
-                      </table>
-                  </div>
-                  <div className='col-sm-4'><AssigneeContainer {...this.props} /></div>
+                    <div className='col-sm-8 grid-column'>
+                        <table className='table table-bordered workflow-table'
+                            key='MatrixContainer'>
+                            <thead>
+                                <tr key='StageHeader'>
+                                    <th></th>
+                                    {this.props.project.stages.map(
+                                        stage => <th key={stage.id}>{stage.title}</th>)}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr key={'Summary'}>
+                                    <td key='empty-subject-summary-row'></td>
+                                    {this.props.project.stages.map(stage =>
+                                        <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
+                                            <StageSummary stage={stage}
+                                                userGroups={this.props.project.userGroups}
+                                                vocab={this.props.vocab}/>
+                                        </td>)}
+                                </tr>
+                                {this.props.project.subjects.map((subject, key) =>
+                                    <FilteredRow key={key}
+                                        subject={{ name: subject, key }}
+                                        surveySize={this.props.surveySize}
+                                        stages={this.props.project.stages}
+                                        tasks={this.props.tasks}
+                                        users={this.props.users}
+                                        vocab={this.props.vocab}
+                                        project={this.props.project}
+                                        filter={this.props.project.filter}/>)}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='col-sm-4'>
+                        <AssigneeContainer {...this.props} />
+                    </div>
                 </div>
             </div>
         );
