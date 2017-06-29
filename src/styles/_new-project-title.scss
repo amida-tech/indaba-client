@@ -2,7 +2,7 @@ $block-class:'new-project-title';
 
 @at-root {
     .#{$block-class} {
-        margin: 4em 2em;
+        padding: 3em 2em;
 
         &__name {
             width: 100%;
