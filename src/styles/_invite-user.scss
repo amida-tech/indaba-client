@@ -25,14 +25,6 @@ $block-class:'invite-user';
             overflow: hidden;
             border-radius: 2px;
             background-color: #fff;
-
-            &:focus {
-                border-color: nth($brand-neutral-colors, 2);
-            }
-
-            &:active {
-                border-color: nth($brand-neutral-colors, 2);
-            }
         }
 
         &__name-inputs input {

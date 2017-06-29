@@ -20,14 +20,6 @@ $block-class:'user-sidebar';
             flex-grow: 0;
             width: calc(100% - 1em);
             background-color: #fff;
-
-            &:focus {
-                border-color: nth($brand-neutral-colors, 2);
-            }
-
-            &:active {
-                border-color: nth($brand-neutral-colors, 2);
-            }
         }
 
         &__user-filter-by-group {
