@@ -2,23 +2,23 @@ $block-class:'user-sidebar';
 
 @at-root {
     .#{$block-class} {
-        height: calc( 100vh - 300px );
+        height: calc(100vh - 300px);
         overflow: scroll;
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        //flex-grow: 1;
         position: relative;
+        min-width: 320px;
 
         &__instructions {
             position: relative;
-            padding: .5em;
-
+            padding: 0.5em;
         }
 
         &__user-search {
             margin: 0.5em;
             flex-grow: 0;
-            width: calc( 100% - 1em );
+            width: calc(100% - 1em);
             background-color: #fff;
 
             &__input {
@@ -30,7 +30,7 @@ $block-class:'user-sidebar';
             overflow: visible;
             margin: 0.5em;
             margin-top: 0;
-            width: calc( 100% - 1em );
+            width: calc(100% - 1em);
             background-color: #fff;
         }
     }

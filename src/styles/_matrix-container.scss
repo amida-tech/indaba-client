@@ -1,16 +1,22 @@
 
 $block-class:'matrix-container';
+
 @at-root {
     .#{$block-class} {
+        $sidebar-width: 320px;
+        display: flex;
+        flex-direction: row;
+        // flex: 1;
 
-    display: flex;
-    flex-direction: row;
         &__task-matrix {
             overflow: scroll;
+            min-width: calc(100vw - #{$sidebar-width});
         }
+
         &__sidebar {
             flex: 1;
-            min-width: 320px;
+            max-width: $sidebar-width;
+            width: $sidebar-width;
         }
     }
 }
