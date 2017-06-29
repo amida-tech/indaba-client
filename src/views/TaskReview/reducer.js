@@ -55,16 +55,19 @@ export default (state = initialState, action) => {
         const flagIndex = _.findIndex(state.ui.flags, flag =>
             flag.id === action.data.active);
         if (action.data.resolved) {
-            let nextId = 0;
+            let nextId = 0; // Determines the next active question, if any.
             if (flagIndex === 0 && state.ui.flags.length > 1) {
                 nextId = state.ui.flags[1].id;
             } else if (flagIndex > 0) {
                 nextId = state.ui.flags[0].id;
             }
-            console.log(nextId);
             return update(state, { ui: {
                 flags: { $splice: [[flagIndex, 1]] },
-                flagSidebar: { active: { $set: nextId } } } });
+                flagSidebar: {
+                    active: { $set: nextId },
+                    comment: { $set: '' },
+                    resolved: { $set: false },
+                } } });
         }
         return update(state, { ui: {
             flags: { [flagIndex]: { flagHistory: { $push: [{
@@ -73,8 +76,8 @@ export default (state = initialState, action) => {
                 userId: action.data.signatureId,
             }] } } },
             flagSidebar: {
-                active: { $set: action.data.active },
-                timestamp: { $set: action.data.timestamp },
+                comment: { $set: '' },
+                resolved: { $set: false },
             } } });
     }
     default:

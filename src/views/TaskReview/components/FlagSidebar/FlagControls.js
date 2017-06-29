@@ -6,6 +6,7 @@ import { renderName } from '../../../../utils/User';
 
 class FlagControls extends Component {
     render() {
+        console.log(this.props.ui.flagSidebar.resolved);
         return (
             <Box className='flag-controls'>
                 <CheckBox className='flag-controls__checkbox'
