@@ -1,7 +1,8 @@
-$font-color: #A4AEBF;
-$brand-neutral-colors: (#308253, #4EB276);
+$font-color: #a4aebf;
+$brand-neutral-colors: (#308253, #4eb276);
 
 $block-class:'flag-controls';
+
 @at-root {
     .#{$block-class} {
         display: block;
@@ -14,7 +15,7 @@ $block-class:'flag-controls';
         }
 
         &__notify {
-            margin-top: 0em;
+            margin-top: 0;
             margin-bottom: 1em;
         }
 
@@ -30,5 +31,5 @@ $block-class:'flag-controls';
 }
 
 .grommetux-check-box__label {
-    margin-right: 0px;
+    margin-right: 0;
 }

@@ -12,6 +12,7 @@ const reducers = {
     user: CommonReducers.UserReducer,
     surveys: CommonReducers.SurveysReducer,
     tasks: CommonReducers.TasksReducer,
+    discuss: CommonReducers.DiscussReducer,
     routing: routerReducer,
     project: ProjectManagementReducer,
     taskreview: TaskReviewReducer,

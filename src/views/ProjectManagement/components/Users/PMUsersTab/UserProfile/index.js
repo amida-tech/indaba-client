@@ -52,11 +52,13 @@ UserProfile.propTypes = {
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCancel: PropTypes.func.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     user: state.user.users.find(user => user.id === ownProps.userId),
+    tasks: state.tasks.find(task => task.projectId === ownProps.project.id).tasks,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

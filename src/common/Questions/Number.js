@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, NumberInput }from 'grommet';
+import { Box, NumberInput } from 'grommet';
 
 export class Number extends Component {
     render() {
@@ -10,6 +10,6 @@ export class Number extends Component {
                     disabled={true}
                     min={0} />
             </Box>
-        )
+        );
     }
 }

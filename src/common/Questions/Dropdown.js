@@ -6,6 +6,6 @@ export class Dropdown extends Component {
             <div>
                 {this.props.question}
             </div>
-        )
+        );
     }
 }

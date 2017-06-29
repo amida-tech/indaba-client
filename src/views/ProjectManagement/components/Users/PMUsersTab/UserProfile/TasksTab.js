@@ -14,15 +14,15 @@ class TasksTab extends Component {
                     </div>
                 </div>
                 {this.props.project.stages.map(stage =>
-                    this.props.project.tasks.some(task => task.id === this.props.userId
+                    this.props.tasks.some(task => task.userId === this.props.userId
                         && task.stage === stage.id) &&
                     <div className='task-list__row' key={stage.id}>
                         <div className='task-list__cell'>
                             {stage.title}
                         </div>
                         <div className='task-list__cell'>
-                            {this.props.project.tasks.filter(task =>
-                                task.id === this.props.userId &&
+                            {this.props.tasks.filter(task =>
+                                task.userId === this.props.userId &&
                                 task.stage === stage.id)
                                 .map(task => this.props.project.subjects[task.subject])
                                 .join(',')
@@ -37,6 +37,7 @@ class TasksTab extends Component {
 TasksTab.propTypes = {
     project: PropTypes.object.isRequired,
     userId: PropTypes.number.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TasksTab;

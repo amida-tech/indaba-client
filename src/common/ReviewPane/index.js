@@ -6,17 +6,13 @@ import IonIcon from 'react-ionicons';
 import * as Questions from '../Questions';
 
 class ReviewPane extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleClickReview = this.handleClickReview.bind(this);
-        this.handleFlagClick = this.handleFlagClick.bind(this);
     }
 
     handleClickReview(event) {
-        this.setState({review: event.target.value === 'true' ? true : false});
-    }
-
-    handleFlagClick(event) {
+        this.setState({ review: event.target.value === 'true' });
     }
 
     render() {
@@ -24,7 +20,7 @@ class ReviewPane extends Component {
         return (
             <Box className='review-pane'>
                 {!this.props.taskView &&
-                <button className='review-pane__flag-button' onClick={this.handleFlagClick}>
+                <button className='review-pane__flag-button'>
                     <IonIcon className='review-pane__flag-button--icon' icon='ion-ios-flag'/>
                 </button>}
                 <Question {...this.props}/>
@@ -54,7 +50,7 @@ class ReviewPane extends Component {
                         placeholder={this.props.comment || this.props.vocab.COMMENT_TIP} />
                 </div>
             </Box>
-        )
+        );
     }
 }
 

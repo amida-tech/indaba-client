@@ -1,9 +1,3 @@
-/* Going forward, we need to start breaking up the scss files by views to
-make maintenance easier. styles.scss has already gotten way too big. When
-you start working on a new view, please create a new scss and drop an
-import here. We'll organize the structure of this better later, but
-dragging and dropping files is easier then stripping through scss files. */
-
 @import './styles.scss';
 @import './user.scss';
 @import './task-review.scss';
@@ -12,27 +6,26 @@ dragging and dropping files is easier then stripping through scss files. */
 @import './review-pane.scss';
 @import './questions.scss';
 @import './survey-card.scss';
-
 @import './modal.scss';
 @import './new-project-title.scss';
 @import './task-options.scss';
-
 @import './user-sidebar.scss';
 @import './invite-user.scss';
 @import './assignee-card.scss';
 @import './primary-nav.scss';
-
 @import './flag-sidebar.scss';
 @import './flag-header.scss';
 @import './flag-commentary.scss';
 @import './flag-controls.scss';
 @import './flag-question-list.scss';
-
 @import './account-tab.scss';
 @import './preference-tab.scss';
 @import './tasks-tab';
 @import './pm-user-list-header.scss';
 @import './pm-user-list-row.scss';
+@import './pm-user-groups-tab.scss';
 @import './user-name-input.scss';
-
 @import './subject-list-entry.scss';
+@import './subject-popup-contents.scss';
+// vendor styles
+@import '~rc-tooltip/assets/bootstrap_white.css';

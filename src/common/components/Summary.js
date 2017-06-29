@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Box } from 'grommet';
 import ProjectCard from './ProjectCard';
 import SurveyCard from './SurveyCard';
@@ -25,5 +27,13 @@ class Summary extends Component {
         );
     }
 }
+
+Summary.propTypes = {
+    project: PropTypes.object.isRequired,
+    survey: PropTypes.object.isRequired,
+    vocab: PropTypes.object.isRequired,
+
+    onStatusChangeClick: PropTypes.func,
+};
 
 export default Summary;

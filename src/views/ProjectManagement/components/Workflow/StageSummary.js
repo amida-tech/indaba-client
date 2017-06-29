@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Box } from 'grommet';
 import _ from 'lodash';
 
@@ -7,7 +9,7 @@ import TaskStatus from '../../../../utils/TaskStatus';
 class StageSummary extends Component {
     render() {
         const userGroups = this.props.stage.userGroups.map(stageGroup =>
-            _.find(this.props.userGroups, (userGroup) => userGroup.id === stageGroup));
+            _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
             <div className='stage-summary'>
                 <Box direction='row'
@@ -56,5 +58,11 @@ class StageSummary extends Component {
         );
     }
 }
+
+StageSummary.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    stage: PropTypes.object.isRequired,
+    userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default StageSummary;
