@@ -2,8 +2,11 @@ import update from 'immutability-helper';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
 const initialState = {
-    id: 7,
-    name: 'Super Mario',
+    profile: {
+        id: 7,
+        firstName: 'Super',
+        lastName: 'Mario',
+    },
     users: [{
         id: 13,
         firstName: 'Tyler',

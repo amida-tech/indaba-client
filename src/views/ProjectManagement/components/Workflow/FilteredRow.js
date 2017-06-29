@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import StageSlot from './StageSlot';
 import TaskStatus from '../../../../utils/TaskStatus';
-import _ from 'lodash';
 
 const _taskLookup = (stage, subjectKey, tasks) =>
     tasks.find(

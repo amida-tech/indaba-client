@@ -10,21 +10,21 @@ import TaskSurveyList from './TaskSurveyList';
 import { updateTaskDueDate, updateFlaggedQuestion } from '../../../common/actions/tasksActions';
 import * as actions from '../actions';
 
-function surveyMapperHelper(response, question) {
-    const match = response.filter(obj => obj.id === question.id);
+function surveyMapperHelper(discuss, question) {
+    const match = discuss.filter(chat => chat.id === question.id);
     return (match.length > 0) ?
         Object.assign({}, question, match[0], { taskView: true }) :
         Object.assign({}, question, { taskView: true });
 }
 
-function surveyMapper(response, questions) {
-    return (response ? questions.map(question =>
-            surveyMapperHelper(response, question)) : questions);
+function surveyMapper(responses, questions) {
+    return (responses ? questions.map(question =>
+            surveyMapperHelper(responses.discuss, question)) : questions);
 }
 
 class TaskReview extends Component {
     render() {
-        const displaySurvey = surveyMapper(this.props.task.response,
+        const displaySurvey = surveyMapper(this.props.responses,
             this.props.survey.questions);
         return (
             <div className='task-review'>
@@ -67,9 +67,10 @@ const mapStateToProps = (state, ownProps) => {
             project => project.id === projectId) || state.project.projects[0],
         taskedUser: _.find(state.user.users, user => user.id === task.userId),
         users: state.user.users,
-        signatureId: state.user.id,
+        profile: state.user.profile,
         task,
         survey: _.find(state.surveys, survey => survey.projectId === projectId),
+        responses: _.find(state.discuss, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
     };

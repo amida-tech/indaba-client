@@ -10,12 +10,14 @@ class UserSidebar extends Component {
                 <div className='user-sidebar__instructions'>
                     {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
                 </div>
-                <Search className='user-sidebar__user-search'
+                <Search
+                    className='user-sidebar__user-search'
                     fill={true}
                     placeHolder={this.props.vocab.COMMON.SEARCH}
                     onDOMChange={this.props.onSearch}
                     inline={true}/>
-                <Select placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
+                <Select className='user-sidebar__user-filter-by-group'
+                    placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
                     value={this.props.search.group && this.props.search.group.name}
                     onChange={this.props.onGroupFilter}/>

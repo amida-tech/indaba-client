@@ -1,3 +1,7 @@
 $block-class:'subject-list-entry';
+
 @at-root {
+    .#{$block-class} {
+        // More to come.
+    }
 }

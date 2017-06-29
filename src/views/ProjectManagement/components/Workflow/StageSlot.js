@@ -14,19 +14,19 @@ const Types = {
 };
 
 const stageSpotTarget = {
-    canDrop(props, monitor) { // Checks if we can make the drop.
+    canDrop(props) { // Possible args: monitor
         return props.task.userId === undefined;
     },
-    hover(props, monitor, component) {
+    hover() { // Possible args: props, monitor, component
     // ... Maybe make the assignee card opaque?
     },
-    drop(props, monitor, component) {
+    drop(props) { // Possible args: monitor, component
         return (props); // Dispatch to inform the state and DB of changes.
     },
 };
-function collect(connect, monitor) {
+function collect(connector, monitor) {
     return {
-        connectDropTarget: connect.dropTarget(),
+        connectDropTarget: connector.dropTarget(),
         isOver: monitor.isOver(),
         isOverCurrent: monitor.isOver({ shallow: true }),
         canDrop: monitor.canDrop(),
@@ -62,6 +62,7 @@ class StageSlot extends Component {
         } else if (this.state.diff > 1) {
             return (this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS);
         }
+        return '';
     }
 
     displayStatus() {
@@ -71,10 +72,11 @@ class StageSlot extends Component {
         if (this.state.late) {
             return this.props.vocab.LATE;
         }
+        return '';
     }
 
     render() {
-        const { position, isOver, canDrop, connectDropTarget } = this.props;
+        const { isOver, canDrop, connectDropTarget } = this.props;
         return connectDropTarget(
         <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
             {this.props.user &&
