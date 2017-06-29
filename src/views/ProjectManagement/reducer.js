@@ -25,7 +25,7 @@ export const initialState = {
         id: 101,
         name: 'Pizza Lovers Anonymous',
         status: 'Active',
-        users: [13, 71, 22, 31],
+        users: [13, 71, 41, 25, 22, 31],
         stages: [{
             id: 0,
             title: 'Fill Out The Survey',
@@ -59,7 +59,7 @@ export const initialState = {
             {
                 id: 11,
                 name: 'Researchers',
-                users: [22, 31],
+                users: [41, 25, 22, 31],
             }, {
                 id: 13,
                 name: 'Managers',
