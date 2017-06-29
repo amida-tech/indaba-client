@@ -1,13 +1,64 @@
+$brand-neutral-colors: (#308253, #4eb276);
+
 $block-class:'invite-user';
 
 @at-root {
     .#{$block-class} {
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        min-width: 320px;
+        margin-bottom: 10px;
+
         &__header {
-            padding: 1em;
+            padding: 0.5em;
+        }
+
+        &__email {
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+            padding: 0.5em;
+            flex-grow: 0;
+            width: calc(100% - 1em);
+            overflow: hidden;
+            border-radius: 2px;
+            background-color: #fff;
+
+            &:focus {
+                border-color: nth($brand-neutral-colors, 2);
+            }
+
+            &:active {
+                border-color: nth($brand-neutral-colors, 2);
+            }
         }
 
         &__name-inputs input {
-            width: 50%;
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+            padding: 0.5em;
+            flex-grow: 0;
+            width: calc(100% - 1em);
+            overflow: hidden;
+            border-radius: 2px;
+            background-color: #fff;
+
+            &:focus {
+                border-color: nth($brand-neutral-colors, 2);
+            }
+
+            &:active {
+                border-color: nth($brand-neutral-colors, 2);
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            margin-right: 0.5em;
+            
         }
     }
 }
