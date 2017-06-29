@@ -60,6 +60,7 @@ class PMUsersTab extends Component {
                     <PMUserListRow user={user}
                         groups={this.props.project.userGroups}
                         key={user.id}
+                        stages={this.props.project.stages}
                         tasks={this.props.tasks}
                         subjects={this.props.project.subjects}
                         onNameClick={() => this.showUserProfileModal(user.id)}
