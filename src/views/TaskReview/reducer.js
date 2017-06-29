@@ -1,5 +1,8 @@
 import update from 'immutability-helper';
+import _ from 'lodash';
+
 import * as type from './actionTypes';
+import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
 
 export const initialState = {
     ui: {
@@ -48,6 +51,26 @@ export default (state = initialState, action) => {
                 resolved: { $set: false },
                 timestamp: { $set: null },
             } } });
+    case UPDATE_FLAGGED_QUESTION: {
+        const flagIndex = _.findIndex(state.ui.flags, flag =>
+            flag.id === action.data.active.id);
+
+// You're on the right track below.
+        const what = update(state, { ui: {
+            flags: { $splice: [[flagIndex, 1]] },
+            flagSidebar: { $set: { active: state.ui.flags[0] } } } });
+        console.log(what);
+
+        return (action.data.resolved ?
+            update(state, { ui: {
+                flags: { $splice: [[flagIndex, 1]] },
+                flagSidebar: { $merge: { active: state.ui.flags[0] } } } }) :
+            update(state, { ui: { flags: { [flagIndex]: { flagHistory: { $push: [{
+                timestamp: action.data.timestamp,
+                comment: action.data.comment,
+                userId: action.data.signatureId,
+            }] } } } } }));
+    }
     default:
         return state;
     }
