@@ -88,13 +88,13 @@ export const DiscussReducer = (state = initialState, action) => {
 
     switch (action.type) {
     case type.UPDATE_FLAGGED_QUESTION: {
-        return update(state, { [taskIndex]: { discuss: { [questionIndex]:
-            { $set: { flag: !action.data.resolved } },
-            $push: { flagHistory: [{
+        return update(state, { [taskIndex]: { discuss: { [questionIndex]: {
+            $merge: { flag: !action.data.resolved },
+            flagHistory: { $push: [{
                 timestamp: action.data.timestamp,
                 comment: action.data.comment,
                 userId: action.data.signatureId,
-            }] } } } });
+            }] } } } } });
     }
     default:
         return state;

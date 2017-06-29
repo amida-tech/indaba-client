@@ -22,8 +22,9 @@ class FlagCommentary extends Component {
                                 {reply.comment}
                             </div>
                             <div className='flag-commentary__signature'>
-                                –{renderName(_.find(this.props.users, user =>
-                                    user.id === reply.userId))}
+                                –{renderName(this.props.profile.id === reply.userId ?
+                                    this.props.profile :
+                                    _.find(this.props.users, user => user.id === reply.userId))}
                             </div>
                         </div>
                         );
