@@ -107,6 +107,13 @@ export function updateUserSearchQuery(query) {
     };
 }
 
+export function updateUserGroupListSearchQuery(query) {
+    return {
+        type: actionTypes.UPDATE_USER_GROUP_LIST_SEARCH_QUERY,
+        query,
+    };
+}
+
 // Task Options Modal:
 export function showTaskOptionsModal(task) {
     return {

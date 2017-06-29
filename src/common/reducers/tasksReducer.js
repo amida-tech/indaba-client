@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/tasksActionTypes';
+import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 
 const initialState = [{
     projectId: 101,
@@ -124,6 +125,8 @@ export const TasksReducer = (state = initialState, action) => {
         } } } } } });
     case type.SET_TASK_OPTIONS: // UPDATE LATER.
         return state;
+    case ADD_PROJECT_FROM_WIZARD:
+        return update(state, { $push: [action.wizard.task] });
     default:
         return state;
     }

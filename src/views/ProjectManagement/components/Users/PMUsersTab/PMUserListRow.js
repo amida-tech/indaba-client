@@ -11,7 +11,7 @@ class PMUserListRow extends Component {
         const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
             .map(g => g.name).join(', ');
         const subjects = this.props.tasks.filter(task =>
-            task.id === this.props.user.id)
+            task.userId === this.props.user.id)
             .map(task => this.props.subjects[task.subject])
             .join(', ');
         return (

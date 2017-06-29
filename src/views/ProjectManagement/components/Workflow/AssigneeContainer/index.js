@@ -37,7 +37,8 @@ class AssigneeContainer extends Component {
     }
 
     render() {
-        const unassigned = this.props.users
+        const unassigned = this.props.project.users
+            .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => this.searchFilter(renderName(user)))
             .filter(user => this.groupFilter(user))
             .map(unassignee =>
@@ -79,6 +80,7 @@ AssigneeContainer.propTypes = {
     search: PropTypes.object.isRequired,
     updateUserSearchGroup: PropTypes.func.isRequired,
     updateUserSearchQuery: PropTypes.func.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AssigneeContainer);
