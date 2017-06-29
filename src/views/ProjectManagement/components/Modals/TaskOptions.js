@@ -73,11 +73,11 @@ class TaskOptions extends Component {
                         checked={this.props.taskOptions.notify}
                         onChange={event =>
                             this.props.calls.updateTaskOptionsNotify(event.target.checked)} />
-                    <div className='task-options__notice'>
+                    <div className='task-options__notify-user-warning'>
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
                     <TextInput
-                        className='task-options__header-text-box'
+                        className='task-options__header-text-box task-options__notify-user-warning-text-box'
                         value={this.props.taskOptions.message}
                         onDOMChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />

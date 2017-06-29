@@ -26,18 +26,22 @@ $block-class:'task-options';
             }
         }
 
-        &__reassign-select {
-            overflow: auto;
+        &__notify-user-warning {
+            font-size: 12px;
+            margin-left: 55px;
+            margin-bottom: 5px;
+        }
+
+        &__notify-user-warning-text-box {
+            width: 498px;
+            line-height: 40px;
+            background-color: $header-footer;
         }
 
         &__divider {
             @extend .divider;
 
             margin-top: 40px;
-        }
-
-        &__message {
-            width: 100%;
         }
     }
 }
