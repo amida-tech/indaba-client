@@ -6,8 +6,7 @@ class AndroidCheckbox extends Component {
         return (
       <IonIcon
         icon={this.props.checked ? 'ion-android-checkbox' : 'ion-android-checkbox-outline-blank'}
-        color={this.props.checked ? '#4EB276' : '#DADCDE'}
-        className='android-checkbox' />
+        className={`android-checkbox confirmation-checkbox--${this.props.checked}`} />
         );
     }
 }

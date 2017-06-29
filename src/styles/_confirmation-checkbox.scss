@@ -1,0 +1,16 @@
+$true-color: #4eb276;
+$false-color: #dadcde;
+
+$block-class:'confirmation-checkbox';
+
+@at-root {
+    .#{$block-class} {
+        &--true {
+            fill: $true-color;
+        }
+
+        &--false {
+            fill: $false-color;
+        }
+    }
+}
