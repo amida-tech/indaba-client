@@ -37,7 +37,10 @@ class Users extends Component {
                 }
                 {
                     this.state.modalName === 'adduser' &&
-                    <AddUserModal vocab={this.props.vocab}/>
+                    <AddUserModal vocab={this.props.vocab}
+                        onCancel={() => this.setState({ modalName: false })}
+                        onSave={() => this.setState({ modalName: false })}
+                        onAddNewUser={this.props.onAddNewUser}/>
                 }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
@@ -75,6 +78,7 @@ Users.propTypes = {
     onDeleteGroup: PropTypes.func.isRequired,
     onAddGroup: PropTypes.func.isRequired,
     onUpdateGroup: PropTypes.func.isRequired,
+    onAddNewUser: PropTypes.func.isRequired,
 };
 
 export default Users;
