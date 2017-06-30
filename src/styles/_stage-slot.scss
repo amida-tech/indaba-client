@@ -7,6 +7,10 @@ $block-class:'stage-slot';
         color: $font-color;
         text-transform: uppercase;
 
+        &__container > * {
+            margin-bottom: 0.2em;
+        }
+
         &__filtered {
             opacity: 0.5;
         }

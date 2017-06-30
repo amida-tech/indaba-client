@@ -80,7 +80,7 @@ class StageSlot extends Component {
         return connectDropTarget(
         <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
             {this.props.user &&
-                <div>
+                <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
                         <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
                             <span>{renderName(this.props.user)}</span>
@@ -90,7 +90,7 @@ class StageSlot extends Component {
                             <IonIcon icon='ion-ios-more'/>
                         </button>
                     </div>
-                    <div>
+                    <div className='stage-slot__flag-row'>
                         <span className='stage-slot__role-span'>{this.props.vocab.ASSIGNEE}</span>
                         {this.state.flag &&
                             <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
@@ -104,7 +104,7 @@ class StageSlot extends Component {
              </div>
          }
          {!this.props.user &&
-             <div>
+             <div className='stage-slot__unassigned'>
                  <label className='inline'>
                      <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
                     {this.props.vocab.ASSIGN_TASK}
