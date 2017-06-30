@@ -177,7 +177,7 @@
         "VALUE_LABEL": "Project Status",
         "INSTRUCTION_DEACTIVATE": "Deactivate the project when you need to make changes to the workflow.",
         "INSTRUCTION_DRAFT_CONSTRAINT": "You can switch the survey to draft mode while the project is inactive.",
-        "INSTRUCTION_REACTIVATE": "Reactivate the project once workflow chnages have been made and you're ready to notify the user of the change.",
+        "INSTRUCTION_REACTIVATE": "Reactivate the project once workflow changes have been made and you're ready to notify the user of the change.",
         "ACTIVE": {
           "TITLE": "Activate the project? Check boxes to confirm.",
           "CHECKBOX_DRAFT": "Survey can be switched to draft mode while project is inactive.",
