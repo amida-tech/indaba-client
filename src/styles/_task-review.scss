@@ -4,10 +4,11 @@ $block-class:'task-review';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
+        
 
         &__details-and-survey {
             width: 65%;
-            margin: 20px;
+
         }
 
         &__flag-sidebar {
