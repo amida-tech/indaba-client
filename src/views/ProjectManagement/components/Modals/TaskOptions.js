@@ -17,8 +17,8 @@ class TaskOptions extends Component {
     render() {
         const currentUser = _.find(this.props.users, user =>
             user.id === this.props.taskOptions.task.userId);
-        const userOptions = this.props.users.map(user =>
-            (currentUser ?
+        const userOptions = this.props.users.map(user => (
+            user === currentUser ?
             { value: user, label: renderName(user) + this.props.vocab._CURRENTLY_ASSIGNED } :
             { value: user, label: renderName(user) }
         ));
@@ -33,7 +33,7 @@ class TaskOptions extends Component {
                     <RadioButton id='force'
                         name='taskOptions'
                         label={this.props.vocab.FORCE}
-                        className="task-options__header"
+                        className='task-options__header'
                         value='force'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
@@ -43,7 +43,7 @@ class TaskOptions extends Component {
                     <RadioButton id='reassign'
                         name='taskOptions'
                         label={this.props.vocab.REASSIGN}
-                        className="task-options__header"
+                        className='task-options__header'
                         value='reassign'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
@@ -59,7 +59,7 @@ class TaskOptions extends Component {
                             disabled={true}
                             name='taskOptions'
                             label={this.props.vocab.SKIP}
-                            className="task-options__header"
+                            className='task-options__header'
                             value='skip'
                             onChange={event =>
                                 this.props.calls.updateTaskOptionsChoice(event.target.value)} />
@@ -68,7 +68,7 @@ class TaskOptions extends Component {
                     </div>
                     <hr className='task-options__divider'/>
                     <CheckBox
-                        className="task-options__header"
+                        className='task-options__header'
                         label={this.props.vocab.NOTIFY}
                         checked={this.props.taskOptions.notify}
                         onChange={event =>
@@ -77,7 +77,8 @@ class TaskOptions extends Component {
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
                     <TextInput
-                        className='task-options__header-text-box task-options__notify-user-warning-text-box'
+                        className={'task-options__header-text-box'
+                            + 'task-options__notify-user-warning-text-box'}
                         value={this.props.taskOptions.message}
                         onDOMChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
