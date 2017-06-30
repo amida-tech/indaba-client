@@ -5,13 +5,14 @@ import StageSlot from './StageSlot';
 import TaskStatus from '../../../../utils/TaskStatus';
 
 const _taskLookup = (stage, subjectKey, tasks, responses) => {
-    const task = tasks.find(
+    const newTask = Object.assign({}, tasks.find(
         element => element.subject === subjectKey && element.stage === stage.id) ||
-        { stage: stage.id, subject: subjectKey };
-    const response = _.find(responses, chat => chat.taskId === task.id);
-    if (response) task.response = response.discuss;
-    return task;
+        { stage: stage.id, subject: subjectKey });
+    const response = _.find(responses, chat => chat.taskId === newTask.id);
+    if (response) newTask.response = response.discuss;
+    return newTask;
 };
+
 class FilteredRow extends Component {
     taskIsFilteredOut(taskData) {
         switch (this.props.filter) {
