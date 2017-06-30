@@ -30,7 +30,7 @@ class PMUsersTab extends Component {
                         {...this.props}
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
-                <form>
+                <form onSubmit={this.props.handleSubmit}>
                     <Field name='firstName'
                         component='input'
                         type='text'
@@ -46,7 +46,7 @@ class PMUsersTab extends Component {
                         type='text'
                         className='pm-users-tab__text-input'
                         placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
-                    <button type='button'>{this.props.vocab.COMMON.INVITE}</button>
+                    <button type='submit'>{this.props.vocab.COMMON.INVITE}</button>
                     <Field name='search'
                         component='input'
                         type='text'
