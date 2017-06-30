@@ -4,9 +4,6 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 // Status Change
 export const UPDATE_STATUS_CHANGE = 'UPDATE_STATUS_CHANGE';
-export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
-export const ADD_USER_GROUP = 'ADD_USER_GROUP';
-export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
 
 // User Sidebar
 export const UPDATE_USER_SEARCH_GROUP = 'UPDATE_USER_SEARCH_GROUP';
@@ -30,3 +27,7 @@ export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
 export const ADD_SUBJECT = 'ADD_SUBJECT';
 export const DELETE_SUBJECT = 'DELETE_SUBJECT';
 export const ADD_STAGE = 'ADD_STAGE';
+export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
+export const ADD_USER_GROUP = 'ADD_USER_GROUP';
+export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
+export const ADD_USER = 'ADD_USER';

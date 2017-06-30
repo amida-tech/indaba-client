@@ -93,6 +93,14 @@ export function inviteUser(user, projectId) {
     };
 }
 
+export function addUser(userId, projectId) {
+    return {
+        type: actionTypes.ADD_USER,
+        userId,
+        projectId,
+    };
+}
+
 export function updateUserSearchGroup(group) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_GROUP,
