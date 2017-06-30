@@ -55,16 +55,7 @@ class Users extends Component {
                 <hr className='divider'/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
-                        <PMUsersTab {...this.props} onSubmit={(values) => {
-                            const NEW_USER_ID = 21;
-                            this.props.onAddNewUser({
-                                id: NEW_USER_ID,
-                                firstName: values.firstName,
-                                lastName: values.lastName,
-                                email: values.email,
-                            });
-                            this.props.onAddUserToProject(NEW_USER_ID, this.props.project.id);
-                        }}/>
+                        <PMUsersTab {...this.props}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <PMUserGroupsTab columnHeaders={true}
