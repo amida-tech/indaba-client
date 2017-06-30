@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { formValueSelector } from 'redux-form';
 
 import { renderName } from '../../../../../utils/User';
 
@@ -13,7 +11,10 @@ import InviteUserForm from './InviteUserForm';
 class PMUsersTab extends Component {
     constructor(props) {
         super(props);
-        this.state = { userProfileId: false };
+        this.state = {
+            userProfileId: false,
+            search: '',
+        };
         this.showUserProfileModal = this.showUserProfileModal.bind(this);
         this.filterUser = this.filterUser.bind(this);
     }
@@ -21,7 +22,7 @@ class PMUsersTab extends Component {
         this.setState({ userProfileId: userId });
     }
     filterUser(user) {
-        return renderName(user).toLowerCase().includes((this.props.search || '').toLowerCase());
+        return renderName(user).toLowerCase().includes((this.state.search || '').toLowerCase());
     }
     render() {
         return (
@@ -42,6 +43,10 @@ class PMUsersTab extends Component {
                         });
                         this.props.onAddUserToProject(NEW_USER_ID, this.props.project.id);
                     }}/>
+                <input className='pm-users-tab__text-input'
+                    type='text'
+                    placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                    onChange={evt => this.setState({ search: evt.target.value })} />
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
                     .filter(this.filterUser)
@@ -63,9 +68,6 @@ PMUsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    search: PropTypes.string.isRequired,
 };
 
-const selector = formValueSelector('invite-user-form');
-
-export default connect(state => ({ search: selector(state, 'search') }))(PMUsersTab);
+export default PMUsersTab;
