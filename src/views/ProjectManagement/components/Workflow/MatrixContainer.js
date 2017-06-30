@@ -72,21 +72,6 @@ class MatrixContainer extends Component {
     }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     const projectId = parseInt(ownProps.params.projectId, 10) ||
-//         state.project.projects[0].id;
-//     return {
-//         ui: state.project.ui,
-//         users: state.user.users,
-//         tasks: _.find(state.tasks, tasks => tasks.projectId === projectId).tasks,
-//         project: _.find(state.project.projects, project =>
-//             project.id === projectId) || state.project.projects[0],
-//         surveySize: _.find(state.surveys, survey =>
-//             survey.projectId === projectId).questions.length,
-//         vocab: state.settings.language.vocabulary,
-//     };
-// };
-
 const mapDispatchToProps = dispatch => ({
     calls: {
         closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),

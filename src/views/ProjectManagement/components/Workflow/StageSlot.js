@@ -78,23 +78,25 @@ class StageSlot extends Component {
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
         return connectDropTarget(
-        <div className={`stageslot workflow ${this.props.filtered ? 'stageslot-filtered' : ''}`}>
+        <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
             {this.props.user &&
                 <div>
-                    <div className='name-row'>
+                    <div className='stage-slot__name-row'>
                         <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
                             <span>{renderName(this.props.user)}</span>
                         </Link>
-                        <button className='masked-button right-icon'
+                        <button className='stage-slot__masked-button stage-slot__right-icon'
                             onClick={this.handleTaskOptions}>
                             <IonIcon icon='ion-ios-more'/>
                         </button>
                     </div>
                     <div>
-                        <span className='role-span'>{this.props.vocab.ASSIGNEE}</span>
-                        {this.state.flag && <IonIcon className='right-icon' icon='ion-ios-flag'/> }
+                        <span className='stage-slot__role-span'>{this.props.vocab.ASSIGNEE}</span>
+                        {this.state.flag &&
+                            <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
+                        }
                     </div>
-                    <div className='due-row'>
+                    <div className='stage-slot__due-row'>
                         <div>
                             {this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span>
                         </div>
@@ -104,7 +106,7 @@ class StageSlot extends Component {
          {!this.props.user &&
              <div>
                  <label className='inline'>
-                     <IonIcon className='left-icon' icon='ion-ios-plus'/>
+                     <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
                     {this.props.vocab.ASSIGN_TASK}
                  </label>
              </div>

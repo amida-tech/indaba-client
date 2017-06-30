@@ -9,10 +9,8 @@ const _taskLookup = (stage, subjectKey, tasks, responses) => {
         element => element.subject === subjectKey && element.stage === stage.id) ||
         { stage: stage.id, subject: subjectKey };
     const response = _.find(responses, chat => chat.taskId === task.id);
-    if (response) {
-        console.log(Object.assign({}, task, response.discuss));
-    }
-    return response ? Object.assign({}, task, response.discuss) : task;
+    if (response) task.response = response.discuss;
+    return task;
 };
 class FilteredRow extends Component {
     taskIsFilteredOut(taskData) {
@@ -49,16 +47,15 @@ class FilteredRow extends Component {
                 {this.props.subject.name}
             </td>
             {taskData.map(task =>
-                <td key={`StageSlot-${task.subject}-${task.stage}`}
-                    className='stage-slot-cell'>
-                <StageSlot task={task}
-                    user={_.find(this.props.users, user => user.id === task.userId)}
-                    filtered={this.taskIsFilteredOut(task)}
-                    stageData={this.props.stages.find(stage =>
-                        stage.id === task.stage)}
-                    surveySize={this.props.surveySize}
-                    project={this.props.project}
-                    vocab={this.props.vocab.PROJECT.CARD}/>
+                <td key={`StageSlot-${task.subject}-${task.stage}`}>
+                    <StageSlot task={task}
+                        user={_.find(this.props.users, user => user.id === task.userId)}
+                        filtered={this.taskIsFilteredOut(task)}
+                        stageData={this.props.stages.find(stage =>
+                            stage.id === task.stage)}
+                        surveySize={this.props.surveySize}
+                        project={this.props.project}
+                        vocab={this.props.vocab.PROJECT.CARD}/>
                 </td>,
             )}
             </tr>

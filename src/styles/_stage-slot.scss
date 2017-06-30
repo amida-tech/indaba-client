@@ -1,0 +1,57 @@
+$block-class:'stage-slot';
+
+@at-root {
+    .#{$block-class} {
+        background-color: white;
+        cursor: pointer;
+        color: $font-color;
+        text-transform: uppercase;
+
+        &__filtered {
+            opacity: 0.5;
+        }
+
+        &__name-row {
+            text-transform: none;
+            color: $header-font-color;
+            font-size: 18px;
+
+            span {
+                cursor: pointer;
+            }
+        }
+
+        &__due-row {
+            font-size: 12px;
+
+            span {
+                float: right;
+                color: $font-color;
+            }
+        }
+
+        &__role-span {
+            font-size: 12px;
+            align-items: flex-start;
+        }
+
+        &__masked-button {
+            background-color: Transparent;
+            background-repeat: no-repeat;
+            border: none !important;
+            padding: 0;
+            height: 1em;
+        }
+
+        &__right-icon {
+            float: right;
+            fill: $brand-color;
+        }
+
+        &__left-icon {
+            float: left;
+            margin-right: 5px;
+            fill: #a4aebf;
+        }
+    }
+}
