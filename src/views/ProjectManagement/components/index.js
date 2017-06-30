@@ -17,6 +17,7 @@ import {
     deleteUserGroup,
     addUserGroup,
     updateUserGroup,
+    addUser,
 } from '../actions';
 import { addNewUser } from '../../../common/actions/userActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
@@ -48,7 +49,8 @@ class ProjectManagementContainer extends Component {
                 onDeleteGroup={this.props.onDeleteGroup}
                 onAddGroup={this.props.onAddGroup}
                 onUpdateGroup={this.props.onUpdateGroup}
-                onAddNewUser={this.props.onAddNewUser}/>;
+                onAddNewUser={this.props.onAddNewUser}
+                onAddUserToProject={this.props.onAddUserToProject}/>;
             break;
         default:
             body = null;
@@ -117,6 +119,7 @@ const mapDispatchToProps = (dispatch) => {
         onAddGroup: (group, projectId) => dispatch(addUserGroup(group, projectId)),
         onUpdateGroup: (group, projectId) => dispatch(updateUserGroup(group, projectId)),
         onAddNewUser: user => dispatch(addNewUser(user)),
+        onAddUserToProject: (userId, projectId) => dispatch(addUser(userId, projectId)),
     };
 };
 

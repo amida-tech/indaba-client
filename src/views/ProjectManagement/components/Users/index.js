@@ -40,7 +40,9 @@ class Users extends Component {
                     <AddUserModal vocab={this.props.vocab}
                         onCancel={() => this.setState({ modalName: false })}
                         onSave={() => this.setState({ modalName: false })}
-                        onAddNewUser={this.props.onAddNewUser}/>
+                        onAddNewUser={this.props.onAddNewUser}
+                        onAddUserToProject={this.props.onAddUserToProject}
+                        projectId={this.props.project.id}/>
                 }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
@@ -79,6 +81,7 @@ Users.propTypes = {
     onAddGroup: PropTypes.func.isRequired,
     onUpdateGroup: PropTypes.func.isRequired,
     onAddNewUser: PropTypes.func.isRequired,
+    onAddUserToProject: PropTypes.func.isRequired,
 };
 
 export default Users;
