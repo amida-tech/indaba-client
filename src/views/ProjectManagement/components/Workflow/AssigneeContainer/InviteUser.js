@@ -38,17 +38,21 @@ class InviteUser extends Component {
           </Box>
           <TextInput
             placeHolder={this.props.vocab.COMMON.EMAIL}
+            className='invite-user__email'
             onDOMChange={evt => this.setField('email', evt)}
             value={this.state.email}/>
           <Box
+            className='invite-user__buttons'
             direction='row'
             justify='end'
             pad={{ between: 'small' }}
             margin={{ top: 'small' }}>
+
             <Button secondary={true} label={this.props.vocab.COMMON.CLEAR} onClick={
                 this.clear.bind(this)}/>
             <Button primary={true} label={this.props.vocab.COMMON.INVITE} onClick={() =>
                 this.props.onInviteUser(this.state)}/>
+
           </Box>
         </Box>
       </div>
