@@ -10,12 +10,10 @@ $block-class:'task-details';
         box-sizing: border-box;
         padding-top: 1em;
 
-
-
         &__header {
             margin-left: 1em;
 
-            &--label{
+            &--label {
                 //padding-left: 1em;
                 font-size: 12px;
                 text-transform: uppercase;
