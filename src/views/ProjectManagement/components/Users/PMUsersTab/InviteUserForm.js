@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 
 class InviteUserForm extends Component {
     render() {
@@ -31,4 +31,7 @@ InviteUserForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default reduxForm({ form: 'invite-user-form' })(InviteUserForm);
+export default reduxForm({
+    form: 'invite-user-form',
+    onSubmitSuccess: (result, dispatch) => dispatch(reset('invite-user-form')),
+})(InviteUserForm);
