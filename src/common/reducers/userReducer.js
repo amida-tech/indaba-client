@@ -69,6 +69,8 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
     case actionTypes.SET_USER_TITLE:
         return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
+    case actionTypes.ADD_NEW_USER:
+        return update(state, { users: { $push: [action.user] } });
     default:
         return state;
     }
