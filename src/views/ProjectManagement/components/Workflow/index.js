@@ -23,11 +23,11 @@ function mapDispatchToProps(dispatch, ownProps) {
     };
 }
 
-function mapStateToProps(state) {
-    return {
-        data: state,
-        vocab: state.settings.language.vocabulary,
-    };
-}
+// function mapStateToProps(state) {
+//     return {
+//         data: state,
+//         vocab: state.settings.language.vocabulary,
+//     };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkflowContainer);
+export default connect(null, mapDispatchToProps)(WorkflowContainer);

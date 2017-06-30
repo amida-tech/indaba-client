@@ -4,11 +4,16 @@ import _ from 'lodash';
 import StageSlot from './StageSlot';
 import TaskStatus from '../../../../utils/TaskStatus';
 
-const _taskLookup = (stage, subjectKey, tasks) =>
-    tasks.find(
+const _taskLookup = (stage, subjectKey, tasks, responses) => {
+    const task = tasks.find(
         element => element.subject === subjectKey && element.stage === stage.id) ||
         { stage: stage.id, subject: subjectKey };
-
+    const response = _.find(responses, chat => chat.taskId === task.id);
+    if (response) {
+        console.log(Object.assign({}, task, response.discuss));
+    }
+    return response ? Object.assign({}, task, response.discuss) : task;
+};
 class FilteredRow extends Component {
     taskIsFilteredOut(taskData) {
         switch (this.props.filter) {
@@ -37,7 +42,7 @@ class FilteredRow extends Component {
         const taskData =
             this.props.stages.map(
                 stage => _taskLookup(stage, this.props.subject.key,
-                this.props.tasks));
+                this.props.tasks, this.props.responses));
         return this.rowIsFilteredOut(taskData) ? null : (
             <tr key={`SubjectHeader-${this.props.subject.key}`}>
             <td key={this.props.subject.key} className='grid-subject'>
