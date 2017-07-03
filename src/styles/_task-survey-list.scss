@@ -3,6 +3,7 @@ $block-class:'task-survey-list';
 @at-root {
     .#{$block-class} {
         margin-left: 1em;
+
         &__wrapper {
             display: flex;
             justify-content: flex-end;

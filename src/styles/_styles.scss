@@ -14,14 +14,14 @@ $brand-neutral-colors: (#308253, #4eb276);
 $brand-accent-colors: #4eb276;
 $brand-link-color: #00854e;
 $brand-status-colors: (
-  critical: #FF324D,
-  error: #FF324D,
-  warning: #FFD602,
-  ok: #8CC800,
-  unknown: #a8a8a8,
-  disabled: #a8a8a8
+    critical: #ff324d,
+    error: #ff324d,
+    warning: #ffd602,
+    ok: #8cc800,
+    unknown: #a8a8a8,
+    disabled: #a8a8a8
 ) !default;
-$brand-grey-colors: (#EBEBEB, #333333, #3B3B3B, #434343, #666666);
+$brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 $brand-grey-colors: (#000001, #333, #3b3b3b, #434343, #666);
 
