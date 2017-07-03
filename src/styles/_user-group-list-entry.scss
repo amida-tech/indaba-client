@@ -1,0 +1,10 @@
+$block-class: 'user-group-list-entry';
+
+@at-root {
+    .#{$block-class} {
+        &__badge-string {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
