@@ -1,0 +1,14 @@
+$block-class: 'summary';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2em;
+
+        &__survey-icon {
+            fill: $brand-color;
+        }
+    }
+}
