@@ -18,7 +18,7 @@ class TaskDetails extends Component {
                 </div>
 
                 <div className='task-details__info'>
-                    <div className='task-details__info-box--first'>
+                    <div className='task-details__info-box task-details__info-box--first'>
                         <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.STAGE}
                         </div>
