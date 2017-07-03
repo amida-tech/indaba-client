@@ -25,9 +25,8 @@ class Summary extends Component {
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}>
                     <IonIcon
                         icon='ion-ios-paper-outline'
-                        color='#4EB276'
                         fontSize='4em'
-                        className='status-card-icon' />
+                        className='summary__survey-icon' />
                 </StatusCard>
             </div>
         );
