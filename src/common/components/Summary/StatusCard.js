@@ -5,13 +5,15 @@ class StatusCard extends Component {
     render() {
         return (
             <div className='status-card'>
-                <div className='status-card__name'>
+                <div className='status-card__left'>
                     {this.props.children}
-                    <div className='status-card__name-label'>
-                        {this.props.label}
-                    </div>
-                    <div className='status-card__name-value'>
-                        {this.props.name}
+                    <div className='status-card__name'>
+                        <div className='status-card__name-label'>
+                            {this.props.label}
+                        </div>
+                        <div className='status-card__name-value'>
+                            {this.props.name}
+                        </div>
                     </div>
                 </div>
                 <div className='status-card__status'
