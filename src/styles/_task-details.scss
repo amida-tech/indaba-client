@@ -10,18 +10,18 @@ $block-class:'task-details';
         &__header {
             margin-left: 1em;
             margin-top: 2em;
+        }
 
-            &--label {
-                font-size: 12px;
-                text-transform: uppercase;
-                color: $font-color;
-                font-weight: 100;
-            }
+        &__header-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $font-color;
+            font-weight: 100;
+        }
 
-            &--name {
-                font-size: 30px;
-                padding-bottom: 0.5em;
-            }
+        &__header-name {
+            font-size: 30px;
+            padding-bottom: 0.5em;
         }
 
         &__info {
@@ -50,15 +50,13 @@ $block-class:'task-details';
                 color: $font-color;
             }
 
-            &--survey {
-                font-size: 1em;
+            &-survey {
                 max-width: 250px;
                 overflow: hidden;
                 white-space: normal;
             }
 
-            &--title {
-                font-size: 1em;
+            &-title {
                 display: flex;
             }
 

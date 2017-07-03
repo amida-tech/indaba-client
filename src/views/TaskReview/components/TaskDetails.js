@@ -9,10 +9,10 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <div className='task-details__header--label'>
+                    <div className='task-details__header-label'>
                         {this.props.vocab.PROJECT.TASK_VIEW}
                     </div>
-                    <div className='task-details__header--name'>
+                    <div className='task-details__header-name'>
                         {renderName(this.props.taskedUser)}
                     </div>
                 </div>
@@ -52,7 +52,7 @@ class TaskDetails extends Component {
                         <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.SURVEY}
                         </div>
-                        <div className='task-details__info-box--survey'>
+                        <div className='task-details__info-box-survey'>
                             {this.props.surveyName}
                         </div>
                     </div>
