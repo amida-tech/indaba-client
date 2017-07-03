@@ -7,6 +7,15 @@ $block-class:'matrix-container';
         flex-direction: row;
         flex: 1;
 
+        &__header {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        &__header--centered {
+            text-align: center;
+        }
+
         &__task-matrix {
             overflow: scroll;
             min-width: calc(100vw - #{$sidebar-width});
