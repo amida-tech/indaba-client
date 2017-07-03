@@ -7,6 +7,32 @@ export function storeFlaggedIssues(flags) {
     };
 }
 
+export function setExpandAll(expandAll) {
+    return {
+        type: actionTypes.SET_EXPAND_ALL,
+        expandAll,
+    };
+}
+
+export function showQuestion(questionIndex) {
+    return {
+        type: actionTypes.SHOW_QUESTION,
+        questionIndex,
+    };
+}
+
+export function expandAllQuestions() {
+    return {
+        type: actionTypes.EXPAND_ALL_QUESTIONS,
+    };
+}
+
+export function collapseAllQuestions() {
+    return {
+        type: actionTypes.COLLAPSE_ALL_QUESTIONS,
+    };
+}
+
 export function setActiveFlag(active, timestamp) {
     return {
         type: actionTypes.SET_ACTIVE_FLAG,

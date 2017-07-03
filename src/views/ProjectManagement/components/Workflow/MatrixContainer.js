@@ -34,9 +34,14 @@ class MatrixContainer extends Component {
                       <table className='table table-bordered workflow-table' key='MatrixContainer'>
                         <thead>
                           <tr key='StageHeader'>
-                            <th></th>
+                            <th className='matrix-container__header'>
+                                {this.props.vocab.COMMON.SUBJECTS}
+                            </th>
                             {this.props.project.stages.map(stage =>
-                              <th key={stage.id}>{stage.title}</th>,
+                              <th key={stage.id}
+                                  className='matrix-container__header'>
+                                  {stage.title}
+                              </th>,
                             )}
                           </tr>
                         </thead>

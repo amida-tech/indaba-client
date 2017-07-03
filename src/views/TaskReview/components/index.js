@@ -42,8 +42,10 @@ class TaskReview extends Component {
                         stage={this.props.project.stages[this.props.task.stage]}
                         updateTaskDueDate={this.props.updateTaskDueDate} />
                     <TaskSurveyList
+                        ui={this.props.ui}
                         survey={displaySurvey}
                         instructions={this.props.survey.instructions}
+                        actions={this.props.actions}
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-review__flag-sidebar'>

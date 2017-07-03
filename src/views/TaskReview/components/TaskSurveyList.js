@@ -7,30 +7,17 @@ import ReviewPane from '../../../common/ReviewPane';
 class TaskSurveyList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            allActive: this.props.survey.map((k, i) => i),
-            active: [],
-        };
-        this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
-        this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
-    }
-
-    handleAccordionExpandAll() {
-        this.setState({ active: this.state.allActive });
-    }
-
-    handleAccordionCollapseAll() {
-        this.setState({ active: [] });
+        props.actions.setExpandAll(this.props.survey.map((k, i) => i));
     }
 
     render() {
         return (
             <div className='task-survey-list'>
             <div className='task-survey-list__wrapper'>
-                <button onClick={this.handleAccordionExpandAll}>
+                <button onClick={this.props.actions.expandAllQuestions}>
                     {this.props.vocab.PROJECT.EXPAND_ALL}
                 </button>
-                <button onClick={this.handleAccordionCollapseAll}>
+                <button onClick={this.props.actions.collapseAllQuestions}>
                     {this.props.vocab.PROJECT.COLLAPSE_ALL}
                 </button>
                 </div>
@@ -42,7 +29,7 @@ class TaskSurveyList extends Component {
                         {this.props.instructions}
                     </span>
                 </div>
-                <Accordion active={this.state.active} openMulti={true}>
+                <Accordion active={this.props.ui.showQuestions} openMulti={true}>
                     {this.props.survey.map((question, i) =>
                         <AccordionPanel
                             heading={this.props.vocab.PROJECT.QUESTION_ + (i + 1)}
