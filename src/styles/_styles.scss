@@ -230,13 +230,6 @@ hr.divider {
     border-right: none;
 }
 
-.masked-button {
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none !important;
-    padding: 0;
-}
-
 .workflow-table {
     width: 100%;
 
@@ -244,41 +237,6 @@ hr.divider {
     .stage-summary-cell {
         background-color: white;
         cursor: pointer;
-    }
-
-    .name-row {
-        text-transform: none;
-        color: $header-font-color;
-        font-size: 18px;
-
-        span {
-            cursor: pointer;
-        }
-    }
-
-    .due-row {
-        font-size: 12px;
-
-        span {
-            float: right;
-            color: $font-color;
-        }
-    }
-
-    .role-span {
-        font-size: 12px;
-        align-items: flex-start;
-    }
-
-    .right-icon {
-        float: right;
-        fill: $brand-color;
-    }
-
-    .left-icon {
-        float: left;
-        margin-right: 5px;
-        fill: #a4aebf;
     }
 
     margin-bottom: 0;
@@ -320,10 +278,4 @@ hr.divider {
 
 .center {
     float: left;
-}
-
-.stageslot {
-    &.stageslot-filtered {
-        opacity: 0.5;
-    }
 }

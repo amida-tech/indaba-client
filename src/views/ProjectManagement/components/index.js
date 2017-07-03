@@ -96,6 +96,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         project,
         tasks: _.find(state.tasks, task => task.projectId === project.id).tasks,
+        responses: state.discuss,
         vocab: state.settings.language.vocabulary,
         ui: state.project.ui,
         survey: _.find(state.surveys, survey => survey.projectId === project.id),
