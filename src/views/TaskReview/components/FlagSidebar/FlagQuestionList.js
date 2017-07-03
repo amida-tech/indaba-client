@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'grommet';
 import _ from 'lodash';
+import scroller from 'react-scroll/modules/mixins/scroller';
 import PropTypes from 'prop-types';
 
 class FlagQuestionList extends Component {
@@ -12,6 +13,9 @@ class FlagQuestionList extends Component {
     onChangeQuestion(id, index) {
         this.props.actions.showQuestion(index);
         this.props.actions.setActiveFlag(id, new Date());
+        scroller.scrollTo(`question${index}`, {
+            smooth: true,
+        });
     }
 
     render() {

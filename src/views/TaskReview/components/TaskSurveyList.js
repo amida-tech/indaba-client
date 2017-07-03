@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Accordion from 'grommet/components/Accordion';
-import AccordionPanel from 'grommet/components/AccordionPanel';
 
-import ReviewPane from '../../../common/ReviewPane';
+import QuestionPanel from './QuestionPanel';
 
 class TaskSurveyList extends Component {
     constructor(props) {
@@ -29,13 +28,15 @@ class TaskSurveyList extends Component {
                         {this.props.instructions}
                     </span>
                 </div>
-                <Accordion active={this.props.ui.showQuestions} openMulti={true}>
-                    {this.props.survey.map((question, i) =>
-                        <AccordionPanel
-                            heading={this.props.vocab.PROJECT.QUESTION_ + (i + 1)}
-                            key={`accordionpanel${question}${i}`}>
-                            <ReviewPane {...question}/>
-                        </AccordionPanel>)}
+                <Accordion id='questionAccordion'
+                    active={this.props.ui.showQuestions} openMulti={true}>
+                    {this.props.survey.map((question, index) =>
+                    <QuestionPanel
+                        key={`questionpanel${index}`}
+                        index={index}
+                        question={question}
+                        {...this.props} />,
+                    )}
                 </Accordion>
             </div>
         );
