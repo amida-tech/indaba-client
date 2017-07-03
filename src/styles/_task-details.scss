@@ -58,7 +58,6 @@ $block-class:'task-details';
                 max-width: 250px;
                 overflow: hidden;
                 white-space: normal;
-
             }
 
             &--title {
@@ -72,15 +71,8 @@ $block-class:'task-details';
     padding: 0;
     border: none;
     font-size: 16px;
-
-    &:focus {
-        padding: 0px;
-
-        &:focus {
-            padding: 0;
-        }
-    }
 }
-.grommetux-button__icon .grommetux-control-icon{
+
+.grommetux-button__icon .grommetux-control-icon {
     vertical-align: vertical;
 }
