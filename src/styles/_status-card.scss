@@ -9,14 +9,35 @@ $block-class: 'status-card';
         justify-content: space-between;
         align-items: center;
         flex: 1;
-        padding: 0 1.2em;
+        padding: 0.5em 2em;
         margin: 0 0.5em;
+
+        &--icon {
+            padding-left: 0.5em;
+        }
 
         &__left {
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-right: 1em;
+        }
+
+        &__name-label {
+            color: $font-color;
+            font-size: 12px;
+            margin-bottom: -5px;
+            text-transform: uppercase;
+        }
+
+        &__name-value {
+            color: $header-font-color;
+            font-size: 22px;
+        }
+
+        &__status {
+            color: $header-font-color;
+            font-size: 18px;
         }
     }
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class StatusCard extends Component {
     render() {
         return (
-            <div className='status-card'>
+            <div className={`status-card ${this.props.children ? 'status-card--icon' : ''}`}>
                 <div className='status-card__left'>
                     {this.props.children}
                     <div className='status-card__name'>
