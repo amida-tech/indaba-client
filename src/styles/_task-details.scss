@@ -2,9 +2,6 @@ $block-class:'task-details';
 
 @at-root {
     .#{$block-class} {
-        display: inline-block;
-        min-width: 100%;
-        box-sizing: border-box;
         padding-top: 0.5em;
 
         &__header {
