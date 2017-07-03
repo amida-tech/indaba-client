@@ -35,7 +35,7 @@ class MatrixContainer extends Component {
                         <thead>
                           <tr key='StageHeader'>
                             <th className={['matrix-container__header',
-                                'matrix-container__header--centered'].join(' ')}>
+                                'matrix-container__header--subject'].join(' ')}>
                                 {this.props.vocab.COMMON.SUBJECTS}
                             </th>
                             {this.props.project.stages.map(stage =>
