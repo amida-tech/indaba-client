@@ -13,12 +13,16 @@ class Summary extends Component {
                     label={this.props.vocab.PROJECT.PROJECT}
                     name={this.props.project.name}
                     status={this.props.project.status}
-                    onStatusChangeClick={() => this.props.onStatusChangeClick('projectstatusmodal')}/>
+                    onStatusChangeClick={
+                        this.props.onStatusChangeClick &&
+                        (() => this.props.onStatusChangeClick('projectstatusmodal'))}/>
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey.name}
                     status={this.props.survey.status}
-                    onStatusChangeClick={() => this.props.onStatusChangeClick('surveystatusmodal')}>
+                    onStatusChangeClick={
+                        this.props.onStatusChangeClick &&
+                        (() => this.props.onStatusChangeClick('surveystatusmodal'))}>
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         color='#4EB276'
