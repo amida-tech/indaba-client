@@ -4,16 +4,12 @@ import Accordion from 'grommet/components/Accordion';
 import QuestionPanel from './QuestionPanel';
 
 class TaskSurveyList extends Component {
-    constructor(props) {
-        super(props);
-        props.actions.setExpandAll(this.props.survey.map((k, i) => i));
-    }
-
     render() {
         return (
             <div className='task-survey-list'>
             <div className='task-survey-list__wrapper'>
-                <button onClick={this.props.actions.expandAllQuestions}>
+                <button onClick={() => this.props.actions.showQuestion(
+                    this.props.survey.map((key, index) => index))}>
                     {this.props.vocab.PROJECT.EXPAND_ALL}
                 </button>
                 <button onClick={this.props.actions.collapseAllQuestions}>
@@ -28,7 +24,7 @@ class TaskSurveyList extends Component {
                         {this.props.instructions}
                     </span>
                 </div>
-                <Accordion id='questionAccordion'
+                <Accordion
                     active={this.props.ui.showQuestions} openMulti={true}>
                     {this.props.survey.map((question, index) =>
                     <QuestionPanel

@@ -11,7 +11,7 @@ class FlagQuestionList extends Component {
     }
 
     onChangeQuestion(id, index) {
-        this.props.actions.showQuestion(index);
+        this.props.actions.showQuestion([index]);
         this.props.actions.setActiveFlag(id, new Date());
         scroller.scrollTo(`question${index}`, {
             smooth: true,

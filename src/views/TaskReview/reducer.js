@@ -8,7 +8,6 @@ export const initialState = {
     ui: {
         flags: [],
         showQuestions: [],
-        expandAll: [],
         flagSidebar: {
             active: 0, // Id of flag above.
             comment: '',
@@ -28,12 +27,8 @@ export default (state = initialState, action) => {
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
             { ui: { flags: { $set: action.flags } } });
-    case type.SET_EXPAND_ALL:
-        return update(state, { ui: { expandAll: { $set: action.expandAll } } });
     case type.SHOW_QUESTION:
-        return update(state, { ui: { showQuestions: { $set: [action.questionIndex] } } });
-    case type.EXPAND_ALL_QUESTIONS:
-        return update(state, { ui: { showQuestions: { $set: state.ui.expandAll } } });
+        return update(state, { ui: { showQuestions: { $set: action.questionIndex } } });
     case type.COLLAPSE_ALL_QUESTIONS:
         return update(state, { ui: { showQuestions: { $set: [] } } });
     case type.SET_ACTIVE_FLAG:
