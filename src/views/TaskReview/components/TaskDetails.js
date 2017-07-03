@@ -18,16 +18,16 @@ class TaskDetails extends Component {
                 </div>
 
                 <div className='task-details__info'>
-                    <div className='task-details__info-box'>
-                        <div className='task-details__info-box--label'>
+                    <div className='task-details__info-box--first'>
+                        <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.STAGE}
                         </div>
-                        <div className='task-details__info-box--title'>
+                        <div className='task-details__info-box-title'>
                             {this.props.stage.title}
                         </div>
                     </div>
                     <div className='task-details__info-box'>
-                        <div className='task-details__info-box--label'>
+                        <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.SUBJECT}
                         </div>
                         <div className='task-details__info-box-title'>
@@ -35,7 +35,7 @@ class TaskDetails extends Component {
                         </div>
                     </div>
                     <div className='task-details__info-box'>
-                    <div className='task-details__info-box--label'>
+                    <div className='task-details__info-box-label'>
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     <DateTime id='taskDueDate' className='task-details__info-box-datetime'
@@ -49,7 +49,7 @@ class TaskDetails extends Component {
                         this.props.stage.endStage}/><br/>
                     </div>
                     <div className='task-details__info-box'>
-                        <div className='task-details__info-box--label'>
+                        <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.SURVEY}
                         </div>
                         <div className='task-details__info-box--survey'>
