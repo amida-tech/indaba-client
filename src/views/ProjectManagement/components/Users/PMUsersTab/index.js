@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
 
 import { renderName } from '../../../../../utils/User';
 
 import UserProfile from './UserProfile';
 import PMUserListRow from './PMUserListRow';
 import PMUserListHeader from './PMUserListHeader';
+import InviteUserForm from './InviteUserForm';
 
 class PMUsersTab extends Component {
     constructor(props) {
         super(props);
-        this.state = { userProfileId: false };
+        this.state = {
+            userProfileId: false,
+            search: '',
+        };
         this.showUserProfileModal = this.showUserProfileModal.bind(this);
         this.filterUser = this.filterUser.bind(this);
     }
@@ -20,7 +22,7 @@ class PMUsersTab extends Component {
         this.setState({ userProfileId: userId });
     }
     filterUser(user) {
-        return renderName(user).toLowerCase().includes((this.props.search || '').toLowerCase());
+        return renderName(user).toLowerCase().includes((this.state.search || '').toLowerCase());
     }
     render() {
         return (
@@ -30,29 +32,21 @@ class PMUsersTab extends Component {
                         {...this.props}
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
-                <form>
-                    <Field name='firstName'
-                        component='input'
-                        type='text'
-                        className='pm-users-tab__text-input'
-                        placeholder={this.props.vocab.PROJECT.NEW_USER_FIRST_NAME}/>
-                    <Field name='lastName'
-                        component='input'
-                        type='text'
-                        className='pm-users-tab__text-input'
-                        placeholder={this.props.vocab.PROJECT.NEW_USER_LAST_NAME}/>
-                    <Field name='email'
-                        component='input'
-                        type='text'
-                        className='pm-users-tab__text-input'
-                        placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
-                    <button type='button'>{this.props.vocab.COMMON.INVITE}</button>
-                    <Field name='search'
-                        component='input'
-                        type='text'
-                        className='pm-users-tab__text-input'
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}/>
-                </form>
+                <InviteUserForm vocab={this.props.vocab}
+                    onSubmit={(values) => {
+                        const NEW_USER_ID = 21;
+                        this.props.onAddNewUser({
+                            id: NEW_USER_ID,
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            email: values.email,
+                        });
+                        this.props.onAddUserToProject(NEW_USER_ID, this.props.project.id);
+                    }}/>
+                <input className='pm-users-tab__text-input'
+                    type='text'
+                    placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                    onChange={evt => this.setState({ search: evt.target.value })} />
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
                     .filter(this.filterUser)
@@ -74,11 +68,6 @@ PMUsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    search: PropTypes.string.isRequired,
 };
 
-const PMUsersTabForm = reduxForm({ form: 'pm-users-tab' })(PMUsersTab);
-
-const selector = formValueSelector('pm-users-tab');
-
-export default connect(state => ({ search: selector(state, 'search') }))(PMUsersTabForm);
+export default PMUsersTab;
