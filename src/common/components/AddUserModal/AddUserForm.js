@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 class AddUserForm extends Component {
     render() {
         return (
-            <form className='add-user-modal__form'>
+            <form className='add-user-modal__form' onSubmit={this.props.handleSubmit}>
                 <label className='add-user-modal__label'>
                     {this.props.vocab.COMMON.FIRST_NAME}
                     <Field name='firstName' component='input' type='text'/>

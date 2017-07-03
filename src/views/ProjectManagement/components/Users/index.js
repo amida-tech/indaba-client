@@ -37,7 +37,12 @@ class Users extends Component {
                 }
                 {
                     this.state.modalName === 'adduser' &&
-                    <AddUserModal vocab={this.props.vocab}/>
+                    <AddUserModal vocab={this.props.vocab}
+                        onCancel={() => this.setState({ modalName: false })}
+                        onSave={() => this.setState({ modalName: false })}
+                        onAddNewUser={this.props.onAddNewUser}
+                        onAddUserToProject={this.props.onAddUserToProject}
+                        projectId={this.props.project.id}/>
                 }
                 <Button
                     label={this.props.vocab.PROJECT.ADD_USER}
@@ -50,7 +55,7 @@ class Users extends Component {
                 <hr className='divider'/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
-                        <PMUsersTab {...this.props} />
+                        <PMUsersTab {...this.props}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <PMUserGroupsTab columnHeaders={true}
@@ -75,6 +80,8 @@ Users.propTypes = {
     onDeleteGroup: PropTypes.func.isRequired,
     onAddGroup: PropTypes.func.isRequired,
     onUpdateGroup: PropTypes.func.isRequired,
+    onAddNewUser: PropTypes.func.isRequired,
+    onAddUserToProject: PropTypes.func.isRequired,
 };
 
 export default Users;

@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
-import _ from 'lodash';
 
 import TaskOptions from '../Modals/TaskOptions';
 import AssigneeContainer from './AssigneeContainer';
@@ -34,7 +33,8 @@ class MatrixContainer extends Component {
                       <table className='table table-bordered workflow-table' key='MatrixContainer'>
                         <thead>
                           <tr key='StageHeader'>
-                            <th className='matrix-container__header'>
+                            <th className={['matrix-container__header',
+                                'matrix-container__header--subject'].join(' ')}>
                                 {this.props.vocab.COMMON.SUBJECTS}
                             </th>
                             {this.props.project.stages.map(stage =>
@@ -58,9 +58,10 @@ class MatrixContainer extends Component {
                           {this.props.project.subjects.map((subject, key) =>
                             <FilteredRow key={key}
                               subject={{ name: subject, key }}
-                              surveySize={this.props.surveySize}
+                              surveySize={this.props.survey.questions.length}
                               stages={this.props.project.stages}
                               tasks={this.props.tasks}
+                              responses={this.props.responses}
                               users={this.props.users}
                               vocab={this.props.vocab}
                               project={this.props.project}
@@ -77,21 +78,6 @@ class MatrixContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) ||
-        state.project.projects[0].id;
-    return {
-        ui: state.project.ui,
-        users: state.user.users,
-        tasks: _.find(state.tasks, tasks => tasks.projectId === projectId).tasks,
-        project: _.find(state.project.projects, project =>
-            project.id === projectId) || state.project.projects[0],
-        surveySize: _.find(state.surveys, survey =>
-            survey.projectId === projectId).questions.length,
-        vocab: state.settings.language.vocabulary,
-    };
-};
-
 const mapDispatchToProps = dispatch => ({
     calls: {
         closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),
@@ -105,7 +91,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(null, mapDispatchToProps),
     withRouter,
     DragDropContext(HTML5Backend),
 )(MatrixContainer);
