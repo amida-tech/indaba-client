@@ -9,15 +9,16 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <div className='task-details__header-name-label'>
+                    <div className='task-details__header-label'>
                         {this.props.vocab.PROJECT.TASK_VIEW}
                     </div>
                     <div className='task-details__header-name'>
                         {renderName(this.props.taskedUser)}
                     </div>
                 </div>
+
                 <div className='task-details__info'>
-                    <div className='task-details__info-box'>
+                    <div className='task-details__info-box task-details__info-box--first'>
                         <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.STAGE}
                         </div>
