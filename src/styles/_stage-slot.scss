@@ -2,8 +2,6 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        background-color: white;
-        cursor: pointer;
         color: $font-color;
         text-transform: uppercase;
 

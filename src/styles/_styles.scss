@@ -233,6 +233,7 @@ hr.divider {
 .workflow-table {
     width: 100%;
 
+    .stage-slot-cell,
     .stage-summary-cell {
         background-color: white;
         cursor: pointer;

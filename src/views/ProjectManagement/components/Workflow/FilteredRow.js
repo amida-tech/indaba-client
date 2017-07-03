@@ -48,7 +48,8 @@ class FilteredRow extends Component {
                 {this.props.subject.name}
             </td>
             {taskData.map(task =>
-                <td key={`StageSlot-${task.subject}-${task.stage}`}>
+                <td key={`StageSlot-${task.subject}-${task.stage}`}
+                    className='stage-slot-cell'>
                     <StageSlot task={task}
                         user={_.find(this.props.users, user => user.id === task.userId)}
                         filtered={this.taskIsFilteredOut(task)}
