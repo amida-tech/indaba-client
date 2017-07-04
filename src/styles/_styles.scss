@@ -13,6 +13,15 @@ $layer-background-color: none;
 $brand-neutral-colors: (#308253, #4eb276);
 $brand-accent-colors: #4eb276;
 $brand-link-color: #00854e;
+$brand-status-colors: (
+    critical: #ff324d,
+    error: #ff324d,
+    warning: #ffd602,
+    ok: #8cc800,
+    unknown: #a8a8a8,
+    disabled: #a8a8a8
+) !default;
+$brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 $brand-grey-colors: (#000001, #333, #3b3b3b, #434343, #666);
 
@@ -78,70 +87,6 @@ body {
     margin-bottom: 0;
     border-top-color: #d8d8d8;
     clear: both;
-}
-
-.card {
-    border: 1px solid $border-color;
-    border-radius: 2px;
-    padding: 1.2em 0;
-
-    .project-card-left {
-        margin-left: 2em;
-    }
-
-    .status-card-icon {
-        margin: -2em 0 -2em 0.8em;
-    }
-
-    .card-title {
-        color: $font-color;
-        font-weight: 600;
-        font-size: 12px;
-        text-transform: uppercase;
-        line-height: 14px;
-    }
-
-    .card-value {
-        color: $header-font-color;
-        font-size: 18px;
-        line-height: 22px;
-        margin-right: 1em;
-    }
-
-    .card-value-options {
-        display: none;
-        position: absolute;
-        top: 1.2em;
-    }
-
-    .card-value-select-arrow {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 0.3em;
-    }
-
-    .card-value-select {
-        position: relative;
-
-        .card-value-options.card-value-options-open {
-            display: block;
-            border: 1px solid $border-color;
-            background-color: $page-background-color;
-            box-shadow: 0 2px 4px 0 #7e848f;
-            right: 0;
-            z-index: 2;
-
-            .card-value-option {
-                font-size: 14px;
-                padding: 3px 5px;
-                white-space: nowrap;
-
-                &:not(:last-child) {
-                    border-bottom: 1px solid $border-color;
-                }
-            }
-        }
-    }
 }
 
 @media (min-width: 992px) {
@@ -230,13 +175,6 @@ body {
     border-right: none;
 }
 
-.masked-button {
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none !important;
-    padding: 0;
-}
-
 .workflow-table {
     width: 100%;
 
@@ -244,41 +182,6 @@ body {
     .stage-summary-cell {
         background-color: white;
         cursor: pointer;
-    }
-
-    .name-row {
-        text-transform: none;
-        color: $header-font-color;
-        font-size: 18px;
-
-        span {
-            cursor: pointer;
-        }
-    }
-
-    .due-row {
-        font-size: 12px;
-
-        span {
-            float: right;
-            color: $font-color;
-        }
-    }
-
-    .role-span {
-        font-size: 12px;
-        align-items: flex-start;
-    }
-
-    .right-icon {
-        float: right;
-        fill: $brand-color;
-    }
-
-    .left-icon {
-        float: left;
-        margin-right: 5px;
-        fill: #a4aebf;
     }
 
     margin-bottom: 0;
@@ -320,10 +223,4 @@ body {
 
 .center {
     float: left;
-}
-
-.stageslot {
-    &.stageslot-filtered {
-        opacity: 0.5;
-    }
 }

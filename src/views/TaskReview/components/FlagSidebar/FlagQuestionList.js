@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'grommet';
 import _ from 'lodash';
+import scroller from 'react-scroll/modules/mixins/scroller';
 import PropTypes from 'prop-types';
 
 class FlagQuestionList extends Component {
@@ -9,8 +10,12 @@ class FlagQuestionList extends Component {
         this.onChangeQuestion = this.onChangeQuestion.bind(this);
     }
 
-    onChangeQuestion(id) {
+    onChangeQuestion(id, index) {
+        this.props.actions.showQuestion([index]);
         this.props.actions.setActiveFlag(id, new Date());
+        scroller.scrollTo(`question${index}`, {
+            smooth: true,
+        });
     }
 
     render() {
@@ -23,7 +28,7 @@ class FlagQuestionList extends Component {
                             className={question.id === this.props.ui.flagSidebar.active ?
                                 'flag-question-list__item flag-question-list__item--selected' :
                                 'flag-question-list__item flag-question-list__item'}
-                            onClick={this.onChangeQuestion.bind(event, question.id)}>
+                            onClick={this.onChangeQuestion.bind(event, question.id, index)}>
                             {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
                         </ListItem> :
                         <ListItem key={`listitem${question}${index}`}

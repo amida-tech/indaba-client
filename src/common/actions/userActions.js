@@ -31,3 +31,10 @@ export function setUserTitle(userId, title) {
         title,
     };
 }
+
+export function addNewUser(user) {
+    return {
+        type: actionTypes.ADD_NEW_USER,
+        user,
+    };
+}

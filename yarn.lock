@@ -5703,7 +5703,7 @@ rc-animate@2.x:
     css-animation "1.x"
     prop-types "15.x"
 
-rc-tooltip@^3.4.6:
+rc-tooltip@~3.4.6:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-3.4.6.tgz#ed98de2a7b412e527c6bd8a2a97dddf0babd2f21"
   dependencies:
@@ -5990,6 +5990,13 @@ react-scripts@0.9.5:
     whatwg-fetch "2.0.2"
   optionalDependencies:
     fsevents "1.0.17"
+
+react-scroll@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.5.4.tgz#8c5c4ced659553be1fa39959776c85055fceb137"
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.5.8"
 
 react-select@1.0.0-rc.3:
   version "1.0.0-rc.3"

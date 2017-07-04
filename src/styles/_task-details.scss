@@ -2,61 +2,66 @@ $block-class:'task-details';
 
 @at-root {
     .#{$block-class} {
-        margin: 20px;
-        padding: 5px 10px 0;
-        width: 100%;
+        padding-top: 0.5em;
 
         &__header {
-            margin-bottom: 10px;
+            margin-left: 1em;
+            margin-top: 2em;
+        }
+
+        &__header-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $font-color;
+            font-weight: 100;
         }
 
         &__header-name {
             font-size: 30px;
+            padding-bottom: 0.5em;
+        }
 
-            &-label {
-                padding-bottom: 2px;
-                color: $font-color;
-                font-weight: 100;
-                font-size: 12px;
-                text-transform: uppercase;
-                line-height: 14px;
-            }
+        &__info {
+            min-width: 100%;
+            border: 2px solid $border-color;
+            border-radius: 2px;
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         &__info-box {
-            padding: 10px 30px 10px 0;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            padding-left: 1em;
+            border-left: 2px solid $border-color;
             width: 25%;
             display: inline-block;
-            box-sizing: border-box;
             position: relative;
-            text-overflow: ellipsis;
-            overflow: hidden;
             text-align: left;
 
-            &-label { //come back and create
-                padding-bottom: 5px;
+            &-label {
                 font-size: 12px;
                 text-transform: uppercase;
-                line-height: 14px;
                 color: $font-color;
-                font-weight: 100;
             }
 
             &-survey {
-                font-size: 18px;
-                white-space: nowrap;
+                max-width: 250px;
                 overflow: hidden;
-                text-overflow: ellipsis;
-
-                &:hover {
-                    overflow: visible;
-                    white-space: nowrap;
-                }
+                white-space: normal;
             }
 
             &-title {
-                margin: 0;
-                font-size: 18px;
+                display: flex;
+            }
+
+            &--first {
+                border-left: none;
+                padding-left: 1em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
             }
         }
     }
@@ -66,10 +71,6 @@ $block-class:'task-details';
     padding: 0;
     border: none;
     font-size: 16px;
-
-    &:focus {
-        padding: 0;
-    }
 }
 
 .grommetux-button__icon .grommetux-control-icon {

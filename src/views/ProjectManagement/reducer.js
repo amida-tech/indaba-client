@@ -158,6 +158,10 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: { userGroups: {
             [groupIndex]: { $set: action.group },
         } } } });
+    case type.ADD_USER:
+        return update(state, { projects: { [projectIndex]: {
+            users: { $push: [action.userId] },
+        } } });
     default:
         return state;
     }
