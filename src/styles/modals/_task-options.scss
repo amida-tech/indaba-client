@@ -36,6 +36,12 @@ $block-class:'task-options';
             width: 498px;
             line-height: 40px;
             background-color: $header-footer;
+
+            input.break {
+                word-wrap: break-word;
+                word-break: break-all;
+                height: 80px;
+            }
         }
 
         &__divider {

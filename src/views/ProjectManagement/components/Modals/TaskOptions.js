@@ -78,7 +78,7 @@ class TaskOptions extends Component {
                     </div>
                     <TextInput
                         className='task-options__header-text-box
-                                   task-options__notify-user-warning-text-box'
+                                   task-options__notify-user-warning-text-box break'
                         value={this.props.taskOptions.message}
                         onDOMChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
