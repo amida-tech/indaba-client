@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RadioButton, CheckBox, TextInput, Select } from 'grommet';
+import { RadioButton, CheckBox, Select } from 'grommet';
 import _ from 'lodash';
 import Modal from '../../../../common/Modal';
 import { renderName } from '../../../../utils/User';
@@ -76,11 +76,11 @@ class TaskOptions extends Component {
                     <div className='task-options__notify-user-warning'>
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
-                    <TextInput
-                        className='task-options__header-text-box
-                                   task-options__notify-user-warning-text-box'
+                    <textarea
+                        className={'task-options__header-text-box' +
+                                   ' task-options__notify-user-warning-text-box'}
                         value={this.props.taskOptions.message}
-                        onDOMChange={event =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
                 </div>
             </Modal>
