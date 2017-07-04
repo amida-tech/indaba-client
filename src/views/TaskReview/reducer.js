@@ -7,6 +7,7 @@ import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionT
 export const initialState = {
     ui: {
         flags: [],
+        showQuestions: [],
         flagSidebar: {
             active: 0, // Id of flag above.
             comment: '',
@@ -26,6 +27,10 @@ export default (state = initialState, action) => {
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
             { ui: { flags: { $set: action.flags } } });
+    case type.SHOW_QUESTION:
+        return update(state, { ui: { showQuestions: { $set: action.questionIndex } } });
+    case type.COLLAPSE_ALL_QUESTIONS:
+        return update(state, { ui: { showQuestions: { $set: [] } } });
     case type.SET_ACTIVE_FLAG:
         return update(state,
             { ui: { flagSidebar: {

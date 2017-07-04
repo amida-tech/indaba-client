@@ -7,6 +7,19 @@ export function storeFlaggedIssues(flags) {
     };
 }
 
+export function showQuestion(questionIndex) {
+    return {
+        type: actionTypes.SHOW_QUESTION,
+        questionIndex,
+    };
+}
+
+export function collapseAllQuestions() {
+    return {
+        type: actionTypes.COLLAPSE_ALL_QUESTIONS,
+    };
+}
+
 export function setActiveFlag(active, timestamp) {
     return {
         type: actionTypes.SET_ACTIVE_FLAG,

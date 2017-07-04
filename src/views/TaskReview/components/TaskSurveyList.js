@@ -1,36 +1,18 @@
 import React, { Component } from 'react';
 import Accordion from 'grommet/components/Accordion';
-import AccordionPanel from 'grommet/components/AccordionPanel';
 
-import ReviewPane from '../../../common/ReviewPane';
+import QuestionPanel from './QuestionPanel';
 
 class TaskSurveyList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            allActive: this.props.survey.map((k, i) => i),
-            active: [],
-        };
-        this.handleAccordionExpandAll = this.handleAccordionExpandAll.bind(this);
-        this.handleAccordionCollapseAll = this.handleAccordionCollapseAll.bind(this);
-    }
-
-    handleAccordionExpandAll() {
-        this.setState({ active: this.state.allActive });
-    }
-
-    handleAccordionCollapseAll() {
-        this.setState({ active: [] });
-    }
-
     render() {
         return (
             <div className='task-survey-list'>
             <div className='task-survey-list__wrapper'>
-                <button onClick={this.handleAccordionExpandAll}>
+                <button onClick={() => this.props.actions.showQuestion(
+                    this.props.survey.map((key, index) => index))}>
                     {this.props.vocab.PROJECT.EXPAND_ALL}
                 </button>
-                <button onClick={this.handleAccordionCollapseAll}>
+                <button onClick={this.props.actions.collapseAllQuestions}>
                     {this.props.vocab.PROJECT.COLLAPSE_ALL}
                 </button>
                 </div>
@@ -42,13 +24,15 @@ class TaskSurveyList extends Component {
                         {this.props.instructions}
                     </span>
                 </div>
-                <Accordion active={this.state.active} openMulti={true}>
-                    {this.props.survey.map((question, i) =>
-                        <AccordionPanel
-                            heading={this.props.vocab.PROJECT.QUESTION_ + (i + 1)}
-                            key={`accordionpanel${question}${i}`}>
-                            <ReviewPane {...question}/>
-                        </AccordionPanel>)}
+                <Accordion
+                    active={this.props.ui.showQuestions} openMulti={true}>
+                    {this.props.survey.map((question, index) =>
+                    <QuestionPanel
+                        key={`questionpanel${index}`}
+                        index={index}
+                        question={question}
+                        {...this.props} />,
+                    )}
                 </Accordion>
             </div>
         );
