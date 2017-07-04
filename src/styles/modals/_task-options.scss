@@ -35,6 +35,8 @@ $block-class:'task-options';
         &__notify-user-warning-text-box {
             width: 100%;
             resize: none;
+            line-height: 40px;
+            background-color: $header-footer;
         }
 
         &__divider {
