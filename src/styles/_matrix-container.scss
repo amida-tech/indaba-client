@@ -18,7 +18,7 @@ $block-class:'matrix-container';
 
         &__task-matrix {
             overflow: scroll;
-            min-width: calc(100vw - #{$sidebar-width});
+            width: calc(100vw - #{$sidebar-width});
             margin-left: 27px;
         }
 
@@ -26,6 +26,7 @@ $block-class:'matrix-container';
             flex: 1;
             max-width: $sidebar-width;
             width: $sidebar-width;
+            margin-right: 27px;
         }
     }
 }
