@@ -4,9 +4,12 @@ $block-class:'task-review';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
 
         &__details-and-survey {
             width: 65%;
+            height: calc(100vh - 3.5em);
+            overflow-y: scroll;
         }
 
         &__flag-sidebar {
