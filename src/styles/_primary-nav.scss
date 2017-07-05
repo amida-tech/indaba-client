@@ -6,7 +6,7 @@ $block-class:'primary-nav';
 @at-root {
     .#{$block-class} {
         background-color: $brand-color;
-        height: 3.5em;
+        height: $primary-nav-height;
 
         &__indaba-logo {
             width: 100px;
