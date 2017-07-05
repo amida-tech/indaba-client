@@ -38,6 +38,10 @@ $block-class: 'status-card';
         &__status {
             color: $header-font-color;
             font-size: 18px;
+
+            &--editable {
+                cursor: pointer;
+            }
         }
 
         &__create-icon {
