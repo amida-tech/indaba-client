@@ -6,7 +6,7 @@ class App extends Component {
         return (
             <div>
                 <PrimaryNavContainer />
-                <div className="main-body">
+                <div className='main-body'>
                     {this.props.children}
                 </div>
             </div>
