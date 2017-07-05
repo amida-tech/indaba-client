@@ -25,14 +25,15 @@ $brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 $brand-grey-colors: (#000001, #333, #3b3b3b, #434343, #666);
 
+$primary-nav-height: 3.5em;
+
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
     font-family: 'Roboto';
     background-color: $page-background-color;
     color: $header-font-color;
-    max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 // Grommet overrides
@@ -140,7 +141,7 @@ body {
         text-transform: uppercase;
         color: $font-color;
         font-size: 12px;
-        font-weight: regular;
+        font-weight: normal;
         background-color: #fff;
         border-color: $border-color;
         border-style: solid;

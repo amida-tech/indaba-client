@@ -6,7 +6,9 @@ class App extends Component {
         return (
             <div>
                 <PrimaryNavContainer />
-                {this.props.children}
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

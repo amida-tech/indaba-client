@@ -15,6 +15,7 @@ class FlagQuestionList extends Component {
         this.props.actions.setActiveFlag(id, new Date());
         scroller.scrollTo(`question${index}`, {
             smooth: true,
+            containerId: 'task-review__details-and-survey',
         });
     }
 
