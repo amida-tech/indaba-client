@@ -76,11 +76,8 @@ class TaskOptions extends Component {
                     <div className='task-options__notify-user-warning'>
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
-
-                    <textarea
-                        className={'task-options__header-text-box' +
-                                   ' task-options__notify-user-warning-text-box'}
-
+                    <textarea className={'task-options__header-text-box' +
+                            ' task-options__notify-user-warning-text-box'}
                         value={this.props.taskOptions.message}
                         onChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
