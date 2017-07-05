@@ -28,6 +28,7 @@ const initialState = [{
         userId: 25,
         stage: 1,
         subject: 2,
+        dueDate: '9/9/2017',
     }],
 }];
 

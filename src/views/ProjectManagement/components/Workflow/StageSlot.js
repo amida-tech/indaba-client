@@ -72,6 +72,9 @@ class StageSlot extends Component {
         if (this.state.late) {
             return { term: this.props.vocab.LATE, mod: '--late' };
         }
+        if (!TaskStatus.responsesExist(this.props.task)) {
+            return { term: this.props.vocab.NOT_STARTED, mod: '--not-started' };
+        }
         return '';
     }
 
