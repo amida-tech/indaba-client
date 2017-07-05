@@ -82,6 +82,7 @@ Users.propTypes = {
     onUpdateGroup: PropTypes.func.isRequired,
     onAddNewUser: PropTypes.func.isRequired,
     onAddUserToProject: PropTypes.func.isRequired,
+    onRemoveUserFromProject: PropTypes.func.isRequired,
 };
 
 export default Users;

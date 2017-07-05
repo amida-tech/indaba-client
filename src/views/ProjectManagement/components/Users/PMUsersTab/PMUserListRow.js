@@ -45,7 +45,7 @@ class PMUserListRow extends Component {
                     <UserStatus user={this.props.user} vocab={this.props.vocab}/>
                 </div>
                 <div className='pm-user-list-row__cell'>
-                    <DeleteIconButton />
+                    <DeleteIconButton onClick={this.props.onDeleteClick}/>
                     <IonIcon icon='ion-android-mail' color='#A4AEBF' />
                 </div>
             </div>
@@ -65,6 +65,7 @@ PMUserListRow.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
     subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
     vocab: PropTypes.object.isRequired,
+    onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default PMUserListRow;
