@@ -5,6 +5,7 @@ import IonIcon from 'react-ionicons';
 import Tooltip from 'rc-tooltip';
 import UserStatus from './UserStatus';
 import SubjectPopupContent from './SubjectPopupContent';
+import DeleteIconButton from '../../../../../common/components/DeleteIconButton';
 
 import { renderName } from '../../../../../utils/User';
 
@@ -44,7 +45,7 @@ class PMUserListRow extends Component {
                     <UserStatus user={this.props.user} vocab={this.props.vocab}/>
                 </div>
                 <div className='pm-user-list-row__cell'>
-                    <IonIcon icon='ion-android-delete' color='#A4AEBF'/>
+                    <DeleteIconButton />
                     <IonIcon icon='ion-android-mail' color='#A4AEBF' />
                 </div>
             </div>
