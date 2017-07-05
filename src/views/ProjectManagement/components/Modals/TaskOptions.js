@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RadioButton, CheckBox, TextInput, Select } from 'grommet';
+import { RadioButton, CheckBox, Select } from 'grommet';
 import _ from 'lodash';
 import Modal from '../../../../common/Modal';
 import { renderName } from '../../../../utils/User';
@@ -17,31 +17,33 @@ class TaskOptions extends Component {
     render() {
         const currentUser = _.find(this.props.users, user =>
             user.id === this.props.taskOptions.task.userId);
-        const userOptions = this.props.users.map(user =>
-            (currentUser ?
+        const userOptions = this.props.users.map(user => (
+            user === currentUser ?
             { value: user, label: renderName(user) + this.props.vocab._CURRENTLY_ASSIGNED } :
             { value: user, label: renderName(user) }
         ));
         return (
             <Modal
                 title={this.props.vocab.TITLE}
-                class='task-options-layer'
+                class='task-options'
                 onCancel={this.props.calls.closeTaskOptionsModal}
                 isValid={this.isValid()}
                 onSave={() => this.props.calls.setTaskOptions}>
-                <div className='task-options'>
+                <div className='task-options__body'>
                     <RadioButton id='force'
                         name='taskOptions'
                         label={this.props.vocab.FORCE}
+                        className='task-options__header'
                         value='force'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
-                    <div className='task-options__force-explain'>
+                    <div className='task-options__header-paragraph'>
                         {this.props.vocab.FORCE_PARAGRAPH}
                     </div>
                     <RadioButton id='reassign'
                         name='taskOptions'
                         label={this.props.vocab.REASSIGN}
+                        className='task-options__header'
                         value='reassign'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsChoice(event.target.value)} />
@@ -50,30 +52,34 @@ class TaskOptions extends Component {
                         placeHolder= {renderName(currentUser)
                             + this.props.vocab._CURRENTLY_ASSIGNED}
                         options={userOptions}
+                        className='task-options__header-text-box'
                         onChange={event =>
                             this.props.calls.updateTaskOptionsReassignUser(event.option.value)} />
                         <RadioButton id='skip'
                             disabled={true}
                             name='taskOptions'
                             label={this.props.vocab.SKIP}
+                            className='task-options__header'
                             value='skip'
                             onChange={event =>
                                 this.props.calls.updateTaskOptionsChoice(event.target.value)} />
-                    <div className='task-options__skip-explain'>
+                    <div className='task-options__header-paragraph'>
                         {this.props.vocab.SKIP_PARAGRAPH}
                     </div>
                     <hr className='task-options__divider'/>
                     <CheckBox
+                        className='task-options__header'
                         label={this.props.vocab.NOTIFY}
                         checked={this.props.taskOptions.notify}
                         onChange={event =>
                             this.props.calls.updateTaskOptionsNotify(event.target.checked)} />
-                    <div className='task-options__notice'>
+                    <div className='task-options__notify-user-warning'>
                         {renderName(currentUser) + this.props.vocab._WILL_BE_NOTIFIED}
                     </div>
-                    <TextInput className='task-options__message'
+                    <textarea className={'task-options__header-text-box' +
+                            ' task-options__notify-user-warning-text-box'}
                         value={this.props.taskOptions.message}
-                        onDOMChange={event =>
+                        onChange={event =>
                             this.props.calls.updateTaskOptionsMessage(event.target.value)} />
                 </div>
             </Modal>

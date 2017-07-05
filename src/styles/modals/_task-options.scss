@@ -1,0 +1,48 @@
+$block-class:'task-options';
+
+@at-root {
+    .#{$block-class} {
+        width: 700px;
+
+        &__body {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        &__header {
+            margin-top: 40px;
+        }
+
+        &__header-paragraph {
+            padding-left: 35px;
+        }
+
+        &__header-text-box {
+            margin-left: 50px;
+            margin-right: 50px;
+
+            &:focus {
+                border-color: $brand-color;
+            }
+        }
+
+        &__notify-user-warning {
+            font-size: 12px;
+            margin-left: 55px;
+            margin-bottom: 5px;
+        }
+
+        &__notify-user-warning-text-box {
+            width: 100%;
+            resize: none;
+            line-height: 40px;
+            background-color: $header-footer;
+        }
+
+        &__divider {
+            @extend .divider;
+
+            margin-top: 40px;
+        }
+    }
+}
