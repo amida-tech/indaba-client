@@ -141,7 +141,7 @@ body {
         text-transform: uppercase;
         color: $font-color;
         font-size: 12px;
-        font-weight: regular;
+        font-weight: normal;
         background-color: #fff;
         border-color: $border-color;
         border-style: solid;
@@ -164,6 +164,11 @@ body {
             color: $font-inverse-color;
         }
     }
+}
+
+.main-body {
+    margin-right: 2.5em;
+    margin-left: 2.5em;
 }
 
 .workflow {
