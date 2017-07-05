@@ -98,7 +98,8 @@ class StageSlot extends Component {
                     </div>
                     <div className='stage-slot__due-row'>
                         <div>
-                            {this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span>
+                            {this.displayDueTime()} &nbsp;
+                            <span className='stage-slot__label'>{this.displayStatus()}</span>
                         </div>
                     </div>
              </div>
