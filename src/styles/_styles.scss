@@ -31,6 +31,8 @@ body {
     font-family: 'Roboto';
     background-color: $page-background-color;
     color: $header-font-color;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 // Grommet overrides
@@ -186,7 +188,6 @@ body {
 
     margin-bottom: 0;
     border-right: none;
-    margin-left: 27px;
 
     th:last-child,
     td:last-child,
