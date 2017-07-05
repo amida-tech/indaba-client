@@ -31,3 +31,4 @@ export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
 export const ADD_USER_GROUP = 'ADD_USER_GROUP';
 export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
 export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';
