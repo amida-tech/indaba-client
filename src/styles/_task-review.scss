@@ -10,6 +10,7 @@ $block-class:'task-review';
             width: 65%;
             height: calc(100vh - 3.5em);
             overflow-y: scroll;
+            position: relative;
         }
 
         &__flag-sidebar {
