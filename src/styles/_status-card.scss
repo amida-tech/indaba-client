@@ -39,5 +39,10 @@ $block-class: 'status-card';
             color: $header-font-color;
             font-size: 18px;
         }
+
+        &__create-icon {
+            width: 0.6em;
+            fill: $header-font-color;
+        }
     }
 }
