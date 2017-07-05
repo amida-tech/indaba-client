@@ -28,7 +28,8 @@ class TaskReview extends Component {
             this.props.survey.questions);
         return (
             <div className='task-review'>
-                <div className='task-review__details-and-survey'>
+                <div className='task-review__details-and-survey'
+                    id='task-review__details-and-survey'>
                     <Link to={`/project/${this.props.project.id}`}>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
