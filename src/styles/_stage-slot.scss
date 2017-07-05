@@ -1,5 +1,5 @@
 $tag-height: 1.25em; // 20px
-$tag-color: red;
+$late-color: red;
 $block-class:'stage-slot';
 
 @at-root {
@@ -60,7 +60,6 @@ $block-class:'stage-slot';
 
         &__label {
             font-size: 12px; // em dependent calc
-            background-color: $tag-color; // NOT background
             display: inline-block;
             height: $tag-height; // 20px
             padding: 0 0.5em 0 1em;
@@ -69,13 +68,49 @@ $block-class:'stage-slot';
             min-width: 2.5em;
 
             &::after {
-                border-left: #{$tag-height / 2} solid $tag-color;
+                // border-left: #{$tag-height / 2} solid $late-color;
                 border-top: #{$tag-height / 2} solid transparent;
                 border-bottom: #{$tag-height / 2} solid transparent;
                 content: ""; // does not render without
                 right: #{$tag-height / -2}; // dynamic positioning
                 top: 0;
                 position: absolute;
+            }
+        }
+
+        &__label--late {
+            @extend .stage-slot__label;
+
+            background-color: $late-color;
+
+            &::after {
+                @extend .stage-slot__label::after;
+
+                border-left: #{$tag-height / 2} solid $late-color;
+            }
+        }
+
+        &__label--done {
+            @extend .stage-slot__label;
+
+            background-color: $brand-color;
+
+            &::after {
+                @extend .stage-slot__label::after;
+
+                border-left: #{$tag-height / 2} solid $brand-color;
+            }
+        }
+
+        &__label--not-started {
+            @extend .stage-slot__label;
+
+            background-color: $font-color;
+
+            &::after {
+                @extend .stage-slot__label::after;
+
+                border-left: #{$tag-height / 2} solid $font-color;
             }
         }
     }
