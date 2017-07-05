@@ -33,7 +33,7 @@ body {
     font-family: 'Roboto';
     background-color: $page-background-color;
     color: $header-font-color;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 // Grommet overrides
