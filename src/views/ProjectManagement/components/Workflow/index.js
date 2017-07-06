@@ -9,6 +9,7 @@ class WorkflowContainer extends Component {
         return (
             <div className='worklow-container'>
                 <FilterWrapper project={this.props.project}
+                    vocab={this.props.vocab}
                     onToggleFilter={this.props.onToggleFilter}
                     onAddStage={this.props.onAddStage}
                     onAddSubject={this.props.onAddSubject}

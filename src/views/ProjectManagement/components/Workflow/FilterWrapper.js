@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Button } from 'grommet';
 import FilterBar from './FilterBar';
 import AddSubject from '../Modals/AddSubject';
@@ -64,8 +63,4 @@ class FilterWrapper extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-});
-
-export default connect(mapStateToProps)(FilterWrapper);
+export default FilterWrapper;
