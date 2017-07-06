@@ -1,0 +1,18 @@
+$block-class:'stage-summary';
+
+@at-root {
+    .#{$block-class} {
+        &__value {
+            position: relative;
+            float: right;
+            font-size: 14px;
+            color: $header-font-color;
+        }
+
+        &__label {
+            font-size: 12px;
+            color: $font-color;
+            text-transform: uppercase;
+        }
+    }
+}
