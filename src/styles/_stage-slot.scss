@@ -68,7 +68,8 @@ $block-class:'stage-slot';
             min-width: 2.5em;
 
             &::after {
-                // border-left: #{$tag-height / 2} solid $late-color;
+                border-left-width: #{$tag-height / 2};
+                border-left-style: solid;
                 border-top: #{$tag-height / 2} solid transparent;
                 border-bottom: #{$tag-height / 2} solid transparent;
                 content: ""; // does not render without
@@ -76,41 +77,29 @@ $block-class:'stage-slot';
                 top: 0;
                 position: absolute;
             }
-        }
 
-        &__label--late {
-            @extend .stage-slot__label;
+            &--late {
+                background-color: $late-color;
 
-            background-color: $late-color;
-
-            &::after {
-                @extend .stage-slot__label::after;
-
-                border-left: #{$tag-height / 2} solid $late-color;
+                &::after {
+                    border-left-color: $late-color;
+                }
             }
-        }
 
-        &__label--done {
-            @extend .stage-slot__label;
+            &--done {
+                background-color: $brand-color;
 
-            background-color: $brand-color;
-
-            &::after {
-                @extend .stage-slot__label::after;
-
-                border-left: #{$tag-height / 2} solid $brand-color;
+                &::after {
+                    border-left-color: $brand-color;
+                }
             }
-        }
 
-        &__label--not-started {
-            @extend .stage-slot__label;
+            &--not-started {
+                background-color: $font-color;
 
-            background-color: $font-color;
-
-            &::after {
-                @extend .stage-slot__label::after;
-
-                border-left: #{$tag-height / 2} solid $font-color;
+                &::after {
+                    border-left-color: $font-color;
+                }
             }
         }
     }

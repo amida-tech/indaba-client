@@ -104,7 +104,7 @@ class StageSlot extends Component {
                         <div>
                             {this.displayDueTime()} &nbsp;
                             <span
-                                className={labelDisplay ? `stage-slot__label${labelDisplay.mod}` : ''} >
+                                className={labelDisplay ? `stage-slot__label stage-slot__label${labelDisplay.mod}` : ''} >
                                 {labelDisplay.term}
                             </span>
                         </div>
