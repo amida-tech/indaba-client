@@ -15,6 +15,8 @@ $block-class:'task-review';
         &__flag-sidebar {
             width: 35%;
             background: #f1f1f1;
+            position: absolute;
+            right: 0;
         }
     }
 }
