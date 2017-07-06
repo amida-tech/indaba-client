@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 
 class UserNameInput extends Component {
     render() {
         return (
-            <form className='user-name-input'>
+            <div className='user-name-input'>
                 <label className='user-name-input__label'>
                     {this.props.vocab.COMMON.FIRST_NAME}
                     <Field name='firstName'
@@ -22,7 +21,7 @@ class UserNameInput extends Component {
                         type='text'
                         className='user-name-input__text-input'/>
                 </label>
-            </form>
+            </div>
         );
     }
 }
@@ -35,9 +34,4 @@ UserNameInput.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default connect((state, ownProps) => ({
-    initialValues: {
-        firstName: ownProps.user.firstName,
-        lastName: ownProps.user.lastName,
-    },
-}))(reduxForm({ form: 'user-profile', destroyOnUnmount: false })(UserNameInput));
+export default UserNameInput;
