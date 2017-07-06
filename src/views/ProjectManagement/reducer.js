@@ -19,6 +19,8 @@ export const initialState = {
             reassignUser: null,
             task: {},
         },
+        showAddStage: false,
+        showAddSubject: false,
         userGroupListSearchQuery: '',
     },
     projects: [{
@@ -125,6 +127,14 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             message: { $set: action.message },
         } } });
+    case type.SHOW_ADD_STAGE_MODAL:
+        return update(state, { ui: { showAddStage: { $set: true } } });
+    case type.CLOSE_ADD_STAGE_MODAL:
+        return update(state, { ui: { showAddStage: { $set: false } } });
+    case type.SHOW_ADD_SUBJECT_MODAL:
+        return update(state, { ui: { showAddSubject: { $set: true } } });
+    case type.CLOSE_ADD_SUBJECT_MODAL:
+        return update(state, { ui: { showAddSubject: { $set: false } } });
     case type.SET_PROJECT_STATUS: // project related.
         return update(state, { projects: { [projectIndex]: {
             status: { $set: action.status },

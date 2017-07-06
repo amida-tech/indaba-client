@@ -171,3 +171,29 @@ export function updateTaskOptionsMessage(message) {
         message,
     };
 }
+
+// Add Stage Modal:
+export function showAddStageModal() {
+    return {
+        type: actionTypes.SHOW_ADD_STAGE_MODAL,
+    };
+}
+
+export function closeAddStageModal() {
+    return {
+        type: actionTypes.CLOSE_ADD_STAGE_MODAL,
+    };
+}
+
+// Add Subject Modal:
+export function showAddSubjectModal() {
+    return {
+        type: actionTypes.SHOW_ADD_SUBJECT_MODAL,
+    };
+}
+
+export function closeAddSubjectModal() {
+    return {
+        type: actionTypes.CLOSE_ADD_SUBJECT_MODAL,
+    };
+}

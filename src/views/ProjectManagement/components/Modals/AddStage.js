@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DateTime from 'grommet/components/DateTime';
 import Select from 'react-select';
+// import { Field, reduxForm, reset } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import Modal from '../../../../common/Modal';
 
@@ -20,7 +22,6 @@ class AddStage extends Component {
         this.handlePermissionsChange = this.handlePermissionsChange.bind(this);
         this.handleStartStageChange = this.handleStartStageChange.bind(this);
         this.handleEndStageChange = this.handleEndStageChange.bind(this);
-        this.isValid = this.isValid.bind(this);
     }
 
     handleTitleChange(event) {
@@ -43,17 +44,6 @@ class AddStage extends Component {
         this.setState({ endStage: event });
     }
 
-    isValid() {
-        if (this.state.title === '' ||
-            this.state.userGroups.length === 0 ||
-            this.state.permissions === undefined ||
-            this.state.startStage === '' ||
-            this.state.endStage === '') {
-            return false;
-        }
-        return true;
-    }
-
     render() {
         const vocab = this.props.vocab;
         const groups = this.props.userGroups.map((group, key) =>
@@ -65,8 +55,7 @@ class AddStage extends Component {
                 title={vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                isValid={this.isValid()}
-                onSave={() => this.props.onAddStage(this.state)}>
+                onSave={() => this.props.onAddStage(this.state, this.props.projectId)}>
                 <div>
                     <input type='text' placeholder={vocab.PROJECT.STAGE_TITLE}
                         onChange={this.handleTitleChange}/>
@@ -121,4 +110,13 @@ class AddStage extends Component {
     }
 }
 
+AddStage.propTypes = {
+    vocab: PropTypes.object.isRequired,
+};
+
 export default AddStage;
+
+// export default reduxForm({
+//     form: 'add-stage-form',
+//     onSubmitSuccess: (result, dispatch) => dispatch(reset('add-stage-form')),
+// })(AddStage);
