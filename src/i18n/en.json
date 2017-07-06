@@ -200,14 +200,14 @@
         "DRAFT": {
           "TITLE": "Return survey to Draft? Check boxes to confirm:",
           "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
-          "CHECKBOX_USERS": "Users will not be notified.",
-          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit."
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit.",
+          "CHECKBOX_USERS": "Users will not be notified."
         },
         "PUBLISHED": {
           "TITLE": "Publish the survey? Check boxes to confirm:",
           "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
-          "CHECKBOX_USERS": "Users will not be notified.",
-          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit."
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit.",
+          "CHECKBOX_USERS": "Users will not be notified."
         }
       }
     },
