@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
-import IonIcon from 'react-ionicons';
+import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import { renderName } from '../../../../utils/User';
 
@@ -58,9 +58,7 @@ class UsersTab extends Component {
                     <UserBadge user={user}/>
                     <div>{renderName(user)}</div>
                 </Box>
-                <div onClick={() => this.handleUserRemove(userId)}>
-                    <IonIcon icon='ion-android-delete' color='#7E848F'/>
-                </div>
+                <DeleteIconButton onClick={() => this.handleUserRemove(userId)} />
             </ListItem>
         );
     }

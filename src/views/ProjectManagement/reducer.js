@@ -162,6 +162,12 @@ export default (state = initialState, action) => {
         return update(state, { projects: { [projectIndex]: {
             users: { $push: [action.userId] },
         } } });
+    case type.REMOVE_USER:
+        return update(state, { projects: { [projectIndex]: {
+            users: { $apply: users => users.filter(userId => userId !== action.userId) },
+            userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
+                users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
+        } } });
     default:
         return state;
     }
