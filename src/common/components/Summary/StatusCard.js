@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import IonIcon from 'react-ionicons';
+
 class StatusCard extends Component {
     render() {
         return (
@@ -16,9 +18,11 @@ class StatusCard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='status-card__status'
+                <div className={`status-card__status ${this.props.onStatusChangeClick ? 'status-card__status--editable' : ''}`}
                     onClick={this.props.onStatusChangeClick}>
                     {this.props.status}
+                    {this.props.onStatusChangeClick &&
+                        <IonIcon icon='ion-android-create' className='status-card__create-icon'/>}
                 </div>
             </div>
         );
