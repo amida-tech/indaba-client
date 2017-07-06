@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
@@ -30,7 +31,9 @@ class TaskReview extends Component {
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
                     id='task-review__details-and-survey'>
-                    <Link to={`/project/${this.props.project.id}`}>
+                    <Link to={`/project/${this.props.project.id}`}
+                        className='task-review__back-link'>
+                        <IonIcon icon='ion-android-arrow-back' className='task-review__back-arrow'/>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
