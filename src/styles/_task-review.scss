@@ -14,8 +14,10 @@ $block-class:'task-review';
         }
 
         &__flag-sidebar {
-            width: 35%;
             background: #f1f1f1;
+            width: calc(35% + 2.5em);
+            margin-right: -2.5em;
+            padding-right: 2.5em;
         }
 
         &__back-link {
