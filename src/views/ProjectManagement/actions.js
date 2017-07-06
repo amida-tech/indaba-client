@@ -101,6 +101,14 @@ export function addUser(userId, projectId) {
     };
 }
 
+export function removeUser(userId, projectId) {
+    return {
+        type: actionTypes.REMOVE_USER,
+        userId,
+        projectId,
+    };
+}
+
 export function updateUserSearchGroup(group) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_GROUP,

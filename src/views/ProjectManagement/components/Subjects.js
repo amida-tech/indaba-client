@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { Button, SearchInput } from 'grommet';
-import IonIcon from 'react-ionicons';
+import DeleteIconButton from '../../../common/components/DeleteIconButton';
 import AddSubject from './Modals/AddSubject';
 
 class SubjectList extends Component {
@@ -21,10 +22,7 @@ class SubjectList extends Component {
                         <div className='subject-list-entry__name'>
                             {subject}
                         </div>
-                        <div className='subject-list-entry__delete'
-                            onClick={() => this.props.onDeleteClick(subject)}>
-                            <IonIcon icon='ion-android-delete'/>
-                        </div>
+                        <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
                     </div>)
                 }
             </div>);
