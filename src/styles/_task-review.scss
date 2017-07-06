@@ -6,6 +6,7 @@ $block-class:'task-review';
         flex-direction: row;
 
         &__details-and-survey {
+            padding-top: 1em;
             width: 65%;
             height: calc(100vh - #{$primary-nav-height});
             overflow-y: scroll;
@@ -15,6 +16,15 @@ $block-class:'task-review';
         &__flag-sidebar {
             width: 35%;
             background: #f1f1f1;
+        }
+
+        &__back-link {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        &__back-arrow {
+            fill: $header-font-color;
         }
     }
 }
