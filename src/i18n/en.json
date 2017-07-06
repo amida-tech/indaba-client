@@ -198,16 +198,16 @@
         "INSTRUCTION_DRAFT_CONSTRAINT": "Once published, you must deactivate the project to edit the survey.",
         "INSTRUCTION_PROJECT_STATUS": "This action does not change the project status.",
         "DRAFT": {
-          "TITLE": "Unpublish the survey? Check boxes to confirm.",
-          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
-          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
-          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+          "TITLE": "Return survey to Draft? Check boxes to confirm:",
+          "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
+          "CHECKBOX_USERS": "Users will not be notified.",
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit."
         },
         "PUBLISHED": {
-          "TITLE": "Publish the survey? Check boxes to confirm.",
-          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
-          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
-          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+          "TITLE": "Publish the survey? Check boxes to confirm:",
+          "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
+          "CHECKBOX_USERS": "Users will not be notified.",
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit."
         }
       }
     },
