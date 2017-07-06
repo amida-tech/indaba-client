@@ -67,16 +67,20 @@ class StageSlot extends Component {
 
     displayStatus() {
         if (this.state.done) {
-            return this.props.vocab.DONE;
+            return { term: this.props.vocab.DONE, mod: '--done' };
         }
         if (this.state.late) {
-            return this.props.vocab.LATE;
+            return { term: this.props.vocab.LATE, mod: '--late' };
+        }
+        if (!TaskStatus.responsesExist(this.props.task)) {
+            return { term: this.props.vocab.NOT_STARTED, mod: '--not-started' };
         }
         return '';
     }
 
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
+        const labelDisplay = this.displayStatus();
         return connectDropTarget(
         <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
             {this.props.user &&
@@ -98,7 +102,11 @@ class StageSlot extends Component {
                     </div>
                     <div className='stage-slot__due-row'>
                         <div>
-                            {this.displayDueTime()} &nbsp; <span>{this.displayStatus()}</span>
+                            {this.displayDueTime()} &nbsp;
+                            <span
+                                className={labelDisplay ? `stage-slot__label stage-slot__label${labelDisplay.mod}` : ''} >
+                                {labelDisplay.term}
+                            </span>
                         </div>
                     </div>
              </div>
