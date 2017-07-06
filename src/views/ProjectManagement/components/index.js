@@ -68,13 +68,13 @@ class ProjectManagementContainer extends Component {
                             onSetProjectStatus={this.props.onSetProjectStatus}
                             onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
                     <SubNav />
-                    <hr className='divider' />
+                    <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.updateStatusChange(id)}
                         vocab={this.props.vocab} />
-                    <hr className='divider' />
+                    <hr className='divider main-divider' />
                     {body}
                 </div>
         );
