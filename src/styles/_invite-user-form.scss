@@ -1,0 +1,15 @@
+$block-class: 'invite-user-form';
+
+@at-root {
+    .#{$block-class} {
+        display: inline-flex;
+        min-width: 100%;
+        height: 40%;
+        color: red;
+        padding: 24px 16px;
+        margin: 0 auto;
+        background-color: #d9dcde;
+        align-items: center;
+        justify-content: center;
+    }
+}
