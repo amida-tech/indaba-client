@@ -1,5 +1,8 @@
 $tag-height: 1.25em; // 20px
-$late-color: red;
+$late-color: #af1212;
+$done-color: #68997d;
+$not-started-color: #a4aebf;
+
 $block-class:'stage-slot';
 
 @at-root {
@@ -80,26 +83,14 @@ $block-class:'stage-slot';
 
             &--late {
                 background-color: $late-color;
-
-                &::after {
-                    border-left-color: $late-color;
-                }
             }
 
             &--done {
-                background-color: $brand-color;
-
-                &::after {
-                    border-left-color: $brand-color;
-                }
+                background-color: $done-color;
             }
 
             &--not-started {
-                background-color: $font-color;
-
-                &::after {
-                    border-left-color: $font-color;
-                }
+                background-color: $not-started-color;
             }
         }
     }
