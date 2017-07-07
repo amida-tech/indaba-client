@@ -67,7 +67,8 @@ $block-class:'task-details';
     }
 }
 
-.grommetux-date-time__input {
+.grommetux-date-time__input,
+.grommetux-date-time__input:focus {
     padding: 0;
     border: none;
     font-size: 16px;
