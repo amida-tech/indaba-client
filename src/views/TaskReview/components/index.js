@@ -44,7 +44,7 @@ class TaskReview extends Component {
                         taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
                         stage={this.props.project.stages[this.props.task.stage]}
-                        updateTaskDueDate={this.props.updateTaskDueDate} />
+                        updateTaskDueDate={this.props.tasksActions.updateTaskDueDate} />
                     <TaskSurveyList
                         ui={this.props.ui}
                         survey={displaySurvey}
