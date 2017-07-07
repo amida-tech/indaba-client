@@ -30,7 +30,8 @@ class PMUsersTab extends Component {
                 {this.state.userProfileId !== false &&
                     <UserProfile userId={this.state.userProfileId}
                         {...this.props}
-                        onCancel={() => this.setState({ userProfileId: false })}/>
+                        onCancel={() => this.setState({ userProfileId: false })}
+                        onSave={() => this.setState({ userProfileId: false })}/>
                 }
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {

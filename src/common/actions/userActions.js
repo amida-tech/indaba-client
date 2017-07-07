@@ -38,3 +38,11 @@ export function addNewUser(user) {
         user,
     };
 }
+
+export function updateUser(userId, user) {
+    return {
+        type: actionTypes.UPDATE_USER,
+        userId,
+        user,
+    };
+}
