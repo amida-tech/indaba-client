@@ -43,16 +43,16 @@ class SurveyStatusBody extends Component {
               />
             <br/>
             <ConfirmationCheckbox
-              checked={this.props.usersConfirm}
-              onCheck={this.props.onCheck}
-              name='usersConfirm'
-              label={confirmVocab.CHECKBOX_USERS}/>
-            <br/>
-            <ConfirmationCheckbox
               checked={this.props.editConfirm}
               onCheck={this.props.onCheck}
               name='editConfirm'
               label={confirmVocab.CHECKBOX_EDIT} />
+            <br/>
+            <ConfirmationCheckbox
+              checked={this.props.usersConfirm}
+              onCheck={this.props.onCheck}
+              name='usersConfirm'
+              label={confirmVocab.CHECKBOX_USERS}/>
           </div>
         </div>
       </div>

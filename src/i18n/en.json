@@ -180,7 +180,7 @@
         "INSTRUCTION_REACTIVATE": "Reactivate the project once workflow changes have been made and you're ready to notify the user of the change.",
         "ACTIVE": {
           "TITLE": "Activate the project? Check boxes to confirm.",
-          "CHECKBOX_DRAFT": "Survey can be switched to draft mode while project is inactive.",
+          "CHECKBOX_DRAFT": "Survey cannot be switched to draft mode while project is active.",
           "CHECKBOX_ACCESS": "All access to project will be restored.",
           "CHECKBOX_USERS": "All users will be notified of this action."
         },
@@ -198,16 +198,16 @@
         "INSTRUCTION_DRAFT_CONSTRAINT": "Once published, you must deactivate the project to edit the survey.",
         "INSTRUCTION_PROJECT_STATUS": "This action does not change the project status.",
         "DRAFT": {
-          "TITLE": "Unpublish the survey? Check boxes to confirm.",
-          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
-          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
-          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+          "TITLE": "Return survey to Draft? Check boxes to confirm:",
+          "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit.",
+          "CHECKBOX_USERS": "Users will not be notified."
         },
         "PUBLISHED": {
-          "TITLE": "Publish the survey? Check boxes to confirm.",
-          "CHECKBOX_ACCESS": "All assignee access to survey will be suspended until republished.",
-          "CHECKBOX_USERS": "All users assigned to survey will be notified of this action.",
-          "CHECKBOX_EDIT": "Only you and specified users can edit survey in draft mode."
+          "TITLE": "Publish the survey? Check boxes to confirm:",
+          "CHECKBOX_ACCESS": "Surveys must be published in order to activate project.",
+          "CHECKBOX_EDIT": "You must return survey to Draft mode in order to edit.",
+          "CHECKBOX_USERS": "Users will not be notified."
         }
       }
     },
