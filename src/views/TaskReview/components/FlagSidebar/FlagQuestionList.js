@@ -22,7 +22,7 @@ class FlagQuestionList extends Component {
     render() {
         return (
             <List className='flag-question-list'>
-                {this.props.survey.map((question, index) => {
+                {this.props.displaySurvey.map((question, index) => {
                     return (_.some(this.props.ui.flags, flag =>
                         flag.id === question.id)) ?
                         <ListItem key={`listitem${question}${index}`}
@@ -43,7 +43,7 @@ class FlagQuestionList extends Component {
 }
 
 FlagQuestionList.propTypes = {
-    survey: PropTypes.arrayOf(PropTypes.object).isRequired,
+    displaySurvey: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 
