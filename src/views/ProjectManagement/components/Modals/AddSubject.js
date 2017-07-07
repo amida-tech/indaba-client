@@ -22,7 +22,7 @@ class AddSubject extends Component {
                 class='add-subject-layer'
                 onCancel={this.props.onCancel}
                 isValid={this.isValid()}
-                onSave={() => this.props.onAddSubject(this.state.value, this.props.projectId)}>
+                onSave={() => this.props.onAddSubject(this.state.value)}>
                 <input
                     type='text'
                     placeholder={this.props.vocab.PROJECT.SUBJECT_TITLE}

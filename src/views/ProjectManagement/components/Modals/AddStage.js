@@ -55,7 +55,7 @@ class AddStage extends Component {
                 title={vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={() => this.props.onAddStage(this.state, this.props.projectId)}>
+                onSave={() => this.props.onAddStage(this.state)}>
                 <div>
                     <input type='text' placeholder={vocab.PROJECT.STAGE_TITLE}
                         onChange={this.handleTitleChange}/>
