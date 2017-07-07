@@ -26,7 +26,7 @@ class FlagQuestionList extends Component {
                     return (_.some(this.props.ui.flags, flag =>
                         flag.id === question.id)) ?
                         <ListItem key={`listitem${question}${index}`}
-                            className={question.id === this.props.ui.flagSidebar.active ?
+                            className={question.id === this.props.ui.flagSidebar.activeId ?
                                 'flag-question-list__item flag-question-list__item--selected' :
                                 'flag-question-list__item flag-question-list__item'}
                             onClick={this.onChangeQuestion.bind(event, question.id, index)}>

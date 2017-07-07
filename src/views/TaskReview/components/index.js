@@ -8,7 +8,8 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
-import { updateTaskDueDate, updateFlaggedQuestion } from '../../../common/actions/tasksActions';
+import { updateTaskDueDate } from '../../../common/actions/tasksActions';
+import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import * as actions from '../actions';
 
 function surveyMapperHelper(discuss, question) {
@@ -86,8 +87,8 @@ const mapDispatchToProps = dispatch => ({
     tasksActions: {
         updateTaskDueDate: (taskId, projectId, dueDate) =>
             dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
-        updateFlaggedQuestion: (taskId, projectId, data) =>
-            dispatch(updateFlaggedQuestion(taskId, projectId, data)),
+        updateFlaggedQuestion: (taskId, projectId, activeId, data) =>
+            dispatch(updateFlaggedQuestion(taskId, projectId, activeId, data)),
     },
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });

@@ -35,6 +35,7 @@ class FlagControls extends Component {
                         onClick={() => this.props.tasksActions.updateFlaggedQuestion(
                             this.props.task.id,
                             this.props.projectId,
+                            this.props.ui.flagSidebar.activeId,
                             this.props.ui.flagSidebar)} />
                 </div>
             </Box>

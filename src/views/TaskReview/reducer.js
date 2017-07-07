@@ -9,7 +9,7 @@ export const initialState = {
         flags: [],
         showQuestions: [],
         flagSidebar: {
-            active: 0, // Id of flag above.
+            activeId: 0, // Id of flag above.
             comment: '',
             resolved: false,
             notifyUser: {
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case type.SET_ACTIVE_FLAG:
         return update(state,
             { ui: { flagSidebar: {
-                active: { $set: action.active },
+                activeId: { $set: action.activeId },
                 timestamp: { $set: action.timestamp },
             } } });
     case type.SET_SIGNATURE_ID:
@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
             } } });
     case UPDATE_FLAGGED_QUESTION: {
         const flagIndex = _.findIndex(state.ui.flags, flag =>
-            flag.id === action.data.active);
+            flag.id === action.activeId);
         if (action.data.resolved) {
             let nextId = 0; // Determines the next active question, if any.
             if (flagIndex === 0 && state.ui.flags.length > 1) {
@@ -69,7 +69,7 @@ export default (state = initialState, action) => {
             return update(state, { ui: {
                 flags: { $splice: [[flagIndex, 1]] },
                 flagSidebar: {
-                    active: { $set: nextId },
+                    activeId: { $set: nextId },
                     comment: { $set: '' },
                     resolved: { $set: false },
                 } } });
