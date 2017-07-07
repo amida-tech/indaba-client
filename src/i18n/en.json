@@ -180,7 +180,7 @@
         "INSTRUCTION_REACTIVATE": "Reactivate the project once workflow changes have been made and you're ready to notify the user of the change.",
         "ACTIVE": {
           "TITLE": "Activate the project? Check boxes to confirm.",
-          "CHECKBOX_DRAFT": "Survey cannot be switched to draft mode while project is inactive.",
+          "CHECKBOX_DRAFT": "Survey cannot be switched to draft mode while project is active.",
           "CHECKBOX_ACCESS": "All access to project will be restored.",
           "CHECKBOX_USERS": "All users will be notified of this action."
         },
