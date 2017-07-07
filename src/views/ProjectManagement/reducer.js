@@ -23,7 +23,7 @@ export const initialState = {
     },
     projects: [{
         id: 101,
-        name: 'Pizza Lovers Anonymous',
+        name: 'Home Business Study',
         status: 'Active',
         users: [13, 71, 41, 25, 22, 31],
         stages: [{
@@ -65,7 +65,7 @@ export const initialState = {
                 name: 'Managers',
                 users: [13, 71],
             }],
-        subjects: ['Berlin', 'Chicago', 'K\'unlun'],
+        subjects: ['Berlin', 'Chicago', 'Hong Kong'],
     }],
 };
 

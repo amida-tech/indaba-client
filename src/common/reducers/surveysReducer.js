@@ -7,42 +7,68 @@ const initialState = [
     {
         id: 78,
         projectId: 101, // Think the Indaba backend maps the projectId in each survey
-        name: 'How much do you like pizza?',
-        instructions: 'Don\'t order with pineapple.',
+        name: 'Farmer\'s Market Difficulties',
+        instructions: 'Please indicate whether you agree or disagree with the importance of the following questions, and flag any questions with obvious errors.',
         status: 'Published',
-        description: 'If you don\'t like pizza, what are you doing here.',
+        description: 'Causes of business difficulty in gaining access to market forums.',
         questions: [{
             id: 17,
-            question: 'Have you ever had pizza?',
+            question: 'Have you ever tried to host a stall at a market?',
             type: 'Checkbox',
         }, {
             id: 21,
-            question: 'Which topping on a supreme do you like the least?',
+            question: 'Which of the following describes your biggest concern when selecting a farmer\'s market?',
             type: 'MultipleChoice', // TODO: Consider giving key value against an enum.
             answers: [
-                'Sausage',
-                'Pepperoni',
-                'Onions',
-                'Green Peppers',
-                'Olives'],
+                'Location of Market',
+                'Fees Associated with Forum',
+                'Setup Challenges',
+                'Sales Limitations/Regulations',
+                'Crime/Theft'],
         }, {
             id: 18,
-            question: 'How many toppings do you normally get?',
+            question: 'What is the average number of sales you make a week?',
             type: 'Number',
         }, {
             id: 23,
-            question: 'Tell us your favorite pizza experience.',
+            question: 'Describe your most recent challenges.',
             type: 'LongText',
         }, {
             id: 34,
-            question: 'Which toppings do you like? (Click all that apply.)',
-            type: 'Checkbox',
+            question: 'Which describes the goods you sell at the market?',
+            type: 'MultipleChoice',
             answers: [
-                'Sausage',
-                'Pepperoni',
-                'Onions',
-                'Green Peppers',
-                'Olives'],
+                'Produce',
+                'Meats',
+                'Preservatives',
+                'Services',
+                'Other'],
+        }, {
+            id: 99,
+            question: 'Tell us your best market experience.',
+            type: 'LongText',
+        }, {
+            id: 98,
+            question: 'How many thefts do you deal with per week?',
+            type: 'Number',
+        }, {
+            id: 104,
+            question: 'Which describes your business\' great strength?',
+            type: 'MultipleChoice',
+            answers: [
+                'Low Cost',
+                'High Quality',
+                'Adaptability to Consumer Needs',
+                'Customer Service',
+                'Other'],
+        }, {
+            id: 117,
+            question: 'What is your income per week?',
+            type: 'Number',
+        }, {
+            id: 209,
+            question: 'Do you have a second job or source of income?',
+            type: 'Checkbox',
         }], // Still need to add Bulletpoint and scale
     },
 ];
