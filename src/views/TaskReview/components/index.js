@@ -55,7 +55,7 @@ class TaskReview extends Component {
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     {...this.props}
-                    survey={displaySurvey}/>
+                    displaySurvey={displaySurvey}/>
                 </div>
             </div>
         );
