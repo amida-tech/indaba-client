@@ -45,7 +45,7 @@ class TaskReview extends Component {
                         taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
                         stage={this.props.project.stages[this.props.task.stage]}
-                        updateTaskDueDate={this.props.tasksActions.updateTaskDueDate} />
+                        updateTaskDueDate={this.props.otherActions.updateTaskDueDate} />
                     <TaskSurveyList
                         ui={this.props.ui}
                         survey={displaySurvey}
@@ -84,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    tasksActions: {
+    otherActions: {
         updateTaskDueDate: (taskId, projectId, dueDate) =>
             dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
         updateFlaggedQuestion: (taskId, projectId, activeId, data) =>
