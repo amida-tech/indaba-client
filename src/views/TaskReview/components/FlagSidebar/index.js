@@ -10,8 +10,8 @@ import FlagControls from './FlagControls';
 class FlagSidebar extends Component {
     componentWillMount() {
         const initialShow = [];
-        const issues = this.props.survey.filter((question, index) =>
-            (question.flag === true ? initialShow.push(index) : false));
+        const issues = this.props.survey.filter((discussion, index) =>
+            (discussion.flag === true ? initialShow.push(index) : false));
         this.props.actions.showQuestion(initialShow);
         this.props.actions.storeFlaggedIssues(issues);
         this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
