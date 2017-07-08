@@ -1,10 +1,11 @@
 import * as actionTypes from '../actionTypes/discussActionTypes';
 
-export function updateFlaggedQuestion(taskId, projectId, data) {
+export function updateFlaggedQuestion(taskId, projectId, activeId, data) {
     return {
         type: actionTypes.UPDATE_FLAGGED_QUESTION,
         taskId,
         projectId,
+        activeId,
         data,
     };
 }

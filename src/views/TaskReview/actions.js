@@ -20,10 +20,10 @@ export function collapseAllQuestions() {
     };
 }
 
-export function setActiveFlag(active, timestamp) {
+export function setActiveFlag(activeId, timestamp) {
     return {
         type: actionTypes.SET_ACTIVE_FLAG,
-        active,
+        activeId,
         timestamp,
     };
 }

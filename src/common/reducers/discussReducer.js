@@ -151,7 +151,7 @@ const initialState = [{
 export const DiscussReducer = (state = initialState, action) => {
     const taskIndex = _.findIndex(state, discuss => discuss.taskId === action.taskId);
     const questionIndex = state[taskIndex] ?
-        _.findIndex(state[taskIndex].discuss, chat => chat.id === action.data.active) :
+        _.findIndex(state[taskIndex].discuss, chat => chat.id === action.activeId) :
         null;
 
     switch (action.type) {

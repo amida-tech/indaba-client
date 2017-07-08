@@ -19,11 +19,13 @@ class FlagSidebar extends Component {
         this.props.actions.setSignatureId(this.props.profile.id);
     }
 
-    componentDidUpdate() {
-        scroller.scrollTo(`question${this.props.ui.showQuestions[0]}`, {
-            smooth: true,
-            containerId: 'task-review__details-and-survey',
-        });
+    componentDidMount() {
+        setTimeout(() => {
+            scroller.scrollTo(`question${this.props.ui.showQuestions[0]}`, {
+                smooth: true,
+                containerId: 'task-review__details-and-survey',
+            });
+        }, 0);
     }
 
     render() {

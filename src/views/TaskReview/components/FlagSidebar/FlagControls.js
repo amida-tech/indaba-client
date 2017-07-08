@@ -32,9 +32,10 @@ class FlagControls extends Component {
                     <Button className='flag-controls__button-group-send'
                         primary={true}
                         label={this.props.vocab.COMMON.SEND}
-                        onClick={() => this.props.tasksActions.updateFlaggedQuestion(
+                        onClick={() => this.props.otherActions.updateFlaggedQuestion(
                             this.props.task.id,
                             this.props.projectId,
+                            this.props.ui.flagSidebar.activeId,
                             this.props.ui.flagSidebar)} />
                 </div>
             </Box>
@@ -44,7 +45,7 @@ class FlagControls extends Component {
 
 FlagControls.propTypes = {
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
-    tasksActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    otherActions: PropTypes.objectOf(PropTypes.func).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     task: PropTypes.object.isRequired,
     ui: PropTypes.shape({
