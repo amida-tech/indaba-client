@@ -1,5 +1,8 @@
 $tag-height: 1.25em; // 20px
-$late-color: red;
+$late-color: #af1212;
+$done-color: #68997d;
+$not-started-color: #a4aebf;
+
 $block-class:'stage-slot';
 
 @at-root {
@@ -59,47 +62,25 @@ $block-class:'stage-slot';
         }
 
         &__label {
-            font-size: 12px; // em dependent calc
+            font-size: 10px; // em dependent calc
             display: inline-block;
             height: $tag-height; // 20px
-            padding: 0 0.5em 0 1em;
+            padding: 0 1em;
             margin-right: 5px;
             position: relative;
             min-width: 2.5em;
-
-            &::after {
-                border-left-width: #{$tag-height / 2};
-                border-left-style: solid;
-                border-top: #{$tag-height / 2} solid transparent;
-                border-bottom: #{$tag-height / 2} solid transparent;
-                content: ""; // does not render without
-                right: #{$tag-height / -2}; // dynamic positioning
-                top: 0;
-                position: absolute;
-            }
+            border-radius: 2px;
 
             &--late {
                 background-color: $late-color;
-
-                &::after {
-                    border-left-color: $late-color;
-                }
             }
 
             &--done {
-                background-color: $brand-color;
-
-                &::after {
-                    border-left-color: $brand-color;
-                }
+                background-color: $done-color;
             }
 
             &--not-started {
-                background-color: $font-color;
-
-                &::after {
-                    border-left-color: $font-color;
-                }
+                background-color: $not-started-color;
             }
         }
     }
