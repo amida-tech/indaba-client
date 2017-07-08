@@ -49,13 +49,6 @@ export const initialState = {
             endStage: '5/3/2017',
             userGroups: [13],
             permissions: 2,
-        }, {
-            id: 3,
-            title: 'Third Review',
-            startStage: '5/4/2017',
-            endStage: '6/3/2017',
-            userGroups: [13], // Index of userGroups
-            permissions: 2,
         }], // stages end
         userGroups: [
             {
