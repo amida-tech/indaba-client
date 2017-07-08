@@ -61,6 +61,11 @@ $block-class:'stage-slot';
             fill: #a4aebf;
         }
 
+        &__flag-row {
+            margin-top: -8px;
+            margin-bottom: 30px;
+        }
+
         &__label {
             font-size: 10px; // em dependent calc
             display: inline-block;
