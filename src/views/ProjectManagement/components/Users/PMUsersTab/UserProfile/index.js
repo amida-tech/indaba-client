@@ -31,6 +31,8 @@ class UserProfile extends Component {
                             lastName: values.name.lastName,
                             email: values.account.email,
                             title: values.account.title,
+                            notifications: values.preferences.notifications,
+                            status: values.preferences.status,
                         });
                     }}/>
             </Modal>
