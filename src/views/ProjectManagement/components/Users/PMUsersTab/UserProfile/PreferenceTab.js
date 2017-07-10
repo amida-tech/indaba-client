@@ -33,6 +33,10 @@ class PreferenceTab extends Component {
                         </option>
                     </Field>
                 </label>
+                <label>
+                    {this.props.vocab.USER.NOTES}
+                    <Field component='textarea' name='notes' />
+                </label>
             </div>
         );
     }

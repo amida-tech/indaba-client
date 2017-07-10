@@ -177,7 +177,9 @@
       "NOTIFY_EMAIL": "Internal Notifications and Email",
       "STATUS": "Status",
       "ACTIVE": "Active",
-      "INACTIVE": "Inactive"
+      "INACTIVE": "Inactive",
+      "NOTES": "Notes",
+      "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this"
   },
   "MODAL": {
     "STATUS_CHANGE_MODAL": {

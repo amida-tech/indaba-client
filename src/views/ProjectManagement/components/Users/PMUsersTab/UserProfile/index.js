@@ -33,6 +33,7 @@ class UserProfile extends Component {
                             title: values.account.title,
                             notifications: values.preferences.notifications,
                             status: values.preferences.status,
+                            notes: values.preferences.notes,
                         });
                     }}/>
             </Modal>
@@ -70,6 +71,7 @@ const mapStateToProps = (state, ownProps) => {
             preferences: {
                 notifications: user.notifications,
                 status: user.status,
+                notes: user.notes,
             },
         },
     };
