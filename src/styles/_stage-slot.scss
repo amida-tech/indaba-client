@@ -55,6 +55,11 @@ $block-class:'stage-slot';
             fill: $brand-color;
         }
 
+        &__right-icon-container {
+            padding-bottom: 10px;
+            margin-top: -7px;
+        }
+
         &__left-icon {
             float: left;
             margin-right: 5px;
