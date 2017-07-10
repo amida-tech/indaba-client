@@ -36,8 +36,9 @@ export function setUserTitle(userId, title) {
 export function addNewUser(user) {
     return (dispatch) => {
         dispatch(_addNewUser());
-        apiService.users.addNewUser(user).then((userData) => {
+        return apiService.users.addNewUser(user).then((userData) => {
             dispatch(_addNewUserSuccess(userData));
+            return userData;
         });
     };
 }
