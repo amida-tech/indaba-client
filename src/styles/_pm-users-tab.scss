@@ -1,0 +1,11 @@
+$block-class: 'pm-users-tab';
+
+@at-root {
+    .#{$block-class} {
+
+        &__invite-container {
+
+        }
+
+    }
+}

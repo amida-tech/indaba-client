@@ -32,21 +32,23 @@ class PMUsersTab extends Component {
                         {...this.props}
                         onCancel={() => this.setState({ userProfileId: false })}/>
                 }
-                <InviteUserForm vocab={this.props.vocab}
-                    onSubmit={(values) => {
-                        const NEW_USER_ID = 21;
-                        this.props.onAddNewUser({
-                            id: NEW_USER_ID,
-                            firstName: values.firstName,
-                            lastName: values.lastName,
-                            email: values.email,
-                        });
-                        this.props.onAddUserToProject(NEW_USER_ID, this.props.project.id);
-                    }}/>
-                <input className='pm-users-tab__text-input'
-                    type='text'
-                    placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                    onChange={evt => this.setState({ search: evt.target.value })} />
+                <div className='pm-users-tab__invite-container'>
+                    <InviteUserForm vocab={this.props.vocab}
+                        onSubmit={(values) => {
+                            const NEW_USER_ID = 21;
+                            this.props.onAddNewUser({
+                                id: NEW_USER_ID,
+                                firstName: values.firstName,
+                                lastName: values.lastName,
+                                email: values.email,
+                            });
+                            this.props.onAddUserToProject(NEW_USER_ID, this.props.project.id);
+                        }}/>
+                    <input className='pm-users-tab__text-input'
+                        type='text'
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                        onChange={evt => this.setState({ search: evt.target.value })} />
+                </div>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
                     .filter(this.filterUser)
