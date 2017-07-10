@@ -92,6 +92,12 @@ body {
     clear: both;
 }
 
+.main-divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
 @media (min-width: 992px) {
     .subnav-spacer {
         width: 800px;

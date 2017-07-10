@@ -9,15 +9,22 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import StatusChange from './Modals/StatusChange';
-import {
+import { // bindActionCreator coming very soon.
     updateStatusChange,
     setProjectStatus,
     deleteSubject,
     addSubject,
+    addStage,
+    toggleFilter,
     deleteUserGroup,
     addUserGroup,
     updateUserGroup,
     addUser,
+    removeUser,
+    showAddStageModal,
+    closeAddStageModal,
+    showAddSubjectModal,
+    closeAddSubjectModal,
 } from '../actions';
 import { addNewUser } from '../../../common/actions/userActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
@@ -50,7 +57,8 @@ class ProjectManagementContainer extends Component {
                 onAddGroup={this.props.onAddGroup}
                 onUpdateGroup={this.props.onUpdateGroup}
                 onAddNewUser={this.props.onAddNewUser}
-                onAddUserToProject={this.props.onAddUserToProject}/>;
+                onAddUserToProject={this.props.onAddUserToProject}
+                onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>;
             break;
         default:
             body = null;
@@ -68,13 +76,13 @@ class ProjectManagementContainer extends Component {
                             onSetProjectStatus={this.props.onSetProjectStatus}
                             onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
                     <SubNav />
-                    <hr className='divider' />
+                    <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.updateStatusChange(id)}
                         vocab={this.props.vocab} />
-                    <hr className='divider' />
+                    <hr className='divider main-divider' />
                     {body}
                 </div>
         );
@@ -116,11 +124,18 @@ const mapDispatchToProps = (dispatch) => {
         onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
         onDeleteSubject: (subject, projectId) => dispatch(deleteSubject(subject, projectId)),
         onAddSubject: (subject, projectId) => dispatch(addSubject(subject, projectId)),
+        onToggleFilter: (filter, projectId) => dispatch(toggleFilter(filter, projectId)),
+        onAddStage: (stage, projectId) => dispatch(addStage(stage, projectId)),
         onDeleteGroup: (groupId, projectId) => dispatch(deleteUserGroup(groupId, projectId)),
         onAddGroup: (group, projectId) => dispatch(addUserGroup(group, projectId)),
         onUpdateGroup: (group, projectId) => dispatch(updateUserGroup(group, projectId)),
         onAddNewUser: user => dispatch(addNewUser(user)),
         onAddUserToProject: (userId, projectId) => dispatch(addUser(userId, projectId)),
+        onRemoveUserFromProject: (userId, projectId) => dispatch(removeUser(userId, projectId)),
+        showAddStageModal: () => dispatch(showAddStageModal()),
+        closeAddStageModal: () => dispatch(closeAddStageModal()),
+        showAddSubjectModal: () => dispatch(showAddSubjectModal()),
+        closeAddSubjectModal: () => dispatch(closeAddSubjectModal()),
     };
 };
 

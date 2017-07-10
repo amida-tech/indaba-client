@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import * as type from '../actionTypes/tasksActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
+import { REMOVE_USER } from '../../views/ProjectManagement/actionTypes';
 
 const initialState = [{
     projectId: 101,
@@ -28,6 +29,7 @@ const initialState = [{
         userId: 25,
         stage: 1,
         subject: 2,
+        dueDate: '9/9/2017',
     }],
 }];
 
@@ -54,6 +56,9 @@ export const TasksReducer = (state = initialState, action) => {
         return state;
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.task] });
+    case REMOVE_USER:
+        return update(state, { [projectIndex]: {
+            tasks: { $apply: tasks => tasks.filter(task => task.userId !== action.userId) } } });
     default:
         return state;
     }

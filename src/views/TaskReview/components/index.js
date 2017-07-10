@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
-import { updateTaskDueDate, updateFlaggedQuestion } from '../../../common/actions/tasksActions';
+import { updateTaskDueDate } from '../../../common/actions/tasksActions';
+import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import * as actions from '../actions';
 
 function surveyMapperHelper(discuss, question) {
@@ -30,7 +32,9 @@ class TaskReview extends Component {
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
                     id='task-review__details-and-survey'>
-                    <Link to={`/project/${this.props.project.id}`}>
+                    <Link to={`/project/${this.props.project.id}`}
+                        className='task-review__back-link'>
+                        <IonIcon icon='ion-android-arrow-back' className='task-review__back-arrow'/>
                         {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
                     </Link>
                     <TaskDetails
@@ -41,7 +45,7 @@ class TaskReview extends Component {
                         taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
                         stage={this.props.project.stages[this.props.task.stage]}
-                        updateTaskDueDate={this.props.updateTaskDueDate} />
+                        updateTaskDueDate={this.props.otherActions.updateTaskDueDate} />
                     <TaskSurveyList
                         ui={this.props.ui}
                         survey={displaySurvey}
@@ -52,7 +56,7 @@ class TaskReview extends Component {
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     {...this.props}
-                    survey={displaySurvey}/>
+                    displaySurvey={displaySurvey}/>
                 </div>
             </div>
         );
@@ -80,11 +84,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    tasksActions: {
+    otherActions: {
         updateTaskDueDate: (taskId, projectId, dueDate) =>
             dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
-        updateFlaggedQuestion: (taskId, projectId, data) =>
-            dispatch(updateFlaggedQuestion(taskId, projectId, data)),
+        updateFlaggedQuestion: (taskId, projectId, activeId, data) =>
+            dispatch(updateFlaggedQuestion(taskId, projectId, activeId, data)),
     },
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });

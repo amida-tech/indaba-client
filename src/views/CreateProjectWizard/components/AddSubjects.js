@@ -4,6 +4,7 @@ import { Box, Button, TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 import { addSubjectsToWizard, deleteSubjectFromWizard } from '../actions';
 import Summary from '../../../common/components/Summary';
+import DeleteIconButton from '../../../common/components/DeleteIconButton';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -38,9 +39,7 @@ class AddSubjectControl extends Component {
             {this.props.subjects && this.props.subjects.map(subject =>
                 <Box direction='row' key={subject}>
                     {subject}
-                    <div onClick={() => this.props.onDeleteSubject(subject)}>
-                        <IonIcon icon='ion-android-delete'/>
-                    </div>
+                    <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
                 </Box>,
             )}
         </div>);

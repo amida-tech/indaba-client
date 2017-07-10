@@ -9,7 +9,7 @@ import { renderName } from '../../../../utils/User';
 class FlagCommentary extends Component {
     render() {
         const active = _.findIndex(this.props.ui.flags, flag =>
-            flag.id === this.props.ui.flagSidebar.active);
+            flag.id === this.props.ui.flagSidebar.activeId);
         return (
             <Box className='flag-commentary'>
                 {this.props.ui.flags.length > 0 &&

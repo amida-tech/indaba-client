@@ -19,15 +19,17 @@ class FilteredRow extends Component {
         case 'unassigned':
             return taskData.userId;
         case 'late':
-            return !(TaskStatus.dueDateInPast(taskData, this.props.stages) &&
-                        !TaskStatus.responsesComplete(taskData, this.props.surveySize));
+            return !taskData.userId ||
+                (!(TaskStatus.dueDateInPast(taskData, this.props.stages) &&
+                !TaskStatus.responsesComplete(taskData, this.props.surveySize)));
         case 'inprogress':
-            return !(TaskStatus.responsesExist(taskData) &&
-                        !TaskStatus.responsesComplete(taskData, this.props.surveySize));
+            return !taskData.userId ||
+                (!(TaskStatus.responsesExist(taskData) &&
+                !TaskStatus.responsesComplete(taskData, this.props.surveySize)));
         case 'notstarted':
-            return TaskStatus.responsesExist(taskData);
+            return !taskData.userId || TaskStatus.responsesExist(taskData);
         case 'flagged':
-            return !TaskStatus.responsesFlagged(taskData);
+            return !taskData.userId || !TaskStatus.responsesFlagged(taskData);
         default:
             return false;
         }

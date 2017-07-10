@@ -30,7 +30,8 @@ class PMUsersTab extends Component {
                 {this.state.userProfileId !== false &&
                     <UserProfile userId={this.state.userProfileId}
                         {...this.props}
-                        onCancel={() => this.setState({ userProfileId: false })}/>
+                        onCancel={() => this.setState({ userProfileId: false })}
+                        onSave={() => this.setState({ userProfileId: false })}/>
                 }
                 <div className='pm-users-tab__invite-container'>
                     <InviteUserForm vocab={this.props.vocab}
@@ -60,6 +61,8 @@ class PMUsersTab extends Component {
                         tasks={this.props.tasks}
                         subjects={this.props.project.subjects}
                         onNameClick={() => this.showUserProfileModal(user.id)}
+                        onDeleteClick={() =>
+                            this.props.onRemoveUserFromProject(user.id, this.props.project.id)}
                         vocab={this.props.vocab}/>)}
             </div>
         );
@@ -70,6 +73,9 @@ PMUsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onAddNewUser: PropTypes.func.isRequired,
+    onAddUserToProject: PropTypes.func.isRequired,
+    onRemoveUserFromProject: PropTypes.func.isRequired,
 };
 
 export default PMUsersTab;

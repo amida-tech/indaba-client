@@ -19,11 +19,13 @@ export const initialState = {
             reassignUser: null,
             task: {},
         },
+        showAddStage: false,
+        showAddSubject: false,
         userGroupListSearchQuery: '',
     },
     projects: [{
         id: 101,
-        name: 'Pizza Lovers Anonymous',
+        name: 'Home Business Study',
         status: 'Active',
         users: [13, 71, 41, 25, 22, 31],
         stages: [{
@@ -47,13 +49,6 @@ export const initialState = {
             endStage: '5/3/2017',
             userGroups: [13],
             permissions: 2,
-        }, {
-            id: 3,
-            title: 'Third Review',
-            startStage: '5/4/2017',
-            endStage: '6/3/2017',
-            userGroups: [13], // Index of userGroups
-            permissions: 2,
         }], // stages end
         userGroups: [
             {
@@ -65,7 +60,7 @@ export const initialState = {
                 name: 'Managers',
                 users: [13, 71],
             }],
-        subjects: ['Berlin', 'Chicago', 'K\'unlun'],
+        subjects: ['Berlin', 'Chicago', 'Hong Kong'],
     }],
 };
 
@@ -125,6 +120,14 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             message: { $set: action.message },
         } } });
+    case type.SHOW_ADD_STAGE_MODAL:
+        return update(state, { ui: { showAddStage: { $set: true } } });
+    case type.CLOSE_ADD_STAGE_MODAL:
+        return update(state, { ui: { showAddStage: { $set: false } } });
+    case type.SHOW_ADD_SUBJECT_MODAL:
+        return update(state, { ui: { showAddSubject: { $set: true } } });
+    case type.CLOSE_ADD_SUBJECT_MODAL:
+        return update(state, { ui: { showAddSubject: { $set: false } } });
     case type.SET_PROJECT_STATUS: // project related.
         return update(state, { projects: { [projectIndex]: {
             status: { $set: action.status },
@@ -161,6 +164,12 @@ export default (state = initialState, action) => {
     case type.ADD_USER:
         return update(state, { projects: { [projectIndex]: {
             users: { $push: [action.userId] },
+        } } });
+    case type.REMOVE_USER:
+        return update(state, { projects: { [projectIndex]: {
+            users: { $apply: users => users.filter(userId => userId !== action.userId) },
+            userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
+                users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
         } } });
     default:
         return state;

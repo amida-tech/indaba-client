@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IonIcon from 'react-ionicons';
 import UserBadge from '../UserBadge';
+import DeleteIconButton from '../../../common/components/DeleteIconButton';
 
 class UserGroupListEntry extends Component {
     render() {
@@ -21,11 +21,9 @@ class UserGroupListEntry extends Component {
                     )}
                 </div>
                 {this.props.onDeleteClick &&
-                <div className='user-group-list-entry__delete'
-                    onClick={() =>
-                        this.props.onDeleteClick(this.props.group.id, this.props.projectId)}>
-                    <IonIcon icon='ion-android-delete' />
-                </div>}
+                    <DeleteIconButton onClick={() =>
+                            this.props.onDeleteClick(this.props.group.id, this.props.projectId)}/>
+                }
             </div>
         );
     }

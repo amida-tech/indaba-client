@@ -6,7 +6,7 @@ $block-class:'task-details';
 
         &__header {
             margin-left: 1em;
-            margin-top: 2em;
+            margin-top: 1em;
         }
 
         &__header-label {
@@ -67,7 +67,8 @@ $block-class:'task-details';
     }
 }
 
-.grommetux-date-time__input {
+.grommetux-date-time__input,
+.grommetux-date-time__input:focus {
     padding: 0;
     border: none;
     font-size: 16px;

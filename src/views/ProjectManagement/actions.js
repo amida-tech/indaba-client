@@ -101,6 +101,14 @@ export function addUser(userId, projectId) {
     };
 }
 
+export function removeUser(userId, projectId) {
+    return {
+        type: actionTypes.REMOVE_USER,
+        userId,
+        projectId,
+    };
+}
+
 export function updateUserSearchGroup(group) {
     return {
         type: actionTypes.UPDATE_USER_SEARCH_GROUP,
@@ -161,5 +169,31 @@ export function updateTaskOptionsMessage(message) {
     return {
         type: actionTypes.UPDATE_TASK_OPTIONS_MESSAGE,
         message,
+    };
+}
+
+// Add Stage Modal:
+export function showAddStageModal() {
+    return {
+        type: actionTypes.SHOW_ADD_STAGE_MODAL,
+    };
+}
+
+export function closeAddStageModal() {
+    return {
+        type: actionTypes.CLOSE_ADD_STAGE_MODAL,
+    };
+}
+
+// Add Subject Modal:
+export function showAddSubjectModal() {
+    return {
+        type: actionTypes.SHOW_ADD_SUBJECT_MODAL,
+    };
+}
+
+export function closeAddSubjectModal() {
+    return {
+        type: actionTypes.CLOSE_ADD_SUBJECT_MODAL,
     };
 }
