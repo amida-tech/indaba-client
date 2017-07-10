@@ -8,34 +8,45 @@ class PreferenceTab extends Component {
     render() {
         return (
             <div className='preference-tab'>
-                <label>
+                <label className='preference-tab__label'>
                     {this.props.vocab.USER.NOTIFY_LEVEL}
-                    <Field component='select' name='notifications'>
-                        <option value={constants.notifications.OFF}>
+                    <Field className='preference-tab__input-select'
+                        component='select'
+                        name='notifications'>
+                        <option className='preference-tab__input-option'
+                            value={constants.notifications.OFF}>
                             {this.props.vocab.USER.NOTIFY_OFF}
                         </option>
-                        <option value={constants.notifications.INTERNAL}>
+                        <option className='preference-tab__input-option'
+                            value={constants.notifications.INTERNAL}>
                             {this.props.vocab.USER.NOTIFY_INTERNAL}
                         </option>
-                        <option value={constants.notifications.EMAIL}>
+                        <option className='preference-tab__input-option'
+                            value={constants.notifications.EMAIL}>
                             {this.props.vocab.USER.NOTIFY_EMAIL}
                         </option>
                     </Field>
                 </label>
-                <label>
+                <label className='preference-tab__label'>
                     {this.props.vocab.USER.STATUS}
-                    <Field component='select' name='status'>
-                        <option value={constants.status.ACTIVE}>
+                    <Field className='preference-tab__input-select'
+                        component='select'
+                        name='status' >
+                        <option className='preference-tab__input-option'
+                            value={constants.status.ACTIVE}>
                             {this.props.vocab.USER.ACTIVE}
                         </option>
-                        <option value={constants.status.INACTIVE}>
+                        <option className='preference-tab__input-option'
+                            value={constants.status.INACTIVE}>
                             {this.props.vocab.USER.INACTIVE}
                         </option>
                     </Field>
                 </label>
-                <label>
+                <label className='preference-tab__label'>
                     {this.props.vocab.USER.NOTES}
-                    <Field component='textarea' name='notes' />
+                    <Field className='preference-tab__input-textarea'
+                        component='textarea'
+                        name='notes' />
                 </label>
             </div>
         );
