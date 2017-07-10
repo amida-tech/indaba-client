@@ -1,6 +1,19 @@
 import update from 'immutability-helper';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
+export const constants = {
+    notifications: {
+        OFF: 'OFF',
+        INTERNAL: 'INTERNAL',
+        EMAIL: 'EMAIL',
+    },
+
+    status: {
+        ACTIVE: 'ACTIVE',
+        INACTIVE: 'INACTIVE',
+    },
+};
+
 const initialState = {
     profile: {
         id: 7,
