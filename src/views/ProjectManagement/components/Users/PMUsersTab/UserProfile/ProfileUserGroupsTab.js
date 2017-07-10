@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import UserGroupList from '../../../../../../common/components/UserGroupList';
 
-class UserGroupsTab extends Component {
+class ProfileUserGroupsTab extends Component {
     render() {
         const groups = this.props.project.userGroups
             .filter(group => group.users.includes(this.props.userId));
@@ -13,10 +13,10 @@ class UserGroupsTab extends Component {
     }
 }
 
-UserGroupsTab.propTypes = {
+ProfileUserGroupsTab.propTypes = {
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 
-export default UserGroupsTab;
+export default ProfileUserGroupsTab;

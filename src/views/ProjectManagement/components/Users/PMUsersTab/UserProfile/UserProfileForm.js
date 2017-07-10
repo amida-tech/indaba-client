@@ -4,7 +4,7 @@ import { reduxForm, FormSection } from 'redux-form';
 import { Tabs, Tab } from 'grommet';
 import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
-import UserGroupsTab from './UserGroupsTab';
+import ProfileUserGroupsTab from './ProfileUserGroupsTab';
 import TasksTab from './TasksTab';
 import PreferenceTab from './PreferenceTab';
 
@@ -27,7 +27,7 @@ class UserProfileForm extends Component {
                         </FormSection>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <UserGroupsTab {...this.props} />
+                        <ProfileUserGroupsTab {...this.props} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.TASKS}>
                         <TasksTab {...this.props} />
