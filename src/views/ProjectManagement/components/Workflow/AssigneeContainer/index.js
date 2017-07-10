@@ -4,6 +4,7 @@ import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
 import { updateUserSearchGroup, updateUserSearchQuery } from '../../../actions';
+import { addNewUser } from '../../../../../common/actions/userActions';
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
@@ -60,7 +61,8 @@ class AssigneeContainer extends Component {
                     onGroupFilter={this.onGroupFilter}
                     vocab={this.props.vocab} />
                 <InviteUser
-                    vocab={this.props.vocab} />
+                    vocab={this.props.vocab}
+                    onInviteUser={this.props.onInviteUser}/>
             </Box>
         );
     }
@@ -73,14 +75,17 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     updateUserSearchGroup: group => dispatch(updateUserSearchGroup(group)),
     updateUserSearchQuery: query => dispatch(updateUserSearchQuery(query)),
+    onInviteUser: user => dispatch(addNewUser(user)),
 });
 
 AssigneeContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object),
     updateUserSearchGroup: PropTypes.func.isRequired,
     updateUserSearchQuery: PropTypes.func.isRequired,
-    users: PropTypes.arrayOf(PropTypes.object),
+    onInviteUser: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AssigneeContainer);
