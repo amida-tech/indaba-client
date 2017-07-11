@@ -23,7 +23,7 @@ class InviteUser extends Component {
     }
     render() {
         return (
-            <form className='invite-user'>
+            <form className='invite-user' onSubmit={this.props.handleSubmit}>
                 <div className='invite-user__header'>
                     {this.props.vocab.PROJECT.INVITE_INSTRUCTION}
                 </div>
@@ -46,8 +46,8 @@ class InviteUser extends Component {
                         secondary={true} label={this.props.vocab.COMMON.CLEAR}
                         onClick={this.clear.bind(this)}/>
                     <Button className='invite-user__button'
-                        primary={true} label={this.props.vocab.COMMON.INVITE}
-                        onClick={() => this.props.onInviteUser(this.state)}/>
+                        type='submit'
+                        primary={true} label={this.props.vocab.COMMON.INVITE}/>
                 </div>
             </form>
         );
