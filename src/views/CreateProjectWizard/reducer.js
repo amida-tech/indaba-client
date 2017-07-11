@@ -6,6 +6,8 @@ const initialState = {
         projectTitle: {
             show: true,
         },
+        step: 0,
+        complete: false,
     },
     project: {
         id: 41,
@@ -66,6 +68,14 @@ export default (state = initialState, action) => {
         } });
     case type.ADD_PROJECT_FROM_WIZARD:
         return initialState;
+    case type.GO_TO_STEP:
+        return update(state, { ui: {
+            step: { $set: action.step },
+        } });
+    case type.COMPLETE_WIZARD:
+        return update(state, { ui: {
+            complete: { $set: true },
+        } });
     default:
         return state;
     }

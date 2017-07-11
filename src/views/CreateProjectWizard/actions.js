@@ -75,3 +75,16 @@ export function addProjectFromWizard(wizard) {
         wizard,
     };
 }
+
+export function goToStep(step) {
+    return {
+        type: actionTypes.GO_TO_STEP,
+        step,
+    };
+}
+
+export function completeWizard() {
+    return {
+        type: actionTypes.COMPLETE_WIZARD,
+    };
+}
