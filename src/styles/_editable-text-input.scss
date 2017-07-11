@@ -1,0 +1,28 @@
+$block-class: 'editable-text-input';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        // .grommet selectors to exceed grommet styling specificity if
+        // this component happens to be in a grommet context
+        &__text-input,
+        .grommet &__text-input:not(.grommetux-input) {
+            border-radius: 2px;
+        }
+
+        &__text-input:not(:focus),
+        .grommet &__text-input:not(:focus):not(.grommetux-input) {
+            border-color: transparent;
+        }
+
+        &__icon {
+            position: relative;
+            left: -1.5em;
+            fill: $header-font-color;
+            width: 1.5em;
+        }
+    }
+}
