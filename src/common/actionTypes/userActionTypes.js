@@ -3,4 +3,5 @@ export const SET_USER_LAST_NAME = 'SET_USER_LAST_NAME';
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
 export const SET_USER_TITLE = 'SET_USER_TITLE';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
+export const ADD_NEW_USER_SUCCESS = 'ADD_NEW_USER_SUCCESS';
 export const UPDATE_USER = 'UPDATE_USER';
