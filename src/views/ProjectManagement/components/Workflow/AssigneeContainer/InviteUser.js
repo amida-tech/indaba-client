@@ -26,7 +26,7 @@ class InviteUser extends Component {
                 <div className='invite-user__header'>
                     {this.props.vocab.PROJECT.INVITE_INSTRUCTION}
                 </div>
-                <Box className='invite-user__name-inputs' direction='row' pad={{ between: 'small' }}>
+                <div className='invite-user__name-inputs'>
                     <TextInput
                         placeHolder={this.props.vocab.COMMON.FIRST_NAME}
                         onDOMChange={evt => this.setField('firstName', evt)}
@@ -35,7 +35,7 @@ class InviteUser extends Component {
                         placeHolder={this.props.vocab.COMMON.LAST_NAME}
                         onDOMChange={evt => this.setField('lastName', evt)}
                         value={this.state.lastName}/>
-                </Box>
+                </div>
                 <TextInput
                     placeHolder={this.props.vocab.COMMON.EMAIL}
                     className='invite-user__email'

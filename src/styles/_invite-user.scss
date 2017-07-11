@@ -25,6 +25,11 @@ $block-class:'invite-user';
             background-color: #fff;
         }
 
+        &__name-inputs {
+            display: flex;
+            flex-direction: row;
+        }
+
         &__name-inputs input {
             margin-left: 0.5em;
             margin-right: 0.5em;
