@@ -1,40 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export function editSummaryDescription(id) {
-    return {
-        type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
-        id,
-    };
-}
-
 export function subnavigate(id) {
     return {
         type: actionTypes.SUBNAVIGATE,
         id,
-    };
-}
-
-export function addSubject(subject, projectId) {
-    return {
-        type: actionTypes.ADD_SUBJECT,
-        subject,
-        projectId,
-    };
-}
-
-export function deleteSubject(subject, projectId) {
-    return {
-        type: actionTypes.DELETE_SUBJECT,
-        subject,
-        projectId,
-    };
-}
-
-export function addStage(stage, projectId) {
-    return {
-        type: actionTypes.ADD_STAGE,
-        stage,
-        projectId,
     };
 }
 
@@ -53,58 +22,10 @@ export function updateStatusChange(status) {
     };
 }
 
-export function setProjectStatus(status, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_STATUS,
-        status,
-        projectId,
-    };
-}
-
-export function deleteUserGroup(groupId, projectId) {
-    return {
-        type: actionTypes.DELETE_USER_GROUP,
-        groupId,
-        projectId,
-    };
-}
-
-export function addUserGroup(group, projectId) {
-    return {
-        type: actionTypes.ADD_USER_GROUP,
-        group,
-        projectId,
-    };
-}
-
-export function updateUserGroup(group, projectId) {
-    return {
-        type: actionTypes.UPDATE_USER_GROUP,
-        group,
-        projectId,
-    };
-}
-
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
         user,
-        projectId,
-    };
-}
-
-export function addUser(userId, projectId) {
-    return {
-        type: actionTypes.ADD_USER,
-        userId,
-        projectId,
-    };
-}
-
-export function removeUser(userId, projectId) {
-    return {
-        type: actionTypes.REMOVE_USER,
-        userId,
         projectId,
     };
 }

@@ -1,7 +1,6 @@
 import update from 'immutability-helper';
 
 import * as type from './actionTypes';
-import { ADD_PROJECT_FROM_WIZARD } from './../CreateProjectWizard/actionTypes';
 
 export const initialState = {
     ui: {
@@ -23,50 +22,10 @@ export const initialState = {
         showAddSubject: false,
         userGroupListSearchQuery: '',
     },
-    projects: [{
-        id: 101,
-        name: 'Home Business Study',
-        status: 'Active',
-        users: [13, 71, 41, 25, 22, 31],
-        stages: [{
-            id: 0,
-            title: 'Fill Out The Survey',
-            startStage: '1/1/2017',
-            endStage: '2/1/2017',
-            userGroups: [11],
-            permissions: 0,
-        }, {
-            id: 1,
-            title: 'First Review',
-            startStage: '3/3/2017',
-            endStage: '4/3/2017',
-            userGroups: [11, 13],
-            permissions: 2,
-        }, {
-            id: 2,
-            title: 'Second Review',
-            startStage: '4/4/2017',
-            endStage: '5/3/2017',
-            userGroups: [13],
-            permissions: 2,
-        }], // stages end
-        userGroups: [
-            {
-                id: 11,
-                name: 'Researchers',
-                users: [41, 25, 22, 31],
-            }, {
-                id: 13,
-                name: 'Managers',
-                users: [13, 71],
-            }],
-        subjects: ['Berlin', 'Chicago', 'Hong Kong'],
-    }],
 };
 
 export default (state = initialState, action) => {
     let projectIndex;
-    let groupIndex;
 
     if (action.projectId !== undefined) {
         projectIndex = state.projects.findIndex(project =>
@@ -81,9 +40,6 @@ export default (state = initialState, action) => {
             filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, {
-            projects: { $push: [action.wizard.project] } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
@@ -128,49 +84,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { showAddSubject: { $set: true } } });
     case type.CLOSE_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: false } } });
-    case type.SET_PROJECT_STATUS: // project related.
-        return update(state, { projects: { [projectIndex]: {
-            status: { $set: action.status },
-        } } });
-    case type.ADD_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
-        } } });
-    case type.DELETE_SUBJECT:
-        return update(state, { projects: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
-        } } });
-    case type.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: {
-            stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].stages.length } })] },
-        } } });
-    case type.DELETE_USER_GROUP:
-        return update(state, { projects: { [projectIndex]: {
-            userGroups: { $apply: userGroups =>
-                    userGroups.filter(userGroup => userGroup.id !== action.groupId),
-            } } } });
-    case type.ADD_USER_GROUP:
-        return update(state, { projects: { [projectIndex]: {
-            userGroups: { $push: [update(action.group, { $merge: {
-                id: state.projects[projectIndex].userGroups.length } })] },
-        } } });
-    case type.UPDATE_USER_GROUP:
-        groupIndex = state.projects[projectIndex].userGroups
-                .findIndex(group => group.id === action.group.id);
-        return update(state, { projects: { [projectIndex]: { userGroups: {
-            [groupIndex]: { $set: action.group },
-        } } } });
-    case type.ADD_USER:
-        return update(state, { projects: { [projectIndex]: {
-            users: { $push: [action.userId] },
-        } } });
-    case type.REMOVE_USER:
-        return update(state, { projects: { [projectIndex]: {
-            users: { $apply: users => users.filter(userId => userId !== action.userId) },
-            userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
-                users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
-        } } });
     default:
         return state;
     }

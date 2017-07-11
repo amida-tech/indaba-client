@@ -1,0 +1,10 @@
+export const EDIT_SUMMARY_DESCRIPTION = 'EDIT_SUMMARY_DESCRIPTION'; // Not yet used.
+export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
+export const ADD_SUBJECT = 'ADD_SUBJECT';
+export const DELETE_SUBJECT = 'DELETE_SUBJECT';
+export const ADD_STAGE = 'ADD_STAGE';
+export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
+export const ADD_USER_GROUP = 'ADD_USER_GROUP';
+export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
+export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';

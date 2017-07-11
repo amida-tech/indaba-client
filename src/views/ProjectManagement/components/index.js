@@ -11,21 +11,23 @@ import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import { // bindActionCreator coming very soon.
     updateStatusChange,
-    setProjectStatus,
-    deleteSubject,
-    addSubject,
-    addStage,
     toggleFilter,
-    deleteUserGroup,
-    addUserGroup,
-    updateUserGroup,
-    addUser,
-    removeUser,
     showAddStageModal,
     closeAddStageModal,
     showAddSubjectModal,
     closeAddSubjectModal,
 } from '../actions';
+import {
+    setProjectStatus,
+    addSubject,
+    deleteSubject,
+    addStage,
+    deleteUserGroup,
+    addUserGroup,
+    updateUserGroup,
+    addUser,
+    removeUser,
+} from '../../../common/actions/projectActions';
 import { addNewUser } from '../../../common/actions/userActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
@@ -103,16 +105,16 @@ ProjectManagementContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || state.project.projects[0].id;
-    const project = _.find(state.project.projects, current => current.id === projectId);
+    const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
+    const project = _.find(state.projects, current => current.id === projectId);
     return {
         project,
         tasks: _.find(state.tasks, task => task.projectId === project.id).tasks,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: state.project.ui,
+        ui: state.manager.ui,
         survey: _.find(state.surveys, survey => survey.projectId === project.id),
-        tab: state.project.ui.subnav,
+        tab: state.manager.ui.subnav,
         users: state.user.users,
     };
 };
@@ -121,7 +123,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateStatusChange: status => dispatch(updateStatusChange(status)),
         onSetProjectStatus: (status, projectId) => dispatch(setProjectStatus(status, projectId)),
-        onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
         onDeleteSubject: (subject, projectId) => dispatch(deleteSubject(subject, projectId)),
         onAddSubject: (subject, projectId) => dispatch(addSubject(subject, projectId)),
         onToggleFilter: (filter, projectId) => dispatch(toggleFilter(filter, projectId)),
@@ -129,13 +130,16 @@ const mapDispatchToProps = (dispatch) => {
         onDeleteGroup: (groupId, projectId) => dispatch(deleteUserGroup(groupId, projectId)),
         onAddGroup: (group, projectId) => dispatch(addUserGroup(group, projectId)),
         onUpdateGroup: (group, projectId) => dispatch(updateUserGroup(group, projectId)),
-        onAddNewUser: user => dispatch(addNewUser(user)),
+
         onAddUserToProject: (userId, projectId) => dispatch(addUser(userId, projectId)),
         onRemoveUserFromProject: (userId, projectId) => dispatch(removeUser(userId, projectId)),
         showAddStageModal: () => dispatch(showAddStageModal()),
         closeAddStageModal: () => dispatch(closeAddStageModal()),
         showAddSubjectModal: () => dispatch(showAddSubjectModal()),
         closeAddSubjectModal: () => dispatch(closeAddSubjectModal()),
+
+        onAddNewUser: user => dispatch(addNewUser(user)),
+        onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
     };
 };
 

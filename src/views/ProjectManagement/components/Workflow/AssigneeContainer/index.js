@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import {
     updateUserSearchGroup,
     updateUserSearchQuery,
-    addUser,
 } from '../../../actions';
 import { addNewUser } from '../../../../../common/actions/userActions';
+import { addUser } from '../../../../../common/actions/projectActions';
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
@@ -73,7 +73,7 @@ class AssigneeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    search: state.project.ui.userSidebarSearch,
+    search: state.manager.ui.userSidebarSearch,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
