@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, TextInput, Button } from 'grommet';
+import { TextInput, Button } from 'grommet';
 
 class InviteUser extends Component {
     constructor(props) {
@@ -41,18 +41,14 @@ class InviteUser extends Component {
                     className='invite-user__email'
                     onDOMChange={evt => this.setField('email', evt)}
                     value={this.state.email}/>
-                <Box
-                    className='invite-user__buttons'
-                    direction='row'
-                    justify='end'
-                    pad={{ between: 'small' }}
-                    margin={{ top: 'small' }}>
-
-                    <Button secondary={true} label={this.props.vocab.COMMON.CLEAR}
+                <div className='invite-user__buttons'>
+                    <Button className='invite-user__button'
+                        secondary={true} label={this.props.vocab.COMMON.CLEAR}
                         onClick={this.clear.bind(this)}/>
-                    <Button primary={true} label={this.props.vocab.COMMON.INVITE}
+                    <Button className='invite-user__button'
+                        primary={true} label={this.props.vocab.COMMON.INVITE}
                         onClick={() => this.props.onInviteUser(this.state)}/>
-                </Box>
+                </div>
             </div>
         );
     }

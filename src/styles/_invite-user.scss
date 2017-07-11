@@ -56,6 +56,10 @@ $block-class:'invite-user';
         &__buttons {
             display: flex;
             flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        &__button {
             margin-right: 0.5em;
         }
     }
