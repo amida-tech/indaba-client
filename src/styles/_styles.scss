@@ -149,8 +149,14 @@ body {
         font-size: 12px;
         font-weight: normal;
         background-color: #fff;
-        border-color: $border-color;
+        border-color: darken($border-color, 10%);
         border-style: solid;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $brand-color;
+            color: $font-inverse-color;
+        }
 
         &:not(:last-child) {
             border-width: 1px 0 1px 1px;
