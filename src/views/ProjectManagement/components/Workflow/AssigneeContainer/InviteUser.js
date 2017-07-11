@@ -27,11 +27,11 @@ class InviteUser extends Component {
                     {this.props.vocab.PROJECT.INVITE_INSTRUCTION}
                 </div>
                 <div className='invite-user__name-inputs'>
-                    <TextInput
+                    <TextInput className='invite-user__name-input'
                         placeHolder={this.props.vocab.COMMON.FIRST_NAME}
                         onDOMChange={evt => this.setField('firstName', evt)}
                         value={this.state.firstName}/>
-                    <TextInput
+                    <TextInput className='invite-user__name-input'
                         placeHolder={this.props.vocab.COMMON.LAST_NAME}
                         onDOMChange={evt => this.setField('lastName', evt)}
                         value={this.state.lastName}/>
