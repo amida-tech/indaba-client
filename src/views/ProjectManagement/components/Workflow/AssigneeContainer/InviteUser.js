@@ -48,4 +48,7 @@ const FORM_NAME = 'user-sidebar-invite-user';
 
 export default connect(null, dispatch => ({
     onClear: () => dispatch(reset(FORM_NAME)),
-}))(reduxForm({ form: FORM_NAME })(InviteUser));
+}))(reduxForm({
+    form: FORM_NAME,
+    onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
+})(InviteUser));
