@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'grommet';
-import update from 'immutability-helper';
 
 import {
     updateWizardProjectTitle,
     updateWizardProjectSummary,
     setWizardProjectTitle,
     addProjectFromWizard,
+    goToStep,
+    completeWizard,
+
 } from '../actions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
@@ -23,10 +26,6 @@ const NUM_WIZARD_STEPS = 4;
 class CreateProjectWizard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            step: 0,
-            complete: false,
-        };
         this.handleBack = this.handleBack.bind(this);
         this.handleSkip = this.handleSkip.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -34,7 +33,7 @@ class CreateProjectWizard extends Component {
         this.goToStep = this.goToStep.bind(this);
     }
     handleBack() {
-        this.goToStep(this.state.step - 1);
+        this.goToStep(this.props.step - 1);
     }
     handleSkip() {
         this.handleContinue();
@@ -42,19 +41,19 @@ class CreateProjectWizard extends Component {
     handleCancel() {
     }
     handleContinue() {
-        if (this.state.step < NUM_WIZARD_STEPS - 1) {
-            this.goToStep(this.state.step + 1);
+        if (this.props.step < NUM_WIZARD_STEPS - 1) {
+            this.goToStep(this.props.step + 1);
         } else {
             this.props.onCompleteProject(this.props.wizard);
-            this.setState({ complete: true });
+            this.props.onCompleteWizard();
         }
     }
     goToStep(step) {
         const newStep = Math.min(Math.max(step, 0), NUM_WIZARD_STEPS);
-        this.setState(update(this.state, { step: { $set: newStep } }));
+        this.props.onGoToStep(newStep);
     }
     render() {
-        return !this.state.complete ? (
+        return !this.props.complete ? (
             <div className='project-wizard'>
                 {this.props.wizard.ui.projectTitle.show &&
                     <NewProjectTitle
@@ -66,7 +65,7 @@ class CreateProjectWizard extends Component {
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard-tabs'
-                    activeIndex={this.state.step}
+                    activeIndex={this.props.step}
                     onActive={this.goToStep}>
                     <Tab className='project-wizard-tabs--tab'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
@@ -86,9 +85,9 @@ class CreateProjectWizard extends Component {
                 </Tabs>
                 <WizardFooter
                     vocab={this.props.vocab}
-                    finalStep={this.state.step === NUM_WIZARD_STEPS - 1}
-                    onBack={this.state.step !== 0 ? this.handleBack : undefined}
-                    onSkip={this.state.step < (NUM_WIZARD_STEPS - 1) ?
+                    finalStep={this.props.step === NUM_WIZARD_STEPS - 1}
+                    onBack={this.props.step !== 0 ? this.handleBack : undefined}
+                    onSkip={this.props.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
@@ -100,15 +99,30 @@ class CreateProjectWizard extends Component {
     }
 }
 
+CreateProjectWizard.propTypes = {
+    wizard: PropTypes.shape({
+        project: PropTypes.object.isRequired,
+        survey: PropTypes.object.isRequired,
+        task: PropTypes.object.isRequired,
+    }).isRequired,
+    vocab: PropTypes.object.isRequired,
+    step: PropTypes.number.isRequired,
+    complete: PropTypes.bool.isRequired,
+};
+
 const mapStateToProps = state => ({
     wizard: state.projectwizard,
     vocab: state.settings.language.vocabulary,
+    step: state.projectwizard.ui.step,
+    complete: state.projectwizard.ui.complete,
 });
 const mapDispatchToProps = dispatch => ({
     updateWizardProjectTitle: title => dispatch(updateWizardProjectTitle(title)),
     updateWizardProjectSummary: summary => dispatch(updateWizardProjectSummary(summary)),
     onSetTitle: () => dispatch(setWizardProjectTitle()),
     onCompleteProject: wizard => dispatch(addProjectFromWizard(wizard)),
+    onGoToStep: step => dispatch(goToStep(step)),
+    onCompleteWizard: () => dispatch(completeWizard()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
