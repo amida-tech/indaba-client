@@ -4,6 +4,8 @@ $block-class: 'pm-user-list-header';
     .#{$block-class} {
         width: 100%;
         display: inline-flex;
+        padding-left: 20px;
+        padding-right: 20px;
 
         &__cell {
             flex: 6;
