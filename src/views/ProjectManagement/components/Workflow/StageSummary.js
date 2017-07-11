@@ -15,20 +15,20 @@ class StageSummary extends Component {
                 <Box direction='row'
                     justify='between'
                     responsive={false}
-                    className='stage-summary-row'>
-                    <div className='stage-left'>
-                        <div className='stage-summary-value'>
+                    className='stage-summary__row'>
+                    <div className='stage-summary__left'>
+                        <div className='stage-summary__value'>
                             {TaskStatus.formatDate(this.props.stage.startStage)}
                         </div>
-                        <div className='stage-summary-label'>
+                        <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.START_STAGE}
                         </div>
                     </div>
-                    <div className='stage-right'>
-                        <div className='stage-summary-value'>
+                    <div className='stage-summary__right'>
+                        <div className='stage-summary__value'>
                             {TaskStatus.formatUserGroups(userGroups)}
                         </div>
-                        <div className='stage-summary-label'>
+                        <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.USER_GROUP}
                         </div>
                     </div>
@@ -36,20 +36,20 @@ class StageSummary extends Component {
                 <Box direction='row'
                     justify='between'
                     responsive={false}
-                    className='stage-summary-row'>
-                    <div className='stage-left'>
-                        <div className='stage-summary-value'>
+                    className='stage-summary__row'>
+                    <div className='stage-summary__left'>
+                        <div className='stage-summary__value'>
                             {TaskStatus.formatDate(this.props.stage.endStage)}
                         </div>
-                        <div className='stage-summary-label'>
+                        <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.END_STAGE}
                         </div>
                     </div>
-                    <div className='stage-right'>
-                        <div className='stage-summary-value'>
+                    <div className='stage-summary__right'>
+                        <div className='stage-summary__value'>
                             {this.props.vocab.PROJECT.PERM_ARRAY[this.props.stage.permissions]}
                         </div>
-                        <div className='stage-summary-label'>
+                        <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.PERMISSIONS}
                         </div>
                     </div>
