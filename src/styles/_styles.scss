@@ -149,12 +149,12 @@ body {
         font-size: 12px;
         font-weight: normal;
         background-color: #fff;
-        border-color: darken($border-color, 10%);
+        border-color: $border-color;
         border-style: solid;
         cursor: pointer;
 
         &:hover {
-            background-color: $brand-color;
+            background-color: darken($brand-color, 10%);
             color: $font-inverse-color;
         }
 
