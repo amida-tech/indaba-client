@@ -53,7 +53,7 @@ class CreateProjectWizard extends Component {
         this.props.onGoToStep(newStep);
     }
     render() {
-        return !this.props.complete ? (
+        return (!this.props.complete ?
             <div className='project-wizard'>
                 {this.props.wizard.ui.projectTitle.show &&
                     <NewProjectTitle
@@ -64,21 +64,21 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.onSetTitle}
                         vocab={this.props.vocab} />
                 }
-                <Tabs className='project-wizard-tabs'
+                <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.step}
                     onActive={this.goToStep}>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         <AddSubjects /></Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         <AddUsers />
                     </Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages />
                     </Tab>
@@ -91,8 +91,8 @@ class CreateProjectWizard extends Component {
                         this.handleSkip : undefined}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
-            </div>) : (
-            <div className='project-wizard--complete'>
+            </div> :
+            <div className='project-wizard project-wizard--complete'>
                 <WizardComplete vocab={this.props.vocab} />
                 <ProjectManagementContainer params={{ projectId: '41' }}/>
             </div>);
