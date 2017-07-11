@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { TextInput, Button } from 'grommet';
+import { Field, reduxForm } from 'redux-form';
+import { Button } from 'grommet';
 
 class InviteUser extends Component {
     constructor(props) {
@@ -22,25 +23,24 @@ class InviteUser extends Component {
     }
     render() {
         return (
-            <div className='invite-user'>
+            <form className='invite-user'>
                 <div className='invite-user__header'>
                     {this.props.vocab.PROJECT.INVITE_INSTRUCTION}
                 </div>
                 <div className='invite-user__name-inputs'>
-                    <TextInput className='invite-user__name-input'
-                        placeHolder={this.props.vocab.COMMON.FIRST_NAME}
-                        onDOMChange={evt => this.setField('firstName', evt)}
-                        value={this.state.firstName}/>
-                    <TextInput className='invite-user__name-input'
-                        placeHolder={this.props.vocab.COMMON.LAST_NAME}
-                        onDOMChange={evt => this.setField('lastName', evt)}
-                        value={this.state.lastName}/>
+                    <Field name='firstName'
+                        component='input' type='text'
+                        className='invite-user__name-input'
+                        placeholder={this.props.vocab.COMMON.FIRST_NAME} />
+                    <Field name='lastName'
+                        component='input' type='text'
+                        className='invite-user__name-input'
+                        placeholder={this.props.vocab.COMMON.LAST_NAME} />
                 </div>
-                <TextInput
-                    placeHolder={this.props.vocab.COMMON.EMAIL}
-                    className='invite-user__email'
-                    onDOMChange={evt => this.setField('email', evt)}
-                    value={this.state.email}/>
+                <Field name='email'
+                    component='input' type='text'
+                    placeholder={this.props.vocab.COMMON.EMAIL}
+                    className='invite-user__email' />
                 <div className='invite-user__buttons'>
                     <Button className='invite-user__button'
                         secondary={true} label={this.props.vocab.COMMON.CLEAR}
@@ -49,7 +49,7 @@ class InviteUser extends Component {
                         primary={true} label={this.props.vocab.COMMON.INVITE}
                         onClick={() => this.props.onInviteUser(this.state)}/>
                 </div>
-            </div>
+            </form>
         );
     }
 }
@@ -59,4 +59,4 @@ InviteUser.propTypes = {
     onInviteUser: PropTypes.func.isRequired,
 };
 
-export default InviteUser;
+export default reduxForm({ form: 'user-sidebar-invite-user' })(InviteUser);
