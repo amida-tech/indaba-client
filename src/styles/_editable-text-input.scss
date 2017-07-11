@@ -13,11 +13,6 @@ $block-class: 'editable-text-input';
             border-radius: 2px;
         }
 
-        &__text-input:not(:focus),
-        .grommet &__text-input:not(:focus):not(.grommetux-input) {
-            border-color: transparent;
-        }
-
         &__icon {
             position: relative;
             left: -1.5em;
