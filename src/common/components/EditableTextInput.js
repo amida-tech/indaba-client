@@ -7,11 +7,12 @@ class EditableTextInput extends Component {
     render() {
         return (
             <div className='editable-text-input'>
-                <input className='editable-text-input'
+                <input className='editable-text-input__text-input'
                     type='text'
                     {...this.props.input}>
                 </input>
-                <IonIcon icon='ion-android-create' />
+                <IonIcon className='editable-text-input__icon'
+                    icon='ion-android-create'/>
             </div>
         );
     }
