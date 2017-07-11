@@ -8,7 +8,6 @@ import AddUserForm from './AddUserForm';
 
 class AddUserModal extends Component {
     render() {
-        const NEW_USER_ID = 21;
         return (
             <Modal {...this.props}
                 title={this.props.vocab.PROJECT.ADD_USER}
@@ -18,14 +17,14 @@ class AddUserModal extends Component {
                     onSubmit={(values) => {
                         this.props.onSave();
                         this.props.onAddNewUser({
-                            id: NEW_USER_ID,
                             firstName: values.firstName,
                             lastName: values.lastName,
                             email: values.email,
                             title: values.title,
                             invited: true,
-                        });
-                        this.props.onAddUserToProject(NEW_USER_ID, this.props.projectId);
+                        }).then(userData =>
+                            this.props.onAddUserToProject(userData.id, this.props.projectId),
+                        );
                     }
                 }/>
             </Modal>

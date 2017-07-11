@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { reduxForm, FormSection } from 'redux-form';
+import PropTypes from 'prop-types';
 
 import { Tabs, Tab } from 'grommet';
 import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
-import UserGroupsTab from './UserGroupsTab';
+import ProfileUserGroupsTab from './ProfileUserGroupsTab';
 import TasksTab from './TasksTab';
 import PreferenceTab from './PreferenceTab';
 
@@ -14,31 +15,48 @@ class UserProfileForm extends Component {
             <form className='user-profile-form'
                 onSubmit={this.props.handleSubmit}>
                 <FormSection name='name'>
-                    <UserNameInput {...this.props}
-                        onFirstNameChange={this.props.onSetFirstName}
-                        onLastNameChange={this.props.onSetLastName}/>
+                    <UserNameInput {...this.props} />
                 </FormSection>
                 <Tabs>
                     <Tab title={this.props.vocab.COMMON.ACCOUNT}>
                         <FormSection name='account'>
-                            <AccountTab {...this.props}
-                                onEmailChange={this.props.onSetEmail}
-                                onTitleChange={this.props.onSetTitle}/>
+                            <AccountTab vocab={this.props.vocab}
+                                user={this.props.user}/>
                         </FormSection>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <UserGroupsTab {...this.props} />
+                        <ProfileUserGroupsTab project={this.props.project}
+                            userId={this.props.userId}
+                            users={this.props.users}
+                            vocab={this.props.vocab}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.TASKS}>
-                        <TasksTab {...this.props} />
+                        <TasksTab project={this.props.project}
+                            tasks={this.props.tasks}
+                            userId={this.props.userId}
+                            vocab={this.props.vocab}/>
                     </Tab>
                     <Tab title={this.props.vocab.COMMON.PREFERENCE}>
-                        <PreferenceTab />
+                        <FormSection name='preferences'>
+                            <PreferenceTab user={this.props.user}
+                                vocab={this.props.vocab}/>
+                        </FormSection>
                     </Tab>
                 </Tabs>
             </form>
         );
     }
 }
+
+UserProfileForm.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    userId: PropTypes.number.isRequired,
+    user: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
+    initialValues: PropTypes.object,
+};
 
 export default reduxForm({ form: 'user-profile' })(UserProfileForm);

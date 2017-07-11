@@ -55,10 +55,20 @@ $block-class:'stage-slot';
             fill: $brand-color;
         }
 
+        &__right-icon-container {
+            padding-bottom: 10px;
+            margin-top: -7px;
+        }
+
         &__left-icon {
             float: left;
             margin-right: 5px;
             fill: #a4aebf;
+        }
+
+        &__flag-row {
+            margin-top: -8px;
+            margin-bottom: 30px;
         }
 
         &__label {
