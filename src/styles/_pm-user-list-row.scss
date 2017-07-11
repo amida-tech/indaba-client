@@ -3,12 +3,22 @@ $block-class: 'pm-user-list-row';
 @at-root {
     .#{$block-class} {
         display: flex;
+        cursor: pointer;
+
+        &:nth-child(even) {
+            background-color: lighten(#d8d8d8, 10%);
+        }
 
         &__cell {
+            margin-left: 20px;
+            margin-right: 20px;
             padding: 1em;
             display: inline-flex;
             flex: 6;
-            justify-content: center;
+
+            &--hover:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
         }
     }
 }
