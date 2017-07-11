@@ -54,13 +54,13 @@ class StageSlot extends Component {
 
     displayDueTime() {
         if (this.state.done) {
-            return (this.props.vocab.DONE);
+            return '';
         } else if (this.state.diff <= 0) {
-            return (this.props.vocab.LATE);
+            return '';
         } else if (this.state.diff === 1) {
-            return (this.props.vocab.DUE_TOMORROW);
+            return this.props.vocab.DUE_TOMORROW;
         } else if (this.state.diff > 1) {
-            return (this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS);
+            return this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS;
         }
         return '';
     }
@@ -104,7 +104,7 @@ class StageSlot extends Component {
                     </div>
                     <div className='stage-slot__due-row'>
                         <div>
-                            {this.displayDueTime()} &nbsp;
+                            {this.displayDueTime()}
                             <span
                                 className={labelDisplay ? `stage-slot__label stage-slot__label${labelDisplay.mod}` : ''} >
                                 {labelDisplay.term}
