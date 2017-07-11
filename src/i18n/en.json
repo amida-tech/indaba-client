@@ -170,6 +170,17 @@
     "PUBLISH": "Publish survey",
     "UNPUBLISH": "Edit survey in draft mode"
   },
+  "USER": {
+      "NOTIFY_LEVEL": "Notify Level",
+      "NOTIFY_OFF": "Off",
+      "NOTIFY_INTERNAL": "Internal Notifications Only",
+      "NOTIFY_EMAIL": "Internal Notifications and Email",
+      "STATUS": "Status",
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "NOTES": "Notes",
+      "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this"
+  },
   "MODAL": {
     "STATUS_CHANGE_MODAL": {
       "PROJECT_TAB": {

@@ -35,6 +35,7 @@ class TasksTab extends Component {
 }
 
 TasksTab.propTypes = {
+    vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     userId: PropTypes.number.isRequired,
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -16,7 +16,14 @@ class UserProfile extends Component {
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}>
-                <UserProfileForm {...this.props}
+                <UserProfileForm
+                    userId={this.props.userId}
+                    user={this.props.user}
+                    project={this.props.project}
+                    users={this.props.users}
+                    tasks={this.props.tasks}
+                    vocab={this.props.vocab}
+                    initialValues={this.props.initialValues}
                     onSubmit={ (values) => {
                         this.props.onSave();
                         this.props.onUpdateUser(this.props.userId, {
@@ -24,6 +31,9 @@ class UserProfile extends Component {
                             lastName: values.name.lastName,
                             email: values.account.email,
                             title: values.account.title,
+                            notifications: values.preferences.notifications,
+                            status: values.preferences.status,
+                            notes: values.preferences.notes,
                         });
                     }}/>
             </Modal>
@@ -32,12 +42,15 @@ class UserProfile extends Component {
 }
 
 UserProfile.propTypes = {
+    onUpdateUser: PropTypes.func.isRequired,
+    onClickToSubmit: PropTypes.func.isRequired,
     userId: PropTypes.number.isRequired,
     user: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCancel: PropTypes.func.isRequired,
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    vocab: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -54,6 +67,11 @@ const mapStateToProps = (state, ownProps) => {
             account: {
                 email: user.email,
                 title: user.title,
+            },
+            preferences: {
+                notifications: user.notifications,
+                status: user.status,
+                notes: user.notes,
             },
         },
     };

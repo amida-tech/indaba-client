@@ -2,6 +2,14 @@ $block-class: 'pm-user-list-header';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
+        width: 100%;
+        display: inline-flex;
+
+        &__cell {
+            flex-grow: 1;
+            flex-basis: 25%;
+            color: $font-color;
+            letter-spacing: 0.8px;
+        }
     }
 }

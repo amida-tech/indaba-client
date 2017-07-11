@@ -15,6 +15,7 @@ class ProfileUserGroupsTab extends Component {
 
 ProfileUserGroupsTab.propTypes = {
     project: PropTypes.object.isRequired,
+    userId: PropTypes.number.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
 };
