@@ -3,5 +3,12 @@ $block-class: 'pm-user-list-row';
 @at-root {
     .#{$block-class} {
         display: flex;
+
+        &__cell {
+            padding: 1em;
+            display: inline-flex;
+            flex: 6;
+            justify-content: center;
+        }
     }
 }
