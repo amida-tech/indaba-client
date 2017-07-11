@@ -23,6 +23,10 @@ $block-class:'invite-user';
             overflow: hidden;
             border-radius: 2px;
             background-color: #fff;
+
+            &:focus {
+                padding: 0.5em;
+            }
         }
 
         &__name-inputs {
@@ -41,7 +45,7 @@ $block-class:'invite-user';
             background-color: #fff;
 
             &:focus {
-                border-color: nth($brand-neutral-colors, 2);
+                padding: 0.5em;
             }
 
             &:active {
