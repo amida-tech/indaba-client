@@ -4,17 +4,27 @@ $block-class: 'invite-user-form';
 @at-root {
     .#{$block-class} {
         display: inline-flex;
-        align-items: center;
-        border-radius: 2px;
-        min-width: 100%;
-        font-size: 14px;
+        flex-direction: row;
         justify-content: center;
 
         &__text-input {
             display: flex;
-            flex-basis: 30%;
+            flex: 1;
             font-size: 14px;
-            padding: 8px;
+            margin-bottom: 10px;
+            padding: 2px;
+            height: 30px;
+        }
+
+        &__submit-form {
+            background-color: $font-color;
+            width: 50px;
+            height: 30px;
+            position: static;
+            border: none;
+            letter-spacing: 0.8px;
+            color: darken(#fafafa, 5%);
+            font-size: 12px;
         }
     }
 }
