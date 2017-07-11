@@ -22,9 +22,8 @@ class InviteUserForm extends Component {
                     className='invite-user-form__text-input'
                     placeholder={this.props.vocab.PROJECT.NEW_USER_EMAIL}/>
                 <button className='invite-user-form__submit-form' type='submit'>
-                {this.props.vocab.COMMON.INVITE}
+                    {this.props.vocab.COMMON.INVITE}
                 </button>
-
             </form>
         );
     }
