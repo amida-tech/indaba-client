@@ -39,9 +39,9 @@ export default connect(null, dispatch => ({
 }))(reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
-        const splitUsers = values.subjects.split(/\s*,\s*/)
-            .filter(user => user !== '');
-        ownProps.onAddSubjects(splitUsers);
+        const splitSubjects = values.subjects.split(/\s*,\s*/)
+            .filter(subject => subject !== '');
+        ownProps.onAddSubjects(splitSubjects);
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
 })(AddSubjectControl));
