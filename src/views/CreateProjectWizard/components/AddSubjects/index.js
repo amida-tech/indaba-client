@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { Button } from 'grommet';
 import { addSubjectsToWizard, deleteSubjectFromWizard } from '../../actions';
 import Summary from '../../../../common/components/Summary';
@@ -22,7 +24,6 @@ class AddSubjects extends Component {
                 <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
                 <AddSubjectControl
                     onAddSubjects={this.props.onAddSubjects}
-                    onDeleteSubject={this.props.onDeleteSubject}
                     vocab={this.props.vocab}/>
                 {this.props.subjects && this.props.subjects.map(subject =>
                     <div className='add-subjects__subject' key={subject}>
@@ -34,6 +35,15 @@ class AddSubjects extends Component {
         );
     }
 }
+
+AddSubjects.propTypes = {
+    project: PropTypes.object.isRequired,
+    survey: PropTypes.object.isRequired,
+    vocab: PropTypes.object.isRequired,
+    onAddSubjects: PropTypes.func.isRequired,
+    onDeleteSubject: PropTypes.func.isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 const mapStateToProps = state => ({
     subjects: state.projectwizard.project.subjects,

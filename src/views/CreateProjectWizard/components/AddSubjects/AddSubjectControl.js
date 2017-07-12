@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 
@@ -37,5 +39,10 @@ class AddSubjectControl extends Component {
         );
     }
 }
+
+AddSubjectControl.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    onAddSubjects: PropTypes.func.isRequired,
+};
 
 export default AddSubjectControl;
