@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Box, Button, Tabs, Tab } from 'grommet';
+import { Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
@@ -19,7 +19,7 @@ import {
 class AddUsers extends Component {
     render() {
         return (
-            <div>
+            <div className='add-users'>
                 {this.props.ui.showSelectGroupUsers &&
                     <SelectGroupUsers
                         vocab={this.props.vocab}
@@ -35,18 +35,20 @@ class AddUsers extends Component {
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
-                <Box direction='row' justify='end'
-                    pad={{ vertical: 'small', horizontal: 'medium', between: 'small' }}>
+                <div className='add-users__button-panel'>
                     {this.props.ui.tab === 1 &&
-                        <Button
+                        <Button className='add-users__button-panel-button'
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
                             onClick={() => this.props.onShowSelectGroupUsers(true)}/>}
-                    <Button label={this.props.vocab.PROJECT.IMPORT_USERS} />
-                </Box>
+                    <Button className='add-users__button-panel-button'
+                        label={this.props.vocab.PROJECT.IMPORT_USERS} />
+                </div>
                 <hr className='divider' />
                 {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
-                    <p key={sentence}>{sentence}</p>,
+                    <p key={sentence} className='add-users__clarification'>
+                        {sentence}
+                    </p>,
                 )}
                 <Tabs onActive={this.props.onSetTab}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
@@ -65,7 +67,8 @@ class AddUsers extends Component {
                             onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
                 </Tabs>
-            </div>);
+            </div>
+        );
     }
 }
 
