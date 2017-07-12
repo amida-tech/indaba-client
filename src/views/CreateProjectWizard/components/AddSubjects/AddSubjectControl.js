@@ -21,25 +21,27 @@ class AddSubjectControl extends Component {
         this.setState({ userInput: '' });
     }
     render() {
-        return (<div>
-            <Box direction='row' justify='between'>
-                <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
-                <div>{this.props.vocab.COMMON.ACTIONS}</div>
-            </Box>
-            <Box direction='row'>
-                <TextInput value={this.state.userInput}
-                    onDOMChange={this.handleUserTextInput}/>
-                <span onClick={this.handlePlusClick}>
-                    <IonIcon icon='ion-ios-plus'/>
-                </span>
-            </Box>
-            {this.props.subjects && this.props.subjects.map(subject =>
-                <Box direction='row' key={subject}>
-                    {subject}
-                    <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
-                </Box>,
-            )}
-        </div>);
+        return (
+            <div>
+                <Box direction='row' justify='between'>
+                    <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
+                    <div>{this.props.vocab.COMMON.ACTIONS}</div>
+                </Box>
+                <Box direction='row'>
+                    <TextInput value={this.state.userInput}
+                        onDOMChange={this.handleUserTextInput}/>
+                    <span onClick={this.handlePlusClick}>
+                        <IonIcon icon='ion-ios-plus'/>
+                    </span>
+                </Box>
+                {this.props.subjects && this.props.subjects.map(subject =>
+                    <Box direction='row' key={subject}>
+                        {subject}
+                        <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
+                    </Box>,
+                )}
+            </div>
+        );
     }
 }
 
