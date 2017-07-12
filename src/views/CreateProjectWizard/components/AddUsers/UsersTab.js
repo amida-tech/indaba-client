@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Box, TextInput, Button, List, ListItem, SearchInput } from 'grommet';
+import { Box, List, ListItem, SearchInput } from 'grommet';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
+import InviteUserForm from '../../../../common/components/InviteUserForm';
 import { renderName } from '../../../../utils/User';
 
 class UsersTab extends Component {
@@ -65,21 +66,15 @@ class UsersTab extends Component {
     render() {
         return (
             <div>
-                <Box direction='row'>
-                    <TextInput
-                        placeHolder={this.props.vocab.PROJECT.NEW_USER_FIRST_NAME}
-                        onDOMChange={this.handleFirstNameInput}
-                        value={this.state.firstName}/>
-                    <TextInput
-                        placeHolder={this.props.vocab.PROJECT.NEW_USER_LAST_NAME}
-                        onDOMChange={this.handleLastNameInput}
-                        value={this.state.lastName}/>
-                    <TextInput
-                        placeHolder={this.props.vocab.PROJECT.NEW_USER_EMAIL}
-                        onDOMChange={this.handleEmailInput}
-                        value={this.state.email}/>
-                    <Button label={this.props.vocab.COMMON.INVITE}/>
-                </Box>
+                <InviteUserForm vocab={this.props.vocab}
+                    onSubmit={(values) => {
+                        this.props.onAddNewUser({
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            email: values.email,
+                        }).then(userData =>
+                            this.props.onAddUserToProject(userData));
+                    }} />
                 <Box direction='row'>
                     <SearchInput
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
