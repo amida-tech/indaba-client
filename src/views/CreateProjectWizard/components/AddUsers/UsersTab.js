@@ -9,29 +9,14 @@ class UsersTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
             query: '',
         };
 
-        this.handleFirstNameInput = this.handleFirstNameInput.bind(this);
-        this.handleLastNameInput = this.handleLastNameInput.bind(this);
-        this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.handleUserRemove = this.handleUserRemove.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
         this.renderUserEntry = this.renderUserEntry.bind(this);
-    }
-    handleFirstNameInput(evt) {
-        this.setState({ firstName: evt.target.value });
-    }
-    handleLastNameInput(evt) {
-        this.setState({ lastName: evt.target.value });
-    }
-    handleEmailInput(evt) {
-        this.setState({ email: evt.target.value });
     }
     handleSearchInput(evt) {
         this.setState({ query: evt.target.value });
