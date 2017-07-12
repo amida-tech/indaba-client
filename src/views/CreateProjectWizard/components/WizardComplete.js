@@ -9,17 +9,17 @@ class WizardComplete extends Component {
                 <h1 className='wizard-complete__header'>
                     {this.props.vocab.PROJECT.PROJECT_CREATE_SUCCESS}
                 </h1>
-                <Tabs className='project-wizard-tabs'>
-                    <Tab className='project-wizard-tabs--tab'
+                <Tabs className='wizard-complete__tabs'>
+                    <Tab className='wizard-complete__tab'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                     </Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='wizard-complete__tab'
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                     </Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='wizard-complete__tab'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                     </Tab>
-                    <Tab className='project-wizard-tabs--tab'
+                    <Tab className='wizard-complete__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                     </Tab>
                 </Tabs>
