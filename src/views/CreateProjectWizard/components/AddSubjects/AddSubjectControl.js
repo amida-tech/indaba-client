@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, submit } from 'redux-form';
+import { Field, reduxForm, submit, reset } from 'redux-form';
 
 import IonIcon from 'react-ionicons';
 
@@ -43,4 +43,5 @@ export default connect(null, dispatch => ({
             .filter(user => user !== '');
         ownProps.onAddSubjects(splitUsers);
     },
+    onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
 })(AddSubjectControl));
