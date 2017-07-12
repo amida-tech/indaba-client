@@ -80,6 +80,14 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             complete: { $set: true },
         } });
+    case type.ADD_USERS_SET_TAB:
+        return update(state, { ui: { addUsers: {
+            tab: { $set: action.tab },
+        } } });
+    case type.ADD_USERS_SHOW_SELECT_GROUP_USERS:
+        return update(state, { ui: { addUsers: {
+            showSelectGroupUsers: { $set: action.show },
+        } } });
     default:
         return state;
     }

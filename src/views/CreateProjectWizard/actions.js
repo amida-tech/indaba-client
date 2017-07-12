@@ -88,3 +88,17 @@ export function completeWizard() {
         type: actionTypes.COMPLETE_WIZARD,
     };
 }
+
+export function addUsersSetTab(tab) {
+    return {
+        type: actionTypes.ADD_USERS_SET_TAB,
+        tab,
+    };
+}
+
+export function addUsersShowSelectGroupUsers(show) {
+    return {
+        type: actionTypes.ADD_USERS_SHOW_SELECT_GROUP_USERS,
+        show,
+    };
+}
