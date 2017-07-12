@@ -66,7 +66,7 @@ class AssigneeContainer extends Component {
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
-                    onInviteUser={this.props.onInviteUser}/>
+                    onSubmit={this.props.onInviteUser}/>
             </Box>
         );
     }

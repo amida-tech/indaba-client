@@ -19,14 +19,14 @@ class PMUserListRow extends Component {
         );
         return (
             <div className='pm-user-list-row'>
-                <div className='pm-user-list-row__cell'
+                <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'
                     onClick={this.props.onNameClick}>
                     {renderName(this.props.user)}
                 </div>
                 <div className='pm-user-list-row__cell'>
                     {groups}
                 </div>
-                <div className='pm-user-list-row__cell'>
+                <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'>
                     {subjects.map(subject =>
                         <Tooltip key={subject}
                             trigger={['click']}
