@@ -12,20 +12,11 @@ import {
     removeUserFromWizard,
     addUserGroupToWizard,
     removeUserGroupFromWizard,
+    addUsersSetTab,
+    addUsersShowSelectGroupUsers,
 } from '../../actions';
 
 class AddUsers extends Component {
-    constructor(props) {
-        super(props);
-        this.handleTabChange = this.handleTabChange.bind(this);
-        this.handleCreateModal = this.handleCreateModal.bind(this);
-    }
-    handleTabChange(tab) {
-        this.setState({ tab });
-    }
-    handleCreateModal(show) {
-        this.setState({ createModal: show });
-    }
     render() {
         return (
             <div>
@@ -34,10 +25,10 @@ class AddUsers extends Component {
                         vocab={this.props.vocab}
                         users={this.props.project.users}
                         allUsers={this.props.allUsers}
-                        onCancel={() => this.handleCreateModal(false)}
+                        onCancel={() => this.props.onShowSelectGroupUsers(false)}
                         onSave={(role) => {
                             this.props.onAddUserGroup(role);
-                            this.handleCreateModal(false);
+                            this.props.onShowSelectGroupUsers(false);
                         }}/>}
                 <Summary
                     project={this.props.project}
@@ -50,14 +41,14 @@ class AddUsers extends Component {
                         <Button
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
-                            onClick={() => this.handleCreateModal(true)}/>}
+                            onClick={() => this.props.onShowSelectGroupUsers(true)}/>}
                     <Button label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </Box>
                 <hr className='divider' />
                 {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
                     <p key={sentence}>{sentence}</p>,
                 )}
-                <Tabs onActive={this.handleTabChange}>
+                <Tabs onActive={this.props.onSetTab}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
@@ -99,6 +90,8 @@ const mapDispatchToProps = dispatch => ({
     onRemoveUserFromProject: userId => dispatch(removeUserFromWizard(userId)),
     onAddUserGroup: group => dispatch(addUserGroupToWizard(group)),
     onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
+    onSetTab: tab => dispatch(addUsersSetTab(tab)),
+    onShowSelectGroupUsers: show => dispatch(addUsersShowSelectGroupUsers(show)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
