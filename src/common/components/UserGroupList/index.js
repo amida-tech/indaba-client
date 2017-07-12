@@ -10,13 +10,13 @@ class UserGroupList extends Component {
                 {
                     this.props.columnHeaders &&
                     <div className='user-group-list__header'>
-                        <div className='user-group-list__column-title'>
+                        <div className='user-group-list__header__column-title'>
                             {this.props.vocab.PROJECT.GROUP_NAME}
                         </div>
-                        <div className='user-group-list__column-title'>
+                        <div className='user-group-list__header__column-title'>
                             {this.props.vocab.PROJECT.GROUP_MEMBERS}
                         </div>
-                        <div className='user-group-list__column-title'>
+                        <div className='user-group-list__header__column-title'>
                             {this.props.vocab.COMMON.ACTIONS}
                         </div>
                     </div>

@@ -2,6 +2,10 @@ $block-class: 'pm-user-groups-tab';
 
 @at-root {
     .#{$block-class} {
-        // More coming soon.
+        &__search {
+            display: flex;
+            flex: 1;
+            width: 100%;
+        }
     }
 }
