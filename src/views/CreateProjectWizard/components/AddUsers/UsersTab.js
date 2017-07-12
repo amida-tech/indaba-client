@@ -60,7 +60,7 @@ class UsersTab extends Component {
                         }).then(userData =>
                             this.props.onAddUserToProject(userData));
                     }} />
-                <Box direction='row'>
+                <div className='users-tab__search'>
                     <SearchInput
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         onDOMChange={this.handleSearchInput}
@@ -69,7 +69,7 @@ class UsersTab extends Component {
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
-                </Box>
+                </div>
                 <List>
                     {this.props.projectUsers.map(this.renderUserEntry)}
                 </List>
