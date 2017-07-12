@@ -25,19 +25,9 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
-    let projectIndex;
-
-    if (action.projectId !== undefined) {
-        projectIndex = state.projects.findIndex(project =>
-            project.id === action.projectId);
-    }
-
     switch (action.type) {
     case type.SUBNAVIGATE: // ui related.
         return update(state, { ui: { subnav: { $set: action.id } } });
-    case type.TOGGLE_FILTER:
-        return update(state, { projects: { [projectIndex]: {
-            filter: { $apply: f => (f !== action.filter) && action.filter } } } });
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
     case type.UPDATE_USER_SEARCH_GROUP:

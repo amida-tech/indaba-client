@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -9,26 +10,10 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import StatusChange from './Modals/StatusChange';
-import { // bindActionCreator coming very soon.
-    updateStatusChange,
-    toggleFilter,
-    showAddStageModal,
-    closeAddStageModal,
-    showAddSubjectModal,
-    closeAddSubjectModal,
-} from '../actions';
-import {
-    setProjectStatus,
-    addSubject,
-    deleteSubject,
-    addStage,
-    deleteUserGroup,
-    addUserGroup,
-    updateUserGroup,
-    addUser,
-    removeUser,
-} from '../../../common/actions/projectActions';
+import * as actions from '../actions';
+import * as projectActions from '../../../common/actions/projectActions';
 import { addNewUser } from '../../../common/actions/userActions';
+import { assignTask } from '../../../common/actions/tasksActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
@@ -45,8 +30,8 @@ class ProjectManagementContainer extends Component {
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
                     subjects={this.props.project.subjects}
-                    onDeleteSubject={this.props.onDeleteSubject}
-                    onAddSubject={this.props.onAddSubject}/>;
+                    onDeleteSubject={this.props.projectActions.deleteSubject}
+                    onAddSubject={this.props.projectActions.addSubject}/>;
             break;
         case 'users':
             body = <Users
@@ -55,12 +40,12 @@ class ProjectManagementContainer extends Component {
                     userId => this.props.users.find(user => user.id === userId))}
                 tasks={this.props.tasks}
                 project={this.props.project}
-                onDeleteGroup={this.props.onDeleteGroup}
-                onAddGroup={this.props.onAddGroup}
-                onUpdateGroup={this.props.onUpdateGroup}
-                onAddNewUser={this.props.onAddNewUser}
-                onAddUserToProject={this.props.onAddUserToProject}
-                onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>;
+                onDeleteGroup={this.props.projectActions.deleteUserGroup}
+                onAddGroup={this.props.projectActions.addUserGroup}
+                onUpdateGroup={this.props.projectActions.updateUserGroup}
+                onAddNewUser={this.props.userActions.onAddNewUser}
+                onAddUserToProject={this.props.projectActions.addUser}
+                onRemoveUserFromProject={this.props.projectActions.removeUser}/>;
             break;
         default:
             body = null;
@@ -71,18 +56,18 @@ class ProjectManagementContainer extends Component {
                     { this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
-                            onStatusChangeClose={() => this.props.updateStatusChange(false)}
+                            onStatusChangeClose={() => this.props.actions.updateStatusChange(false)}
                             entity={modalEntities[this.props.ui.statusModalId]}
                             projectStatus={this.props.project.status}
                             surveyStatus={this.props.survey.status}
-                            onSetProjectStatus={this.props.onSetProjectStatus}
-                            onSetSurveyStatus={this.props.onSetSurveyStatus}/> }
+                            onSetProjectStatus={this.props.projectActions.setProjectStatus}
+                            onSetSurveyStatus={this.props.surveyActions.onSetSurveyStatus}/> }
                     <SubNav />
                     <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
-                        onStatusChangeClick={id => this.props.updateStatusChange(id)}
+                        onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
                         vocab={this.props.vocab} />
                     <hr className='divider main-divider' />
                     {body}
@@ -97,11 +82,6 @@ ProjectManagementContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     tab: PropTypes.string.isRequired,
-
-    onSetProjectStatus: PropTypes.func.isRequired,
-    onSetSurveyStatus: PropTypes.func.isRequired,
-    onDeleteSubject: PropTypes.func.isRequired,
-    onAddSubject: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -119,28 +99,18 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        updateStatusChange: status => dispatch(updateStatusChange(status)),
-        onSetProjectStatus: (status, projectId) => dispatch(setProjectStatus(status, projectId)),
-        onDeleteSubject: (subject, projectId) => dispatch(deleteSubject(subject, projectId)),
-        onAddSubject: (subject, projectId) => dispatch(addSubject(subject, projectId)),
-        onToggleFilter: (filter, projectId) => dispatch(toggleFilter(filter, projectId)),
-        onAddStage: (stage, projectId) => dispatch(addStage(stage, projectId)),
-        onDeleteGroup: (groupId, projectId) => dispatch(deleteUserGroup(groupId, projectId)),
-        onAddGroup: (group, projectId) => dispatch(addUserGroup(group, projectId)),
-        onUpdateGroup: (group, projectId) => dispatch(updateUserGroup(group, projectId)),
-
-        onAddUserToProject: (userId, projectId) => dispatch(addUser(userId, projectId)),
-        onRemoveUserFromProject: (userId, projectId) => dispatch(removeUser(userId, projectId)),
-        showAddStageModal: () => dispatch(showAddStageModal()),
-        closeAddStageModal: () => dispatch(closeAddStageModal()),
-        showAddSubjectModal: () => dispatch(showAddSubjectModal()),
-        closeAddSubjectModal: () => dispatch(closeAddSubjectModal()),
-
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    projectActions: bindActionCreators(Object.assign({}, projectActions), dispatch),
+    userActions: {
         onAddNewUser: user => dispatch(addNewUser(user)),
+    },
+    surveyActions: {
         onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
-    };
-};
+    },
+    taskActions: {
+        assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),
+    },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

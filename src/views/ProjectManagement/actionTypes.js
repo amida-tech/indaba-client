@@ -1,6 +1,5 @@
 // ui:
 export const SUBNAVIGATE = 'SUBNAVIGATE';
-export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 // Status Change
 export const UPDATE_STATUS_CHANGE = 'UPDATE_STATUS_CHANGE';

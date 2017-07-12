@@ -1,10 +1,10 @@
 import update from 'immutability-helper';
-// import _ from 'lodash';
+import _ from 'lodash';
 
 import * as type from '../actionTypes/projectActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 
-export const initialState = [{
+const initialState = [{
     id: 101,
     name: 'Home Business Study',
     status: 'Active',
@@ -49,13 +49,15 @@ export const ProjectReducer = (state = initialState, action) => {
     let groupIndex;
 
     if (action.projectId !== undefined) {
-        projectIndex = state.projects.findIndex(project =>
-            project.id === action.projectId);
+        projectIndex = _.findIndex(state, project => project.id === action.projectId);
     }
 
     switch (action.type) {
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.project] });
+    case type.TOGGLE_FILTER:
+        return update(state, { [projectIndex]: {
+            filter: { $apply: f => (f !== action.filter) && action.filter } } });
     case type.SET_PROJECT_STATUS: // project related.
         return update(state, { [projectIndex]: {
             status: { $set: action.status },
@@ -69,10 +71,10 @@ export const ProjectReducer = (state = initialState, action) => {
             subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
         } });
     case type.ADD_STAGE:
-        return update(state, { projects: { [projectIndex]: {
+        return update(state, { [projectIndex]: {
             stages: { $push: [update(action.stage, { $merge: {
-                id: state.projects[projectIndex].stages.length } })] },
-        } } });
+                id: state[projectIndex].stages.length } })] },
+        } });
     case type.DELETE_USER_GROUP:
         return update(state, { [projectIndex]: {
             userGroups: { $apply: userGroups =>
@@ -81,10 +83,10 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.ADD_USER_GROUP:
         return update(state, { [projectIndex]: {
             userGroups: { $push: [update(action.group, { $merge: {
-                id: state.projects[projectIndex].userGroups.length } })] },
+                id: state[projectIndex].userGroups.length } })] },
         } });
     case type.UPDATE_USER_GROUP:
-        groupIndex = state.projects[projectIndex].userGroups
+        groupIndex = state[projectIndex].userGroups
                     .findIndex(group => group.id === action.group.id);
         return update(state, { [projectIndex]: { userGroups: {
             [groupIndex]: { $set: action.group },

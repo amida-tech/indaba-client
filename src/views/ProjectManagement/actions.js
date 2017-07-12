@@ -7,14 +7,6 @@ export function subnavigate(id) {
     };
 }
 
-export function toggleFilter(filter, projectId) {
-    return {
-        type: actionTypes.TOGGLE_FILTER,
-        filter,
-        projectId,
-    };
-}
-
 export function updateStatusChange(status) {
     return {
         type: actionTypes.UPDATE_STATUS_CHANGE,

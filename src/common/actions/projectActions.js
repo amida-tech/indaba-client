@@ -15,6 +15,13 @@ export function editSummaryDescription(id) {
     };
 }
 
+export function toggleFilter(filter, projectId) {
+    return {
+        type: actionTypes.TOGGLE_FILTER,
+        filter,
+        projectId,
+    };
+}
 
 export function addSubject(subject, projectId) {
     return {
