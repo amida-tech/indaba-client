@@ -4,6 +4,7 @@ import { Box, Button } from 'grommet';
 import { addSubjectsToWizard, deleteSubjectFromWizard } from '../../actions';
 import Summary from '../../../../common/components/Summary';
 import AddSubjectControl from './AddSubjectControl';
+import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 
 class AddSubjects extends Component {
     render() {
@@ -23,8 +24,13 @@ class AddSubjects extends Component {
                 <AddSubjectControl
                     onAddSubjects={this.props.onAddSubjects}
                     onDeleteSubject={this.props.onDeleteSubject}
-                    subjects={this.props.subjects}
                     vocab={this.props.vocab}/>
+                {this.props.subjects && this.props.subjects.map(subject =>
+                    <Box direction='row' key={subject}>
+                        {subject}
+                        <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
+                    </Box>,
+                )}
             </div>
         );
     }

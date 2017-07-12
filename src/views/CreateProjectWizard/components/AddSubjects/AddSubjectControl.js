@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Box, TextInput } from 'grommet';
+import { TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
-import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 
 class AddSubjectControl extends Component {
     constructor(props) {
@@ -34,12 +33,6 @@ class AddSubjectControl extends Component {
                         <IonIcon icon='ion-ios-plus'/>
                     </span>
                 </div>
-                {this.props.subjects && this.props.subjects.map(subject =>
-                    <Box direction='row' key={subject}>
-                        {subject}
-                        <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
-                    </Box>,
-                )}
             </div>
         );
     }
