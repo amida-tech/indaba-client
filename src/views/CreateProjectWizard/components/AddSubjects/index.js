@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Box, Button } from 'grommet';
+import { Button } from 'grommet';
 import { addSubjectsToWizard, deleteSubjectFromWizard } from '../../actions';
 import Summary from '../../../../common/components/Summary';
 import AddSubjectControl from './AddSubjectControl';
@@ -9,16 +9,15 @@ import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 class AddSubjects extends Component {
     render() {
         return (
-            <div>
+            <div className='add-subjects'>
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider'/>
-                <Box direction='row' justify='end'
-                    pad={{ vertical: 'small', horizontal: 'medium' }}>
+                <div className='add-subjects__import-row'>
                     <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
-                </Box>
+                </div>
                 <hr className='divider'/>
                 <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
                 <AddSubjectControl
@@ -26,10 +25,10 @@ class AddSubjects extends Component {
                     onDeleteSubject={this.props.onDeleteSubject}
                     vocab={this.props.vocab}/>
                 {this.props.subjects && this.props.subjects.map(subject =>
-                    <Box direction='row' key={subject}>
+                    <div className='add-subjects__subject' key={subject}>
                         {subject}
                         <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
-                    </Box>,
+                    </div>,
                 )}
             </div>
         );

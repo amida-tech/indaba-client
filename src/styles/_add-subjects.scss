@@ -1,0 +1,15 @@
+$block-class: 'add-subjects';
+
+@at-root {
+    .#{$block-class} {
+        &__import-row {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em 2em;
+        }
+
+        &__subject {
+            display: flex;
+        }
+    }
+}
