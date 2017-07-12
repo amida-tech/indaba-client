@@ -8,6 +8,10 @@ const initialState = {
         },
         step: 0,
         complete: false,
+        addUsers: {
+            tab: 0,
+            showSelectGroupUsers: false,
+        },
     },
     project: {
         id: 41,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
+
 import { Box, Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
