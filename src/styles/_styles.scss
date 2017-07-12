@@ -151,6 +151,12 @@ body {
         background-color: #fff;
         border-color: $border-color;
         border-style: solid;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken($brand-color, 10%);
+            color: $font-inverse-color;
+        }
 
         &:not(:last-child) {
             border-width: 1px 0 1px 1px;
