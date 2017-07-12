@@ -22,18 +22,18 @@ class AddSubjectControl extends Component {
     }
     render() {
         return (
-            <div>
-                <Box direction='row' justify='between'>
+            <div className='add-subject-control'>
+                <div className='add-subject-control__header'>
                     <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                     <div>{this.props.vocab.COMMON.ACTIONS}</div>
-                </Box>
-                <Box direction='row'>
+                </div>
+                <div className='add-subject-control__fields'>
                     <TextInput value={this.state.userInput}
                         onDOMChange={this.handleUserTextInput}/>
                     <span onClick={this.handlePlusClick}>
                         <IonIcon icon='ion-ios-plus'/>
                     </span>
-                </Box>
+                </div>
                 {this.props.subjects && this.props.subjects.map(subject =>
                     <Box direction='row' key={subject}>
                         {subject}
