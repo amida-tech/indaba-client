@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { Box, List, ListItem, SearchInput } from 'grommet';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import InviteUserForm from '../../../../common/components/InviteUserForm';
 import { renderName } from '../../../../utils/User';
 
+import { addUsersSetUsersFilter } from '../../actions';
+
 class UsersTab extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-        };
 
-        this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.handleUserRemove = this.handleUserRemove.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
         this.renderUserEntry = this.renderUserEntry.bind(this);
     }
-    handleSearchInput(evt) {
-        this.setState({ query: evt.target.value });
-    }
     handleSearchSelect(selection) {
-        this.setState({ query: '' });
+        this.props.onSetFilter('');
         this.props.onAddUserToProject(selection.suggestion.value);
     }
     handleUserRemove(userId) {
         this.props.onRemoveUserFromProject(userId);
     }
     searchFilter(user) {
-        return !this.state.query ||
-            renderName(user).toLowerCase().includes(this.state.query.toLowerCase());
+        return renderName(user).toLowerCase().includes(this.props.filter.toLowerCase());
     }
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(userElement => userElement.id === userId);
@@ -63,8 +59,8 @@ class UsersTab extends Component {
                 <div className='users-tab__search'>
                     <SearchInput
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onDOMChange={this.handleSearchInput}
-                        value={this.state.query}
+                        onDOMChange={evt => this.props.onSetFilter(evt.target.value)}
+                        value={this.props.filter}
                         suggestions={this.props.allUsers.filter(this.searchFilter)
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
@@ -78,4 +74,12 @@ class UsersTab extends Component {
     }
 }
 
-export default UsersTab;
+const mapStateToProps = state => ({
+    filter: state.projectwizard.ui.addUsers.usersFilter,
+});
+
+const mapDispatchToProps = dispatch => ({
+    onSetFilter: filter => dispatch(addUsersSetUsersFilter(filter)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersTab);
