@@ -1,41 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Field, reduxForm, submit } from 'redux-form';
 
-import { TextInput } from 'grommet';
 import IonIcon from 'react-ionicons';
 
 class AddSubjectControl extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { userInput: '' };
-
-        this.handleUserTextInput = this.handleUserTextInput.bind(this);
-        this.handlePlusClick = this.handlePlusClick.bind(this);
-    }
-    handleUserTextInput(evt) {
-        this.setState({ userInput: evt.target.value });
-    }
-    handlePlusClick() {
-        const splitUsers = this.state.userInput.split(/\s*,\s*/)
-            .filter(user => user !== '');
-        this.props.onAddSubjects(splitUsers);
-        this.setState({ userInput: '' });
-    }
     render() {
         return (
-            <div className='add-subject-control'>
+            <form className='add-subject-control' onSubmit={this.props.handleSubmit}>
                 <div className='add-subject-control__header'>
                     <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                     <div>{this.props.vocab.COMMON.ACTIONS}</div>
                 </div>
                 <div className='add-subject-control__fields'>
-                    <TextInput value={this.state.userInput}
-                        onDOMChange={this.handleUserTextInput}/>
-                    <span onClick={this.handlePlusClick}>
+                    <Field name='subjects'
+                        component='input'
+                        type='text'/>
+                    <div className='add-subject-control__plus-icon'
+                        onClick={this.props.onPlusClick}>
                         <IonIcon icon='ion-ios-plus'/>
-                    </span>
+                    </div>
                 </div>
-            </div>
+            </form>
         );
     }
 }
@@ -45,4 +32,15 @@ AddSubjectControl.propTypes = {
     onAddSubjects: PropTypes.func.isRequired,
 };
 
-export default AddSubjectControl;
+const FORM_NAME = 'add-subject-control';
+
+export default connect(null, dispatch => ({
+    onPlusClick: () => dispatch(submit(FORM_NAME)),
+}))(reduxForm({
+    form: FORM_NAME,
+    onSubmit: (values, dispatch, ownProps) => {
+        const splitUsers = values.subjects.split(/\s*,\s*/)
+            .filter(user => user !== '');
+        ownProps.onAddSubjects(splitUsers);
+    },
+})(AddSubjectControl));
