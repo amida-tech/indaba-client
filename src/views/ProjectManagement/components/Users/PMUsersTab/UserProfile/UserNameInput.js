@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Field } from 'redux-form';
+import EditableTextInput from '../../../../../../common/components/EditableTextInput';
 
 class UserNameInput extends Component {
     render() {
@@ -10,16 +11,12 @@ class UserNameInput extends Component {
                 <label className='user-name-input__label'>
                     {this.props.vocab.COMMON.FIRST_NAME}
                     <Field name='firstName'
-                        component='input'
-                        type='text'
-                        className='user-name-input__text-input'/>
+                        component={EditableTextInput}/>
                 </label>
                 <label className='user-name-input__label'>
                     {this.props.vocab.COMMON.LAST_NAME}
                     <Field name='lastName'
-                        component='input'
-                        type='text'
-                        className='user-name-input__text-input'/>
+                        component={EditableTextInput}/>
                 </label>
             </div>
         );
