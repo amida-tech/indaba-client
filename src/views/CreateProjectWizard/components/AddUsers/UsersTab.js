@@ -46,7 +46,7 @@ class UsersTab extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='users-tab'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
                         this.props.onAddNewUser({
