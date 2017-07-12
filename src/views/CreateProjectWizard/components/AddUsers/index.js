@@ -17,10 +17,6 @@ import {
 class AddUsers extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tab: 0,
-            createModal: false,
-        };
         this.handleTabChange = this.handleTabChange.bind(this);
         this.handleCreateModal = this.handleCreateModal.bind(this);
     }
@@ -33,7 +29,7 @@ class AddUsers extends Component {
     render() {
         return (
             <div>
-                {this.state.createModal &&
+                {this.props.ui.showSelectGroupUsers &&
                     <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
@@ -50,7 +46,7 @@ class AddUsers extends Component {
                 <hr className='divider' />
                 <Box direction='row' justify='end'
                     pad={{ vertical: 'small', horizontal: 'medium', between: 'small' }}>
-                    {this.state.tab === 1 &&
+                    {this.props.ui.tab === 1 &&
                         <Button
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
@@ -96,6 +92,7 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     groups: state.projectwizard.project.userGroups,
+    ui: state.projectwizard.ui.addUsers,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),
