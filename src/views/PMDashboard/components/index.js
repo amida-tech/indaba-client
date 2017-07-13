@@ -8,6 +8,7 @@ import * as actions from '../actions';
 
 import ProjectListControls from './ProjectListControls';
 import ProjectListHeader from './ProjectListHeader';
+import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
     render() {
@@ -17,6 +18,8 @@ class PMDashboard extends Component {
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
                 <ProjectListHeader vocab={this.props.vocab} />
+                {this.props.rows.map(row =>
+                    <ProjectListEntry key={row.project.id} {...row} />)}
             </div>
         );
     }
