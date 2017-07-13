@@ -32,10 +32,7 @@ class UsersTab extends Component {
         const user = this.props.allUsers.find(userElement => userElement.id === userId);
         return (
             <div key={userId}
-                className='users-tab__entry'
-                direction='row'
-                pad={{ horizontal: 'large', vertical: 'small' }}
-                justify='between'>
+                className='users-tab__entry'>
                 <div className='users-tab__name-container'>
                     <UserBadge user={user}/>
                     <div className='users-tab__name'>{renderName(user)}</div>
