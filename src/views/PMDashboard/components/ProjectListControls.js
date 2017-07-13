@@ -11,7 +11,8 @@ class ProjectListControls extends Component {
                     type='text'
                     placeholder={this.props.vocab.COMMON.SEARCH}
                     onChange={evt => this.props.actions.setSearchQuery(evt.target.value)}/>
-                <ProjectFilter vocab={this.props.vocab}
+                <ProjectFilter active={this.props.filter}
+                    vocab={this.props.vocab}
                     onSetFilter={this.props.actions.setFilter} />
             </div>
         );
@@ -21,6 +22,7 @@ class ProjectListControls extends Component {
 ProjectListControls.propTypes = {
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    filter: PropTypes.string.isRequired,
 };
 
 export default ProjectListControls;

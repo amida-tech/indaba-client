@@ -12,7 +12,8 @@ class PMDashboard extends Component {
         return (
             <div className='pm-dashboard'>
                 <ProjectListControls vocab={this.props.vocab}
-                    actions={this.props.actions} />
+                    actions={this.props.actions}
+                    filter={this.props.ui.filter}/>
             </div>
         );
     }
@@ -25,6 +26,7 @@ PMDashboard.propTypes = {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
+    ui: state.pmdashboard.ui,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),

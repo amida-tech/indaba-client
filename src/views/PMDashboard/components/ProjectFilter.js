@@ -26,13 +26,15 @@ class ProjectFilter extends Component {
         ];
 
         return (
-            <Filter filters={filters}
+            <Filter active={this.props.active}
+                filters={filters}
                 onFilterClick={this.props.onSetFilter}/>
         );
     }
 }
 
 ProjectFilter.propTypes = {
+    active: PropTypes.string.isRequired,
     vocab: PropTypes.object.isRequired,
     onSetFilter: PropTypes.func.isRequired,
 };
