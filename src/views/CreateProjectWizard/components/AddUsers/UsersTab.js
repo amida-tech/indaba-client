@@ -35,7 +35,7 @@ class UsersTab extends Component {
                 direction='row'
                 pad={{ horizontal: 'large', vertical: 'small' }}
                 justify='between'
-                className='user-list-entry'>
+                className='users-tab__entry'>
                 <div className='users-tab__name-container'>
                     <UserBadge user={user}/>
                     <div className='users-tab__name'>{renderName(user)}</div>
