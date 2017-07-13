@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+$brand-font-family: 'Roboto';
+$header-font-color: #7e848f;
+$font-color: #a4aebf;
 $block-class: 'users-filter-wrapper';
 
 @at-root {
@@ -18,4 +22,24 @@ $block-class: 'users-filter-wrapper';
             }
         }
     }
+}
+
+.grommetux-tab--active {
+    background-color: lighten(#d8d8d8, 5%);
+}
+
+.grommetux-tab {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    font-family: $brand-font-family;
+}
+
+.grommetux-tab__label {
+    display: flex;
+    font-size: 14px;
+    color: $font-color;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-bottom: none;
 }

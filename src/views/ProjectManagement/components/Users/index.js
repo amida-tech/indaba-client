@@ -56,11 +56,11 @@ class Users extends Component {
                     onClick={() => this.setState({ modalName: 'addgroup' })}/>
                 </div>
                 <hr className='divider'/>
-                <Tabs>
+                <Tabs justify='start'>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <PMUsersTab {...this.props}/>
                     </Tab>
-                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                    <Tab className='' title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <PMUserGroupsTab columnHeaders={true}
                             project={this.props.project}
                             users={this.props.users}
