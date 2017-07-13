@@ -1,0 +1,15 @@
+$block-class: 'add-users';
+
+@at-root {
+    .#{$block-class} {
+        &__button-panel {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em 2em;
+        }
+
+        &__button-panel-button {
+            margin-left: 1em;
+        }
+    }
+}
