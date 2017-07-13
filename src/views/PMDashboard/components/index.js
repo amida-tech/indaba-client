@@ -7,6 +7,7 @@ import _ from 'lodash';
 import * as actions from '../actions';
 
 import MessageList from './MessageList';
+import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
 import ProjectListHeader from './ProjectListHeader';
 import ProjectListEntry from './ProjectListEntry';
@@ -16,6 +17,7 @@ class PMDashboard extends Component {
         return (
             <div className='pm-dashboard'>
                 <MessageList />
+                <ProjectGlance />
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
