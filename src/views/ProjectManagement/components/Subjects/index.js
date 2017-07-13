@@ -15,7 +15,7 @@ class Subjects extends Component {
     }
     render() {
         return (
-            <div className='subjects-tab'>
+            <div className='subjects'>
                 {this.state.showAddSubjectModal &&
                     <AddSubject
                         onAddSubject={(subject) => {
@@ -24,12 +24,15 @@ class Subjects extends Component {
                         }}
                         onCancel={() => this.setState({ showAddSubjectModal: false })}
                         vocab={this.props.vocab}/>}
-                <Button
-                    label={this.props.vocab.PROJECT.ADD_SUBJECT}
-                    primary
-                    onClick={() => this.setState({ showAddSubjectModal: true })}/>
+                <div className='subjects__button-row'>
+                    <Button
+                        label={this.props.vocab.PROJECT.ADD_SUBJECT}
+                        primary
+                        onClick={() => this.setState({ showAddSubjectModal: true })}/>
+                </div>
                 <hr className='divider' />
-                <SearchInput onDOMChange={evt => this.setState({ query: evt.target.value })}/>
+                <SearchInput className='subjects__search-input'
+                    onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 <SubjectList
                     subjects={this.props.subjects}
                     query={this.state.query}

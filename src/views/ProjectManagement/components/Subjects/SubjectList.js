@@ -13,11 +13,11 @@ class SubjectList extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='subject-list'>
                 {this.props.subjects.filter(this.filter).map(subject =>
-                    <div className='subject-list-entry'
+                    <div className='subject-list__entry'
                         key={subject}>
-                        <div className='subject-list-entry__name'>
+                        <div className='subject-list__entry-name'>
                             {subject}
                         </div>
                         <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
