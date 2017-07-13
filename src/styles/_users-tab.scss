@@ -2,6 +2,13 @@ $block-class: 'users-tab';
 
 @at-root {
     .#{$block-class} {
+        &__entry {
+            display: flex;
+            padding: 1em 3em;
+            justify-content: space-between;
+            border-bottom: 1px solid $border-color;
+        }
+
         &__name-container {
             display: flex;
             align-items: center;

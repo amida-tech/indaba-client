@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { List, ListItem, SearchInput } from 'grommet';
+import { SearchInput } from 'grommet';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import InviteUserForm from '../../../../common/components/InviteUserForm';
@@ -31,17 +31,17 @@ class UsersTab extends Component {
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(userElement => userElement.id === userId);
         return (
-            <ListItem key={userId}
+            <div key={userId}
+                className='users-tab__entry'
                 direction='row'
                 pad={{ horizontal: 'large', vertical: 'small' }}
-                justify='between'
-                className='users-tab__entry'>
+                justify='between'>
                 <div className='users-tab__name-container'>
                     <UserBadge user={user}/>
                     <div className='users-tab__name'>{renderName(user)}</div>
                 </div>
                 <DeleteIconButton onClick={() => this.handleUserRemove(userId)} />
-            </ListItem>
+            </div>
         );
     }
     render() {
@@ -66,9 +66,9 @@ class UsersTab extends Component {
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
                 </div>
-                <List>
+                <div className='users-tab__user-list'>
                     {this.props.projectUsers.map(this.renderUserEntry)}
-                </List>
+                </div>
             </div>
         );
     }
