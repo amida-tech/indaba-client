@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
 import ProjectListControls from './ProjectListControls';
+import ProjectListHeader from './ProjectListHeader';
 
 class PMDashboard extends Component {
     render() {
@@ -13,7 +14,8 @@ class PMDashboard extends Component {
             <div className='pm-dashboard'>
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
-                    filter={this.props.ui.filter}/>
+                    filter={this.props.ui.filter} />
+                <ProjectListHeader vocab={this.props.vocab} />
             </div>
         );
     }

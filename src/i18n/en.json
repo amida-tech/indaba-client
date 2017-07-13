@@ -158,7 +158,8 @@
     "OPTIONAL_MESSAGE": "Optional, only you can see this",
     "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
-    "NOT_ACCEPTED": "The user has not accepted this invitation"
+    "NOT_ACCEPTED": "The user has not accepted this invitation",
+    "LAST_UPDATED": "Last Updated"
   },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
