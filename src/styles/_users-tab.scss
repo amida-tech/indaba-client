@@ -1,0 +1,14 @@
+$block-class: 'users-tab';
+
+@at-root {
+    .#{$block-class} {
+        &__name-container {
+            display: flex;
+            align-items: center;
+        }
+
+        &__name {
+            margin-left: 1em;
+        }
+    }
+}

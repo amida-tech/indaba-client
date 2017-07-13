@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Box, List, ListItem, SearchInput } from 'grommet';
+import { List, ListItem, SearchInput } from 'grommet';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import InviteUserForm from '../../../../common/components/InviteUserForm';
@@ -36,10 +36,10 @@ class UsersTab extends Component {
                 pad={{ horizontal: 'large', vertical: 'small' }}
                 justify='between'
                 className='user-list-entry'>
-                <Box direction='row' align='center' pad={{ between: 'small' }}>
+                <div className='users-tab__name-container'>
                     <UserBadge user={user}/>
-                    <div>{renderName(user)}</div>
-                </Box>
+                    <div className='users-tab__name'>{renderName(user)}</div>
+                </div>
                 <DeleteIconButton onClick={() => this.handleUserRemove(userId)} />
             </ListItem>
         );
