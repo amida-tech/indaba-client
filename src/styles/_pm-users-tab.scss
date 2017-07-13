@@ -2,14 +2,14 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
+        height: 100%;
+        border: 2px solid $border-color;
+
         &__invite-container {
             background-color: lighten(#d8d8d8, 10%);
             display: flex;
             flex-direction: column;
-            border: 2px solid #dadcde;
             padding: 1em;
-            margin-left: 20px;
-            margin-right: 20px;
         }
 
         &__text-input {
@@ -21,6 +21,10 @@ $block-class: 'pm-users-tab';
             padding: 2px;
             height: 30px;
             letter-spacing: 0.8;
+        }
+
+        &__addgroup {
+            color: red;
         }
     }
 }

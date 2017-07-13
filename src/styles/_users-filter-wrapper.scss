@@ -1,0 +1,21 @@
+$block-class: 'users-filter-wrapper';
+
+@at-root {
+    .#{$block-class} {
+        &__action-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 100%;
+            padding: 1em;
+
+            &--left {
+                margin-right: 5px;
+            }
+
+            &--right {
+                margin-right: 20px;
+            }
+        }
+    }
+}

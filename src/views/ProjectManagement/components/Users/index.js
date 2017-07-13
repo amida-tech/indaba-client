@@ -15,7 +15,7 @@ class Users extends Component {
     }
     render() {
         return (
-            <div className='users-tab'>
+            <div className='users-filter-wrapper'>
                 {(this.state.modalName === 'addgroup' ||
                     this.state.modalName === 'updategroup') &&
                     <SelectGroupUsers
@@ -44,14 +44,17 @@ class Users extends Component {
                         onAddUserToProject={this.props.onAddUserToProject}
                         projectId={this.props.project.id}/>
                 }
-                <Button
+
+                <div className='users-filter-wrapper__action-btn'>
+                <Button className='users-filter-wrapper__action-btn--left'
                     label={this.props.vocab.PROJECT.ADD_USER}
                     primary
                     onClick={() => this.setState({ modalName: 'adduser' })}/>
-                <Button
+                <Button className='users-filter-wrapper__action-btn--right'
                     label={this.props.vocab.PROJECT.ADD_USER_GROUP}
                     primary
                     onClick={() => this.setState({ modalName: 'addgroup' })}/>
+                </div>
                 <hr className='divider'/>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
