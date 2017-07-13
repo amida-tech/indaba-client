@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 
 import * as actions from '../actions';
 
@@ -29,6 +30,15 @@ PMDashboard.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     ui: state.pmdashboard.ui,
+    rows: state.projects.map(project => ({
+        project: _.pick(project, ['name', 'status', 'id']),
+        survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
+        flags: state.discuss.filter(discuss =>
+            state.tasks.find(taskSet =>
+                taskSet.tasks.some(task => task.id === discuss.taskId)).projectId === project.id)
+            .reduce((sum, discuss) =>
+                sum + discuss.discuss.filter(innerDiscuss => innerDiscuss.flag).length, 0),
+    })),
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
