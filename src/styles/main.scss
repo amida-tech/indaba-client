@@ -21,7 +21,7 @@
 @import './flag-question-list.scss';
 @import './account-tab.scss';
 @import './preference-tab.scss';
-@import './tasks-tab';
+@import './tasks-tab.scss';
 @import './pm-user-list-header.scss';
 @import './pm-user-list-row.scss';
 @import './pm-user-groups-tab.scss';
@@ -34,9 +34,12 @@
 @import './stage-summary.scss';
 @import './status-card.scss';
 @import './summary.scss';
-@import './invite-user-form';
-@import './pm-users-tab';
+@import './add-users.scss';
+@import './invite-user-form.scss';
+@import './pm-users-tab.scss';
 @import './delete-icon-button.scss';
 @import './editable-text-input.scss';
+@import './add-subjects.scss';
+@import './add-subject-control.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';

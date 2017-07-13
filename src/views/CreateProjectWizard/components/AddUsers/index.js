@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-import { Box, Button, Tabs, Tab } from 'grommet';
+
+import { Button, Tabs, Tab } from 'grommet';
 import Summary from '../../../../common/components/Summary';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
@@ -12,56 +12,45 @@ import {
     removeUserFromWizard,
     addUserGroupToWizard,
     removeUserGroupFromWizard,
+    addUsersSetTab,
+    addUsersShowSelectGroupUsers,
 } from '../../actions';
 
 class AddUsers extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tab: 0,
-            createModal: false,
-        };
-        this.handleTabChange = this.handleTabChange.bind(this);
-        this.handleCreateModal = this.handleCreateModal.bind(this);
-    }
-    handleTabChange(tab) {
-        this.setState({ tab });
-    }
-    handleCreateModal(show) {
-        this.setState({ createModal: show });
-    }
     render() {
         return (
-            <div>
-                {this.state.createModal &&
+            <div className='add-users'>
+                {this.props.ui.showSelectGroupUsers &&
                     <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
                         allUsers={this.props.allUsers}
-                        onCancel={() => this.handleCreateModal(false)}
+                        onCancel={() => this.props.onShowSelectGroupUsers(false)}
                         onSave={(role) => {
                             this.props.onAddUserGroup(role);
-                            this.handleCreateModal(false);
+                            this.props.onShowSelectGroupUsers(false);
                         }}/>}
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
-                <Box direction='row' justify='end'
-                    pad={{ vertical: 'small', horizontal: 'medium', between: 'small' }}>
-                    {this.state.tab === 1 &&
-                        <Button
+                <div className='add-users__button-panel'>
+                    {this.props.ui.tab === 1 &&
+                        <Button className='add-users__button-panel-button'
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
-                            onClick={() => this.handleCreateModal(true)}/>}
-                    <Button label={this.props.vocab.PROJECT.IMPORT_USERS} />
-                </Box>
+                            onClick={() => this.props.onShowSelectGroupUsers(true)}/>}
+                    <Button className='add-users__button-panel-button'
+                        label={this.props.vocab.PROJECT.IMPORT_USERS} />
+                </div>
                 <hr className='divider' />
                 {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
-                    <p key={sentence}>{sentence}</p>,
+                    <p key={sentence} className='add-users__clarification'>
+                        {sentence}
+                    </p>,
                 )}
-                <Tabs onActive={this.handleTabChange}>
+                <Tabs onActive={this.props.onSetTab}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
@@ -78,7 +67,8 @@ class AddUsers extends Component {
                             onRemoveUserGroup={this.props.onRemoveUserGroup}/>
                     </Tab>
                 </Tabs>
-            </div>);
+            </div>
+        );
     }
 }
 
@@ -96,12 +86,15 @@ const mapStateToProps = state => ({
     survey: state.projectwizard.survey,
     allUsers: state.user.users,
     groups: state.projectwizard.project.userGroups,
+    ui: state.projectwizard.ui.addUsers,
 });
 const mapDispatchToProps = dispatch => ({
     onAddUserToProject: user => dispatch(addUserToWizard(user)),
     onRemoveUserFromProject: userId => dispatch(removeUserFromWizard(userId)),
     onAddUserGroup: group => dispatch(addUserGroupToWizard(group)),
     onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
+    onSetTab: tab => dispatch(addUsersSetTab(tab)),
+    onShowSelectGroupUsers: show => dispatch(addUsersShowSelectGroupUsers(show)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
