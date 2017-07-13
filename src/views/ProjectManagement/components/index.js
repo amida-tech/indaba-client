@@ -13,7 +13,7 @@ import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import { addNewUser } from '../../../common/actions/userActions';
-import { assignTask } from '../../../common/actions/tasksActions';
+import { assignTask, setTaskOptions } from '../../../common/actions/tasksActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
@@ -110,6 +110,7 @@ const mapDispatchToProps = dispatch => ({
     },
     taskActions: {
         assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),
+        setTaskOptions: () => dispatch(setTaskOptions()),
     },
 });
 
