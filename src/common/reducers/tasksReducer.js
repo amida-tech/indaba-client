@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import * as type from '../actionTypes/tasksActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
-import { REMOVE_USER } from '../../views/ProjectManagement/actionTypes';
+import { REMOVE_USER } from '../actionTypes/projectActionTypes';
 
 const initialState = [{
     projectId: 101,
