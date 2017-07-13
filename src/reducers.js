@@ -5,6 +5,7 @@ import * as CommonReducers from './common/reducers';
 import { ProjectManagementReducer } from './views/ProjectManagement';
 import { TaskReviewReducer } from './views/TaskReview';
 import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
+import { PMDashboardReducer } from './views/PMDashboard';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
@@ -19,6 +20,7 @@ const reducers = {
     taskreview: TaskReviewReducer,
     projectwizard: CreateProjectWizardReducer,
     form: formReducer,
+    pmdashboard: PMDashboardReducer,
 };
 
 export default combineReducers(reducers);
