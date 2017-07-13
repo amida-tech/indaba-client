@@ -36,11 +36,9 @@ class PMUsersTab extends Component {
                 <div className='pm-users-tab__invite-container'>
                     <InviteUserForm vocab={this.props.vocab}
                         onSubmit={(values) => {
-                            this.props.onAddNewUser({
-                                firstName: values.firstName,
-                                lastName: values.lastName,
-                                email: values.email,
-                            }).then(userData =>
+                            this.props.onAddNewUser(
+                                Object.assign({}, values, { invited: true }),
+                            ).then(userData =>
                                 this.props.onAddUserToProject(userData.id, this.props.project.id),
                             );
                         }}/>

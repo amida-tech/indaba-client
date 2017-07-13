@@ -66,7 +66,9 @@ class AssigneeContainer extends Component {
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
-                    onSubmit={this.props.onInviteUser}/>
+                    onSubmit={values => this.props.onInviteUser(
+                        Object.assign({}, values, { invited: true }),
+                    )}/>
             </Box>
         );
     }
