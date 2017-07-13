@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ProjectFilter from './ProjectFilter';
+
 class ProjectListControls extends Component {
     render() {
         return (
@@ -9,6 +11,8 @@ class ProjectListControls extends Component {
                     type='text'
                     placeholder={this.props.vocab.COMMON.SEARCH}
                     onChange={evt => this.props.actions.setSearchQuery(evt.target.value)}/>
+                <ProjectFilter vocab={this.props.vocab}
+                    onSetFilter={this.props.actions.setFilter} />
             </div>
         );
     }

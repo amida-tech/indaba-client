@@ -160,6 +160,13 @@
     "ACCOUNT_SINCE": "Account Since",
     "NOT_ACCEPTED": "The user has not accepted this invitation"
   },
+  "PROJECT_LIST_FILTER": {
+      "ALL_PROJECTS": "All Projects",
+      "ACTIVE_PROJECTS": "Active Projects",
+      "PUBLISHED_SURVEYS": "Published Surveys",
+      "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
+      "SURVEYS_WITH_FLAGS": "Surveys with Flags"
+  },
   "STAGE": {
     "START_STAGE": "Start stage",
     "END_STAGE": "End stage",
