@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 
 import FlagCount from './FlagCount';
 
 class ProjectListEntry extends Component {
+
     render() {
         return (
-            <div className='project-list-entry'>
+            <div className='project-list-entry'
+                onClick={() => this.props.router.push(`/project/${this.props.project.id}`)}>
                 <div className='project-list-entry__name'>
                     {this.props.project.name}
                 </div>
@@ -47,4 +50,4 @@ ProjectListEntry.propTypes = {
     flags: PropTypes.number,
 };
 
-export default ProjectListEntry;
+export default withRouter(ProjectListEntry);
