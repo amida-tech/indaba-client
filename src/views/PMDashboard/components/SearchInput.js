@@ -13,7 +13,7 @@ class SearchInput extends Component {
                     onChange={this.props.onChange}
                     value={this.props.value} />
                 <IonIcon className='search-input__icon'
-                    icon='ion-ios-search' />
+                    icon='ion-android-search' />
             </div>
         );
     }
