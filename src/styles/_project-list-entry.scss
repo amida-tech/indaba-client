@@ -1,0 +1,28 @@
+$block-class: 'project-list-entry';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        padding: 0.5em 3em;
+
+        &:nth-child(even) {
+            background-color: #fff;
+        }
+
+        &__name {
+            flex: 3;
+        }
+
+        &__status {
+            flex: 1;
+        }
+
+        &__flags {
+            flex: 1;
+        }
+
+        &__last-updated {
+            flex: 3;
+        }
+    }
+}

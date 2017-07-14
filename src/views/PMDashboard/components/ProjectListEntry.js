@@ -20,6 +20,9 @@ class ProjectListEntry extends Component {
                 <div className='project-list-entry__flags'>
                     {this.props.flags}
                 </div>
+                <div className='project-list-entry__last-updated'>
+                    Last updated
+                </div>
             </div>
         );
     }
