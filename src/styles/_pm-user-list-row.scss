@@ -19,6 +19,10 @@ $block-class: 'pm-user-list-row';
                 color: nth($brand-neutral-colors, 2);
                 cursor: pointer;
             }
+
+            &--non-cursor:hover {
+                cursor: default;
+            }
         }
     }
 }
