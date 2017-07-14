@@ -44,11 +44,11 @@ class Users extends Component {
                         onAddUserToProject={this.props.onAddUserToProject}
                         projectId={this.props.project.id}/>
                 }
-                <Button
+                <Button className= 'users-tab-btn__left'>
                     label={this.props.vocab.PROJECT.ADD_USER}
                     primary
                     onClick={() => this.setState({ modalName: 'adduser' })}/>
-                <Button
+                <Button className= 'users-tab-btn__right'>
                     label={this.props.vocab.PROJECT.ADD_USER_GROUP}
                     primary
                     onClick={() => this.setState({ modalName: 'addgroup' })}/>
