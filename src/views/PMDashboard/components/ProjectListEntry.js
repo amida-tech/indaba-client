@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import FlagCount from './FlagCount';
+
 class ProjectListEntry extends Component {
     render() {
         return (
@@ -22,7 +24,7 @@ class ProjectListEntry extends Component {
                     {this.props.survey.status}
                 </div>
                 <div className='project-list-entry__flags'>
-                    {this.props.flags}
+                    <FlagCount value={this.props.flags} />
                 </div>
                 <div className='project-list-entry__last-updated'>
                     Last updated
@@ -36,6 +38,7 @@ ProjectListEntry.propTypes = {
     project: PropTypes.shape({
         name: PropTypes.string,
         status: PropTypes.string,
+        id: PropTypes.number,
     }),
     survey: PropTypes.shape({
         name: PropTypes.string,
