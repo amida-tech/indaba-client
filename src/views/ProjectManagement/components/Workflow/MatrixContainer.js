@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import TaskOptionsModal from '../Modals/TaskOptionsModal';
+import TaskOptionsModal from '../Modals/TaskOptions';
 import AssigneeContainer from './AssigneeContainer';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';

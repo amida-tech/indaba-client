@@ -18,7 +18,8 @@ export function updateTaskDueDate(taskId, projectId, dueDate) {
     };
 }
 
-export function setTaskOptions() {
+export function setTaskOptions(data) {
+    console.log(data);
     return {
         type: actionTypes.SET_TASK_OPTIONS,
     };
