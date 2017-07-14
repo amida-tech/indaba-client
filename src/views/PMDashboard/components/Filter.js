@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 
 class Filter extends Component {
     isActive(key) {
-        return this.props.active && (
-            key === this.props.active || this.props.active.includes(key));
+        if (typeof this.props.active === 'string') {
+            return key === this.props.active;
+        } else if (typeof this.props.active === 'object') {
+            return this.props.active.includes(key);
+        }
+        return false;
     }
     render() {
         return (
