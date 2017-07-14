@@ -19,7 +19,7 @@ class PMUserGroupsTab extends Component {
                         .filter(group => this.filterGroup(group, this.props.query))}
                     users={this.props.users}
                     vocab={this.props.vocab}
-                    onDeleteClick={this.props.onDeleteGroup}
+                    onDeleteClick={this.props.onDeleteClick}
                     onGroupClick={this.props.onGroupClick} />
             </div>
         );
