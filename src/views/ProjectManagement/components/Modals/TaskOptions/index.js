@@ -11,7 +11,7 @@ import TaskOptionsForm from './TaskOptionsForm';
 class TaskOptionsModal extends Component {
     render() {
         const currentUser = _.find(this.props.users, user =>
-            user.id === this.props.taskOptions.task.userId);
+            user.id === this.props.task.userId);
         const userOptions = this.props.users.map(user => (
                 user === currentUser ?
                 { value: user, label: renderName(user) + this.props.vocab._CURRENTLY_ASSIGNED } :
@@ -22,7 +22,7 @@ class TaskOptionsModal extends Component {
             notify: true,
             message: this.props.vocab.NOTIFY_MESSAGE,
             reassignUser: userOptions[0],
-            task: this.props.taskOptions.task,
+            task: this.props.task,
         };
 
         return (
@@ -33,21 +33,31 @@ class TaskOptionsModal extends Component {
                 onSave={this.props.onClickToSubmit}>
                 <TaskOptionsForm
                     vocab={this.props.vocab}
-                    taskOptions={this.props.taskOptions}
+                    task={this.props.task}
                     users={this.props.users}
                     projectId={this.props.projectId}
                     currentUser={currentUser}
                     userOptions={userOptions}
                     initialValues={initialValues}
                     onSubmit={ (values) => {
-                        console.log(values);
-                        this.props.taskActions.setTaskOptions({
-                            choice: values.choice,
-                            reassignUser: values.reassignUser.value.id,
-                            notify: values.notify,
-                            message: values.message,
-                            task: this.props.taskOptions.task,
-                        });
+                        if (values.choice === 'reassign') {
+                            this.props.taskActions.reassignTask(
+                                values.reassignUser.value.id,
+                                this.props.task.id,
+                                this.props.projectId,
+                            );
+                        } else if (values.choice === 'force') {
+                            this.props.discussActions.forceTaskCompletion(
+                                this.props.task.id,
+                            );
+                        }
+                        if (values.notify) {
+                            this.props.userActions.notifyUser(
+                                this.props.task.userId,
+                                values.message,
+                                this.props.profile.id,
+                            );
+                        }
                         this.props.actions.closeTaskOptionsModal();
                     }
                     } />
@@ -58,9 +68,14 @@ class TaskOptionsModal extends Component {
 
 TaskOptionsModal.propTypes = {
     vocab: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
     onCancel: PropTypes.func,
     onSave: PropTypes.func,
     projectId: PropTypes.number.isRequired,
+    profile: PropTypes.object.isRequired,
+    discussActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    taskActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    userActions: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

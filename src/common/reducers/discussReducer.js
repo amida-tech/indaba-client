@@ -153,7 +153,6 @@ export const DiscussReducer = (state = initialState, action) => {
     const questionIndex = state[taskIndex] ?
         _.findIndex(state[taskIndex].discuss, chat => chat.id === action.activeId) :
         null;
-
     switch (action.type) {
     case type.UPDATE_FLAGGED_QUESTION:
         return update(state, { [taskIndex]: { discuss: { [questionIndex]: {
@@ -163,6 +162,13 @@ export const DiscussReducer = (state = initialState, action) => {
                 comment: action.data.comment,
                 userId: action.data.signatureId,
             }] } } } } });
+    case type.FORCE_TASK_COMPLETION:
+        return (update(state, { [taskIndex]: { discuss: {
+            $apply: (discuss) => {
+                return discuss.map((question) => {
+                    return update(question, { review: { $set: true } });
+                });
+            } } } }));
     default:
         return state;
     }

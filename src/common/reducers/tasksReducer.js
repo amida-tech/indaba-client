@@ -52,8 +52,9 @@ export const TasksReducer = (state = initialState, action) => {
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { [projectIndex]: { tasks: { [taskIndex]:
             { $merge: { dueDate: action.dueDate } } } } });
-    case type.SET_TASK_OPTIONS: // UPDATE LATER.
-        return state;
+    case type.REASSIGN_TASK:
+        return update(state, { [projectIndex]: { tasks: { [taskIndex]:
+            { userId: { $set: action.reassignId } } } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.task] });
     case REMOVE_USER:

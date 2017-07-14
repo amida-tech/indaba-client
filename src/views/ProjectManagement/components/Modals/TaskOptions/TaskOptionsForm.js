@@ -61,7 +61,6 @@ TaskOptionsForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
     users: PropTypes.array.isRequired,
-    taskOptions: PropTypes.object.isRequired,
 };
 
 export default reduxForm({ form: 'task-options-form' })(TaskOptionsForm);
