@@ -2,23 +2,24 @@ $block-class: 'user-group-list-entry';
 
 @at-root {
     .#{$block-class} {
-        // display: inline-flex;
         flex-direction: row;
         width: 100%;
-        background-color: #fbad35;
         display: flex;
-        // flex-direction: row;
+        padding: 1em;
+
+        &:nth-child(even) {
+            background-color: lighten(#d8d8d8, 10%);
+        }
 
         &__name {
-            //
             flex: 1;
         }
 
         &__badge-string {
-            //
             flex: 2;
             display: flex;
             flex-direction: row;
+            margin-right: 5px;
         }
     }
 }
