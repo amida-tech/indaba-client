@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 
 const ProjectListHeader = ({ vocab }) =>
     <div className='project-list-header'>
-        {[
-            vocab.PROJECT.PROJECT,
-            vocab.PROJECT.SURVEY,
-            vocab.PROJECT.FLAGS,
-            vocab.PROJECT.LAST_UPDATED,
-        ].map(title =>
-            <div className='project-list-header__title' key={title}>{title}</div>,
-        )}
+        <div className='project-list-header__title project-list-header__title--project'>
+            {vocab.PROJECT.PROJECT}
+        </div>
+        <div className='project-list-header__title project-list-header__title--survey'>
+            {vocab.PROJECT.SURVEY}
+        </div>
+        <div className='project-list-header__title project-list-header__title--flags'>
+            {vocab.PROJECT.FLAGS}
+        </div>
+        <div className='project-list-header__title project-list-header__title--last-updated'>
+            {vocab.PROJECT.LAST_UPDATED}
+        </div>
     </div>;
 
 ProjectListHeader.propTypes = {

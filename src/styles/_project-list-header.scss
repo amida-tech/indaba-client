@@ -1,0 +1,26 @@
+$block-class: 'project-list-header';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        text-transform: uppercase;
+
+        &__title {
+            color: $header-font-color;
+            font-weight: 900;
+
+            &--project,
+            &--survey {
+                flex: 4;
+            }
+
+            &--flags {
+                flex: 1;
+            }
+
+            &--last-updated {
+                flex: 3;
+            }
+        }
+    }
+}
