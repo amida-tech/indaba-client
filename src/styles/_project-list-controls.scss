@@ -5,5 +5,11 @@ $block-class: 'project-list-controls';
         padding: 2em;
         display: flex;
         flex-direction: column;
+
+        &__search {
+            padding: 0.5em 1em;
+            border: 1px solid $border-color;
+            border-radius: 1px;
+        }
     }
 }
