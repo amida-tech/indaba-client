@@ -1,0 +1,28 @@
+$block-class: 'filter';
+$filter-background: #fafafa;
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 1.5em;
+
+        &__button {
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            padding: 0.4em 1em;
+            border-radius: 3px;
+            border: 1px solid $border-color;
+            font-size: 12px;
+            background-color: $filter-background;
+            cursor: pointer;
+
+            &--active {
+                background-color: darken($brand-color, 10%);
+                color: $font-inverse-color;
+                border-color: transparent;
+            }
+        }
+    }
+}
