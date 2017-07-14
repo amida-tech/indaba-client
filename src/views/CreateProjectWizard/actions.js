@@ -102,3 +102,10 @@ export function addUsersShowSelectGroupUsers(show) {
         show,
     };
 }
+
+export function addUsersSetUsersFilter(filter) {
+    return {
+        type: actionTypes.ADD_USERS_SET_USERS_FILTER,
+        filter,
+    };
+}

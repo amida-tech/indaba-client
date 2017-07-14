@@ -15,6 +15,9 @@ import {
     addUsersSetTab,
     addUsersShowSelectGroupUsers,
 } from '../../actions';
+import {
+    addNewUser,
+} from '../../../../common/actions/userActions';
 
 class AddUsers extends Component {
     render() {
@@ -57,7 +60,8 @@ class AddUsers extends Component {
                             allUsers={this.props.allUsers}
                             projectUsers={this.props.project.users}
                             onAddUserToProject={this.props.onAddUserToProject}
-                            onRemoveUserFromProject={this.props.onRemoveUserFromProject}/>
+                            onRemoveUserFromProject={this.props.onRemoveUserFromProject}
+                            onAddNewUser={this.props.onAddNewUser}/>
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
@@ -95,6 +99,7 @@ const mapDispatchToProps = dispatch => ({
     onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
     onSetTab: tab => dispatch(addUsersSetTab(tab)),
     onShowSelectGroupUsers: show => dispatch(addUsersShowSelectGroupUsers(show)),
+    onAddNewUser: user => dispatch(addNewUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);

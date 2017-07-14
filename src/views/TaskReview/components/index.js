@@ -70,8 +70,8 @@ const mapStateToProps = (state, ownProps) => {
         projectTasks.projectId === projectId).tasks, current => current.id === taskId);
     return {
         projectId,
-        project: _.find(state.project.projects,
-            project => project.id === projectId) || state.project.projects[0],
+        project: _.find(state.projects,
+            project => project.id === projectId) || state.projects[0],
         taskedUser: _.find(state.user.users, user => user.id === task.userId),
         users: state.user.users,
         profile: state.user.profile,
