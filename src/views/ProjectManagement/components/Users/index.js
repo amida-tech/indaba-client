@@ -15,7 +15,7 @@ class Users extends Component {
     }
     render() {
         return (
-            <div className='users-filter-wrapper'>
+            <div className='users'>
                 {(this.state.modalName === 'addgroup' ||
                     this.state.modalName === 'updategroup') &&
                     <SelectGroupUsers
@@ -45,22 +45,22 @@ class Users extends Component {
                         projectId={this.props.project.id}/>
                 }
 
-                <div className='users-filter-wrapper__action-btn'>
-                <Button className='users-filter-wrapper__action-btn--left'
-                    label={this.props.vocab.PROJECT.ADD_USER}
-                    primary
-                    onClick={() => this.setState({ modalName: 'adduser' })}/>
-                <Button className='users-filter-wrapper__action-btn--right'
-                    label={this.props.vocab.PROJECT.ADD_USER_GROUP}
-                    primary
-                    onClick={() => this.setState({ modalName: 'addgroup' })}/>
+                <div className='users__action-btn'>
+                    <Button className='users__action-btn--left'
+                        label={this.props.vocab.PROJECT.ADD_USER}
+                        primary
+                        onClick={() => this.setState({ modalName: 'adduser' })}/>
+                    <Button className='users__action-btn--right'
+                        label={this.props.vocab.PROJECT.ADD_USER_GROUP}
+                        primary
+                        onClick={() => this.setState({ modalName: 'addgroup' })}/>
                 </div>
                 <hr className='divider'/>
                 <Tabs justify='start'>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <PMUsersTab {...this.props}/>
                     </Tab>
-                    <Tab className='' title={this.props.vocab.PROJECT.USER_GROUPS}>
+                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <PMUserGroupsTab columnHeaders={true}
                             project={this.props.project}
                             users={this.props.users}
