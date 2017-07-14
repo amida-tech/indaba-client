@@ -6,7 +6,7 @@ import { renderName } from '../../../../../utils/User';
 import UserProfile from './UserProfile';
 import PMUserListRow from './PMUserListRow';
 import PMUserListHeader from './PMUserListHeader';
-import InviteUserForm from './InviteUserForm';
+import InviteUserForm from '../../../../../common/components/InviteUserForm';
 
 class PMUsersTab extends Component {
     constructor(props) {
