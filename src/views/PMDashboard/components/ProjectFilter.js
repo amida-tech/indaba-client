@@ -14,6 +14,9 @@ class ProjectFilter extends Component {
                 label: this.props.vocab.PROJECT_LIST_FILTER.ACTIVE_PROJECTS,
                 key: FILTERS.ACTIVE_PROJECTS,
             }, {
+                label: this.props.vocab.PROJECT_LIST_FILTER.INACTIVE_PROJECTS,
+                key: FILTERS.INACTIVE_PROJECTS,
+            }, {
                 label: this.props.vocab.PROJECT_LIST_FILTER.PUBLISHED_SURVEYS,
                 key: FILTERS.PUBLISHED_SURVEYS,
             }, {

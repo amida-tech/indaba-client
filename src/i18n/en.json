@@ -164,6 +164,7 @@
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
       "ACTIVE_PROJECTS": "Active Projects",
+      "INACTIVE_PROJECTS": "Inactive Projects",
       "PUBLISHED_SURVEYS": "Published Surveys",
       "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
       "SURVEYS_WITH_FLAGS": "Surveys with Flags"
