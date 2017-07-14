@@ -4,5 +4,6 @@ $block-class: 'project-glance';
     .#{$block-class} {
         display: flex;
         align-items: center;
+        width: 100%;
     }
 }
