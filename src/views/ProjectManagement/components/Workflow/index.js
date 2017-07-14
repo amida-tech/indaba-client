@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import FilterWrapper from './FilterWrapper';
 import MatrixContainer from './MatrixContainer';
-import * as TasksActions from '../../../../common/actions/tasksActions';
+
 
 class WorkflowContainer extends Component {
     render() {
@@ -10,13 +9,13 @@ class WorkflowContainer extends Component {
             <div className='worklow-container'>
                 <FilterWrapper project={this.props.project}
                     vocab={this.props.vocab}
-                    onToggleFilter={this.props.onToggleFilter}
-                    onAddStage={this.props.onAddStage}
-                    onAddSubject={this.props.onAddSubject}
-                    showAddStageModal={this.props.showAddStageModal}
-                    closeAddStageModal={this.props.closeAddStageModal}
-                    showAddSubjectModal={this.props.showAddSubjectModal}
-                    closeAddSubjectModal={this.props.closeAddSubjectModal}
+                    onToggleFilter={this.props.projectActions.toggleFilter}
+                    onAddStage={this.props.projectActions.addStage}
+                    onAddSubject={this.props.projectActions.addSubject}
+                    showAddStageModal={this.props.actions.showAddStageModal}
+                    closeAddStageModal={this.props.actions.closeAddStageModal}
+                    showAddSubjectModal={this.props.actions.showAddSubjectModal}
+                    closeAddSubjectModal={this.props.actions.closeAddSubjectModal}
                     ui={this.props.ui} />
                 <MatrixContainer {...this.props}/>
             </div>
@@ -24,12 +23,4 @@ class WorkflowContainer extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        assignTask: (user, task) => {
-            dispatch(TasksActions.assignTask(user, task, ownProps.project.id));
-        },
-    };
-}
-
-export default connect(null, mapDispatchToProps)(WorkflowContainer);
+export default WorkflowContainer;

@@ -11,6 +11,7 @@ const initialState = {
         addUsers: {
             tab: 0,
             showSelectGroupUsers: false,
+            usersFilter: '',
         },
     },
     project: {
@@ -87,6 +88,10 @@ export default (state = initialState, action) => {
     case type.ADD_USERS_SHOW_SELECT_GROUP_USERS:
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
+        } } });
+    case type.ADD_USERS_SET_USERS_FILTER:
+        return update(state, { ui: { addUsers: {
+            usersFilter: { $set: action.filter },
         } } });
     default:
         return state;
