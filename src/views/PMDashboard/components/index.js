@@ -17,7 +17,8 @@ class PMDashboard extends Component {
         return (
             <div className='pm-dashboard'>
                 <MessageList />
-                <ProjectGlance />
+                <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
+                    flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
@@ -46,6 +47,12 @@ const mapStateToProps = state => ({
             .reduce((sum, discuss) =>
                 sum + discuss.discuss.filter(innerDiscuss => innerDiscuss.flag).length, 0),
     })),
+    glance: {
+        projects: state.projects.length,
+        active: state.projects.filter(project => project.status === 'Active').length,
+        inactive: state.projects.filter(project => project.status === 'Inactive').length,
+        // flags calculated inline from rows.flags
+    },
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
