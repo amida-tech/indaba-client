@@ -1,0 +1,12 @@
+$block-class: 'split-layout';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+
+        &__child {
+            flex: 1;
+        }
+    }
+}

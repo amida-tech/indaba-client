@@ -1,0 +1,8 @@
+$block-class: 'project-glance';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+    }
+}

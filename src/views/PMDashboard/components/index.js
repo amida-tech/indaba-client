@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import * as actions from '../actions';
 
+import SplitLayout from './SplitLayout';
 import MessageList from './MessageList';
 import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
@@ -16,9 +17,11 @@ class PMDashboard extends Component {
     render() {
         return (
             <div className='pm-dashboard'>
-                <MessageList />
-                <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
-                    flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
+                <SplitLayout>
+                    <MessageList />
+                    <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
+                        flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
+                </SplitLayout>
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
