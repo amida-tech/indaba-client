@@ -6,6 +6,13 @@ const initialState = {
         projectTitle: {
             show: true,
         },
+        step: 0,
+        complete: false,
+        addUsers: {
+            tab: 0,
+            showSelectGroupUsers: false,
+            usersFilter: '',
+        },
     },
     project: {
         id: 41,
@@ -66,6 +73,26 @@ export default (state = initialState, action) => {
         } });
     case type.ADD_PROJECT_FROM_WIZARD:
         return initialState;
+    case type.GO_TO_STEP:
+        return update(state, { ui: {
+            step: { $set: action.step },
+        } });
+    case type.COMPLETE_WIZARD:
+        return update(state, { ui: {
+            complete: { $set: true },
+        } });
+    case type.ADD_USERS_SET_TAB:
+        return update(state, { ui: { addUsers: {
+            tab: { $set: action.tab },
+        } } });
+    case type.ADD_USERS_SHOW_SELECT_GROUP_USERS:
+        return update(state, { ui: { addUsers: {
+            showSelectGroupUsers: { $set: action.show },
+        } } });
+    case type.ADD_USERS_SET_USERS_FILTER:
+        return update(state, { ui: { addUsers: {
+            usersFilter: { $set: action.filter },
+        } } });
     default:
         return state;
     }

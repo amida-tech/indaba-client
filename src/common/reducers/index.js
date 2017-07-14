@@ -4,3 +4,4 @@ export { UserReducer } from './userReducer';
 export { SurveysReducer } from './surveysReducer';
 export { TasksReducer } from './tasksReducer';
 export { DiscussReducer } from './discussReducer';
+export { ProjectReducer } from './projectReducer';

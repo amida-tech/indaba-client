@@ -75,3 +75,37 @@ export function addProjectFromWizard(wizard) {
         wizard,
     };
 }
+
+export function goToStep(step) {
+    return {
+        type: actionTypes.GO_TO_STEP,
+        step,
+    };
+}
+
+export function completeWizard() {
+    return {
+        type: actionTypes.COMPLETE_WIZARD,
+    };
+}
+
+export function addUsersSetTab(tab) {
+    return {
+        type: actionTypes.ADD_USERS_SET_TAB,
+        tab,
+    };
+}
+
+export function addUsersShowSelectGroupUsers(show) {
+    return {
+        type: actionTypes.ADD_USERS_SHOW_SELECT_GROUP_USERS,
+        show,
+    };
+}
+
+export function addUsersSetUsersFilter(filter) {
+    return {
+        type: actionTypes.ADD_USERS_SET_USERS_FILTER,
+        filter,
+    };
+}

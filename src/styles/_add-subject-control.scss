@@ -1,0 +1,14 @@
+$block-class: 'add-subject-control';
+
+@at-root {
+    .#{$block-class} {
+        &__header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__fields {
+            display: flex;
+        }
+    }
+}

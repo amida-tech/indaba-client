@@ -1,0 +1,7 @@
+$block-class: 'subject-list';
+
+@at-root {
+    .#{$block-class} {
+        // EMPTY BLOCK WARNING SUPPRESSION
+    }
+}
