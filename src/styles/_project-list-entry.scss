@@ -15,6 +15,10 @@ $block-class: 'project-list-entry';
 
         &__status {
             flex: 1;
+
+            &--active {
+                color: darken($brand-color, 10%);
+            }
         }
 
         &__flags {
