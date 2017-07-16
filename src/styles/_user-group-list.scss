@@ -10,11 +10,22 @@ $block-class:'user-group-list';
             width: 100%;
             color: $font-color;
             padding: 1em;
+            padding: 30px;
+            justify-content: space-between;
         }
 
         &__header-section {
             display: flex;
             flex: 1;
+
+            &--action {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            &--members {
+                margin-right: 200px;
+            }
         }
     }
 }

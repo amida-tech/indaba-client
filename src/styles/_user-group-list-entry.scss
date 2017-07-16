@@ -6,6 +6,7 @@ $block-class: 'user-group-list-entry';
         width: 100%;
         display: flex;
         padding: 1em;
+        padding-left: 30px;
 
         &:nth-child(even) {
             background-color: lighten(#d8d8d8, 10%);
