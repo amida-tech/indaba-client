@@ -1,0 +1,9 @@
+$block-class: 'project-list-controls';
+
+@at-root {
+    .#{$block-class} {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+    }
+}

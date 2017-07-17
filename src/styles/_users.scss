@@ -1,0 +1,40 @@
+$block-class: 'users';
+
+@at-root {
+    .#{$block-class} {
+        &__action-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 1em;
+
+            &--left {
+                margin-right: 5px;
+            }
+
+            &--right {
+                margin-right: 20px;
+            }
+        }
+
+        .grommetux-tab--active {
+            background-color: lighten(#d8d8d8, 5%);
+        }
+
+        .grommetux-tab {
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            font-family: $brand-font-family;
+        }
+
+        .grommetux-tab__label {
+            display: flex;
+            font-size: 14px;
+            color: $font-color;
+            padding-bottom: 2px;
+            padding-top: 2px;
+            border-bottom: none;
+        }
+    }
+}

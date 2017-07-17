@@ -1,0 +1,18 @@
+$block-class: 'split-layout';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        border-width: 1px 1px 1px 0;
+        border-color: $border-color;
+        border-style: solid;
+
+        &__child {
+            flex: 1;
+            border-width: 0 0 0 1px;
+            border-color: $border-color;
+            border-style: solid;
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+class Filter extends Component {
+    isActive(key) {
+        return this.props.active && (
+            key === this.props.active || this.props.active.includes(key));
+    }
+    render() {
+        return (
+            <div className='filter'>
+                {this.props.filters.map(filter =>
+                    <div className={`filter__button ${this.isActive(filter.key) ? 'filter__button--active' : ''}`}
+                        key={filter.key}
+                        onClick={() => this.props.onFilterClick(filter.key)}>
+                        {filter.label}
+                    </div>,
+                )}
+            </div>
+        );
+    }
+}
+
+Filter.propTypes = {
+    active: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+    ]),
+    filters: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string,
+            key: PropTypes.string,
+        }),
+    ).isRequired,
+    onFilterClick: PropTypes.func.isRequired,
+};
+
+export default Filter;

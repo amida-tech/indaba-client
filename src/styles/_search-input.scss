@@ -1,0 +1,22 @@
+$block-class: 'search-input';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &__input {
+            flex: 1;
+            padding: 0.5em 1em;
+            border: 1px solid $border-color;
+            border-radius: 1px;
+        }
+
+        &__icon {
+            fill: $header-font-color;
+            position: absolute;
+            right: 0.5em;
+        }
+    }
+}

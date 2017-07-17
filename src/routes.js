@@ -5,6 +5,7 @@ import LoginContainer from './views/Login';
 import { ProjectManagementContainer } from './views/ProjectManagement';
 import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
+import { PMDashboard } from './views/PMDashboard';
 import App from './views/App';
 
 export default (
@@ -14,8 +15,12 @@ export default (
         component={App}
         indexRoute={DashboardContainer}>
         <Route
-            key='/project(/:projectId)'
-            path='/project(/:projectId)'
+            key='/project'
+            path='/project'
+            component={PMDashboard}/>
+        <Route
+            key='/project/:projectId'
+            path='/project/:projectId'
             component={ProjectManagementContainer}/>
         <Route
             key='/task-review(/:projectId)(/:taskId)'

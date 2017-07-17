@@ -29,6 +29,7 @@ class ProjectManagementContainer extends Component {
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
+                    projectId={this.props.project.id}
                     subjects={this.props.project.subjects}
                     onDeleteSubject={this.props.projectActions.deleteSubject}
                     onAddSubject={this.props.projectActions.addSubject}/>;

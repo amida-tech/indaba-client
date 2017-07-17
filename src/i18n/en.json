@@ -158,7 +158,16 @@
     "OPTIONAL_MESSAGE": "Optional, only you can see this",
     "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
-    "NOT_ACCEPTED": "The user has not accepted this invitation"
+    "NOT_ACCEPTED": "The user has not accepted this invitation",
+    "LAST_UPDATED": "Last Updated"
+  },
+  "PROJECT_LIST_FILTER": {
+      "ALL_PROJECTS": "All Projects",
+      "ACTIVE_PROJECTS": "Active Projects",
+      "INACTIVE_PROJECTS": "Inactive Projects",
+      "PUBLISHED_SURVEYS": "Published Surveys",
+      "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
+      "SURVEYS_WITH_FLAGS": "Surveys with Flags"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

@@ -23,7 +23,7 @@ class PMUserListRow extends Component {
                     onClick={this.props.onNameClick}>
                     {renderName(this.props.user)}
                 </div>
-                <div className='pm-user-list-row__cell'>
+                <div className='pm-user-list-row__cell pm-user-list-row__cell--non-cursor'>
                     {groups}
                 </div>
                 <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'>
@@ -41,10 +41,10 @@ class PMUserListRow extends Component {
                         </Tooltip>,
                     )}
                 </div>
-                <div className='pm-user-list-row__cell'>
+                <div className='pm-user-list-row__cell pm-user-list-row__cell--non-cursor'>
                     <UserStatus user={this.props.user} vocab={this.props.vocab}/>
                 </div>
-                <div className='pm-user-list-row__cell'>
+                <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'>
                     <DeleteIconButton onClick={this.props.onDeleteClick}/>
                     <IonIcon icon='ion-android-mail' color='#A4AEBF' />
                 </div>
