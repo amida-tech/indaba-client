@@ -71,13 +71,13 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.DELETE_SUBJECT:
         return update(state, { [projectIndex]: {
             subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
-            lastUpdate: { $set: new Date().toISOString() },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.ADD_STAGE:
         return update(state, { [projectIndex]: {
             stages: { $push: [update(action.stage, { $merge: {
                 id: state[projectIndex].stages.length } })] },
-            lastUpdate: { $set: new Date().toISOString() },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.DELETE_USER_GROUP:
         return update(state, { [projectIndex]: {
@@ -98,14 +98,14 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.ADD_USER:
         return update(state, { [projectIndex]: {
             users: { $push: [action.userId] },
-            lastUpdate: { $set: new Date().toISOString() },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.REMOVE_USER:
         return update(state, { [projectIndex]: {
             users: { $apply: users => users.filter(userId => userId !== action.userId) },
             userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
-            lastUpdate: { $set: new Date().toISOString() },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     default:
         return state;
