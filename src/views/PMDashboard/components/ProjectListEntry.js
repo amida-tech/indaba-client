@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import Time from '../../../utils/Time';
 
 import FlagCount from './FlagCount';
 
@@ -30,7 +31,8 @@ class ProjectListEntry extends Component {
                     <FlagCount value={this.props.flags} />
                 </div>
                 <div className='project-list-entry__last-updated'>
-                    Last updated
+                    {this.props.vocab.PROJECT.LAST_UPDATED}
+                    {` ${Time.renderForProjectList(this.props.project.lastUpdated)}`}
                 </div>
             </div>
         );
@@ -38,16 +40,18 @@ class ProjectListEntry extends Component {
 }
 
 ProjectListEntry.propTypes = {
+    vocab: PropTypes.object.isRequired,
     project: PropTypes.shape({
-        name: PropTypes.string,
-        status: PropTypes.string,
-        id: PropTypes.number,
+        name: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        lastUpdated: PropTypes.string.isRequired,
     }),
     survey: PropTypes.shape({
-        name: PropTypes.string,
-        status: PropTypes.string,
+        name: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
     }),
-    flags: PropTypes.number,
+    flags: PropTypes.number.isRequired,
 };
 
 export default withRouter(ProjectListEntry);

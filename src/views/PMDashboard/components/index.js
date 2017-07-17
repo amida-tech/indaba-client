@@ -46,7 +46,8 @@ class PMDashboard extends Component {
                     filter={this.props.ui.filter} />
                 <ProjectListHeader vocab={this.props.vocab} />
                 {this.props.rows.filter(this.filterRow.bind(this))
-                    .map(row => <ProjectListEntry key={row.project.id} {...row} />)}
+                    .map(row => <ProjectListEntry key={row.project.id} {...row}
+                        vocab={this.props.vocab}/>)}
             </div>
         );
     }
@@ -61,7 +62,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     ui: state.pmdashboard.ui,
     rows: state.projects.map(project => ({
-        project: _.pick(project, ['name', 'status', 'id']),
+        project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
         flags: state.discuss.filter(discuss =>
             state.tasks.find(taskSet =>
