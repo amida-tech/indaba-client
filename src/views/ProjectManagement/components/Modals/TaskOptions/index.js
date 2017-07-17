@@ -51,7 +51,7 @@ class TaskOptionsModal extends Component {
                                 this.props.task.id,
                             );
                         }
-                        if (values.notify) {
+                        if (values.notify === true) {
                             this.props.userActions.notifyUser(
                                 this.props.task.userId,
                                 values.message,

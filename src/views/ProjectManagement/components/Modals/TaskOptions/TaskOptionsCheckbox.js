@@ -6,7 +6,6 @@ class TaskOptionsCheckbox extends Component {
         return (
             <CheckBox
                 checked={!!this.props.input.value}
-                value={!!this.props.input.value}
                 onChange={this.props.input.onChange}
                 className='task-options-form__header'
                 label={this.props.label} />

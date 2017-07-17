@@ -10,7 +10,8 @@ import { renderName } from '../../../../../utils/User';
 class TaskOptionsForm extends Component {
     render() {
         return (
-                <form className='task-options-form__body' onSubmit={this.props.handleSubmit}>
+                <form className='task-options-form task-options-form__body'
+                    onSubmit={this.props.handleSubmit}>
                     <Field
                         name='choice'
                         component={TaskOptionsRadio}
@@ -20,17 +21,20 @@ class TaskOptionsForm extends Component {
                     <div className='task-options-form__header-paragraph'>
                         {this.props.vocab.FORCE_PARAGRAPH}
                     </div>
-                    <Field name='choice'
+                    <Field
+                        name='choice'
                         component={TaskOptionsRadio}
                         type='radio'
                         value='reassign'
                         label={this.props.vocab.REASSIGN} />
-                    <Field name='reassignUser'
+                    <Field
+                        name='reassignUser'
                         component={TaskOptionsSelect}
                         type='select'
                         currentUser={this.props.currentUser}
                         userOptions={this.props.userOptions}/>
-                    <Field name='choice'
+                    <Field
+                        name='choice'
                         component={TaskOptionsRadio}
                         type='radio'
                         value='skip'
@@ -40,7 +44,8 @@ class TaskOptionsForm extends Component {
                         {this.props.vocab.SKIP_PARAGRAPH}
                     </div>
                     <hr className='task-options-form__divider'/>
-                    <Field name='notify'
+                    <Field
+                        name='notify'
                         component={TaskOptionsCheckbox}
                         type='checkbox'
                         value='false'
@@ -49,7 +54,8 @@ class TaskOptionsForm extends Component {
                         { renderName(this.props.currentUser)
                             + this.props.vocab._WILL_BE_NOTIFIED }
                     </div>
-                    <Field name='message'
+                    <Field
+                        name='message'
                         className={'task-options-form__header-text-box' +
                             ' task-options-form__notify-user-warning-text-box'}
                         component='textarea' />
