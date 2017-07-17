@@ -34,6 +34,7 @@ class Subjects extends Component {
                 <SearchInput className='subjects__search-input'
                     onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                 <SubjectList
+                    vocab={this.props.vocab}
                     subjects={this.props.subjects}
                     query={this.state.query}
                     onDeleteClick={subject =>
