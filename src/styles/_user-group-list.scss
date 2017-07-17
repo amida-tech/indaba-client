@@ -6,11 +6,10 @@ $block-class:'user-group-list';
         flex-direction: column;
 
         &__header {
-            display: inline-flex;
-            width: 100%;
+            display: flex;
+            flex-direction: row;
             color: $font-color;
             padding: 1em;
-            padding: 30px;
             justify-content: space-between;
         }
 
@@ -21,10 +20,11 @@ $block-class:'user-group-list';
             &--action {
                 display: flex;
                 justify-content: flex-end;
+                flex: 1;
             }
 
             &--members {
-                margin-right: 200px;
+                //
             }
         }
     }

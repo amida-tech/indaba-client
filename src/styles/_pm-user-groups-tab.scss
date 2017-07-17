@@ -5,16 +5,17 @@ $block-class: 'pm-user-groups-tab';
         border: 2px solid $border-color;
         border-radius: 2px;
         justify-content: center;
-        padding: 1em;
 
-        &__search {
+        &__input {
             display: flex;
             flex: 1;
             width: 100%;
-            padding: 5px;
-            padding-left: 30px;
             background-color: #fff;
             border: 1px solid $border-color;
+
+            &--search {
+                color: red;
+            }
         }
     }
 }
