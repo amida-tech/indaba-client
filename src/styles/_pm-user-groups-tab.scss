@@ -2,7 +2,6 @@ $block-class: 'pm-user-groups-tab';
 
 @at-root {
     .#{$block-class} {
-        height: 100vh;
         border: 2px solid $border-color;
         border-radius: 2px;
         justify-content: center;
