@@ -10,7 +10,7 @@ import { renderName } from '../../../../../utils/User';
 class TaskOptionsForm extends Component {
     render() {
         return (
-                <form className='task-options-form task-options-form__body'
+                <form className='task-options-form'
                     onSubmit={this.props.handleSubmit}>
                     <Field
                         name='choice'
