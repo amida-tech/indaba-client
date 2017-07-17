@@ -6,16 +6,17 @@ $block-class: 'pm-user-groups-tab';
         border-radius: 2px;
         justify-content: center;
 
+        &__search-container {
+            padding: 1em;
+        }
+
         &__input {
             display: flex;
-            flex: 1;
+            padding: 5px 5px 5px 10px;
             width: 100%;
+            flex: 1;
             background-color: #fff;
             border: 1px solid $border-color;
-
-            &--search {
-                color: red;
-            }
         }
     }
 }
