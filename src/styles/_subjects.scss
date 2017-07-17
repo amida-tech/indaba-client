@@ -2,6 +2,15 @@ $block-class: 'subjects';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK WARNING SUPPRESSION
+        &__button-row {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em;
+            margin-right: 10px;
+
+            &--right {
+                border-radius: 2px;
+            }
+        }
     }
 }

@@ -2,6 +2,30 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK WARNING SUPPRESSION
+        border: 2px solid $border-color;
+
+        &__entry {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            padding: 1em;
+
+            &:nth-child(even) {
+                background-color: lighten(#d8d8d8, 10%);
+            }
+        }
+
+        &__header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1em;
+        }
+
+        &__header-title {
+            color: $font-color;
+            letter-spacing: 0.8px;
+        }
     }
 }

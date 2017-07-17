@@ -25,7 +25,7 @@ class Subjects extends Component {
                         onCancel={() => this.setState({ showAddSubjectModal: false })}
                         vocab={this.props.vocab}/>}
                 <div className='subjects__button-row'>
-                    <Button
+                    <Button className='subjects__button-row subjects__button-row--right'
                         label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         primary
                         onClick={() => this.setState({ showAddSubjectModal: true })}/>
