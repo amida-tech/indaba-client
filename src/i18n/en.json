@@ -65,6 +65,7 @@
     "SURVEY": "Survey",
     "TITLE": "Title",
     "SUBJECT": "Subject",
+    "SUBJECT_NAME": "Subject Name",
     "STATUS": "Status",
     "SUMMARY": "Summary",
     "FLAGS": "Flags",
