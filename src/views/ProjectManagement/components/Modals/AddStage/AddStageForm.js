@@ -7,25 +7,48 @@ import { Field, reduxForm, form } from 'redux-form';
 class AddStageForm extends Component {
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit}>
+            <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
                     {/* <input type='text' placeholder={this.props.vocab.PROJECT.STAGE_TITLE}*/}
                            {/* onChange={this.handleTitleChange}/>*/}
-                    <Field
-                        name='title'
-                        component='input'
-                        type='text'
-                        placeholder={this.props.vocab.PROJECT.STAGE_TITLE}
-                    />
-                    {/* <Select*/}
-                        {/* placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}*/}
-                        {/* name='user-group-select'*/}
-                        {/* value={this.state.userGroups}*/}
-                        {/* options={this.props.groups}*/}
-                        {/* clearable={true}*/}
-                        {/* multi*/}
-                        {/* onChange={this.handleSelectChange}*/}
-                    {/* />*/}
+                    <div className='add-stage-form_header'>
+                        <label> {this.props.vocab.PROJECT.STAGE_TITLE} </label>
+                        <div>
+                            <Field
+                                name='title'
+                                component='input'
+                                type='text'
+                                placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
+                        </div>
+                    </div>
+
+                    <div className='add-stage-form_header'>
+                        <label> {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} </label>
+                        <div>
+                            <Field
+                                name='user-groups'
+                                component='select'
+                                placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}>
+
+                                <option />
+                                <option value='researchers'> Researchers </option>
+                                <option value='managers'> Managers </option>
+                            </Field>
+                        </div>
+
+                    </div>
+
+
+
+                     {/* <Select*/}
+                         {/* placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}*/}
+                         {/* name='user-group-select'*/}
+                         {/* value={this.state.userGroups}*/}
+                         {/* options={this.props.groups}*/}
+                         {/* clearable={true}*/}
+                         {/* multi*/}
+                         {/* onChange={this.handleSelectChange}*/}
+                     {/* />*/}
                     {this.props.vocab.PROJECT.PERMISSIONS}
                     {/* <div className='container' onChange={this.handlePermissionsChange}>*/}
                         {/* {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>*/}
