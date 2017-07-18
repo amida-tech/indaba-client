@@ -12,8 +12,9 @@ import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
-import { addNewUser } from '../../../common/actions/userActions';
-import { assignTask } from '../../../common/actions/tasksActions';
+import * as discussActions from '../../../common/actions/discussActions';
+import { addNewUser, notifyUser } from '../../../common/actions/userActions';
+import { assignTask, reassignTask } from '../../../common/actions/tasksActions';
 import { setSurveyStatus } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
@@ -97,20 +98,25 @@ const mapStateToProps = (state, ownProps) => {
         survey: _.find(state.surveys, survey => survey.projectId === project.id),
         tab: state.manager.ui.subnav,
         users: state.user.users,
+        profile: state.user.profile,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
     projectActions: bindActionCreators(Object.assign({}, projectActions), dispatch),
+    discussActions: bindActionCreators(Object.assign({}, discussActions), dispatch),
     userActions: {
         onAddNewUser: user => dispatch(addNewUser(user)),
+        notifyUser: (userId, message, senderId) => dispatch(notifyUser(userId, message, senderId)),
     },
     surveyActions: {
         onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
     },
     taskActions: {
         assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),
+        reassignTask: (reassignId, taskId, projectId) =>
+            dispatch(reassignTask(reassignId, taskId, projectId)),
     },
 });
 

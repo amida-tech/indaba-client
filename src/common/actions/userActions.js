@@ -51,6 +51,15 @@ export function updateUser(userId, user) {
     };
 }
 
+export function notifyUser(userId, message, senderId) {
+    return {
+        type: actionTypes.NOTIFY_USER,
+        userId,
+        message,
+        senderId,
+    };
+}
+
 // private
 function _addNewUser() {
     return {

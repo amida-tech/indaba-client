@@ -9,3 +9,10 @@ export function updateFlaggedQuestion(taskId, projectId, activeId, data) {
         data,
     };
 }
+
+export function forceTaskCompletion(taskId) {
+    return {
+        type: actionTypes.FORCE_TASK_COMPLETION,
+        taskId,
+    };
+}

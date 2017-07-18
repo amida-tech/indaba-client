@@ -18,8 +18,11 @@ export function updateTaskDueDate(taskId, projectId, dueDate) {
     };
 }
 
-export function setTaskOptions() {
+export function reassignTask(reassignId, taskId, projectId) {
     return {
-        type: actionTypes.SET_TASK_OPTIONS,
+        type: actionTypes.REASSIGN_TASK,
+        reassignId,
+        taskId,
+        projectId,
     };
 }

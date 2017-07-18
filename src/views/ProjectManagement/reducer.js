@@ -12,10 +12,6 @@ export const initialState = {
         statusModalId: false,
         taskOptions: {
             show: false,
-            choice: null,
-            notify: true,
-            message: '',
-            reassignUser: null,
             task: {},
         },
         showAddStage: false,
@@ -49,22 +45,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             show: { $set: false },
             task: { $set: {} },
-        } } });
-    case type.UPDATE_TASK_OPTIONS_CHOICE:
-        return update(state, { ui: { taskOptions: {
-            choice: { $set: action.choice },
-        } } });
-    case type.UPDATE_TASK_OPTIONS_REASSIGN_USER:
-        return update(state, { ui: { taskOptions: {
-            reassignUser: { $set: action.reassignUser },
-        } } });
-    case type.UPDATE_TASK_OPTIONS_NOTIFY:
-        return update(state, { ui: { taskOptions: {
-            notify: { $set: action.notify },
-        } } });
-    case type.UPDATE_TASK_OPTIONS_MESSAGE:
-        return update(state, { ui: { taskOptions: {
-            message: { $set: action.message },
         } } });
     case type.SHOW_ADD_STAGE_MODAL:
         return update(state, { ui: { showAddStage: { $set: true } } });

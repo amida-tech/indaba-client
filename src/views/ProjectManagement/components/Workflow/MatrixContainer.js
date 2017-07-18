@@ -2,33 +2,28 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import TaskOptions from '../Modals/TaskOptions';
+import TaskOptionsModal from '../Modals/TaskOptions';
 import AssigneeContainer from './AssigneeContainer';
 import StageSummary from './StageSummary';
 import FilteredRow from './FilteredRow';
-import {
-    closeTaskOptionsModal,
-    updateTaskOptionsChoice,
-    updateTaskOptionsReassignUser,
-    updateTaskOptionsNotify,
-    updateTaskOptionsMessage,
-} from '../../actions';
-import { setTaskOptions } from '../../../../common/actions/tasksActions';
 
 class MatrixContainer extends Component {
     render() {
         return (
             <div className='matrix-container'>
                 {this.props.ui.taskOptions.show &&
-                    <TaskOptions
+                    <TaskOptionsModal
                         vocab={this.props.vocab.PROJECT.OPTIONS_MODAL}
-                        taskOptions={this.props.ui.taskOptions}
+                        task={this.props.ui.taskOptions.task}
                         users={this.props.users}
+                        profile={this.props.profile}
                         projectId={this.props.project.id}
-                        calls={this.props.calls} />}
+                        actions={this.props.actions}
+                        discussActions={this.props.discussActions}
+                        userActions={this.props.userActions}
+                        taskActions={this.props.taskActions} />}
                   <div className='matrix-container__task-matrix'>
                       <table className='table table-bordered workflow-table' key='MatrixContainer'>
                         <thead>
@@ -78,20 +73,7 @@ class MatrixContainer extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    calls: {
-        closeTaskOptionsModal: () => dispatch(closeTaskOptionsModal()),
-        updateTaskOptionsChoice: choice => dispatch(updateTaskOptionsChoice(choice)),
-        updateTaskOptionsReassignUser: reassignUser =>
-            dispatch(updateTaskOptionsReassignUser(reassignUser)),
-        updateTaskOptionsNotify: notify => dispatch(updateTaskOptionsNotify(notify)),
-        updateTaskOptionsMessage: message => dispatch(updateTaskOptionsMessage(message)),
-        setTaskOptions: () => dispatch(setTaskOptions()),
-    },
-});
-
 export default compose(
-    connect(null, mapDispatchToProps),
     withRouter,
     DragDropContext(HTML5Backend),
 )(MatrixContainer);

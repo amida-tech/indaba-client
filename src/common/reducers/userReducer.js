@@ -104,6 +104,8 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { $push: [action.user] } });
     case actionTypes.UPDATE_USER:
         return update(state, { users: { [userIndex]: { $merge: action.user } } });
+    case actionTypes.NOTIFY_USER:
+        return state;
     default:
         return state;
     }

@@ -14,6 +14,14 @@ class SubjectList extends Component {
     render() {
         return (
             <div className='subject-list'>
+                <div className='subject-list__header'>
+                    <div className='subject-list__header-title subject-list__header-title--name'>
+                        {this.props.vocab.PROJECT.SUBJECT_NAME}
+                    </div>
+                    <div className='subject-list__header-title subject-list__header-title--actions'>
+                        {this.props.vocab.COMMON.ACTIONS}
+                    </div>
+                </div>
                 {this.props.subjects.filter(this.filter).map(subject =>
                     <div className='subject-list__entry'
                         key={subject}>
