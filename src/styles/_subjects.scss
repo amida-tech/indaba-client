@@ -11,6 +11,10 @@ $block-class: 'subjects';
             &--right {
                 border-radius: 2px;
             }
+
+            &__list-table {
+                color: red;
+            }
         }
     }
 }

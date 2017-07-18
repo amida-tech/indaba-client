@@ -31,8 +31,8 @@ class Subjects extends Component {
                         onClick={() => this.setState({ showAddSubjectModal: true })}/>
                 </div>
                 <hr className='divider' />
-                <div className='subjects__list-table'>
-                    <SearchInput className='subjects__search-input'
+                <div className='subject-list__table'>
+                    <SearchInput className='subject-list__search-input'
                         onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                     <SubjectList
                         vocab={this.props.vocab}
