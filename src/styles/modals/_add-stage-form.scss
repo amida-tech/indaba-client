@@ -1,0 +1,52 @@
+$block-class:'add-stage-form';
+
+@at-root {
+    .#{$block-class} {
+        color: $header-font-color;
+        margin-right: 20px;
+        margin-left: 20px;
+
+        &__input-field {
+            border-radius: 0;
+            height: 35px;
+            width: 100%;
+        }
+
+        &__header {
+            padding-bottom: 10px;
+        }
+
+        &__radio-buttons {
+            margin-left: -20px;
+            margin-top: 10px;
+        }
+
+        &__text-description {
+            font-size: 16px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        &__start-date-input-div {
+            margin-left: 15px;
+        }
+
+        &__date-input-field {
+            border: 1px solid #dadcde;
+            height: 35px;
+            border-radius: 2px;
+        }
+
+        &__end-label-and-input {
+
+        }
+
+        &__divider {
+            @extend .divider;
+
+            margin-top: 30px;
+            margin-bottom: 20px;
+            margin-left: -10px;
+        }
+    }
+}

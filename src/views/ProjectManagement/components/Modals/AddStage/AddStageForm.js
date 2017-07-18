@@ -1,166 +1,83 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from 'grommet/components/DateTime';
-// import Select from 'react-select';
 import { Field, reduxForm, form } from 'redux-form';
+import AddStageSelect from './AddStageSelect';
 
 class AddStageForm extends Component {
     render() {
         return (
             <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
-                    {/* <input type='text' placeholder={this.props.vocab.PROJECT.STAGE_TITLE}*/}
-                           {/* onChange={this.handleTitleChange}/>*/}
-                    <div className='add-stage-form_header'>
+                    <div className='add-stage-form__header'>
                         <label> {this.props.vocab.PROJECT.STAGE_TITLE} </label>
                         <div>
                             <Field
                                 name='title'
                                 component='input'
                                 type='text'
+                                className='add-stage-form__input-field'
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
 
-                    <div className='add-stage-form_header'>
+                    <div className='add-stage-form__header'>
                         <label> {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} </label>
                         <div>
                             <Field
+                                className='add-stage-form__input-field'
                                 name='userGroups'
-                                component='select'
-                                placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}>
+                                groups={this.props.userGroups}
+                                component={AddStageSelect}
+                                placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
 
-                                <option />
-                                <option value='researchers'> Researchers </option>
-                                <option value='managers'> Managers </option>
-                            </Field>
                         </div>
                     </div>
 
-
-
-                    <div className='container' onChange={this.handlePermissionsChange}>
-                        {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
-                            <label className='radio-inline' key={index}>
-                                <input type='radio'
-                                       name='permissions'
-                                       value={index}
-                                       defaultChecked={!index} />
-                                <span>{permission}</span>
-                            </label>,
-                        )}
-                    </div>
-
-
-
-                    <div>
+                    <div className='add-stage-form__header'>
                         <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
-                        <div>
+                        <div className='add-stage-form__radio-buttons'>
                             {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
                                 <label className='radio-inline' key={index}>
                                     <Field
-                                        name="permissions"
-                                        component="input"
-                                        type="radio"
+                                        name='permissions'
+                                        component='input'
+                                        type='radio'
                                         value={index}
                                         defaultChecked={!index} />
-                                    <span>{permissions}</span>
-                                    {' '}
-                                    Complete Survey
-                                </label>
+                                    <span>{permission}</span>
+                                </label>,
                             )}
-                            <label>
-                                <Field
-                                    name="permissions"
-                                    component="input"
-                                    type="radio" />
-                                {' '}
-                                Review
-                            </label>
-                            <label>
-                                <Field
-                                    name="permissions"
-                                    component="input"
-                                    type="radio" />
-                                {' '}
-                                Review and Comment
-                            </label>
-                            <label>
-                                <Field
-                                    name="permissions"
-                                    component="input"
-                                    type="radio" />
-                                {' '}
-                                Review and Edit
-                            </label>
                         </div>
                     </div>
 
-                    <div className='add-stage-form__text-description'> Description goes here </div>
+                    <div className='add-stage-form__text-description'>
+                        {this.props.description}
+                    </div>
 
                     <hr className='add-stage-form__divider'/>
 
-                    <div className='add-stage-form_header'>
-                        <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
-                        <div>
-                            <Field
-                            name='startStage'
-                            component={DateTime}/>
+                     <div className='add-stage-form__header'>
+                         <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
+                            <div className='add-stage-form__start-label-and-input'>
+                                <span> {this.props.vocab.PROJECT.START_DATE}</span>
+                                <div className='add-stage-form__start-date-input-div'>
+                                     <Field
+                                         className='add-stage-form__date-input-field'
+                                         name='startStage'
+                                         component={DateTime}/>
+                                </div>
+                            </div>
 
-                            <Field
-                            name='endStage'
-                            component={DateTime}/>
-
-                        </div>
-                    </div>
-
-
-                    {/*<Select*/}
-                          {/*placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}*/}
-                          {/*name='user-group-select'*/}
-                          {/*value={this.state.userGroups}*/}
-                          {/*options={this.props.groups}*/}
-                          {/*clearable={true}*/}
-                          {/*multi*/}
-                          {/*onChange={this.handleSelectChange}*/}
-                    {/*/>*/}
-                    {this.props.vocab.PROJECT.PERMISSIONS}
-                     <div className='container' onChange={this.handlePermissionsChange}>
-                         {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
-                             <label className='radio-inline' key={index}>
-                                 <input type='radio'
-                                        name='permissions'
-                                        value={index}
-                                        defaultChecked={!index} />
-                                 <span>{permission}</span>
-                             </label>,
-                         )}
-                     </div>
-                     <div>
-                         {this.props.description}
-                     </div>
-                     {this.props.vocab.PROJECT.DATE_RANGE}
-                     <div className='container'>
-                         <div className='row'>
-                             <div className='col-md-6'>
-                                {this.props.vocab.PROJECT.START_DATE}</div>*/}
-                             <div className='col-md-6'>
-                                {this.props.vocab.PROJECT.END_DATE}</div>*/}
-                         </div>
-                         <div className='row'>
-                             <div className='col-md-6'>
-                                 <DateTime id='StartStage'
-                                           format='MM/DD/YYYY'
-                                           value={this.state.startStage}
-                                           onChange={this.handleStartStageChange}/>
-                             </div>
-                             <div className='col-md-6'>
-                                 <DateTime id='endStage'
-                                           format='MM/DD/YYYY'
-                                           value={this.state.endStage}
-                                           onChange={this.handleEndStageChange}/>
-                             </div>
-                         </div>
+                            <div className='add-stage-form__end-label-and-input'>
+                                <span> {this.props.vocab.PROJECT.END_DATE}</span>
+                                <div>
+                                    <Field
+                                        className='add-stage-form__date-input-field'
+                                        name='endStage'
+                                        component={DateTime}/>
+                                </div>
+                            </div>
                      </div>
                 </div>
             </form>
