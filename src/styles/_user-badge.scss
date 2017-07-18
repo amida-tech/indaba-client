@@ -4,6 +4,7 @@ $block-class: 'user-badge';
     .#{$block-class} {
         width: 2.2em;
         height: 2.2em;
+        margin-right: 2px;
         line-height: 2.2em;
         text-align: center;
         background-color: $header-font-color;

@@ -17,5 +17,10 @@ $block-class: 'users-tab';
         &__name {
             margin-left: 1em;
         }
+
+        &__btn {
+            display: flex;
+            justify-content: flex-end;
+        }
     }
 }

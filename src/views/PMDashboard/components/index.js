@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+import { FILTERS } from '../constants';
 import * as actions from '../actions';
 
 import SplitLayout from './SplitLayout';
@@ -14,6 +15,24 @@ import ProjectListHeader from './ProjectListHeader';
 import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
+    filterRow(row) {
+        switch (this.props.ui.filter) {
+        case FILTERS.ALL_FILTERS:
+            return true;
+        case FILTERS.ACTIVE_PROJECTS:
+            return row.project.status === 'Active';
+        case FILTERS.INACTIVE_PROJECTS:
+            return row.project.status === 'Inactive';
+        case FILTERS.PUBLISHED_SURVEYS:
+            return row.survey.status === 'Published';
+        case FILTERS.SURVEYS_IN_DRAFT_MODE:
+            return row.survey.status === 'Draft';
+        case FILTERS.SURVEYS_WITH_FLAGS:
+            return row.flags > 0;
+        default:
+            return true;
+        }
+    }
     render() {
         return (
             <div className='pm-dashboard'>
@@ -26,8 +45,9 @@ class PMDashboard extends Component {
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
                 <ProjectListHeader vocab={this.props.vocab} />
-                {this.props.rows.map(row =>
-                    <ProjectListEntry key={row.project.id} {...row} />)}
+                {this.props.rows.filter(this.filterRow.bind(this))
+                    .map(row => <ProjectListEntry key={row.project.id} {...row}
+                        vocab={this.props.vocab}/>)}
             </div>
         );
     }
@@ -42,7 +62,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     ui: state.pmdashboard.ui,
     rows: state.projects.map(project => ({
-        project: _.pick(project, ['name', 'status', 'id']),
+        project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
         flags: state.discuss.filter(discuss =>
             state.tasks.find(taskSet =>

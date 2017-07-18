@@ -2,6 +2,30 @@ $block-class:'user-group-list';
 
 @at-root {
     .#{$block-class} {
-        // More to come.
+        display: flex;
+        flex-direction: column;
+
+        &__header {
+            display: flex;
+            flex-direction: row;
+            color: $font-color;
+            padding: 1em;
+            justify-content: space-between;
+        }
+
+        &__header-section {
+            display: flex;
+            flex: 1;
+
+            &--action {
+                display: flex;
+                justify-content: flex-end;
+                flex: 1;
+            }
+
+            &--members {
+                //
+            }
+        }
     }
 }
