@@ -5,12 +5,10 @@ class AddStageSelect extends Component {
     render() {
         return (
             <Select
-                name=''
-                value={this.props.userGroups}
-                options={this.props.grouos}
+                {...this.props.input}
+                options={this.props.groups}
                 clearable={true}
-                multi
-                onChange={event => this.props.input.onChange(event.value)} />
+                multi />
         );
     }
 }

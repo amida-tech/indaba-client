@@ -27,13 +27,12 @@ class AddStageForm extends Component {
                             <Field
                                 className='add-stage-form__input-field'
                                 name='userGroups'
-                                groups={this.props.userGroups}
+                                groups={this.props.groups}
                                 component={AddStageSelect}
                                 placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
 
                         </div>
                     </div>
-
                     <div className='add-stage-form__header'>
                         <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
                         <div className='add-stage-form__radio-buttons'>
@@ -43,8 +42,7 @@ class AddStageForm extends Component {
                                         name='permissions'
                                         component='input'
                                         type='radio'
-                                        value={index}
-                                        defaultChecked={!index} />
+                                        value={index} />
                                     <span>{permission}</span>
                                 </label>,
                             )}
