@@ -37,17 +37,38 @@ class AddStageForm extends Component {
                         </div>
                     </div>
 
+
+
+                    <div className='container' onChange={this.handlePermissionsChange}>
+                        {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
+                            <label className='radio-inline' key={index}>
+                                <input type='radio'
+                                       name='permissions'
+                                       value={index}
+                                       defaultChecked={!index} />
+                                <span>{permission}</span>
+                            </label>,
+                        )}
+                    </div>
+
+
+
                     <div>
                         <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
                         <div>
-                            <label>
-                                <Field
-                                    name="permissions"
-                                    component="input"
-                                    type="radio" />
-                                {' '}
-                                Complete Survey
-                            </label>
+                            {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
+                                <label className='radio-inline' key={index}>
+                                    <Field
+                                        name="permissions"
+                                        component="input"
+                                        type="radio"
+                                        value={index}
+                                        defaultChecked={!index} />
+                                    <span>{permissions}</span>
+                                    {' '}
+                                    Complete Survey
+                                </label>
+                            )}
                             <label>
                                 <Field
                                     name="permissions"
@@ -94,15 +115,15 @@ class AddStageForm extends Component {
                     </div>
 
 
-                    <Select
-                          placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
-                          name='user-group-select'
-                          value={this.state.userGroups}
-                          options={this.props.groups}
-                          clearable={true}
-                          multi
-                          onChange={this.handleSelectChange}
-                    />
+                    {/*<Select*/}
+                          {/*placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}*/}
+                          {/*name='user-group-select'*/}
+                          {/*value={this.state.userGroups}*/}
+                          {/*options={this.props.groups}*/}
+                          {/*clearable={true}*/}
+                          {/*multi*/}
+                          {/*onChange={this.handleSelectChange}*/}
+                    {/*/>*/}
                     {this.props.vocab.PROJECT.PERMISSIONS}
                      <div className='container' onChange={this.handlePermissionsChange}>
                          {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
