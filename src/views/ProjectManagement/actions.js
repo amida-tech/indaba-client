@@ -57,34 +57,6 @@ export function closeTaskOptionsModal() {
     };
 }
 
-export function updateTaskOptionsChoice(choice) {
-    return {
-        type: actionTypes.UPDATE_TASK_OPTIONS_CHOICE,
-        choice,
-    };
-}
-
-export function updateTaskOptionsReassignUser(reassignUser) {
-    return {
-        type: actionTypes.UPDATE_TASK_OPTIONS_REASSIGN_USER,
-        reassignUser,
-    };
-}
-
-export function updateTaskOptionsNotify(notify) {
-    return {
-        type: actionTypes.UPDATE_TASK_OPTIONS_NOTIFY,
-        notify,
-    };
-}
-
-export function updateTaskOptionsMessage(message) {
-    return {
-        type: actionTypes.UPDATE_TASK_OPTIONS_MESSAGE,
-        message,
-    };
-}
-
 // Add Stage Modal:
 export function showAddStageModal() {
     return {

@@ -1,14 +1,11 @@
-$block-class:'task-options';
+$block-class:'task-options-form';
 
 @at-root {
     .#{$block-class} {
         width: 700px;
-
-        &__body {
-            margin-bottom: 40px;
-            margin-left: 50px;
-            margin-right: 50px;
-        }
+        margin-bottom: 40px;
+        margin-left: 50px;
+        margin-right: 50px;
 
         &__header {
             margin-top: 40px;

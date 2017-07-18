@@ -1,0 +1,72 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, form, reduxForm } from 'redux-form';
+
+import TaskOptionsRadio from './TaskOptionsRadio';
+import TaskOptionsSelect from './TaskOptionsSelect';
+import TaskOptionsCheckbox from './TaskOptionsCheckbox';
+import { renderName } from '../../../../../utils/User';
+
+class TaskOptionsForm extends Component {
+    render() {
+        return (
+                <form className='task-options-form'
+                    onSubmit={this.props.handleSubmit}>
+                    <Field
+                        name='choice'
+                        component={TaskOptionsRadio}
+                        type='radio'
+                        value='force'
+                        label={this.props.vocab.FORCE} />
+                    <div className='task-options-form__header-paragraph'>
+                        {this.props.vocab.FORCE_PARAGRAPH}
+                    </div>
+                    <Field
+                        name='choice'
+                        component={TaskOptionsRadio}
+                        type='radio'
+                        value='reassign'
+                        label={this.props.vocab.REASSIGN} />
+                    <Field
+                        name='reassignUser'
+                        component={TaskOptionsSelect}
+                        type='select'
+                        currentUser={this.props.currentUser}
+                        userOptions={this.props.userOptions}/>
+                    <Field
+                        name='choice'
+                        component={TaskOptionsRadio}
+                        type='radio'
+                        value='skip'
+                        disabled={true}
+                        label={this.props.vocab.SKIP} />
+                    <div className='task-options-form__header-paragraph'>
+                        {this.props.vocab.SKIP_PARAGRAPH}
+                    </div>
+                    <hr className='task-options-form__divider'/>
+                    <Field
+                        name='notify'
+                        component={TaskOptionsCheckbox}
+                        type='checkbox'
+                        value='false'
+                        label={this.props.vocab.NOTIFY} />
+                    <div className='task-options__notify-user-warning'>
+                        { renderName(this.props.currentUser)
+                            + this.props.vocab._WILL_BE_NOTIFIED }
+                    </div>
+                    <Field
+                        name='message'
+                        className={'task-options-form__header-text-box' +
+                            ' task-options-form__notify-user-warning-text-box'}
+                        component='textarea' />
+                </form>
+        );
+    }
+}
+TaskOptionsForm.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    projectId: PropTypes.number.isRequired,
+    users: PropTypes.array.isRequired,
+};
+
+export default reduxForm({ form: 'task-options-form' })(TaskOptionsForm);
