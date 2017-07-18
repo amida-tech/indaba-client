@@ -7,6 +7,7 @@ import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionT
 const initialState = [{
     id: 101,
     name: 'Home Business Study',
+    lastUpdated: '2017-06-10T16:28:13.877Z',
     status: 'Active',
     users: [13, 71, 41, 25, 22, 31],
     stages: [{
@@ -65,15 +66,18 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.ADD_SUBJECT:
         return update(state, { [projectIndex]: {
             subjects: { $push: [action.subject] },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.DELETE_SUBJECT:
         return update(state, { [projectIndex]: {
             subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.ADD_STAGE:
         return update(state, { [projectIndex]: {
             stages: { $push: [update(action.stage, { $merge: {
                 id: state[projectIndex].stages.length } })] },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.DELETE_USER_GROUP:
         return update(state, { [projectIndex]: {
@@ -94,12 +98,14 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.ADD_USER:
         return update(state, { [projectIndex]: {
             users: { $push: [action.userId] },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     case type.REMOVE_USER:
         return update(state, { [projectIndex]: {
             users: { $apply: users => users.filter(userId => userId !== action.userId) },
             userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
+            lastUpdated: { $set: new Date().toISOString() },
         } });
     default:
         return state;
