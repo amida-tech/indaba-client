@@ -2,6 +2,21 @@ $block-class: 'pm-user-groups-tab';
 
 @at-root {
     .#{$block-class} {
-        // More coming soon.
+        border: 2px solid $border-color;
+        border-radius: 2px;
+        justify-content: center;
+
+        &__search-container {
+            padding: 1em;
+        }
+
+        &__input {
+            display: flex;
+            padding: 5px 5px 5px 10px;
+            width: 100%;
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid $border-color;
+        }
     }
 }

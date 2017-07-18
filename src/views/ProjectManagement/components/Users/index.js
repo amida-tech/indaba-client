@@ -44,7 +44,6 @@ class Users extends Component {
                         onAddUserToProject={this.props.onAddUserToProject}
                         projectId={this.props.project.id}/>
                 }
-
                 <div className='users__action-btn'>
                     <Button className='users__action-btn--left'
                         label={this.props.vocab.PROJECT.ADD_USER}
