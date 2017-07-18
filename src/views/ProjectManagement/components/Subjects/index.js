@@ -31,14 +31,16 @@ class Subjects extends Component {
                         onClick={() => this.setState({ showAddSubjectModal: true })}/>
                 </div>
                 <hr className='divider' />
-                <SearchInput className='subjects__search-input'
-                    onDOMChange={evt => this.setState({ query: evt.target.value })}/>
-                <SubjectList
-                    vocab={this.props.vocab}
-                    subjects={this.props.subjects}
-                    query={this.state.query}
-                    onDeleteClick={subject =>
-                        this.props.onDeleteSubject(subject, this.props.projectId)}/>
+                <div className='subjects__list-table'>
+                    <SearchInput className='subjects__search-input'
+                        onDOMChange={evt => this.setState({ query: evt.target.value })}/>
+                    <SubjectList
+                        vocab={this.props.vocab}
+                        subjects={this.props.subjects}
+                        query={this.state.query}
+                        onDeleteClick={subject =>
+                            this.props.onDeleteSubject(subject, this.props.projectId)}/>
+                </div>
             </div>);
     }
 }
