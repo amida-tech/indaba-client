@@ -5,3 +5,4 @@ export const SET_USER_TITLE = 'SET_USER_TITLE';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const ADD_NEW_USER_SUCCESS = 'ADD_NEW_USER_SUCCESS';
 export const UPDATE_USER = 'UPDATE_USER';
+export const NOTIFY_USER = 'NOTIFY_USER';

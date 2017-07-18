@@ -11,9 +11,11 @@ class PMUserGroupsTab extends Component {
     render() {
         return (
             <div className='pm-user-groups-tab'>
-                <input type='text' className='pm-user-groups-tab__search'
-                    onChange={evt => this.props.onSearch(evt.target.value)}
-                    placeholder={this.props.vocab.COMMON.SEARCH}/>
+                <div className='pm-user-groups-tab__search-container'>
+                    <input type='text' className='pm-user-groups-tab__input'
+                        onChange={evt => this.props.onSearch(evt.target.value)}
+                        placeholder={this.props.vocab.COMMON.SEARCH} />
+                </div>
                 <UserGroupList columnHeaders={true}
                     groups={this.props.project.userGroups
                         .filter(group => this.filterGroup(group, this.props.query))}
