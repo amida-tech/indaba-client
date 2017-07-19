@@ -7,3 +7,11 @@ export function setSurveyStatus(status, projectId) {
         projectId,
     };
 }
+
+export function setSurveyName(name, projectId) {
+    return {
+        type: actionTypes.SET_SURVEY_NAME,
+        name,
+        projectId,
+    };
+}
