@@ -27,7 +27,7 @@ $block-class:'add-stage-form';
             margin-top: 10px;
         }
 
-        &__start-date-input-div {
+        &__date-input-div {
             margin-left: 15px;
         }
 
@@ -38,8 +38,20 @@ $block-class:'add-stage-form';
             width: 300px;
         }
 
-        &__end-label-and-input {
+        &__start-label-and-input {
+            float: left;
+        }
 
+        &__end-label-and-input {
+            float: left;
+        }
+
+        &__date-inputs-container {
+            margin-bottom: 30px;
+        }
+
+        &__clear {
+            clear: both;
         }
 
         &__divider {

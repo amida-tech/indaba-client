@@ -1,8 +1,11 @@
+import CalendarIcon from 'grommet/components/icons/base/Calendar';
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from 'grommet/components/DateTime';
 import { Field, reduxForm, form } from 'redux-form';
 import AddStageSelect from './AddStageSelect';
+
 
 class AddStageForm extends Component {
     render() {
@@ -53,24 +56,33 @@ class AddStageForm extends Component {
                     <hr className='add-stage-form__divider'/>
                     <div className='add-stage-form__header'>
                         <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
+                    </div>
+                    <div className='add-stage-form__header add-stage-form__date-inputs-container'>
                             <div className='add-stage-form__start-label-and-input'>
                                 <span> {this.props.vocab.PROJECT.START_DATE}</span>
-                                <div className='add-stage-form__start-date-input-div'>
+                                <div className='add-stage-form__date-input-div'>
                                     <Field
                                       className='add-stage-form__date-input-field'
+                                      id='StartStage'
                                       name='startStage'
-                                      component={DateTime} />
+                                      component={DateTime}
+                                      value={this.props.endStage} />
+                                    <CalendarIcon />
                                 </div>
                             </div>
                             <div className='add-stage-form__end-label-and-input'>
                                 <span> {this.props.vocab.PROJECT.END_DATE}</span>
-                                <div>
+                                <div className='add-stage-form__date-input-div'>
                                     <Field
                                      className='add-stage-form__date-input-field'
+                                     id='endStage'
                                      name='endStage'
-                                     component={DateTime} />
+                                     component={DateTime}
+                                     value={this.props.endStage} />
+                                    <CalendarIcon />
                                 </div>
                             </div>
+                            <div className='add-stage-form__clear'></div>
                     </div>
                 </div>
             </form>
