@@ -7,6 +7,10 @@ import _ from 'lodash';
 import { FILTERS } from '../constants';
 import * as actions from '../actions';
 
+import { setProjectName } from '../../../common/actions/projectActions';
+import { setSurveyName } from '../../../common/actions/surveysActions';
+
+import NameChangeModal from './NameChangeModal';
 import SplitLayout from './SplitLayout';
 import MessageList from './MessageList';
 import ProjectGlance from './ProjectGlance';
@@ -36,6 +40,13 @@ class PMDashboard extends Component {
     render() {
         return (
             <div className='pm-dashboard'>
+                {
+                    this.props.ui.nameChangeModal &&
+                    <NameChangeModal
+                        {...this.props.ui.nameChangeModal}
+                        vocab={this.props.vocab}
+                        onOk={ () => this.props.actions.showNameChange(false) }/>
+                }
                 <SplitLayout>
                     <MessageList />
                     <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
@@ -47,7 +58,30 @@ class PMDashboard extends Component {
                 <ProjectListHeader vocab={this.props.vocab} />
                 {this.props.rows.filter(this.filterRow.bind(this))
                     .map(row => <ProjectListEntry key={row.project.id} {...row}
-                        vocab={this.props.vocab}/>)}
+                        vocab={this.props.vocab}
+                        onProjectNameChange={this.props.actions.setProjectName}
+                        onProjectNameBlur={
+                            (name) => {
+                                this.props.onSetProjectName(name, row.project.id);
+                                this.props.actions.showNameChange({
+                                    title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
+                                    label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
+                                    name,
+                                });
+                            }
+                        }
+                        onSurveyNameChange={this.props.actions.setSurveyName}
+                        onSurveyNameBlur={
+                            (name) => {
+                                this.props.onSetSurveyName(name, row.project.id);
+                                this.props.actions.showNameChange({
+                                    title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
+                                    label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
+                                    name,
+                                });
+                            }
+                        }
+                        />)}
             </div>
         );
     }
@@ -79,6 +113,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    onSetProjectName: (name, projectId) => dispatch(setProjectName(name, projectId)),
+    onSetSurveyName: (name, projectId) => dispatch(setSurveyName(name, projectId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMDashboard);
