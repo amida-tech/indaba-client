@@ -5,13 +5,21 @@ $block-class: 'project-list-controls';
         padding: 2em;
         display: flex;
         flex-direction: column;
-        width: 100%;
-        align-items: center;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
 
         &__search {
-            padding-left: 6em;
-            padding-right: 6em;
-            width: 100%;
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 90%;
+        }
+
+        &__filter {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            justify-content: center;
         }
     }
 }

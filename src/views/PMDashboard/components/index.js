@@ -44,10 +44,12 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <ProjectListHeader vocab={this.props.vocab} />
-                {this.props.rows.filter(this.filterRow.bind(this))
-                    .map(row => <ProjectListEntry key={row.project.id} {...row}
-                        vocab={this.props.vocab}/>)}
+                    <div className='pm-dashboard__table'>
+                        <ProjectListHeader vocab={this.props.vocab} />
+                        {this.props.rows.filter(this.filterRow.bind(this))
+                            .map(row => <ProjectListEntry key={row.project.id} {...row}
+                                vocab={this.props.vocab}/>)}
+                    </div>
             </div>
         );
     }

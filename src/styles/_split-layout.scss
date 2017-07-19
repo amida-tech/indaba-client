@@ -6,6 +6,9 @@ $block-class: 'split-layout';
         border-width: 1px 1px 1px 0;
         border-color: $border-color;
         border-style: solid;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
 
         &__child {
             flex: 1;
