@@ -26,18 +26,24 @@ class Modal extends Component {
                     <div className='layer-body-container'>
                         {this.props.children}
                     </div>
-                    {(this.props.onCancel || this.props.onSave) &&
-                        <div className='layer-footer'>
-                            <div className='layer-footer-button-wrapper'>
+                    <div className='layer-footer'>
+                        <div className='layer-footer-button-wrapper'>
+                            {this.props.onCancel &&
                                 <LayerFooterButton
                                     label={vocab.COMMON.CANCEL}
                                     onClick={this.props.onCancel}/>
+                            }
+                            {this.props.onSave &&
                                 <LayerFooterButton
                                     label={vocab.COMMON.SAVE}
                                     primary={true}
                                     onClick={this.props.onSave}/>
-                            </div>
-                    </div>}
+                            }
+                            {(this.props.buttons || []).map(button =>
+                                <LayerFooterButton {...button} />,
+                            )}
+                        </div>
+                    </div>
                 </div>
             </Layer>
         );
@@ -49,6 +55,11 @@ Modal.propTypes = {
     onSave: PropTypes.func,
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
+    buttons: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        primary: PropTypes.bool,
+        onClick: PropTypes.func.isRequired,
+    })),
 };
 
 const mapStateToProps = state => ({
