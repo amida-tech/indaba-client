@@ -1,9 +1,8 @@
-import CalendarIcon from 'grommet/components/icons/base/Calendar';
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DateTime from 'grommet/components/DateTime';
 import { Field, reduxForm, form } from 'redux-form';
+
+import AddStageDateTime from './AddStageDateTime';
 import AddStageSelect from './AddStageSelect';
 
 
@@ -65,9 +64,7 @@ class AddStageForm extends Component {
                                       className='add-stage-form__date-input-field'
                                       id='StartStage'
                                       name='startStage'
-                                      component={DateTime}
-                                      value={this.props.endStage} />
-                                    <CalendarIcon />
+                                      component={AddStageDateTime} />
                                 </div>
                             </div>
                             <div className='add-stage-form__end-label-and-input'>
@@ -77,9 +74,7 @@ class AddStageForm extends Component {
                                      className='add-stage-form__date-input-field'
                                      id='endStage'
                                      name='endStage'
-                                     component={DateTime}
-                                     value={this.props.endStage} />
-                                    <CalendarIcon />
+                                     component={AddStageDateTime} />
                                 </div>
                             </div>
                             <div className='add-stage-form__clear'></div>
@@ -95,4 +90,3 @@ AddStageForm.propTypes = {
 };
 
 export default reduxForm({ form: 'add-stage-form' })(AddStageForm);
-
