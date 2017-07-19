@@ -1,0 +1,34 @@
+$block-class:'login-form';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em 2em;
+
+        &__title {
+            font-size: 20px;
+            padding-bottom: 1em;
+        }
+
+        &__field {
+            padding-bottom: .25em;
+            width: 30em;
+        }
+
+        &__input {
+            width: 100%;
+            border: 1px solid $border-color;
+            padding: .5em 1em;
+        }
+
+        &__sign-in-button {
+            padding-top: 1em;
+        }
+
+        &__links {
+
+        }
+    }
+}

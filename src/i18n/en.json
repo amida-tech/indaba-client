@@ -1,8 +1,10 @@
 {
   "COMMON": {
+    "WELCOME": "Welcome To Indaba",
     "HOME": "Home",
     "SIGN_IN": "Sign In",
     "EMAIL": "Email",
+    "PASSWORD": "Password",
     "USERNAME": "Username",
     "NAME": "Name",
     "FIRST_NAME": "First Name",
