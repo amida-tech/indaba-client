@@ -30,7 +30,7 @@ class AddStageForm extends Component {
                                 name='userGroups'
                                 groups={this.props.groups}
                                 component={AddStageSelect}
-                                placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
+                                assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
 
                         </div>
                     </div>
@@ -61,7 +61,6 @@ class AddStageForm extends Component {
                                 <span> {this.props.vocab.PROJECT.START_DATE}</span>
                                 <div className='add-stage-form__date-input-div'>
                                     <Field
-                                      className='add-stage-form__date-input-field'
                                       id='StartStage'
                                       name='startStage'
                                       component={AddStageDateTime} />
@@ -71,7 +70,6 @@ class AddStageForm extends Component {
                                 <span> {this.props.vocab.PROJECT.END_DATE}</span>
                                 <div className='add-stage-form__date-input-div'>
                                     <Field
-                                     className='add-stage-form__date-input-field'
                                      id='endStage'
                                      name='endStage'
                                      component={AddStageDateTime} />

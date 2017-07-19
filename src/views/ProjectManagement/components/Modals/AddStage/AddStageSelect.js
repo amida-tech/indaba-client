@@ -6,7 +6,9 @@ class AddStageSelect extends Component {
         return (
             <Select
                 {...this.props.input}
+
                 options={this.props.groups}
+                placeholder={this.props.assignGroups}
                 clearable={true}
                 multi />
         );

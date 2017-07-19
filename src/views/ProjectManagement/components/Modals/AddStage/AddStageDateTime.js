@@ -7,7 +7,7 @@ class AddStageDateTime extends Component {
             <DateTime
                 {...this.props.input}
                 format='MM/DD/YYYY'
-                className='add-stage__date-time' />
+                className='add-stage-date-time' />
         );
     }
 }
