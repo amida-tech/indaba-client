@@ -66,11 +66,7 @@ class AddStageModal extends Component {
                 <AddStageForm vocab={this.props.vocab}
                               groups={groups}
                               description={description}
-                              initialValues={initialValues}
-
-
-                />
-
+                              initialValues={initialValues} />
             </Modal>
         );
     }

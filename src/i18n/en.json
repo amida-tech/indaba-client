@@ -86,17 +86,16 @@
     "DISAGREE": "Disagree (Comment Required)",
     "COMMENT_TIP": "Enter your comment here",
     "PERM_ARRAY": [
-        "Read Only",
-        "Provide Responses",
-        "Read and Write",
-        "Edit",
-        "All Permissions"
+        "Complete Survey",
+        "Review",
+        "Review and Comment",
+        "Review and Edit"
     ],
     "DESC_ARRAY": [
-        "Read only description",
-        "Provide responses description",
-        "Read and write description",
-        "Edit description",
+        "Complete Survey description",
+        "Review description",
+        "Review and comment description",
+        "Review and Edit description",
         "All permissions description"
       ],
     "BACK_TO_WORKFLOW": "Back to Workflow",
