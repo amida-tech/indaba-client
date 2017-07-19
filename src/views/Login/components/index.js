@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
-import LoginForm from './LoginForm';
+import LoginPanel from './LoginPanel';
 
 class LoginContainer extends Component {
     render() {
         return (
-            <LoginForm
+            <LoginPanel
                 vocab={this.props.vocab} />
         );
     }

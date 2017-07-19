@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, form, reduxForm } from 'redux-form';
+import { Button } from 'grommet';
 
 class LoginForm extends Component {
     render() {
         return (
             <form className='login-form'>
-                <div className='login-form__title'>
-                    {this.props.vocab.COMMON.WELCOME}
-                </div>
                 <div className='login-form__field'>
                     <Field name='email'
                         component={email =>
