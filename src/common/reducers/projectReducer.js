@@ -109,6 +109,10 @@ export const ProjectReducer = (state = initialState, action) => {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
             lastUpdated: { $set: new Date().toISOString() },
         } });
+    case type.SET_PROJECT_NAME:
+        return update(state, { [projectIndex]: {
+            name: { $set: action.name },
+        } });
     default:
         return state;
     }

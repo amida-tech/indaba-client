@@ -25,7 +25,8 @@
     "ANY": "Any",
     "ACCOUNT": "Account",
     "PREFERENCE": "Preference",
-    "PENDING": "Pending"
+    "PENDING": "Pending",
+    "OK": "OK"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -160,7 +161,11 @@
     "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
     "NOT_ACCEPTED": "The user has not accepted this invitation",
-    "LAST_UPDATED": "Last Updated"
+    "LAST_UPDATED": "Last Updated",
+    "PROJECT_NAME_CHANGED": "Project Name Changed",
+    "NEW_PROJECT_NAME": "New Project Name",
+    "SURVEY_NAME_CHANGED": "Survey Name Changed",
+    "NEW_SURVEY_NAME": "New Survey Name"
   },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",

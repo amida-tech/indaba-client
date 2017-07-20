@@ -86,3 +86,11 @@ export function removeUser(userId, projectId) {
         projectId,
     };
 }
+
+export function setProjectName(name, projectId) {
+    return {
+        type: actionTypes.SET_PROJECT_NAME,
+        name,
+        projectId,
+    };
+}
