@@ -3,8 +3,9 @@ $block-class: 'editable-text-input';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: row;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: stretch;
+        position: relative;
 
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
@@ -15,8 +16,8 @@ $block-class: 'editable-text-input';
         }
 
         &__icon {
-            position: relative;
-            left: -1.5em;
+            position: absolute;
+            right: 0;
             fill: $header-font-color;
             width: 1.5em;
         }
