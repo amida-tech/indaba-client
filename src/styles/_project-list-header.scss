@@ -4,11 +4,7 @@ $block-class: 'project-list-header';
     .#{$block-class} {
         display: flex;
         text-transform: uppercase;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
-        //padding: 0.5em 3em;
-        border-top: 1px solid $border-color;
+        width: 100%;
 
         &__title {
             color: $header-font-color;

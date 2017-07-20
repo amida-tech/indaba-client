@@ -4,9 +4,6 @@ $block-class: 'project-list-entry';
     .#{$block-class} {
         display: flex;
         align-items: center;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
 
         &:nth-child(even) {
             background-color: #fff;
