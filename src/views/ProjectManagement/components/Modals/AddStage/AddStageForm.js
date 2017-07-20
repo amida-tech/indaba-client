@@ -32,7 +32,6 @@ class AddStageForm extends Component {
                                 groups={this.props.groups}
                                 component={AddStageSelect}
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
-
                         </div>
                     </div>
                     <div className='add-stage-form__header'>
@@ -58,25 +57,25 @@ class AddStageForm extends Component {
                         <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
                     </div>
                     <div className='add-stage-form__header add-stage-form__date-inputs-container'>
-                            <div className='add-stage-form__start-label-and-input'>
-                                <span> {this.props.vocab.PROJECT.START_DATE}</span>
-                                <div className='add-stage-form__date-input-div'>
-                                    <Field
-                                      id='StartStage'
-                                      name='startStage'
-                                      component={AddStageDateTime} />
-                                </div>
+                        <div className='add-stage-form__start-label-and-input'>
+                            <span> {this.props.vocab.PROJECT.START_DATE}</span>
+                            <div className='add-stage-form__date-input-div'>
+                                <Field
+                                  id='StartStage'
+                                  name='startStage'
+                                  component={AddStageDateTime} />
                             </div>
-                            <div className='add-stage-form__end-label-and-input'>
-                                <span> {this.props.vocab.PROJECT.END_DATE}</span>
-                                <div className='add-stage-form__date-input-div'>
-                                    <Field
-                                     id='endStage'
-                                     name='endStage'
-                                     component={AddStageDateTime} />
-                                </div>
+                        </div>
+                        <div className='add-stage-form__end-label-and-input'>
+                            <span> {this.props.vocab.PROJECT.END_DATE}</span>
+                            <div className='add-stage-form__date-input-div'>
+                                <Field
+                                 id='endStage'
+                                 name='endStage'
+                                 component={AddStageDateTime} />
                             </div>
-                            <div className='add-stage-form__clear'></div>
+                        </div>
+                        <div className='add-stage-form__clear'></div>
                     </div>
                 </div>
             </form>
@@ -86,6 +85,7 @@ class AddStageForm extends Component {
 
 AddStageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
+    permissions: PropTypes.string,
 };
 
 const selector = formValueSelector('add-stage-form');
