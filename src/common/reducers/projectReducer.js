@@ -64,7 +64,9 @@ export const ProjectReducer = (state = initialState, action) => {
             status: { $set: action.status },
         } });
     case type.ADD_SUBJECT:
-        return update(state, { [projectIndex]: {
+        return state[projectIndex].subjects.includes(action.subject) ?
+        state :
+        update(state, { [projectIndex]: {
             subjects: { $push: [action.subject] },
             lastUpdated: { $set: new Date().toISOString() },
         } });
