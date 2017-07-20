@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
+import { withRouter } from 'react-router';
+import { submit } from 'redux-form';
 
 import * as actions from '../actions';
 import LoginPanel from './LoginPanel';
@@ -10,7 +12,7 @@ class LoginContainer extends Component {
     render() {
         return (
             <LoginPanel
-                vocab={this.props.vocab} />
+                {...this.props} />
         );
     }
 }
@@ -27,6 +29,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    onClickToSubmit: () => dispatch(submit('task-options-form')),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps),
+)(LoginContainer);

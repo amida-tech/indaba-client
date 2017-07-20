@@ -5,6 +5,7 @@ import { Button } from 'grommet';
 
 class LoginForm extends Component {
     render() {
+        console.log(this.props);
         return (
             <form className='login-form'>
                 <div className='login-form__field'>
@@ -13,7 +14,7 @@ class LoginForm extends Component {
                             <div className='login-form__field'>
                                 <input type='email'
                                     className='login-form__input'
-                                    {...email}
+                                    {...email.input}
                                     placeholder={this.props.vocab.COMMON.EMAIL} />
                                     {email.touched && email.error
                                         && <span>{email.error}</span>}
@@ -26,7 +27,7 @@ class LoginForm extends Component {
                             <div className='login-form__field'>
                                 <input type='password'
                                     className='login-form__input'
-                                    {...password}
+                                    {...password.input}
                                     placeholder={this.props.vocab.COMMON.PASSWORD} />
                                     {password.touched && password.error
                                         && <span>{password.error}</span>}
@@ -35,7 +36,8 @@ class LoginForm extends Component {
                 </div>
                 <Button className='login-form__sign-in-button'
                     primary
-                    label={this.props.vocab.COMMON.SIGN_IN} />
+                    label={this.props.vocab.COMMON.SIGN_IN}
+                    onClick={this.props.onClickToSubmit} />
             </form>
         );
     }

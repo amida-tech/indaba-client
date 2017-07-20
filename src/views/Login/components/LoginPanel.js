@@ -11,7 +11,13 @@ class LoginPanel extends Component {
                     {this.props.vocab.COMMON.WELCOME}
                 </div>
                 <LoginForm
-                    vocab={this.props.vocab} />
+                    vocab={this.props.vocab}
+                    onClickToSubmit={this.props.onClickToSubmit}
+                    onSubmit={(values) => {
+                        console.log('FORM SUBMIT');
+                        console.log(values);
+                        this.props.actions.login(values.username, values.password);
+                    }}/>
                 <div className='login-panel__link'>
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
