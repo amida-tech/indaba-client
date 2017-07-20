@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, form } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { Field, reduxForm, form, formValueSelector } from 'redux-form';
 
 import AddStageDateTime from './AddStageDateTime';
 import AddStageSelect from './AddStageSelect';
-
 
 class AddStageForm extends Component {
     render() {
@@ -43,14 +44,14 @@ class AddStageForm extends Component {
                                        name='permissions'
                                        component='input'
                                        type='radio'
-                                       value={this.props.vocab.PROJECT.PERM_ARRAY[index]} />
+                                       value={`${index}`} />
                                    <span>{permission}</span>
                                </label>,
                            )}
                        </div>
                     </div>
                     <div className='add-stage-form__text-description'>
-                        {this.props.description}
+                        {this.props.vocab.PROJECT.DESC_ARRAY[this.props.permissions]}
                     </div>
                     <hr className='add-stage-form__divider'/>
                     <div className='add-stage-form__header'>
@@ -87,4 +88,13 @@ AddStageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default reduxForm({ form: 'add-stage-form' })(AddStageForm);
+const selector = formValueSelector('add-stage-form');
+
+const mapStateToProps = state => ({
+    permissions: selector(state, 'permissions'),
+});
+
+export default compose(
+    connect(mapStateToProps),
+    reduxForm({ form: 'add-stage-form' }),
+)(AddStageForm);

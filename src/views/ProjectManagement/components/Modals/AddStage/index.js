@@ -2,48 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 import Modal from '../../../../../common/Modal';
 import AddStageForm from './AddStageForm';
 
 class AddStageModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            userGroups: [],
-            permissions: 0,
-            startStage: '',
-            endStage: '',
-        };
-
-        this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handlePermissionsChange = this.handlePermissionsChange.bind(this);
-        this.handleStartStageChange = this.handleStartStageChange.bind(this);
-        this.handleEndStageChange = this.handleEndStageChange.bind(this);
-    }
-
-    handleTitleChange(event) {
-        this.setState({ title: event.target.value });
-    }
-
-    handleSelectChange(selection) {
-        this.setState({ userGroups: selection.map(selectionItem => selectionItem.value) });
-    }
-
-    handlePermissionsChange(event) {
-        this.setState({ permissions: event.target.value });
-    }
-
-    handleStartStageChange(event) {
-        this.setState({ startStage: event });
-    }
-
-    handleEndStageChange(event) {
-        this.setState({ endStage: event });
-    }
-
     render() {
         const groups = this.props.userGroups.map((group, key) =>
             ({ value: group.id, label: group.name, key }),
@@ -51,22 +15,30 @@ class AddStageModal extends Component {
         const initialValues = {
             title: '',
             userGroups: [],
-            permissions: 0,
+            permissions: '0',
             startStage: '',
             endStage: '',
         };
-        const description = this.props.vocab.PROJECT.DESC_ARRAY[this.state.permissions];
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={() => this.props.onAddStage(this.state)}>
-
+                onSave={this.props.onClickToSubmit}>
                 <AddStageForm vocab={this.props.vocab}
                               groups={groups}
-                              description={description}
-                              initialValues={initialValues} />
+                              initialValues={initialValues}
+                              onSubmit={(values) => {
+                                  this.props.onAddStage({
+                                      id: uuid(),
+                                      title: values.title,
+                                      startStage: values.startStage,
+                                      endStage: values.endStage,
+                                      userGroups: values.userGroups.map(group => group.value),
+                                      permissions: parseInt(values.permissions, 10),
+                                  }, this.props.projectId);
+                              }
+                          } />
             </Modal>
         );
     }
