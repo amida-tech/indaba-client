@@ -62,23 +62,27 @@ class PMDashboard extends Component {
                         onProjectNameChange={this.props.actions.setProjectName}
                         onProjectNameBlur={
                             (name) => {
-                                this.props.onSetProjectName(name, row.project.id);
-                                this.props.actions.showNameChange({
-                                    title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
-                                    label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
-                                    name,
-                                });
+                                if (name !== row.project.name) {
+                                    this.props.onSetProjectName(name, row.project.id);
+                                    this.props.actions.showNameChange({
+                                        title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
+                                        label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
+                                        name,
+                                    });
+                                }
                             }
                         }
                         onSurveyNameChange={this.props.actions.setSurveyName}
                         onSurveyNameBlur={
                             (name) => {
-                                this.props.onSetSurveyName(name, row.project.id);
-                                this.props.actions.showNameChange({
-                                    title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
-                                    label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
-                                    name,
-                                });
+                                if (name !== row.survey.name) {
+                                    this.props.onSetSurveyName(name, row.project.id);
+                                    this.props.actions.showNameChange({
+                                        title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
+                                        label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
+                                        name,
+                                    });
+                                }
                             }
                         }
                         />)}
