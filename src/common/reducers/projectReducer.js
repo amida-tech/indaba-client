@@ -64,7 +64,9 @@ export const ProjectReducer = (state = initialState, action) => {
             status: { $set: action.status },
         } });
     case type.ADD_SUBJECT:
-        return update(state, { [projectIndex]: {
+        return state[projectIndex].subjects.includes(action.subject) ?
+        state :
+        update(state, { [projectIndex]: {
             subjects: { $push: [action.subject] },
             lastUpdated: { $set: new Date().toISOString() },
         } });
@@ -106,6 +108,10 @@ export const ProjectReducer = (state = initialState, action) => {
             userGroups: { $apply: userGroups => userGroups.map(userGroup => update(userGroup, {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
             lastUpdated: { $set: new Date().toISOString() },
+        } });
+    case type.SET_PROJECT_NAME:
+        return update(state, { [projectIndex]: {
+            name: { $set: action.name },
         } });
     default:
         return state;

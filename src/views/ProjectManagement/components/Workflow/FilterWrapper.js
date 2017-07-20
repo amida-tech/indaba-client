@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'grommet';
 import FilterBar from './FilterBar';
 import AddSubject from '../Modals/AddSubject';
-import AddStage from '../Modals/AddStage';
+import AddStageModal from '../Modals/AddStage';
 
 class FilterWrapper extends Component {
     render() {
@@ -36,7 +36,7 @@ class FilterWrapper extends Component {
                         onClick={() => this.props.showAddSubjectModal()}/>
                 </div>
                 {this.props.ui.showAddStage &&
-                    <AddStage
+                    <AddStageModal
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
                         onCancel={() => this.props.closeAddStageModal()}

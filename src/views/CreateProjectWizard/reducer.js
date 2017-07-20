@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import _ from 'lodash';
 import * as type from './actionTypes';
 
 const initialState = {
@@ -45,12 +46,14 @@ export default (state = initialState, action) => {
         return update(state, { ui: { projectTitle: { show: { $set: false } } } });
     case type.ADD_SUBJECTS_TO_WIZARD:
         return update(state, { project:
-            { subjects: { $set: [...(state.project.subjects || []), ...action.subjects] } } });
+            { subjects: { $set: _.union(state.project.subjects, action.subjects) } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
     case type.ADD_USER_TO_WIZARD:
-        return update(state, { project: { users: { $push: [action.user.id] } } });
+        return state.project.users.includes(action.user.id) ?
+        state :
+        update(state, { project: { users: { $push: [action.user.id] } } });
     case type.REMOVE_USER_FROM_WIZARD:
         return update(state, { project: { users:
             { $splice: [[state.project.users.indexOf(action.userId), 1]] } } });

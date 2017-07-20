@@ -29,7 +29,8 @@
     "ANY": "Any",
     "ACCOUNT": "Account",
     "PREFERENCE": "Preference",
-    "PENDING": "Pending"
+    "PENDING": "Pending",
+    "OK": "OK"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -90,17 +91,16 @@
     "DISAGREE": "Disagree (Comment Required)",
     "COMMENT_TIP": "Enter your comment here",
     "PERM_ARRAY": [
-        "Read Only",
-        "Provide Responses",
-        "Read and Write",
-        "Edit",
-        "All Permissions"
+        "Complete Survey",
+        "Review",
+        "Review and Comment",
+        "Review and Edit"
     ],
     "DESC_ARRAY": [
-        "Read only description",
-        "Provide responses description",
-        "Read and write description",
-        "Edit description",
+        "Complete Survey description",
+        "Review description",
+        "Review and comment description",
+        "Review and Edit description",
         "All permissions description"
       ],
     "BACK_TO_WORKFLOW": "Back to Workflow",
@@ -114,6 +114,7 @@
     "ADD_STAGES": "Add Stages",
     "SUBJECT_TITLE": "Subject Title",
     "STAGE_TITLE": "Stage Title",
+    "STAGE_TITLE_INSTRUCTION": "Enter a stage title. Try Fill Out Survey or Review Stage",
     "STAGE_SETTINGS": "Stage Settings",
     "ASSIGN_USER_GROUPS": "Assign user group(s)",
     "PERMISSIONS": "Stage Permissions (Actions the user can take on the survey)",
@@ -164,7 +165,11 @@
     "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
     "NOT_ACCEPTED": "The user has not accepted this invitation",
-    "LAST_UPDATED": "Last Updated"
+    "LAST_UPDATED": "Last Updated",
+    "PROJECT_NAME_CHANGED": "Project Name Changed",
+    "NEW_PROJECT_NAME": "New Project Name",
+    "SURVEY_NAME_CHANGED": "Survey Name Changed",
+    "NEW_SURVEY_NAME": "New Survey Name"
   },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
