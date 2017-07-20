@@ -4,13 +4,14 @@ $block-class: 'project-list-entry';
     .#{$block-class} {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         &:nth-child(even) {
             background-color: #fff;
         }
 
         &__name {
-            flex: 1;
+            flex: 2;
             padding: 1em;
         }
 
@@ -29,6 +30,9 @@ $block-class: 'project-list-entry';
 
         &__last-updated {
             flex: 3;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 20px;
         }
     }
 }

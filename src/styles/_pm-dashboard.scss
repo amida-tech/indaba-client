@@ -12,6 +12,9 @@ $block-class:'pm-dashboard';
 
         &__table {
             border: 2px solid $border-color;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
         }
     }
 }
