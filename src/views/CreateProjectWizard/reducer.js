@@ -50,7 +50,9 @@ export default (state = initialState, action) => {
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
     case type.ADD_USER_TO_WIZARD:
-        return update(state, { project: { users: { $push: [action.user.id] } } });
+        return state.project.users.includes(action.user.id) ?
+        state :
+        update(state, { project: { users: { $push: [action.user.id] } } });
     case type.REMOVE_USER_FROM_WIZARD:
         return update(state, { project: { users:
             { $splice: [[state.project.users.indexOf(action.userId), 1]] } } });
