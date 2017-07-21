@@ -48,7 +48,8 @@ class PMDashboard extends Component {
                         onOk={ () => this.props.actions.showNameChange(false) }/>
                 }
                 <SplitLayout>
-                    <MessageList />
+                    <MessageList vocab={this.props.vocab}
+                        messages={this.props.messages}/>
                     <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
                         flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
                 </SplitLayout>
@@ -116,6 +117,7 @@ const mapStateToProps = state => ({
         inactive: state.projects.filter(project => project.status === 'Inactive').length,
         // flags calculated inline from rows.flags
     },
+    messages: state.messages.slice(0, 4),
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
