@@ -20,7 +20,6 @@ class EditableTextInput extends Component {
 
 EditableTextInput.propTypes = {
     placeholder: PropTypes.string,
-    name: PropTypes.string.isRequired,
 };
 
 export default EditableTextInput;

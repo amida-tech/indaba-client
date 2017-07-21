@@ -13,3 +13,26 @@ export function setFilter(filter) {
         filter,
     };
 }
+
+export function setProjectName(name, projectId) {
+    return {
+        type: actionTypes.PM_DASH_SET_PROJECT_NAME,
+        name,
+        projectId,
+    };
+}
+
+export function setSurveyName(name, projectId) {
+    return {
+        type: actionTypes.PM_DASH_SET_SURVEY_NAME,
+        name,
+        projectId,
+    };
+}
+
+export function showNameChange(data) {
+    return {
+        type: actionTypes.PM_DASH_SHOW_NAME_CHANGE,
+        data,
+    };
+}

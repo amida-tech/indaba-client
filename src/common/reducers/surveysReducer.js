@@ -80,6 +80,10 @@ export const SurveysReducer = (state = initialState, action) => {
         return update(state, { [surveyIndex]: { status: { $set: action.status } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.survey] });
+    case type.SET_SURVEY_NAME:
+        return update(state, { [surveyIndex]: {
+            name: { $set: action.name },
+        } });
     default:
         return state;
     }
