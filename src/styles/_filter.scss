@@ -6,9 +6,10 @@ $filter-background: #fafafa;
         display: flex;
         justify-content: center;
         padding-top: 1.5em;
+        margin-left: -8px;
 
         &__button {
-            margin-right: 8px;
+            margin-left: 8px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
@@ -23,6 +24,10 @@ $filter-background: #fafafa;
                 background-color: darken($brand-color, 10%);
                 color: $font-inverse-color;
                 border-color: transparent;
+            }
+
+            &:hover {
+                background-color: darken(#fafafa, 5%);
             }
         }
     }

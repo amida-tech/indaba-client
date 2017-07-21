@@ -13,7 +13,7 @@ $block-class:'add-stage-form';
         }
 
         &__header {
-            padding-bottom: 10px;
+            padding: 0.5em, 1em;
         }
 
         &__radio-buttons {
@@ -25,6 +25,8 @@ $block-class:'add-stage-form';
             font-size: 16px;
             margin-left: 10px;
             margin-top: 10px;
+            //border: 2px solid $border-color;
+            padding: 1em;
         }
 
         &__date-input-div {
