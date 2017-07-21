@@ -3,37 +3,21 @@ import PropTypes from 'prop-types';
 import { Field, form, reduxForm } from 'redux-form';
 import { Button } from 'grommet';
 
+import LoginField from './LoginField';
+
 class LoginForm extends Component {
     render() {
         console.log(this.props);
         return (
             <form className='login-form'>
-                <div className='login-form__field'>
-                    <Field name='email'
-                        component={email =>
-                            <div className='login-form__field'>
-                                <input type='email'
-                                    className='login-form__input'
-                                    {...email.input}
-                                    placeholder={this.props.vocab.COMMON.EMAIL} />
-                                    {email.touched && email.error
-                                        && <span>{email.error}</span>}
-                            </div>
-                        }/>
-                </div>
-                <div className='login-form__field'>
-                    <Field name='password'
-                        component={password =>
-                            <div className='login-form__field'>
-                                <input type='password'
-                                    className='login-form__input'
-                                    {...password.input}
-                                    placeholder={this.props.vocab.COMMON.PASSWORD} />
-                                    {password.touched && password.error
-                                        && <span>{password.error}</span>}
-                            </div>
-                        }/>
-                </div>
+                <Field name='email'
+                    component={LoginField}
+                    placeholder={this.props.vocab.COMMON.EMAIL}
+                    type='email' />
+                <Field name='password'
+                    component={LoginField}
+                    placeholder={this.props.vocab.COMMON.PASSWORD}
+                    type='password' />
                 <Button className='login-form__sign-in-button'
                     primary
                     label={this.props.vocab.COMMON.SIGN_IN}

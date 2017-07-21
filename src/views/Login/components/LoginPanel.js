@@ -11,8 +11,7 @@ class LoginPanel extends Component {
                     {this.props.vocab.COMMON.WELCOME}
                 </div>
                 <LoginForm
-                    vocab={this.props.vocab}
-                    onClickToSubmit={this.props.onClickToSubmit}
+                    {...this.props}
                     onSubmit={(values) => {
                         console.log('FORM SUBMIT');
                         console.log(values);
