@@ -13,8 +13,6 @@ class LoginPanel extends Component {
                 <LoginForm
                     {...this.props}
                     onSubmit={(values) => {
-                        console.log('FORM SUBMIT');
-                        console.log(values);
                         this.props.actions.login(values.username, values.password);
                     }}/>
                 <div className='login-panel__link'>

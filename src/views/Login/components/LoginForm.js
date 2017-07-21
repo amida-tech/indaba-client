@@ -7,13 +7,12 @@ import LoginField from './LoginField';
 
 class LoginForm extends Component {
     render() {
-        console.log(this.props);
         return (
-            <form className='login-form'>
-                <Field name='email'
+            <form className='login-form' onSubmit={this.props.handleSubmit}>
+                <Field name='username'
                     component={LoginField}
-                    placeholder={this.props.vocab.COMMON.EMAIL}
-                    type='email' />
+                    placeholder={this.props.vocab.COMMON.USERNAME}
+                    type='text' />
                 <Field name='password'
                     component={LoginField}
                     placeholder={this.props.vocab.COMMON.PASSWORD}
@@ -21,7 +20,7 @@ class LoginForm extends Component {
                 <Button className='login-form__sign-in-button'
                     primary
                     label={this.props.vocab.COMMON.SIGN_IN}
-                    onClick={this.props.onClickToSubmit} />
+                    onClick={this.props.handleSubmit} />
             </form>
         );
     }
