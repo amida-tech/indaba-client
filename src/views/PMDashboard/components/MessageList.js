@@ -10,7 +10,7 @@ class MessageList extends Component {
                     {this.props.vocab.MESSAGES.RECENT_MESSAGES}
                 </div>
                 {this.props.messages.map(message =>
-                    <div className='message-list__row'>
+                    <div key={message.id} className='message-list__row'>
                         <div className='message-list__name'>
                             {message.from}
                         </div>
