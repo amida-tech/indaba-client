@@ -3,10 +3,7 @@ import getFullPath from '../../utils/getFullPath';
 
 const auth = {
     login: (authPayload, callback) => {
-        console.log('login');
-        console.log(authPayload);
-        console.log(callback);
-        const path = getFullPath('/auth/basic');
+        const path = getFullPath(`/${authPayload.realm}/v0.2/users/token`);
         const authHash = btoa(`${authPayload.username}:${authPayload.password}`);
         requests.apiAuthGetRequest(path, authHash, callback);
     },

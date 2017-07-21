@@ -1,6 +1,6 @@
-// import config from '../config';
+import config from '../config';
 
-const rootURI = 'localhost:/3005'; // config.API_HTTPS_URL;
+const rootURI = config.API_HTTPS_URL;
 
 const getFullPath = (path) => {
     return rootURI + path;

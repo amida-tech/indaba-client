@@ -2,13 +2,14 @@ import { push } from 'react-router-redux';
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
 
-export function login(username, password) {
+export function login(username, password, realm) {
     return (dispatch) => {
         // dispatch(_loginLoading());
         dispatch(_login());
         const authPayload = {
             username,
             password,
+            realm,
         };
         apiService.auth.login(
         authPayload,

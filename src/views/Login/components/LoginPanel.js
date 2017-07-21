@@ -13,7 +13,10 @@ class LoginPanel extends Component {
                 <LoginForm
                     {...this.props}
                     onSubmit={(values) => {
-                        this.props.actions.login(values.username, values.password);
+                        this.props.actions.login(
+                            values.username,
+                            values.password,
+                            'test');
                     }}/>
                 <div className='login-panel__link'>
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}

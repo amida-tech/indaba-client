@@ -9,7 +9,7 @@ import 'whatwg-fetch';
 export function apiAuthGetRequest(fullURI, authHash, callback) {
     fetch(fullURI, {
         method: 'GET',
-        credentials: 'include',
+        // credentials: 'include',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
