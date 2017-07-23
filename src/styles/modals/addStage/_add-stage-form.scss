@@ -3,8 +3,8 @@ $block-class:'add-stage-form';
 @at-root {
     .#{$block-class} {
         color: $header-font-color;
-        margin-right: 20px;
-        margin-left: 20px;
+        //margin-right: 20px;
+        //margin-left: 20px;
 
         &__input-field {
             border-radius: 0;
@@ -55,6 +55,11 @@ $block-class:'add-stage-form';
             margin-top: 30px;
             margin-bottom: 20px;
             margin-left: -10px;
+        }
+
+        .Select--multi .Select-value {
+            color: nth($brand-neutral-colors, 1);
+            background-color: #C1E6D0;
         }
     }
 }
