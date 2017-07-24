@@ -44,7 +44,10 @@ class AddStageForm extends Component {
                                        component='input'
                                        type='radio'
                                        value={`${index}`} />
-                                   <span className='add-stage-form__radio-button__permission-label-text'>{permission}</span>
+                                   <span
+                                       className='add-stage-form__permission-label-text'>
+                                       {permission}
+                                   </span>
                                </label>,
                            )}
                        </div>

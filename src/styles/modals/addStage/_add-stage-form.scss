@@ -19,13 +19,11 @@ $block-class:'add-stage-form';
 
         &__radio-button {
             margin-top: 10px;
+        }
 
-            &__permission {
-                &-label-text {
-                    margin-left: 0.5em;
-                    margin-right: 1em;
-                }
-            }
+        &__permission-label-text {
+            margin-left: 0.5em;
+            margin-right: 1em;
         }
 
         &__text-description {
