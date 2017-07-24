@@ -14,18 +14,25 @@ $block-class:'add-stage-form';
 
         &__header {
             padding: 0.5em, 1em;
+            margin-top: 0.5em;
+        }
+
+        &__radio-control {
+            display: inline-flex;
         }
 
         &__radio-buttons {
-            margin-left: -20px;
             margin-top: 10px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+
+            &--stage-permission {
+                margin-left: 0.5em;
+                margin-right: 1em;
+            }
         }
 
         &__text-description {
-            padding-left: 3em;
+            padding: 1em;
+            font-size: 16px;
         }
 
         &__date-input-div {
@@ -59,6 +66,7 @@ $block-class:'add-stage-form';
         .Select--multi .Select-value {
             color: nth($brand-neutral-colors, 1);
             background-color: #c1e6d0;
+            border-color: nth($brand-neutral-colors, 1);
         }
 
         .Select-option.is-focused {
