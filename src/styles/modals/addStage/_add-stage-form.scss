@@ -3,8 +3,8 @@ $block-class:'add-stage-form';
 @at-root {
     .#{$block-class} {
         color: $header-font-color;
-        //margin-right: 20px;
-        //margin-left: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
 
         &__input-field {
             border-radius: 0;
@@ -19,14 +19,13 @@ $block-class:'add-stage-form';
         &__radio-buttons {
             margin-left: -20px;
             margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
 
         &__text-description {
-            font-size: 16px;
-            margin-left: 10px;
-            margin-top: 10px;
-            //border: 2px solid $border-color;
-            padding: 1em;
+            padding-left: 3em;
         }
 
         &__date-input-div {
@@ -59,7 +58,11 @@ $block-class:'add-stage-form';
 
         .Select--multi .Select-value {
             color: nth($brand-neutral-colors, 1);
-            background-color: #C1E6D0;
+            background-color: #c1e6d0;
+        }
+
+        .Select-option.is-focused {
+            background-color: rgba(197, 230, 207, 0.5);
         }
     }
 }
