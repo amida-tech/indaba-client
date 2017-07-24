@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import DashboardContainer from './views/Dashboard';
-import LoginContainer from './views/Login';
+import { LoginContainer } from './views/Login';
 import { ProjectManagementContainer } from './views/ProjectManagement';
 import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
