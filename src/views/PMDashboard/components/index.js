@@ -11,8 +11,8 @@ import { setProjectName } from '../../../common/actions/projectActions';
 import { setSurveyName } from '../../../common/actions/surveysActions';
 
 import NameChangeModal from './NameChangeModal';
-import SplitLayout from './SplitLayout';
-import MessageList from './MessageList';
+import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
+import MessageList from '../../../common/components/Dashboard/MessageList';
 import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
 import ProjectListHeader from './ProjectListHeader';
