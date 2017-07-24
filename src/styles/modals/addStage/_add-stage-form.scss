@@ -17,16 +17,14 @@ $block-class:'add-stage-form';
             margin-top: 0.5em;
         }
 
-        &__radio-control {
-            display: inline-flex;
-        }
-
-        &__radio-buttons {
+        &__radio-button {
             margin-top: 10px;
 
-            &--stage-permission {
-                margin-left: 0.5em;
-                margin-right: 1em;
+            &__permission {
+                &-label-text {
+                    margin-left: 0.5em;
+                    margin-right: 1em;
+                }
             }
         }
 

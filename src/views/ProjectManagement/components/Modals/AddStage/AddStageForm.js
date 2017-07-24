@@ -38,13 +38,13 @@ class AddStageForm extends Component {
                        <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
                        <div className='add-stage-form__radio-control'>
                            {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
-                               <label className='add-stage-form__radio-buttons' key={index}>
+                               <label className='add-stage-form__radio-button' key={index}>
                                    <Field
                                        name='permissions'
                                        component='input'
                                        type='radio'
                                        value={`${index}`} />
-                                   <span className='add-stage-form__radio-buttons--stage-permission'>{permission}</span>
+                                   <span className='add-stage-form__radio-button__permission-label-text'>{permission}</span>
                                </label>,
                            )}
                        </div>

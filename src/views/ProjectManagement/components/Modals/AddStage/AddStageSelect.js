@@ -3,7 +3,6 @@ import Select from 'react-select';
 
 class AddStageSelect extends Component {
     render() {
-        console.log('called my class');
         return (
             <Select
             className='add-stage-form__select' // Using a spread operator doesn't play well.
