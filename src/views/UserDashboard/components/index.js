@@ -82,7 +82,7 @@ const _generateRow = (state, projectId, task) => {
     return {
         key: task.id,
         subject: project.subjects[task.subject],
-        task: project.stages.find(stage => stage.id === task.stage).name,
+        task: project.stages.find(stage => stage.id === task.stage).title,
         due: Time.renderDueDateForTaskList(
             task.dueDate || project.stages.find(stage => stage.id === task.id).endStage,
             state.settings.language.vocabulary,
