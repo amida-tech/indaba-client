@@ -12,13 +12,14 @@ import PreferenceTab from './PreferenceTab';
 class UserProfileForm extends Component {
     render() {
         return (
-            <form className='user-profile-form'
+            <form className='user-profile'
                 onSubmit={this.props.handleSubmit}>
                 <FormSection name='name'>
                     <UserNameInput {...this.props} />
                 </FormSection>
-                <Tabs>
-                    <Tab title={this.props.vocab.COMMON.ACCOUNT}>
+                <Tabs className='user-profile__tabs'>
+                    <Tab className='user-profile__tabs user-profile__tabs--account'
+                    title={this.props.vocab.COMMON.ACCOUNT}>
                         <FormSection name='account'>
                             <AccountTab vocab={this.props.vocab}
                                 user={this.props.user}/>
