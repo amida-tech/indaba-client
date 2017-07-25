@@ -185,6 +185,15 @@
       "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
       "SURVEYS_WITH_FLAGS": "Surveys with Flags"
   },
+  "USER_TASK_LIST_FILTER": {
+    "ALL_TASKS": "All Tasks",
+    "NEW_TASKS": "New Tasks",
+    "LATE_TASKS": "Late Tasks",
+    "DUE_TODAY": "Due Today",
+    "FLAGS": "Flags",
+    "DUE_TOMORROW": "Due Tomorrow",
+    "DUE_THIS_WEEK": "Due This Week"
+  },
   "STAGE": {
     "START_STAGE": "Start stage",
     "END_STAGE": "End stage",

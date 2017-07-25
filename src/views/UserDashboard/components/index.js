@@ -8,6 +8,7 @@ import TaskStatus from '../../../utils/TaskStatus';
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import UserGlance from './UserGlance';
+import UserTaskListControls from './UserTaskListControls';
 
 class UserDashboard extends Component {
     render() {
@@ -18,6 +19,9 @@ class UserDashboard extends Component {
                         messages={this.props.messages}/>
                     <UserGlance vocab={this.props.vocab} {...this.props.glance} />
                 </SplitLayout>
+                <UserTaskListControls vocab={this.props.vocab}
+                    actions={this.props.actions}
+                    filter={this.props.ui.filter} />
             </div>
         );
     }
@@ -55,6 +59,7 @@ const mapStateToProps = state => ({
     },
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
+    ui: state.userdashboard.ui,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
