@@ -88,6 +88,10 @@ const _generateRow = (state, projectId, task) => {
             state.settings.language.vocabulary,
         ),
         survey: state.surveys.find(survey => survey.projectId === projectId).name,
+        flags: (
+            state.discuss.find(discussion => discussion.taskId === task.id) ||
+            { discuss: [] }
+        ).discuss.filter(discussEntry => discussEntry.flag).length,
     };
 };
 
