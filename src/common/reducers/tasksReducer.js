@@ -9,7 +9,7 @@ const initialState = [{
     projectId: 101,
     tasks: [{
         id: 81,
-        userId: 22,
+        userId: 31,
         stage: 0,
         subject: 0,
     }, {
@@ -26,10 +26,36 @@ const initialState = [{
         dueDate: '9/9/2017',
     }, {
         id: 13,
-        userId: 25,
+        userId: 41,
         stage: 1,
         subject: 2,
         dueDate: '9/9/2017',
+    }],
+}, {
+    projectId: 102,
+    tasks: [{
+        id: 71,
+        userId: 25,
+        stage: 0,
+        subject: 0,
+    }, {
+        id: 110,
+        userId: 66,
+        stage: 0,
+        subject: 1,
+
+    }, {
+        id: 223,
+        userId: 87,
+        stage: 1,
+        subject: 0,
+        dueDate: '10/10/2017',
+    }, {
+        id: 14,
+        userId: 98,
+        stage: 1,
+        subject: 2,
+        dueDate: '8/29/2017',
     }],
 }];
 

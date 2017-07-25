@@ -61,7 +61,7 @@ const initialState = [{
         title: 'First Review',
         startStage: '3/3/2017',
         endStage: '4/3/2017',
-        userGroups: [11, 13],
+        userGroups: [12, 14],
         permissions: 2,
     }, {
         id: 2,
