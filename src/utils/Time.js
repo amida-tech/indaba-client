@@ -8,7 +8,7 @@ export default {
         return moment(time).format('h:mmA');
     },
     renderDueDateForTaskList(time, vocab) {
-        moment().calendar(time, {
+        return moment().calendar(time, {
             sameDay(now) {
                 return (this.isBefore(now) ?
                     `[${vocab.TIME.OVERDUE}]` :
