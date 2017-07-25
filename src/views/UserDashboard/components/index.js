@@ -84,7 +84,7 @@ const _generateRow = (state, projectId, task) => {
         subject: project.subjects[task.subject],
         task: project.stages.find(stage => stage.id === task.stage).title,
         due: Time.renderDueDateForTaskList(
-            task.dueDate || project.stages.find(stage => stage.id === task.id).endStage,
+            task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
             state.settings.language.vocabulary,
         ),
         survey: state.surveys.find(survey => survey.projectId === projectId).name,
