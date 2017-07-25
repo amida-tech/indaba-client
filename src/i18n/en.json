@@ -39,6 +39,11 @@
       "DISAGREE": "Disagree (Comment Required)",
       "COMMENT_TIP": "Enter your comment here"
   },
+  "TIME": {
+      "DUE_TODAY": "Due Today",
+      "DUE_TOMORROW": "Due Tomorrow",
+      "OVERDUE": "Overdue"
+  },
   "PROJECT": {
     "CARD": {
       "ASSIGN_TASK": "Assign Task",
