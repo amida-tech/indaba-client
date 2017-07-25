@@ -32,7 +32,6 @@ UserTaskListEntry.propTypes = {
     subject: PropTypes.string.isRequired,
     task: PropTypes.string.isRequired,
     due: PropTypes.string.isRequired,
-    role: PropTypes.arrayOf(PropTypes.string).isRequired,
     survey: PropTypes.string.isRequired,
     flags: PropTypes.number.isRequired,
     progress: PropTypes.string.isRequired,
