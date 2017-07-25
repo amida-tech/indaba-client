@@ -29,6 +29,12 @@ const mapStateToProps = state => ({
             projectTasks.tasks.filter(task =>
                 task.userId === state.user.profile.id).length)
             .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        newTask: state.tasks.map(projectTasks =>
+            projectTasks.tasks.filter(task =>
+                task.userId === state.user.profile.id &&
+                task.new,
+            ).length)
+            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
         lateTask: state.tasks.map(projectTasks =>
             projectTasks.tasks.filter(task =>
                 task.userId === state.user.profile.id &&
