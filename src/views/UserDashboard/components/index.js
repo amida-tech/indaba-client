@@ -9,6 +9,7 @@ import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import UserGlance from './UserGlance';
 import UserTaskListControls from './UserTaskListControls';
+import UserTaskListHeader from './UserTaskListHeader';
 
 class UserDashboard extends Component {
     render() {
@@ -22,6 +23,7 @@ class UserDashboard extends Component {
                 <UserTaskListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
+                <UserTaskListHeader vocab={this.props.vocab} />
             </div>
         );
     }
