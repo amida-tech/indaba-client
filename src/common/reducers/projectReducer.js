@@ -48,7 +48,7 @@ const initialState = [{
     name: 'Midterm Project Evaluation',
     lastUpdated: '2017-07-20T16:28:13.877Z',
     status: 'Inactive',
-    users: [13, 71, 41, 25, 22, 31],
+    users: [41, 25, 22, 31, 13, 71],
     stages: [{
         id: 0,
         title: 'Fill Out The Survey',
@@ -61,7 +61,7 @@ const initialState = [{
         title: 'First Review',
         startStage: '3/3/2017',
         endStage: '4/3/2017',
-        userGroups: [12, 14],
+        userGroups: [11, 13],
         permissions: 2,
     }, {
         id: 2,
@@ -73,11 +73,11 @@ const initialState = [{
     }], // stages end
     userGroups: [
         {
-            id: 12,
+            id: 11,
             name: 'Researchers',
             users: [41, 25, 22, 31],
         }, {
-            id: 14,
+            id: 13,
             name: 'Managers',
             users: [13, 71],
         }],
