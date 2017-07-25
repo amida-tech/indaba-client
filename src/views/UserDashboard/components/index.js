@@ -10,6 +10,7 @@ import MessageList from '../../../common/components/Dashboard/MessageList';
 import UserGlance from './UserGlance';
 import UserTaskListControls from './UserTaskListControls';
 import UserTaskListHeader from './UserTaskListHeader';
+import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
     render() {
