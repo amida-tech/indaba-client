@@ -6,7 +6,7 @@ import { FILTERS } from './constants';
 const initialState = {
     ui: {
         searchQuery: '',
-        filter: FILTERS.ALL_PROJECTS,
+        filter: FILTERS.ALL_TASKS,
     },
 };
 
