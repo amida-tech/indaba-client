@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import FlagCount from '../../../common/components/Dashboard/FlagCount';
+
 class UserTaskListEntry extends Component {
     render() {
         return (
@@ -18,7 +20,7 @@ class UserTaskListEntry extends Component {
                     {this.props.survey}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--flags'>
-                    {this.props.flags}
+                    <FlagCount value={this.props.flags} />
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--progress'>
                     {this.props.progress}
