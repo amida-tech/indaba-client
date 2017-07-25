@@ -37,6 +37,15 @@ const mapStateToProps = state => ({
                         project.id === projectTasks.projectId).stages),
                 ).length)
             .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        flagged: state.tasks.map(projectTasks =>
+            projectTasks.tasks.filter(task =>
+                task.userId === state.user.profile.id &&
+                (
+                    state.discuss.find(discussion => discussion.taskId === task.id) ||
+                    { discuss: [] } // mock empty discussion for flag check call
+                ).discuss.some(discussEntry => discussEntry.flag),
+            ).length)
+            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
     },
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
