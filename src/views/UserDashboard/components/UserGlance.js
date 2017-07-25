@@ -10,9 +10,9 @@ class UserGlance extends Component {
                 <Stamp label={this.props.vocab.PROJECT.TASKS}
                     value={this.props.tasks} />
                 <Stamp label={this.props.vocab.PROJECT.NEW_TASK}
-                    value={this.props.newTask} />
+                    value={this.props.newTasks} />
                 <Stamp label={this.props.vocab.PROJECT.LATE_TASK}
-                    value={this.props.lateTask} />
+                    value={this.props.lateTasks} />
                 <Stamp label={this.props.vocab.PROJECT.FLAGGED}
                     value={this.props.flagged} />
             </div>
@@ -23,8 +23,8 @@ class UserGlance extends Component {
 UserGlance.propTypes = {
     vocab: PropTypes.object.isRequired,
     tasks: PropTypes.number.isRequired,
-    newTask: PropTypes.number.isRequired,
-    lateTask: PropTypes.number.isRequired,
+    newTasks: PropTypes.number.isRequired,
+    lateTasks: PropTypes.number.isRequired,
     flagged: PropTypes.number.isRequired,
 };
 
