@@ -79,6 +79,12 @@ const mapDispatchToProps = dispatch => ({
 
 const _generateRow = (state, projectId, task) => {
     const project = state.projects.find(findProject => findProject.id === projectId);
+    const discussion =
+    (
+        state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
+    );
+    const answered = discussion.discuss.filter(response => response.value !== undefined).length;
+    const survey = state.surveys.find(findSurvey => findSurvey.projectId);
     return {
         key: task.id,
         subject: project.subjects[task.subject],
@@ -87,11 +93,9 @@ const _generateRow = (state, projectId, task) => {
             task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
             state.settings.language.vocabulary,
         ),
-        survey: state.surveys.find(survey => survey.projectId === projectId).name,
-        flags: (
-            state.discuss.find(discussion => discussion.taskId === task.id) ||
-            { discuss: [] }
-        ).discuss.filter(discussEntry => discussEntry.flag).length,
+        survey: survey.name,
+        flags: discussion.discuss.filter(response => response.flag).length,
+        progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
     };
 };
 

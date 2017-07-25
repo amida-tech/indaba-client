@@ -180,7 +180,8 @@
     "PROJECT_NAME_CHANGED": "Project Name Changed",
     "NEW_PROJECT_NAME": "New Project Name",
     "SURVEY_NAME_CHANGED": "Survey Name Changed",
-    "NEW_SURVEY_NAME": "New Survey Name"
+    "NEW_SURVEY_NAME": "New Survey Name",
+    "ANSWERED": "Answered"
   },
   "MESSAGES": {
       "RECENT_MESSAGES": "Recent Messages"
