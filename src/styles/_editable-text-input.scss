@@ -3,19 +3,26 @@ $block-class: 'editable-text-input';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: row;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: stretch;
+        position: relative;
 
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
         &__text-input,
         .grommet &__text-input:not(.grommetux-input) {
             border-radius: 2px;
+            border: 1px solid $border-color;
+        }
+
+        &__text-input:not(:focus),
+        .grommet &__text-input:not(.grommetux-input):not(:focus) {
+            border-color: transparent;
         }
 
         &__icon {
-            position: relative;
-            left: -1.5em;
+            position: absolute;
+            right: 0;
             fill: $header-font-color;
             width: 1.5em;
         }
