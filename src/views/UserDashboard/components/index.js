@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
+import TaskStatus from '../../../utils/TaskStatus';
+
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import UserGlance from './UserGlance';
@@ -26,6 +28,14 @@ const mapStateToProps = state => ({
         tasks: state.tasks.map(projectTasks =>
             projectTasks.tasks.filter(task =>
                 task.userId === state.user.profile.id).length)
+            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        lateTask: state.tasks.map(projectTasks =>
+            projectTasks.tasks.filter(task =>
+                task.userId === state.user.profile.id &&
+                TaskStatus.dueDateInPast(task,
+                    state.projects.find(project =>
+                        project.id === projectTasks.projectId).stages),
+                ).length)
             .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
     },
     vocab: state.settings.language.vocabulary,
