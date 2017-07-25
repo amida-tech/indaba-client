@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
 import TaskStatus from '../../../utils/TaskStatus';
+import Time from '../../../utils/Time';
 
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
@@ -25,6 +26,10 @@ class UserDashboard extends Component {
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
                 <UserTaskListHeader vocab={this.props.vocab} />
+                {
+                    this.props.rows.map(row =>
+                        <UserTaskListEntry {...row} />)
+                }
             </div>
         );
     }
@@ -63,9 +68,26 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
     ui: state.userdashboard.ui,
+    rows: [].concat(...state.tasks.map(projectTasks =>
+        projectTasks.tasks.filter(task =>
+            task.userId === state.user.profile.id)
+        .map(task => _generateRow(state, projectTasks.projectId, task)))),
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });
+
+const _generateRow = (state, projectId, task) => {
+    const project = state.projects.find(findProject => findProject.id === projectId);
+    return {
+        key: task.id,
+        subject: project.subjects[task.subject],
+        task: project.stages.find(stage => stage.id === task.stage).name,
+        due: Time.renderDueDateForTaskList(
+            task.dueDate || project.stages.find(stage => stage.id === task.id).endStage,
+            state.settings.language.vocabulary,
+        ),
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
