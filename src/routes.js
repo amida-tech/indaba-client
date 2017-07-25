@@ -6,6 +6,7 @@ import { ProjectManagementContainer } from './views/ProjectManagement';
 import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
 import { PMDashboard } from './views/PMDashboard';
+import { UserDashboard } from './views/UserDashboard';
 import App from './views/App';
 
 export default (
@@ -18,6 +19,10 @@ export default (
             key='/project'
             path='/project'
             component={PMDashboard}/>
+        <Route
+            key='/user'
+            path='/user'
+            component={UserDashboard}/>
         <Route
             key='/project/:projectId'
             path='/project/:projectId'
