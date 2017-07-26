@@ -20,8 +20,8 @@ export default (
             path='/project'
             component={PMDashboard}/>
         <Route
-            key='/user'
-            path='/user'
+            key='/task'
+            path='/task'
             component={UserDashboard}/>
         <Route
             key='/project/:projectId'
