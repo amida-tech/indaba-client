@@ -4,7 +4,7 @@ $block-class: 'project-list-header';
     .#{$block-class} {
         display: flex;
         text-transform: uppercase;
-        padding: 1em;
+        padding: 1em 2em 1em 1em;
 
         &__title {
             color: $header-font-color;
@@ -16,7 +16,6 @@ $block-class: 'project-list-header';
 
             &--survey {
                 flex: 3;
-                margin-left: 20px;
             }
 
             &--flags {
@@ -27,7 +26,6 @@ $block-class: 'project-list-header';
                 flex: 3;
                 display: flex;
                 justify-content: flex-end;
-                margin-right: 10px;
             }
         }
     }
