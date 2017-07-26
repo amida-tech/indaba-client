@@ -46,11 +46,13 @@ class UserDashboard extends Component {
                 <UserTaskListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <UserTaskListHeader vocab={this.props.vocab} />
-                {
-                    this.props.rows.filter(this.filterRow.bind(this))
-                    .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
-                }
+                <div className='user-dashboard__table'>
+                    <UserTaskListHeader vocab={this.props.vocab} />
+                    {
+                        this.props.rows.filter(this.filterRow.bind(this))
+                        .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
+                    }
+                </div>
             </div>
         );
     }
