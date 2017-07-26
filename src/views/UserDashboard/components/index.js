@@ -30,7 +30,7 @@ class UserDashboard extends Component {
         case FILTERS.DUE_TOMORROW:
             return Time.isTomorrow(row.due);
         case FILTERS.DUE_THIS_WEEK:
-            return false;
+            return Time.isThisWeek(row.due);
         default:
             return true;
         }

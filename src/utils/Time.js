@@ -26,11 +26,21 @@ export default {
         });
     },
     isToday(time) {
-        return moment(time).isAfter(moment().startOf('day')) &&
-            moment(time).isBefore(moment().endOf('day'));
+        return moment(time).isBetween(
+            moment().startOf('day'),
+            moment().endOf('day'),
+        );
     },
     isTomorrow(time) {
-        return moment(time).isAfter(moment().endOf('day')) &&
-            moment(time).isBefore(moment().endOf('day').add(1, 'day'));
+        return moment(time).isBetween(
+            moment().endOf('day'),
+            moment().endOf('day').add(1, 'day'),
+        );
+    },
+    isThisWeek(time) {
+        return moment(time).isBetween(
+            moment().startOf('week'),
+            moment().endOf('week'),
+        );
     },
 };
