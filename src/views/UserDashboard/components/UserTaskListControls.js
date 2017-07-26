@@ -7,8 +7,8 @@ import SearchInput from '../../../common/components/Dashboard/SearchInput';
 class UserTaskListControls extends Component {
     render() {
         return (
-            <div className='user-project-list-controls'>
-                <SearchInput className='user-project-list-controls__search'
+            <div className='user-task-list-controls'>
+                <SearchInput className='user-task-list-controls__search'
                     placeholder={this.props.vocab.COMMON.SEARCH}
                     onChange={evt => this.props.actions.setSearchQuery(evt.target.value)}/>
                 <UserTaskFilter active={this.props.filter}
