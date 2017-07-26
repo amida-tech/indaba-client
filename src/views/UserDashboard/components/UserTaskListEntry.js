@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class UserTaskListEntry extends Component {
@@ -14,7 +15,12 @@ class UserTaskListEntry extends Component {
                     {this.props.task}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>
-                    {this.props.due}
+                    {
+                        Time.renderDueDateForTaskList(
+                            this.props.due,
+                            this.props.vocab,
+                        )
+                    }
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--survey'>
                     {this.props.survey}
@@ -37,6 +43,7 @@ UserTaskListEntry.propTypes = {
     survey: PropTypes.string.isRequired,
     flags: PropTypes.number.isRequired,
     progress: PropTypes.string.isRequired,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default UserTaskListEntry;

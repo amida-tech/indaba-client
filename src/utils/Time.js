@@ -25,4 +25,12 @@ export default {
             },
         });
     },
+    isToday(time) {
+        return moment(time).isAfter(moment().startOf('day')) &&
+            moment(time).isBefore(moment().endOf('day'));
+    },
+    isTomorrow(time) {
+        return moment(time).isAfter(moment().endOf('day')) &&
+            moment(time).isBefore(moment().endOf('day').add(1, 'day'));
+    },
 };

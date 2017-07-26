@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
+import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
 import Time from '../../../utils/Time';
@@ -14,6 +15,26 @@ import UserTaskListHeader from './UserTaskListHeader';
 import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
+    filterRow(row) {
+        switch (this.props.ui.filter) {
+        case FILTERS.ALL_TASKS:
+            return true;
+        case FILTERS.NEW_TASKS:
+            return row.new;
+        case FILTERS.LATE_TASKS:
+            return row.late;
+        case FILTERS.DUE_TODAY:
+            return Time.isToday(row.due);
+        case FILTERS.FLAGS:
+            return row.flags > 0;
+        case FILTERS.DUE_TOMORROW:
+            return Time.isTomorrow(row.due);
+        case FILTERS.DUE_THIS_WEEK:
+            return false;
+        default:
+            return true;
+        }
+    }
     render() {
         return (
             <div className='user-dashboard'>
@@ -27,8 +48,8 @@ class UserDashboard extends Component {
                     filter={this.props.ui.filter} />
                 <UserTaskListHeader vocab={this.props.vocab} />
                 {
-                    this.props.rows.map(row =>
-                        <UserTaskListEntry {...row} />)
+                    this.props.rows.filter(this.filterRow.bind(this))
+                    .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
                 }
             </div>
         );
@@ -89,13 +110,12 @@ const _generateRow = (state, projectId, task) => {
         key: task.id,
         subject: project.subjects[task.subject],
         task: project.stages.find(stage => stage.id === task.stage).title,
-        due: Time.renderDueDateForTaskList(
-            task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
-            state.settings.language.vocabulary,
-        ),
+        due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
         survey: survey.name,
         flags: discussion.discuss.filter(response => response.flag).length,
         progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        new: task.new,
+        late: TaskStatus.dueDateInPast(task, project.stages) && !TaskStatus.responsesComplete(task),
     };
 };
 
