@@ -1,4 +1,4 @@
-import cookie from 'react-cookie';
+import cookie from 'react-cookies';
 import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
@@ -12,9 +12,7 @@ const users = {
         });
     },
     getCurrentUser: (callback) => {
-        console.log('JAMES');
-        console.log(cookie.get['indaba-auth']);
-        const path = getFullPath(`/${cookie.get['indaba-realm']}/v0.2/users/self`);
+        const path = getFullPath(`/${cookie.load('indaba-realm')}/v0.2/users/self`);
         requests.apiGetRequest(path, callback);
     },
     // getUserById: (id, callback) => {

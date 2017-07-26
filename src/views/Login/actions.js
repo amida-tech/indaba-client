@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux';
-import cookie from 'react-cookie';
+import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
@@ -63,10 +63,8 @@ function _login() {
 // }
 
 function _loginSuccess(response) {
-    console.log('JAMES2');
-    console.log(cookie);
-    cookie.set('indaba-auth', response.token);
-    cookie.set('indaba-realm', response.realm);
+    cookie.save('indaba-auth', response.token);
+    cookie.save('indaba-realm', response.realm);
     return {
         type: actionTypes.LOGIN_SUCCESS,
         payload: response,

@@ -1,3 +1,4 @@
+import cookie from 'react-cookies';
 import 'whatwg-fetch';
 
 /**
@@ -10,7 +11,7 @@ export function apiGetRequest(fullURI, callback) {
     fetch(fullURI, {
         method: 'GET',
         headers: {
-            Token: localStorage['indaba-auth'],
+            Token: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
