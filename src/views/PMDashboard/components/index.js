@@ -55,37 +55,39 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <ProjectListHeader vocab={this.props.vocab} />
-                {this.props.rows.filter(this.filterRow.bind(this))
-                    .map(row => <ProjectListEntry key={row.project.id} {...row}
-                        vocab={this.props.vocab}
-                        onProjectNameChange={this.props.actions.setProjectName}
-                        onProjectNameBlur={
-                            (name) => {
-                                if (name !== row.project.name) {
-                                    this.props.onSetProjectName(name, row.project.id);
-                                    this.props.actions.showNameChange({
-                                        title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
-                                        label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
-                                        name,
-                                    });
+                <div className='pm-dashboard__table'>
+                    <ProjectListHeader vocab={this.props.vocab} />
+                    {this.props.rows.filter(this.filterRow.bind(this))
+                        .map(row => <ProjectListEntry key={row.project.id} {...row}
+                            vocab={this.props.vocab}
+                            onProjectNameChange={this.props.actions.setProjectName}
+                            onProjectNameBlur={
+                                (name) => {
+                                    if (name !== row.project.name) {
+                                        this.props.onSetProjectName(name, row.project.id);
+                                        this.props.actions.showNameChange({
+                                            title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
+                                            label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
+                                            name,
+                                        });
+                                    }
                                 }
                             }
-                        }
-                        onSurveyNameChange={this.props.actions.setSurveyName}
-                        onSurveyNameBlur={
-                            (name) => {
-                                if (name !== row.survey.name) {
-                                    this.props.onSetSurveyName(name, row.project.id);
-                                    this.props.actions.showNameChange({
-                                        title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
-                                        label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
-                                        name,
-                                    });
+                            onSurveyNameChange={this.props.actions.setSurveyName}
+                            onSurveyNameBlur={
+                                (name) => {
+                                    if (name !== row.survey.name) {
+                                        this.props.onSetSurveyName(name, row.project.id);
+                                        this.props.actions.showNameChange({
+                                            title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
+                                            label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
+                                            name,
+                                        });
+                                    }
                                 }
                             }
-                        }
                         />)}
+                </div>
             </div>
         );
     }

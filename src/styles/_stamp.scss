@@ -5,8 +5,9 @@ $block-class: 'stamp';
         flex: 1;
         border: 2px solid $header-font-color;
         border-radius: 50%;
-        margin: 5px;
+        margin: 8px;
         position: relative;
+        max-width: 150px;
 
         &::before {
             content: "";
@@ -15,7 +16,7 @@ $block-class: 'stamp';
         }
 
         &__spacer {
-            height: 0.5em;
+            //height: 0.5em;
         }
 
         &__content {
