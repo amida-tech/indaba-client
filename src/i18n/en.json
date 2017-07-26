@@ -30,7 +30,9 @@
     "ACCOUNT": "Account",
     "PREFERENCE": "Preference",
     "PENDING": "Pending",
-    "OK": "OK"
+    "OK": "OK",
+    "NEW": "New",
+    "LATE": "Late"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

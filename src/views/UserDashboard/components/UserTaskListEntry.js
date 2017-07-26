@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
+import StatusLabel, { StatusLabelType } from '../../../common/components/StatusLabel';
 
 class UserTaskListEntry extends Component {
     render() {
@@ -13,6 +14,12 @@ class UserTaskListEntry extends Component {
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--task'>
                     {this.props.task}
+                    {this.props.new &&
+                        <StatusLabel label={this.props.vocab.COMMON.NEW}
+                            type={StatusLabelType.GOOD} />}
+                    {this.props.late &&
+                        <StatusLabel label={this.props.vocab.COMMON.LATE}
+                            type={StatusLabelType.BAD} />}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>
                     {
@@ -44,6 +51,8 @@ UserTaskListEntry.propTypes = {
     flags: PropTypes.number.isRequired,
     progress: PropTypes.string.isRequired,
     vocab: PropTypes.object.isRequired,
+    new: PropTypes.bool.isRequired,
+    late: PropTypes.bool.isRequired,
 };
 
 export default UserTaskListEntry;
