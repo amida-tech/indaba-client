@@ -2,6 +2,44 @@ $block-class:'account-tab';
 
 @at-root {
     .#{$block-class} {
-        // More to come.
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+
+        &__label {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1em;
+
+            &--email {
+                color: $font-color;
+                padding-bottom: 5px;
+            }
+
+            &--text-input {
+                color: $header-font-color !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                padding-left: 0 !important;
+                font-size: 1.5em !important;
+                font-weight: 100 !important;
+            }
+
+            &--title {
+                color: $font-color;
+                padding-bottom: 5px;
+            }
+
+            &--account-since {
+                color: $font-color;
+                padding-bottom: 5px;
+            }
+        }
+
+        &__button {
+            margin-top: 1.5em !important;
+            width: 150px !important;
+        }
     }
 }

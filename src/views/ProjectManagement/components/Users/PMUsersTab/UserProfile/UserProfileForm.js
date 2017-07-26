@@ -25,19 +25,22 @@ class UserProfileForm extends Component {
                                 user={this.props.user}/>
                         </FormSection>
                     </Tab>
-                    <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
+                    <Tab className='user-profile__tabs user-profile__tabs--groups'
+                        title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <ProfileUserGroupsTab project={this.props.project}
                             userId={this.props.userId}
                             users={this.props.users}
                             vocab={this.props.vocab}/>
                     </Tab>
-                    <Tab title={this.props.vocab.PROJECT.TASKS}>
+                    <Tab className='user-profile__tabs user-profile__tabs--tasks'
+                        title={this.props.vocab.PROJECT.TASKS}>
                         <TasksTab project={this.props.project}
                             tasks={this.props.tasks}
                             userId={this.props.userId}
                             vocab={this.props.vocab}/>
                     </Tab>
-                    <Tab title={this.props.vocab.COMMON.PREFERENCE}>
+                    <Tab className='user-profile__tabs user-profile__tabs--preferences'
+                        title={this.props.vocab.COMMON.PREFERENCE}>
                         <FormSection name='preferences'>
                             <PreferenceTab user={this.props.user}
                                 vocab={this.props.vocab}/>
