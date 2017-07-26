@@ -7,22 +7,22 @@ class AccountTab extends Component {
     render() {
         return (
             <div className='account-tab'>
-                <label className='account-tab__label account-tab__label--email'>
+                <label className='account-tab__label'>
                     {this.props.vocab.COMMON.EMAIL}
                     <Field name='email'
                         component='input'
                         type='text'
-                        className='account-tab__label account-tab__label--text-input'/>
+                        className='account-tab__label--text-input'/>
                 </label>
-                <label className='account-tab__label account-tab__label--title'>
+                <label className='account-tab__label'>
                     {this.props.vocab.PROJECT.USER_TITLE}
                     ({this.props.vocab.PROJECT.OPTIONAL_MESSAGE})
                     <Field name='title'
                         component='input'
                         type='text'
-                        className='account-tab__label account-tab__label--text-input'/>
+                        className='account-tab__label--text-input'/>
                 </label>
-                <label className='account-tab__label account-tab__label--account-since'>
+                <label className='account-tab__label'>
                     {this.props.vocab.PROJECT.ACCOUNT_SINCE}
 
                     {this.props.user.activationDate ||

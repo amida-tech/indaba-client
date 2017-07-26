@@ -5,28 +5,22 @@ $block-class: 'user-profile';
         display: flex;
         flex-direction: column;
         flex: 1;
-        width: 100%;
+        overflow-y: scroll;
+        min-height: 500px;
+        min-width: 850px;
 
         &__tabs {
             display: inline-flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            justify-content: flex-start;
-            width: 100%;
-
-            &--account,
-            &--groups,
-            &--tasks,
-            &--preferences {
-                //
-            }
+            width: 75%;
         }
     }
 }
 
-.grommetux-layer--align-top:not(.grommetux-layer--hidden) .grommetux-layer__container {
-    width: 850px;
-}
+// .grommetux-layer--align-top:not(.grommetux-layer--hidden) .grommetux-layer__container {
+//     width: 850px;
+// }
 
 .grommet .grommetux-tab .grommetux-tab__label {
     font-size: 14px;

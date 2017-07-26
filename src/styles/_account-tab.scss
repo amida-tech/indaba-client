@@ -10,30 +10,17 @@ $block-class:'account-tab';
             display: flex;
             flex-direction: column;
             padding-bottom: 1em;
+            color: $font-color;
 
-            &--email {
-                color: $font-color;
-                padding-bottom: 5px;
-            }
-
-            &--text-input {
-                color: $header-font-color !important;
-                border-top: none !important;
-                border-left: none !important;
-                border-right: none !important;
-                padding-left: 0 !important;
-                font-size: 1.5em !important;
-                font-weight: 100 !important;
-            }
-
-            &--title {
-                color: $font-color;
-                padding-bottom: 5px;
-            }
-
-            &--account-since {
-                color: $font-color;
-                padding-bottom: 5px;
+            &--text-input,
+            .grommet &--text-input:not(.grommetux-input) {
+                color: #51545c;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding-left: 0;
+                font-size: 1.5em;
+                font-weight: 100;
             }
         }
 
