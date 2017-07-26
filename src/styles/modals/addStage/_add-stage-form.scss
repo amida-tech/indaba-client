@@ -13,18 +13,22 @@ $block-class:'add-stage-form';
         }
 
         &__header {
-            padding-bottom: 10px;
+            padding: 0.5em, 1em;
+            margin-top: 0.5em;
         }
 
-        &__radio-buttons {
-            margin-left: -20px;
+        &__radio-button {
             margin-top: 10px;
+        }
+
+        &__permission-label-text {
+            margin-left: 0.5em;
+            margin-right: 1em;
         }
 
         &__text-description {
+            padding: 1em;
             font-size: 16px;
-            margin-left: 10px;
-            margin-top: 10px;
         }
 
         &__date-input-div {
@@ -53,6 +57,16 @@ $block-class:'add-stage-form';
             margin-top: 30px;
             margin-bottom: 20px;
             margin-left: -10px;
+        }
+
+        .Select--multi .Select-value {
+            color: nth($brand-neutral-colors, 1);
+            background-color: #c1e6d0;
+            border-color: nth($brand-neutral-colors, 1);
+        }
+
+        .Select-option.is-focused {
+            background-color: rgba(197, 230, 207, 0.5);
         }
     }
 }

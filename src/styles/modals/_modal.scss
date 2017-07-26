@@ -13,7 +13,7 @@ $header-footer: #f2f2f2;
     // space at the top for positioning, space on the other side to show box-shadow
 
     .layer-title {
-        padding-left: 1.3em;
+        padding-left: 1em;
         background-color: #f2f2f2;
         line-height: 48px;
         border-bottom: 1px solid $border-color;
@@ -107,17 +107,13 @@ $header-footer: #f2f2f2;
             margin-top: 5px;
         }
 
-        span {
-            margin-left: 15px;
-        }
-
         .container {
             margin: 10px;
             width: 100%;
         }
 
         .Select-control {
-            margin-bottom: 5px;
+            margin-bottom: 30px;
             width: 100%;
 
             input[role=combobox] {
