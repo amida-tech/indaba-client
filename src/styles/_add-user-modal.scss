@@ -1,12 +1,11 @@
-$block-class: 'add-user-modal';
+$block-class: 'add-user-form';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        flex-direction: column;
-        min-width: 800px;
-
-        &--label {
+        &__label {
+            display: flex;
+            flex-direction: column;
+            min-width: 800px;
             padding: 1em;
             color: $font-color;
         }
