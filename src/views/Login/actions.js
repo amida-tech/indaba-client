@@ -1,6 +1,9 @@
 import { push } from 'react-router-redux';
+import cookie from 'react-cookie';
+
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
+import * as userActionTypes from '../../common/actionTypes/userActionTypes';
 
 export function login(username, password, realm) {
     return (dispatch) => {
@@ -16,16 +19,30 @@ export function login(username, password, realm) {
         (err, auth) => {
             if (auth && !err) {
                 dispatch(_loginSuccess(auth));
-                // dispatch(getUser());
-                dispatch(_clearLoginForm());
-                dispatch(push('/'));
+                dispatch(getUser());
+                // dispatch(_clearLoginForm());
+                dispatch(push('/project'));
             } else {
                 // dispatch(_loginLoading());
                 dispatch(_loginError(err.message));
-            // dispatch(_clearLoginForm());
+                dispatch(_clearLoginForm());
             }
         },
       );
+    };
+}
+
+export function getUser() {
+    return (dispatch) => {
+        apiService.users.getCurrentUser(
+      (err, user) => {
+          if (user && !err) {
+              dispatch(_getUserSuccess(user));
+          } else {
+              dispatch(_getUserFailure());
+          }
+      },
+    );
     };
 }
 
@@ -46,6 +63,10 @@ function _login() {
 // }
 
 function _loginSuccess(response) {
+    console.log('JAMES2');
+    console.log(cookie);
+    cookie.set('indaba-auth', response.token);
+    cookie.set('indaba-realm', response.realm);
     return {
         type: actionTypes.LOGIN_SUCCESS,
         payload: response,
@@ -63,5 +84,18 @@ function _loginError(response) {
     return {
         type: actionTypes.LOGIN_ERROR,
         payload: response,
+    };
+}
+
+function _getUserSuccess(user) {
+    return {
+        type: userActionTypes.GET_CURRENT_USER_SUCCESS,
+        payload: user,
+    };
+}
+
+function _getUserFailure() {
+    return {
+        type: userActionTypes.GET_CURRENT_USER_FAILURE,
     };
 }

@@ -1,6 +1,44 @@
 import 'whatwg-fetch';
 
 /**
+ * Executes a GET request on the given URI
+ * @param {String} fullURI
+ * @param {Function} callback
+ * @return {Any} handled by callback. Generally the response data.
+**/
+export function apiGetRequest(fullURI, callback) {
+    fetch(fullURI, {
+        method: 'GET',
+        headers: {
+            Token: localStorage['indaba-auth'],
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+  .then(res => handleResponse(res, callback));
+}
+
+/**
+ * Executes a POST request on the given URI
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+**/
+export function apiPostRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    })
+  .then(res => handleResponse(res, callback));
+}
+
+/**
  * Executes a GET + Auth-Basic request on the given URI
  * @param {String} fullURI
  * @param {Function} callback
@@ -9,7 +47,6 @@ import 'whatwg-fetch';
 export function apiAuthGetRequest(fullURI, authHash, callback) {
     fetch(fullURI, {
         method: 'GET',
-        // credentials: 'include',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
