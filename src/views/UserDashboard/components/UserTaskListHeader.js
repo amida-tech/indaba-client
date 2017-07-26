@@ -12,9 +12,6 @@ const UserTaskListHeader = ({ vocab }) =>
         <div className='user-task-list-header__title user-task-list-header__title--due'>
             {vocab.PROJECT.DUE}
         </div>
-        <div className='user-task-list-header__title user-task-list-header__title--role'>
-            {vocab.PROJECT.ROLE}
-        </div>
         <div className='user-task-list-header__title user-task-list-header__title--survey'>
             {vocab.PROJECT.SURVEY}
         </div>
