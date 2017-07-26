@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Stamp from '../../../common/components/Dashboard/Stamp';
+import Stamp, { StampType } from '../../../common/components/Dashboard/Stamp';
 
 class UserGlance extends Component {
     render() {
@@ -10,9 +10,11 @@ class UserGlance extends Component {
                 <Stamp label={this.props.vocab.PROJECT.TASKS}
                     value={this.props.tasks} />
                 <Stamp label={this.props.vocab.PROJECT.NEW_TASK}
-                    value={this.props.newTasks} />
+                    value={this.props.newTasks}
+                    type={StampType.GOOD} />
                 <Stamp label={this.props.vocab.PROJECT.LATE_TASK}
-                    value={this.props.lateTasks} />
+                    value={this.props.lateTasks}
+                    type={StampType.BAD} />
                 <Stamp label={this.props.vocab.PROJECT.FLAGGED}
                     value={this.props.flagged} />
             </div>
