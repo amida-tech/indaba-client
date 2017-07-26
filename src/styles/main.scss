@@ -1,3 +1,6 @@
+// Okay, for the purposes of sanity, let's start grouping these under folders in styles,
+// and then start categorizing them by those folders. See the bottom for an example under
+// Modals and Login.
 @import './styles.scss';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
@@ -6,11 +9,6 @@
 @import './task-survey-list.scss';
 @import './review-pane.scss';
 @import './questions.scss';
-@import './modals/modal.scss';
-@import './new-project-title.scss';
-@import './modals/task-options-form.scss';
-@import 'modals/addStage/add-stage-form.scss';
-@import 'modals/addStage/add-stage-date-time.scss';
 @import './new-project-title.scss';
 @import './user-sidebar.scss';
 @import './invite-user.scss';
@@ -58,5 +56,13 @@
 @import './subjects.scss';
 @import './subject-list.scss';
 @import './pm-dashboard.scss';
+// Modals:
+@import './modals/modal.scss';
+@import './modals/task-options-form.scss';
+@import './modals/addStage/add-stage-form.scss';
+@import './modals/addStage/add-stage-date-time.scss';
+// Login:
+@import './login/login-panel.scss';
+@import './login/login-form.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';
