@@ -1,7 +1,4 @@
 $tag-height: 1.25em; // 20px
-$late-color: #af1212;
-$done-color: #68997d;
-$not-started-color: #a4aebf;
 
 $block-class:'stage-slot';
 
@@ -30,11 +27,8 @@ $block-class:'stage-slot';
 
         &__due-row {
             font-size: 12px;
-
-            span {
-                float: right;
-                color: white;
-            }
+            display: flex;
+            justify-content: space-between;
         }
 
         &__role-span {
@@ -69,29 +63,6 @@ $block-class:'stage-slot';
         &__flag-row {
             margin-top: -8px;
             margin-bottom: 30px;
-        }
-
-        &__label {
-            font-size: 10px; // em dependent calc
-            display: inline-block;
-            height: $tag-height; // 20px
-            padding: 0 1em;
-            margin-right: 5px;
-            position: relative;
-            min-width: 2.5em;
-            border-radius: 2px;
-
-            &--late {
-                background-color: $late-color;
-            }
-
-            &--done {
-                background-color: $done-color;
-            }
-
-            &--not-started {
-                background-color: $not-started-color;
-            }
         }
     }
 }
