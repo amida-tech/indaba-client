@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
             .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
     },
     vocab: state.settings.language.vocabulary,
-    messages: state.messages,
+    messages: state.messages.slice(0, 4),
     ui: state.userdashboard.ui,
     rows: [].concat(...state.tasks.map(projectTasks =>
         projectTasks.tasks.filter(task =>
