@@ -1,0 +1,14 @@
+$block-class: 'add-user-modal';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        min-width: 800px;
+
+        &--label {
+            padding: 1em;
+            color: $font-color;
+        }
+    }
+}
