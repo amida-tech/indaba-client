@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
-import Filter from '../../../../common/components/Dashboard/Filter';
+import Filter from '../../../../common/components/Filter';
 import AddSubject from '../Modals/AddSubject';
 import AddStageModal from '../Modals/AddStage';
 
