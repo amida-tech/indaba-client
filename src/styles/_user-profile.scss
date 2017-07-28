@@ -15,10 +15,7 @@ $block-class: 'user-profile';
             flex-wrap: nowrap;
             width: 100%;
             margin-top: 1em;
-
-            &--active {
-                color: red;
-            }
+            cursor: pointer;
         }
     }
 }
@@ -27,6 +24,7 @@ $block-class: 'user-profile';
 //     width: 850px;
 // }
 
-.grommet .grommetux-tab .grommetux-tab__label {
+.grommet .grommetux-tab--active .grommetux-tab__label {
     font-size: 14px;
+    color: nth($brand-neutral-colors, 2);
 }
