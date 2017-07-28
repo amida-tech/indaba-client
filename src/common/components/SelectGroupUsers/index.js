@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { TextInput, Box } from 'grommet';
 import Modal from '../../../common/Modal';
 import FilteredList from './FilteredList';
 import { renderName } from '../../../utils/User';
@@ -97,43 +96,40 @@ class SelectGroupUsers extends Component {
                     }) :
                     undefined}
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
-                <Box pad={{ between: 'small', horizontal: 'small', vertical: 'small' }}>
+                <div className='select-group-users'>
                     {this.props.vocab.STAGE.GROUP_NAME}
-                    <TextInput
-                        placeHolder={this.props.vocab.PROJECT.ENTER_GROUP_NAME}
-                        onDOMChange={this.handleGroupName}
+                    <input className='select-group-users__group-name-input'
+                        placeholder={this.props.vocab.PROJECT.ENTER_GROUP_NAME}
+                        onChange={this.handleGroupName}
                         value={this.state.groupName}/>
-                    <Box direction='row'>
-                        <Box separator='all'
-                            pad='small'>
+                    <div className='select-group-users__wrapper'>
+                        <div className='select-group-users__non-group-user-list'>
                             {this.props.vocab.COMMON.ALL_USERS}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}
                                 selected={this.state.projectUsersSelected}/>
-                        </Box>
-                        <Box justify='center'
-                            pad='small'>
-                            <div className='trade-list--add'
+                        </div>
+                        <div className='select-group-users__buttons'>
+                            <div className='select-group-users__button'
                                 onClick={this.handleAdd}>&gt;</div>
-                            <div className='trade-list--add-all'
+                            <div className='select-group-users__button'
                                 onClick={this.handleAddAll}>&gt;&gt;</div>
-                            <div className='trade-list--remove'
+                            <div className='select-group-users__button'
                                 onClick={this.handleRemove}>&lt;</div>
-                            <div className='trade-list--remove-all'
+                            <div className='select-group-users__button'
                                 onClick={this.handleRemoveAll}>&lt;&lt;</div>
-                        </Box>
-                        <Box separator='all'
-                            pad='small'>
+                        </div>
+                        <div className='select-group-users__group-user-list'>
                             {this.props.vocab.STAGE.USER_GROUP}
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
                                 onSelect={this.handleGroupUsersSelect}/>
-                        </Box>
-                    </Box>
-                </Box>
+                        </div>
+                    </div>
+                </div>
             </Modal>
         );
     }

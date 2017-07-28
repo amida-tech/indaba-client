@@ -1,0 +1,18 @@
+$block-class: 'select-group-users';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
