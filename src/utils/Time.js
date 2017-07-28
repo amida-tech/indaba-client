@@ -25,6 +25,9 @@ export default {
             },
         });
     },
+    isInPast(time) {
+        return moment().isAfter(time);
+    },
     isToday(time) {
         return moment(time).isBetween(
             moment().startOf('day'),

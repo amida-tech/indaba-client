@@ -24,13 +24,13 @@ class UserDashboard extends Component {
         case FILTERS.LATE_TASKS:
             return row.late;
         case FILTERS.DUE_TODAY:
-            return Time.isToday(row.due);
+            return Time.isToday(row.due) && !row.complete;
         case FILTERS.FLAGS:
             return row.flags > 0;
         case FILTERS.DUE_TOMORROW:
-            return Time.isTomorrow(row.due);
+            return Time.isTomorrow(row.due) && !row.complete;
         case FILTERS.DUE_THIS_WEEK:
-            return Time.isThisWeek(row.due);
+            return Time.isThisWeek(row.due) && !Time.isInPast(row.due) && !row.complete;
         default:
             return true;
         }
@@ -118,6 +118,7 @@ const _generateRow = (state, projectId, task) => {
         progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
         new: task.new,
         late: TaskStatus.dueDateInPast(task, project.stages) && !TaskStatus.responsesComplete(task),
+        complete: TaskStatus.responsesComplete(task),
     };
 };
 
