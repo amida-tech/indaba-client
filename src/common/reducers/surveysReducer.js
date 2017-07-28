@@ -71,6 +71,51 @@ const initialState = [
             type: 'Checkbox',
         }], // Still need to add Bulletpoint and scale
     },
+    {
+        id: 79,
+        projectId: 102,
+        name: 'Midterm Stakeholder Survey',
+        instructions: 'Please indicate whether you agree or disagree with the importance of the following questions, and flag any questions with obvious errors.',
+        status: 'Draft',
+        description: 'Stakeholder satisfaction survey',
+        questions: [{
+            id: 17,
+            question: 'Are you satisfied as a stakeholder?',
+            type: 'Checkbox',
+        }, {
+            id: 21,
+            question: 'Which of the following words would you use to describe our services',
+            type: 'MultipleChoice',
+            answers: [
+                'Reliable',
+                'High Quality',
+                'Useful',
+                'Poor quality',
+                'Unreliable'],
+        }, {
+            id: 18,
+            question: 'How long have you been a Partner/Stakeholder?',
+            type: 'Number',
+        }, {
+            id: 23,
+            question: 'Describe your most recent challenges.',
+            type: 'LongText',
+        }, {
+            id: 34,
+            question: 'Overall, how satisfied or dissatisfied are you with the agency',
+            type: 'MultipleChoice',
+            answers: [
+                'Very Satisfied',
+                'Somewhat Satisfied',
+                'Neither Satisfied nor dissatisfied',
+                'Somewhat dissatisfied',
+                'Very dissatisfied'],
+        }, {
+            id: 99,
+            question: 'Do you have any other commits, questions, or concerns.',
+            type: 'LongText',
+        }],
+    },
 ];
 
 export const SurveysReducer = (state = initialState, action) => {
