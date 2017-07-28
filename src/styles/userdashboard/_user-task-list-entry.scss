@@ -1,0 +1,42 @@
+$block-class: 'user-task-list-entry';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 1em 2em 1em 1em;
+
+        &:nth-child(even) {
+            background-color: #fff;
+        }
+
+        &__cell {
+            &--subject,
+            &--task,
+            &--survey {
+                flex: 2;
+            }
+
+            &--due,
+            &--flags,
+            &--progress {
+                flex: 1;
+            }
+
+            &--flags {
+                align-self: stretch;
+                margin-top: -0.5em;
+            }
+
+            &--subject,
+            &--task,
+            &--survey,
+            &--progress {
+                overflow-x: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

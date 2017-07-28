@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Time from '../../../utils/Time';
 
 import EditableTextInput from '../../../common/components/EditableTextInput';
-import FlagCount from './FlagCount';
+import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
 

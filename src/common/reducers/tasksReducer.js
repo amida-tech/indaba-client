@@ -12,6 +12,7 @@ const initialState = [{
         userId: 22,
         stage: 0,
         subject: 0,
+        new: true,
     }, {
         id: 109,
         userId: 31,
