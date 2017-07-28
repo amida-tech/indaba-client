@@ -15,6 +15,10 @@ $block-class: 'user-profile';
             flex-wrap: nowrap;
             width: 100%;
             margin-top: 1em;
+
+            &--active {
+                color: red;
+            }
         }
     }
 }

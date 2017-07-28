@@ -10,8 +10,10 @@ $block-class:'preference-tab';
             color: $font-color;
         }
 
-        &__input-select {
-            color: red;
+        &__input-select,
+        .grommet &__input-select {
+            color: #51545c;
+            font-weight: 400;
         }
     }
 }
