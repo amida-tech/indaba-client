@@ -1,0 +1,13 @@
+$block-class:'pm-dashboard';
+
+@at-root {
+    .#{$block-class} {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        &__table {
+            border: 2px solid $border-color;
+            border-radius: 2px;
+        }
+    }
+}

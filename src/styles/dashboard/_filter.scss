@@ -4,11 +4,14 @@ $filter-background: #fafafa;
 @at-root {
     .#{$block-class} {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         padding-top: 1.5em;
+        margin-left: -8px;
 
         &__button {
+            margin-left: 8px;
             text-transform: uppercase;
+            text-align: center;
             display: flex;
             align-items: center;
             padding: 0.4em 1em;
@@ -22,6 +25,10 @@ $filter-background: #fafafa;
                 background-color: darken($brand-color, 10%);
                 color: $font-inverse-color;
                 border-color: transparent;
+            }
+
+            &:hover:not(&--active) {
+                background-color: darken(#fafafa, 5%);
             }
         }
     }

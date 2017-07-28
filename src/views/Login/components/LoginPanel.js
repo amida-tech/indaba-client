@@ -16,7 +16,7 @@ class LoginPanel extends Component {
                         this.props.actions.login(
                             values.username,
                             values.password,
-                            'test');
+                            this.props.realm);
                     }}/>
                 <div className='login-panel__link'>
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}

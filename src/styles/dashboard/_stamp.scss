@@ -1,21 +1,37 @@
 $block-class: 'stamp';
 
+$bad-color: #af1212;
+$good-color: #68997d;
+$neutral-color: $header-font-color;
+
 @at-root {
     .#{$block-class} {
         flex: 1;
-        border: 2px solid $header-font-color;
+        border: 2px solid $neutral-color;
         border-radius: 50%;
-        margin: 5px;
+        margin: 8px;
         position: relative;
+        max-width: 150px;
+
+        &--bad {
+            border-color: $bad-color;
+            color: $bad-color;
+        }
+
+        &--good {
+            border-color: $good-color;
+            color: $good-color;
+        }
+
+        &--neutral {
+            border-color: $neutral-color;
+            color: $neutral-color;
+        }
 
         &::before {
             content: "";
             display: block;
             padding-top: 100%;
-        }
-
-        &__spacer {
-            height: 0.5em;
         }
 
         &__content {
@@ -32,7 +48,6 @@ $block-class: 'stamp';
         &__value {
             font-size: 48px;
             line-height: 48px;
-            color: $font-color;
         }
     }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Stamp from './Stamp';
+import Stamp from '../../../common/components/Dashboard/Stamp';
 
 class ProjectGlance extends Component {
     render() {

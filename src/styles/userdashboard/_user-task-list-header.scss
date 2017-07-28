@@ -1,4 +1,4 @@
-$block-class: 'project-list-header';
+$block-class: 'user-task-list-header';
 
 @at-root {
     .#{$block-class} {
@@ -10,22 +10,16 @@ $block-class: 'project-list-header';
             color: $header-font-color;
             font-weight: 900;
 
-            &--project {
-                flex: 4;
-            }
-
+            &--subject,
+            &--task,
             &--survey {
-                flex: 4;
+                flex: 2;
             }
 
-            &--flags {
+            &--flags,
+            &--due,
+            &--progress {
                 flex: 1;
-            }
-
-            &--last-updated {
-                flex: 3;
-                display: flex;
-                justify-content: flex-end;
             }
         }
     }

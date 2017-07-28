@@ -30,7 +30,9 @@
     "ACCOUNT": "Account",
     "PREFERENCE": "Preference",
     "PENDING": "Pending",
-    "OK": "OK"
+    "OK": "OK",
+    "NEW": "New",
+    "LATE": "Late"
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -38,6 +40,11 @@
       "AGREE": "Agree",
       "DISAGREE": "Disagree (Comment Required)",
       "COMMENT_TIP": "Enter your comment here"
+  },
+  "TIME": {
+      "DUE_TODAY": "Due Today",
+      "DUE_TOMORROW": "Due Tomorrow",
+      "OVERDUE": "Overdue"
   },
   "PROJECT": {
     "CARD": {
@@ -84,6 +91,9 @@
     "EXPAND_ALL": "Expand All",
     "COLLAPSE_ALL": "Collapse All",
     "TASK_DUE_DATE": "Task Due Date",
+    "DUE": "Due",
+    "ROLE": "Role",
+    "PROGRESS": "Progress",
     "NO_COMMENTS": "There are no comments.",
     "CHANGE_STATUS": "Change Status",
     "INSTRUCTIONS": "Instructions",
@@ -160,6 +170,9 @@
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
     "GO_TO_PROJECT": "Go To Project",
     "TASKS": "Tasks",
+    "NEW_TASK": "New Task",
+    "LATE_TASK": "Late Task",
+    "FLAGGED": "Flagged",
     "USER_TITLE": "Title",
     "OPTIONAL_MESSAGE": "Optional, only you can see this",
     "TITLE_OPTIONAL": "Title (Optional)",
@@ -169,7 +182,12 @@
     "PROJECT_NAME_CHANGED": "Project Name Changed",
     "NEW_PROJECT_NAME": "New Project Name",
     "SURVEY_NAME_CHANGED": "Survey Name Changed",
-    "NEW_SURVEY_NAME": "New Survey Name"
+    "NEW_SURVEY_NAME": "New Survey Name",
+    "ANSWERED": "Answered",
+    "TASK": "Task"
+  },
+  "MESSAGES": {
+      "RECENT_MESSAGES": "Recent Messages"
   },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
@@ -178,6 +196,15 @@
       "PUBLISHED_SURVEYS": "Published Surveys",
       "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
       "SURVEYS_WITH_FLAGS": "Surveys with Flags"
+  },
+  "USER_TASK_LIST_FILTER": {
+    "ALL_TASKS": "All Tasks",
+    "NEW_TASKS": "New Tasks",
+    "LATE_TASKS": "Late Tasks",
+    "DUE_TODAY": "Due Today",
+    "FLAGS": "Flags",
+    "DUE_TOMORROW": "Due Tomorrow",
+    "DUE_THIS_WEEK": "Due This Week"
   },
   "STAGE": {
     "START_STAGE": "Start stage",

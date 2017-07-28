@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
 import { submit } from 'redux-form';
 
 import * as actions from '../actions';
+import config from '../../../config';
 import LoginPanel from './LoginPanel';
 
 class LoginContainer extends Component {
@@ -21,8 +21,9 @@ LoginContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
+        realm: ownProps.params.realm || config.REALM || 'testorg',
         vocab: state.settings.language.vocabulary,
     };
 };
@@ -32,7 +33,4 @@ const mapDispatchToProps = dispatch => ({
     onClickToSubmit: () => dispatch(submit('task-options-form')),
 });
 
-export default compose(
-    withRouter,
-    connect(mapStateToProps, mapDispatchToProps),
-)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
