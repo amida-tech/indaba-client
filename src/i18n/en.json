@@ -171,6 +171,9 @@
     "SURVEY_NAME_CHANGED": "Survey Name Changed",
     "NEW_SURVEY_NAME": "New Survey Name"
   },
+  "MESSAGES": {
+      "RECENT_MESSAGES": "Recent Messages"
+  },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
       "ACTIVE_PROJECTS": "Active Projects",

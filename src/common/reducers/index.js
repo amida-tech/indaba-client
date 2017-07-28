@@ -5,3 +5,4 @@ export { SurveysReducer } from './surveysReducer';
 export { TasksReducer } from './tasksReducer';
 export { DiscussReducer } from './discussReducer';
 export { ProjectReducer } from './projectReducer';
+export { MessageReducer } from './messageReducer';

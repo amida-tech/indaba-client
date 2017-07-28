@@ -6,7 +6,6 @@ class Stamp extends Component {
         return (
             <div className='stamp'>
                 <div className='stamp__content'>
-                    <div className='stamp__spacer'></div>
                     <div className='stamp__value'>
                         {this.props.value}
                     </div>
