@@ -23,12 +23,12 @@ export default (
             path='/project/:projectId'
             component={ProjectManagementContainer}/>
         <Route
-            key='/task-review(/:projectId)(/:taskId)'
-            path='/task-review(/:projectId)(/:taskId)'
+            key='/task-review/:projectId/:taskId'
+            path='/task-review/:projectId/:taskId'
             component={TaskReview}/>
         <Route
-            key='/login'
-            path='/login'
+            key='/login(/:realm)'
+            path='/login(/:realm)'
             component={LoginContainer}/>
         <Route
             key='/create-new-project'
