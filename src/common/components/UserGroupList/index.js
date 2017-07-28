@@ -20,7 +20,7 @@ class UserGroupList extends Component {
                         </div>
                         <div className={'user-group-list__header-section '
                             + 'user-group-list__header-section--action'}>
-                            {this.props.vocab.COMMON.ACTIONS}
+                            { this.props.onDeleteClick && this.props.vocab.COMMON.ACTIONS }
                         </div>
                     </div>
                 }
@@ -46,5 +46,4 @@ UserGroupList.propTypes = {
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
 };
-
 export default UserGroupList;
