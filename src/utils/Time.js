@@ -5,7 +5,12 @@ export default {
         return moment(time).format('DD MMMM Y');
     },
     renderForMessageList(time) {
-        return moment(time).format('h:mmA');
+        return moment().calendar(time, {
+            sameDay: 'h:mmA',
+            lastDay: 'M.D.YYYY',
+            lastWeek: 'M.D.YYYY',
+            sameElse: 'M.D.YYYY',
+        });
     },
     renderDueDateForTaskList(time, vocab) {
         return moment().calendar(time, {
