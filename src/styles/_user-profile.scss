@@ -7,13 +7,14 @@ $block-class: 'user-profile';
         flex: 1;
         overflow-y: scroll;
         min-height: 500px;
-        min-width: 850px;
+        min-width: 800px;
 
         &__tabs {
             display: inline-flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            width: 75%;
+            width: 100%;
+            margin-top: 1em;
         }
     }
 }

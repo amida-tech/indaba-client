@@ -2,6 +2,16 @@ $block-class:'preference-tab';
 
 @at-root {
     .#{$block-class} {
-        // More to come.
+        padding: 1em;
+
+        &__label {
+            display: flex;
+            flex-direction: column;
+            color: $font-color;
+        }
+
+        &__input-select {
+            color: red;
+        }
     }
 }

@@ -23,7 +23,7 @@ class AccountTab extends Component {
                         className='account-tab__label--text-input'/>
                 </label>
                 <label className='account-tab__label'>
-                    {this.props.vocab.PROJECT.ACCOUNT_SINCE}
+                    {`${this.props.vocab.PROJECT.ACCOUNT_SINCE} `}
 
                     {this.props.user.activationDate ||
                         this.props.vocab.PROJECT.NOT_ACCEPTED}
