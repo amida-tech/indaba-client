@@ -1,28 +1,7 @@
 $block-class:'tasks-tab';
 
 @at-root {
-    // .tasks-tab
     .#{$block-class} {
-        // .tasks-tab__row
-        &__row {
-            flex-direction: row;
-            display: flex;
-            padding: 1em;
-            justify-content: space-between;
-
-            &:nth-child(odd) {
-                background-color: lighten(#d8d8d8, 10%);
-            }
-        }
-        // .tasks-tab__cell
-        &__cell {
-            width: 50%;
-
-            &--header {
-                color: $font-color;
-                font-weight: bold;
-                letter-spacing: 0.8px;
-            }
-        }
+        // More to come.
     }
 }

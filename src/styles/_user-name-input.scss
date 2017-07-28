@@ -2,12 +2,6 @@ $block-class:'user-name-input';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-
-        &__label {
-            flex: 1;
-            padding: 1em;
-            color: $font-color;
-        }
+        // More to come.
     }
 }
