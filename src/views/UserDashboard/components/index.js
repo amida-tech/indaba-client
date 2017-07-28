@@ -110,6 +110,7 @@ const _generateRow = (state, projectId, task) => {
     const survey = state.surveys.find(findSurvey => findSurvey.projectId);
     return {
         key: task.id,
+        projectId,
         subject: project.subjects[task.subject],
         task: project.stages.find(stage => stage.id === task.stage).title,
         due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,

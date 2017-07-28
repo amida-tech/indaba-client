@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
@@ -8,7 +9,8 @@ import StatusLabel, { StatusLabelType } from '../../../common/components/StatusL
 class UserTaskListEntry extends Component {
     render() {
         return (
-            <div className='user-task-list-entry'>
+            <div className='user-task-list-entry'
+                onClick={() => this.props.router.push(`/project/${this.props.projectId}`)}>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--subject'>
                     {this.props.subject}
                 </div>
@@ -55,4 +57,4 @@ UserTaskListEntry.propTypes = {
     late: PropTypes.bool.isRequired,
 };
 
-export default UserTaskListEntry;
+export default withRouter(UserTaskListEntry);
