@@ -25,7 +25,7 @@ class PrimaryNavContainer extends Component {
                   full="vertical">
                     <Box direction='row' align='baseline'>
                         <div className='primary-nav__item'>
-                            <Link to="/">
+                            <Link to="/task">
                                 <img src="/src/assets/indaba_logo.svg"
                                     className="primary-nav__indaba-logo"/>
                             </Link>

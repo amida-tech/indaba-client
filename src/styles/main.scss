@@ -30,15 +30,10 @@
 @import './matrix-container.scss';
 @import './subject-popup-contents.scss';
 @import './confirmation-checkbox.scss';
-@import './split-layout.scss';
 @import './project-glance.scss';
-@import './stamp.scss';
 @import './project-list-controls.scss';
-@import './filter.scss';
 @import './project-list-header.scss';
 @import './project-list-entry.scss';
-@import './flag-count.scss';
-@import './search-input.scss';
 @import './stage-slot.scss';
 @import './stage-summary.scss';
 @import './status-card.scss';
@@ -56,14 +51,29 @@
 @import './subjects.scss';
 @import './subject-list.scss';
 @import './pm-dashboard.scss';
+@import './status-label.scss';
 // Modals:
 @import './modals/modal.scss';
 @import './user-profile.scss';
+@import './add-user-form.scss';
 @import './modals/task-options-form.scss';
 @import './modals/addStage/add-stage-form.scss';
 @import './modals/addStage/add-stage-date-time.scss';
 // Login:
 @import './login/login-panel.scss';
 @import './login/login-form.scss';
+// Shared Dashboard:
+@import './dashboard/filter.scss';
+@import './dashboard/flag-count.scss';
+@import './dashboard/split-layout.scss';
+@import './dashboard/stamp.scss';
+@import './dashboard/search-input.scss';
+@import './dashboard/message-list.scss';
+// User Dashboard
+@import './userdashboard/user-dashboard.scss';
+@import './userdashboard/user-glance.scss';
+@import './userdashboard/user-task-list-controls.scss';
+@import './userdashboard/user-task-list-header.scss';
+@import './userdashboard/user-task-list-entry.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';

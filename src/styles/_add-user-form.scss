@@ -1,0 +1,13 @@
+$block-class: 'add-user-form';
+
+@at-root {
+    .#{$block-class} {
+        &__label {
+            display: flex;
+            flex-direction: column;
+            min-width: 800px;
+            padding: 1em;
+            color: $font-color;
+        }
+    }
+}

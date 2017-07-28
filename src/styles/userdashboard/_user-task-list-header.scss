@@ -1,0 +1,26 @@
+$block-class: 'user-task-list-header';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        text-transform: uppercase;
+        padding: 1em 2em 1em 1em;
+
+        &__title {
+            color: $header-font-color;
+            font-weight: 900;
+
+            &--subject,
+            &--task,
+            &--survey {
+                flex: 2;
+            }
+
+            &--flags,
+            &--due,
+            &--progress {
+                flex: 1;
+            }
+        }
+    }
+}
