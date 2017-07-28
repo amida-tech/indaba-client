@@ -35,6 +35,12 @@ class UserDashboard extends Component {
             return true;
         }
     }
+    searchRow(row) {
+        const lowerQuery = this.props.ui.searchQuery.toLowerCase();
+        return row.subject.toLowerCase().includes(lowerQuery) ||
+            row.task.toLowerCase().includes(lowerQuery) ||
+            row.survey.toLowerCase().includes(lowerQuery);
+    }
     render() {
         return (
             <div className='user-dashboard'>
@@ -50,6 +56,7 @@ class UserDashboard extends Component {
                     <UserTaskListHeader vocab={this.props.vocab} />
                     {
                         this.props.rows.filter(this.filterRow.bind(this))
+                        .filter(this.searchRow.bind(this))
                         .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
                     }
                 </div>
