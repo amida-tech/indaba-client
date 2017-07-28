@@ -37,6 +37,11 @@ class PMDashboard extends Component {
             return true;
         }
     }
+    searchRow(row) {
+        const lowerQuery = this.props.ui.searchQuery.toLowerCase();
+        return row.project.name.toLowerCase().includes(lowerQuery) ||
+            row.survey.name.toLowerCase().includes(lowerQuery);
+    }
     render() {
         return (
             <div className='pm-dashboard'>
@@ -59,6 +64,7 @@ class PMDashboard extends Component {
                 <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
                     {this.props.rows.filter(this.filterRow.bind(this))
+                        .filter(this.searchRow.bind(this))
                         .map(row => <ProjectListEntry key={row.project.id} {...row}
                             vocab={this.props.vocab}
                             onProjectNameChange={this.props.actions.setProjectName}
