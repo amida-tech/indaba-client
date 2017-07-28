@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
-import FilterBar from './FilterBar';
+import Filter from '../../../../common/components/Dashboard/Filter';
 import AddSubject from '../Modals/AddSubject';
 import AddStageModal from '../Modals/AddStage';
 
 class FilterWrapper extends Component {
     render() {
-        const Filters = [{
+        const filters = [{
             label: this.props.vocab.PROJECT.FILTER_UNASSIGNED,
             key: 'unassigned',
         }, {
@@ -25,14 +25,17 @@ class FilterWrapper extends Component {
 
         return (
             <div className='filter-wrapper'>
-                <FilterBar options={Filters}
-                    filter={this.props.project.filter}
-                    onToggleFilter={this.props.onToggleFilter}
-                    projectId={this.props.project.id} />
-                <div className='add-button-panel'>
-                    <Button primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
+                <Filter filters={filters}
+                    active={this.props.project.filter}
+                    onFilterClick={filter =>
+                        this.props.onToggleFilter(filter, this.props.project.id)}
+                    noSpace={true} />
+                <div className='filter-wrapper__add-button-panel'>
+                    <Button className='filter-wrapper__add-button'
+                        primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
                         onClick={() => this.props.showAddStageModal()}/>
-                    <Button primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
+                    <Button className='filter-wrapper__add-button'
+                        primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         onClick={() => this.props.showAddSubjectModal()}/>
                 </div>
                 {this.props.ui.showAddStage &&

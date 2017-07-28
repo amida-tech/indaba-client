@@ -12,7 +12,7 @@ class Filter extends Component {
     }
     render() {
         return (
-            <div className='filter'>
+            <div className={`filter ${this.props.noSpace ? 'filter--no-space' : ''}`}>
                 {this.props.filters.map(filter =>
                     <div className={`filter__button ${this.isActive(filter.key) ? 'filter__button--active' : ''}`}
                         key={filter.key}
@@ -36,6 +36,7 @@ Filter.propTypes = {
             key: PropTypes.string,
         }),
     ).isRequired,
+    noSpace: PropTypes.bool,
     onFilterClick: PropTypes.func.isRequired,
 };
 
