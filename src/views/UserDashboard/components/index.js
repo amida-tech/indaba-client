@@ -114,7 +114,7 @@ const _generateRow = (state, projectId, task) => {
         state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
     );
     const answered = discussion.discuss.filter(response => response.value !== undefined).length;
-    const survey = state.surveys.find(findSurvey => findSurvey.projectId);
+    const survey = state.surveys.find(findSurvey => findSurvey.projectId === projectId);
     return {
         key: task.id,
         projectId,
