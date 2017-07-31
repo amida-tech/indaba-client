@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import Modal from '../../../common/Modal';
+import Modal from '../../../common/components/Modal';
 import FilteredList from './FilteredList';
 import { renderName } from '../../../utils/User';
 

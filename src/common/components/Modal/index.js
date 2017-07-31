@@ -3,19 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Layer } from 'grommet';
 
-class LayerFooterButton extends Component {
-    render() {
-        return (
-      <div
-        className={`layer-footer-button ${this.props.primary ? 'layer-footer-button-primary' : ''}`}
-        onClick={this.props.onClick}>{this.props.label}</div>
-        );
-    }
-}
+import LayerFooterButton from './LayerFooterButton';
 
 class Modal extends Component {
     render() {
-        const vocab = this.props.vocab;
         return (
             <Layer align='top'
                 closer={false}
@@ -30,12 +21,12 @@ class Modal extends Component {
                         <div className='layer-footer-button-wrapper'>
                             {this.props.onCancel &&
                                 <LayerFooterButton
-                                    label={vocab.COMMON.CANCEL}
+                                    label={this.props.vocab.COMMON.CANCEL}
                                     onClick={this.props.onCancel}/>
                             }
                             {this.props.onSave &&
                                 <LayerFooterButton
-                                    label={vocab.COMMON.SAVE}
+                                    label={this.props.vocab.COMMON.SAVE}
                                     primary={true}
                                     onClick={this.props.onSave}/>
                             }

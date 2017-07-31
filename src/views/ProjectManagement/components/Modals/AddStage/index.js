@@ -4,7 +4,7 @@ import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 
-import Modal from '../../../../../common/Modal';
+import Modal from '../../../../../common/components/Modal';
 import AddStageForm from './AddStageForm';
 
 class AddStageModal extends Component {
