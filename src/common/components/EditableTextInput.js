@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IonIcon from 'react-ionicons';
-
 class EditableTextInput extends Component {
     render() {
         return (
@@ -11,8 +9,6 @@ class EditableTextInput extends Component {
                     type='text'
                     {...this.props.input}>
                 </input>
-                <IonIcon className='editable-text-input__icon'
-                    icon='ion-android-create'/>
             </div>
         );
     }
