@@ -3,11 +3,10 @@ import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
-import * as userActionTypes from '../../common/actionTypes/userActionTypes';
+import * as userActions from '../../common/actions/userActions';
 
-export function login(username, password, realm) {
+export function login(username, password, realm, errorMessages) {
     return (dispatch) => {
-        // dispatch(_loginLoading());
         dispatch(_login());
         const authPayload = {
             username,
@@ -19,11 +18,10 @@ export function login(username, password, realm) {
         (err, auth) => {
             if (auth && !err) {
                 dispatch(_loginSuccess(auth));
-                dispatch(getUser());
-                // dispatch(_clearLoginForm());
+                dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
+                dispatch(getUsers(errorMessages.FETCH_USERS));
                 dispatch(push('/project'));
             } else {
-                // dispatch(_loginLoading());
                 dispatch(_loginError(err.message));
                 dispatch(_clearLoginForm());
             }
@@ -32,14 +30,28 @@ export function login(username, password, realm) {
     };
 }
 
-export function getUser() {
+export function getCurrentUser(translatedError) {
     return (dispatch) => {
         apiService.users.getCurrentUser(
-      (err, user) => {
-          if (user && !err) {
-              dispatch(_getUserSuccess(user));
+      (err, profile) => {
+          if (profile && !err) {
+              dispatch(userActions.getCurrentUserSuccess(profile));
           } else {
-              dispatch(_getUserFailure());
+              dispatch(_getCurrentUserFailure(translatedError));
+          }
+      },
+    );
+    };
+}
+
+export function getUsers(translatedError) {
+    return (dispatch) => {
+        apiService.users.getUsers(
+      (err, users) => {
+          if (users && !err) {
+              dispatch(userActions.getUsersSuccess(users));
+          } else {
+              dispatch(_getUsersFailure(translatedError));
           }
       },
     );
@@ -55,12 +67,6 @@ function _login() {
         type: actionTypes.LOGIN,
     };
 }
-
-// function _loginLoading() {
-//     return {
-//         type: actionTypes.LOGIN_LOADING,
-//     };
-// }
 
 function _loginSuccess(response) {
     cookie.save('indaba-auth', response.token);
@@ -78,22 +84,23 @@ function _clearLoginForm() {
 }
 
 
-function _loginError(response) {
+function _loginError(error) {
     return {
         type: actionTypes.LOGIN_ERROR,
-        payload: response,
+        error,
     };
 }
 
-function _getUserSuccess(user) {
+function _getCurrentUserFailure(error) {
     return {
-        type: userActionTypes.GET_CURRENT_USER_SUCCESS,
-        payload: user,
+        type: actionTypes.GET_CURRENT_USER_FAILURE,
+        error,
     };
 }
 
-function _getUserFailure() {
+function _getUsersFailure(error) {
     return {
-        type: userActionTypes.GET_CURRENT_USER_FAILURE,
+        type: actionTypes.GET_USERS_FAILURE,
+        error,
     };
 }

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import * as CommonReducers from './common/reducers';
+import { LoginReducer } from './views/Login';
 import { ProjectManagementReducer } from './views/ProjectManagement';
 import { TaskReviewReducer } from './views/TaskReview';
 import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
@@ -15,6 +16,7 @@ const reducers = {
     surveys: CommonReducers.SurveysReducer,
     tasks: CommonReducers.TasksReducer,
     discuss: CommonReducers.DiscussReducer,
+    login: LoginReducer,
     routing: routerReducer,
     manager: ProjectManagementReducer,
     taskreview: TaskReviewReducer,
