@@ -7,6 +7,7 @@ import { ProjectManagementReducer } from './views/ProjectManagement';
 import { TaskReviewReducer } from './views/TaskReview';
 import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 import { PMDashboardReducer } from './views/PMDashboard';
+import { UserDashboardReducer } from './views/UserDashboard';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
@@ -16,6 +17,7 @@ const reducers = {
     surveys: CommonReducers.SurveysReducer,
     tasks: CommonReducers.TasksReducer,
     discuss: CommonReducers.DiscussReducer,
+    messages: CommonReducers.MessageReducer,
     login: LoginReducer,
     routing: routerReducer,
     manager: ProjectManagementReducer,
@@ -23,6 +25,7 @@ const reducers = {
     projectwizard: CreateProjectWizardReducer,
     form: formReducer,
     pmdashboard: PMDashboardReducer,
+    userdashboard: UserDashboardReducer,
 };
 
 export default combineReducers(reducers);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FILTERS } from '../constants';
 
-import Filter from './Filter';
+import Filter from '../../../common/components/Dashboard/Filter';
 
 class ProjectFilter extends Component {
     render() {

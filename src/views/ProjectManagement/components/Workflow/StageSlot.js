@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import IonIcon from 'react-ionicons';
 
 import TaskStatus from '../../../../utils/TaskStatus';
+import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
 import { showTaskOptionsModal } from '../../actions';
 import { renderName } from '../../../../utils/User';
 
@@ -67,15 +68,15 @@ class StageSlot extends Component {
 
     displayStatus() {
         if (this.state.done) {
-            return { term: this.props.vocab.DONE, mod: '--done' };
+            return { label: this.props.vocab.DONE, type: StatusLabelType.GOOD };
         }
         if (this.state.late) {
-            return { term: this.props.vocab.LATE, mod: '--late' };
+            return { label: this.props.vocab.LATE, type: StatusLabelType.BAD };
         }
         if (!TaskStatus.responsesExist(this.props.task)) {
-            return { term: this.props.vocab.NOT_STARTED, mod: '--not-started' };
+            return { label: this.props.vocab.NOT_STARTED, type: StatusLabelType.NEUTRAL };
         }
-        return '';
+        return null;
     }
 
     render() {
@@ -103,13 +104,10 @@ class StageSlot extends Component {
                         }
                     </div>
                     <div className='stage-slot__due-row'>
-                        <div>
+                        <div className='stage-slot__due-time'>
                             {this.displayDueTime()}
-                            <span
-                                className={labelDisplay ? `stage-slot__label stage-slot__label${labelDisplay.mod}` : ''} >
-                                {labelDisplay.term}
-                            </span>
                         </div>
+                        { labelDisplay && <StatusLabel {...labelDisplay} /> }
                     </div>
              </div>
          }
