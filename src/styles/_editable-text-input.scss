@@ -14,8 +14,8 @@ $block-class: 'editable-text-input';
             border: 1px solid $border-color;
         }
 
-        &__text-input:not(:focus),
-        .grommet &__text-input:not(.grommetux-input):not(:focus) {
+        &__text-input:not(:focus):not(:hover),
+        .grommet &__text-input:not(.grommetux-input):not(:focus):not(:hover) {
             border-color: transparent;
         }
     }
