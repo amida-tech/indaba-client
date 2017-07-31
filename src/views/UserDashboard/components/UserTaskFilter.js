@@ -17,14 +17,14 @@ class UserTaskFilter extends Component {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.DUE_TODAY,
                 key: FILTERS.DUE_TODAY,
             }, {
-                label: this.props.vocab.USER_TASK_LIST_FILTER.FLAGS,
-                key: FILTERS.FLAGS,
-            }, {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.DUE_TOMORROW,
                 key: FILTERS.DUE_TOMORROW,
             }, {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.DUE_THIS_WEEK,
                 key: FILTERS.DUE_THIS_WEEK,
+            }, {
+                label: this.props.vocab.USER_TASK_LIST_FILTER.FLAGS,
+                key: FILTERS.FLAGS,
             }, {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.COMPLETED,
                 key: FILTERS.COMPLETED,
