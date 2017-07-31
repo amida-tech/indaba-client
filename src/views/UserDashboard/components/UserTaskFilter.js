@@ -25,6 +25,9 @@ class UserTaskFilter extends Component {
             }, {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.DUE_THIS_WEEK,
                 key: FILTERS.DUE_THIS_WEEK,
+            }, {
+                label: this.props.vocab.USER_TASK_LIST_FILTER.COMPLETED,
+                key: FILTERS.COMPLETED,
             },
         ];
 
