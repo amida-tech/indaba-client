@@ -8,9 +8,6 @@ class UserTaskFilter extends Component {
     render() {
         const filters = [
             {
-                label: this.props.vocab.USER_TASK_LIST_FILTER.ALL_TASKS,
-                key: FILTERS.ALL_TASKS,
-            }, {
                 label: this.props.vocab.USER_TASK_LIST_FILTER.NEW_TASKS,
                 key: FILTERS.NEW_TASKS,
             }, {
