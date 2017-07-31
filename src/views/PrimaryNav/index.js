@@ -30,7 +30,7 @@ class PrimaryNavContainer extends Component {
                                     className="primary-nav__indaba-logo"/>
                             </Link>
                         </div>
-                        <Link className='primary-nav__item primary-nav__item--bold' to='/project'>
+                        <Link className='primary-nav__item primary-nav__item--active' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
                         <Link className='primary-nav__item' to='/users'>

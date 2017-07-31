@@ -15,6 +15,7 @@ $block-class:'primary-nav';
         &__item {
             color: $nav-text-color;
             margin-left: 20px;
+            font-weight: normal;
 
             &:hover {
                 opacity: 0.7;
@@ -22,8 +23,9 @@ $block-class:'primary-nav';
                 color: $nav-text-color;
             }
 
-            &--bold {
+            &--active {
                 font-weight: bolder;
+                color: #308253;
             }
         }
 
