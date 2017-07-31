@@ -5,7 +5,6 @@ $block-class: 'editable-text-input';
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        position: relative;
 
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
@@ -18,13 +17,6 @@ $block-class: 'editable-text-input';
         &__text-input:not(:focus),
         .grommet &__text-input:not(.grommetux-input):not(:focus) {
             border-color: transparent;
-        }
-
-        &__icon {
-            position: absolute;
-            right: 0;
-            fill: $header-font-color;
-            width: 1.5em;
         }
     }
 }
