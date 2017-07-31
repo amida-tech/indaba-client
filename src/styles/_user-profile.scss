@@ -4,27 +4,19 @@ $block-class: 'user-profile';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        flex: 1;
-        overflow-y: scroll;
         min-height: 500px;
         min-width: 800px;
 
         &__tabs {
-            display: inline-flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
             margin-top: 1em;
             cursor: pointer;
         }
+
+        .grommetux-tab--active .grommetux-tab__label {
+            font-size: 14px;
+            color: nth($brand-neutral-colors, 2);
+        }
     }
-}
-
-// .grommetux-layer--align-top:not(.grommetux-layer--hidden) .grommetux-layer__container {
-//     width: 850px;
-// }
-
-.grommet .grommetux-tab--active .grommetux-tab__label {
-    font-size: 14px;
-    color: nth($brand-neutral-colors, 2);
 }

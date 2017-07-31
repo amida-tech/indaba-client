@@ -14,7 +14,7 @@ $block-class:'tasks-tab';
         }
 
         &__cell {
-            width: 50%;
+            flex: 1;
 
             &--header {
                 color: $font-color;
