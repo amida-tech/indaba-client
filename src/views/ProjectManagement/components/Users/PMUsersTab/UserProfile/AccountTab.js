@@ -23,18 +23,23 @@ class AccountTab extends Component {
                         className='account-tab__label--text-input'/>
                 </label>
                 <label className='account-tab__label'>
-                    {`${this.props.vocab.PROJECT.ACCOUNT_SINCE} `}
-
-                    {this.props.user.activationDate ||
-                        this.props.vocab.PROJECT.NOT_ACCEPTED}
-                    {!this.props.user.activationDate &&
-
-                        <button
-                            onClick={this.props.onResendActivation}
-                            className='account-tab__button'>
-                            {this.props.vocab.PROJECT.RESEND_INVITATION}
-                        </button>
-                    }
+                    {this.props.vocab.PROJECT.ACCOUNT_SINCE}
+                    <div className='account-tab__date'>
+                        {
+                            this.props.user.activationDate ||
+                            this.props.vocab.PROJECT.NOT_ACCEPTED
+                        }
+                    </div>
+                    <div className='account-tab__button-wrapper'>
+                        {
+                            !this.props.user.activationDate &&
+                            <button
+                                onClick={this.props.onResendActivation}
+                                className='account-tab__button'>
+                                {this.props.vocab.PROJECT.RESEND_INVITATION}
+                            </button>
+                        }
+                    </div>
                 </label>
             </div>
         );
