@@ -2,7 +2,7 @@ import * as moment from 'moment';
 
 export default {
     renderForProjectList(time) {
-        return moment(time).format('DD MMMM Y');
+        return moment(time).format('DD MMM Y');
     },
     renderForMessageList(time) {
         return moment().calendar(time, {
