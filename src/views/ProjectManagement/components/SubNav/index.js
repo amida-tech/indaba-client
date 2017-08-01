@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import SubNavEntry from './SubNavEntry';
 
@@ -29,5 +30,11 @@ class SubNav extends Component {
         );
     }
 }
+
+SubNav.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    subnavigate: PropTypes.func.isRequired,
+    selected: PropTypes.string.isRequired,
+};
 
 export default SubNav;

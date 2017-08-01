@@ -16,7 +16,7 @@ class SubNavEntry extends Component {
 SubNavEntry.propTypes = {
     onClick: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    selected: PropTypes.bool,
+    selected: PropTypes.string,
     first: PropTypes.bool,
 };
 
