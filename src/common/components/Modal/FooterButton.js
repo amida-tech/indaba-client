@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class LayerFooterButton extends Component {
+class FooterButton extends Component {
     render() {
         return (
-            <div
-                className={`layer-footer-button ${this.props.primary ?
-                    'layer-footer-button-primary' : ''}`}
+            <div className={`footer-button ${this.props.primary ?
+                    'footer-button__primary' : ''}`}
                 onClick={this.props.onClick}>
                 {this.props.label}
             </div>
@@ -14,11 +13,11 @@ class LayerFooterButton extends Component {
     }
 }
 
-LayerFooterButton.propTypes = {
+FooterButton.propTypes = {
     onCancel: PropTypes.func,
     label: PropTypes.string.isRequired,
     primary: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
 };
 
-export default LayerFooterButton;
+export default FooterButton;
