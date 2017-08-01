@@ -52,6 +52,12 @@
       "OVERDUE": "Overdue"
   },
   "PROJECT": {
+    "TABS": [
+      "Workflow",
+      "Survey",
+      "Users",
+      "Subject"
+    ],
     "CARD": {
       "ASSIGN_TASK": "Assign Task",
       "LATE": "Late",
