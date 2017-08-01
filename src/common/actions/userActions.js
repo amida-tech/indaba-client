@@ -60,6 +60,21 @@ export function notifyUser(userId, message, senderId) {
     };
 }
 
+
+export function getCurrentUserSuccess(profile) {
+    return {
+        type: actionTypes.GET_CURRENT_USER_SUCCESS,
+        profile,
+    };
+}
+
+export function getUsersSuccess(users) {
+    return {
+        type: actionTypes.GET_USERS_SUCCESS,
+        users,
+    };
+}
+
 // private
 function _addNewUser() {
     return {

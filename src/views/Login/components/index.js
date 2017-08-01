@@ -19,12 +19,14 @@ class LoginContainer extends Component {
 
 LoginContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
     return {
         realm: ownProps.params.realm || config.REALM || 'testorg',
         vocab: state.settings.language.vocabulary,
+        ui: state.login.ui,
     };
 };
 

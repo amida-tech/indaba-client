@@ -15,6 +15,10 @@ const users = {
         const path = getFullPath(`/${cookie.load('indaba-realm')}/v0.2/users/self`);
         requests.apiGetRequest(path, callback);
     },
+    getUsers: (callback) => {
+        const path = getFullPath(`/${cookie.load('indaba-realm')}/v0.2/users`);
+        requests.apiGetRequest(path, callback);
+    },
     // getUserById: (id, callback) => {
     //     const path = getFullPath(`/users/${id}`);
     //     requests.apiGetRequest(path, callback);
