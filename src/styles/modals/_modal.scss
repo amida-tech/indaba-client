@@ -208,12 +208,5 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 }
             }
         }
-
-        &.create-new-project-layer {
-            & > div > div > div {
-                padding: 2em 2em 0;
-                text-align: center;
-            }
-        }
     }
 }

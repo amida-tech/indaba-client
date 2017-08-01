@@ -5,10 +5,10 @@ import Modal from '../../common/components/Modal';
 class CreateNewProject extends Component {
     render() {
         return (
-            <Modal class='create-new-project-layer'
+            <Modal class='create-new-project'
                 onCancel={this.props.onCancel}>
-                <div>
-                    <div>
+                <div className='create-new-project__body'>
+                    <div className='create-new-project__button-panel'>
                         <Button path='/create-new-project'
                             onClick={this.props.onCancel}
                             primary
@@ -16,7 +16,7 @@ class CreateNewProject extends Component {
                         <p>{this.props.vocab.MODAL.CREATE_PROJECT.CREATE_INSTRUCTION}</p>
                     </div>
                     <hr className='divider'/>
-                    <div>
+                    <div className='create-new-project__button-panel'>
                         <Button label={this.props.vocab.MODAL.CREATE_PROJECT.IMPORT}/>
                         <p>{this.props.vocab.MODAL.CREATE_PROJECT.IMPORT_INSTRUCTION}</p>
                     </div>
