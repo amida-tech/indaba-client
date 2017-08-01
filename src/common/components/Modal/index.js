@@ -31,7 +31,7 @@ class Modal extends Component {
                                     onClick={this.props.onSave}/>
                             }
                             {(this.props.buttons || []).map(button =>
-                                <LayerFooterButton {...button} />,
+                                <FooterButton {...button} />,
                             )}
                         </div>
                     </div>
