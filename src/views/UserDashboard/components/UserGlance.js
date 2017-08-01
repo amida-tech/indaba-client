@@ -7,7 +7,7 @@ class UserGlance extends Component {
     render() {
         return (
             <div className='user-glance'>
-                <Stamp label={this.props.vocab.PROJECT.TASKS}
+                <Stamp label={this.props.vocab.PROJECT.TASKS_TO_DO}
                     value={this.props.tasks} />
                 <Stamp label={this.props.vocab.PROJECT.NEW_TASK}
                     value={this.props.newTasks}

@@ -11,7 +11,7 @@ class LoginForm extends Component {
             <form className='login-form' onSubmit={this.props.handleSubmit}>
                 <Field name='username'
                     component={LoginField}
-                    placeholder={this.props.vocab.COMMON.USERNAME}
+                    placeholder={this.props.vocab.COMMON.USERNAME_OR_EMAIL}
                     type='text' />
                 <Field name='password'
                     component={LoginField}

@@ -16,13 +16,19 @@ class LoginPanel extends Component {
                         this.props.actions.login(
                             values.username,
                             values.password,
-                            this.props.realm);
+                            this.props.realm,
+                            this.props.vocab.ERROR);
                     }}/>
+                {this.props.ui.error &&
+                    <div className='login-panel__error-message'>
+                        {this.props.ui.error}
+                    </div>
+                }
                 <div className='login-panel__link'>
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
                 <div className='login-panel__link'>
-                    {this.props.vocab.COMMON.NO_ACCOUNT}
+                    {this.props.vocab.COMMON.FORGOT_USERNAME}
                 </div>
             </div>
         );
@@ -31,6 +37,7 @@ class LoginPanel extends Component {
 
 LoginPanel.propTypes = {
     vocab: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 export default LoginPanel;

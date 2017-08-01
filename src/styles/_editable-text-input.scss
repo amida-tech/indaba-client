@@ -6,6 +6,8 @@ $block-class: 'editable-text-input';
         flex-direction: column;
         align-items: stretch;
         position: relative;
+        color: #51545c;
+        font-weight: 100;
 
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
