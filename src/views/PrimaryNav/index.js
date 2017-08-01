@@ -30,7 +30,7 @@ class PrimaryNavContainer extends Component {
                                     className="primary-nav__indaba-logo"/>
                             </Link>
                         </div>
-                        <Link className='primary-nav__item primary-nav__item--active' to='/project'>
+                        <Link className='primary-nav__item primary-nav__item' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
                         <Link className='primary-nav__item' to='/users'>
@@ -41,7 +41,7 @@ class PrimaryNavContainer extends Component {
                         </Link>
                         <Button
                             className={'primary-nav__item primary-nav__button '
-                                + 'primary-nav__item--bold'}
+                                + 'primary-nav__item'}
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.setState({ showCreateNewProject: true })}/>
                     </Box>
