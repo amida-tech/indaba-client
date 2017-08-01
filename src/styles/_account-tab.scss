@@ -21,12 +21,13 @@ $block-class:'account-tab';
                 padding-left: 0;
                 font-size: 1.5em;
                 font-weight: 100;
+                border-radius: 0;
             }
         }
 
         &__button {
-            margin-top: 1.5em !important;
-            width: 150px !important;
+            margin-top: 1.5em;
+            width: 150px;
         }
     }
 }

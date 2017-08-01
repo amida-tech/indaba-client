@@ -12,34 +12,34 @@ import PreferenceTab from './PreferenceTab';
 class UserProfileForm extends Component {
     render() {
         return (
-            <form className='user-profile'
+            <form className='user-profile-form'
                 onSubmit={this.props.handleSubmit}>
                 <FormSection name='name'>
                     <UserNameInput {...this.props} />
                 </FormSection>
-                <Tabs className='user-profile__tabs'>
-                    <Tab className='user-profile__tab user-profile__tab--account'
+                <Tabs className='user-profile-form__tabs'>
+                    <Tab className='user-profile-form__tab user-profile-form__tab--account'
                     title={this.props.vocab.COMMON.ACCOUNT}>
                         <FormSection name='account'>
                             <AccountTab vocab={this.props.vocab}
                                 user={this.props.user}/>
                         </FormSection>
                     </Tab>
-                    <Tab className='user-profile__tab user-profile__tab--groups'
+                    <Tab className='user-profile-form__tab user-profile-form__tab--groups'
                         title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <ProfileUserGroupsTab project={this.props.project}
                             userId={this.props.userId}
                             users={this.props.users}
                             vocab={this.props.vocab}/>
                     </Tab>
-                    <Tab className='user-profile__tab user-profile__tab--tasks'
+                    <Tab className='user-profile-form__tab user-profile-form__tab--tasks'
                         title={this.props.vocab.PROJECT.TASKS}>
                         <TasksTab project={this.props.project}
                             tasks={this.props.tasks}
                             userId={this.props.userId}
                             vocab={this.props.vocab}/>
                     </Tab>
-                    <Tab className='user-profile__tab   user-profile__tab--preference'
+                    <Tab className='user-profile-form__tab user-profile-form__tab--preference'
                         title={this.props.vocab.COMMON.PREFERENCE}>
                         <FormSection name='preferences'>
                             <PreferenceTab user={this.props.user}
