@@ -3,44 +3,35 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Layer } from 'grommet';
 
-class LayerFooterButton extends Component {
-    render() {
-        return (
-      <div
-        className={`layer-footer-button ${this.props.primary ? 'layer-footer-button-primary' : ''}`}
-        onClick={this.props.onClick}>{this.props.label}</div>
-        );
-    }
-}
+import FooterButton from './FooterButton';
 
 class Modal extends Component {
     render() {
-        const vocab = this.props.vocab;
         return (
             <Layer align='top'
                 closer={false}
                 flush={true}
                 onClose={this.props.onCancel}>
-                <div className={`layer-content ${this.props.class || ''}`}>
-                    {this.props.title && <div className='layer-title'>{this.props.title}</div>}
-                    <div className='layer-body-container'>
+                <div className={`modal-c ${this.props.class || ''}`}>
+                    {this.props.title && <div className='modal-c__title'>{this.props.title}</div>}
+                    <div className='modal-c__container'>
                         {this.props.children}
                     </div>
-                    <div className='layer-footer'>
-                        <div className='layer-footer-button-wrapper'>
+                    <div className='modal-c__footer'>
+                        <div className='modal-c__button-wrapper'>
                             {this.props.onCancel &&
-                                <LayerFooterButton
-                                    label={vocab.COMMON.CANCEL}
+                                <FooterButton
+                                    label={this.props.vocab.COMMON.CANCEL}
                                     onClick={this.props.onCancel}/>
                             }
                             {this.props.onSave &&
-                                <LayerFooterButton
-                                    label={vocab.COMMON.SAVE}
+                                <FooterButton
+                                    label={this.props.vocab.COMMON.SAVE}
                                     primary={true}
                                     onClick={this.props.onSave}/>
                             }
                             {(this.props.buttons || []).map(button =>
-                                <LayerFooterButton {...button} />,
+                                <FooterButton {...button} />,
                             )}
                         </div>
                     </div>
