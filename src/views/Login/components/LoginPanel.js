@@ -22,7 +22,7 @@ class LoginPanel extends Component {
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
                 <div className='login-panel__link'>
-                    {this.props.vocab.COMMON.NO_ACCOUNT}
+                    {this.props.vocab.COMMON.FORGOT_USERNAME}
                 </div>
             </div>
         );

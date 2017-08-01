@@ -12,9 +12,11 @@ class UserTaskListControls extends Component {
                     <SearchInput placeholder={this.props.vocab.COMMON.SEARCH}
                         onChange={evt => this.props.actions.setSearchQuery(evt.target.value)}/>
                 </div>
-                <UserTaskFilter active={this.props.filter}
-                    vocab={this.props.vocab}
-                    onSetFilter={this.props.actions.setFilter} />
+                <div className='user-task-list-controls__filter'>
+                    <UserTaskFilter active={this.props.filter}
+                        vocab={this.props.vocab}
+                        onSetFilter={this.props.actions.setFilter} />
+                </div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, TextInput, List, ListItem } from 'grommet';
+import { List, ListItem } from 'grommet';
 
 class FilteredList extends Component {
     constructor(props) {
@@ -26,20 +26,24 @@ class FilteredList extends Component {
                 this.props.selected;
         }
 
-        return (<Box pad={{ between: 'small' }}>
-            <TextInput
-                placeHolder={this.props.placeHolder}
-                onDOMChange={this.handleQuery}/>
-            <List {...listProps}>
-                {this.props.items.map(item => (
-                    <ListItem
-                        key={item.key}
-                        style={{ display: this.filter(item) ? undefined : 'none' }}>
-                        {item.label}
-                    </ListItem>
-                ))}
-            </List>
-        </Box>);
+        return (
+            <div className='filtered-list'>
+                <input className='filtered-list__query'
+                    type='text'
+                    placeholder={this.props.placeHolder}
+                    onChange={this.handleQuery}/>
+                <List className='filtered-list__list'
+                    {...listProps}>
+                    {this.props.items.map(item => (
+                        <ListItem className='filtered-list__item'
+                            key={item.key}
+                            style={{ display: this.filter(item) ? undefined : 'none' }}>
+                            {item.label}
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
+        );
     }
 }
 
