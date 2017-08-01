@@ -3,9 +3,6 @@ $block-class: 'editable-text-input';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        position: relative;
         color: #51545c;
         font-weight: 100;
 
@@ -15,6 +12,8 @@ $block-class: 'editable-text-input';
         .grommet &__text-input:not(.grommetux-input) {
             border-radius: 2px;
             border: 1px solid $border-color;
+            flex: 1;
+            text-overflow: ellipsis;
         }
 
         &__text-input:not(:focus),
@@ -23,10 +22,7 @@ $block-class: 'editable-text-input';
         }
 
         &__icon {
-            position: absolute;
-            right: 0;
             fill: $header-font-color;
-            width: 1.5em;
         }
     }
 }
