@@ -2,6 +2,31 @@ $block-class:'account-tab';
 
 @at-root {
     .#{$block-class} {
-        // More to come.
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+
+        &__label {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1em;
+            color: $font-color;
+
+            &--text-input,
+            .grommet &--text-input:not(.grommetux-input) {
+                color: #51545c;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding-left: 0;
+                font-size: 1.5em;
+                font-weight: 100;
+            }
+        }
+
+        &__button {
+            margin-top: 1.5em !important;
+            width: 150px !important;
+        }
     }
 }
