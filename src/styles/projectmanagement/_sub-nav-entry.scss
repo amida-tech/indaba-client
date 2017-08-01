@@ -10,7 +10,7 @@ $block-class: 'sub-nav-entry';
         padding-bottom: 22px;
         cursor: pointer;
 
-        &.selected {
+        &--selected {
             border-bottom: 5px solid #3b9f22;
             padding-bottom: 17px;
             color: $brand-color;
