@@ -98,30 +98,6 @@ body {
     right: 0;
 }
 
-@media (min-width: 992px) {
-    .subnav-spacer {
-        width: 800px;
-    }
-}
-
-.subnav {
-    .subnav-entry {
-        font-size: 14px;
-        line-height: 18px;
-        color: #727882;
-        text-align: center;
-        margin-top: 2em;
-        padding-bottom: 22px;
-        cursor: pointer;
-
-        &.selected {
-            border-bottom: 5px solid #3b9f22;
-            padding-bottom: 17px;
-            color: $brand-color;
-        }
-    }
-}
-
 .main-body {
     margin-right: 2.5em;
     margin-left: 2.5em;
