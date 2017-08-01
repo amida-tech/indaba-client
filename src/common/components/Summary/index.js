@@ -15,14 +15,16 @@ class Summary extends Component {
                     status={this.props.project.status}
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
-                        (() => this.props.onStatusChangeClick('projectstatusmodal'))}/>
+                        (() => this.props.onStatusChangeClick('projectstatusmodal'))}
+                    onNameChange={this.props.onProjectNameChange}/>
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey.name}
                     status={this.props.survey.status}
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
-                        (() => this.props.onStatusChangeClick('surveystatusmodal'))}>
+                        (() => this.props.onStatusChangeClick('surveystatusmodal'))}
+                    onNameChange={this.props.onSurveyNameChange}>
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'
@@ -39,6 +41,8 @@ Summary.propTypes = {
     vocab: PropTypes.object.isRequired,
 
     onStatusChangeClick: PropTypes.func,
+    onProjectNameChange: PropTypes.func,
+    onSurveyNameChange: PropTypes.func,
 };
 
 export default Summary;
