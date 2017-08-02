@@ -2,26 +2,26 @@ import * as moment from 'moment';
 
 export default {
     renderForProjectList(time) {
-        return moment(time).format('DD MMMM Y');
+        return moment(time).format('DD MMM Y');
     },
     renderForMessageList(time) {
         return moment(time).format('DD MMM Y');
     },
     renderDueDateForTaskList(time, vocab) {
-        return moment().calendar(time, {
+        return moment(time).calendar(null, {
             sameDay(now) {
                 return (this.isBefore(now) ?
                     `[${vocab.TIME.OVERDUE}]` :
                     `[${vocab.TIME.DUE_TODAY}]`);
             },
-            nextDay: vocab.TIME.DUE_TOMORROW,
-            nextWeek: 'M.D.YYYY',
+            nextDay: `[${vocab.TIME.DUE_TOMORROW}]`,
+            nextWeek: 'DD MMM Y',
             lastDay: `[${vocab.TIME.OVERDUE}]`,
             lastWeek: `[${vocab.TIME.OVERDUE}]`,
             sameElse(now) {
                 return (this.isBefore(now) ?
                 `[${vocab.TIME.OVERDUE}]` :
-                'M.D.YYYY');
+                'DD MMM Y');
             },
         });
     },

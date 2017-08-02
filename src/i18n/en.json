@@ -216,7 +216,8 @@
     "DUE_TODAY": "Due Today",
     "FLAGS": "Flags",
     "DUE_TOMORROW": "Due Tomorrow",
-    "DUE_THIS_WEEK": "Due This Week"
+    "DUE_THIS_WEEK": "Due This Week",
+    "COMPLETED": "Completed"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
