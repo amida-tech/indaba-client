@@ -3,16 +3,26 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import Time from '../../../utils/Time';
 
-import FlagCount from './FlagCount';
+import EditableTextInput from '../../../common/components/EditableTextInput';
+import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
 
     render() {
         return (
             <div className='project-list-entry'
-                onClick={() => this.props.router.push(`/project/${this.props.project.id}`)}>
+                onClick={evt =>
+                    ![...document.querySelectorAll('.project-list-entry__name')].some(
+                        container => container.contains(evt.target),
+                    ) &&
+                    this.props.router.push(`/project/${this.props.project.id}`)}>
                 <div className='project-list-entry__name'>
-                    {this.props.project.name}
+                    <EditableTextInput input={{
+                        defaultValue: this.props.project.name,
+                        onChange: evt =>
+                        this.props.onProjectNameChange(evt.target.value, this.props.project.id),
+                        onBlur: evt => this.props.onProjectNameBlur(evt.target.value),
+                    }} />
                 </div>
                 <div className={`project-list-entry__status${
                     this.props.project.status === 'Active' ?
@@ -20,7 +30,12 @@ class ProjectListEntry extends Component {
                     {this.props.project.status}
                 </div>
                 <div className='project-list-entry__name'>
-                    {this.props.survey.name}
+                    <EditableTextInput input={{
+                        defaultValue: this.props.survey.name,
+                        onChange: evt =>
+                        this.props.onSurveyNameChange(evt.target.value, this.props.project.id),
+                        onBlur: evt => this.props.onSurveyNameBlur(evt.target.value),
+                    }} />
                 </div>
                 <div className={`project-list-entry__status${
                     this.props.survey.status === 'Published' ?
@@ -52,6 +67,10 @@ ProjectListEntry.propTypes = {
         status: PropTypes.string.isRequired,
     }),
     flags: PropTypes.number.isRequired,
+    onProjectNameChange: PropTypes.func.isRequired,
+    onProjectNameBlur: PropTypes.func.isRequired,
+    onSurveyNameChange: PropTypes.func.isRequired,
+    onSurveyNameBlur: PropTypes.func.isRequired,
 };
 
 export default withRouter(ProjectListEntry);

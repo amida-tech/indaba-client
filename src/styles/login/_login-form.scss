@@ -1,0 +1,26 @@
+$block-class:'login-form';
+
+@at-root {
+    .#{$block-class} {
+        text-align: center;
+
+        &__field {
+            padding-bottom: .25em;
+            width: 30em;
+        }
+
+        &__input {
+            width: 100%;
+            border: 1px solid $border-color;
+            padding: .5em 1em;
+        }
+
+        &__sign-in-button {
+            margin: 1em 0;
+            width: 100%;
+        }
+
+        .grommetux-button {
+        }
+    }
+}

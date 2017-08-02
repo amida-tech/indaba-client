@@ -1,0 +1,22 @@
+$block-class: 'user-profile-form';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        min-height: 500px;
+        min-width: 800px;
+
+        &__tabs {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+
+        .grommetux-tab--active .grommetux-tab__label {
+            font-size: 14px;
+            color: nth($brand-neutral-colors, 2);
+        }
+    }
+}

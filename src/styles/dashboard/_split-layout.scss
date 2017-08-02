@@ -13,6 +13,8 @@ $block-class: 'split-layout';
             border-color: $border-color;
             border-style: solid;
             display: flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
     }
 }

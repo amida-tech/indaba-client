@@ -15,6 +15,7 @@
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-click-outside": "^2.3.1",
+    "react-cookies": "^0.1.0",
     "react-dnd": "^2.4.0",
     "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.5.4",
@@ -35,7 +36,8 @@
     "redux-slider-monitor": "^2.0.0-0",
     "uuid": "^3.1.0",
     "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "whatwg-fetch": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

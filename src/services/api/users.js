@@ -1,3 +1,7 @@
+import cookie from 'react-cookies';
+import * as requests from './requests';
+import getFullPath from '../../utils/getFullPath';
+
 const users = {
     addNewUser: (requestBody) => {
         return new Promise((resolve) => {
@@ -7,6 +11,30 @@ const users = {
             }, 10);
         });
     },
+    getCurrentUser: (callback) => {
+        const path = getFullPath(`/${cookie.load('indaba-realm')}/v0.2/users/self`);
+        requests.apiGetRequest(path, callback);
+    },
+    getUsers: (callback) => {
+        const path = getFullPath(`/${cookie.load('indaba-realm')}/v0.2/users`);
+        requests.apiGetRequest(path, callback);
+    },
+    // getUserById: (id, callback) => {
+    //     const path = getFullPath(`/users/${id}`);
+    //     requests.apiGetRequest(path, callback);
+    // },
+    // addUser: (requestBody, callback) => {
+    //     const path = getFullPath('/users');
+    //     requests.apiPostRequest(path, requestBody, callback);
+    // },
+    // updateUser: (id, requestBody, callback) => {
+    //     const path = getFullPath(`/users/${id}`);
+    //     requests.apiPatchRequest(path, requestBody, callback);
+    // },
+    // getAllUsers: (callback) => {
+    //     const path = getFullPath('/users?role=all');
+    //     requests.apiGetRequest(path, callback);
+    // },
 };
 
 export default users;

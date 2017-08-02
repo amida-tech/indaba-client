@@ -1,9 +1,14 @@
 {
   "COMMON": {
+    "WELCOME": "Welcome To Indaba",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "FORGOT_USERNAME": "Forgot Username?",
     "HOME": "Home",
     "SIGN_IN": "Sign In",
     "EMAIL": "Email",
+    "PASSWORD": "Password",
     "USERNAME": "Username",
+    "USERNAME_OR_EMAIL": "Username Or Email",
     "NAME": "Name",
     "FIRST_NAME": "First Name",
     "LAST_NAME": "Last Name",
@@ -25,7 +30,14 @@
     "ANY": "Any",
     "ACCOUNT": "Account",
     "PREFERENCE": "Preference",
-    "PENDING": "Pending"
+    "PENDING": "Pending",
+    "OK": "OK",
+    "NEW": "New",
+    "LATE": "Late"
+  },
+  "ERROR": {
+    "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
+    "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later."
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",
@@ -34,7 +46,18 @@
       "DISAGREE": "Disagree (Comment Required)",
       "COMMENT_TIP": "Enter your comment here"
   },
+  "TIME": {
+      "DUE_TODAY": "Due Today",
+      "DUE_TOMORROW": "Due Tomorrow",
+      "OVERDUE": "Overdue"
+  },
   "PROJECT": {
+    "TABS": [
+      "Workflow",
+      "Survey",
+      "Users",
+      "Subject"
+    ],
     "CARD": {
       "ASSIGN_TASK": "Assign Task",
       "LATE": "Late",
@@ -79,6 +102,9 @@
     "EXPAND_ALL": "Expand All",
     "COLLAPSE_ALL": "Collapse All",
     "TASK_DUE_DATE": "Task Due Date",
+    "DUE": "Due",
+    "ROLE": "Role",
+    "PROGRESS": "Progress",
     "NO_COMMENTS": "There are no comments.",
     "CHANGE_STATUS": "Change Status",
     "INSTRUCTIONS": "Instructions",
@@ -86,17 +112,16 @@
     "DISAGREE": "Disagree (Comment Required)",
     "COMMENT_TIP": "Enter your comment here",
     "PERM_ARRAY": [
-        "Read Only",
-        "Provide Responses",
-        "Read and Write",
-        "Edit",
-        "All Permissions"
+        "Complete Survey",
+        "Review",
+        "Review and Comment",
+        "Review and Edit"
     ],
     "DESC_ARRAY": [
-        "Read only description",
-        "Provide responses description",
-        "Read and write description",
-        "Edit description",
+        "Complete Survey description",
+        "Review description",
+        "Review and comment description",
+        "Review and Edit description",
         "All permissions description"
       ],
     "BACK_TO_WORKFLOW": "Back to Workflow",
@@ -110,6 +135,7 @@
     "ADD_STAGES": "Add Stages",
     "SUBJECT_TITLE": "Subject Title",
     "STAGE_TITLE": "Stage Title",
+    "STAGE_TITLE_INSTRUCTION": "Enter a stage title. Try Fill Out Survey or Review Stage",
     "STAGE_SETTINGS": "Stage Settings",
     "ASSIGN_USER_GROUPS": "Assign user group(s)",
     "PERMISSIONS": "Stage Permissions (Actions the user can take on the survey)",
@@ -155,12 +181,25 @@
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
     "GO_TO_PROJECT": "Go To Project",
     "TASKS": "Tasks",
+    "TASKS_TO_DO": "Tasks To Do",
+    "NEW_TASK": "New Task",
+    "LATE_TASK": "Late Task",
+    "FLAGGED": "Flagged",
     "USER_TITLE": "Title",
     "OPTIONAL_MESSAGE": "Optional, only you can see this",
     "TITLE_OPTIONAL": "Title (Optional)",
     "ACCOUNT_SINCE": "Account Since",
     "NOT_ACCEPTED": "The user has not accepted this invitation",
-    "LAST_UPDATED": "Last Updated"
+    "LAST_UPDATED": "Last Updated",
+    "PROJECT_NAME_CHANGED": "Project Name Changed",
+    "NEW_PROJECT_NAME": "New Project Name",
+    "SURVEY_NAME_CHANGED": "Survey Name Changed",
+    "NEW_SURVEY_NAME": "New Survey Name",
+    "ANSWERED": "Answered",
+    "TASK": "Task"
+  },
+  "MESSAGES": {
+      "RECENT_MESSAGES": "Recent Messages"
   },
   "PROJECT_LIST_FILTER": {
       "ALL_PROJECTS": "All Projects",
@@ -169,6 +208,15 @@
       "PUBLISHED_SURVEYS": "Published Surveys",
       "SURVEYS_IN_DRAFT_MODE": "Surveys in Draft Mode",
       "SURVEYS_WITH_FLAGS": "Surveys with Flags"
+  },
+  "USER_TASK_LIST_FILTER": {
+    "ALL_TASKS": "All Tasks",
+    "NEW_TASKS": "New Tasks",
+    "LATE_TASKS": "Late Tasks",
+    "DUE_TODAY": "Due Today",
+    "FLAGS": "Flags",
+    "DUE_TOMORROW": "Due Tomorrow",
+    "DUE_THIS_WEEK": "Due This Week"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
@@ -234,9 +282,9 @@
         }
       }
     },
-    "CREATE_NEW_PROJECT_MODAL": {
-        "CREATE_NEW_PROJECT": "Create New Project",
-        "IMPORT_PROJECT": "Import Project",
+    "CREATE_PROJECT": {
+        "NEW": "Create New Project",
+        "IMPORT": "Import Project",
         "CREATE_INSTRUCTION": "Projects can be used to track workflow progress, manage users and collaborate with your team.",
         "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
     }

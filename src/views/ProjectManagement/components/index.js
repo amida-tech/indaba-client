@@ -64,7 +64,9 @@ class ProjectManagementContainer extends Component {
                             surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.projectActions.setProjectStatus}
                             onSetSurveyStatus={this.props.surveyActions.onSetSurveyStatus}/> }
-                    <SubNav />
+                    <SubNav vocab={this.props.vocab}
+                        subnavigate={this.props.actions.subnavigate}
+                        selected={this.props.ui.subnav}/>
                     <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}

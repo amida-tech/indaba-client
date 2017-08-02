@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { renderName } from '../../../../../utils/User';
-import Modal from '../../../../../common/Modal';
+import Modal from '../../../../../common/components/Modal';
 import TaskOptionsForm from './TaskOptionsForm';
 
 class TaskOptionsModal extends Component {

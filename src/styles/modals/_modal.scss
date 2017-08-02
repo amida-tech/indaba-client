@@ -4,66 +4,91 @@ $brand-color: #4eb276;
 $font-color: #a4aebf;
 $header-footer: #f2f2f2;
 
-.layer-content {
-    margin: 4em 1em 1em;
-    max-height: 100%;
-    border: 1px solid $border-color;
-    border-radius: 3px;
-    box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
-    // space at the top for positioning, space on the other side to show box-shadow
+$block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
-    .layer-title {
-        padding-left: 1em;
-        background-color: #f2f2f2;
-        line-height: 48px;
-        border-bottom: 1px solid $border-color;
-        color: $header-font-color;
-        text-align: left;
-        font-size: 18px;
-    }
+@at-root {
+    .#{$block-class} {
+        margin: 4em 1em 1em;
+        max-height: 100%;
+        border: 1px solid $border-color;
+        border-radius: 3px;
+        box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
+        // space at the top for positioning, space on the other side to show box-shadow
 
-    .layer-footer {
-        padding-right: 1em;
-        background-color: $header-footer;
-        line-height: 3em;
-        overflow: auto;
+        &__title {
+            padding-left: 1em;
+            background-color: #f2f2f2;
+            line-height: 48px;
+            border-bottom: 1px solid $border-color;
+            color: $header-font-color;
+            text-align: left;
+            font-size: 18px;
+        }
 
-        .layer-footer-button-wrapper {
+        &__footer {
+            padding-right: 1em;
+            background-color: $header-footer;
+            line-height: 3em;
+            overflow: auto;
+        }
+
+        &__button-wrapper {
             float: right;
+        }
 
-            .layer-footer-button {
-                margin-left: 1em;
-                padding: 0.5em 1.2em;
-                line-height: 1.2em;
-                vertical-align: middle;
-                border-radius: 2px;
-                display: inline-block;
-                font-size: 14px;
-                background-color: #d8d8d8;
-                color: $header-font-color;
-                cursor: pointer;
+        &__container {
+            background-color: #fafafa;
+            border-bottom: 1px solid $border-color;
+            min-height: 100%;
 
-                &.layer-footer-button-primary {
-                    background-color: $brand-color;
-                    color: white;
-                    font-weight: bold;
+            // specific layers
+            &.task-view-layer {
+                width: 90vw;
+                height: 100vh;
+
+                .name {
+                    font-size: 22px;
+                }
+
+                .container {
+                    margin: 10px;
+                    width: 100%;
+                }
+
+                .detail-box {
+                    display: inline-block;
+                    box-sizing: content-box;
+                    width: 20%;
+
+                    .grommetux-date-time__input {
+                        padding-right: 0 !important;
+                    }
                 }
             }
         }
-    }
 
-    .layer-body-container {
-        background-color: #fafafa;
-        border-bottom: 1px solid $border-color;
-        min-height: 100%;
+        &.add-subject-layer {
+            width: 30em;
 
-        // specific layers
-        &.task-view-layer {
-            width: 90vw;
-            height: 100vh;
+            input {
+                width: 100%;
+            }
 
-            .name {
-                font-size: 22px;
+            .layer-body-container {
+                padding: 2em 1em;
+            }
+        }
+
+        &.add-stage-layer {
+            width: 60em;
+
+            input[type=text] {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            input[type=radio] {
+                margin-top: 5px;
             }
 
             .container {
@@ -71,168 +96,117 @@ $header-footer: #f2f2f2;
                 width: 100%;
             }
 
-            .detail-box {
-                display: inline-block;
-                box-sizing: content-box;
-                width: 20%;
+            .Select-control {
+                margin-bottom: 30px;
+                width: 100%;
 
-                .grommetux-date-time__input {
-                    padding-right: 0 !important;
+                input[role=combobox] {
+                    border: none;
+                    color: transparent;
+                    text-shadow: 0 0 0 gray;
+                    text-align: center;
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
             }
-        }
-    }
 
-    &.add-subject-layer {
-        width: 30em;
-
-        input {
-            width: 100%;
+            .layer-body-container {
+                padding: 1em 1em 0;
+            }
         }
 
-        .layer-body-container {
-            padding: 2em 1em;
-        }
-    }
+        &.project-status-change-layer {
+            .ion-replaced-checkbox {
+                display: none;
 
-    &.add-stage-layer {
-        width: 60em;
-
-        input[type=text] {
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        input[type=radio] {
-            margin-top: 5px;
-        }
-
-        span {
-            margin-left: 15px;
-        }
-
-        .container {
-            margin: 10px;
-            width: 100%;
-        }
-
-        .Select-control {
-            margin-bottom: 5px;
-            width: 100%;
-
-            input[role=combobox] {
-                border: none;
-                color: transparent;
-                text-shadow: 0 0 0 gray;
-                text-align: center;
-
-                &:focus {
-                    outline: none;
+                & ~ .android-checkbox {
+                    margin-right: 0.5em;
+                    display: inline-block;
+                    vertical-align: middle;
                 }
             }
-        }
 
-        .layer-body-container {
-            padding: 1em 1em 0;
-        }
-    }
+            .toggle-native-check {
+                display: none;
 
-    &.project-status-change-layer {
-        .ion-replaced-checkbox {
-            display: none;
+                &:checked ~ .toggle {
+                    border-color: $brand-color;
+                }
 
-            & ~ .android-checkbox {
-                margin-right: 0.5em;
-                display: inline-block;
-                vertical-align: middle;
-            }
-        }
-
-        .toggle-native-check {
-            display: none;
-
-            &:checked ~ .toggle {
-                border-color: $brand-color;
+                &:checked ~ .toggle::after {
+                    background-color: $brand-color;
+                    left: 30px;
+                }
             }
 
-            &:checked ~ .toggle::after {
-                background-color: $brand-color;
-                left: 30px;
+            .toggle {
+                margin-top: 6px;
+                width: 54px;
+                height: 24px;
+                border: 2px solid $font-color;
+                border-radius: 12px;
+                float: right;
+                position: relative;
             }
-        }
 
-        .toggle {
-            margin-top: 6px;
-            width: 54px;
-            height: 24px;
-            border: 2px solid $font-color;
-            border-radius: 12px;
-            float: right;
-            position: relative;
-        }
+            .toggle::after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                left: 0;
+                border-radius: 50%;
+                position: absolute;
+                background-color: $font-color;
+                transition: left 0.2s;
+            }
 
-        .toggle::after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            left: 0;
-            border-radius: 50%;
-            position: absolute;
-            background-color: $font-color;
-            transition: left 0.2s;
-        }
+            .project-status-section {
+                padding: 0 1.5em 0.3em;
+            }
 
-        .project-status-section {
-            padding: 0 1.5em 0.3em;
-        }
+            .project-status-value input {
+                float: right;
+            }
 
-        .project-status-value input {
-            float: right;
-        }
+            input:checked ~ .project-status-field > .project-status-text {
+                color: $brand-color;
+            }
 
-        input:checked ~ .project-status-field > .project-status-text {
-            color: $brand-color;
-        }
-
-        .project-status-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: $header-font-color;
-        }
-
-        .project-status-label {
-            color: $font-color;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        .project-status-description p {
-            font-weight: 600;
-            color: $header-font-color;
-        }
-
-        .project-status-confirmation {
-            p {
+            .project-status-text {
+                font-size: 18px;
                 font-weight: 600;
                 color: $header-font-color;
-                margin-bottom: 1em;
             }
 
-            input {
-                margin-right: 1em;
+            .project-status-label {
+                color: $font-color;
+                font-size: 12px;
+                text-transform: uppercase;
             }
 
-            label {
-                font-weight: normal;
+            .project-status-description p {
+                font-weight: 600;
                 color: $header-font-color;
             }
-        }
-    }
 
-    &.create-new-project-layer {
-        & > div > div > div {
-            padding: 2em 2em 0;
-            text-align: center;
+            .project-status-confirmation {
+                p {
+                    font-weight: 600;
+                    color: $header-font-color;
+                    margin-bottom: 1em;
+                }
+
+                input {
+                    margin-right: 1em;
+                }
+
+                label {
+                    font-weight: normal;
+                    color: $header-font-color;
+                }
+            }
         }
     }
 }

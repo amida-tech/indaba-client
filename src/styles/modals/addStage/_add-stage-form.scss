@@ -1,0 +1,72 @@
+$block-class:'add-stage-form';
+
+@at-root {
+    .#{$block-class} {
+        color: $header-font-color;
+        margin-right: 20px;
+        margin-left: 20px;
+
+        &__input-field {
+            border-radius: 0;
+            height: 35px;
+            width: 100%;
+        }
+
+        &__header {
+            padding: 0.5em, 1em;
+            margin-top: 0.5em;
+        }
+
+        &__radio-button {
+            margin-top: 10px;
+        }
+
+        &__permission-label-text {
+            margin-left: 0.5em;
+            margin-right: 1em;
+        }
+
+        &__text-description {
+            padding: 1em;
+            font-size: 16px;
+        }
+
+        &__date-input-div {
+            margin-left: 15px;
+        }
+
+        &__start-label-and-input {
+            float: left;
+        }
+
+        &__end-label-and-input {
+            float: left;
+        }
+
+        &__date-inputs-container {
+            margin-bottom: 30px;
+        }
+
+        &__clear {
+            clear: both;
+        }
+
+        &__divider {
+            @extend .divider;
+
+            margin-top: 30px;
+            margin-bottom: 20px;
+            margin-left: -10px;
+        }
+
+        .Select--multi .Select-value {
+            color: nth($brand-neutral-colors, 1);
+            background-color: #c1e6d0;
+            border-color: nth($brand-neutral-colors, 1);
+        }
+
+        .Select-option.is-focused {
+            background-color: rgba(197, 230, 207, 0.5);
+        }
+    }
+}

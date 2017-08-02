@@ -5,5 +5,14 @@ $block-class: 'project-list-controls';
         padding: 2em;
         display: flex;
         flex-direction: column;
+
+        &__search {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        &__filter {
+            margin-top: 1.5em;
+        }
     }
 }

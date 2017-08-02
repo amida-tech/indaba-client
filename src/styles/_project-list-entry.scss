@@ -4,7 +4,8 @@ $block-class: 'project-list-entry';
     .#{$block-class} {
         display: flex;
         align-items: center;
-        padding: 0.5em 3em;
+        cursor: pointer;
+        padding: 1em 2em 1em 1em;
 
         &:nth-child(even) {
             background-color: #fff;
@@ -30,6 +31,8 @@ $block-class: 'project-list-entry';
 
         &__last-updated {
             flex: 3;
+            display: flex;
+            justify-content: flex-end;
         }
     }
 }

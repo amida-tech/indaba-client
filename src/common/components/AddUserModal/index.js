@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
-import Modal from '../../Modal';
+import Modal from '../Modal';
 import AddUserForm from './AddUserForm';
 
 class AddUserModal extends Component {

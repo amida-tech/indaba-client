@@ -4,14 +4,16 @@ $block-class: 'project-list-header';
     .#{$block-class} {
         display: flex;
         text-transform: uppercase;
-        padding: 0.5em 3em;
-        border-top: 1px solid $border-color;
+        padding: 1em 2em 1em 1em;
 
         &__title {
             color: $header-font-color;
             font-weight: 900;
 
-            &--project,
+            &--project {
+                flex: 4;
+            }
+
             &--survey {
                 flex: 4;
             }
@@ -22,6 +24,8 @@ $block-class: 'project-list-header';
 
             &--last-updated {
                 flex: 3;
+                display: flex;
+                justify-content: flex-end;
             }
         }
     }

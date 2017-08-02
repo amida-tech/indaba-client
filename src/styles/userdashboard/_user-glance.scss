@@ -1,0 +1,9 @@
+$block-class: 'user-glance';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+}
