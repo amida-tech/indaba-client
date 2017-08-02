@@ -5,15 +5,10 @@ $block-class: 'subjects';
         &__button-row {
             display: flex;
             justify-content: flex-end;
-            padding: 1em;
-            margin-right: 10px;
+            padding: 1em 0;
 
             &--right {
                 border-radius: 2px;
-            }
-
-            &__list-table {
-                color: red;
             }
         }
     }
