@@ -43,6 +43,7 @@ UserGroupList.propTypes = {
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object,
+    projectId: PropTypes.number,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
 };
