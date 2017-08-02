@@ -19,11 +19,11 @@ $block-class: 'editable-text-input';
         &__text-input:not(:focus),
         .grommet &__text-input:not(.grommetux-input):not(:focus) {
             border-color: transparent;
-
             background: none;
 
-        &__icon {
-            fill: $header-font-color;
+            &__icon {
+                fill: $header-font-color;
+            }
         }
     }
 }
