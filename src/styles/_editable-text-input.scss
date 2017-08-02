@@ -20,10 +20,10 @@ $block-class: 'editable-text-input';
         .grommet &__text-input:not(.grommetux-input):not(:focus) {
             border-color: transparent;
             background: none;
+        }
 
-            &__icon {
-                fill: $header-font-color;
-            }
+        &__icon {
+            fill: $header-font-color;
         }
     }
 }

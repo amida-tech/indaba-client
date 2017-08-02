@@ -26,9 +26,9 @@ $block-class:'primary-nav';
             }
 
             &:focus {
-                color: #308253;
                 text-decoration: none;
                 font-weight: 700;
+                color: $nav-text-color;
             }
         }
 
