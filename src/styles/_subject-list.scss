@@ -7,11 +7,17 @@ $block-class: 'subject-list';
         }
 
         &__search-input {
-            padding: 1em;
             display: flex;
+            padding: 1em;
+            width: 100%;
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid $border-color;
 
             input {
                 width: 100%;
+                padding: 5px;
+                border-radius: 2px;
             }
         }
 
@@ -40,8 +46,8 @@ $block-class: 'subject-list';
         }
 
         .grommetux-button--plain .grommetux-button__icon {
-            width: 24px;
-            height: 50px;
+            width: 16px;
+            height: 24px;
         }
     }
 }
