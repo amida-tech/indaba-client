@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import IonIcon from 'react-ionicons';
+import EditableTextInput from '../../../common/components/EditableTextInput';
 
 class StatusCard extends Component {
     render() {
@@ -14,7 +15,14 @@ class StatusCard extends Component {
                             {this.props.label}
                         </div>
                         <div className='status-card__name-value'>
-                            {this.props.name}
+                            {
+                                this.props.onNameChange ?
+                                <EditableTextInput input={{
+                                    value: this.props.name,
+                                    onChange: evt => this.props.onNameChange(evt.target.value),
+                                }} /> :
+                                this.props.name
+                            }
                         </div>
                     </div>
                 </div>
@@ -34,6 +42,7 @@ StatusCard.propTypes = {
     name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     onStatusChangeClick: PropTypes.func,
+    onNameChange: PropTypes.func,
 };
 
 export default StatusCard;

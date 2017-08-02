@@ -15,7 +15,7 @@ import * as projectActions from '../../../common/actions/projectActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import { assignTask, reassignTask } from '../../../common/actions/tasksActions';
-import { setSurveyStatus } from '../../../common/actions/surveysActions';
+import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
     render() {
@@ -72,7 +72,11 @@ class ProjectManagementContainer extends Component {
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
-                        vocab={this.props.vocab} />
+                        vocab={this.props.vocab}
+                        onProjectNameChange={name =>
+                            this.props.projectActions.setProjectName(name, this.props.project.id)}
+                        onSurveyNameChange={name =>
+                            this.props.surveyActions.onSetSurveyName(name, this.props.project.id)}/>
                     <hr className='divider main-divider' />
                     {body}
                 </div>
@@ -114,6 +118,7 @@ const mapDispatchToProps = dispatch => ({
     },
     surveyActions: {
         onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
+        onSetSurveyName: (name, projectId) => dispatch(setSurveyName(name, projectId)),
     },
     taskActions: {
         assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),

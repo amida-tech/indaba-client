@@ -42,6 +42,8 @@ class PMUsersTab extends Component {
                                 this.props.onAddUserToProject(userData.id, this.props.project.id),
                             );
                         }}/>
+                </div>
+                <div className='pm-users-tab__search-container'>
                     <input className='pm-users-tab__text-input'
                         type='text'
                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
@@ -54,9 +56,6 @@ class PMUsersTab extends Component {
                     <PMUserListRow user={user}
                         groups={this.props.project.userGroups}
                         key={user.id}
-                        stages={this.props.project.stages}
-                        tasks={this.props.tasks}
-                        subjects={this.props.project.subjects}
                         onNameClick={() => this.showUserProfileModal(user.id)}
                         onDeleteClick={() =>
                             this.props.onRemoveUserFromProject(user.id, this.props.project.id)}
