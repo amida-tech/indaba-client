@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.USER_DASH_SET_FILTER:
         return update(state, { ui: {
-            filter: { $set: action.filter },
+            filter: { $apply: filter =>
+                (filter === action.filter ? FILTERS.ALL_TASKS : action.filter) },
         } });
     default:
         return state;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { submit } from 'redux-form';
 
-import Modal from '../../../../../../common/Modal';
+import Modal from '../../../../../../common/components/Modal';
 import UserProfileForm from './UserProfileForm';
 
 import {

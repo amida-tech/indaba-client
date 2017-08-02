@@ -32,6 +32,7 @@ class UserGroupListEntry extends Component {
 UserGroupListEntry.propTypes = {
     group: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    projectId: PropTypes.number,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
 };

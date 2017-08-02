@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../../../common/Modal';
+import Modal from '../../../../common/components/Modal';
 
 class AddSubject extends Component {
     constructor(props) {

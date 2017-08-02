@@ -6,4 +6,5 @@ export const FILTERS = {
     FLAGS: 'FLAGS',
     DUE_TOMORROW: 'DUE_TOMORROW',
     DUE_THIS_WEEK: 'DUE_THIS_WEEK',
+    COMPLETED: 'COMPLETED',
 };

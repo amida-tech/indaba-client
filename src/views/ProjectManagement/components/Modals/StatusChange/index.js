@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from '../../../../../common/Modal';
+import Modal from '../../../../../common/components/Modal';
 import ProjectStatusBody from './ProjectStatusBody';
 import SurveyStatusBody from './SurveyStatusBody';
 

@@ -35,6 +35,10 @@
     "NEW": "New",
     "LATE": "Late"
   },
+  "ERROR": {
+    "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
+    "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later."
+  },
   "COMMON_BUTTONS": {
       "YES": "Yes",
       "NO": "No",
@@ -48,6 +52,12 @@
       "OVERDUE": "Overdue"
   },
   "PROJECT": {
+    "TABS": [
+      "Workflow",
+      "Survey",
+      "Users",
+      "Subject"
+    ],
     "CARD": {
       "ASSIGN_TASK": "Assign Task",
       "LATE": "Late",
@@ -171,6 +181,7 @@
     "PROJECT_CREATE_SUCCESS": "You Successfully Created A New Project",
     "GO_TO_PROJECT": "Go To Project",
     "TASKS": "Tasks",
+    "TASKS_TO_DO": "Tasks To Do",
     "NEW_TASK": "New Task",
     "LATE_TASK": "Late Task",
     "FLAGGED": "Flagged",
@@ -205,7 +216,8 @@
     "DUE_TODAY": "Due Today",
     "FLAGS": "Flags",
     "DUE_TOMORROW": "Due Tomorrow",
-    "DUE_THIS_WEEK": "Due This Week"
+    "DUE_THIS_WEEK": "Due This Week",
+    "COMPLETED": "Completed"
   },
   "STAGE": {
     "START_STAGE": "Start stage",
@@ -271,9 +283,9 @@
         }
       }
     },
-    "CREATE_NEW_PROJECT_MODAL": {
-        "CREATE_NEW_PROJECT": "Create New Project",
-        "IMPORT_PROJECT": "Import Project",
+    "CREATE_PROJECT": {
+        "NEW": "Create New Project",
+        "IMPORT": "Import Project",
         "CREATE_INSTRUCTION": "Projects can be used to track workflow progress, manage users and collaborate with your team.",
         "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
     }
