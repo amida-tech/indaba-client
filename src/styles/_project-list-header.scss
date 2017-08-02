@@ -5,10 +5,12 @@ $block-class: 'project-list-header';
         display: flex;
         text-transform: uppercase;
         padding: 1em 2em 1em 1em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
 
         &__title {
             color: $header-font-color;
-            font-weight: 900;
+            font-weight: 700;
 
             &--project {
                 flex: 4;
