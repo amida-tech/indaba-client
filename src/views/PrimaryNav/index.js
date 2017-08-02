@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { bindActionCreators } from 'redux';
 import { Box, Button } from 'grommet';
 import { Icon } from 'react-fa';
 
+import * as actions from '../../common/actions/navActions';
 import CreateNewProject from './CreateNewProject';
 
 
 class PrimaryNavContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { showCreateNewProject: false };
-    }
     render() {
         return (
             <nav className='primary-nav'>
-                {this.state.showCreateNewProject &&
+                {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
-                    onCancel={() => this.setState({ showCreateNewProject: false })}/>}
+                    onCancel={() => this.props.navActions.showCreateProject(false)}/>}
                 <Box
                   justify='between'
                   direction='row'
@@ -43,7 +41,7 @@ class PrimaryNavContainer extends Component {
                             className={'primary-nav__item primary-nav__button '
                                 + 'primary-nav__item--bold'}
                             label={this.props.vocab.COMMON.CREATE}
-                            onClick={() => this.setState({ showCreateNewProject: true })}/>
+                            onClick={() => this.props.navActions.showCreateProject(true)}/>
                     </Box>
                     <Box className='primary-nav__icon' direction='row' align='baseline'>
                         <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
@@ -57,6 +55,11 @@ class PrimaryNavContainer extends Component {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
+    ui: state.nav.ui,
 });
 
-export default connect(mapStateToProps)(PrimaryNavContainer);
+const mapDispatchToProps = dispatch => ({
+    navActions: bindActionCreators(Object.assign({}, actions), dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

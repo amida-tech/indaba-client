@@ -57,10 +57,14 @@
 @import './selectgroupusers/filtered-list.scss';
 // Project Management view
 @import './projectmanagement/filter-wrapper.scss';
+@import './projectmanagement/sub-nav.scss';
+@import './projectmanagement/sub-nav-entry.scss';
 // Modals:
 @import './modals/modal.scss';
-@import './user-profile-form.scss';
-@import './add-user-form.scss';
+@import './modals/footer-button.scss';
+@import './modals/add-user-form.scss';
+@import './modals/user-profile-form.scss';
+@import './modals/create-new-project.scss';
 @import './modals/task-options-form.scss';
 @import './modals/addStage/add-stage-form.scss';
 @import './modals/addStage/add-stage-date-time.scss';

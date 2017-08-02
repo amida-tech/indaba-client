@@ -1,0 +1,11 @@
+$block-class: 'sub-nav';
+
+@at-root {
+    .#{$block-class} {
+        @media (min-width: 992px) {
+            &__spacer {
+                width: 800px;
+            }
+        }
+    }
+}

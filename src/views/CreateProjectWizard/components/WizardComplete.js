@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, Button } from 'grommet';
-import Modal from '../../../common/Modal';
+import Modal from '../../../common/components/Modal';
 
 class WizardComplete extends Component {
     render() {
