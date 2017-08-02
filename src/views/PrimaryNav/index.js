@@ -28,6 +28,9 @@ class PrimaryNavContainer extends Component {
                                     className="primary-nav__indaba-logo"/>
                             </Link>
                         </div>
+                        <Link className='primary-nav__item' to='/project'>
+                            {this.props.vocab.PROJECT.PROJECTS}
+                        </Link>
                         <Link className='primary-nav__item' to='/users'>
                             {this.props.vocab.COMMON.ALL_USERS}
                         </Link>
