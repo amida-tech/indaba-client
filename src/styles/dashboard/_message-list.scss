@@ -2,14 +2,19 @@ $block-class: 'message-list';
 
 @at-root {
     .#{$block-class} {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        cursor: pointer;
+
         &__title {
-            padding-left: 3em;
+            padding-left: 2.5em;
             padding-bottom: 0.5em;
             height: 3em;
             border-bottom: 1px solid $border-color;
             display: flex;
             align-items: flex-end;
-            font-weight: bold;
+            font-weight: 400;
+            font-size: 1.2em;
         }
 
         &__row {
@@ -20,11 +25,15 @@ $block-class: 'message-list';
             align-items: center;
             background: #fff;
             border-bottom: 1px solid $border-color;
+
+            &:hover {
+                background-color: #f7f7f7;
+            }
         }
 
         &__name {
             flex: 2;
-            font-weight: bold;
+            font-weight: 400;
         }
 
         &__subject {

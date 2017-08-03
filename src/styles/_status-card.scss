@@ -40,6 +40,10 @@ $block-class: 'status-card';
             font-size: 18px;
             display: flex;
 
+            &:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
+
             &--editable {
                 cursor: pointer;
             }
