@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes';
 
+import apiService from '../../services/api';
+
 export function updateWizardProjectTitle(title) {
     return {
         type: actionTypes.UPDATE_WIZARD_PROJECT_TITLE,
@@ -11,6 +13,21 @@ export function updateWizardProjectSummary(summary) {
     return {
         type: actionTypes.UPDATE_WIZARD_PROJECT_SUMMARY,
         summary,
+    };
+}
+
+export function createProject(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postProject(
+            requestBody,
+            (err) => {
+                if (!err) {
+                    dispatch(_postProjectSuccess());
+                } else {
+                    dispatch(_postProjectFailure(errorMessages.INSERT_PROJECTS));
+                }
+            },
+        );
     };
 }
 
@@ -107,5 +124,18 @@ export function addUsersSetUsersFilter(filter) {
     return {
         type: actionTypes.ADD_USERS_SET_USERS_FILTER,
         filter,
+    };
+}
+
+// Private Functions
+export function _postProjectSuccess() {
+    return {
+        type: actionTypes.POST_PROJECT_SUCCESS,
+    };
+}
+
+export function _postProjectFailure() {
+    return {
+        type: actionTypes.POST_PROJECT_FAILURE,
     };
 }
