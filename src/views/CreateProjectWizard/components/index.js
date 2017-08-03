@@ -54,7 +54,8 @@ class CreateProjectWizard extends Component {
                         summary={this.props.wizard.project.summary}
                         updateTitle={this.props.actions.updateWizardProjectTitle}
                         updateSummary={this.props.actions.updateWizardProjectSummary}
-                        onSave={this.props.actions.setWizardProjectTitle}
+                        profile={this.props.profile}
+                        onSave={this.props.actions.createProject}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
@@ -104,6 +105,7 @@ CreateProjectWizard.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    profile: state.user.profile,
     wizard: state.projectwizard,
     vocab: state.settings.language.vocabulary,
     step: state.projectwizard.ui.step,

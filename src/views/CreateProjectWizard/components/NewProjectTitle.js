@@ -23,7 +23,18 @@ class NewProjectTitle extends Component {
         return <Modal
             title={this.props.vocab.PROJECT.PROJECT_TITLE}
             class='new-project-title-layer'
-            onSave={() => this.props.onSave()}>
+            onSave={() => this.props.onSave(
+                {
+                    user: {
+                        realmUserId: this.props.profile.id,
+                        organizationId: this.props.profile.organizationId,
+                    },
+                    codeName: this.props.title,
+                    description: this.props.summary,
+                    langId: 1,
+                },
+                this.props.vocab.ERROR.INSERT_PROJECTS,
+            )}>
             <div className='new-project-title'>
                 <TextInput className='new-project-title__name'
                     placeHolder={this.props.vocab.PROJECT.TITLE}

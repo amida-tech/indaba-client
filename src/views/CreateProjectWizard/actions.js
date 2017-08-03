@@ -31,12 +31,6 @@ export function createProject(requestBody, errorMessages) {
     };
 }
 
-export function setWizardProjectTitle() {
-    return {
-        type: actionTypes.SET_WIZARD_PROJECT_TITLE,
-    };
-}
-
 export function addSubjectsToWizard(subjects) {
     return {
         type: actionTypes.ADD_SUBJECTS_TO_WIZARD,

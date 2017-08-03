@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
         return update(state, { project: { name: { $set: action.title } } });
     case type.UPDATE_WIZARD_PROJECT_SUMMARY:
         return update(state, { project: { summary: { $set: action.summary } } });
-    case type.SET_WIZARD_PROJECT_TITLE:
+    case type.POST_PROJECT_SUCCESS: // Set ID too?
         return update(state, { ui: { projectTitle: { show: { $set: false } } } });
     case type.ADD_SUBJECTS_TO_WIZARD:
         return update(state, { project:
