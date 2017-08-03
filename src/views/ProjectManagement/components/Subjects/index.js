@@ -24,15 +24,15 @@ class Subjects extends Component {
                         }}
                         onCancel={() => this.setState({ showAddSubjectModal: false })}
                         vocab={this.props.vocab}/>}
-                <div className='subjects__button-row'>
-                    <Button className='subjects__button-row subjects__button-row--right'
+                <div className='subjects__button'>
+                    <Button className='subjects__button'
                         label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         primary
                         onClick={() => this.setState({ showAddSubjectModal: true })}/>
                 </div>
                 <hr className='divider' />
-                <div className='subject-list__table'>
-                    <SearchInput className='subject-list__search-input'
+                <div className='subjects__table'>
+                    <SearchInput className='subjects__search-input'
                         onDOMChange={evt => this.setState({ query: evt.target.value })}/>
                     <SubjectList
                         vocab={this.props.vocab}

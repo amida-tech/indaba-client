@@ -2,25 +2,6 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
-        &__table {
-            border: 1px solid $border-color;
-        }
-
-        &__search-input {
-            display: flex;
-            padding: 1em;
-            width: 100%;
-            flex: 1;
-            background-color: #fff;
-            border: 1px solid $border-color;
-
-            input {
-                width: 100%;
-                padding: 5px;
-                border-radius: 2px;
-            }
-        }
-
         &__entry {
             display: flex;
             justify-content: space-between;
@@ -46,8 +27,8 @@ $block-class: 'subject-list';
         }
 
         .grommetux-button--plain .grommetux-button__icon {
-            width: 16px;
-            height: 24px;
+            width: 12px;
+            height: 12px;
         }
     }
 }
