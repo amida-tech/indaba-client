@@ -2,12 +2,12 @@ $block-class: 'subjects';
 
 @at-root {
     .#{$block-class} {
-        &__button {
+        &__action {
             display: flex;
             justify-content: flex-end;
             padding: 1em 0;
 
-            &--right {
+            &-button {
                 border-radius: 2px;
             }
         }
