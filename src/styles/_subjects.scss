@@ -6,10 +6,10 @@ $block-class: 'subjects';
             display: flex;
             justify-content: flex-end;
             padding: 1em 0;
+        }
 
-            &-button {
-                border-radius: 2px;
-            }
+        &__action-button {
+            border-radius: 2px;
         }
 
         &__table {

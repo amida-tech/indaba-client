@@ -16,7 +16,7 @@ $block-class: 'search-input';
         &__icon {
             fill: $header-font-color;
             position: absolute;
-            float: left;
+            right: 0.5em;
         }
     }
 }
