@@ -26,7 +26,7 @@ class CreateProjectWizard extends Component {
         this.changeStep = this.changeStep.bind(this);
     }
     handleBack() {
-        this.changeStep(this.props.step - 1);
+        this.changeStep(this.props.wizard.ui.step - 1);
     }
     handleSkip() {
         this.handleContinue();
@@ -34,8 +34,8 @@ class CreateProjectWizard extends Component {
     handleCancel() {
     }
     handleContinue() {
-        if (this.props.step < NUM_WIZARD_STEPS - 1) {
-            this.changeStep(this.props.step + 1);
+        if (this.props.wizard.ui.step < NUM_WIZARD_STEPS - 1) {
+            this.changeStep(this.props.wizard.ui.step + 1);
         } else {
             this.props.actions.addProjectFromWizard(this.props.wizard);
             this.props.actions.completeWizard();
@@ -46,7 +46,7 @@ class CreateProjectWizard extends Component {
         this.props.actions.goToStep(newStep);
     }
     render() {
-        return (!this.props.complete ?
+        return (!this.props.wizard.ui.complete ?
             <div className='project-wizard'>
                 {this.props.wizard.ui.projectTitle.show &&
                     <NewProjectTitle
@@ -55,11 +55,12 @@ class CreateProjectWizard extends Component {
                         updateTitle={this.props.actions.updateWizardProjectTitle}
                         updateSummary={this.props.actions.updateWizardProjectSummary}
                         profile={this.props.profile}
+                        errorMessage={this.props.wizard.ui.errorMessage}
                         onSave={this.props.actions.createProject}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
-                    activeIndex={this.props.step}
+                    activeIndex={this.props.wizard.ui.step}
                     onActive={this.changeStep}>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
@@ -79,9 +80,9 @@ class CreateProjectWizard extends Component {
                 </Tabs>
                 <WizardFooter
                     vocab={this.props.vocab}
-                    finalStep={this.props.step === NUM_WIZARD_STEPS - 1}
-                    onBack={this.props.step !== 0 ? this.handleBack : undefined}
-                    onSkip={this.props.step < (NUM_WIZARD_STEPS - 1) ?
+                    finalStep={this.props.wizard.ui.step === NUM_WIZARD_STEPS - 1}
+                    onBack={this.props.wizard.ui.step !== 0 ? this.handleBack : undefined}
+                    onSkip={this.props.wizard.ui.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
@@ -98,18 +99,19 @@ CreateProjectWizard.propTypes = {
         project: PropTypes.object.isRequired,
         survey: PropTypes.object.isRequired,
         task: PropTypes.object.isRequired,
+        ui: PropTypes.shape({
+            errorMessage: PropTypes.string,
+            complete: PropTypes.bool.isRequired,
+            step: PropTypes.number.isRequired,
+        }),
     }).isRequired,
     vocab: PropTypes.object.isRequired,
-    step: PropTypes.number.isRequired,
-    complete: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
     profile: state.user.profile,
     wizard: state.projectwizard,
     vocab: state.settings.language.vocabulary,
-    step: state.projectwizard.ui.step,
-    complete: state.projectwizard.ui.complete,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -38,7 +38,7 @@
   "ERROR": {
     "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
     "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
-    "INSERT_PROJECTS": "The system failed to insert the new project into the database. Please try again later."
+    "INSERT_PROJECTS": "The system failed to insert the new project into the database. Please try again."
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

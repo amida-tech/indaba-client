@@ -44,6 +44,11 @@ class NewProjectTitle extends Component {
                         placeholder={this.props.vocab.PROJECT.SUMMARY}
                         onChange={this.handleSummaryEntry} />
                 </div>
+                {this.props.errorMessage &&
+                    <div className='new-project-title__error'>
+                        {this.props.errorMessage}
+                    </div>
+                }
             </div>
         </Modal>;
     }

@@ -20,9 +20,9 @@ export function createProject(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postProject(
             requestBody,
-            (err) => {
+            (err, response) => {
                 if (!err) {
-                    dispatch(_postProjectSuccess());
+                    dispatch(_postProjectSuccess(response.id));
                 } else {
                     dispatch(_postProjectFailure(errorMessages.INSERT_PROJECTS));
                 }
@@ -122,14 +122,16 @@ export function addUsersSetUsersFilter(filter) {
 }
 
 // Private Functions
-export function _postProjectSuccess() {
+export function _postProjectSuccess(id) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
+        id,
     };
 }
 
-export function _postProjectFailure() {
+export function _postProjectFailure(error) {
     return {
         type: actionTypes.POST_PROJECT_FAILURE,
+        error,
     };
 }
