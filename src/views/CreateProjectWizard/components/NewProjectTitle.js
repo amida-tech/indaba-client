@@ -33,7 +33,7 @@ class NewProjectTitle extends Component {
                     description: this.props.summary,
                     langId: 1,
                 },
-                this.props.vocab.ERROR.INSERT_PROJECTS,
+                this.props.vocab.ERROR,
             )}>
             <div className='new-project-title'>
                 <TextInput className='new-project-title__name'
@@ -56,6 +56,7 @@ class NewProjectTitle extends Component {
 
 NewProjectTitle.propTypes = {
     vocab: PropTypes.object.isRequired,
+    onSave: PropTypes.func.isRequired,
     updateTitle: PropTypes.func.isRequired,
     updateSummary: PropTypes.func.isRequired,
 };
