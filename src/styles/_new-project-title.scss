@@ -1,4 +1,5 @@
 $block-class:'new-project-title';
+$bad-color: #af1212;
 
 @at-root {
     .#{$block-class} {
@@ -10,6 +11,10 @@ $block-class:'new-project-title';
 
         &__summary-container {
             padding-top: 1em;
+        }
+
+        &__error {
+            color: $bad-color;
         }
 
         &__summary {
