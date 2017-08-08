@@ -11,10 +11,12 @@ class UserSidebar extends Component {
                 <div className='user-sidebar__instructions'>
                     {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
                 </div>
-                <SearchInput
-                    className={'user-sidebar'}
-                    placeholder={this.props.vocab.COMMON.SEARCH}
-                    onChange={this.props.onSearch}/>
+                <div className='user-sidebar__wrapper'>
+                    <SearchInput
+                        className={'user-sidebar'}
+                        placeholder={this.props.vocab.COMMON.SEARCH}
+                        onChange={this.props.onSearch}/>
+                </div>
                 <Select className='user-sidebar__user-filter-by-group'
                     placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
