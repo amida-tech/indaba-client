@@ -33,3 +33,9 @@ of the style guidelines laid out in `.stylelintrc.yml`.
 ## Bootstrapping
 This app was bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app).
 Local copy create-react-app documentation [here](bootstrap.README.md)
+
+## Testing
+Run the `user.integration.js` test if it has not yet been done.
+Start both `indaba-client` and `greyscale/backend`.
+Go to `http://localhost:3000/login`
+Login with `test-adm@mail.net` / `testadmin`
