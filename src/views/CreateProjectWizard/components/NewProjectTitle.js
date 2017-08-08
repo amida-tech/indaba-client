@@ -56,6 +56,12 @@ class NewProjectTitle extends Component {
 
 NewProjectTitle.propTypes = {
     vocab: PropTypes.object.isRequired,
+    profile: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        organizationId: PropTypes.number.isRequired,
+    }),
+    title: PropTypes.string.isRequired,
+    summary: PropTypes.string,
     onSave: PropTypes.func.isRequired,
     updateTitle: PropTypes.func.isRequired,
     updateSummary: PropTypes.func.isRequired,

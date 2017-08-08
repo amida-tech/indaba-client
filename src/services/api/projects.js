@@ -1,4 +1,3 @@
-
 import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
