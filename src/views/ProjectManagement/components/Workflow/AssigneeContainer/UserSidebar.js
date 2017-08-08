@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { List, ListItem, Search, Select } from 'grommet';
+import { List, ListItem, Select } from 'grommet';
+import SearchInput from '../../../../../common/components/Dashboard/SearchInput';
 
 class UserSidebar extends Component {
     render() {
@@ -10,12 +11,10 @@ class UserSidebar extends Component {
                 <div className='user-sidebar__instructions'>
                     {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
                 </div>
-                <Search
-                    className='user-sidebar__user-search'
-                    fill={true}
-                    placeHolder={this.props.vocab.COMMON.SEARCH}
-                    onDOMChange={this.props.onSearch}
-                    inline={true}/>
+                <SearchInput
+                    className={'user-sidebar'}
+                    placeholder={this.props.vocab.COMMON.SEARCH}
+                    onChange={this.props.onSearch}/>
                 <Select className='user-sidebar__user-filter-by-group'
                     placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
