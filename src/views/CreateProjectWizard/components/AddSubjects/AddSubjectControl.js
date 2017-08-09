@@ -11,10 +11,9 @@ class AddSubjectControl extends Component {
             <form className='add-subject-control' onSubmit={this.props.handleSubmit}>
                 <div className='add-subject-control__header'>
                     <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
-                    <div>{this.props.vocab.COMMON.ACTIONS}</div>
                 </div>
                 <div className='add-subject-control__fields'>
-                    <Field name='subjects'
+                    <Field name='add-subject-control__subjects'
                         component='input'
                         type='text'/>
                     <div className='add-subject-control__plus-icon'

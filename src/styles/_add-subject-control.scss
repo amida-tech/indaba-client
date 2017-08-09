@@ -2,13 +2,18 @@ $block-class: 'add-subject-control';
 
 @at-root {
     .#{$block-class} {
+        border: 2px solid $border-color;
+        border-radius: 2px;
+
         &__header {
             display: flex;
             justify-content: space-between;
+            padding: 1em;
         }
 
         &__fields {
             display: flex;
+            width: 100%;
         }
     }
 }
