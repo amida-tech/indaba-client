@@ -24,6 +24,7 @@ class NewProjectTitle extends Component {
             title={this.props.vocab.PROJECT.PROJECT_TITLE}
             class='new-project-title-layer'
             onSave={() => this.props.onSave(
+                'projects',
                 {
                     user: {
                         realmUserId: this.props.profile.id,

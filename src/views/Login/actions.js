@@ -16,13 +16,16 @@ export function login(username, password, realm, errorMessages) {
         apiService.auth.login(
         authPayload,
         (err, auth) => {
-            if (auth && !err) {
+            if (!err && auth) {
                 dispatch(_loginSuccess(auth));
                 dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
-                dispatch(getUsers(errorMessages.FETCH_USERS));
+                dispatch(getUsers(errorMessages));
                 dispatch(push('/project'));
+            } else if (err && !auth) {
+                dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                dispatch(_clearLoginForm());
             } else {
-                dispatch(_loginError(err.message));
+                dispatch(_loginError(errorMessages.INVALID_LOGIN));
                 dispatch(_clearLoginForm());
             }
         },
@@ -44,14 +47,16 @@ export function getCurrentUser(translatedError) {
     };
 }
 
-export function getUsers(translatedError) {
+export function getUsers(errorMessages) {
     return (dispatch) => {
         apiService.users.getUsers(
       (err, users) => {
-          if (users && !err) {
+          if (!err && users) {
               dispatch(userActions.getUsersSuccess(users));
+          } else if (err && !users) {
+              dispatch(_getUsersFailure(errorMessages.SERVER_ISSUE));
           } else {
-              dispatch(_getUsersFailure(translatedError));
+              dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
           }
       },
     );

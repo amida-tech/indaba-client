@@ -36,6 +36,8 @@
     "LATE": "Late"
   },
   "ERROR": {
+    "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
+    "INVALID_LOGIN": "We weren't able to find your username or password.",
     "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
     "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
     "INSERT_PROJECTS": "The system failed to insert the new project into the database. Please try again."

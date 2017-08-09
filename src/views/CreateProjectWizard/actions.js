@@ -16,13 +16,17 @@ export function updateWizardProjectSummary(summary) {
     };
 }
 
-export function createProject(requestBody, errorMessages) {
+// We reuse this for any project components.
+export function createProjectPart(component, requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.projects.postProject(
+        apiService.projects.postProjectPart(
+            component,
             requestBody,
             (err, response) => {
                 if (!err) {
                     dispatch(_postProjectSuccess(response.id));
+                } else if (err && !response) {
+                    dispatch(_postProjectFailure(errorMessages.SERVER_ISSUE));
                 } else {
                     dispatch(_postProjectFailure(errorMessages.INSERT_PROJECTS));
                 }

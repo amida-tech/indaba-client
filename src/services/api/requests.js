@@ -16,7 +16,7 @@ export function apiGetRequest(fullURI, callback) {
             'Content-Type': 'application/json',
         },
     })
-  .then(res => handleResponse(res, callback));
+  .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
 /**
@@ -36,7 +36,7 @@ export function apiPostRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-  .then(res => handleResponse(res, callback));
+  .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
 /**
@@ -54,7 +54,7 @@ export function apiAuthGetRequest(fullURI, authHash, callback) {
             Authorization: `Basic ${authHash}`,
         },
     })
-  .then(res => handleResponse(res, callback));
+  .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
 // ////////////////
@@ -64,6 +64,8 @@ function handleResponse(res, callback) {
   // successful http response
     if (res.status >= 200 && res.status < 300) {
         decodeResponse(res).then(data => callback(null, data));
+    } else if (res.status === 401) {
+        decodeResponse(res).then(data => callback(data, data));
     } else {
         decodeResponse(res).then(data => callback(data));
     }

@@ -56,7 +56,7 @@ class CreateProjectWizard extends Component {
                         updateSummary={this.props.actions.updateWizardProjectSummary}
                         profile={this.props.profile}
                         errorMessage={this.props.wizard.ui.errorMessage}
-                        onSave={this.props.actions.createProject}
+                        onSave={this.props.actions.createProjectPart}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
@@ -68,14 +68,21 @@ class CreateProjectWizard extends Component {
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
-                        <AddSubjects /></Tab>
+                        <AddSubjects
+                            actions={this.props.actions}
+                            wizard={this.props.wizard}
+                            vocab={this.props.vocab} />
+                    </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         <AddUsers />
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
-                        <AddStages />
+                        <AddStages
+                            actions={this.props.actions}
+                            wizard={this.props.wizard}
+                            vocab={this.props.vocab} />
                     </Tab>
                 </Tabs>
                 <WizardFooter
@@ -96,7 +103,9 @@ class CreateProjectWizard extends Component {
 
 CreateProjectWizard.propTypes = {
     wizard: PropTypes.shape({
-        project: PropTypes.object.isRequired,
+        project: PropTypes.shape({
+            subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+        }).isRequired,
         survey: PropTypes.object.isRequired,
         task: PropTypes.object.isRequired,
         ui: PropTypes.shape({
