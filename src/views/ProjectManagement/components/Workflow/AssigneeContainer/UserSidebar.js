@@ -13,7 +13,6 @@ class UserSidebar extends Component {
                 </div>
                 <div className='user-sidebar__wrapper'>
                     <SearchInput
-                        className={'user-sidebar'}
                         placeholder={this.props.vocab.COMMON.SEARCH}
                         onChange={this.props.onSearch}/>
                 </div>

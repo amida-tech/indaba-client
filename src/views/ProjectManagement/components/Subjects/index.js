@@ -34,7 +34,7 @@ class Subjects extends Component {
                 <hr className='divider' />
                 <div className='subjects__table'>
                     <div className='subjects__search-wrapper'>
-                        <SearchInput className='subjects__search-input'
+                        <SearchInput
                             placeholder={this.props.vocab.COMMON.SEARCH}
                             onChange={evt => this.setState({ query: evt.target.value })} />
                     </div>

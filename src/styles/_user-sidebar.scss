@@ -23,21 +23,6 @@ $block-class:'user-sidebar';
             margin: 0.5em;
         }
 
-        &__input {
-            margin: 0.5em;
-            flex-grow: 0;
-            width: calc(100% - 1em);
-            background-color: #fff;
-            padding: 0.5em 1em;
-        }
-
-        &__icon {
-            fill: $header-font-color;
-            position: absolute;
-            right: 1em;
-            top: 1em;
-        }
-
         &__user-filter-by-group {
             overflow: visible;
             margin: 0.5em;
