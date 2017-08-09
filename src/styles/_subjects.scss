@@ -2,6 +2,32 @@ $block-class: 'subjects';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK WARNING SUPPRESSION
+        &__action {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em 0;
+        }
+
+        &__action-button {
+            border-radius: 2px;
+        }
+
+        &__table {
+            border: 1px solid $border-color;
+        }
+
+        &__search-input {
+            padding: 1em;
+            width: 100%;
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid $border-color;
+
+            input {
+                width: 100%;
+                padding: 5px;
+                border-radius: 2px;
+            }
+        }
     }
 }
