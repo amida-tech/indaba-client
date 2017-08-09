@@ -32,6 +32,10 @@ $block-class: 'select-group-users';
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
+            align-items: center;
+            position: fixed;
+            top: 350px;
+            left: 408px;
         }
     }
 }

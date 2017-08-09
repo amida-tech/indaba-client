@@ -123,7 +123,7 @@ class SelectGroupUsers extends Component {
                         </div>
                         <div className='select-group-users__group-user-list'>
                             {this.props.vocab.STAGE.USER_GROUP}
-                            <FilteredList className='filter-list'
+                            <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
                                 onSelect={this.handleGroupUsersSelect}/>
