@@ -8,12 +8,12 @@ import IonIcon from 'react-ionicons';
 class AddSubjectControl extends Component {
     render() {
         return (
-            <form className='add-subject-control' onSubmit={this.props.handleSubmit}>
+                <form className='add-subject-control' onSubmit={this.props.handleSubmit}>
                 <div className='add-subject-control__header'>
                     <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                 </div>
                 <div className='add-subject-control__fields'>
-                    <Field name='add-subject-control__input'
+                    <Field className='subjects'
                         component='input'
                         type='text'/>
                     <div className='add-subject-control__plus-icon'
