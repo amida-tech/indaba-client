@@ -20,6 +20,7 @@ export function login(username, password, realm, errorMessages) {
                 dispatch(_loginSuccess(auth));
                 dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
                 dispatch(getUsers(errorMessages));
+                dispatch(getProjects());
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
@@ -33,33 +34,46 @@ export function login(username, password, realm, errorMessages) {
     };
 }
 
+// These are going to have to be moved to the userReducer down the road.
 export function getCurrentUser(translatedError) {
     return (dispatch) => {
         apiService.users.getCurrentUser(
-      (err, profile) => {
-          if (profile && !err) {
-              dispatch(userActions.getCurrentUserSuccess(profile));
-          } else {
-              dispatch(_getCurrentUserFailure(translatedError));
-          }
-      },
-    );
+          (err, profile) => {
+              if (profile && !err) {
+                  dispatch(userActions.getCurrentUserSuccess(profile));
+              } else {
+                  dispatch(_getCurrentUserFailure(translatedError));
+              }
+          },
+        );
     };
 }
 
 export function getUsers(errorMessages) {
     return (dispatch) => {
         apiService.users.getUsers(
-      (err, users) => {
-          if (!err && users) {
-              dispatch(userActions.getUsersSuccess(users));
-          } else if (err && !users) {
-              dispatch(_getUsersFailure(errorMessages.SERVER_ISSUE));
-          } else {
-              dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
-          }
-      },
-    );
+          (err, users) => {
+              if (!err && users) {
+                  dispatch(userActions.getUsersSuccess(users));
+              } else if (err && !users) {
+                  dispatch(_getUsersFailure(errorMessages.SERVER_ISSUE));
+              } else {
+                  dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
+              }
+          },
+        );
+    };
+}
+
+export function getProjects() { // errorMessages
+    return () => { // dispatch
+        apiService.projects.getProjects(
+            (projErr, projResp) => {
+                if (!projErr && projResp) {
+                    // dispatch
+                }
+            },
+        );
     };
 }
 

@@ -40,7 +40,7 @@ export default connect(null, dispatch => ({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         // const splitSubjects = values.subjects.split(/\s*,\s*/)
-        //     .filter(subject => subject !== '');
+        //     .filter(subject => subject !== ''); //TODO Bring back.
         ownProps.createSubject(
             ownProps.projectId,
             {
