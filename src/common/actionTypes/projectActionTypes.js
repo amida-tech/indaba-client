@@ -10,3 +10,7 @@ export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const SET_PROJECT_NAME = 'SET_PROJECT_NAME';
+
+// Private function types.
+export const POST_SUBJECT_SUCCESS = 'POST_SUBJECT_SUCCESS';
+export const POST_SUBJECT_FAILURE = 'POST_SUBJECT_FAILURE';

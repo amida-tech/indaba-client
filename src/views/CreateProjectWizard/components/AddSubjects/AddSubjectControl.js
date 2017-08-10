@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, submit, reset } from 'redux-form';
-
 import IonIcon from 'react-ionicons';
 
 class AddSubjectControl extends Component {
@@ -28,8 +27,9 @@ class AddSubjectControl extends Component {
 }
 
 AddSubjectControl.propTypes = {
+    projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    onAddSubjects: PropTypes.func.isRequired,
+    createSubject: PropTypes.func.isRequired,
 };
 
 const FORM_NAME = 'add-subject-control';
@@ -39,9 +39,17 @@ export default connect(null, dispatch => ({
 }))(reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
-        const splitSubjects = values.subjects.split(/\s*,\s*/)
-            .filter(subject => subject !== '');
-        ownProps.onAddSubjects(splitSubjects);
+        // const splitSubjects = values.subjects.split(/\s*,\s*/)
+        //     .filter(subject => subject !== '');
+        ownProps.createSubject(
+            ownProps.projectId,
+            {
+                name: values.subjects,
+                unitOfAnalysisType: 1,
+            },
+            ownProps.vocab.ERROR,
+            ownProps.addSubjectsToWizard,
+        );
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
 })(AddSubjectControl));

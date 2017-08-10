@@ -64,8 +64,8 @@ function handleResponse(res, callback) {
   // successful http response
     if (res.status >= 200 && res.status < 300) {
         decodeResponse(res).then(data => callback(null, data));
-    } else if (res.status === 401) {
-        decodeResponse(res).then(data => callback(data, data));
+    } else if (res.status > 400) {
+        decodeResponse(res).then(data => callback(data, true));
     } else {
         decodeResponse(res).then(data => callback(data));
     }

@@ -40,7 +40,10 @@
     "INVALID_LOGIN": "We weren't able to find your username or password.",
     "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
     "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
-    "INSERT_PROJECTS": "The system failed to insert the new project into the database. Please try again."
+    "INSERT_PROJECT": "The system failed to insert the new project into the database. Please try again.",
+    "INSERT_PRODUCT": "The system failed to insert the new product into the database. Please try again later.",
+    "INSERT_SUBJECT": "Something has gone wrong with subject insertion. Please try again.",
+    "INSERT_STAGE": "Something has gone wrong with stage insertion. Please try again."
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

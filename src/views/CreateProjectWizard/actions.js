@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-
 import apiService from '../../services/api';
 
 export function updateWizardProjectTitle(title) {
@@ -16,19 +15,30 @@ export function updateWizardProjectSummary(summary) {
     };
 }
 
-// We reuse this for any project components.
-export function createProjectPart(component, requestBody, errorMessages) {
+export function createProject(requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.projects.postProjectPart(
-            component,
+        apiService.projects.postProject(
             requestBody,
-            (err, response) => {
-                if (!err) {
-                    dispatch(_postProjectSuccess(response.id));
-                } else if (err && !response) {
+            (projErr, projResp) => {
+                if (!projErr) {
+                    apiService.projects.postProduct({
+                        title: requestBody.codeName,
+                        description: requestBody.description,
+                        projectId: projResp.id,
+                        status: 1,
+                        originalLangId: 1,
+                    },
+                    (prodErr, prodResp) => {
+                        if (!prodErr) {
+                            dispatch(_postProjectSuccess(projResp.id, prodResp.id));
+                        } else {
+                            dispatch(_postProjectFailure(errorMessages.INSERT_PRODUCT));
+                        }
+                    });
+                } else if (projErr && !projResp) {
                     dispatch(_postProjectFailure(errorMessages.SERVER_ISSUE));
                 } else {
-                    dispatch(_postProjectFailure(errorMessages.INSERT_PROJECTS));
+                    dispatch(_postProjectFailure(errorMessages.INSERT_PROJECT));
                 }
             },
         );
@@ -126,10 +136,11 @@ export function addUsersSetUsersFilter(filter) {
 }
 
 // Private Functions
-export function _postProjectSuccess(id) {
+export function _postProjectSuccess(id, productId) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
         id,
+        productId,
     };
 }
 

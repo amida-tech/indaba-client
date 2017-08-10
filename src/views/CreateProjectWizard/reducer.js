@@ -20,6 +20,7 @@ const initialState = {
         id: '',
         name: '',
         status: 'Inactive',
+        productId: 0,
         users: [],
         stages: [],
         userGroups: [],
@@ -47,12 +48,18 @@ export default (state = initialState, action) => {
         return update(state,
             { ui: { projectTitle: { show: { $set: false } },
                 errorMessage: { $set: '' } },
-                project: { id: { $set: action.id } } });
+                project: {
+                    id: { $set: action.id },
+                    productId: { $set: action.productId },
+                } });
     case type.POST_PROJECT_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.ADD_SUBJECTS_TO_WIZARD:
-        return update(state, { project:
-            { subjects: { $set: _.union(state.project.subjects, action.subjects) } } });
+        return Array.isArray(action.subjects) ? // TODO Make always array later.
+            update(state, { project: { subjects: {
+                $set: _.union(state.project.subjects, action.subjects) } } }) :
+            update(state, { project: { subjects: {
+                $set: _.concat(state.project.subjects, action.subjects) } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });

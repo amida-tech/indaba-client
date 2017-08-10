@@ -5,6 +5,7 @@ import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
+import * as projectActions from '../../../common/actions/projectActions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
@@ -56,7 +57,7 @@ class CreateProjectWizard extends Component {
                         updateSummary={this.props.actions.updateWizardProjectSummary}
                         profile={this.props.profile}
                         errorMessage={this.props.wizard.ui.errorMessage}
-                        onSave={this.props.actions.createProjectPart}
+                        onSave={this.props.actions.createProject}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
@@ -70,7 +71,8 @@ class CreateProjectWizard extends Component {
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         <AddSubjects
                             actions={this.props.actions}
-                            wizard={this.props.wizard}
+                            project={this.props.wizard.project}
+                            survey={this.props.wizard.survey}
                             vocab={this.props.vocab} />
                     </Tab>
                     <Tab className='project-wizard__tab'
@@ -81,7 +83,8 @@ class CreateProjectWizard extends Component {
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages
                             actions={this.props.actions}
-                            wizard={this.props.wizard}
+                            project={this.props.wizard.project}
+                            survey={this.props.wizard.survey}
                             vocab={this.props.vocab} />
                     </Tab>
                 </Tabs>
@@ -124,7 +127,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, projectActions), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
