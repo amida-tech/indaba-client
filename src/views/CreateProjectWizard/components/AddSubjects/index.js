@@ -21,7 +21,8 @@ class AddSubjects extends Component {
                     <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
                 </div>
                 <hr className='divider'/>
-                <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
+                <p className='add-subjects__instructions'>
+                {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
                 <AddSubjectControl
                     onAddSubjects={this.props.onAddSubjects}
                     vocab={this.props.vocab}/>

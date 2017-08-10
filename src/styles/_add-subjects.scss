@@ -10,6 +10,20 @@ $block-class: 'add-subjects';
 
         &__subject {
             display: flex;
+            padding: 1em;
+            border-left: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+
+            &:nth-child(even) {
+                background-color: lighten(#d8d8d8, 10%);
+            }
+        }
+
+        &__instructions {
+            @extend .large-font;
+
+            padding: 0.5em;
+            margin: 0.5em;
         }
     }
 }

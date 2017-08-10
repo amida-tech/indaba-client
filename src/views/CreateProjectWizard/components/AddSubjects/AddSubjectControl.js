@@ -13,7 +13,8 @@ class AddSubjectControl extends Component {
                     <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
                 </div>
                 <div className='add-subject-control__fields'>
-                    <Field className='subjects'
+                    <Field name='subjects'
+                    className='add-subject-control__input'
                         component='input'
                         type='text'/>
                     <div className='add-subject-control__plus-icon'

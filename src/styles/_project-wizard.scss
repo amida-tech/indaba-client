@@ -2,6 +2,6 @@ $block-class: 'project-wizard';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK ERROR SUPRESSION
+        display: flex;
     }
 }
