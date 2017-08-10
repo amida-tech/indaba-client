@@ -7,12 +7,12 @@ class SearchInput extends Component {
     render() {
         return (
             <div className='search-input'>
-                <input className={'search-input__input'}
+                <input className='search-input__input'
                     type='text'
                     placeholder={this.props.placeholder}
                     onChange={this.props.onChange}
                     value={this.props.value} />
-                <IonIcon className={'search-input__icon'}
+                <IonIcon className='search-input__icon'
                     icon='ion-android-search' />
             </div>
         );
