@@ -27,9 +27,9 @@ class AddSubjectControl extends Component {
 }
 
 AddSubjectControl.propTypes = {
-    projectId: PropTypes.number.isRequired,
+    productId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    createSubject: PropTypes.func.isRequired,
+    addSubjectsToWizard: PropTypes.func.isRequired,
 };
 
 const FORM_NAME = 'add-subject-control';
@@ -41,14 +41,13 @@ export default connect(null, dispatch => ({
     onSubmit: (values, dispatch, ownProps) => {
         // const splitSubjects = values.subjects.split(/\s*,\s*/)
         //     .filter(subject => subject !== ''); //TODO Bring back.
-        ownProps.createSubject(
-            ownProps.projectId,
+        ownProps.addSubjectsToWizard(
+            ownProps.productId,
             {
                 name: values.subjects,
                 unitOfAnalysisType: 1,
             },
             ownProps.vocab.ERROR,
-            ownProps.addSubjectsToWizard,
         );
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),

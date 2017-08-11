@@ -5,7 +5,6 @@ import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
-import * as projectActions from '../../../common/actions/projectActions';
 import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
@@ -57,7 +56,7 @@ class CreateProjectWizard extends Component {
                         updateSummary={this.props.actions.updateWizardProjectSummary}
                         profile={this.props.profile}
                         errorMessage={this.props.wizard.ui.errorMessage}
-                        onSave={this.props.actions.createProject}
+                        onSave={this.props.actions.addProjectToWizard}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
@@ -127,7 +126,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, projectActions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

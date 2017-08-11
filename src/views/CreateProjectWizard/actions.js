@@ -15,12 +15,12 @@ export function updateWizardProjectSummary(summary) {
     };
 }
 
-export function createProject(requestBody, errorMessages) {
+export function addProjectToWizard(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postProject(
             requestBody,
             (projErr, projResp) => {
-                if (!projErr) {
+                if (!projErr && projResp) {
                     apiService.projects.postProduct({
                         title: requestBody.codeName,
                         description: requestBody.description,
@@ -29,26 +29,40 @@ export function createProject(requestBody, errorMessages) {
                         originalLangId: 1,
                     },
                     (prodErr, prodResp) => {
-                        if (!prodErr) {
-                            dispatch(_postProjectSuccess(projResp.id, prodResp.id));
-                        } else {
-                            dispatch(_postProjectFailure(errorMessages.INSERT_PRODUCT));
-                        }
+                        dispatch((!prodErr) ?
+                            _postProjectWizardSuccess(projResp.id, prodResp.id) :
+                            _postProjectWizardFailure(errorMessages.INSERT_PRODUCT));
                     });
                 } else if (projErr && !projResp) {
-                    dispatch(_postProjectFailure(errorMessages.SERVER_ISSUE));
+                    dispatch(_postProjectWizardFailure(errorMessages.SERVER_ISSUE));
                 } else {
-                    dispatch(_postProjectFailure(errorMessages.INSERT_PROJECT));
+                    dispatch(_postProjectWizardFailure(errorMessages.INSERT_PROJECT));
                 }
             },
         );
     };
 }
 
-export function addSubjectsToWizard(subjects) {
-    return {
-        type: actionTypes.ADD_SUBJECTS_TO_WIZARD,
-        subjects,
+export function addSubjectsToWizard(productId, requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postUOA(
+            requestBody,
+            (uoaErr, uoaResp) => {
+                if (!uoaErr && uoaResp) {
+                    apiService.projects.postProductUOA(
+                        productId,
+                        [uoaResp.id],
+                        (prodUoaErr, prodUoaResp) => {
+                            dispatch((!prodUoaErr && prodUoaResp) ?
+                                _postSubjectsWizardSuccess(requestBody.name) :
+                                _postSubjectsWizardFailure(errorMessages.CONNECT_PRODUCT));
+                        },
+                    );
+                } else {
+                    dispatch(_postSubjectsWizardFailure(errorMessages.INSERT_SUBJECT));
+                }
+            },
+        );
     };
 }
 
@@ -136,17 +150,32 @@ export function addUsersSetUsersFilter(filter) {
 }
 
 // Private Functions
-export function _postProjectSuccess(id, productId) {
+export function _postProjectWizardSuccess(id, productId) {
     return {
-        type: actionTypes.POST_PROJECT_SUCCESS,
+        type: actionTypes.POST_PROJECT_WIZARD_SUCCESS,
         id,
         productId,
     };
 }
 
-export function _postProjectFailure(error) {
+export function _postProjectWizardFailure(error) {
     return {
-        type: actionTypes.POST_PROJECT_FAILURE,
+        type: actionTypes.POST_PROJECT_WIZARD_FAILURE,
+        error,
+    };
+}
+
+
+export function _postSubjectsWizardSuccess(subjects) {
+    return {
+        type: actionTypes.POST_SUBJECTS_WIZARD_SUCCESS,
+        subjects,
+    };
+}
+
+export function _postSubjectsWizardFailure(error) {
+    return {
+        type: actionTypes.POST_SUBJECTS_WIZARD_FAILURE,
         error,
     };
 }

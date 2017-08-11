@@ -21,9 +21,8 @@ class AddSubjects extends Component {
                 <hr className='divider'/>
                 <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
                 <AddSubjectControl
-                    projectId={this.props.project.id}
+                    productId={this.props.project.productId}
                     addSubjectsToWizard={this.props.actions.addSubjectsToWizard}
-                    createSubject={this.props.actions.createSubject}
                     vocab={this.props.vocab} />
                 {this.props.project.subjects &&
                     this.props.project.subjects.map(subject =>

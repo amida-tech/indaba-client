@@ -1,20 +1,13 @@
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import apiService from '../../services/api';
 
-// actionCall is an optional dispatch from somewhere else (new project wizard).
-// I thought this was a good idea, then I realized that you have to guess what
-// the actionCall wants or needs. Fine for now, will probably split later.
-export function createSubject(projectId, requestBody, errorMessages, actionCall) {
+export function createSubject(projectId, requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postUOA(
             requestBody,
             (uoaErr, uoaResp) => {
                 if (!uoaErr && uoaResp) {
-                    if (actionCall) {
-                        dispatch(actionCall(requestBody.name));
-                    } else {
-                        dispatch(addSubject(uoaResp, projectId));
-                    }
+                    dispatch(addSubject(uoaResp, projectId));
                 } else {
                     dispatch(_postSubjectFailure(errorMessages.INSERT_SUBJECT));
                 }
