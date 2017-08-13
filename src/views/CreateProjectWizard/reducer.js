@@ -4,9 +4,8 @@ import * as type from './actionTypes';
 
 const initialState = {
     ui: {
-        projectTitle: {
-            show: true,
-        },
+        showProjectTitle: true,
+        showAddStage: false,
         step: 0,
         complete: false,
         addUsers: {
@@ -25,6 +24,7 @@ const initialState = {
         stages: [],
         userGroups: [],
         subjects: [],
+        workflowIds: [],
     },
     survey: {
         id: 8,
@@ -46,21 +46,30 @@ export default (state = initialState, action) => {
         return update(state, { project: { summary: { $set: action.summary } } });
     case type.POST_PROJECT_WIZARD_SUCCESS:
         return update(state,
-            { ui: { projectTitle: { show: { $set: false } },
+            { ui: { showProjectTitle: { $set: false },
                 errorMessage: { $set: '' } },
                 project: {
                     id: { $set: action.id },
                     productId: { $set: action.productId },
                 } });
-    case type.POST_PROJECT_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.POST_SUBJECTS_WIZARD_SUCCESS:
         return Array.isArray(action.subjects) ? // TODO Make always array later.
             update(state, { project: { subjects: {
                 $set: _.union(state.project.subjects, action.subjects) } } }) :
             update(state, { project: { subjects: {
                 $set: _.concat(state.project.subjects, action.subjects) } } });
+    case type.POST_WORKFLOW_WIZARD_SUCCESS:
+        return update(state, { project: { workflowIds: {
+            $set: _.concat(state.project.workflowIds, action.workflowIds) } } });
+    case type.SHOW_ADD_STAGE_WIZARD_MODAL:
+        return update(state, { ui: { showAddStage: { $set: true } } });
+    case type.CLOSE_ADD_STAGE_WIZARD_MODAL:
+        return update(state, { ui: { showAddStage: { $set: false } } });
+    case type.POST_PROJECT_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.POST_SUBJECTS_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.POST_WORKFLOW_WIZARD_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:

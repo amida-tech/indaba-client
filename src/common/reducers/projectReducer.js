@@ -82,6 +82,7 @@ const initialState = [{
             users: [13, 71],
         }],
     subjects: ['Nigeria', 'China', 'Chicago'],
+    workflowIDs: [],
 },
 ];
 

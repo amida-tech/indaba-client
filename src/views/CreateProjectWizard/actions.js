@@ -15,25 +15,38 @@ export function updateWizardProjectSummary(summary) {
     };
 }
 
+// We add a project then add a product, then a workflow.
 export function addProjectToWizard(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postProject(
             requestBody,
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
+            (projectErr, projectResp) => {
+                if (!projectErr && projectResp) {
                     apiService.projects.postProduct({
                         title: requestBody.codeName,
                         description: requestBody.description,
-                        projectId: projResp.id,
+                        projectId: projectResp.id,
                         status: 1,
                         originalLangId: 1,
                     },
-                    (prodErr, prodResp) => {
-                        dispatch((!prodErr) ?
-                            _postProjectWizardSuccess(projResp.id, prodResp.id) :
-                            _postProjectWizardFailure(errorMessages.INSERT_PRODUCT));
+                    (productErr, productResp) => {
+                        if (!productErr && productResp) {
+                            dispatch(_postProjectWizardSuccess(projectResp.id, productResp.id));
+                            apiService.projects.postWorkflows({
+                                productId: productResp.id,
+                                name: requestBody.codeName,
+                                description: requestBody.description,
+                            },
+                            (workflowErr, workflowResp) => {
+                                dispatch((!workflowErr) ?
+                                    _postWorkflowWizardSuccess(workflowResp.id) :
+                                    _postWorkflowWizardFailure(errorMessages.INSERT_WORKFLOW));
+                            });
+                        } else {
+                            dispatch(_postProjectWizardFailure(errorMessages.INSERT_PRODUCT));
+                        }
                     });
-                } else if (projErr && !projResp) {
+                } else if (projectErr && !projectResp) {
                     dispatch(_postProjectWizardFailure(errorMessages.SERVER_ISSUE));
                 } else {
                     dispatch(_postProjectWizardFailure(errorMessages.INSERT_PROJECT));
@@ -63,6 +76,32 @@ export function addSubjectsToWizard(productId, requestBody, errorMessages) {
                 }
             },
         );
+    };
+}
+
+export function addStagesToWizard(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postWorkflowSteps(
+            requestBody,
+            (workflowErr, workflowResp) => {
+                dispatch((!workflowErr && workflowResp) ?
+                    _postStageWizardSuccess(workflowResp.workflowsIDs) :
+                    _postStageWizardFailure(errorMessages.INSERT_STAGE));
+            },
+        );
+    };
+}
+
+// Add Stage Modal:
+export function showAddStageWizardModal() {
+    return {
+        type: actionTypes.SHOW_ADD_STAGE_WIZARD_MODAL,
+    };
+}
+
+export function closeAddStageWizardModal() {
+    return {
+        type: actionTypes.CLOSE_ADD_STAGE_WIZARD_MODAL,
     };
 }
 
@@ -176,6 +215,33 @@ export function _postSubjectsWizardSuccess(subjects) {
 export function _postSubjectsWizardFailure(error) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_FAILURE,
+        error,
+    };
+}
+
+export function _postWorkflowWizardSuccess(workflowIds) {
+    return {
+        type: actionTypes.POST_WORKFLOW_WIZARD_SUCCESS,
+        workflowIds,
+    };
+}
+
+export function _postWorkflowWizardFailure(error) {
+    return {
+        type: actionTypes.POST_WORKFLOW_WIZARD_FAILURE,
+        error,
+    };
+}
+
+export function _postStageWizardSuccess() {
+    return {
+        type: actionTypes.POST_STAGE_WIZARD_SUCCESS,
+    };
+}
+
+export function _postStageWizardFailure(error) {
+    return {
+        type: actionTypes.POST_STAGE_WIZARD_FAILURE,
         error,
     };
 }

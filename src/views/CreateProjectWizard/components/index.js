@@ -48,7 +48,7 @@ class CreateProjectWizard extends Component {
     render() {
         return (!this.props.wizard.ui.complete ?
             <div className='project-wizard'>
-                {this.props.wizard.ui.projectTitle.show &&
+                {this.props.wizard.ui.showProjectTitle &&
                     <NewProjectTitle
                         title={this.props.wizard.project.name}
                         summary={this.props.wizard.project.summary}
@@ -82,6 +82,7 @@ class CreateProjectWizard extends Component {
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages
                             actions={this.props.actions}
+                            ui={this.props.wizard.ui}
                             project={this.props.wizard.project}
                             survey={this.props.wizard.survey}
                             vocab={this.props.vocab} />
