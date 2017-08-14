@@ -71,6 +71,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.POST_WORKFLOW_WIZARD_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.PUT_STAGE_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });

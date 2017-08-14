@@ -15,7 +15,10 @@ class AddStages extends Component {
                 onCancel={() => this.props.actions.closeAddStageWizardModal()}
                 onAddStage={(stage) => {
                     this.props.actions.closeAddStageWizardModal();
-                    this.props.actions.onAddStage(stage);
+                    this.props.actions.addStageToWizard(
+                        this.props.project.workflowIds[0],
+                        stage,
+                        this.props.vocab.ERROR);
                 }}/>}
             <Summary
                 project={this.props.project}
@@ -58,6 +61,7 @@ AddStages.propTypes = {
     }).isRequired,
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
 };
 
 export default AddStages;

@@ -79,14 +79,15 @@ export function addSubjectsToWizard(productId, requestBody, errorMessages) {
     };
 }
 
-export function addStagesToWizard(requestBody, errorMessages) {
+export function addStageToWizard(workflowIds, requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.projects.postWorkflowSteps(
+        apiService.projects.putWorkflowSteps(
+            workflowIds,
             requestBody,
             (workflowErr, workflowResp) => {
                 dispatch((!workflowErr && workflowResp) ?
-                    _postStageWizardSuccess(workflowResp.workflowsIDs) :
-                    _postStageWizardFailure(errorMessages.INSERT_STAGE));
+                    _putStageWizardSuccess(workflowResp.workflowsIDs) :
+                    _putStageWizardFailure(errorMessages.INSERT_STAGE));
             },
         );
     };
@@ -140,12 +141,12 @@ export function removeUserGroupFromWizard(id) {
     };
 }
 
-export function addStageToWizard(stage) {
-    return {
-        type: actionTypes.ADD_STAGE_TO_WIZARD,
-        stage,
-    };
-}
+// export function addStageToWizard(stage) {
+//     return {
+//         type: actionTypes.ADD_STAGE_TO_WIZARD,
+//         stage,
+//     };
+// }
 
 export function addProjectFromWizard(wizard) {
     return {
@@ -233,15 +234,15 @@ export function _postWorkflowWizardFailure(error) {
     };
 }
 
-export function _postStageWizardSuccess() {
+export function _putStageWizardSuccess() {
     return {
-        type: actionTypes.POST_STAGE_WIZARD_SUCCESS,
+        type: actionTypes.PUT_STAGE_WIZARD_SUCCESS,
     };
 }
 
-export function _postStageWizardFailure(error) {
+export function _putStageWizardFailure(error) {
     return {
-        type: actionTypes.POST_STAGE_WIZARD_FAILURE,
+        type: actionTypes.PUT_STAGE_WIZARD_FAILURE,
         error,
     };
 }
