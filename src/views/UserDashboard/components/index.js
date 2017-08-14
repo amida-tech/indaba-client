@@ -122,7 +122,7 @@ const _generateRow = (state, projectId, task) => {
         projectId,
         subject: project.subjects[task.subject],
         task: project.stages.find(stage => stage.id === task.stage).title,
-        due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
+        due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endDate,
         survey: survey.name,
         flags: discussion.discuss.filter(response => response.flag).length,
         progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,

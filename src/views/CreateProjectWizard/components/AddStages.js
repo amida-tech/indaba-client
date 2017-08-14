@@ -17,13 +17,14 @@ class AddStages extends Component {
                     this.props.actions.closeAddStageWizardModal();
                     this.props.actions.addStageToWizard(
                         this.props.project.workflowIds[0],
-                        [{
-                            workflowId: this.props.project.workflowIds[0],
-                            startDate: stage.startStage,
-                            endDate: stage.endStage,
-                            title: stage.title,
-                            landId: 1,
-                        }],
+                        [Object.assign({},
+                            {
+                                workflowId: this.props.project.workflowIds[0],
+                                position: this.props.project.stages.length,
+                                role: 3,
+                            },
+                            stage,
+                        )],
                         this.props.vocab.ERROR);
                 }}/>}
             <Summary
