@@ -165,7 +165,6 @@ export function _postProjectWizardFailure(error) {
     };
 }
 
-
 export function _postSubjectsWizardSuccess(subjects) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_SUCCESS,
