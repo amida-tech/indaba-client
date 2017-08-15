@@ -8,11 +8,19 @@ $block-class: 'add-subjects';
             padding: 1em 2em;
         }
 
-        &__subject {
+        &__table {
+            overflow-y: scroll;
+            max-height: 600px;
+        }
+
+        &__table-row {
             display: flex;
             padding: 1em;
-            border-left: 2px solid $border-color;
-            border-right: 2px solid $border-color;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: 2px solid $border-color;
+            border-top-width: 0;
+            justify-content: space-between;
 
             &:nth-child(even) {
                 background-color: lighten(#d8d8d8, 10%);
@@ -22,8 +30,11 @@ $block-class: 'add-subjects';
         &__instructions {
             @extend .large-font;
 
-            padding: 0.5em;
-            margin: 0.5em;
+            display: flex;
+            margin-left: 10%;
+            margin-right: 11%;
+            margin-top: 1em;
+            padding-left: 1em;
         }
     }
 }

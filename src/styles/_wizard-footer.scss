@@ -1,0 +1,13 @@
+$block-class: 'wizard-footer';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2em;
+        position: fixed;
+        bottom: 0;
+        width: 95%;
+        background-color: #fafafa;
+    }
+}

@@ -23,15 +23,18 @@ class AddSubjects extends Component {
                 <hr className='divider'/>
                 <p className='add-subjects__instructions'>
                 {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
-                <AddSubjectControl
-                    onAddSubjects={this.props.onAddSubjects}
-                    vocab={this.props.vocab}/>
-                {this.props.subjects && this.props.subjects.map(subject =>
-                    <div className='add-subjects__subject' key={subject}>
-                        {subject}
-                        <DeleteIconButton onClick={() => this.props.onDeleteSubject(subject)} />
-                    </div>,
-                )}
+                <div className='add-subjects__table'>
+                    <AddSubjectControl
+                        onAddSubjects={this.props.onAddSubjects}
+                        vocab={this.props.vocab}/>
+                        {this.props.subjects && this.props.subjects.map(subject =>
+                            <div className='add-subjects__table-row' key={subject}>
+                                {subject}
+                                <DeleteIconButton onClick={() =>
+                                this.props.onDeleteSubject(subject)} />
+                            </div>,
+                    )}
+                </div>
             </div>
         );
     }
