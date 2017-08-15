@@ -12,6 +12,7 @@ const initialState = {
             tab: 0,
             showSelectGroupUsers: false,
             usersFilter: '',
+            groupsFilter: '',
         },
         errorMessage: '',
     },
@@ -121,6 +122,10 @@ export default (state = initialState, action) => {
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: {
             usersFilter: { $set: action.filter },
+        } } });
+    case type.ADD_USERS_SET_GROUPS_FILTER:
+        return update(state, { ui: { addUsers: {
+            groupsFilter: { $set: action.filter },
         } } });
     default:
         return state;

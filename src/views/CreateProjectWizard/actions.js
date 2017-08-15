@@ -189,6 +189,13 @@ export function addUsersSetUsersFilter(filter) {
     };
 }
 
+export function addUsersSetGroupsFilter(filter) {
+    return {
+        type: actionTypes.ADD_USERS_SET_GROUPS_FILTER,
+        filter,
+    };
+}
+
 // Private Functions
 export function _postProjectWizardSuccess(id, productId) {
     return {

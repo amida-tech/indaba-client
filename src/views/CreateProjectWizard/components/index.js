@@ -13,6 +13,7 @@ import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
 import { ProjectManagementContainer } from '../../ProjectManagement';
+import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
 
@@ -54,7 +55,7 @@ class CreateProjectWizard extends Component {
                         summary={this.props.wizard.project.summary}
                         updateTitle={this.props.actions.updateWizardProjectTitle}
                         updateSummary={this.props.actions.updateWizardProjectSummary}
-                        profile={this.props.profile}
+                        profile={this.props.user.profile}
                         errorMessage={this.props.wizard.ui.errorMessage}
                         onSave={this.props.actions.addProjectToWizard}
                         vocab={this.props.vocab} />
@@ -76,7 +77,13 @@ class CreateProjectWizard extends Component {
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
-                        <AddUsers />
+                        <AddUsers
+                            actions={this.props.actions}
+                            project={this.props.wizard.project}
+                            survey={this.props.wizard.survey}
+                            ui={this.props.wizard.ui.addUsers}
+                            vocab={this.props.vocab}
+                            allUsers={this.props.user.users} />
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
@@ -121,13 +128,13 @@ CreateProjectWizard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    profile: state.user.profile,
+    user: state.user,
     wizard: state.projectwizard,
     vocab: state.settings.language.vocabulary,
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { addNewUser }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

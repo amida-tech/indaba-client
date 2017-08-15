@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
 import { SearchInput } from 'grommet';
+import PropTypes from 'prop-types';
+
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import InviteUserForm from '../../../../common/components/InviteUserForm';
 import { renderName } from '../../../../utils/User';
 
-import { addUsersSetUsersFilter } from '../../actions';
-
 class UsersTab extends Component {
     constructor(props) {
         super(props);
-
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.handleUserRemove = this.handleUserRemove.bind(this);
         this.searchFilter = this.searchFilter.bind(this);
         this.renderUserEntry = this.renderUserEntry.bind(this);
     }
+
     handleSearchSelect(selection) {
-        this.props.onSetFilter('');
-        this.props.onAddUserToProject(selection.suggestion.value);
+        this.props.actions.addUsersSetUsersFilter('');
+        this.props.actions.addUserToWizard(selection.suggestion.value);
     }
+
     handleUserRemove(userId) {
-        this.props.onRemoveUserFromProject(userId);
+        this.props.actions.removeUserFromWizard(userId);
     }
+
     searchFilter(user) {
         return renderName(user).toLowerCase().includes(this.props.filter.toLowerCase());
     }
+
     renderUserEntry(userId) {
         const user = this.props.allUsers.find(userElement => userElement.id === userId);
         return (
@@ -46,17 +47,18 @@ class UsersTab extends Component {
             <div className='users-tab'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
-                        this.props.onAddNewUser({
+                        this.props.actions.addNewUser({
                             firstName: values.firstName,
                             lastName: values.lastName,
                             email: values.email,
                         }).then(userData =>
-                            this.props.onAddUserToProject(userData));
+                            this.props.actions.addUserToWizard(userData));
                     }} />
                 <div className='users-tab__search'>
                     <SearchInput
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onDOMChange={evt => this.props.onSetFilter(evt.target.value)}
+                        onDOMChange={evt =>
+                            this.props.actions.addUsersSetUsersFilter(evt.target.value)}
                         value={this.props.filter}
                         suggestions={this.props.allUsers.filter(this.searchFilter)
                             .map(user => ({ label: renderName(user),
@@ -71,12 +73,11 @@ class UsersTab extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    filter: state.projectwizard.ui.addUsers.usersFilter,
-});
+UsersTab.propTypes = {
+    actions: PropTypes.object.isRequired,
+    vocab: PropTypes.object.isRequired,
+    projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
-const mapDispatchToProps = dispatch => ({
-    onSetFilter: filter => dispatch(addUsersSetUsersFilter(filter)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersTab);
+export default UsersTab;
