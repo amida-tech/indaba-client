@@ -6,11 +6,12 @@ $block-class: 'add-subjects';
             display: flex;
             justify-content: flex-end;
             padding: 1em 2em;
+            margin-right: 10%;
         }
 
         &__table {
-            overflow-y: scroll;
-            max-height: 600px;
+            max-height: 500px;
+            margin-bottom: 80px;
         }
 
         &__table-row {
@@ -31,10 +32,9 @@ $block-class: 'add-subjects';
             @extend .large-font;
 
             display: flex;
-            margin-left: 10%;
-            margin-right: 11%;
             margin-top: 1em;
-            padding-left: 1em;
+            margin-left: 10%;
+            padding-left: 1rem;
         }
     }
 }

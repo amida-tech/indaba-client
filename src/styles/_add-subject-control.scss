@@ -8,6 +8,8 @@ $block-class: 'add-subject-control';
             border: 2px solid $border-color;
             border-radius: 2px;
             width: 80%;
+            max-height: 400px;
+            overflow-y: scroll;
             margin-left: 10%;
             margin-right: 10%;
         }
@@ -15,22 +17,23 @@ $block-class: 'add-subject-control';
         &__header {
             display: flex;
             justify-content: space-between;
-            padding: 1em;
+            padding: 0.5em;
         }
 
         &__fields {
             display: flex;
-            width: 100%;
             align-items: center;
         }
 
         &__input {
             width: 100%;
-            margin: 1em;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
         }
 
         &__plus-icon {
             margin-right: 10px;
+            margin-left: 10px;
         }
     }
 }
