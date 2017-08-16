@@ -4,10 +4,23 @@ $block-class: 'wizard-footer';
     .#{$block-class} {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 2em;
+        margin-bottom: 20px;
+        padding-left: 2em;
+        padding-right: 2em;
         position: fixed;
         bottom: 0;
-        width: 95%;
-        background-color: #fafafa;
+        right: 0;
+        left: 0;
+        width: 100%;
+
+        &__button {
+            background-color: #fff;
+
+            &--skip,
+            &--cancel,
+            &--back {
+                color: $header-font-color;
+            }
+        }
     }
 }

@@ -10,8 +10,9 @@ $block-class: 'add-subjects';
         }
 
         &__table {
-            max-height: 500px;
+            max-height: 400px;
             margin-bottom: 80px;
+            overflow-y: scroll;
         }
 
         &__table-row {
