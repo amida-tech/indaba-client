@@ -16,9 +16,10 @@ export const constants = {
 
 const initialState = {
     profile: {
-        id: 25,
+        id: 31,
         firstName: 'Super',
         lastName: 'Mario',
+        organizationId: 2,
     },
     users: [{
         id: 13,
