@@ -39,8 +39,6 @@ export default connect(null, dispatch => ({
 }))(reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
-        // const splitSubjects = values.subjects.split(/\s*,\s*/)
-        //     .filter(subject => subject !== ''); //TODO Bring back.
         ownProps.addSubjectsToWizard(
             ownProps.productId,
             {
