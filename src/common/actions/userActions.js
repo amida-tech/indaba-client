@@ -33,13 +33,16 @@ export function setUserTitle(userId, title) {
     };
 }
 
-export function addNewUser(user) {
+export function addNewUser(requestBody) {
     return (dispatch) => {
-        dispatch(_addNewUser());
-        return apiService.users.addNewUser(user).then((userData) => {
-            dispatch(_addNewUserSuccess(userData));
-            return userData;
-        });
+        apiService.users.addNewUser(
+            requestBody,
+            (userErr, userResp) => {
+                dispatch((!userErr && userResp) ?
+                    _addNewUserSuccess(userResp) :
+                    _reportUserError(userErr));
+            },
+        );
     };
 }
 
@@ -76,15 +79,17 @@ export function getUsersSuccess(users) {
 }
 
 // private
-function _addNewUser() {
-    return {
-        type: actionTypes.ADD_NEW_USER,
-    };
-}
 
 function _addNewUserSuccess(user) {
     return {
         type: actionTypes.ADD_NEW_USER_SUCCESS,
         user,
+    };
+}
+
+function _reportUserError(error) {
+    return {
+        type: actionTypes.REPORT_USER_ERROR,
+        error,
     };
 }
