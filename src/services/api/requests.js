@@ -11,7 +11,7 @@ export function apiGetRequest(fullURI, callback) {
     fetch(fullURI, {
         method: 'GET',
         headers: {
-            Token: cookie.load('indaba-auth'),
+            Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
@@ -30,7 +30,7 @@ export function apiPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
         headers: {
-            Token: cookie.load('indaba-auth'),
+            Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
