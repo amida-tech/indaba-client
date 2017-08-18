@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
 import * as type from './actionTypes';
+import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
@@ -59,6 +60,10 @@ export default (state = initialState, action) => {
                 $set: _.union(state.project.subjects, action.subjects) } } }) :
             update(state, { project: { subjects: {
                 $set: _.concat(state.project.subjects, action.subjects) } } });
+    case type.POST_USER_WIZARD_SUCCESS:
+        return state.project.users.includes(action.user.id) ?
+        state :
+        update(state, { project: { users: { $push: [action.user.id] } } });
     case type.POST_WORKFLOW_WIZARD_SUCCESS:
         return update(state, { project: { workflowIds: {
             $set: _.concat(state.project.workflowIds, action.workflowIds) } } });
@@ -66,21 +71,9 @@ export default (state = initialState, action) => {
         return update(state, { ui: { showAddStage: { $set: true } } });
     case type.CLOSE_ADD_STAGE_WIZARD_MODAL:
         return update(state, { ui: { showAddStage: { $set: false } } });
-    case type.POST_PROJECT_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.POST_SUBJECTS_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.POST_WORKFLOW_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.PUT_STAGE_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
-    case type.ADD_USER_TO_WIZARD:
-        return state.project.users.includes(action.user.id) ?
-        state :
-        update(state, { project: { users: { $push: [action.user.id] } } });
     case type.REMOVE_USER_FROM_WIZARD:
         return update(state, { project: { users:
             { $splice: [[state.project.users.indexOf(action.userId), 1]] } } });
@@ -127,6 +120,16 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: {
             groupsFilter: { $set: action.filter },
         } } });
+    case type.POST_PROJECT_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.POST_SUBJECTS_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.POST_WORKFLOW_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.PUT_STAGE_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case REPORT_USER_ERROR:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
     default:
         return state;
     }

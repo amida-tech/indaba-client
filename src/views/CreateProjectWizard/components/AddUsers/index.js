@@ -15,7 +15,7 @@ class AddUsers extends Component {
                     <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
-                        allUsers={this.props.allUsers}
+                        allUsers={this.props.user.users}
                         onCancel={() => this.props.actions.addUsersShowSelectGroupUsers(false)}
                         onSave={(role) => {
                             this.props.actions.addUserGroupToWizard(role);
@@ -45,7 +45,8 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
-                            allUsers={this.props.allUsers}
+                            profile={this.props.user.profile}
+                            allUsers={this.props.user.users}
                             projectUsers={this.props.project.users}
                             filter={this.props.ui.usersFilter}
                             actions={this.props.actions} />
@@ -55,7 +56,7 @@ class AddUsers extends Component {
                             vocab={this.props.vocab}
                             groups={this.props.project.userGroups}
                             filter={this.props.ui.groupsFilter}
-                            allUsers={this.props.allUsers}
+                            allUsers={this.props.user.users}
                             actions={this.props.actions} />
                     </Tab>
                 </Tabs>
@@ -72,7 +73,11 @@ AddUsers.propTypes = {
         userGroups: PropTypes.array.isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,
-    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    user: PropTypes.shape({
+        errorMessage: PropTypes.string,
+        users: PropTypes.arrayOf(PropTypes.object).isRequired,
+        profile: PropTypes.object.isRequired,
+    }),
 };
 
 export default AddUsers;

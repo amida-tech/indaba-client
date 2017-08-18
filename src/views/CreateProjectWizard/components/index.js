@@ -83,7 +83,7 @@ class CreateProjectWizard extends Component {
                             survey={this.props.wizard.survey}
                             ui={this.props.wizard.ui.addUsers}
                             vocab={this.props.vocab}
-                            allUsers={this.props.user.users} />
+                            user={this.props.user} />
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>

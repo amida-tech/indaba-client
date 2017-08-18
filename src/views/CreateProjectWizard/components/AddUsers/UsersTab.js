@@ -42,17 +42,25 @@ class UsersTab extends Component {
             </div>
         );
     }
+
     render() {
         return (
             <div className='users-tab'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
-                        this.props.actions.addNewUser({
+                        const userData = {
                             firstName: values.firstName,
                             lastName: values.lastName,
+                            roleID: 3,
+                            password: values.email + Math.floor((Math.random() * 1000000) + 1),
                             email: values.email,
-                        }).then(userData =>
-                            this.props.actions.addUserToWizard(userData));
+                            isActive: false,
+                            organizationId: this.props.profile.organizationId,
+                        };
+                        this.props.actions.addNewUser(
+                            userData,
+                            this.props.vocab.ERROR.INSERT_USER,
+                            this.props.actions.addUserToWizard);
                     }} />
                 <div className='users-tab__search'>
                     <SearchInput
@@ -77,6 +85,7 @@ UsersTab.propTypes = {
     actions: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
+    profile: PropTypes.object.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

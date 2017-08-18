@@ -33,14 +33,19 @@ export function setUserTitle(userId, title) {
     };
 }
 
-export function addNewUser(requestBody) {
+export function addNewUser(requestBody, errorMessage, addedDispatch) {
     return (dispatch) => {
         apiService.users.addNewUser(
             requestBody,
             (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _addNewUserSuccess(userResp) :
-                    _reportUserError(userErr));
+                if (!userErr && userResp) {
+                    dispatch(_addNewUserSuccess(userResp));
+                    if (addedDispatch) {
+                        addedDispatch(userResp);
+                    }
+                } else {
+                    _reportUserError(errorMessage);
+                }
             },
         );
     };

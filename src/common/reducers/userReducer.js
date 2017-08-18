@@ -92,6 +92,7 @@ const initialState = {
 
 export const UserReducer = (state = initialState, action) => {
     const userIndex = state.users.findIndex(user => user.id === action.userId);
+    // Strongly consider clearing error message here after every call?
     switch (action.type) {
     case actionTypes.SET_USER_FIRST_NAME:
         return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });

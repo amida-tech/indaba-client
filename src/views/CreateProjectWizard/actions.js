@@ -79,17 +79,10 @@ export function addSubjectsToWizard(productId, requestBody, errorMessages) {
     };
 }
 
-export function addUserToWizard(requestBody, errorMessages) {
-    return (dispatch) => {
-        apiService.users.addNewUser(
-            requestBody,
-            (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _postUserWizardSuccess(userResp) :
-                    _postUserWizardFailure(errorMessages.INSERT_USER),
-                );
-            },
-        );
+export function addUserToWizard(user) {
+    return {
+        type: actionTypes.POST_USER_WIZARD_SUCCESS,
+        user,
     };
 }
 
@@ -127,13 +120,6 @@ export function deleteSubjectFromWizard(subject) {
     };
 }
 
-// export function addUserToWizard(user) {
-//     return {
-//         type: actionTypes.ADD_USER_TO_WIZARD,
-//         user,
-//     };
-// }
-
 export function removeUserFromWizard(userId) {
     return {
         type: actionTypes.REMOVE_USER_FROM_WIZARD,
@@ -154,13 +140,6 @@ export function removeUserGroupFromWizard(id) {
         id,
     };
 }
-
-// export function addStageToWizard(stage) {
-//     return {
-//         type: actionTypes.ADD_STAGE_TO_WIZARD,
-//         stage,
-//     };
-// }
 
 export function addProjectFromWizard(wizard) {
     return {
@@ -247,10 +226,10 @@ export function _postWorkflowWizardSuccess(workflowIds) {
     };
 }
 
-export function _postUserWizardSuccess(userId) {
+export function _postUserWizardSuccess(user) {
     return {
         type: actionTypes.POST_USER_WIZARD_SUCCESS,
-        userId,
+        user,
     };
 }
 
