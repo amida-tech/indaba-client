@@ -8,7 +8,7 @@ const users = {
     getUsers: (callback) => {
         requests.apiGetRequest(getFullPath('users'), callback);
     },
-    addNewUser: (requestBody, callback) => {
+    postNewUser: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('users'), requestBody, callback);
     },
     // addNewUser: (requestBody) => {

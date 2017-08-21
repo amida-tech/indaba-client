@@ -16,10 +16,10 @@ class AddUsers extends Component {
                         vocab={this.props.vocab}
                         users={this.props.project.users}
                         allUsers={this.props.user.users}
-                        onCancel={() => this.props.actions.addUsersShowSelectGroupUsers(false)}
+                        onCancel={() => this.props.actions.showAddUserGroupWizardModal(false)}
                         onSave={(role) => {
                             this.props.actions.addUserGroupToWizard(role);
-                            this.props.actions.addUsersShowSelectGroupUsers(false);
+                            this.props.actions.showAddUserGroupWizardModal(false);
                         }}/>}
                 <Summary
                     project={this.props.project}
@@ -31,7 +31,7 @@ class AddUsers extends Component {
                         <Button className='add-users__button-panel-button'
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
-                            onClick={() => this.props.actions.addUsersShowSelectGroupUsers(true)}/>}
+                            onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}/>}
                     <Button className='add-users__button-panel-button'
                         label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </div>

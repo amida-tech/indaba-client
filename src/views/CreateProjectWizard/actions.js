@@ -86,6 +86,30 @@ export function addUserToWizard(user) {
     };
 }
 
+export function addGroupToWizard(organizationId, requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postGroup(
+            organizationId,
+            requestBody,
+            (groupErr, groupResp) => {
+                if (!groupErr && groupResp) {
+                    dispatch(_postGroupsWizardSuccess(groupResp.id));
+                    apiService.projects.putUserInGroup(
+                        groupResp.id,
+                        requestBody,
+                        (userGroupErr, userGroupResp) => {
+                            dispatch((!userGroupErr && userGroupResp) ?
+                                _putUserGroupWizardSuccess(userGroupResp) :
+                                _putUserGroupWizardFailure(errorMessages.INSERT_USERGROUP));
+                        });
+                } else {
+                    dispatch(_postGroupsWizardFailure(errorMessages.INSERT_GROUP));
+                }
+            },
+        );
+    };
+}
+
 export function addStageToWizard(workflowIds, requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.putWorkflowSteps(
@@ -100,16 +124,18 @@ export function addStageToWizard(workflowIds, requestBody, errorMessages) {
     };
 }
 
-// Add Stage Modal:
-export function showAddStageWizardModal() {
+// Show Modals:
+export function showAddStageWizardModal(show) {
     return {
         type: actionTypes.SHOW_ADD_STAGE_WIZARD_MODAL,
+        show,
     };
 }
 
-export function closeAddStageWizardModal() {
+export function showAddUserGroupWizardModal(show) {
     return {
-        type: actionTypes.CLOSE_ADD_STAGE_WIZARD_MODAL,
+        type: actionTypes.SHOW_ADD_USER_GROUP_WIZARD_MODAL,
+        show,
     };
 }
 
@@ -124,13 +150,6 @@ export function removeUserFromWizard(userId) {
     return {
         type: actionTypes.REMOVE_USER_FROM_WIZARD,
         userId,
-    };
-}
-
-export function addUserGroupToWizard(userGroup) {
-    return {
-        type: actionTypes.ADD_USER_GROUP_TO_WIZARD,
-        userGroup,
     };
 }
 
@@ -165,13 +184,6 @@ export function addUsersSetTab(tab) {
     return {
         type: actionTypes.ADD_USERS_SET_TAB,
         tab,
-    };
-}
-
-export function addUsersShowSelectGroupUsers(show) {
-    return {
-        type: actionTypes.ADD_USERS_SHOW_SELECT_GROUP_USERS,
-        show,
     };
 }
 
@@ -215,6 +227,34 @@ export function _postSubjectsWizardSuccess(subjects) {
 export function _postSubjectsWizardFailure(error) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_FAILURE,
+        error,
+    };
+}
+
+export function _postGroupsWizardSuccess(groupId) {
+    return {
+        type: actionTypes.POST_GROUP_WIZARD_SUCCESS,
+        groupId,
+    };
+}
+
+export function _postGroupsWizardFailure(error) {
+    return {
+        type: actionTypes.POST_GROUP_WIZARD_FAILURE,
+        error,
+    };
+}
+
+export function _putUserGroupWizardSuccess(response) {
+    return {
+        type: actionTypes.PUT_USER_GROUP_WIZARD_SUCCESS,
+        response,
+    };
+}
+
+export function _putUserGroupWizardFailure(error) {
+    return {
+        type: actionTypes.PUT_USER_GROUP_WIZARD_FAILURE,
         error,
     };
 }

@@ -46,8 +46,9 @@
     "INSERT_WORKFLOW": "The system failed to insert the new workflow into the database. Please try again later.",
     "INSERT_SUBJECT": "Something has gone wrong with subject(s) insertion. Please try again.",
     "INSERT_USER": "Failed to insert user.",
-    "INSERT_STAGE": "Something has gone wrong with stage insertion. Please try again.",
-    "INSERT_GROUP": "The assignment of the user groups to this stage has failed. Please try again."
+    "INSERT_GROUP": "The assignment of the user groups to this stage has failed. Please try again.",
+    "INSERT_USERGROUP": "The group was created, but insertion of the users into the group failed.",
+    "INSERT_STAGE": "Something has gone wrong with stage insertion. Please try again."
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

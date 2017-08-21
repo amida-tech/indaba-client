@@ -68,9 +68,11 @@ export default (state = initialState, action) => {
         return update(state, { project: { workflowIds: {
             $set: _.concat(state.project.workflowIds, action.workflowIds) } } });
     case type.SHOW_ADD_STAGE_WIZARD_MODAL:
-        return update(state, { ui: { showAddStage: { $set: true } } });
-    case type.CLOSE_ADD_STAGE_WIZARD_MODAL:
-        return update(state, { ui: { showAddStage: { $set: false } } });
+        return update(state, { ui: { showAddStage: { $set: action.show } } });
+    case type.SHOW_ADD_USER_GROUP_WIZARD_MODAL:
+        return update(state, { ui: { addUsers: {
+            showSelectGroupUsers: { $set: action.show },
+        } } });
     case type.DELETE_SUBJECT_FROM_WIZARD:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
@@ -108,10 +110,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: {
             tab: { $set: action.tab },
         } } });
-    case type.ADD_USERS_SHOW_SELECT_GROUP_USERS:
-        return update(state, { ui: { addUsers: {
-            showSelectGroupUsers: { $set: action.show },
-        } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: {
             usersFilter: { $set: action.filter },
@@ -123,6 +121,10 @@ export default (state = initialState, action) => {
     case type.POST_PROJECT_WIZARD_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.POST_SUBJECTS_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.POST_GROUP_WIZARD_FAILURE:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.PUT_USER_GROUP_WIZARD_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case type.POST_WORKFLOW_WIZARD_FAILURE:
         return update(state, { ui: { errorMessage: { $set: action.error } } });

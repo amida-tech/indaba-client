@@ -50,7 +50,7 @@ export function apiPutRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'PUT',
         headers: {
-            Token: cookie.load('indaba-auth'),
+            Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },

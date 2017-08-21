@@ -17,6 +17,12 @@ const projects = {
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
     },
+    postGroup: (organizationId, requestBody, callback) => {
+        requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
+    },
+    putUserInGroup: (groupId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`groups/${groupId}`), requestBody, callback);
+    },
     // deleteProductUOA: (productId, uoaId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
     // },

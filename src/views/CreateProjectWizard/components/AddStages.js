@@ -12,9 +12,9 @@ class AddStages extends Component {
             {this.props.ui.showAddStage && <AddStageModal
                 vocab={this.props.vocab}
                 userGroups={this.props.project.userGroups}
-                onCancel={() => this.props.actions.closeAddStageWizardModal()}
+                onCancel={() => this.props.actions.showAddStageWizardModal(false)}
                 onAddStage={(stage) => {
-                    this.props.actions.closeAddStageWizardModal();
+                    this.props.actions.showAddStageWizardModal(false);
                     this.props.actions.addStageToWizard(
                         this.props.project.workflowIds[0],
                         [Object.assign({},
@@ -48,7 +48,7 @@ class AddStages extends Component {
                         key={stage.id}/>;
                 })}
                 <div className='add-stage-placeholder'
-                    onClick={() => this.props.actions.showAddStageWizardModal()}>
+                    onClick={() => this.props.actions.showAddStageWizardModal(true)}>
                     <div className='workflow-stage-title'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </div>

@@ -35,11 +35,11 @@ export function setUserTitle(userId, title) {
 
 export function addNewUser(requestBody, errorMessage, addedDispatch) {
     return (dispatch) => {
-        apiService.users.addNewUser(
+        apiService.users.postNewUser(
             requestBody,
             (userErr, userResp) => {
                 if (!userErr && userResp) {
-                    dispatch(_addNewUserSuccess(userResp));
+                    dispatch(_postNewUserSuccess(userResp));
                     if (addedDispatch) {
                         addedDispatch(userResp);
                     }
@@ -84,10 +84,9 @@ export function getUsersSuccess(users) {
 }
 
 // private
-
-function _addNewUserSuccess(user) {
+function _postNewUserSuccess(user) {
     return {
-        type: actionTypes.ADD_NEW_USER_SUCCESS,
+        type: actionTypes.POST_NEW_USER_SUCCESS,
         user,
     };
 }
