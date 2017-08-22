@@ -53,7 +53,8 @@ class MatrixContainer extends Component {
                           {this.props.project.subjects.map((subject, key) =>
                             <FilteredRow key={key}
                               subject={{ name: subject, key }}
-                              surveySize={this.props.survey.questions.length}
+                              surveySize={this.props.survey.questions ?
+                                  this.props.survey.questions.length : 0}
                               stages={this.props.project.stages}
                               tasks={this.props.tasks}
                               responses={this.props.responses}
