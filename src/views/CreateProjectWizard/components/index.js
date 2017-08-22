@@ -12,7 +12,6 @@ import AddStages from './AddStages';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
-import { ProjectManagementContainer } from '../../ProjectManagement';
 import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
@@ -105,8 +104,9 @@ class CreateProjectWizard extends Component {
                     onContinue={ this.handleContinue } />
             </div> :
             <div className='project-wizard project-wizard--complete'>
-                <WizardComplete vocab={this.props.vocab} />
-                <ProjectManagementContainer params={{ projectId: '41' }}/>
+                <WizardComplete
+                    vocab={this.props.vocab}
+                    projectLink={this.props.wizard.ui.projectLink} />
             </div>);
     }
 }
@@ -122,6 +122,7 @@ CreateProjectWizard.propTypes = {
             errorMessage: PropTypes.string,
             complete: PropTypes.bool.isRequired,
             step: PropTypes.number.isRequired,
+            projectLink: PropTypes.number.isRequired,
         }),
     }).isRequired,
     vocab: PropTypes.object.isRequired,

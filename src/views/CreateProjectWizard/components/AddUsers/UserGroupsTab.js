@@ -11,7 +11,7 @@ class UserGroupsTab extends Component {
     }
 
     filterGroup(group) {
-        return group.name.toLowerCase().includes(this.props.filter.toLowerCase());
+        return group.title.toLowerCase().includes(this.props.filter.toLowerCase());
     }
 
     lookupUser(userId) {
@@ -42,6 +42,7 @@ UserGroupsTab.propTypes = {
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    filter: PropTypes.string.isRequired,
     actions: PropTypes.shape({
         removeUserFromWizard: PropTypes.func.isRequired,
     }).isRequired,

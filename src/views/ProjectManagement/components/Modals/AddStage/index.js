@@ -9,7 +9,7 @@ import AddStageForm from './AddStageForm';
 class AddStageModal extends Component {
     render() {
         const groups = this.props.userGroups.map((group, key) =>
-            ({ value: group.id, label: group.name, key }),
+            ({ value: group.id, label: group.title, key }),
         );
         const initialValues = {
             title: '',

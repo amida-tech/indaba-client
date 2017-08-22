@@ -95,13 +95,14 @@ ProjectManagementContainer.propTypes = {
 const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
     const project = _.find(state.projects, current => current.id === projectId);
+    const tasksCheck = _.find(state.tasks, task => task.projectId === project.id);
     return {
         project,
-        tasks: _.find(state.tasks, task => task.projectId === project.id).tasks,
+        tasks: tasksCheck ? tasksCheck.tasks : [],
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
         ui: state.manager.ui,
-        survey: _.find(state.surveys, survey => survey.projectId === project.id),
+        survey: _.find(state.surveys, survey => survey.projectId === project.id) || {},
         tab: state.manager.ui.subnav,
         users: state.user.users,
         profile: state.user.profile,

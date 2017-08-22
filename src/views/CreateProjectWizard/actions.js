@@ -86,22 +86,20 @@ export function addUserToWizard(user) {
     };
 }
 
-export function addGroupToWizard(organizationId, requestBody, errorMessages) {
+export function addGroupToWizard(organizationId, groupData, errorMessages) {
+    const requestBody = {
+        title: groupData.title,
+        organizationId,
+        users: groupData.users,
+    };
     return (dispatch) => {
         apiService.projects.postGroup(
             organizationId,
             requestBody,
             (groupErr, groupResp) => {
                 if (!groupErr && groupResp) {
-                    dispatch(_postGroupsWizardSuccess(groupResp.id));
-                    apiService.projects.putUserInGroup(
-                        groupResp.id,
-                        requestBody,
-                        (userGroupErr, userGroupResp) => {
-                            dispatch((!userGroupErr && userGroupResp) ?
-                                _putUserGroupWizardSuccess(userGroupResp) :
-                                _putUserGroupWizardFailure(errorMessages.INSERT_USERGROUP));
-                        });
+                    requestBody.id = groupResp.id;
+                    dispatch(_postGroupsWizardSuccess(requestBody));
                 } else {
                     dispatch(_postGroupsWizardFailure(errorMessages.INSERT_GROUP));
                 }
@@ -117,7 +115,8 @@ export function addStageToWizard(workflowIds, requestBody, errorMessages) {
             requestBody,
             (workflowErr, workflowResp) => {
                 dispatch((!workflowErr && workflowResp) ?
-                    _putStageWizardSuccess(workflowResp.workflowsIDs) :
+                    _putStageWizardSuccess(
+                        Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] })) :
                     _putStageWizardFailure(errorMessages.INSERT_STAGE));
             },
         );
@@ -231,30 +230,16 @@ export function _postSubjectsWizardFailure(error) {
     };
 }
 
-export function _postGroupsWizardSuccess(groupId) {
+export function _postGroupsWizardSuccess(group) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_SUCCESS,
-        groupId,
+        group,
     };
 }
 
 export function _postGroupsWizardFailure(error) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_FAILURE,
-        error,
-    };
-}
-
-export function _putUserGroupWizardSuccess(response) {
-    return {
-        type: actionTypes.PUT_USER_GROUP_WIZARD_SUCCESS,
-        response,
-    };
-}
-
-export function _putUserGroupWizardFailure(error) {
-    return {
-        type: actionTypes.PUT_USER_GROUP_WIZARD_FAILURE,
         error,
     };
 }
@@ -273,6 +258,13 @@ export function _postUserWizardSuccess(user) {
     };
 }
 
+export function _putStageWizardSuccess(stage) {
+    return {
+        type: actionTypes.PUT_STAGE_WIZARD_SUCCESS,
+        stage,
+    };
+}
+
 export function _postUserWizardFailure(error) {
     return {
         type: actionTypes.POST_USER_WIZARD_FAILURE,
@@ -284,12 +276,6 @@ export function _postWorkflowWizardFailure(error) {
     return {
         type: actionTypes.POST_WORKFLOW_WIZARD_FAILURE,
         error,
-    };
-}
-
-export function _putStageWizardSuccess() {
-    return {
-        type: actionTypes.PUT_STAGE_WIZARD_SUCCESS,
     };
 }
 

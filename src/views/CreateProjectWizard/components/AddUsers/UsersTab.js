@@ -86,6 +86,7 @@ UsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
     profile: PropTypes.object.isRequired,
+    filter: PropTypes.string.isRequired,
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

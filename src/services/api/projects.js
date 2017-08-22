@@ -20,9 +20,6 @@ const projects = {
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
     },
-    putUserInGroup: (groupId, requestBody, callback) => {
-        requests.apiPutRequest(getFullPath(`groups/${groupId}`), requestBody, callback);
-    },
     // deleteProductUOA: (productId, uoaId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
     // },

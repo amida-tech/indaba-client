@@ -17,8 +17,12 @@ class AddUsers extends Component {
                         users={this.props.project.users}
                         allUsers={this.props.user.users}
                         onCancel={() => this.props.actions.showAddUserGroupWizardModal(false)}
-                        onSave={(role) => {
-                            this.props.actions.addUserGroupToWizard(role);
+                        onSave={(groupData) => {
+                            this.props.actions.addGroupToWizard(
+                                this.props.user.profile.organizationId,
+                                groupData,
+                                this.props.vocab.ERROR,
+                            );
                             this.props.actions.showAddUserGroupWizardModal(false);
                         }}/>}
                 <Summary

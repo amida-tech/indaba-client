@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Tabs, Tab, Button } from 'grommet';
 import Modal from '../../../common/components/Modal';
 
@@ -33,10 +34,14 @@ class WizardComplete extends Component {
                 <Button className='wizard-complete__button'
                     primary
                     label={this.props.vocab.PROJECT.GO_TO_PROJECT}
-                    path='/project/41'/>
+                    path={`/project/${this.props.projectLink}`}/>
             </div>
         </Modal>;
     }
 }
+
+WizardComplete.propTypes = {
+    projectLink: PropTypes.number.isRequired,
+};
 
 export default WizardComplete;

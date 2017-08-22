@@ -43,9 +43,10 @@ class AddStages extends Component {
             <hr className='divider' />
             <Box direction='row'>
                 {this.props.project.stages.map((stage) => {
-                    return <StageSummary stage={stage} vocab={this.props.vocab}
+                    return <StageSummary stage={stage}
+                        vocab={this.props.vocab}
                         userGroups={this.props.project.userGroups}
-                        key={stage.id}/>;
+                        key={stage.id} />;
                 })}
                 <div className='add-stage-placeholder'
                     onClick={() => this.props.actions.showAddStageWizardModal(true)}>
@@ -64,6 +65,7 @@ class AddStages extends Component {
 AddStages.propTypes = {
     ui: PropTypes.object.isRequired,
     project: PropTypes.shape({
+        stages: PropTypes.arrayOf(PropTypes.object).isRequired,
         userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,

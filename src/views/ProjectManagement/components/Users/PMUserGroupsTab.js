@@ -6,7 +6,7 @@ import { updateUserGroupListSearchQuery } from '../../actions';
 
 class PMUserGroupsTab extends Component {
     filterGroup(group, query) {
-        return group.name.toLowerCase().includes(query.toLowerCase());
+        return group.title.toLowerCase().includes(query.toLowerCase());
     }
     render() {
         return (

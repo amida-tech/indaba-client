@@ -35,11 +35,11 @@ const initialState = [{
     userGroups: [
         {
             id: 11,
-            name: 'Researchers',
+            title: 'Researchers',
             users: [41, 25, 22, 31],
         }, {
             id: 13,
-            name: 'Managers',
+            title: 'Managers',
             users: [13, 71],
         }],
     subjects: ['Berlin', 'Chicago', 'Hong Kong'],
@@ -74,11 +74,11 @@ const initialState = [{
     userGroups: [
         {
             id: 11,
-            name: 'Researchers',
+            title: 'Researchers',
             users: [41, 25, 22, 31],
         }, {
             id: 13,
-            name: 'Managers',
+            title: 'Managers',
             users: [13, 71],
         }],
     subjects: ['Nigeria', 'China', 'Chicago'],

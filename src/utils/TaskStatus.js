@@ -37,6 +37,6 @@ export default {
              formDate.getMinutes()}${formDate.getHours() > 12 ? 'pm' : 'am'}`);
     },
     formatUserGroups(userGroups) {
-        return (userGroups.map(group => group.name).toString().replace(/,/, ', '));
+        return (userGroups.map(group => group.title).toString().replace(/,/, ', '));
     },
 };
