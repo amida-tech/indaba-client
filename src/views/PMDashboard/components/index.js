@@ -37,11 +37,14 @@ class PMDashboard extends Component {
             return true;
         }
     }
+
     searchRow(row) {
+        console.log(row);
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
         return row.project.name.toLowerCase().includes(lowerQuery) ||
             row.survey.name.toLowerCase().includes(lowerQuery);
     }
+
     render() {
         return (
             <div className='pm-dashboard'>
@@ -108,19 +111,19 @@ PMDashboard.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     ui: state.pmdashboard.ui,
-    rows: state.projects.map(project => ({
+    rows: state.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
-        flags: state.discuss.filter(discuss =>
+        flags: state.discuss.chat.filter(discuss =>
             state.tasks.find(taskSet =>
                 taskSet.tasks.some(task => task.id === discuss.taskId)).projectId === project.id)
             .reduce((sum, discuss) =>
                 sum + discuss.discuss.filter(innerDiscuss => innerDiscuss.flag).length, 0),
     })),
     glance: {
-        projects: state.projects.length,
-        active: state.projects.filter(project => project.status === 'Active').length,
-        inactive: state.projects.filter(project => project.status === 'Inactive').length,
+        projects: state.projects.data.length,
+        active: state.projects.data.filter(project => project.status === 'Active').length,
+        inactive: state.projects.data.filter(project => project.status === 'Inactive').length,
         // flags calculated inline from rows.flags
     },
     messages: state.messages.slice(0, 4),

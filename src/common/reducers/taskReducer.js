@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
 
-import * as type from '../actionTypes/tasksActionTypes';
+import * as type from '../actionTypes/taskActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 import { REMOVE_USER } from '../actionTypes/projectActionTypes';
 
@@ -60,7 +60,7 @@ const initialState = [{
     }],
 }];
 
-export const TasksReducer = (state = initialState, action) => {
+export const TaskReducer = (state = initialState, action) => {
     const projectIndex = _.findIndex(state, projectTasks =>
         projectTasks.projectId === action.projectId);
     const taskIndex = state[projectIndex] ?

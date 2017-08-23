@@ -4,87 +4,94 @@ import _ from 'lodash';
 import * as type from '../actionTypes/projectActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 
-const initialState = [{
-    id: 101,
-    name: 'Home Business Study',
-    lastUpdated: '2017-06-10T16:28:13.877Z',
-    status: 'Active',
-    users: [13, 71, 41, 25, 22, 31],
-    stages: [{
-        id: 0,
-        title: 'Fill Out The Survey',
-        startDate: '1/1/2017',
-        endDate: '2/1/2017',
-        userGroups: [11],
-        permissions: 0,
-    }, {
-        id: 1,
-        title: 'First Review',
-        startDate: '3/3/2017',
-        endDate: '4/3/2017',
-        userGroups: [11, 13],
-        permissions: 2,
-    }, {
-        id: 2,
-        title: 'Second Review',
-        startDate: '4/4/2017',
-        endDate: '5/3/2017',
-        userGroups: [13],
-        permissions: 2,
-    }], // stages end
-    userGroups: [
-        {
-            id: 11,
-            title: 'Researchers',
-            users: [41, 25, 22, 31],
-        }, {
-            id: 13,
-            title: 'Managers',
-            users: [13, 71],
-        }],
-    subjects: ['Berlin', 'Chicago', 'Hong Kong'],
-}, {
-    id: 102,
-    name: 'Midterm Project Evaluation',
-    lastUpdated: '2017-07-20T16:28:13.877Z',
-    status: 'Inactive',
-    users: [41, 25, 22, 31, 13, 71],
-    stages: [{
-        id: 0,
-        title: 'Fill Out The Survey',
-        startDate: '1/1/2017',
-        endDate: '2/1/2017',
-        userGroups: [11],
-        permissions: 0,
-    }, {
-        id: 1,
-        title: 'First Review',
-        startDate: '3/3/2017',
-        endDate: '4/3/2017',
-        userGroups: [11, 13],
-        permissions: 2,
-    }, {
-        id: 2,
-        title: 'Second Review',
-        startDate: '4/4/2017',
-        endDate: '5/3/2017',
-        userGroups: [13],
-        permissions: 2,
-    }], // stages end
-    userGroups: [
-        {
-            id: 11,
-            title: 'Researchers',
-            users: [41, 25, 22, 31],
-        }, {
-            id: 13,
-            title: 'Managers',
-            users: [13, 71],
-        }],
-    subjects: ['Nigeria', 'China', 'Chicago'],
-    workflowIDs: [],
-},
-];
+const initialState = {
+    ui: {
+        errorMessage: '',
+    },
+    data: [],
+};
+
+//     {
+//     id: 101,
+//     name: 'Home Business Study',
+//     lastUpdated: '2017-06-10T16:28:13.877Z',
+//     status: 'Active',
+//     users: [13, 71, 41, 25, 22, 31],
+//     stages: [{
+//         id: 0,
+//         title: 'Fill Out The Survey',
+//         startDate: '1/1/2017',
+//         endDate: '2/1/2017',
+//         userGroups: [11],
+//         permissions: 0,
+//     }, {
+//         id: 1,
+//         title: 'First Review',
+//         startDate: '3/3/2017',
+//         endDate: '4/3/2017',
+//         userGroups: [11, 13],
+//         permissions: 2,
+//     }, {
+//         id: 2,
+//         title: 'Second Review',
+//         startDate: '4/4/2017',
+//         endDate: '5/3/2017',
+//         userGroups: [13],
+//         permissions: 2,
+//     }], // stages end
+//     userGroups: [
+//         {
+//             id: 11,
+//             title: 'Researchers',
+//             users: [41, 25, 22, 31],
+//         }, {
+//             id: 13,
+//             title: 'Managers',
+//             users: [13, 71],
+//         }],
+//     subjects: ['Berlin', 'Chicago', 'Hong Kong'],
+// }, {
+//     id: 102,
+//     name: 'Midterm Project Evaluation',
+//     lastUpdated: '2017-07-20T16:28:13.877Z',
+//     status: 'Inactive',
+//     users: [41, 25, 22, 31, 13, 71],
+//     stages: [{
+//         id: 0,
+//         title: 'Fill Out The Survey',
+//         startDate: '1/1/2017',
+//         endDate: '2/1/2017',
+//         userGroups: [11],
+//         permissions: 0,
+//     }, {
+//         id: 1,
+//         title: 'First Review',
+//         startDate: '3/3/2017',
+//         endDate: '4/3/2017',
+//         userGroups: [11, 13],
+//         permissions: 2,
+//     }, {
+//         id: 2,
+//         title: 'Second Review',
+//         startDate: '4/4/2017',
+//         endDate: '5/3/2017',
+//         userGroups: [13],
+//         permissions: 2,
+//     }], // stages end
+//     userGroups: [
+//         {
+//             id: 11,
+//             title: 'Researchers',
+//             users: [41, 25, 22, 31],
+//         }, {
+//             id: 13,
+//             title: 'Managers',
+//             users: [13, 71],
+//         }],
+//     subjects: ['Nigeria', 'China', 'Chicago'],
+//     workflowIDs: [],
+// },
+// ];
 
 export const ProjectReducer = (state = initialState, action) => {
     let projectIndex;
@@ -97,6 +104,8 @@ export const ProjectReducer = (state = initialState, action) => {
     switch (action.type) {
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.project] });
+    case type.GET_PROJECTS_SUCCESS:
+        return update(state, { data: { $set: action.projects } });
     case type.TOGGLE_FILTER:
         return update(state, { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter) && action.filter } } });

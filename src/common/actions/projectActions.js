@@ -1,6 +1,20 @@
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import apiService from '../../services/api';
 
+export function getProjects(errorMessages) {
+    return (dispatch) => {
+        apiService.projects.getProjects(
+            (projErr, projResp) => {
+                if (!projErr && projResp) {
+                    dispatch(_getProjectsSuccess(projResp));
+                } else {
+                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
+                }
+            },
+        );
+    };
+}
+
 export function createSubject(projectId, requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postUOA(
@@ -113,6 +127,20 @@ export function setProjectName(name, projectId) {
 }
 
 // Private functions.
+function _getProjectsSuccess(projects) {
+    return {
+        type: actionTypes.GET_PROJECTS_SUCCESS,
+        projects,
+    };
+}
+
+function _reportProjectError(error) {
+    return {
+        type: actionTypes.REPORT_PROJECT_ERROR,
+        error,
+    };
+}
+
 export function _postSubjectSuccess(subject, projectId) {
     return {
         type: actionTypes.POST_SUBJECT_SUCCESS,

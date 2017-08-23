@@ -8,7 +8,7 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
-import { updateTaskDueDate } from '../../../common/actions/tasksActions';
+import { updateTaskDueDate } from '../../../common/actions/taskActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import * as actions from '../actions';
 

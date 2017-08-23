@@ -6,10 +6,22 @@ import { Box, Button } from 'grommet';
 import { Icon } from 'react-fa';
 
 import * as actions from '../../common/actions/navActions';
+import { getUsers, getProfile } from '../../common/actions/userActions';
+import { getProjects } from '../../common/actions/projectActions';
 import CreateNewProject from './CreateNewProject';
 
 
 class PrimaryNavContainer extends Component {
+    componentWillMount() {
+        console.log('And then...');
+        if (this.props.nav.ui.checkBackend) {
+            this.props.navActions.getProfile(this.props.vocab.ERROR);
+            this.props.navActions.getUsers(this.props.vocab.ERROR);
+            this.props.navActions.getProjects(this.props.vocab.ERROR);
+            this.props.navActions.toggleCheckBackend();
+        }
+    }
+
     render() {
         return (
             <nav className='primary-nav'>
@@ -53,12 +65,15 @@ class PrimaryNavContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+    nav: state.nav,
+    user: state.user,
     vocab: state.settings.language.vocabulary,
     ui: state.nav.ui,
 });
 
 const mapDispatchToProps = dispatch => ({
-    navActions: bindActionCreators(Object.assign({}, actions), dispatch),
+    navActions: bindActionCreators(Object.assign({}, actions,
+        { getProfile, getUsers, getProjects }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

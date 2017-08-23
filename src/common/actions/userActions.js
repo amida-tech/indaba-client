@@ -33,6 +33,36 @@ export function setUserTitle(userId, title) {
     };
 }
 
+export function getProfile(errorMessages) {
+    return (dispatch) => {
+        apiService.users.getProfile(
+          (err, profile) => {
+              if (profile && !err) {
+                  dispatch(_getProfileSuccess(profile));
+              } else {
+                  dispatch(_reportUserError(errorMessages.FETCH_PROFILE));
+              }
+          },
+        );
+    };
+}
+
+export function getUsers(errorMessages) {
+    return (dispatch) => {
+        apiService.users.getUsers(
+          (err, users) => {
+              if (!err && users) {
+                  dispatch(_getUsersSuccess(users));
+              } else if (err && !users) {
+                  dispatch(_reportUserError(errorMessages.SERVER_ISSUE));
+              } else {
+                  dispatch(_reportUserError(errorMessages.FETCH_USERS));
+              }
+          },
+        );
+    };
+}
+
 export function addNewUser(requestBody, errorMessage, addedDispatch) {
     return (dispatch) => {
         apiService.users.postNewUser(
@@ -68,26 +98,18 @@ export function notifyUser(userId, message, senderId) {
     };
 }
 
-
-export function getCurrentUserSuccess(profile) {
+// private
+function _getProfileSuccess(profile) {
     return {
-        type: actionTypes.GET_CURRENT_USER_SUCCESS,
+        type: actionTypes.GET_PROFILE_SUCCESS,
         profile,
     };
 }
 
-export function getUsersSuccess(users) {
+function _getUsersSuccess(users) {
     return {
         type: actionTypes.GET_USERS_SUCCESS,
         users,
-    };
-}
-
-// private
-function _postNewUserSuccess(user) {
-    return {
-        type: actionTypes.POST_NEW_USER_SUCCESS,
-        user,
     };
 }
 
@@ -95,5 +117,12 @@ function _reportUserError(error) {
     return {
         type: actionTypes.REPORT_USER_ERROR,
         error,
+    };
+}
+
+function _postNewUserSuccess(user) {
+    return {
+        type: actionTypes.POST_NEW_USER_SUCCESS,
+        user,
     };
 }

@@ -14,10 +14,13 @@ import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
-import { assignTask, reassignTask } from '../../../common/actions/tasksActions';
+import * as taskActions from '../../../common/actions/taskActions';
 import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
+    componentWillMount() {
+
+    }
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
@@ -95,6 +98,7 @@ ProjectManagementContainer.propTypes = {
 const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
     const project = _.find(state.projects, current => current.id === projectId);
+    console.log(state.tasks);
     const tasksCheck = _.find(state.tasks, task => task.projectId === project.id);
     return {
         project,
@@ -121,11 +125,7 @@ const mapDispatchToProps = dispatch => ({
         onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
         onSetSurveyName: (name, projectId) => dispatch(setSurveyName(name, projectId)),
     },
-    taskActions: {
-        assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),
-        reassignTask: (reassignId, taskId, projectId) =>
-            dispatch(reassignTask(reassignId, taskId, projectId)),
-    },
+    taskActions: bindActionCreators(Object.assign({}, taskActions), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

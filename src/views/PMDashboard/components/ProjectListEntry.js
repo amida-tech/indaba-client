@@ -7,7 +7,6 @@ import EditableTextInput from '../../../common/components/EditableTextInput';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
-
     render() {
         return (
             <div className='project-list-entry'
@@ -58,7 +57,7 @@ ProjectListEntry.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
+        status: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
         lastUpdated: PropTypes.string.isRequired,
     }),

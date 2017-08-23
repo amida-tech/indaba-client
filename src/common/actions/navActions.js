@@ -6,3 +6,9 @@ export function showCreateProject(show) {
         show,
     };
 }
+
+export function toggleCheckBackend() {
+    return {
+        type: actionTypes.TOGGLE_CHECK_BACKEND,
+    };
+}

@@ -3,7 +3,6 @@ import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
-import * as userActions from '../../common/actions/userActions';
 
 export function login(username, password, realm, errorMessages) {
     return (dispatch) => {
@@ -18,10 +17,6 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth));
-                dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
-                dispatch(getUsers(errorMessages));
-                dispatch(getProjects());
-                dispatch(getTasks());
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
@@ -32,61 +27,6 @@ export function login(username, password, realm, errorMessages) {
             }
         },
       );
-    };
-}
-
-// These are going to have to be moved to the userReducer down the road.
-export function getCurrentUser(translatedError) {
-    return (dispatch) => {
-        apiService.users.getCurrentUser(
-          (err, profile) => {
-              if (profile && !err) {
-                  dispatch(userActions.getCurrentUserSuccess(profile));
-              } else {
-                  dispatch(_getCurrentUserFailure(translatedError));
-              }
-          },
-        );
-    };
-}
-
-export function getUsers(errorMessages) {
-    return (dispatch) => {
-        apiService.users.getUsers(
-          (err, users) => {
-              if (!err && users) {
-                  dispatch(userActions.getUsersSuccess(users));
-              } else if (err && !users) {
-                  dispatch(_getUsersFailure(errorMessages.SERVER_ISSUE));
-              } else {
-                  dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
-              }
-          },
-        );
-    };
-}
-
-export function getProjects() { // errorMessages
-    return () => { // dispatch
-        apiService.projects.getProjects(
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
-                    // dispatch
-                }
-            },
-        );
-    };
-}
-
-export function getTasks() { // errorMessages
-    return () => { // dispatch
-        apiService.tasks.getTasks(
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    // dispatch
-                }
-            },
-        );
     };
 }
 
@@ -119,20 +59,6 @@ function _clearLoginForm() {
 function _loginError(error) {
     return {
         type: actionTypes.LOGIN_ERROR,
-        error,
-    };
-}
-
-function _getCurrentUserFailure(error) {
-    return {
-        type: actionTypes.GET_CURRENT_USER_FAILURE,
-        error,
-    };
-}
-
-function _getUsersFailure(error) {
-    return {
-        type: actionTypes.GET_USERS_FAILURE,
         error,
     };
 }

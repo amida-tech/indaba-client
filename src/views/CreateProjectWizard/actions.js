@@ -201,7 +201,7 @@ export function addUsersSetGroupsFilter(filter) {
 }
 
 // Private Functions
-export function _postProjectWizardSuccess(id, productId) {
+function _postProjectWizardSuccess(id, productId) {
     return {
         type: actionTypes.POST_PROJECT_WIZARD_SUCCESS,
         id,
@@ -209,77 +209,63 @@ export function _postProjectWizardSuccess(id, productId) {
     };
 }
 
-export function _postProjectWizardFailure(error) {
+function _postProjectWizardFailure(error) {
     return {
         type: actionTypes.POST_PROJECT_WIZARD_FAILURE,
         error,
     };
 }
 
-export function _postSubjectsWizardSuccess(subjects) {
+function _postSubjectsWizardSuccess(subjects) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_SUCCESS,
         subjects,
     };
 }
 
-export function _postSubjectsWizardFailure(error) {
+function _postSubjectsWizardFailure(error) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_FAILURE,
         error,
     };
 }
 
-export function _postGroupsWizardSuccess(group) {
+function _postGroupsWizardSuccess(group) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_SUCCESS,
         group,
     };
 }
 
-export function _postGroupsWizardFailure(error) {
+function _postGroupsWizardFailure(error) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_FAILURE,
         error,
     };
 }
 
-export function _postWorkflowWizardSuccess(workflowIds) {
+function _postWorkflowWizardSuccess(workflowIds) {
     return {
         type: actionTypes.POST_WORKFLOW_WIZARD_SUCCESS,
         workflowIds,
     };
 }
 
-export function _postUserWizardSuccess(user) {
-    return {
-        type: actionTypes.POST_USER_WIZARD_SUCCESS,
-        user,
-    };
-}
-
-export function _putStageWizardSuccess(stage) {
+function _putStageWizardSuccess(stage) {
     return {
         type: actionTypes.PUT_STAGE_WIZARD_SUCCESS,
         stage,
     };
 }
 
-export function _postUserWizardFailure(error) {
-    return {
-        type: actionTypes.POST_USER_WIZARD_FAILURE,
-        error,
-    };
-}
-
-export function _postWorkflowWizardFailure(error) {
+function _postWorkflowWizardFailure(error) {
     return {
         type: actionTypes.POST_WORKFLOW_WIZARD_FAILURE,
         error,
     };
 }
 
-export function _putStageWizardFailure(error) {
+function _putStageWizardFailure(error) {
     return {
         type: actionTypes.PUT_STAGE_WIZARD_FAILURE,
         error,
