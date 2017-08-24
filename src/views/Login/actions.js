@@ -16,13 +16,17 @@ export function login(username, password, realm, errorMessages) {
         apiService.auth.login(
         authPayload,
         (err, auth) => {
-            if (auth && !err) {
+            if (!err && auth) {
                 dispatch(_loginSuccess(auth));
                 dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
-                dispatch(getUsers(errorMessages.FETCH_USERS));
+                dispatch(getUsers(errorMessages));
+                dispatch(getProjects());
                 dispatch(push('/project'));
+            } else if (err && !auth) {
+                dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                dispatch(_clearLoginForm());
             } else {
-                dispatch(_loginError(err.message));
+                dispatch(_loginError(errorMessages.INVALID_LOGIN));
                 dispatch(_clearLoginForm());
             }
         },
@@ -30,31 +34,46 @@ export function login(username, password, realm, errorMessages) {
     };
 }
 
+// These are going to have to be moved to the userReducer down the road.
 export function getCurrentUser(translatedError) {
     return (dispatch) => {
         apiService.users.getCurrentUser(
-      (err, profile) => {
-          if (profile && !err) {
-              dispatch(userActions.getCurrentUserSuccess(profile));
-          } else {
-              dispatch(_getCurrentUserFailure(translatedError));
-          }
-      },
-    );
+          (err, profile) => {
+              if (profile && !err) {
+                  dispatch(userActions.getCurrentUserSuccess(profile));
+              } else {
+                  dispatch(_getCurrentUserFailure(translatedError));
+              }
+          },
+        );
     };
 }
 
-export function getUsers(translatedError) {
+export function getUsers(errorMessages) {
     return (dispatch) => {
         apiService.users.getUsers(
-      (err, users) => {
-          if (users && !err) {
-              dispatch(userActions.getUsersSuccess(users));
-          } else {
-              dispatch(_getUsersFailure(translatedError));
-          }
-      },
-    );
+          (err, users) => {
+              if (!err && users) {
+                  dispatch(userActions.getUsersSuccess(users));
+              } else if (err && !users) {
+                  dispatch(_getUsersFailure(errorMessages.SERVER_ISSUE));
+              } else {
+                  dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
+              }
+          },
+        );
+    };
+}
+
+export function getProjects() { // errorMessages
+    return () => { // dispatch
+        apiService.projects.getProjects(
+            (projErr, projResp) => {
+                if (!projErr && projResp) {
+                    // dispatch
+                }
+            },
+        );
     };
 }
 
@@ -69,7 +88,7 @@ function _login() {
 }
 
 function _loginSuccess(response) {
-    cookie.save('indaba-auth', response.token);
+    cookie.save('indaba-auth', (`JWT ${response.token}`));
     cookie.save('indaba-realm', response.realm);
     return {
         type: actionTypes.LOGIN_SUCCESS,

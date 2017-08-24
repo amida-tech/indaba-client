@@ -1,4 +1,20 @@
 import * as actionTypes from '../actionTypes/projectActionTypes';
+import apiService from '../../services/api';
+
+export function createSubject(projectId, requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postUOA(
+            requestBody,
+            (uoaErr, uoaResp) => {
+                if (!uoaErr && uoaResp) {
+                    dispatch(addSubject(uoaResp, projectId));
+                } else {
+                    dispatch(_postSubjectFailure(errorMessages.INSERT_SUBJECT));
+                }
+            },
+        );
+    };
+}
 
 export function setProjectStatus(status, projectId) {
     return {
@@ -23,6 +39,7 @@ export function toggleFilter(filter, projectId) {
     };
 }
 
+// To be replaced.
 export function addSubject(subject, projectId) {
     return {
         type: actionTypes.ADD_SUBJECT,
@@ -92,5 +109,21 @@ export function setProjectName(name, projectId) {
         type: actionTypes.SET_PROJECT_NAME,
         name,
         projectId,
+    };
+}
+
+// Private functions.
+export function _postSubjectSuccess(subject, projectId) {
+    return {
+        type: actionTypes.POST_SUBJECT_SUCCESS,
+        subject,
+        projectId,
+    };
+}
+
+export function _postSubjectFailure(error) {
+    return {
+        type: actionTypes.POST_SUBJECT_FAILURE,
+        error,
     };
 }
