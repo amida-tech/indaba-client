@@ -13,33 +13,33 @@ const initialState = [{
     stages: [{
         id: 0,
         title: 'Fill Out The Survey',
-        startStage: '1/1/2017',
-        endStage: '2/1/2017',
+        startDate: '1/1/2017',
+        endDate: '2/1/2017',
         userGroups: [11],
         permissions: 0,
     }, {
         id: 1,
         title: 'First Review',
-        startStage: '3/3/2017',
-        endStage: '4/3/2017',
+        startDate: '3/3/2017',
+        endDate: '4/3/2017',
         userGroups: [11, 13],
         permissions: 2,
     }, {
         id: 2,
         title: 'Second Review',
-        startStage: '4/4/2017',
-        endStage: '5/3/2017',
+        startDate: '4/4/2017',
+        endDate: '5/3/2017',
         userGroups: [13],
         permissions: 2,
     }], // stages end
     userGroups: [
         {
             id: 11,
-            name: 'Researchers',
+            title: 'Researchers',
             users: [41, 25, 22, 31],
         }, {
             id: 13,
-            name: 'Managers',
+            title: 'Managers',
             users: [13, 71],
         }],
     subjects: ['Berlin', 'Chicago', 'Hong Kong'],
@@ -52,36 +52,37 @@ const initialState = [{
     stages: [{
         id: 0,
         title: 'Fill Out The Survey',
-        startStage: '1/1/2017',
-        endStage: '2/1/2017',
+        startDate: '1/1/2017',
+        endDate: '2/1/2017',
         userGroups: [11],
         permissions: 0,
     }, {
         id: 1,
         title: 'First Review',
-        startStage: '3/3/2017',
-        endStage: '4/3/2017',
+        startDate: '3/3/2017',
+        endDate: '4/3/2017',
         userGroups: [11, 13],
         permissions: 2,
     }, {
         id: 2,
         title: 'Second Review',
-        startStage: '4/4/2017',
-        endStage: '5/3/2017',
+        startDate: '4/4/2017',
+        endDate: '5/3/2017',
         userGroups: [13],
         permissions: 2,
     }], // stages end
     userGroups: [
         {
             id: 11,
-            name: 'Researchers',
+            title: 'Researchers',
             users: [41, 25, 22, 31],
         }, {
             id: 13,
-            name: 'Managers',
+            title: 'Managers',
             users: [13, 71],
         }],
     subjects: ['Nigeria', 'China', 'Chicago'],
+    workflowIDs: [],
 },
 ];
 

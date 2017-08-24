@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
 import { Button, Tabs, Tab } from 'grommet';
+
 import Summary from '../../../../common/components/Summary';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
-import {
-    addUserToWizard,
-    removeUserFromWizard,
-    addUserGroupToWizard,
-    removeUserGroupFromWizard,
-    addUsersSetTab,
-    addUsersShowSelectGroupUsers,
-} from '../../actions';
-import {
-    addNewUser,
-} from '../../../../common/actions/userActions';
 
 class AddUsers extends Component {
     render() {
@@ -27,11 +15,15 @@ class AddUsers extends Component {
                     <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
-                        allUsers={this.props.allUsers}
-                        onCancel={() => this.props.onShowSelectGroupUsers(false)}
-                        onSave={(role) => {
-                            this.props.onAddUserGroup(role);
-                            this.props.onShowSelectGroupUsers(false);
+                        allUsers={this.props.user.users}
+                        onCancel={() => this.props.actions.showAddUserGroupWizardModal(false)}
+                        onSave={(groupData) => {
+                            this.props.actions.addGroupToWizard(
+                                this.props.user.profile.organizationId,
+                                groupData,
+                                this.props.vocab.ERROR,
+                            );
+                            this.props.actions.showAddUserGroupWizardModal(false);
                         }}/>}
                 <Summary
                     project={this.props.project}
@@ -43,7 +35,7 @@ class AddUsers extends Component {
                         <Button className='add-users__button-panel-button'
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
-                            onClick={() => this.props.onShowSelectGroupUsers(true)}/>}
+                            onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}/>}
                     <Button className='add-users__button-panel-button'
                         label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </div>
@@ -53,22 +45,23 @@ class AddUsers extends Component {
                         {sentence}
                     </p>,
                 )}
-                <Tabs onActive={this.props.onSetTab}>
+                <Tabs onActive={this.props.actions.addUsersSetTab}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}
-                            allUsers={this.props.allUsers}
+                            profile={this.props.user.profile}
+                            allUsers={this.props.user.users}
                             projectUsers={this.props.project.users}
-                            onAddUserToProject={this.props.onAddUserToProject}
-                            onRemoveUserFromProject={this.props.onRemoveUserFromProject}
-                            onAddNewUser={this.props.onAddNewUser}/>
+                            filter={this.props.ui.usersFilter}
+                            actions={this.props.actions} />
                     </Tab>
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            groups={this.props.groups}
-                            allUsers={this.props.allUsers}
-                            onRemoveUserGroup={this.props.onRemoveUserGroup}/>
+                            groups={this.props.project.userGroups}
+                            filter={this.props.ui.groupsFilter}
+                            allUsers={this.props.user.users}
+                            actions={this.props.actions} />
                     </Tab>
                 </Tabs>
             </div>
@@ -77,29 +70,18 @@ class AddUsers extends Component {
 }
 
 AddUsers.propTypes = {
+    actions: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
-    project: PropTypes.object.isRequired,
+    project: PropTypes.shape({
+        userGroups: PropTypes.array.isRequired,
+    }).isRequired,
     survey: PropTypes.object.isRequired,
-    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
-    groups: PropTypes.array.isRequired,
+    user: PropTypes.shape({
+        errorMessage: PropTypes.string,
+        users: PropTypes.arrayOf(PropTypes.object).isRequired,
+        profile: PropTypes.object.isRequired,
+    }),
 };
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    project: state.projectwizard.project,
-    survey: state.projectwizard.survey,
-    allUsers: state.user.users,
-    groups: state.projectwizard.project.userGroups,
-    ui: state.projectwizard.ui.addUsers,
-});
-const mapDispatchToProps = dispatch => ({
-    onAddUserToProject: user => dispatch(addUserToWizard(user)),
-    onRemoveUserFromProject: userId => dispatch(removeUserFromWizard(userId)),
-    onAddUserGroup: group => dispatch(addUserGroupToWizard(group)),
-    onRemoveUserGroup: id => dispatch(removeUserGroupFromWizard(id)),
-    onSetTab: tab => dispatch(addUsersSetTab(tab)),
-    onShowSelectGroupUsers: show => dispatch(addUsersShowSelectGroupUsers(show)),
-    onAddNewUser: user => dispatch(addNewUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
+export default AddUsers;

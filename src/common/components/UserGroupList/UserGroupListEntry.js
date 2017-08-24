@@ -12,7 +12,7 @@ class UserGroupListEntry extends Component {
             <div className='user-group-list-entry'>
                 <div className='user-group-list-entry__name'
                     onClick={this.props.onGroupClick}>
-                    {this.props.group.name}
+                    {this.props.group.title}
                 </div>
                 <div className='user-group-list-entry__badge-string'
                     onClick={this.props.onGroupClick}>

@@ -19,7 +19,7 @@ class UserSidebar extends Component {
                 <Select className='user-sidebar__user-filter-by-group'
                     placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
-                    value={this.props.search.group && this.props.search.group.name}
+                    value={this.props.search.group && this.props.search.group.title}
                     onChange={this.props.onGroupFilter}/>
                 <List className='user-sidebar__user-dropdown'>
                     {this.props.unassigned.map(unassignee =>

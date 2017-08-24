@@ -46,7 +46,7 @@ class TaskDetails extends Component {
                                 this.props.projectId,
                                 event)}
                         value={this.props.task.dueDate ||
-                        this.props.stage.endStage}/><br/>
+                        this.props.stage.endDate}/><br/>
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>

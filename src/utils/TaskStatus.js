@@ -15,13 +15,13 @@ export default {
     },
     dueDateInPast(task, stages) {
         const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endStage;
+            stages.find(stage => stage.id === task.stage).endDate;
         return Date.parse(dueDate) < Date.now();
     },
     daysUntilDue(task, stages) {
         const day = 24 * 60 * 60 * 1000;
         const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endStage;
+            stages.find(stage => stage.id === task.stage).endDate;
         return Math.round((new Date(dueDate).getTime()
             - new Date().getTime()) / day);
     },
@@ -37,6 +37,6 @@ export default {
              formDate.getMinutes()}${formDate.getHours() > 12 ? 'pm' : 'am'}`);
     },
     formatUserGroups(userGroups) {
-        return (userGroups.map(group => group.name).toString().replace(/,/, ', '));
+        return (userGroups.map(group => group.title).toString().replace(/,/, ', '));
     },
 };
