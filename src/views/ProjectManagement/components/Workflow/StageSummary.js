@@ -8,6 +8,8 @@ import TaskStatus from '../../../../utils/TaskStatus';
 
 class StageSummary extends Component {
     render() {
+        console.log('JAMES');
+        console.log(this.props);
         const userGroups = this.props.stage.userGroups.map(stageGroup =>
             _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
