@@ -8,7 +8,7 @@ const initialState = {
         showProjectTitle: true,
         showAddStage: false,
         step: 0,
-        complete: false,
+        showComplete: false,
         addUsers: {
             tab: 0,
             showSelectGroupUsers: false,
@@ -95,8 +95,8 @@ export default (state = initialState, action) => {
         return update(initialState, { ui: { projectLink: { $set: state.ui.projectLink } } });
     case type.GO_TO_STEP:
         return update(state, { ui: { step: { $set: action.step } } });
-    case type.COMPLETE_WIZARD:
-        return update(state, { ui: { complete: { $set: true } } });
+    case type.SHOW_COMPLETE_WIZARD:
+        return update(state, { ui: { showComplete: { $set: action.show } } });
     case type.ADD_USERS_SET_TAB:
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
