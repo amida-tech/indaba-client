@@ -20,8 +20,6 @@ export function login(username, password, realm, errorMessages) {
                 dispatch(_loginSuccess(auth));
                 dispatch(getCurrentUser(errorMessages.FETCH_PROFILE));
                 dispatch(getUsers(errorMessages));
-                dispatch(getProjects());
-                dispatch(getTasks());
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
@@ -62,30 +60,6 @@ export function getUsers(errorMessages) {
                   dispatch(_getUsersFailure(errorMessages.FETCH_USERS));
               }
           },
-        );
-    };
-}
-
-export function getProjects() { // errorMessages
-    return () => { // dispatch
-        apiService.projects.getProjects(
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
-                    // dispatch
-                }
-            },
-        );
-    };
-}
-
-export function getTasks() { // errorMessages
-    return () => { // dispatch
-        apiService.tasks.getTasks(
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    // dispatch
-                }
-            },
         );
     };
 }
