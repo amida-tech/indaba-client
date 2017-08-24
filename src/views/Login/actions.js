@@ -2,7 +2,6 @@ import { push } from 'react-router-redux';
 import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
-import { getDiscuss } from '../../common/actions/discussActions';
 import * as actionTypes from './actionTypes';
 
 export function login(username, password, realm, errorMessages) {
@@ -18,7 +17,6 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth));
-                dispatch(getDiscuss(2, errorMessages.FETCH_DISCUSS));
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
