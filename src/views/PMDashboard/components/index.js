@@ -39,7 +39,6 @@ class PMDashboard extends Component {
     }
 
     searchRow(row) {
-        console.log(row);
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
         return row.project.name.toLowerCase().includes(lowerQuery) ||
             row.survey.name.toLowerCase().includes(lowerQuery);
@@ -114,11 +113,7 @@ const mapStateToProps = state => ({
     rows: state.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
-        flags: state.discuss.chat.filter(discuss =>
-            state.tasks.find(taskSet =>
-                taskSet.tasks.some(task => task.id === discuss.taskId)).projectId === project.id)
-            .reduce((sum, discuss) =>
-                sum + discuss.discuss.filter(innerDiscuss => innerDiscuss.flag).length, 0),
+        flags: 0, // Base on project listing, coming later.
     })),
     glance: {
         projects: state.projects.data.length,

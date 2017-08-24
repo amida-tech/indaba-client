@@ -7,7 +7,7 @@ const initialState = {
     ui: {
         errorMessage: '',
     },
-    chat: [],
+    data: [],
 };
 
 export const DiscussReducer = (state = initialState, action) => {
@@ -32,7 +32,7 @@ export const DiscussReducer = (state = initialState, action) => {
                 });
             } } } }));
     case type.GET_DISCUSS_SUCCESS:
-        return update(state, { chat: { $set: action.discuss } });
+        return update(state, { data: { $set: action.discuss } });
     case type.REPORT_DISCUSS_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     default:
