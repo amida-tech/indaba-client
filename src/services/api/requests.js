@@ -6,7 +6,7 @@ import 'whatwg-fetch';
  * @param {String} fullURI
  * @param {Function} callback
  * @return {Any} handled by callback. Generally the response data.
-**/
+* */
 export function apiGetRequest(fullURI, callback) {
     fetch(fullURI, {
         method: 'GET',
@@ -25,7 +25,7 @@ export function apiGetRequest(fullURI, callback) {
  * @param {Object} requestBody
  * @param {Function} callback
  * @return {Any} handled by callback.
-**/
+* */
 export function apiPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
@@ -44,7 +44,7 @@ export function apiPostRequest(fullURI, requestBody, callback) {
  * @param {String} fullURI
  * @param {Function} callback
  * @return {Any} handled by callback. Generally the response data.
-**/
+* */
 export function apiAuthGetRequest(fullURI, authHash, callback) {
     fetch(fullURI, {
         method: 'GET',

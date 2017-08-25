@@ -9,7 +9,8 @@ $block-class: 'search-input';
         &__input,
         .grommet &__input:not(.grommetux-input) {
             flex: 1;
-            padding: 0.5em 1em;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
             border: 1px solid $border-color;
             border-radius: 1px;
         }

@@ -6,15 +6,11 @@ $block-class: 'filtered-list';
         flex-direction: column;
         align-items: stretch;
         border: 1px solid $border-color;
-        height: 100%;
-        overflow-x: scroll;
+        overflow-y: scroll;
 
         &__query,
         .grommet &__query:not(.grommetux-input) {
-            display: flex;
             margin: 1em;
-            flex-direction: column;
-            align-items: stretch;
         }
 
         .grommetux-list--selectable .grommetux-list-item--selected:hover {

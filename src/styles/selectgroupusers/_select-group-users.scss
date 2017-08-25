@@ -3,9 +3,9 @@ $block-class: 'select-group-users';
 @at-root {
     .#{$block-class} {
         min-width: 800px;
-        min-height: 500px;
         display: flex;
         flex-direction: column;
+        color: $header-font-color;
 
         &__group-name-input,
         .grommet &__group-name-input:not(.grommetux-input) {
@@ -19,6 +19,7 @@ $block-class: 'select-group-users';
         &__group-user-list {
             flex: 1;
             margin: 1em;
+            overflow-y: scroll;
         }
 
         &__non-group-user-list {
@@ -33,7 +34,6 @@ $block-class: 'select-group-users';
             justify-content: center;
             cursor: pointer;
             align-items: center;
-            position: fixed;
             top: 350px;
             left: 408px;
         }
