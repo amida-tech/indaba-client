@@ -9,13 +9,7 @@ class WorkflowContainer extends Component {
             <div className='worklow-container'>
                 <FilterWrapper project={this.props.project}
                     vocab={this.props.vocab}
-                    onToggleFilter={this.props.projectActions.toggleFilter}
-                    onAddStage={this.props.projectActions.addStage}
-                    onAddSubject={this.props.projectActions.addSubject}
-                    showAddStageModal={this.props.actions.showAddStageModal}
-                    closeAddStageModal={this.props.actions.closeAddStageModal}
-                    showAddSubjectModal={this.props.actions.showAddSubjectModal}
-                    closeAddSubjectModal={this.props.actions.closeAddSubjectModal}
+                    actions={this.props.actions}
                     ui={this.props.ui} />
                 <MatrixContainer {...this.props}/>
             </div>

@@ -15,10 +15,10 @@ class PrimaryNavContainer extends Component {
     componentWillMount() {
         console.log('And then...');
         if (this.props.nav.ui.checkBackend) {
-            this.props.navActions.getProfile(this.props.vocab.ERROR);
-            this.props.navActions.getUsers(this.props.vocab.ERROR);
-            this.props.navActions.getProjects(this.props.vocab.ERROR);
-            this.props.navActions.toggleCheckBackend();
+            this.props.actions.getProfile(this.props.vocab.ERROR);
+            this.props.actions.getUsers(this.props.vocab.ERROR);
+            this.props.actions.getProjects(this.props.vocab.ERROR);
+            this.props.actions.toggleCheckBackend();
         }
     }
 
@@ -27,7 +27,7 @@ class PrimaryNavContainer extends Component {
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
-                    onCancel={() => this.props.navActions.showCreateProject(false)}/>}
+                    onCancel={() => this.props.actions.showCreateProject(false)}/>}
                 <Box
                   justify='between'
                   direction='row'
@@ -52,7 +52,7 @@ class PrimaryNavContainer extends Component {
                         <Button
                             className={'primary-nav__item primary-nav__button '}
                             label={this.props.vocab.COMMON.CREATE}
-                            onClick={() => this.props.navActions.showCreateProject(true)}/>
+                            onClick={() => this.props.actions.showCreateProject(true)}/>
                     </Box>
                     <Box className='primary-nav__icon' direction='row' align='baseline'>
                         <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    navActions: bindActionCreators(Object.assign({}, actions,
+    actions: bindActionCreators(Object.assign({}, actions,
         { getProfile, getUsers, getProjects }), dispatch),
 });
 
