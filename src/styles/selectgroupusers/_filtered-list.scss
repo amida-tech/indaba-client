@@ -15,6 +15,7 @@ $block-class: 'filtered-list';
 
         .grommetux-list--selectable .grommetux-list-item--selected:hover {
             background-color: #a0d6b5;
+            color: $header-font-color;
         }
     }
 }
