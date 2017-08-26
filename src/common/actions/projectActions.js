@@ -16,6 +16,21 @@ export function getProjects(errorMessages) {
     };
 }
 
+export function getProjectById(projectId, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.getProjectById(
+            projectId,
+            (projErr, projResp) => {
+                if (!projErr && projResp) {
+                    dispatch(_getProjectsSuccess(projResp));
+                } else {
+                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
+                }
+            },
+        );
+    };
+}
+
 export function addStage(project, stage, errorMessages) {
     const requestBody = [Object.assign({},
         {

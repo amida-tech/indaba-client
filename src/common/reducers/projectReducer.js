@@ -10,7 +10,14 @@ const initialState = {
         showAddStage: false,
         showAddSubject: false,
     },
-    data: [],
+    data: [{
+        name: '',
+        status: 0,
+        users: [],
+        stages: [],
+        userGroups: [],
+        subjects: [],
+    }],
 };
 
 export const ProjectReducer = (state = initialState, action) => {

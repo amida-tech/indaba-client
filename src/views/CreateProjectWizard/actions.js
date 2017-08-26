@@ -26,7 +26,7 @@ export function addProjectToWizard(requestBody, errorMessages) {
                         title: requestBody.codeName,
                         description: requestBody.description,
                         projectId: projectResp.id,
-                        status: 1,
+                        status: 0,
                         originalLangId: 1,
                     },
                     (productErr, productResp) => {

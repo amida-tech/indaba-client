@@ -123,6 +123,7 @@ const mapStateToProps = state => ({
     },
     messages: state.messages.slice(0, 4),
 });
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
     onSetProjectName: (name, projectId) => dispatch(setProjectName(name, projectId)),

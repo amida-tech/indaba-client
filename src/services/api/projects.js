@@ -5,6 +5,9 @@ const projects = {
     getProjects: (callback) => {
         requests.apiGetRequest(getFullPath('projects'), callback);
     },
+    getProjectById: (projectId, callback) => {
+        requests.apiGetRequest(getFullPath(`projects/${projectId}`), callback);
+    },
     postProject: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
     },

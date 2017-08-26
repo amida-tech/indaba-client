@@ -11,6 +11,7 @@ import Subjects from './Subjects';
 import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
+import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
@@ -19,8 +20,11 @@ import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysA
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-
+        console.log('james');
+        console.log(this.props);
+        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
     }
+
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
@@ -97,14 +101,16 @@ ProjectManagementContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
-    const project = _.find(state.projects.data, current => current.id === projectId);
+    const project = state.projects.data[0].name ?
+        _.find(state.projects.data, current => current.id === projectId) :
+        state.projects.data[0];
     const tasksCheck = _.find(state.tasks, task => task.projectId === projectId);
     return {
         project,
         tasks: tasksCheck ? tasksCheck.tasks : [],
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge(state.manager.ui, state.projects.ui),
+        ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
         survey: _.find(state.surveys, survey => survey.projectId === projectId) || {},
         tab: state.manager.ui.subnav,
         users: state.user.users,
@@ -115,6 +121,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions,
+        navActions,
         projectActions,
         taskActions,
         discussActions,
