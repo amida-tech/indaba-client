@@ -22,7 +22,7 @@ export function getProjectById(projectId, errorMessages) {
             projectId,
             (projErr, projResp) => {
                 if (!projErr && projResp) {
-                    dispatch(_getProjectsSuccess(projResp));
+                    dispatch(_getProjectByIdSuccess(projResp));
                 } else {
                     dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
                 }
@@ -187,6 +187,13 @@ function _getProjectsSuccess(projects) {
     return {
         type: actionTypes.GET_PROJECTS_SUCCESS,
         projects,
+    };
+}
+
+function _getProjectByIdSuccess(project) {
+    return {
+        type: actionTypes.GET_PROJECT_BY_ID_SUCCESS,
+        project,
     };
 }
 

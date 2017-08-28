@@ -20,8 +20,6 @@ import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysA
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        console.log('james');
-        console.log(this.props);
         this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
     }
 

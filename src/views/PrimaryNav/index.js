@@ -13,11 +13,9 @@ import CreateNewProject from './CreateNewProject';
 
 class PrimaryNavContainer extends Component {
     componentWillMount() {
-        console.log('And then...');
         if (this.props.nav.ui.checkBackend) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
             this.props.actions.getUsers(this.props.vocab.ERROR);
-            this.props.actions.getProjects(this.props.vocab.ERROR);
             this.props.actions.toggleCheckBackend();
         }
     }
