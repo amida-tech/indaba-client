@@ -1,13 +1,13 @@
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
 
-export function getTasks(projectId, errorMessages) {
+export function getTasksByProject(projectId, errorMessages) {
     return (dispatch) => {
-        apiService.tasks.getTasks(
+        apiService.tasks.getTasksByProject(
             projectId,
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
-                    dispatch(_getTasksSuccess(taskResp));
+                    dispatch(_getTasksByProjectSuccess(projectId, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }
@@ -16,12 +16,43 @@ export function getTasks(projectId, errorMessages) {
     };
 }
 
-export function assignTask(userId, task, projectId) {
-    return {
-        type: actionTypes.ASSIGN_TASK,
+export function getTasksByUser(userId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.getTasksByUser(
+            userId,
+            (taskErr, taskResp) => {
+                if (!taskErr && taskResp) {
+                    dispatch(_getTasksByUserSuccess(userId, taskResp));
+                } else {
+                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                }
+            },
+        );
+    };
+}
+
+export function assignTask(userId, slot, productId, errorMessages) {
+    const requestBody = {
         userId,
-        task,
-        projectId,
+        stepId: slot.task.stepId,
+        uoaId: slot.task.uoaId,
+        startDate: slot.stageData.startDate,
+        endDate: slot.stageData.endDate,
+        isComplete: false,
+        productId,
+    };
+
+    return (dispatch) => {
+        apiService.tasks.postTask(
+            requestBody,
+            (taskErr, taskResp) => {
+                if (!taskErr && taskResp) {
+                    dispatch(_postTaskSuccess(userId, slot, taskResp));
+                } else {
+                    dispatch(_reportTasksError(errorMessages.INSERT_TASK));
+                }
+            },
+        );
     };
 }
 
@@ -44,11 +75,32 @@ export function reassignTask(reassignId, taskId, projectId) {
 }
 
 // Private
-
-function _getTasksSuccess(tasks) {
+function _getTasksByProjectSuccess(projectId, tasks) {
     return {
-        type: actionTypes.GET_TASKS_SUCCESS,
+        type: actionTypes.GET_TASKS_BY_PROJECT_SUCCESS,
+        projectId,
         tasks,
+    };
+}
+
+function _getTasksByUserSuccess(userId, tasks) {
+    return {
+        type: actionTypes.GET_TASKS_BY_USER_SUCCESS,
+        userId,
+        tasks,
+    };
+}
+
+function _postTaskSuccess(userId, slot, taskResp) {
+    return {
+        type: actionTypes.POST_TASK_SUCCESS,
+        task: {
+            id: taskResp.id,
+            userIds: [userId],
+            stepId: slot.task.stepId,
+            uoaId: slot.task.uoaId,
+            dueDate: slot.stageData.endDate,
+        },
     };
 }
 

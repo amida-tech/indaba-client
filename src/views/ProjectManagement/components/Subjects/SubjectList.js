@@ -26,7 +26,7 @@ class SubjectList extends Component {
                     <div className='subject-list__entry'
                         key={subject}>
                         <div className='subject-list__entry-name'>
-                            {subject}
+                            {subject.name}
                         </div>
                         <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
                     </div>)

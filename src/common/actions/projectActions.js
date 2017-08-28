@@ -55,14 +55,14 @@ export function addStage(project, stage, errorMessages) {
     };
 }
 
-export function addSubject(project, subject, errorMessages) {
-    if (project.subjects.includes(subject)) {
+export function addSubject(project, name, errorMessages) {
+    if (project.subjects.some(subject => subject.name === name)) {
         return dispatch =>
             dispatch(_reportProjectError(errorMessages.DUPLICATE));
     }
 
     const requestBody = {
-        name: subject,
+        name,
         unitOfAnalysisType: 1,
     };
 
@@ -76,7 +76,7 @@ export function addSubject(project, subject, errorMessages) {
                         [uoaResp.id],
                         (prodUoaErr, prodUoaResp) => {
                             dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectSuccess(project.id, requestBody.name) :
+                                _postSubjectSuccess(project.id, name, prodUoaResp.UOAid) :
                                 _reportProjectError(errorMessages.CONNECT_PRODUCT));
                         },
                     );

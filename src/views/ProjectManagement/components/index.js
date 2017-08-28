@@ -21,6 +21,7 @@ import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysA
 class ProjectManagementContainer extends Component {
     componentWillMount() {
         this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
+        this.props.actions.getTasksByProject(this.props.params.projectId, this.props.vocab.ERROR);
     }
 
     render() {
@@ -102,10 +103,9 @@ const mapStateToProps = (state, ownProps) => {
     const project = state.projects.data[0].name ?
         _.find(state.projects.data, current => current.id === projectId) :
         state.projects.data[0];
-    const tasksCheck = _.find(state.tasks, task => task.projectId === projectId);
     return {
         project,
-        tasks: tasksCheck ? tasksCheck.tasks : [],
+        tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
         ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),

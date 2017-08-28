@@ -79,7 +79,7 @@ FilterWrapper.propTypes = {
     actions: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
     project: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.number,
         filter: PropTypes.object,
     }).isRequired,
 };

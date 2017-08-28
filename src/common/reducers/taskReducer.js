@@ -5,88 +5,46 @@ import * as type from '../actionTypes/taskActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 import { REMOVE_USER } from '../actionTypes/projectActionTypes';
 
-const initialState = [{
-    projectId: 101,
-    tasks: [{
-        id: 81,
-        userId: 31,
-        stage: 0,
-        subject: 0,
-        new: true,
-    }, {
-        id: 109,
-        userId: 31,
-        stage: 0,
-        subject: 1,
-
-    }, {
-        id: 222,
-        userId: 41,
-        stage: 1,
-        subject: 0,
-        dueDate: '9/9/2017',
-    }, {
-        id: 13,
-        userId: 41,
-        stage: 1,
-        subject: 2,
-        dueDate: '9/9/2017',
-    }],
-}, {
-    projectId: 102,
-    tasks: [{
-        id: 71,
-        userId: 25,
-        stage: 0,
-        subject: 0,
-    }, {
-        id: 110,
-        userId: 66,
-        stage: 0,
-        subject: 1,
-
-    }, {
-        id: 223,
-        userId: 87,
-        stage: 1,
-        subject: 0,
-        dueDate: '10/10/2017',
-    }, {
-        id: 14,
-        userId: 98,
-        stage: 1,
-        subject: 2,
-        dueDate: '8/29/2017',
-    }],
-}];
+const initialState = {
+    ui: {
+        errorMessage: '',
+    },
+    projectId: 0,
+    userId: 0,
+    data: [],
+};
 
 export const TaskReducer = (state = initialState, action) => {
-    const projectIndex = _.findIndex(state, projectTasks =>
+    const projectIndex = _.findIndex(state.data, projectTasks =>
         projectTasks.projectId === action.projectId);
     const taskIndex = state[projectIndex] ?
         _.findIndex(state[projectIndex].tasks, task => task.id === action.taskId) :
         null;
     switch (action.type) {
-    case type.ASSIGN_TASK: {
-        const newTask = {
-            id: state[projectIndex].tasks.length, // TODO: Assign new IDs.
-            userId: action.userId,
-            stage: action.task.stage,
-            subject: action.task.subject,
-        };
-        return update(state, { [projectIndex]: { tasks: { $push: [newTask] } } });
-    }
+    case type.GET_TASKS_BY_PROJECT_SUCCESS:
+        return update(state, {
+            projectId: { $set: action.projectId },
+            data: { $set: action.tasks },
+        });
+    case type.GET_TASKS_BY_USER_SUCCESS:
+        return update(state, {
+            userId: { $set: action.userId },
+            data: { $set: action.tasks },
+        });
+    case type.POST_TASK_SUCCESS:
+        return update(state, { data: { $push: [action.task] } });
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { [projectIndex]: { tasks: { [taskIndex]:
             { $merge: { dueDate: action.dueDate } } } } });
     case type.REASSIGN_TASK:
-        return update(state, { [projectIndex]: { tasks: { [taskIndex]:
-            { userId: { $set: action.reassignId } } } } });
+        return update(state, { data: { userId: { $set: action.reassignId } } });
     case ADD_PROJECT_FROM_WIZARD:
         return update(state, { $push: [action.wizard.task] });
     case REMOVE_USER:
         return update(state, { [projectIndex]: {
             tasks: { $apply: tasks => tasks.filter(task => task.userId !== action.userId) } } });
+    case type.REPORT_TASKS_ERROR:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
     default:
         return state;
     }

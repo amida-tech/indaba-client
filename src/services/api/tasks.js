@@ -2,8 +2,14 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const tasks = {
-    getTasks: (projectId, callback) => {
+    getTasksByProject: (projectId, callback) => {
         requests.apiGetRequest(getFullPath(`tasks-by-proj-id/${projectId}`), callback);
+    },
+    getTasksByUser: (userId, callback) => {
+        requests.apiGetRequest(getFullPath(`tasks-by-proj-id/${userId}`), callback);
+    },
+    postTask: (requestBody, callback) => {
+        requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
     },
 };
 

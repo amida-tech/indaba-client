@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
-import {
-    updateUserSearchGroup,
-    updateUserSearchQuery,
-} from '../../../actions';
 import { addNewUser } from '../../../../../common/actions/userActions';
 import { addUser } from '../../../../../common/actions/projectActions';
 import AssigneeCard from './AssigneeCard';
@@ -34,11 +30,11 @@ class AssigneeContainer extends Component {
     }
 
     onSearch(evt) {
-        this.props.updateUserSearchQuery(evt.target.value);
+        this.props.actions.updateUserSearchQuery(evt.target.value);
     }
 
     onGroupFilter(evt) {
-        this.props.updateUserSearchGroup(evt.option.value);
+        this.props.actions.updateUserSearchGroup(evt.option.value);
     }
 
     render() {
@@ -66,7 +62,7 @@ class AssigneeContainer extends Component {
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
-                    onSubmit={values => this.props.onInviteUser(
+                    onSubmit={values => this.props.actions.onInviteUser(
                         Object.assign({}, values, { invited: true }),
                     )}/>
             </Box>
@@ -79,8 +75,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateUserSearchGroup: group => dispatch(updateUserSearchGroup(group)),
-    updateUserSearchQuery: query => dispatch(updateUserSearchQuery(query)),
     onInviteUser: user => dispatch(addNewUser(user)).then(
         userData => dispatch(addUser(userData.id, ownProps.project.id))),
 });
@@ -90,8 +84,10 @@ AssigneeContainer.propTypes = {
     search: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object),
-    updateUserSearchGroup: PropTypes.func.isRequired,
-    updateUserSearchQuery: PropTypes.func.isRequired,
+    actions: PropTypes.shape({
+        updateUserSearchGroup: PropTypes.func.isRequired,
+        updateUserSearchQuery: PropTypes.func.isRequired,
+    }).isRequired,
     onInviteUser: PropTypes.func.isRequired,
 };
 

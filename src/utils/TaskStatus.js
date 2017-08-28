@@ -15,13 +15,13 @@ export default {
     },
     dueDateInPast(task, stages) {
         const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endDate;
+            stages.find(stage => stage.id === task.stepId).endDate;
         return Date.parse(dueDate) < Date.now();
     },
     daysUntilDue(task, stages) {
         const day = 24 * 60 * 60 * 1000;
         const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endDate;
+            stages.find(stage => stage.id === task.stepId).endDate;
         return Math.round((new Date(dueDate).getTime()
             - new Date().getTime()) / day);
     },
