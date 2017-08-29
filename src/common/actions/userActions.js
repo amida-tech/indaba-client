@@ -63,7 +63,7 @@ export function getUsers(errorMessages) {
     };
 }
 
-export function addNewUser(userData, projectId, organizationId, errorMessage, addedDispatch) {
+export function addNewUser(userData, projectId, organizationId, errorMessages, addedDispatch) {
     const requestBody = {
         firstName: userData.firstName,
         lastName: userData.lastName,
@@ -83,7 +83,7 @@ export function addNewUser(userData, projectId, organizationId, errorMessage, ad
                         addedDispatch(userResp.id, projectId);
                     }
                 } else {
-                    _reportUserError(errorMessage.INSERT_USER);
+                    _reportUserError(errorMessages.INSERT_USER);
                 }
             },
         );

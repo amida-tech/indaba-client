@@ -71,9 +71,7 @@ export const ProjectReducer = (state = initialState, action) => {
             } } } });
     case type.ADD_USER_GROUP:
         return update(state, { data: { [projectIndex]: {
-            userGroups: { $push: [update(action.group, { $merge: {
-                id: state[projectIndex].userGroups.length } })] },
-        } } });
+            userGroups: { $push: [action.group] } } } });
     case type.UPDATE_USER_GROUP:
         groupIndex = state[projectIndex].userGroups
                     .findIndex(group => group.id === action.group.id);

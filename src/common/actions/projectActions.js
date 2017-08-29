@@ -88,6 +88,31 @@ export function addSubject(project, name, errorMessages) {
     };
 }
 
+export function addUserGroup(groupData, projectId, organizationId, errorMessages) {
+    const requestBody = {
+        title: groupData.title,
+        organizationId,
+        langId: 1,
+        users: groupData.users,
+    };
+    return (dispatch) => {
+        apiService.projects.postGroup(
+            organizationId,
+            requestBody,
+            (groupErr, groupResp) => {
+                if (!groupErr && groupResp) {
+                    requestBody.id = groupResp.id;
+                    dispatch(_postUserGroupSuccess(
+                        Object.assign({}, requestBody, groupResp.id),
+                        projectId));
+                } else {
+                    dispatch(_reportProjectError(errorMessages.INSERT_GROUP));
+                }
+            },
+        );
+    };
+}
+
 // Modals.
 export function showAddStageModal(show) {
     return {
@@ -138,14 +163,6 @@ export function deleteUserGroup(groupId, projectId) {
     return {
         type: actionTypes.DELETE_USER_GROUP,
         groupId,
-        projectId,
-    };
-}
-
-export function addUserGroup(group, projectId) {
-    return {
-        type: actionTypes.ADD_USER_GROUP,
-        group,
         projectId,
     };
 }
@@ -210,6 +227,14 @@ function _postSubjectSuccess(projectId, subject) {
         type: actionTypes.POST_SUBJECT_SUCCESS,
         projectId,
         subject,
+    };
+}
+
+export function _postUserGroupSuccess(group, projectId) {
+    return {
+        type: actionTypes.ADD_USER_GROUP,
+        group,
+        projectId,
     };
 }
 

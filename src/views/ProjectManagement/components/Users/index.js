@@ -27,7 +27,11 @@ class Users extends Component {
                             .find(group => group.id === this.state.modalId)}
                         onSave={(group) => {
                             if (this.state.modalName === 'addgroup') {
-                                this.props.actions.addUserGroup(group, this.props.project.id);
+                                this.props.actions.addUserGroup(
+                                    group,
+                                    this.props.project.id,
+                                    this.props.profile.organizationId,
+                                    this.props.vocab.ERROR);
                             } else {
                                 this.props.actions.updateUserGroup(update(group,
                                     { $merge: { id: this.state.modalId } }), this.props.project.id);
