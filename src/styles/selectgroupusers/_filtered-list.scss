@@ -5,7 +5,6 @@ $block-class: 'filtered-list';
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        border: 1px solid $border-color;
         overflow-y: scroll;
 
         &__query,
