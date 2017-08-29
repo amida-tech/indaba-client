@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
+import { getSelfTasks } from '../../../common/actions/taskActions';
 import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
@@ -15,6 +16,10 @@ import UserTaskListHeader from './UserTaskListHeader';
 import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
+    componentWillMount() {
+        this.props.actions.getSelfTasks(this.props.params.userId, this.props.vocab.ERROR);
+    }
+
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_TASKS:
@@ -69,44 +74,21 @@ class UserDashboard extends Component {
 
 const mapStateToProps = state => ({
     glance: {
-        tasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        newTasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                task.new,
-            ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        lateTasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                TaskStatus.dueDateInPast(task,
-                    state.projects.find(project =>
-                        project.id === projectTasks.projectId).stages),
-                ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        flagged: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                (
-                    state.discuss.find(discussion => discussion.taskId === task.id) ||
-                    { discuss: [] } // mock empty discussion for flag check call
-                ).discuss.some(discussEntry => discussEntry.flag),
-            ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        tasks: state.tasks.data.reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        newTasks: 0, // Come back to.
+        lateTasks: state.tasks.data.filter(task => TaskStatus.endDateInPast(task)).length,
+        flagged: 0, // Come back to.
     },
     vocab: state.settings.language.vocabulary,
     messages: state.messages.slice(0, 4),
     ui: state.userdashboard.ui,
-    rows: [].concat(...state.tasks.map(projectTasks =>
+    rows: [].concat(...state.tasks.data.map(projectTasks =>
         projectTasks.tasks.filter(task =>
             task.userId === state.user.profile.id)
         .map(task => _generateRow(state, projectTasks.projectId, task)))),
 });
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { getSelfTasks }), dispatch),
 });
 
 const _generateRow = (state, projectId, task) => {
@@ -122,12 +104,12 @@ const _generateRow = (state, projectId, task) => {
         projectId,
         subject: project.subjects[task.subject],
         task: project.stages.find(stage => stage.id === task.stage).title,
-        due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endDate,
+        due: task.endDate,
         survey: survey.name,
         flags: discussion.discuss.filter(response => response.flag).length,
         progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
         new: !!task.new,
-        late: TaskStatus.dueDateInPast(task, project.stages) &&
+        late: TaskStatus.endDateInPast(task, project.stages) &&
             !TaskStatus.responsesComplete({ response: discussion.discuss },
                 survey.questions.length),
         complete: TaskStatus.responsesComplete({ response: discussion.discuss },

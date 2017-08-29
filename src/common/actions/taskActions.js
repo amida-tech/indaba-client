@@ -16,6 +16,20 @@ export function getTasksByProject(projectId, errorMessages) {
     };
 }
 
+export function getSelfTasks(userId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.getSelfTasks(
+            (taskErr, taskResp) => {
+                if (!taskErr && taskResp) {
+                    dispatch(_getTasksByUserSuccess(userId, taskResp));
+                } else {
+                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                }
+            },
+        );
+    };
+}
+
 export function getTasksByUser(userId, errorMessages) {
     return (dispatch) => {
         apiService.tasks.getTasksByUser(
@@ -56,12 +70,12 @@ export function assignTask(userId, slot, productId, errorMessages) {
     };
 }
 
-export function updateTaskDueDate(taskId, projectId, dueDate) {
+export function updateTaskEndDate(taskId, projectId, endDate) {
     return {
         type: actionTypes.UPDATE_TASK_DUE_DATE,
         taskId,
         projectId,
-        dueDate,
+        endDate,
     };
 }
 
@@ -99,7 +113,7 @@ function _postTaskSuccess(userId, slot, taskResp) {
             userIds: [userId],
             stepId: slot.task.stepId,
             uoaId: slot.task.uoaId,
-            dueDate: slot.stageData.endDate,
+            endDate: slot.stageData.endDate,
         },
     };
 }

@@ -63,7 +63,16 @@ export function getUsers(errorMessages) {
     };
 }
 
-export function addNewUser(requestBody, errorMessage, addedDispatch) {
+export function addNewUser(userData, projectId, organizationId, errorMessage, addedDispatch) {
+    const requestBody = {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        roleID: 3,
+        password: userData.email + Math.floor((Math.random() * 1000000) + 1),
+        email: userData.email,
+        isActive: false,
+        organizationId,
+    };
     return (dispatch) => {
         apiService.users.postNewUser(
             requestBody,
@@ -71,10 +80,10 @@ export function addNewUser(requestBody, errorMessage, addedDispatch) {
                 if (!userErr && userResp) {
                     dispatch(_postNewUserSuccess(userResp));
                     if (addedDispatch) {
-                        addedDispatch(userResp);
+                        addedDispatch(userResp.id, projectId);
                     }
                 } else {
-                    _reportUserError(errorMessage);
+                    _reportUserError(errorMessage.INSERT_USER);
                 }
             },
         );

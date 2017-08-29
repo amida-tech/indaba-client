@@ -36,10 +36,12 @@ class PMUsersTab extends Component {
                 <div className='pm-users-tab__invite-container'>
                     <InviteUserForm vocab={this.props.vocab}
                         onSubmit={(values) => {
-                            this.props.onAddNewUser(
-                                Object.assign({}, values, { invited: true }),
-                            ).then(userData =>
-                                this.props.onAddUserToProject(userData.id, this.props.project.id),
+                            this.props.actions.addNewUser(
+                                values,
+                                this.props.project.id,
+                                this.props.profile.organizationId,
+                                this.props.vocab.ERROR,
+                                this.props.actions.addUser,
                             );
                         }}/>
                 </div>
@@ -58,7 +60,7 @@ class PMUsersTab extends Component {
                         key={user.id}
                         onNameClick={() => this.showUserProfileModal(user.id)}
                         onDeleteClick={() =>
-                            this.props.onRemoveUserFromProject(user.id, this.props.project.id)}
+                            this.props.actions.removeUser(user.id, this.props.project.id)}
                         vocab={this.props.vocab}/>)}
             </div>
         );
@@ -68,10 +70,15 @@ class PMUsersTab extends Component {
 PMUsersTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
+    profile: PropTypes.shape({
+        organizationId: PropTypes.number.isRequired,
+    }),
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onAddNewUser: PropTypes.func.isRequired,
-    onAddUserToProject: PropTypes.func.isRequired,
-    onRemoveUserFromProject: PropTypes.func.isRequired,
+    actions: PropTypes.shape({
+        addNewUser: PropTypes.func.isRequired,
+        addUser: PropTypes.func.isRequired,
+        removeUser: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
 export default PMUsersTab;

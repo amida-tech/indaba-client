@@ -52,7 +52,7 @@ class Subjects extends Component {
 Subjects.propTypes = {
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteSubject: PropTypes.func.isRequired,
     onAddSubject: PropTypes.func.isRequired,
 };

@@ -9,7 +9,7 @@ class SubjectList extends Component {
         this.filter = this.filter.bind(this);
     }
     filter(subject) {
-        return subject.toLowerCase().includes(this.props.query.toLowerCase());
+        return subject.name.toLowerCase().includes(this.props.query.toLowerCase());
     }
     render() {
         return (
@@ -24,7 +24,7 @@ class SubjectList extends Component {
                 </div>
                 {this.props.subjects.filter(this.filter).map(subject =>
                     <div className='subject-list__entry'
-                        key={subject}>
+                        key={subject.id}>
                         <div className='subject-list__entry-name'>
                             {subject.name}
                         </div>
@@ -37,7 +37,7 @@ class SubjectList extends Component {
 
 SubjectList.propTypes = {
     query: PropTypes.string.isRequired,
-    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteClick: PropTypes.func.isRequired,
 };
 

@@ -38,14 +38,14 @@ class TaskDetails extends Component {
                     <div className='task-details__info-box-label'>
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
-                    <DateTime id='taskDueDate' className='task-details__info-box-datetime'
+                    <DateTime id='taskEndDate' className='task-details__info-box-datetime'
                         format='MM/DD/YYYY'
                         onChange={event =>
-                            this.props.updateTaskDueDate(
+                            this.props.updateTaskEndDate(
                                 this.props.task.id,
                                 this.props.projectId,
                                 event)}
-                        value={this.props.task.dueDate ||
+                        value={this.props.task.endDate ||
                         this.props.stage.endDate}/><br/>
                     </div>
                     <div className='task-details__info-box'>

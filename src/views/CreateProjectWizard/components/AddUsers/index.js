@@ -50,6 +50,7 @@ class AddUsers extends Component {
                         <UsersTab
                             vocab={this.props.vocab}
                             profile={this.props.user.profile}
+                            projectId={this.props.project.id}
                             allUsers={this.props.user.users}
                             projectUsers={this.props.project.users}
                             filter={this.props.ui.usersFilter}
@@ -74,6 +75,7 @@ AddUsers.propTypes = {
     ui: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     project: PropTypes.shape({
+        id: PropTypes.number.isRequired,
         userGroups: PropTypes.array.isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,

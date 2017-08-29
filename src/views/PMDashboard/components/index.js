@@ -22,18 +22,19 @@ class PMDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
     }
+
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_FILTERS:
             return true;
         case FILTERS.ACTIVE_PROJECTS:
-            return row.project.status === 'Active';
+            return row.project.status === 1;
         case FILTERS.INACTIVE_PROJECTS:
-            return row.project.status === 'Inactive';
+            return row.project.status === 0;
         case FILTERS.PUBLISHED_SURVEYS:
-            return row.survey.status === 'Published';
+            return row.survey.status === 1;
         case FILTERS.SURVEYS_IN_DRAFT_MODE:
-            return row.survey.status === 'Draft';
+            return row.survey.status === 0;
         case FILTERS.SURVEYS_WITH_FLAGS:
             return row.flags > 0;
         default:
@@ -43,8 +44,11 @@ class PMDashboard extends Component {
 
     searchRow(row) {
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
-        return row.project.name.toLowerCase().includes(lowerQuery) ||
-            row.survey.name.toLowerCase().includes(lowerQuery);
+        if (_.isEmpty(row.survey)) {
+            return row.project.name.toLowerCase().includes(lowerQuery);
+        }
+        return (row.project.name.toLowerCase().includes(lowerQuery)
+            || row.survey.name.toLowerCase().includes(lowerQuery));
     }
 
     render() {
@@ -120,8 +124,8 @@ const mapStateToProps = state => ({
     })),
     glance: {
         projects: state.projects.data.length,
-        active: state.projects.data.filter(project => project.status === 'Active').length,
-        inactive: state.projects.data.filter(project => project.status === 'Inactive').length,
+        active: state.projects.data.filter(project => project.status === 1).length,
+        inactive: state.projects.data.filter(project => project.status === 0).length,
         // flags calculated inline from rows.flags
     },
     messages: state.messages.slice(0, 4),

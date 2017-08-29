@@ -35,7 +35,7 @@ export const TaskReducer = (state = initialState, action) => {
         return update(state, { data: { $push: [action.task] } });
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { [projectIndex]: { tasks: { [taskIndex]:
-            { $merge: { dueDate: action.dueDate } } } } });
+            { $merge: { endDate: action.endDate } } } } });
     case type.REASSIGN_TASK:
         return update(state, { data: { userId: { $set: action.reassignId } } });
     case ADD_PROJECT_FROM_WIZARD:

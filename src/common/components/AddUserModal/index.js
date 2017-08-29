@@ -16,14 +16,12 @@ class AddUserModal extends Component {
                 <AddUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
                         this.props.onSave();
-                        this.props.onAddNewUser({
-                            firstName: values.firstName,
-                            lastName: values.lastName,
-                            email: values.email,
-                            title: values.title,
-                            invited: true,
-                        }).then(userData =>
-                            this.props.onAddUserToProject(userData.id, this.props.projectId),
+                        this.props.actions.addNewUser(
+                            values,
+                            this.props.projectId,
+                            this.props.organizationId,
+                            this.props.vocab.ERROR,
+                            this.props.actions.addUser,
                         );
                     }
                 }/>
@@ -36,9 +34,12 @@ AddUserModal.propTypes = {
     vocab: PropTypes.object.isRequired,
     onCancel: PropTypes.func,
     onSave: PropTypes.func,
-    onAddNewUser: PropTypes.func.isRequired,
-    onAddUserToProject: PropTypes.func.isRequired,
+    actions: PropTypes.shape({
+        addNewUser: PropTypes.func.isRequired,
+        addUserGroup: PropTypes.func.isRequired,
+    }).isRequired,
     projectId: PropTypes.number.isRequired,
+    organizationId: PropTypes.number.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

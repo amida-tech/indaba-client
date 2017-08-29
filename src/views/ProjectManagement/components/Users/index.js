@@ -27,9 +27,9 @@ class Users extends Component {
                             .find(group => group.id === this.state.modalId)}
                         onSave={(group) => {
                             if (this.state.modalName === 'addgroup') {
-                                this.props.onAddGroup(group, this.props.project.id);
+                                this.props.actions.addUserGroup(group, this.props.project.id);
                             } else {
-                                this.props.onUpdateGroup(update(group,
+                                this.props.actions.updateUserGroup(update(group,
                                     { $merge: { id: this.state.modalId } }), this.props.project.id);
                             }
                             this.setState({ modalName: false });
@@ -40,9 +40,8 @@ class Users extends Component {
                     <AddUserModal vocab={this.props.vocab}
                         onCancel={() => this.setState({ modalName: false })}
                         onSave={() => this.setState({ modalName: false })}
-                        onAddNewUser={this.props.onAddNewUser}
-                        onAddUserToProject={this.props.onAddUserToProject}
-                        projectId={this.props.project.id}/>
+                        actions={this.props.actions}
+                        organizationId={this.props.profile.organizationId}/>
                 }
                 <div className='users__action-btn'>
                     <Button className='users__action-btn--left'
@@ -65,7 +64,7 @@ class Users extends Component {
                             users={this.props.users}
                             vocab={this.props.vocab}
                             projectId={this.props.project.id}
-                            onDeleteClick={this.props.onDeleteGroup}
+                            onDeleteClick={this.props.actions.deleteUserGroup}
                             onGroupClick={groupId =>
                                 this.setState({ modalName: 'updategroup', modalId: groupId }) } />
                     </Tab>
@@ -79,12 +78,17 @@ Users.propTypes = {
     vocab: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     project: PropTypes.object.isRequired,
-    onDeleteGroup: PropTypes.func.isRequired,
-    onAddGroup: PropTypes.func.isRequired,
-    onUpdateGroup: PropTypes.func.isRequired,
-    onAddNewUser: PropTypes.func.isRequired,
-    onAddUserToProject: PropTypes.func.isRequired,
-    onRemoveUserFromProject: PropTypes.func.isRequired,
+    profile: PropTypes.shape({
+        organizationId: PropTypes.number.isRequired,
+    }),
+    actions: PropTypes.shape({
+        addNewUser: PropTypes.func.isRequired,
+        addUserGroup: PropTypes.func.isRequired,
+        deleteUserGroup: PropTypes.func.isRequired,
+        updateUserGroup: PropTypes.func.isRequired,
+        addUser: PropTypes.func.isRequired,
+        removeUser: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
 export default Users;

@@ -8,7 +8,7 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
-import { updateTaskDueDate } from '../../../common/actions/taskActions';
+import { updateTaskEndDate } from '../../../common/actions/taskActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import * as actions from '../actions';
 
@@ -45,7 +45,7 @@ class TaskReview extends Component {
                         taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
                         stage={this.props.project.stages[this.props.task.stage]}
-                        updateTaskDueDate={this.props.otherActions.updateTaskDueDate} />
+                        updateTaskEndDate={this.props.actions.updateTaskEndDate} />
                     <TaskSurveyList
                         ui={this.props.ui}
                         survey={displaySurvey}
@@ -84,13 +84,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    otherActions: {
-        updateTaskDueDate: (taskId, projectId, dueDate) =>
-            dispatch(updateTaskDueDate(taskId, projectId, dueDate)),
-        updateFlaggedQuestion: (taskId, projectId, activeId, data) =>
-            dispatch(updateFlaggedQuestion(taskId, projectId, activeId, data)),
-    },
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions,
+        { updateTaskEndDate, updateFlaggedQuestion }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

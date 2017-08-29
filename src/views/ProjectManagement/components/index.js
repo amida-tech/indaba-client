@@ -48,12 +48,8 @@ class ProjectManagementContainer extends Component {
                     userId => this.props.users.find(user => user.id === userId))}
                 tasks={this.props.tasks}
                 project={this.props.project}
-                onDeleteGroup={this.props.actions.deleteUserGroup}
-                onAddGroup={this.props.actions.addUserGroup}
-                onUpdateGroup={this.props.actions.updateUserGroup}
-                onAddNewUser={this.props.actions.onAddNewUser}
-                onAddUserToProject={this.props.actions.addUser}
-                onRemoveUserFromProject={this.props.actions.removeUser}/>;
+                profile={this.props.profile}
+                actions={this.props.actions} />;
             break;
         default:
             body = null;

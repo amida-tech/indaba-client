@@ -25,28 +25,28 @@ export const ProjectReducer = (state = initialState, action) => {
     let groupIndex;
     if (action.project !== undefined) {
         projectIndex = _.findIndex(state.data, project => project.id === action.project.id);
+    } else if (action.projectId !== undefined) {
+        projectIndex = _.findIndex(state.data, project => project.id === action.projectId);
     }
 
     switch (action.type) {
     case ADD_PROJECT_FROM_WIZARD:
-        return update(state, { $push: [action.wizard.project] });
+        return update(state, { data: { $push: [action.wizard.project] } });
     case type.SHOW_ADD_STAGE_MODAL:
         return update(state, { ui: { showAddStage: { $set: action.show } } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
-    case type.GET_PROJECTS_SUCCESS: {
+    case type.GET_PROJECTS_SUCCESS:
         return (!state.data[0].name ?
             update(state, { data: { $set: action.projects } }) :
             update(state, { data: { $merge: action.projects } }));
-    }
-    case type.GET_PROJECT_BY_ID_SUCCESS: {
+    case type.GET_PROJECT_BY_ID_SUCCESS:
         return (!state.data[0].name ?
             update(state, { data: { $set: [action.project] } }) :
             update(state, { data: { [projectIndex]: { $merge: action.project } } }));
-    }
     case type.TOGGLE_FILTER:
-        return update(state, { [projectIndex]: {
-            filter: { $apply: f => (f !== action.filter) && action.filter } } });
+        return update(state, { data: { [projectIndex]: {
+            filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
     case type.SET_PROJECT_STATUS: // project related.
         return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
     case type.PUT_STAGE_SUCCESS:
