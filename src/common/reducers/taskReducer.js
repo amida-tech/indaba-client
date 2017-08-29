@@ -11,7 +11,10 @@ const initialState = {
     },
     projectId: 0,
     userId: 0,
-    data: [],
+    data: [{
+        endDate: '',
+        userIds: [],
+    }],
 };
 
 export const TaskReducer = (state = initialState, action) => {

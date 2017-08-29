@@ -8,8 +8,9 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import TaskSurveyList from './TaskSurveyList';
-import { updateTaskEndDate } from '../../../common/actions/taskActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
+import { getTasksByProject, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getProjectById } from '../../../common/actions/projectActions';
 import * as actions from '../actions';
 
 function surveyMapperHelper(discuss, question) {
@@ -28,8 +29,15 @@ function surveyMapper(responses, questions) {
 }
 
 class TaskReview extends Component {
+    componentWillMount() {
+        if (this.props.task.id < 0) {
+            this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
+            this.props.actions.getTasksByProject(
+                this.props.params.projectId, this.props.vocab.ERROR);
+        }
+    }
+
     render() {
-        console.log(this.props.task);
         const displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
         return (
             <div className='task-review'>
@@ -69,22 +77,26 @@ class TaskReview extends Component {
 const mapStateToProps = (state, ownProps) => {
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const task = _.find(state.tasks.data, current => current.id === taskId);
+    const task = _.find(state.tasks.data, current => current.id === taskId) ||
+        { id: -1, endDate: '', userIds: [] };
     const project = state.projects.data[0].name ?
         _.find(state.projects.data, projElem => projElem.id === projectId) :
         state.projects.data[0];
     return {
         projectId,
-        taskedUser: _.find(state.user.users, user => user.id === task.userIds[0]),
-        stage: _.find(project.stages, stage => stage.id === task.stepId),
-        subject: _.find(project.subjects, subject => subject.id === task.uoaId),
+        taskedUser: _.find(state.user.users, user =>
+            user.id === task.userIds[0]) || { firstName: '', lastName: '' },
+        stage: project.name ?
+            _.find(project.stages, stage => stage.id === task.stepId) : { title: '' },
+        subject: project.name ?
+            _.find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
         users: state.user.users,
         profile: state.user.profile,
         task,
         survey: state.surveys.data[0].name ?
             _.find(state.surveys, survey => survey.projectId === projectId) :
             state.surveys.data[0],
-        responses: _.find(state.discuss, talk => talk.taskId === task.id),
+        responses: _.find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
     };
@@ -92,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions,
-        { updateTaskEndDate, updateFlaggedQuestion }), dispatch),
+        { updateTaskEndDate, updateFlaggedQuestion, getTasksByProject, getProjectById }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

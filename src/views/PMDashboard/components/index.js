@@ -119,7 +119,8 @@ const mapStateToProps = state => ({
     ui: state.pmdashboard.ui,
     rows: state.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
-        survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
+        survey: _.pick(state.surveys.data.find(survey =>
+            survey.projectId === project.id), ['name', 'status', 'id']),
         flags: 0, // Base on project listing, coming later.
     })),
     glance: {

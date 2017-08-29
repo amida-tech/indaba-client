@@ -17,7 +17,7 @@ import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
     componentWillMount() {
-        this.props.actions.getSelfTasks(this.props.params.userId, this.props.vocab.ERROR);
+        this.props.actions.getSelfTasks(this.props.profile.id, this.props.vocab.ERROR);
     }
 
     filterRow(row) {
@@ -79,42 +79,45 @@ const mapStateToProps = state => ({
         lateTasks: state.tasks.data.filter(task => TaskStatus.endDateInPast(task)).length,
         flagged: 0, // Come back to.
     },
+    profile: state.user.profile,
     vocab: state.settings.language.vocabulary,
     messages: state.messages.slice(0, 4),
     ui: state.userdashboard.ui,
-    rows: [].concat(...state.tasks.data.map(projectTasks =>
-        projectTasks.tasks.filter(task =>
-            task.userId === state.user.profile.id)
-        .map(task => _generateRow(state, projectTasks.projectId, task)))),
+    rows: [],
+    // [].concat(...state.tasks.data.map(projectTasks =>
+    //     projectTasks.tasks.filter(task =>
+    //         task.userId === state.user.profile.id)
+    //     .map(task => _generateRow(state, projectTasks.projectId, task)))),
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, { getSelfTasks }), dispatch),
 });
 
-const _generateRow = (state, projectId, task) => {
-    const project = state.projects.find(findProject => findProject.id === projectId);
-    const discussion =
-    (
-        state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
-    );
-    const answered = discussion.discuss.filter(response => response.value !== undefined).length;
-    const survey = state.surveys.find(findSurvey => findSurvey.projectId === projectId);
-    return {
-        key: task.id,
-        projectId,
-        subject: project.subjects[task.subject],
-        task: project.stages.find(stage => stage.id === task.stage).title,
-        due: task.endDate,
-        survey: survey.name,
-        flags: discussion.discuss.filter(response => response.flag).length,
-        progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
-        new: !!task.new,
-        late: TaskStatus.endDateInPast(task, project.stages) &&
-            !TaskStatus.responsesComplete({ response: discussion.discuss },
-                survey.questions.length),
-        complete: TaskStatus.responsesComplete({ response: discussion.discuss },
-            survey.questions.length),
-    };
-};
+// const _generateRow = (state, projectId, task) => {
+//     const project = state.projects.find(findProject => findProject.id === projectId);
+//     const discussion =
+//     (
+//         state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
+//     );
+//     const answered = discussion.discuss.filter(response => response.value !== undefined).length;
+//     const survey = state.surveys.find(findSurvey => findSurvey.projectId === projectId);
+//     return {
+//         key: task.id,
+//         projectId,
+//         subject: project.subjects[task.subject],
+//         task: project.stages.find(stage => stage.id === task.stage).title,
+//         due: task.endDate,
+//         survey: survey.name,
+//         flags: discussion.discuss.filter(response => response.flag).length,
+//         progress: `${answered} of ${survey.questions.length}
+//             ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+//         new: !!task.new,
+//         late: TaskStatus.endDateInPast(task, project.stages) &&
+//             !TaskStatus.responsesComplete({ response: discussion.discuss },
+//                 survey.questions.length),
+//         complete: TaskStatus.responsesComplete({ response: discussion.discuss },
+//             survey.questions.length),
+//     };
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);

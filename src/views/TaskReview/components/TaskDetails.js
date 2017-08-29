@@ -63,7 +63,9 @@ class TaskDetails extends Component {
 }
 
 TaskDetails.propTypes = {
-    stage: PropTypes.object.isRequired,
+    stage: PropTypes.shape({
+        title: PropTypes.string,
+    }).isRequired,
     task: PropTypes.object.isRequired,
     taskedUser: PropTypes.object.isRequired,
     surveyName: PropTypes.string.isRequired,
