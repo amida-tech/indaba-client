@@ -18,6 +18,12 @@ $block-class: 'users-tab';
             margin-left: 1em;
         }
 
+        &__input {
+            padding: 5px 5px 5px 10px;
+            width: 100%;
+            border: 1px solid $border-color;
+        }
+
         &__btn {
             display: flex;
             justify-content: flex-end;

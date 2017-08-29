@@ -65,7 +65,6 @@ export function addSubject(project, name, errorMessages) {
         name,
         unitOfAnalysisType: 1,
     };
-
     return (dispatch) => {
         apiService.projects.postUOA(
             requestBody,
@@ -175,10 +174,10 @@ export function updateUserGroup(group, projectId) {
     };
 }
 
-export function addUser(userId, projectId) {
+export function addUser(user, projectId) {
     return {
         type: actionTypes.ADD_USER,
-        userId,
+        userId: user.id,
         projectId,
     };
 }

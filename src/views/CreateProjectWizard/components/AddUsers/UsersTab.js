@@ -53,7 +53,7 @@ class UsersTab extends Component {
                             this.props.projectId,
                             this.props.profile.organizationId,
                             this.props.vocab.ERROR,
-                            this.props.actions.addUser);
+                            this.props.actions.addUserToWizard);
                     }} />
                 <div className='users-tab__search'>
                     <SearchInput

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
+import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
 
 class TaskDetails extends Component {
@@ -31,7 +32,7 @@ class TaskDetails extends Component {
                             {this.props.vocab.PROJECT.SUBJECT}
                         </div>
                         <div className='task-details__info-box-title'>
-                            {this.props.subject}
+                            {this.props.subject.name}
                         </div>
                     </div>
                     <div className='task-details__info-box'>
@@ -41,12 +42,11 @@ class TaskDetails extends Component {
                     <DateTime id='taskEndDate' className='task-details__info-box-datetime'
                         format='MM/DD/YYYY'
                         onChange={event =>
-                            this.props.updateTaskEndDate(
+                            this.props.actions.updateTaskEndDate(
                                 this.props.task.id,
                                 this.props.projectId,
                                 event)}
-                        value={this.props.task.endDate ||
-                        this.props.stage.endDate}/><br/>
+                        value={Time.renderForTaskReview(this.props.task.endDate)}/><br/>
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>
@@ -67,7 +67,7 @@ TaskDetails.propTypes = {
     task: PropTypes.object.isRequired,
     taskedUser: PropTypes.object.isRequired,
     surveyName: PropTypes.string.isRequired,
-    subject: PropTypes.string.isRequired,
+    subject: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
 };

@@ -45,6 +45,7 @@ class Users extends Component {
                         onCancel={() => this.setState({ modalName: false })}
                         onSave={() => this.setState({ modalName: false })}
                         actions={this.props.actions}
+                        projectId={this.props.project.id}
                         organizationId={this.props.profile.organizationId}/>
                 }
                 <div className='users__action-btn'>

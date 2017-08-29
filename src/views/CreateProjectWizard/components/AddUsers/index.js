@@ -75,7 +75,7 @@ AddUsers.propTypes = {
     ui: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     project: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
         userGroups: PropTypes.array.isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,
