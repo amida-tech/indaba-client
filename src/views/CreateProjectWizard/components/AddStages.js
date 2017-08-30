@@ -30,6 +30,10 @@ class AddStages extends Component {
             <hr className='divider'/>
             <Box direction='row' justify='end'
                 pad={{ vertical: 'small', horizontal: 'medium' }}>
+
+                <Button className='filter-wrapper__add-button'
+                    primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
+                    onClick={() => this.props.showAddStageModal()}/>
                 <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </Box>
             <hr className='divider' />
