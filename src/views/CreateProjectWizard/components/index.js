@@ -17,6 +17,9 @@ import { addNewUser } from '../../../common/actions/userActions';
 const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
+    componentWillMount() {
+        this.props.actions.showCompleteWizard(false);
+    }
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);
@@ -38,7 +41,7 @@ class CreateProjectWizard extends Component {
             this.changeStep(this.props.wizard.ui.step + 1);
         } else {
             this.props.actions.addProjectFromWizard(this.props.wizard);
-            this.props.actions.completeWizard();
+            this.props.actions.showCompleteWizard(true);
         }
     }
     changeStep(step) {
@@ -46,7 +49,7 @@ class CreateProjectWizard extends Component {
         this.props.actions.goToStep(newStep);
     }
     render() {
-        return (!this.props.wizard.ui.complete ?
+        return (!this.props.wizard.ui.showComplete ?
             <div className='project-wizard'>
                 {this.props.wizard.ui.showProjectTitle &&
                     <NewProjectTitle

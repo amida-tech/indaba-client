@@ -173,9 +173,10 @@ export function goToStep(step) {
     };
 }
 
-export function completeWizard() {
+export function showCompleteWizard(show) {
     return {
-        type: actionTypes.COMPLETE_WIZARD,
+        type: actionTypes.SHOW_COMPLETE_WIZARD,
+        show,
     };
 }
 
