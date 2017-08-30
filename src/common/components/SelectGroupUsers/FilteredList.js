@@ -29,7 +29,7 @@ class FilteredList extends Component {
 
         return (
             <div className='filtered-list'>
-                <SearchInput
+                <SearchInput className= 'filtered-list__search'
                     placeholder={this.props.placeHolder}
                     onChange={this.handleQuery}/>
                 <List className='filtered-list__list'
