@@ -7,6 +7,10 @@ $block-class: 'filtered-list';
         align-items: stretch;
         max-height: 300px;
 
+        &__search-input {
+            margin-bottom: 8px;
+        }
+
         &__query,
         .grommet &__query:not(.grommetux-input) {
             margin: 1em;
