@@ -48,18 +48,11 @@ class UsersTab extends Component {
             <div className='users-tab'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
-                        const userData = {
-                            firstName: values.firstName,
-                            lastName: values.lastName,
-                            roleID: 3,
-                            password: values.email + Math.floor((Math.random() * 1000000) + 1),
-                            email: values.email,
-                            isActive: false,
-                            organizationId: this.props.profile.organizationId,
-                        };
                         this.props.actions.addNewUser(
-                            userData,
-                            this.props.vocab.ERROR.INSERT_USER,
+                            values,
+                            this.props.projectId,
+                            this.props.profile.organizationId,
+                            this.props.vocab.ERROR,
                             this.props.actions.addUserToWizard);
                     }} />
                 <div className='users-tab__search'>
@@ -84,6 +77,7 @@ class UsersTab extends Component {
 UsersTab.propTypes = {
     actions: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
+    projectId: PropTypes.number.isRequired,
     projectUsers: PropTypes.arrayOf(PropTypes.number).isRequired,
     profile: PropTypes.object.isRequired,
     filter: PropTypes.string.isRequired,

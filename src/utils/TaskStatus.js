@@ -13,16 +13,12 @@ export default {
         return task.response &&
             task.response.some(response => response.flag);
     },
-    dueDateInPast(task, stages) {
-        const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endDate;
-        return Date.parse(dueDate) < Date.now();
+    endDateInPast(task) {
+        return Date.parse(task.endDate) < Date.now();
     },
-    daysUntilDue(task, stages) {
+    daysUntilDue(task) {
         const day = 24 * 60 * 60 * 1000;
-        const dueDate = task.dueDate ||
-            stages.find(stage => stage.id === task.stage).endDate;
-        return Math.round((new Date(dueDate).getTime()
+        return Math.round((new Date(task.endDate).getTime()
             - new Date().getTime()) / day);
     },
     formatDate(date) {

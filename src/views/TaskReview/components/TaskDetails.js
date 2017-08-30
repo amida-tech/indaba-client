@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
+import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
 
 class TaskDetails extends Component {
@@ -31,22 +32,21 @@ class TaskDetails extends Component {
                             {this.props.vocab.PROJECT.SUBJECT}
                         </div>
                         <div className='task-details__info-box-title'>
-                            {this.props.subject}
+                            {this.props.subject.name}
                         </div>
                     </div>
                     <div className='task-details__info-box'>
                     <div className='task-details__info-box-label'>
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
-                    <DateTime id='taskDueDate' className='task-details__info-box-datetime'
+                    <DateTime id='taskEndDate' className='task-details__info-box-datetime'
                         format='MM/DD/YYYY'
                         onChange={event =>
-                            this.props.updateTaskDueDate(
+                            this.props.actions.updateTaskEndDate(
                                 this.props.task.id,
                                 this.props.projectId,
                                 event)}
-                        value={this.props.task.dueDate ||
-                        this.props.stage.endDate}/><br/>
+                        value={Time.renderForTaskReview(this.props.task.endDate)}/><br/>
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>
@@ -63,11 +63,13 @@ class TaskDetails extends Component {
 }
 
 TaskDetails.propTypes = {
-    stage: PropTypes.object.isRequired,
+    stage: PropTypes.shape({
+        title: PropTypes.string,
+    }).isRequired,
     task: PropTypes.object.isRequired,
     taskedUser: PropTypes.object.isRequired,
     surveyName: PropTypes.string.isRequired,
-    subject: PropTypes.string.isRequired,
+    subject: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
 };

@@ -25,7 +25,7 @@ class UserTaskListEntry extends Component {
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>
                     {
-                        Time.renderDueDateForTaskList(
+                        Time.renderEndDateForTaskList(
                             this.props.due,
                             this.props.vocab,
                         )

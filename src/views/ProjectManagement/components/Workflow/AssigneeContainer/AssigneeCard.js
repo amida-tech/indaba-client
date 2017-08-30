@@ -27,8 +27,9 @@ const cardSource = {
         if (!monitor.didDrop()) {
             return;
         }
-        const dropResult = monitor.getDropResult();
-        props.taskActions.assignTask(props.children.id, dropResult.task, props.project.id);
+        const slot = monitor.getDropResult();
+        props.actions.assignTask(props.children.id,
+            slot, props.project.productId, props.vocab.ERROR);
     },
 };
 
