@@ -23,7 +23,6 @@ class AddSubjects extends Component {
                 <hr className='divider'/>
                 <p className='add-subjects__instructions'>
                 {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
-                <div className='add-subjects__table'>
                     <AddSubjectControl
                         onAddSubjects={this.props.onAddSubjects}
                         vocab={this.props.vocab}/>
@@ -34,7 +33,6 @@ class AddSubjects extends Component {
                                 this.props.onDeleteSubject(subject)} />
                             </div>,
                     )}
-                </div>
             </div>
         );
     }

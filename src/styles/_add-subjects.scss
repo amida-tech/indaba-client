@@ -9,12 +9,6 @@ $block-class: 'add-subjects';
             margin-right: 10%;
         }
 
-        &__table {
-            max-height: 400px;
-            margin-bottom: 80px;
-            overflow-y: scroll;
-        }
-
         &__table-row {
             display: flex;
             padding: 1em;
