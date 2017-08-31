@@ -16,12 +16,12 @@ export function getTasksByProject(projectId, errorMessages) {
     };
 }
 
-export function getSelfTasks(userId, errorMessages) {
+export function getSelfTasks(errorMessages) {
     return (dispatch) => {
         apiService.tasks.getSelfTasks(
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
-                    dispatch(_getTasksByUserSuccess(userId, taskResp));
+                    dispatch(_getTasksByUserSuccess(null, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }

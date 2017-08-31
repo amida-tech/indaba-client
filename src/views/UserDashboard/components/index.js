@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import { getSelfTasks } from '../../../common/actions/taskActions';
+import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
 import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
@@ -17,7 +17,11 @@ import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
     componentWillMount() {
-        this.props.actions.getSelfTasks(this.props.profile.id, this.props.vocab.ERROR);
+        if (this.props.params.userId) {
+            this.props.actions.getTasksByUser(this.props.params.userId, this.props.vocab.ERROR);
+        } else {
+            this.props.actions.getSelfTasks(this.props.vocab.ERROR);
+        }
     }
 
     filterRow(row) {
@@ -90,7 +94,8 @@ const mapStateToProps = state => ({
     //     .map(task => _generateRow(state, projectTasks.projectId, task)))),
 });
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, { getSelfTasks }), dispatch),
+    actions: bindActionCreators(Object.assign({},
+        actions, { getSelfTasks, getTasksByUser }), dispatch),
 });
 
 // const _generateRow = (state, projectId, task) => {
