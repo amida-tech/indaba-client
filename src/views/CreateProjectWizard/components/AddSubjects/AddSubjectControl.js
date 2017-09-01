@@ -19,9 +19,10 @@ class AddSubjectControl extends Component {
                         className='add-subject-control__input'
                             component='input'
                             type='text'/>
-                        <div className='add-subject-control__plus-icon'
+                        <div className=''
                             onClick={this.props.onPlusClick}>
-                            <IonIcon icon='ion-ios-plus'/>
+                            <IonIcon icon='ion-ios-plus'
+                            className='add-subject-control__plus-icon'/>
                         </div>
                     </div>
                 </form>
