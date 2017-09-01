@@ -12,8 +12,12 @@ const initialState = {
     projectId: 0,
     userId: 0,
     data: [{
+        id: -1,
+        title: '',
         endDate: '',
         userIds: [],
+        projectId: -1,
+        flagCount: 0,
     }],
 };
 

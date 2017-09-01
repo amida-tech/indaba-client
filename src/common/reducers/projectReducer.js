@@ -11,6 +11,7 @@ const initialState = {
         showAddSubject: false,
     },
     data: [{
+        id: -1,
         name: '',
         status: 0,
         users: [],

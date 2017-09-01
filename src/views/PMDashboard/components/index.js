@@ -74,7 +74,7 @@ class PMDashboard extends Component {
                     <ProjectListHeader vocab={this.props.vocab} />
                     {this.props.rows.filter(this.filterRow.bind(this))
                         .filter(this.searchRow.bind(this))
-                        .map(row => <ProjectListEntry key={row.project.id} {...row}
+                        .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
                             vocab={this.props.vocab}
                             onProjectNameChange={this.props.actions.setProjectName}
                             onProjectNameBlur={

@@ -48,6 +48,7 @@ export function getTasksByUser(userId, errorMessages) {
 export function assignTask(userId, slot, productId, errorMessages) {
     const requestBody = {
         userId,
+        title: slot.stageData.title,
         stepId: slot.task.stepId,
         uoaId: slot.task.uoaId,
         startDate: slot.stageData.startDate,

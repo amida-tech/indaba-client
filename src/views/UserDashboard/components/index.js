@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
+import { getProjects } from '../../../common/actions/projectActions';
 import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
@@ -17,6 +18,7 @@ import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
     componentWillMount() {
+        this.props.actions.getProjects(this.props.vocab.ERROR);
         if (this.props.params.userId) {
             this.props.actions.getTasksByUser(this.props.params.userId, this.props.vocab.ERROR);
         } else {
@@ -78,7 +80,7 @@ class UserDashboard extends Component {
 
 const mapStateToProps = state => ({
     glance: {
-        tasks: state.tasks.data.reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        tasks: state.tasks.data.length,
         newTasks: 0, // Come back to.
         lateTasks: state.tasks.data.filter(task => TaskStatus.endDateInPast(task)).length,
         flagged: 0, // Come back to.
@@ -87,42 +89,42 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages.slice(0, 4),
     ui: state.userdashboard.ui,
-    rows: [],
-    // [].concat(...state.tasks.data.map(projectTasks =>
-    //     projectTasks.tasks.filter(task =>
-    //         task.userId === state.user.profile.id)
-    //     .map(task => _generateRow(state, projectTasks.projectId, task)))),
+    rows: [].concat(...state.tasks.data.map(task =>
+        _generateRow(state, task.projectId, task))),
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, { getSelfTasks, getTasksByUser }), dispatch),
+        actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
 });
 
-// const _generateRow = (state, projectId, task) => {
-//     const project = state.projects.find(findProject => findProject.id === projectId);
-//     const discussion =
-//     (
-//         state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
-//     );
-//     const answered = discussion.discuss.filter(response => response.value !== undefined).length;
-//     const survey = state.surveys.find(findSurvey => findSurvey.projectId === projectId);
-//     return {
-//         key: task.id,
-//         projectId,
-//         subject: project.subjects[task.subject],
-//         task: project.stages.find(stage => stage.id === task.stage).title,
-//         due: task.endDate,
-//         survey: survey.name,
-//         flags: discussion.discuss.filter(response => response.flag).length,
-//         progress: `${answered} of ${survey.questions.length}
-//             ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
-//         new: !!task.new,
-//         late: TaskStatus.endDateInPast(task, project.stages) &&
-//             !TaskStatus.responsesComplete({ response: discussion.discuss },
-//                 survey.questions.length),
-//         complete: TaskStatus.responsesComplete({ response: discussion.discuss },
-//             survey.questions.length),
-//     };
-// };
+const _generateRow = (state, projectId, task) => {
+    const project = state.projects.data[0].name ?
+        state.projects.data.find(findProject => findProject.id === projectId) :
+        state.projects.data[0];
+    const subject = project.subjects.find(elem => elem.id === task.uoaId);
+    const discussion = (state.discuss.data.find(findDiscuss =>
+        findDiscuss.taskId === task.id) || { data: [] });
+    const answered = discussion.data.filter(response =>
+        response.value !== undefined).length;
+    const survey = state.surveys.data.find(findSurvey =>
+        findSurvey.projectId === projectId) || { name: '', questions: [] };
+    return {
+        key: task.id,
+        projectId,
+        subject: subject ? subject.name : '',
+        task: task.title,
+        due: task.endDate,
+        survey: survey.name,
+        flags: task.flagCount,
+        progress: `${answered} / ${survey.questions.length}
+            ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        new: !!task.new,
+        late: TaskStatus.endDateInPast(task) &&
+            !TaskStatus.responsesComplete({ response: discussion.data },
+                survey.questions.length),
+        complete: TaskStatus.responsesComplete({ response: discussion.data },
+            survey.questions.length),
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
