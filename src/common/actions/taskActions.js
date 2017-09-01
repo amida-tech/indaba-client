@@ -21,7 +21,7 @@ export function getSelfTasks(errorMessages) {
         apiService.tasks.getSelfTasks(
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
-                    dispatch(_getTasksByUserSuccess(null, taskResp));
+                    dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }
