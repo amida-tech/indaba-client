@@ -35,7 +35,7 @@ export function setUserTitle(userId, title) {
 
 export function getProfile(errorMessages) {
     return (dispatch) => {
-        return apiService.users.getProfile(
+        apiService.users.getProfile(
           (err, profile) => {
               if (profile && !err) {
                   dispatch(_getProfileSuccess(profile));
