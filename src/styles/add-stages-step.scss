@@ -1,0 +1,13 @@
+$block-class: 'add-stages-step';
+
+@at-root {
+    .#{$block-class} {
+        &__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 0.5rem;
+            background-color: red;
+            width: 100%;
+        }
+    }
+}

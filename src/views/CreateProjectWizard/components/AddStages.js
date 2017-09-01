@@ -52,12 +52,24 @@ class AddStages extends Component {
                         userGroups={this.props.project.userGroups}
                         key={stage.id} />;
                 })}
-                <div className='add-stage-placeholder'
+                <div className='add-stages-step__grid'
                     onClick={() => this.props.actions.showAddStageWizardModal(true)}>
-                    <div className='workflow-stage-title'>
+                    <div className='add-stages-step__grid--title'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </div>
-                    <div className='workflow-stage-summary'>
+                    <div className='add-stages-step__grid--summary'>
+                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
+                    </div>
+                    <div className='add-stages-step__grid--title'>
+                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                    </div>
+                    <div className='add-stages-step__grid--summary'>
+                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
+                    </div>
+                    <div className='add-stages-step__grid--title'>
+                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                    </div>
+                    <div className='add-stages-step__grid--summary'>
                         {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
                     </div>
                 </div>
