@@ -54,25 +54,16 @@ class AddStages extends Component {
                 })}
                 <div className='add-stages-step__grid'
                     onClick={() => this.props.actions.showAddStageWizardModal(true)}>
-                    <div className='add-stages-step__grid--title'>
+                    <div className='add-stages-step__grid-row'>
+                    <div className='add-stages-step__grid-row--title'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </div>
-                    <div className='add-stages-step__grid--summary'>
+                    <div className='add-stages-step__grid--row--summary'>
                         {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
                     </div>
-                    <div className='add-stages-step__grid--title'>
-                        {this.props.vocab.PROJECT.STAGE_TITLE}
-                    </div>
-                    <div className='add-stages-step__grid--summary'>
-                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
-                    </div>
-                    <div className='add-stages-step__grid--title'>
-                        {this.props.vocab.PROJECT.STAGE_TITLE}
-                    </div>
-                    <div className='add-stages-step__grid--summary'>
-                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
                     </div>
                 </div>
+
             </Box>
         </div>);
     }
