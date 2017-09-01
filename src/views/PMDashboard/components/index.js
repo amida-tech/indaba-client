@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { FILTERS } from '../constants';
 import * as actions from '../actions';
 
-import { setProjectName } from '../../../common/actions/projectActions';
+import { setProjectName, getProjects } from '../../../common/actions/projectActions';
 import { setSurveyName } from '../../../common/actions/surveysActions';
 
 import NameChangeModal from './NameChangeModal';
@@ -19,29 +19,38 @@ import ProjectListHeader from './ProjectListHeader';
 import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
+    componentWillMount() {
+        this.props.actions.getProjects(this.props.vocab.ERROR);
+    }
+
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_FILTERS:
             return true;
         case FILTERS.ACTIVE_PROJECTS:
-            return row.project.status === 'Active';
+            return row.project.status === 1;
         case FILTERS.INACTIVE_PROJECTS:
-            return row.project.status === 'Inactive';
+            return row.project.status === 0;
         case FILTERS.PUBLISHED_SURVEYS:
-            return row.survey.status === 'Published';
+            return row.survey.status === 1;
         case FILTERS.SURVEYS_IN_DRAFT_MODE:
-            return row.survey.status === 'Draft';
+            return row.survey.status === 0;
         case FILTERS.SURVEYS_WITH_FLAGS:
             return row.flags > 0;
         default:
             return true;
         }
     }
+
     searchRow(row) {
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
-        return row.project.name.toLowerCase().includes(lowerQuery) ||
-            row.survey.name.toLowerCase().includes(lowerQuery);
+        if (_.isEmpty(row.survey)) {
+            return row.project.name.toLowerCase().includes(lowerQuery);
+        }
+        return (row.project.name.toLowerCase().includes(lowerQuery)
+            || row.survey.name.toLowerCase().includes(lowerQuery));
     }
+
     render() {
         return (
             <div className='pm-dashboard'>
@@ -71,7 +80,7 @@ class PMDashboard extends Component {
                             onProjectNameBlur={
                                 (name) => {
                                     if (name !== row.project.name) {
-                                        this.props.onSetProjectName(name, row.project.id);
+                                        this.props.actions.setProjectName(name, row.project.id);
                                         this.props.actions.showNameChange({
                                             title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
                                             label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
@@ -84,7 +93,7 @@ class PMDashboard extends Component {
                             onSurveyNameBlur={
                                 (name) => {
                                     if (name !== row.survey.name) {
-                                        this.props.onSetSurveyName(name, row.project.id);
+                                        this.props.actions.setSurveyName(name, row.project.id);
                                         this.props.actions.showNameChange({
                                             title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
                                             label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
@@ -108,27 +117,26 @@ PMDashboard.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     ui: state.pmdashboard.ui,
-    rows: state.projects.map(project => ({
+    rows: state.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
-        survey: _.pick(state.surveys.find(survey => survey.projectId === project.id), ['name', 'status', 'id']),
-        flags: state.discuss.filter(discuss =>
-            state.tasks.find(taskSet =>
-                taskSet.tasks.some(task => task.id === discuss.taskId)).projectId === project.id)
-            .reduce((sum, discuss) =>
-                sum + discuss.discuss.filter(innerDiscuss => innerDiscuss.flag).length, 0),
+        survey: _.pick(state.surveys.data.find(survey =>
+            survey.projectId === project.id), ['name', 'status', 'id']),
+        flags: 0, // Base on project listing, coming later.
     })),
     glance: {
-        projects: state.projects.length,
-        active: state.projects.filter(project => project.status === 'Active').length,
-        inactive: state.projects.filter(project => project.status === 'Inactive').length,
+        projects: state.projects.data.length,
+        active: state.projects.data.filter(project => project.status === 1).length,
+        inactive: state.projects.data.filter(project => project.status === 0).length,
         // flags calculated inline from rows.flags
     },
     messages: state.messages.slice(0, 4),
 });
+
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
-    onSetProjectName: (name, projectId) => dispatch(setProjectName(name, projectId)),
-    onSetSurveyName: (name, projectId) => dispatch(setSurveyName(name, projectId)),
+    actions: bindActionCreators(Object.assign({},
+        actions,
+        { setProjectName, getProjects, setSurveyName }),
+        dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMDashboard);

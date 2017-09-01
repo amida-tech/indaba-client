@@ -15,7 +15,7 @@ class FlagSidebar extends Component {
         this.props.actions.showQuestion(initialShow);
         this.props.actions.storeFlaggedIssues(issues);
         this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
-        this.props.actions.updateNotifyUser(this.props.users[0]);
+        this.props.actions.updateNotifyUser(this.props.taskedUser);
         this.props.actions.setSignatureId(this.props.profile.id);
     }
 

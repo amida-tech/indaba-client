@@ -7,7 +7,6 @@ import EditableTextInput from '../../../common/components/EditableTextInput';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
-
     render() {
         return (
             <div className='project-list-entry'
@@ -25,9 +24,11 @@ class ProjectListEntry extends Component {
                     }} />
                 </div>
                 <div className={`project-list-entry__status${
-                    this.props.project.status === 'Active' ?
+                    this.props.project.status ?
                         ' project-list-entry__status--active' : ''}`}>
-                    {this.props.project.status}
+                    { this.props.project.status ?
+                        this.props.vocab.PROJECT.STATUS_ACTIVE :
+                        this.props.vocab.PROJECT.STATUS_INACTIVE}
                 </div>
                 <div className='project-list-entry__name'>
                     <EditableTextInput input={{
@@ -38,9 +39,11 @@ class ProjectListEntry extends Component {
                     }} />
                 </div>
                 <div className={`project-list-entry__status${
-                    this.props.survey.status === 'Published' ?
+                    this.props.survey.status ?
                         ' project-list-entry__status--active' : ''}`}>
-                    {this.props.survey.status}
+                    {this.props.survey.status ?
+                        this.props.vocab.SURVEY.STATUS_PUBLISHED :
+                        this.props.vocab.SURVEY.STATUS_DRAFT}
                 </div>
                 <div className='project-list-entry__flags'>
                     <FlagCount value={this.props.flags} />
@@ -58,7 +61,7 @@ ProjectListEntry.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
+        status: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
         lastUpdated: PropTypes.string.isRequired,
     }),

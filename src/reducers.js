@@ -15,7 +15,7 @@ const reducers = {
     user: CommonReducers.UserReducer,
     projects: CommonReducers.ProjectReducer,
     surveys: CommonReducers.SurveysReducer,
-    tasks: CommonReducers.TasksReducer,
+    tasks: CommonReducers.TaskReducer,
     discuss: CommonReducers.DiscussReducer,
     messages: CommonReducers.MessageReducer,
     login: LoginReducer,

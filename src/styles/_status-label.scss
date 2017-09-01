@@ -24,6 +24,7 @@ $neutral-color: #a4aebf;
 
         &--neutral {
             background-color: $neutral-color;
+            min-width: 85px;
         }
     }
 }

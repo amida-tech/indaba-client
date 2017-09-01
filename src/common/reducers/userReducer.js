@@ -15,83 +15,21 @@ export const constants = {
 };
 
 const initialState = {
-    profile: {
-        id: 31,
-        firstName: 'Super',
-        lastName: 'Mario',
-        organizationId: 2,
+    ui: {
+        errorMessage: '',
     },
-    users: [{
-        id: 13,
-        firstName: 'Tyler',
-        lastName: 'Durden',
-        email: 't.durden@visa.com',
-        activationDate: '1/1/2016',
-        notifications: constants.notifications.OFF,
-        status: constants.status.INACTIVE,
-    }, {
-        id: 71,
-        firstName: 'Robert',
-        lastName: 'Paulson',
-        email: 'bobbyp@dove.com',
-        invited: true,
-        notifications: constants.notifications.INTERNAL,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 22,
-        firstName: 'John',
-        lastName: 'McClane',
-        email: 'johnm@nypd.gov',
-        title: 'Detective Lieutenant',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 31,
-        firstName: 'Ellen',
-        lastName: 'Ripley',
-        email: 'believeit@snopes.com',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 41,
-        firstName: 'Indiana',
-        lastName: 'Jones',
-        email: 'digem@cmu.edu',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 25,
-        firstName: 'Tony',
-        lastName: 'Stark',
-        email: 'FeMan@stark.com',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 66,
-        firstName: 'Johnny',
-        lastName: 'Quest',
-        email: 'john@gmail.com',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 87,
-        firstName: 'Buck',
-        lastName: 'Rogers',
-        email: 'thebuckster@americanradgas.com',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }, {
-        id: 98,
-        firstName: 'Marvin',
-        lastName: 'Martian',
-        email: 'bleepblorp@mars.com',
-        notifications: constants.notifications.OFF,
-        status: constants.status.ACTIVE,
-    }],
+    profile: {
+        id: null,
+        firstName: '',
+        lastName: '',
+        organizationId: null,
+    },
+    users: [],
 };
 
 export const UserReducer = (state = initialState, action) => {
     const userIndex = state.users.findIndex(user => user.id === action.userId);
+    // Strongly consider clearing error message here after every call?
     switch (action.type) {
     case actionTypes.SET_USER_FIRST_NAME:
         return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
@@ -101,16 +39,18 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
     case actionTypes.SET_USER_TITLE:
         return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
-    case actionTypes.ADD_NEW_USER_SUCCESS:
+    case actionTypes.POST_NEW_USER_SUCCESS:
         return update(state, { users: { $push: [action.user] } });
     case actionTypes.UPDATE_USER:
         return update(state, { users: { [userIndex]: { $merge: action.user } } });
     case actionTypes.NOTIFY_USER:
         return state;
-    case actionTypes.GET_CURRENT_USER_SUCCESS:
+    case actionTypes.GET_PROFILE_SUCCESS:
         return update(state, { profile: { $set: action.profile } });
     case actionTypes.GET_USERS_SUCCESS:
         return update(state, { users: { $set: action.users } });
+    case actionTypes.REPORT_USER_ERROR:
+        return update(state, { ui: { errorMessage: { $set: action.error } } });
     default:
         return state;
     }
