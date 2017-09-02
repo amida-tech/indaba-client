@@ -13,6 +13,13 @@ $block-class: 'filter-wrapper';
             letter-spacing: 0.8px;
             font-weight: 400;
 
+            &--stages {
+                margin-right: 8px;
+                letter-spacing: 0.8px;
+                font-weight: 400;
+                border-radius: 2px;
+            }
+
             &:hover {
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
