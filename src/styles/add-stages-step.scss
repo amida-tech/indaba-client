@@ -3,7 +3,6 @@ $block-class: 'add-stages-step';
 @at-root {
     .#{$block-class} {
         display: grid;
-        grid-gap: 12px;
 
         &__grid {
             display: grid;
@@ -12,23 +11,35 @@ $block-class: 'add-stages-step';
             grid-template-rows: 50%;
             background-color: #fff;
             border: 1px solid $border-color;
+            height: 50vh;
             min-width: 90%;
             margin-left: 5%;
             margin-right: 5%;
 
             &-row {
                 width: 30%;
-                height: 50%;
+                border: 2px solid $border-color;
+                height: 25vh;
 
                 &--title {
                     padding: 0.5rem;
                     border: 1px solid $border-color;
                 }
             }
+        }
 
-            &__add-button {
-                margin-right: 20px;
-            }
+        &__add-button {
+            margin-right: 20px;
+        }
+
+        &__instructions {
+            @extend .large-font;
+
+            display: flex;
+            margin-top: 1em;
+            margin-left: 10%;
+            padding-left: 1rem;
+            margin-bottom: 1em;
         }
     }
 }

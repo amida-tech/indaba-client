@@ -41,7 +41,7 @@ class AddStages extends Component {
                 <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </Box>
             <hr className='divider' />
-            <p className='wizard-clarification'>
+            <p className='add-stages-step__instructions'>
                 {this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}
             </p>
             <hr className='divider' />
