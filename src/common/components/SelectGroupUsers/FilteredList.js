@@ -32,7 +32,7 @@ class FilteredList extends Component {
                 <SearchInput
                     placeholder={this.props.placeHolder}
                     onChange={this.handleQuery}/>
-                <List className='filtered-list__list'
+                <List className='filtered-list'
                     {...listProps}>
                     {this.props.items.map(item => (
                         <ListItem className='filtered-list__item'
