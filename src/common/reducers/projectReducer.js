@@ -11,6 +11,7 @@ const initialState = {
         showAddSubject: false,
     },
     data: [{
+        id: -1,
         name: '',
         status: 0,
         users: [],
@@ -31,7 +32,9 @@ export const ProjectReducer = (state = initialState, action) => {
 
     switch (action.type) {
     case ADD_PROJECT_FROM_WIZARD:
-        return update(state, { data: { $push: [action.wizard.project] } });
+        return state.data[0].name ?
+        update(state, { data: { $push: [action.wizard.project] } }) :
+        update(state, { data: { $set: [action.wizard.project] } });
     case type.SHOW_ADD_STAGE_MODAL:
         return update(state, { ui: { showAddStage: { $set: action.show } } });
     case type.SHOW_ADD_SUBJECT_MODAL:
