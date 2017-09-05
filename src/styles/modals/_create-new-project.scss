@@ -6,5 +6,11 @@ $block-class:'create-new-project'; // Bootstrap is doing its crap again. Call th
             padding: 2em 2em 0;
             text-align: center;
         }
+
+        &__button-panel {
+            &-create {
+                border-radius: 2px;
+            }
+        }
     }
 }
