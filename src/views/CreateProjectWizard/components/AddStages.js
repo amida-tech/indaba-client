@@ -32,13 +32,14 @@ class AddStages extends Component {
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
-            <Box direction='row' justify='end'
+            <Box className='add-stages-step__add-button' direction='row' justify='end'
                 pad={{ vertical: 'small', horizontal: 'medium' }}>
 
-                <Button className='filter-wrapper__add-button--stages'
+                <Button className='add-stages-step__add-button--stages'
                     primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
                     onClick={() => this.props.showAddStageModal()}/>
-                <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
+                <Button className='add-stages-step__add-button--stages'
+                 label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </Box>
             <hr className='divider' />
             <p className='add-stages-step__instructions'>
@@ -57,7 +58,7 @@ class AddStages extends Component {
                     <div className='add-stages-step__grid-row--title'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </div>
-                    <div className='add-stages-step__grid--row--summary'>
+                    <div className='add-stages-step__grid-row--summary'>
                         {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
                     </div>
                 </div>
