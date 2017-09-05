@@ -9,7 +9,21 @@ $block-class:'create-new-project'; // Bootstrap is doing its crap again. Call th
 
         &__button-panel {
             &-create {
+                @extend .small-font;
+
+                padding: 4px;
                 border-radius: 2px;
+                font-weight: 700;
+
+                &:hover {
+                    background: darken(#4eb276, 10);
+                    border-color: darken(#4eb276, 10);
+                }
+
+                .grommetux-button__label {
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                }
             }
         }
     }
