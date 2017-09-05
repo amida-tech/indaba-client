@@ -24,7 +24,7 @@ $block-class: 'add-subjects';
         }
 
         &__instructions {
-            @extend .large-font;
+            @extend .lead-font;
 
             display: flex;
             margin-top: 1em;

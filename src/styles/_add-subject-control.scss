@@ -16,6 +16,7 @@ $block-class: 'add-subject-control';
             display: flex;
             justify-content: space-between;
             padding: 0.5em;
+            width: 50%;
         }
 
         &__fields {
@@ -24,6 +25,7 @@ $block-class: 'add-subject-control';
         }
 
         &__input {
+            -webkit-autofill: #fff !important;
             width: 100%;
             margin-left: 0.5em;
             margin-bottom: 0.5em;
