@@ -44,17 +44,37 @@ let DevTools = createDevTools(
   </DockMonitor>
 );
 
-const store = createStore(
-    reducers,
-    compose(
-      applyMiddleware(
-        routerMiddleware(browserHistory),
-        createLogger(),
-        thunk
-      ),
-      DevTools.instrument()
-    ) // Middleware
-);
+const store = configureStore();
+
+function configureStore() {
+    const store = createStore(
+        reducers,
+        compose(
+          applyMiddleware(
+            routerMiddleware(browserHistory),
+            createLogger(),
+            thunk
+          ),
+          DevTools.instrument()
+        ) // Middleware
+    );
+
+    // if(process.env.NODE_ENV !== 'production') {
+    // }
+
+    //store.dispatch = promiseSupport(store);
+    return store;
+}
+
+function promiseSupport(store) {
+    const rawDispatch = store.dispatch;
+    return (action) => {
+        if(typeof action.then === 'function') {
+            return action.then(rawDispatch);
+        }
+        return rawDispatch(action);
+    }
+}
 
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: state => store.getState().routing

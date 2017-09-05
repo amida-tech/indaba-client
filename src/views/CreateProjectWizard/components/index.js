@@ -12,11 +12,14 @@ import AddStages from './AddStages';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
-import { ProjectManagementContainer } from '../../ProjectManagement';
+import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
+    componentWillMount() {
+        this.props.actions.showCompleteWizard(false);
+    }
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);
@@ -38,7 +41,7 @@ class CreateProjectWizard extends Component {
             this.changeStep(this.props.wizard.ui.step + 1);
         } else {
             this.props.actions.addProjectFromWizard(this.props.wizard);
-            this.props.actions.completeWizard();
+            this.props.actions.showCompleteWizard(true);
         }
     }
     changeStep(step) {
@@ -46,15 +49,15 @@ class CreateProjectWizard extends Component {
         this.props.actions.goToStep(newStep);
     }
     render() {
-        return (!this.props.wizard.ui.complete ?
+        return (!this.props.wizard.ui.showComplete ?
             <div className='project-wizard'>
-                {this.props.wizard.ui.projectTitle.show &&
+                {this.props.wizard.ui.showProjectTitle &&
                     <NewProjectTitle
                         title={this.props.wizard.project.name}
                         summary={this.props.wizard.project.summary}
                         updateTitle={this.props.actions.updateWizardProjectTitle}
                         updateSummary={this.props.actions.updateWizardProjectSummary}
-                        profile={this.props.profile}
+                        profile={this.props.user.profile}
                         errorMessage={this.props.wizard.ui.errorMessage}
                         onSave={this.props.actions.addProjectToWizard}
                         vocab={this.props.vocab} />
@@ -76,12 +79,19 @@ class CreateProjectWizard extends Component {
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
-                        <AddUsers />
+                        <AddUsers
+                            actions={this.props.actions}
+                            project={this.props.wizard.project}
+                            survey={this.props.wizard.survey}
+                            ui={this.props.wizard.ui.addUsers}
+                            vocab={this.props.vocab}
+                            user={this.props.user} />
                     </Tab>
                     <Tab className='project-wizard__tab'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages
                             actions={this.props.actions}
+                            ui={this.props.wizard.ui}
                             project={this.props.wizard.project}
                             survey={this.props.wizard.survey}
                             vocab={this.props.vocab} />
@@ -97,8 +107,9 @@ class CreateProjectWizard extends Component {
                     onContinue={ this.handleContinue } />
             </div> :
             <div className='project-wizard project-wizard--complete'>
-                <WizardComplete vocab={this.props.vocab} />
-                <ProjectManagementContainer params={{ projectId: '41' }}/>
+                <WizardComplete
+                    vocab={this.props.vocab}
+                    projectLink={this.props.wizard.ui.projectLink} />
             </div>);
     }
 }
@@ -114,19 +125,20 @@ CreateProjectWizard.propTypes = {
             errorMessage: PropTypes.string,
             complete: PropTypes.bool.isRequired,
             step: PropTypes.number.isRequired,
+            projectLink: PropTypes.number.isRequired,
         }),
     }).isRequired,
     vocab: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-    profile: state.user.profile,
+    user: state.user,
     wizard: state.projectwizard,
     vocab: state.settings.language.vocabulary,
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { addNewUser }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

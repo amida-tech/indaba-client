@@ -11,13 +11,19 @@ import Subjects from './Subjects';
 import Users from './Users';
 import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
+import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
-import { assignTask, reassignTask } from '../../../common/actions/tasksActions';
+import * as taskActions from '../../../common/actions/taskActions';
 import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
+    componentWillMount() {
+        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
+        this.props.actions.getTasksByProject(this.props.params.projectId, this.props.vocab.ERROR);
+    }
+
     render() {
         const modalEntities = {
             projectstatusmodal: 'project',
@@ -32,8 +38,8 @@ class ProjectManagementContainer extends Component {
             body = <Subjects vocab={this.props.vocab}
                     projectId={this.props.project.id}
                     subjects={this.props.project.subjects}
-                    onDeleteSubject={this.props.projectActions.deleteSubject}
-                    onAddSubject={this.props.projectActions.addSubject}/>;
+                    onDeleteSubject={this.props.actions.deleteSubject}
+                    onAddSubject={this.props.actions.addSubject}/>;
             break;
         case 'users':
             body = <Users
@@ -42,12 +48,8 @@ class ProjectManagementContainer extends Component {
                     userId => this.props.users.find(user => user.id === userId))}
                 tasks={this.props.tasks}
                 project={this.props.project}
-                onDeleteGroup={this.props.projectActions.deleteUserGroup}
-                onAddGroup={this.props.projectActions.addUserGroup}
-                onUpdateGroup={this.props.projectActions.updateUserGroup}
-                onAddNewUser={this.props.userActions.onAddNewUser}
-                onAddUserToProject={this.props.projectActions.addUser}
-                onRemoveUserFromProject={this.props.projectActions.removeUser}/>;
+                profile={this.props.profile}
+                actions={this.props.actions} />;
             break;
         default:
             body = null;
@@ -62,8 +64,8 @@ class ProjectManagementContainer extends Component {
                             entity={modalEntities[this.props.ui.statusModalId]}
                             projectStatus={this.props.project.status}
                             surveyStatus={this.props.survey.status}
-                            onSetProjectStatus={this.props.projectActions.setProjectStatus}
-                            onSetSurveyStatus={this.props.surveyActions.onSetSurveyStatus}/> }
+                            onSetProjectStatus={this.props.actions.setProjectStatus}
+                            onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
                     <SubNav vocab={this.props.vocab}
                         subnavigate={this.props.actions.subnavigate}
                         selected={this.props.ui.subnav}/>
@@ -74,9 +76,9 @@ class ProjectManagementContainer extends Component {
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
                         vocab={this.props.vocab}
                         onProjectNameChange={name =>
-                            this.props.projectActions.setProjectName(name, this.props.project.id)}
+                            this.props.actions.setProjectName(name, this.props.project.id)}
                         onSurveyNameChange={name =>
-                            this.props.surveyActions.onSetSurveyName(name, this.props.project.id)}/>
+                            this.props.actions.setSurveyName(name, this.props.project.id)}/>
                     <hr className='divider main-divider' />
                     {body}
                 </div>
@@ -94,14 +96,16 @@ ProjectManagementContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
-    const project = _.find(state.projects, current => current.id === projectId);
+    const project = state.projects.data[0].name ?
+        _.find(state.projects.data, current => current.id === projectId) :
+        state.projects.data[0];
     return {
         project,
-        tasks: _.find(state.tasks, task => task.projectId === project.id).tasks,
+        tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: state.manager.ui,
-        survey: _.find(state.surveys, survey => survey.projectId === project.id),
+        ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
+        survey: _.find(state.surveys, survey => survey.projectId === projectId) || {},
         tab: state.manager.ui.subnav,
         users: state.user.users,
         profile: state.user.profile,
@@ -109,22 +113,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
-    projectActions: bindActionCreators(Object.assign({}, projectActions), dispatch),
-    discussActions: bindActionCreators(Object.assign({}, discussActions), dispatch),
-    userActions: {
-        onAddNewUser: user => dispatch(addNewUser(user)),
-        notifyUser: (userId, message, senderId) => dispatch(notifyUser(userId, message, senderId)),
-    },
-    surveyActions: {
-        onSetSurveyStatus: (status, projectId) => dispatch(setSurveyStatus(status, projectId)),
-        onSetSurveyName: (name, projectId) => dispatch(setSurveyName(name, projectId)),
-    },
-    taskActions: {
-        assignTask: (user, task, projectId) => dispatch(assignTask(user, task, projectId)),
-        reassignTask: (reassignId, taskId, projectId) =>
-            dispatch(reassignTask(reassignId, taskId, projectId)),
-    },
+    actions: bindActionCreators(Object.assign({},
+        actions,
+        navActions,
+        projectActions,
+        taskActions,
+        discussActions,
+        { addNewUser, notifyUser },
+        { setSurveyStatus, setSurveyName },
+    ), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

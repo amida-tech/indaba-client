@@ -10,13 +10,13 @@ class SelectGroupUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupName: _.get(this.props, 'group.name', ''),
+            groupTitle: _.get(this.props, 'group.title', ''),
             groupUserIds: _.get(this.props, 'group.users', []),
             projectUsersSelected: [],
             groupUsersSelected: [],
         };
 
-        this.handleGroupName = this.handleGroupName.bind(this);
+        this.handleGroupTitle = this.handleGroupTitle.bind(this);
         this.handleProjectUsersSelect = this.handleProjectUsersSelect.bind(this);
         this.handleGroupUsersSelect = this.handleGroupUsersSelect.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
@@ -28,8 +28,8 @@ class SelectGroupUsers extends Component {
     nonGroupIds() {
         return this.props.users.filter(userId => !this.state.groupUserIds.includes(userId));
     }
-    handleGroupName(evt) {
-        this.setState({ groupName: evt.target.value });
+    handleGroupTitle(evt) {
+        this.setState({ groupTitle: evt.target.value });
     }
     handleProjectUsersSelect(selection) {
         this.setState({ projectUsersSelected: selection.length ? selection : [selection] });
@@ -89,9 +89,9 @@ class SelectGroupUsers extends Component {
         return (
             <Modal
                 onCancel={this.props.onCancel}
-                onSave={(this.state.groupName !== '') ?
+                onSave={(this.state.groupTitle !== '') ?
                     () => this.props.onSave({
-                        name: this.state.groupName,
+                        title: this.state.groupTitle,
                         users: this.state.groupUserIds,
                     }) :
                     undefined}
@@ -100,8 +100,8 @@ class SelectGroupUsers extends Component {
                     {this.props.vocab.STAGE.GROUP_NAME}
                     <input className='select-group-users__group-name-input'
                         placeholder={this.props.vocab.PROJECT.ENTER_GROUP_NAME}
-                        onChange={this.handleGroupName}
-                        value={this.state.groupName}/>
+                        onChange={this.handleGroupTitle}
+                        value={this.state.groupTitle}/>
                     <div className='select-group-users__wrapper'>
                         <div className='select-group-users__non-group-user-list'>
                             {this.props.vocab.COMMON.ALL_USERS}

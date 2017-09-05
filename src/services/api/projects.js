@@ -5,6 +5,9 @@ const projects = {
     getProjects: (callback) => {
         requests.apiGetRequest(getFullPath('projects'), callback);
     },
+    getProjectById: (projectId, callback) => {
+        requests.apiGetRequest(getFullPath(`projects/${projectId}`), callback);
+    },
     postProject: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
     },
@@ -17,14 +20,17 @@ const projects = {
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
     },
+    postGroup: (organizationId, requestBody, callback) => {
+        requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
+    },
     // deleteProductUOA: (productId, uoaId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
     // },
     postWorkflows: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('workflows'), requestBody, callback);
     },
-    postWorkflowSteps: (workflowsId, requestBody, callback) => { // Step Groups are part of this.
-        requests.apiPostRequest(getFullPath(`workflows/${workflowsId}/steps`), requestBody, callback);
+    putWorkflowSteps: (workflowId, requestBody, callback) => { // Step Groups are part of this.
+        requests.apiPutRequest(getFullPath(`workflows/${workflowId}/steps`), requestBody, callback);
     },
     // deleteWorkflows: (workflowsId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), callback);

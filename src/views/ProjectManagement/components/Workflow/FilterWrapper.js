@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'grommet';
+import PropTypes from 'prop-types';
+
 import Filter from '../../../../common/components/Filter';
 import AddSubject from '../Modals/AddSubject';
 import AddStageModal from '../Modals/AddStage';
@@ -28,24 +30,27 @@ class FilterWrapper extends Component {
                 <Filter filters={filters}
                     active={this.props.project.filter}
                     onFilterClick={filter =>
-                        this.props.onToggleFilter(filter, this.props.project.id)}
+                        this.props.actions.toggleFilter(filter, this.props.project.id)}
                     noSpace={true} />
                 <div className='filter-wrapper__add-button-panel'>
                     <Button className='filter-wrapper__add-button'
                         primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
-                        onClick={() => this.props.showAddStageModal()}/>
+                        onClick={() => this.props.actions.showAddStageModal(true)}/>
                     <Button className='filter-wrapper__add-button'
                         primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
-                        onClick={() => this.props.showAddSubjectModal()}/>
+                        onClick={() => this.props.actions.showAddSubjectModal(true)}/>
                 </div>
                 {this.props.ui.showAddStage &&
                     <AddStageModal
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
-                        onCancel={() => this.props.closeAddStageModal()}
+                        onCancel={() => this.props.actions.showAddStageModal(false)}
                         onAddStage={(stage) => {
-                            this.props.closeAddStageModal();
-                            this.props.onAddStage(stage, this.props.project.id);
+                            this.props.actions.showAddStageModal(false);
+                            this.props.actions.addStage(
+                                this.props.project,
+                                stage,
+                                this.props.vocab.ERROR);
                         }}
                         userGroups={this.props.project.userGroups}
                     />
@@ -54,10 +59,13 @@ class FilterWrapper extends Component {
                     <AddSubject
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
-                        onCancel={() => this.props.closeAddSubjectModal()}
+                        onCancel={() => this.props.actions.showAddSubjectModal(false)}
                         onAddSubject={(subject) => {
-                            this.props.closeAddSubjectModal();
-                            this.props.onAddSubject(subject, this.props.project.id);
+                            this.props.actions.showAddSubjectModal(false);
+                            this.props.actions.addSubject(
+                                this.props.project,
+                                subject,
+                                this.props.vocab.ERROR);
                         }}
                     />
                 }
@@ -65,5 +73,15 @@ class FilterWrapper extends Component {
         );
     }
 }
+
+FilterWrapper.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
+    project: PropTypes.shape({
+        id: PropTypes.number,
+        filter: PropTypes.string,
+    }).isRequired,
+};
 
 export default FilterWrapper;

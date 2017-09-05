@@ -64,8 +64,8 @@ class AddStageForm extends Component {
                             <span> {this.props.vocab.PROJECT.START_DATE}</span>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
-                                  id='StartStage'
-                                  name='startStage'
+                                  id='StartDate'
+                                  name='startDate'
                                   component={AddStageDateTime} />
                             </div>
                         </div>
@@ -73,8 +73,8 @@ class AddStageForm extends Component {
                             <span> {this.props.vocab.PROJECT.END_DATE}</span>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
-                                 id='endStage'
-                                 name='endStage'
+                                 id='endDate'
+                                 name='endDate'
                                  component={AddStageDateTime} />
                             </div>
                         </div>

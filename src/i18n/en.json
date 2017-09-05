@@ -36,14 +36,23 @@
     "LATE": "Late"
   },
   "ERROR": {
+    "DUPLICATE": "Attempted to enter a duplicate value.",
     "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
     "INVALID_LOGIN": "We weren't able to find your username or password.",
     "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
     "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
+    "FETCH_PROJECTS": "Fetch projects failed.",
+    "FETCH_TASKS": "Fetch tasks failed.",
+    "FETCH_DISCUSS": "Fetch discuss failed.",
     "INSERT_PROJECT": "The system failed to insert the new project into the database. Please try again.",
     "INSERT_PRODUCT": "The system failed to insert the new product into the database. Please try again later.",
     "CONNECT_PRODUCT": "The system failed to connect the product to the project, stage or subject(s). Try again later.",
+    "INSERT_WORKFLOW": "The system failed to insert the new workflow into the database. Please try again later.",
     "INSERT_SUBJECT": "Something has gone wrong with subject(s) insertion. Please try again.",
+    "INSERT_USER": "Failed to insert user.",
+    "INSERT_TASK": "Failed to insert task.",
+    "INSERT_GROUP": "The assignment of the user groups to this stage has failed. Please try again.",
+    "INSERT_USERGROUP": "The group was created, but insertion of the users into the group failed.",
     "INSERT_STAGE": "Something has gone wrong with stage insertion. Please try again."
   },
   "COMMON_BUTTONS": {

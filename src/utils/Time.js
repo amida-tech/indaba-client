@@ -7,7 +7,10 @@ export default {
     renderForMessageList(time) {
         return moment(time).format('DD MMM Y');
     },
-    renderDueDateForTaskList(time, vocab) {
+    renderForTaskReview(time) {
+        return moment(time).format('MM/DD/YYYY');
+    },
+    renderEndDateForTaskList(time, vocab) {
         return moment(time).calendar(null, {
             sameDay(now) {
                 return (this.isBefore(now) ?
