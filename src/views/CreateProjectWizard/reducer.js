@@ -79,7 +79,7 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
         } } });
-    case type.DELETE_SUBJECT_FROM_WIZARD:
+    case type.DELETE_SUBJECTS_WIZARD_SUCCESS:
         return update(state, { project: { subjects:
             { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
     case type.REMOVE_USER_FROM_WIZARD:
@@ -103,15 +103,7 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
     case type.ADD_USERS_SET_GROUPS_FILTER:
         return update(state, { ui: { addUsers: { groupsFilter: { $set: action.filter } } } });
-    case type.POST_PROJECT_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.POST_SUBJECTS_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.POST_GROUP_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.POST_WORKFLOW_WIZARD_FAILURE:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
-    case type.PUT_STAGE_WIZARD_FAILURE:
+    case type.REPORT_NEW_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });

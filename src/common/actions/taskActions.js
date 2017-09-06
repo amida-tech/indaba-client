@@ -64,7 +64,7 @@ export function assignTask(userId, slot, productId, errorMessages) {
                 if (!taskErr && taskResp) {
                     dispatch(_postTaskSuccess(userId, slot, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.INSERT_TASK));
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
                 }
             },
         );

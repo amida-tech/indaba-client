@@ -3,6 +3,7 @@ import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
+import { resolveQuestion } from '../../common/actions/discussActions';
 
 export function login(username, password, realm, errorMessages) {
     return (dispatch) => {
@@ -18,6 +19,7 @@ export function login(username, password, realm, errorMessages) {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth));
                 dispatch(push('/project'));
+                dispatch(resolveQuestion(2, errorMessages));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
                 dispatch(_clearLoginForm());

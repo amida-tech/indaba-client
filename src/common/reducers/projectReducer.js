@@ -62,7 +62,7 @@ export const ProjectReducer = (state = initialState, action) => {
             subjects: { $push: [action.subject] },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
-    case type.DELETE_SUBJECT:
+    case type.DELETE_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
             subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
             lastUpdated: { $set: new Date().toISOString() },
