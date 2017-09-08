@@ -123,7 +123,7 @@ CreateProjectWizard.propTypes = {
         task: PropTypes.object.isRequired,
         ui: PropTypes.shape({
             errorMessage: PropTypes.string,
-            complete: PropTypes.bool.isRequired,
+            showComplete: PropTypes.bool.isRequired,
             step: PropTypes.number.isRequired,
             projectLink: PropTypes.number.isRequired,
         }),
