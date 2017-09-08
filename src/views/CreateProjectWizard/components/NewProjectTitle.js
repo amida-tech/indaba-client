@@ -22,7 +22,7 @@ class NewProjectTitle extends Component {
     render() {
         return <Modal
             title={this.props.vocab.PROJECT.PROJECT_TITLE}
-            class='new-project-title-layer'
+            class='new-project-title__layer'
             onSave={() => this.props.onSave(
                 {
                     user: {
