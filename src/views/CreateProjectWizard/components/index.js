@@ -117,7 +117,7 @@ class CreateProjectWizard extends Component {
 CreateProjectWizard.propTypes = {
     wizard: PropTypes.shape({
         project: PropTypes.shape({
-            subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+            subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
         }).isRequired,
         survey: PropTypes.object.isRequired,
         task: PropTypes.object.isRequired,

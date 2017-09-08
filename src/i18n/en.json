@@ -33,7 +33,8 @@
     "PENDING": "Pending",
     "OK": "OK",
     "NEW": "New",
-    "LATE": "Late"
+    "LATE": "Late",
+    "LOG_OUT": "Log Out"
   },
   "ERROR": {
     "DUPLICATE": "Attempted to enter a duplicate value.",

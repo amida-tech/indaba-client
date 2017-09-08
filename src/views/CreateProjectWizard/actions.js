@@ -56,30 +56,20 @@ export function addProjectToWizard(requestBody, errorMessages) {
     };
 }
 
-export function addSubjectsToWizard(productId, requestBody, errorMessages) {
+export function addSubjectToWizard(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postUOA(
             requestBody,
             (uoaErr, uoaResp) => {
-                if (!uoaErr && uoaResp) {
-                    apiService.projects.postProductUOA(
-                        productId,
-                        [uoaResp.id],
-                        (prodUoaErr, prodUoaResp) => {
-                            dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectsWizardSuccess(requestBody.name) :
-                                _reportNewProjectError(errorMessages.PRODUCT_REQUEST));
-                        },
-                    );
-                } else {
-                    dispatch(_reportNewProjectError(errorMessages.SUBJECT_REQUEST));
-                }
+                dispatch((!uoaErr && uoaResp) ?
+                    _postSubjectsWizardSuccess(uoaResp) :
+                    _reportNewProjectError(errorMessages.SUBJECT_REQUEST));
             },
         );
     };
 }
 
-export function deleteSubjectsFromWizard(productId, uoaId, errorMessages) {
+export function deleteSubjectFromWizard(productId, uoaId, errorMessages) {
     return (dispatch) => {
         apiService.projects.deleteProductUOA(
             productId,

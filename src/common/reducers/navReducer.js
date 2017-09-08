@@ -15,6 +15,8 @@ export const NavReducer = (state = initialState, action) => {
         return update(state, { ui: { showCreateProject: { $set: action.show } } });
     case type.TOGGLE_CHECK_BACKEND:
         return update(state, { ui: { checkBackend: { $set: !state.ui.checkBackend } } });
+    case type.LOG_OUT:
+        return initialState;
     default:
         return state;
     }
