@@ -30,11 +30,10 @@ export function apiPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
         headers: {
-            Authorization: cookie.load('indaba-auth'),
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+            Accept: '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(requestBody),
+        body: `username=${requestBody.username}&password=${requestBody.password}`,
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }

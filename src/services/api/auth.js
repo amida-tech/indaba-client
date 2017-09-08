@@ -1,13 +1,12 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.API_HTTPS_URL;
+const rootURI = config.AUTH_API_HTTPS_URL;
 
 const auth = {
     login: (authPayload, callback) => { // Auth does not use cookies for login.
-        const path = `${rootURI}/${authPayload.realm}/v0.2/users/token`;
-        const authHash = btoa(`${authPayload.username}:${authPayload.password}`);
-        requests.apiAuthGetRequest(path, authHash, callback);
+        const path = `${rootURI}/api/auth/login`;
+        requests.apiPostRequest(path, authPayload, callback);
     },
 };
 
