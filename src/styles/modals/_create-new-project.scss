@@ -5,20 +5,19 @@ $block-class:'create-new-project'; // Bootstrap is doing its crap again. Call th
         &__button-panel {
             padding: 2em 2em 0;
             text-align: center;
+        }
 
-            &__create-button,
-            &__create-button.grommetux-button {
-                @extend .small-font;
+        &__create-button.grommetux-button {
+            @extend .small-font;
 
-                padding: 12px;
-                border-radius: 2px;
-                height: 32px;
-                font-weight: 700;
+            padding: 12px;
+            border-radius: 2px;
+            height: 32px;
+            font-weight: 700;
 
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
             }
         }
     }
