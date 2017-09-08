@@ -12,6 +12,9 @@ class StageSummary extends Component {
             _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
             <div className='stage-summary'>
+                <div className='stage-summary__header'>
+                    {this.props.stage.title}
+                </div>
                 <Box direction='row'
                     justify='between'
                     responsive={false}

@@ -2,7 +2,6 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/taskActionTypes';
-import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 import { REMOVE_USER } from '../actionTypes/projectActionTypes';
 
 const initialState = {
@@ -12,8 +11,12 @@ const initialState = {
     projectId: 0,
     userId: 0,
     data: [{
+        id: -1,
+        title: '',
         endDate: '',
         userIds: [],
+        projectId: -1,
+        flagCount: 0,
     }],
 };
 
@@ -41,8 +44,6 @@ export const TaskReducer = (state = initialState, action) => {
             { $merge: { endDate: action.endDate } } } } });
     case type.REASSIGN_TASK:
         return update(state, { data: { userId: { $set: action.reassignId } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, { $push: [action.wizard.task] });
     case REMOVE_USER:
         return update(state, { [projectIndex]: {
             tasks: { $apply: tasks => tasks.filter(task => task.userId !== action.userId) } } });

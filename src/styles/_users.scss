@@ -10,10 +10,26 @@ $block-class: 'users';
 
             &--left {
                 margin-right: 5px;
+                border-radius: 2px;
+                letter-spacing: 0.8px;
+                font-weight: 400;
+
+                &:hover {
+                    background: darken(#4eb276, 10);
+                    border-color: darken(#4eb276, 10);
+                }
             }
 
             &--right {
                 margin-right: 20px;
+                border-radius: 2px;
+                letter-spacing: 0.8px;
+                font-weight: 400;
+
+                &:hover {
+                    background: darken(#4eb276, 10);
+                    border-color: darken(#4eb276, 10);
+                }
             }
         }
 
