@@ -24,48 +24,41 @@ class MatrixContainer extends Component {
                         discussActions={this.props.discussActions}
                         userActions={this.props.userActions}
                         taskActions={this.props.taskActions} />}
-                  <div className='matrix-container__task-matrix'>
-                      <table className='table table-bordered workflow-table' key='MatrixContainer'>
-                        <thead>
-                          <tr key='StageHeader'>
-                            <th className={['matrix-container__header',
-                                'matrix-container__header--subject'].join(' ')}>
-                                {this.props.vocab.COMMON.SUBJECTS}
-                            </th>
-                            {this.props.project.stages.map(stage =>
-                              <th key={stage.id}
-                                  className='matrix-container__header'>
-                                  {stage.title}
-                              </th>,
-                            )}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr key={'Summary'}>
-                            <td key='empty-subject-summary-row'></td>
-                            {this.props.project.stages.map(stage =>
-                              <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
-                                <StageSummary stage={stage}
-                                    userGroups={this.props.project.userGroups}
-                                    vocab={this.props.vocab}/>
-                              </td>)}
-                          </tr>
-                          {this.props.project.subjects.map((subject, key) =>
-                            <FilteredRow key={key}
-                              subject={{ name: subject, key }}
-                              surveySize={this.props.survey.questions.length}
-                              stages={this.props.project.stages}
-                              tasks={this.props.tasks}
-                              responses={this.props.responses}
-                              users={this.props.users}
-                              vocab={this.props.vocab}
-                              project={this.props.project}
-                              filter={this.props.project.filter}/>,
-                          )}
-                        </tbody>
-                      </table>
-                  </div>
-                  <div className='matrix-container__sidebar'>
+                    <div className='matrix-container__task-matrix'>
+                        <table className='table table-bordered workflow-table'
+                            key='MatrixContainer'>
+                            <thead>
+                                <tr key={'Summary'}>
+                                    <td className='matrix-container__subject'
+                                        key='empty-subject-summary-row'>
+                                            {this.props.vocab.COMMON.SUBJECTS}
+                                    </td>
+                                    {this.props.project.stages.map(stage =>
+                                    <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
+                                        <StageSummary stage={stage}
+                                            userGroups={this.props.project.userGroups}
+                                            vocab={this.props.vocab}/>
+                                    </td>)}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.props.project.subjects.map((subject, key) =>
+                                    <FilteredRow key={key}
+                                      subject={{ name: subject.name, id: subject.id, key }}
+                                      surveySize={this.props.survey.questions ?
+                                          this.props.survey.questions.length : 0}
+                                      stages={this.props.project.stages}
+                                      tasks={this.props.tasks}
+                                      responses={this.props.responses}
+                                      users={this.props.users}
+                                      vocab={this.props.vocab}
+                                      project={this.props.project}
+                                      filter={this.props.project.filter}/>,
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                <div className='matrix-container__sidebar'>
                     <AssigneeContainer {...this.props} />
                 </div>
             </div>

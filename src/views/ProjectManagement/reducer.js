@@ -14,8 +14,6 @@ export const initialState = {
             show: false,
             task: {},
         },
-        showAddStage: false,
-        showAddSubject: false,
         userGroupListSearchQuery: '',
     },
 };
@@ -46,14 +44,6 @@ export default (state = initialState, action) => {
             show: { $set: false },
             task: { $set: {} },
         } } });
-    case type.SHOW_ADD_STAGE_MODAL:
-        return update(state, { ui: { showAddStage: { $set: true } } });
-    case type.CLOSE_ADD_STAGE_MODAL:
-        return update(state, { ui: { showAddStage: { $set: false } } });
-    case type.SHOW_ADD_SUBJECT_MODAL:
-        return update(state, { ui: { showAddSubject: { $set: true } } });
-    case type.CLOSE_ADD_SUBJECT_MODAL:
-        return update(state, { ui: { showAddSubject: { $set: false } } });
     default:
         return state;
     }

@@ -26,9 +26,7 @@ export default (state = initialState, action) => {
             searchQuery: { $set: action.searchQuery },
         } });
     case actionTypes.PM_DASH_SET_FILTER:
-        return update(state, { ui: {
-            filter: { $set: action.filter },
-        } });
+        return update(state, { ui: { filter: { $set: action.filter } } });
     case actionTypes.PM_DASH_SET_PROJECT_NAME:
         return update(state, { ui: { names: { [projectId]: {
             projectName: { $set: action.name },

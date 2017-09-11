@@ -6,9 +6,9 @@ $block-class: 'search-input';
         align-items: center;
         position: relative;
 
-        &__input {
+        &__input,
+        .grommet &__input:not(.grommetux-input) {
             flex: 1;
-            padding: 0.5em 1em;
             border: 1px solid $border-color;
             border-radius: 1px;
         }

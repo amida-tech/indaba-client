@@ -9,7 +9,8 @@ class CreateNewProject extends Component {
                 onCancel={this.props.onCancel}>
                 <div className='create-new-project__body'>
                     <div className='create-new-project__button-panel'>
-                        <Button path='/create-new-project'
+                        <Button className='create-new-project__create-button'
+                            path='/create-new-project'
                             onClick={this.props.onCancel}
                             primary
                             label={this.props.vocab.MODAL.CREATE_PROJECT.NEW} />

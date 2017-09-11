@@ -5,6 +5,11 @@ $block-class:'stage-summary';
         display: flex;
         flex-direction: column;
 
+        &__header {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
         &__row {
             display: flex;
 

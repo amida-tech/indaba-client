@@ -38,14 +38,6 @@ function collect(connector, monitor) {
 class StageSlot extends Component {
     constructor(props) {
         super(props);
-        const diff = TaskStatus.daysUntilDue(this.props.task, [this.props.stageData]);
-        const late = (diff <= 0);
-        this.state = {
-            diff,
-            late,
-            done: TaskStatus.responsesComplete(this.props.task, this.props.surveySize),
-            flag: TaskStatus.responsesFlagged(this.props.task),
-        };
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
     }
 
@@ -53,24 +45,24 @@ class StageSlot extends Component {
         this.props.showTaskOptionsModal(this.props.task);
     }
 
-    displayDueTime() {
-        if (this.state.done) {
+    displayDueTime(done, diff) {
+        if (done) {
             return '';
-        } else if (this.state.diff <= 0) {
+        } else if (diff <= 0) {
             return '';
-        } else if (this.state.diff === 1) {
+        } else if (diff === 1) {
             return this.props.vocab.DUE_TOMORROW;
-        } else if (this.state.diff > 1) {
-            return this.props.vocab.DUE_IN + this.state.diff + this.props.vocab.DAYS;
+        } else if (diff > 1) {
+            return this.props.vocab.DUE_IN + diff + this.props.vocab.DAYS;
         }
         return '';
     }
 
-    displayStatus() {
-        if (this.state.done) {
+    displayStatus(done, diff) {
+        if (done) {
             return { label: this.props.vocab.DONE, type: StatusLabelType.GOOD };
         }
-        if (this.state.late) {
+        if (diff <= 0) {
             return { label: this.props.vocab.LATE, type: StatusLabelType.BAD };
         }
         if (!TaskStatus.responsesExist(this.props.task)) {
@@ -81,7 +73,12 @@ class StageSlot extends Component {
 
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
-        const labelDisplay = this.displayStatus();
+
+        const diff = TaskStatus.daysUntilDue(this.props.task);
+        const done = TaskStatus.responsesComplete(this.props.task, this.props.surveySize);
+
+        const labelDisplay = this.displayStatus(done, diff);
+
         return connectDropTarget(
         <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
             {this.props.user &&
@@ -97,7 +94,7 @@ class StageSlot extends Component {
                     </div>
                     <div className='stage-slot__flag-row'>
                         <span className='stage-slot__role-span'>{this.props.vocab.ASSIGNEE}</span>
-                        {this.state.flag &&
+                        {TaskStatus.responsesFlagged(this.props.task) &&
                             <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
                             </div>
@@ -105,7 +102,7 @@ class StageSlot extends Component {
                     </div>
                     <div className='stage-slot__due-row'>
                         <div className='stage-slot__due-time'>
-                            {this.displayDueTime()}
+                            {this.displayDueTime(done, diff)}
                         </div>
                         { labelDisplay && <StatusLabel {...labelDisplay} /> }
                     </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'grommet';
+import SearchInput from '../../../common/components/Dashboard/SearchInput';
 
 class FilteredList extends Component {
     constructor(props) {
@@ -28,11 +29,10 @@ class FilteredList extends Component {
 
         return (
             <div className='filtered-list'>
-                <input className='filtered-list__query'
-                    type='text'
+                <SearchInput
                     placeholder={this.props.placeHolder}
                     onChange={this.handleQuery}/>
-                <List className='filtered-list__list'
+                <List className='filtered-list'
                     {...listProps}>
                     {this.props.items.map(item => (
                         <ListItem className='filtered-list__item'

@@ -1,19 +1,29 @@
 $block-class:'new-project-title';
+$bad-color: #af1212;
 
 @at-root {
     .#{$block-class} {
+        display: flex;
+        flex-direction: column;
         padding: 3em 2em;
 
-        &__name {
-            width: 100%;
+        &__layer {
+            width: 800px;
         }
 
         &__summary-container {
-            padding-top: 1em;
+            padding-bottom: 0.5em;
+            margin-top: 8px;
+        }
+
+        &__error {
+            width: 50%;
+            color: $bad-color;
         }
 
         &__summary {
             resize: none;
+            width: 100%;
         }
     }
 }

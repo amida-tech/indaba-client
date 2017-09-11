@@ -12,13 +12,16 @@ class StageSummary extends Component {
             _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
             <div className='stage-summary'>
+                <div className='stage-summary__header'>
+                    {this.props.stage.title}
+                </div>
                 <Box direction='row'
                     justify='between'
                     responsive={false}
                     className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
-                            {TaskStatus.formatDate(this.props.stage.startStage)}
+                            {TaskStatus.formatDate(this.props.stage.startDate)}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.START_STAGE}
@@ -39,7 +42,7 @@ class StageSummary extends Component {
                     className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
-                            {TaskStatus.formatDate(this.props.stage.endStage)}
+                            {TaskStatus.formatDate(this.props.stage.endDate)}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.END_STAGE}

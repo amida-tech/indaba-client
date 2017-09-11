@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, SearchInput } from 'grommet';
+import { Button } from 'grommet';
 import SubjectList from './SubjectList';
 import AddSubject from '../Modals/AddSubject';
+import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
 class Subjects extends Component {
     constructor(props) {
@@ -32,8 +33,11 @@ class Subjects extends Component {
                 </div>
                 <hr className='divider' />
                 <div className='subjects__table'>
-                    <SearchInput className='subjects__search-input'
-                        onDOMChange={evt => this.setState({ query: evt.target.value })}/>
+                    <div className='subjects__search-wrapper'>
+                        <SearchInput
+                            placeholder={this.props.vocab.COMMON.SEARCH}
+                            onChange={evt => this.setState({ query: evt.target.value })} />
+                    </div>
                     <SubjectList
                         vocab={this.props.vocab}
                         subjects={this.props.subjects}
@@ -48,7 +52,7 @@ class Subjects extends Component {
 Subjects.propTypes = {
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteSubject: PropTypes.func.isRequired,
     onAddSubject: PropTypes.func.isRequired,
 };

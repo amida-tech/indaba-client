@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
+import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
+import { getProjects } from '../../../common/actions/projectActions';
 import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
@@ -15,6 +17,15 @@ import UserTaskListHeader from './UserTaskListHeader';
 import UserTaskListEntry from './UserTaskListEntry';
 
 class UserDashboard extends Component {
+    componentWillMount() {
+        this.props.actions.getProjects(this.props.vocab.ERROR);
+        if (this.props.params.userId) {
+            this.props.actions.getTasksByUser(this.props.params.userId, this.props.vocab.ERROR);
+        } else {
+            this.props.actions.getSelfTasks(this.props.vocab.ERROR);
+        }
+    }
+
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_TASKS:
@@ -69,68 +80,49 @@ class UserDashboard extends Component {
 
 const mapStateToProps = state => ({
     glance: {
-        tasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        newTasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                task.new,
-            ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        lateTasks: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                TaskStatus.dueDateInPast(task,
-                    state.projects.find(project =>
-                        project.id === projectTasks.projectId).stages),
-                ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
-        flagged: state.tasks.map(projectTasks =>
-            projectTasks.tasks.filter(task =>
-                task.userId === state.user.profile.id &&
-                (
-                    state.discuss.find(discussion => discussion.taskId === task.id) ||
-                    { discuss: [] } // mock empty discussion for flag check call
-                ).discuss.some(discussEntry => discussEntry.flag),
-            ).length)
-            .reduce((sum, projectTaskCount) => sum + projectTaskCount, 0),
+        tasks: state.tasks.data.length,
+        newTasks: 0, // Come back to.
+        lateTasks: state.tasks.data.filter(task => TaskStatus.endDateInPast(task)).length,
+        flagged: 0, // Come back to.
     },
+    profile: state.user.profile,
     vocab: state.settings.language.vocabulary,
     messages: state.messages.slice(0, 4),
     ui: state.userdashboard.ui,
-    rows: [].concat(...state.tasks.map(projectTasks =>
-        projectTasks.tasks.filter(task =>
-            task.userId === state.user.profile.id)
-        .map(task => _generateRow(state, projectTasks.projectId, task)))),
+    rows: [].concat(...state.tasks.data.map(task =>
+        _generateRow(state, task.projectId, task))),
 });
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({},
+        actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
 });
 
 const _generateRow = (state, projectId, task) => {
-    const project = state.projects.find(findProject => findProject.id === projectId);
-    const discussion =
-    (
-        state.discuss.find(findDiscuss => findDiscuss.taskId === task.id) || { discuss: [] }
-    );
-    const answered = discussion.discuss.filter(response => response.value !== undefined).length;
-    const survey = state.surveys.find(findSurvey => findSurvey.projectId === projectId);
+    const project = state.projects.data[0].name ?
+        state.projects.data.find(findProject => findProject.id === projectId) :
+        state.projects.data[0];
+    const subject = project.subjects.find(elem => elem.id === task.uoaId);
+    const discussion = (state.discuss.data.find(findDiscuss =>
+        findDiscuss.taskId === task.id) || { data: [] });
+    const answered = discussion.data.filter(response =>
+        response.value !== undefined).length;
+    const survey = state.surveys.data.find(findSurvey =>
+        findSurvey.projectId === projectId) || { name: '', questions: [] };
     return {
         key: task.id,
         projectId,
-        subject: project.subjects[task.subject],
-        task: project.stages.find(stage => stage.id === task.stage).title,
-        due: task.dueDate || project.stages.find(stage => stage.id === task.stage).endStage,
+        subject: subject ? subject.name : '',
+        task: task.title,
+        due: task.endDate,
         survey: survey.name,
-        flags: discussion.discuss.filter(response => response.flag).length,
-        progress: `${answered} of ${survey.questions.length} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        flags: task.flagCount,
+        progress: `${answered} / ${survey.questions.length}
+            ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
         new: !!task.new,
-        late: TaskStatus.dueDateInPast(task, project.stages) &&
-            !TaskStatus.responsesComplete({ response: discussion.discuss },
+        late: TaskStatus.endDateInPast(task) &&
+            !TaskStatus.responsesComplete({ response: discussion.data },
                 survey.questions.length),
-        complete: TaskStatus.responsesComplete({ response: discussion.discuss },
+        complete: TaskStatus.responsesComplete({ response: discussion.data },
             survey.questions.length),
     };
 };
