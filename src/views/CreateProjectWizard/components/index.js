@@ -62,6 +62,7 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.actions.addProjectToWizard}
                         vocab={this.props.vocab} />
                 }
+
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.wizard.ui.step}
                     onActive={this.changeStep}>

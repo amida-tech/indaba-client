@@ -6,6 +6,8 @@ $block-class: 'summary';
         flex-direction: row;
         justify-content: space-between;
         padding: 2em;
+        margin-left: 10%;
+        margin-right: 10%;
 
         &__survey-icon {
             fill: $brand-color;

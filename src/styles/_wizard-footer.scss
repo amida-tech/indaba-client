@@ -1,0 +1,26 @@
+$block-class: 'wizard-footer';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-left: 2em;
+        padding-right: 2em;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+
+        &__button {
+            background-color: #fff;
+
+            &--skip,
+            &--cancel,
+            &--back {
+                color: $header-font-color;
+            }
+        }
+    }
+}
