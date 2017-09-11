@@ -10,19 +10,19 @@ class AddSubjectControl extends Component {
         return (
             <div className='add-subject-control'>
                 <form className='add-subject-control__form'
-                onSubmit={this.props.handleSubmit}>
+                    onSubmit={this.props.handleSubmit}>
                     <div className='add-subject-control__header'>
-                        <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
+                        {this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}
                     </div>
                     <div className='add-subject-control__fields'>
                         <Field name='subjects'
-                        className='add-subject-control__input'
+                            className='add-subject-control__input'
                             component='input'
                             type='text'/>
                         <div className=''
                             onClick={this.props.onPlusClick}>
                             <IonIcon icon='ion-ios-plus'
-                            className='add-subject-control__plus-icon'/>
+                                className='add-subject-control__plus-icon'/>
                         </div>
                     </div>
                 </form>

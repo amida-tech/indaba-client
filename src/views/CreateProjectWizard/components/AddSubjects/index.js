@@ -30,7 +30,7 @@ class AddSubjects extends Component {
                             <div className='add-subjects__table-row' key={subject}>
                                 {subject}
                                 <DeleteIconButton onClick={() =>
-                                this.props.onDeleteSubject(subject)} />
+                                    this.props.onDeleteSubject(subject)} />
                             </div>,
                     )}
             </div>
