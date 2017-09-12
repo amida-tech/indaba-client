@@ -54,7 +54,7 @@ export function addStage(project, stage, errorMessages) {
 
     return (dispatch) => {
         apiService.projects.putWorkflowSteps(
-            project.workflowId,
+            project.workflowIds[0],
             requestBody,
             (workflowErr, workflowResp) => {
                 dispatch((!workflowErr && workflowResp) ?

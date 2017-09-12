@@ -40,6 +40,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+    case type.PROJECT_WIZARD_INITIALIZE:
+        return initialState;
     case type.UPDATE_WIZARD_PROJECT_TITLE:
         return update(state, { project: { name: { $set: action.title } } });
     case type.UPDATE_WIZARD_PROJECT_SUMMARY:
@@ -56,8 +58,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
         } } });
-    case type.ADD_PROJECT_FROM_WIZARD: // COME BACK TO
-        return update(initialState, { ui: { projectLink: { $set: state.ui.projectLink } } });
     case type.GO_TO_STEP:
         return update(state, { ui: { step: { $set: action.step } } });
     case type.SHOW_COMPLETE_WIZARD:

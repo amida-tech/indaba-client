@@ -1,5 +1,11 @@
 import * as actionTypes from './actionTypes';
 
+export function projectWizardInitialize() {
+    return {
+        type: actionTypes.PROJECT_WIZARD_INITIALIZE,
+    };
+}
+
 export function updateWizardProjectTitle(title) {
     return {
         type: actionTypes.UPDATE_WIZARD_PROJECT_TITLE,
@@ -26,13 +32,6 @@ export function showAddUserGroupWizardModal(show) {
     return {
         type: actionTypes.SHOW_ADD_USER_GROUP_WIZARD_MODAL,
         show,
-    };
-}
-
-export function addProjectFromWizard(wizard) {
-    return {
-        type: actionTypes.ADD_PROJECT_FROM_WIZARD,
-        wizard,
     };
 }
 
