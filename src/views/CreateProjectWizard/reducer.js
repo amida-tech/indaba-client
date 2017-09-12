@@ -35,10 +35,6 @@ const initialState = {
         status: 'Draft',
         questions: [],
     },
-    task: {
-        projectId: 41,
-        tasks: [],
-    },
 };
 
 export default (state = initialState, action) => {
@@ -51,11 +47,12 @@ export default (state = initialState, action) => {
         return update(state,
             { ui: {
                 showProjectTitle: { $set: false },
-                projectLink: { $set: action.id },
+                projectLink: { $set: action.data.id },
                 errorMessage: { $set: '' } },
                 project: {
-                    id: { $set: action.id },
-                    productId: { $set: action.productId },
+                    id: { $set: action.data.id },
+                    productId: { $set: action.data.productId },
+                    workflowIds: { $set: [action.data.workflowIds] },
                 } });
     case type.POST_SUBJECTS_WIZARD_SUCCESS:
         return Array.isArray(action.subjects) ? // TODO Make always array later.
@@ -68,9 +65,6 @@ export default (state = initialState, action) => {
         state : update(state, { project: { users: { $push: [action.user.id] } } });
     case type.POST_GROUP_WIZARD_SUCCESS:
         return update(state, { project: { userGroups: { $push: [action.group] } } });
-    case type.POST_WORKFLOW_WIZARD_SUCCESS:
-        return update(state, { project: { workflowIds: {
-            $set: _.concat(state.project.workflowIds, action.workflowIds) } } });
     case type.PUT_STAGE_WIZARD_SUCCESS:
         return update(state, { project: { stages: { $push: [action.stage] } } });
     case type.SHOW_ADD_STAGE_WIZARD_MODAL:

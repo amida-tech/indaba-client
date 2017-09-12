@@ -21,36 +21,9 @@ export function addProjectToWizard(requestBody, errorMessages) {
         apiService.projects.postProject(
             requestBody,
             (projectErr, projectResp) => {
-                if (!projectErr && projectResp) {
-                    apiService.projects.postProduct({
-                        title: requestBody.codeName,
-                        description: requestBody.description,
-                        projectId: projectResp.id,
-                        status: 0,
-                        originalLangId: 1,
-                    },
-                    (productErr, productResp) => {
-                        if (!productErr && productResp) {
-                            dispatch(_postProjectWizardSuccess(projectResp.id, productResp.id));
-                            apiService.projects.postWorkflows({
-                                productId: productResp.id,
-                                name: requestBody.codeName,
-                                description: requestBody.description,
-                            },
-                            (workflowErr, workflowResp) => {
-                                dispatch((!workflowErr) ?
-                                    _postWorkflowWizardSuccess(workflowResp.id) :
-                                    _reportNewProjectError(errorMessages.WORKFLOW_REQUEST));
-                            });
-                        } else {
-                            dispatch(_reportNewProjectError(errorMessages.PRODUCT_REQUEST));
-                        }
-                    });
-                } else if (projectErr && !projectResp) {
-                    dispatch(_reportNewProjectError(errorMessages.SERVER_ISSUE));
-                } else {
-                    dispatch(_reportNewProjectError(errorMessages.PROJECT_REQUEST));
-                }
+                dispatch((!projectErr && projectResp) ?
+                    _postProjectWizardSuccess(projectResp) :
+                    _reportNewProjectError(errorMessages.PROJECT_REQUEST));
             },
         );
     };
@@ -208,11 +181,10 @@ export function addUsersSetGroupsFilter(filter) {
 }
 
 // Private Functions
-function _postProjectWizardSuccess(id, productId) {
+function _postProjectWizardSuccess(data) {
     return {
         type: actionTypes.POST_PROJECT_WIZARD_SUCCESS,
-        id,
-        productId,
+        data,
     };
 }
 
@@ -234,13 +206,6 @@ function _postGroupsWizardSuccess(group) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_SUCCESS,
         group,
-    };
-}
-
-function _postWorkflowWizardSuccess(workflowIds) {
-    return {
-        type: actionTypes.POST_WORKFLOW_WIZARD_SUCCESS,
-        workflowIds,
     };
 }
 

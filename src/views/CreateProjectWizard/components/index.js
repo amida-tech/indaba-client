@@ -121,7 +121,6 @@ CreateProjectWizard.propTypes = {
             subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
         }).isRequired,
         survey: PropTypes.object.isRequired,
-        task: PropTypes.object.isRequired,
         ui: PropTypes.shape({
             errorMessage: PropTypes.string,
             showComplete: PropTypes.bool.isRequired,
