@@ -34,7 +34,8 @@
     "PENDING": "Pending",
     "OK": "OK",
     "NEW": "New",
-    "LATE": "Late"
+    "LATE": "Late",
+    "LOG_OUT": "Log Out"
   },
   "ERROR": {
     "DUPLICATE": "Attempted to enter a duplicate value.",
@@ -45,16 +46,15 @@
     "FETCH_PROJECTS": "Fetch projects failed.",
     "FETCH_TASKS": "Fetch tasks failed.",
     "FETCH_DISCUSS": "Fetch discuss failed.",
-    "INSERT_PROJECT": "The system failed to insert the new project into the database. Please try again.",
-    "INSERT_PRODUCT": "The system failed to insert the new product into the database. Please try again later.",
-    "CONNECT_PRODUCT": "The system failed to connect the product to the project, stage or subject(s). Try again later.",
-    "INSERT_WORKFLOW": "The system failed to insert the new workflow into the database. Please try again later.",
-    "INSERT_SUBJECT": "Something has gone wrong with subject(s) insertion. Please try again.",
-    "INSERT_USER": "Failed to insert user.",
-    "INSERT_TASK": "Failed to insert task.",
-    "INSERT_GROUP": "The assignment of the user groups to this stage has failed. Please try again.",
-    "INSERT_USERGROUP": "The group was created, but insertion of the users into the group failed.",
-    "INSERT_STAGE": "Something has gone wrong with stage insertion. Please try again."
+    "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
+    "PRODUCT_REQUEST": "The system failed to connect/disconnect the product to the project, stage or subject(s). Try again later.",
+    "WORKFLOW_REQUEST": "The system failed to insert the new workflow into the database. Please try again later.",
+    "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
+    "SUBJECT_REQUEST": "Something has gone wrong with subject(s) insertion or deletion. Please try again.",
+    "USER_REQUEST": "Failed to insert or delete user.",
+    "TASK_REQUEST": "Failed to insert or delete task.",
+    "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
+    "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again."
   },
   "COMMON_BUTTONS": {
       "YES": "Yes",

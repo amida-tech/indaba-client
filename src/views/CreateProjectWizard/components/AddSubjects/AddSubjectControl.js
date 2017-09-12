@@ -33,7 +33,7 @@ class AddSubjectControl extends Component {
 AddSubjectControl.propTypes = {
     productId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    addSubjectsToWizard: PropTypes.func.isRequired,
+    addSubjectToWizard: PropTypes.func.isRequired,
 };
 
 const FORM_NAME = 'add-subject-control';
@@ -43,9 +43,9 @@ export default connect(null, dispatch => ({
 }))(reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
-        ownProps.addSubjectsToWizard(
-            ownProps.productId,
+        ownProps.addSubjectToWizard(
             {
+                productId: ownProps.productId,
                 name: values.subjects,
                 unitOfAnalysisType: 1,
             },

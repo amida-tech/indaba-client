@@ -40,39 +40,52 @@ export function addProjectToWizard(requestBody, errorMessages) {
                             (workflowErr, workflowResp) => {
                                 dispatch((!workflowErr) ?
                                     _postWorkflowWizardSuccess(workflowResp.id) :
-                                    _postWorkflowWizardFailure(errorMessages.INSERT_WORKFLOW));
+                                    _reportNewProjectError(errorMessages.WORKFLOW_REQUEST));
                             });
                         } else {
-                            dispatch(_postProjectWizardFailure(errorMessages.INSERT_PRODUCT));
+                            dispatch(_reportNewProjectError(errorMessages.PRODUCT_REQUEST));
                         }
                     });
                 } else if (projectErr && !projectResp) {
-                    dispatch(_postProjectWizardFailure(errorMessages.SERVER_ISSUE));
+                    dispatch(_reportNewProjectError(errorMessages.SERVER_ISSUE));
                 } else {
-                    dispatch(_postProjectWizardFailure(errorMessages.INSERT_PROJECT));
+                    dispatch(_reportNewProjectError(errorMessages.PROJECT_REQUEST));
                 }
             },
         );
     };
 }
 
-export function addSubjectsToWizard(productId, requestBody, errorMessages) {
+export function addSubjectToWizard(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.projects.postUOA(
             requestBody,
             (uoaErr, uoaResp) => {
-                if (!uoaErr && uoaResp) {
-                    apiService.projects.postProductUOA(
-                        productId,
-                        [uoaResp.id],
-                        (prodUoaErr, prodUoaResp) => {
-                            dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectsWizardSuccess(requestBody.name) :
-                                _postSubjectsWizardFailure(errorMessages.CONNECT_PRODUCT));
+                dispatch((!uoaErr && uoaResp) ?
+                    _postSubjectsWizardSuccess(uoaResp) :
+                    _reportNewProjectError(errorMessages.SUBJECT_REQUEST));
+            },
+        );
+    };
+}
+
+export function deleteSubjectFromWizard(productId, uoaId, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.deleteProductUOA(
+            productId,
+            uoaId,
+            (prodUoaErr, prodUoaResp) => {
+                if (!prodUoaErr && prodUoaResp) {
+                    apiService.projects.deleteUOA(
+                        uoaId,
+                        (uoaErr, uoaResp) => {
+                            dispatch((!uoaErr && uoaResp) ?
+                                _deleteSubjectsWizardSuccess(uoaId) :
+                                _reportNewProjectError(errorMessages.SUBJECT_REQUEST));
                         },
                     );
                 } else {
-                    dispatch(_postSubjectsWizardFailure(errorMessages.INSERT_SUBJECT));
+                    dispatch(_reportNewProjectError(errorMessages.PRODUCT_REQUEST));
                 }
             },
         );
@@ -101,7 +114,7 @@ export function addGroupToWizard(organizationId, groupData, errorMessages) {
                     requestBody.id = groupResp.id;
                     dispatch(_postGroupsWizardSuccess(requestBody));
                 } else {
-                    dispatch(_postGroupsWizardFailure(errorMessages.INSERT_GROUP));
+                    dispatch(_reportNewProjectError(errorMessages.GROUP_REQUEST));
                 }
             },
         );
@@ -117,7 +130,7 @@ export function addStageToWizard(workflowIds, requestBody, errorMessages) {
                 dispatch((!workflowErr && workflowResp) ?
                     _putStageWizardSuccess(
                         Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] })) :
-                    _putStageWizardFailure(errorMessages.INSERT_STAGE));
+                    _reportNewProjectError(errorMessages.STAGE_REQUEST));
             },
         );
     };
@@ -135,13 +148,6 @@ export function showAddUserGroupWizardModal(show) {
     return {
         type: actionTypes.SHOW_ADD_USER_GROUP_WIZARD_MODAL,
         show,
-    };
-}
-
-export function deleteSubjectFromWizard(subject) {
-    return {
-        type: actionTypes.DELETE_SUBJECT_FROM_WIZARD,
-        subject,
     };
 }
 
@@ -210,13 +216,6 @@ function _postProjectWizardSuccess(id, productId) {
     };
 }
 
-function _postProjectWizardFailure(error) {
-    return {
-        type: actionTypes.POST_PROJECT_WIZARD_FAILURE,
-        error,
-    };
-}
-
 function _postSubjectsWizardSuccess(subjects) {
     return {
         type: actionTypes.POST_SUBJECTS_WIZARD_SUCCESS,
@@ -224,10 +223,10 @@ function _postSubjectsWizardSuccess(subjects) {
     };
 }
 
-function _postSubjectsWizardFailure(error) {
+function _deleteSubjectsWizardSuccess(subjects) {
     return {
-        type: actionTypes.POST_SUBJECTS_WIZARD_FAILURE,
-        error,
+        type: actionTypes.DELETE_SUBJECTS_WIZARD_SUCCESS,
+        subjects,
     };
 }
 
@@ -235,13 +234,6 @@ function _postGroupsWizardSuccess(group) {
     return {
         type: actionTypes.POST_GROUP_WIZARD_SUCCESS,
         group,
-    };
-}
-
-function _postGroupsWizardFailure(error) {
-    return {
-        type: actionTypes.POST_GROUP_WIZARD_FAILURE,
-        error,
     };
 }
 
@@ -259,16 +251,9 @@ function _putStageWizardSuccess(stage) {
     };
 }
 
-function _postWorkflowWizardFailure(error) {
+function _reportNewProjectError(error) {
     return {
-        type: actionTypes.POST_WORKFLOW_WIZARD_FAILURE,
-        error,
-    };
-}
-
-function _putStageWizardFailure(error) {
-    return {
-        type: actionTypes.PUT_STAGE_WIZARD_FAILURE,
+        type: actionTypes.REPORT_NEW_PROJECT_ERROR,
         error,
     };
 }

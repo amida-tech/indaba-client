@@ -24,14 +24,15 @@ class AddSubjects extends Component {
                 </p>
                 <AddSubjectControl
                     productId={this.props.project.productId}
-                    addSubjectsToWizard={this.props.actions.addSubjectsToWizard}
+                    addSubjectToWizard={this.props.actions.addSubjectToWizard}
                     vocab={this.props.vocab} />
                 {this.props.project.subjects &&
                     this.props.project.subjects.map(subject =>
-                    <div className='add-subjects__table-row' key={subject}>
-                        {subject}
+                    <div className='add-subjects__table-row'
+                        key={`subject${subject.name}${subject.id}`}>
+                        {subject.name}
                         <DeleteIconButton onClick={() =>
-                            this.props.actions.deleteSubjectFromWizard(subject)} />
+                            this.props.actions.deleteSubjectFromWizard(subject.id)} />
                     </div>,
                 )}
             </div>
@@ -41,7 +42,7 @@ class AddSubjects extends Component {
 
 AddSubjects.propTypes = {
     project: PropTypes.shape({
-        subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+        subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,

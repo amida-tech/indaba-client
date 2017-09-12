@@ -51,6 +51,14 @@ $block-class:'primary-nav';
             margin-right: 30px;
         }
 
+        &__logout {
+            @extend .primary-nav__item;
+
+            position: relative;
+            vertical-align: text-bottom;
+            margin-right: 20px;
+        }
+
         &__envelope {
             margin-right: 22px;
         }

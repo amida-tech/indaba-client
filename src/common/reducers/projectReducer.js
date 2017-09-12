@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/projectActionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
 import { POST_NEW_USER_SUCCESS } from '../actionTypes/userActionTypes';
 
@@ -63,7 +64,7 @@ export const ProjectReducer = (state = initialState, action) => {
             subjects: { $push: [action.subject] },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
-    case type.DELETE_SUBJECT:
+    case type.DELETE_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
             subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
             lastUpdated: { $set: new Date().toISOString() },
@@ -98,6 +99,8 @@ export const ProjectReducer = (state = initialState, action) => {
         return update(state, { data: { [projectIndex]: { name: { $set: action.name } } } });
     case type.REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }
