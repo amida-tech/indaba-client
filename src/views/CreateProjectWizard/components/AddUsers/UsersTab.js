@@ -18,7 +18,10 @@ class UsersTab extends Component {
 
     handleSearchSelect(selection) {
         this.props.actions.addUsersSetUsersFilter('');
-        this.props.actions.addUser(selection.suggestion.value, this.props.projectId);
+        this.props.actions.addUser(
+            selection.suggestion.value.id,
+            this.props.projectId,
+            this.props.vocab.ERROR);
     }
 
     handleUserRemove(userId, projectId) {

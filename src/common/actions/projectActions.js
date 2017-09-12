@@ -68,8 +68,6 @@ export function addStage(project, stage, errorMessages) {
 }
 
 export function addSubject(project, name, errorMessages) {
-    console.log(project);
-    console.log(name);
     if (project.subjects.some(subject => subject.name === name)) {
         return dispatch =>
             dispatch(_reportProjectError(errorMessages.DUPLICATE));
@@ -78,24 +76,16 @@ export function addSubject(project, name, errorMessages) {
     const requestBody = {
         name,
         unitOfAnalysisType: 1,
+        productId: project.productId,
     };
+
     return (dispatch) => {
         apiService.projects.postUOA(
             requestBody,
             (uoaErr, uoaResp) => {
-                if (!uoaErr && uoaResp) {
-                    apiService.projects.postProductUOA(
-                        project.productId,
-                        [uoaResp.id],
-                        (prodUoaErr, prodUoaResp) => {
-                            dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectSuccess({ name, id: uoaResp.id }, project.id) :
-                                _reportProjectError(errorMessages.PRODUCT_REQUEST));
-                        },
-                    );
-                } else {
-                    dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
-                }
+                dispatch((!uoaErr && uoaResp) ?
+                        _postSubjectSuccess(uoaResp, project.id) :
+                        _reportProjectError(errorMessages.SUBJECT_REQUEST));
             },
         );
     };
@@ -120,11 +110,13 @@ export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
 
 export function addUser(userId, projectId, errorMessages) {
     const requestBody = {
-
+        userId,
+        projectId,
     };
 
     return (dispatch) => {
         apiService.projects.postProjectUsers(
+            projectId,
             requestBody,
             (userErr, userResp) => {
                 dispatch((!userErr && userResp) ?
@@ -266,10 +258,10 @@ function _putStageSuccess(stage, projectId) {
     };
 }
 
-function _postSubjectSuccess(subject, projectId) {
+function _postSubjectSuccess(subjects, projectId) {
     return {
         type: actionTypes.POST_SUBJECT_SUCCESS,
-        subject,
+        subjects,
         projectId,
     };
 }

@@ -62,7 +62,7 @@ export const ProjectReducer = (state = initialState, action) => {
         } } });
     case type.POST_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
+            subjects: { $set: _.concat(state.data[projectIndex].subjects, action.subjects) },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
     case type.DELETE_SUBJECT_SUCCESS:
