@@ -5,12 +5,23 @@ import apiService from '../../services/api';
 export function getProjects(errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjects(
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
-                    dispatch(_getProjectsSuccess(projResp));
-                } else {
-                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
-                }
+            (projectErr, projectResp) => {
+                dispatch((!projectErr && projectResp) ?
+                    _getProjectsSuccess(projectResp) :
+                    _reportProjectError(errorMessages.FETCH_PROJECTS));
+            },
+        );
+    };
+}
+
+export function postProject(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.projects.postProject(
+            requestBody,
+            (projectErr, projectResp) => {
+                dispatch((!projectErr && projectResp) ?
+                    _postProjectSuccess(projectResp) :
+                    _reportProjectError(errorMessages.PROJECT_REQUEST));
             },
         );
     };
@@ -34,12 +45,13 @@ export function getProjectById(projectId, errorMessages) {
 export function addStage(project, stage, errorMessages) {
     const requestBody = [Object.assign({},
         {
-            workflowId: project.workflowId,
+            workflowId: project.workflowIds[0],
             position: project.stages.length,
             role: 3,
         },
         stage,
     )];
+
     return (dispatch) => {
         apiService.projects.putWorkflowSteps(
             project.workflowId,
@@ -47,8 +59,8 @@ export function addStage(project, stage, errorMessages) {
             (workflowErr, workflowResp) => {
                 dispatch((!workflowErr && workflowResp) ?
                     _putStageSuccess(
-                        project.id,
-                        Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] })) :
+                        Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] }),
+                        project.id) :
                     _reportProjectError(errorMessages.STAGE_REQUEST));
             },
         );
@@ -56,6 +68,8 @@ export function addStage(project, stage, errorMessages) {
 }
 
 export function addSubject(project, name, errorMessages) {
+    console.log(project);
+    console.log(name);
     if (project.subjects.some(subject => subject.name === name)) {
         return dispatch =>
             dispatch(_reportProjectError(errorMessages.DUPLICATE));
@@ -75,7 +89,7 @@ export function addSubject(project, name, errorMessages) {
                         [uoaResp.id],
                         (prodUoaErr, prodUoaResp) => {
                             dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectSuccess(project.id, { name, id: uoaResp.id }) :
+                                _postSubjectSuccess({ name, id: uoaResp.id }, project.id) :
                                 _reportProjectError(errorMessages.PRODUCT_REQUEST));
                         },
                     );
@@ -87,32 +101,53 @@ export function addSubject(project, name, errorMessages) {
     };
 }
 
-// export function deleteSubject(projectId, subject, errorMessages) {
-//     const requestBody = {
-//
-//     };
-//
-//     return (dispatch) => {
-//         apiService.projects.deleteProductUOA(
-//             requestBody,
-//             (uoaErr, uoaResp) => {
-//                 if (!uoaErr && uoaResp) {
-//                     apiService.projects.deleteUOA(
-//                         project.productId,
-//                         [uoaResp.id],
-//                         (prodUoaErr, prodUoaResp) => {
-//                             dispatch((!prodUoaErr && prodUoaResp) ?
-//                                 _postSubjectSuccess(project.id, name, prodUoaResp.UOAid) :
-//                                 _reportProjectError(errorMessages.PRODUCT_REQUEST));
-//                         },
-//                     );
-//                 } else {
-//                     dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
-//                 }
-//             },
-//         );
-//     };
-// }
+export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
+    if (!fromWizard) {
+        // Safety check on tasks.
+    }
+
+    return (dispatch) => {
+        apiService.projects.deleteUOA(
+            project.productId,
+            (uoaErr, uoaResp) => {
+                dispatch((!uoaErr && uoaResp) ?
+                    _deleteSubjectSuccess(uoaId, project.id) :
+                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+            },
+        );
+    };
+}
+
+export function addUser(userId, projectId, errorMessages) {
+    const requestBody = {
+
+    };
+
+    return (dispatch) => {
+        apiService.projects.postProjectUsers(
+            requestBody,
+            (userErr, userResp) => {
+                dispatch((!userErr && userResp) ?
+                    _postProjectUserSuccess(userId, projectId) :
+                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+            },
+        );
+    };
+}
+
+export function removeUser(userId, projectId, errorMessages) {
+    // Do safety call for tasks assigned to this user.
+
+    return (dispatch) => {
+        apiService.projects.deleteProjectUsers(
+            (userErr, userResp) => {
+                dispatch((!userErr && userResp) ?
+                    _deleteProjectUserSuccess(userId, projectId) :
+                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+            },
+        );
+    };
+}
 
 export function addUserGroup(groupData, projectId, organizationId, errorMessages) {
     const requestBody = {
@@ -193,14 +228,6 @@ export function updateUserGroup(group, projectId) {
     };
 }
 
-export function removeUser(userId, projectId) {
-    return {
-        type: actionTypes.REMOVE_USER,
-        userId,
-        projectId,
-    };
-}
-
 export function setProjectName(name, projectId) {
     return {
         type: actionTypes.SET_PROJECT_NAME,
@@ -210,6 +237,13 @@ export function setProjectName(name, projectId) {
 }
 
 // Private functions.
+function _postProjectSuccess(project) {
+    return {
+        type: actionTypes.POST_PROJECT_SUCCESS,
+        project,
+    };
+}
+
 function _getProjectsSuccess(projects) {
     return {
         type: actionTypes.GET_PROJECTS_SUCCESS,
@@ -224,31 +258,47 @@ function _getProjectByIdSuccess(project) {
     };
 }
 
-function _putStageSuccess(projectId, stage) {
+function _putStageSuccess(stage, projectId) {
     return {
         type: actionTypes.PUT_STAGE_SUCCESS,
-        projectId,
         stage,
+        projectId,
     };
 }
 
-function _postSubjectSuccess(projectId, subject) {
+function _postSubjectSuccess(subject, projectId) {
     return {
         type: actionTypes.POST_SUBJECT_SUCCESS,
-        projectId,
         subject,
+        projectId,
     };
 }
 
-// function _deleteSubjectSuccess(projectId, subject) {
-//     return {
-//         type: actionTypes.DELETE_SUBJECT_SUCCESS,
-//         projectId,
-//         subject,
-//     };
-// }
+function _deleteSubjectSuccess(uoaId, projectId) {
+    return {
+        type: actionTypes.DELETE_SUBJECT_SUCCESS,
+        uoaId,
+        projectId,
+    };
+}
 
-export function _postUserGroupSuccess(group, projectId) {
+function _postProjectUserSuccess(userId, projectId) {
+    return {
+        type: actionTypes.POST_PROJECT_USER_SUCCESS,
+        userId,
+        projectId,
+    };
+}
+
+function _deleteProjectUserSuccess(userId, projectId) {
+    return {
+        type: actionTypes.DELETE_PROJECT_USER_SUCCESS,
+        userId,
+        projectId,
+    };
+}
+
+function _postUserGroupSuccess(group, projectId) {
     return {
         type: actionTypes.ADD_USER_GROUP,
         group,

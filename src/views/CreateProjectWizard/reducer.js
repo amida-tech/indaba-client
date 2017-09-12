@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
 import * as type from './actionTypes';
+import { POST_PROJECT_SUCCESS, REPORT_PROJECT_ERROR }
+    from '../../common/actionTypes/projectActionTypes';
 import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
@@ -16,12 +17,12 @@ const initialState = {
             groupsFilter: '',
         },
         errorMessage: '',
-        projectLink: 0,
+        projectLink: -1,
     },
     project: {
-        id: '',
+        id: 0,
         name: '',
-        status: 'Inactive',
+        status: 0,
         productId: 0,
         users: [],
         stages: [],
@@ -30,9 +31,9 @@ const initialState = {
         workflowIds: [],
     },
     survey: {
-        id: 8,
-        projectId: 41,
-        status: 'Draft',
+        id: 0,
+        projectId: 0,
+        status: 0,
         questions: [],
     },
 };
@@ -43,49 +44,19 @@ export default (state = initialState, action) => {
         return update(state, { project: { name: { $set: action.title } } });
     case type.UPDATE_WIZARD_PROJECT_SUMMARY:
         return update(state, { project: { summary: { $set: action.summary } } });
-    case type.POST_PROJECT_WIZARD_SUCCESS:
+    case POST_PROJECT_SUCCESS:
         return update(state,
             { ui: {
                 showProjectTitle: { $set: false },
-                projectLink: { $set: action.data.id },
-                errorMessage: { $set: '' } },
-                project: {
-                    id: { $set: action.data.id },
-                    productId: { $set: action.data.productId },
-                    workflowIds: { $set: [action.data.workflowIds] },
-                } });
-    case type.POST_SUBJECTS_WIZARD_SUCCESS:
-        return Array.isArray(action.subjects) ? // TODO Make always array later.
-            update(state, { project: { subjects: {
-                $set: _.union(state.project.subjects, action.subjects) } } }) :
-            update(state, { project: { subjects: {
-                $set: _.concat(state.project.subjects, action.subjects) } } });
-    case type.POST_USER_WIZARD_SUCCESS:
-        return state.project.users.includes(action.user.id) ?
-        state : update(state, { project: { users: { $push: [action.user.id] } } });
-    case type.POST_GROUP_WIZARD_SUCCESS:
-        return update(state, { project: { userGroups: { $push: [action.group] } } });
-    case type.PUT_STAGE_WIZARD_SUCCESS:
-        return update(state, { project: { stages: { $push: [action.stage] } } });
+                projectLink: { $set: action.project.id },
+                errorMessage: { $set: '' } } });
     case type.SHOW_ADD_STAGE_WIZARD_MODAL:
         return update(state, { ui: { showAddStage: { $set: action.show } } });
     case type.SHOW_ADD_USER_GROUP_WIZARD_MODAL:
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
         } } });
-    case type.DELETE_SUBJECTS_WIZARD_SUCCESS:
-        return update(state, { project: { subjects:
-            { $splice: [[state.project.subjects.indexOf(action.subject), 1]] } } });
-    case type.REMOVE_USER_FROM_WIZARD:
-        return update(state, { project: { users:
-            { $splice: [[state.project.users.indexOf(action.userId), 1]] } } });
-    case type.REMOVE_USER_GROUP_FROM_WIZARD:
-        return update(state, { project: {
-            userGroups: {
-                $set: state.project.userGroups.filter(group => group.id !== action.id),
-            } },
-        });
-    case type.ADD_PROJECT_FROM_WIZARD:
+    case type.ADD_PROJECT_FROM_WIZARD: // COME BACK TO
         return update(initialState, { ui: { projectLink: { $set: state.ui.projectLink } } });
     case type.GO_TO_STEP:
         return update(state, { ui: { step: { $set: action.step } } });
@@ -97,7 +68,7 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
     case type.ADD_USERS_SET_GROUPS_FILTER:
         return update(state, { ui: { addUsers: { groupsFilter: { $set: action.filter } } } });
-    case type.REPORT_NEW_PROJECT_ERROR:
+    case REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });

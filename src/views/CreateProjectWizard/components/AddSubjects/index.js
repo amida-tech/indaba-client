@@ -23,8 +23,8 @@ class AddSubjects extends Component {
                     {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}
                 </p>
                 <AddSubjectControl
-                    productId={this.props.project.productId}
-                    addSubjectToWizard={this.props.actions.addSubjectToWizard}
+                    project={this.props.project}
+                    addSubject={this.props.actions.addSubject}
                     vocab={this.props.vocab} />
                 {this.props.project.subjects &&
                     this.props.project.subjects.map(subject =>
@@ -32,7 +32,11 @@ class AddSubjects extends Component {
                         key={`subject${subject.name}${subject.id}`}>
                         {subject.name}
                         <DeleteIconButton onClick={() =>
-                            this.props.actions.deleteSubjectFromWizard(subject.id)} />
+                            this.props.actions.deleteSubject(
+                                this.props.project,
+                                subject.id,
+                                true,
+                            this.props.vocab.ERROR)} />
                     </div>,
                 )}
             </div>
