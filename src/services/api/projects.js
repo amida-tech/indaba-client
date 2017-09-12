@@ -26,8 +26,8 @@ const projects = {
     postProjectUsers: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects/users'), requestBody, callback);
     },
-    deleteProjectUsers: (requestBody, callback) => {
-        requests.apiDeleteRequest(getFullPath('projects/users'), requestBody, callback);
+    deleteProjectUsers: (projectId, userId, callback) => {
+        requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), callback);
     },
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
