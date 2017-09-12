@@ -19,14 +19,16 @@ class AddSubjects extends Component {
                     <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
                 </div>
                 <hr className='divider'/>
-                <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
+                <p className='add-subjects__instructions'>
+                    {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}
+                </p>
                 <AddSubjectControl
                     productId={this.props.project.productId}
                     addSubjectToWizard={this.props.actions.addSubjectToWizard}
                     vocab={this.props.vocab} />
                 {this.props.project.subjects &&
                     this.props.project.subjects.map(subject =>
-                    <div className='add-subjects__subject'
+                    <div className='add-subjects__table-row'
                         key={`subject${subject.name}${subject.id}`}>
                         {subject.name}
                         <DeleteIconButton onClick={() =>

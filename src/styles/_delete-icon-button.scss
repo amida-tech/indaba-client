@@ -4,6 +4,7 @@ $block-class: 'delete-icon-button';
     .#{$block-class} {
         &__icon {
             fill: $font-color;
+            cursor: pointer;
         }
     }
 }

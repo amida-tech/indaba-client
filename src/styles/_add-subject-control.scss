@@ -2,13 +2,46 @@ $block-class: 'add-subject-control';
 
 @at-root {
     .#{$block-class} {
+        &__form {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid $border-color;
+            border-radius: 2px;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
         &__header {
             display: flex;
             justify-content: space-between;
+            padding: 0.5em;
+            width: 100%;
         }
 
         &__fields {
             display: flex;
+            align-items: center;
+        }
+
+        &__input,
+        &:-webkit-autofill,
+        :-webkit-autofill:hover,
+        :-webkit-autofill:focus {
+            background-color: #fff;
+            width: 100%;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+            border: 1px solid $brand-color;
+            -webkit-box-shadow: 0 0 1000px #fff inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        &__plus-icon {
+            margin-right: 10px;
+            margin-left: 10px;
+            fill: $font-color;
+            cursor: pointer;
         }
     }
 }
