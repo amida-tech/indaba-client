@@ -20,6 +20,12 @@ const projects = {
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
     },
+    postProjectUsers: (requestBody, callback) => {
+        requests.apiPostRequest(getFullPath('projects/users'), requestBody, callback);
+    },
+    deleteProjectUsers: (requestBody, callback) => {
+        requests.apiDeleteRequest(getFullPath('projects/users'), requestBody, callback);
+    },
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
     },

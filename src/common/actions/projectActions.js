@@ -75,7 +75,7 @@ export function addSubject(project, name, errorMessages) {
                         [uoaResp.id],
                         (prodUoaErr, prodUoaResp) => {
                             dispatch((!prodUoaErr && prodUoaResp) ?
-                                _postSubjectSuccess(project.id, name, prodUoaResp.UOAid) :
+                                _postSubjectSuccess(project.id, { name, id: uoaResp.id }) :
                                 _reportProjectError(errorMessages.CONNECT_PRODUCT));
                         },
                     );
@@ -170,14 +170,6 @@ export function updateUserGroup(group, projectId) {
     return {
         type: actionTypes.UPDATE_USER_GROUP,
         group,
-        projectId,
-    };
-}
-
-export function addUser(user, projectId) {
-    return {
-        type: actionTypes.ADD_USER,
-        userId: user.id,
         projectId,
     };
 }

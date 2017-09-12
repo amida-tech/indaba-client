@@ -41,7 +41,6 @@ class PMUsersTab extends Component {
                                 this.props.project.id,
                                 this.props.profile.organizationId,
                                 this.props.vocab.ERROR,
-                                this.props.actions.addUser,
                             );
                         }}/>
                 </div>
@@ -76,7 +75,6 @@ PMUsersTab.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.shape({
         addNewUser: PropTypes.func.isRequired,
-        addUser: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
     }).isRequired,
 };

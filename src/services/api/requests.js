@@ -60,6 +60,26 @@ export function apiPutRequest(fullURI, requestBody, callback) {
 }
 
 /**
+ * Executes a DELETE request on the given URI
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiDeleteRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'DELETE',
+        headers: {
+            Authorization: cookie.load('indaba-auth'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
  * Executes a GET + Auth-Basic request on the given URI
  * @param {String} fullURI
  * @param {Function} callback

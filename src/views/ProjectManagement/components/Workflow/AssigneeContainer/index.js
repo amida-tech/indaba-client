@@ -4,7 +4,6 @@ import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
 import { addNewUser } from '../../../../../common/actions/userActions';
-import { addUser } from '../../../../../common/actions/projectActions';
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
@@ -75,8 +74,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onInviteUser: user => dispatch(addNewUser(user)).then(
-        userData => dispatch(addUser(userData.id, ownProps.project.id))),
+    onInviteUser: user => dispatch(addNewUser(user, ownProps.project.id)),
 });
 
 AssigneeContainer.propTypes = {

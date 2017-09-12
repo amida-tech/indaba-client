@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import * as type from '../actionTypes/projectActionTypes';
 import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
+import { POST_NEW_USER_SUCCESS } from '../actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
@@ -81,9 +82,9 @@ export const ProjectReducer = (state = initialState, action) => {
         return update(state, { data: { [projectIndex]: { userGroups: {
             [groupIndex]: { $set: action.group },
         } } } });
-    case type.ADD_USER:
+    case POST_NEW_USER_SUCCESS:
         return update(state, { data: { [projectIndex]: {
-            users: { $push: [action.userId] },
+            users: { $push: [action.user.id] },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
     case type.REMOVE_USER:

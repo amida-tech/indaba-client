@@ -72,14 +72,17 @@ export function addNewUser(userData, projectId, orgId, errorMessages, addedDispa
         email: userData.email,
         isActive: false,
         organizationId: orgId,
+        projectId,
     };
     return (dispatch) => {
         apiService.users.postNewUser(
             requestBody,
             (userErr, userResp) => {
                 if (!userErr && userResp) {
-                    dispatch(_postNewUserSuccess(userResp));
-                    addedDispatch(userResp, projectId);
+                    dispatch(_postNewUserSuccess(userResp, projectId));
+                    if (addedDispatch) {
+                        addedDispatch(userResp, projectId);
+                    }
                 } else {
                     _reportUserError(errorMessages.INSERT_USER);
                 }
@@ -127,9 +130,10 @@ function _reportUserError(error) {
     };
 }
 
-function _postNewUserSuccess(user) {
+function _postNewUserSuccess(user, projectId) {
     return {
         type: actionTypes.POST_NEW_USER_SUCCESS,
         user,
+        projectId,
     };
 }
