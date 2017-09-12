@@ -53,8 +53,15 @@ class PrimaryNavContainer extends Component {
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </Box>
                     <Box className='primary-nav__icon' direction='row' align='baseline'>
+                        <div className='primary-nav__right-side'>
+                            <Link className='primary-nav__logout'
+                                onClick={() => this.props.actions.logOut()}
+                                to='/login'>
+                                {this.props.vocab.COMMON.LOG_OUT}
+                            </Link>
                         <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
                         <Icon className='primary-nav__user' name="user-o" size="2x" />
+                    </div>
                     </Box>
                 </Box>
             </nav>

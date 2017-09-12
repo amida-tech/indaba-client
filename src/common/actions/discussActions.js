@@ -6,11 +6,22 @@ export function getDiscuss(taskId, errorMessages) { // errorMessages
         apiService.discuss.getDiscuss(
             taskId,
             (discussErr, discussResp) => {
-                if (!discussErr && discussResp) {
-                    dispatch(_getDiscussSuccess(discussResp));
-                } else {
-                    dispatch(_reportDiscussError(errorMessages.FETCH_TASKS));
-                }
+                dispatch((!discussErr && discussResp) ?
+                    _getDiscussSuccess(discussResp) :
+                    _reportDiscussError(errorMessages.FETCH_TASKS));
+            },
+        );
+    };
+}
+
+export function resolveQuestion(questionId, errorMessages) {
+    return (dispatch) => {
+        apiService.discuss.markResolved(
+            questionId,
+            (discussErr, discussResp) => {
+                dispatch((!discussErr && discussResp) ?
+                    _putDiscussResolveSuccess(questionId) :
+                    _reportDiscussError(errorMessages.FETCH_TASKS));
             },
         );
     };
@@ -38,6 +49,13 @@ function _getDiscussSuccess(discuss) {
     return {
         type: actionTypes.GET_DISCUSS_SUCCESS,
         discuss,
+    };
+}
+
+function _putDiscussResolveSuccess(questionId) {
+    return {
+        type: actionTypes.PUT_DISCUSS_RESOLVE_SUCCESS,
+        questionId,
     };
 }
 

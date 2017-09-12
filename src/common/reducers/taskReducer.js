@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/taskActionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 import { REMOVE_USER } from '../actionTypes/projectActionTypes';
 
 const initialState = {
@@ -49,6 +50,8 @@ export const TaskReducer = (state = initialState, action) => {
             tasks: { $apply: tasks => tasks.filter(task => task.userId !== action.userId) } } });
     case type.REPORT_TASKS_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

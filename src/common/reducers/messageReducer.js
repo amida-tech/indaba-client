@@ -1,3 +1,5 @@
+import { LOG_OUT } from '../actionTypes/navActionTypes';
+
 const initialState = [{
     id: 129,
     timestamp: '2017-07-21T11:45:47.591Z',
@@ -25,4 +27,11 @@ const initialState = [{
     from: '',
 }];
 
-export const MessageReducer = (state = initialState) => state;
+export const MessageReducer = (state = initialState, action) => {
+    switch (action.type) {
+    case LOG_OUT:
+        return initialState;
+    default:
+        return state;
+    }
+};

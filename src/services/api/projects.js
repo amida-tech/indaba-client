@@ -17,15 +17,18 @@ const projects = {
     postUOA: (requestBody, callback) => { // For time being, we don't delete these.
         requests.apiPostRequest(getFullPath('uoas'), requestBody, callback);
     },
+    deleteUOA: (uoaId, callback) => {
+        requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), callback);
+    },
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
+    },
+    deleteProductUOA: (productId, uoaId, callback) => {
+        requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
     },
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
     },
-    // deleteProductUOA: (productId, uoaId, callback) => {
-    //     requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
-    // },
     postWorkflows: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('workflows'), requestBody, callback);
     },
