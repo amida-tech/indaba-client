@@ -66,15 +66,21 @@ export function apiPutRequest(fullURI, requestBody, callback) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
-export function apiDeleteRequest(fullURI, callback) {
-    fetch(fullURI, {
+export function apiDeleteRequest(fullURI, requestBody, callback) {
+    const call = {
         method: 'DELETE',
         headers: {
             Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
-    })
+    };
+
+    if (requestBody) {
+        call.body = JSON.stringify(requestBody);
+    }
+
+    fetch(fullURI, call)
     .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 

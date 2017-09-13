@@ -96,9 +96,15 @@ export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
         // Safety check on tasks.
     }
 
+    const requestBody = {
+        productId: project.productId,
+        uoaId,
+    };
+
     return (dispatch) => {
         apiService.projects.deleteUOA(
-            project.productId,
+            uoaId,
+            requestBody,
             (uoaErr, uoaResp) => {
                 dispatch((!uoaErr && uoaResp) ?
                     _deleteSubjectSuccess(uoaId, project.id) :

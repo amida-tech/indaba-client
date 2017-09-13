@@ -14,8 +14,8 @@ const projects = {
     postUOA: (requestBody, callback) => { // For time being, we don't delete these.
         requests.apiPostRequest(getFullPath('uoas'), requestBody, callback);
     },
-    deleteUOA: (uoaId, callback) => {
-        requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), callback);
+    deleteUOA: (uoaId, requestBody, callback) => {
+        requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), requestBody, callback);
     },
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
@@ -24,7 +24,7 @@ const projects = {
         requests.apiPostRequest(getFullPath(`projects/${projectId}/users`), requestBody, callback);
     },
     deleteProjectUsers: (projectId, userId, callback) => {
-        requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), callback);
+        requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), null, callback);
     },
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
@@ -33,7 +33,7 @@ const projects = {
         requests.apiPutRequest(getFullPath(`workflows/${workflowId}/steps`), requestBody, callback);
     },
     // deleteWorkflows: (workflowsId, callback) => {
-    //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), callback);
+    //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
     // },
 };
 
