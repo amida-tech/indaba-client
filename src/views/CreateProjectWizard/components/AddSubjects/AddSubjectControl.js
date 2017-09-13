@@ -7,21 +7,25 @@ import IonIcon from 'react-ionicons';
 class AddSubjectControl extends Component {
     render() {
         return (
-            <form className='add-subject-control' onSubmit={this.props.handleSubmit}>
-                <div className='add-subject-control__header'>
-                    <div>{this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}</div>
-                    <div>{this.props.vocab.COMMON.ACTIONS}</div>
-                </div>
-                <div className='add-subject-control__fields'>
-                    <Field name='subjects'
-                        component='input'
-                        type='text'/>
-                    <div className='add-subject-control__plus-icon'
-                        onClick={this.props.onPlusClick}>
-                        <IonIcon icon='ion-ios-plus'/>
+            <div className='add-subject-control'>
+                <form className='add-subject-control__form'
+                    onSubmit={this.props.handleSubmit}>
+                    <div className='add-subject-control__header'>
+                        {this.props.vocab.PROJECT.ADD_SUBJECT_CLARIFICATION}
                     </div>
-                </div>
-            </form>
+                    <div className='add-subject-control__fields'>
+                        <Field name='subjects'
+                            className='add-subject-control__input'
+                            component='input'
+                            type='text'/>
+                        <div className=''
+                            onClick={this.props.onPlusClick}>
+                            <IonIcon icon='ion-ios-plus'
+                                className='add-subject-control__plus-icon'/>
+                        </div>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
@@ -29,7 +33,7 @@ class AddSubjectControl extends Component {
 AddSubjectControl.propTypes = {
     productId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    addSubjectsToWizard: PropTypes.func.isRequired,
+    addSubjectToWizard: PropTypes.func.isRequired,
 };
 
 const FORM_NAME = 'add-subject-control';
@@ -39,9 +43,9 @@ export default connect(null, dispatch => ({
 }))(reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
-        ownProps.addSubjectsToWizard(
-            ownProps.productId,
+        ownProps.addSubjectToWizard(
             {
+                productId: ownProps.productId,
                 name: values.subjects,
                 unitOfAnalysisType: 1,
             },

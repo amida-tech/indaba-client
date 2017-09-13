@@ -62,6 +62,7 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.actions.addProjectToWizard}
                         vocab={this.props.vocab} />
                 }
+
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.wizard.ui.step}
                     onActive={this.changeStep}>
@@ -117,13 +118,13 @@ class CreateProjectWizard extends Component {
 CreateProjectWizard.propTypes = {
     wizard: PropTypes.shape({
         project: PropTypes.shape({
-            subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+            subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
         }).isRequired,
         survey: PropTypes.object.isRequired,
         task: PropTypes.object.isRequired,
         ui: PropTypes.shape({
             errorMessage: PropTypes.string,
-            complete: PropTypes.bool.isRequired,
+            showComplete: PropTypes.bool.isRequired,
             step: PropTypes.number.isRequired,
             projectLink: PropTypes.number.isRequired,
         }),

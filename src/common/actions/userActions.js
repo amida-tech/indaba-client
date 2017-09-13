@@ -81,7 +81,7 @@ export function addNewUser(userData, projectId, orgId, errorMessages, addedDispa
                     dispatch(_postNewUserSuccess(userResp));
                     addedDispatch(userResp, projectId);
                 } else {
-                    _reportUserError(errorMessages.INSERT_USER);
+                    _reportUserError(errorMessages.USER_REQUEST);
                 }
             },
         );

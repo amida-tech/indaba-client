@@ -76,6 +76,24 @@ export function apiAuthGetRequest(fullURI, authHash, callback) {
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
+/**
+ * Executes a DELETE request on the given URI
+ * @param {String} fullURI
+ * @param {Function} callback
+ * @return {Any} handled by callback. Generally the response data.
+**/
+export function apiDeleteRequest(fullURI, callback) {
+    fetch(fullURI, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: cookie.load('indaba-auth'),
+        },
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
 // ////////////////
 // Private Helpers
 // ////////////////

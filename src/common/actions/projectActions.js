@@ -49,7 +49,7 @@ export function addStage(project, stage, errorMessages) {
                     _putStageSuccess(
                         project.id,
                         Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] })) :
-                    _reportProjectError(errorMessages.INSERT_STAGE));
+                    _reportProjectError(errorMessages.STAGE_REQUEST));
             },
         );
     };
@@ -76,16 +76,43 @@ export function addSubject(project, name, errorMessages) {
                         (prodUoaErr, prodUoaResp) => {
                             dispatch((!prodUoaErr && prodUoaResp) ?
                                 _postSubjectSuccess(project.id, name, prodUoaResp.UOAid) :
-                                _reportProjectError(errorMessages.CONNECT_PRODUCT));
+                                _reportProjectError(errorMessages.PRODUCT_REQUEST));
                         },
                     );
                 } else {
-                    dispatch(_reportProjectError(errorMessages.INSERT_SUBJECT));
+                    dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
                 }
             },
         );
     };
 }
+
+// export function deleteSubject(projectId, subject, errorMessages) {
+//     const requestBody = {
+//
+//     };
+//
+//     return (dispatch) => {
+//         apiService.projects.deleteProductUOA(
+//             requestBody,
+//             (uoaErr, uoaResp) => {
+//                 if (!uoaErr && uoaResp) {
+//                     apiService.projects.deleteUOA(
+//                         project.productId,
+//                         [uoaResp.id],
+//                         (prodUoaErr, prodUoaResp) => {
+//                             dispatch((!prodUoaErr && prodUoaResp) ?
+//                                 _postSubjectSuccess(project.id, name, prodUoaResp.UOAid) :
+//                                 _reportProjectError(errorMessages.PRODUCT_REQUEST));
+//                         },
+//                     );
+//                 } else {
+//                     dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
+//                 }
+//             },
+//         );
+//     };
+// }
 
 export function addUserGroup(groupData, projectId, organizationId, errorMessages) {
     const requestBody = {
@@ -105,7 +132,7 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
                         Object.assign({}, requestBody, groupResp.id),
                         projectId));
                 } else {
-                    dispatch(_reportProjectError(errorMessages.INSERT_GROUP));
+                    dispatch(_reportProjectError(errorMessages.GROUP_REQUEST));
                 }
             },
         );
@@ -146,14 +173,6 @@ export function toggleFilter(filter, projectId) {
     return {
         type: actionTypes.TOGGLE_FILTER,
         filter,
-        projectId,
-    };
-}
-
-export function deleteSubject(subject, projectId) {
-    return {
-        type: actionTypes.DELETE_SUBJECT,
-        subject,
         projectId,
     };
 }
@@ -228,6 +247,14 @@ function _postSubjectSuccess(projectId, subject) {
         subject,
     };
 }
+
+// function _deleteSubjectSuccess(projectId, subject) {
+//     return {
+//         type: actionTypes.DELETE_SUBJECT_SUCCESS,
+//         projectId,
+//         subject,
+//     };
+// }
 
 export function _postUserGroupSuccess(group, projectId) {
     return {
