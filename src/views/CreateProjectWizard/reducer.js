@@ -24,11 +24,11 @@ const initialState = {
         name: '',
         status: 0,
         productId: 0,
+        workflowId: 0,
         users: [],
         stages: [],
         userGroups: [],
         subjects: [],
-        workflowIds: [],
     },
     survey: {
         id: 0,

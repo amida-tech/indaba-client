@@ -45,7 +45,7 @@ export function getProjectById(projectId, errorMessages) {
 export function addStage(project, stage, errorMessages) {
     const requestBody = [Object.assign({},
         {
-            workflowId: project.workflowIds[0],
+            workflowId: project.workflowId,
             position: project.stages.length,
             role: 3,
         },
@@ -54,7 +54,7 @@ export function addStage(project, stage, errorMessages) {
 
     return (dispatch) => {
         apiService.projects.putWorkflowSteps(
-            project.workflowIds[0],
+            project.workflowId,
             requestBody,
             (workflowErr, workflowResp) => {
                 dispatch((!workflowErr && workflowResp) ?
