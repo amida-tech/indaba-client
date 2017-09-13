@@ -138,6 +138,8 @@ export function removeUser(userId, projectId, errorMessages) {
 
     return (dispatch) => {
         apiService.projects.deleteProjectUsers(
+            projectId,
+            userId,
             (userErr, userResp) => {
                 dispatch((!userErr && userResp) ?
                     _deleteProjectUserSuccess(userId, projectId) :
