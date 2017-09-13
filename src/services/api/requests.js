@@ -33,7 +33,7 @@ export function apiPostRequest(fullURI, requestBody, callback) {
             Accept: '*/*',
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `username=${requestBody.username}&password=${requestBody.password}`,
+        body: requestBody,
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
