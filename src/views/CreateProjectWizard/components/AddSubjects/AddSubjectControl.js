@@ -45,7 +45,8 @@ export default connect(null, dispatch => ({
     onSubmit: (values, dispatch, ownProps) => {
         ownProps.addSubject(
             ownProps.project,
-            values.subjects,
+            values.subjects.split(/\s*,\s*/).filter(subject =>
+                subject).map((subject) => { return { name: subject }; }),
             ownProps.vocab.ERROR,
         );
     },

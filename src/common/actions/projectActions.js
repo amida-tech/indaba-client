@@ -67,14 +67,15 @@ export function addStage(project, stage, errorMessages) {
     };
 }
 
-export function addSubject(project, name, errorMessages) {
-    if (project.subjects.some(subject => subject.name === name)) {
-        return dispatch =>
-            dispatch(_reportProjectError(errorMessages.DUPLICATE));
-    }
+export function addSubject(project, subjects, errorMessages) {
+    // TODO: Fix later.
+    // if (project.subjects.some(subject => subject.name === name)) {
+    //     return dispatch =>
+    //         dispatch(_reportProjectError(errorMessages.DUPLICATE));
+    // }
 
     const requestBody = {
-        name,
+        subjects,
         unitOfAnalysisType: 1,
         productId: project.productId,
     };
