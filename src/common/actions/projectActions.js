@@ -68,12 +68,6 @@ export function addStage(project, stage, errorMessages) {
 }
 
 export function addSubject(project, subjects, errorMessages) {
-    // TODO: Fix later.
-    // if (project.subjects.some(subject => subject.name === name)) {
-    //     return dispatch =>
-    //         dispatch(_reportProjectError(errorMessages.DUPLICATE));
-    // }
-
     const requestBody = {
         subjects,
         unitOfAnalysisType: 1,
