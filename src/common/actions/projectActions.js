@@ -88,7 +88,7 @@ export function addSubject(project, subjects, errorMessages) {
 
 export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
     if (!fromWizard) {
-        // Safety check on tasks.
+        // TODO: Safety check on tasks.
     }
 
     const requestBody = {
@@ -129,7 +129,7 @@ export function addUser(userId, projectId, errorMessages) {
 }
 
 export function removeUser(userId, projectId, errorMessages) {
-    // Do safety call for tasks assigned to this user.
+    // TODO: Do safety call for tasks assigned to this user.
 
     return (dispatch) => {
         apiService.projects.deleteProjectUsers(
