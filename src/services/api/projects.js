@@ -11,32 +11,29 @@ const projects = {
     postProject: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
     },
-    postProduct: (requestBody, callback) => {
-        requests.apiPostRequest(getFullPath('products'), requestBody, callback);
-    },
     postUOA: (requestBody, callback) => { // For time being, we don't delete these.
         requests.apiPostRequest(getFullPath('uoas'), requestBody, callback);
     },
-    deleteUOA: (uoaId, callback) => {
-        requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), callback);
+    deleteUOA: (uoaId, requestBody, callback) => {
+        requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), requestBody, callback);
     },
     postProductUOA: (productId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`products/${productId}/uoa`), requestBody, callback);
     },
-    deleteProductUOA: (productId, uoaId, callback) => {
-        requests.apiDeleteRequest(getFullPath(`products/${productId}/uoa/${uoaId}`), callback);
+    postProjectUsers: (projectId, requestBody, callback) => {
+        requests.apiPostRequest(getFullPath(`projects/${projectId}/users`), requestBody, callback);
+    },
+    deleteProjectUsers: (projectId, userId, callback) => {
+        requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), null, callback);
     },
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
-    },
-    postWorkflows: (requestBody, callback) => {
-        requests.apiPostRequest(getFullPath('workflows'), requestBody, callback);
     },
     putWorkflowSteps: (workflowId, requestBody, callback) => { // Step Groups are part of this.
         requests.apiPutRequest(getFullPath(`workflows/${workflowId}/steps`), requestBody, callback);
     },
     // deleteWorkflows: (workflowsId, callback) => {
-    //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), callback);
+    //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
     // },
 };
 

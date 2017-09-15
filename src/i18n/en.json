@@ -47,8 +47,6 @@
     "FETCH_TASKS": "Fetch tasks failed.",
     "FETCH_DISCUSS": "Fetch discuss failed.",
     "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
-    "PRODUCT_REQUEST": "The system failed to connect/disconnect the product to the project, stage or subject(s). Try again later.",
-    "WORKFLOW_REQUEST": "The system failed to insert the new workflow into the database. Please try again later.",
     "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
     "SUBJECT_REQUEST": "Something has gone wrong with subject(s) insertion or deletion. Please try again.",
     "USER_REQUEST": "Failed to insert or delete user.",

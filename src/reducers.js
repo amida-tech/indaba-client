@@ -22,7 +22,7 @@ const reducers = {
     routing: routerReducer,
     manager: ProjectManagementReducer,
     taskreview: TaskReviewReducer,
-    projectwizard: CreateProjectWizardReducer,
+    wizard: CreateProjectWizardReducer,
     form: formReducer,
     pmdashboard: PMDashboardReducer,
     userdashboard: UserDashboardReducer,
