@@ -10,10 +10,6 @@ class ProfileForm extends Component {
     render() {
         const notifyOptions = this.props.vocab.PROFILE.FORM.LEVELS.map((level, index) =>
             ({ value: index, label: level }));
-        // const statusOptions = [
-        //     { value: false, label: this.props.vocab.PROJECT.STATUS_INACTIVE },
-        //     { value: true, label: this.props.vocab.PROJECT.STATUS_ACTIVE },
-        // ];
         return (
             <form className='profile-form' onSubmit={this.props.handleSubmit}>
                 <div className='profile-form__header'>

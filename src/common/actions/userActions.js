@@ -45,17 +45,21 @@ export function getProfile(errorMessages) {
     };
 }
 
-export function updateProfile(requestBody, errorMessages) {
-    // const requestBody = (({ id, firstName, lastName, email, notifyLevel, isActive, bio }) =>
-    //     ({ id, firstName, lastName, email, notifyLevel, isActive, bio }))(values);
-    console.log(requestBody);
+export function updateProfile(userData, errorMessages) {
+    const requestBody = Object.assign({}, userData);
+    if (typeof requestBody.notifyLevel !== 'number') {
+        requestBody.notifyLevel = userData.notifyLevel.value;
+    }
+    if (typeof requestBody.isActive !== 'boolean') {
+        requestBody.isActive = userData.isActive.value;
+    }
 
     return (dispatch) => {
         apiService.users.putProfile(
             requestBody,
             (profileErr, profileResp) => {
                 dispatch((!profileErr && profileResp) ?
-                    _putProfileSuccess(profileResp) :
+                    _putProfileSuccess(requestBody) :
                     _reportUserError(errorMessages.PROFILE_REQUEST));
             },
         );

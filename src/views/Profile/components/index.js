@@ -17,12 +17,8 @@ class ProfileContainer extends Component {
                     initialValues={this.props.profile}
                     enableReinitialize={true}
                     onSubmit={(values) => {
-                        const parsedValues = Object.assign({},
-                            values,
-                            { notifyLevel: values.notifyLevel.value },
-                            { isActive: values.isActive.value });
                         this.props.actions.updateProfile(
-                            parsedValues,
+                            values,
                             this.props.vocab.ERROR);
                     }} />
                 <ResetPasswordPanel {...this.props} />
