@@ -23,6 +23,7 @@ const initialState = {
     profile: {
         id: null,
         firstName: '',
+        email: '',
         lastName: '',
         organizationId: null,
     },
@@ -33,6 +34,14 @@ export const UserReducer = (state = initialState, action) => {
     const userIndex = state.users.findIndex(user => user.id === action.userId);
     // Strongly consider clearing error message here after every call?
     switch (action.type) {
+    case type.PUT_PROFILE_SUCCESS:
+        return update(state, { profile: {
+            firstName: { $set: action.firstName },
+            email: { $set: action.email },
+            lastName: { $set: action.lastName },
+            notifyLevel: { $set: action.notifyLevel },
+            isActive: { $set: action.isActive },
+            bio: { $set: action.notes } } });
     case type.SET_USER_FIRST_NAME:
         return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
     case type.SET_USER_LAST_NAME:
