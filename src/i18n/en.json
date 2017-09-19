@@ -75,6 +75,7 @@
             "PERSONAL_INFO": "Personal Information",
             "NOTIFICATION_AND_STATUS": "Notification and User Status",
             "NOTIFY_LEVEL": "Notify Level",
+            "ACTIVE_STATUS": "Is Active?",
             "LEVELS": [
                 "No Notifications",
                 "Internal Notifications Only",
