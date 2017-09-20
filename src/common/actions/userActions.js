@@ -59,7 +59,7 @@ export function updateProfile(userData, errorMessages) {
             requestBody,
             (profileErr, profileResp) => {
                 dispatch((!profileErr && profileResp) ?
-                    _putProfileSuccess(requestBody) :
+                    _putProfileSuccess(profileResp) :
                     _reportUserError(errorMessages.PROFILE_REQUEST));
             },
         );
@@ -143,7 +143,7 @@ function _getProfileSuccess(profile) {
 function _putProfileSuccess(profile) {
     return {
         type: actionTypes.PUT_PROFILE_SUCCESS,
-        profile,
+        profile: profile.data,
     };
 }
 
