@@ -27,18 +27,22 @@ class ProfileForm extends Component {
                     </div>
                     <div className='profile-form__name-row'>
                         <div className='profile-form__field'>
-                            <label> {this.props.vocab.COMMON.FIRST_NAME} </label>
+                            <label className='profile-form__field-label'>
+                            {this.props.vocab.COMMON.FIRST_NAME} </label>
                             <Field name='firstName'
                                 value={this.props.profile.firstName}
                                 component='input'
-                                type='text' />
+                                type='text'
+                                className='profile-form__field-input'/>
                         </div>
                         <div className='profile-form__field'>
-                            <label> {this.props.vocab.COMMON.LAST_NAME} </label>
+                            <label className='profile-form__field-label'>
+                            {this.props.vocab.COMMON.LAST_NAME} </label>
                             <Field name='lastName'
                                 value={this.props.profile.lastName}
                                 component='input'
-                                type='text' />
+                                type='text'
+                                className='profile-form__field-input' />
                         </div>
                     </div>
                     <div className='profile-form__field'>
