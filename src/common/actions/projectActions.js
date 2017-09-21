@@ -150,6 +150,7 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
         organizationId,
         langId: 1,
         users: groupData.users,
+        projectId,
     };
     return (dispatch) => {
         apiService.projects.postGroup(
