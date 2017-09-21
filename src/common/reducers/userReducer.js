@@ -1,5 +1,7 @@
 import update from 'immutability-helper';
-import * as actionTypes from '../actionTypes/userActionTypes';
+
+import * as type from '../actionTypes/userActionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 export const constants = {
     notifications: {
@@ -21,6 +23,7 @@ const initialState = {
     profile: {
         id: null,
         firstName: '',
+        email: '',
         lastName: '',
         organizationId: null,
     },
@@ -31,26 +34,30 @@ export const UserReducer = (state = initialState, action) => {
     const userIndex = state.users.findIndex(user => user.id === action.userId);
     // Strongly consider clearing error message here after every call?
     switch (action.type) {
-    case actionTypes.SET_USER_FIRST_NAME:
+    case type.PUT_PROFILE_SUCCESS:
+        return update(state, { profile: { $merge: action.profile } });
+    case type.SET_USER_FIRST_NAME:
         return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
-    case actionTypes.SET_USER_LAST_NAME:
+    case type.SET_USER_LAST_NAME:
         return update(state, { users: { [userIndex]: { lastName: { $set: action.lastName } } } });
-    case actionTypes.SET_USER_EMAIL:
+    case type.SET_USER_EMAIL:
         return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
-    case actionTypes.SET_USER_TITLE:
+    case type.SET_USER_TITLE:
         return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
-    case actionTypes.POST_NEW_USER_SUCCESS:
+    case type.POST_NEW_USER_SUCCESS:
         return update(state, { users: { $push: [action.user] } });
-    case actionTypes.UPDATE_USER:
+    case type.UPDATE_USER:
         return update(state, { users: { [userIndex]: { $merge: action.user } } });
-    case actionTypes.NOTIFY_USER:
+    case type.NOTIFY_USER:
         return state;
-    case actionTypes.GET_PROFILE_SUCCESS:
+    case type.GET_PROFILE_SUCCESS:
         return update(state, { profile: { $set: action.profile } });
-    case actionTypes.GET_USERS_SUCCESS:
+    case type.GET_USERS_SUCCESS:
         return update(state, { users: { $set: action.users } });
-    case actionTypes.REPORT_USER_ERROR:
+    case type.REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

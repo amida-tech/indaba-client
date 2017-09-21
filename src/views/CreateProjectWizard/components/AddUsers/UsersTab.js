@@ -18,11 +18,14 @@ class UsersTab extends Component {
 
     handleSearchSelect(selection) {
         this.props.actions.addUsersSetUsersFilter('');
-        this.props.actions.addUserToWizard(selection.suggestion.value);
+        this.props.actions.addUser(
+            selection.suggestion.value.id,
+            this.props.projectId,
+            this.props.vocab.ERROR);
     }
 
-    handleUserRemove(userId) {
-        this.props.actions.removeUserFromWizard(userId);
+    handleUserRemove(userId, projectId) {
+        this.props.actions.removeUser(userId, projectId, this.props.vocab.ERROR);
     }
 
     searchFilter(user) {
@@ -38,7 +41,8 @@ class UsersTab extends Component {
                     <UserBadge user={user}/>
                     <div className='users-tab__name'>{renderName(user)}</div>
                 </div>
-                <DeleteIconButton onClick={() => this.handleUserRemove(userId)} />
+                <DeleteIconButton onClick={() =>
+                    this.handleUserRemove(userId, this.props.projectId)} />
             </div>
         );
     }
@@ -52,8 +56,7 @@ class UsersTab extends Component {
                             values,
                             this.props.projectId,
                             this.props.profile.organizationId,
-                            this.props.vocab.ERROR,
-                            this.props.actions.addUserToWizard);
+                            this.props.vocab.ERROR);
                     }} />
                 <div className='users-tab__search'>
                     <SearchInput

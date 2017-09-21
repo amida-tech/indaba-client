@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import DashboardContainer from './views/Dashboard';
 import { LoginContainer } from './views/Login';
+import { ProfileContainer } from './views/Profile';
 import { ProjectManagementContainer } from './views/ProjectManagement';
 import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
@@ -20,8 +21,12 @@ export default (
             path='/project'
             component={PMDashboard}/>
         <Route
-            key='/task'
-            path='/task'
+            key='/profile'
+            path='/profile'
+            component={ProfileContainer}/>
+        <Route
+            key='/task(/:userId)'
+            path='/task(/:userId)'
             component={UserDashboard}/>
         <Route
             key='/project/:projectId'

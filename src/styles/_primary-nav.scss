@@ -46,9 +46,20 @@ $block-class:'primary-nav';
             }
         }
 
-        &__icon {
+        &__link {
             color: $nav-text-color;
+        }
+
+        &__icon {
             margin-right: 30px;
+        }
+
+        &__logout {
+            @extend .primary-nav__item;
+
+            position: relative;
+            vertical-align: text-bottom;
+            margin-right: 20px;
         }
 
         &__envelope {

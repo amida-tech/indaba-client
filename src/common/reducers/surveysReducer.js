@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
 import * as type from '../actionTypes/surveysActionTypes';
-import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 const initialState = {
     ui: {
@@ -21,12 +21,12 @@ export const SurveysReducer = (state = initialState, action) => {
     switch (action.type) {
     case type.SET_SURVEY_STATUS:
         return update(state, { [surveyIndex]: { status: { $set: action.status } } });
-    case ADD_PROJECT_FROM_WIZARD:
-        return update(state, { $push: [action.wizard.survey] });
     case type.SET_SURVEY_NAME:
         return update(state, { [surveyIndex]: {
             name: { $set: action.name },
         } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

@@ -64,7 +64,7 @@ class FilterWrapper extends Component {
                             this.props.actions.showAddSubjectModal(false);
                             this.props.actions.addSubject(
                                 this.props.project,
-                                subject,
+                                [{ name: subject }],
                                 this.props.vocab.ERROR);
                         }}
                     />

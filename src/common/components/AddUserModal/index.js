@@ -21,7 +21,6 @@ class AddUserModal extends Component {
                             this.props.projectId,
                             this.props.organizationId,
                             this.props.vocab.ERROR,
-                            this.props.actions.addUser,
                         );
                     }
                 }/>

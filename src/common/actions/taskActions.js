@@ -16,12 +16,12 @@ export function getTasksByProject(projectId, errorMessages) {
     };
 }
 
-export function getSelfTasks(userId, errorMessages) {
+export function getSelfTasks(errorMessages) {
     return (dispatch) => {
         apiService.tasks.getSelfTasks(
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
-                    dispatch(_getTasksByUserSuccess(userId, taskResp));
+                    dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }
@@ -48,6 +48,7 @@ export function getTasksByUser(userId, errorMessages) {
 export function assignTask(userId, slot, productId, errorMessages) {
     const requestBody = {
         userId,
+        title: slot.stageData.title,
         stepId: slot.task.stepId,
         uoaId: slot.task.uoaId,
         startDate: slot.stageData.startDate,
@@ -63,7 +64,7 @@ export function assignTask(userId, slot, productId, errorMessages) {
                 if (!taskErr && taskResp) {
                     dispatch(_postTaskSuccess(userId, slot, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.INSERT_TASK));
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
                 }
             },
         );

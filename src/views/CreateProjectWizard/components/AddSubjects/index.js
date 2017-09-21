@@ -19,17 +19,24 @@ class AddSubjects extends Component {
                     <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
                 </div>
                 <hr className='divider'/>
-                <p>{this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}</p>
+                <p className='add-subjects__instructions'>
+                    {this.props.vocab.PROJECT.ADD_SUBJECT_INSTRUCTION}
+                </p>
                 <AddSubjectControl
-                    productId={this.props.project.productId}
-                    addSubjectsToWizard={this.props.actions.addSubjectsToWizard}
+                    project={this.props.project}
+                    addSubject={this.props.actions.addSubject}
                     vocab={this.props.vocab} />
                 {this.props.project.subjects &&
                     this.props.project.subjects.map(subject =>
-                    <div className='add-subjects__subject' key={subject}>
-                        {subject}
+                    <div className='add-subjects__table-row'
+                        key={`subject${subject.name}${subject.id}`}>
+                        {subject.name}
                         <DeleteIconButton onClick={() =>
-                            this.props.actions.deleteSubjectFromWizard(subject)} />
+                            this.props.actions.deleteSubject(
+                                this.props.project,
+                                subject.id,
+                                true,
+                            this.props.vocab.ERROR)} />
                     </div>,
                 )}
             </div>
@@ -39,7 +46,7 @@ class AddSubjects extends Component {
 
 AddSubjects.propTypes = {
     project: PropTypes.shape({
-        subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+        subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,

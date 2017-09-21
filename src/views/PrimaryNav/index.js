@@ -33,7 +33,7 @@ class PrimaryNavContainer extends Component {
                   full="vertical">
                     <Box direction='row' align='baseline'>
                         <div className='primary-nav__item'>
-                            <Link to="/task">
+                            <Link to={'/task'}>
                                 <img src="/src/assets/indaba_logo.svg"
                                     className="primary-nav__indaba-logo"/>
                             </Link>
@@ -53,8 +53,25 @@ class PrimaryNavContainer extends Component {
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </Box>
                     <Box className='primary-nav__icon' direction='row' align='baseline'>
-                        <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
-                        <Icon className='primary-nav__user' name="user-o" size="2x" />
+                        <div className='primary-nav__right-side'>
+                            <Link className='primary-nav__logout'
+                                onClick={() => this.props.actions.logOut()}
+                                to='/login'>
+                                {this.props.vocab.COMMON.LOG_OUT}
+                            </Link>
+                            <Link className='primary-nav__link'
+                                to='/profile'>
+                                <Icon className='primary-nav__envelope'
+                                    name='envelope-o'
+                                    size='2x' />
+                            </Link>
+                            <Link className='primary-nav__link'
+                                to='/profile'>
+                                <Icon className='primary-nav__user'
+                                    name='user-o'
+                                    size='2x' />
+                            </Link>
+                    </div>
                     </Box>
                 </Box>
             </nav>
