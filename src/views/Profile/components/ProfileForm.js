@@ -66,7 +66,7 @@ class ProfileForm extends Component {
                         component={ProfileSelect}
                         options={notifyOptions}
                         type='select' />
-                    <label> {this.props.vocab.PROJECT.ACTIVE_STATUS} </label>
+                    <label> {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>
                     <Field name='isActive'
                         value={this.props.profile.isActive}
                         component={ProfileCheckBox}

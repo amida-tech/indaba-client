@@ -35,7 +35,7 @@ export const UserReducer = (state = initialState, action) => {
     // Strongly consider clearing error message here after every call?
     switch (action.type) {
     case type.PUT_PROFILE_SUCCESS:
-        return update(state, { profile: { $set: action.profile } });
+        return update(state, { profile: { $merge: action.profile } });
     case type.SET_USER_FIRST_NAME:
         return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
     case type.SET_USER_LAST_NAME:
