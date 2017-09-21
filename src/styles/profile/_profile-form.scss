@@ -54,8 +54,6 @@ $block-class: 'profile-form';
         }
 
         &__name-row {
-            width: 100%;
-            justify-content: space-between;
             display: inline-flex;
             flex-direction: row;
         }
@@ -77,6 +75,7 @@ $block-class: 'profile-form';
                 border-top: none;
                 border-left: none;
                 border-right: none;
+                flex-grow: 1;
             }
         }
 
