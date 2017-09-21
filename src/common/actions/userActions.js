@@ -36,29 +36,55 @@ export function setUserTitle(userId, title) {
 export function getProfile(errorMessages) {
     return (dispatch) => {
         apiService.users.getProfile(
-          (err, profile) => {
-              if (profile && !err) {
-                  dispatch(_getProfileSuccess(profile));
-              } else {
-                  dispatch(_reportUserError(errorMessages.FETCH_PROFILE));
-              }
-          },
+            (profileErr, profileResp) => {
+                dispatch((!profileErr && profileResp) ?
+                    _getProfileSuccess(profileResp) :
+                    _reportUserError(errorMessages.FETCH_PROFILE));
+            },
         );
+    };
+}
+
+export function updateProfile(userData, errorMessages) {
+    const requestBody = Object.assign({}, userData);
+    if (typeof requestBody.notifyLevel !== 'number') {
+        requestBody.notifyLevel = userData.notifyLevel.value;
+    }
+    if (typeof requestBody.isActive !== 'boolean') {
+        requestBody.isActive = userData.isActive.value;
+    }
+
+    return (dispatch) => {
+        apiService.users.putProfile(
+            requestBody,
+            (profileErr, profileResp) => {
+                dispatch((!profileErr && profileResp) ?
+                    _putProfileSuccess(profileResp) :
+                    _reportUserError(errorMessages.PROFILE_REQUEST));
+            },
+        );
+    };
+}
+
+export function resetPassword(errorMessages) {
+    // TODO: Coming soon.
+    return (dispatch) => {
+        dispatch(_reportUserError(errorMessages.COMING_SOON));
     };
 }
 
 export function getUsers(errorMessages) {
     return (dispatch) => {
         apiService.users.getUsers(
-          (err, users) => {
-              if (!err && users) {
-                  dispatch(_getUsersSuccess(users));
-              } else if (err && !users) {
-                  dispatch(_reportUserError(errorMessages.SERVER_ISSUE));
-              } else {
-                  dispatch(_reportUserError(errorMessages.FETCH_USERS));
-              }
-          },
+            (err, users) => {
+                if (!err && users) {
+                    dispatch(_getUsersSuccess(users));
+                } else if (err && !users) {
+                    dispatch(_reportUserError(errorMessages.SERVER_ISSUE));
+                } else {
+                    dispatch(_reportUserError(errorMessages.FETCH_USERS));
+                }
+            },
         );
     };
 }
@@ -72,6 +98,7 @@ export function addNewUser(userData, projectId, orgId, errorMessages) {
         email: userData.email,
         isActive: false,
         organizationId: orgId,
+        notifyLevel: 2,
         projectId,
     };
 
@@ -109,6 +136,14 @@ function _getProfileSuccess(profile) {
     return {
         type: actionTypes.GET_PROFILE_SUCCESS,
         profile,
+    };
+}
+
+
+function _putProfileSuccess(profile) {
+    return {
+        type: actionTypes.PUT_PROFILE_SUCCESS,
+        profile: profile.data,
     };
 }
 
