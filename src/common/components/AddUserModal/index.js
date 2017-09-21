@@ -20,6 +20,7 @@ class AddUserModal extends Component {
                             values,
                             this.props.projectId,
                             this.props.organizationId,
+                            this.props.vocab.TOAST,
                             this.props.vocab.ERROR,
                         );
                     }

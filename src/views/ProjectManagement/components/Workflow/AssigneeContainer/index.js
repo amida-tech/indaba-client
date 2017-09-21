@@ -64,6 +64,7 @@ class AssigneeContainer extends Component {
                         values,
                         this.props.project.id,
                         this.props.profile.organizationId,
+                        this.props.vocab.TOAST,
                         this.props.vocab.ERROR)}
                     />
             </Box>
