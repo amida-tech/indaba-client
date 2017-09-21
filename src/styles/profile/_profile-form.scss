@@ -43,14 +43,19 @@ $block-class: 'profile-form';
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
+            margin-bottom: 24px;
         }
 
-        &__section-header {
-            font-size: 14px;
-            color: $font-color;
+        &__settings {
+            &__section-header {
+                font-size: 14px;
+                color: $font-color;
+            }
         }
 
         &__name-row {
+            width: 100%;
+            justify-content: space-between;
             display: inline-flex;
             flex-direction: row;
         }
@@ -67,11 +72,19 @@ $block-class: 'profile-form';
             }
 
             &-input {
+                width: 100px;
                 color: #51545c;
                 border-top: none;
                 border-left: none;
                 border-right: none;
             }
+        }
+
+        &__settings {
+            background-color: #fff;
+            padding: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
         }
     }
 }

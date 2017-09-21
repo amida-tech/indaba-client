@@ -42,20 +42,22 @@ class ProfileForm extends Component {
                                 value={this.props.profile.lastName}
                                 component='input'
                                 type='text'
-                                className='profile-form__field-input' />
+                                className='profile-form__field-input'/>
                         </div>
                     </div>
                     <div className='profile-form__field'>
-                        <label> {this.props.vocab.COMMON.EMAIL} </label>
+                        <label className='profile-form__field-label'>
+                        {this.props.vocab.COMMON.EMAIL} </label>
                         <Field name='email'
                             value={this.props.profile.email}
                             component='input'
                             disabled={true}
-                            type='email' />
+                            type='email'
+                            className='profile-form__field-input'/>
                     </div>
                 </div>
                 <div className='profile-form__settings'>
-                    <div className='profile-form__section-header'>
+                    <div className='profile-form__settings__section-header'>
                         {this.props.vocab.PROFILE.FORM.NOTIFICATION_AND_STATUS}
                     </div>
                     <label> {this.props.vocab.PROFILE.FORM.NOTIFY_LEVEL} </label>
