@@ -39,6 +39,8 @@ $block-class: 'profile-form';
         }
 
         &__user-info {
+            display: flex;
+            flex-direction: column;
             background-color: #fff;
             padding: 16px;
             margin-left: 20%;
@@ -46,11 +48,9 @@ $block-class: 'profile-form';
             margin-bottom: 24px;
         }
 
-        &__settings {
-            &__section-header {
-                font-size: 14px;
-                color: $font-color;
-            }
+        &__section-header {
+            font-size: 14px;
+            color: $font-color;
         }
 
         &__name-row {
@@ -64,22 +64,33 @@ $block-class: 'profile-form';
 
             &-label {
                 color: $font-color;
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: 400;
                 padding-top: 16px;
             }
 
             &-input {
-                width: 100px;
-                color: #51545c;
+                @extend .large-font;
+
+                min-width: 100%;
+                font-weight: 100;
+                color: $header-font-color;
                 border-top: none;
                 border-left: none;
                 border-right: none;
+                border-bottom: 1px solid $border-color;
                 flex-grow: 1;
+                margin-right: 8px;
+
+                &:focus {
+                    outline: none;
+                }
             }
         }
 
         &__settings {
+            display: flex;
+            flex-direction: column;
             background-color: #fff;
             padding: 16px;
             margin-left: 20%;

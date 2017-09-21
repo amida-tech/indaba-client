@@ -57,7 +57,7 @@ class ProfileForm extends Component {
                     </div>
                 </div>
                 <div className='profile-form__settings'>
-                    <div className='profile-form__settings__section-header'>
+                    <div className='profile-form__section-header'>
                         {this.props.vocab.PROFILE.FORM.NOTIFICATION_AND_STATUS}
                     </div>
                     <label> {this.props.vocab.PROFILE.FORM.NOTIFY_LEVEL} </label>
