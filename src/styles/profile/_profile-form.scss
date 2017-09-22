@@ -9,33 +9,28 @@ $block-class: 'profile-form';
             display: flex;
             flex-direction: row;
             padding-top: 80px;
-            padding-bottom: 20px;
+            padding-bottom: 8px;
             justify-content: space-between;
         }
 
         &__form-title {
             @extend .large-font;
 
-            padding-top: 2px;
+            padding-top: 6px;
         }
 
         &__button {
             letter-spacing: 0.8px;
-            margin-top: 16px;
             font-weight: 400;
             color: #7e848f;
             background-color: #fff;
             border-radius: 2px;
-            padding: 2px;
 
             &:hover {
+                letter-spacing: 0.8px;
+                font-weight: 400;
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
-            }
-
-            &:focus {
-                background-color: #fff;
-                border-radius: 2px;
             }
         }
 
