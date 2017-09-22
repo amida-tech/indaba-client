@@ -21,6 +21,7 @@ $block-class: 'profile-form';
 
         &__button {
             letter-spacing: 0.8px;
+            margin-top: 16px;
             font-weight: 400;
             color: #7e848f;
             background-color: #fff;
@@ -84,6 +85,10 @@ $block-class: 'profile-form';
 
                 &:focus {
                     outline: none;
+                    border: 1px solid $brand-color;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
                 }
             }
         }
@@ -95,6 +100,18 @@ $block-class: 'profile-form';
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
+            margin-bottom: 24px;
+        }
+
+        &__textarea {
+            @extend .lead-font;
+
+            min-height: 100px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid $brand-color;
+            }
         }
     }
 }
