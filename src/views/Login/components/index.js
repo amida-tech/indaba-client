@@ -32,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
-    onClickToSubmit: () => dispatch(submit('task-options-form')),
+    onClickToSubmit: () => dispatch(submit('login-form')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

@@ -21,7 +21,10 @@ class Subjects extends Component {
                     <AddSubject
                         onAddSubject={(subject) => {
                             this.setState({ showAddSubjectModal: false });
-                            this.props.onAddSubject(subject, this.props.projectId);
+                            this.props.actions.addSubject(
+                                this.props.project,
+                                [{ name: subject }],
+                                this.props.vocab.ERROR);
                         }}
                         onCancel={() => this.setState({ showAddSubjectModal: false })}
                         vocab={this.props.vocab}/>}
@@ -43,18 +46,21 @@ class Subjects extends Component {
                         subjects={this.props.subjects}
                         query={this.state.query}
                         onDeleteClick={subject =>
-                            this.props.onDeleteSubject(subject, this.props.projectId)}/>
+                            this.props.actions.deleteSubject(
+                                this.props.project,
+                                subject.id,
+                                false,
+                                this.props.vocab.ERROR)}/>
                 </div>
             </div>);
     }
 }
 
 Subjects.propTypes = {
-    projectId: PropTypes.number.isRequired,
+    project: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onDeleteSubject: PropTypes.func.isRequired,
-    onAddSubject: PropTypes.func.isRequired,
+    actions: PropTypes.object.isRequired,
 };
 
 export default Subjects;

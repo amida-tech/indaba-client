@@ -46,8 +46,11 @@ $block-class:'primary-nav';
             }
         }
 
-        &__icon {
+        &__link {
             color: $nav-text-color;
+        }
+
+        &__icon {
             margin-right: 30px;
         }
 

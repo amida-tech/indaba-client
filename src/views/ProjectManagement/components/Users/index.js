@@ -91,7 +91,6 @@ Users.propTypes = {
         addUserGroup: PropTypes.func.isRequired,
         deleteUserGroup: PropTypes.func.isRequired,
         updateUserGroup: PropTypes.func.isRequired,
-        addUser: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
     }).isRequired,
 };

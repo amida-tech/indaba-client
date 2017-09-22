@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
-import { addNewUser } from '../../../../../common/actions/userActions';
-import { addUser } from '../../../../../common/actions/projectActions';
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
 import UserSidebar from './UserSidebar';
@@ -62,9 +60,12 @@ class AssigneeContainer extends Component {
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
-                    onSubmit={values => this.props.actions.onInviteUser(
-                        Object.assign({}, values, { invited: true }),
-                    )}/>
+                    onSubmit={values => this.props.actions.addNewUser(
+                        values,
+                        this.props.project.id,
+                        this.props.profile.organizationId,
+                        this.props.vocab.ERROR)}
+                    />
             </Box>
         );
     }
@@ -74,21 +75,17 @@ const mapStateToProps = state => ({
     search: state.manager.ui.userSidebarSearch,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onInviteUser: user => dispatch(addNewUser(user)).then(
-        userData => dispatch(addUser(userData.id, ownProps.project.id))),
-});
-
 AssigneeContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object),
     actions: PropTypes.shape({
         updateUserSearchGroup: PropTypes.func.isRequired,
         updateUserSearchQuery: PropTypes.func.isRequired,
+        addNewUser: PropTypes.func.isRequired,
     }).isRequired,
-    onInviteUser: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AssigneeContainer);
+export default connect(mapStateToProps)(AssigneeContainer);
