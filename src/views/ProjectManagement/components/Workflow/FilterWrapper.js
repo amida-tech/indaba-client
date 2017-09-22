@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Filter from '../../../../common/components/Filter';
 import AddSubject from '../Modals/AddSubject';
-import AddStageModal from '../Modals/AddStage';
+import StageModal from '../Modals/Stage';
 
 class FilterWrapper extends Component {
     render() {
@@ -35,19 +35,19 @@ class FilterWrapper extends Component {
                 <div className='filter-wrapper__add-button-panel'>
                     <Button className='filter-wrapper__add-button'
                         primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
-                        onClick={() => this.props.actions.showAddStageModal(true)}/>
+                        onClick={() => this.props.actions.showStageModal(true)}/>
                     <Button className='filter-wrapper__add-button'
                         primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         onClick={() => this.props.actions.showAddSubjectModal(true)}/>
                 </div>
-                {this.props.ui.showAddStage &&
-                    <AddStageModal
+                {this.props.ui.showStage &&
+                    <StageModal
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
-                        onCancel={() => this.props.actions.showAddStageModal(false)}
+                        onCancel={() => this.props.actions.showStageModal(false)}
                         onAddStage={(stage) => {
-                            this.props.actions.showAddStageModal(false);
-                            this.props.actions.addStage(
+                            this.props.actions.showStageModal(false);
+                            this.props.actions.putStage(
                                 this.props.project,
                                 stage,
                                 this.props.vocab.ERROR);

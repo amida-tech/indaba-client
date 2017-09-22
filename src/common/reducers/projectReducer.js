@@ -8,7 +8,8 @@ import { POST_NEW_USER_SUCCESS } from '../actionTypes/userActionTypes';
 const initialState = {
     ui: {
         errorMessage: '',
-        showAddStage: false,
+        showStage: false,
+        editStage: null,
         showAddSubject: false,
     },
     data: [{
@@ -38,8 +39,11 @@ export const ProjectReducer = (state = initialState, action) => {
         return state.data[0].name ?
         update(state, { data: { $push: [action.project] } }) :
         update(state, { data: { $set: [action.project] } });
-    case type.SHOW_ADD_STAGE_MODAL:
-        return update(state, { ui: { showAddStage: { $set: action.show } } });
+    case type.SHOW_STAGE_MODAL:
+        return update(state, { ui: {
+            showStage: { $set: action.show },
+            editStage: { $set: action.stageId },
+        } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:

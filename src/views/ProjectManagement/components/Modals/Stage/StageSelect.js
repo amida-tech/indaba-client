@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 
-class AddStageSelect extends Component {
+class StageSelect extends Component {
     render() {
         return (
             <Select
@@ -16,4 +16,4 @@ class AddStageSelect extends Component {
     }
 }
 
-export default AddStageSelect;
+export default StageSelect;

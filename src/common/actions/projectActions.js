@@ -42,7 +42,7 @@ export function getProjectById(projectId, errorMessages) {
     };
 }
 
-export function addStage(project, stage, errorMessages) {
+export function putStage(project, stage, errorMessages) {
     const requestBody = [Object.assign({},
         {
             workflowId: project.workflowId,
@@ -171,10 +171,11 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
 }
 
 // Modals.
-export function showAddStageModal(show) {
+export function showStageModal(show, stageId) {
     return {
-        type: actionTypes.SHOW_ADD_STAGE_MODAL,
+        type: actionTypes.SHOW_STAGE_MODAL,
         show,
+        stageId,
     };
 }
 

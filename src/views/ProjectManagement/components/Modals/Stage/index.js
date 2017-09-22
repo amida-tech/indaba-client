@@ -4,9 +4,9 @@ import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../../common/components/Modal';
-import AddStageForm from './AddStageForm';
+import StageForm from './StageForm';
 
-class AddStageModal extends Component {
+class StageModal extends Component {
     render() {
         const groups = this.props.userGroups.map((group, key) =>
             ({ value: group.id, label: group.title, key }),
@@ -24,7 +24,7 @@ class AddStageModal extends Component {
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}>
-                <AddStageForm
+                <StageForm
                     vocab={this.props.vocab}
                     groups={groups}
                     initialValues={initialValues}
@@ -36,7 +36,7 @@ class AddStageModal extends Component {
     }
 }
 
-AddStageModal.propTypes = {
+StageModal.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
@@ -78,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
     onClickToSubmit: () => dispatch(submit('add-stage-form')),
 });
 
-export default connect(null, mapDispatchToProps)(AddStageModal);
+export default connect(null, mapDispatchToProps)(StageModal);
