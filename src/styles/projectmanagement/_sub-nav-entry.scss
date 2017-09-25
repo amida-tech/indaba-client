@@ -11,7 +11,7 @@ $block-class: 'sub-nav-entry';
         cursor: pointer;
 
         &--selected {
-            border-bottom: 5px solid #3b9f22;
+            border-bottom: 5px solid $off-brand-color;
             padding-bottom: 17px;
             color: $brand-color;
         }

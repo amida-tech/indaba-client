@@ -12,6 +12,12 @@ $block-class:'primary-nav';
             width: 100px;
         }
 
+        &__toast {
+            .toastify__progress {
+                background: $off-brand-color;
+            }
+        }
+
         &__item {
             color: $nav-text-color;
             margin-left: 20px;
