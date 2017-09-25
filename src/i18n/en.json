@@ -37,6 +37,10 @@
         "LATE": "Late",
         "LOG_OUT": "Log Out"
     },
+    "TOAST": {
+        "EXISTS": "The user is already in the system, but we've added them to the project for you.",
+        "INVITED": "An invite has been sent to the user."
+    },
     "ERROR": {
         "DUPLICATE": "Attempted to enter a duplicate value.",
         "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",

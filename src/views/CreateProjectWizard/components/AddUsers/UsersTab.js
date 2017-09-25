@@ -56,6 +56,7 @@ class UsersTab extends Component {
                             values,
                             this.props.projectId,
                             this.props.profile.organizationId,
+                            this.props.vocab.TOAST,
                             this.props.vocab.ERROR);
                     }} />
                 <div className='users-tab__search'>
