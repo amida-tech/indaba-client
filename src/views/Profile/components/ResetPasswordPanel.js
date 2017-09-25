@@ -13,7 +13,7 @@ class ResetPasswordPanel extends Component {
                     {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
                 </div>
                 <Button className='reset-password-panel__button'
-                    primary={true} label={this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}
+                    secondary={true} label={this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}
                     onClick={() => this.props.actions.resetPassword(this.props.vocab.ERROR)}/>
             </div>
         );

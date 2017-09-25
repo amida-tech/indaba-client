@@ -89,7 +89,7 @@
         },
         "PASSWORD" : {
             "RESET_PASSWORD": "Reset Password",
-            "INSTRUCTIONS": "If you cannot remember your password, click the 'Reset Password Button.' You will receive an email with instructions to reset your password."
+            "INSTRUCTIONS": "If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
         }
     },
     "PROJECT": {

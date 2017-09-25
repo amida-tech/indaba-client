@@ -27,48 +27,58 @@ class ProfileForm extends Component {
                     </div>
                     <div className='profile-form__name-row'>
                         <div className='profile-form__field'>
-                            <label> {this.props.vocab.COMMON.FIRST_NAME} </label>
+                            <label className='profile-form__field-label'>
+                            {this.props.vocab.COMMON.FIRST_NAME} </label>
                             <Field name='firstName'
                                 value={this.props.profile.firstName}
                                 component='input'
-                                type='text' />
+                                type='text'
+                                className='profile-form__field-input'/>
                         </div>
-                        <div className='profile-form__field'>
-                            <label> {this.props.vocab.COMMON.LAST_NAME} </label>
+                        <div className='profile-form__field-spaced'>
+                            <label className='profile-form__field-label'>
+                            {this.props.vocab.COMMON.LAST_NAME} </label>
                             <Field name='lastName'
                                 value={this.props.profile.lastName}
                                 component='input'
-                                type='text' />
+                                type='text'
+                                className='profile-form__field-input'/>
                         </div>
                     </div>
                     <div className='profile-form__field'>
-                        <label> {this.props.vocab.COMMON.EMAIL} </label>
+                        <label className='profile-form__field-label'>
+                        {this.props.vocab.COMMON.EMAIL} </label>
                         <Field name='email'
                             value={this.props.profile.email}
                             component='input'
                             disabled={true}
-                            type='email' />
+                            type='email'
+                            className='profile-form__field-input'/>
                     </div>
                 </div>
                 <div className='profile-form__settings'>
                     <div className='profile-form__section-header'>
                         {this.props.vocab.PROFILE.FORM.NOTIFICATION_AND_STATUS}
                     </div>
-                    <label> {this.props.vocab.PROFILE.FORM.NOTIFY_LEVEL} </label>
+                    <label className='profile-form__field-label'>
+                    {this.props.vocab.PROFILE.FORM.NOTIFY_LEVEL} </label>
                     <Field name='notifyLevel'
                         value={this.props.profile.notifyLevel}
                         component={ProfileSelect}
                         options={notifyOptions}
                         type='select' />
-                    <label> {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>
+                    <label className='profile-form__field-label'>
+                    {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>
                     <Field name='isActive'
                         value={this.props.profile.isActive}
                         component={ProfileCheckBox}
                         type='checkbox' />
-                    <label> {this.props.vocab.PROFILE.FORM.NOTES} </label>
+                    <label className='profile-form__field-label'>
+                    {this.props.vocab.PROFILE.FORM.NOTES} </label>
                     <Field name='bio'
                         value={this.props.profile.isActive}
-                        component='textarea' />
+                        component='textarea'
+                        className='profile-form__textarea'/>
                 </div>
             </form>
         );
