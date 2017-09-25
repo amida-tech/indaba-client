@@ -15,16 +15,9 @@ class AddStages extends Component {
                 onCancel={() => this.props.actions.showAddStageWizardModal(false)}
                 onAddStage={(stage) => {
                     this.props.actions.showAddStageWizardModal(false);
-                    this.props.actions.addStageToWizard(
-                        this.props.project.workflowIds[0],
-                        [Object.assign({},
-                            {
-                                workflowId: this.props.project.workflowIds[0],
-                                position: this.props.project.stages.length,
-                                role: 3,
-                            },
-                            stage,
-                        )],
+                    this.props.actions.addStage(
+                        this.props.project,
+                        stage,
                         this.props.vocab.ERROR);
                 }}/>}
             <Summary

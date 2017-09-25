@@ -40,8 +40,8 @@ class PMUsersTab extends Component {
                                 values,
                                 this.props.project.id,
                                 this.props.profile.organizationId,
+                                this.props.vocab.TOAST,
                                 this.props.vocab.ERROR,
-                                this.props.actions.addUser,
                             );
                         }}/>
                 </div>
@@ -59,8 +59,10 @@ class PMUsersTab extends Component {
                         groups={this.props.project.userGroups}
                         key={user.id}
                         onNameClick={() => this.showUserProfileModal(user.id)}
-                        onDeleteClick={() =>
-                            this.props.actions.removeUser(user.id, this.props.project.id)}
+                        onDeleteClick={() => this.props.actions.removeUser(
+                            user.id,
+                            this.props.project.id,
+                            this.props.vocab.ERROR)}
                         vocab={this.props.vocab}/>)}
             </div>
         );
@@ -76,7 +78,6 @@ PMUsersTab.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.shape({
         addNewUser: PropTypes.func.isRequired,
-        addUser: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
     }).isRequired,
 };

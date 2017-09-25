@@ -12,6 +12,12 @@ $block-class:'primary-nav';
             width: 100px;
         }
 
+        &__toast {
+            .toastify__progress {
+                background: $off-brand-color;
+            }
+        }
+
         &__item {
             color: $nav-text-color;
             margin-left: 20px;
@@ -46,9 +52,20 @@ $block-class:'primary-nav';
             }
         }
 
-        &__icon {
+        &__link {
             color: $nav-text-color;
+        }
+
+        &__icon {
             margin-right: 30px;
+        }
+
+        &__logout {
+            @extend .primary-nav__item;
+
+            position: relative;
+            vertical-align: text-bottom;
+            margin-right: 20px;
         }
 
         &__envelope {

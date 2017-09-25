@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/discussActionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 const initialState = {
     ui: {
@@ -35,6 +36,8 @@ export const DiscussReducer = (state = initialState, action) => {
         return update(state, { data: { $set: action.discuss } });
     case type.REPORT_DISCUSS_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

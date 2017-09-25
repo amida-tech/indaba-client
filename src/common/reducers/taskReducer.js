@@ -2,7 +2,8 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/taskActionTypes';
-import { REMOVE_USER } from '../actionTypes/projectActionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
+import { DELETE_PROJECT_USER_SUCCESS } from '../actionTypes/projectActionTypes';
 
 const initialState = {
     ui: {
@@ -12,11 +13,10 @@ const initialState = {
     userId: 0,
     data: [{
         id: -1,
-        title: '',
-        endDate: '',
         userIds: [],
-        projectId: -1,
-        flagCount: 0,
+        stepId: 0,
+        uoaId: 0,
+        endDate: '',
     }],
 };
 
@@ -40,15 +40,17 @@ export const TaskReducer = (state = initialState, action) => {
     case type.POST_TASK_SUCCESS:
         return update(state, { data: { $push: [action.task] } });
     case type.UPDATE_TASK_DUE_DATE:
-        return update(state, { [projectIndex]: { tasks: { [taskIndex]:
-            { $merge: { endDate: action.endDate } } } } });
+        return update(state, { data: { [taskIndex]:
+            { $merge: { endDate: action.endDate } } } });
     case type.REASSIGN_TASK:
         return update(state, { data: { userId: { $set: action.reassignId } } });
-    case REMOVE_USER:
-        return update(state, { [projectIndex]: {
-            tasks: { $apply: tasks => tasks.filter(task => task.userId !== action.userId) } } });
+    case DELETE_PROJECT_USER_SUCCESS:
+        return update(state, { data: { $apply: data => data.filter(task =>
+                !task.userIds.includes(action.userId)) } });
     case type.REPORT_TASKS_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

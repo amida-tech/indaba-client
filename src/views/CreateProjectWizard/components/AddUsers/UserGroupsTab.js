@@ -32,7 +32,7 @@ class UserGroupsTab extends Component {
                 <UserGroupList
                     groups={this.props.groups.filter(this.filterGroup)}
                     users={this.props.allUsers}
-                    onDeleteClick={this.props.actions.removeUserFromWizard}/>
+                    onDeleteClick={this.props.actions.removeUser}/>
             </Box>
         );
     }
@@ -44,7 +44,7 @@ UserGroupsTab.propTypes = {
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     filter: PropTypes.string.isRequired,
     actions: PropTypes.shape({
-        removeUserFromWizard: PropTypes.func.isRequired,
+        removeUser: PropTypes.func.isRequired,
     }).isRequired,
 };
 

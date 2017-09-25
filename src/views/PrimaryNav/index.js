@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { Box, Button } from 'grommet';
 import { Icon } from 'react-fa';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -26,6 +28,15 @@ class PrimaryNavContainer extends Component {
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
+                <ToastContainer
+                    className='primary-nav__toast'
+                    position='top-center'
+                    type='default'
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnHover />
                 <Box
                   justify='between'
                   direction='row'
@@ -53,8 +64,25 @@ class PrimaryNavContainer extends Component {
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </Box>
                     <Box className='primary-nav__icon' direction='row' align='baseline'>
-                        <Icon className='primary-nav__envelope' name="envelope-o" size="2x" />
-                        <Icon className='primary-nav__user' name="user-o" size="2x" />
+                        <div className='primary-nav__right-side'>
+                            <Link className='primary-nav__logout'
+                                onClick={() => this.props.actions.logOut()}
+                                to='/login'>
+                                {this.props.vocab.COMMON.LOG_OUT}
+                            </Link>
+                            <Link className='primary-nav__link'
+                                to='/profile'>
+                                <Icon className='primary-nav__envelope'
+                                    name='envelope-o'
+                                    size='2x' />
+                            </Link>
+                            <Link className='primary-nav__link'
+                                to='/profile'>
+                                <Icon className='primary-nav__user'
+                                    name='user-o'
+                                    size='2x' />
+                            </Link>
+                    </div>
                     </Box>
                 </Box>
             </nav>

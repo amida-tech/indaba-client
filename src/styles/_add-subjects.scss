@@ -6,10 +6,31 @@ $block-class: 'add-subjects';
             display: flex;
             justify-content: flex-end;
             padding: 1em 2em;
+            margin-right: 10%;
         }
 
-        &__subject {
+        &__table-row {
             display: flex;
+            padding: 1em;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: 2px solid $border-color;
+            border-top-width: 0;
+            justify-content: space-between;
+
+            &:nth-child(even) {
+                background-color: lighten(#d8d8d8, 10%);
+            }
+        }
+
+        &__instructions {
+            @extend .lead-font;
+
+            display: flex;
+            margin-top: 1em;
+            margin-left: 10%;
+            padding-left: 1rem;
+            width: 75%;
         }
     }
 }

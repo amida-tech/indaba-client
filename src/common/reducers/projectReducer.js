@@ -2,7 +2,8 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as type from '../actionTypes/projectActionTypes';
-import { ADD_PROJECT_FROM_WIZARD } from '../../views/CreateProjectWizard/actionTypes';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
+import { POST_NEW_USER_SUCCESS } from '../actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
@@ -14,6 +15,8 @@ const initialState = {
         id: -1,
         name: '',
         status: 0,
+        productId: 0,
+        workflowId: 0,
         users: [],
         stages: [],
         userGroups: [],
@@ -31,10 +34,10 @@ export const ProjectReducer = (state = initialState, action) => {
     }
 
     switch (action.type) {
-    case ADD_PROJECT_FROM_WIZARD:
+    case type.POST_PROJECT_SUCCESS:
         return state.data[0].name ?
-        update(state, { data: { $push: [action.wizard.project] } }) :
-        update(state, { data: { $set: [action.wizard.project] } });
+        update(state, { data: { $push: [action.project] } }) :
+        update(state, { data: { $set: [action.project] } });
     case type.SHOW_ADD_STAGE_MODAL:
         return update(state, { ui: { showAddStage: { $set: action.show } } });
     case type.SHOW_ADD_SUBJECT_MODAL:
@@ -59,14 +62,21 @@ export const ProjectReducer = (state = initialState, action) => {
         } } });
     case type.POST_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
-            subjects: { $push: [action.subject] },
+            subjects: { $set: _.concat(state.data[projectIndex].subjects, action.subjects) },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
-    case type.DELETE_SUBJECT:
+    case type.DELETE_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
-            subjects: { $apply: ss => ss.filter(subject => subject !== action.subject) },
+            subjects: { $apply: ss => ss.filter(subject => subject.id !== action.uoaId) },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
+    case type.POST_PROJECT_USER_SUCCESS:
+        return update(state, { data: { [projectIndex]: {
+            users: { $push: [action.userId] } } } });
+    case type.DELETE_PROJECT_USER_SUCCESS:
+        return update(state, { data: { [projectIndex]: {
+            users: { $apply: users => users.filter(user => user !== action.userId),
+            } } } });
     case type.DELETE_USER_GROUP:
         return update(state, { data: { [projectIndex]: {
             userGroups: { $apply: userGroups =>
@@ -81,9 +91,9 @@ export const ProjectReducer = (state = initialState, action) => {
         return update(state, { data: { [projectIndex]: { userGroups: {
             [groupIndex]: { $set: action.group },
         } } } });
-    case type.ADD_USER:
+    case POST_NEW_USER_SUCCESS:
         return update(state, { data: { [projectIndex]: {
-            users: { $push: [action.userId] },
+            users: { $push: [action.user.id] },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
     case type.REMOVE_USER:
@@ -97,6 +107,8 @@ export const ProjectReducer = (state = initialState, action) => {
         return update(state, { data: { [projectIndex]: { name: { $set: action.name } } } });
     case type.REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

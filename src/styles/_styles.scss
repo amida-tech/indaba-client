@@ -6,6 +6,7 @@ $font-color: #a4aebf;
 $font-inverse-color: #faf5f5;
 // grommet brand colors
 $brand-color: #4eb276;
+$off-brand-color: #3b9f22;
 $brand-font-family: 'Roboto';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
@@ -33,7 +34,7 @@ body {
     font-family: 'Roboto';
     background-color: $page-background-color;
     color: $header-font-color;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 // Grommet overrides

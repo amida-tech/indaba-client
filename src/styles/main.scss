@@ -52,6 +52,7 @@
 @import './pm-dashboard.scss';
 @import './status-label.scss';
 @import './fonts.scss';
+@import './wizard-footer.scss';
 // SelectGroupUsers
 @import './selectgroupusers/select-group-users.scss';
 @import './selectgroupusers/filtered-list.scss';
@@ -71,6 +72,10 @@
 // Login:
 @import './login/login-panel.scss';
 @import './login/login-form.scss';
+// Profile:
+@import './profile/profile.scss';
+@import './profile/profile-form.scss';
+@import './profile/reset-password-panel.scss';
 // Shared Dashboard:
 @import './dashboard/filter.scss';
 @import './dashboard/flag-count.scss';
