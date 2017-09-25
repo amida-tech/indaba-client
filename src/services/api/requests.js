@@ -83,25 +83,6 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
     .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
-// /**
-//  * Executes a GET + Auth-Basic request on the given URI
-//  * @param {String} fullURI
-//  * @param {Function} callback
-//  * @return {Any} handled by callback. Generally the response data.
-// * */
-// export function apiAuthGetRequest(fullURI, authHash, callback) {
-//     fetch(fullURI, {
-//         method: 'GET',
-//         headers: {
-//             Accept: 'application/json',
-//             'Content-Type': 'application/json',
-//             Authorization: `Basic ${authHash}`,
-//         },
-//     })
-//   .then(res => handleResponse(res, callback), issue => callback(issue));
-// }
-
-
 // ////////////////
 // Private Helpers
 // ////////////////
