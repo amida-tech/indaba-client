@@ -26,7 +26,7 @@ export function apiGetRequest(fullURI, callback) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
-export function apiPostRequest(fullURI, requestBody, callback) {
+export function apiAuthPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
         headers: {
@@ -34,6 +34,26 @@ export function apiPostRequest(fullURI, requestBody, callback) {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: requestBody,
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
+ * Executes a POST request on the given URI
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiPostRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'POST',
+        headers: {
+            Authorization: cookie.load('indaba-auth'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
