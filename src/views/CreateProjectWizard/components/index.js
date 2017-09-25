@@ -65,11 +65,11 @@ class CreateProjectWizard extends Component {
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.wizard.ui.step}
                     onActive={this.changeStep}>
-                    <Tab className='project-wizard__tab'
+                    <Tab className='project-wizard__tab project-wizard__tab--complete'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab className='project-wizard__tab'
+                    <Tab className='project-wizard__tab project-wizard__tab--incomplete'
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         <AddSubjects
                             actions={this.props.actions}
