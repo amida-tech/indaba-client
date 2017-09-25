@@ -35,7 +35,7 @@ class ProfileForm extends Component {
                                 type='text'
                                 className='profile-form__field-input'/>
                         </div>
-                        <div className='profile-form__field'>
+                        <div className='profile-form__field-spaced'>
                             <label className='profile-form__field-label'>
                             {this.props.vocab.COMMON.LAST_NAME} </label>
                             <Field name='lastName'
