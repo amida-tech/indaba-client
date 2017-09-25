@@ -10,13 +10,12 @@ export function login(username, password, realm, errorMessages) {
         const authPayload = {
             username,
             password,
-            realm,
         };
         apiService.auth.login(
         authPayload,
         (err, auth) => {
             if (!err && auth) {
-                dispatch(_loginSuccess(auth));
+                dispatch(_loginSuccess(auth, realm));
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
@@ -40,9 +39,9 @@ function _login() {
     };
 }
 
-function _loginSuccess(response) {
-    cookie.save('indaba-auth', (`JWT ${response.token}`));
-    cookie.save('indaba-realm', response.realm);
+function _loginSuccess(response, realm) {
+    cookie.save('indaba-auth', (`Bearer ${response.token}`));
+    cookie.save('indaba-realm', realm);
     return {
         type: actionTypes.LOGIN_SUCCESS,
         payload: response,
