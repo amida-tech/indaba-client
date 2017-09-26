@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import Time from '../../../utils/Time';
 
-import EditableTextInput from '../../../common/components/EditableTextInput';
+import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
     render() {
         return (
             <div className='project-list-entry'
-                onClick={evt =>
-                    ![...document.querySelectorAll('.project-list-entry__name')].some(
-                        container => container.contains(evt.target),
-                    ) &&
+                onClick={() =>
                     this.props.router.push(`/project/${this.props.project.id}`)}>
                 <div className='project-list-entry__name'>
-                    <EditableTextInput input={{
-                        defaultValue: this.props.project.name,
-                        onChange: evt =>
-                        this.props.onProjectNameChange(evt.target.value, this.props.project.id),
-                        onBlur: evt => this.props.onProjectNameBlur(evt.target.value),
-                    }} />
+                    {this.props.project.name}
                 </div>
                 <div className={`project-list-entry__status${
                     this.props.project.status ?
@@ -31,12 +22,7 @@ class ProjectListEntry extends Component {
                         this.props.vocab.PROJECT.STATUS_INACTIVE}
                 </div>
                 <div className='project-list-entry__name'>
-                    <EditableTextInput input={{
-                        defaultValue: this.props.survey.name,
-                        onChange: evt =>
-                        this.props.onSurveyNameChange(evt.target.value, this.props.project.id),
-                        onBlur: evt => this.props.onSurveyNameBlur(evt.target.value),
-                    }} />
+                    {this.props.survey.name}
                 </div>
                 <div className={`project-list-entry__status${
                     this.props.survey.status ?

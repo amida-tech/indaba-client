@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import apiService from '../../services/api';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
@@ -89,7 +91,7 @@ export function getUsers(errorMessages) {
     };
 }
 
-export function addNewUser(userData, projectId, orgId, errorMessages) {
+export function addNewUser(userData, projectId, orgId, toastMessages, errorMessages) {
     const requestBody = {
         firstName: userData.firstName,
         lastName: userData.lastName,
@@ -106,9 +108,15 @@ export function addNewUser(userData, projectId, orgId, errorMessages) {
         apiService.users.postNewUser(
             requestBody,
             (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _postNewUserSuccess(userResp, projectId) :
-                    _reportUserError(errorMessages.USER_REQUEST));
+                if (!userErr && userResp) {
+                    toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
+                    dispatch(_postNewUserSuccess(userResp, projectId));
+                } else {
+                    if (userErr.e === 403) {
+                        toast(errorMessages.DUPLICATE);
+                    }
+                    dispatch(_reportUserError(errorMessages.USER_REQUEST));
+                }
             },
         );
     };

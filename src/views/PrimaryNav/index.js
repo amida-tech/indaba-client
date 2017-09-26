@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { Box, Button } from 'grommet';
 import { Icon } from 'react-fa';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -26,6 +28,15 @@ class PrimaryNavContainer extends Component {
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
+                <ToastContainer
+                    className='primary-nav__toast'
+                    position='top-center'
+                    type='default'
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnHover />
                 <Box
                   justify='between'
                   direction='row'

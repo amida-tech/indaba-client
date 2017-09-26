@@ -26,6 +26,25 @@ export function apiGetRequest(fullURI, callback) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
+export function apiAuthPostRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'POST',
+        headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: requestBody,
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
+ * Executes a POST request on the given URI
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
 export function apiPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
@@ -82,24 +101,6 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
 
     fetch(fullURI, call)
     .then(res => handleResponse(res, callback), issue => callback(issue));
-}
-
-/**
- * Executes a GET + Auth-Basic request on the given URI
- * @param {String} fullURI
- * @param {Function} callback
- * @return {Any} handled by callback. Generally the response data.
-* */
-export function apiAuthGetRequest(fullURI, authHash, callback) {
-    fetch(fullURI, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Basic ${authHash}`,
-        },
-    })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
 // ////////////////
