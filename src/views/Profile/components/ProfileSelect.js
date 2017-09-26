@@ -4,7 +4,7 @@ import { Select } from 'grommet';
 class ProfileSelect extends Component {
     render() {
         let value;
-        if (this.props.input.value === undefined) {
+        if (this.props.input.value === '') {
             value = this.props.options[this.props.options.length - 1];
         } else {
             value = typeof this.props.input.value === 'number' ?
