@@ -34,10 +34,12 @@ class FilterWrapper extends Component {
                     noSpace={true} />
                 <div className='filter-wrapper__add-button-panel'>
                     <Button className='filter-wrapper__add-button'
-                        primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
+                        primary={true}
+                        label={this.props.vocab.PROJECT.ADD_STAGE}
                         onClick={() => this.props.actions.showStageModal(true)}/>
                     <Button className='filter-wrapper__add-button'
-                        primary={true} label={this.props.vocab.PROJECT.ADD_SUBJECT}
+                        primary={true}
+                        label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         onClick={() => this.props.actions.showAddSubjectModal(true)}/>
                 </div>
                 {this.props.ui.showStage &&
@@ -45,6 +47,7 @@ class FilterWrapper extends Component {
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
                         project={this.props.project}
+                        stageId={this.props.ui.editStage}
                         onCancel={() => this.props.actions.showStageModal(false)}
                         onAddStage={(stage) => {
                             this.props.actions.showStageModal(false);

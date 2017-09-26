@@ -42,7 +42,7 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.SHOW_STAGE_MODAL:
         return update(state, { ui: {
             showStage: { $set: action.show },
-            editStage: { $set: action.stageId },
+            editStage: { $set: action.stageId !== undefined ? action.stageId : null },
         } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });

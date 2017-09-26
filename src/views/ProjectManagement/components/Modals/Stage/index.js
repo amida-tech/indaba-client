@@ -11,14 +11,34 @@ class StageModal extends Component {
         const groups = this.props.userGroups.map((group, key) =>
             ({ value: group.id, label: group.title, key }),
         );
-        const initialValues = {
-            title: '',
-            userGroups: [],
-            permissions: '0',
-            startDate: '',
-            endDate: '',
-        };
-        console.log(this.props);
+
+        let initialValues;
+        console.log('stageid: ', this.props.stageId);
+        console.log('project: ', this.props.project);
+        if (this.props.stageId && this.props.project) {
+            initialValues = this.props.project.stages.find(stage =>
+                stage.id === this.props.stageId);
+            if (initialValues.blindReview) {
+                initialValues.permissions = '1';
+            } else if (initialValues.discussionParticipation) {
+                initialValues.permissions = '2';
+            } else if (initialValues.allowEdit) {
+                initialValues.permissions = '3';
+            } else {
+                initialValues.permissions = '0';
+            }
+        } else {
+            initialValues = {
+                title: '',
+                userGroups: [],
+                permissions: '0',
+                startDate: '',
+                endDate: '',
+            };
+        }
+
+        console.log(initialValues.permissions);
+
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
