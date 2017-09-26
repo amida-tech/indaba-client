@@ -46,7 +46,8 @@ $block-class: 'users-tab';
         }
 
         &__search {
-            margin: 0.5em;
+            width: 80%;
+            margin-left: 10%;
             background-color: #fff;
 
             &__input {
