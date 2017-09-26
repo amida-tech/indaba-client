@@ -5,9 +5,9 @@ $block-class: 'users-tab';
         &__invite-container {
             background-color: #fafafa;
             width: 80%;
+            min-height: 500px;
             margin-right: 10%;
             margin-left: 10%;
-            min-height: 100%;
             padding-top: 0.5rem;
             border: 1px solid $border-color;
         }
