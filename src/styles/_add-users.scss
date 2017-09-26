@@ -26,7 +26,6 @@ $block-class: 'add-users';
         &__instructions {
             @extend .lead-font;
 
-            display: flex;
             margin-top: 1em;
             margin-left: 10%;
         }

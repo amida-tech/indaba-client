@@ -23,7 +23,7 @@ class UserGroupsTab extends Component {
 
             <div className='wrapper'>
             <div className='user-groups-tab'>
-                <Search
+                <Search className='user-groups-tab__search-input'
                     placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                     fill={true}
                     inline={true}

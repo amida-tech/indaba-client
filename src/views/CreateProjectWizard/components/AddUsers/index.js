@@ -41,11 +41,12 @@ class AddUsers extends Component {
                         label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </div>
                 <hr className='divider' />
-                {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
-                    <p key={sentence} className='add-users__instructions'>
-                        {sentence}
-                    </p>,
-                )}
+                <p className='add-users__instructions'>
+                    {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_1}
+                </p>
+                <p className='add-users__instructions'>
+                    {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_2}
+                </p>
                 <Tabs onActive={this.props.actions.addUsersSetTab}>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
