@@ -37,7 +37,7 @@ class AddUsers extends Component {
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
                             onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}/>}
-                    <Button className='add-users__button-panel-button'
+                    <Button className='add-users__import-row-button'
                         label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </div>
                 <hr className='divider' />

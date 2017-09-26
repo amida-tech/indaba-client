@@ -3,12 +3,10 @@ $block-class: 'invite-user-form';
 
 @at-root {
     .#{$block-class} {
-        margin-left: 10%;
-        margin-right: 10%;
         display: inline-flex;
         flex-direction: row;
         justify-content: center;
-        width: 80%;
+        padding: 0.5em;
 
         &__text-input,
         &:-webkit-autofill,
