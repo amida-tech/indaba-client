@@ -5,13 +5,11 @@ $block-class: 'add-stages-step';
         display: flex;
         flex-direction: column;
 
-        &__add-button {
-            margin-left: 5px;
-            border-radius: 2px;
-            letter-spacing: 0.8px;
-            font-weight: 400;
+        &__import-row {
+            margin-left: 10%;
+            margin-right: 10%;
 
-            &--stages {
+            &__button-1 {
                 margin-right: 8px;
                 letter-spacing: 0.8px;
                 font-weight: 400;
