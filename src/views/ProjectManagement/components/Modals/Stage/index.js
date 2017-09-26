@@ -18,6 +18,7 @@ class StageModal extends Component {
             startDate: '',
             endDate: '',
         };
+        console.log(this.props);
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}

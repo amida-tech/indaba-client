@@ -44,6 +44,7 @@ class FilterWrapper extends Component {
                     <StageModal
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
+                        project={this.props.project}
                         onCancel={() => this.props.actions.showStageModal(false)}
                         onAddStage={(stage) => {
                             this.props.actions.showStageModal(false);
