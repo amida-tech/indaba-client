@@ -31,9 +31,9 @@ class AddUsers extends Component {
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
                 <hr className='divider' />
-                <div className='add-users__button-panel'>
+                <div className='add-users__import-row'>
                     {this.props.ui.tab === 1 &&
-                        <Button className='add-users__button-panel-button'
+                        <Button className='add-users__import-row-button'
                             label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
                             primary
                             onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}/>}
@@ -42,7 +42,7 @@ class AddUsers extends Component {
                 </div>
                 <hr className='divider' />
                 {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION.map(sentence =>
-                    <p key={sentence} className='add-users__clarification'>
+                    <p key={sentence} className='add-users__instructions'>
                         {sentence}
                     </p>,
                 )}

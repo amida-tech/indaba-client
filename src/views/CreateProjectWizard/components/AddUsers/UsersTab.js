@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SearchInput } from 'grommet';
+import { Search } from 'grommet';
 import PropTypes from 'prop-types';
 
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
@@ -60,7 +60,9 @@ class UsersTab extends Component {
                             this.props.vocab.ERROR);
                     }} />
                 <div className='users-tab__search'>
-                    <SearchInput
+                    <Search
+                        fill={true}
+                        inline={true}
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         onDOMChange={evt =>
                             this.props.actions.addUsersSetUsersFilter(evt.target.value)}

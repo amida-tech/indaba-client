@@ -2,11 +2,40 @@ $block-class: 'users-tab';
 
 @at-root {
     .#{$block-class} {
+        min-width: 90%;
+
+        &__invite-container {
+            background-color: #fafafa;
+            margin-left: 10%;
+            margin-right: 10%;
+            min-height: 100%;
+            padding-top: 0.5rem;
+            border: 1px solid $border-color;
+        }
+
+        &__invite-wrapper {
+            background-color: #fafafa;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 0.5rem;
+        }
+
+        &__text-input {
+            flex: 1;
+            display: flex;
+            min-width: 100%;
+        }
+
         &__entry {
             display: flex;
-            padding: 1em 3em;
+            padding: 0.5rem;
             justify-content: space-between;
             border-bottom: 1px solid $border-color;
+
+            &:nth-child(even) {
+                background-color: lighten(#d8d8d8, 10%);
+            }
         }
 
         &__name-container {
@@ -18,15 +47,22 @@ $block-class: 'users-tab';
             margin-left: 1em;
         }
 
-        &__input {
-            padding: 5px 5px 5px 10px;
-            width: 100%;
-            border: 1px solid $border-color;
-        }
+        &__search {
+            margin: 0.5em;
+            background-color: #fff;
+            margin-left: 10%;
+            margin-right: 10%;
 
-        &__btn {
-            display: flex;
-            justify-content: flex-end;
+            &__input {
+                padding: 5px 5px 5px 10px;
+                width: 100%;
+                border: 1px solid $border-color;
+            }
+
+            &__btn {
+                display: flex;
+                justify-content: flex-end;
+            }
         }
     }
 }

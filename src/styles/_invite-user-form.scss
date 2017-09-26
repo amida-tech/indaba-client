@@ -1,12 +1,23 @@
+
 $block-class: 'invite-user-form';
 
 @at-root {
     .#{$block-class} {
+        margin-left: 10%;
+        margin-right: 10%;
         display: inline-flex;
         flex-direction: row;
         justify-content: center;
+        width: 80%;
 
-        &__text-input {
+        &__text-input,
+        &:-webkit-autofill,
+        :-webkit-autofill:hover,
+        :-webkit-autofill:focus, {
+            background-color: #fff;
+            border: 1px solid $border-color;
+            -webkit-box-shadow: 0 0 1000px #fff inset;
+            transition: background-color 5000s ease-in-out 0s;
             flex: 1;
             margin-right: 4px;
             padding: 2px;

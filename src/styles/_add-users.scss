@@ -2,14 +2,78 @@ $block-class: 'add-users';
 
 @at-root {
     .#{$block-class} {
-        &__button-panel {
+        cursor: pointer;
+
+        &__import-row {
             display: flex;
             justify-content: flex-end;
             padding: 1em 2em;
+            margin-right: 10%;
         }
 
-        &__button-panel-button {
+        &__import-row-button {
             margin-left: 1em;
+            border-radius: 2px;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
+
+        &__instructions {
+            @extend .lead-font;
+
+            display: flex;
+            margin-top: 1em;
+            margin-left: 10%;
+            padding-left: 1rem;
+        }
+
+        .grommetux-tab--active {
+            background-color: #fafafa;
+        }
+
+        .grommetux-tabs--justify-center {
+            justify-content: flex-start;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .grommetux-tab {
+            width: 150px;
+            display: flex;
+            font-family: $brand-font-family;
+        }
+
+        .grommetux-tab__label {
+            @extend .med-font;
+
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: $font-color;
+            display: flex;
+            padding-bottom: 4px;
+            padding-top: 4px;
+            border-bottom: none;
+        }
+
+        .grommetux-tab__label:hover {
+            color: $header-font-color;
+        }
+
+        .divider {
+            margin-left: 10%;
+            margin-right: 10%;
         }
     }
+}
+
+.main-body {
+    margin-right: 2.5em;
+    margin-left: 2.5em;
+    height: 800px;
 }
