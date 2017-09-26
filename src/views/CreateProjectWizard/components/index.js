@@ -81,7 +81,7 @@ class CreateProjectWizard extends Component {
                             survey={this.props.survey}
                             vocab={this.props.vocab} />
                     </Tab>
-                    <Tab className='project-wizard__tab'
+                    <Tab className='project-wizard__tab project-wizard__tab--incomplete'
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         <AddUsers
                             actions={this.props.actions}
@@ -91,7 +91,7 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             user={this.props.user} />
                     </Tab>
-                    <Tab className='project-wizard__tab'
+                    <Tab className='project-wizard__tab project-wizard__tab--incomplete'
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages
                             actions={this.props.actions}
