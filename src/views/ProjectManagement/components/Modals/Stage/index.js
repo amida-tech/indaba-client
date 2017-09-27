@@ -13,8 +13,6 @@ class StageModal extends Component {
         );
 
         let initialValues;
-        console.log('stageid: ', this.props.stageId);
-        console.log('project: ', this.props.project);
         if (this.props.stageId && this.props.project) {
             initialValues = this.props.project.stages.find(stage =>
                 stage.id === this.props.stageId);
@@ -36,8 +34,6 @@ class StageModal extends Component {
                 endDate: '',
             };
         }
-
-        console.log(initialValues.permissions);
 
         return (
             <Modal
@@ -75,7 +71,7 @@ const stageMapping = (values) => {
         writeToAnswers: false,
         allowEdit: false,
     };
-    switch (values.permission) {
+    switch (values.permissions) {
     case '1': { // Review
         stage.blindReview = true;
         break;
