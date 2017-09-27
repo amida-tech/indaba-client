@@ -6,10 +6,14 @@ $block-class: 'project-wizard';
         margin-right: 5%;
 
         .project-wizard__tab {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
             &::after {
                 content: '';
-                width: 50px;
-                height: 50px;
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
                 display: block;
             }
@@ -17,7 +21,8 @@ $block-class: 'project-wizard';
 
         .project-wizard__tab--complete {
             &::after {
-                background-color: green;
+                background-color: nth($brand-neutral-colors, 2);
+                border: 2px solid nth($brand-neutral-colors, 1);
             }
         }
 
@@ -28,6 +33,10 @@ $block-class: 'project-wizard';
         }
 
         .grommetux-tab__label {
+            @extend .lead-font-bold;
+
+            font-size: 14px;
+            color: $header-font-color;
             border-bottom: none;
         }
     }
