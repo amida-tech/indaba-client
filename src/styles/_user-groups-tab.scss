@@ -2,10 +2,8 @@ $block-class:'user-groups-tab';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fff;
-
         &__search-input {
-            margin-bottom: 0.5rem;
+            background-color: #fff;
         }
     }
 
