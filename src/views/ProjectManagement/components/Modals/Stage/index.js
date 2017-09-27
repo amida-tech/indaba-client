@@ -4,6 +4,7 @@ import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../../common/components/Modal';
+import Time from '../../../../../utils/Time';
 import StageForm from './StageForm';
 
 class StageModal extends Component {
@@ -25,6 +26,8 @@ class StageModal extends Component {
             } else {
                 initialValues.permissions = '0';
             }
+            initialValues.startDate = Time.renderForTaskReview(new Date(initialValues.startDate));
+            initialValues.endDate = Time.renderForTaskReview(new Date(initialValues.endDate));
         } else {
             initialValues = {
                 title: '',
@@ -71,6 +74,12 @@ const stageMapping = (values) => {
         writeToAnswers: false,
         allowEdit: false,
     };
+    if (values.id) {
+        stage.id = values.id;
+    }
+    if (values.workflowId) {
+        stage.workflowId = values.workflowId;
+    }
     switch (values.permissions) {
     case '1': { // Review
         stage.blindReview = true;

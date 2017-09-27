@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import apiService from '../../services/api';
 
@@ -56,12 +58,17 @@ export function putStage(project, stage, errorMessages) {
         apiService.projects.putWorkflowSteps(
             project.workflowId,
             requestBody,
-            (workflowErr, workflowResp) => {
-                dispatch((!workflowErr && workflowResp) ?
-                    _putStageSuccess(
-                        Object.assign({}, requestBody[0], { id: workflowResp.inserted[0] }),
-                        project.id) :
-                    _reportProjectError(errorMessages.STAGE_REQUEST));
+            (stepErr, stepResp) => {
+                if (!stepErr && stepResp) {
+                    if (!project.subjects.length) {
+                        toast(errorMessages.SUBJECT_NEED);
+                    }
+                    const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
+                    dispatch(_putStageSuccess(
+                        Object.assign({}, requestBody[0], { id }), project.id));
+                } else {
+                    _reportProjectError(errorMessages.STAGE_REQUEST);
+                }
             },
         );
     };
@@ -78,9 +85,14 @@ export function addSubject(project, subjects, errorMessages) {
         apiService.projects.postUOA(
             requestBody,
             (uoaErr, uoaResp) => {
-                dispatch((!uoaErr && uoaResp) ?
-                        _postSubjectSuccess(uoaResp, project.id) :
-                        _reportProjectError(errorMessages.SUBJECT_REQUEST));
+                if (!uoaErr && uoaResp) {
+                    if (!project.stages.length) {
+                        toast(errorMessages.STAGE_NEED);
+                    }
+                    dispatch(_postSubjectSuccess(uoaResp, project.id));
+                } else {
+                    dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
+                }
             },
         );
     };

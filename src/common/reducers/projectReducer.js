@@ -59,11 +59,19 @@ export const ProjectReducer = (state = initialState, action) => {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
     case type.SET_PROJECT_STATUS: // project related.
         return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
-    case type.PUT_STAGE_SUCCESS:
+    case type.PUT_STAGE_SUCCESS: {
+        const stageIndex = _.findIndex(state.data[projectIndex].stages,
+            stage => stage.id === action.stage.id);
+        if (stageIndex > 0) {
+            return update(state, { data: { [projectIndex]: {
+                stages: { [stageIndex]: { $set: action.stage } },
+            } } });
+        }
         return update(state, { data: { [projectIndex]: {
             stages: { $push: [action.stage] },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
+    }
     case type.POST_SUBJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: {
             subjects: { $set: _.concat(state.data[projectIndex].subjects, action.subjects) },
