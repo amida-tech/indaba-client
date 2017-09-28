@@ -20,7 +20,7 @@ class WizardFooter extends Component {
                         <Button className='wizard-footer__button wizard-footer__button--skip'
                             label={this.props.vocab.COMMON.SKIP_THIS_STEP}
                             onClick={this.props.onSkip}/>
-                        <Button primary
+                        <Button className='wizard-footer__button wizard-footer__button--continue'
                             label={this.props.finalStep ?
                                 this.props.vocab.PROJECT.COMPLETE_PROJECT :
                                 this.props.vocab.COMMON.CONTINUE}
