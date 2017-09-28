@@ -28,10 +28,17 @@ $block-class: 'wizard-footer';
                 color: $header-font-color;
             }
 
-            &--skip,
+            &--skip {
+                border: 2px solid $header-font-color;
+                color: $header-font-color;
+                border-radius: 2px;
+            }
+
             &--cancel {
                 color: $header-font-color;
                 border-radius: 2px;
+                background-color: #d9dcde;
+                border: 2px solid $header-font-color;
             }
         }
     }

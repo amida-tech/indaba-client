@@ -17,10 +17,12 @@ class WizardFooter extends Component {
                             className='wizard-footer__button wizard-footer__button--cancel'
                             label={this.props.vocab.COMMON.CANCEL}
                             onClick={this.props.onCancel}/>
-                        <Button className='wizard-footer__button wizard-footer__button--skip'
+                        <Button
+                            className='wizard-footer__button wizard-footer__button--skip'
                             label={this.props.vocab.COMMON.SKIP_THIS_STEP}
                             onClick={this.props.onSkip}/>
-                        <Button className='wizard-footer__button wizard-footer__button--continue'
+                        <Button
+                            className='wizard-footer__button wizard-footer__button--continue'
                             label={this.props.finalStep ?
                                 this.props.vocab.PROJECT.COMPLETE_PROJECT :
                                 this.props.vocab.COMMON.CONTINUE}
