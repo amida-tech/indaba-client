@@ -25,6 +25,7 @@ $block-class: 'wizard-footer';
             &--back {
                 margin-left: 16px;
                 background-color: #f2f2f2;
+                color: $header-font-color;
             }
 
             &--skip,
