@@ -2,9 +2,6 @@ $block-class: 'project-wizard';
 
 @at-root {
     .#{$block-class} {
-        margin-left: 5%;
-        margin-right: 5%;
-
         .project-wizard__tab {
             display: flex;
             align-items: center;
@@ -38,6 +35,10 @@ $block-class: 'project-wizard';
             font-size: 14px;
             color: $header-font-color;
             border-bottom: none;
+        }
+
+        .grommetux-tabs {
+            border: none;
         }
     }
 }
