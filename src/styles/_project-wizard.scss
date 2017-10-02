@@ -2,6 +2,17 @@ $block-class: 'project-wizard';
 
 @at-root {
     .#{$block-class} {
+        position: relative;
+
+        &__tabs::after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            width: 80%;
+            position: absolute;
+            z-index: -1;
+            bottom: 50px;
+        }
+
         .project-wizard__tab {
             display: flex;
             align-items: center;
@@ -40,15 +51,6 @@ $block-class: 'project-wizard';
 
         .grommetux-tabs {
             border: none;
-        }
-
-        .project-wizard__tabs::after {
-            content: '';
-            border-bottom: 1px solid #ccc;
-            width: 50%;
-            position: absolute;
-            z-index: -1;
-            bottom: 12px;
         }
     }
 }
