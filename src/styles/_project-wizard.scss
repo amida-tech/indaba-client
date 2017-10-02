@@ -35,10 +35,20 @@ $block-class: 'project-wizard';
             font-size: 14px;
             color: $header-font-color;
             border-bottom: none;
+            padding-bottom: 0;
         }
 
         .grommetux-tabs {
             border: none;
+        }
+
+        .project-wizard__tabs::after {
+            content: '';
+            border-bottom: 1px solid #ccc;
+            width: 50%;
+            position: absolute;
+            z-index: -1;
+            bottom: 12px;
         }
     }
 }
