@@ -62,7 +62,7 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.PUT_STAGE_SUCCESS: {
         const stageIndex = _.findIndex(state.data[projectIndex].stages,
             stage => stage.id === action.stage.id);
-        if (stageIndex > 0) {
+        if (stageIndex >= 0) {
             return update(state, { data: { [projectIndex]: {
                 stages: { [stageIndex]: { $set: action.stage } },
             } } });
