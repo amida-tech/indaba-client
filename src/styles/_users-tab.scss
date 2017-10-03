@@ -6,11 +6,15 @@ $block-class: 'users-tab';
         width: 80%;
         margin-left: 10%;
         margin-right: 10%;
-        padding: 0.5rem;
         min-height: 500px;
 
+        &__wrapper {
+            background-color: #f2f2f2;
+            padding: 1rem;
+            height: 50%;
+        }
+
         &__invite-container {
-            background-color: #fafafa;
             width: 80%;
             margin-right: 10%;
             margin-left: 10%;

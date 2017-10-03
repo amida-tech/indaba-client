@@ -28,10 +28,12 @@ $block-class: 'add-users';
 
             display: flex;
             justify-content: center;
+            margin: 0 auto;
+            padding: 0 auto;
         }
 
         .grommetux-tab--active {
-            background: darken(#fff, 10);
+            background: darken(#fff, 10%);
             font-weight: 700;
         }
 
@@ -47,16 +49,17 @@ $block-class: 'add-users';
             font-weight: 700;
 
             &:hover {
-                background-color: darken(#fff, 5);
+                background-color: darken(#fff, 7%);
             }
         }
 
         .grommetux-tab__label {
-            @extend .med-font;
+            @extend .large-font;
 
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: $font-color;
+            color: $header-font-color;
+            width: 150px;
             display: flex;
             padding-bottom: 4px;
             padding-top: 4px;

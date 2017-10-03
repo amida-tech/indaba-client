@@ -50,6 +50,7 @@ class UsersTab extends Component {
     render() {
         return (
             <div className='users-tab'>
+            <div className='users-tab__wrapper'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
                         this.props.actions.addNewUser(
@@ -71,6 +72,7 @@ class UsersTab extends Component {
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
+                        </div>
                 </div>
                 <div className='users-tab__user-list'>
                     {this.props.projectUsers.map(this.renderUserEntry)}
