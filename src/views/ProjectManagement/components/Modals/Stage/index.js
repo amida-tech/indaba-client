@@ -4,27 +4,47 @@ import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../../common/components/Modal';
-import AddStageForm from './AddStageForm';
+import Time from '../../../../../utils/Time';
+import StageForm from './StageForm';
 
-class AddStageModal extends Component {
+class StageModal extends Component {
     render() {
         const groups = this.props.userGroups.map((group, key) =>
             ({ value: group.id, label: group.title, key }),
         );
-        const initialValues = {
-            title: '',
-            userGroups: [],
-            permissions: '0',
-            startDate: '',
-            endDate: '',
-        };
+
+        let initialValues;
+        if (this.props.stageId && this.props.project) {
+            initialValues = this.props.project.stages.find(stage =>
+                stage.id === this.props.stageId);
+            if (initialValues.blindReview) {
+                initialValues.permissions = '1';
+            } else if (initialValues.discussionParticipation) {
+                initialValues.permissions = '2';
+            } else if (initialValues.allowEdit) {
+                initialValues.permissions = '3';
+            } else {
+                initialValues.permissions = '0';
+            }
+            initialValues.startDate = Time.renderForTaskReview(new Date(initialValues.startDate));
+            initialValues.endDate = Time.renderForTaskReview(new Date(initialValues.endDate));
+        } else {
+            initialValues = {
+                title: '',
+                userGroups: [],
+                permissions: '0',
+                startDate: '',
+                endDate: '',
+            };
+        }
+
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}>
-                <AddStageForm
+                <StageForm
                     vocab={this.props.vocab}
                     groups={groups}
                     initialValues={initialValues}
@@ -36,7 +56,7 @@ class AddStageModal extends Component {
     }
 }
 
-AddStageModal.propTypes = {
+StageModal.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
@@ -54,7 +74,13 @@ const stageMapping = (values) => {
         writeToAnswers: false,
         allowEdit: false,
     };
-    switch (values.permission) {
+    if (values.id) {
+        stage.id = values.id;
+    }
+    if (values.workflowId) {
+        stage.workflowId = values.workflowId;
+    }
+    switch (values.permissions) {
     case '1': { // Review
         stage.blindReview = true;
         break;
@@ -78,4 +104,4 @@ const mapDispatchToProps = dispatch => ({
     onClickToSubmit: () => dispatch(submit('add-stage-form')),
 });
 
-export default connect(null, mapDispatchToProps)(AddStageModal);
+export default connect(null, mapDispatchToProps)(StageModal);

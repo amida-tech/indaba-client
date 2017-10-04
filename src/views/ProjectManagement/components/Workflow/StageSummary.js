@@ -11,7 +11,8 @@ class StageSummary extends Component {
         const userGroups = this.props.stage.userGroups.map(stageGroup =>
             _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         return (
-            <div className='stage-summary'>
+            <div className='stage-summary'
+                onClick={() => this.props.actions.showStageModal(true, this.props.stage.id)}>
                 <div className='stage-summary__header'>
                     {this.props.stage.title}
                 </div>

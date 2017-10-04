@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DateTime from 'grommet/components/DateTime';
 
-class AddStageDateTime extends Component {
+class StageDateTime extends Component {
     render() {
         return (
             <DateTime
@@ -12,4 +12,4 @@ class AddStageDateTime extends Component {
     }
 }
 
-export default AddStageDateTime;
+export default StageDateTime;
