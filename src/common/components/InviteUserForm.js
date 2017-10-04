@@ -34,6 +34,6 @@ InviteUserForm.propTypes = {
 };
 
 export default reduxForm({
-    form: 'invite-user-form__invite-container',
+    form: 'invite-user-form',
     onSubmitSuccess: (result, dispatch) => dispatch(reset('invite-user-form')),
 })(InviteUserForm);
