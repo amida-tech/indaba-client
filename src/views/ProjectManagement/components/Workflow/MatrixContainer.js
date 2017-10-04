@@ -36,6 +36,7 @@ class MatrixContainer extends Component {
                                     {this.props.project.stages.map(stage =>
                                     <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
                                         <StageSummary stage={stage}
+                                            actions={this.props.actions}
                                             userGroups={this.props.project.userGroups}
                                             vocab={this.props.vocab}/>
                                     </td>)}

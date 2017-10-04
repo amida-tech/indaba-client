@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { Box, Button } from 'grommet';
 
 import Summary from '../../../common/components/Summary';
-import AddStageModal from '../../ProjectManagement/components/Modals/AddStage';
+import StageModal from '../../ProjectManagement/components/Modals/Stage';
 import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
 class AddStages extends Component {
     render() {
         return (<div className='add-stages-step'>
-            {this.props.ui.showAddStage && <AddStageModal
+            {this.props.ui.showAddStage && <StageModal
                 vocab={this.props.vocab}
                 userGroups={this.props.project.userGroups}
                 onCancel={() => this.props.actions.showAddStageWizardModal(false)}
                 onAddStage={(stage) => {
                     this.props.actions.showAddStageWizardModal(false);
-                    this.props.actions.addStage(
+                    this.props.actions.putStage(
                         this.props.project,
                         stage,
                         this.props.vocab.ERROR);

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, reduxForm, form, formValueSelector } from 'redux-form';
 
-import AddStageDateTime from './AddStageDateTime';
-import AddStageSelect from './AddStageSelect';
+import StageDateTime from './StageDateTime';
+import StageSelect from './StageSelect';
 
-class AddStageForm extends Component {
+class StageForm extends Component {
     render() {
         return (
             <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
@@ -30,7 +30,7 @@ class AddStageForm extends Component {
                                 className='add-stage-form__input-field'
                                 name='userGroups'
                                 groups={this.props.groups}
-                                component={AddStageSelect}
+                                component={StageSelect}
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
@@ -66,7 +66,7 @@ class AddStageForm extends Component {
                                 <Field
                                   id='StartDate'
                                   name='startDate'
-                                  component={AddStageDateTime} />
+                                  component={StageDateTime} />
                             </div>
                         </div>
                         <div className='add-stage-form__end-label-and-input'>
@@ -75,7 +75,7 @@ class AddStageForm extends Component {
                                 <Field
                                  id='endDate'
                                  name='endDate'
-                                 component={AddStageDateTime} />
+                                 component={StageDateTime} />
                             </div>
                         </div>
                         <div className='add-stage-form__clear'></div>
@@ -86,7 +86,7 @@ class AddStageForm extends Component {
     }
 }
 
-AddStageForm.propTypes = {
+StageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     permissions: PropTypes.string,
 };
@@ -100,4 +100,4 @@ const mapStateToProps = state => ({
 export default compose(
     connect(mapStateToProps),
     reduxForm({ form: 'add-stage-form' }),
-)(AddStageForm);
+)(StageForm);

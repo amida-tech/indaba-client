@@ -9,7 +9,7 @@ export const REMOVE_USER = 'REMOVE_USER';
 export const SET_PROJECT_NAME = 'SET_PROJECT_NAME';
 
 // Modals:
-export const SHOW_ADD_STAGE_MODAL = 'SHOW_ADD_STAGE_MODAL';
+export const SHOW_STAGE_MODAL = 'SHOW_STAGE_MODAL';
 export const SHOW_ADD_SUBJECT_MODAL = 'SHOW_ADD_SUBJECT_MODAL';
 
 // Private function types.
