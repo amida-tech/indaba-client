@@ -4,35 +4,39 @@ $block-class: 'add-stages-step';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
+        margin-left: 10%;
+        margin-right: 10%;
 
         &__import-row {
             display: flex;
             justify-content: flex-end;
             padding: 1em 2em;
-            margin-left: 10%;
-            margin-right: 10%;
+        }
 
-            &__button-1 {
-                margin-right: 8px;
-                letter-spacing: 0.8px;
-                font-weight: 400;
-                border-radius: 2px;
+        &__add {
+            letter-spacing: 0.8px;
+            font-weight: 400;
+            border-radius: 2px;
+            margin-right: 8px;
 
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
             }
+        }
+
+        &__imp {
+            letter-spacing: 0.8px;
+            font-weight: 400;
+            border-radius: 2px;
         }
 
         &__instructions {
             @extend .lead-font;
 
             display: flex;
-            margin-top: 1em;
-            margin-left: 5%;
-            padding-left: 1rem;
-            margin-bottom: 1em;
+            justify-content: center;
+            margin: 2em;
         }
 
         &__grid {
@@ -41,8 +45,6 @@ $block-class: 'add-stages-step';
             border: 1px solid $border-color;
             min-width: 90%;
             height: 150px;
-            margin-left: 5%;
-            margin-right: 5%;
 
             &-row {
                 display: flex;

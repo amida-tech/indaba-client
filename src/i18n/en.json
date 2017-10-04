@@ -217,7 +217,7 @@
         "SEARCH_FOR_A_USER": "Search for a user",
         "SEARCH_FOR_USER_GROUPS": "Search for user groups",
         "IMPORT_STAGE": "Import Stage",
-        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
+        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",

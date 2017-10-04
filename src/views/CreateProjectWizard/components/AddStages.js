@@ -27,10 +27,10 @@ class AddStages extends Component {
             <hr className='divider'/>
             <div className='add-stages-step__import-row'>
 
-                <Button className='add-stages__import-row__add'
+                <Button className='add-stages-step__add'
                     primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
                     onClick={() => this.props.showAddStageModal()}/>
-                <Button className='add-stages-step__import-row__imp'
+                <Button className='add-stages-step__imp'
                  label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </div>
             <hr className='divider' />
