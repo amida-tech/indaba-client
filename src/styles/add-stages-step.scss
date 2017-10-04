@@ -6,6 +6,9 @@ $block-class: 'add-stages-step';
         flex-direction: column;
 
         &__import-row {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em 2em;
             margin-left: 10%;
             margin-right: 10%;
 

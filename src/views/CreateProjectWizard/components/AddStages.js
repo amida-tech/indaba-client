@@ -25,7 +25,7 @@ class AddStages extends Component {
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
-            <div className='add-stages__import-row'>
+            <div className='add-stages-step__import-row'>
 
                 <Button className='add-stages__import-row__add'
                     primary={true} label={this.props.vocab.PROJECT.ADD_STAGE}
