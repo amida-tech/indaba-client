@@ -74,4 +74,11 @@ $block-class: 'add-stages-step';
             }
         }
     }
+
+    .stage-summary {
+        &__header {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
 }
