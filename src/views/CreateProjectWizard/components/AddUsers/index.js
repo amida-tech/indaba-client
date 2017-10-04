@@ -41,7 +41,7 @@ class AddUsers extends Component {
                         label={this.props.vocab.PROJECT.IMPORT_USERS} />
                 </div>
                 <hr className='divider' />
-                <p className='add-users__instructions'>
+                <p className='add-users__instructions add-users__instructions--top'>
                     {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_1}
                 </p>
                 <p className='add-users__instructions'>

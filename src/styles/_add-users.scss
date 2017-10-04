@@ -29,7 +29,11 @@ $block-class: 'add-users';
             display: flex;
             justify-content: center;
             margin: 0 auto;
-            padding: 0 auto;
+
+            &--top {
+                margin-top: 3rem;
+                justify-content: center;
+            }
         }
 
         .grommetux-tab--active {
@@ -69,13 +73,11 @@ $block-class: 'add-users';
         .divider {
             margin-left: 10%;
             margin-right: 10%;
-            margin-bottom: 1em;
         }
     }
 }
 
 .main-body {
-    margin-right: 2.5em;
-    margin-left: 2.5em;
-    height: 800px;
+    margin-right: 2.5rem;
+    margin-left: 2.5rem;
 }
