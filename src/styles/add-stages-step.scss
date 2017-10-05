@@ -43,21 +43,23 @@ $block-class: 'add-stages-step';
             display: flex;
             background-color: #fff;
             border: 1px solid $border-color;
+            border-top: none;
             min-width: 90%;
-            height: 150px;
+            height: 200px;
 
             &-row {
                 display: flex;
                 flex-direction: column;
                 width: 25%;
-                border: 2px solid $border-color;
+                border: 1px solid $border-color;
                 border-top: none;
+                border-bottom: none;
                 cursor: pointer;
 
                 &--title {
                     @extend .small-font;
 
-                    padding: 0.5rem;
+                    padding: 1rem;
                     border-bottom: 1px solid $border-color;
                     text-transform: uppercase;
                 }
@@ -82,9 +84,10 @@ $block-class: 'add-stages-step';
 
             text-transform: uppercase;
             padding-left: 10px;
-            padding-bottom: 0.5rem;
-            padding-top: 0.5rem;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
             border-bottom: 1px solid $border-color;
+            margin-bottom: 5%;
         }
 
         &__row {
