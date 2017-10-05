@@ -55,12 +55,11 @@ $block-class: 'add-stages-step';
                 cursor: pointer;
 
                 &--title {
-                    @extend .x-small-font;
+                    @extend .small-font;
 
                     padding: 0.5rem;
                     border-bottom: 1px solid $border-color;
                     text-transform: uppercase;
-                    font-weight: 700;
                 }
 
                 &--summary {
@@ -76,9 +75,39 @@ $block-class: 'add-stages-step';
     }
 
     .stage-summary {
+        min-width: 25%;
+
         &__header {
-            font-size: 12px;
+            @extend .small-font;
+
             text-transform: uppercase;
+            padding-left: 10px;
+            padding-bottom: 0.5rem;
+            padding-top: 0.5rem;
+            border-bottom: 1px solid $border-color;
+        }
+
+        &__row {
+            display: flex;
+            padding: 10px;
+
+            &:hover {
+                overflow: visible;
+            }
+        }
+
+        &__left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 50%;
+        }
+
+        &__right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 50%;
         }
     }
 }
