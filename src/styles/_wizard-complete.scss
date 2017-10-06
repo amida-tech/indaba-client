@@ -12,6 +12,7 @@ $block-class: 'wizard-complete';
             @extend .large-font;
 
             color: $header-font-color;
+            letter-spacing: none;
         }
 
         &__tabs {
@@ -33,11 +34,21 @@ $block-class: 'wizard-complete';
         &__button {
             letter-spacing: 0.8px;
             border-radius: 2px;
+            font-size: 14px;
 
             &:hover {
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
             }
+        }
+
+        .grommetux-tab__label {
+            @extend .lead-font-bold;
+
+            font-size: 14px;
+            color: $header-font-color;
+            border-bottom: none;
+            padding-bottom: 0;
         }
     }
 }
