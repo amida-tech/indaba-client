@@ -2,6 +2,9 @@ $block-class: 'wizard-complete';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK ERROR SUPRESSION
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
     }
 }
