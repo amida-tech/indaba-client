@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, TextInput } from 'grommet';
+import { Search } from 'grommet';
 import UserGroupList from '../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
@@ -20,20 +20,21 @@ class UserGroupsTab extends Component {
 
     render() {
         return (
-            <Box className='user-groups-tab'
-                pad={{ horizontal: 'medium', vertical: 'medium', between: 'small' }}>
-                <div className='user-groups-tab__search-header'>
-                    <TextInput
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_USER_GROUPS}
-                        value={this.props.filter}
-                        onDOMChange={evt =>
-                            this.props.actions.addUsersSetGroupsFilter(evt.target.value)}/>
-                </div>
-                <UserGroupList
-                    groups={this.props.groups.filter(this.filterGroup)}
+
+            <div className='wrapper'>
+            <div className='user-groups-tab'>
+                <Search className='user-groups-tab__search-input'
+                    placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                    fill={true}
+                    inline={true}
+                    onSelect={this.handleSearchSelect}/>
+
+                <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
                     users={this.props.allUsers}
-                    onDeleteClick={this.props.actions.removeUser}/>
-            </Box>
+                    onDeleteClick={this.props.onRemoveUserGroup}/>
+            </div>
+            </div>
+
         );
     }
 }
