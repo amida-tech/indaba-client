@@ -69,11 +69,11 @@ class CreateProjectWizard extends Component {
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
                     onActive={this.changeStep}>
-                    <Tab className='project-wizard__tab project-wizard__tab--complete'
+                    <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
                     </Tab>
-                    <Tab className='project-wizard__tab project-wizard__tab--incomplete'
+                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         <AddSubjects
                             actions={this.props.actions}
@@ -81,7 +81,7 @@ class CreateProjectWizard extends Component {
                             survey={this.props.survey}
                             vocab={this.props.vocab} />
                     </Tab>
-                    <Tab className='project-wizard__tab'
+                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         <AddUsers
                             actions={this.props.actions}
@@ -91,7 +91,7 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             user={this.props.user} />
                     </Tab>
-                    <Tab className='project-wizard__tab'
+                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         <AddStages
                             actions={this.props.actions}

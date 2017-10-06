@@ -2,8 +2,55 @@ $block-class: 'project-wizard';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        margin-left: 5%;
-        margin-right: 5%;
+        position: relative;
+
+        &__tabs::after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            width: 80%;
+            position: absolute;
+            z-index: -1;
+            bottom: 50px;
+        }
+
+        .project-wizard__tab {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            &::after {
+                content: '';
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .project-wizard__tab--complete {
+            &::after {
+                background-color: nth($brand-neutral-colors, 2);
+                border: 2px solid nth($brand-neutral-colors, 1);
+            }
+        }
+
+        .project-wizard__tab--incomplete {
+            &::after {
+                border: 2px solid $brand-color;
+            }
+        }
+
+        .grommetux-tab__label {
+            @extend .lead-font-bold;
+
+            font-size: 14px;
+            color: $header-font-color;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .grommetux-tabs {
+            border: none;
+        }
     }
 }
