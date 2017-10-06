@@ -5,6 +5,39 @@ $block-class: 'wizard-complete';
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-content: center;
+        align-items: center;
+        padding: 5%;
+
+        &__header {
+            @extend .large-font;
+
+            color: $header-font-color;
+        }
+
+        &__tabs {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            &__tab {
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        &__explanation {
+            text-align: center;
+        }
+
+        &__button {
+            letter-spacing: 0.8px;
+            border-radius: 2px;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
     }
 }
