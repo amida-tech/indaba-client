@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SearchInput } from 'grommet';
+import { Search } from 'grommet';
 import PropTypes from 'prop-types';
 
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
@@ -50,6 +50,7 @@ class UsersTab extends Component {
     render() {
         return (
             <div className='users-tab'>
+            <div className='users-tab__wrapper'>
                 <InviteUserForm vocab={this.props.vocab}
                     onSubmit={(values) => {
                         this.props.actions.addNewUser(
@@ -60,7 +61,9 @@ class UsersTab extends Component {
                             this.props.vocab.ERROR);
                     }} />
                 <div className='users-tab__search'>
-                    <SearchInput
+                    <Search
+                        fill={true}
+                        inline={true}
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         onDOMChange={evt =>
                             this.props.actions.addUsersSetUsersFilter(evt.target.value)}
@@ -69,6 +72,7 @@ class UsersTab extends Component {
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
+                        </div>
                 </div>
                 <div className='users-tab__user-list'>
                     {this.props.projectUsers.map(this.renderUserEntry)}
