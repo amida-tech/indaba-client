@@ -39,3 +39,7 @@ Run the `user.integration.js` test if it has not yet been done.
 Start both `indaba-client` and `greyscale/backend`.
 Go to `http://localhost:3000/login`
 Login with `test-adm@mail.net` / `testadmin`
+
+## Building Dockerfile in Linux
+From the base directory of the project run `docker build --tag indaba-client .`
+To run the image `docker run -p 3000:3000 indaba-client`
