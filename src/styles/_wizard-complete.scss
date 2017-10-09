@@ -19,11 +19,20 @@ $block-class: 'wizard-complete';
             display: flex;
             align-items: center;
             flex-direction: row;
+            width: 40vw;
 
             &__tab {
                 border-radius: 50%;
-                width: 24px;
+                width: 25vw;
                 height: 24px;
+
+                &::after {
+                    content: '';
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    display: block;
+                }
             }
         }
 
@@ -40,15 +49,6 @@ $block-class: 'wizard-complete';
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
             }
-        }
-
-        .grommetux-tab__label {
-            @extend .lead-font-bold;
-
-            font-size: 14px;
-            color: $header-font-color;
-            border-bottom: none;
-            padding-bottom: 0;
         }
     }
 }
