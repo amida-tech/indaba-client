@@ -17,7 +17,7 @@ const StyleLintPluginConfig = new StyleLintPlugin({
 module.exports = {
     devServer: {
         port: 3000,
-        host: "0.0.0.0",
+        host: "localhost",
         historyApiFallback: true,
     },
     devtool: 'cheap-module-eval-source-map',
