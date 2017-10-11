@@ -14,8 +14,7 @@ class SubNav extends Component {
 
         return (
             <div className='sub-nav__spacer'>
-                <div className='container-fluid sub-nav'>
-                    <div className='row'>
+                <div className='sub-nav__spacer-container'>
                         {subNavEntries.map((entry, i) =>
                             <SubNavEntry
                                 {...entry}
@@ -24,7 +23,6 @@ class SubNav extends Component {
                                 onClick={() => this.props.subnavigate(entry.key)}
                             />)
                         }
-                    </div>
                 </div>
             </div>
         );
