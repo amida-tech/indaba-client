@@ -65,7 +65,6 @@ class ProjectManagementContainer extends Component {
                             surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.actions.setProjectStatus}
                             onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
-                    <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}
                         survey={this.props.survey}
