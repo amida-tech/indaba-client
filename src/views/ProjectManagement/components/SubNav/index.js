@@ -14,17 +14,17 @@ class SubNav extends Component {
 
         return (
             <div className='sub-nav__spacer'>
-                <div className='sub-nav__spacer-container'>
-                        {subNavEntries.map((entry, i) =>
-                            <SubNavEntry
-                                {...entry}
-                                first={i === 0}
-                                selected={this.props.selected === entry.key}
-                                onClick={() => this.props.subnavigate(entry.key)}
-                            />)
-                        }
-                </div>
-            </div>
+                        <div className='sub-nav__spacer-container'>
+                                {subNavEntries.map((entry, i) =>
+                                    <SubNavEntry
+                                        {...entry}
+                                        first={i === 0}
+                                        selected={this.props.selected === entry.key}
+                                        onClick={() => this.props.subnavigate(entry.key)}
+                                    />)
+                                }
+                        </div>
+                    </div>
         );
     }
 }
