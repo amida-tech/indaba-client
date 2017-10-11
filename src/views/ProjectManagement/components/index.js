@@ -65,9 +65,6 @@ class ProjectManagementContainer extends Component {
                             surveyStatus={this.props.survey.status}
                             onSetProjectStatus={this.props.actions.setProjectStatus}
                             onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
-                    <SubNav vocab={this.props.vocab}
-                        subnavigate={this.props.actions.subnavigate}
-                        selected={this.props.ui.subnav}/>
                     <hr className='divider main-divider' />
                     <Summary
                         project={this.props.project}
@@ -78,6 +75,9 @@ class ProjectManagementContainer extends Component {
                             this.props.actions.setProjectName(name, this.props.project.id)}
                         onSurveyNameChange={name =>
                             this.props.actions.setSurveyName(name, this.props.project.id)}/>
+                    <SubNav vocab={this.props.vocab}
+                        subnavigate={this.props.actions.subnavigate}
+                        selected={this.props.ui.subnav}/>
                     <hr className='divider main-divider' />
                     {body}
                 </div>
