@@ -5,9 +5,8 @@ $block-class: 'summary';
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 2em;
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-top: 40px;
+        margin-bottom: 24px;
 
         &__survey-icon {
             fill: $brand-color;
