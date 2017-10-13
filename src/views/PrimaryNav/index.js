@@ -30,7 +30,7 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
                 <ToastContainer
                     className='primary-nav__toast'
-                    position='bottom-right'
+                    position='top-right'
                     type='default'
                     autoClose={5000}
                     hideProgressBar={false}
