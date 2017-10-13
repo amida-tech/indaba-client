@@ -88,7 +88,7 @@ class StageSlot extends Component {
                             <span>{renderName(this.props.user)}</span>
                         </Link>
                         <button className='stage-slot__masked-button stage-slot__right-icon'
-                            title='Task Options'
+                            title= {this.props.vocab.TASK_OPTIONS}
                             onClick={this.handleTaskOptions}>
                             <IonIcon icon='ion-ios-more'/>
                         </button>
