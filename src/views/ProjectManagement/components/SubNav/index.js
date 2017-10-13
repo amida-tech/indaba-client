@@ -13,7 +13,6 @@ class SubNav extends Component {
         });
 
         return (
-            <div className='sub-nav__spacer'>
                         <div className='sub-nav__spacer-container'>
                                 {subNavEntries.map((entry, i) =>
                                     <SubNavEntry
@@ -24,7 +23,6 @@ class SubNav extends Component {
                                     />)
                                 }
                         </div>
-                    </div>
         );
     }
 }
