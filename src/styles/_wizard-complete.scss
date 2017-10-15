@@ -2,52 +2,21 @@ $block-class: 'wizard-complete';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5%;
+        @extend .project-wizard;
 
-        &__header {
-            @extend .large-font;
+        &__tab {
+            @extend .project-wizard__tab;
 
-            color: $header-font-color;
-            letter-spacing: none;
-        }
-
-        &__tabs {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            width: 40vw;
-
-            &__tab {
-                border-radius: 50%;
-                width: 25vw;
-                height: 24px;
-
-                &::after {
-                    content: '';
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    display: block;
-                }
+            &::after {
+                @extend .project-wizard__tab::after;
             }
-        }
 
-        &__explanation {
-            text-align: center;
-        }
+            &--complete {
+                @extend .project-wizard__tab--complete;
+            }
 
-        &__button {
-            letter-spacing: 0.8px;
-            border-radius: 2px;
-            font-size: 14px;
-
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
+            &--incomplete {
+                @extend .project-wizard__tab--incomplete;
             }
         }
     }
