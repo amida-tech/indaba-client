@@ -2,9 +2,14 @@ $block-class: 'sub-nav';
 
 @at-root {
     .#{$block-class} {
-        @media (min-width: 992px) {
-            &__spacer {
-                width: 800px;
+        &__spacer {
+            //
+            &-container {
+                display: flex;
+                width: 25%;
+                flex: 1;
+                flex-direction: row;
+                justify-content: space-between;
             }
         }
     }

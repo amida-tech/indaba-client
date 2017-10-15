@@ -5,8 +5,8 @@ class SubNavEntry extends Component {
     render() {
         return (
             <div
-                className={`col-sm-2 sub-nav-entry ${this.props.selected ?
-                    'sub-nav-entry--selected' : ''} ${this.props.first ? ' col-sm-offset-1' : ''}`}
+                className={`sub-nav-entry ${this.props.selected ?
+                    'sub-nav-entry--selected' : ''} `}
                 onClick={this.props.onClick}>
                 {this.props.label}
             </div>

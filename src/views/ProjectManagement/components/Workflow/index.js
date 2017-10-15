@@ -6,7 +6,7 @@ import MatrixContainer from './MatrixContainer';
 class WorkflowContainer extends Component {
     render() {
         return (
-            <div className='worklow-container'>
+            <div className='workflow-container'>
                 <FilterWrapper project={this.props.project}
                     vocab={this.props.vocab}
                     actions={this.props.actions}
