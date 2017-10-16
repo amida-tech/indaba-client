@@ -4,20 +4,54 @@ $block-class: 'wizard-complete';
     .#{$block-class} {
         @extend .project-wizard;
 
-        &__tab {
-            @extend .project-wizard__tab;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-            &::after {
-                @extend .project-wizard__tab::after;
-            }
+        &__header {
+            @extend .large-font;
 
-            &--complete {
-                @extend .project-wizard__tab--complete;
-            }
+            color: $header-font-color;
+            letter-spacing: none;
+        }
 
-            &--incomplete {
-                @extend .project-wizard__tab--incomplete;
+        &__tabs {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            width: 40vw;
+        }
+
+        &__explanation {
+            text-align: center;
+        }
+
+        &__button {
+            letter-spacing: 0.8px;
+            border-radius: 2px;
+            font-size: 14px;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
             }
         }
+    }
+}
+
+.wizard-complete__tabs {
+    @extend .project-wizard__tabs;
+
+    &::after {
+        @extend .project-wizard__tab::after;
+    }
+
+    &--complete {
+        @extend .project-wizard__tab--complete;
+    }
+
+    &--incomplete {
+        @extend .project-wizard__tab--incomplete;
     }
 }
