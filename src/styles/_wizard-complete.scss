@@ -21,6 +21,22 @@ $block-class: 'wizard-complete';
             align-items: center;
             flex-direction: row;
             width: 40vw;
+
+            &__tab {
+                @extend .project-wizard__tabs;
+
+                &::after {
+                    @extend .project-wizard__tab::after;
+                }
+
+                &--complete {
+                    @extend .project-wizard__tab--complete;
+                }
+
+                &--incomplete {
+                    @extend .project-wizard__tab--incomplete;
+                }
+            }
         }
 
         &__explanation {
@@ -37,21 +53,5 @@ $block-class: 'wizard-complete';
                 border-color: darken(#4eb276, 10);
             }
         }
-    }
-}
-
-.wizard-complete__tabs {
-    @extend .project-wizard__tabs;
-
-    &::after {
-        @extend .project-wizard__tab::after;
-    }
-
-    &--complete {
-        @extend .project-wizard__tab--complete;
-    }
-
-    &--incomplete {
-        @extend .project-wizard__tab--incomplete;
     }
 }
