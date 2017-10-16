@@ -111,7 +111,9 @@
             "DUE_IN": "Due in ",
             "DAYS": " Days",
             "DUE_TOMORROW": "Due Tomorrow",
-            "MORE_OPTIONS": "More Options"
+            "MORE_OPTIONS": "More Options",
+            "TASK_OPTIONS": "Task Options"
+
         },
         "OPTIONS_MODAL": {
             "TITLE": "Task Options",
