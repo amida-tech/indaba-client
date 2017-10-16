@@ -11,7 +11,7 @@ class WizardComplete extends Component {
                     {this.props.vocab.PROJECT.PROJECT_CREATE_SUCCESS}
                 </h1>
                 <Tabs className='wizard-complete__tabs'>
-                    <Tab className='wizard-complete__tab'
+                    <Tab className='wizard-complete__tab wizard-complete__tab--incomplete'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                     </Tab>
                     <Tab className='wizard-complete__tab'
