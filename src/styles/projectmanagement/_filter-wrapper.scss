@@ -2,9 +2,22 @@ $block-class: 'filter-wrapper';
 
 @at-root {
     .#{$block-class} {
-        height: 5em;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        &__add-button {
+            margin-left: 5px;
+            border-radius: 2px;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
     }
 }
