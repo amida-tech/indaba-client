@@ -4,7 +4,7 @@ $block-class: 'wizard-complete';
     .#{$block-class} {
         display: flex;
         position: relative;
-        padding: 16px;
+        padding: 24px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -48,6 +48,7 @@ $block-class: 'wizard-complete';
         &__header {
             @extend .large-font;
 
+            font-weight: 300;
             color: $header-font-color;
             letter-spacing: none;
         }
