@@ -2,12 +2,18 @@ $block-class: 'wizard-complete';
 
 @at-root {
     .#{$block-class} {
+        display: flex;
+        position: relative;
+        padding: 16px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
         @extend .project-wizard;
 
         .wizard-complete__tabs {
             @extend .project-wizard__tabs;
 
-            display: block;
             position: relative;
 
             .wizard-complete__tab {
@@ -27,24 +33,12 @@ $block-class: 'wizard-complete';
             }
         }
 
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
         &__header {
             @extend .large-font;
 
             color: $header-font-color;
             letter-spacing: none;
         }
-
-        // &__tabs {
-        //     display: flex;
-        //     align-items: center;
-        //     flex-direction: row;
-        //     width: 40vw;
-        // }
 
         &__explanation {
             text-align: center;
@@ -59,6 +53,15 @@ $block-class: 'wizard-complete';
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
             }
+        }
+
+        .grommetux-tab__label {
+            @extend .lead-font-bold;
+
+            font-size: 14px;
+            color: $header-font-color;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .grommetux-tab {
