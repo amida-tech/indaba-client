@@ -11,16 +11,16 @@ class WizardComplete extends Component {
                     {this.props.vocab.PROJECT.PROJECT_CREATE_SUCCESS}
                 </h1>
                 <Tabs className='wizard-complete__tabs'>
-                    <Tab className='wizard-complete__tab wizard-complete__tab--incomplete'
+                    <Tab className='wizard-complete__tab wizard-complete__tab--complete'
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                     </Tab>
-                    <Tab className='wizard-complete__tab'
+                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                     </Tab>
-                    <Tab className='wizard-complete__tab'
+                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                     </Tab>
-                    <Tab className='wizard-complete__tab'
+                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                     </Tab>
                 </Tabs>
