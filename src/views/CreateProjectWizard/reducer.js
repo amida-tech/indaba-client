@@ -9,7 +9,7 @@ const initialState = {
         showProjectTitle: true,
         showAddStage: false,
         step: 0,
-        showComplete: true,
+        showComplete: false,
         addUsers: {
             tab: 0,
             showSelectGroupUsers: false,
@@ -21,7 +21,7 @@ const initialState = {
     },
     project: {
         id: 0,
-        name: 'blah',
+        name: '',
         status: 0,
         productId: 0,
         workflowId: 0,

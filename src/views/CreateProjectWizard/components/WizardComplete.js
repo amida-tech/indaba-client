@@ -25,11 +25,7 @@ class WizardComplete extends Component {
                     </Tab>
                 </Tabs>
                 <p className='wizard-complete__explanation'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Ut pretium pretium tempor. Ut eget imperdiet neque.
-                    In volutpat ante semper diam molestie, et aliquam erat laoreet.
-                    Sed sit amet arcu aliquet, molestie justo at, auctor nunc.
-                    Phasellus ligula
+                    {this.props.vocab.PROJECT.WIZARD_COMPLETE}
                 </p>
                 <Button className='wizard-complete__button'
                     primary

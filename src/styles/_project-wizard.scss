@@ -24,6 +24,11 @@ $block-class: 'project-wizard';
         }
 
         .project-wizard__tab--complete {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: none;
+
             &::after {
                 background-color: nth($brand-neutral-colors, 2);
                 border: 2px solid nth($brand-neutral-colors, 1);
@@ -31,6 +36,11 @@ $block-class: 'project-wizard';
         }
 
         .project-wizard__tab--incomplete {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: none;
+
             &::after {
                 border: 2px solid $brand-color;
             }
