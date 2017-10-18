@@ -24,6 +24,7 @@ class Subjects extends Component {
                             this.props.actions.addSubject(
                                 this.props.project,
                                 [{ name: subject }],
+                                false,
                                 this.props.vocab.ERROR);
                         }}
                         onCancel={() => this.setState({ showAddSubjectModal: false })}

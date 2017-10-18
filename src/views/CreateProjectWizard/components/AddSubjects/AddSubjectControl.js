@@ -47,6 +47,7 @@ export default connect(null, dispatch => ({
             ownProps.project,
             values.subjects.split(/\s*,\s*/).filter(subject =>
                 subject).map((subject) => { return { name: subject }; }),
+                true,
             ownProps.vocab.ERROR,
         );
     },
