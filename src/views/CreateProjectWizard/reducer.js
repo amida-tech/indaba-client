@@ -9,7 +9,7 @@ const initialState = {
         showProjectTitle: true,
         showAddStage: false,
         step: 0,
-        showComplete: true,
+        showComplete: false,
         addUsers: {
             tab: 0,
             showSelectGroupUsers: false,
