@@ -60,7 +60,7 @@ export function putStage(project, stage, fromWizard, errorMessages) {
             requestBody,
             (stepErr, stepResp) => {
                 if (!stepErr && stepResp) {
-                    if (fromWizard && !project.subjects.length) {
+                    if (!fromWizard && !project.subjects.length) {
                         toast(errorMessages.SUBJECT_NEED);
                     }
                     const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
@@ -86,7 +86,7 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
             requestBody,
             (uoaErr, uoaResp) => {
                 if (!uoaErr && uoaResp) {
-                    if (fromWizard && !project.stages.length) {
+                    if (!fromWizard && !project.stages.length) {
                         toast(errorMessages.STAGE_NEED);
                     }
                     dispatch(_postSubjectSuccess(uoaResp, project.id));
