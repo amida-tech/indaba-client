@@ -8,6 +8,7 @@ import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
 import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
+import { MessagesContainer } from './views/Messages';
 import App from './views/App';
 
 export default (
@@ -44,5 +45,9 @@ export default (
             key='/create-new-project'
             path='/create-new-project'
             component={CreateProjectWizard}/>
+        <Route
+            key='/messages'
+            path='/messages'
+            component={MessagesContainer}/>
     </Route>
 );
