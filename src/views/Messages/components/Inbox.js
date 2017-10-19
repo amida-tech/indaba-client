@@ -9,6 +9,22 @@ import InboxMessageList from './InboxMessageList';
 import { FILTERS, INBOX_TABS } from '../constants';
 
 class Inbox extends Component {
+    constructor() {
+        super();
+
+        this.inboxFilter = this.inboxFilter.bind(this);
+    }
+
+    inboxFilter(message) {
+        switch (this.props.messages.ui.filter) {
+        case FILTERS.ALL_MESSAGES:
+            return true;
+        case FILTERS.UNREAD_MESSAGES:
+            return !message.readAt;
+        default: return true;
+        }
+    }
+
     render() {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
@@ -35,7 +51,8 @@ class Inbox extends Component {
                 <InboxMessageList messages={this.props.messages.messages
                         .filter(message =>
                             !!message.archived ===
-                            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED))}/>
+                            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED))
+                        .filter(this.inboxFilter)}/>
             </div>
         );
     }
