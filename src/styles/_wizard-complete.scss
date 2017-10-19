@@ -12,37 +12,23 @@ $block-class: 'wizard-complete';
 
         @extend .project-wizard;
 
-        .wizard-complete__tabs {
+        &__tabs {
             @extend .project-wizard__tabs;
+        }
 
-            display: flex;
-            align-items: center;
-            flex-direction: row;
+        &__tab {
+            @extend .project-wizard__tab;
 
-            .wizard-complete__tab {
-                @extend .project-wizard__tab;
+            &::after {
+                @extend .project-wizard__tab::after;
+            }
 
-                &::after {
-                    @extend .project-wizard__tab::after;
-                }
+            &--complete {
+                @extend .project-wizard__tab--complete;
+            }
 
-                &--complete {
-                    @extend .project-wizard__tab--complete;
-
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    border-bottom: none;
-                }
-
-                &--incomplete {
-                    @extend .project-wizard__tab--incomplete;
-
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    border-bottom: none;
-                }
+            &--incomplete {
+                @extend .project-wizard__tab--incomplete;
             }
         }
 
