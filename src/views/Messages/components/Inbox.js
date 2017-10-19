@@ -6,7 +6,7 @@ import InboxTabs from './InboxTabs';
 import Filter from '../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
 
-import { FILTERS } from '../constants';
+import { FILTERS, INBOX_TABS } from '../constants';
 
 class Inbox extends Component {
     render() {
@@ -32,7 +32,10 @@ class Inbox extends Component {
                         active={this.props.messages.ui.filter}
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
-                <InboxMessageList messages={this.props.messages.messages}/>
+                <InboxMessageList messages={this.props.messages.messages
+                        .filter(message =>
+                            !!message.archived ===
+                            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED))}/>
             </div>
         );
     }
