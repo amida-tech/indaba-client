@@ -249,7 +249,13 @@
         "MESSAGES": "Messages",
         "INBOX": "Inbox",
         "ARCHIVE": "Archive",
-        "NEW_MESSAGE": "New Message"
+        "NEW_MESSAGE": "New Message",
+        "INBOX_FILTER": {
+            "ALL_MESSAGES": "All Messages",
+            "SENT_MESSAGES": "Sent Messages",
+            "UNREAD_MESSAGES": "Unread Messages",
+            "NOTIFICATIONS": "Notifications"
+        }
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",

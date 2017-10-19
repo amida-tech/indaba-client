@@ -4,3 +4,8 @@ export const setActiveInboxTab = tab => ({
     type: actionTypes.SET_ACTIVE_INBOX_TAB,
     tab,
 });
+
+export const setInboxFilter = filter => ({
+    type: actionTypes.SET_INBOX_FILTER,
+    filter,
+});

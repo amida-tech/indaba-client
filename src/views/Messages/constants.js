@@ -1,3 +1,4 @@
+// Values must be used in vocab in MESSAGES.INBOX_FILTER
 export const FILTERS = {
     ALL_MESSAGES: 'ALL_MESSAGES',
     SENT_MESSAGES: 'SENT_MESSAGES',
