@@ -29,6 +29,19 @@ class InboxMessageList extends Component {
     render() {
         return (
             <div className='inbox-message-list'>
+                <div className='inbox-message-list__entry'>
+                    <div className='inbox-message-list__from inbox-message-list__from--title'>
+                        {this.props.vocab.MESSAGES.FROM}
+                    </div>
+                    <div className='inbox-message-list__subject inbox-message-list__subject--title'>
+                        {this.props.vocab.MESSAGES.SUBJECT}
+                    </div>
+                    <div className='inbox-message-list__date inbox-message-list__date--title'>
+                        {this.props.vocab.MESSAGES.DATE_RECEIVED}
+                    </div>
+                    <div className='inbox-message-list__actions inbox-message-list__actions--title'>
+                    </div>
+                </div>
                 {this.props.messages.map(this.renderMessage)}
             </div>
         );
@@ -45,6 +58,7 @@ InboxMessageList.propTypes = {
         readAt: PropTypes.string,
         archived: PropTypes.boolean,
     })).isRequired,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default InboxMessageList;

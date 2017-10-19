@@ -53,7 +53,8 @@ class Inbox extends Component {
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
                 <InboxMessageList messages={this.props.messages.messages
-                        .filter(this.evaluateFilter)}/>
+                        .filter(this.evaluateFilter)}
+                        vocab={this.props.vocab}/>
             </div>
         );
     }
