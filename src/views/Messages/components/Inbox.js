@@ -13,7 +13,7 @@ class Inbox extends Component {
                 <div className='inbox__top-row'>
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
-                        onSelectTab={() => null}/>
+                        onSelectTab={this.props.actions.setActiveInboxTab}/>
                 </div>
             </div>
         );
@@ -23,6 +23,7 @@ class Inbox extends Component {
 Inbox.propTypes = {
     vocab: PropTypes.object.isRequired,
     messages: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
 };
 
 export default Inbox;

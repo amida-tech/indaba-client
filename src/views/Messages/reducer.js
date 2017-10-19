@@ -1,3 +1,6 @@
+import update from 'immutability-helper';
+
+import * as actionTypes from './actionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
 
 const initialState = {
@@ -10,6 +13,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+    case actionTypes.SET_ACTIVE_INBOX_TAB:
+        return update(state, { ui: { inboxTab: { $set: action.tab } } });
     default:
         return state;
     }
