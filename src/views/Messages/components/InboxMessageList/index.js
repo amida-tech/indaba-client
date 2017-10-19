@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Time from '../../../../utils/Time';
+
 class InboxMessageList extends Component {
     constructor() {
         super();
@@ -18,7 +20,7 @@ class InboxMessageList extends Component {
                     {message.subject}
                 </div>
                 <div className='inbox-message-list__date'>
-                    {this.props.createdAt}
+                    {Time.renderForInboxMessageList(this.props.createdAt)}
                 </div>
                 <div className='inbox-message-list__actions'>TODO</div>
             </div>
