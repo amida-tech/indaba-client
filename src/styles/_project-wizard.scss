@@ -2,15 +2,17 @@ $block-class: 'project-wizard';
 
 @at-root {
     .#{$block-class} {
-        position: relative;
+        &__tabs {
+            position: relative;
 
-        &__tabs::after {
-            content: '';
-            border-bottom: 2px solid #ccc;
-            width: 80%;
-            position: absolute;
-            z-index: -1;
-            bottom: 50px;
+            &::after {
+                content: '';
+                border-bottom: 2px solid #ccc;
+                width: 80%;
+                position: absolute;
+                z-index: -1;
+                bottom: 12px;
+            }
         }
 
         .project-wizard__tab {
