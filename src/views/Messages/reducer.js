@@ -1,7 +1,8 @@
-import { FILTERS } from './constants';
+import { FILTERS, INBOX_TABS } from './constants';
 
 const initialState = {
     ui: {
+        inboxTab: INBOX_TABS.INBOX,
         filter: FILTERS.ALL_MESSAGES,
     },
     messages: [],

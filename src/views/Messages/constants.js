@@ -4,3 +4,8 @@ export const FILTERS = {
     UNREAD_MESSAGES: 'UNREAD_MESSAGES',
     NOTIFICATIONS: 'NOTIFICATIONS',
 };
+
+export const INBOX_TABS = {
+    INBOX: 'INBOX',
+    ARCHIVED: 'ARCHIVED',
+};
