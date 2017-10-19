@@ -248,7 +248,8 @@
         "RECENT_MESSAGES": "Recent Messages",
         "MESSAGES": "Messages",
         "INBOX": "Inbox",
-        "ARCHIVE": "Archive"
+        "ARCHIVE": "Archive",
+        "NEW_MESSAGE": "New Message"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",

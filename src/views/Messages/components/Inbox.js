@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'grommet';
 
 import InboxTabs from './InboxTabs';
 
@@ -14,6 +15,9 @@ class Inbox extends Component {
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
                         onSelectTab={this.props.actions.setActiveInboxTab}/>
+                    <Button className='inbox__new-message-button'
+                        label={this.props.vocab.MESSAGES.NEW_MESSAGE}
+                        path='/messages/new' />
                 </div>
             </div>
         );

@@ -8,6 +8,22 @@ $block-class: 'inbox';
 
         &__title {
             @extend .x-large-font;
+
+            margin-bottom: 1em;
+        }
+
+        &__top-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__new-message-button {
+            background-color: #fcfafa;
+            color: $header-font-color;
+
+            @extend .small-font;
         }
     }
 }
