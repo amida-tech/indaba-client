@@ -1,0 +1,13 @@
+$block-class: 'messages-main';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5em;
+
+        &__title {
+            @extend .x-large-font;
+        }
+    }
+}
