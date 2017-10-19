@@ -10,7 +10,7 @@ class ProjectListControls extends Component {
             <div className='project-list-controls'>
                 <div className='project-list-controls__search'>
                     <SearchInput
-                        placeholder={this.props.vocab.PROJECT.SEARCH_TASKS}
+                        placeholder={this.props.vocab.PROJECT.SEARCH_PROJECTS}
                         onChange={evt => this.props.actions.setSearchQuery(evt.target.value)} />
                 </div>
                 <div className='project-list-controls__filter'>
