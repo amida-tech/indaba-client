@@ -13,6 +13,7 @@ class MessagesContainer extends Component {
 
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
+    messages: state.messages,
 });
 
 export default connect(mapStateToProps)(MessagesContainer);

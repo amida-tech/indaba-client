@@ -246,7 +246,9 @@
     },
     "MESSAGES": {
         "RECENT_MESSAGES": "Recent Messages",
-        "MESSAGES": "Messages"
+        "MESSAGES": "Messages",
+        "INBOX": "Inbox",
+        "ARCHIVE": "Archive"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",

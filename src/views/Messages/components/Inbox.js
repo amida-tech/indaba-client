@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import InboxTabs from './InboxTabs';
+
 class Inbox extends Component {
     render() {
         return (
@@ -9,6 +11,9 @@ class Inbox extends Component {
                     {this.props.vocab.MESSAGES.MESSAGES}
                 </div>
                 <div className='inbox__top-row'>
+                    <InboxTabs active={this.props.messages.ui.inboxTab}
+                        vocab={this.props.vocab}
+                        onSelectTab={() => null}/>
                 </div>
             </div>
         );
@@ -17,6 +22,7 @@ class Inbox extends Component {
 
 Inbox.propTypes = {
     vocab: PropTypes.object.isRequired,
+    messages: PropTypes.object.isRequired,
 };
 
 export default Inbox;
