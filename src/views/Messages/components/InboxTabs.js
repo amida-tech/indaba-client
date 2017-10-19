@@ -13,7 +13,7 @@ class InboxTabs extends Component {
                 icon: () => <Icon name='envelope-o'
                     className='inbox-tabs__icon inbox-tabs__icon--inbox'/>,
             },
-            [INBOX_TABS.ARCHIVE]: {
+            [INBOX_TABS.ARCHIVED]: {
                 title: this.props.vocab.MESSAGES.ARCHIVE,
                 icon: () => <IonIcon icon='ion-ios-box'
                     className='inbox-tabs__icon inbox-tabs__icon--archive'/>,
