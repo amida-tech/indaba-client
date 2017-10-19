@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import MessagesMain from './MessagesMain';
+import Inbox from './Inbox';
 
 class MessagesContainer extends Component {
     render() {
         return (
-            <MessagesMain {...this.props} />
+            <Inbox {...this.props} />
         );
     }
 }
