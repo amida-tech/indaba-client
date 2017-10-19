@@ -245,7 +245,8 @@
         "TASK": "Task"
     },
     "MESSAGES": {
-        "RECENT_MESSAGES": "Recent Messages"
+        "RECENT_MESSAGES": "Recent Messages",
+        "MESSAGES": "Messages"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
