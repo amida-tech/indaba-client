@@ -19,6 +19,7 @@ class Inbox extends Component {
                         label={this.props.vocab.MESSAGES.NEW_MESSAGE}
                         path='/messages/new' />
                 </div>
+                <hr className='divider'/>
             </div>
         );
     }
