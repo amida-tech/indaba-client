@@ -12,7 +12,8 @@ class InboxMessageList extends Component {
     renderMessage(message) {
         return (
             <div key={message.id}
-                className='inbox-message-list__entry'>
+                className='inbox-message-list__entry'
+                onClick={() => this.props.onMessageClick(message.id)}>
                 <div className='inbox-message-list__from'>
                     {message.from}
                 </div>
@@ -59,6 +60,7 @@ InboxMessageList.propTypes = {
         archived: PropTypes.boolean,
     })).isRequired,
     vocab: PropTypes.object.isRequired,
+    onMessageClick: PropTypes.func.isRequired,
 };
 
 export default InboxMessageList;

@@ -54,7 +54,8 @@ class Inbox extends Component {
                 </div>
                 <InboxMessageList messages={this.props.messages.messages
                         .filter(this.evaluateFilter)}
-                        vocab={this.props.vocab}/>
+                        vocab={this.props.vocab}
+                        onMessageClick={this.props.goToMessage}/>
             </div>
         );
     }
@@ -64,6 +65,7 @@ Inbox.propTypes = {
     vocab: PropTypes.object.isRequired,
     messages: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
+    goToMessage: PropTypes.func.isRequired,
 };
 
 export default Inbox;
