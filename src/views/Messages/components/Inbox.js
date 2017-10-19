@@ -12,10 +12,14 @@ class Inbox extends Component {
     constructor() {
         super();
 
-        this.inboxFilter = this.inboxFilter.bind(this);
+        this.evaluateFilter = this.evaluateFilter.bind(this);
     }
 
-    inboxFilter(message) {
+    evaluateFilter(message) {
+        if (!!message.archived !==
+            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
+            return false;
+        }
         switch (this.props.messages.ui.filter) {
         case FILTERS.ALL_MESSAGES:
             return true;
@@ -49,10 +53,7 @@ class Inbox extends Component {
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
                 <InboxMessageList messages={this.props.messages.messages
-                        .filter(message =>
-                            !!message.archived ===
-                            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED))
-                        .filter(this.inboxFilter)}/>
+                        .filter(this.evaluateFilter)}/>
             </div>
         );
     }
