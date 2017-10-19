@@ -219,6 +219,7 @@
         "NEW_USER_EMAIL": "New User Email",
         "SEARCH_FOR_A_USER": "Search for a user",
         "SEARCH_FOR_USER_GROUPS": "Search for user groups",
+        "SEARCH_TASKS": "Search Tasks",
         "IMPORT_STAGE": "Import Stage",
         "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
