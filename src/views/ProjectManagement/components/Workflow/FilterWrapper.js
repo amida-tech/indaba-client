@@ -54,6 +54,7 @@ class FilterWrapper extends Component {
                             this.props.actions.putStage(
                                 this.props.project,
                                 stage,
+                                false,
                                 this.props.vocab.ERROR);
                         }}
                         userGroups={this.props.project.userGroups}
@@ -69,6 +70,7 @@ class FilterWrapper extends Component {
                             this.props.actions.addSubject(
                                 this.props.project,
                                 [{ name: subject }],
+                                false,
                                 this.props.vocab.ERROR);
                         }}
                     />
