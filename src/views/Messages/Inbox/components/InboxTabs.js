@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Icon } from 'react-fa';
 import IonIcon from 'react-ionicons';
 
-import { INBOX_TABS } from '../constants';
+import { INBOX_TABS } from '../../constants';
 
 class InboxTabs extends Component {
     render() {

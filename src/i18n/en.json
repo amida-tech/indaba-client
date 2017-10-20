@@ -253,6 +253,7 @@
         "FROM": "From",
         "SUBJECT": "Subject",
         "DATE_RECEIVED": "Date Received",
+        "TO": "To",
         "INBOX_FILTER": {
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",

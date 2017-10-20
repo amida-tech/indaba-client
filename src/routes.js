@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import DashboardContainer from './views/Dashboard';
 import { LoginContainer } from './views/Login';
 import { ProfileContainer } from './views/Profile';
@@ -9,6 +9,8 @@ import { TaskReview } from './views/TaskReview';
 import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
 import { MessagesContainer } from './views/Messages';
+import Inbox from './views/Messages/Inbox/components/Inbox';
+import Message from './views/Messages/Message/components/Message';
 import App from './views/App';
 
 export default (
@@ -48,6 +50,13 @@ export default (
         <Route
             key='/messages'
             path='/messages'
-            component={MessagesContainer}/>
+            component={MessagesContainer}
+            indexRoute={Inbox}>
+            <IndexRoute component={Inbox}/>
+            <Route
+                key=':id'
+                path=':id'
+                component={Message}/>
+        </Route>
     </Route>
 );
