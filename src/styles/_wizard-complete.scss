@@ -2,6 +2,70 @@ $block-class: 'wizard-complete';
 
 @at-root {
     .#{$block-class} {
-        // EMPTY BLOCK ERROR SUPRESSION
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 48px;
+        width: 800px;
+
+        @extend .project-wizard;
+
+        &__tabs {
+            @extend .project-wizard__tabs;
+        }
+
+        &__tab {
+            @extend .project-wizard__tab;
+
+            &::after {
+                @extend .project-wizard__tab::after;
+            }
+
+            &--complete {
+                @extend .project-wizard__tab--complete;
+            }
+
+            &--incomplete {
+                @extend .project-wizard__tab--incomplete;
+            }
+        }
+
+        &__header {
+            @extend .med-font;
+
+            font-weight: 300;
+            color: $header-font-color;
+            padding-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        &__explanation {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        &__button {
+            letter-spacing: 0.8px;
+            border-radius: 2px;
+            font-size: 12px;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
+
+        .grommetux-tab__label {
+            font-size: 16px;
+            color: $header-font-color;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .grommetux-tab {
+            border: none;
+        }
     }
 }

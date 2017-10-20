@@ -242,7 +242,8 @@
         "SURVEY_NAME_CHANGED": "Survey Name Changed",
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
-        "TASK": "Task"
+        "TASK": "Task",
+        "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
     },
     "MESSAGES": {
         "RECENT_MESSAGES": "Recent Messages"
