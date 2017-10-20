@@ -1,12 +1,12 @@
 import devConfig from './development';
-// import prodConfig from './production';
+import stagingConfig from './staging';
 
 const config = devConfig;
 
-// if (process.env.NODE_ENV === 'development') {
-//     config = devConfig;
-// } else {
-//     config = prodConfig;
-// }
+if (process.env.NODE_ENV === 'development') {
+    config = devConfig;
+} else if (process.env.NODE_ENV === 'staging') {
+    config = stagingConfig;
+}
 
 export default config;
