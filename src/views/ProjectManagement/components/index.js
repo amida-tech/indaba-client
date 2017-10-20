@@ -9,6 +9,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
+import Survey from '../../../common/components/Survey';
 import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
@@ -34,11 +35,8 @@ class ProjectManagementContainer extends Component {
         case 'workflow':
             body = <WorkflowContainer {...this.props} />;
             break;
-        case 'subject':
-            body = <Subjects vocab={this.props.vocab}
-                    project={this.props.project}
-                    subjects={this.props.project.subjects}
-                    actions={this.props.actions}/>;
+        case 'survey':
+            body = <Survey {...this.props} />;
             break;
         case 'users':
             body = <Users
@@ -49,6 +47,12 @@ class ProjectManagementContainer extends Component {
                 project={this.props.project}
                 profile={this.props.profile}
                 actions={this.props.actions} />;
+            break;
+        case 'subject':
+            body = <Subjects vocab={this.props.vocab}
+                    project={this.props.project}
+                    subjects={this.props.project.subjects}
+                    actions={this.props.actions}/>;
             break;
         default:
             body = null;

@@ -1,0 +1,10 @@
+$block-class: 'create-survey-pane';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-width: 320px;
+    }
+}

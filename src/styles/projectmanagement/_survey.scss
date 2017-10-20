@@ -1,0 +1,9 @@
+$block-class: 'survey';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+    }
+}
