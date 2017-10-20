@@ -64,7 +64,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
-    "staging": "webpack-dev-server --env.NODE_ENV=staging --config webpack.config.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
