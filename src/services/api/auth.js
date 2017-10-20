@@ -6,7 +6,6 @@ const rootURI = config.AUTH_API_HTTPS_URL;
 const auth = {
     login: (authPayload, callback) => { // Auth does not use cookies for login.
         const path = `${rootURI}/auth/login`;
-        console.log(`PATH IS: ${path}`);
         const body = `username=${authPayload.username}&password=${authPayload.password}`;
         requests.apiAuthPostRequest(path, body, callback);
     },
