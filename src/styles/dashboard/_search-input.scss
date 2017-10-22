@@ -11,6 +11,11 @@ $block-class: 'search-input';
             flex: 1;
             border: 1px solid $border-color;
             border-radius: 1px;
+
+            &:focus {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__icon {
