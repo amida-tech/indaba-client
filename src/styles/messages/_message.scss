@@ -22,12 +22,15 @@ $block-class: 'message';
         }
 
         &__timestamp {
-            margin-top: 1em;
             font-weight: 600;
         }
 
         &__body-section {
             min-height: 5em;
+        }
+
+        &__body-timestamp {
+            margin-top: 1em;
         }
 
         &__inline-reply {

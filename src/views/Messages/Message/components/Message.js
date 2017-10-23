@@ -49,7 +49,7 @@ class Message extends Component {
                             input={compose}
                             value={_.get(this.props, 'message.message')}
                             name='message'/>
-                        <div className='mesage__body-timestamp'>
+                        <div className='message__body-timestamp'>
                             {_.get(this.props, 'message.timestamp')}
                         </div>
                     </div>
