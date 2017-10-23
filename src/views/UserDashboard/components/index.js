@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
     },
     profile: state.user.profile,
     vocab: state.settings.language.vocabulary,
-    messages: state.messages.slice(0, 4),
+    messages: state.userdashboard.messages.slice(0, 4),
     ui: state.userdashboard.ui,
     rows: [].concat(...state.tasks.data.map(task =>
         _generateRow(state, task.projectId, task))),
