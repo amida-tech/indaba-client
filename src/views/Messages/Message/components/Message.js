@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 
@@ -18,6 +19,9 @@ class Message extends Component {
         const compose = this.props.params.id === undefined;
         return (
             <form className='message'>
+                <Link to='/messages'>
+                    {this.props.vocab.MESSAGES.BACK_TO_INBOX}
+                </Link>
                 <div className='message__row message__row--top'>
                     <MessageField label={this.props.vocab.MESSAGES.TO}
                         input={compose}
