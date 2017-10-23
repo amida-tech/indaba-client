@@ -18,44 +18,46 @@ class Message extends Component {
     render() {
         const compose = this.props.params.id === undefined;
         return (
-            <form className='message'>
+            <div className='message'>
                 <Link to='/messages'>
                     {this.props.vocab.MESSAGES.BACK_TO_INBOX}
                 </Link>
-                <div className='message__row message__row--top'>
-                    <MessageField label={this.props.vocab.MESSAGES.TO}
-                        input={compose}
-                        value={this.props.me}
-                        name='to'/>
-                    <div className='message__timestamp'>
-                        {this.props.message && this.props.message.timestamp}
+                <form className='message__content'>
+                    <div className='message__row message__row--top'>
+                        <MessageField label={this.props.vocab.MESSAGES.TO}
+                            input={compose}
+                            value={this.props.me}
+                            name='to'/>
+                        <div className='message__timestamp'>
+                            {this.props.message && this.props.message.timestamp}
+                        </div>
                     </div>
-                </div>
-                <div className='message__row'>
-                    <MessageField label={this.props.vocab.MESSAGES.FROM}
-                        input={compose}
-                        value={_.get(this.props, 'message.from')}
-                        name='from'/>
-                </div>
-                <div className='message_row'>
-                    <MessageField label={this.props.vocab.MESSAGES.SUBJECT}
-                        input={compose}
-                        value={_.get(this.props, 'message.subject')}
-                        name='subject'/>
-                </div>
-                <div className='message__body-section'>
-                    <MessageBodyField
-                        input={compose}
-                        value={_.get(this.props, 'message.message')}
-                        name='message'/>
-                    <div className='mesage__body-timestamp'>
-                        {_.get(this.props, 'message.timestamp')}
+                    <div className='message__row'>
+                        <MessageField label={this.props.vocab.MESSAGES.FROM}
+                            input={compose}
+                            value={_.get(this.props, 'message.from')}
+                            name='from'/>
                     </div>
-                </div>
-                <div className='message__inline-reply'>
-                    {this.props.vocab.MESSAGES.WRITE_REPLY}
-                </div>
-            </form>
+                    <div className='message__row'>
+                        <MessageField label={this.props.vocab.MESSAGES.SUBJECT}
+                            input={compose}
+                            value={_.get(this.props, 'message.subject')}
+                            name='subject'/>
+                    </div>
+                    <div className='message__body-section'>
+                        <MessageBodyField
+                            input={compose}
+                            value={_.get(this.props, 'message.message')}
+                            name='message'/>
+                        <div className='mesage__body-timestamp'>
+                            {_.get(this.props, 'message.timestamp')}
+                        </div>
+                    </div>
+                    <div className='message__inline-reply'>
+                        {this.props.vocab.MESSAGES.WRITE_REPLY}
+                    </div>
+                </form>
+            </div>
         );
     }
 }
