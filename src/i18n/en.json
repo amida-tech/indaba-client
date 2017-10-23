@@ -247,7 +247,20 @@
         "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
     },
     "MESSAGES": {
-        "RECENT_MESSAGES": "Recent Messages"
+        "RECENT_MESSAGES": "Recent Messages",
+        "MESSAGES": "Messages",
+        "INBOX": "Inbox",
+        "ARCHIVE": "Archive",
+        "NEW_MESSAGE": "New Message",
+        "FROM": "From",
+        "SUBJECT": "Subject",
+        "DATE_RECEIVED": "Date Received",
+        "INBOX_FILTER": {
+            "ALL_MESSAGES": "All Messages",
+            "SENT_MESSAGES": "Sent Messages",
+            "UNREAD_MESSAGES": "Unread Messages",
+            "NOTIFICATIONS": "Notifications"
+        }
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
