@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes/surveysActionTypes';
+import * as actionTypes from '../actionTypes/surveyActionTypes';
 
 export function setSurveyStatus(status, projectId) {
     return {

@@ -8,7 +8,7 @@ import { FILTERS } from '../constants';
 import * as actions from '../actions';
 
 import { setProjectName, getProjects } from '../../../common/actions/projectActions';
-import { setSurveyName } from '../../../common/actions/surveysActions';
+import { setSurveyName } from '../../../common/actions/surveyActions';
 
 import NameChangeModal from './NameChangeModal';
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';

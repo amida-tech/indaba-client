@@ -17,7 +17,7 @@ import * as projectActions from '../../../common/actions/projectActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
-import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysActions';
+import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveyActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {

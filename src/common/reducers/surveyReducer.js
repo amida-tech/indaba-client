@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
-import * as type from '../actionTypes/surveysActionTypes';
+import * as type from '../actionTypes/surveyActionTypes';
 import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 const initialState = {
