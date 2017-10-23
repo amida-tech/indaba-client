@@ -254,6 +254,7 @@
         "SUBJECT": "Subject",
         "DATE_RECEIVED": "Date Received",
         "TO": "To",
+        "WRITE_REPLY": "Write Reply",
         "INBOX_FILTER": {
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",

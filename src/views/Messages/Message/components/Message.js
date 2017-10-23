@@ -8,6 +8,7 @@ import _ from 'lodash';
 import * as actions from '../../actions';
 
 import MessageField from './MessageField';
+import MessageBodyField from './MessageBodyField';
 
 class Message extends Component {
     componentWillMount() {
@@ -37,6 +38,18 @@ class Message extends Component {
                         input={compose}
                         value={_.get(this.props, 'message.subject')}
                         name='subject'/>
+                </div>
+                <div className='message__body-section'>
+                    <MessageBodyField
+                        input={compose}
+                        value={_.get(this.props, 'message.message')}
+                        name='message'/>
+                    <div className='mesage__body-timestamp'>
+                        {_.get(this.props, 'message.timestamp')}
+                    </div>
+                </div>
+                <div className='message__inline-reply'>
+                    {this.props.vocab.MESSAGES.WRITE_REPLY}
                 </div>
             </form>
         );
