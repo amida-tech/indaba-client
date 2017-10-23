@@ -14,3 +14,8 @@ export const markMessageAsRead = id => ({
     type: actionTypes.MARK_MESSAGE_AS_READ,
     id,
 });
+
+export const archiveMessage = id => ({
+    type: actionTypes.ARCHIVE_MESSAGE,
+    id,
+});

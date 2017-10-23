@@ -57,6 +57,10 @@ export default (state = initialState, action) => {
         return update(state, { messages: { [messageIndex]: {
             readAt: { $set: new Date().toISOString() },
         } } });
+    case actionTypes.ARCHIVE_MESSAGE:
+        return update(state, { messages: { [messageIndex]: {
+            archived: { $set: true },
+        } } });
     default:
         return state;
     }

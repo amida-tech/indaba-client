@@ -28,7 +28,13 @@ class InboxMessageList extends Component {
                 <div className='inbox-message-list__actions'>
                     <ButtonPanel>
                         <div className='inbox-message-list__action-button'
-                            listKey='archive'>
+                            listKey='archive'
+                            onClick={
+                                (event) => {
+                                    this.props.actions.archiveMessage(message.id);
+                                    event.stopPropagation();
+                                }
+                            }>
                             <IonIcon icon='ion-ios-box'
                                 className='inbox-message-list__action-icon'/>
                         </div>
