@@ -17,7 +17,8 @@ class AddSubjectControl extends Component {
                         <Field name='subjects'
                             className='add-subject-control__input'
                             component='input'
-                            type='text'/>
+                            type='text'
+                            placeholder={this.props.vocab.PROJECT.SEARCH_FOR_SUBJECTS}/>
                         <div className=''
                             onClick={this.props.onPlusClick}>
                             <IonIcon icon='ion-ios-plus'
