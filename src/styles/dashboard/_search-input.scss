@@ -11,8 +11,10 @@ $block-class: 'search-input';
             flex: 1;
             border: 1px solid $border-color;
             border-radius: 1px;
+            padding: 8px;
 
-            &:focus {
+            &:focus,
+            &:active {
                 border: 2px solid $brand-color;
                 outline: none;
             }
