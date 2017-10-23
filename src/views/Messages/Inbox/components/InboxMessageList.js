@@ -31,6 +31,7 @@ class InboxMessageList extends Component {
                             !message.archived &&
                             <div className='inbox-message-list__action-button'
                                 listKey='archive'
+                                title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
                                         this.props.actions.archiveMessage(message.id);
@@ -45,6 +46,7 @@ class InboxMessageList extends Component {
                             !message.archived && !message.readAt &&
                             <div className='inbox-message-list__action-button'
                                 listKey='mark-read'
+                                title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
                                         this.props.actions.markMessageAsRead(message.id);
@@ -59,6 +61,7 @@ class InboxMessageList extends Component {
                             !message.archived && message.readAt &&
                             <div className='inbox-message-list__action-button'
                                 listKey='mark-unread'
+                                title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
                                         this.props.actions.markMessageAsUnread(message.id);
@@ -73,6 +76,7 @@ class InboxMessageList extends Component {
                             message.archived &&
                             <div className='inbox-message-list__action-button'
                                 listKey='unarchive'
+                                title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
                                         this.props.actions.unarchiveMessage(message.id);

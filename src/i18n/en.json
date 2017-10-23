@@ -256,6 +256,9 @@
         "TO": "To",
         "WRITE_REPLY": "Write Reply",
         "BACK_TO_INBOX": "Back To Inbox",
+        "RETURN_TO_INBOX": "Return to Inbox",
+        "MARK_AS_READ": "Mark as Read",
+        "MARK_AS_UNREAD": "Mark as Unread",
         "INBOX_FILTER": {
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",
