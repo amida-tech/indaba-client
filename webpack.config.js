@@ -1,5 +1,5 @@
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -70,6 +70,14 @@ module.exports = {
     plugins: [
         HtmlWebpackPluginConfig,
         StyleLintPluginConfig,
-        new Dotenv(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'API_HTTP_URL': JSON.stringify(process.env.API_HTTP_URL),
+                'API_HTTPS_URL': JSON.stringify(process.env.API_HTTPS_URL),
+                'AUTH_API_HTTPS_URL': JSON.stringify(process.env.AUTH_API_HTTPS_URL),
+                'AUTH_API_HTTP_URL': JSON.stringify(process.env.AUTH_API_HTTP_URL),
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            }
+        }),
     ],
 };
