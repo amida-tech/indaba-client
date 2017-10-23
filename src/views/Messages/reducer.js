@@ -46,11 +46,17 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    const messageIndex = state.messages.findIndex(message => message.id === action.id);
+
     switch (action.type) {
     case actionTypes.SET_ACTIVE_INBOX_TAB:
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
+    case actionTypes.MARK_MESSAGE_AS_READ:
+        return update(state, { messages: { [messageIndex]: {
+            readAt: { $set: new Date().toISOString() },
+        } } });
     default:
         return state;
     }

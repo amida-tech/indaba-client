@@ -9,3 +9,8 @@ export const setInboxFilter = filter => ({
     type: actionTypes.SET_INBOX_FILTER,
     filter,
 });
+
+export const markMessageAsRead = id => ({
+    type: actionTypes.MARK_MESSAGE_AS_READ,
+    id,
+});
