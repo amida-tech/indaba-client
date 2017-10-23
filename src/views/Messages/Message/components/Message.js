@@ -16,7 +16,7 @@ class Message extends Component {
     }
     render() {
         const compose = this.props.params.id === undefined;
-        const message = (
+        return (
             <form className='message'>
                 <div className='message__row message__row--top'>
                     <MessageField label={this.props.vocab.MESSAGES.TO}
@@ -53,11 +53,6 @@ class Message extends Component {
                 </div>
             </form>
         );
-
-        if (this.props.params.id === undefined) {
-            return reduxForm({ form: 'message' })(message);
-        }
-        return message;
     }
 }
 
@@ -74,5 +69,14 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });
 
+const MessageForm = reduxForm({ form: 'message' })(Message);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Message);
+class MessageSelector extends Component {
+    render() {
+        return this.props.params.id !== undefined ?
+            (<Message {...this.props}/>) :
+            (<MessageForm {...this.props}/>);
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageSelector);
