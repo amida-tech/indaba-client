@@ -27,28 +27,76 @@ class InboxMessageList extends Component {
                 </div>
                 <div className='inbox-message-list__actions'>
                     <ButtonPanel>
-                        <div className='inbox-message-list__action-button'
-                            listKey='archive'
-                            onClick={
-                                (event) => {
-                                    this.props.actions.archiveMessage(message.id);
-                                    event.stopPropagation();
-                                }
-                            }>
-                            <IonIcon icon='ion-ios-box'
-                                className='inbox-message-list__action-icon'/>
-                        </div>
-                        <div className='inbox-message-list__action-button'
-                            listKey='unread'
-                            onClick={
-                                (event) => {
-                                    this.props.actions.markMessageAsRead(message.id);
-                                    event.stopPropagation();
-                                }
-                            }>
-                            <IonIcon icon='ion-email-unread'
-                                className='inbox-message-list__action-icon'/>
-                        </div>
+                        {
+                            !message.archived &&
+                            <div className='inbox-message-list__action-button'
+                                listKey='archive'
+                                onClick={
+                                    (event) => {
+                                        this.props.actions.archiveMessage(message.id);
+                                        event.stopPropagation();
+                                    }
+                                }>
+                                <IonIcon icon='ion-ios-box'
+                                    className='inbox-message-list__action-icon'/>
+                            </div>
+                        }
+                        {
+                            !message.archived && !message.readAt &&
+                            <div className='inbox-message-list__action-button'
+                                listKey='mark-read'
+                                onClick={
+                                    (event) => {
+                                        this.props.actions.markMessageAsRead(message.id);
+                                        event.stopPropagation();
+                                    }
+                                }>
+                                <IonIcon icon='ion-ios-checkmark-empty'
+                                    className='inbox-message-list__action-icon'/>
+                            </div>
+                        }
+                        {
+                            !message.archived && message.readAt &&
+                            <div className='inbox-message-list__action-button'
+                                listKey='mark-unread'
+                                onClick={
+                                    (event) => {
+                                        this.props.actions.markMessageAsUnread(message.id);
+                                        event.stopPropagation();
+                                    }
+                                }>
+                                <IonIcon icon='ion-email-unread'
+                                    className='inbox-message-list__action-icon'/>
+                            </div>
+                        }
+                        {
+                            message.archived &&
+                            <div className='inbox-message-list__action-button'
+                                listKey='unarchive'
+                                onClick={
+                                    (event) => {
+                                        this.props.actions.unarchiveMessage(message.id);
+                                        event.stopPropagation();
+                                    }
+                                }>
+                                <IonIcon icon='ion-ios-upload-outline'
+                                    className='inbox-message-list__action-icon'/>
+                            </div>
+                        }
+                        {
+                            message.archived &&
+                            <div className='inbox-message-list__action-button'
+                                listKey='delete'
+                                onClick={
+                                    (event) => {
+                                        this.props.actions.deleteMessage(message.id);
+                                        event.stopPropagation();
+                                    }
+                                }>
+                                <IonIcon icon='ion-ios-trash-outline'
+                                    className='inbox-message-list__action-icon'/>
+                            </div>
+                        }
                     </ButtonPanel>
                 </div>
             </div>

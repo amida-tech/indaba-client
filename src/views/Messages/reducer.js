@@ -57,9 +57,17 @@ export default (state = initialState, action) => {
         return update(state, { messages: { [messageIndex]: {
             readAt: { $set: new Date().toISOString() },
         } } });
+    case actionTypes.MARK_MESSAGE_AS_UNREAD:
+        return update(state, { messages: {
+            [messageIndex]: { $unset: ['readAt'] },
+        } });
     case actionTypes.ARCHIVE_MESSAGE:
         return update(state, { messages: { [messageIndex]: {
             archived: { $set: true },
+        } } });
+    case actionTypes.UNARCHIVE_MESSAGE:
+        return update(state, { messages: { [messageIndex]: {
+            archived: { $set: false },
         } } });
     default:
         return state;

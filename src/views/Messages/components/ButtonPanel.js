@@ -6,7 +6,10 @@ class ButtonPanel extends Component {
         return (
             <div className='button-panel'>
                 {
-                    this.props.children.map(child =>
+                    React.Children.map(
+                        this.props.children,
+                        child =>
+                        child &&
                         <div className='button-panel__button' key={child.props.listKey}>
                             {child}
                         </div>,

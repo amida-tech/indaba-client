@@ -15,7 +15,17 @@ export const markMessageAsRead = id => ({
     id,
 });
 
+export const markMessageAsUnread = id => ({
+    type: actionTypes.MARK_MESSAGE_AS_UNREAD,
+    id,
+});
+
 export const archiveMessage = id => ({
     type: actionTypes.ARCHIVE_MESSAGE,
+    id,
+});
+
+export const unarchiveMessage = id => ({
+    type: actionTypes.UNARCHIVE_MESSAGE,
     id,
 });
