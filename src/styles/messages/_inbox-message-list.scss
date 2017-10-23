@@ -46,6 +46,8 @@ $block-class: 'inbox-message-list';
 
         &__action-button {
             display: flex;
+            flex: 1;
+            align-items: center;
         }
 
         &__action-icon {
