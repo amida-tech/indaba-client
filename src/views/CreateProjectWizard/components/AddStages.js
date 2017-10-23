@@ -18,6 +18,7 @@ class AddStages extends Component {
                     this.props.actions.putStage(
                         this.props.project,
                         stage,
+                        true,
                         this.props.vocab.ERROR);
                 }}/>}
             <Summary
