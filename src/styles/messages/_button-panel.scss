@@ -16,6 +16,7 @@ $block-class: 'button-panel';
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
 
             &:not(:first-child) {
                 border-left: 1px solid $border-color;

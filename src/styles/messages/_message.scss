@@ -45,6 +45,17 @@ $block-class: 'message';
             font-weight: 600;
         }
 
+        &__body-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1em;
+        }
+
+        &__action-icon {
+            fill: #7e848f;
+            flex: 1;
+        }
+
         &__body-field-wrapper {
             min-height: 8em;
             display: flex;

@@ -11,6 +11,7 @@ import * as actions from '../../actions';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
+import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class Message extends Component {
     componentWillMount() {
@@ -49,6 +50,45 @@ class Message extends Component {
                             name='subject'/>
                     </div>
                     <div className='message__body-section'>
+                        <div className='message__body-actions'>
+                            <ButtonPanel>
+                                <PanelButton>
+                                    <IonIcon icon='ion-ios-trash-outline'
+                                        className='message__action-icon'/>
+                                </PanelButton>
+                                <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
+                                    onClick={
+                                        (event) => {
+                                            this.props.actions
+                                                .archiveMessage(this.props.message.id);
+                                            event.stopPropagation();
+                                        }
+                                    }>
+                                    <IonIcon icon='ion-ios-box'
+                                        className='message__action-icon'/>
+                                </PanelButton>
+                                <PanelButton
+                                    title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
+                                    onClick={
+                                        (event) => {
+                                            this.props.actions
+                                                .markMessageAsUnread(this.props.message.id);
+                                            event.stopPropagation();
+                                        }
+                                    }>
+                                    <IonIcon icon='ion-email-unread'
+                                        className='message__action-icon'/>
+                                </PanelButton>
+                                <PanelButton>
+                                    <IonIcon icon='ion-arrow-right-a'
+                                        className='message__action-icon'/>
+                                </PanelButton>
+                                <PanelButton>
+                                    <IonIcon icon='ion-reply'
+                                        className='message__action-icon'/>
+                                </PanelButton>
+                            </ButtonPanel>
+                        </div>
                         <div className='message__body-field-wrapper'>
                             <MessageBodyField
                                 input={compose}
