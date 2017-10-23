@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+export class PanelButton extends Component {
+    render() {
+        return (
+            <div className='button-panel__button' {...this.props}>
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
 class ButtonPanel extends Component {
     render() {
         return (
             <div className='button-panel'>
-                {
-                    React.Children.map(
-                        this.props.children,
-                        child =>
-                        child &&
-                        <div className='button-panel__button' key={child.props.listKey}>
-                            {child}
-                        </div>,
-                    )
-                }
+                { this.props.children }
             </div>
         );
     }
 }
 
 ButtonPanel.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    children: PropTypes.any,
 };
 
 export default ButtonPanel;

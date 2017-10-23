@@ -7,13 +7,14 @@ $block-class: 'button-panel';
         border: 1px solid $border-color;
         border-radius: 2px;
         overflow: hidden;
+        align-items: center;
 
         &__button {
             width: 30px;
             height: 30px;
             overflow: hidden;
             display: flex;
-            align-items: stretch;
+            align-items: center;
             justify-content: center;
 
             &:not(:first-child) {

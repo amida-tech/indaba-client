@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../../utils/Time';
-import ButtonPanel from '../../components/ButtonPanel';
+import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class InboxMessageList extends Component {
     constructor() {
@@ -29,9 +29,7 @@ class InboxMessageList extends Component {
                     <ButtonPanel>
                         {
                             !message.archived &&
-                            <div className='inbox-message-list__action-button'
-                                listKey='archive'
-                                title={this.props.vocab.MESSAGES.ARCHIVE}
+                            <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
                                         this.props.actions.archiveMessage(message.id);
@@ -40,12 +38,11 @@ class InboxMessageList extends Component {
                                 }>
                                 <IonIcon icon='ion-ios-box'
                                     className='inbox-message-list__action-icon'/>
-                            </div>
+                            </PanelButton>
                         }
                         {
                             !message.archived && !message.readAt &&
-                            <div className='inbox-message-list__action-button'
-                                listKey='mark-read'
+                            <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
@@ -55,12 +52,11 @@ class InboxMessageList extends Component {
                                 }>
                                 <IonIcon icon='ion-ios-checkmark-empty'
                                     className='inbox-message-list__action-icon'/>
-                            </div>
+                            </PanelButton>
                         }
                         {
                             !message.archived && message.readAt &&
-                            <div className='inbox-message-list__action-button'
-                                listKey='mark-unread'
+                            <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
@@ -70,12 +66,11 @@ class InboxMessageList extends Component {
                                 }>
                                 <IonIcon icon='ion-email-unread'
                                     className='inbox-message-list__action-icon'/>
-                            </div>
+                            </PanelButton>
                         }
                         {
                             message.archived &&
-                            <div className='inbox-message-list__action-button'
-                                listKey='unarchive'
+                            <PanelButton
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
@@ -85,12 +80,11 @@ class InboxMessageList extends Component {
                                 }>
                                 <IonIcon icon='ion-ios-upload-outline'
                                     className='inbox-message-list__action-icon'/>
-                            </div>
+                            </PanelButton>
                         }
                         {
                             message.archived &&
-                            <div className='inbox-message-list__action-button'
-                                listKey='delete'
+                            <PanelButton
                                 onClick={
                                     (event) => {
                                         this.props.actions.deleteMessage(message.id);
@@ -99,7 +93,7 @@ class InboxMessageList extends Component {
                                 }>
                                 <IonIcon icon='ion-ios-trash-outline'
                                     className='inbox-message-list__action-icon'/>
-                            </div>
+                            </PanelButton>
                         }
                     </ButtonPanel>
                 </div>
