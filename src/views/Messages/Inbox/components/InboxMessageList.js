@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import IonIcon from 'react-ionicons';
 
 import Time from '../../../../utils/Time';
+import ButtonPanel from '../../components/ButtonPanel';
 
 class InboxMessageList extends Component {
     constructor() {
@@ -23,7 +25,14 @@ class InboxMessageList extends Component {
                 <div className='inbox-message-list__date'>
                     {Time.renderForInboxMessageList(this.props.createdAt)}
                 </div>
-                <div className='inbox-message-list__actions'>TODO</div>
+                <div className='inbox-message-list__actions'>
+                    <ButtonPanel>
+                        <IonIcon icon='ion-ios-box' listKey='archive'
+                            className='inbox-message-list__action-icon'/>
+                        <IonIcon icon='ion-email-unread' listKey='unread'
+                            className='inbox-message-list__action-icon'/>
+                    </ButtonPanel>
+                </div>
             </div>
         );
     }
