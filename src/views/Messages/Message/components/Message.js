@@ -60,9 +60,12 @@ class Message extends Component {
                         </div>
                     </div>
                 </form>
-                <div className='message__inline-reply'>
-                    {this.props.vocab.MESSAGES.WRITE_REPLY}
-                </div>
+                {
+                    !compose &&
+                    <div className='message__inline-reply'>
+                        {this.props.vocab.MESSAGES.WRITE_REPLY}
+                    </div>
+                }
             </div>
         );
     }
