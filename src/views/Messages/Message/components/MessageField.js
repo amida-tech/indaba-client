@@ -6,7 +6,7 @@ class MessageField extends Component {
     render() {
         return (
             <div className='message-field'>
-                <div className='message-field__label'>{this.props.label}</div>
+                <div className='message-field__label'>{this.props.label}: </div>
                 {
                     this.props.input ?
                     <Field component='input'

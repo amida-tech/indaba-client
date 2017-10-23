@@ -53,10 +53,10 @@ class Message extends Component {
                             {_.get(this.props, 'message.timestamp')}
                         </div>
                     </div>
-                    <div className='message__inline-reply'>
-                        {this.props.vocab.MESSAGES.WRITE_REPLY}
-                    </div>
                 </form>
+                <div className='message__inline-reply'>
+                    {this.props.vocab.MESSAGES.WRITE_REPLY}
+                </div>
             </div>
         );
     }
