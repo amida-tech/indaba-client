@@ -5,5 +5,5 @@ export default {
 
     AUTH_API_HTTP_URL: process.env.AUTH_API_HTTP_URL || 'http://localhost:4000/api/v0',
     AUTH_API_HTTPS_URL: process.env.AUTH_API_HTTPS_URL || 'https://localhost:4000/api/v0',
-    REALM: 'testorg',
+    REALM: process.env.REALM || 'testorg',
 };
