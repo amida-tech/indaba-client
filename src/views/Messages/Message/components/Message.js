@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
+import IonIcon from 'react-ionicons';
 import _ from 'lodash';
 
 import * as actions from '../../actions';
@@ -19,9 +20,12 @@ class Message extends Component {
         const compose = this.props.params.id === undefined;
         return (
             <div className='message'>
-                <Link to='/messages'>
-                    {this.props.vocab.MESSAGES.BACK_TO_INBOX}
-                </Link>
+                <div className='message__back'>
+                    <Link to='/messages' className='message__back-link'>
+                        <IonIcon icon='ion-chevron-left' className='message__back-icon' />
+                        {this.props.vocab.MESSAGES.BACK_TO_INBOX}
+                    </Link>
+                </div>
                 <form className='message__content'>
                     <div className='message__row message__row--top'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}

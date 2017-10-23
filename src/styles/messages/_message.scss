@@ -7,6 +7,26 @@ $block-class: 'message';
         min-width: 600px;
         margin-top: 4em;
 
+        &__back {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        &__back-link {
+            @extend .large-font;
+
+            display: flex;
+            align-items: center;
+            color: $header-font-color;
+        }
+
+        &__back-icon {
+            fill: #7e848f;
+            height: 16px;
+        }
+
         &__content {
             background-color: white;
             padding: 0.5em 1em;
