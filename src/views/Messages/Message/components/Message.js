@@ -25,7 +25,7 @@ class Message extends Component {
                 <div className='message__row message__row--top'>
                     <MessageField label={this.props.vocab.MESSAGES.TO}
                         input={compose}
-                        value={_.get(this.props, 'message.from')}
+                        value={this.props.me}
                         name='to'/>
                     <div className='message__timestamp'>
                         {this.props.message && this.props.message.timestamp}
@@ -68,6 +68,7 @@ const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     message: state.messages.messages.find(message => message.id ===
         parseInt(ownProps.params.id, 10)),
+    me: `${state.user.profile.firstName} ${state.user.profile.lastName}`,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
