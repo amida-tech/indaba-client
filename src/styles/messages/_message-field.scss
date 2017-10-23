@@ -10,5 +10,10 @@ $block-class: 'message-field';
         &__label {
             margin-right: 1em;
         }
+
+        &__value {
+            border: none;
+            outline: none;
+        }
     }
 }

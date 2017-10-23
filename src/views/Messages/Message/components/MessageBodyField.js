@@ -8,7 +8,7 @@ class MessageBodyField extends Component {
             <div className='message-body-field'>
                 {
                     this.props.input ?
-                    <Field component='input'
+                    <Field component='textarea'
                         className='message-body-field__value'
                         name={this.props.name}/> :
                     <div className='message-body-field__value'>

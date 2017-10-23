@@ -45,10 +45,12 @@ class Message extends Component {
                             name='subject'/>
                     </div>
                     <div className='message__body-section'>
-                        <MessageBodyField
-                            input={compose}
-                            value={_.get(this.props, 'message.message')}
-                            name='message'/>
+                        <div className='message__body-field-wrapper'>
+                            <MessageBodyField
+                                input={compose}
+                                value={_.get(this.props, 'message.message')}
+                                name='message'/>
+                        </div>
                         <div className='message__body-timestamp'>
                             {_.get(this.props, 'message.timestamp')}
                         </div>
