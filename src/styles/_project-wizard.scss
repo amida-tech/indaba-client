@@ -15,8 +15,9 @@ $block-class: 'project-wizard';
 
         .project-wizard__tab {
             display: flex;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
+            border-bottom: none;
 
             &::after {
                 content: '';
@@ -41,7 +42,7 @@ $block-class: 'project-wizard';
         }
 
         .grommetux-tab__label {
-            @extend .lead-font-bold;
+            @extend .lead-font;
 
             font-size: 14px;
             color: $header-font-color;
