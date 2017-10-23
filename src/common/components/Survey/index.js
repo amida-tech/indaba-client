@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import CreateSurveyPane from './CreateSurveyPane';
+import AnswerPanel from './AnswerPanel';
 
 class Survey extends Component {
 
     render() {
-        console.log('JAMES');
-        console.log(this.props);
         return (
             <div className='survey'>
-            {this.props.profile.roleID === 2 && <CreateSurveyPane />}
-                Whatever.
+            {this.props.profile.roleID === 2 &&
+                <CreateSurveyPane
+                    vocab={this.props.vocab}/>}
+            <AnswerPanel {...this.props} />
             </div>
         );
     }

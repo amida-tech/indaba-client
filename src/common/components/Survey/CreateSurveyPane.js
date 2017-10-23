@@ -5,7 +5,9 @@ class CreateSurveyPane extends Component {
     render() {
         return (
             <div className='create-survey-pane'>
-                And the stuff goes here.
+                <div className='create-survey-pane__instructions'>
+                    {this.props.vocab.SURVEY.PANE_INSTRUCTIONS}
+                </div>
             </div>
         );
     }

@@ -5,6 +5,12 @@ $block-class: 'create-survey-pane';
         display: flex;
         flex-direction: column;
         position: relative;
-        min-width: 320px;
+        width: 320px;
+        border: 1px solid $border-color;
+
+        &__instructions {
+            text-align: center;
+            margin: 5px;
+        }
     }
 }

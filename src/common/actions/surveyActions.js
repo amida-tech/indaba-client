@@ -15,3 +15,9 @@ export function setSurveyName(name, projectId) {
         projectId,
     };
 }
+
+export function addSurveyQuestion() {
+    return {
+        type: actionTypes.ADD_SURVEY_QUESTION,
+    };
+}

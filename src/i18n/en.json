@@ -277,7 +277,29 @@
         "STATUS_DRAFT": "Draft",
         "STATUS_PUBLISHED": "Published",
         "PUBLISH": "Publish survey",
-        "UNPUBLISH": "Edit survey in draft mode"
+        "UNPUBLISH": "Edit survey in draft mode",
+        "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
+        "NEW_QUESTIONS": "New Questions",
+        "EXISTING": "Existing",
+        "VIEWING_ALL_QUESTIONS": "Viewing all questions",
+        "ENTER_INSTRUCTIONS": "Enter instructions here",
+        "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
+        "ATTACH_FILE": "Attach File",
+        "ADD_LINK": "Add a Link",
+        "REQUIRED_QUESTION": "Required Questions",
+        "WEIGHT": "Weighted Value Question",
+        "SECTION_": "Section ",
+        "QUESTIONS": [
+            "Multiple Choice",
+            "Bullet Point",
+            "Checkbox",
+            "Long Text",
+            "Dropdown",
+            "Date",
+            "Number",
+            "Scale"
+        ],
+        "SECTION_BREAK": "Section Break"
     },
     "USER": {
         "NOTIFY_LEVEL": "Notify Level",

@@ -16,7 +16,7 @@ const initialState = {
     }],
 };
 
-export const SurveysReducer = (state = initialState, action) => {
+export const SurveyReducer = (state = initialState, action) => {
     const surveyIndex = _.findIndex(state, survey => survey.projectId === action.projectId);
     switch (action.type) {
     case type.SET_SURVEY_STATUS:
