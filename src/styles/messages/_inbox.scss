@@ -1,0 +1,36 @@
+$block-class: 'inbox';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5em;
+
+        &__title {
+            @extend .x-large-font;
+
+            margin-bottom: 1em;
+        }
+
+        &__top-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__new-message-button {
+            background-color: #fcfafa;
+            color: $header-font-color;
+
+            @extend .small-font;
+        }
+
+        &__filter {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 1.5em 0;
+        }
+    }
+}

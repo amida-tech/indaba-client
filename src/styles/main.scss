@@ -92,5 +92,9 @@
 @import './userdashboard/user-task-list-controls.scss';
 @import './userdashboard/user-task-list-header.scss';
 @import './userdashboard/user-task-list-entry.scss';
+// Messages
+@import './messages/inbox.scss';
+@import './messages/inbox-tabs.scss';
+@import './messages/inbox-message-list.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';
