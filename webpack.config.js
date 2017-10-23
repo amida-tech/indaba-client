@@ -76,6 +76,7 @@ module.exports = {
                 'API_HTTPS_URL': JSON.stringify(process.env.API_HTTPS_URL),
                 'AUTH_API_HTTPS_URL': JSON.stringify(process.env.AUTH_API_HTTPS_URL),
                 'AUTH_API_HTTP_URL': JSON.stringify(process.env.AUTH_API_HTTP_URL),
+                'REALM': JSON.stringify(process.env.REALM),
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             }
         }),
