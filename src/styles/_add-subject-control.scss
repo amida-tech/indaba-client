@@ -35,6 +35,13 @@ $block-class: 'add-subject-control';
             border: 1px solid $brand-color;
             -webkit-box-shadow: 0 0 1000px #fff inset;
             transition: background-color 5000s ease-in-out 0s;
+            padding: 8px;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__plus-icon {
