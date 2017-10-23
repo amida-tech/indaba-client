@@ -44,8 +44,13 @@ $block-class: 'inbox-message-list';
             justify-content: flex-end;
         }
 
+        &__action-button {
+            display: flex;
+        }
+
         &__action-icon {
             fill: #7e848f;
+            flex: 1;
         }
     }
 }

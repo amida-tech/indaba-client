@@ -27,10 +27,22 @@ class InboxMessageList extends Component {
                 </div>
                 <div className='inbox-message-list__actions'>
                     <ButtonPanel>
-                        <IonIcon icon='ion-ios-box' listKey='archive'
-                            className='inbox-message-list__action-icon'/>
-                        <IonIcon icon='ion-email-unread' listKey='unread'
-                            className='inbox-message-list__action-icon'/>
+                        <div className='inbox-message-list__action-button'
+                            listKey='archive'>
+                            <IonIcon icon='ion-ios-box'
+                                className='inbox-message-list__action-icon'/>
+                        </div>
+                        <div className='inbox-message-list__action-button'
+                            listKey='unread'
+                            onClick={
+                                (event) => {
+                                    this.props.actions.markMessageAsRead(message.id);
+                                    event.stopPropagation();
+                                }
+                            }>
+                            <IonIcon icon='ion-email-unread'
+                                className='inbox-message-list__action-icon'/>
+                        </div>
                     </ButtonPanel>
                 </div>
             </div>
@@ -70,6 +82,7 @@ InboxMessageList.propTypes = {
     })).isRequired,
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
+    actions: PropTypes.object.isRequired,
 };
 
 export default InboxMessageList;
