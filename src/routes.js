@@ -54,6 +54,10 @@ export default (
             indexRoute={Inbox}>
             <IndexRoute component={Inbox}/>
             <Route
+                key='new'
+                path='new'
+                component={Message}/>
+            <Route
                 key=':id'
                 path=':id'
                 component={Message}/>
