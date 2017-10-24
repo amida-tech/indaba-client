@@ -107,6 +107,8 @@ class Message extends Component {
 Message.propTypes = {
     id: PropTypes.number,
 
+    replyTo: PropTypes.object,
+
     vocab: PropTypes.object.isRequired,
 };
 
@@ -114,9 +116,17 @@ const MessageForm = reduxForm({ form: 'message' })(Message);
 
 class MessageSelector extends Component {
     render() {
-        return this.props.id !== undefined ?
-            (<Message {...this.props}/>) :
-            (<MessageForm {...this.props}/>);
+        if (this.props.id !== undefined) {
+            return (<Message {...this.props} />);
+        } else if (this.props.replyTo !== undefined) {
+            return (<MessageForm {...this.props}
+                initialValues={{
+                    subject: this.props.replyTo.subject,
+                    to: this.props.replyTo.from,
+                    from: this.props.replyTo.to,
+                }} />);
+        }
+        return (<MessageForm {...this.props} />);
     }
 }
 
