@@ -14,7 +14,7 @@ class Message extends Component {
         // load message from backend
     }
     render() {
-        const compose = this.props.params.id === undefined;
+        const compose = this.props.id === undefined;
         return (
             <div className='message'>
                 <div className='message__back'>
