@@ -106,7 +106,8 @@ class Message extends Component {
                 </form>
                 {
                     !compose &&
-                    <div className='message__inline-reply'>
+                    <div className='message__inline-reply'
+                        onClick={() => this.props.actions.replyToMessage(this.props.message)}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}
                     </div>
                 }
