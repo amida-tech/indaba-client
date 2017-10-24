@@ -11,6 +11,10 @@ class MessageContainer extends Component {
         return (
             <div className='message-container'>
                 <Message {...this.props}/>
+                {
+                    this.props.ui.reply &&
+                    <Message vocab={this.props.vocab} me={this.props.me}/>
+                }
             </div>
         );
     }
@@ -22,6 +26,7 @@ const mapStateToProps = (state, ownProps) => ({
     message: state.messages.messages.find(message => message.id ===
         parseInt(ownProps.params.id, 10)),
     me: `${state.user.profile.firstName} ${state.user.profile.lastName}`,
+    ui: state.messages.ui,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),

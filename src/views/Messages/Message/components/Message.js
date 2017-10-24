@@ -81,7 +81,8 @@ class Message extends Component {
                                         <IonIcon icon='ion-arrow-right-a'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton>
+                                    <PanelButton
+                                        onClick={ this.props.actions.startReply }>
                                         <IonIcon icon='ion-reply'
                                             className='message__action-icon'/>
                                     </PanelButton>

@@ -7,6 +7,7 @@ const initialState = {
     ui: {
         inboxTab: INBOX_TABS.INBOX,
         filter: FILTERS.ALL_MESSAGES,
+        reply: false,
     },
     messages: [{
         id: 129,
@@ -69,6 +70,10 @@ export default (state = initialState, action) => {
         return update(state, { messages: { [messageIndex]: {
             archived: { $set: false },
         } } });
+    case actionTypes.START_REPLY:
+        return update(state, { ui: {
+            reply: { $set: true },
+        } });
     default:
         return state;
     }

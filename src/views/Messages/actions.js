@@ -29,3 +29,7 @@ export const unarchiveMessage = id => ({
     type: actionTypes.UNARCHIVE_MESSAGE,
     id,
 });
+
+export const startReply = () => ({
+    type: actionTypes.START_REPLY,
+});
