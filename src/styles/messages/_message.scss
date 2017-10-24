@@ -38,6 +38,13 @@ $block-class: 'message';
             display: flex;
         }
 
+        &__body-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-bottom: 0.5em;
+        }
+
         &__body-timestamp {
             margin-top: 1em;
         }

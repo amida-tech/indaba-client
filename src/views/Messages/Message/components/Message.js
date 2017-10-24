@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import IonIcon from 'react-ionicons';
 import _ from 'lodash';
+import IonIcon from 'react-ionicons';
+import { Button } from 'grommet';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
@@ -91,6 +92,23 @@ class Message extends Component {
                         <div className='message__body-timestamp'>
                             {_.get(this.props, 'message.timestamp')}
                         </div>
+                        {
+                            compose &&
+                            <div className='message__body-buttons'>
+                                <Button label={this.props.vocab.COMMON.CANCEL}
+                                    box
+                                    size='small'
+                                    margin={{ right: 'small' }}
+                                    colorIndex='grey-1'
+                                    onClick={this.props.actions.discardReply}/>
+                                <Button label={this.props.vocab.COMMON.SEND}
+                                    box
+                                    size='small'
+                                    type='submit'
+                                    margin='none'
+                                    primary/>
+                            </div>
+                        }
                     </div>
                 </form>
                 {
