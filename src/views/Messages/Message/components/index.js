@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
+import IonIcon from 'react-ionicons';
 
 import * as actions from '../../actions';
 
@@ -10,6 +12,13 @@ class MessageContainer extends Component {
     render() {
         return (
             <div className='message-container'>
+                <div className='message-container__back'>
+                    <Link to='/messages' className='message-container__back-link'>
+                        <IonIcon icon='ion-chevron-left'
+                            className='message-container__back-icon' />
+                        {this.props.vocab.MESSAGES.BACK_TO_INBOX}
+                    </Link>
+                </div>
                 <Message {...this.props}/>
                 {
                     this.props.ui.reply &&
