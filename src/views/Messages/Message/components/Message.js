@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
 import IonIcon from 'react-ionicons';
 import _ from 'lodash';
-
-import * as actions from '../../actions';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
@@ -112,27 +108,19 @@ class Message extends Component {
 }
 
 Message.propTypes = {
+    id: PropTypes.number,
+
     vocab: PropTypes.object.isRequired,
 };
-
-const mapStateToProps = (state, ownProps) => ({
-    vocab: state.settings.language.vocabulary,
-    message: state.messages.messages.find(message => message.id ===
-        parseInt(ownProps.params.id, 10)),
-    me: `${state.user.profile.firstName} ${state.user.profile.lastName}`,
-});
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
-});
 
 const MessageForm = reduxForm({ form: 'message' })(Message);
 
 class MessageSelector extends Component {
     render() {
-        return this.props.params.id !== undefined ?
+        return this.props.id !== undefined ?
             (<Message {...this.props}/>) :
             (<MessageForm {...this.props}/>);
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageSelector);
+export default MessageSelector;

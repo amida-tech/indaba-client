@@ -10,7 +10,7 @@ import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
 import { MessagesContainer } from './views/Messages';
 import Inbox from './views/Messages/Inbox/components/Inbox';
-import Message from './views/Messages/Message/components/Message';
+import MessageContainer from './views/Messages/Message/components';
 import App from './views/App';
 
 export default (
@@ -56,11 +56,11 @@ export default (
             <Route
                 key='new'
                 path='new'
-                component={Message}/>
+                component={MessageContainer}/>
             <Route
                 key=':id'
                 path=':id'
-                component={Message}/>
+                component={MessageContainer}/>
         </Route>
     </Route>
 );
