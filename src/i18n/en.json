@@ -302,7 +302,7 @@
         "REQUIRED_QUESTION": "Required Questions",
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
-        "QUESTIONS": [
+        "QUESTIONS_TYPES": [
             "Multiple Choice",
             "Bullet Point",
             "Checkbox",

@@ -13,11 +13,13 @@ class CreateSurveyPane extends Component {
                 <div className='create-survey-pane__instructions'>
                     {this.props.vocab.SURVEY.PANE_INSTRUCTIONS}
                 </div>
-                <Tabs justify='start'>
-                    <Tab title={this.props.vocab.SURVEY.NEW_QUESTIONS}>
+                <Tabs className='create-survey-pane__tabs'>
+                    <Tab className='create-survey-pane__tab'
+                        title={this.props.vocab.SURVEY.NEW_QUESTIONS}>
                         <NewQuestions {...this.props}/>
                     </Tab>
-                    <Tab title={this.props.vocab.SURVEY.EXISTING}>
+                    <Tab className='create-survey-pane__tab'
+                        title={this.props.vocab.SURVEY.EXISTING}>
                         <ExistingQuestions {...this.props}/>
                     </Tab>
                 </Tabs>
