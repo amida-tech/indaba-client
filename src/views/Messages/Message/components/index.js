@@ -9,6 +9,9 @@ import * as actions from '../../actions';
 import Message from './Message';
 
 class MessageContainer extends Component {
+    componentWillMount() {
+        this.props.actions.discardReply();
+    }
     render() {
         return (
             <div className='message-container'>

@@ -74,6 +74,10 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: true },
         } });
+    case actionTypes.DISCARD_REPLY:
+        return update(state, { ui: {
+            reply: { $set: false },
+        } });
     default:
         return state;
     }
