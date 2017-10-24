@@ -30,10 +30,26 @@ export const unarchiveMessage = id => ({
     id,
 });
 
-export const startReply = () => ({
-    type: actionTypes.START_REPLY,
-});
+export const replyToMessage = message => (dispatch) => {
+    dispatch(_startReply({
+        subject: message.subject,
+        to: message.from,
+        from: message.to,
+    }));
+};
+
+export const forwardMessage = message => (dispatch) => {
+    dispatch(_startReply({
+        subject: message.subject,
+        from: message.to,
+    }));
+};
 
 export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
+});
+
+export const _startReply = reply => ({
+    type: actionTypes.START_REPLY,
+    reply,
 });

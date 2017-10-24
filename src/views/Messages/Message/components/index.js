@@ -26,7 +26,7 @@ class MessageContainer extends Component {
                 {
                     this.props.ui.reply &&
                     <Message vocab={this.props.vocab} me={this.props.me}
-                        replyTo={this.props.message}
+                        reply={this.props.ui.reply}
                         actions={this.props.actions}/>
                 }
             </div>

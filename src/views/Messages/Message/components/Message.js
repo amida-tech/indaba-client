@@ -49,34 +49,27 @@ class Message extends Component {
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
-                                        onClick={
-                                            (event) => {
-                                                this.props.actions
-                                                .archiveMessage(this.props.message.id);
-                                                event.stopPropagation();
-                                            }
-                                        }>
+                                        onClick={() => this.props.actions
+                                                .archiveMessage(this.props.message.id)}>
                                         <IonIcon icon='ion-ios-box'
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     <PanelButton
                                         title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
-                                        onClick={
-                                            (event) => {
-                                                this.props.actions
-                                                .markMessageAsUnread(this.props.message.id);
-                                                event.stopPropagation();
-                                            }
-                                        }>
+                                        onClick={() => this.props.actions
+                                                .markMessageAsUnread(this.props.message.id)}>
                                         <IonIcon icon='ion-email-unread'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton>
+                                    <PanelButton
+                                        onClick={() => this.props.actions
+                                                .forwardMessage(this.props.message) }>
                                         <IonIcon icon='ion-arrow-right-a'
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     <PanelButton
-                                        onClick={ this.props.actions.startReply }>
+                                        onClick={ () => this.props.actions
+                                            .replyToMessage(this.props.message) }>
                                         <IonIcon icon='ion-reply'
                                             className='message__action-icon'/>
                                     </PanelButton>
@@ -136,13 +129,9 @@ class MessageSelector extends Component {
     render() {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
-        } else if (this.props.replyTo !== undefined) {
+        } else if (this.props.reply) {
             return (<MessageForm {...this.props}
-                initialValues={{
-                    subject: this.props.replyTo.subject,
-                    to: this.props.replyTo.from,
-                    from: this.props.replyTo.to,
-                }} />);
+                initialValues={this.props.reply} />);
         }
         return (<MessageForm {...this.props} />);
     }

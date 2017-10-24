@@ -72,7 +72,7 @@ export default (state = initialState, action) => {
         } } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
-            reply: { $set: true },
+            reply: { $set: action.reply },
         } });
     case actionTypes.DISCARD_REPLY:
         return update(state, { ui: {
