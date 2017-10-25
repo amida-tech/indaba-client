@@ -1,0 +1,19 @@
+$block-class: 'message-field';
+
+@at-root {
+    .#{$block-class} {
+        @extend .med-font;
+
+        display: flex;
+        flex-direction: row;
+
+        &__label {
+            margin-right: 1em;
+        }
+
+        &__value {
+            border: none;
+            outline: none;
+        }
+    }
+}

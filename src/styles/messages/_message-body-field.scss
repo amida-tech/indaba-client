@@ -1,0 +1,15 @@
+$block-class: 'message-body-field';
+
+@at-root {
+    .#{$block-class} {
+        flex: 1;
+
+        &__value {
+            height: 100%;
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+        }
+    }
+}
