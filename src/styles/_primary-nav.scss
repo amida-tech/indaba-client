@@ -19,36 +19,38 @@ $block-class:'primary-nav';
         }
 
         &__item {
-            color: $nav-text-color;
-            margin-left: 20px;
-            font-weight: normal;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            letter-spacing: 0.3;
-
-            &:hover {
-                text-decoration: none;
-                color: #308253;
-            }
-
-            &:focus {
-                text-decoration: none;
-                font-weight: 700;
+            &-nav {
                 color: $nav-text-color;
-            }
-        }
+                margin-left: 20px;
+                font-weight: normal;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                letter-spacing: 0.3;
 
-        &__button {
-            background-color: $nav-create-button-background;
-            border: 1px;
-            color: $nav-text-color;
-            border-radius: 3px;
-            min-width: 10px;
-            font-size: 14px;
+                &:hover {
+                    text-decoration: none;
+                    color: #308253;
+                }
 
-            &:hover {
-                color: $nav-text-color;
-                font-weight: 700;
+                &:focus {
+                    text-decoration: none;
+                    font-weight: 700;
+                    color: $nav-text-color;
+                }
+
+                &--button {
+                    background-color: $nav-create-button-background;
+                    border: 1px;
+                    color: $nav-text-color;
+                    border-radius: 3px;
+                    min-width: 10px;
+                    font-size: 14px;
+
+                    &:hover {
+                        color: $nav-text-color;
+                        font-weight: 700;
+                    }
+                }
             }
         }
 
@@ -61,7 +63,7 @@ $block-class:'primary-nav';
         }
 
         &__logout {
-            @extend .primary-nav__item;
+            @extend .primary-nav__item-nav;
 
             position: relative;
             vertical-align: text-bottom;

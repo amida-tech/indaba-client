@@ -42,24 +42,26 @@ class PrimaryNavContainer extends Component {
                   direction='row'
                   align='center'
                   full="vertical">
-                    <Box direction='row' align='baseline'>
-                        <div className='primary-nav__item'>
+                    <Box className='primary-nav__item'
+                     direction='row'
+                     align='baseline'>
+                        <div className='primary-nav__item-logo'>
                             <Link to={'/task'}>
                                 <img src="/src/assets/indaba_logo.svg"
                                     className="primary-nav__indaba-logo"/>
                             </Link>
                         </div>
-                        <Link className='primary-nav__item' to='/project'>
+                        <Link className='primary-nav__item-nav' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
-                        <Link className='primary-nav__item' to='/users'>
+                        <Link className='primary-nav__item-nav' to='/users'>
                             {this.props.vocab.COMMON.ALL_USERS}
                         </Link>
-                        <Link className='primary-nav__item' to='/subjects'>
+                        <Link className='primary-nav__item-nav' to='/subjects'>
                             {this.props.vocab.COMMON.ALL_SUBJECTS}
                         </Link>
                         <Button
-                            className={'primary-nav__item primary-nav__button '}
+                            className={'primary-nav__item-nav primary-nav__item-nav--button'}
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </Box>
