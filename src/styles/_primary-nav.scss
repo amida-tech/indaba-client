@@ -1,11 +1,12 @@
-$nav-text-color: #faf5f5;
+$nav-text-color: #f2f2f2;
 $nav-create-button-background: #308253;
+$brand-neutral-colors: (#308253, #4eb276);
 
 $block-class:'primary-nav';
 
 @at-root {
     .#{$block-class} {
-        background-color: $brand-color;
+        background-color: nth($brand-neutral-colors, 1);
         height: $primary-nav-height;
 
         &__indaba-logo {
@@ -21,8 +22,9 @@ $block-class:'primary-nav';
         &__item {
             &-nav {
                 color: $nav-text-color;
+                font-size: 14px;
                 margin-left: 20px;
-                font-weight: normal;
+                font-weight: bold;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 letter-spacing: 0.3;
