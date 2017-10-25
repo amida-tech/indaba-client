@@ -2,30 +2,7 @@ $block-class: 'message';
 
 @at-root {
     .#{$block-class} {
-        @extend .med-font;
-
-        min-width: 600px;
-        margin-top: 4em;
-
-        &__back {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 1em;
-        }
-
-        &__back-link {
-            @extend .large-font;
-
-            display: flex;
-            align-items: center;
-            color: $header-font-color;
-        }
-
-        &__back-icon {
-            fill: #7e848f;
-            height: 16px;
-        }
+        margin-top: 1em;
 
         &__content {
             background-color: white;
@@ -45,9 +22,27 @@ $block-class: 'message';
             font-weight: 600;
         }
 
+        &__body-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1em;
+        }
+
+        &__action-icon {
+            fill: #7e848f;
+            flex: 1;
+        }
+
         &__body-field-wrapper {
             min-height: 8em;
             display: flex;
+        }
+
+        &__body-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-bottom: 0.5em;
         }
 
         &__body-timestamp {
@@ -58,6 +53,7 @@ $block-class: 'message';
             min-height: 8em;
             background-color: white;
             padding: 0.5em 1em;
+            cursor: pointer;
         }
     }
 }

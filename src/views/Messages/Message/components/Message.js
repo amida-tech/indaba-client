@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
-import IonIcon from 'react-ionicons';
 import _ from 'lodash';
-
-import * as actions from '../../actions';
+import IonIcon from 'react-ionicons';
+import { Button } from 'grommet';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
+import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class Message extends Component {
     componentWillMount() {
         // load message from backend
     }
     render() {
-        const compose = this.props.params.id === undefined;
+        const compose = this.props.id === undefined;
         return (
             <div className='message'>
-                <div className='message__back'>
-                    <Link to='/messages' className='message__back-link'>
-                        <IonIcon icon='ion-chevron-left' className='message__back-icon' />
-                        {this.props.vocab.MESSAGES.BACK_TO_INBOX}
-                    </Link>
-                </div>
                 <form className='message__content'>
                     <div className='message__row message__row--top'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
@@ -49,6 +40,42 @@ class Message extends Component {
                             name='subject'/>
                     </div>
                     <div className='message__body-section'>
+                        {
+                            !compose &&
+                            <div className='message__body-actions'>
+                                <ButtonPanel>
+                                    <PanelButton>
+                                        <IonIcon icon='ion-ios-trash-outline'
+                                            className='message__action-icon'/>
+                                    </PanelButton>
+                                    <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
+                                        onClick={() => this.props.actions
+                                                .archiveMessage(this.props.message.id)}>
+                                        <IonIcon icon='ion-ios-box'
+                                            className='message__action-icon'/>
+                                    </PanelButton>
+                                    <PanelButton
+                                        title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
+                                        onClick={() => this.props.actions
+                                                .markMessageAsUnread(this.props.message.id)}>
+                                        <IonIcon icon='ion-email-unread'
+                                            className='message__action-icon'/>
+                                    </PanelButton>
+                                    <PanelButton
+                                        onClick={() => this.props.actions
+                                                .forwardMessage(this.props.message) }>
+                                        <IonIcon icon='ion-arrow-right-a'
+                                            className='message__action-icon'/>
+                                    </PanelButton>
+                                    <PanelButton
+                                        onClick={ () => this.props.actions
+                                            .replyToMessage(this.props.message) }>
+                                        <IonIcon icon='ion-reply'
+                                            className='message__action-icon'/>
+                                    </PanelButton>
+                                </ButtonPanel>
+                            </div>
+                        }
                         <div className='message__body-field-wrapper'>
                             <MessageBodyField
                                 input={compose}
@@ -58,11 +85,29 @@ class Message extends Component {
                         <div className='message__body-timestamp'>
                             {_.get(this.props, 'message.timestamp')}
                         </div>
+                        {
+                            compose &&
+                            <div className='message__body-buttons'>
+                                <Button label={this.props.vocab.COMMON.CANCEL}
+                                    box
+                                    size='small'
+                                    margin={{ right: 'small' }}
+                                    colorIndex='grey-1'
+                                    onClick={this.props.actions.discardReply}/>
+                                <Button label={this.props.vocab.COMMON.SEND}
+                                    box
+                                    size='small'
+                                    type='submit'
+                                    margin='none'
+                                    primary/>
+                            </div>
+                        }
                     </div>
                 </form>
                 {
                     !compose &&
-                    <div className='message__inline-reply'>
+                    <div className='message__inline-reply'
+                        onClick={() => this.props.actions.replyToMessage(this.props.message)}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}
                     </div>
                 }
@@ -72,27 +117,25 @@ class Message extends Component {
 }
 
 Message.propTypes = {
+    id: PropTypes.number,
+
+    replyTo: PropTypes.object,
+
     vocab: PropTypes.object.isRequired,
 };
-
-const mapStateToProps = (state, ownProps) => ({
-    vocab: state.settings.language.vocabulary,
-    message: state.messages.messages.find(message => message.id ===
-        parseInt(ownProps.params.id, 10)),
-    me: `${state.user.profile.firstName} ${state.user.profile.lastName}`,
-});
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
-});
 
 const MessageForm = reduxForm({ form: 'message' })(Message);
 
 class MessageSelector extends Component {
     render() {
-        return this.props.params.id !== undefined ?
-            (<Message {...this.props}/>) :
-            (<MessageForm {...this.props}/>);
+        if (this.props.id !== undefined) {
+            return (<Message {...this.props} />);
+        } else if (this.props.reply) {
+            return (<MessageForm {...this.props}
+                initialValues={this.props.reply} />);
+        }
+        return (<MessageForm {...this.props} />);
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageSelector);
+export default MessageSelector;

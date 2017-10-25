@@ -7,6 +7,7 @@ const initialState = {
     ui: {
         inboxTab: INBOX_TABS.INBOX,
         filter: FILTERS.ALL_MESSAGES,
+        reply: false,
     },
     messages: [{
         id: 129,
@@ -46,11 +47,37 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+    const messageIndex = state.messages.findIndex(message => message.id === action.id);
+
     switch (action.type) {
     case actionTypes.SET_ACTIVE_INBOX_TAB:
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
+    case actionTypes.MARK_MESSAGE_AS_READ:
+        return update(state, { messages: { [messageIndex]: {
+            readAt: { $set: new Date().toISOString() },
+        } } });
+    case actionTypes.MARK_MESSAGE_AS_UNREAD:
+        return update(state, { messages: {
+            [messageIndex]: { $unset: ['readAt'] },
+        } });
+    case actionTypes.ARCHIVE_MESSAGE:
+        return update(state, { messages: { [messageIndex]: {
+            archived: { $set: true },
+        } } });
+    case actionTypes.UNARCHIVE_MESSAGE:
+        return update(state, { messages: { [messageIndex]: {
+            archived: { $set: false },
+        } } });
+    case actionTypes.START_REPLY:
+        return update(state, { ui: {
+            reply: { $set: action.reply },
+        } });
+    case actionTypes.DISCARD_REPLY:
+        return update(state, { ui: {
+            reply: { $set: false },
+        } });
     default:
         return state;
     }
