@@ -6,6 +6,13 @@ $block-class:'primary-nav';
 
 @at-root {
     .#{$block-class} {
+        .grommetux-box {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        // display: flex;
+        // justify-content: space-around;
         background-color: nth($brand-neutral-colors, 2);
         height: $primary-nav-height;
         overflow: hidden;
