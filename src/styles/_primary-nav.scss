@@ -1,20 +1,20 @@
 $nav-text-color: #e0e0e0;
 $nav-create-button-background: #308253;
-$brand-neutral-colors: (#308253, #388055);
+$brand-neutral-colors: (#308253, #4d8061);
 
 $block-class:'primary-nav';
 
 @at-root {
     .#{$block-class} {
-        // display: flex;
         background-color: nth($brand-neutral-colors, 2);
         height: $primary-nav-height;
+        overflow: hidden;
 
         &__indaba-logo {
-            margin-left: 200%;
+            margin-left: 60%;
             padding-top: 2px;
-            width: 110px;
-            height: 52px;
+            width: 140px;
+            height: 64px;
         }
 
         &__toast {
@@ -24,7 +24,7 @@ $block-class:'primary-nav';
         }
 
         &__item {
-            margin-right: 530px;
+            margin-right: 650px;
 
             &-nav {
                 color: $nav-text-color;
@@ -68,7 +68,7 @@ $block-class:'primary-nav';
         }
 
         &__icon {
-            margin-right: 15%;
+            padding-right: 100px;
         }
 
         &__logout {
