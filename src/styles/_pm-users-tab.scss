@@ -20,6 +20,12 @@ $block-class: 'pm-users-tab';
             padding: 5px 5px 5px 10px;
             width: 100%;
             border: 1px solid $border-color;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
     }
 }

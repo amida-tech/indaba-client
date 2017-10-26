@@ -129,7 +129,7 @@ const mapStateToProps = state => ({
         inactive: state.projects.data.filter(project => project.status === 0).length,
         // flags calculated inline from rows.flags
     },
-    messages: state.messages.slice(0, 4),
+    messages: state.pmdashboard.messages.slice(0, 4),
 });
 
 const mapDispatchToProps = dispatch => ({

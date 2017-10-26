@@ -220,7 +220,7 @@
         "SEARCH_FOR_A_USER": "Search for a user",
         "SEARCH_FOR_USER_GROUPS": "Search for user groups",
         "SEARCH_PROJECT": "Search Projects",
-        "SEARCH_TASKS": "Search for a tasks",
+        "SEARCH_TASKS": "Search for tasks",
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
         "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
@@ -249,7 +249,26 @@
         "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
     },
     "MESSAGES": {
-        "RECENT_MESSAGES": "Recent Messages"
+        "RECENT_MESSAGES": "Recent Messages",
+        "MESSAGES": "Messages",
+        "INBOX": "Inbox",
+        "ARCHIVE": "Archive",
+        "NEW_MESSAGE": "New Message",
+        "FROM": "From",
+        "SUBJECT": "Subject",
+        "DATE_RECEIVED": "Date Received",
+        "TO": "To",
+        "WRITE_REPLY": "Write Reply",
+        "BACK_TO_INBOX": "Back To Inbox",
+        "RETURN_TO_INBOX": "Return to Inbox",
+        "MARK_AS_READ": "Mark as Read",
+        "MARK_AS_UNREAD": "Mark as Unread",
+        "INBOX_FILTER": {
+            "ALL_MESSAGES": "All Messages",
+            "SENT_MESSAGES": "Sent Messages",
+            "UNREAD_MESSAGES": "Unread Messages",
+            "NOTIFICATIONS": "Notifications"
+        }
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
