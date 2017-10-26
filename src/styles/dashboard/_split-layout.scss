@@ -5,6 +5,7 @@ $block-class: 'split-layout';
         display: flex;
 
         &__child {
+            margin-top: 5em;
             flex: 1;
             border-width: 0 0 0 1px;
             border-color: $border-color;

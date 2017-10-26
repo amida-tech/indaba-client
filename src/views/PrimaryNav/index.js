@@ -42,15 +42,16 @@ class PrimaryNavContainer extends Component {
                   direction='row'
                   align='center'
                   full="vertical">
+                  <div className='primary-nav__item-logo'>
+                      <Link to={'/task'}>
+                          <img src="/src/assets/indaba-logo-white.svg"
+                              className="primary-nav__indaba-logo"/>
+                      </Link>
+                  </div>
                     <Box className='primary-nav__item'
                      direction='row'
                      align='baseline'>
-                        <div className='primary-nav__item-logo'>
-                            <Link to={'/task'}>
-                                <img src="/src/assets/indaba_logo.svg"
-                                    className="primary-nav__indaba-logo"/>
-                            </Link>
-                        </div>
+
                         <Link className='primary-nav__item-nav' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
