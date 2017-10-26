@@ -17,6 +17,7 @@ class InboxMessageList extends Component {
                 className='inbox-message-list__entry'
                 onClick={() => this.props.onMessageClick(message.id)}>
                 <div className='inbox-message-list__from'>
+                    <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     {message.from}
                 </div>
                 <div className='inbox-message-list__subject'>
@@ -26,6 +27,7 @@ class InboxMessageList extends Component {
                     {Time.renderForInboxMessageList(this.props.createdAt)}
                 </div>
                 <div className='inbox-message-list__actions'>
+                    <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
                             !message.archived &&
