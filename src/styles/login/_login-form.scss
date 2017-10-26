@@ -13,6 +13,12 @@ $block-class:'login-form';
             width: 100%;
             border: 1px solid $border-color;
             padding: 0.5em 1em;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__sign-in-button {

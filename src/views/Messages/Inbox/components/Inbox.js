@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button } from 'grommet';
+import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
+
+import * as actions from '../../actions';
 
 import InboxTabs from './InboxTabs';
-import Filter from '../../../common/components/Filter';
+import Filter from '../../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
 
-import { FILTERS, INBOX_TABS } from '../constants';
+import { FILTERS, INBOX_TABS } from '../../constants';
 
 class Inbox extends Component {
     constructor() {
@@ -55,7 +60,8 @@ class Inbox extends Component {
                 <InboxMessageList messages={this.props.messages.messages
                         .filter(this.evaluateFilter)}
                         vocab={this.props.vocab}
-                        onMessageClick={this.props.goToMessage}/>
+                        onMessageClick={this.props.goToMessage}
+                        actions={this.props.actions}/>
             </div>
         );
     }
@@ -68,4 +74,13 @@ Inbox.propTypes = {
     goToMessage: PropTypes.func.isRequired,
 };
 
-export default Inbox;
+const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary,
+    messages: state.messages,
+});
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    goToMessage: id => dispatch(push(`/messages/${id}`)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
