@@ -58,6 +58,7 @@
         "TASK_REQUEST": "Failed to insert or delete task.",
         "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
         "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again.",
+        "MAX_STAGES": "The maximum number of stages you can set has been reached.",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
         "COMING_SOON": "Coming soon."
@@ -222,7 +223,6 @@
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
         "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
-        "MAX_STAGES": "The maximum number of stages you can set has been reached.",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Toast } from 'grommet';
+import { Box, Button } from 'grommet';
 
 import Summary from '../../../common/components/Summary';
 import StageModal from '../../ProjectManagement/components/Modals/Stage';
@@ -21,11 +21,6 @@ class AddStages extends Component {
                         true,
                         this.props.vocab.ERROR);
                 }}/>}
-                {this.props.project.stages.length > 3 &&
-                    <Toast status='ok'>
-                        {this.props.vocab.PROJECT.MAX_STAGES}
-                    </Toast>
-                    }
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
