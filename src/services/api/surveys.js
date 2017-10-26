@@ -1,10 +1,14 @@
 import * as requests from './requests';
-// import getFullPath from '../../utils/getFullPath';
-// TODO: You will need to change getFullPath to instead call the microservice.
+import config from '../../config';
+
+const rootURI = config.SURVEY_API_HTTP_URL;
 
 const surveys = {
-    getSurvey: (projectId, callback) => {
-        requests.apiGetRequest(`surveys/JAMESISGUESSING/${projectId}`, callback);
+    getSurveys: (projectId, callback) => {
+        requests.apiGetRequest(`${rootURI}/surveys-by-ids`, callback);
+    },
+    getSurveyById: (surveyId, callback) => { // Coming soon.
+        requests.apiGetRequest(`${rootURI}/`, callback);
     },
 };
 
