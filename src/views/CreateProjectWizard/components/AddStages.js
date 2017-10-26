@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button } from 'grommet';
+import { Box, Button, Toast } from 'grommet';
 
 import Summary from '../../../common/components/Summary';
 import StageModal from '../../ProjectManagement/components/Modals/Stage';
@@ -21,6 +21,11 @@ class AddStages extends Component {
                         true,
                         this.props.vocab.ERROR);
                 }}/>}
+                {this.props.project.stages.length > 3 &&
+                    <Toast status='ok'>
+                        {this.props.vocab.PROJECT.MAX_STAGES}
+                    </Toast>
+                    }
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
@@ -42,15 +47,17 @@ class AddStages extends Component {
                         userGroups={this.props.project.userGroups}
                         key={stage.id} />;
                 })}
-                <div className='add-stage-placeholder'
-                    onClick={() => this.props.actions.showAddStageWizardModal(true)}>
-                    <div className='workflow-stage-title'>
-                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                {this.props.project.stages.length <= 3 &&
+                    <div className='add-stage-placeholder'
+                        onClick={() => this.props.actions.showAddStageWizardModal(true)}>
+                        <div className='workflow-stage-title'>
+                            {this.props.vocab.PROJECT.STAGE_TITLE}
+                        </div>
+                        <div className='workflow-stage-summary'>
+                            {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
+                        </div>
                     </div>
-                    <div className='workflow-stage-summary'>
-                        {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
-                    </div>
-                </div>
+                }
             </Box>
         </div>);
     }

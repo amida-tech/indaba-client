@@ -222,6 +222,7 @@
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
         "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
+        "MAX_STAGES": "The maximum number of stages you can set has been reached.",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",
