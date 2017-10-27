@@ -8,12 +8,12 @@ $block-class:'primary-nav';
     .#{$block-class} {
         .grommetux-box {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-direction: row;
             margin-right: auto;
+            margin-left: 10%;
         }
-        // display: flex;
-        // justify-content: space-around;
+
         background-color: nth($brand-neutral-colors, 2);
         height: $primary-nav-height;
         overflow: hidden;
