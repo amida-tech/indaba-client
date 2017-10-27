@@ -12,6 +12,7 @@ $block-class:'primary-nav';
             flex-direction: row;
             margin-right: auto;
             margin-left: 10%;
+            overflow: hidden;
         }
 
         background-color: nth($brand-neutral-colors, 2);
