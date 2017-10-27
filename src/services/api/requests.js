@@ -31,10 +31,10 @@ export function apiTokenPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
         headers: {
-            'auth-jwt-token': cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: requestBody,
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
