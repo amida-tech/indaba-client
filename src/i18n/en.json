@@ -58,7 +58,7 @@
         "TASK_REQUEST": "Failed to insert or delete task.",
         "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
         "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again.",
-        "MAX_STAGES": "The maximum number of stages you can set has been reached.",
+        "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
         "COMING_SOON": "Coming soon."
