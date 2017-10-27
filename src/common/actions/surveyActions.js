@@ -5,6 +5,7 @@ import apiService from '../../services/api';
 export function getSurveys(surveyIds, errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys(
+            surveyIds,
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp) ?
                     _getSurveysSuccess(surveyResp) :
@@ -40,6 +41,8 @@ export function addSurveyQuestion() {
 
 // Private functions.
 function _getSurveysSuccess(surveys) {
+    console.log('And THENNENN');
+    console.log(surveys);
     return {
         type: actionTypes.GET_SURVEYS_SUCCESS,
         surveys,

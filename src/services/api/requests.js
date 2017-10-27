@@ -2,24 +2,6 @@ import cookie from 'react-cookies';
 import 'whatwg-fetch';
 
 /**
- * Executes a GET request on the given URI
- * @param {String} fullURI
- * @param {Function} callback
- * @return {Any} handled by callback. Generally the response data.
-* */
-export function apiGetRequest(fullURI, callback) {
-    fetch(fullURI, {
-        method: 'GET',
-        headers: {
-            Authorization: cookie.load('indaba-auth'),
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-    })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
-}
-
-/**
  * Executes a POST request on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
@@ -34,6 +16,44 @@ export function apiAuthPostRequest(fullURI, requestBody, callback) {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: requestBody,
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
+ * Executes a POST request on the given URI, using a token
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiTokenPostRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'POST',
+        headers: {
+            'auth-jwt-token': cookie.load('indaba-auth'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: requestBody,
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
+ * Executes a GET request on the given URI
+ * @param {String} fullURI
+ * @param {Function} callback
+ * @return {Any} handled by callback. Generally the response data.
+* */
+export function apiGetRequest(fullURI, callback) {
+    fetch(fullURI, {
+        method: 'GET',
+        headers: {
+            Authorization: cookie.load('indaba-auth'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
