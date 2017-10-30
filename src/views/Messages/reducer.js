@@ -78,6 +78,10 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
+    case actionTypes.GET_MESSAGES_SUCCESS:
+        return update(state, {
+            messages: { $set: action.result },
+        });
     default:
         return state;
     }

@@ -9,6 +9,10 @@ const messaging = {
         const body = message;
         requests.apiPostRequest(path, body, callback);
     },
+    list: (callback) => {
+        const path = `${rootURI}/api/message/list`;
+        requests.apiGetRequest(path, callback);
+    },
 };
 
 export default messaging;
