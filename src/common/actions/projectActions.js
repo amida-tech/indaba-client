@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
-import { getSurveys } from './surveyActions';
+import { getSurveys } from './surveyActions'; // getSurveysList
 import apiService from '../../services/api';
 
 // API calls.
@@ -10,10 +10,11 @@ export function getProjects(errorMessages) {
         apiService.projects.getProjects(
             (projectErr, projectResp) => {
                 if (!projectErr && projectResp) {
-                    const surveyIds = projectResp.filter((project) => {
-                        return project.surveyId;
-                    }).map(project => project.surveyId);
-                    dispatch(getSurveys(surveyIds, errorMessages));
+                    // const surveyIds = projectResp.filter((project) => {
+                    //     return project.surveyId;
+                    // }).map(project => project.surveyId);
+                    // dispatch(getSurveysList(surveyIds, errorMessages));
+                    dispatch(getSurveys(errorMessages));
                     dispatch(_getProjectsSuccess(projectResp));
                 } else {
                     dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));

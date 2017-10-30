@@ -4,11 +4,11 @@ import config from '../../config';
 const rootURI = config.SURVEY_API_HTTP_URL;
 
 const surveys = {
-    getSurveys: (surveyIds, callback) => {
+    getSurveysByIds: (surveyIds, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/surveys-by-ids`, surveyIds, callback);
     },
-    getSurveyById: (surveyId, callback) => { // Coming soon.
-        requests.apiGetRequest(`${rootURI}/`, callback);
+    getSurveys: (callback) => { // Coming soon.
+        requests.apiTokenGetRequest(`${rootURI}/surveys`, callback);
     },
 };
 

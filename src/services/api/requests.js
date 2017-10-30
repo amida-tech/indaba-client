@@ -21,6 +21,26 @@ export function apiAuthPostRequest(fullURI, requestBody, callback) {
 }
 
 /**
+ * Executes a GET request on the given URI, using a token
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiTokenGetRequest(fullURI, callback) {
+    fetch(fullURI, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        },
+        credentials: 'include',
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
  * Executes a POST request on the given URI, using a token
  * @param {String} fullURI
  * @param {Object} requestBody
@@ -33,6 +53,7 @@ export function apiTokenPostRequest(fullURI, requestBody, callback) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
         credentials: 'include',
         body: requestBody,

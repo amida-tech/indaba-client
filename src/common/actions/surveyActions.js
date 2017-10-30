@@ -2,10 +2,22 @@ import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
 
 // API calls.
-export function getSurveys(surveyIds, errorMessages) {
+export function getSurveysList(surveyIds, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.getSurveysByIds(
+            surveyIds,
+            (surveyErr, surveyResp) => {
+                dispatch((!surveyErr && surveyResp) ?
+                    _getSurveysSuccess(surveyResp) :
+                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+            },
+        );
+    };
+}
+
+export function getSurveys(errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys(
-            surveyIds,
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp) ?
                     _getSurveysSuccess(surveyResp) :
