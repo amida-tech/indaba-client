@@ -18,7 +18,7 @@ export function toggleCheckBackend() {
 
 export function logOut() {
     cookie.remove('indaba-auth');
-    cookie.remove('auth-jwt-token'); // TODO: Check if we even need this.
+    cookie.remove('auth-jwt-token');
     cookie.remove('indaba-realm');
     return (dispatch) => {
         dispatch(_logOutSuccess());

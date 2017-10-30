@@ -54,7 +54,7 @@ export function apiTokenPostRequest(fullURI, requestBody, callback) {
             'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: requestBody,
+        body: JSON.stringify(requestBody),
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
