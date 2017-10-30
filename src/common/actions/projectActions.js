@@ -62,6 +62,8 @@ export function putStage(project, stage, fromWizard, errorMessages) {
                 if (!stepErr && stepResp) {
                     if (!fromWizard && !project.subjects.length) {
                         toast(errorMessages.SUBJECT_NEED);
+                    } else if (fromWizard && project.stages.length >= 3) {
+                        toast(errorMessages.MAX_STAGES);
                     }
                     const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
                     dispatch(_putStageSuccess(
