@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { Box, Button } from 'grommet';
+import { Button } from 'grommet';
 import { Icon } from 'react-fa';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -37,21 +37,14 @@ class PrimaryNavContainer extends Component {
                     newestOnTop={false}
                     closeOnClick
                     pauseOnHover />
-                <Box
-                  justify='between'
-                  direction='row'
-                  align='center'
-                  full="vertical">
-                  <div className='primary-nav__item-logo'>
-                      <Link to={'/task'}>
-                          <img src="/src/assets/indaba-logo-white.svg"
-                              className="primary-nav__indaba-logo"/>
-                      </Link>
-                  </div>
-                    <Box className='primary-nav__item'
-                     direction='row'
-                     align='baseline'>
 
+                    <div className='primary-nav__item'>
+                    <div className='primary-nav__item-logo'>
+                        <Link to={'/task'}>
+                            <img src="/src/assets/indaba-logo-white.svg"
+                                className="primary-nav__indaba-logo"/>
+                        </Link>
+                    </div>
                         <Link className='primary-nav__item-nav' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
@@ -65,8 +58,7 @@ class PrimaryNavContainer extends Component {
                             className={'primary-nav__item-nav primary-nav__item-nav--button'}
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.props.actions.showCreateProject(true)}/>
-                    </Box>
-                    <Box className='primary-nav__icon' direction='row' align='baseline'>
+                    </div>
                         <div className='primary-nav__right-side'>
                             <Link className='primary-nav__logout'
                                 onClick={() => this.props.actions.logOut()}
@@ -86,8 +78,6 @@ class PrimaryNavContainer extends Component {
                                     size='2x' />
                             </Link>
                     </div>
-                    </Box>
-                </Box>
             </nav>
         );
     }

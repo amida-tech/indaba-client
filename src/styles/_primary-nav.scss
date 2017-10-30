@@ -6,18 +6,14 @@ $block-class:'primary-nav';
 
 @at-root {
     .#{$block-class} {
-        .grommetux-box {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            margin-right: auto;
-            margin-left: 10%;
-            overflow: hidden;
-        }
-
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-right: auto;
+        margin-left: 10%;
+        overflow: hidden;
         background-color: nth($brand-neutral-colors, 2);
         height: $primary-nav-height;
-        overflow: hidden;
 
         &__indaba-logo {
             margin-left: 60%;
@@ -74,10 +70,6 @@ $block-class:'primary-nav';
 
         &__link {
             color: $nav-text-color;
-        }
-
-        &__icon {
-            padding-right: 100px;
         }
 
         &__logout {
