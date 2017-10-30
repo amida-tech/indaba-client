@@ -72,6 +72,17 @@ export const listMessages = () => (dispatch) => {
     });
 };
 
+export const getMessage = id => (dispatch) => {
+    dispatch(_getMessage());
+    apiService.messaging.get(id, (err, result) => {
+        if (err) {
+            dispatch(_getMessageFailure(err));
+        } else {
+            dispatch(_getMessageSuccess(result));
+        }
+    });
+};
+
 /** Private actions **/
 
 export const _startReply = reply => ({
@@ -104,4 +115,19 @@ export const _listMessagesFailure = err => ({
 export const _listMessagesSuccess = result => ({
     type: actionTypes.LIST_MESSAGES_SUCCESS,
     result,
+});
+
+export const _getMessage = () => ({
+    type: actionTypes.GET_MESSAGE,
+});
+
+export const _getMessageFailure = err => ({
+    type: actionTypes.GET_MESSAGE_FAILURE,
+    err,
+});
+
+export const _getMessageSuccess = result => ({
+    type: actionTypes.GET_MESSAGE_SUCCESS,
+    result,
+    id: result.id,
 });

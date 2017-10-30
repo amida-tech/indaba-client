@@ -88,6 +88,14 @@ export default (state = initialState, action) => {
         return update(state, {
             messages: { $set: action.result.map(transformServerMessageToReduxMessage) },
         });
+    case actionTypes.GET_MESSAGE_SUCCESS:
+        return update(state, {
+            messages: (
+                messageIndex !== -1 ?
+                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.result) } } :
+                { $push: [transformServerMessageToReduxMessage(action.result)] }
+            ),
+        });
     default:
         return state;
     }
