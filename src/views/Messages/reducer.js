@@ -46,6 +46,12 @@ const initialState = {
     }],
 };
 
+const transformServerMessageToReduxMessage = message =>
+    Object.assign(message, {
+        to: message.to.join(', '),
+        timestamp: message.createdAt,
+    });
+
 export default (state = initialState, action) => {
     const messageIndex = state.messages.findIndex(message => message.id === action.id);
 
@@ -80,7 +86,7 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.GET_MESSAGES_SUCCESS:
         return update(state, {
-            messages: { $set: action.result },
+            messages: { $set: action.result.map(transformServerMessageToReduxMessage) },
         });
     default:
         return state;
