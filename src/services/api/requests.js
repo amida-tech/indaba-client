@@ -33,7 +33,6 @@ export function apiTokenGetRequest(fullURI, callback) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
         },
         credentials: 'include',
     })
@@ -53,7 +52,6 @@ export function apiTokenPostRequest(fullURI, requestBody, callback) {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
         },
         credentials: 'include',
         body: requestBody,

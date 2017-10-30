@@ -53,8 +53,6 @@ export function addSurveyQuestion() {
 
 // Private functions.
 function _getSurveysSuccess(surveys) {
-    console.log('And THENNENN');
-    console.log(surveys);
     return {
         type: actionTypes.GET_SURVEYS_SUCCESS,
         surveys,
