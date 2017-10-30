@@ -38,12 +38,11 @@ class PrimaryNavContainer extends Component {
                     closeOnClick
                     pauseOnHover />
                     <div className='primary-nav__left'>
-                    <div className='primary-nav__left-logo'>
                         <Link to={'/task'}>
                             <img src="/src/assets/indaba-logo-white.svg"
                                 className="primary-nav__indaba-logo"/>
                         </Link>
-                    </div>
+
                         <Link className='primary-nav__item-nav' to='/project'>
                             {this.props.vocab.PROJECT.PROJECTS}
                         </Link>
@@ -58,7 +57,7 @@ class PrimaryNavContainer extends Component {
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </div>
-                        <div className='primary-nav__right-side'>
+                        <div className='right'>
                             <Link className='primary-nav__logout'
                                 onClick={() => this.props.actions.logOut()}
                                 to='/login'>

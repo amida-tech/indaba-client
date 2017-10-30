@@ -7,56 +7,62 @@ $block-class:'primary-nav';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex: 1;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        width: 100%;
         background-color: nth($brand-neutral-colors, 2);
         height: $primary-nav-height;
-        justify-content: space-around;
+
+        &__left {
+            align-content: baseline;
+            width: 70%;
+        }
 
         &__indaba-logo {
             padding-top: 2px;
             width: 140px;
             height: 64px;
+            margin-left: 2%;
         }
 
-        &__left {
-            align-content: center;
-        }
-
-        &__item-nav {
-            justify-content: space-between;
-            align-items: center;
-            color: $nav-text-color;
-            font-size: 16px;
-            margin-left: 20px;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            padding-left: 8px;
-            padding-right: 8px;
-
-            &:hover {
-                text-decoration: none;
-                color: lighten($nav-text-color, 15%);
-            }
-
-            &:focus {
-                text-decoration: none;
-                font-weight: 700;
+        &__item {
+            &-nav {
+                justify-content: space-between;
+                align-items: center;
                 color: $nav-text-color;
-            }
-
-            &--button {
-                height: 40px;
-                background-color: darken(#388055, 10%);
-                border: 1px;
-                color: $nav-text-color;
-                border-radius: 3px;
-                min-width: 10px;
-                font-size: 14px;
+                font-size: 16px;
+                margin-left: 20px;
+                font-weight: 400;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding-left: 8px;
+                padding-right: 8px;
 
                 &:hover {
-                    color: $nav-text-color;
+                    text-decoration: none;
+                    color: lighten($nav-text-color, 15%);
+                }
+
+                &:focus {
+                    text-decoration: none;
                     font-weight: 700;
+                    color: $nav-text-color;
+                }
+
+                &--button {
+                    height: 40px;
+                    background-color: darken(#388055, 10%);
+                    border: 1px;
+                    color: $nav-text-color;
+                    border-radius: 3px;
+                    min-width: 10px;
+                    font-size: 14px;
+
+                    &:hover {
+                        color: $nav-text-color;
+                        font-weight: 700;
+                    }
                 }
             }
         }
@@ -69,14 +75,16 @@ $block-class:'primary-nav';
 
         &__link {
             color: $nav-text-color;
+            padding-left: 8px;
+            padding-right: 8px;
         }
 
         &__logout {
             @extend .primary-nav__item-nav;
-
-            &__envelope {
-                margin-right: 22px;
-            }
         }
     }
+}
+
+.right {
+    margin-right: 10%;
 }
