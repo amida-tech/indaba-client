@@ -10,6 +10,15 @@ class StageSummary extends Component {
     render() {
         const userGroups = this.props.stage.userGroups.map(stageGroup =>
             _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
+        let permissions = 0;
+        if (this.props.stage.allowEdit) {
+            permissions = 3;
+        } else if (this.props.stage.discussionParticipation) {
+            permissions = 2;
+        } else if (this.props.stage.blindReview) {
+            permissions = 1;
+        }
+
         return (
             <div className='stage-summary'
                 onClick={() => this.props.actions.showStageModal(true, this.props.stage.id)}>
@@ -51,7 +60,7 @@ class StageSummary extends Component {
                     </div>
                     <div className='stage-summary__right'>
                         <div className='stage-summary__value'>
-                            {this.props.vocab.PROJECT.PERM_ARRAY[this.props.stage.permissions]}
+                            {this.props.vocab.PROJECT.PERM_ARRAY[permissions]}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.PERMISSIONS}
