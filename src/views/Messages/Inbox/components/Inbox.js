@@ -21,7 +21,7 @@ class Inbox extends Component {
     }
 
     componentWillMount() {
-        this.props.actions.getMessages();
+        this.props.actions.listMessages();
     }
 
     evaluateFilter(message) {

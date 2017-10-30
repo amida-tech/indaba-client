@@ -61,13 +61,13 @@ export const sendMessage = message => (dispatch) => {
     });
 };
 
-export const getMessages = () => (dispatch) => {
-    dispatch(_getMessages());
+export const listMessages = () => (dispatch) => {
+    dispatch(_listMessages());
     apiService.messaging.list((err, result) => {
         if (err) {
-            dispatch(_getMessagesFailure(err));
+            dispatch(_listMessagesFailure(err));
         } else {
-            dispatch(_getMessagesSuccess(result));
+            dispatch(_listMessagesSuccess(result));
         }
     });
 };
@@ -92,16 +92,16 @@ export const _sendMessageSuccess = () => ({
     type: actionTypes.SEND_MESSAGE_SUCCESS,
 });
 
-export const _getMessages = () => ({
-    type: actionTypes.GET_MESSAGES,
+export const _listMessages = () => ({
+    type: actionTypes.LIST_MESSAGES,
 });
 
-export const _getMessagesFailure = err => ({
-    type: actionTypes.GET_MESSAGES_FAILURE,
+export const _listMessagesFailure = err => ({
+    type: actionTypes.LIST_MESSAGES_FAILURE,
     err,
 });
 
-export const _getMessagesSuccess = result => ({
-    type: actionTypes.GET_MESSAGES_SUCCESS,
+export const _listMessagesSuccess = result => ({
+    type: actionTypes.LIST_MESSAGES_SUCCESS,
     result,
 });
