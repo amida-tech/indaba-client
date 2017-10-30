@@ -37,9 +37,8 @@ class PrimaryNavContainer extends Component {
                     newestOnTop={false}
                     closeOnClick
                     pauseOnHover />
-
-                    <div className='primary-nav__item'>
-                    <div className='primary-nav__item-logo'>
+                    <div className='primary-nav__left'>
+                    <div className='primary-nav__left-logo'>
                         <Link to={'/task'}>
                             <img src="/src/assets/indaba-logo-white.svg"
                                 className="primary-nav__indaba-logo"/>
