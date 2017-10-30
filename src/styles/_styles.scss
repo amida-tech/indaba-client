@@ -25,7 +25,7 @@ $brand-status-colors: (
 $brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 
-$primary-nav-height: 60px;
+$primary-nav-height: 64px;
 
 @import 'grommet/scss/grommet-core/index.scss';
 

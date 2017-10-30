@@ -57,21 +57,21 @@ class PrimaryNavContainer extends Component {
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </div>
-                        <div className='right'>
-                            <Link className='primary-nav__logout'
+                        <div className='primary-nav__right'>
+                            <Link className='primary-nav__right-logout'
                                 onClick={() => this.props.actions.logOut()}
                                 to='/login'>
                                 {this.props.vocab.COMMON.LOG_OUT}
                             </Link>
                             <Link className='primary-nav__link'
                                 to='/messages'>
-                                <Icon className='primary-nav__envelope'
+                                <Icon className='primary-nav__right-envelope'
                                     name='envelope-o'
                                     size='2x' />
                             </Link>
                             <Link className='primary-nav__link'
                                 to='/profile'>
-                                <Icon className='primary-nav__user'
+                                <Icon className='primary-nav__right-user'
                                     name='user-o'
                                     size='2x' />
                             </Link>
