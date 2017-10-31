@@ -2,19 +2,6 @@ import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
 
 // API calls.
-export function getSurveysList(surveyIds, errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.getSurveysByIds(
-            surveyIds,
-            (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _getSurveysSuccess(surveyResp) :
-                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
-            },
-        );
-    };
-}
-
 export function getSurveys(errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys(
@@ -27,6 +14,12 @@ export function getSurveys(errorMessages) {
     };
 }
 
+export function addSurveyQuestion(surveyId, questionType) { // errorMessages
+    // return (dispatch) => {
+    //     apiService.surveys.addSurveyQuestion
+    // }
+    _addSurveyQuestion(surveyId, questionType);
+}
 
 // Check on whether these should be private later.
 export function setSurveyStatus(status, projectId) {
@@ -45,17 +38,20 @@ export function setSurveyName(name, projectId) {
     };
 }
 
-export function addSurveyQuestion() {
-    return {
-        type: actionTypes.ADD_SURVEY_QUESTION,
-    };
-}
-
 // Private functions.
 function _getSurveysSuccess(surveys) {
     return {
         type: actionTypes.GET_SURVEYS_SUCCESS,
         surveys,
+    };
+}
+
+
+function _addSurveyQuestion(surveyId, questionType) {
+    return {
+        type: actionTypes.ADD_SURVEY_QUESTION,
+        surveyId,
+        questionType,
     };
 }
 

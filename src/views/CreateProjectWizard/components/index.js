@@ -14,6 +14,7 @@ import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
+import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
@@ -145,7 +146,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, projectActions, { addNewUser }), dispatch),
+        actions, projectActions, surveyActions, { addNewUser }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

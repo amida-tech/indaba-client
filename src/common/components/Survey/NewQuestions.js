@@ -10,6 +10,7 @@ class NewQuestions extends Component {
                         <div className='new-questions__types'
                             key={`question-type${type}`}>
                             {type}
+                            onClick=this.props.actions.surveyActions(type)
                         </div>
                     );
                 })}
