@@ -14,8 +14,8 @@ $block-class:'primary-nav';
         height: $primary-nav-height;
 
         &__left {
-            width: 50%;
-            align-content: baseline;
+            display: flex;
+            align-items: center;
         }
 
         &__indaba-logo {
@@ -26,50 +26,75 @@ $block-class:'primary-nav';
             margin-bottom: 2px;
         }
 
-        &__item {
-            &-nav {
-                justify-content: space-between;
-                align-items: center;
+        &__item-nav {
+            justify-content: space-between;
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            margin-left: 20px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-left: 8px;
+            padding-right: 8px;
+
+            &:hover {
+                text-decoration: none;
+                color: darken(#388055, 20%);
+            }
+
+            &:focus {
+                text-decoration: underline;
+                font-weight: 700;
                 color: $nav-text-color;
-                font-size: 16px;
-                margin-left: 20px;
-                font-weight: 400;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-                padding-left: 8px;
-                padding-right: 8px;
+            }
+
+            &--button {
+                height: 40px;
+                background-color: darken(#388055, 10%);
+                border: 1px;
+                color: $nav-text-color;
+                border-radius: 3px;
+                min-width: 10px;
+                font-size: 14px;
 
                 &:hover {
-                    text-decoration: none;
-                    color: darken(#388055, 20%);
-                }
-
-                &:focus {
-                    text-decoration: underline;
+                    color: $nav-text-color;
                     font-weight: 700;
-                    color: $nav-text-color;
-                }
-
-                &--button {
-                    height: 40px;
-                    background-color: darken(#388055, 10%);
-                    border: 1px;
-                    color: $nav-text-color;
-                    border-radius: 3px;
-                    min-width: 10px;
-                    font-size: 14px;
-
-                    &:hover {
-                        color: $nav-text-color;
-                        font-weight: 700;
-                    }
                 }
             }
         }
 
-        &__toast {
-            .toastify__progress {
-                background: $off-brand-color;
+        &__envelope,
+        &__user {
+            width: 16px;
+            height: 16px;
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        &__logout {
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 8px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            &:hover {
+                text-decoration: none;
+                color: darken(#388055, 20%);
+            }
+
+            &:focus {
+                text-decoration: underline;
+                font-weight: 700;
+                color: $nav-text-color;
             }
         }
 
@@ -83,40 +108,12 @@ $block-class:'primary-nav';
             display: flex;
             align-items: baseline;
             flex-direction: row;
-            width: 25%;
-
-            &-envelope,
-            &-user {
-                width: 16px;
-                height: 16px;
-                align-items: center;
-                color: $nav-text-color;
-                font-size: 16px;
-                font-weight: 400;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
-
-            &-logout {
-                align-items: center;
-                color: $nav-text-color;
-                font-size: 16px;
-                font-weight: 400;
-                margin-left: 8px;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-
-                &:hover {
-                    text-decoration: none;
-                    color: darken(#388055, 20%);
-                }
-
-                &:focus {
-                    text-decoration: underline;
-                    font-weight: 700;
-                    color: $nav-text-color;
-                }
-            }
         }
+    }
+}
+
+.toast {
+    .toastify__progress {
+        background: $off-brand-color;
     }
 }
