@@ -28,15 +28,6 @@ class PrimaryNavContainer extends Component {
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
-                <ToastContainer
-                    className='primary-nav__toast'
-                    position='top-right'
-                    type='default'
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnHover />
                     <div className='primary-nav__left'>
                         <Link to={'/task'}>
                             <img src="/src/assets/indaba-logo-white.svg"
@@ -60,17 +51,17 @@ class PrimaryNavContainer extends Component {
                         <div className='primary-nav__right'>
                             <Link className='primary-nav__link'
                                 to='/messages'>
-                                <Icon className='primary-nav__right-envelope'
+                                <Icon className='primary-nav__envelope'
                                     name='envelope-o'
                                     size='2x' />
                             </Link>
                             <Link className='primary-nav__link'
                                 to='/profile'>
-                                <Icon className='primary-nav__right-user'
+                                <Icon className='primary-nav__user'
                                     name='user-o'
                                     size='2x' />
                             </Link>
-                            <Link className='primary-nav__right-logout'
+                            <Link className='primary-nav__logout'
                                 onClick={() => this.props.actions.logOut()}
                                 to='/login'>
                                 {this.props.vocab.COMMON.LOG_OUT}
