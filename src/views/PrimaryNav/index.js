@@ -4,8 +4,6 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -28,6 +26,7 @@ class PrimaryNavContainer extends Component {
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
+
                     <div className='primary-nav__left'>
                         <Link to={'/task'}>
                             <img src="/src/assets/indaba-logo-white.svg"
