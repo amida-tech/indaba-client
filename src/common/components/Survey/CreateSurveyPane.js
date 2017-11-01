@@ -18,7 +18,6 @@ class CreateSurveyPane extends Component {
                         <NewQuestions {...this.props}/>
                     </Tab>
                     <Tab className='create-survey-pane__tab'
-                        actions={this.props.actions}
                         title={this.props.vocab.SURVEY.EXISTING}>
                         <ExistingQuestions {...this.props}/>
                     </Tab>

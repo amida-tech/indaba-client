@@ -70,6 +70,7 @@ class ProjectManagementContainer extends Component {
                             onSetProjectStatus={this.props.actions.setProjectStatus}
                             onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
                     <Summary
+                        actions={this.props.actions}
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
