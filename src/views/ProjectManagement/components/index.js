@@ -14,10 +14,10 @@ import StatusChange from './Modals/StatusChange';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
+import * as surveyActions from '../../../common/actions/surveyActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
-import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveyActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
@@ -119,10 +119,10 @@ const mapDispatchToProps = dispatch => ({
         actions,
         navActions,
         projectActions,
+        surveyActions,
         taskActions,
         discussActions,
         { addNewUser, notifyUser },
-        { setSurveyStatus, setSurveyName },
     ), dispatch),
 });
 

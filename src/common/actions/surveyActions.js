@@ -14,12 +14,32 @@ export function getSurveys(errorMessages) {
     };
 }
 
-export function addSurveyQuestion(surveyId, questionType) { // errorMessages
-    // return (dispatch) => {
-    //     apiService.surveys.addSurveyQuestion
-    // }
-    _addSurveyQuestion(surveyId, questionType);
+ // For creating new survey. For update, use patchSurvey() below.
+export function postSurvey(surveyName, errorMessages) {
+    const requestBody = {
+        authorId: 1,
+        name: surveyName,
+        status: 'draft',
+        description: '',
+        meta: {},
+        parentId: 0,
+        sections: [],
+    };
+    return (dispatch) => {
+        apiService.surveys.postSurveys(
+            requestBody,
+            (surveyErr, surveyResp) => {
+                dispatch((!surveyErr && surveyResp) ?
+                    _postSurveySuccess(surveyResp) :
+                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+            },
+        );
+    };
 }
+
+// export function patchSurvey(survey, errorMessages) {
+//     Coming soon.
+// }
 
 // Check on whether these should be private later.
 export function setSurveyStatus(status, projectId) {
@@ -46,12 +66,10 @@ function _getSurveysSuccess(surveys) {
     };
 }
 
-
-function _addSurveyQuestion(surveyId, questionType) {
+function _postSurveySuccess(survey) {
     return {
-        type: actionTypes.ADD_SURVEY_QUESTION,
-        surveyId,
-        questionType,
+        type: actionTypes.POST_SURVEY_SUCCESS,
+        survey,
     };
 }
 

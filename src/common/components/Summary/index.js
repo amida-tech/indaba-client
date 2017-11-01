@@ -42,6 +42,7 @@ Summary.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
+    actions: PropTypes.object,
 
     onStatusChangeClick: PropTypes.func,
     onProjectNameChange: PropTypes.func,

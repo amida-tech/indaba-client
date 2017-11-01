@@ -5,13 +5,13 @@ import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
+import Survey from '../../../common/components/Survey';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
@@ -72,7 +72,12 @@ class CreateProjectWizard extends Component {
                     onActive={this.changeStep}>
                     <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
-                        <SurveyEditorStep />
+                        <Survey
+                            actions={this.props.actions}
+                            project={this.props.project}
+                            survey={this.props.survey}
+                            profile={this.props.user.profile}
+                            vocab={this.props.vocab} />
                     </Tab>
                     <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>

@@ -6,7 +6,6 @@ import ExistingQuestions from './ExistingQuestions';
 
 
 class CreateSurveyPane extends Component {
-
     render() {
         return (
             <div className='create-survey-pane'>

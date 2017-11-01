@@ -10,6 +10,9 @@ const surveys = {
     getSurveys: (callback) => { // Coming soon.
         requests.apiTokenGetRequest(`${rootURI}/surveys?status=all`, callback);
     },
+    postSurvey: (requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/surveys`, requestBody, callback);
+    },
 };
 
 export default surveys;
