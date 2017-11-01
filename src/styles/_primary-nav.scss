@@ -16,6 +16,14 @@ $block-class:'primary-nav';
         &__left {
             display: flex;
             align-items: center;
+            margin-left: 10%;
+        }
+
+        &__right {
+            display: flex;
+            align-items: baseline;
+            flex-direction: row;
+            margin-right: 10%;
         }
 
         &__indaba-logo {
@@ -43,10 +51,11 @@ $block-class:'primary-nav';
                 color: darken(#388055, 20%);
             }
 
-            &:focus {
-                text-decoration: underline;
-                font-weight: 700;
-                color: $nav-text-color;
+            &:focus,
+            &:active {
+                text-decoration: none;
+                font-weight: 400;
+                color: darken(#388055, 30%);
             }
 
             &--button {
@@ -92,8 +101,7 @@ $block-class:'primary-nav';
             }
 
             &:focus {
-                text-decoration: underline;
-                font-weight: 700;
+                font-weight: 400;
                 color: $nav-text-color;
             }
         }
@@ -102,12 +110,6 @@ $block-class:'primary-nav';
             color: $nav-text-color;
             padding-right: 16px;
             padding-left: 16px;
-        }
-
-        &__right {
-            display: flex;
-            align-items: baseline;
-            flex-direction: row;
         }
     }
 }
