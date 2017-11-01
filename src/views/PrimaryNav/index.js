@@ -27,7 +27,7 @@ class PrimaryNavContainer extends Component {
                 <CreateNewProject vocab={this.props.vocab}
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
 
-                    <div className='primary-nav__left'>
+            <div className='primary-nav__left'>
                         <Link to={'/task'}>
                             <img src="/src/assets/indaba-logo-white.svg"
                                 className="primary-nav__indaba-logo"/>
@@ -47,7 +47,7 @@ class PrimaryNavContainer extends Component {
                             label={this.props.vocab.COMMON.CREATE}
                             onClick={() => this.props.actions.showCreateProject(true)}/>
                     </div>
-                        <div className='primary-nav__right'>
+            <div className='primary-nav__right'>
                             <Link className='primary-nav__link'
                                 to='/messages'>
                                 <Icon className='primary-nav__envelope'
