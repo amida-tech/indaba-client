@@ -1,6 +1,5 @@
 $nav-text-color: #e0e0e0;
 $nav-create-button-background: #308253;
-$brand-neutral-colors: (#308253, #4d8061);
 
 $block-class:'primary-nav';
 
@@ -10,7 +9,7 @@ $block-class:'primary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: nth($brand-neutral-colors, 2);
+        background-color: nth($brand-neutral-colors, 1);
         height: $primary-nav-height;
 
         &__left {
