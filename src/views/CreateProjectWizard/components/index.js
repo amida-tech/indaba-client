@@ -68,7 +68,9 @@ class CreateProjectWizard extends Component {
 
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
-                    onActive={this.changeStep}>
+                    onActive={this.changeStep}
+                    responsive={true}
+                    >
                     <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         <SurveyEditorStep />
@@ -113,8 +115,7 @@ class CreateProjectWizard extends Component {
             <div className='project-wizard project-wizard--complete'>
                 <WizardComplete
                     vocab={this.props.vocab}
-                    projectLink={this.props.ui.projectLink}
-                    project={this.props.project} />
+                    projectLink={this.props.ui.projectLink} />
             </div>);
     }
 }
