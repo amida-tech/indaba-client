@@ -60,6 +60,26 @@ export function apiTokenPostRequest(fullURI, requestBody, callback) {
 }
 
 /**
+ * Executes a PATCH request on the given URI, using a token
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiTokenPatchRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(requestBody),
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
  * Executes a GET request on the given URI
  * @param {String} fullURI
  * @param {Function} callback

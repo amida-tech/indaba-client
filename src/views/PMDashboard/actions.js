@@ -22,11 +22,11 @@ export function setProjectName(name, projectId) {
     };
 }
 
-export function setSurveyName(name, projectId) {
+export function setSurveyName(name, surveyId) {
     return {
         type: actionTypes.PM_DASH_SET_SURVEY_NAME,
         name,
-        projectId,
+        surveyId,
     };
 }
 

@@ -13,6 +13,9 @@ const surveys = {
     postSurvey: (requestBody, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/surveys`, requestBody, callback);
     },
+    patchSurvey: (surveyId, requestBody, callback) => {
+        requests.apiTokenPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
+    },
 };
 
 export default surveys;

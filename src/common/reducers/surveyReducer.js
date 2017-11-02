@@ -25,7 +25,10 @@ const initialState = {
 };
 
 export const SurveyReducer = (state = initialState, action) => {
-    const surveyIndex = _.findIndex(state, survey => survey.projectId === action.projectId);
+    const surveyIndex = _.findIndex(state.data, survey => survey.id === action.surveyId);
+    // console.log('SurveyReducer');
+    // console.log(action.surveyId);
+    // console.log(surveyIndex);
     switch (action.type) {
     case type.POST_SURVEY_SUCCESS:
         return state.data[0].name ?
@@ -35,6 +38,8 @@ export const SurveyReducer = (state = initialState, action) => {
             update(state, {
                 data: { $set: [action.survey] },
                 create: { $set: Object.assign({}, createInitialState) } });
+    case type.PATCH_SURVEY_SUCCESS:
+        return update(state, { data: { [surveyIndex]: { $merge: action.survey } } });
     case type.GET_SURVEYS_SUCCESS:
         return (!state.data[0].name ?
             update(state, { data: { $set: action.surveys } }) :

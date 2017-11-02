@@ -30,7 +30,7 @@ class Summary extends Component {
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
                     onNameChange={name =>
-                            this.props.actions.setSurveyName(name, this.props.project.id)}
+                            this.props.actions.setSurveyName(name, this.props.survey.id)}
                     updateContent={() => {
                         return (this.props.survey.id > 0 ?
                             this.props.actions.patchSurvey(

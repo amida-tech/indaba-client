@@ -59,39 +59,59 @@ export function postSurvey(survey, projectId, productId, errorMessages) {
 }
 
 export function patchSurvey(survey, errorMessages) {
-    console.log(errorMessages.COMING_SOON);
-    console.log(survey);
-}
-
-// Check on whether these should be private later.
-export function setSurveyStatus(status, projectId) {
-    return {
-        type: actionTypes.SET_SURVEY_STATUS,
-        status,
-        projectId,
+    const requestBody = {
+        name: survey.name,
+    };
+    return (dispatch) => {
+        apiService.surveys.patchSurvey(
+            survey.id,
+            requestBody,
+            (surveyErr, surveyResp) => {
+                dispatch((!surveyErr && surveyResp.length === 0) ?
+                    _patchSurveySuccess(survey.id, requestBody) :
+                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+            },
+        );
     };
 }
 
-export function setSurveyName(name, projectId) {
+// Check on whether these should be private later.
+export function setSurveyStatus(status, surveyId) {
+    return {
+        type: actionTypes.SET_SURVEY_STATUS,
+        status,
+        surveyId,
+    };
+}
+
+export function setSurveyName(name, surveyId) {
     return {
         type: actionTypes.SET_SURVEY_NAME,
         name,
-        projectId,
+        surveyId,
     };
 }
 
 // Private functions.
-function _getSurveysSuccess(surveys) {
-    return {
-        type: actionTypes.GET_SURVEYS_SUCCESS,
-        surveys,
-    };
-}
-
 function _postSurveySuccess(survey) {
     return {
         type: actionTypes.POST_SURVEY_SUCCESS,
         survey,
+    };
+}
+
+function _patchSurveySuccess(surveyId, survey) {
+    return {
+        type: actionTypes.PATCH_SURVEY_SUCCESS,
+        surveyId,
+        survey,
+    };
+}
+
+function _getSurveysSuccess(surveys) {
+    return {
+        type: actionTypes.GET_SURVEYS_SUCCESS,
+        surveys,
     };
 }
 
