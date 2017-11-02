@@ -139,15 +139,19 @@ CreateProjectWizard.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    project: state.wizard.ui.projectLink > 0 ?
-            _.find(state.projects.data, project => project.id === state.wizard.ui.projectLink) :
-            state.wizard.project,
-    survey: state.surveys.create,
-    user: state.user,
-    ui: state.wizard.ui,
-    vocab: state.settings.language.vocabulary,
-});
+const mapStateToProps = (state) => {
+    const project = state.wizard.ui.projectLink > 0 ?
+            _.find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
+            state.wizard.project;
+    return {
+        project,
+        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId)
+            || state.surveys.create,
+        user: state.user,
+        ui: state.wizard.ui,
+        vocab: state.settings.language.vocabulary,
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},

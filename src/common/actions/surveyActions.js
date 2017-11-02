@@ -16,14 +16,13 @@ export function getSurveys(errorMessages) {
 }
 
  // For creating new survey. For update, use patchSurvey() below.
-export function postSurvey(surveyName, projectId, productId, errorMessages) {
+export function postSurvey(survey, projectId, productId, errorMessages) {
     const requestBody = {
         authorId: 1,
-        name: surveyName,
+        name: survey.name,
         status: 'draft',
-        parentId: 0,
         sections: [{
-            name: `${surveyName} - Part 1`,
+            name: `${survey.name} - Part 1`,
             questions: [{
                 required: false,
                 id: 1,
@@ -39,11 +38,12 @@ export function postSurvey(surveyName, projectId, productId, errorMessages) {
                         id: productId,
                         surveyId: surveyResp.id,
                     };
-                    apiService.surveys.putSurveyToProduct(
+                    apiService.projects.putSurveyToProduct(
+                        productId,
                         updateBody,
                         (productErr, productResp) => {
                             if (!productErr && productResp) {
-                                dispatch(_postSurveySuccess(surveyResp));
+                                dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
                                 dispatch(updateProjectWithSurvey(projectId, surveyResp.id));
                             } else {
                                 dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));

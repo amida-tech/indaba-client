@@ -27,7 +27,7 @@ class ProjectListEntry extends Component {
                 <div className={`project-list-entry__status${
                     this.props.survey.status ?
                         ' project-list-entry__status--active' : ''}`}>
-                    {this.props.survey.status ?
+                    {this.props.survey.status === 'published' ?
                         this.props.vocab.SURVEY.STATUS_PUBLISHED :
                         this.props.vocab.SURVEY.STATUS_DRAFT}
                 </div>

@@ -37,7 +37,7 @@ class Summary extends Component {
                                 this.props.survey,
                                 this.props.vocab.ERROR) :
                             this.props.actions.postSurvey(
-                                this.props.survey.name,
+                                this.props.survey,
                                 this.props.project.id,
                                 this.props.project.productId,
                                 this.props.vocab.ERROR));
