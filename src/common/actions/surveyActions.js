@@ -61,6 +61,7 @@ export function postSurvey(survey, projectId, productId, errorMessages) {
 export function patchSurvey(survey, errorMessages) {
     const requestBody = {
         name: survey.name,
+        status: survey.status,
     };
     return (dispatch) => {
         apiService.surveys.patchSurvey(
