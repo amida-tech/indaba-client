@@ -74,11 +74,7 @@ class ProjectManagementContainer extends Component {
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
-                        vocab={this.props.vocab}
-                        onProjectNameChange={name =>
-                            this.props.actions.setProjectName(name, this.props.project.id)}
-                        onSurveyNameChange={name =>
-                            this.props.actions.setSurveyName(name, this.props.project.id)}/>
+                        vocab={this.props.vocab}/>
                     <SubNav vocab={this.props.vocab}
                         subnavigate={this.props.actions.subnavigate}
                         selected={this.props.ui.subnav}/>
@@ -108,7 +104,8 @@ const mapStateToProps = (state, ownProps) => {
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
         ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
-        survey: _.find(state.surveys, survey => survey.projectId === projectId) || {},
+        survey: _.find(state.surveys, survey => survey.projectId === projectId) ||
+            state.surveys.create,
         tab: state.manager.ui.subnav,
         users: state.user.users,
         profile: state.user.profile,

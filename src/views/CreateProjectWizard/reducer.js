@@ -30,13 +30,6 @@ const initialState = {
         userGroups: [],
         subjects: [],
     },
-    survey: {
-        id: 0,
-        name: '',
-        status: 'draft',
-        projectId: 0,
-        questions: [],
-    },
 };
 
 export default (state = initialState, action) => {

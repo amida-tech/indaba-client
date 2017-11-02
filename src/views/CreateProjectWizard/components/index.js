@@ -143,7 +143,7 @@ const mapStateToProps = state => ({
     project: state.wizard.ui.projectLink > 0 ?
             _.find(state.projects.data, project => project.id === state.wizard.ui.projectLink) :
             state.wizard.project,
-    survey: state.wizard.survey,
+    survey: state.surveys.create,
     user: state.user,
     ui: state.wizard.ui,
     vocab: state.settings.language.vocabulary,

@@ -1,5 +1,6 @@
 import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
+import { updateProjectWithSurvey } from './projectActions';
 
 // API calls.
 export function getSurveys(errorMessages) {
@@ -15,31 +16,52 @@ export function getSurveys(errorMessages) {
 }
 
  // For creating new survey. For update, use patchSurvey() below.
-export function postSurvey(surveyName, errorMessages) {
+export function postSurvey(surveyName, projectId, productId, errorMessages) {
     const requestBody = {
         authorId: 1,
         name: surveyName,
         status: 'draft',
-        description: '',
-        meta: {},
         parentId: 0,
-        sections: [],
+        sections: [{
+            name: `${surveyName} - Part 1`,
+            questions: [{
+                required: false,
+                id: 1,
+            }],
+        }],
     };
     return (dispatch) => {
-        apiService.surveys.postSurveys(
+        apiService.surveys.postSurvey(
             requestBody,
             (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _postSurveySuccess(surveyResp) :
-                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+                if (!surveyErr && surveyResp) {
+                    const updateBody = {
+                        id: productId,
+                        surveyId: surveyResp.id,
+                    };
+                    apiService.surveys.putSurveyToProduct(
+                        updateBody,
+                        (productErr, productResp) => {
+                            if (!productErr && productResp) {
+                                dispatch(_postSurveySuccess(surveyResp));
+                                dispatch(updateProjectWithSurvey(projectId, surveyResp.id));
+                            } else {
+                                dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
+                            }
+                        },
+                    );
+                } else {
+                    dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
+                }
             },
         );
     };
 }
 
-// export function patchSurvey(survey, errorMessages) {
-//     Coming soon.
-// }
+export function patchSurvey(survey, errorMessages) {
+    console.log(errorMessages.COMING_SOON);
+    console.log(survey);
+}
 
 // Check on whether these should be private later.
 export function setSurveyStatus(status, projectId) {

@@ -3,16 +3,24 @@ import _ from 'lodash';
 import * as type from '../actionTypes/surveyActionTypes';
 import { LOG_OUT } from '../actionTypes/navActionTypes';
 
+const createInitialState = {
+    id: -1,
+    name: '',
+    status: 'draft',
+    sections: [],
+};
+
 const initialState = {
     ui: {
         errorMessage: '',
     },
+    create: Object.assign({}, createInitialState),
     data: [{
         id: 0,
         projectId: 0,
         name: '',
-        status: 0,
-        question: [],
+        status: 'draft',
+        sections: [],
     }],
 };
 
@@ -21,8 +29,12 @@ export const SurveyReducer = (state = initialState, action) => {
     switch (action.type) {
     case type.POST_SURVEY_SUCCESS:
         return state.data[0].name ?
-            update(state, { data: { $push: [action.survey] } }) :
-            update(state, { data: { $set: [action.survey] } });
+            update(state, {
+                data: { $push: [action.survey] },
+                create: { $set: Object.assign({}, createInitialState) } }) :
+            update(state, {
+                data: { $set: [action.survey] },
+                create: { $set: Object.assign({}, createInitialState) } });
     case type.GET_SURVEYS_SUCCESS:
         return (!state.data[0].name ?
             update(state, { data: { $set: action.surveys } }) :
@@ -33,8 +45,11 @@ export const SurveyReducer = (state = initialState, action) => {
             update(state, { data: { [surveyIndex]: { $merge: action.survey } } }));
     case type.SET_SURVEY_STATUS:
         return update(state, { data: { [surveyIndex]: { status: { $set: action.status } } } });
-    case type.SET_SURVEY_NAME:
-        return update(state, { data: { [surveyIndex]: { name: { $set: action.name } } } });
+    case type.SET_SURVEY_NAME: {
+        return (surveyIndex > 0 ?
+            update(state, { data: { [surveyIndex]: { name: { $set: action.name } } } }) :
+            update(state, { create: { name: { $set: action.name } } }));
+    }
     case type.REPORT_SURVEY_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case LOG_OUT:

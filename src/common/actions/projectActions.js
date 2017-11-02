@@ -48,6 +48,14 @@ export function getProjectById(projectId, errorMessages) {
     };
 }
 
+export function updateProjectWithSurvey(projectId, surveyId) {
+    return {
+        type: actionTypes.UPDATE_PROJECT_WITH_SURVEY,
+        projectId,
+        surveyId,
+    };
+}
+
 export function putStage(project, stage, fromWizard, errorMessages) {
     const requestBody = [Object.assign({},
         {

@@ -17,17 +17,31 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onNameChange={this.props.onProjectNameChange}/>
+                    onNameChange={name =>
+                            this.props.actions.setProjectName(name, this.props.project.id)} />
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey ? this.props.survey.name : ''}
-                    status={this.props.survey.status ?
+                    actions={this.props.actions}
+                    status={this.props.survey.status === 'published' ?
                         this.props.vocab.SURVEY.STATUS_PUBLISHED :
                         this.props.vocab.SURVEY.STATUS_DRAFT}
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onNameChange={this.props.onSurveyNameChange}>
+                    onNameChange={name =>
+                            this.props.actions.setSurveyName(name, this.props.project.id)}
+                    updateContent={() => {
+                        return (this.props.survey.id > 0 ?
+                            this.props.actions.patchSurvey(
+                                this.props.survey,
+                                this.props.vocab.ERROR) :
+                            this.props.actions.postSurvey(
+                                this.props.survey.name,
+                                this.props.project.id,
+                                this.props.project.productId,
+                                this.props.vocab.ERROR));
+                    }}>
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'

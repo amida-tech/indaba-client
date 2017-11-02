@@ -54,6 +54,8 @@ export const ProjectReducer = (state = initialState, action) => {
         return (!state.data[0].name ?
             update(state, { data: { $set: [action.project] } }) :
             update(state, { data: { [projectIndex]: { $merge: action.project } } }));
+    case type.UPDATE_PROJECT_WITH_SURVEY:
+        return update(state, { data: { [projectIndex]: { surveyId: { $set: action.surveyId } } } });
     case type.TOGGLE_FILTER:
         return update(state, { data: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });

@@ -52,6 +52,7 @@
         "FETCH_TASKS": "Fetch tasks failed.",
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
+        "SURVEY_REQUEST": "The system failed to insert or update a new survey into the database. Please try again",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
         "SUBJECT_REQUEST": "Something has gone wrong with subject(s) insertion or deletion. Please try again.",
         "PROFILE_REQUEST": "Failed to insert or delete profile request.",

@@ -20,6 +20,7 @@ class StatusCard extends Component {
                                 <EditableTextInput input={{
                                     value: this.props.name,
                                     onChange: evt => this.props.onNameChange(evt.target.value),
+                                    onBlur: () => this.props.updateContent(),
                                 }} /> :
                                 this.props.name
                             }
@@ -43,6 +44,7 @@ StatusCard.propTypes = {
     status: PropTypes.string.isRequired,
     onStatusChangeClick: PropTypes.func,
     onNameChange: PropTypes.func,
+    updateContent: PropTypes.func,
 };
 
 export default StatusCard;
