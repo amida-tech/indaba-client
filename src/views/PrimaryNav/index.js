@@ -71,7 +71,7 @@ class PrimaryNavContainer extends Component {
                                 {this.props.vocab.COMMON.LOG_OUT}
                             </Link>
                             <Link className='primary-nav__link'
-                                to='/profile'>
+                                to='/messages'>
                                 <Icon className='primary-nav__envelope'
                                     name='envelope-o'
                                     size='2x' />

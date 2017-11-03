@@ -44,7 +44,7 @@ export function getProjectById(projectId, errorMessages) {
     };
 }
 
-export function putStage(project, stage, errorMessages) {
+export function putStage(project, stage, fromWizard, errorMessages) {
     const requestBody = [Object.assign({},
         {
             workflowId: project.workflowId,
@@ -60,8 +60,10 @@ export function putStage(project, stage, errorMessages) {
             requestBody,
             (stepErr, stepResp) => {
                 if (!stepErr && stepResp) {
-                    if (!project.subjects.length) {
+                    if (!fromWizard && !project.subjects.length) {
                         toast(errorMessages.SUBJECT_NEED);
+                    } else if (fromWizard && project.stages.length >= 3) {
+                        toast(errorMessages.MAX_STAGES);
                     }
                     const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
                     dispatch(_putStageSuccess(
@@ -74,7 +76,7 @@ export function putStage(project, stage, errorMessages) {
     };
 }
 
-export function addSubject(project, subjects, errorMessages) {
+export function addSubject(project, subjects, fromWizard, errorMessages) {
     const requestBody = {
         subjects,
         unitOfAnalysisType: 1,
@@ -86,7 +88,7 @@ export function addSubject(project, subjects, errorMessages) {
             requestBody,
             (uoaErr, uoaResp) => {
                 if (!uoaErr && uoaResp) {
-                    if (!project.stages.length) {
+                    if (!fromWizard && !project.stages.length) {
                         toast(errorMessages.STAGE_NEED);
                     }
                     dispatch(_postSubjectSuccess(uoaResp, project.id));

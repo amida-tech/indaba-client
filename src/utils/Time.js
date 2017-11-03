@@ -10,6 +10,9 @@ export default {
     renderForTaskReview(time) {
         return moment(time).format('MM/DD/YYYY');
     },
+    renderForInboxMessageList(time) {
+        return moment(time).format('DD MMM Y h:mmA');
+    },
     renderEndDateForTaskList(time, vocab) {
         return moment(time).calendar(null, {
             sameDay(now) {
