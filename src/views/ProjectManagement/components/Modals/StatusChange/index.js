@@ -6,7 +6,7 @@ import SurveyStatusBody from './SurveyStatusBody';
 class StatusChange extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = { // TODO: Rewrite this later.
             survey: {
                 published: this.props.surveyStatus === 'Published',
                 accessConfirm: false,

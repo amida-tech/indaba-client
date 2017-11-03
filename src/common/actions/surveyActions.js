@@ -77,6 +77,14 @@ export function patchSurvey(survey, errorMessages) {
 }
 
 // Check on whether these should be private later.
+export function setSurveyName(name, surveyId) {
+    return {
+        type: actionTypes.SET_SURVEY_NAME,
+        name,
+        surveyId,
+    };
+}
+
 export function setSurveyStatus(status, surveyId) {
     return {
         type: actionTypes.SET_SURVEY_STATUS,
@@ -85,13 +93,6 @@ export function setSurveyStatus(status, surveyId) {
     };
 }
 
-export function setSurveyName(name, surveyId) {
-    return {
-        type: actionTypes.SET_SURVEY_NAME,
-        name,
-        surveyId,
-    };
-}
 
 // Private functions.
 function _postSurveySuccess(survey) {

@@ -8,6 +8,7 @@ import _ from 'lodash';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
+import AddSurvey from './AddSurvey';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
@@ -66,13 +67,12 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.actions.postProject}
                         vocab={this.props.vocab} />
                 }
-
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
                     onActive={this.changeStep}>
                     <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
-                        <Survey
+                        <AddSurvey
                             actions={this.props.actions}
                             project={this.props.project}
                             survey={this.props.survey}

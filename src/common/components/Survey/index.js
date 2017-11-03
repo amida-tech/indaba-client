@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 
 import CreateSurveyPane from './CreateSurveyPane';
 import AnswerPanel from './AnswerPanel';
-import Summary from '../Summary';
 
 class Survey extends Component {
     render() {
         return (
             <div className='survey'>
-                <Summary
-                    actions={this.props.actions}
-                    project={this.props.project}
-                    survey={this.props.survey}
-                    vocab={this.props.vocab} />
                 <div className='survey_pane'>
                     {this.props.profile.roleID === 2 &&
                         <CreateSurveyPane

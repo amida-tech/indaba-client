@@ -33,6 +33,23 @@ export function postProject(requestBody, errorMessages) {
     };
 }
 
+export function putProject(project, errorMessages) {
+    const requestBody = {
+        codeName: project.name,
+        status: project.status,
+    };
+    return (dispatch) => {
+        apiService.projects.putProject(
+            requestBody,
+            (projectErr, projectResp) => {
+                dispatch((!projectErr && projectResp) ?
+                    _postProjectSuccess(project.id, project) :
+                    _reportProjectError(errorMessages.PROJECT_REQUEST));
+            },
+        );
+    };
+}
+
 export function getProjectById(projectId, errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjectById(

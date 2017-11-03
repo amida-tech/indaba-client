@@ -11,6 +11,9 @@ const projects = {
     postProject: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
     },
+    putProject: (projectId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody, callback);
+    },
     putSurveyToProduct: (productId, requestBody, callback) => {
         requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody, callback);
     },
