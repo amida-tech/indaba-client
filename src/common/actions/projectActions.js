@@ -57,7 +57,6 @@ export function getProjectById(projectId, errorMessages) {
             projectId,
             (projErr, projResp) => {
                 if (!projErr && projResp) {
-                    console.log(projResp);
                     if (projResp.surveyId) {
                         dispatch(getSurveyById(projResp.surveyId, errorMessages));
                     }
