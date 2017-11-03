@@ -50,7 +50,7 @@ class StatusChange extends Component {
             }
         } else if (this.surveyConfirmed()) {
             this.props.onSetSurveyStatus(this.state.survey.published ?
-                'Published' : 'Draft', this.props.project.id);
+                'published' : 'draft', this.props.survey.id);
             this.props.onStatusChangeClose();
         }
     }

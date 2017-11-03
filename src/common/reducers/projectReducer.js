@@ -59,7 +59,7 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.TOGGLE_FILTER:
         return update(state, { data: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
-    case type.SET_PROJECT_STATUS: // project related.
+    case type.SET_PROJECT_STATUS:
         return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
     case type.PUT_STAGE_SUCCESS: {
         const stageIndex = _.findIndex(state.data[projectIndex].stages,

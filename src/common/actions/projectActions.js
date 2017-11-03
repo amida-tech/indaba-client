@@ -210,6 +210,14 @@ export function showAddSubjectModal(show) {
     };
 }
 
+export function setProjectName(name, projectId) {
+    return {
+        type: actionTypes.SET_PROJECT_NAME,
+        name,
+        projectId,
+    };
+}
+
 export function setProjectStatus(status, projectId) {
     return {
         type: actionTypes.SET_PROJECT_STATUS,
@@ -245,14 +253,6 @@ export function updateUserGroup(group, projectId) {
     return {
         type: actionTypes.UPDATE_USER_GROUP,
         group,
-        projectId,
-    };
-}
-
-export function setProjectName(name, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_NAME,
-        name,
         projectId,
     };
 }

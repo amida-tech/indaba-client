@@ -26,9 +26,6 @@ const initialState = {
 
 export const SurveyReducer = (state = initialState, action) => {
     const surveyIndex = _.findIndex(state.data, survey => survey.id === action.surveyId);
-    // console.log('SurveyReducer');
-    // console.log(action.surveyId);
-    // console.log(surveyIndex);
     switch (action.type) {
     case type.POST_SURVEY_SUCCESS:
         return state.data[0].name ?
