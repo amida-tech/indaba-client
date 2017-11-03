@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -69,5 +70,15 @@ module.exports = {
     plugins: [
         HtmlWebpackPluginConfig,
         StyleLintPluginConfig,
+        new webpack.DefinePlugin({
+            'process.env': {
+                'API_HTTP_URL': JSON.stringify(process.env.API_HTTP_URL),
+                'API_HTTPS_URL': JSON.stringify(process.env.API_HTTPS_URL),
+                'AUTH_API_HTTPS_URL': JSON.stringify(process.env.AUTH_API_HTTPS_URL),
+                'AUTH_API_HTTP_URL': JSON.stringify(process.env.AUTH_API_HTTP_URL),
+                'REALM': JSON.stringify(process.env.REALM),
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            }
+        }),
     ],
 };

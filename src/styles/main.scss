@@ -56,6 +56,7 @@
 @import './project-wizard';
 @import './wizard-footer.scss';
 @import './user-groups-tab';
+@import './wizard-complete.scss';
 // SelectGroupUsers
 @import './selectgroupusers/select-group-users.scss';
 @import './selectgroupusers/filtered-list.scss';
@@ -92,5 +93,14 @@
 @import './userdashboard/user-task-list-controls.scss';
 @import './userdashboard/user-task-list-header.scss';
 @import './userdashboard/user-task-list-entry.scss';
+// Messages
+@import './messages/inbox.scss';
+@import './messages/inbox-tabs.scss';
+@import './messages/inbox-message-list.scss';
+@import './messages/message.scss';
+@import './messages/message-field.scss';
+@import './messages/message-body-field.scss';
+@import './messages/button-panel.scss';
+@import './messages/message-container.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';

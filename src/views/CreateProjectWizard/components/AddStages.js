@@ -18,6 +18,7 @@ class AddStages extends Component {
                     this.props.actions.putStage(
                         this.props.project,
                         stage,
+                        true,
                         this.props.vocab.ERROR);
                 }}/>}
             <Summary
@@ -52,6 +53,17 @@ class AddStages extends Component {
                     </div>
                 </div>
 
+                {this.props.project.stages.length <= 3 &&
+                    <div className='add-stage-placeholder'
+                        onClick={() => this.props.actions.showAddStageWizardModal(true)}>
+                        <div className='workflow-stage-title'>
+                            {this.props.vocab.PROJECT.STAGE_TITLE}
+                        </div>
+                        <div className='workflow-stage-summary'>
+                            {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
+                        </div>
+                    </div>
+                }
             </Box>
         </div>);
     }

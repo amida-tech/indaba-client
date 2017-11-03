@@ -17,8 +17,10 @@ $block-class:'invite-user';
             border: 1px solid $border-color;
             background-color: #fff;
 
-            &:focus {
-                padding: 0.5em;
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
             }
         }
 
@@ -36,12 +38,10 @@ $block-class:'invite-user';
             border: 1px solid $border-color;
             background-color: #fff;
 
-            &:focus {
-                padding: 0.5em;
-            }
-
+            &:focus,
             &:active {
-                border-color: nth($brand-neutral-colors, 2);
+                border: 2px solid $brand-color;
+                outline: none;
             }
         }
 

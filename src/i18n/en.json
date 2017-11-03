@@ -58,6 +58,7 @@
         "TASK_REQUEST": "Failed to insert or delete task.",
         "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
         "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again.",
+        "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
         "COMING_SOON": "Coming soon."
@@ -219,6 +220,9 @@
         "NEW_USER_EMAIL": "New User Email",
         "SEARCH_FOR_A_USER": "Search for a user",
         "SEARCH_FOR_USER_GROUPS": "Search for user groups",
+        "SEARCH_PROJECT": "Search Projects",
+        "SEARCH_TASKS": "Search for tasks",
+        "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
         "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
@@ -242,10 +246,30 @@
         "SURVEY_NAME_CHANGED": "Survey Name Changed",
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
-        "TASK": "Task"
+        "TASK": "Task",
+        "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
     },
     "MESSAGES": {
-        "RECENT_MESSAGES": "Recent Messages"
+        "RECENT_MESSAGES": "Recent Messages",
+        "MESSAGES": "Messages",
+        "INBOX": "Inbox",
+        "ARCHIVE": "Archive",
+        "NEW_MESSAGE": "New Message",
+        "FROM": "From",
+        "SUBJECT": "Subject",
+        "DATE_RECEIVED": "Date Received",
+        "TO": "To",
+        "WRITE_REPLY": "Write Reply",
+        "BACK_TO_INBOX": "Back To Inbox",
+        "RETURN_TO_INBOX": "Return to Inbox",
+        "MARK_AS_READ": "Mark as Read",
+        "MARK_AS_UNREAD": "Mark as Unread",
+        "INBOX_FILTER": {
+            "ALL_MESSAGES": "All Messages",
+            "SENT_MESSAGES": "Sent Messages",
+            "UNREAD_MESSAGES": "Unread Messages",
+            "NOTIFICATIONS": "Notifications"
+        }
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
