@@ -83,7 +83,7 @@ export function getSurveyById(surveyId, errorMessages) {
             surveyId,
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp) ?
-                    _getSurveyByIdSuccess(surveyResp) :
+                    _getSurveyByIdSuccess(surveyResp.id, surveyResp) :
                     _reportSurveyError(errorMessages.FETCH_SURVEYS));
             },
         );
@@ -131,9 +131,10 @@ function _getSurveysSuccess(surveys) {
     };
 }
 
-function _getSurveyByIdSuccess(survey) {
+function _getSurveyByIdSuccess(surveyId, survey) {
     return {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
+        surveyId,
         survey,
     };
 }
