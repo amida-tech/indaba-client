@@ -56,10 +56,6 @@ ProjectListEntry.propTypes = {
         status: PropTypes.string.isRequired,
     }),
     flags: PropTypes.number.isRequired,
-    onProjectNameChange: PropTypes.func.isRequired,
-    onProjectNameBlur: PropTypes.func.isRequired,
-    onSurveyNameChange: PropTypes.func.isRequired,
-    onSurveyNameBlur: PropTypes.func.isRequired,
 };
 
 export default withRouter(ProjectListEntry);

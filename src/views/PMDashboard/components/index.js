@@ -6,9 +6,7 @@ import _ from 'lodash';
 
 import { FILTERS } from '../constants';
 import * as actions from '../actions';
-
-import { setProjectName, getProjects } from '../../../common/actions/projectActions';
-import { setSurveyName } from '../../../common/actions/surveyActions';
+import { getProjects } from '../../../common/actions/projectActions';
 
 import NameChangeModal from './NameChangeModal';
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
@@ -76,32 +74,6 @@ class PMDashboard extends Component {
                         .filter(this.searchRow.bind(this))
                         .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
                             vocab={this.props.vocab}
-                            onProjectNameChange={this.props.actions.setProjectName}
-                            onProjectNameBlur={
-                                (name) => {
-                                    if (name !== row.project.name) {
-                                        this.props.actions.setProjectName(name, row.project.id);
-                                        this.props.actions.showNameChange({
-                                            title: this.props.vocab.PROJECT.PROJECT_NAME_CHANGED,
-                                            label: this.props.vocab.PROJECT.NEW_PROJECT_NAME,
-                                            name,
-                                        });
-                                    }
-                                }
-                            }
-                            onSurveyNameChange={this.props.actions.setSurveyName}
-                            onSurveyNameBlur={
-                                (name) => {
-                                    if (name !== row.survey.name) {
-                                        this.props.actions.setSurveyName(name, row.project.id);
-                                        this.props.actions.showNameChange({
-                                            title: this.props.vocab.PROJECT.SURVEY_NAME_CHANGED,
-                                            label: this.props.vocab.PROJECT.NEW_SURVEY_NAME,
-                                            name,
-                                        });
-                                    }
-                                }
-                            }
                         />)}
                 </div>
             </div>
@@ -133,10 +105,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({},
-        actions,
-        { setProjectName, getProjects, setSurveyName }),
-        dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { getProjects }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMDashboard);
