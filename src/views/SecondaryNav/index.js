@@ -5,10 +5,10 @@ class SecondaryNavContainer extends Component {
     render() {
         return (
             <nav className='secondary-nav'>
-                        <div className='secondary-nav__left'>
-                            <img src="/src/assets/indaba-logo-white.svg"
-                                className="secondary-nav__indaba-logo"/>
-                        </div>
+                <div className='secondary-nav__left'>
+                    <img src="/src/assets/indaba-logo-white.svg"
+                        className="secondary-nav__indaba-logo"/>
+                </div>
             </nav>
         );
     }

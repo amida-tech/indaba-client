@@ -115,7 +115,8 @@ class CreateProjectWizard extends Component {
             <div className='project-wizard project-wizard--complete'>
                 <WizardComplete
                     vocab={this.props.vocab}
-                    projectLink={this.props.ui.projectLink} />
+                    projectLink={this.props.ui.projectLink}
+                    project={this.props.project} />
             </div>);
     }
 }
