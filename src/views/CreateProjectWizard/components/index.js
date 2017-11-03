@@ -12,7 +12,6 @@ import AddSurvey from './AddSurvey';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
-import Survey from '../../../common/components/Survey';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';

@@ -49,11 +49,11 @@ ProjectListEntry.propTypes = {
         name: PropTypes.string.isRequired,
         status: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
-        lastUpdated: PropTypes.string.isRequired,
+        lastUpdated: PropTypes.string,
     }),
     survey: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        status: PropTypes.string,
     }),
     flags: PropTypes.number.isRequired,
 };

@@ -63,12 +63,10 @@ class ProjectManagementContainer extends Component {
                     { this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
-                            onStatusChangeClose={() => this.props.actions.updateStatusChange(false)}
-                            entity={modalEntities[this.props.ui.statusModalId]}
-                            projectStatus={this.props.project.status}
-                            surveyStatus={this.props.survey.status}
-                            onSetProjectStatus={this.props.actions.setProjectStatus}
-                            onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
+                            survey={this.props.survey}
+                            actions={this.props.actions}
+                            vocab={this.props.vocab}
+                            entity={modalEntities[this.props.ui.statusModalId]} /> }
                     <Summary
                         actions={this.props.actions}
                         project={this.props.project}

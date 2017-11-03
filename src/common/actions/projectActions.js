@@ -34,12 +34,15 @@ export function postProject(requestBody, errorMessages) {
 }
 
 export function putProject(project, errorMessages) {
+    console.log('putProject');
+    console.log(project);
     const requestBody = {
         codeName: project.name,
         status: project.status,
     };
     return (dispatch) => {
         apiService.projects.putProject(
+            project.id,
             requestBody,
             (projectErr, projectResp) => {
                 dispatch((!projectErr && projectResp) ?

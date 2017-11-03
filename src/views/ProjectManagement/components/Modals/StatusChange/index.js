@@ -6,15 +6,17 @@ import SurveyStatusBody from './SurveyStatusBody';
 class StatusChange extends Component {
     constructor(props) {
         super(props);
+        console.log('StatusChange');
+        console.log(this.props);
         this.state = { // TODO: Rewrite this later.
             survey: {
-                published: this.props.surveyStatus === 'Published',
+                status: this.props.survey.status,
                 accessConfirm: false,
                 usersConfirm: false,
                 editConfirm: false,
             },
             project: {
-                active: this.props.projectStatus === 'Active',
+                status: this.props.project.status,
                 draftConfirm: false,
                 accessConfirm: false,
                 usersConfirm: false,
@@ -44,14 +46,16 @@ class StatusChange extends Component {
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
-                this.props.onSetProjectStatus(this.state.project.active ?
-                    'Active' : 'Inactive', this.props.project.id);
-                this.props.onStatusChangeClose();
+                this.props.actions.putProject(Object.assign({}, this.props.project,
+                        { status: this.props.project.status ? 1 : 0 }),
+                    this.props.vocab.ERROR);
+                this.props.actions.updateStatusChange(false);
             }
         } else if (this.surveyConfirmed()) {
-            this.props.onSetSurveyStatus(this.state.survey.published ?
-                'published' : 'draft', this.props.survey.id);
-            this.props.onStatusChangeClose();
+            this.props.actions.patchSurvey(Object.assign({}, this.props.survey,
+                    { status: this.state.survey.status === 'published' ? 'published' : 'draft' }),
+                this.props.vocab.ERROR);
+            this.props.actions.updateStatusChange(false);
         }
     }
     render() {
