@@ -6,17 +6,15 @@ import SurveyStatusBody from './SurveyStatusBody';
 class StatusChange extends Component {
     constructor(props) {
         super(props);
-        console.log('StatusChange');
-        console.log(this.props);
         this.state = { // TODO: Rewrite this later.
             survey: {
-                status: this.props.survey.status,
+                published: this.props.survey.status === 'published',
                 accessConfirm: false,
                 usersConfirm: false,
                 editConfirm: false,
             },
             project: {
-                status: this.props.project.status,
+                active: this.props.project.status,
                 draftConfirm: false,
                 accessConfirm: false,
                 usersConfirm: false,
@@ -47,13 +45,13 @@ class StatusChange extends Component {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
                 this.props.actions.putProject(Object.assign({}, this.props.project,
-                        { status: this.props.project.status ? 1 : 0 }),
+                        { status: this.state.project.active ? 1 : 0 }),
                     this.props.vocab.ERROR);
                 this.props.actions.updateStatusChange(false);
             }
         } else if (this.surveyConfirmed()) {
             this.props.actions.patchSurvey(Object.assign({}, this.props.survey,
-                    { status: this.state.survey.status === 'published' ? 'published' : 'draft' }),
+                    { status: this.state.survey.published ? 'published' : 'draft' }),
                 this.props.vocab.ERROR);
             this.props.actions.updateStatusChange(false);
         }

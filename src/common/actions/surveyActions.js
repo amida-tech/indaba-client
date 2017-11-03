@@ -62,6 +62,7 @@ export function patchSurvey(survey, errorMessages) {
     const requestBody = {
         name: survey.name,
         status: survey.status,
+        forceStatus: true,
     };
     return (dispatch) => {
         apiService.surveys.patchSurvey(
@@ -70,6 +71,19 @@ export function patchSurvey(survey, errorMessages) {
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp.length === 0) ?
                     _patchSurveySuccess(survey.id, requestBody) :
+                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+            },
+        );
+    };
+}
+
+export function getSurveyById(surveyId, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.getSurveyById(
+            surveyId,
+            (surveyErr, surveyResp) => {
+                dispatch((!surveyErr && surveyResp) ?
+                    _getSurveyByIdSuccess(surveyResp) :
                     _reportSurveyError(errorMessages.FETCH_SURVEYS));
             },
         );
@@ -114,6 +128,13 @@ function _getSurveysSuccess(surveys) {
     return {
         type: actionTypes.GET_SURVEYS_SUCCESS,
         surveys,
+    };
+}
+
+function _getSurveyByIdSuccess(survey) {
+    return {
+        type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
+        survey,
     };
 }
 

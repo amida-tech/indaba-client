@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
-import { getSurveys } from './surveyActions'; // getSurveysList
+import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
 import apiService from '../../services/api';
 
 // API calls.
@@ -34,8 +34,6 @@ export function postProject(requestBody, errorMessages) {
 }
 
 export function putProject(project, errorMessages) {
-    console.log('putProject');
-    console.log(project);
     const requestBody = {
         codeName: project.name,
         status: project.status,
@@ -46,7 +44,7 @@ export function putProject(project, errorMessages) {
             requestBody,
             (projectErr, projectResp) => {
                 dispatch((!projectErr && projectResp) ?
-                    _postProjectSuccess(project.id, project) :
+                    _putProjectSuccess(project) :
                     _reportProjectError(errorMessages.PROJECT_REQUEST));
             },
         );
@@ -59,6 +57,10 @@ export function getProjectById(projectId, errorMessages) {
             projectId,
             (projErr, projResp) => {
                 if (!projErr && projResp) {
+                    console.log(projResp);
+                    if (projResp.surveyId) {
+                        dispatch(getSurveyById(projResp.surveyId, errorMessages));
+                    }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {
                     dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
@@ -281,6 +283,13 @@ export function updateUserGroup(group, projectId) {
 function _postProjectSuccess(project) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
+        project,
+    };
+}
+
+function _putProjectSuccess(project) {
+    return {
+        type: actionTypes.PUT_PROJECT_SUCCESS,
         project,
     };
 }
