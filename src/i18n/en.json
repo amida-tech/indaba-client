@@ -48,7 +48,7 @@
         "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
         "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
         "FETCH_PROJECTS": "Fetch projects failed.",
-        "FETCH_TASKS": "Fetch tasks failed.",
+        "FETCH_TASKS": "Fetch tasks failed... or the user simply has no assigned tasks.",
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",

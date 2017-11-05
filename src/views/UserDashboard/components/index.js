@@ -101,7 +101,8 @@ const _generateRow = (state, projectId, task) => {
     const project = state.projects.data[0].name ?
         state.projects.data.find(findProject => findProject.id === projectId) :
         state.projects.data[0];
-    const subject = project.subjects.find(elem => elem.id === task.uoaId);
+    const subject = project !== undefined ?
+        project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
     const discussion = (state.discuss.data.find(findDiscuss =>
         findDiscuss.taskId === task.id) || { data: [] });
     const answered = discussion.data.filter(response =>
