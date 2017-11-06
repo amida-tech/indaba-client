@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Modal from '../../../common/components/Modal';
+import UserProfileForm from './UserProfileForm';
+
 class UserProfile extends Component {
     render() {
         return (

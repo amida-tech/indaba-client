@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { submit } from 'redux-form';
 
-import Modal from '../../../../../../common/components/Modal';
-import UserProfileForm from './UserProfileForm';
-
 import {
     updateUser,
-} from '../../../../../../common/actions/userActions';
+} from '../../../common/actions/userActions';
 
 class UserProfileContainer extends Component {
     render() {
