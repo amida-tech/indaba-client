@@ -9,10 +9,9 @@ export default {
     SURVEY_API_HTTP_URL: process.env.SURVEY_API_HTTP_URL || 'http://localhost:9005/api/v1.0',
     SURVEY_API_HTTPS_URL: process.env.SURVEY_API_HTTPS_URL || 'https://localhost:9005/api/v1.0',
 
-    MESSAGE_API_HTTP_URL: process.env.MESSAGE_API_HTTP_URL || 'coming_soon',
-    MESSAGE_API_HTTPS_URL: process.env.MESSAGE_API_HTTPS_URL || 'coming_soon',
-    REALM: process.env.REALM || 'testorg',
-
     MESSAGING_API_HTTP_URL: process.env.MESSAGING_API_HTTP_URL || 'http://localhost:4002',
     MESSAGING_API_HTTPS_URL: process.env.MESSAGING_API_HTTPS_URL || 'http://localhost:4002',
+
+    REALM: process.env.REALM || 'testorg',
+
 };
