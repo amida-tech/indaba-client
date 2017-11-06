@@ -58,11 +58,9 @@ function _updateProfileById() {
     };
 }
 function _updateProfileByIdFailure(err) {
-    console.log(err);
     return dispatch => dispatch(_reportUserError(err.message));
 }
 function _updateProfileByIdSuccess(response) {
-    console.log(response);
     return {
         type: actionTypes.UPDATE_PROFILE_BY_ID_SUCCESS,
         response,
