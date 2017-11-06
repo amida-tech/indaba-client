@@ -11,6 +11,9 @@ const users = {
     getUsers: (callback) => {
         requests.apiGetRequest(getFullPath('users'), callback);
     },
+    getUser: (id, callback) => {
+        requests.apiGetRequest(getFullPath(`users/${id}`), callback);
+    },
     postNewUser: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('users'), requestBody, callback);
     },

@@ -28,24 +28,24 @@ UserProfileContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const user = state.user.users.find(userIter => userIter.id === ownProps.userId);
     return {
         vocab: state.settings.language.vocabulary,
-        user,
-        tasks: state.tasks.find(task => task.projectId === ownProps.project.id).tasks,
+        userId: ownProps.userId,
+        user: state.userprofile.user,
+        tasks: state.userprofile.tasks,
         initialValues: {
             name: {
-                firstName: user.firstName,
-                lastName: user.lastName,
+                firstName: state.userprofile.user.firstName,
+                lastName: state.userprofile.user.lastName,
             },
             account: {
-                email: user.email,
-                title: user.title,
+                email: state.userprofile.user.email,
+                title: state.userprofile.user.title,
             },
             preferences: {
-                notifications: user.notifications,
-                status: user.status,
-                notes: user.notes,
+                notifications: state.userprofile.user.notifications,
+                status: state.userprofile.user.status,
+                notes: state.userprofile.user.notes,
             },
         },
     };
