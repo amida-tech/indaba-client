@@ -1,0 +1,7 @@
+$block-class: 'amida-footer';
+
+@at-root {
+    .#{$block-class} {
+        background-color: blue;
+    }
+}
