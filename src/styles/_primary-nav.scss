@@ -1,75 +1,114 @@
-$nav-text-color: #faf5f5;
+$nav-text-color: #e0e0e0;
 $nav-create-button-background: #308253;
 
 $block-class:'primary-nav';
 
 @at-root {
     .#{$block-class} {
-        background-color: $brand-color;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        background-color: nth($brand-neutral-colors, 1);
         height: $primary-nav-height;
 
+        &__left {
+            display: flex;
+            align-items: center;
+            margin-left: 10%;
+        }
+
+        &__right {
+            display: flex;
+            align-items: baseline;
+            flex-direction: row;
+            margin-right: 10%;
+        }
+
         &__indaba-logo {
-            width: 100px;
+            padding-top: 2px;
+            width: 140px;
+            height: 64px;
+            margin-left: 2%;
+            margin-bottom: 2px;
         }
 
-        &__toast {
-            .toastify__progress {
-                background: $off-brand-color;
-            }
-        }
-
-        &__item {
+        &__item-nav {
+            justify-content: space-between;
+            align-items: center;
             color: $nav-text-color;
+            font-size: 16px;
             margin-left: 20px;
-            font-weight: normal;
+            font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            letter-spacing: 0.3;
+            padding-left: 8px;
+            padding-right: 8px;
 
             &:hover {
                 text-decoration: none;
-                color: #308253;
+                color: darken(#388055, 20%);
+            }
+
+            &:focus,
+            &:active {
+                text-decoration: none;
+                font-weight: 400;
+                color: darken(#388055, 30%);
+            }
+
+            &--button {
+                height: 40px;
+                background-color: darken(#388055, 10%);
+                border: 1px;
+                color: $nav-text-color;
+                border-radius: 3px;
+                min-width: 10px;
+                font-size: 14px;
+
+                &:hover {
+                    color: $nav-text-color;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        &__envelope,
+        &__user {
+            width: 16px;
+            height: 16px;
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        &__logout {
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 8px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            &:hover {
+                text-decoration: none;
+                color: darken(#388055, 20%);
             }
 
             &:focus {
-                text-decoration: none;
-                font-weight: 700;
+                font-weight: 400;
                 color: $nav-text-color;
-            }
-        }
-
-        &__button {
-            background-color: $nav-create-button-background;
-            border: 1px;
-            color: $nav-text-color;
-            border-radius: 3px;
-            min-width: 10px;
-            font-size: 14px;
-
-            &:hover {
-                color: $nav-text-color;
-                font-weight: 700;
             }
         }
 
         &__link {
             color: $nav-text-color;
-        }
-
-        &__icon {
-            margin-right: 30px;
-        }
-
-        &__logout {
-            @extend .primary-nav__item;
-
-            position: relative;
-            vertical-align: text-bottom;
-            margin-right: 20px;
-        }
-
-        &__envelope {
-            margin-right: 22px;
+            padding-right: 16px;
+            padding-left: 16px;
         }
     }
 }

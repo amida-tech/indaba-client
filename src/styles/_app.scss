@@ -1,0 +1,11 @@
+$block-class:'app';
+
+@at-root {
+    .#{$block-class} {
+        &__toast {
+            .toastify__progress {
+                background: $off-brand-color;
+            }
+        }
+    }
+}
