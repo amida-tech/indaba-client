@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import apiService from '../../services/api';
 
 export const setActiveInboxTab = tab => ({
     type: actionTypes.SET_ACTIVE_INBOX_TAB,
@@ -49,7 +50,33 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
+export const sendMessage = message => (dispatch) => {
+    dispatch(_sendMessage());
+    apiService.messaging.send(message, (err) => {
+        if (err) {
+            dispatch(_sendMessageFailure(err));
+        } else {
+            dispatch(_sendMessageSuccess());
+        }
+    });
+};
+
+/** Private actions **/
+
 export const _startReply = reply => ({
     type: actionTypes.START_REPLY,
     reply,
+});
+
+export const _sendMessage = () => ({
+    type: actionTypes.SEND_MESSAGE,
+});
+
+export const _sendMessageFailure = err => ({
+    type: actionTypes.SEND_MESSAGE_FAILURE,
+    err,
+});
+
+export const _sendMessageSuccess = () => ({
+    type: actionTypes.SEND_MESSAGE_SUCCESS,
 });
