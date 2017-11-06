@@ -4,8 +4,11 @@ import { Footer } from 'grommet';
 class AmidaFooter extends Component {
     render() {
         return (
-            <Footer className='amida-footer'>
-                GENERIC STUFFS!!!
+            <Footer justify='between'
+                className='amida-footer'>
+                <p className='amida-footer__footer-title'>
+                    Powered By Amida
+                </p>
             </Footer>
         );
     }
