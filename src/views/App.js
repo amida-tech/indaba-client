@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PrimaryNavContainer from './PrimaryNav';
 import SecondaryNavContainer from './SecondaryNav';
+import AmidaFooter from '../common/components/AmidaFooter';
 
 class App extends Component {
     render() {
@@ -14,6 +15,10 @@ class App extends Component {
                 <div className='main-body'>
                     {this.props.children}
                 </div>
+                <div>
+                 {this.props.location.pathname !== '/create-new-project' &&
+                    <AmidaFooter/> }
+                </div>
                 <ToastContainer
                     className='app__toast'
                     position='top-right'
@@ -22,8 +27,9 @@ class App extends Component {
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
-                    pauseOnHover />;
+                    pauseOnHover />
             </div>
+
         );
     }
 }

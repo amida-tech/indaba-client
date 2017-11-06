@@ -2,6 +2,16 @@ $block-class: 'amida-footer';
 
 @at-root {
     .#{$block-class} {
-        background-color: blue;
+        display: flex;
+        background-color: hsl(216, 2, 93);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+
+        &__footer-title {
+            padding-top: 16px;
+        }
     }
 }
