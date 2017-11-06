@@ -29,7 +29,7 @@ class PMUsersTab extends Component {
             <div className='pm-users-tab'>
                 {this.state.userProfileId !== false &&
                     <UserProfileContainer userId={this.state.userProfileId}
-                        {...this.props}
+                        projectId={this.props.project.id}
                         onCancel={() => this.setState({ userProfileId: false })}
                         onSave={() => this.setState({ userProfileId: false })}/>
                 }

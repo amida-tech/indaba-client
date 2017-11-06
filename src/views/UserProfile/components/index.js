@@ -13,7 +13,7 @@ import UserProfile from './UserProfile';
 
 class UserProfileContainer extends Component {
     componentWillMount() {
-        this.props.actions.getUserForProfile(this.props.userId);
+        this.props.actions.getAllProfileData(this.props.userId, this.props.projectId);
     }
     render() {
         return (
@@ -40,6 +40,7 @@ const mapStateToProps = (state, ownProps) => {
         userId: ownProps.userId,
         user: state.userprofile.user,
         tasks: state.userprofile.tasks,
+        project: state.userprofile.project,
         initialValues: Object.keys(state.userprofile.user).length !== 0 ? {
             name: {
                 firstName: state.userprofile.user.firstName,
