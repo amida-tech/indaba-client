@@ -7,6 +7,8 @@ import {
     updateUser,
 } from '../../../common/actions/userActions';
 
+import UserProfile from './UserProfile';
+
 class UserProfileContainer extends Component {
     render() {
         return (
