@@ -13,7 +13,8 @@ import UserProfile from './UserProfile';
 
 class UserProfileContainer extends Component {
     componentWillMount() {
-        this.props.actions.getAllProfileData(this.props.userId, this.props.projectId);
+        this.props.actions.getAllProfileData(this.props.userId,
+            this.props.projectId, this.props.vocab.ERROR);
     }
     render() {
         return (
@@ -35,27 +36,30 @@ UserProfileContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+    const user = state.user.users.find(userIter => userIter.id === ownProps.userId);
+    const project = state.projects.data.find(projectIter => projectIter.id === ownProps.projectId);
     return {
         vocab: state.settings.language.vocabulary,
         userId: ownProps.userId,
-        user: state.userprofile.user,
+        user,
+        users: state.user.users,
         tasks: state.userprofile.tasks,
-        project: state.userprofile.project,
-        initialValues: Object.keys(state.userprofile.user).length !== 0 ? {
+        project,
+        initialValues: user && {
             name: {
-                firstName: state.userprofile.user.firstName,
-                lastName: state.userprofile.user.lastName,
+                firstName: user.firstName,
+                lastName: user.lastName,
             },
             account: {
-                email: state.userprofile.user.email,
-                title: state.userprofile.user.title,
+                email: user.email,
+                title: user.title,
             },
             preferences: {
-                notifications: state.userprofile.user.notifications,
-                status: state.userprofile.user.status,
-                notes: state.userprofile.user.notes,
+                notifications: user.notifications,
+                status: user.status,
+                notes: user.notes,
             },
-        } : undefined,
+        },
     };
 };
 
