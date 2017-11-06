@@ -46,6 +46,12 @@ const initialState = {
     }],
 };
 
+const transformServerMessageToReduxMessage = message =>
+    Object.assign(message, {
+        to: message.to.join(', '),
+        timestamp: message.createdAt,
+    });
+
 export default (state = initialState, action) => {
     const messageIndex = state.messages.findIndex(message => message.id === action.id);
 
@@ -78,6 +84,18 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
+    case actionTypes.LIST_MESSAGES_SUCCESS:
+        return update(state, {
+            messages: { $set: action.result.map(transformServerMessageToReduxMessage) },
+        });
+    case actionTypes.GET_MESSAGE_SUCCESS:
+        return update(state, {
+            messages: (
+                messageIndex !== -1 ?
+                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.result) } } :
+                { $push: [transformServerMessageToReduxMessage(action.result)] }
+            ),
+        });
     default:
         return state;
     }

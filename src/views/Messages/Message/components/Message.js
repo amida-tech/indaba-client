@@ -11,7 +11,9 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class Message extends Component {
     componentWillMount() {
-        // load message from backend
+        if (this.props.id && !this.props.message) {
+            this.props.actions.getMessage(this.props.id);
+        }
     }
     render() {
         const compose = this.props.id === undefined;
@@ -21,7 +23,7 @@ class Message extends Component {
                     <div className='message__row message__row--top'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
-                            value={this.props.me}
+                            value={_.get(this.props, 'message.to')}
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && this.props.message.timestamp}
