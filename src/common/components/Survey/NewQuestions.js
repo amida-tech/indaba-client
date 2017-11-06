@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class NewQuestions extends Component {
 
     render() {
-        // onClick={() => this.props.actions.surveyActions(type)}
         return (
             <div className='new-questions'>
                 {this.props.vocab.SURVEY.QUESTIONS_TYPES.map((type) => {
