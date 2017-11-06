@@ -8,9 +8,9 @@ class AmidaFooter extends Component {
             <Footer justify='between'
                 className='amida-footer'>
                 <Title className='amida-footer__footer-title'>
-                    Powered By Amida
+                    Powered by Amida
                 </Title>
-                <img src="/src/assets/indaba-SM-white.svg"
+                <img src="/src/assets/indaba-SM-green.svg"
                     className="amida-footer__indaba-service-mark"/>
             </Footer>
         );
