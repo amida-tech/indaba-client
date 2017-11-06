@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { submit } from 'redux-form';
 
+import * as actions from '../actions';
 import {
     updateUser,
 } from '../../../common/actions/userActions';
@@ -10,6 +12,9 @@ import {
 import UserProfile from './UserProfile';
 
 class UserProfileContainer extends Component {
+    componentWillMount() {
+        this.props.actions.getUserForProfile(this.props.userId);
+    }
     render() {
         return (
             <UserProfile {...this.props} />
@@ -35,7 +40,7 @@ const mapStateToProps = (state, ownProps) => {
         userId: ownProps.userId,
         user: state.userprofile.user,
         tasks: state.userprofile.tasks,
-        initialValues: {
+        initialValues: Object.keys(state.userprofile.user).length !== 0 ? {
             name: {
                 firstName: state.userprofile.user.firstName,
                 lastName: state.userprofile.user.lastName,
@@ -49,13 +54,14 @@ const mapStateToProps = (state, ownProps) => {
                 status: state.userprofile.user.status,
                 notes: state.userprofile.user.notes,
             },
-        },
+        } : undefined,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
     onUpdateUser: (userId, user) => dispatch(updateUser(userId, user)),
     onClickToSubmit: () => dispatch(submit('user-profile')),
+    actions: bindActionCreators(actions, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileContainer);
