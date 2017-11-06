@@ -1,0 +1,26 @@
+$block-class:'secondary-nav';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        background-color: nth($brand-neutral-colors, 1);
+        height: $primary-nav-height;
+
+        &__left {
+            display: flex;
+            align-items: center;
+            margin-left: 10%;
+        }
+
+        &__indaba-logo {
+            padding-top: 2px;
+            width: 140px;
+            height: 64px;
+            margin-left: 10%;
+            margin-bottom: 2px;
+        }
+    }
+}

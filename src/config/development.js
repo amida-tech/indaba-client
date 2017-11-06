@@ -12,4 +12,7 @@ export default {
     MESSAGE_API_HTTP_URL: process.env.MESSAGE_API_HTTP_URL || 'coming_soon',
     MESSAGE_API_HTTPS_URL: process.env.MESSAGE_API_HTTPS_URL || 'coming_soon',
     REALM: process.env.REALM || 'testorg',
+
+    MESSAGING_API_HTTP_URL: process.env.MESSAGING_API_HTTP_URL || 'http://localhost:4002',
+    MESSAGING_API_HTTPS_URL: process.env.MESSAGING_API_HTTPS_URL || 'http://localhost:4002',
 };

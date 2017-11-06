@@ -48,9 +48,16 @@ $block-class: 'project-wizard';
             @extend .lead-font;
 
             font-size: 14px;
-            color: $header-font-color;
+            color: #7e848f;
             border-bottom: none;
             padding-bottom: 0;
+        }
+
+        .grommetux-tab--active {
+            .grommetux-tab__label {
+                font-weight: 600;
+                color: #707680;
+            }
         }
 
         .grommetux-tabs {
