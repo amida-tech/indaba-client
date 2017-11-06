@@ -6,7 +6,7 @@ import { submit } from 'redux-form';
 
 import * as actions from '../actions';
 import {
-    updateUser,
+    updateProfileById,
 } from '../../../common/actions/userActions';
 
 import UserProfile from './UserProfile';
@@ -64,7 +64,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    onUpdateUser: (userId, user) => dispatch(updateUser(userId, user)),
+    onUpdateUser: (userId, user, errorMessages) =>
+        dispatch(updateProfileById(userId, user, errorMessages)),
     onClickToSubmit: () => dispatch(submit('user-profile')),
     actions: bindActionCreators(actions, dispatch),
 });
