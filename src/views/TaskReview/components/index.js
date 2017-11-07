@@ -30,8 +30,8 @@ function surveyMapper(responses, questions) {
 
 class TaskReview extends Component {
     componentWillMount() {
+        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
         if (this.props.task.id < 0) {
-            this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
             this.props.actions.getTaskById(this.props.params.projectId,
                 this.props.params.taskId, this.props.vocab.ERROR);
         }
@@ -86,7 +86,7 @@ const mapStateToProps = (state, ownProps) => {
         projectId,
         taskedUser: _.find(state.user.users, user =>
             user.id === task.userIds[0]) || { firstName: '', lastName: '' },
-        stage: (project.id > 0 && task.stepId > 0) ?
+        stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
             _.find(project.stages, stage => stage.id === task.stepId) : { title: '' },
         subject: (project.id > 0 && task.uoaId > 0) ?
             _.find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },

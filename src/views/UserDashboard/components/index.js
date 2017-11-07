@@ -109,7 +109,7 @@ const _generateRow = (state, projectId, task) => {
     // const answered = discussion.data.filter(response =>
     //     response.value !== undefined).length;
     const survey = project !== undefined ? state.surveys.data.find(findSurvey =>
-        findSurvey.id === project.surveyId) : { name: '', sections: [] };
+        findSurvey.id === project.surveyId) : { name: '', sections: [] }; // TODO: Rewrite. Not great.
     return {
         key: task.id,
         projectId,
