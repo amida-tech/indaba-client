@@ -18,9 +18,9 @@ const initialState = {
         flagCount: 0,
         isCompleted: false,
         endDate: '',
-        uoaId: 0,
+        uoaId: -1,
         userIds: [],
-        stepId: 0,
+        stepId: -1,
     }],
 };
 
@@ -31,11 +31,18 @@ export const TaskReducer = (state = initialState, action) => {
         _.findIndex(state[projectIndex].tasks, task => task.id === action.taskId) :
         null;
     switch (action.type) {
-    case type.GET_TASKS_BY_PROJECT_SUCCESS:
+    case type.GET_TASKS_BY_PROJECT_SUCCESS: {
         return update(state, {
             projectId: { $set: action.projectId },
             data: { $set: action.tasks },
         });
+    }
+    case type.GET_TASK_BY_ID_SUCCESS:
+        return state.data[0].id < 0 ?
+            update(state, { projectId: { $set: action.projectId },
+                data: { $set: [action.task] } }) :
+            update(state, { projectId: { $set: action.projectId },
+                data: { [taskIndex]: { $set: action.task } } });
     case type.GET_TASKS_BY_USER_SUCCESS:
         return update(state, {
             userId: { $set: action.userId },

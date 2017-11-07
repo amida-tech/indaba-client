@@ -16,6 +16,21 @@ export function getTasksByProject(projectId, errorMessages) {
     };
 }
 
+export function getTaskById(projectId, taskId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.getTaskById(
+            taskId,
+            (taskErr, taskResp) => {
+                if (!taskErr && taskResp) {
+                    dispatch(_getTaskByIdSuccess(projectId, taskResp));
+                } else {
+                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                }
+            },
+        );
+    };
+}
+
 export function getSelfTasks(errorMessages) {
     return (dispatch) => {
         apiService.tasks.getSelfTasks(
@@ -95,6 +110,14 @@ function _getTasksByProjectSuccess(projectId, tasks) {
         type: actionTypes.GET_TASKS_BY_PROJECT_SUCCESS,
         projectId,
         tasks,
+    };
+}
+
+function _getTaskByIdSuccess(projectId, task) {
+    return {
+        type: actionTypes.GET_TASK_BY_ID_SUCCESS,
+        projectId,
+        task,
     };
 }
 
