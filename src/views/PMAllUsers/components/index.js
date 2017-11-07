@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
+import * as userActions from '../../../common/actions/userActions';
 import PMUserList from '../../../common/components/PMUserList';
 import { UserProfileContainer } from '../../../views/UserProfile';
 
@@ -11,7 +12,9 @@ class PMAllUsersContainer extends Component {
         return (
             <div className='pm-all-users-container'>
                 <PMUserList {...this.props}
-                    onUserNameClick={this.props.actions.pmAllUsersShowProfile}/>
+                    onUserNameClick={this.props.actions.pmAllUsersShowProfile}
+                    onUserDeleteClick={id =>
+                        this.props.actions.deleteUser(id, this.props.vocab.ERROR)}/>
                 {
                     this.props.ui.showProfile !== false &&
                     <UserProfileContainer userId={this.props.ui.showProfile} />
@@ -28,7 +31,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMAllUsersContainer);
