@@ -14,7 +14,12 @@ const initialState = {
     ui: {
         errorMessage: '',
     },
-    create: Object.assign({}, createInitialState),
+    create: {
+        id: -1,
+        name: '',
+        status: 'draft',
+        sections: [],
+    },
     data: [{
         id: 0,
         projectId: 0,
@@ -31,10 +36,10 @@ export const SurveyReducer = (state = initialState, action) => {
         return state.data[0].name ?
             update(state, {
                 data: { $push: [action.survey] },
-                create: { $set: Object.assign({}, createInitialState) } }) :
+                create: { $set: createInitialState } }) :
             update(state, {
                 data: { $set: [action.survey] },
-                create: { $set: Object.assign({}, createInitialState) } });
+                create: { $set: createInitialState } });
     case type.PATCH_SURVEY_SUCCESS:
         return update(state, { data: { [surveyIndex]: { $merge: action.survey } } });
     case type.GET_SURVEYS_SUCCESS:

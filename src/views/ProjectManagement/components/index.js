@@ -103,7 +103,7 @@ const mapStateToProps = (state, ownProps) => {
         vocab: state.settings.language.vocabulary,
         ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
         survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            state.surveys.create,
+            { id: -1, name: '', status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
         users: state.user.users,
         profile: state.user.profile,
