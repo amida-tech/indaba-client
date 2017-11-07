@@ -9,7 +9,7 @@ const initialState = {
         newSurveyName: '',
     },
     data: [{
-        id: 0,
+        id: -1,
         projectId: 0,
         name: '',
         status: 'draft',

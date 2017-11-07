@@ -13,10 +13,14 @@ const initialState = {
     userId: 0,
     data: [{
         id: -1,
+        title: '',
+        description: '',
+        flagCount: 0,
+        isCompleted: false,
+        endDate: '',
+        uoaId: 0,
         userIds: [],
         stepId: 0,
-        uoaId: 0,
-        endDate: '',
     }],
 };
 

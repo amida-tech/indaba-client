@@ -9,10 +9,9 @@ class Survey extends Component {
         return (
             <div className='survey'>
                 <div className='survey_pane'>
-                    {this.props.profile.roleID === 2 &&
-                        <CreateSurveyPane
-                            actions={this.props.actions}
-                            vocab={this.props.vocab}/>}
+                    <CreateSurveyPane
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}/>
                     <AnswerPanel {...this.props} />
                 </div>
             </div>

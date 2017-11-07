@@ -105,26 +105,24 @@ const _generateRow = (state, projectId, task) => {
         project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
     const discussion = (state.discuss.data.find(findDiscuss =>
         findDiscuss.taskId === task.id) || { data: [] });
-    const answered = discussion.data.filter(response =>
-        response.value !== undefined).length;
+    // const answered = discussion.data.filter(response =>
+    //     response.value !== undefined).length;
     const survey = state.surveys.data.find(findSurvey =>
-        findSurvey.projectId === projectId) || { name: '', questions: [] };
+        findSurvey.id === project.surveyId) || { name: '', sections: [] };
     return {
         key: task.id,
         projectId,
         subject: subject ? subject.name : '',
-        task: task.title,
+        task,
         due: task.endDate,
         survey: survey.name,
         flags: task.flagCount,
-        progress: `${answered} / ${survey.questions.length}
-            ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        progress: `0/0 ${state.settings.language.vocabulary.PROJECT.ANSWERED}`, // `${answered} / ${survey.questions.length}
         new: !!task.new,
-        late: TaskStatus.endDateInPast(task) &&
-            !TaskStatus.responsesComplete({ response: discussion.data },
-                survey.questions.length),
+        late: TaskStatus.endDateInPast(task) && // survey.sections.length
+            !TaskStatus.responsesComplete({ response: discussion.data }, 0),
         complete: TaskStatus.responsesComplete({ response: discussion.data },
-            survey.questions.length),
+            0), // survey.sections.length
     };
 };
 
