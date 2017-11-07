@@ -121,6 +121,38 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
     };
 }
 
+export function deleteUser(userId, errorMessages) {
+    return (dispatch) => {
+        dispatch(_deleteUser());
+        apiService.users.deleteUser(userId, (err, response) => {
+            if (err) {
+                dispatch(_deleteUserError(err));
+                dispatch(_reportUserError(errorMessages.USER_REQUEST));
+            } else {
+                dispatch(_deleteUserSuccess(response));
+            }
+        });
+    };
+}
+
+function _deleteUser() {
+    return {
+        type: actionTypes.DELETE_USER,
+    };
+}
+
+function _deleteUserError() {
+    return {
+        type: actionTypes.DELETE_USER_ERROR,
+    };
+}
+
+function _deleteUserSuccess() {
+    return {
+        type: actionTypes.DELETE_USER_SUCCESS,
+    };
+}
+
 export function notifyUser(userId, message, senderId) {
     return {
         type: actionTypes.NOTIFY_USER,
