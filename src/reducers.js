@@ -10,6 +10,7 @@ import { PMDashboardReducer } from './views/PMDashboard';
 import { UserDashboardReducer } from './views/UserDashboard';
 import { MessagesReducer } from './views/Messages';
 import { UserProfileReducer } from './views/UserProfile';
+import { PMAllUsersReducer } from './views/PMAllUsers';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
@@ -29,6 +30,7 @@ const reducers = {
     pmdashboard: PMDashboardReducer,
     userdashboard: UserDashboardReducer,
     userprofile: UserProfileReducer,
+    pmallusers: PMAllUsersReducer,
 };
 
 export default combineReducers(reducers);
