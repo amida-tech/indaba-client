@@ -25,20 +25,26 @@ class UserProfileForm extends Component {
                                 user={this.props.user}/>
                         </FormSection>
                     </Tab>
-                    <Tab className='user-profile-form__tab user-profile-form__tab--groups'
-                        title={this.props.vocab.PROJECT.USER_GROUPS}>
-                        <ProfileUserGroupsTab project={this.props.project}
-                            userId={this.props.userId}
-                            users={this.props.users}
-                            vocab={this.props.vocab}/>
-                    </Tab>
-                    <Tab className='user-profile-form__tab user-profile-form__tab--tasks'
-                        title={this.props.vocab.PROJECT.TASKS}>
-                        <TasksTab project={this.props.project}
-                            tasks={this.props.tasks}
-                            userId={this.props.userId}
-                            vocab={this.props.vocab}/>
-                    </Tab>
+                    {
+                        this.props.projectId !== undefined &&
+                        <Tab className='user-profile-form__tab user-profile-form__tab--groups'
+                            title={this.props.vocab.PROJECT.USER_GROUPS}>
+                            <ProfileUserGroupsTab project={this.props.project}
+                                userId={this.props.userId}
+                                users={this.props.users}
+                                vocab={this.props.vocab}/>
+                        </Tab>
+                    }
+                    {
+                        this.props.projectId !== undefined &&
+                        <Tab className='user-profile-form__tab user-profile-form__tab--tasks'
+                            title={this.props.vocab.PROJECT.TASKS}>
+                            <TasksTab project={this.props.project}
+                                tasks={this.props.tasks}
+                                userId={this.props.userId}
+                                vocab={this.props.vocab}/>
+                        </Tab>
+                    }
                     <Tab className='user-profile-form__tab user-profile-form__tab--preference'
                         title={this.props.vocab.COMMON.PREFERENCE}>
                         <FormSection name='preferences'>
