@@ -22,8 +22,8 @@ export const SurveyReducer = (state = initialState, action) => {
     switch (action.type) {
     case type.POST_SURVEY_SUCCESS:
         return state.data[0].name ?
-            update(state, { data: { $push: [action.survey] }, ui: { newSurveyName: '' } }) :
-            update(state, { data: { $set: [action.survey] }, ui: { newSurveyName: '' } });
+            update(state, { data: { $push: [action.survey] }, ui: { newSurveyName: { $set: '' } } }) :
+            update(state, { data: { $set: [action.survey] }, ui: { newSurveyName: { $set: '' } } });
     case type.PATCH_SURVEY_SUCCESS:
         return update(state, { data: { [surveyIndex]: { $merge: action.survey } } });
     case type.GET_SURVEYS_SUCCESS:
@@ -36,11 +36,10 @@ export const SurveyReducer = (state = initialState, action) => {
             update(state, { data: { [surveyIndex]: { $merge: action.survey } } }));
     case type.SET_SURVEY_STATUS:
         return update(state, { data: { [surveyIndex]: { status: { $set: action.status } } } });
-    case type.SET_SURVEY_NAME: {
-        return (surveyIndex > 0 ?
+    case type.SET_SURVEY_NAME:
+        return (surveyIndex >= 0 ?
             update(state, { data: { [surveyIndex]: { name: { $set: action.name } } } }) :
             update(state, { ui: { newSurveyName: { $set: action.name } } }));
-    }
     case type.REPORT_SURVEY_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case LOG_OUT:

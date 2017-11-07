@@ -146,8 +146,8 @@ const mapStateToProps = (state) => {
             state.wizard.project;
     return {
         project,
-        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId)
-            || state.surveys.create,
+        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         user: state.user,
         ui: state.wizard.ui,
         vocab: state.settings.language.vocabulary,

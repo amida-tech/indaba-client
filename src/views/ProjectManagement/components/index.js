@@ -101,7 +101,7 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
+        ui: Object.assign({}, state.manager.ui, state.projects.ui, state.nav.ui),
         survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
