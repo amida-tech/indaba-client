@@ -62,7 +62,6 @@ class PMUsersTab extends Component {
                 </div>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
-                    .filter(this.filterUser)
                     .map(user =>
                     <PMUserListRow user={user}
                         groups={this.props.project.userGroups}
