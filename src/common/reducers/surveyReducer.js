@@ -13,7 +13,7 @@ const initialState = {
         projectId: 0,
         name: '',
         status: 'draft',
-        sections: [],
+        questions: [],
     }],
 };
 

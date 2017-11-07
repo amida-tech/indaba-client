@@ -120,10 +120,10 @@ const _generateRow = (state, projectId, task) => {
         flags: task.flagCount,
         progress: `0/0 ${state.settings.language.vocabulary.PROJECT.ANSWERED}`, // `${answered} / ${survey.questions.length}
         new: !!task.new,
-        late: TaskStatus.endDateInPast(task) && // survey.sections.length
+        late: TaskStatus.endDateInPast(task) && // survey.questions.length
             !TaskStatus.responsesComplete({ response: discussion.data }, 0),
         complete: TaskStatus.responsesComplete({ response: discussion.data },
-            0), // survey.sections.length
+            0), // survey.questions.length
     };
 };
 

@@ -38,7 +38,7 @@ class TaskReview extends Component {
     }
 
     render() {
-        const displaySurvey = surveyMapper(this.props.responses, this.props.survey.sections);
+        const displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
