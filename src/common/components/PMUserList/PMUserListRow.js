@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import IonIcon from 'react-ionicons';
 import UserStatus from './UserStatus';
-import DeleteIconButton from '../../../../../common/components/DeleteIconButton';
+import DeleteIconButton from '../../../common/components/DeleteIconButton';
 
-import { renderName } from '../../../../../utils/User';
+import { renderName } from '../../../utils/User';
 
 class PMUserListRow extends Component {
     render() {

@@ -5,8 +5,7 @@ import { Search } from 'grommet';
 import { renderName } from '../../../../../utils/User';
 
 import { UserProfileContainer } from '../../../../UserProfile';
-import PMUserListRow from './PMUserListRow';
-import PMUserListHeader from './PMUserListHeader';
+import PMUserList from '../../../../../common/components/PMUserList';
 import InviteUserForm from '../../../../../common/components/InviteUserForm';
 
 class PMUsersTab extends Component {
@@ -60,18 +59,7 @@ class PMUsersTab extends Component {
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
                 </div>
-                <PMUserListHeader vocab={this.props.vocab} />
-                {this.props.users
-                    .map(user =>
-                    <PMUserListRow user={user}
-                        groups={this.props.project.userGroups}
-                        key={user.id}
-                        onNameClick={() => this.props.actions.pmProjectShowProfile(user.id)}
-                        onDeleteClick={() => this.props.actions.removeUser(
-                            user.id,
-                            this.props.project.id,
-                            this.props.vocab.ERROR)}
-                        vocab={this.props.vocab}/>)}
+                <PMUserList {...this.props} />
             </div>
         );
     }
