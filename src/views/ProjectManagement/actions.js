@@ -7,6 +7,13 @@ export function subnavigate(id) {
     };
 }
 
+export function pmProjectShowProfile(userId) {
+    return {
+        type: actionTypes.PM_PROJECT_SHOW_PROFILE,
+        userId,
+    };
+}
+
 export function updateStatusChange(status) {
     return {
         type: actionTypes.UPDATE_STATUS_CHANGE,

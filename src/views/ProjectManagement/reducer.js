@@ -5,6 +5,7 @@ import * as type from './actionTypes';
 export const initialState = {
     ui: {
         subnav: 'workflow',
+        showProfile: false,
         userSidebarSearch: {
             query: '',
             groups: {},
@@ -22,6 +23,10 @@ export default (state = initialState, action) => {
     switch (action.type) {
     case type.SUBNAVIGATE: // ui related.
         return update(state, { ui: { subnav: { $set: action.id } } });
+    case type.PM_PROJECT_SHOW_PROFILE:
+        return update(state, { ui: {
+            showProfile: { $set: action.userId },
+        } });
     case type.UPDATE_STATUS_CHANGE:
         return update(state, { ui: { statusModalId: { $set: action.status } } });
     case type.UPDATE_USER_SEARCH_GROUP:

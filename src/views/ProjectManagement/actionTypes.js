@@ -1,5 +1,6 @@
 // ui:
 export const SUBNAVIGATE = 'SUBNAVIGATE';
+export const PM_PROJECT_SHOW_PROFILE = 'PM_PROJECT_SHOW_PROFILE';
 
 // Status Change
 export const UPDATE_STATUS_CHANGE = 'UPDATE_STATUS_CHANGE';

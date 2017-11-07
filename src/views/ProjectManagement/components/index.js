@@ -48,7 +48,8 @@ class ProjectManagementContainer extends Component {
                 tasks={this.props.tasks}
                 project={this.props.project}
                 profile={this.props.profile}
-                actions={this.props.actions} />;
+                actions={this.props.actions}
+                ui={this.props.ui}/>;
             break;
         default:
             body = null;
