@@ -9,6 +9,7 @@ import { TaskReview } from './views/TaskReview';
 import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
 import { MessagesContainer } from './views/Messages';
+import { PMAllUsersContainer } from './views/PMAllUsers';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import App from './views/App';
@@ -47,6 +48,10 @@ export default (
             key='/create-new-project'
             path='/create-new-project'
             component={CreateProjectWizard}/>
+        <Route
+            key='/users'
+            path='/users'
+            component={PMAllUsersContainer}/>
         <Route
             key='/messages'
             path='/messages'
