@@ -1,5 +1,6 @@
 $block-class: 'filter';
 $filter-background: #fff;
+$hover-light: #ff6afd;
 
 @at-root {
     .#{$block-class} {
@@ -48,7 +49,7 @@ $filter-background: #fff;
             }
 
             &:hover:not(&--active) {
-                background-color: darken(#fafafa, 10%);
+                background-color: darken(#fafafa, 5%);
             }
         }
     }
