@@ -26,6 +26,8 @@ class UserProfileContainer extends Component {
 UserProfileContainer.propTypes = {
     userId: PropTypes.number.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onUpdateUser: PropTypes.func.isRequired,
 
     // Project-specific sections not rendered when not provided
     projectId: PropTypes.number,

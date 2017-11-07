@@ -18,7 +18,8 @@ class PMAllUsersContainer extends Component {
                 {
                     this.props.ui.showProfile !== false &&
                     <UserProfileContainer userId={this.props.ui.showProfile}
-                        onCancel={() => this.props.actions.pmAllUsersShowProfile(false)}/>
+                        onCancel={() => this.props.actions.pmAllUsersShowProfile(false)}
+                        onSave={() => this.props.actions.pmAllUsersShowProfile(false)}/>
                 }
             </div>
         );
