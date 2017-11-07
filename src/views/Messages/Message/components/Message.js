@@ -11,17 +11,19 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class Message extends Component {
     componentWillMount() {
-        // load message from backend
+        if (this.props.id && !this.props.message) {
+            this.props.actions.getMessage(this.props.id);
+        }
     }
     render() {
         const compose = this.props.id === undefined;
         return (
             <div className='message'>
-                <form className='message__content'>
+                <form className='message__content' onSubmit={this.props.handleSubmit}>
                     <div className='message__row message__row--top'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
-                            value={this.props.me}
+                            value={_.get(this.props, 'message.to')}
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && this.props.message.timestamp}
@@ -130,11 +132,19 @@ class MessageSelector extends Component {
     render() {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
-        } else if (this.props.reply) {
-            return (<MessageForm {...this.props}
-                initialValues={this.props.reply} />);
         }
-        return (<MessageForm {...this.props} />);
+        return (
+            <MessageForm {...this.props}
+                initialValues={this.props.reply}
+                onSubmit={(values) => {
+                    this.props.actions.sendMessage({
+                        subject: values.subject,
+                        to: [values.to],
+                        from: this.props.me,
+                        message: values.message,
+                    });
+                }}/>
+        );
     }
 }
 

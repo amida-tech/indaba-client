@@ -6,12 +6,12 @@ $font-color: #a4aebf;
 $font-inverse-color: #faf5f5;
 // grommet brand colors
 $brand-color: #4eb276;
-$off-brand-color: #3b9f22;
+$off-brand-color: #4eb276;
 $brand-font-family: 'Roboto';
 $layer-overlay-background-color: rgba(white, 0.8);
 $layer-background-color: none;
 // TODO still need override
-$brand-neutral-colors: (#308253, #4eb276);
+$brand-neutral-colors: (#308253, #4d8061);
 $brand-accent-colors: #4eb276;
 $brand-link-color: #00854e;
 $brand-status-colors: (
@@ -25,7 +25,7 @@ $brand-status-colors: (
 $brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 
-$primary-nav-height: 3.5em;
+$primary-nav-height: 64px;
 
 @import 'grommet/scss/grommet-core/index.scss';
 
