@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Search } from 'grommet';
 
 import { renderName } from '../../../../../utils/User';
 
@@ -12,10 +13,18 @@ class PMUsersTab extends Component {
     constructor(props) {
         super(props);
         this.filterUser = this.filterUser.bind(this);
+        this.handleSearchSelect = this.handleSearchSelect.bind(this);
     }
     filterUser(user) {
         return renderName(user).toLowerCase()
             .includes((this.props.ui.userListSearchQuery).toLowerCase());
+    }
+    handleSearchSelect(selection) {
+        this.props.actions.updateUserListSearchQuery('');
+        this.props.actions.addUser(
+            selection.suggestion.value.id,
+            this.props.project.id,
+            this.props.vocab.ERROR);
     }
     render() {
         return (
@@ -39,12 +48,17 @@ class PMUsersTab extends Component {
                         }}/>
                 </div>
                 <div className='pm-users-tab__search-container'>
-                    <input className='pm-users-tab__text-input'
-                        type='text'
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onChange={evt =>
-                            this.props.actions.updateUserListSearchQuery(evt.target.value)
-                        } />
+                    <Search
+                        fill={true}
+                        inline={true}
+                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                        onDOMChange={evt =>
+                            this.props.actions.updateUserListSearchQuery(evt.target.value)}
+                        value={this.props.ui.userListSearchQuery}
+                        suggestions={this.props.allUsers.filter(this.filterUser)
+                            .map(user => ({ label: renderName(user),
+                                value: user }))}
+                        onSelect={this.handleSearchSelect}/>
                 </div>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
@@ -71,6 +85,7 @@ PMUsersTab.propTypes = {
         organizationId: PropTypes.number.isRequired,
     }),
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.shape({
         addNewUser: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
