@@ -29,6 +29,7 @@ PMUserList.propTypes = {
     onUserNameClick: PropTypes.func.isRequired,
     onUserDeleteClick: PropTypes.func.isRequired,
 
+    // Group column not rendered if absent
     groups: PropTypes.arrayOf(PropTypes.object),
 };
 
