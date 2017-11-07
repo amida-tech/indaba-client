@@ -19,11 +19,9 @@ import UserTaskListEntry from './UserTaskListEntry';
 class UserDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
-        console.log('Did you mount!?');
         if (this.props.params.userId) {
             this.props.actions.getTasksByUser(this.props.params.userId, this.props.vocab.ERROR);
         } else {
-            console.log('are we mounted!?');
             this.props.actions.getSelfTasks(this.props.vocab.ERROR);
         }
     }
@@ -118,7 +116,7 @@ const _generateRow = (state, projectId, task) => {
         subject: subject ? subject.name : '',
         task,
         due: task.endDate,
-        survey: survey.name,
+        survey: survey ? survey.name : '',
         flags: task.flagCount,
         progress: `0/0 ${state.settings.language.vocabulary.PROJECT.ANSWERED}`, // `${answered} / ${survey.questions.length}
         new: !!task.new,
