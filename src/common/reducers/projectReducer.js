@@ -17,6 +17,7 @@ const initialState = {
         name: '',
         status: 0,
         productId: 0,
+        surveyId: -1,
         workflowId: 0,
         users: [],
         stages: [],

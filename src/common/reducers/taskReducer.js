@@ -15,12 +15,14 @@ const initialState = {
         id: -1,
         title: '',
         description: '',
-        flagCount: 0,
-        isCompleted: false,
-        endDate: '',
         uoaId: -1,
-        userIds: [],
         stepId: -1,
+        endDate: '',
+        isCompleted: false,
+        userIds: [],
+        projectId: -1,
+        surveyId: -1,
+        flagCount: 0,
     }],
 };
 

@@ -19,9 +19,11 @@ import UserTaskListEntry from './UserTaskListEntry';
 class UserDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
+        console.log('Did you mount!?');
         if (this.props.params.userId) {
             this.props.actions.getTasksByUser(this.props.params.userId, this.props.vocab.ERROR);
         } else {
+            console.log('are we mounted!?');
             this.props.actions.getSelfTasks(this.props.vocab.ERROR);
         }
     }
@@ -92,6 +94,7 @@ const mapStateToProps = state => ({
     rows: [].concat(...state.tasks.data.map(task =>
         _generateRow(state, task.projectId, task))),
 });
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
@@ -107,8 +110,8 @@ const _generateRow = (state, projectId, task) => {
         findDiscuss.taskId === task.id) || { data: [] });
     // const answered = discussion.data.filter(response =>
     //     response.value !== undefined).length;
-    const survey = state.surveys.data.find(findSurvey =>
-        findSurvey.id === project.surveyId) || { name: '', sections: [] };
+    const survey = project !== undefined ? state.surveys.data.find(findSurvey =>
+        findSurvey.id === project.surveyId) : { name: '', sections: [] };
     return {
         key: task.id,
         projectId,
