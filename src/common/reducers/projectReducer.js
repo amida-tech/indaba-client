@@ -104,10 +104,12 @@ export const ProjectReducer = (state = initialState, action) => {
             [groupIndex]: { $set: action.group },
         } } } });
     case POST_NEW_USER_SUCCESS:
-        return update(state, { data: { [projectIndex]: {
+        return projectIndex >= 0 ?
+        update(state, { data: { [projectIndex]: {
             users: { $push: [action.user.id] },
             lastUpdated: { $set: new Date().toISOString() },
-        } } });
+        } } }) :
+        state;
     case type.REMOVE_USER:
         return update(state, { data: { [projectIndex]: {
             users: { $apply: users => users.filter(userId => userId !== action.userId) },

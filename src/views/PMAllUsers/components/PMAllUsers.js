@@ -5,6 +5,7 @@ import { Search } from 'grommet';
 import { renderName } from '../../../utils/User';
 import PMUserList from '../../../common/components/PMUserList';
 import { UserProfileContainer } from '../../../views/UserProfile';
+import InviteUserForm from '../../../common/components/InviteUserForm';
 
 class PMAllUsers extends Component {
     constructor(props) {
@@ -22,6 +23,18 @@ class PMAllUsers extends Component {
     render() {
         return (
             <div className='pm-all-users'>
+                <div className='pm-all-users__invite-container'>
+                    <InviteUserForm vocab={this.props.vocab}
+                        onSubmit={(values) => {
+                            this.props.actions.addNewUser(
+                                values,
+                                null, // no project id
+                                this.props.organizationId,
+                                this.props.vocab.TOAST,
+                                this.props.vocab.ERROR,
+                            );
+                        }}/>
+                </div>
                 <div className='pm-all-users__search-container'>
                     <Search
                         fill={true}

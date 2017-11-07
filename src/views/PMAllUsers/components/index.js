@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     users: state.user.users,
     ui: state.pmallusers.ui,
+    organizationId: state.user.profile.organizationId,
 });
 
 const mapDispatchToProps = dispatch => ({
