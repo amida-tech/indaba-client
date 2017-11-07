@@ -59,7 +59,10 @@ class PMUsersTab extends Component {
                                 value: user }))}
                         onSelect={this.handleSearchSelect}/>
                 </div>
-                <PMUserList {...this.props} />
+                <PMUserList {...this.props}
+                    onUserNameClick={this.props.actions.pmProjectShowProfile}
+                    onUserDeleteClick={id => this.props.actions.removeUser(
+                            id, this.props.project.id, this.props.vocab.ERROR)}/>
             </div>
         );
     }
