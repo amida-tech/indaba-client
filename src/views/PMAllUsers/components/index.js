@@ -17,7 +17,8 @@ class PMAllUsersContainer extends Component {
                         this.props.actions.deleteUser(id, this.props.vocab.ERROR)}/>
                 {
                     this.props.ui.showProfile !== false &&
-                    <UserProfileContainer userId={this.props.ui.showProfile} />
+                    <UserProfileContainer userId={this.props.ui.showProfile}
+                        onCancel={() => this.props.actions.pmAllUsersShowProfile(false)}/>
                 }
             </div>
         );
