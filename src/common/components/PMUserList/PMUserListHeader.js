@@ -1,18 +1,21 @@
 import React from 'react';
 
-export default props => (
+export default ({ vocab, groups }) => (
     <div className='pm-user-list-header'>
         <div className='pm-user-list-header__cell'>
-            {props.vocab.COMMON.NAME}
+            {vocab.COMMON.NAME}
+        </div>
+        {
+            groups &&
+            <div className='pm-user-list-header__cell'>
+                {vocab.PROJECT.USER_GROUPS}
+            </div>
+        }
+        <div className='pm-user-list-header__cell'>
+            {vocab.PROJECT.USER_STATUS}
         </div>
         <div className='pm-user-list-header__cell'>
-            {props.vocab.PROJECT.USER_GROUPS}
-        </div>
-        <div className='pm-user-list-header__cell'>
-            {props.vocab.PROJECT.USER_STATUS}
-        </div>
-        <div className='pm-user-list-header__cell'>
-            {props.vocab.COMMON.ACTIONS}
+            {vocab.COMMON.ACTIONS}
         </div>
     </div>
 );

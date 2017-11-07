@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import PMUserList from '../../../common/components/PMUserList';
+
 class PMAllUsersContainer extends Component {
     render() {
         return (
             <div className='pm-all-users-container'>
-                PMAllUsersContainer
+                <PMUserList {...this.props} />
             </div>
         );
     }
 }
 
-export default connect()(PMAllUsersContainer);
+const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary,
+    users: state.user.users,
+});
+
+export default connect(mapStateToProps)(PMAllUsersContainer);

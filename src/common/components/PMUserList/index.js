@@ -8,11 +8,11 @@ class PMUserList extends Component {
     render() {
         return (
             <div className='pm-user-list'>
-                <PMUserListHeader vocab={this.props.vocab} />
+                <PMUserListHeader vocab={this.props.vocab} groups={!!this.props.groups} />
                 {
                     this.props.users.map(user =>
                         <PMUserListRow user={user}
-                            groups={this.props.project.userGroups}
+                            groups={this.props.groups}
                             key={user.id}
                             onNameClick={() => this.props.onUserNameClick(user.id)}
                             onDeleteClick={() => this.props.onUserDeleteClick(user.id)}
@@ -28,6 +28,8 @@ PMUserList.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onUserNameClick: PropTypes.func.isRequired,
     onUserDeleteClick: PropTypes.func.isRequired,
+
+    groups: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default PMUserList;
