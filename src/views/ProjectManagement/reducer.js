@@ -16,6 +16,7 @@ export const initialState = {
             task: {},
         },
         userGroupListSearchQuery: '',
+        userListSearchQuery: '',
     },
 };
 
@@ -39,6 +40,10 @@ export default (state = initialState, action) => {
     case type.UPDATE_USER_GROUP_LIST_SEARCH_QUERY:
         return update(state, { ui: {
             userGroupListSearchQuery: { $set: action.query } } });
+    case type.UPDATE_USER_LIST_SEARCH_QUERY:
+        return update(state, { ui: {
+            userListSearchQuery: { $set: action.query },
+        } });
     case type.SHOW_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: true },

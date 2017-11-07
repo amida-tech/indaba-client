@@ -11,13 +11,11 @@ import InviteUserForm from '../../../../../common/components/InviteUserForm';
 class PMUsersTab extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            search: '',
-        };
         this.filterUser = this.filterUser.bind(this);
     }
     filterUser(user) {
-        return renderName(user).toLowerCase().includes((this.state.search || '').toLowerCase());
+        return renderName(user).toLowerCase()
+            .includes((this.props.ui.userListSearchQuery).toLowerCase());
     }
     render() {
         return (
@@ -44,7 +42,9 @@ class PMUsersTab extends Component {
                     <input className='pm-users-tab__text-input'
                         type='text'
                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onChange={evt => this.setState({ search: evt.target.value })} />
+                        onChange={evt =>
+                            this.props.actions.updateUserListSearchQuery(evt.target.value)
+                        } />
                 </div>
                 <PMUserListHeader vocab={this.props.vocab} />
                 {this.props.users
@@ -75,6 +75,7 @@ PMUsersTab.propTypes = {
         addNewUser: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
         pmProjectShowProfile: PropTypes.func.isRequired,
+        updateUserListSearchQuery: PropTypes.func.isRequired,
     }).isRequired,
     userProfileId: PropTypes.any,
     ui: PropTypes.object.isRequired,

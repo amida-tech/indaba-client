@@ -12,6 +12,7 @@ export const INVITE_USER = 'INVITE_USER'; // Not yet used.
 
 // Users/User Groups list
 export const UPDATE_USER_GROUP_LIST_SEARCH_QUERY = 'UPDATE_USER_GROUP_SEARCH_QUERY';
+export const UPDATE_USER_LIST_SEARCH_QUERY = 'UPDATE_USER_LIST_SEARCH_QUERY';
 
 // Task Options Modal:
 export const SHOW_TASK_OPTIONS_MODAL = 'SHOW_TASK_OPTIONS_MODAL';
