@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Accordion from 'grommet/components/Accordion';
+import PropTypes from 'prop-types';
 
-import QuestionPanel from './QuestionPanel';
+import QuestionContainer from './QuestionContainer';
 
-class TaskSurveyList extends Component {
+class SurveyPane extends Component {
     render() {
         return (
-            <div className='task-survey-list'>
-            <div className='task-survey-list__wrapper'>
+            <div className='survey-pane'>
+            <div className='survey-pane__wrapper'>
                 <button onClick={() => this.props.actions.showQuestion(
                     this.props.survey.map((key, index) => index))}>
                     {this.props.vocab.PROJECT.EXPAND_ALL}
@@ -16,18 +17,18 @@ class TaskSurveyList extends Component {
                     {this.props.vocab.PROJECT.COLLAPSE_ALL}
                 </button>
                 </div>
-                <div className='task-survey-list__instructions'>
-                    <span className='task-survey-list__instructions-header'>
+                <div className='survey-pane__instructions'>
+                    <span className='survey-pane__instructions-header'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                     </span>
-                    <span className='task-survey-list__instructions-explained'>
+                    <span className='survey-pane__instructions-explained'>
                         {this.props.instructions}
                     </span>
                 </div>
                 <Accordion
                     active={this.props.ui.showQuestions} openMulti={true}>
                     {this.props.survey.map((question, index) =>
-                    <QuestionPanel
+                    <QuestionContainer
                         key={`questionpanel${index}`}
                         index={index}
                         question={question}
@@ -39,4 +40,8 @@ class TaskSurveyList extends Component {
     }
 }
 
-export default TaskSurveyList;
+SurveyPane.propTypes = {
+    vocab: PropTypes.object.isRequired,
+};
+
+export default SurveyPane;

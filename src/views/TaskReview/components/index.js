@@ -7,7 +7,7 @@ import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
-import TaskSurveyList from './TaskSurveyList';
+import SurveyPane from './SurveyPane';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import { getProjectById } from '../../../common/actions/projectActions';
@@ -57,7 +57,7 @@ class TaskReview extends Component {
                         vocab={this.props.vocab}
                         stage={this.props.stage}
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
-                    <TaskSurveyList
+                    <SurveyPane
                         ui={this.props.ui}
                         survey={displaySurvey}
                         instructions={this.props.survey.instructions}
@@ -74,7 +74,7 @@ class TaskReview extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
     const task = _.find(state.tasks.data, current => current.id === taskId) ||

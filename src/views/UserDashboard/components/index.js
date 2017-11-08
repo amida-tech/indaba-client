@@ -98,7 +98,7 @@ const mapDispatchToProps = dispatch => ({
         actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
 });
 
-const _generateRow = (state, projectId, task) => {
+const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     const project = state.projects.data[0].name ?
         state.projects.data.find(findProject => findProject.id === projectId) :
         state.projects.data[0];
