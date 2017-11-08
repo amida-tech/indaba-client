@@ -29,11 +29,13 @@ $primary-nav-height: 64px;
 
 @import 'grommet/scss/grommet-core/index.scss';
 
+html,
 body {
     font-family: 'Roboto';
     background-color: $page-background-color;
     color: $header-font-color;
     overflow-y: auto;
+    height: 100%;
 }
 
 // Grommet overrides
@@ -88,6 +90,7 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
+    height: 100%;
 }
 
 .workflow {
