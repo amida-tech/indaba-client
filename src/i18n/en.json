@@ -298,8 +298,9 @@
         "PERMISSIONS": "Permissions"
     },
     "SURVEY": {
-        "STATUS_DRAFT": "Draft",
-        "STATUS_PUBLISHED": "Published",
+        "RETIRED": "Retired",
+        "DRAFT": "Draft",
+        "PUBLISHED": "Published",
         "PUBLISH": "Publish survey",
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
