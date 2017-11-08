@@ -15,7 +15,8 @@ class PMAllSubjects extends Component {
                 </div>
                 <SubjectList subjects={this.props.subjects}
                     query={this.props.ui.query}
-                    onDeleteClick={() => {}}
+                    onDeleteClick={subject =>
+                        this.props.actions.pmAllSubjectsDeleteSubject(subject.id)}
                     vocab={this.props.vocab}/>
             </div>
         );
