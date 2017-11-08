@@ -1,0 +1,13 @@
+$block-class: 'pm-all-subjects';
+
+@at-root {
+    .#{$block-class} {
+        @extend .subjects__table;
+
+        margin-top: 5em;
+
+        &__search-wrapper {
+            @extend .subjects__search-wrapper;
+        }
+    }
+}
