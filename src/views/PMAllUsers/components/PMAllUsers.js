@@ -14,6 +14,7 @@ class PMAllUsers extends Component {
         this.filterUser = this.filterUser.bind(this);
     }
     handleSearchSelect(selection) {
+        this.props.actions.pmAllUsersSetListQuery('');
         this.props.actions.pmAllUsersShowProfile(selection.suggestion.value.id);
     }
     filterUser(user) {
