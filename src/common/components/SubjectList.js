@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import DeleteIconButton from '../../../../common/components/DeleteIconButton';
+import DeleteIconButton from './DeleteIconButton';
 
 class SubjectList extends Component {
     constructor(props) {
@@ -36,6 +36,7 @@ class SubjectList extends Component {
 }
 
 SubjectList.propTypes = {
+    vocab: PropTypes.object.isRequired,
     query: PropTypes.string.isRequired,
     subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteClick: PropTypes.func.isRequired,
