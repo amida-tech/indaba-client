@@ -6,10 +6,6 @@ $block-class: 'amida-footer';
         display: flex;
         justify-content: flex-end;
         background-color: hsl(216, 2, 93);
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
         width: 100%;
 
         &__footer-title {
