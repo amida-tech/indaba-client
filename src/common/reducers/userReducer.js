@@ -31,6 +31,7 @@ const initialState = {
 };
 
 export const UserReducer = (state = initialState, action) => {
+    const userIndex = state.users.findIndex(user => user.id === action.userId);
     // Strongly consider clearing error message here after every call?
     switch (action.type) {
     case type.PUT_PROFILE_SUCCESS:
@@ -45,6 +46,10 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { $set: action.users } });
     case type.REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.DELETE_USER_SUCCESS:
+        return update(state, {
+            users: { $unset: [userIndex] },
+        });
     case LOG_OUT:
         return initialState;
     default:

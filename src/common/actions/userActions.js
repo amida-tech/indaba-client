@@ -124,12 +124,12 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
 export function deleteUser(userId, errorMessages) {
     return (dispatch) => {
         dispatch(_deleteUser());
-        apiService.users.deleteUser(userId, (err, response) => {
+        apiService.users.deleteUser(userId, (err) => {
             if (err) {
                 dispatch(_deleteUserError(err));
                 dispatch(_reportUserError(errorMessages.USER_REQUEST));
             } else {
-                dispatch(_deleteUserSuccess(response));
+                dispatch(_deleteUserSuccess(userId));
             }
         });
     };
@@ -147,9 +147,10 @@ function _deleteUserError() {
     };
 }
 
-function _deleteUserSuccess() {
+function _deleteUserSuccess(userId) {
     return {
         type: actionTypes.DELETE_USER_SUCCESS,
+        userId,
     };
 }
 
