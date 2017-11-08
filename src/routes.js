@@ -10,6 +10,7 @@ import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
 import { MessagesContainer } from './views/Messages';
 import { PMAllUsersContainer } from './views/PMAllUsers';
+import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import App from './views/App';
@@ -52,6 +53,10 @@ export default (
             key='/users'
             path='/users'
             component={PMAllUsersContainer}/>
+        <Route
+            key='/subjects'
+            path='/subjects'
+            component={PMAllSubjectsContainer}/>
         <Route
             key='/messages'
             path='/messages'
