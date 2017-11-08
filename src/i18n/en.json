@@ -35,10 +35,11 @@
         "OK": "OK",
         "NEW": "New",
         "LATE": "Late",
-        "LOG_OUT": "Log Out"
+        "LOG_OUT": "Log Out",
+        "MY_TASKS":"My Tasks"
     },
     "TOAST": {
-        "EXISTS": "The user is already in the system, but we've added them to the project for you.",
+        "EXISTS": "The user is already in the system, but we've added them to the ALL for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
