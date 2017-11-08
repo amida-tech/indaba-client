@@ -8,8 +8,6 @@ import Choices from './Choices';
 
 class Questions extends Component {
     render() {
-        console.log('Questions component');
-        console.log(this.props);
         let QuestionType;
         switch (this.props.type) {
         case 'bool':
@@ -22,7 +20,7 @@ class Questions extends Component {
             QuestionType = (<Choices {...this.props} />);
             break;
         default:
-            QuestionType = (<Text {...this.props} />);
+            QuestionType = (<Text className='question__text' {...this.props} />);
         }
         return (
             <div className='questions'>
@@ -33,7 +31,11 @@ class Questions extends Component {
 }
 
 Questions.propTypes = {
-    vocab: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    common: PropTypes.bool,
+    text: PropTypes.string.isRequired,
+    required: PropTypes.bool,
+    choices: PropTypes.array,
 };
 
 export default Questions;

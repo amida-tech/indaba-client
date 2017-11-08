@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
 
-import QuestionContainer from './QuestionContainer';
+import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
     render() {
@@ -25,16 +24,7 @@ class SurveyPane extends Component {
                         {this.props.instructions}
                     </span>
                 </div>
-                <Accordion
-                    active={this.props.ui.showQuestions} openMulti={true}>
-                    {this.props.survey.map((question, index) =>
-                    <QuestionContainer
-                        key={`questionpanel${index}`}
-                        index={index}
-                        question={question}
-                        {...this.props} />,
-                    )}
-                </Accordion>
+                <SurveyForm {...this.props} />
             </div>
         );
     }
