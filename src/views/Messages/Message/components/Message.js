@@ -135,7 +135,9 @@ class MessageSelector extends Component {
         }
         return (
             <MessageForm {...this.props}
-                initialValues={this.props.reply}
+                initialValues={
+                    this.props.reply || _.get(this.props, 'location.state.message')
+                }
                 onSubmit={(values) => {
                     this.props.actions.sendMessage({
                         subject: values.subject,
