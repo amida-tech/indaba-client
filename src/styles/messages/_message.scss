@@ -43,6 +43,7 @@ $block-class: 'message';
             flex-direction: row;
             justify-content: flex-end;
             margin-bottom: 0.5em;
+            border-radius: 2px;
         }
 
         &__body-timestamp {
@@ -56,4 +57,8 @@ $block-class: 'message';
             cursor: pointer;
         }
     }
+}
+
+.grommetux-button:not(.grommetux-button--fill) {
+    border-radius: 2px;
 }
