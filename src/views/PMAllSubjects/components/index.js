@@ -17,7 +17,9 @@ class PMAllSubjectsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+    vocab: state.settings.language.vocabulary,
     subjects: state.pmallsubjects.subjects,
+    ui: state.pmallsubjects.ui,
 });
 
 const mapDispatchToProps = dispatch => ({

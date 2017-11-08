@@ -1,6 +1,11 @@
 import * as actionTypes from './actionTypes';
 import subjectsApi from '../../services/api/subjects';
 
+export const pmAllSubjectsSetQuery = query => ({
+    type: actionTypes.PM_ALL_SUBJECTS_SET_QUERY,
+    query,
+});
+
 export const pmAllSubjectsGetSubjects = () => (dispatch) => {
     dispatch(_getSubjects());
     subjectsApi.getSubjects((err, response) => {
