@@ -51,7 +51,10 @@ class PMAllUsers extends Component {
                 <PMUserList {...this.props}
                     onUserNameClick={this.props.actions.pmAllUsersShowProfile}
                     onUserDeleteClick={id =>
-                        this.props.actions.deleteUser(id, this.props.vocab.ERROR)}/>
+                        this.props.actions.deleteUser(id, this.props.vocab.ERROR)}
+                    onUserMailClick={id =>
+                        this.props.actions.sendMessage(
+                            this.props.users.find(user => user.id === id))}/>
                 {
                     this.props.ui.showProfile !== false &&
                     <UserProfileContainer userId={this.props.ui.showProfile}

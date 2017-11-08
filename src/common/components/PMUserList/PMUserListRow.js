@@ -30,7 +30,10 @@ class PMUserListRow extends Component {
                 </div>
                 <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'>
                     <DeleteIconButton onClick={this.props.onDeleteClick}/>
-                    <IonIcon icon='ion-android-mail' color='#A4AEBF' />
+                    <div className='pm-user-list-row__mail-button'
+                        onClick={this.props.onMailClick}>
+                        <IonIcon icon='ion-android-mail' color='#A4AEBF' />
+                    </div>
                 </div>
             </div>
         );
@@ -46,6 +49,7 @@ PMUserListRow.propTypes = {
     onNameClick: PropTypes.func.isRequired,
     vocab: PropTypes.object.isRequired,
     onDeleteClick: PropTypes.func.isRequired,
+    onMailClick: PropTypes.func.isRequired,
 
     groups: PropTypes.arrayOf(PropTypes.object),
 };

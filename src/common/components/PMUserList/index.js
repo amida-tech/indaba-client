@@ -16,6 +16,7 @@ class PMUserList extends Component {
                             key={user.id}
                             onNameClick={() => this.props.onUserNameClick(user.id)}
                             onDeleteClick={() => this.props.onUserDeleteClick(user.id)}
+                            onMailClick={() => this.props.onUserMailClick(user.id)}
                             vocab={this.props.vocab}/>)
                 }
             </div>
@@ -28,6 +29,7 @@ PMUserList.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onUserNameClick: PropTypes.func.isRequired,
     onUserDeleteClick: PropTypes.func.isRequired,
+    onUserMailClick: PropTypes.func.isRequired,
 
     // Group column not rendered if absent
     groups: PropTypes.arrayOf(PropTypes.object),

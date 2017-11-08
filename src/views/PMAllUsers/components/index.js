@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
+import { renderName } from '../../../utils/User';
 
 import * as actions from '../actions';
 import * as userActions from '../../../common/actions/userActions';
@@ -22,7 +25,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, userActions,
+        { sendMessage: user => dispatch(push(
+            {
+                pathname: '/messages/new',
+                state: { message: { to: renderName(user) } },
+            },
+        )) },
+    ), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMAllUsersContainer);
