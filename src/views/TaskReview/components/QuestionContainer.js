@@ -9,11 +9,14 @@ import Questions from '../../../common/components/Questions';
 class QuestionContainer extends Component {
     render() {
         return (
-            <Element name={`question${this.props.index}`}>
+            <Element name={`question${this.props.index}`}
+                className='question-container'>
                 <AccordionPanel
                     heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.index + 1)}
                     {...this.props}>
-                    <Questions {...this.props.question} />
+                    <Questions
+                        {...this.props.question}
+                        vocab={this.props.vocab} />
                 </AccordionPanel>
             </Element>
         );

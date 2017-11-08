@@ -10,7 +10,8 @@ class SurveyForm extends Component {
         return (
             <form className='survey-form'>
                 <Accordion
-                    active={this.props.ui.showQuestions} openMulti={true}>
+                    active={this.props.ui.showQuestions}
+                    openMulti={true}>
                     {this.props.survey.map((question, index) =>
                     <QuestionContainer
                         key={`questionpanel${index}`}

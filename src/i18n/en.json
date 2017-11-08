@@ -156,6 +156,8 @@
         "NO_COMMENTS": "There are no comments.",
         "CHANGE_STATUS": "Change Status",
         "INSTRUCTIONS": "Instructions",
+        "INSTRUCTIONS_EXPLAINED": "Please complete the following questions to reflect your opinion as accurately as possible.",
+        "ENTER_ANSWER": "Enter your answer here",
         "AGREE": "Agree",
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",

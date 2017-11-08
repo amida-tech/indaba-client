@@ -21,7 +21,7 @@ class SurveyPane extends Component {
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                     </span>
                     <span className='survey-pane__instructions-explained'>
-                        {this.props.instructions}
+                        {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED}
                     </span>
                 </div>
                 <SurveyForm {...this.props} />

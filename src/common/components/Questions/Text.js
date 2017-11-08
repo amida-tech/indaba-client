@@ -8,19 +8,22 @@ class Text extends Component {
         console.log('text component');
         console.log(this.props);
         return (
-            <div className='text'>
-                <label className='text__label'>
-                    <Field name='email'
-                        component='input'
-                        type='text'
-                        className='text__field'/>
-                </label>
+            <div className='text' >
+                <div className='text__label'>
+                    {this.props.text}
+                </div>
+                <Field name='email'
+                    component='input'
+                    placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
+                    type='text'
+                    className='text__field'/>
             </div>
         );
     }
 }
 
 Text.propTypes = {
+    vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     common: PropTypes.bool,
     text: PropTypes.string.isRequired,

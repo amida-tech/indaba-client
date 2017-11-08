@@ -99,15 +99,21 @@
 @import './messages/button-panel.scss';
 @import './messages/message-container.scss';
 //Task Review
+@import './taskreview/bool.scss';
+@import './taskreview/choice.scss';
+@import './taskreview/choices.scss';
 @import './taskreview/flag-commentary.scss';
 @import './taskreview/flag-controls.scss';
 @import './taskreview/flag-header.scss';
 @import './taskreview/flag-question-list.scss';
 @import './taskreview/flag-sidebar.scss';
+@import './taskreview/question-container.scss';
 @import './taskreview/questions.scss';
 @import './taskreview/review-pane.scss';
+@import './taskreview/survey-form.scss';
 @import './taskreview/survey-pane.scss';
 @import './taskreview/task-details.scss';
 @import './taskreview/task-review.scss';
+@import './taskreview/text.scss';
 // vendor styles
 @import '~rc-tooltip/assets/bootstrap_white.css';

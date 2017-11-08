@@ -20,7 +20,9 @@ class Questions extends Component {
             QuestionType = (<Choices {...this.props} />);
             break;
         default:
-            QuestionType = (<Text className='question__text' {...this.props} />);
+            QuestionType = (<Text
+                vocab={this.props.vocab}
+                {...this.props} />);
         }
         return (
             <div className='questions'>
