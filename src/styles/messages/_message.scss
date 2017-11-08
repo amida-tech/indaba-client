@@ -16,6 +16,14 @@ $block-class: 'message';
             flex-direction: row;
             justify-content: space-between;
             padding: 0.5em 0;
+
+            &--top,
+            &:-webkit-autofill,
+            :-webkit-autofill:hover,
+            :-webkit-autofill:focus {
+                background-color: #fff;
+                transition: background-color 5000s ease-in-out 0s;
+            }
         }
 
         &__timestamp {
