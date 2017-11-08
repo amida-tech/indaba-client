@@ -65,7 +65,9 @@ class PMUsersTab extends Component {
                     groups={this.props.project.userGroups}
                     onUserNameClick={this.props.actions.pmProjectShowProfile}
                     onUserDeleteClick={id => this.props.actions.removeUser(
-                            id, this.props.project.id, this.props.vocab.ERROR)}/>
+                            id, this.props.project.id, this.props.vocab.ERROR)}
+                    onUserMailClick={id => this.props.actions.sendMessage(
+                        this.props.users.find(user => user.id === id))}/>
             </div>
         );
     }

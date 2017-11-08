@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -10,6 +11,7 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import StatusChange from './Modals/StatusChange';
+import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -121,6 +123,12 @@ const mapDispatchToProps = dispatch => ({
         discussActions,
         { addNewUser, notifyUser },
         { setSurveyStatus, setSurveyName },
+        { sendMessage: user => dispatch(push(
+            {
+                pathname: '/messages/new',
+                state: { message: { to: renderName(user) } },
+            },
+        )) },
     ), dispatch),
 });
 
