@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import IonIcon from 'react-ionicons';
 
-import * as Questions from '../../../../common/components/Questions';
+import Questions from '../../../../common/components/Questions';
 
 class ReviewPane extends Component {
     constructor(props) {

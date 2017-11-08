@@ -3,8 +3,8 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 
-import ReviewPane from './ReviewPane';
-import * as Questions from '../../../common/components/Questions';
+// import ReviewPane from './ReviewPane'; // TODO: INBA-436.
+import Questions from '../../../common/components/Questions';
 
 class QuestionContainer extends Component {
     render() {
@@ -13,8 +13,7 @@ class QuestionContainer extends Component {
                 <AccordionPanel
                     heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.index + 1)}
                     {...this.props}>
-                    <Questions {...this.props} />
-                        // <ReviewPane {...this.props.question}/> // TODO: INBA-436.
+                    <Questions {...this.props.question} />
                 </AccordionPanel>
             </Element>
         );
