@@ -7,6 +7,8 @@ $block-class: 'amida-footer';
         justify-content: flex-end;
         background-color: hsl(216, 2, 93);
         width: 100%;
+        position: relative;
+        top: 72px;
 
         &__footer-title {
             padding-top: 16px;
