@@ -4,12 +4,14 @@ $block-class:'survey-pane';
     .#{$block-class} {
         margin-left: 1em;
 
-        &__wrapper {
+        &__controls {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             width: 100%;
-            padding-top: 1em;
-            padding-right: 1em;
+            padding: 1em;
+        }
+
+        &__accordion-buttons {
         }
 
         &__instructions {

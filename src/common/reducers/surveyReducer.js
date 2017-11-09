@@ -7,6 +7,7 @@ const initialState = {
     ui: {
         errorMessage: '',
         newSurveyName: '',
+        surveyIndex: 0,
     },
     data: [{
         id: -1,
@@ -40,6 +41,8 @@ export const SurveyReducer = (state = initialState, action) => {
         return (surveyIndex >= 0 ?
             update(state, { data: { [surveyIndex]: { name: { $set: action.name } } } }) :
             update(state, { ui: { newSurveyName: { $set: action.name } } }));
+    case type.SET_SURVEY_SECTION_INDEX:
+        return update(state, { ui: { surveyIndex: { $set: action.index } } });
     case type.REPORT_SURVEY_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case LOG_OUT:

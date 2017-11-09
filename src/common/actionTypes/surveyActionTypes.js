@@ -1,5 +1,6 @@
 export const SET_SURVEY_STATUS = 'SET_SURVEY_STATUS';
 export const SET_SURVEY_NAME = 'SET_SURVEY_NAME';
+export const SET_SURVEY_SECTION_INDEX = 'SET_SURVEY_SECTION_INDEX';
 
 // Private function types.
 export const POST_SURVEY_SUCCESS = 'POST_SURVEY_SUCCESS';

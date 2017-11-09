@@ -107,6 +107,12 @@ export function setSurveyStatus(status, surveyId) {
     };
 }
 
+export function setSurveySectionIndex(index) {
+    return {
+        type: actionTypes.SET_SURVEY_SECTION_INDEX,
+        index,
+    };
+}
 
 // Private functions.
 function _postSurveySuccess(survey) {

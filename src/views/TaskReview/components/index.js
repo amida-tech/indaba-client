@@ -8,6 +8,7 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
+import { setSurveySectionIndex } from '../../../common/actions/surveyActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import { getProjectById } from '../../../common/actions/projectActions';
@@ -30,6 +31,7 @@ function surveyMapper(responses, questions) {
 
 class TaskReview extends Component {
     componentWillMount() {
+        this.props.actions.setSurveySectionIndex(0);
         this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
         if (this.props.task.id < 0) {
             this.props.actions.getTaskById(this.props.params.projectId,
@@ -60,6 +62,7 @@ class TaskReview extends Component {
                     <SurveyPane
                         ui={this.props.ui}
                         survey={displaySurvey}
+                        surveyIndex={this.props.surveyIndex}
                         instructions={this.props.survey.instructions}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
@@ -96,6 +99,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
         survey: state.surveys.data[0].name ?
             _.find(state.surveys.data, survey => survey.id === project.surveyId) :
             state.surveys.data[0],
+        surveyIndex: state.surveys.ui.surveyIndex,
         responses: _.find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
@@ -107,7 +111,8 @@ const mapDispatchToProps = dispatch => ({
         updateTaskEndDate,
         updateFlaggedQuestion,
         getTaskById,
-        getProjectById }),
+        getProjectById,
+        setSurveySectionIndex }),
         dispatch),
 });
 

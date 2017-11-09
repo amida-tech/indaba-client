@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { Select, Button } from 'grommet';
 import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
     render() {
         return (
             <div className='survey-pane'>
-            <div className='survey-pane__wrapper'>
-                <button onClick={() => this.props.actions.showQuestion(
-                    this.props.survey.map((key, index) => index))}>
-                    {this.props.vocab.PROJECT.EXPAND_ALL}
-                </button>
-                <button onClick={this.props.actions.collapseAllQuestions}>
-                    {this.props.vocab.PROJECT.COLLAPSE_ALL}
-                </button>
+                <div className='survey-pane__controls'>
+                    <Select />
+                    <div className='survey-pane__accordion-buttons'>
+                        <Button className='survey-pane__button'
+                            label={this.props.vocab.PROJECT.EXPAND_ALL}
+                            onClick={() => this.props.actions.showQuestion(
+                                this.props.survey.map((key, index) => index))} />
+                        <Button className='survey-pane__button'
+                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}
+                            onClick={this.props.actions.collapseAllQuestions} />
+                    </div>
                 </div>
                 <div className='survey-pane__instructions'>
                     <span className='survey-pane__instructions-header'>
