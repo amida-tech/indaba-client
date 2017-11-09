@@ -7,8 +7,10 @@ $block-class: 'project-list-entry';
         cursor: pointer;
         padding: 1em 2em 1em 1em;
 
-        &:nth-child(even) {
-            background-color: #fff;
+        @extend .lead-font;
+
+        &:hover {
+            background-color: #efefef;
         }
 
         &__name {
