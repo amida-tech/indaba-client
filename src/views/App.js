@@ -15,10 +15,10 @@ class App extends Component {
                 <div className='main-body'>
                     {this.props.children}
                 </div>
-                <div>
-                 {this.props.location.pathname !== '/create-new-project' &&
-                    <AmidaFooter/> }
-                </div>
+                {
+                    this.props.location.pathname !== '/create-new-project' &&
+                    <AmidaFooter/>
+                }
                 <ToastContainer
                     className='app__toast'
                     position='top-right'
