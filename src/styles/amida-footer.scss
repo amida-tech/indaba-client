@@ -2,32 +2,24 @@ $block-class: 'amida-footer';
 
 @at-root {
     .#{$block-class} {
-        &__container {
-            position: relative;
-            height: 100%;
-            width: 100%;
-
-            &-block {
-                position: absolute;
-                bottom: 0;
-                padding-right: 10%;
-                display: flex;
-                justify-content: flex-end;
-                background-color: hsl(216, 2, 93);
-                width: 100%;
-            }
-        }
+        position: absolute;
+        bottom: 0;
+        padding-right: 10%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        background-color: hsl(216, 2, 93);
+        width: 100%;
+        height: $footer-height;
 
         &__footer-title {
-            padding-top: 16px;
-            padding-bottom: 16px;
-            font-weight: 400;
-            font-size: 16px;
+            @extend .large-font;
+
+            margin-right: 1em;
         }
 
         &__indaba-service-mark {
             height: 40px;
-            padding: 2px;
         }
     }
 }
