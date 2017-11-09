@@ -39,7 +39,7 @@
         "MY_TASKS":"My Tasks"
     },
     "TOAST": {
-        "EXISTS": "The user is already in the system, but we've added them to the ALL for you.",
+        "EXISTS": "The user is already in the system and added to the project for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
