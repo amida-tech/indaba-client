@@ -71,5 +71,12 @@ $block-class: 'inbox-message-list';
             fill: #7e848f;
             flex: 1;
         }
+
+        &__entry--title {
+            .#{$block-class}__from {
+                position: relative;
+                left: 10px;
+            }
+        }
     }
 }
