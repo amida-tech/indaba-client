@@ -7,8 +7,6 @@ import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
     render() {
-        console.log(this.props);
-        console.log(this.props.sectionIndex);
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -17,10 +15,7 @@ class SurveyPane extends Component {
                         value={this.props.sectionIndex}
                         clearable={false}
                         disabled={this.props.options.length === 1}
-                        onChange={(event) => {
-                            console.log(event);
-                            this.props.actions.setSurveySectionIndex(event.value);
-                        }}/>
+                        onChange={event => this.props.actions.setSurveySectionIndex(event.value)}/>
                     <div className='survey-pane__accordion-buttons'>
                         <Button className='survey-pane__button'
                             label={this.props.vocab.PROJECT.EXPAND_ALL}

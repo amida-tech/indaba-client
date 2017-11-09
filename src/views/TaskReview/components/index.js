@@ -45,7 +45,19 @@ class TaskReview extends Component {
                 ({ value: index, label: section.name })) : [];
         options.unshift(
                 { value: -1, label: this.props.vocab.SURVEY.VIEWING_ALL_QUESTIONS });
-        const displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+        let displaySurvey;
+        if (this.props.survey.sections && this.props.sectionIndex === -1) {
+            displaySurvey = [];
+            this.props.survey.sections.forEach((section) => {
+                displaySurvey = _.concat(displaySurvey,
+                    surveyMapper(this.props.responses, section.questions));
+            });
+        } else if (this.props.survey.sections) {
+            displaySurvey = surveyMapper(this.props.responses,
+                this.props.survey.sections[this.props.sectionIndex].questions);
+        } else {
+            displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+        }
 
         return (
             <div className='task-review'>
