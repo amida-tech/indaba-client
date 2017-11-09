@@ -13,13 +13,15 @@ $block-class: 'amida-footer';
         height: $footer-height;
 
         &__footer-title {
-            @extend .large-font;
+            @extend .lead-font;
 
             margin-right: 1em;
         }
 
         &__indaba-service-mark {
             height: 40px;
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
     }
 }
