@@ -53,6 +53,7 @@
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
         "SURVEY_REQUEST": "The system failed to insert or update a new survey into the database. Please try again",
+        "ANSWER_REQUEST": "The system failed to handle an answer request.",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
         "SUBJECT_REQUEST": "Something has gone wrong with subject(s) insertion or deletion. Please try again.",
         "PROFILE_REQUEST": "Failed to insert or delete profile request.",
@@ -64,6 +65,11 @@
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
         "COMING_SOON": "Coming soon."
+    },
+    "VALIDATE": {
+        "EMAIL": "Invalid email address.",
+        "LETTERS": "Entry should not contain numbers.",
+        "NUMBER": "Not a number."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -308,7 +314,7 @@
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
         "NEW_QUESTIONS": "New Questions",
         "EXISTING": "Existing",
-        "VIEWING_ALL_QUESTIONS": "Viewing all questions",
+        "VIEW_ALL": "Viewing all questions",
         "ENTER_INSTRUCTIONS": "Enter instructions here",
         "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
         "ATTACH_FILE": "Attach File",

@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
 import { updateProjectWithSurvey } from './projectActions';
 
-// API calls.
+// Survey API calls.
 export function getSurveys(errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys(
@@ -15,7 +15,6 @@ export function getSurveys(errorMessages) {
     };
 }
 
- // For creating new survey. For update, use patchSurvey() below.
 export function postSurvey(survey, projectId, productId, errorMessages) {
     const requestBody = {
         authorId: 1,
@@ -90,7 +89,25 @@ export function getSurveyById(surveyId, errorMessages) {
     };
 }
 
-// Check on whether these should be private later.
+// Answer related.
+export function postAnswer(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.postAnswer(
+            requestBody,
+            (answerErr, answerResp) => {
+                console.log('postAnswer');
+                console.log(answerResp);
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(_postAnswerSuccess(requestBody));
+                }
+            },
+        );
+    };
+}
+
+// UI component related.
 export function setSurveyName(name, surveyId) {
     return {
         type: actionTypes.SET_SURVEY_NAME,
@@ -115,6 +132,13 @@ export function setSurveySectionIndex(index) {
 }
 
 // Private functions.
+function _getSurveysSuccess(surveys) {
+    return {
+        type: actionTypes.GET_SURVEYS_SUCCESS,
+        surveys,
+    };
+}
+
 function _postSurveySuccess(survey) {
     return {
         type: actionTypes.POST_SURVEY_SUCCESS,
@@ -130,18 +154,18 @@ function _patchSurveySuccess(surveyId, survey) {
     };
 }
 
-function _getSurveysSuccess(surveys) {
-    return {
-        type: actionTypes.GET_SURVEYS_SUCCESS,
-        surveys,
-    };
-}
-
 function _getSurveyByIdSuccess(surveyId, survey) {
     return {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
+    };
+}
+
+function _postAnswerSuccess(answer) {
+    return {
+        type: actionTypes.POST_ANSWER_SUCCESS,
+        answer,
     };
 }
 

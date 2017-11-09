@@ -8,7 +8,7 @@ import IonIcon from 'react-ionicons';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
-import { setSurveySectionIndex } from '../../../common/actions/surveyActions';
+import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import { getProjectById } from '../../../common/actions/projectActions';
@@ -43,8 +43,7 @@ class TaskReview extends Component {
         const options = this.props.survey.sections ?
             this.props.survey.sections.map((section, index) =>
                 ({ value: index, label: section.name })) : [];
-        options.unshift(
-                { value: -1, label: this.props.vocab.SURVEY.VIEWING_ALL_QUESTIONS });
+        options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         let displaySurvey;
         if (this.props.survey.sections && this.props.sectionIndex === -1) {
             displaySurvey = [];
@@ -131,7 +130,8 @@ const mapDispatchToProps = dispatch => ({
         updateFlaggedQuestion,
         getTaskById,
         getProjectById,
-        setSurveySectionIndex }),
+        setSurveySectionIndex,
+        postAnswer }),
         dispatch),
 });
 

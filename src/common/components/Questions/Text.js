@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { Field } from 'redux-form';
+
+import { isValid } from '../../../utils/Validation';
 
 class Text extends Component {
     render() {
-        console.log('text component');
-        console.log(this.props);
+        let warn = '';
         return (
             <div className='text' >
                 <div className='text__label'>
@@ -16,6 +16,15 @@ class Text extends Component {
                     component='input'
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
+                    onChange={(event) => {
+                        warn = isValid(['letters'], event.target.value, this.props.vocab.VALIDATE);
+                    }}
+                    onBlur={(event) => {
+                        console.log(warn);
+                        if (!warn) {
+                            this.props.actions.postAnswer(event.target.value);
+                        }
+                    }}
                     className='text__field'/>
             </div>
         );

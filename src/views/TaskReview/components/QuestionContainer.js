@@ -16,6 +16,7 @@ class QuestionContainer extends Component {
                     {...this.props}>
                     <Questions
                         {...this.props.question}
+                        actions={this.props.actions}
                         vocab={this.props.vocab} />
                 </AccordionPanel>
             </Element>
