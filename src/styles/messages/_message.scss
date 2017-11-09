@@ -56,9 +56,9 @@ $block-class: 'message';
             padding: 0.5em 1em;
             cursor: pointer;
         }
-    }
-}
 
-.grommetux-button:not(.grommetux-button--fill) {
-    border-radius: 2px; 
+        .grommetux-button:not(.grommetux-button--fill) {
+            border-radius: 2px;
+        }
+    }
 }

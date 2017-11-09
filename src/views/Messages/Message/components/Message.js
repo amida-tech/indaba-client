@@ -30,8 +30,7 @@ class Message extends Component {
                         </div>
                     </div>
                     <div className='message__row'>
-                        <MessageField className='message__row'
-                        label={this.props.vocab.MESSAGES.FROM}
+                        <MessageField label={this.props.vocab.MESSAGES.FROM}
                             input className={compose}
                             value={_.get(this.props, 'message.from')}
                             name='from'/>
