@@ -80,6 +80,7 @@ class TaskReview extends Component {
                         ui={this.props.ui}
                         survey={displaySurvey}
                         options={options}
+                        surveyId={this.props.survey.id}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         actions={this.props.actions}

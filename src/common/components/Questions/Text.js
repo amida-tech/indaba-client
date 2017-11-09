@@ -20,9 +20,13 @@ class Text extends Component {
                         warn = isValid(['letters'], event.target.value, this.props.vocab.VALIDATE);
                     }}
                     onBlur={(event) => {
-                        console.log(warn);
                         if (!warn) {
-                            this.props.actions.postAnswer(event.target.value);
+                            this.props.actions.postAnswer(
+                                this.props.surveyId,
+                                this.props.id,
+                                'textValue',
+                                event.target.value,
+                                this.props.vocab.ERROR);
                         }
                     }}
                     className='text__field'/>

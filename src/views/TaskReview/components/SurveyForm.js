@@ -16,6 +16,7 @@ class SurveyForm extends Component {
                     <QuestionContainer
                         key={`questionpanel${index}`}
                         index={index}
+                        surveyId={this.props.surveyId}
                         actions={this.props.actions}
                         question={question}
                         {...this.props} />,
