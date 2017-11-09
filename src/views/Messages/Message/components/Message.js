@@ -31,7 +31,7 @@ class Message extends Component {
                     </div>
                     <div className='message__row'>
                         <MessageField label={this.props.vocab.MESSAGES.FROM}
-                            input className={compose}
+                            input={compose}
                             value={_.get(this.props, 'message.from')}
                             name='from'/>
                     </div>
