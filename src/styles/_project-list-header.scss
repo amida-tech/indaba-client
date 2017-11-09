@@ -4,14 +4,12 @@ $block-class: 'project-list-header';
     .#{$block-class} {
         display: flex;
         padding: 8px 16px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
 
         @extend .lead-font;
 
         &__title {
             color: $font-color;
-            font-weight: 700;
+            font-weight: 500;
 
             &--project {
                 flex: 4;
@@ -34,7 +32,7 @@ $block-class: 'project-list-header';
 
         .project-list-header__title--last-updated {
             position: relative;
-            right: 100px;
+            right: 108px;
         }
     }
 }
