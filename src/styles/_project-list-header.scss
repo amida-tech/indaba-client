@@ -3,9 +3,11 @@ $block-class: 'project-list-header';
 @at-root {
     .#{$block-class} {
         display: flex;
-        padding: 1em 2em 1em 1em;
+        padding: 8px 16px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
+        @extend .lead-font;
 
         &__title {
             color: $font-color;
@@ -28,6 +30,11 @@ $block-class: 'project-list-header';
                 display: flex;
                 justify-content: flex-end;
             }
+        }
+
+        .project-list-header__title--last-updated {
+            position: relative;
+            right: 100px;
         }
     }
 }
