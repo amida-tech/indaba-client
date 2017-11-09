@@ -31,7 +31,7 @@ function surveyMapper(responses, questions) {
 
 class TaskReview extends Component {
     componentWillMount() {
-        this.props.actions.setSurveySectionIndex(0);
+        this.props.actions.setSurveySectionIndex(-1);
         this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
         if (this.props.task.id < 0) {
             this.props.actions.getTaskById(this.props.params.projectId,
@@ -40,7 +40,13 @@ class TaskReview extends Component {
     }
 
     render() {
+        const options = this.props.survey.sections ?
+            this.props.survey.sections.map((section, index) =>
+                ({ value: index, label: section.name })) : [];
+        options.unshift(
+                { value: -1, label: this.props.vocab.SURVEY.VIEWING_ALL_QUESTIONS });
         const displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
@@ -62,7 +68,8 @@ class TaskReview extends Component {
                     <SurveyPane
                         ui={this.props.ui}
                         survey={displaySurvey}
-                        surveyIndex={this.props.surveyIndex}
+                        options={options}
+                        sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
@@ -99,7 +106,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
         survey: state.surveys.data[0].name ?
             _.find(state.surveys.data, survey => survey.id === project.surveyId) :
             state.surveys.data[0],
-        surveyIndex: state.surveys.ui.surveyIndex,
+        sectionIndex: state.surveys.ui.sectionIndex,
         responses: _.find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,

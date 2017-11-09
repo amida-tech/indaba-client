@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Select, Button } from 'grommet';
+import Select from 'react-select';
+import { Button } from 'grommet';
+
 import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
     render() {
+        console.log(this.props);
+        console.log(this.props.sectionIndex);
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
-                    <Select />
+                    <Select className='survey-pane__select'
+                        options={this.props.options}
+                        value={this.props.sectionIndex}
+                        clearable={false}
+                        disabled={this.props.options.length === 1}
+                        onChange={(event) => {
+                            console.log(event);
+                            this.props.actions.setSurveySectionIndex(event.value);
+                        }}/>
                     <div className='survey-pane__accordion-buttons'>
                         <Button className='survey-pane__button'
                             label={this.props.vocab.PROJECT.EXPAND_ALL}

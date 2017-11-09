@@ -303,7 +303,6 @@
         "RETIRED": "Retired",
         "DRAFT": "Draft",
         "PUBLISHED": "Published",
-        "SECTION": "Section",
         "PUBLISH": "Publish survey",
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
