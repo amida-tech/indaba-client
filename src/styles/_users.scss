@@ -33,6 +33,10 @@ $block-class: 'users';
             }
         }
 
+        .grommetux-tabs--justify-start {
+            margin-bottom: none;
+        }
+
         .grommetux-tab--active {
             background-color: lighten(#d8d8d8, 5%);
         }
