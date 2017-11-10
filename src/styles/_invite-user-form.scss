@@ -18,7 +18,7 @@ $block-class: 'invite-user-form';
             transition: background-color 5000s ease-in-out 0s;
             flex: 1;
             margin-right: 4px;
-            padding-left: 2px;
+            padding: 8px;
 
             &:focus {
                 border: 2px solid $brand-color;
