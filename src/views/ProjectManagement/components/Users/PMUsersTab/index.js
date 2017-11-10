@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { renderName } from '../../../../../utils/User';
 
-import UserProfile from './UserProfile';
+import { UserProfileContainer } from '../../../../UserProfile';
 import PMUserListRow from './PMUserListRow';
 import PMUserListHeader from './PMUserListHeader';
 import InviteUserForm from '../../../../../common/components/InviteUserForm';
@@ -28,8 +28,8 @@ class PMUsersTab extends Component {
         return (
             <div className='pm-users-tab'>
                 {this.state.userProfileId !== false &&
-                    <UserProfile userId={this.state.userProfileId}
-                        {...this.props}
+                    <UserProfileContainer userId={this.state.userProfileId}
+                        projectId={this.props.project.id}
                         onCancel={() => this.setState({ userProfileId: false })}
                         onSave={() => this.setState({ userProfileId: false })}/>
                 }
