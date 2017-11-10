@@ -5,10 +5,10 @@ $block-class: 'user-group-list-entry';
         flex-direction: row;
         display: flex;
         align-items: center;
-        padding: 1em;
+        padding: 8px 16px;
 
-        &:nth-child(even) {
-            background-color: lighten(#d8d8d8, 10%);
+        &:hover {
+            background-color: #f3f3f3;
         }
 
         &__name {

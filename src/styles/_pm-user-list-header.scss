@@ -4,8 +4,6 @@ $block-class: 'pm-user-list-header';
     .#{$block-class} {
         width: 100%;
         display: inline-flex;
-        padding-left: 20px;
-        padding-right: 20px;
 
         @extend .lead-font;
 
@@ -13,7 +11,7 @@ $block-class: 'pm-user-list-header';
             flex: 6;
             color: $font-color;
             font-weight: 500;
-            padding: 8px;
+            padding: 8px 16px;
             justify-content: center;
         }
     }
