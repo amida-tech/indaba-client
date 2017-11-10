@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
-import { form, reduxForm } from 'redux-form';
 
 import QuestionContainer from './QuestionContainer';
 
-class SurveyForm extends Component {
+class SurveyForm extends Component { // TODO: INBA-450
     render() {
         return (
-            <form className='survey-form'>
+            <div className='survey-form'>
                 <Accordion
                     active={this.props.ui.showQuestions}
                     openMulti={true}>
@@ -16,13 +15,13 @@ class SurveyForm extends Component {
                     <QuestionContainer
                         key={`questionpanel${index}`}
                         index={index}
-                        surveyId={this.props.surveyId}
+                        answers={this.props.answers}
                         actions={this.props.actions}
                         question={question}
                         {...this.props} />,
                     )}
                 </Accordion>
-            </form>
+            </div>
         );
     }
 }
@@ -31,4 +30,4 @@ SurveyForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default reduxForm({ form: 'survey-form' })(SurveyForm);
+export default SurveyForm;

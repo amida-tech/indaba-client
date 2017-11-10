@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import * as type from './actionTypes';
 import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
+import { GET_SURVEY_BY_ID_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -19,11 +20,27 @@ export const initialState = {
             timestamp: null,
             signatureId: null,
         },
+        required: true,
+        form: {
+            surveyId: -1,
+            answers: [],
+        },
     },
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) {
+    switch (action.type) { // YOU GET SURVEY TOO!!! PERFECT!
+    case GET_SURVEY_BY_ID_SUCCESS:
+        return update(state, { ui: { form: { surveyId: { $set: action.surveyId } } } });
+    case type.UPSERT_ANSWER: {
+        const answerIndex = _.findIndex(state.ui.form.answers,
+            answer => answer.questionId === action.id);
+        return answerIndex < 0 ?
+            update(state, { ui: { form: { answers:
+                { $push: [{ questionId: action.id, answer: action.answer }] } } } }) :
+            update(state, { ui: { form: { answers: {
+                [answerIndex]: { answer: { $set: action.answer } } } } } });
+    }
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
             { ui: { flags: { $set: action.flags } } });

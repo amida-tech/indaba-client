@@ -78,6 +78,7 @@ class TaskReview extends Component {
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
                     <SurveyPane
                         ui={this.props.ui}
+                        answers={this.props.ui.form.answers}
                         survey={displaySurvey}
                         options={options}
                         surveyId={this.props.survey.id}

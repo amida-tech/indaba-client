@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
 
-import { isValid } from '../../../utils/Validation';
+// import { isValid } from '../../../utils/Validation';
 
 class Text extends Component {
     render() {
-        let warn = '';
         return (
             <div className='text' >
                 <div className='text__label'>
                     {this.props.text}
                 </div>
-                <Field name='email'
-                    component='input'
+                <input className={`text__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
-                    onChange={(event) => {
-                        warn = isValid(['letters'], event.target.value, this.props.vocab.VALIDATE);
-                    }}
+                    disabled={this.props.displayMode}
                     onBlur={(event) => {
-                        if (!warn) {
-                            this.props.actions.postAnswer(
-                                this.props.surveyId,
-                                this.props.id,
-                                'textValue',
-                                event.target.value,
-                                this.props.vocab.ERROR);
-                        }
+                        this.props.actions.upsertAnswer(
+                            this.props.id,
+                            { textValue: event.target.value },
+                        );
                     }}
-                    className='text__field'/>
+                />
             </div>
         );
     }
 }
+// let warn = '';
+// onChange={(event) => {
+//     warn = isValid(['letters'], event.target.value, this.props.vocab.VALIDATE);
+// }}
+// if (!warn) {
+//     this.props.actions.postAnswer(
+//         this.props.surveyId,
+//         this.props.id,
+//         'textValue',
+//         event.target.value,
+//         this.props.vocab.ERROR);
+// }
 
 Text.propTypes = {
     vocab: PropTypes.object.isRequired,

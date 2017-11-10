@@ -1,5 +1,22 @@
 import * as actionTypes from './actionTypes';
 
+// Survey Form:
+export function updateFormSurveyId(surveyId) {
+    return {
+        type: actionTypes.UPDATE_FORM_SURVEY_ID,
+        surveyId,
+    };
+}
+
+export function upsertAnswer(id, answer) {
+    return {
+        type: actionTypes.UPSERT_ANSWER,
+        id,
+        answer,
+    };
+}
+
+// Discussion related:
 export function storeFlaggedIssues(flags) {
     return {
         type: actionTypes.STORE_FLAGGED_ISSUES,
