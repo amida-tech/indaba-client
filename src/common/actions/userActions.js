@@ -3,38 +3,6 @@ import { toast } from 'react-toastify';
 import apiService from '../../services/api';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
-export function setUserFirstName(userId, firstName) {
-    return {
-        type: actionTypes.SET_USER_FIRST_NAME,
-        userId,
-        firstName,
-    };
-}
-
-export function setUserLastName(userId, lastName) {
-    return {
-        type: actionTypes.SET_USER_LAST_NAME,
-        userId,
-        lastName,
-    };
-}
-
-export function setUserEmail(userId, email) {
-    return {
-        type: actionTypes.SET_USER_EMAIL,
-        userId,
-        email,
-    };
-}
-
-export function setUserTitle(userId, title) {
-    return {
-        type: actionTypes.SET_USER_TITLE,
-        userId,
-        title,
-    };
-}
-
 export function getProfile(errorMessages) {
     return (dispatch) => {
         apiService.users.getProfile(
@@ -65,6 +33,37 @@ export function updateProfile(userData, errorMessages) {
                     _reportUserError(errorMessages.PROFILE_REQUEST));
             },
         );
+    };
+}
+
+export function updateProfileById(id, userData, errorMessages) {
+    return (dispatch) => {
+        dispatch(_updateProfileById());
+
+        apiService.users.putProfileById(id, userData,
+        (err, response) => {
+            if (err) {
+                dispatch(_updateProfileByIdFailure(err));
+            } else {
+                dispatch(_updateProfileByIdSuccess(response));
+                dispatch(getUsers(errorMessages));
+            }
+        });
+    };
+}
+
+function _updateProfileById() {
+    return {
+        type: actionTypes.UPDATE_PROFILE_BY_ID,
+    };
+}
+function _updateProfileByIdFailure(err) {
+    return dispatch => dispatch(_reportUserError(err.message));
+}
+function _updateProfileByIdSuccess(response) {
+    return {
+        type: actionTypes.UPDATE_PROFILE_BY_ID_SUCCESS,
+        response,
     };
 }
 
@@ -119,14 +118,6 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
                 }
             },
         );
-    };
-}
-
-export function updateUser(userId, user) {
-    return {
-        type: actionTypes.UPDATE_USER,
-        userId,
-        user,
     };
 }
 
