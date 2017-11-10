@@ -16,7 +16,7 @@ const reducers = {
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
     projects: CommonReducers.ProjectReducer,
-    surveys: CommonReducers.SurveysReducer,
+    surveys: CommonReducers.SurveyReducer,
     tasks: CommonReducers.TaskReducer,
     discuss: CommonReducers.DiscussReducer,
     messages: MessagesReducer,

@@ -5,15 +5,16 @@ import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-import SurveyEditorStep from './SurveyEditorStep';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
+import AddSurvey from './AddSurvey';
 import NewProjectTitle from './NewProjectTitle';
 import WizardFooter from './WizardFooter';
 import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
+import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
@@ -65,7 +66,6 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.actions.postProject}
                         vocab={this.props.vocab} />
                 }
-
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
                     onActive={this.changeStep}
@@ -73,7 +73,12 @@ class CreateProjectWizard extends Component {
                     >
                     <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
-                        <SurveyEditorStep />
+                        <AddSurvey
+                            actions={this.props.actions}
+                            project={this.props.project}
+                            survey={this.props.survey}
+                            profile={this.props.user.profile}
+                            vocab={this.props.vocab} />
                     </Tab>
                     <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
@@ -135,19 +140,23 @@ CreateProjectWizard.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    project: state.wizard.ui.projectLink > 0 ?
-            _.find(state.projects.data, project => project.id === state.wizard.ui.projectLink) :
-            state.wizard.project,
-    survey: state.wizard.survey,
-    user: state.user,
-    ui: state.wizard.ui,
-    vocab: state.settings.language.vocabulary,
-});
+const mapStateToProps = (state) => {
+    const project = state.wizard.ui.projectLink > 0 ?
+            _.find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
+            state.wizard.project;
+    return {
+        project,
+        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        user: state.user,
+        ui: state.wizard.ui,
+        vocab: state.settings.language.vocabulary,
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, projectActions, { addNewUser }), dispatch),
+        actions, projectActions, surveyActions, { addNewUser }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
