@@ -9,6 +9,7 @@ import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 import { PMDashboardReducer } from './views/PMDashboard';
 import { UserDashboardReducer } from './views/UserDashboard';
 import { MessagesReducer } from './views/Messages';
+import { UserProfileReducer } from './views/UserProfile';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
@@ -27,6 +28,7 @@ const reducers = {
     form: formReducer,
     pmdashboard: PMDashboardReducer,
     userdashboard: UserDashboardReducer,
+    userprofile: UserProfileReducer,
 };
 
 export default combineReducers(reducers);
