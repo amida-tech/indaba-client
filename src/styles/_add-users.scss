@@ -37,8 +37,9 @@ $block-class: 'add-users';
         }
 
         .grommetux-tab--active {
-            background: darken(#fff, 10%);
-            font-weight: 700;
+            background-color: lighten(#d8d8d8, 5%);
+
+            @extend .lead-font;
         }
 
         .grommetux-tabs--justify-center {
@@ -50,18 +51,11 @@ $block-class: 'add-users';
         .grommetux-tab {
             width: 150px;
             display: flex;
-            font-weight: 700;
-
-            &:hover {
-                background-color: darken(#fff, 7%);
-            }
         }
 
         .grommetux-tab__label {
-            @extend .large-font;
+            @extend .lead-font;
 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             color: $header-font-color;
             width: 150px;
             display: flex;

@@ -39,6 +39,10 @@ $block-class: 'invite-user-form';
                 border: 2px solid darken($font-color, 10);
                 outline: none;
             }
+
+            &:hover {
+                background-color: darken($font-color, 10);
+            }
         }
     }
 }
