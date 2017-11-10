@@ -18,6 +18,7 @@ class Text extends Component {
                         this.props.actions.upsertAnswer(
                             this.props.id,
                             { textValue: event.target.value },
+                            this.props.required,
                         );
                     }}
                 />

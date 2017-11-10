@@ -15,6 +15,7 @@ class Bool extends Component {
                         this.props.actions.upsertAnswer(
                             this.props.id,
                             { boolValue: !this.props.answer },
+                            this.props.required,
                     );
                     }} />
             </div>

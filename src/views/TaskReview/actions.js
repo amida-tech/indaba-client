@@ -8,11 +8,12 @@ export function updateFormSurveyId(surveyId) {
     };
 }
 
-export function upsertAnswer(id, answer) {
+export function upsertAnswer(id, answer, required) {
     return {
         type: actionTypes.UPSERT_ANSWER,
         id,
         answer,
+        required,
     };
 }
 

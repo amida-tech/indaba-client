@@ -13,7 +13,7 @@ class QuestionContainer extends Component {
                 className='question-container'>
                 <AccordionPanel
                     heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.index + 1)
-                        + (this.props.question.required ? '*' : '')}
+                        + (this.props.question.required ? ' *' : '')}
                     {...this.props}>
                     <Questions
                         {...this.props.question}

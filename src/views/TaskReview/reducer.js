@@ -20,7 +20,8 @@ export const initialState = {
             timestamp: null,
             signatureId: null,
         },
-        required: true,
+        reqTotal: 0,
+        reqAnswers: 0,
         form: {
             surveyId: -1,
             answers: [],
@@ -29,17 +30,29 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) { // YOU GET SURVEY TOO!!! PERFECT!
-    case GET_SURVEY_BY_ID_SUCCESS:
-        return update(state, { ui: { form: { surveyId: { $set: action.surveyId } } } });
+    switch (action.type) {
+    case GET_SURVEY_BY_ID_SUCCESS: {
+        const answers = 0; // Coming soon.
+        const flatSurvey = action.survey.sections ? _.flatten(_.map(action.survey.sections, 'questions')) :
+            action.survey.questions;
+        const total = _.filter(flatSurvey, question => question.required === true).length;
+        return update(state, { ui: {
+            form: { surveyId: { $set: action.surveyId } },
+            reqTotal: { $set: total },
+            reqAnswers: { $set: answers },
+        } });
+    }
     case type.UPSERT_ANSWER: {
         const answerIndex = _.findIndex(state.ui.form.answers,
             answer => answer.questionId === action.id);
+        const reqIncrease = !answerIndex && action.required ?
+            state.ui.reqAnswers + 1 : state.ui.reqAnswers;
         return answerIndex < 0 ?
-            update(state, { ui: { form: { answers:
-                { $push: [{ questionId: action.id, answer: action.answer }] } } } }) :
-            update(state, { ui: { form: { answers: {
-                [answerIndex]: { answer: { $set: action.answer } } } } } });
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                form: { answers: { $push: [{ questionId: action.id, answer: action.answer }],
+                } } } }) :
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
     }
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
