@@ -5,6 +5,10 @@ $block-class: 'delete-icon-button';
         &__icon {
             fill: $font-color;
             cursor: pointer;
+
+            &:hover {
+                background-color: darken($font-color, 10);
+            }
         }
     }
 }
