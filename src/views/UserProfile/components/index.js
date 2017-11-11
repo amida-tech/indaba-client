@@ -24,15 +24,13 @@ class UserProfileContainer extends Component {
 }
 
 UserProfileContainer.propTypes = {
-    onUpdateUser: PropTypes.func.isRequired,
-    onClickToSubmit: PropTypes.func.isRequired,
     userId: PropTypes.number.isRequired,
-    user: PropTypes.object.isRequired,
-    project: PropTypes.object.isRequired,
-    users: PropTypes.arrayOf(PropTypes.object).isRequired,
     onCancel: PropTypes.func.isRequired,
-    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-    vocab: PropTypes.object.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onUpdateUser: PropTypes.func.isRequired,
+
+    // Project-specific sections not rendered when not provided
+    projectId: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -41,10 +39,12 @@ const mapStateToProps = (state, ownProps) => {
     return {
         vocab: state.settings.language.vocabulary,
         userId: ownProps.userId,
+        projectId: ownProps.projectId,
+
         user,
+        project,
         users: state.user.users,
         tasks: state.userprofile.tasks,
-        project,
         initialValues: user && {
             name: {
                 firstName: user.firstName,
