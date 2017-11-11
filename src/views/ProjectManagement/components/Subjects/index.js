@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from 'grommet';
-import SubjectList from './SubjectList';
+import SubjectList from '../../../../common/components/SubjectList';
 import AddSubject from '../Modals/AddSubject';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
