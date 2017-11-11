@@ -11,6 +11,12 @@ const projects = {
     postProject: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
     },
+    putProject: (projectId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody, callback);
+    },
+    putSurveyToProduct: (productId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody, callback);
+    },
     postUOA: (requestBody, callback) => { // For time being, we don't delete these.
         requests.apiPostRequest(getFullPath('uoas'), requestBody, callback);
     },
