@@ -10,7 +10,7 @@ import { renderName } from '../../../../../utils/User';
 class PMUserListRow extends Component {
     render() {
         const groups = this.props.groups.filter(g => g.users.includes(this.props.user.id))
-            .map(g => g.name).join(', ');
+            .map(g => g.title).join(', ');
         return (
             <div className='pm-user-list-row'>
                 <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'

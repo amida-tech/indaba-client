@@ -43,10 +43,12 @@ class ProjectManagementContainer extends Component {
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
                     userId => this.props.users.find(user => user.id === userId))}
+                allUsers={this.props.users}
                 tasks={this.props.tasks}
                 project={this.props.project}
                 profile={this.props.profile}
-                actions={this.props.actions} />;
+                actions={this.props.actions}
+                ui={this.props.ui}/>;
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}

@@ -17,7 +17,7 @@ class UserGroupListEntry extends Component {
                 <div className='user-group-list-entry__badge-string'
                     onClick={this.props.onGroupClick}>
                     {users.map(user =>
-                        <UserBadge key={user.id} user={user}/>,
+                        user && <UserBadge key={user.id} user={user}/>,
                     )}
                 </div>
                 {this.props.onDeleteClick &&
