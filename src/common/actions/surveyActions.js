@@ -95,8 +95,6 @@ export function postAnswer(requestBody, errorMessages) {
         apiService.surveys.postAnswer(
             requestBody,
             (answerErr, answerResp) => {
-                console.log('postAnswer');
-                console.log(answerResp);
                 if (answerErr) {
                     dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {

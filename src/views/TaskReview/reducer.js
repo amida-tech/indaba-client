@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
+import { flatten, map, filter, findIndex } from 'lodash';
 
 import * as type from './actionTypes';
 import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
@@ -33,17 +33,18 @@ export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
         const answers = 0; // Coming soon.
-        const flatSurvey = action.survey.sections ? _.flatten(_.map(action.survey.sections, 'questions')) :
+        const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
-        const total = _.filter(flatSurvey, question => question.required === true).length;
+        const flatAnswers = map(flatSurvey, item => ({ questionId: item.id, answer: item.answer }));
+        const total = filter(flatSurvey, question => question.required === true).length;
         return update(state, { ui: {
-            form: { surveyId: { $set: action.surveyId } },
+            form: { surveyId: { $set: action.surveyId }, answers: { $set: flatAnswers } },
             reqTotal: { $set: total },
             reqAnswers: { $set: answers },
         } });
     }
     case type.UPSERT_ANSWER: {
-        const answerIndex = _.findIndex(state.ui.form.answers,
+        const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.id);
         const reqIncrease = !answerIndex && action.required ?
             state.ui.reqAnswers + 1 : state.ui.reqAnswers;
@@ -87,7 +88,7 @@ export default (state = initialState, action) => {
                 timestamp: { $set: null },
             } } });
     case UPDATE_FLAGGED_QUESTION: {
-        const flagIndex = _.findIndex(state.ui.flags, flag =>
+        const flagIndex = findIndex(state.ui.flags, flag =>
             flag.id === action.activeId);
         if (action.data.resolved) {
             let nextId = 0; // Determines the next active question, if any.
