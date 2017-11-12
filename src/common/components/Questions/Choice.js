@@ -21,9 +21,9 @@ class Choice extends Component {
                             disabled={this.props.displayMode}
                             onChange={(event) => {
                                 const entry = (this.props.choicesId !== undefined ?
-                                    unionBy(this.props.answer, [{
-                                        id: this.props.choicesId,
-                                        choice: parseInt(event.target.value, 10) }], 'id') :
+                                { choices: unionBy(this.props.answer, [{
+                                    id: this.props.choicesId,
+                                    choice: parseInt(event.target.value, 10) }], 'id') } :
                                     { choice: parseInt(event.target.value, 10) });
                                 return this.props.actions.upsertAnswer(
                                             this.props.id,

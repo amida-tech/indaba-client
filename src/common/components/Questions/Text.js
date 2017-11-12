@@ -20,9 +20,9 @@ class Text extends Component {
                     disabled={this.props.displayMode}
                     onBlur={(event) => {
                         const entry = (this.props.choicesId !== undefined ?
-                            unionBy(this.props.answer, [{
-                                id: this.props.choicesId,
-                                textValue: event.target.value }], 'id') :
+                        { choices: unionBy(this.props.answer, [{
+                            id: this.props.choicesId,
+                            textValue: event.target.value }], 'id') } :
                             { textValue: event.target.value });
                         return this.props.actions.upsertAnswer(
                                     this.props.id,

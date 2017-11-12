@@ -16,9 +16,9 @@ class Bool extends Component {
                     disabled={this.props.displayMode}
                     onClick={(event) => {
                         const entry = this.props.choicesId ?
-                            unionBy([{ id: this.props.choicesId,
-                                boolValue: event.target.checked }],
-                                this.props.answer, 'id') :
+                        { choices: unionBy([{ id: this.props.choicesId,
+                            boolValue: event.target.checked }],
+                                this.props.answer, 'id') } :
                             { boolValue: !this.props.answer };
                         return this.props.actions.upsertAnswer(
                                     this.props.id,
