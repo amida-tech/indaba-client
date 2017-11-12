@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import unionBy from 'lodash/unionBy';
 
 class Choice extends Component {
     render() {
         return (
             <div className='choice'>
-                I am a choice!
+                { !this.props.choicesId &&
+                    <div className='choice__label'>
+                        {this.props.text}
+                    </div> }
+                {this.props.choices.map(choice =>
+                    <div className='choice__radio'
+                        key={`key-choice-${choice.id}`}>
+                        <input className={`choice__field${this.props.displayMode ? '--disabled' : ''}`}
+                            type='radio'
+                            name={`choice${this.props.id}`}
+                            value={choice.id}
+                            disabled={this.props.displayMode}
+                            onChange={(event) => {
+                                const entry = (this.props.choicesId !== undefined ?
+                                    unionBy(this.props.answer, [{
+                                        id: this.props.choicesId,
+                                        choice: event.target.value }], 'id') :
+                                    { choice: event.target.value });
+                                return this.props.actions.upsertAnswer(
+                                            this.props.id,
+                                            entry,
+                                            this.props.required,
+                                    );
+                            }}
+                        />
+                        <span className='choice__field-label'>
+                            {` ${choice.text}`}
+                        </span>
+                    </div>,
+                )}
             </div>
         );
     }
@@ -13,6 +43,10 @@ class Choice extends Component {
 
 Choice.propTypes = {
     vocab: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    common: PropTypes.bool,
+    text: PropTypes.string.isRequired,
+    required: PropTypes.bool,
 };
 
 export default Choice;

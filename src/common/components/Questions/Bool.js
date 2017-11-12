@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import unionBy from 'lodash/unionBy';
 
 class Bool extends Component {
     render() {
         return (
             <div className='bool' >
-                <div className='bool__label'>
-                    {this.props.text}
-                </div>
+                { !this.props.choicesId &&
+                    <div className='bool__label'>
+                        {this.props.text}
+                    </div> }
                 <input className={`bool__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}
-                    onClick={() => {
-                        this.props.actions.upsertAnswer(
-                            this.props.id,
-                            { boolValue: !this.props.answer },
-                            this.props.required,
-                    );
+                    onClick={(event) => {
+                        const entry = this.props.choicesId ?
+                            unionBy([{ id: this.props.choicesId,
+                                boolValue: event.target.checked }],
+                                this.props.answer, 'id') :
+                            { boolValue: !this.props.answer };
+                        return this.props.actions.upsertAnswer(
+                                    this.props.id,
+                                    entry,
+                                    this.props.required,
+                            );
                     }} />
+                { this.props.choicesId &&
+                    <span className='bool__choices-label'>
+                        {` ${this.props.choicesText}`}
+                    </span> }
             </div>
         );
     }

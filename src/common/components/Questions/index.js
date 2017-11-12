@@ -18,10 +18,14 @@ class Questions extends Component {
                 {...this.props}/>);
             break;
         case 'choice':
-            QuestionType = (<Choice {...this.props} />);
+            QuestionType = (<Choice
+                answer={value ? value.answer : undefined}
+                {...this.props} />);
             break;
         case 'choices':
-            QuestionType = (<Choices {...this.props} />);
+            QuestionType = (<Choices
+                answer={value ? value.answer : []}
+                {...this.props} />);
             break;
         default:
             QuestionType = (<Text
