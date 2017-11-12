@@ -10,6 +10,9 @@ $block-class: 'message-body-field';
             border: none;
             outline: none;
             resize: none;
+            color: darken($font-color, 30);
+            padding-top: 16px;
+            line-height: 1.5;
         }
     }
 }

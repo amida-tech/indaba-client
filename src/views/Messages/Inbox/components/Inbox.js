@@ -52,6 +52,7 @@ class Inbox extends Component {
                         vocab={this.props.vocab}
                         onSelectTab={this.props.actions.setActiveInboxTab}/>
                     <Button className='inbox__new-message-button'
+                        primary={true}
                         label={this.props.vocab.MESSAGES.NEW_MESSAGE}
                         path='/messages/new' />
                 </div>

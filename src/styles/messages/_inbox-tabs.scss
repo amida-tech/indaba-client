@@ -7,6 +7,7 @@ $block-class: 'inbox-tabs';
         align-items: center;
 
         &__tab {
+            cursor: pointer;
             display: flex;
             flex-direction: row;
             align-items: center;

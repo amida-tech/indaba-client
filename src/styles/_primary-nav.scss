@@ -83,6 +83,18 @@ $block-class:'primary-nav';
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
+            &:hover {
+                text-decoration: none;
+                color: darken(#388055, 20%);
+            }
+
+            &:focus,
+            &:active {
+                text-decoration: none;
+                font-weight: 400;
+                color: darken(#388055, 30%);
+            }
         }
 
         &__logout {
