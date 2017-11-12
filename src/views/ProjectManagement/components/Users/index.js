@@ -92,6 +92,7 @@ Users.propTypes = {
         updateUserGroup: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
     }).isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 export default Users;

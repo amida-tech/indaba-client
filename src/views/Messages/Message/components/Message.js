@@ -20,7 +20,7 @@ class Message extends Component {
         return (
             <div className='message'>
                 <form className='message__content' onSubmit={this.props.handleSubmit}>
-                    <div className='message__row message__row--top'>
+                    <div className='message__row message__row--to'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
                             value={_.get(this.props, 'message.to')}
@@ -135,7 +135,9 @@ class MessageSelector extends Component {
         }
         return (
             <MessageForm {...this.props}
-                initialValues={this.props.reply}
+                initialValues={
+                    this.props.reply || _.get(this.props, 'location.state.message')
+                }
                 onSubmit={(values) => {
                     this.props.actions.sendMessage({
                         subject: values.subject,
