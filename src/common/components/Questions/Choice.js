@@ -4,6 +4,7 @@ import unionBy from 'lodash/unionBy';
 
 class Choice extends Component {
     render() {
+        // JAMES Set answer for prepopulation.
         return (
             <div className='choice'>
                 { !this.props.choicesId &&
@@ -22,8 +23,8 @@ class Choice extends Component {
                                 const entry = (this.props.choicesId !== undefined ?
                                     unionBy(this.props.answer, [{
                                         id: this.props.choicesId,
-                                        choice: event.target.value }], 'id') :
-                                    { choice: event.target.value });
+                                        choice: parseInt(event.target.value, 10) }], 'id') :
+                                    { choice: parseInt(event.target.value, 10) });
                                 return this.props.actions.upsertAnswer(
                                             this.props.id,
                                             entry,

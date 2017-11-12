@@ -6,9 +6,8 @@ import Text from './Text';
 import Choice from './Choice';
 
 class Choices extends Component {
-    render() {
+    render() { // JAMES Feed in the distinct answer for prepopulation.
         const choices = this.props.choices.map((choice) => {
-            console.log(choice);
             switch (choice.type) {
             case 'bool':
                 return (<Bool

@@ -6,6 +6,8 @@ import unionBy from 'lodash/unionBy';
 
 class Text extends Component {
     render() {
+        // JAMES Set answer for prepopulation.
+
         return (
             <div className='text' >
                 { !this.props.choicesId &&

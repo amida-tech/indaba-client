@@ -90,16 +90,7 @@ export function getSurveyById(surveyId, errorMessages) {
 }
 
 // Answer related.
-export function postAnswer(surveyId, questionId, type, value, errorMessages) {
-    const answer = {};
-    answer[type] = value;
-    const requestBody = {
-        surveyId,
-        answers: [{
-            questionId,
-            answer,
-        }],
-    };
+export function postAnswer(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAnswer(
             requestBody,

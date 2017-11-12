@@ -4,6 +4,7 @@ import unionBy from 'lodash/unionBy';
 
 class Bool extends Component {
     render() {
+        // JAMES Set answer for prepopulation.
         return (
             <div className='bool' >
                 { !this.props.choicesId &&
