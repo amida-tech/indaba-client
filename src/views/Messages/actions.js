@@ -100,6 +100,17 @@ export const getMessage = id => (dispatch) => {
     });
 };
 
+export const deleteMessage = id => (dispatch) => {
+    dispatch(_deleteMessage());
+    apiService.messaging.delete(id, (err, result) => {
+        if (err) {
+            dispatch(_deleteMessageFailure(err));
+        } else {
+            dispatch(_deleteMessageSuccess(result));
+        }
+    });
+};
+
 /* Private actions */
 
 export const _startReply = reply => ({
@@ -174,5 +185,19 @@ export const _archiveMessageFailure = err => ({
 
 export const _archiveMessageSuccess = id => ({
     type: actionTypes.ARCHIVE_MESSAGE_SUCCESS,
+    id,
+});
+
+export const _deleteMessage = () => ({
+    type: actionTypes.DELETE_MESSAGE,
+});
+
+export const _deleteMessageFailure = err => ({
+    type: actionTypes.DELETE_MESSAGE_FAILURE,
+    err,
+});
+
+export const _deleteMessageSuccess = id => ({
+    type: actionTypes.DELETE_MESSAGE_SUCCESS,
     id,
 });

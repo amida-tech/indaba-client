@@ -73,6 +73,10 @@ export default (state = initialState, action) => {
                 { $push: [transformServerMessageToReduxMessage(action.result)] }
             ),
         });
+    case actionTypes.DELETE_MESSAGE_SUCCESS:
+        return update(state, {
+            messages: { $splice: [[messageIndex, 1]] },
+        });
     default:
         return state;
     }
