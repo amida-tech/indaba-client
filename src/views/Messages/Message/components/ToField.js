@@ -12,6 +12,7 @@ class ToField extends Component {
 
         this.searchFilter = this.searchFilter.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
     searchFilter(user) {
         return !this.props.input.value.includes(user.email);
@@ -19,6 +20,11 @@ class ToField extends Component {
     handleSelect(selection) {
         this.props.input.onChange(_.union(this.props.input.value,
             [selection.suggestion.value.email]));
+    }
+    handleRemove(email) {
+        this.props.input.onChange(
+            this.props.input.value.filter(
+                emailIter => emailIter !== email));
     }
     render() {
         return (
@@ -33,7 +39,8 @@ class ToField extends Component {
                 {
                     this.props.input.value !== '' &&
                     this.props.input.value.map(email => (
-                        <Addressee key={email} email={email} users={this.props.users} />
+                        <Addressee key={email} email={email} users={this.props.users}
+                            onRemove={this.handleRemove}/>
                     ))
                 }
             </div>
