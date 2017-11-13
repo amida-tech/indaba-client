@@ -53,8 +53,14 @@ body {
 
 .grommetux-search .grommetux-search__input,
 .grommetux-select__input {
+    font-size: 16px;
     padding: 7px 4px;
     border-radius: 0;
+}
+
+.grommetux-search__drop,
+.grommetux-search__suggestion {
+    @extend .small-font;
 }
 
 .grommetux-search--fill {
