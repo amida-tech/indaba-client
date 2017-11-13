@@ -22,6 +22,7 @@ class Inbox extends Component {
 
     componentWillMount() {
         this.props.actions.listMessages();
+        this.props.actions.listArchivedMessages();
     }
 
     evaluateFilter(message) {

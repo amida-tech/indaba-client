@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import _ from 'lodash';
 
 import * as actionTypes from './actionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
@@ -52,7 +53,17 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.LIST_MESSAGES_SUCCESS:
         return update(state, {
-            messages: { $set: action.result.map(transformServerMessageToReduxMessage) },
+            messages: { $apply:
+                message => _.unionBy(message,
+                    action.result.map(transformServerMessageToReduxMessage), 'id'),
+            },
+        });
+    case actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS:
+        return update(state, {
+            messages: { $apply:
+                message => _.unionBy(message,
+                    action.result.map(transformServerMessageToReduxMessage), 'id'),
+            },
         });
     case actionTypes.GET_MESSAGE_SUCCESS:
         return update(state, {
