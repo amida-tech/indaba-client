@@ -4,6 +4,7 @@ import { Search } from 'grommet';
 import _ from 'lodash';
 
 import { renderName } from '../../../../utils/User';
+import Addressee from './Addressee';
 
 class ToField extends Component {
     constructor(props) {
@@ -29,6 +30,12 @@ class ToField extends Component {
                         .map(user => ({ label: renderName(user),
                             value: user }))}
                     onSelect={this.handleSelect}/>
+                {
+                    this.props.input.value !== '' &&
+                    this.props.input.value.map(email => (
+                        <Addressee key={email} email={email} users={this.props.users} />
+                    ))
+                }
             </div>
         );
     }
