@@ -31,8 +31,12 @@ $block-class: 'add-users';
             margin: 0 auto;
 
             &--top {
-                margin-top: 3rem;
+                margin-top: 24px;
                 justify-content: center;
+            }
+
+            &--bottom {
+                margin-bottom: 48px;
             }
         }
 

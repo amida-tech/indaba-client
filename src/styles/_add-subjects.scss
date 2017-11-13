@@ -27,10 +27,12 @@ $block-class: 'add-subjects';
             @extend .lead-font;
 
             display: flex;
-            margin-top: 1em;
+            margin-top: 24px;
+            margin-bottom: 32px;
             margin-left: 10%;
             padding-left: 1rem;
             width: 75%;
+            justify-content: center;
         }
     }
 }
