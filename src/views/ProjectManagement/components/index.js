@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -9,14 +10,16 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
+import Survey from '../../../common/components/Survey';
 import StatusChange from './Modals/StatusChange';
+import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
+import * as surveyActions from '../../../common/actions/surveyActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
-import { setSurveyStatus, setSurveyName } from '../../../common/actions/surveysActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
@@ -34,21 +37,26 @@ class ProjectManagementContainer extends Component {
         case 'workflow':
             body = <WorkflowContainer {...this.props} />;
             break;
-        case 'subject':
-            body = <Subjects vocab={this.props.vocab}
-                    project={this.props.project}
-                    subjects={this.props.project.subjects}
-                    actions={this.props.actions}/>;
+        case 'survey':
+            body = <Survey {...this.props} />;
             break;
         case 'users':
             body = <Users
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
                     userId => this.props.users.find(user => user.id === userId))}
+                allUsers={this.props.users}
                 tasks={this.props.tasks}
                 project={this.props.project}
                 profile={this.props.profile}
-                actions={this.props.actions} />;
+                actions={this.props.actions}
+                ui={this.props.ui}/>;
+            break;
+        case 'subject':
+            body = <Subjects vocab={this.props.vocab}
+                    project={this.props.project}
+                    subjects={this.props.project.subjects}
+                    actions={this.props.actions}/>;
             break;
         default:
             body = null;
@@ -59,21 +67,16 @@ class ProjectManagementContainer extends Component {
                     { this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
-                            onStatusChangeClose={() => this.props.actions.updateStatusChange(false)}
-                            entity={modalEntities[this.props.ui.statusModalId]}
-                            projectStatus={this.props.project.status}
-                            surveyStatus={this.props.survey.status}
-                            onSetProjectStatus={this.props.actions.setProjectStatus}
-                            onSetSurveyStatus={this.props.actions.setSurveyStatus}/> }
+                            survey={this.props.survey}
+                            actions={this.props.actions}
+                            vocab={this.props.vocab}
+                            entity={modalEntities[this.props.ui.statusModalId]} /> }
                     <Summary
+                        actions={this.props.actions}
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
-                        vocab={this.props.vocab}
-                        onProjectNameChange={name =>
-                            this.props.actions.setProjectName(name, this.props.project.id)}
-                        onSurveyNameChange={name =>
-                            this.props.actions.setSurveyName(name, this.props.project.id)}/>
+                        vocab={this.props.vocab}/>
                     <SubNav vocab={this.props.vocab}
                         subnavigate={this.props.actions.subnavigate}
                         selected={this.props.ui.subnav}/>
@@ -102,8 +105,9 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge(state.manager.ui, state.projects.ui, state.nav.ui),
-        survey: _.find(state.surveys, survey => survey.projectId === projectId) || {},
+        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui),
+        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
         users: state.user.users,
         profile: state.user.profile,
@@ -115,10 +119,16 @@ const mapDispatchToProps = dispatch => ({
         actions,
         navActions,
         projectActions,
+        surveyActions,
         taskActions,
         discussActions,
         { addNewUser, notifyUser },
-        { setSurveyStatus, setSurveyName },
+        { sendMessage: user => dispatch(push(
+            {
+                pathname: '/messages/new',
+                state: { message: { to: renderName(user) } },
+            },
+        )) },
     ), dispatch),
 });
 

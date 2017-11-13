@@ -14,17 +14,18 @@ class TasksTab extends Component {
                     </div>
                 </div>
                 {this.props.project.stages.map(stage =>
-                    this.props.tasks.some(task => task.userId === this.props.userId
-                        && task.stage === stage.id) &&
+                    this.props.tasks.some(task => task.userIds.includes(this.props.userId)
+                        && task.stepId === stage.id) &&
                     <div className='tasks-tab__row' key={stage.id}>
                         <div className='tasks-tab__cell'>
                             {stage.title}
                         </div>
                         <div className='tasks-tab__cell'>
                             {this.props.tasks.filter(task =>
-                                task.userId === this.props.userId &&
-                                task.stage === stage.id)
-                                .map(task => this.props.project.subjects[task.subject])
+                                task.userIds.includes(this.props.userId) &&
+                                task.stepId === stage.id)
+                                .map(task => this.props.project.subjects.find(
+                                    subject => subject.id === task.uoaId).name)
                                 .join(',')
                             }
                         </div>
@@ -38,7 +39,12 @@ TasksTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     userId: PropTypes.number.isRequired,
-    tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        userIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+        stepId: PropTypes.number.isRequired,
+        uoaId: PropTypes.number.isRequired,
+    })).isRequired,
 };
 
 export default TasksTab;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Field } from 'redux-form';
-import EditableTextInput from '../../../../../../common/components/EditableTextInput';
+import EditableTextInput from '../../../common/components/EditableTextInput';
 
 class UserNameInput extends Component {
     render() {

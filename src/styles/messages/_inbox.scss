@@ -20,10 +20,19 @@ $block-class: 'inbox';
         }
 
         &__new-message-button {
-            background-color: #fcfafa;
-            color: $header-font-color;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+            color: #7e848f;
+            background-color: #fff;
+            border-radius: 2px;
 
-            @extend .small-font;
+            &:hover {
+                letter-spacing: 0.8px;
+                font-weight: 400;
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+                text-decoration: none;
+            }
         }
 
         &__filter {

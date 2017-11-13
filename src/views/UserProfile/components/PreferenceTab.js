@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import { constants } from '../../../../../../common/reducers/userReducer';
+import { constants } from '../../../common/reducers/userReducer';
 
 class PreferenceTab extends Component {
     render() {

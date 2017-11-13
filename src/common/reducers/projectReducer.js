@@ -39,6 +39,8 @@ export const ProjectReducer = (state = initialState, action) => {
         return state.data[0].name ?
         update(state, { data: { $push: [action.project] } }) :
         update(state, { data: { $set: [action.project] } });
+    case type.PUT_PROJECT_SUCCESS:
+        return update(state, { data: { [projectIndex]: { $merge: action.project } } });
     case type.SHOW_STAGE_MODAL:
         return update(state, { ui: {
             showStage: { $set: action.show },
@@ -54,10 +56,12 @@ export const ProjectReducer = (state = initialState, action) => {
         return (!state.data[0].name ?
             update(state, { data: { $set: [action.project] } }) :
             update(state, { data: { [projectIndex]: { $merge: action.project } } }));
+    case type.UPDATE_PROJECT_WITH_SURVEY:
+        return update(state, { data: { [projectIndex]: { surveyId: { $set: action.surveyId } } } });
     case type.TOGGLE_FILTER:
         return update(state, { data: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
-    case type.SET_PROJECT_STATUS: // project related.
+    case type.SET_PROJECT_STATUS:
         return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
     case type.PUT_STAGE_SUCCESS: {
         const stageIndex = _.findIndex(state.data[projectIndex].stages,
@@ -104,10 +108,12 @@ export const ProjectReducer = (state = initialState, action) => {
             [groupIndex]: { $set: action.group },
         } } } });
     case POST_NEW_USER_SUCCESS:
-        return update(state, { data: { [projectIndex]: {
+        return projectIndex >= 0 ?
+        update(state, { data: { [projectIndex]: {
             users: { $push: [action.user.id] },
             lastUpdated: { $set: new Date().toISOString() },
-        } } });
+        } } }) :
+        state;
     case type.REMOVE_USER:
         return update(state, { data: { [projectIndex]: {
             users: { $apply: users => users.filter(userId => userId !== action.userId) },

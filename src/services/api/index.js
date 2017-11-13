@@ -5,6 +5,7 @@ import surveys from './surveys';
 import tasks from './tasks';
 import discuss from './discuss';
 import messaging from './messaging';
+import subjects from './subjects';
 
 const apiService = {
     auth,
@@ -14,6 +15,7 @@ const apiService = {
     tasks,
     discuss,
     messaging,
+    subjects,
 };
 
 export default apiService;
