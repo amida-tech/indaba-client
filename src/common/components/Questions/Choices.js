@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { find } from 'lodash';
 
-import Bool from './Bool';
+import Checkboxes from './Checkboxes';
 import Text from './Text';
 import Choice from './Choice';
 
@@ -11,7 +11,7 @@ class Choices extends Component {
         const choices = this.props.choices.map((choice) => {
             switch (choice.type) {
             case 'bool':
-                return (<Bool
+                return (<Checkboxes
                     {...this.props}
                     answer={find(this.props.answer.choices, item => item.id === choice.id) || false}
                     key={`key-choice-${choice.id}`}

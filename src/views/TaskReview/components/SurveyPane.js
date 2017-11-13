@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { Button } from 'grommet';
 import { debounce } from 'lodash';
+
+import Time from '../../../utils/Time';
 import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
     constructor(props) {
         super(props);
-        this.debouncedPostAnswers = debounce(answers => props.actions.postAnswer(answers), 5000,
+        this.debouncedPostAnswers = debounce(answers => props.actions.postAnswer(answers), 10000,
             { leading: true });
         this.debouncedPostAnswers.bind(this);
     }
@@ -44,6 +46,10 @@ class SurveyPane extends Component {
                     </span>
                     <span className='survey-pane__instructions-explained'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED}
+                    </span>
+                    <span className='survey-pane__instructions-explained'>
+                        {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
+                            Time.renderForInboxMessageList(this.props.ui.saveTimestamp)}
                     </span>
                 </div>
                 <SurveyForm {...this.props} />

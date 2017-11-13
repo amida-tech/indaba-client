@@ -1,31 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { unionBy } from 'lodash';
 
 class Bool extends Component {
     render() {
+        const answer = this.props.answer ? this.props.answer.boolValue : false;
         return (
             <div className='bool' >
-                { !this.props.choicesId &&
-                    <div className='bool__label'>
-                        {this.props.text}
-                    </div> }
-                <input className={`bool__field${this.props.displayMode ? '--disabled' : ''}`}
-                    type='checkbox'
-                    disabled={this.props.displayMode}
-                    defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
-                    onClick={(event) => {
-                        const entry = this.props.choicesId ?
-                        { choices: unionBy([{ id: this.props.choicesId,
-                            boolValue: event.target.checked }],
-                                this.props.answer, 'id') } :
-                            { boolValue: !this.props.answer };
-                        return this.props.actions.upsertAnswer(
-                                    this.props.id,
-                                    entry,
-                                    this.props.required,
-                            );
-                    }} />
+                <div className='bool__label'>
+                    {this.props.text}
+                </div>
+                <label className='bool__field'>
+                    <input className={`bool__input${this.props.displayMode ? '--disabled' : ''}`}
+                        type='radio'
+                        name={`bool${this.props.id}`}
+                        disabled={this.props.displayMode}
+                        defaultChecked={answer}
+                        onClick={() => {
+                            return this.props.actions.upsertAnswer(
+                                        this.props.id,
+                                        { boolValue: true },
+                                        this.props.required,
+                                );
+                        }} />
+                    {this.props.vocab.COMMON_BUTTONS.YES}
+                </label>
+                <label className='bool__field'>
+                    <input className={`bool__input${this.props.displayMode ? '--disabled' : ''}`}
+                        type='radio'
+                        name={`bool${this.props.id}`}
+                        disabled={this.props.displayMode}
+                        defaultChecked={!answer}
+                        onClick={() => {
+                            return this.props.actions.upsertAnswer(
+                                        this.props.id,
+                                        { boolValue: false },
+                                        this.props.required,
+                                );
+                        }} />
+                    {this.props.vocab.COMMON_BUTTONS.NO}
+                </label>
                 { this.props.choicesId &&
                     <span className='bool__choices-label'>
                         {` ${this.props.choicesText}`}

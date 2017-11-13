@@ -83,9 +83,6 @@ class TaskReview extends Component {
                         instructions={this.props.survey.instructions}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
-                    <button onClick={() => this.props.actions.postAnswer(this.props.ui.form)}>
-                        Submit to ME!
-                    </button>
                 </div>
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar

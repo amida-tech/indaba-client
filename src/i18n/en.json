@@ -163,6 +163,7 @@
         "CHANGE_STATUS": "Change Status",
         "INSTRUCTIONS": "Instructions",
         "INSTRUCTIONS_EXPLAINED": "Please complete the following questions to reflect your opinion as accurately as possible.",
+        "INSTRUCTIONS_EXPLAINED_2": "Form will autosave as questions are complete. Time of last save: ",
         "ENTER_ANSWER": "Enter your answer here",
         "AGREE": "Agree",
         "DISAGREE": "Disagree (Comment Required)",
