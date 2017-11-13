@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionBy from 'lodash/unionBy';
+import { unionBy } from 'lodash';
 
 class Choice extends Component {
     render() {
-        // JAMES Set answer for prepopulation.
         return (
             <div className='choice'>
                 { !this.props.choicesId &&
@@ -18,6 +17,7 @@ class Choice extends Component {
                             type='radio'
                             name={`choice${this.props.id}`}
                             value={choice.id}
+                            defaultChecked={choice.id === this.props.answer.choice}
                             disabled={this.props.displayMode}
                             onChange={(event) => {
                                 const entry = (this.props.choicesId !== undefined ?

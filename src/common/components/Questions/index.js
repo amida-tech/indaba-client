@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { find } from 'lodash';
 
 import Bool from './Bool';
 import Text from './Text';
@@ -10,7 +10,7 @@ import Choices from './Choices';
 class Questions extends Component {
     render() {
         let QuestionType;
-        const value = _.find(this.props.answers, item => item.questionId === this.props.id);
+        const value = find(this.props.answers, item => item.questionId === this.props.id);
         switch (this.props.type) {
         case 'bool':
             QuestionType = (<Bool

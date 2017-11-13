@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionBy from 'lodash/unionBy';
-
-// import { isValid } from '../../../utils/Validation';
+import { unionBy } from 'lodash';
 
 class Text extends Component {
     render() {
-        // JAMES Set answer for prepopulation.
-
         return (
             <div className='text' >
                 { !this.props.choicesId &&
@@ -18,6 +14,7 @@ class Text extends Component {
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
                     disabled={this.props.displayMode}
+                    defaultValue={this.props.answer.textValue}
                     onBlur={(event) => {
                         const entry = (this.props.choicesId !== undefined ?
                         { choices: unionBy(this.props.answer, [{
@@ -35,18 +32,6 @@ class Text extends Component {
         );
     }
 }
-// let warn = '';
-// onChange={(event) => {
-//     warn = isValid(['letters'], event.target.value, this.props.vocab.VALIDATE);
-// }}
-// if (!warn) {
-//     this.props.actions.postAnswer(
-//         this.props.surveyId,
-//         this.props.id,
-//         'textValue',
-//         event.target.value,
-//         this.props.vocab.ERROR);
-// }
 
 Text.propTypes = {
     vocab: PropTypes.object.isRequired,

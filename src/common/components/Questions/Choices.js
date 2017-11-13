@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { find } from 'lodash';
 
 import Bool from './Bool';
 import Text from './Text';
 import Choice from './Choice';
 
 class Choices extends Component {
-    render() { // JAMES Feed in the distinct answer for prepopulation.
+    render() {
         const choices = this.props.choices.map((choice) => {
             switch (choice.type) {
             case 'bool':
                 return (<Bool
+                    {...this.props}
+                    answer={find(this.props.answer.choices, item => item.id === choice.id) || false}
                     key={`key-choice-${choice.id}`}
                     choicesId={choice.id}
-                    choicesText={choice.text}
-                    {...this.props}/>);
+                    choicesText={choice.text} />);
             case 'choice':
                 return (<Choice
                     key={`key-choice-${choice.id}`}
                     choicesId={this.props.id}
+                    answer={find(this.props.answer.choices, item => item.id === choice.id)}
                     {...this.props} />);
             default:
                 return (<Text
                     key={`key-choice-${choice.id}`}
                     choicesId={this.props.id}
+                    answer={find(this.props.answer.choices, item => item.id === choice.id) || ''}
                     {...this.props}/>);
             }
         });

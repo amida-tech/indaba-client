@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionBy from 'lodash/unionBy';
+import { unionBy } from 'lodash';
 
 class Bool extends Component {
     render() {
-        // JAMES Set answer for prepopulation.
         return (
             <div className='bool' >
                 { !this.props.choicesId &&
@@ -14,6 +13,7 @@ class Bool extends Component {
                 <input className={`bool__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}
+                    defaultChecked={this.props.answer.boolValue}
                     onClick={(event) => {
                         const entry = this.props.choicesId ?
                         { choices: unionBy([{ id: this.props.choicesId,
