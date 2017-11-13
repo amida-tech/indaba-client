@@ -26,7 +26,7 @@ class Inbox extends Component {
     }
 
     evaluateFilter(message) {
-        if (!!message.archived !==
+        if (message.isArchived !==
             (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
             return false;
         }

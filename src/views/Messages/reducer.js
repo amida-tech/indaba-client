@@ -37,11 +37,11 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.ARCHIVE_MESSAGE_SUCCESS:
         return update(state, { messages: { [messageIndex]: {
-            archived: { $set: true },
+            isArchived: { $set: true },
         } } });
     case actionTypes.UNARCHIVE_MESSAGE:
         return update(state, { messages: { [messageIndex]: {
-            archived: { $set: false },
+            isArchived: { $set: false },
         } } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
