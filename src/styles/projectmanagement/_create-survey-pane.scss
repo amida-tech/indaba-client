@@ -1,0 +1,41 @@
+$block-class: 'create-survey-pane';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 320px;
+        border: 1px solid $border-color;
+
+        &__instructions {
+            text-align: center;
+            margin: 5px;
+        }
+
+        &__tabs {
+        }
+
+        .grommetux-tabs {
+            border: 0px;
+        }
+
+        .grommetux-tab--active {
+            background: $border-color;
+        }
+
+        .grommetux-tab {
+            cursor: pointer;
+            border-radius: 2px;
+            border: 1px solid $border-color;
+
+            &__label {
+                color: #727882;
+                border-color: transparent;
+                padding: 5px;
+                margin-bottom: 0px;
+                border-bottom: 0px;
+            }
+        }
+    }
+}

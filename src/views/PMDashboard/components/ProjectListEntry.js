@@ -27,7 +27,7 @@ class ProjectListEntry extends Component {
                 <div className={`project-list-entry__status${
                     this.props.survey.status ?
                         ' project-list-entry__status--active' : ''}`}>
-                    {this.props.survey.status ?
+                    {this.props.survey.status === 'published' ?
                         this.props.vocab.SURVEY.STATUS_PUBLISHED :
                         this.props.vocab.SURVEY.STATUS_DRAFT}
                 </div>
@@ -49,17 +49,13 @@ ProjectListEntry.propTypes = {
         name: PropTypes.string.isRequired,
         status: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
-        lastUpdated: PropTypes.string.isRequired,
+        lastUpdated: PropTypes.string,
     }),
     survey: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        status: PropTypes.string,
     }),
     flags: PropTypes.number.isRequired,
-    onProjectNameChange: PropTypes.func.isRequired,
-    onProjectNameBlur: PropTypes.func.isRequired,
-    onSurveyNameChange: PropTypes.func.isRequired,
-    onSurveyNameBlur: PropTypes.func.isRequired,
 };
 
 export default withRouter(ProjectListEntry);

@@ -36,18 +36,8 @@ export const UserReducer = (state = initialState, action) => {
     switch (action.type) {
     case type.PUT_PROFILE_SUCCESS:
         return update(state, { profile: { $merge: action.profile } });
-    case type.SET_USER_FIRST_NAME:
-        return update(state, { users: { [userIndex]: { firstName: { $set: action.firstName } } } });
-    case type.SET_USER_LAST_NAME:
-        return update(state, { users: { [userIndex]: { lastName: { $set: action.lastName } } } });
-    case type.SET_USER_EMAIL:
-        return update(state, { users: { [userIndex]: { email: { $set: action.email } } } });
-    case type.SET_USER_TITLE:
-        return update(state, { users: { [userIndex]: { title: { $set: action.title } } } });
     case type.POST_NEW_USER_SUCCESS:
         return update(state, { users: { $push: [action.user] } });
-    case type.UPDATE_USER:
-        return update(state, { users: { [userIndex]: { $merge: action.user } } });
     case type.NOTIFY_USER:
         return state;
     case type.GET_PROFILE_SUCCESS:
@@ -56,6 +46,10 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { $set: action.users } });
     case type.REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.DELETE_USER_SUCCESS:
+        return update(state, {
+            users: { $unset: [userIndex] },
+        });
     case LOG_OUT:
         return initialState;
     default:

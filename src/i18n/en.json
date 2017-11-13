@@ -49,9 +49,11 @@
         "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
         "FETCH_USERS": "Something has gone wrong and we couldn't obtain the list of users for this organization. Please try again later.",
         "FETCH_PROJECTS": "Fetch projects failed.",
+        "FETCH_SURVEYS": "Fetch surveys failed.",
         "FETCH_TASKS": "Fetch tasks failed... or the user simply has no assigned tasks.",
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
+        "SURVEY_REQUEST": "The system failed to insert or update a new survey into the database. Please try again",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
         "SUBJECT_REQUEST": "Something has gone wrong with subject(s) insertion or deletion. Please try again.",
         "PROFILE_REQUEST": "Failed to insert or delete profile request.",
@@ -297,10 +299,33 @@
         "PERMISSIONS": "Permissions"
     },
     "SURVEY": {
-        "STATUS_DRAFT": "Draft",
-        "STATUS_PUBLISHED": "Published",
+        "RETIRED": "Retired",
+        "DRAFT": "Draft",
+        "PUBLISHED": "Published",
         "PUBLISH": "Publish survey",
-        "UNPUBLISH": "Edit survey in draft mode"
+        "UNPUBLISH": "Edit survey in draft mode",
+        "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
+        "NEW_QUESTIONS": "New Questions",
+        "EXISTING": "Existing",
+        "VIEWING_ALL_QUESTIONS": "Viewing all questions",
+        "ENTER_INSTRUCTIONS": "Enter instructions here",
+        "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
+        "ATTACH_FILE": "Attach File",
+        "ADD_LINK": "Add a Link",
+        "REQUIRED_QUESTION": "Required Questions",
+        "WEIGHT": "Weighted Value Question",
+        "SECTION_": "Section ",
+        "QUESTIONS_TYPES": [
+            "Multiple Choice",
+            "Bullet Point",
+            "Checkbox",
+            "Long Text",
+            "Dropdown",
+            "Date",
+            "Number",
+            "Scale"
+        ],
+        "SECTION_BREAK": "Section Break"
     },
     "USER": {
         "NOTIFY_LEVEL": "Notify Level",

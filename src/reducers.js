@@ -9,13 +9,16 @@ import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 import { PMDashboardReducer } from './views/PMDashboard';
 import { UserDashboardReducer } from './views/UserDashboard';
 import { MessagesReducer } from './views/Messages';
+import { UserProfileReducer } from './views/UserProfile';
+import { PMAllUsersReducer } from './views/PMAllUsers';
+import { PMAllSubjectsReducer } from './views/PMAllSubjects';
 
 const reducers = {
     nav: CommonReducers.NavReducer,
     settings: CommonReducers.SettingsReducer,
     user: CommonReducers.UserReducer,
     projects: CommonReducers.ProjectReducer,
-    surveys: CommonReducers.SurveysReducer,
+    surveys: CommonReducers.SurveyReducer,
     tasks: CommonReducers.TaskReducer,
     discuss: CommonReducers.DiscussReducer,
     messages: MessagesReducer,
@@ -27,6 +30,9 @@ const reducers = {
     form: formReducer,
     pmdashboard: PMDashboardReducer,
     userdashboard: UserDashboardReducer,
+    userprofile: UserProfileReducer,
+    pmallusers: PMAllUsersReducer,
+    pmallsubjects: PMAllSubjectsReducer,
 };
 
 export default combineReducers(reducers);

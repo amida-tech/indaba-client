@@ -1,0 +1,17 @@
+$block-class: 'pm-all-users';
+
+@at-root {
+    .#{$block-class} {
+        @extend .pm-users-tab;
+
+        margin-top: 5em;
+
+        &__invite-container {
+            @extend .pm-users-tab__invite-container;
+        }
+
+        &__search-container {
+            @extend .pm-users-tab__search-container;
+        }
+    }
+}
