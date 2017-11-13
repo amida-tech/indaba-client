@@ -68,7 +68,7 @@ export default (state = initialState, action) => {
         return update(state, { messages: {
             [messageIndex]: { $unset: ['readAt'] },
         } });
-    case actionTypes.ARCHIVE_MESSAGE:
+    case actionTypes.ARCHIVE_MESSAGE_SUCCESS:
         return update(state, { messages: { [messageIndex]: {
             archived: { $set: true },
         } } });

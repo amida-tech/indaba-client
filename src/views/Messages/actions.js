@@ -21,10 +21,16 @@ export const markMessageAsUnread = id => ({
     id,
 });
 
-export const archiveMessage = id => ({
-    type: actionTypes.ARCHIVE_MESSAGE,
-    id,
-});
+export const archiveMessage = id => (dispatch) => {
+    dispatch(_archiveMessage());
+    apiService.messaging.archiveMessage(id, (err) => {
+        if (err) {
+            dispatch(_archiveMessageFailure(err));
+        } else {
+            dispatch(_archiveMessageSuccess(id));
+        }
+    });
+};
 
 export const unarchiveMessage = id => ({
     type: actionTypes.UNARCHIVE_MESSAGE,
@@ -130,4 +136,18 @@ export const _getMessageSuccess = result => ({
     type: actionTypes.GET_MESSAGE_SUCCESS,
     result,
     id: result.id,
+});
+
+export const _archiveMessage = () => ({
+    type: actionTypes.ARCHIVE_MESSAGE,
+});
+
+export const _archiveMessageFailure = err => ({
+    type: actionTypes.ARCHIVE_MESSAGE_FAILURE,
+    err,
+});
+
+export const _archiveMessageSuccess = id => ({
+    type: actionTypes.ARCHIVE_MESSAGE_SUCCESS,
+    id,
 });
