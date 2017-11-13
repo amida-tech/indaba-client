@@ -8,6 +8,7 @@ import { Button } from 'grommet';
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
+import ToField from './ToField';
 
 class Message extends Component {
     componentWillMount() {
@@ -24,6 +25,8 @@ class Message extends Component {
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
                             value={_.get(this.props, 'message.to')}
+                            component={ToField}
+                            componentProps={{ users: this.props.users }}
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && this.props.message.timestamp}

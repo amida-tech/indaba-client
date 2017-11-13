@@ -41,6 +41,7 @@ const mapStateToProps = (state, ownProps) => ({
         parseInt(ownProps.params.id, 10)),
     me: state.user.profile.email,
     ui: state.messages.ui,
+    users: state.user.users,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),

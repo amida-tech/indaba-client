@@ -10,6 +10,7 @@ class MessageField extends Component {
                 {
                     this.props.input ?
                     <Field component={this.props.component || 'input'}
+                        {...this.props.componentProps}
                         className='message-field__value'
                         name={this.props.name}/> :
                     <div className='message-field__value'>
