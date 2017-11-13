@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Search } from 'grommet';
+import _ from 'lodash';
 
 import { renderName } from '../../../../utils/User';
 
 class ToField extends Component {
+    constructor(props) {
+        super(props);
+
+        this.searchFilter = this.searchFilter.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+    }
+    searchFilter(user) {
+        return !this.props.input.value.includes(user.email);
+    }
+    handleSelect(selection) {
+        this.props.input.onChange(_.union(this.props.input.value,
+            [selection.suggestion.value.email]));
+    }
     render() {
         return (
             <div className='to-field'>
                 <Search
                     size='small'
-                    value={[]}
                     suggestions={
-                        this.props.users
+                        this.props.users.filter(this.searchFilter)
                         .map(user => ({ label: renderName(user),
-                            value: user }))} />
+                            value: user }))}
+                    onSelect={this.handleSelect}/>
             </div>
         );
     }
 }
 
 ToField.propTypes = {
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 
     input: PropTypes.shape({
-        value: PropTypes.arrayOf(PropTypes.string).isRequired,
+        value: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.string),
+            PropTypes.string,
+        ]).isRequired,
         onChange: PropTypes.func.isRequired,
-        users: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
 };
 
