@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { flatten, map, filter, findIndex } from 'lodash';
+import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
 import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
@@ -20,7 +20,7 @@ export const initialState = {
             timestamp: null,
             signatureId: null,
         },
-        reqTotal: 0,
+        reqTotal: -1,
         reqAnswers: 0,
         form: {
             surveyId: -1,
@@ -32,21 +32,22 @@ export const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
-        const answers = 0; // Coming soon.
         const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
-        const flatAnswers = map(flatSurvey, item => ({ questionId: item.id, answer: item.answer }));
-        const total = filter(flatSurvey, question => question.required === true).length;
+        const flatAnswers = map(filter(flatSurvey, 'answer'), item => ({ questionId: item.id, answer: item.answer }));
+        const reqQuestions = filter(flatSurvey, question => question.required);
+        const answers = intersectionWith(reqQuestions, flatAnswers,
+            (q, a) => q.id === a.questionId);
         return update(state, { ui: {
             form: { surveyId: { $set: action.surveyId }, answers: { $set: flatAnswers } },
-            reqTotal: { $set: total },
-            reqAnswers: { $set: answers },
+            reqTotal: { $set: reqQuestions.length },
+            reqAnswers: { $set: answers.length },
         } });
     }
     case type.UPSERT_ANSWER: {
         const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.id);
-        const reqIncrease = !answerIndex && action.required ?
+        const reqIncrease = answerIndex < 0 && action.required ?
             state.ui.reqAnswers + 1 : state.ui.reqAnswers;
         return answerIndex < 0 ?
             update(state, { ui: { reqAnswers: { $set: reqIncrease },

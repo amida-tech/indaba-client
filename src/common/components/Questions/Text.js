@@ -14,7 +14,7 @@ class Text extends Component {
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
                     disabled={this.props.displayMode}
-                    defaultValue={this.props.answer.textValue}
+                    defaultValue={this.props.answer ? this.props.answer.textValue : ''}
                     onBlur={(event) => {
                         const entry = (this.props.choicesId !== undefined ?
                         { choices: unionBy(this.props.answer, [{

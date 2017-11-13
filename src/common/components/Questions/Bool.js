@@ -13,7 +13,7 @@ class Bool extends Component {
                 <input className={`bool__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}
-                    defaultChecked={this.props.answer.boolValue}
+                    defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
                     onClick={(event) => {
                         const entry = this.props.choicesId ?
                         { choices: unionBy([{ id: this.props.choicesId,

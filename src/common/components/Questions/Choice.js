@@ -17,7 +17,8 @@ class Choice extends Component {
                             type='radio'
                             name={`choice${this.props.id}`}
                             value={choice.id}
-                            defaultChecked={choice.id === this.props.answer.choice}
+                            defaultChecked={this.props.answer ?
+                                choice.id === this.props.answer.choice : false }
                             disabled={this.props.displayMode}
                             onChange={(event) => {
                                 const entry = (this.props.choicesId !== undefined ?

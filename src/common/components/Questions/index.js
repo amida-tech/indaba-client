@@ -14,23 +14,23 @@ class Questions extends Component {
         switch (this.props.type) {
         case 'bool':
             QuestionType = (<Bool
-                answer={value ? value.answer : false}
-                {...this.props}/>);
+                {...this.props}
+                answer={value ? value.answer : false} />);
             break;
         case 'choice':
             QuestionType = (<Choice
-                answer={value ? value.answer : undefined}
-                {...this.props} />);
+                {...this.props}
+                answer={value ? value.answer : undefined} />);
             break;
         case 'choices':
             QuestionType = (<Choices
-                answer={value ? value.answer : []}
-                {...this.props} />);
+                {...this.props}
+                answer={value ? value.answer : []} />);
             break;
         default:
             QuestionType = (<Text
-                answer={value ? value.answer : ''}
-                {...this.props}/>);
+                {...this.props}
+                answer={value ? value.answer : ''} />);
         }
         return (
             <div className='questions'>

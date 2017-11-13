@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { Button } from 'grommet';
-
+import { debounce } from 'lodash';
 import SurveyForm from './SurveyForm';
 
 class SurveyPane extends Component {
+    constructor(props) {
+        super(props);
+        this.debouncedPostAnswers = debounce(answers => props.actions.postAnswer(answers), 5000,
+            { leading: true });
+        this.debouncedPostAnswers.bind(this);
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.ui.reqTotal !== -1 && nextProps.ui.reqAnswers >= nextProps.ui.reqTotal) {
+            this.debouncedPostAnswers(nextProps.ui.form, nextProps.vocab.ERROR);
+        }
+    }
+
     render() {
         return (
             <div className='survey-pane'>
