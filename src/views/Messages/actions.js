@@ -89,7 +89,7 @@ export const getMessage = id => (dispatch) => {
     });
 };
 
-/** Private actions **/
+/* Private actions */
 
 export const _startReply = reply => ({
     type: actionTypes.START_REPLY,
