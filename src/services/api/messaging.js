@@ -19,11 +19,11 @@ const messaging = {
     },
     archive: (id, callback) => {
         const path = `${rootURI}/api/message/archive/${id}`;
-        requests.apiPutRequest(path, callback);
+        requests.apiPutRequest(path, {}, callback);
     },
     delete: (id, callback) => {
         const path = `${rootURI}/api/message/delete/${id}`;
-        requests.apiDeleteRequest(path, callback);
+        requests.apiDeleteRequest(path, {}, callback);
     },
 };
 
