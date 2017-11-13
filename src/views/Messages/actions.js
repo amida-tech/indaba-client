@@ -23,7 +23,7 @@ export const markMessageAsUnread = id => ({
 
 export const archiveMessage = id => (dispatch) => {
     dispatch(_archiveMessage());
-    apiService.messaging.archiveMessage(id, (err) => {
+    apiService.messaging.archive(id, (err) => {
         if (err) {
             dispatch(_archiveMessageFailure(err));
         } else {
