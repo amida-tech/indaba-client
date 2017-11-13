@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -11,6 +12,7 @@ import Subjects from './Subjects';
 import Users from './Users';
 import SurveyBuilder from '../../../common/components/SurveyBuilder';
 import StatusChange from './Modals/StatusChange';
+import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -43,10 +45,12 @@ class ProjectManagementContainer extends Component {
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
                     userId => this.props.users.find(user => user.id === userId))}
+                allUsers={this.props.users}
                 tasks={this.props.tasks}
                 project={this.props.project}
                 profile={this.props.profile}
-                actions={this.props.actions} />;
+                actions={this.props.actions}
+                ui={this.props.ui}/>;
             break;
         case 'subject':
             body = <Subjects vocab={this.props.vocab}
@@ -119,6 +123,12 @@ const mapDispatchToProps = dispatch => ({
         taskActions,
         discussActions,
         { addNewUser, notifyUser },
+        { sendMessage: user => dispatch(push(
+            {
+                pathname: '/messages/new',
+                state: { message: { to: renderName(user) } },
+            },
+        )) },
     ), dispatch),
 });
 

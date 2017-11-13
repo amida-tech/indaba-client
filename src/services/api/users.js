@@ -20,6 +20,9 @@ const users = {
     postNewUser: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('users'), requestBody, callback);
     },
+    deleteUser: (id, callback) => {
+        requests.apiDeleteRequest(getFullPath(`users/${id}`), {}, callback);
+    },
 };
 
 export default users;

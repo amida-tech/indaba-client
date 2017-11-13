@@ -5,12 +5,12 @@ import { unionBy } from 'lodash';
 class Checkboxes extends Component {
     render() {
         return (
-            <div className='bool' >
+            <div className='checkboxes' >
                 { !this.props.choicesId &&
-                    <div className='bool__label'>
+                    <div className='checkboxes__label'>
                         {this.props.text}
                     </div> }
-                <input className={`bool__field${this.props.displayMode ? '--disabled' : ''}`}
+                <input className={`checkboxes__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}
                     defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
@@ -27,7 +27,7 @@ class Checkboxes extends Component {
                             );
                     }} />
                 { this.props.choicesId &&
-                    <span className='bool__choices-label'>
+                    <span className='checkboxes__choices-label'>
                         {` ${this.props.choicesText}`}
                     </span> }
             </div>
