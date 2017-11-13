@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import Time from '../../../utils/Time';
+
 
 class MessageList extends Component {
     render() {
@@ -9,6 +11,9 @@ class MessageList extends Component {
                 <div className='message-list__title'>
                     {this.props.vocab.MESSAGES.RECENT_MESSAGES}
                 </div>
+                <Link to='/messages' className='message-list__link'>
+                    {this.props.vocab.MESSAGES.GO_MESSAGES_LINK}
+                </Link>
                 {this.props.messages.map(message =>
                     <div key={message.id} className='message-list__row'>
                         <div className='message-list__name'>

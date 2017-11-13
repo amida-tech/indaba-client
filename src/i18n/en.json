@@ -270,7 +270,8 @@
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",
             "UNREAD_MESSAGES": "Unread Messages",
-            "NOTIFICATIONS": "Notifications"
+            "NOTIFICATIONS": "Notifications",
+        "GO_MESSAGES_LINK": "Go to Inbox"
         }
     },
     "PROJECT_LIST_FILTER": {
