@@ -15,7 +15,6 @@ const initialState = {
 
 const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
-        to: message.to.join(', '),
         timestamp: message.createdAt,
     });
 
