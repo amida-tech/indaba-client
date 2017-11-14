@@ -35,15 +35,28 @@ class MessageContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    id: ownProps.params.id && parseInt(ownProps.params.id, 10),
-    vocab: state.settings.language.vocabulary,
-    message: state.messages.messages.find(message => message.id ===
-        parseInt(ownProps.params.id, 10)),
-    profile: state.user.profile,
-    ui: state.messages.ui,
-    users: state.user.users,
-});
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.params.id !== undefined ?
+        parseInt(ownProps.params.id, 10) :
+        undefined;
+    const message = state.messages.messages
+        .find(messageIter => messageIter.id === id);
+    const thread = message ?
+        state.messages.messages.filter(messageIter =>
+            messageIter.originalMessageId === message.originalMessageId) :
+        [];
+    return {
+        id,
+        message,
+        thread,
+
+        vocab: state.settings.language.vocabulary,
+        profile: state.user.profile,
+        ui: state.messages.ui,
+        users: state.user.users,
+    };
+};
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
 });
