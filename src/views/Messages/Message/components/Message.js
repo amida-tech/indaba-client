@@ -148,18 +148,24 @@ class MessageSelector extends Component {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
         }
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
         return (
             <MessageForm {...this.props}
                 initialValues={
-                    this.props.reply || _.get(this.props, 'location.state.message')
+                    reply
                 }
                 onSubmit={(values) => {
-                    this.props.actions.sendMessage({
+                    const message = {
                         subject: values.subject,
                         to: values.to,
                         from: this.props.profile.email,
                         message: values.message,
-                    });
+                    };
+                    if (_.has(reply, 'id')) {
+                        this.props.actions.replyToMessage(reply.id, message);
+                    } else {
+                        this.props.actions.sendMessage(message);
+                    }
                 }}/>
         );
     }
