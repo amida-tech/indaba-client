@@ -266,12 +266,12 @@
         "RETURN_TO_INBOX": "Return to Inbox",
         "MARK_AS_READ": "Mark as Read",
         "MARK_AS_UNREAD": "Mark as Unread",
+        "GO_MESSAGE_LINK": "Go to Inbox",
         "INBOX_FILTER": {
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",
             "UNREAD_MESSAGES": "Unread Messages",
-            "NOTIFICATIONS": "Notifications",
-        "GO_MESSAGES_LINK": "Go to Inbox"
+            "NOTIFICATIONS": "Notifications"
         }
     },
     "PROJECT_LIST_FILTER": {
