@@ -40,7 +40,7 @@ export const unarchiveMessage = id => ({
 export const replyToMessage = message => (dispatch) => {
     dispatch(_startReply({
         subject: message.subject,
-        to: message.from,
+        to: [message.from],
         from: message.to,
     }));
 };
