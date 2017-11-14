@@ -11,6 +11,8 @@ import Message from './Message';
 class MessageContainer extends Component {
     componentWillMount() {
         this.props.actions.discardReply();
+        this.props.actions.listMessages();
+        this.props.actions.listArchivedMessages();
     }
     render() {
         return (
