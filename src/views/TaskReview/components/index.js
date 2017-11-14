@@ -33,7 +33,7 @@ class TaskReview extends Component {
         if (this.props.task.id < 0) {
             this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
             this.props.actions.getTasksByProject(
-                this.props.params.projectId, this.props.vocab.ERROR, this.props.project);
+                this.props.params.projectId, this.props.vocab.ERROR);
         }
     }
 
