@@ -136,7 +136,7 @@ class Message extends Component {
 
 Message.propTypes = {
     id: PropTypes.number,
-    replyTo: PropTypes.object,
+    reply: PropTypes.object,
     vocab: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
