@@ -8,8 +8,13 @@ $block-class: 'to-field';
 
         &__search-wrapper {
             position: relative;
-            top: -12px;
-            margin-bottom: -24px;
+            top: -8px;
+            margin-bottom: -16px;
+        }
+
+        .grommetux-button--focus {
+            border: 2px solid transparent;
+            box-shadow: none;
         }
     }
 }
