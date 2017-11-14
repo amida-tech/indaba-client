@@ -37,8 +37,9 @@ export const unarchiveMessage = id => ({
     id,
 });
 
-export const replyToMessage = message => (dispatch) => {
+export const startReply = message => (dispatch) => {
     dispatch(_startReply({
+        id: message.id,
         subject: message.subject,
         to: [message.from],
         from: message.to,
@@ -63,6 +64,17 @@ export const sendMessage = message => (dispatch) => {
             dispatch(_sendMessageFailure(err));
         } else {
             dispatch(_sendMessageSuccess());
+        }
+    });
+};
+
+export const replyToMessage = (id, message) => (dispatch) => {
+    dispatch(_replyToMessage());
+    apiService.messaging.reply(id, message, (err) => {
+        if (err) {
+            dispatch(_replyToMessageFailure(err));
+        } else {
+            dispatch(_replyToMessageSuccess());
         }
     });
 };
@@ -129,6 +141,19 @@ export const _sendMessageFailure = err => ({
 
 export const _sendMessageSuccess = () => ({
     type: actionTypes.SEND_MESSAGE_SUCCESS,
+});
+
+export const _replyToMessage = () => ({
+    type: actionTypes.REPLY_TO_MESSAGE,
+});
+
+export const _replyToMessageFailure = err => ({
+    type: actionTypes.REPLY_TO_MESSAGE_FAILURE,
+    err,
+});
+
+export const _replyToMessageSuccess = () => ({
+    type: actionTypes.REPLY_TO_MESSAGE_SUCCESS,
 });
 
 export const _listMessages = () => ({
