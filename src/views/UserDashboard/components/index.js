@@ -92,12 +92,13 @@ const mapStateToProps = state => ({
     rows: [].concat(...state.tasks.data.map(task =>
         _generateRow(state, task.projectId, task))),
 });
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
 });
 
-const _generateRow = (state, projectId, task) => {
+const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     const project = state.projects.data[0].name ?
         state.projects.data.find(findProject => findProject.id === projectId) :
         state.projects.data[0];
@@ -105,26 +106,24 @@ const _generateRow = (state, projectId, task) => {
         project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
     const discussion = (state.discuss.data.find(findDiscuss =>
         findDiscuss.taskId === task.id) || { data: [] });
-    const answered = discussion.data.filter(response =>
-        response.value !== undefined).length;
-    const survey = state.surveys.data.find(findSurvey =>
-        findSurvey.projectId === projectId) || { name: '', questions: [] };
+    // const answered = discussion.data.filter(response =>
+    //     response.value !== undefined).length;
+    const survey = project !== undefined ? state.surveys.data.find(findSurvey =>
+        findSurvey.id === project.surveyId) : { name: '', sections: [] }; // TODO: Rewrite. Not great.
     return {
         key: task.id,
         projectId,
         subject: subject ? subject.name : '',
-        task: task.title,
+        task,
         due: task.endDate,
-        survey: survey.name,
+        survey: survey ? survey.name : '',
         flags: task.flagCount,
-        progress: `${answered} / ${survey.questions.length}
-            ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        progress: `0/0 ${state.settings.language.vocabulary.PROJECT.ANSWERED}`, // `${answered} / ${survey.questions.length}
         new: !!task.new,
-        late: TaskStatus.endDateInPast(task) &&
-            !TaskStatus.responsesComplete({ response: discussion.data },
-                survey.questions.length),
+        late: TaskStatus.endDateInPast(task) && // survey.questions.length
+            !TaskStatus.responsesComplete({ response: discussion.data }, 0),
         complete: TaskStatus.responsesComplete({ response: discussion.data },
-            survey.questions.length),
+            0), // survey.questions.length
     };
 };
 

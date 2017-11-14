@@ -7,9 +7,10 @@ import IonIcon from 'react-ionicons';
 
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
-import TaskSurveyList from './TaskSurveyList';
+import SurveyPane from './SurveyPane';
+import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
-import { getTasksByProject, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import { getProjectById } from '../../../common/actions/projectActions';
 import * as actions from '../actions';
 
@@ -30,15 +31,30 @@ function surveyMapper(responses, questions) {
 
 class TaskReview extends Component {
     componentWillMount() {
+        this.props.actions.setSurveySectionIndex(-1);
+        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
         if (this.props.task.id < 0) {
-            this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
-            this.props.actions.getTasksByProject(
-                this.props.params.projectId, this.props.vocab.ERROR);
+            this.props.actions.getTaskById(this.props.params.projectId,
+                this.props.params.taskId, this.props.vocab.ERROR);
         }
     }
 
     render() {
-        const displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+        const options = this.props.survey.sections ?
+            this.props.survey.sections.map((section, index) =>
+                ({ value: index, label: section.name })) : [];
+        options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
+        let displaySurvey;
+        if (this.props.survey.sections && this.props.sectionIndex === -1) {
+            displaySurvey = surveyMapper(this.props.responses,
+                        _.flatten(_.map(this.props.survey.sections, 'questions')));
+        } else if (this.props.survey.sections) {
+            displaySurvey = surveyMapper(this.props.responses,
+                this.props.survey.sections[this.props.sectionIndex].questions);
+        } else {
+            displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+        }
+
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
@@ -57,9 +73,13 @@ class TaskReview extends Component {
                         vocab={this.props.vocab}
                         stage={this.props.stage}
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
-                    <TaskSurveyList
+                    <SurveyPane
                         ui={this.props.ui}
+                        answers={this.props.ui.form.answers}
                         survey={displaySurvey}
+                        options={options}
+                        surveyId={this.props.survey.id}
+                        sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
@@ -74,28 +94,29 @@ class TaskReview extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
     const task = _.find(state.tasks.data, current => current.id === taskId) ||
-        { id: -1, endDate: '', userIds: [] };
-    const project = state.projects.data[0].name ?
+        { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
+    const project = state.projects.data[0].id > 0 ?
         _.find(state.projects.data, projElem => projElem.id === projectId) :
         state.projects.data[0];
     return {
         projectId,
         taskedUser: _.find(state.user.users, user =>
             user.id === task.userIds[0]) || { firstName: '', lastName: '' },
-        stage: project.name ?
+        stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
             _.find(project.stages, stage => stage.id === task.stepId) : { title: '' },
-        subject: project.name ?
+        subject: (project.id > 0 && task.uoaId > 0) ?
             _.find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
         users: state.user.users,
         profile: state.user.profile,
         task,
         survey: state.surveys.data[0].name ?
-            _.find(state.surveys, survey => survey.projectId === projectId) :
+            _.find(state.surveys.data, survey => survey.id === project.surveyId) :
             state.surveys.data[0],
+        sectionIndex: state.surveys.ui.sectionIndex,
         responses: _.find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
@@ -103,8 +124,14 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions,
-        { updateTaskEndDate, updateFlaggedQuestion, getTasksByProject, getProjectById }), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, {
+        updateTaskEndDate,
+        updateFlaggedQuestion,
+        getTaskById,
+        getProjectById,
+        setSurveySectionIndex,
+        postAnswer }),
+        dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

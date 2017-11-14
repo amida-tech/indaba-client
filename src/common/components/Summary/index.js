@@ -40,8 +40,7 @@ class Summary extends Component {
                                 this.props.vocab.ERROR) :
                             this.props.actions.postSurvey(
                                 this.props.survey,
-                                this.props.project.id,
-                                this.props.project.productId,
+                                this.props.project,
                                 this.props.vocab.ERROR));
                     }}>
                     <IonIcon

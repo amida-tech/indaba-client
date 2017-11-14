@@ -1,0 +1,7 @@
+$block-class:'questions';
+
+@at-root {
+    .#{$block-class} {
+        margin: 0px 0px 5px 5px;
+    }
+}

@@ -10,7 +10,7 @@ class UserTaskListEntry extends Component {
     render() {
         return (
             <div className='user-task-list-entry'
-                onClick={() => this.props.router.push(`/project/${this.props.projectId}`)}>
+                onClick={() => this.props.router.push(`/task-review/${this.props.projectId}/${this.props.task.id}`)}>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--subject'>
                     {this.props.subject}
                 </div>
@@ -21,7 +21,7 @@ class UserTaskListEntry extends Component {
                     {!this.props.late && this.props.new &&
                         <StatusLabel label={this.props.vocab.COMMON.NEW}
                             type={StatusLabelType.GOOD} />}
-                    {this.props.task}
+                    {this.props.task.title}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>
                     {
@@ -47,7 +47,7 @@ class UserTaskListEntry extends Component {
 
 UserTaskListEntry.propTypes = {
     subject: PropTypes.string.isRequired,
-    task: PropTypes.string.isRequired,
+    task: PropTypes.object.isRequired,
     due: PropTypes.string.isRequired,
     survey: PropTypes.string.isRequired,
     flags: PropTypes.number.isRequired,

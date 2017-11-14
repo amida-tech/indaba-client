@@ -1,3 +1,5 @@
+import { find } from 'lodash';
+
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
 
@@ -8,6 +10,21 @@ export function getTasksByProject(projectId, errorMessages) {
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
                     dispatch(_getTasksByProjectSuccess(projectId, taskResp));
+                } else {
+                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                }
+            },
+        );
+    };
+}
+
+export function getTaskById(projectId, taskId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.getTaskById(
+            taskId,
+            (taskErr, taskResp) => {
+                if (!taskErr && taskResp) {
+                    dispatch(_getTaskByIdSuccess(projectId, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }
@@ -45,7 +62,20 @@ export function getTasksByUser(userId, errorMessages) {
     };
 }
 
-export function assignTask(userId, slot, productId, errorMessages) {
+export function assignTask(userId, slot, project, errorMessages) {
+    let surveyRequestBody;
+    if (project.surveyId) {
+        surveyRequestBody = {
+            name: slot.stageData.title,
+            stage: slot.stageData.position, // May eventually change to stepId.
+            surveys: [{
+                id: project.surveyId,
+            }],
+            group: find(project.userGroups, group =>
+                group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+        };
+    }
+
     const requestBody = {
         userId,
         title: slot.stageData.title,
@@ -54,10 +84,20 @@ export function assignTask(userId, slot, productId, errorMessages) {
         startDate: slot.stageData.startDate,
         endDate: slot.stageData.endDate,
         isComplete: false,
-        productId,
+        productId: project.productId,
     };
 
     return (dispatch) => {
+        if (surveyRequestBody) {
+            apiService.surveys.postAssessment(
+                surveyRequestBody,
+            (assessErr, assessResp) => {
+                if (assessErr) {
+                    dispatch(_reportTasksError(errorMessages.ASSESSMENT_REQUEST));
+                }
+                requestBody.assessmentId = assessResp.id;
+            });
+        }
         apiService.tasks.postTask(
             requestBody,
             (taskErr, taskResp) => {
@@ -95,6 +135,14 @@ function _getTasksByProjectSuccess(projectId, tasks) {
         type: actionTypes.GET_TASKS_BY_PROJECT_SUCCESS,
         projectId,
         tasks,
+    };
+}
+
+function _getTaskByIdSuccess(projectId, task) {
+    return {
+        type: actionTypes.GET_TASK_BY_ID_SUCCESS,
+        projectId,
+        task,
     };
 }
 
