@@ -7,19 +7,27 @@ $block-class: 'message-list';
         cursor: pointer;
 
         &__title {
-            padding-left: 2.5em;
+            @extend .x-large-font;
+
+            justify-content: space-between;
+            padding-left: 24px;
             padding-bottom: 0.5em;
             height: 3em;
             border-bottom: 1px solid $border-color;
             display: flex;
             align-items: flex-end;
-            font-weight: 400;
-            font-size: 1.2em;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        &__title-link {
+            font-size: 16px;
+            padding-right: 24px;
         }
 
         &__row {
             height: 3em;
-            padding-left: 3.5em;
+            padding-left: 32px;
             display: flex;
             flex-direction: row;
             align-items: center;

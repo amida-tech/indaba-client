@@ -28,9 +28,13 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
 
                 <div className='primary-nav__left'>
-                    <Link to={'/task'}>
+                    <Link to={'/project'}>
                         <img src="/src/assets/indaba-logo-white.svg"
                             className="primary-nav__indaba-logo"/>
+                    </Link>
+
+                    <Link className='primary-nav__item-nav' to='/task'>
+                        {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
 
                     <Link className='primary-nav__item-nav' to='/project'>

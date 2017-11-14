@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     message: state.messages.messages.find(message => message.id ===
         parseInt(ownProps.params.id, 10)),
-    me: `${state.user.profile.firstName} ${state.user.profile.lastName}`,
+    me: state.user.profile.email,
     ui: state.messages.ui,
 });
 const mapDispatchToProps = dispatch => ({

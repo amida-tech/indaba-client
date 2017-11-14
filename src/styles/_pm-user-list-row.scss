@@ -3,26 +3,18 @@ $block-class: 'pm-user-list-row';
 @at-root {
     .#{$block-class} {
         display: flex;
-        padding-left: 20px;
-        padding-right: 20px;
+        cursor: pointer;
 
-        &:nth-child(even) {
-            background-color: lighten(#d8d8d8, 10%);
+        @extend .lead-font;
+
+        &:hover {
+            background-color: #f3f3f3;
         }
 
         &__cell {
-            padding: 1em;
+            padding: 8px 16px;
             display: inline-flex;
             flex: 6;
-
-            &--hover:hover {
-                color: nth($brand-neutral-colors, 2);
-                cursor: pointer;
-            }
-
-            &--non-cursor:hover {
-                cursor: default;
-            }
         }
     }
 }

@@ -3,12 +3,12 @@ $block-class: 'user-task-list-header';
 @at-root {
     .#{$block-class} {
         display: flex;
-        text-transform: uppercase;
-        padding: 1em 2em 1em 1em;
+        padding: 8px 16px;
 
         &__title {
-            color: $header-font-color;
-            font-weight: 900;
+            color: $font-color;
+
+            @extend .lead-font;
 
             &--subject,
             &--task,
