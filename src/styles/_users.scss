@@ -33,6 +33,10 @@ $block-class: 'users';
             }
         }
 
+        .grommetux-tabs {
+            margin-bottom: 0;
+        }
+
         .grommetux-tab--active {
             background-color: lighten(#d8d8d8, 5%);
         }
@@ -45,9 +49,10 @@ $block-class: 'users';
         }
 
         .grommetux-tab__label {
+            font-weight: 400;
             display: flex;
             font-size: 14px;
-            color: $font-color;
+            color: $header-font-color;
             padding-bottom: 2px;
             padding-top: 2px;
             border-bottom: none;

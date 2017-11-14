@@ -30,7 +30,7 @@ class InboxMessageList extends Component {
                     <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
-                            !message.archived &&
+                            !message.isArchived &&
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
@@ -43,7 +43,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.archived && !message.readAt &&
+                            !message.isArchived && !message.readAt &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
@@ -57,7 +57,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.archived && message.readAt &&
+                            !message.isArchived && message.readAt &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
@@ -71,7 +71,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.archived &&
+                            message.isArchived &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
@@ -85,7 +85,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.archived &&
+                            message.isArchived &&
                             <PanelButton
                                 onClick={
                                     (event) => {

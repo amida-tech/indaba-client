@@ -35,10 +35,11 @@
         "OK": "OK",
         "NEW": "New",
         "LATE": "Late",
-        "LOG_OUT": "Log Out"
+        "LOG_OUT": "Log Out",
+        "MY_TASKS":"My Tasks"
     },
     "TOAST": {
-        "EXISTS": "The user is already in the system, but we've added them to the project for you.",
+        "EXISTS": "The user is already in the system and has been added to the project for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
@@ -267,6 +268,7 @@
         "RETURN_TO_INBOX": "Return to Inbox",
         "MARK_AS_READ": "Mark as Read",
         "MARK_AS_UNREAD": "Mark as Unread",
+        "GO_MESSAGE_LINK": "Go to Inbox",
         "INBOX_FILTER": {
             "ALL_MESSAGES": "All Messages",
             "SENT_MESSAGES": "Sent Messages",

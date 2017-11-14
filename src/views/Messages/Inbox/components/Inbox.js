@@ -22,10 +22,11 @@ class Inbox extends Component {
 
     componentWillMount() {
         this.props.actions.listMessages();
+        this.props.actions.listArchivedMessages();
     }
 
     evaluateFilter(message) {
-        if (!!message.archived !==
+        if (message.isArchived !==
             (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
             return false;
         }

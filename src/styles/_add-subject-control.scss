@@ -46,6 +46,10 @@ $block-class: 'add-subject-control';
             margin-left: 10px;
             fill: $font-color;
             cursor: pointer;
+
+            &:hover {
+                fill: darken($font-color, 10);
+            }
         }
     }
 }
