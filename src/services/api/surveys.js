@@ -28,6 +28,9 @@ const surveys = {
     postAnswer: (assessmentId, requestBody, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody, callback);
     },
+    copyAnswers: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
+    },
 };
 
 export default surveys;

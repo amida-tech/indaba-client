@@ -24,12 +24,10 @@ const cardSource = {
         return { id: props.children.id };
     },
     endDrag(props, monitor) { // Possible arg: component
-        console.log(props);
         if (!monitor.didDrop()) {
             return;
         }
         const slot = monitor.getDropResult();
-        console.log(slot);
         props.actions.assignTask(props.children.id, slot,
             props.project, props.vocab.ERROR);
     },

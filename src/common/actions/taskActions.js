@@ -1,6 +1,7 @@
+import { find } from 'lodash';
+
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
-import { find } from 'lodash';
 
 export function getTasksByProject(projectId, errorMessages) {
     return (dispatch) => {
