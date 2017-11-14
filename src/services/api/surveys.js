@@ -16,8 +16,17 @@ const surveys = {
     getSurveyById: (surveyId, callback) => {
         requests.apiTokenGetRequest(`${rootURI}/answered-surveys/${surveyId}`, callback);
     },
-    postAnswer: (requestBody, callback) => {
-        requests.apiTokenPostRequest(`${rootURI}/answers`, requestBody, callback);
+    getAssessment: (callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);
+    },
+    postAssessment: (requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessments`, requestBody, callback);
+    },
+    getAnswers: (assessmentId, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessment-answers/${assessmentId}`, callback);
+    },
+    postAnswer: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody, callback);
     },
 };
 

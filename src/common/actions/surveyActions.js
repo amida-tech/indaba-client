@@ -15,7 +15,7 @@ export function getSurveys(errorMessages) {
     };
 }
 
-export function postSurvey(survey, projectId, productId, errorMessages) {
+export function postSurvey(survey, project, errorMessages) {
     const requestBody = {
         authorId: 1,
         name: survey.name,
@@ -34,21 +34,26 @@ export function postSurvey(survey, projectId, productId, errorMessages) {
             (surveyErr, surveyResp) => {
                 if (!surveyErr && surveyResp) {
                     const updateBody = {
-                        id: productId,
+                        id: project.productId,
                         surveyId: surveyResp.id,
                     };
                     apiService.projects.putSurveyToProduct(
-                        productId,
+                        project.productId,
                         updateBody,
                         (productErr, productResp) => {
                             if (!productErr && productResp) {
                                 dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
-                                dispatch(updateProjectWithSurvey(projectId, surveyResp.id));
+                                dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
                             } else {
                                 dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
                             }
                         },
                     );
+                    // TODO JAMES Post assessments for each existing stage.
+                    // product.
+                    // apiService.surveys.postAssessment({
+                    //     name:
+                    // });
                 } else {
                     dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
                 }
@@ -89,10 +94,36 @@ export function getSurveyById(surveyId, errorMessages) {
     };
 }
 
+export function getAssessment(errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.getAssessment(
+            (assessErr, assessResp) => {
+                dispatch((!assessErr && assessResp) ?
+                    _getAssessmentSuccess(assessResp) :
+                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+            },
+        );
+    };
+}
+
+export function postAssessment(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.postAssessment(
+            requestBody,
+            (assessErr, assessResp) => {
+                dispatch((!assessErr && assessResp) ?
+                    _postAssessmentSuccess(assessResp) :
+                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+            },
+        );
+    };
+}
+
 // Answer related.
-export function postAnswer(requestBody, errorMessages) {
+export function postAnswer(assessmentId, requestBody, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAnswer(
+            assessmentId,
             requestBody,
             (answerErr, answerResp) => {
                 if (answerErr) {
@@ -157,6 +188,20 @@ function _getSurveyByIdSuccess(surveyId, survey) {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
+    };
+}
+
+function _getAssessmentSuccess(assessment) {
+    return {
+        type: actionTypes.GET_ASSESSMENT_SUCCESS,
+        assessment,
+    };
+}
+
+function _postAssessmentSuccess(assessmentId) {
+    return {
+        type: actionTypes.POST_ASSESSMENT_SUCCESS,
+        assessmentId,
     };
 }
 
