@@ -10,10 +10,10 @@ class MessageList extends Component {
             <div className='message-list'>
                 <div className='message-list__title'>
                     {this.props.vocab.MESSAGES.RECENT_MESSAGES}
+                    <Link to='/messages' className='message-list__title-link'>
+                        {this.props.vocab.MESSAGES.GO_MESSAGES_LINK}
+                    </Link>
                 </div>
-                <Link to='/messages' className='message-list__link'>
-                    {this.props.vocab.MESSAGES.GO_MESSAGES_LINK}
-                </Link>
                 {this.props.messages.map(message =>
                     <div key={message.id} className='message-list__row'>
                         <div className='message-list__name'>
