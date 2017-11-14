@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Time from '../../../utils/Time';
 
-
 class MessageList extends Component {
     render() {
         return (
