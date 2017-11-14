@@ -25,7 +25,7 @@ class MessageContainer extends Component {
                 <Message {...this.props}/>
                 {
                     this.props.ui.reply &&
-                    <Message vocab={this.props.vocab} me={this.props.me}
+                    <Message vocab={this.props.vocab} profile={this.props.profile}
                         reply={this.props.ui.reply}
                         actions={this.props.actions}/>
                 }
@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
     message: state.messages.messages.find(message => message.id ===
         parseInt(ownProps.params.id, 10)),
-    me: state.user.profile.email,
+    profile: state.user.profile,
     ui: state.messages.ui,
     users: state.user.users,
 });

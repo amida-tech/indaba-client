@@ -144,8 +144,8 @@ class MessageSelector extends Component {
                 onSubmit={(values) => {
                     this.props.actions.sendMessage({
                         subject: values.subject,
-                        to: [values.to],
-                        from: this.props.me,
+                        to: values.to,
+                        from: this.props.profile.email,
                         message: values.message,
                     });
                 }}/>
