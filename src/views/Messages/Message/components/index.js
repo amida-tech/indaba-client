@@ -24,7 +24,14 @@ class MessageContainer extends Component {
                         {this.props.vocab.MESSAGES.BACK_TO_INBOX}
                     </Link>
                 </div>
-                <Message {...this.props}/>
+                {
+                    this.props.thread.map(message =>
+                    <Message {...this.props}
+                        key={message.id}
+                        id={message.id}
+                        message={message} />,
+                    )
+                }
                 {
                     this.props.ui.reply &&
                     <Message vocab={this.props.vocab} profile={this.props.profile}
