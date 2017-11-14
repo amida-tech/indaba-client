@@ -15,10 +15,9 @@ $block-class: 'invite-user-form';
             outline: none;
             font-size: 14px;
             -webkit-box-shadow: 0 0 1000px #fff inset;
-            transition: background-color 5000s ease-in-out 0s;
             flex: 1;
             margin-right: 4px;
-            padding-left: 2px;
+            padding: 8px;
 
             &:focus {
                 border: 2px solid $brand-color;
@@ -38,6 +37,10 @@ $block-class: 'invite-user-form';
             &:focus {
                 border: 2px solid darken($font-color, 10);
                 outline: none;
+            }
+
+            &:hover {
+                background-color: darken($font-color, 10);
             }
         }
     }

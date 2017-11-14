@@ -3,14 +3,13 @@ $block-class: 'project-list-header';
 @at-root {
     .#{$block-class} {
         display: flex;
-        text-transform: uppercase;
-        padding: 1em 2em 1em 1em;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        padding: 8px 16px;
+
+        @extend .lead-font;
 
         &__title {
-            color: $header-font-color;
-            font-weight: 700;
+            color: $font-color;
+            font-weight: 500;
 
             &--project {
                 flex: 4;
@@ -29,6 +28,11 @@ $block-class: 'project-list-header';
                 display: flex;
                 justify-content: flex-end;
             }
+        }
+
+        .project-list-header__title--last-updated {
+            position: relative;
+            right: 90px;
         }
     }
 }

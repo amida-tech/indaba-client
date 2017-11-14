@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-$border-color: #dadcde;
+$border-color: #ebebeb;
 $page-background-color: #fafafa;
 $header-font-color: #7e848f;
 $font-color: #a4aebf;
@@ -68,8 +68,14 @@ body,
 
 .grommetux-search .grommetux-search__input,
 .grommetux-select__input {
+    font-size: 16px;
     padding: 7px 4px;
     border-radius: 0;
+}
+
+.grommetux-search__drop,
+.grommetux-search__suggestion {
+    @extend .small-font;
 }
 
 .grommetux-search--fill {

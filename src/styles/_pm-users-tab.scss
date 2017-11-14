@@ -6,10 +6,10 @@ $block-class: 'pm-users-tab';
 
         &__invite-container {
             background-color: #f9f9f9;
-            border-bottom: 2px solid $border-color;
+            border-bottom: 1px solid $border-color;
             display: flex;
             flex-direction: column;
-            padding: 1em;
+            padding: 16px;
         }
 
         &__search-container {
@@ -17,7 +17,7 @@ $block-class: 'pm-users-tab';
         }
 
         &__text-input {
-            padding: 5px 5px 5px 10px;
+            padding: 8px;
             width: 100%;
             border: 1px solid $border-color;
 
