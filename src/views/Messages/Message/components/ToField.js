@@ -29,13 +29,14 @@ class ToField extends Component {
     render() {
         return (
             <div className='to-field'>
-                <Search
-                    size='small'
-                    suggestions={
-                        this.props.users.filter(this.searchFilter)
-                        .map(user => ({ label: renderName(user),
-                            value: user }))}
-                    onSelect={this.handleSelect}/>
+                <div className='to-field__search-wrapper'>
+                    <Search
+                        suggestions={
+                            this.props.users.filter(this.searchFilter)
+                            .map(user => ({ label: renderName(user),
+                                value: user }))}
+                        onSelect={this.handleSelect}/>
+                </div>
                 {
                     this.props.input.value !== '' &&
                     this.props.input.value.map(email => (
