@@ -26,6 +26,8 @@ $brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
 $brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
 
 $primary-nav-height: 64px;
+$footer-height: 48px;
+$footer-height-with-padding: 64px;
 
 @import 'grommet/scss/grommet-core/index.scss';
 
@@ -34,6 +36,19 @@ body {
     background-color: $page-background-color;
     color: $header-font-color;
     overflow-y: auto;
+}
+
+html,
+body,
+#root,
+.main-page {
+    height: 100%;
+}
+
+.app {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: $footer-height-with-padding;
 }
 
 // Grommet overrides
