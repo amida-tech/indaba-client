@@ -4,6 +4,7 @@ import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
+import { renderName } from '../../../../utils/User';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
@@ -34,8 +35,12 @@ class Message extends Component {
                     </div>
                     <div className='message__row'>
                         <MessageField label={this.props.vocab.MESSAGES.FROM}
-                            input={compose}
-                            value={_.get(this.props, 'message.from')}
+                            input={false}
+                            value={
+                                compose ?
+                                renderName(this.props.profile) :
+                                _.get(this.props, 'message.from')
+                            }
                             name='from'/>
                     </div>
                     <div className='message__row'>
