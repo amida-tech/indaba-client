@@ -272,7 +272,7 @@ export function deleteUserGroup(groupId, projectId) {
     };
 }
 
-export function updateUserGroup(group, projectId) {
+export function updateUserGroup(group, projectId) { // TODO: INBA-457
     return {
         type: actionTypes.UPDATE_USER_GROUP,
         group,

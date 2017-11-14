@@ -51,6 +51,7 @@
         "FETCH_SURVEYS": "Fetch surveys failed.",
         "FETCH_TASKS": "Fetch tasks failed... or the user simply has no assigned tasks.",
         "FETCH_DISCUSS": "Fetch discuss failed.",
+        "CREATE_SURVEY": "Please create a survey before assigning tasks.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
         "SURVEY_REQUEST": "The system failed to insert or update a new survey into the database. Please try again",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",

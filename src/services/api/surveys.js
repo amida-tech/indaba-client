@@ -16,6 +16,22 @@ const surveys = {
     patchSurvey: (surveyId, requestBody, callback) => {
         requests.apiTokenPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
     },
+    getAssessment: (callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);
+    },
+    postAssessment: (requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessments`, requestBody, callback);
+    },
+    getAnswers: (assessmentId, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessment-answers/${assessmentId}`, callback);
+    },
+    postAnswer: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody, callback);
+    },
+    copyAnswers: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
+    },
+
 };
 
 export default surveys;
