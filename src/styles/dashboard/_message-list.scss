@@ -15,6 +15,10 @@ $block-class: 'message-list';
             align-items: flex-end;
             font-weight: 400;
             font-size: 1.2em;
+
+            &-link {
+                font-size: 18px;
+            }
         }
 
         &__row {
