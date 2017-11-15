@@ -27,12 +27,14 @@ class MessageContainer extends Component {
                     </Link>
                 </div>
                 {
+                    this.props.id !== undefined ?
                     this.props.thread.map(message =>
-                    <Message {...this.props}
-                        key={message.id}
-                        id={message.id}
-                        message={message} />,
-                    )
+                        <Message {...this.props}
+                            key={message.id}
+                            id={message.id}
+                            message={message} />,
+                    ) :
+                    <Message {...this.props} />
                 }
                 {
                     this.props.ui.reply &&
