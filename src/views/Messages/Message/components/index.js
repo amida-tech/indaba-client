@@ -74,6 +74,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
+    goToInbox: () => dispatch(push('/messages')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
