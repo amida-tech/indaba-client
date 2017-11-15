@@ -3,6 +3,9 @@ $block-class: 'filter-wrapper';
 @at-root {
     .#{$block-class} {
         display: flex;
+        background-color: hsla(0, 0%, 95%, 1);
+        padding: 16px 8px;
+        box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
         justify-content: space-between;
         align-items: center;
         margin-top: 24px;
