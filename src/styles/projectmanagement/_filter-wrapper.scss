@@ -12,10 +12,11 @@ $block-class: 'filter-wrapper';
         margin-bottom: 24px;
 
         &__add-button {
-            margin-left: 5px;
+            margin-left: 4px;
             border-radius: 2px;
             letter-spacing: 0.8px;
             font-weight: 400;
+            padding: 4px 8px;
 
             &:hover {
                 background: darken(#4eb276, 10);
