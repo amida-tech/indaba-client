@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import IonIcon from 'react-ionicons';
+import { push } from 'react-router-redux';
 
 import * as actions from '../../actions';
 
@@ -68,6 +69,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);

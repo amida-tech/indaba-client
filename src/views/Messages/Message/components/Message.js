@@ -27,7 +27,9 @@ class Message extends Component {
         const compose = this.props.id === undefined;
         const active = _.get(this, 'props.params.id') === _.get(this, 'props.id', '').toString();
         return (
-            <div className={`message ${active ? 'message--active' : ''}`}>
+            <div className={`message ${active ? 'message--active' : ''}`}
+                onClick={() => !compose && !active &&
+                    this.props.goToMessage(this.props.id)}>
                 <form className='message__content' onSubmit={this.props.handleSubmit}>
                     <div className='message__row message__row--to'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
