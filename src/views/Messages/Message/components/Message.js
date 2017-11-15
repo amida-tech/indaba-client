@@ -25,7 +25,8 @@ class Message extends Component {
     }
     render() {
         const compose = this.props.id === undefined;
-        const active = _.get(this, 'props.params.id') === _.get(this, 'props.id', '').toString();
+        const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
+        const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
         return (
             <div className={`message ${active ? 'message--active' : ''}`}
                 onClick={() => !compose && !active &&
@@ -88,12 +89,15 @@ class Message extends Component {
                                         <IonIcon icon='ion-arrow-right-a'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton
-                                        onClick={() => this.props.actions
-                                            .startReply(this.props.message) }>
-                                        <IonIcon icon='ion-reply'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
+                                    {
+                                        received &&
+                                        <PanelButton
+                                            onClick={() => this.props.actions
+                                                .startReply(this.props.message) }>
+                                            <IonIcon icon='ion-reply'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
                                 </ButtonPanel>
                             </div>
                         }
@@ -126,7 +130,7 @@ class Message extends Component {
                     </div>
                 </form>
                 {
-                    !compose &&
+                    !compose && received &&
                     <div className='message__inline-reply'
                         onClick={(evt) => {
                             this.props.actions.startReply(this.props.message);
