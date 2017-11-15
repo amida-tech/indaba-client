@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as actionTypes from './actionTypes';
+import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
 
 const initialState = {
@@ -76,6 +77,8 @@ export default (state = initialState, action) => {
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
         });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }
