@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import IonIcon from 'react-ionicons';
 import { push } from 'react-router-redux';
+import _ from 'lodash';
 
 import * as actions from '../../actions';
 
@@ -51,10 +52,10 @@ const mapStateToProps = (state, ownProps) => {
         undefined;
     const message = state.messages.messages
         .find(messageIter => messageIter.id === id);
-    const thread = message ?
+    const thread = _.sortBy(message ?
         state.messages.messages.filter(messageIter =>
             messageIter.originalMessageId === message.originalMessageId) :
-        [];
+        [], 'timestamp');
     return {
         id,
         message,
