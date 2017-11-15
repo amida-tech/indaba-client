@@ -1,3 +1,5 @@
+import { initialize, reset } from 'redux-form';
+
 import * as actionTypes from './actionTypes';
 import apiService from '../../services/api';
 
@@ -125,10 +127,11 @@ export const deleteMessage = id => (dispatch) => {
 
 /* Private actions */
 
-export const _startReply = reply => ({
-    type: actionTypes.START_REPLY,
-    reply,
-});
+export const _startReply = reply => (dispatch) => {
+    dispatch(initialize('message', reply));
+    dispatch(reset('message'));
+    dispatch({ type: actionTypes.START_REPLY, reply });
+};
 
 export const _sendMessage = () => ({
     type: actionTypes.SEND_MESSAGE,

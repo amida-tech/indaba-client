@@ -89,8 +89,10 @@ class Message extends Component {
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     <PanelButton
-                                        onClick={ () => this.props.actions
-                                            .startReply(this.props.message) }>
+                                        onClick={(evt) => {
+                                            this.props.actions.startReply(this.props.message);
+                                            evt.stopPropagation();
+                                        }}>
                                         <IonIcon icon='ion-reply'
                                             className='message__action-icon'/>
                                     </PanelButton>
@@ -128,7 +130,10 @@ class Message extends Component {
                 {
                     !compose &&
                     <div className='message__inline-reply'
-                        onClick={() => this.props.actions.startReply(this.props.message)}>
+                        onClick={(evt) => {
+                            this.props.actions.startReply(this.props.message);
+                            evt.stopPropagation();
+                        }}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}
                     </div>
                 }
