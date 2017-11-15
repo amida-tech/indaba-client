@@ -14,7 +14,7 @@ const surveys = {
         requests.apiTokenPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
     },
     getSurveyById: (surveyId, callback) => {
-        requests.apiTokenGetRequest(`${rootURI}/answered-surveys/${surveyId}`, callback);
+        requests.apiTokenGetRequest(`${rootURI}/surveys/${surveyId}`, callback);
     },
     getAssessment: (callback) => {
         requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);

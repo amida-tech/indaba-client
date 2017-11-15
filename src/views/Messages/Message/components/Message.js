@@ -4,16 +4,24 @@ import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
+import { renderName } from '../../../../utils/User';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
+import ToField from './ToField';
 
 class Message extends Component {
     componentWillMount() {
         if (this.props.id && !this.props.message) {
             this.props.actions.getMessage(this.props.id);
         }
+
+        this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
+    }
+    renderUserFromEmail(email) {
+        const user = this.props.users.find(userIter => userIter.email === email);
+        return user ? renderName(user) : email;
     }
     render() {
         const compose = this.props.id === undefined;
@@ -23,7 +31,11 @@ class Message extends Component {
                     <div className='message__row message__row--to'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
-                            value={_.get(this.props, 'message.to')}
+                            value={_.get(this.props, 'message.to', []).map(
+                                this.renderUserFromEmail,
+                            ).join(', ')}
+                            component={ToField}
+                            componentProps={{ users: this.props.users }}
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && this.props.message.timestamp}
@@ -31,8 +43,12 @@ class Message extends Component {
                     </div>
                     <div className='message__row'>
                         <MessageField label={this.props.vocab.MESSAGES.FROM}
-                            input={compose}
-                            value={_.get(this.props, 'message.from')}
+                            input={false}
+                            value={
+                                compose ?
+                                renderName(this.props.profile) :
+                                this.renderUserFromEmail(_.get(this.props, 'message.from'))
+                            }
                             name='from'/>
                     </div>
                     <div className='message__row'>
@@ -120,10 +136,9 @@ class Message extends Component {
 
 Message.propTypes = {
     id: PropTypes.number,
-
     replyTo: PropTypes.object,
-
     vocab: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const MessageForm = reduxForm({ form: 'message' })(Message);
@@ -141,8 +156,8 @@ class MessageSelector extends Component {
                 onSubmit={(values) => {
                     this.props.actions.sendMessage({
                         subject: values.subject,
-                        to: [values.to],
-                        from: this.props.me,
+                        to: values.to,
+                        from: this.props.profile.email,
                         message: values.message,
                     });
                 }}/>

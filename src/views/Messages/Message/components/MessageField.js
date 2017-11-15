@@ -9,7 +9,8 @@ class MessageField extends Component {
                 <div className='message-field__label'>{this.props.label}: </div>
                 {
                     this.props.input ?
-                    <Field component='input'
+                    <Field component={this.props.component || 'input'}
+                        {...this.props.componentProps}
                         className='message-field__value'
                         name={this.props.name}/> :
                     <div className='message-field__value'>
@@ -24,9 +25,15 @@ class MessageField extends Component {
 MessageField.propTypes = {
     label: PropTypes.string.isRequired,
 
+    // true if this field receives user input, false if it only renders a value
     input: PropTypes.bool,
 
+    // used as the field name if input is true
     name: PropTypes.string,
+    // optional, used as a custom input component if input is true
+    component: PropTypes.any,
+
+    // used as the value if input is false
     value: PropTypes.string,
 };
 

@@ -1,4 +1,5 @@
 import { find } from 'lodash';
+import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
@@ -63,18 +64,22 @@ export function getTasksByUser(userId, errorMessages) {
 }
 
 export function assignTask(userId, slot, project, errorMessages) {
-    let surveyRequestBody;
-    if (project.surveyId) {
-        surveyRequestBody = {
-            name: slot.stageData.title,
-            stage: slot.stageData.position, // May eventually change to stepId.
-            surveys: [{
-                id: project.surveyId,
-            }],
-            group: find(project.userGroups, group =>
-                group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+    if (project.surveyId < 0 || !project.surveyId) {
+        toast(errorMessages.CREATE_SURVEY);
+        return (dispatch) => {
+            dispatch(_reportTasksError(errorMessages.ASSESSMENT_REQUEST));
         };
     }
+
+    const surveyRequestBody = {
+        name: slot.stageData.title,
+        stage: slot.stageData.position, // May eventually change to stepId.
+        surveys: [{
+            id: project.surveyId,
+        }],
+        group: find(project.userGroups, group =>
+            group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+    };
 
     const requestBody = {
         userId,
@@ -88,23 +93,21 @@ export function assignTask(userId, slot, project, errorMessages) {
     };
 
     return (dispatch) => {
-        if (surveyRequestBody) {
-            apiService.surveys.postAssessment(
-                surveyRequestBody,
+        apiService.surveys.postAssessment(
+            surveyRequestBody,
             (assessErr, assessResp) => {
                 if (assessErr) {
                     dispatch(_reportTasksError(errorMessages.ASSESSMENT_REQUEST));
-                }
-                requestBody.assessmentId = assessResp.id;
-            });
-        }
-        apiService.tasks.postTask(
-            requestBody,
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    dispatch(_postTaskSuccess(userId, slot, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                    requestBody.assessmentId = assessResp.id;
+                    apiService.tasks.postTask(
+                        requestBody,
+                        (taskErr, taskResp) => {
+                            dispatch(!taskErr && taskResp ?
+                                _postTaskSuccess(userId, slot, taskResp) :
+                                _reportTasksError(errorMessages.TASK_REQUEST));
+                        },
+                    );
                 }
             },
         );

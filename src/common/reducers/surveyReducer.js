@@ -38,7 +38,7 @@ export const SurveyReducer = (state = initialState, action) => {
     case type.SET_SURVEY_STATUS:
         return update(state, { data: { [surveyIndex]: { status: { $set: action.status } } } });
     case type.SET_SURVEY_NAME:
-        return (surveyIndex >= 0 ?
+        return (action.surveyId >= 0 && surveyIndex >= 0 ?
             update(state, { data: { [surveyIndex]: { name: { $set: action.name } } } }) :
             update(state, { ui: { newSurveyName: { $set: action.name } } }));
     case type.SET_SURVEY_SECTION_INDEX:
