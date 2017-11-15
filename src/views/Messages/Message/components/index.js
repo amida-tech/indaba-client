@@ -54,11 +54,11 @@ const mapStateToProps = (state, ownProps) => {
         .find(messageIter => messageIter.id === id);
     const thread = _.sortBy(message ?
         state.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === message.originalMessageId) :
+            (messageIter.originalMessageId === message.originalMessageId) &&
+            (!messageIter.isArchived || messageIter.id === id)) :
         [], 'timestamp');
     return {
         id,
-        message,
         thread,
 
         vocab: state.settings.language.vocabulary,
