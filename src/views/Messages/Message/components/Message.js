@@ -4,7 +4,9 @@ import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
+
 import { renderName } from '../../../../utils/User';
+import apiService from '../../../../services/api';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
@@ -154,6 +156,33 @@ Message.propTypes = {
 const MessageForm = reduxForm({ form: 'message' })(Message);
 
 class MessageSelector extends Component {
+    constructor(props) {
+        super(props);
+
+        this.submitForm = this.submitForm.bind(this);
+        this.handleSendResponse = this.handleSendResponse.bind(this);
+    }
+    submitForm(values) {
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        const message = {
+            subject: values.subject,
+            to: values.to,
+            from: this.props.profile.email,
+            message: values.message,
+        };
+        if (_.has(reply, 'id')) {
+            apiService.messaging.reply(reply.id, message, this.handleSendResponse);
+        } else {
+            apiService.messaging.send(message, this.handleSendResponse);
+        }
+    }
+    handleSendResponse(err, result) {
+        if (!err) {
+            this.props.actions.updateMessage(result);
+            this.props.actions.discardReply();
+            this.props.goToMessage(result.id);
+        }
+    }
     render() {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
@@ -164,19 +193,7 @@ class MessageSelector extends Component {
                 initialValues={
                     reply
                 }
-                onSubmit={(values) => {
-                    const message = {
-                        subject: values.subject,
-                        to: values.to,
-                        from: this.props.profile.email,
-                        message: values.message,
-                    };
-                    if (_.has(reply, 'id')) {
-                        this.props.actions.replyToMessage(reply.id, message);
-                    } else {
-                        this.props.actions.sendMessage(message);
-                    }
-                }}/>
+                onSubmit={this.submitForm}/>
         );
     }
 }

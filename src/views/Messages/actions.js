@@ -59,6 +59,10 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
+export const updateMessage = message => (dispatch) => {
+    dispatch(_updateMessage(message));
+};
+
 export const sendMessage = message => (dispatch) => {
     dispatch(_sendMessage());
     apiService.messaging.send(message, (err) => {
@@ -196,10 +200,14 @@ export const _getMessageFailure = err => ({
     err,
 });
 
-export const _getMessageSuccess = result => ({
-    type: actionTypes.GET_MESSAGE_SUCCESS,
-    result,
-    id: result.id,
+export const _getMessageSuccess = result => (dispatch) => {
+    dispatch(_updateMessage(result));
+};
+
+export const _updateMessage = message => ({
+    type: actionTypes.UPDATE_MESSAGE,
+    id: message.id,
+    message,
 });
 
 export const _archiveMessage = () => ({
