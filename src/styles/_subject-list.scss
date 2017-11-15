@@ -7,10 +7,12 @@ $block-class: 'subject-list';
             justify-content: space-between;
             flex-direction: row;
             align-items: center;
-            padding: 1em;
+            padding: 8px 16px;
 
-            &:nth-child(even) {
-                background-color: lighten(#d8d8d8, 10%);
+            @extend .lead-font;
+
+            &:hover {
+                background-color: #f3f3f3;
             }
         }
 
@@ -18,17 +20,22 @@ $block-class: 'subject-list';
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            padding: 1em;
+            padding: 8px 16px;
         }
 
         &__header-title {
+            @extend .lead-font;
+
             color: $font-color;
-            letter-spacing: 0.8px;
         }
 
         .grommetux-button--plain .grommetux-button__icon {
             width: 12px;
             height: 12px;
+
+            &:hover {
+                fill: darken($font-color, 10);
+            }
         }
     }
 }

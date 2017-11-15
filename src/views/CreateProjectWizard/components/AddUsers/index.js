@@ -44,7 +44,7 @@ class AddUsers extends Component {
                 <p className='add-users__instructions add-users__instructions--top'>
                     {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_1}
                 </p>
-                <p className='add-users__instructions'>
+                <p className='add-users__instructions add-users__instructions--bottom'>
                     {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_2}
                 </p>
                 <Tabs onActive={this.props.actions.addUsersSetTab}>
