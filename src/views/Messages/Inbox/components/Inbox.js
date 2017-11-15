@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
 import * as actions from '../../actions';
+import * as userActions from '../../../../common/actions/userActions';
 
 import InboxTabs from './InboxTabs';
 import Filter from '../../../../common/components/Filter';
@@ -23,6 +24,7 @@ class Inbox extends Component {
     componentWillMount() {
         this.props.actions.listMessages();
         this.props.actions.listArchivedMessages();
+        this.props.actions.getUsers(this.props.vocab.ERROR);
     }
 
     evaluateFilter(message) {
@@ -67,7 +69,8 @@ class Inbox extends Component {
                         .filter(this.evaluateFilter)}
                         vocab={this.props.vocab}
                         onMessageClick={this.props.goToMessage}
-                        actions={this.props.actions}/>
+                        actions={this.props.actions}
+                        users={this.props.users}/>
             </div>
         );
     }
@@ -83,9 +86,10 @@ Inbox.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
+    users: state.user.users,
 });
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
