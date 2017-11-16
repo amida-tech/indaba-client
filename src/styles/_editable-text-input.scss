@@ -23,7 +23,7 @@ $block-class: 'editable-text-input';
         }
 
         &__icon {
-            fill: $header-font-color;
+            @extend .small-icon;
         }
     }
 }
