@@ -15,7 +15,9 @@ export function login(username, password, realm, errorMessages) {
         authPayload,
         (err, auth) => {
             if (!err && auth) {
-                dispatch(_loginSuccess(auth, realm));
+                cookie.save('indaba-auth', (`Bearer ${auth.token}`));
+                cookie.save('auth-jwt-token', auth.token);
+                cookie.save('indaba-realm', realm);
                 dispatch(push('/project'));
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
@@ -36,16 +38,6 @@ export function login(username, password, realm, errorMessages) {
 function _login() {
     return {
         type: actionTypes.LOGIN,
-    };
-}
-
-function _loginSuccess(response, realm) {
-    cookie.save('indaba-auth', (`Bearer ${response.token}`));
-    cookie.save('auth-jwt-token', response.token);
-    cookie.save('indaba-realm', realm);
-    return {
-        type: actionTypes.LOGIN_SUCCESS,
-        payload: response,
     };
 }
 

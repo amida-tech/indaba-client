@@ -13,8 +13,6 @@ export default (state = initialState, action) => {
     case actionTypes.LOGIN: {
         return state;
     }
-    case actionTypes.LOGIN_SUCCESS:
-        return state;
     case actionTypes.LOGIN_ERROR:
         return update(state, { ui: { error: { $set: action.error } } });
     case actionTypes.GET_CURRENT_USER_FAILURE:
