@@ -49,7 +49,9 @@ class SurveyPane extends Component {
                     </span>
                     <span className='survey-pane__instructions-explained'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
-                            Time.renderForInboxMessageList(this.props.ui.saveTimestamp)}
+                            (this.props.ui.lastSave === null ?
+                                this.props.vocab.PROJECT.NOT_SAVED :
+                                Time.renderForSurveyAutosave(this.props.ui.lastSave))}
                     </span>
                 </div>
                 <SurveyForm {...this.props} />

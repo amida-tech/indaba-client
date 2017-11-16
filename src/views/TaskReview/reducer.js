@@ -3,7 +3,7 @@ import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
 import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
-import { GET_SURVEY_BY_ID_SUCCESS, POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
+import { GET_ANSWERS_SUCCESS, GET_SURVEY_BY_ID_SUCCESS, POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -22,7 +22,7 @@ export const initialState = {
         },
         reqTotal: -1,
         reqAnswers: 0,
-        saveTimestamp: '-',
+        lastSave: null,
         form: {
             surveyId: -1,
             answers: [],
@@ -45,8 +45,10 @@ export default (state = initialState, action) => {
             reqAnswers: { $set: answers.length },
         } });
     }
+    case GET_ANSWERS_SUCCESS:
+        return update(state, { ui: { form: { answers: { $set: action.answers } } } });
     case POST_ANSWER_SUCCESS:
-        return update(state, { ui: { saveTimestamp: { $set: Date.now() } } });
+        return update(state, { ui: { lastSave: { $set: Date.now() } } });
     case type.UPSERT_ANSWER: {
         const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.id);

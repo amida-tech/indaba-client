@@ -49,11 +49,6 @@ export function postSurvey(survey, project, errorMessages) {
                             }
                         },
                     );
-                    // TODO JAMES Post assessments for each existing stage.
-                    // product.
-                    // apiService.surveys.postAssessment({
-                    //     name:
-                    // });
                 } else {
                     dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
                 }
@@ -117,6 +112,20 @@ export function postAssessment(requestBody, errorMessages) {
             },
         );
     };
+}
+
+export function getAnswers(assessmentId, errorMessages) {
+    return dispatch =>
+        apiService.surveys.getAnswers(
+            assessmentId,
+            (answerErr, answerResp) => {
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(_getAnswersSuccess(answerResp.answers));
+                }
+            },
+    );
 }
 
 // Answer related.
@@ -202,6 +211,13 @@ function _postAssessmentSuccess(assessmentId) {
     return {
         type: actionTypes.POST_ASSESSMENT_SUCCESS,
         assessmentId,
+    };
+}
+
+function _getAnswersSuccess(answers) {
+    return {
+        type: actionTypes.GET_ANSWERS_SUCCESS,
+        answers,
     };
 }
 
