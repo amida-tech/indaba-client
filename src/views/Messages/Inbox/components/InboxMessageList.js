@@ -126,6 +126,11 @@ class InboxMessageList extends Component {
                     </div>
                 </div>
                 {this.props.messages.map(this.renderMessage)}
+                {this.props.messages.length === 0 &&
+                    <div className='inbox-message-list__entry inbox-message-list__entry--empty'>
+                        {this.props.vocab.MESSAGES.NO_MESSAGES}
+                    </div>
+                }
             </div>
         );
     }

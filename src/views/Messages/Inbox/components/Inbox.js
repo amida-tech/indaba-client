@@ -39,7 +39,7 @@ class Inbox extends Component {
             return true;
         case FILTERS.UNREAD_MESSAGES:
             return !message.readAt;
-        default: return true;
+        default: return false;
         }
     }
 

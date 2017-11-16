@@ -34,6 +34,11 @@ $block-class: 'inbox-message-list';
             }
         }
 
+        &__entry--empty {
+            justify-content: center;
+            cursor: default;
+        }
+
         &__unread-indicator {
             width: 6px;
             height: 6px;
