@@ -19,6 +19,7 @@ class Inbox extends Component {
         super();
 
         this.evaluateFilter = this.evaluateFilter.bind(this);
+        this.addThreadCount = this.addThreadCount.bind(this);
     }
 
     componentWillMount() {
@@ -32,6 +33,9 @@ class Inbox extends Component {
             (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
             return false;
         }
+        if (message.parentMessageId !== null) {
+            return false;
+        }
         switch (this.props.messages.ui.filter) {
         case FILTERS.SENT_MESSAGES:
             return message.from === this.props.profile.email;
@@ -41,6 +45,12 @@ class Inbox extends Component {
             return !message.readAt;
         default: return false;
         }
+    }
+    addThreadCount(message) {
+        return Object.assign({}, message, {
+            threadLength: this.props.messages.messages.filter(messageIter =>
+                messageIter.originalMessageId === message.originalMessageId).length,
+        });
     }
 
     render() {
@@ -68,7 +78,8 @@ class Inbox extends Component {
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
                 <InboxMessageList messages={this.props.messages.messages
-                        .filter(this.evaluateFilter)}
+                        .filter(this.evaluateFilter)
+                        .map(this.addThreadCount)}
                         vocab={this.props.vocab}
                         onMessageClick={this.props.goToMessage}
                         actions={this.props.actions}

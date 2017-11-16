@@ -25,7 +25,7 @@ class InboxMessageList extends Component {
                 onClick={() => this.props.onMessageClick(message.id)}>
                 <div className='inbox-message-list__ inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {this.renderUserFromEmail(message.from)}
+                    {this.renderUserFromEmail(message.from)} ({message.threadLength})
                 </div>
                 <div className='inbox-message-list__subject'>
                     {message.subject}
@@ -145,6 +145,7 @@ InboxMessageList.propTypes = {
         timestamp: PropTypes.string.isRequired,
         readAt: PropTypes.string,
         archived: PropTypes.boolean,
+        threadLength: PropTypes.number.isRequired,
     })).isRequired,
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
