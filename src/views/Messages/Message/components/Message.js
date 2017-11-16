@@ -95,13 +95,20 @@ class Message extends Component {
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     {
-                                        received &&
-                                        <PanelButton
-                                            onClick={() => this.props.actions
-                                                .startReply(this.props.message) }>
-                                            <IonIcon icon='ion-reply'
-                                                className='message__action-icon'/>
-                                        </PanelButton>
+                                        received && [
+                                            <PanelButton key='reply-button'
+                                                onClick={() => this.props.actions
+                                                    .startReply(this.props.message) }>
+                                                    <IonIcon icon='ion-reply'
+                                                        className='message__action-icon'/>
+                                                </PanelButton>,
+                                            <PanelButton key='reply-all-button'
+                                                onClick={() => this.props.actions
+                                                    .startReplyAll(this.props.message) }>
+                                                    <IonIcon icon='ion-reply-all'
+                                                        className='message__action-icon'/>
+                                                </PanelButton>,
+                                        ]
                                     }
                                 </ButtonPanel>
                             </div>
