@@ -41,7 +41,8 @@ class MessageContainer extends Component {
                                     this.props.thread.findIndex(messageIter =>
                                         messageIter.id === this.props.ui.reply.id) + 1,
                                         0,
-                                        <Message vocab={this.props.vocab}
+                                        <Message key='reply'
+                                            vocab={this.props.vocab}
                                             profile={this.props.profile}
                                             reply={this.props.ui.reply}
                                             actions={this.props.actions}
