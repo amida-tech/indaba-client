@@ -15,7 +15,7 @@ $block-class: 'pm-all-users';
         }
 
         .grommetux-control-icon {
-            fill: $header-font-color;
+            @extend .small-icon;
         }
     }
 }
