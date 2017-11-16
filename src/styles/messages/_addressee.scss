@@ -1,0 +1,23 @@
+$block-class: 'addressee';
+
+@at-root {
+    .#{$block-class} {
+        border: 2px solid $brand-color;
+        border-radius: 3px;
+        padding: 3px 9px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 8px;
+
+        &__delete-icon {
+            display: block;
+            margin-left: 4px;
+            fill: $font-color;
+
+            &:hover {
+                fill: darken($font-color, 10);
+            }
+        }
+    }
+}

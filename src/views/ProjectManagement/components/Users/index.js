@@ -58,7 +58,6 @@ class Users extends Component {
                         primary
                         onClick={() => this.setState({ modalName: 'addgroup' })}/>
                 </div>
-                <hr className='divider'/>
                 <Tabs justify='start'>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <PMUsersTab {...this.props}/>
@@ -93,6 +92,7 @@ Users.propTypes = {
         updateUserGroup: PropTypes.func.isRequired,
         removeUser: PropTypes.func.isRequired,
     }).isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 export default Users;

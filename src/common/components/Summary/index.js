@@ -11,23 +11,39 @@ class Summary extends Component {
                 <StatusCard
                     label={this.props.vocab.PROJECT.PROJECT}
                     name={this.props.project ? this.props.project.name : ''}
+                    actions={this.props.actions}
                     status={this.props.project.status ?
                         this.props.vocab.PROJECT.STATUS_ACTIVE :
                         this.props.vocab.PROJECT.STATUS_INACTIVE}
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onNameChange={this.props.onProjectNameChange}/>
+                    onNameChange={name =>
+                            this.props.actions.setProjectName(name, this.props.project.id)}
+                    updateContent={() => this.props.actions.putProject(
+                            this.props.project,
+                            this.props.vocab.ERROR)}/>
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey ? this.props.survey.name : ''}
-                    status={this.props.survey.status ?
-                        this.props.vocab.SURVEY.STATUS_PUBLISHED :
-                        this.props.vocab.SURVEY.STATUS_DRAFT}
+                    actions={this.props.actions}
+                    status={this.props.vocab.SURVEY[this.props.survey.status.toUpperCase()]}
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onNameChange={this.props.onSurveyNameChange}>
+                    onNameChange={name =>
+                            this.props.actions.setSurveyName(name, this.props.survey.id)}
+                    updateContent={() => {
+                        return (this.props.survey.id >= 0 ?
+                            this.props.actions.patchSurvey(
+                                this.props.survey,
+                                this.props.vocab.ERROR) :
+                            this.props.actions.postSurvey(
+                                this.props.survey,
+                                this.props.project.id,
+                                this.props.project.productId,
+                                this.props.vocab.ERROR));
+                    }}>
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'
@@ -42,6 +58,7 @@ Summary.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
+    actions: PropTypes.object,
 
     onStatusChangeClick: PropTypes.func,
     onProjectNameChange: PropTypes.func,

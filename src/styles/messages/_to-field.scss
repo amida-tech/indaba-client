@@ -1,0 +1,20 @@
+$block-class: 'to-field';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        &__search-wrapper {
+            position: relative;
+            top: -8px;
+            margin-bottom: -16px;
+        }
+
+        .grommetux-button--focus {
+            border: 2px solid transparent;
+            box-shadow: none;
+        }
+    }
+}

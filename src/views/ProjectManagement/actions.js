@@ -7,6 +7,13 @@ export function subnavigate(id) {
     };
 }
 
+export function pmProjectShowProfile(userId) {
+    return {
+        type: actionTypes.PM_PROJECT_SHOW_PROFILE,
+        userId,
+    };
+}
+
 export function updateStatusChange(status) {
     return {
         type: actionTypes.UPDATE_STATUS_CHANGE,
@@ -39,6 +46,13 @@ export function updateUserSearchQuery(query) {
 export function updateUserGroupListSearchQuery(query) {
     return {
         type: actionTypes.UPDATE_USER_GROUP_LIST_SEARCH_QUERY,
+        query,
+    };
+}
+
+export function updateUserListSearchQuery(query) {
+    return {
+        type: actionTypes.UPDATE_USER_LIST_SEARCH_QUERY,
         query,
     };
 }

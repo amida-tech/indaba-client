@@ -13,9 +13,21 @@ const messaging = {
         const path = `${rootURI}/api/message/list`;
         requests.apiGetRequest(path, callback);
     },
+    listArchived: (callback) => {
+        const path = `${rootURI}/api/message/list?archived=true`;
+        requests.apiGetRequest(path, callback);
+    },
     get: (id, callback) => {
         const path = `${rootURI}/api/message/get/${id}`;
         requests.apiGetRequest(path, callback);
+    },
+    archive: (id, callback) => {
+        const path = `${rootURI}/api/message/archive/${id}`;
+        requests.apiPutRequest(path, {}, callback);
+    },
+    delete: (id, callback) => {
+        const path = `${rootURI}/api/message/delete/${id}`;
+        requests.apiDeleteRequest(path, {}, callback);
     },
 };
 

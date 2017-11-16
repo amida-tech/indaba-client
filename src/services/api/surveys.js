@@ -1,11 +1,37 @@
 import * as requests from './requests';
-// import getFullPath from '../../utils/getFullPath';
-// TODO: You will need to change getFullPath to instead call the microservice.
+import config from '../../config';
+
+const rootURI = config.SURVEY_API_HTTP_URL;
 
 const surveys = {
-    getSurvey: (projectId, callback) => {
-        requests.apiGetRequest(`surveys/JAMESISGUESSING/${projectId}`, callback);
+    getSurveys: (callback) => { // Coming soon.
+        requests.apiTokenGetRequest(`${rootURI}/surveys?status=all`, callback);
     },
+    getSurveyById: (surveyId, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/surveys/${surveyId}`, callback);
+    },
+    postSurvey: (requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/surveys`, requestBody, callback);
+    },
+    patchSurvey: (surveyId, requestBody, callback) => {
+        requests.apiTokenPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
+    },
+    getAssessment: (callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);
+    },
+    postAssessment: (requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessments`, requestBody, callback);
+    },
+    getAnswers: (assessmentId, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessment-answers/${assessmentId}`, callback);
+    },
+    postAnswer: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody, callback);
+    },
+    copyAnswers: (assessmentId, requestBody, callback) => {
+        requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
+    },
+
 };
 
 export default surveys;

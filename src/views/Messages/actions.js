@@ -21,10 +21,16 @@ export const markMessageAsUnread = id => ({
     id,
 });
 
-export const archiveMessage = id => ({
-    type: actionTypes.ARCHIVE_MESSAGE,
-    id,
-});
+export const archiveMessage = id => (dispatch) => {
+    dispatch(_archiveMessage());
+    apiService.messaging.archive(id, (err) => {
+        if (err) {
+            dispatch(_archiveMessageFailure(err));
+        } else {
+            dispatch(_archiveMessageSuccess(id));
+        }
+    });
+};
 
 export const unarchiveMessage = id => ({
     type: actionTypes.UNARCHIVE_MESSAGE,
@@ -34,7 +40,7 @@ export const unarchiveMessage = id => ({
 export const replyToMessage = message => (dispatch) => {
     dispatch(_startReply({
         subject: message.subject,
-        to: message.from,
+        to: [message.from],
         from: message.to,
     }));
 };
@@ -72,6 +78,17 @@ export const listMessages = () => (dispatch) => {
     });
 };
 
+export const listArchivedMessages = () => (dispatch) => {
+    dispatch(_listArchivedMessages());
+    apiService.messaging.listArchived((err, result) => {
+        if (err) {
+            dispatch(_listArchivedMessagesFailure(err));
+        } else {
+            dispatch(_listArchivedMessagesSuccess(result));
+        }
+    });
+};
+
 export const getMessage = id => (dispatch) => {
     dispatch(_getMessage());
     apiService.messaging.get(id, (err, result) => {
@@ -83,7 +100,18 @@ export const getMessage = id => (dispatch) => {
     });
 };
 
-/** Private actions **/
+export const deleteMessage = id => (dispatch) => {
+    dispatch(_deleteMessage());
+    apiService.messaging.delete(id, (err, result) => {
+        if (err) {
+            dispatch(_deleteMessageFailure(err));
+        } else {
+            dispatch(_deleteMessageSuccess(result));
+        }
+    });
+};
+
+/* Private actions */
 
 export const _startReply = reply => ({
     type: actionTypes.START_REPLY,
@@ -117,6 +145,20 @@ export const _listMessagesSuccess = result => ({
     result,
 });
 
+export const _listArchivedMessages = () => ({
+    type: actionTypes.LIST_ARCHIVED_MESSAGES,
+});
+
+export const _listArchivedMessagesFailure = err => ({
+    type: actionTypes.LIST_ARCHIVED_MESSAGES_FAILURE,
+    err,
+});
+
+export const _listArchivedMessagesSuccess = result => ({
+    type: actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS,
+    result,
+});
+
 export const _getMessage = () => ({
     type: actionTypes.GET_MESSAGE,
 });
@@ -130,4 +172,32 @@ export const _getMessageSuccess = result => ({
     type: actionTypes.GET_MESSAGE_SUCCESS,
     result,
     id: result.id,
+});
+
+export const _archiveMessage = () => ({
+    type: actionTypes.ARCHIVE_MESSAGE,
+});
+
+export const _archiveMessageFailure = err => ({
+    type: actionTypes.ARCHIVE_MESSAGE_FAILURE,
+    err,
+});
+
+export const _archiveMessageSuccess = id => ({
+    type: actionTypes.ARCHIVE_MESSAGE_SUCCESS,
+    id,
+});
+
+export const _deleteMessage = () => ({
+    type: actionTypes.DELETE_MESSAGE,
+});
+
+export const _deleteMessageFailure = err => ({
+    type: actionTypes.DELETE_MESSAGE_FAILURE,
+    err,
+});
+
+export const _deleteMessageSuccess = id => ({
+    type: actionTypes.DELETE_MESSAGE_SUCCESS,
+    id,
 });

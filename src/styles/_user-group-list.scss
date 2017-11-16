@@ -8,11 +8,12 @@ $block-class:'user-group-list';
         &__header {
             display: flex;
             font-weight: bold;
-            letter-spacing: 0.8;
             flex-direction: row;
             color: $font-color;
-            padding: 1em;
+            padding: 8px 16px;
             justify-content: space-between;
+
+            @extend .lead-font;
         }
 
         &__header-section {
@@ -23,10 +24,6 @@ $block-class:'user-group-list';
                 display: flex;
                 justify-content: flex-end;
                 flex: 1;
-            }
-
-            &--members {
-                //
             }
         }
     }

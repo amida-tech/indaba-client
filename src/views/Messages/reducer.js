@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import _ from 'lodash';
 
 import * as actionTypes from './actionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
@@ -9,46 +10,11 @@ const initialState = {
         filter: FILTERS.ALL_MESSAGES,
         reply: false,
     },
-    messages: [{
-        id: 129,
-        timestamp: '2017-07-21T11:45:47.591Z',
-        subject: 'Flagged question',
-        from: 'Abbie Hayes',
-        readAt: '2017-07-21T11:45:47.591Z',
-        message: 'A question on your survey  has been flagged. Click {{here}} to review.',
-    }, {
-        id: 128,
-        timestamp: '2017-07-21T11:44:59.627Z',
-        subject: 'Information About Survey',
-        from: 'Mae Lamb',
-        archived: true,
-        readAt: '2017-07-21T11:45:47.591Z',
-        message: 'Here\'s the additional information you requested regarding the new survey',
-    }, {
-        id: 112,
-        timestamp: '2017-07-21T11:40:23.199Z',
-        subject: 'Stage Force Completed',
-        from: 'Olga Harrington',
-        message: 'Stage "Secondary Review" has been force completed',
-    }, {
-        id: 82,
-        timestamp: '2017-07-21T11:37:51.348Z',
-        subject: 'Borrow a Clipboard?',
-        from: 'Earl Campbell',
-        archived: true,
-        message: 'Help! I need to collect this survey data but forgot my clipboard at home. Can I borrow yours?',
-    }, {
-        id: 63,
-        timestamp: '2017-06-21T11:37:51.348Z',
-        subject: 'Blast From The Past',
-        from: 'Clara',
-        message: 'Remember me?!?',
-    }],
+    messages: [],
 };
 
 const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
-        to: message.to.join(', '),
         timestamp: message.createdAt,
     });
 
@@ -68,13 +34,13 @@ export default (state = initialState, action) => {
         return update(state, { messages: {
             [messageIndex]: { $unset: ['readAt'] },
         } });
-    case actionTypes.ARCHIVE_MESSAGE:
+    case actionTypes.ARCHIVE_MESSAGE_SUCCESS:
         return update(state, { messages: { [messageIndex]: {
-            archived: { $set: true },
+            isArchived: { $set: true },
         } } });
     case actionTypes.UNARCHIVE_MESSAGE:
         return update(state, { messages: { [messageIndex]: {
-            archived: { $set: false },
+            isArchived: { $set: false },
         } } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
@@ -86,7 +52,17 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.LIST_MESSAGES_SUCCESS:
         return update(state, {
-            messages: { $set: action.result.map(transformServerMessageToReduxMessage) },
+            messages: { $apply:
+                message => _.unionBy(message,
+                    action.result.map(transformServerMessageToReduxMessage), 'id'),
+            },
+        });
+    case actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS:
+        return update(state, {
+            messages: { $apply:
+                message => _.unionBy(message,
+                    action.result.map(transformServerMessageToReduxMessage), 'id'),
+            },
         });
     case actionTypes.GET_MESSAGE_SUCCESS:
         return update(state, {
@@ -95,6 +71,10 @@ export default (state = initialState, action) => {
                 { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.result) } } :
                 { $push: [transformServerMessageToReduxMessage(action.result)] }
             ),
+        });
+    case actionTypes.DELETE_MESSAGE_SUCCESS:
+        return update(state, {
+            messages: { $splice: [[messageIndex, 1]] },
         });
     default:
         return state;

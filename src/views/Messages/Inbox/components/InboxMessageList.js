@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../../utils/Time';
+import { renderName } from '../../../../utils/User';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class InboxMessageList extends Component {
     constructor() {
         super();
         this.renderMessage = this.renderMessage.bind(this);
+        this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
+    }
+
+    renderUserFromEmail(email) {
+        const user = this.props.users.find(userIter => userIter.email === email);
+        return user ? renderName(user) : email;
     }
 
     renderMessage(message) {
@@ -16,9 +23,9 @@ class InboxMessageList extends Component {
             <div key={message.id}
                 className='inbox-message-list__entry'
                 onClick={() => this.props.onMessageClick(message.id)}>
-                <div className='inbox-message-list__from'>
+                <div className='inbox-message-list__ inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {message.from}
+                    {this.renderUserFromEmail(message.from)}
                 </div>
                 <div className='inbox-message-list__subject'>
                     {message.subject}
@@ -30,7 +37,7 @@ class InboxMessageList extends Component {
                     <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
-                            !message.archived &&
+                            !message.isArchived &&
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
@@ -43,7 +50,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.archived && !message.readAt &&
+                            !message.isArchived && !message.readAt &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
@@ -57,7 +64,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.archived && message.readAt &&
+                            !message.isArchived && message.readAt &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
@@ -71,7 +78,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.archived &&
+                            message.isArchived &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
@@ -85,7 +92,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.archived &&
+                            message.isArchived &&
                             <PanelButton
                                 onClick={
                                     (event) => {
@@ -126,7 +133,7 @@ class InboxMessageList extends Component {
 
 InboxMessageList.propTypes = {
     messages: PropTypes.arrayOf(PropTypes.shape({
-        to: PropTypes.string,
+        to: PropTypes.arrayOf(PropTypes.string).isRequired,
         from: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
@@ -137,6 +144,7 @@ InboxMessageList.propTypes = {
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default InboxMessageList;

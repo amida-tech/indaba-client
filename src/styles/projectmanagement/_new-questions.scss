@@ -1,0 +1,11 @@
+$block-class: 'new-questions';
+
+@at-root {
+    .#{$block-class} {
+
+        &__types {
+            border-bottom: 1px solid $border-color;
+            padding: 10px;
+        }
+    }
+}

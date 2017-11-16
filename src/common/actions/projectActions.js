@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
+import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
 import apiService from '../../services/api';
 
 // API calls.
@@ -8,9 +9,12 @@ export function getProjects(errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjects(
             (projectErr, projectResp) => {
-                dispatch((!projectErr && projectResp) ?
-                    _getProjectsSuccess(projectResp) :
-                    _reportProjectError(errorMessages.FETCH_PROJECTS));
+                if (!projectErr && projectResp) {
+                    dispatch(getSurveys(errorMessages));
+                    dispatch(_getProjectsSuccess(projectResp));
+                } else {
+                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
+                }
             },
         );
     };
@@ -29,18 +33,47 @@ export function postProject(requestBody, errorMessages) {
     };
 }
 
+export function putProject(project, errorMessages) {
+    const requestBody = {
+        codeName: project.name,
+        status: project.status,
+    };
+    return (dispatch) => {
+        apiService.projects.putProject(
+            project.id,
+            requestBody,
+            (projectErr, projectResp) => {
+                dispatch((!projectErr && projectResp) ?
+                    _putProjectSuccess(project) :
+                    _reportProjectError(errorMessages.PROJECT_REQUEST));
+            },
+        );
+    };
+}
+
 export function getProjectById(projectId, errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjectById(
             projectId,
             (projErr, projResp) => {
                 if (!projErr && projResp) {
+                    if (projResp.surveyId) {
+                        dispatch(getSurveyById(projResp.surveyId, errorMessages));
+                    }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {
                     dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
                 }
             },
         );
+    };
+}
+
+export function updateProjectWithSurvey(projectId, surveyId) {
+    return {
+        type: actionTypes.UPDATE_PROJECT_WITH_SURVEY,
+        projectId,
+        surveyId,
     };
 }
 
@@ -200,6 +233,14 @@ export function showAddSubjectModal(show) {
     };
 }
 
+export function setProjectName(name, projectId) {
+    return {
+        type: actionTypes.SET_PROJECT_NAME,
+        name,
+        projectId,
+    };
+}
+
 export function setProjectStatus(status, projectId) {
     return {
         type: actionTypes.SET_PROJECT_STATUS,
@@ -231,18 +272,10 @@ export function deleteUserGroup(groupId, projectId) {
     };
 }
 
-export function updateUserGroup(group, projectId) {
+export function updateUserGroup(group, projectId) { // TODO: INBA-457
     return {
         type: actionTypes.UPDATE_USER_GROUP,
         group,
-        projectId,
-    };
-}
-
-export function setProjectName(name, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_NAME,
-        name,
         projectId,
     };
 }
@@ -251,6 +284,13 @@ export function setProjectName(name, projectId) {
 function _postProjectSuccess(project) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
+        project,
+    };
+}
+
+function _putProjectSuccess(project) {
+    return {
+        type: actionTypes.PUT_PROJECT_SUCCESS,
         project,
     };
 }
