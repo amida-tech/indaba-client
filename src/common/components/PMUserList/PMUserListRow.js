@@ -32,7 +32,7 @@ class PMUserListRow extends Component {
                     <DeleteIconButton onClick={this.props.onDeleteClick}/>
                     <div className='pm-user-list-row__mail-button'
                         onClick={this.props.onMailClick}>
-                        <IonIcon icon='ion-android-mail' color='#7e848f' />
+                        <IonIcon icon='ion-android-mail'color='#7e848f' />
                     </div>
                 </div>
             </div>
