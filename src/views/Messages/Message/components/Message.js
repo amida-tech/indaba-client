@@ -68,13 +68,6 @@ class Message extends Component {
                             !compose &&
                             <div className='message__body-actions'>
                                 <ButtonPanel>
-                                    <PanelButton onClick={() => {
-                                        this.props.actions.deleteMessage(this.props.message.id);
-                                        this.props.goToInbox();
-                                    }}>
-                                        <IonIcon icon='ion-ios-trash-outline'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
                                     <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                         onClick={() => this.props.actions
                                                 .archiveMessage(this.props.message.id)}>
