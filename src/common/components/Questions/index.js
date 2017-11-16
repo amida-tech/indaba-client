@@ -11,25 +11,34 @@ class Questions extends Component {
     render() {
         let QuestionType;
         const value = find(this.props.answers, item => item.questionId === this.props.id);
+        const upsertAnswer = answer => this.props.actions.upsertAnswer(
+            this.props.assessmentId,
+            this.props.id,
+            answer,
+            this.props.required);
         switch (this.props.type) {
         case 'bool':
             QuestionType = (<Bool
                 {...this.props}
+                upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : false} />);
             break;
         case 'choice':
             QuestionType = (<Choice
                 {...this.props}
+                upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : undefined} />);
             break;
         case 'choices':
             QuestionType = (<Choices
                 {...this.props}
+                upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : []} />);
             break;
         default:
             QuestionType = (<Text
                 {...this.props}
+                upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);
         }
         return (

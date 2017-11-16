@@ -15,6 +15,7 @@ class SurveyForm extends Component { // TODO: INBA-450
                     <QuestionContainer
                         key={`questionpanel${index}`}
                         index={index}
+                        assessmentId={this.props.assessmentId}
                         answers={this.props.answers}
                         actions={this.props.actions}
                         question={question}

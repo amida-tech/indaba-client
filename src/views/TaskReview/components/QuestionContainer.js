@@ -17,7 +17,7 @@ class QuestionContainer extends Component {
                     {...this.props}>
                     <Questions
                         {...this.props.question}
-                        surveyId={this.props.surveyId}
+                        assessmentId={this.props.assessmentId}
                         answers={this.props.answers}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />

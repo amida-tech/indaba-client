@@ -4,6 +4,8 @@ import { unionBy } from 'lodash';
 
 class Checkboxes extends Component {
     render() {
+        const choicesAnswer = find(this.props.answer.choices, item =>
+            item.id === this.props.choicesId) || false;
         return (
             <div className='checkboxes' >
                 { !this.props.choicesId &&
@@ -13,18 +15,13 @@ class Checkboxes extends Component {
                 <input className={`checkboxes__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}
-                    defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
+                    defaultChecked={choicesAnswer}
                     onClick={(event) => {
                         const entry = this.props.choicesId ?
                         { choices: unionBy([{ id: this.props.choicesId,
-                            boolValue: event.target.checked }],
-                                this.props.answer, 'id') } :
-                            { boolValue: !this.props.answer };
-                        return this.props.actions.upsertAnswer(
-                                    this.props.id,
-                                    entry,
-                                    this.props.required,
-                            );
+                            boolValue: event.target.checked }], this.props.answer.choices, 'id') } :
+                        { boolValue: event.target.checked };
+                        return this.props.upsertAnswer(entry);
                     }} />
                 { this.props.choicesId &&
                     <span className='checkboxes__choices-label'>

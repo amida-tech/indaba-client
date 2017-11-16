@@ -19,20 +19,14 @@ class Choice extends Component {
                             value={choice.id}
                             defaultChecked={this.props.answer ?
                                 choice.id === this.props.answer.choice : false }
-                            disabled={this.props.displayMode}
                             onChange={(event) => {
                                 const entry = (this.props.choicesId !== undefined ?
-                                { choices: unionBy(this.props.answer, [{
-                                    id: this.props.choicesId,
-                                    choice: parseInt(event.target.value, 10) }], 'id') } :
-                                    { choice: parseInt(event.target.value, 10) });
-                                return this.props.actions.upsertAnswer(
-                                            this.props.id,
-                                            entry,
-                                            this.props.required,
-                                    );
-                            }}
-                        />
+                                { choices: unionBy([{ id: this.props.choicesId,
+                                    choice: parseInt(event.target.value, 10) }], this.props.answer, 'id') } :
+                                { choice: parseInt(event.target.value, 10) });
+                                this.props.upsertAnswer(entry);
+                            } }
+                            disabled={this.props.displayMode} />
                         <span className='choice__field-label'>
                             {` ${choice.text}`}
                         </span>

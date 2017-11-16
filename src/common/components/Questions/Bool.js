@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class Bool extends Component {
     render() {
-        const answer = this.props.answer ? this.props.answer.boolValue : false;
         return (
             <div className='bool' >
                 <div className='bool__label'>
@@ -14,14 +13,8 @@ class Bool extends Component {
                         type='radio'
                         name={`bool${this.props.id}`}
                         disabled={this.props.displayMode}
-                        defaultChecked={answer}
-                        onClick={() => {
-                            return this.props.actions.upsertAnswer(
-                                        this.props.id,
-                                        { boolValue: true },
-                                        this.props.required,
-                                );
-                        }} />
+                        defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
+                        onClick={() => this.props.upsertAnswer({ boolValue: true }) } />
                     {this.props.vocab.COMMON_BUTTONS.YES}
                 </label>
                 <label className='bool__field'>
@@ -29,14 +22,8 @@ class Bool extends Component {
                         type='radio'
                         name={`bool${this.props.id}`}
                         disabled={this.props.displayMode}
-                        defaultChecked={!answer}
-                        onClick={() => {
-                            return this.props.actions.upsertAnswer(
-                                        this.props.id,
-                                        { boolValue: false },
-                                        this.props.required,
-                                );
-                        }} />
+                        defaultChecked={this.props.answer ? !this.props.answer.boolValue : false}
+                        onClick={() => this.props.upsertAnswer({ boolValue: false }) } />
                     {this.props.vocab.COMMON_BUTTONS.NO}
                 </label>
                 { this.props.choicesId &&

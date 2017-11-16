@@ -4,6 +4,15 @@ import { unionBy } from 'lodash';
 
 class Text extends Component {
     render() {
+        let currentAnswer;
+        if (this.props.choicesId) {
+            currentAnswer = find(this.props.answer.choices, item =>
+                    item.id === this.props.choicesId);
+        } else if (this.props.answer) {
+            currentAnswer = this.props.answer.textValue;
+        } else {
+            currentAnswer = '';
+        }
         return (
             <div className='text' >
                 { !this.props.choicesId &&
@@ -14,18 +23,13 @@ class Text extends Component {
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
                     disabled={this.props.displayMode}
-                    defaultValue={this.props.answer ? this.props.answer.textValue : ''}
+                    defaultValue={currentAnswer}
                     onBlur={(event) => {
                         const entry = (this.props.choicesId !== undefined ?
-                        { choices: unionBy(this.props.answer, [{
-                            id: this.props.choicesId,
-                            textValue: event.target.value }], 'id') } :
-                            { textValue: event.target.value });
-                        return this.props.actions.upsertAnswer(
-                                    this.props.id,
-                                    entry,
-                                    this.props.required,
-                                );
+                        { choices: unionBy([{ id: this.props.choicesId,
+                            textValue: event.target.value }], this.props.answer, 'id') } :
+                        { textValue: event.target.value });
+                        this.props.upsertAnswer(entry);
                     }}
                 />
             </div>
