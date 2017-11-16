@@ -28,8 +28,8 @@ const cardSource = {
             return;
         }
         const slot = monitor.getDropResult();
-        props.actions.assignTask(props.children.id,
-            slot, props.project.productId, props.vocab.ERROR);
+        props.actions.assignTask(props.children.id, slot,
+            props.project, props.vocab.ERROR);
     },
 };
 
