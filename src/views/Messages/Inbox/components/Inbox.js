@@ -78,13 +78,14 @@ class Inbox extends Component {
         }
     }
     makeInboxThreadRepresentation(message) {
-        const thread = this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === message.originalMessageId);
+        const thread = _.sortBy(this.props.messages.messages.filter(messageIter =>
+            messageIter.originalMessageId === message.originalMessageId), 'timestamp');
         return Object.assign({}, message, {
             threadLength: thread.length,
             isArchived: thread.every(messageIter => messageIter.isArchived),
             messages: thread.map(messageIter => messageIter.id),
             unread: thread.some(messageIter => !messageIter.readAt),
+            createdAt: thread[thread.length - 1].createdAt,
         });
     }
 
