@@ -3,13 +3,16 @@ $block-class: 'filter-wrapper';
 @at-root {
     .#{$block-class} {
         display: flex;
+        background-color: rgba(242, 242, 242, 0.5);
+        padding: 16px 8px;
+        box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
         justify-content: space-between;
         align-items: center;
         margin-top: 24px;
         margin-bottom: 24px;
 
         &__add-button {
-            margin-left: 5px;
+            margin-left: 4px;
             border-radius: 2px;
             letter-spacing: 0.8px;
             font-weight: 400;

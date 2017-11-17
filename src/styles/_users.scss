@@ -4,9 +4,13 @@ $block-class: 'users';
     .#{$block-class} {
         &__action-btn {
             display: flex;
-            flex-direction: row;
+            background-color: rgba(242, 242, 242, 0.5);
+            padding: 16px 8px;
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
             justify-content: flex-end;
-            padding: 1em;
+            align-items: center;
+            margin-top: 24px;
+            margin-bottom: 24px;
 
             &--left {
                 margin-right: 5px;
@@ -21,7 +25,6 @@ $block-class: 'users';
             }
 
             &--right {
-                margin-right: 20px;
                 border-radius: 2px;
                 letter-spacing: 0.8px;
                 font-weight: 400;
