@@ -10,7 +10,8 @@ class MessageBodyField extends Component {
                     this.props.input ?
                     <Field component='textarea'
                         className='message-body-field__value'
-                        name={this.props.name}/> :
+                        name={this.props.name}
+                        autoFocus/> :
                     <div className='message-body-field__value'>
                         {this.props.value}
                     </div>
