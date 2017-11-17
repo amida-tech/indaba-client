@@ -67,6 +67,7 @@ export const startReplyAll = message => (dispatch) => {
 
 export const forwardMessage = message => (dispatch) => {
     dispatch(_startReply({
+        forwardId: message.id,
         subject: message.subject,
         from: message.to,
     }));
