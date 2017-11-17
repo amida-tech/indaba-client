@@ -4,10 +4,12 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
+import { Search } from 'grommet';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
 import * as actions from '../../actions';
+import * as taskActions from '../../../../common/actions/taskActions';
 import { renderName } from '../../../../utils/User';
 
 const Types = {
@@ -39,10 +41,18 @@ class StageSlot extends Component {
     constructor(props) {
         super(props);
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
+        this.handleSearchSelect = this.handleSearchSelect.bind(this);
     }
 
     handleTaskOptions() {
         this.props.actions.showTaskOptionsModal(this.props.task);
+    }
+    handleSearchSelect(selection) {
+        this.props.actions.assignTask(selection.suggestion.value.id,
+        { stageData: this.props.stageData, task: this.props.task },
+        this.props.project,
+        this.props.allVocab);
+        this.props.actions.startTaskAssign(false);
     }
 
     displayDueTime(done, diff) {
@@ -113,7 +123,20 @@ class StageSlot extends Component {
               <div className='stage-slot__unassigned'>
                   { (this.props.assignTaskInput.stepId === this.props.task.stepId &&
                      this.props.assignTaskInput.uoaId === this.props.task.uoaId) ?
-                    <div className='stage-slot__assign-task-input'></div> :
+                    <div className='stage-slot__assign-task-input'>
+                        <Search
+                            fill={true}
+                            inline={true}
+                            suggestions={this.props.users
+                                .map(user => ({ label: renderName(user),
+                                    value: user }))}
+                            onSelect={this.handleSearchSelect}
+                            />
+                        <div className='stage-slot__assign-task-input-cancel'
+                              onClick={() => this.props.actions.startTaskAssign(false)}>
+                              x
+                        </div>
+                    </div> :
                     <div className='inline'
                       onClick={() => this.props.actions.startTaskAssign(this.props.task)}>
                         <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
@@ -130,11 +153,12 @@ class StageSlot extends Component {
 
 const mapStateToProps = state => ({
     assignTaskInput: state.manager.ui.assignTaskInput,
+    users: state.user.users,
+    allVocab: state.settings.language.vocabulary,
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch),
-    // showTaskOptionsModal: task => dispatch(showTaskOptionsModal(task)),
+    actions: bindActionCreators(Object.assign({}, actions, taskActions), dispatch),
 });
 
 export default compose(
