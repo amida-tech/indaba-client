@@ -5,7 +5,10 @@ class CollapsedMessage extends Component {
     render() {
         return (
             <div className='collapsed-message'
-                onClick={() => this.props.goToMessage(this.props.message.id)}>
+                onClick={() => {
+                    this.props.actions.discardReply();
+                    this.props.goToMessage(this.props.message.id);
+                }}>
                 <div className='collapsed-message__from'>
                     {this.props.vocab.MESSAGES.FROM}:
                     {_.get(this.props, 'message.from')}
