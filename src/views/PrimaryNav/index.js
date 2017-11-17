@@ -21,6 +21,8 @@ class PrimaryNavContainer extends Component {
     }
 
     render() {
+        const isProjectManager = (this.props.user.roleID === 2);
+
         return (
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
@@ -36,20 +38,23 @@ class PrimaryNavContainer extends Component {
                     <Link className='primary-nav__item-nav' to='/task'>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
-
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/project'>
                         {this.props.vocab.PROJECT.PROJECTS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/users'>
                         {this.props.vocab.COMMON.ALL_USERS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/subjects'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Button
                         className={'primary-nav__item-nav primary-nav__item-nav--button'}
                         label={this.props.vocab.COMMON.CREATE}
-                        onClick={() => this.props.actions.showCreateProject(true)}/>
+                        onClick={() => this.props.actions.showCreateProject(true)}/>}
                 </div>
                 <div className='primary-nav__right'>
                     <Link className='primary-nav__link'
