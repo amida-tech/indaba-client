@@ -13,8 +13,8 @@ export function updateFormSurveyId(surveyId) {
 
 export function getTaskReviewData(projectId, taskId, errorMessages) {
     return (dispatch) => {
-        dispatch(getProjectById(projectId, errorMessages));
         dispatch(getTaskById(projectId, taskId, errorMessages));
+        dispatch(getProjectById(projectId, errorMessages));
     };
 }
 
