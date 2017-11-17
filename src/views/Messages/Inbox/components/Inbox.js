@@ -20,12 +20,42 @@ class Inbox extends Component {
 
         this.evaluateFilter = this.evaluateFilter.bind(this);
         this.makeInboxThreadRepresentation = this.makeInboxThreadRepresentation.bind(this);
+        this.handleThreadClick = this.handleThreadClick.bind(this);
     }
 
     componentWillMount() {
         this.props.actions.listMessages();
         this.props.actions.listArchivedMessages();
         this.props.actions.getUsers(this.props.vocab.ERROR);
+    }
+
+    handleThreadClick(threadId) {
+        const rootMessage = this.props.messages.messages
+            .find(messageIter => messageIter.id === threadId);
+        const messages = this.props.messages.messages.filter(messageIter =>
+            messageIter.originalMessageId === rootMessage.originalMessageId);
+        let expanded;
+        switch (this.props.messages.ui.filter) {
+        case FILTERS.ALL_MESSAGES:
+            expanded = messages
+            .map(messageIter => messageIter.id);
+            break;
+        case FILTERS.SENT_MESSAGES:
+            expanded = messages
+            .filter(messageIter => messageIter.from === this.props.profile.email)
+            .map(messageIter => messageIter.id);
+            break;
+        case FILTERS.UNREAD_MESSAGES:
+            expanded = messages
+            .filter(messageIter => !messageIter.readAt)
+            .map(messageIter => messageIter.id);
+            break;
+        default:
+            expanded = [];
+        }
+        console.log(`filtered ${messages} down to ${expanded}`);
+        this.props.actions.setExpandedMessages(expanded);
+        this.props.goToMessage(threadId);
     }
 
     evaluateFilter(threadEntry) {
@@ -86,7 +116,7 @@ class Inbox extends Component {
                         .map(this.makeInboxThreadRepresentation)
                         .filter(this.evaluateFilter)}
                         vocab={this.props.vocab}
-                        onMessageClick={this.props.goToMessage}
+                        onMessageClick={this.handleThreadClick}
                         actions={this.props.actions}
                         users={this.props.users}/>
             </div>

@@ -80,6 +80,16 @@ export const updateMessage = message => (dispatch) => {
     dispatch(_updateMessage(message));
 };
 
+export const expandMessages = messageIds => ({
+    type: actionTypes.EXPAND_MESSAGES,
+    messageIds,
+});
+
+export const setExpandedMessages = messageIds => ({
+    type: actionTypes.SET_EXPANDED_MESSAGES,
+    messageIds,
+});
+
 export const listMessages = () => (dispatch) => {
     dispatch(_listMessages());
     apiService.messaging.list((err, result) => {

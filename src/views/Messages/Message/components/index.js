@@ -67,8 +67,7 @@ const mapStateToProps = (state, ownProps) => {
         .find(messageIter => messageIter.id === id);
     const thread = _.sortBy(message ?
         state.messages.messages.filter(messageIter =>
-            (messageIter.originalMessageId === message.originalMessageId) &&
-            (!messageIter.isArchived || messageIter.id === id)) :
+            messageIter.originalMessageId === message.originalMessageId) :
         [], 'timestamp');
     return {
         id,

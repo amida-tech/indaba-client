@@ -31,7 +31,8 @@ class Message extends Component {
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
 
-        if (!compose && !active) {
+        if (!compose && !active &&
+            !this.props.ui.expandedMessages.includes(_.get(this.props, 'message.id'))) {
             return <CollapsedMessage {...this.props}
                 message={
                     this.props.message &&

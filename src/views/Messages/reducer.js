@@ -10,6 +10,7 @@ const initialState = {
         inboxTab: INBOX_TABS.INBOX,
         filter: FILTERS.ALL_MESSAGES,
         reply: false,
+        expandedMessages: [],
     },
     messages: [],
 };
@@ -80,6 +81,14 @@ export default (state = initialState, action) => {
                 { $push: [transformServerMessageToReduxMessage(action.message)] }
             ),
         });
+    case actionTypes.EXPAND_MESSAGES:
+        return update(state, { ui: {
+            expandedMessages: { $push: action.messageIds },
+        } });
+    case actionTypes.SET_EXPANDED_MESSAGES:
+        return update(state, { ui: {
+            expandedMessages: { $set: action.messageIds },
+        } });
     case actionTypes.DELETE_MESSAGE_SUCCESS:
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
