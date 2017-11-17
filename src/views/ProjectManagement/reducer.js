@@ -17,6 +17,7 @@ export const initialState = {
         },
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
+        assignTaskInput: false,
     },
 };
 
@@ -54,6 +55,10 @@ export default (state = initialState, action) => {
             show: { $set: false },
             task: { $set: {} },
         } } });
+    case type.START_TASK_ASSIGN:
+        return update(state, { ui: {
+            assignTaskInput: { $set: action.task },
+        } });
     default:
         return state;
     }

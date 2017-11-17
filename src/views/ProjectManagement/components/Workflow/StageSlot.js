@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
-import { showTaskOptionsModal } from '../../actions';
+import * as actions from '../../actions';
 import { renderName } from '../../../../utils/User';
 
 const Types = {
@@ -42,7 +42,7 @@ class StageSlot extends Component {
     }
 
     handleTaskOptions() {
-        this.props.showTaskOptionsModal(this.props.task);
+        this.props.actions.showTaskOptionsModal(this.props.task);
     }
 
     displayDueTime(done, diff) {
@@ -110,12 +110,17 @@ class StageSlot extends Component {
              </div>
          }
          {!this.props.user &&
-             <div className='stage-slot__unassigned'>
-                 <label className='inline'>
-                     <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
-                    {this.props.vocab.ASSIGN_TASK}
-                 </label>
-             </div>
+              <div className='stage-slot__unassigned'>
+                  { (this.props.assignTaskInput.stepId === this.props.task.stepId &&
+                     this.props.assignTaskInput.uoaId === this.props.task.uoaId) ?
+                    <div className='stage-slot__assign-task-input'></div> :
+                    <div className='inline'
+                      onClick={() => this.props.actions.startTaskAssign(this.props.task)}>
+                        <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
+                        {this.props.vocab.ASSIGN_TASK}
+                    </div>
+                }
+              </div>
          }
         {isOver && canDrop}
         </div>,
@@ -123,11 +128,16 @@ class StageSlot extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    assignTaskInput: state.manager.ui.assignTaskInput,
+});
+
 const mapDispatchToProps = dispatch => ({
-    showTaskOptionsModal: task => dispatch(showTaskOptionsModal(task)),
+    actions: bindActionCreators(actions, dispatch),
+    // showTaskOptionsModal: task => dispatch(showTaskOptionsModal(task)),
 });
 
 export default compose(
   DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
-  connect(null, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(StageSlot);
