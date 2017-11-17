@@ -8,19 +8,21 @@ import StatusLabel, { StatusLabelType } from '../../../common/components/StatusL
 
 class UserTaskListEntry extends Component {
     render() {
+        // const isProjectManager = (this.props.profile.roleID === 2);
         return (
+            // {isProjectManager &&
             <div className='user-task-list-entry'
-                onClick={() => this.props.router.push(`/project/${this.props.projectId}`)}>
+                 onClick={() => this.props.router.push(`/project/${this.props.projectId}`)}>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--subject'>
                     {this.props.subject}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--task'>
                     {this.props.late &&
-                        <StatusLabel label={this.props.vocab.COMMON.LATE}
-                            type={StatusLabelType.BAD} />}
+                    <StatusLabel label={this.props.vocab.COMMON.LATE}
+                                 type={StatusLabelType.BAD}/>}
                     {!this.props.late && this.props.new &&
-                        <StatusLabel label={this.props.vocab.COMMON.NEW}
-                            type={StatusLabelType.GOOD} />}
+                    <StatusLabel label={this.props.vocab.COMMON.NEW}
+                                 type={StatusLabelType.GOOD}/>}
                     {this.props.task}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>
@@ -35,12 +37,13 @@ class UserTaskListEntry extends Component {
                     {this.props.survey}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--flags'>
-                    <FlagCount value={this.props.flags} />
+                    <FlagCount value={this.props.flags}/>
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--progress'>
                     {this.props.progress}
                 </div>
             </div>
+            // }
         );
     }
 }
