@@ -64,5 +64,21 @@ $block-class:'stage-slot';
             margin-top: -8px;
             margin-bottom: 30px;
         }
+
+        &__assign-task-input {
+            display: flex;
+            width: 70%;
+            align-content: center;
+
+            &-cancel {
+                margin-left: 8px;
+                margin-top: 8px;
+            }
+        }
+
+        .grommetux-search--inline,
+        .grommetux-control-icon-search {
+            fill: $header-font-color;
+        }
     }
 }
