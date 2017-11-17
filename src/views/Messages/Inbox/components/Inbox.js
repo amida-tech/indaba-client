@@ -33,9 +33,6 @@ class Inbox extends Component {
             (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
             return false;
         }
-        if (message.parentMessageId !== null) {
-            return false;
-        }
         switch (this.props.messages.ui.filter) {
         case FILTERS.SENT_MESSAGES:
             return message.from === this.props.profile.email;
@@ -51,6 +48,7 @@ class Inbox extends Component {
             messageIter.originalMessageId === message.originalMessageId);
         return Object.assign({}, message, {
             threadLength: thread.length,
+            isArchived: thread.every(messageIter => messageIter.isArchived),
         });
     }
 
@@ -78,9 +76,9 @@ class Inbox extends Component {
                         active={this.props.messages.ui.filter}
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
-                <InboxMessageList messages={this.props.messages.messages
-                        .filter(this.evaluateFilter)
-                        .map(this.makeInboxThreadRepresentation)}
+                <InboxMessageList threads={this.props.messageRoots
+                        .map(this.makeInboxThreadRepresentation)
+                        .filter(this.evaluateFilter)}
                         vocab={this.props.vocab}
                         onMessageClick={this.props.goToMessage}
                         actions={this.props.actions}
@@ -100,6 +98,7 @@ Inbox.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
+    messageRoots: state.messages.messages.filter(message => message.parentMessageId === null),
     users: state.user.users,
     profile: state.user.profile,
 });
