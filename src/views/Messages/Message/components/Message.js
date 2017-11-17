@@ -8,6 +8,7 @@ import { Button } from 'grommet';
 import { renderName } from '../../../../utils/User';
 import apiService from '../../../../services/api';
 
+import CollapsedMessage from './CollapsedMessage';
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
@@ -29,6 +30,17 @@ class Message extends Component {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
+
+        if (!compose && !active) {
+            return <CollapsedMessage {...this.props}
+                message={
+                    this.props.message &&
+                    Object.assign({}, this.props.message, {
+                        from: this.renderUserFromEmail(this.props.message.from),
+                    })
+                }/>;
+        }
+
         return (
             <div className={`message ${active ? 'message--active' : ''}`}
                 onClick={() => !compose && !active &&
