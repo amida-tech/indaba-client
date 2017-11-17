@@ -54,7 +54,7 @@ class Inbox extends Component {
             expanded = [];
         }
         this.props.actions.setExpandedMessages(expanded);
-        this.props.goToMessage(threadId);
+        this.props.goToMessage(expanded.length > 0 ? expanded[0] : threadId);
     }
 
     evaluateFilter(threadEntry) {
