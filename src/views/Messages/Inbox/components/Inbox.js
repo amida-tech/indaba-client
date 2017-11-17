@@ -28,18 +28,22 @@ class Inbox extends Component {
         this.props.actions.getUsers(this.props.vocab.ERROR);
     }
 
-    evaluateFilter(message) {
-        if (message.isArchived !==
+    evaluateFilter(threadEntry) {
+        const messages = this.props.messages.messages.filter(messageIter =>
+            messageIter.originalMessageId === threadEntry.originalMessageId);
+        if (threadEntry.isArchived !==
             (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
             return false;
         }
         switch (this.props.messages.ui.filter) {
         case FILTERS.SENT_MESSAGES:
-            return message.from === this.props.profile.email;
+            return messages.some(messageIter =>
+                messageIter.from === this.props.profile.email);
         case FILTERS.ALL_MESSAGES:
             return true;
         case FILTERS.UNREAD_MESSAGES:
-            return !message.readAt;
+            return messages.some(messageIter =>
+                !messageIter.readAt);
         default: return false;
         }
     }
