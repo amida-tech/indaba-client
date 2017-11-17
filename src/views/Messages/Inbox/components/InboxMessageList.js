@@ -24,7 +24,7 @@ class InboxMessageList extends Component {
                 className='inbox-message-list__entry'
                 onClick={() => this.props.onMessageClick(thread.id)}>
                 <div className='inbox-message-list__ inbox-message-list__from'>
-                    <div className={`inbox-message-list__unread-indicator ${!thread.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
+                    <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     {this.renderUserFromEmail(thread.from)}
                     {thread.threadLength > 1 && ` (${thread.threadLength})`}
                 </div>
@@ -35,7 +35,7 @@ class InboxMessageList extends Component {
                     {Time.renderForInboxMessageList(thread.createdAt)}
                 </div>
                 <div className='inbox-message-list__actions'>
-                    <div className={`inbox-message-list__unread-indicator ${!thread.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
+                    <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
                             !thread.isArchived &&
@@ -51,7 +51,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !thread.isArchived && !thread.readAt &&
+                            !thread.isArchived && thread.unread &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
@@ -65,7 +65,7 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !thread.isArchived && thread.readAt &&
+                            !thread.isArchived && !thread.unread &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
@@ -142,8 +142,7 @@ InboxMessageList.propTypes = {
         from: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
-        timestamp: PropTypes.string.isRequired,
-        readAt: PropTypes.string,
+        unread: PropTypes.bool.isRequired,
         isArchived: PropTypes.boolean,
         threadLength: PropTypes.number.isRequired,
         createdAt: PropTypes.string.isRequired,

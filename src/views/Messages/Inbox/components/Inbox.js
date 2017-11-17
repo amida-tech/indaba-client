@@ -54,6 +54,7 @@ class Inbox extends Component {
             threadLength: thread.length,
             isArchived: thread.every(messageIter => messageIter.isArchived),
             messages: thread.map(messageIter => messageIter.id),
+            unread: thread.some(messageIter => !messageIter.readAt),
         });
     }
 
