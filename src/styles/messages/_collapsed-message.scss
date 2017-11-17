@@ -3,30 +3,23 @@ $block-class: 'collapsed-message';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         background-color: white;
         padding: 0.5em 1em;
         border-bottom: 1px solid $border-color;
         cursor: pointer;
 
         &__from {
-            margin-right: 0.4em;
-            display: flex;
-            flex: 3;
-            white-space: nowrap;
-            overflow: hidden;
-        }
+            @extend .small-font;
 
-        &__from-value {
-            margin-left: 1em;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
         }
 
         &__body {
-            margin-left: 1em;
-            flex: 7;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }

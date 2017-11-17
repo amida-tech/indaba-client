@@ -7,6 +7,11 @@ $block-class: 'message';
             border-radius: 4px;
         }
 
+        &--compose {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
         &__content {
             background-color: white;
             padding: 0.5em 1em;

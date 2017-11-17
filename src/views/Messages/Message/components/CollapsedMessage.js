@@ -8,8 +8,9 @@ class CollapsedMessage extends Component {
                 onClick={() => this.props.goToMessage(this.props.message.id)}>
                 <div className='collapsed-message__from'>
                     {this.props.vocab.MESSAGES.FROM}:
-                    <div className='collapsed-message__from-value'>
-                        {_.get(this.props, 'message.from')}
+                    {_.get(this.props, 'message.from')}
+                    <div className='collapsed-message__timestamp'>
+                        {_.get(this.props, 'message.timestamp')}
                     </div>
                 </div>
                 <div className='collapsed-message__body'>

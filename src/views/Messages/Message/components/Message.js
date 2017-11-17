@@ -42,7 +42,7 @@ class Message extends Component {
         }
 
         return (
-            <div className={`message ${active ? 'message--active' : ''}`}
+            <div className={`message ${active ? 'message--active' : ''} ${compose ? 'message--compose' : ''}`}
                 onClick={() => !compose && !active &&
                     this.props.goToMessage(this.props.id)}>
                 <form className='message__content' onSubmit={this.props.handleSubmit}>
