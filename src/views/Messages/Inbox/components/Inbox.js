@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
+import _ from 'lodash';
 
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
@@ -32,8 +33,8 @@ class Inbox extends Component {
     handleThreadClick(threadId) {
         const rootMessage = this.props.messages.messages
             .find(messageIter => messageIter.id === threadId);
-        const messages = this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === rootMessage.originalMessageId);
+        const messages = _.sortBy(this.props.messages.messages.filter(messageIter =>
+            messageIter.originalMessageId === rootMessage.originalMessageId), 'timestamp');
         let expanded;
         switch (this.props.messages.ui.filter) {
         case FILTERS.ALL_MESSAGES:
