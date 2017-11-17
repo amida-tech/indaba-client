@@ -2,8 +2,6 @@ $block-class: 'message';
 
 @at-root {
     .#{$block-class} {
-        margin-top: 1em;
-
         &--active {
             border: 2px solid $brand-color;
             border-radius: 4px;
