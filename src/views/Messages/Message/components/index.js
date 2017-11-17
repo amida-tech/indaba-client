@@ -15,6 +15,7 @@ class MessageContainer extends Component {
         this.props.actions.discardReply();
         this.props.actions.listMessages();
         this.props.actions.listArchivedMessages();
+        this.props.actions.expandMessages([this.props.id]);
     }
     render() {
         return (

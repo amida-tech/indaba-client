@@ -53,7 +53,6 @@ class Inbox extends Component {
         default:
             expanded = [];
         }
-        console.log(`filtered ${messages} down to ${expanded}`);
         this.props.actions.setExpandedMessages(expanded);
         this.props.goToMessage(threadId);
     }
