@@ -1,3 +1,6 @@
+import { postAnswer } from '../../common/actions/surveyActions';
+import { getProjectById } from '../../common/actions/projectActions';
+import { getTaskById } from '../../common/actions/taskActions';
 import * as actionTypes from './actionTypes';
 
 // Survey Form:
@@ -8,13 +11,24 @@ export function updateFormSurveyId(surveyId) {
     };
 }
 
-export function upsertAnswer(assessmentId, id, answer, required) {
-    return {
-        type: actionTypes.UPSERT_ANSWER,
-        assessmentId,
-        id,
-        answer,
-        required,
+export function getTaskReviewData(projectId, taskId, errorMessages) {
+    return (dispatch) => {
+        dispatch(getProjectById(projectId, errorMessages));
+        dispatch(getTaskById(projectId, taskId, errorMessages));
+    };
+}
+
+export function upsertAnswer(assessmentId, questionId, answer, required, errorMessages) {
+    const requestBody = {
+        status: 'new',
+        answers: [{
+            questionId,
+            answer,
+        }],
+    };
+
+    return (dispatch) => {
+        dispatch(postAnswer(assessmentId, requestBody, required, errorMessages));
     };
 }
 

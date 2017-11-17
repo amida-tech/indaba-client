@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { unionBy } from 'lodash';
+import { unionBy, find } from 'lodash';
 
 class Checkboxes extends Component {
     render() {
-        const choicesAnswer = find(this.props.answer.choices, item =>
-            item.id === this.props.choicesId) || false;
+        const choicesCheck = find(this.props.answer.choices, item =>
+            item.id === this.props.choicesId);
+        const choicesAnswer = choicesCheck ? choicesCheck.boolValue : false;
         return (
             <div className='checkboxes' >
                 { !this.props.choicesId &&

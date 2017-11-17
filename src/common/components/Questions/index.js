@@ -15,7 +15,8 @@ class Questions extends Component {
             this.props.assessmentId,
             this.props.id,
             answer,
-            this.props.required);
+            this.props.required,
+            this.props.vocab.ERROR);
         switch (this.props.type) {
         case 'bool':
             QuestionType = (<Bool

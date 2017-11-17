@@ -35,30 +35,33 @@ export default (state = initialState, action) => {
     case GET_SURVEY_BY_ID_SUCCESS: {
         const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
-        const flatAnswers = map(filter(flatSurvey, 'answer'), item => ({ questionId: item.id, answer: item.answer }));
         const reqQuestions = filter(flatSurvey, question => question.required);
+        const flatAnswers = map(state.ui.form.answers, item =>
+            ({ questionId: item.questionId, answer: item.answer }));
         const answers = intersectionWith(reqQuestions, flatAnswers,
             (q, a) => q.id === a.questionId);
         return update(state, { ui: {
-            form: { surveyId: { $set: action.surveyId }, answers: { $set: flatAnswers } },
+            form: { surveyId: { $set: action.surveyId } },
             reqTotal: { $set: reqQuestions.length },
             reqAnswers: { $set: answers.length },
         } });
     }
     case GET_ANSWERS_SUCCESS:
-        return update(state, { ui: { form: { answers: { $set: action.answers } } } });
-    case POST_ANSWER_SUCCESS:
-        return update(state, { ui: { lastSave: { $set: Date.now() } } });
-    case type.UPSERT_ANSWER: {
+        return update(state, { ui: { reqAnswers: { $set: 0 },
+            form: { answers: { $set: action.answers } } } });
+    case POST_ANSWER_SUCCESS: {
         const answerIndex = findIndex(state.ui.form.answers,
-            answer => answer.questionId === action.id);
+            answer => answer.questionId === action.questionId);
         const reqIncrease = answerIndex < 0 && action.required ?
             state.ui.reqAnswers + 1 : state.ui.reqAnswers;
         return answerIndex < 0 ?
             update(state, { ui: { reqAnswers: { $set: reqIncrease },
-                form: { answers: { $push: [{ questionId: action.id, answer: action.answer }],
+                lastSave: { $set: Date.now() },
+                form: { answers: {
+                    $push: [{ questionId: action.questionId, answer: action.answer }],
                 } } } }) :
             update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                lastSave: { $set: Date.now() },
                 form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
     }
     case type.STORE_FLAGGED_ISSUES:
