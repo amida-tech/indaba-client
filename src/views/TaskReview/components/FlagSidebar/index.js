@@ -11,7 +11,8 @@ class FlagSidebar extends Component {
     componentWillMount() {
         const initialShow = [];
         const issues = this.props.displaySurvey.filter((discussion, index) =>
-            (discussion.flag === true ? initialShow.push(index) : false));
+        (((discussion.flag === true) && (this.props.profile.roleID === 2 ||
+        discussion.flag.signatureId === this.props.profile.id)) ? initialShow.push(index) : false));
         this.props.actions.showQuestion(initialShow);
         this.props.actions.storeFlaggedIssues(issues);
         this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
