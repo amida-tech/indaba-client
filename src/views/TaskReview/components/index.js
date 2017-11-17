@@ -11,7 +11,6 @@ import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
 import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
-import { getProjectById } from '../../../common/actions/projectActions';
 import * as actions from '../actions';
 
 function surveyMapperHelper(discuss, question) {
@@ -34,8 +33,6 @@ class TaskReview extends Component {
         this.props.actions.setSurveySectionIndex(-1);
         this.props.actions.getTaskById(this.props.params.projectId,
             this.props.params.taskId, this.props.vocab.ERROR);
-        this.props.actions.getProjectById(this.props.params.projectId,
-            this.props.vocab.ERROR);
     }
 
     render() {
@@ -129,7 +126,6 @@ const mapDispatchToProps = dispatch => ({
         updateFlaggedQuestion,
         setSurveySectionIndex,
         getTaskById,
-        getProjectById,
         postAnswer }),
         dispatch),
 });

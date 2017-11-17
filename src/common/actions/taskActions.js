@@ -2,6 +2,7 @@ import { find } from 'lodash';
 import { toast } from 'react-toastify';
 
 import { getAnswers } from '../actions/surveyActions';
+import { getProjectById } from '../actions/projectActions';
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
 
@@ -27,6 +28,7 @@ export function getTaskById(projectId, taskId, errorMessages) {
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
                     dispatch(getAnswers(taskResp.assessmentId, errorMessages));
+                    dispatch(getProjectById(projectId, errorMessages)); // Safer but not perfect.
                     dispatch(_getTaskByIdSuccess(projectId, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
