@@ -41,7 +41,7 @@ class InboxMessageList extends Component {
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
-                                        this.props.actions.archiveMessage(thread.id);
+                                        this.props.actions.archiveThread(thread.messages);
                                         event.stopPropagation();
                                     }
                                 }>

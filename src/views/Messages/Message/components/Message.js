@@ -80,12 +80,6 @@ class Message extends Component {
                             !compose &&
                             <div className='message__body-actions'>
                                 <ButtonPanel>
-                                    <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
-                                        onClick={() => this.props.actions
-                                                .archiveMessage(this.props.message.id)}>
-                                        <IonIcon icon='ion-ios-box'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
                                     <PanelButton
                                         title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                         onClick={() => this.props.actions

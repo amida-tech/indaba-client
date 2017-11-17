@@ -53,6 +53,7 @@ class Inbox extends Component {
         return Object.assign({}, message, {
             threadLength: thread.length,
             isArchived: thread.every(messageIter => messageIter.isArchived),
+            messages: thread.map(messageIter => messageIter.id),
         });
     }
 
