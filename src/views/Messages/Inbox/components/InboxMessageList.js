@@ -32,7 +32,7 @@ class InboxMessageList extends Component {
                     {thread.subject}
                 </div>
                 <div className='inbox-message-list__date'>
-                    {Time.renderForInboxMessageList(this.props.createdAt)}
+                    {Time.renderForInboxMessageList(thread.createdAt)}
                 </div>
                 <div className='inbox-message-list__actions'>
                     <div className={`inbox-message-list__unread-indicator ${!thread.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
@@ -146,6 +146,7 @@ InboxMessageList.propTypes = {
         readAt: PropTypes.string,
         isArchived: PropTypes.boolean,
         threadLength: PropTypes.number.isRequired,
+        createdAt: PropTypes.string.isRequired,
     })).isRequired,
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
