@@ -1,6 +1,4 @@
 import { postAnswer } from '../../common/actions/surveyActions';
-import { getProjectById } from '../../common/actions/projectActions';
-import { getTaskById } from '../../common/actions/taskActions';
 import * as actionTypes from './actionTypes';
 
 // Survey Form:
@@ -8,13 +6,6 @@ export function updateFormSurveyId(surveyId) {
     return {
         type: actionTypes.UPDATE_FORM_SURVEY_ID,
         surveyId,
-    };
-}
-
-export function getTaskReviewData(projectId, taskId, errorMessages) {
-    return (dispatch) => {
-        dispatch(getTaskById(projectId, taskId, errorMessages));
-        dispatch(getProjectById(projectId, errorMessages));
     };
 }
 
