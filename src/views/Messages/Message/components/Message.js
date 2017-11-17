@@ -150,7 +150,7 @@ class Message extends Component {
                     !compose && received &&
                     <div className='message__inline-reply'
                         onClick={(evt) => {
-                            this.props.actions.startReply(this.props.message);
+                            this.props.actions.startReplyAll(this.props.message);
                             evt.stopPropagation();
                         }}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}
