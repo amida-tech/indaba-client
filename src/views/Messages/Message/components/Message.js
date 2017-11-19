@@ -4,7 +4,9 @@ import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
+
 import { renderName } from '../../../../utils/User';
+import apiService from '../../../../services/api';
 
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
@@ -25,8 +27,12 @@ class Message extends Component {
     }
     render() {
         const compose = this.props.id === undefined;
+        const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
+        const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
         return (
-            <div className='message'>
+            <div className={`message ${active ? 'message--active' : ''}`}
+                onClick={() => !compose && !active &&
+                    this.props.goToMessage(this.props.id)}>
                 <form className='message__content' onSubmit={this.props.handleSubmit}>
                     <div className='message__row message__row--to'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
@@ -62,7 +68,10 @@ class Message extends Component {
                             !compose &&
                             <div className='message__body-actions'>
                                 <ButtonPanel>
-                                    <PanelButton>
+                                    <PanelButton onClick={() => {
+                                        this.props.actions.deleteMessage(this.props.message.id);
+                                        this.props.goToInbox();
+                                    }}>
                                         <IonIcon icon='ion-ios-trash-outline'
                                             className='message__action-icon'/>
                                     </PanelButton>
@@ -85,12 +94,15 @@ class Message extends Component {
                                         <IonIcon icon='ion-arrow-right-a'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton
-                                        onClick={ () => this.props.actions
-                                            .replyToMessage(this.props.message) }>
-                                        <IonIcon icon='ion-reply'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
+                                    {
+                                        received &&
+                                        <PanelButton
+                                            onClick={() => this.props.actions
+                                                .startReply(this.props.message) }>
+                                            <IonIcon icon='ion-reply'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
                                 </ButtonPanel>
                             </div>
                         }
@@ -123,9 +135,12 @@ class Message extends Component {
                     </div>
                 </form>
                 {
-                    !compose &&
+                    !compose && received &&
                     <div className='message__inline-reply'
-                        onClick={() => this.props.actions.replyToMessage(this.props.message)}>
+                        onClick={(evt) => {
+                            this.props.actions.startReply(this.props.message);
+                            evt.stopPropagation();
+                        }}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}
                     </div>
                 }
@@ -136,7 +151,7 @@ class Message extends Component {
 
 Message.propTypes = {
     id: PropTypes.number,
-    replyTo: PropTypes.object,
+    reply: PropTypes.object,
     vocab: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
@@ -144,23 +159,44 @@ Message.propTypes = {
 const MessageForm = reduxForm({ form: 'message' })(Message);
 
 class MessageSelector extends Component {
+    constructor(props) {
+        super(props);
+
+        this.submitForm = this.submitForm.bind(this);
+        this.handleSendResponse = this.handleSendResponse.bind(this);
+    }
+    submitForm(values) {
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        const message = {
+            subject: values.subject,
+            to: values.to,
+            from: this.props.profile.email,
+            message: values.message,
+        };
+        if (_.has(reply, 'id')) {
+            apiService.messaging.reply(reply.id, message, this.handleSendResponse);
+        } else {
+            apiService.messaging.send(message, this.handleSendResponse);
+        }
+    }
+    handleSendResponse(err, result) {
+        if (!err) {
+            this.props.actions.updateMessage(result);
+            this.props.actions.discardReply();
+            this.props.goToMessage(result.id);
+        }
+    }
     render() {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
         }
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
         return (
             <MessageForm {...this.props}
                 initialValues={
-                    this.props.reply || _.get(this.props, 'location.state.message')
+                    reply
                 }
-                onSubmit={(values) => {
-                    this.props.actions.sendMessage({
-                        subject: values.subject,
-                        to: values.to,
-                        from: this.props.profile.email,
-                        message: values.message,
-                    });
-                }}/>
+                onSubmit={this.submitForm}/>
         );
     }
 }
