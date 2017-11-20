@@ -8,7 +8,7 @@ $block-class:'task-review';
         &__details-and-survey {
             padding-top: 1em;
             width: 65%;
-            height: calc(150vh - #{$primary-nav-height});
+            height: calc(100vh - #{$primary-nav-height});
             overflow-y: scroll;
             position: relative;
         }
