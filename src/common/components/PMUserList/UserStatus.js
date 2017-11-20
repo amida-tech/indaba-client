@@ -9,7 +9,8 @@ class UserStatus extends Component {
             <div className='user-status'>
                 {this.props.user.invited ?
                     this.props.vocab.COMMON.PENDING :
-                    <IonIcon icon='ion-android-checkmark-circle' color={color}/>}
+                    <IonIcon className='user-status__check'
+                    icon='ion-android-checkmark-circle' color={color}/>}
             </div>
         );
     }
