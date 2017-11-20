@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class AnswerPanel extends Component {
+class CreateSurveyPanel extends Component {
 
     render() {
         return (
-            <div className='answer-panel'>
+            <div className='create-survey-panel'>
                 {this.props.vocab.PROJECT.INSTRUCTIONS}
             </div>
         );
     }
 }
 
-export default AnswerPanel;
+export default CreateSurveyPanel;

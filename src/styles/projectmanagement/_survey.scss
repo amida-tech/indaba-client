@@ -2,10 +2,5 @@ $block-class: 'survey';
 
 @at-root {
     .#{$block-class} {
-        &__pane {
-                display: flex;
-                flex-direction: row;
-                flex: 1;
-            }
     }
 }

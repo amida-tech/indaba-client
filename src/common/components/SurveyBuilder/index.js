@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import CreateSurveyPane from './CreateSurveyPane';
-import AnswerPanel from './AnswerPanel';
+import SurveyBuilderForm from './SurveyBuilderForm';
 
-class SurveyBuilder extends Component {
+// If this doesn't do as much I fear it will, just delete it and move the child layers up.
+class Survey extends Component {
     render() {
+        const initialValues = {
+            authorId: 1,
+            name: this.props.survey.name || '',
+            status: 'draft',
+            sections: [{
+                name: `${this.props.survey.name} - Part 1`,
+                questions: [{
+                    required: false,
+                    id: 1,
+                }],
+            }],
+        };
         return (
-            <div className='survey'>
-                <div className='survey_pane'>
-                    <CreateSurveyPane
-                        actions={this.props.actions}
-                        vocab={this.props.vocab}/>
-                    <AnswerPanel {...this.props} />
-                </div>
-            </div>
+            <SurveyBuilderForm
+                initialValues={initialValues}
+                {...this.props}/>
         );
     }
 }
 
-SurveyBuilder.propTypes = {
+Survey.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
@@ -27,4 +34,4 @@ SurveyBuilder.propTypes = {
     actions: PropTypes.object,
 };
 
-export default SurveyBuilder;
+export default Survey;
