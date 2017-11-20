@@ -12,6 +12,7 @@ class UserProfile extends Component {
                 <UserProfileForm
                     userId={this.props.userId}
                     user={this.props.user}
+                    projectId={this.props.projectId}
                     project={this.props.project}
                     users={this.props.users}
                     tasks={this.props.tasks}
