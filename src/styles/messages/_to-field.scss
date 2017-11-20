@@ -3,12 +3,15 @@ $block-class: 'to-field';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         justify-content: flex-start;
+        margin-top: -4px;
+        min-height: 41px;
 
         &__search-wrapper {
             position: relative;
             top: -8px;
+            margin-top: 4px;
             margin-bottom: -16px;
         }
 

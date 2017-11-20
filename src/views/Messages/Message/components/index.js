@@ -27,22 +27,32 @@ class MessageContainer extends Component {
                     </Link>
                 </div>
                 {
-                    this.props.id !== undefined ?
-                    this.props.thread.map(message =>
-                        <Message {...this.props}
-                            key={message.id}
-                            id={message.id}
-                            message={message} />,
-                    ) :
-                    <Message {...this.props} />
-                }
-                {
-                    this.props.ui.reply &&
-                    <Message vocab={this.props.vocab} profile={this.props.profile}
-                        reply={this.props.ui.reply}
-                        actions={this.props.actions}
-                        users={this.props.users}
-                        goToMessage={this.props.goToMessage}/>
+                    (() => {
+                        if (this.props.id !== undefined) {
+                            const elements = this.props.thread.map(message =>
+                                <Message {...this.props}
+                                    key={message.id}
+                                    id={message.id}
+                                    message={message} />,
+                            );
+
+                            if (this.props.ui.reply) {
+                                elements.splice(
+                                    this.props.thread.findIndex(messageIter =>
+                                        messageIter.id === this.props.ui.reply.id) + 1,
+                                        0,
+                                        <Message key='reply'
+                                            vocab={this.props.vocab}
+                                            profile={this.props.profile}
+                                            reply={this.props.ui.reply}
+                                            actions={this.props.actions}
+                                            users={this.props.users}
+                                            goToMessage={this.props.goToMessage}/>);
+                            }
+                            return elements;
+                        }
+                        return <Message {...this.props} />;
+                    })()
                 }
             </div>
         );

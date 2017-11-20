@@ -8,6 +8,7 @@ import { Button } from 'grommet';
 import { renderName } from '../../../../utils/User';
 import apiService from '../../../../services/api';
 
+import CollapsedMessage from './CollapsedMessage';
 import MessageField from './MessageField';
 import MessageBodyField from './MessageBodyField';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
@@ -29,8 +30,19 @@ class Message extends Component {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
+
+        if (!compose && !active) {
+            return <CollapsedMessage {...this.props}
+                message={
+                    this.props.message &&
+                    Object.assign({}, this.props.message, {
+                        from: this.renderUserFromEmail(this.props.message.from),
+                    })
+                }/>;
+        }
+
         return (
-            <div className={`message ${active ? 'message--active' : ''}`}
+            <div className={`message ${active ? 'message--active' : ''} ${compose ? 'message--compose' : ''}`}
                 onClick={() => !compose && !active &&
                     this.props.goToMessage(this.props.id)}>
                 <form className='message__content' onSubmit={this.props.handleSubmit}>
@@ -68,13 +80,6 @@ class Message extends Component {
                             !compose &&
                             <div className='message__body-actions'>
                                 <ButtonPanel>
-                                    <PanelButton onClick={() => {
-                                        this.props.actions.deleteMessage(this.props.message.id);
-                                        this.props.goToInbox();
-                                    }}>
-                                        <IonIcon icon='ion-ios-trash-outline'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
                                     <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                         onClick={() => this.props.actions
                                                 .archiveMessage(this.props.message.id)}>
@@ -95,13 +100,20 @@ class Message extends Component {
                                             className='message__action-icon'/>
                                     </PanelButton>
                                     {
-                                        received &&
-                                        <PanelButton
-                                            onClick={() => this.props.actions
-                                                .startReply(this.props.message) }>
-                                            <IonIcon icon='ion-reply'
-                                                className='message__action-icon'/>
-                                        </PanelButton>
+                                        received && [
+                                            <PanelButton key='reply-button'
+                                                onClick={() => this.props.actions
+                                                    .startReply(this.props.message) }>
+                                                    <IonIcon icon='ion-reply'
+                                                        className='message__action-icon'/>
+                                                </PanelButton>,
+                                            <PanelButton key='reply-all-button'
+                                                onClick={() => this.props.actions
+                                                    .startReplyAll(this.props.message) }>
+                                                    <IonIcon icon='ion-reply-all'
+                                                        className='message__action-icon'/>
+                                                </PanelButton>,
+                                        ]
                                     }
                                 </ButtonPanel>
                             </div>
@@ -138,7 +150,7 @@ class Message extends Component {
                     !compose && received &&
                     <div className='message__inline-reply'
                         onClick={(evt) => {
-                            this.props.actions.startReply(this.props.message);
+                            this.props.actions.startReplyAll(this.props.message);
                             evt.stopPropagation();
                         }}>
                         {this.props.vocab.MESSAGES.WRITE_REPLY}

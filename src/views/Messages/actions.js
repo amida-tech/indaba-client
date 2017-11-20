@@ -44,7 +44,16 @@ export const startReply = message => (dispatch) => {
         id: message.id,
         subject: message.subject,
         to: [message.from],
-        from: message.to,
+        from: message.owner,
+    }));
+};
+
+export const startReplyAll = message => (dispatch) => {
+    dispatch(_startReply({
+        id: message.id,
+        subject: message.subject,
+        to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
+        from: message.owner,
     }));
 };
 

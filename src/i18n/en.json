@@ -274,7 +274,8 @@
             "SENT_MESSAGES": "Sent Messages",
             "UNREAD_MESSAGES": "Unread Messages",
             "NOTIFICATIONS": "Notifications"
-        }
+        },
+        "NO_MESSAGES": "No messages"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
