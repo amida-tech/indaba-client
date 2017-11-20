@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as actionTypes from './actionTypes';
+import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
 
 const initialState = {
@@ -64,18 +65,20 @@ export default (state = initialState, action) => {
                     action.result.map(transformServerMessageToReduxMessage), 'id'),
             },
         });
-    case actionTypes.GET_MESSAGE_SUCCESS:
+    case actionTypes.UPDATE_MESSAGE:
         return update(state, {
             messages: (
                 messageIndex !== -1 ?
-                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.result) } } :
-                { $push: [transformServerMessageToReduxMessage(action.result)] }
+                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.message) } } :
+                { $push: [transformServerMessageToReduxMessage(action.message)] }
             ),
         });
     case actionTypes.DELETE_MESSAGE_SUCCESS:
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
         });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

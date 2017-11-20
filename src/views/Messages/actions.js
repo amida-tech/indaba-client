@@ -1,3 +1,5 @@
+import { initialize, reset } from 'redux-form';
+
 import * as actionTypes from './actionTypes';
 import apiService from '../../services/api';
 
@@ -37,11 +39,21 @@ export const unarchiveMessage = id => ({
     id,
 });
 
-export const replyToMessage = message => (dispatch) => {
+export const startReply = message => (dispatch) => {
     dispatch(_startReply({
+        id: message.id,
         subject: message.subject,
         to: [message.from],
-        from: message.to,
+        from: message.owner,
+    }));
+};
+
+export const startReplyAll = message => (dispatch) => {
+    dispatch(_startReply({
+        id: message.id,
+        subject: message.subject,
+        to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
+        from: message.owner,
     }));
 };
 
@@ -56,15 +68,8 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
-export const sendMessage = message => (dispatch) => {
-    dispatch(_sendMessage());
-    apiService.messaging.send(message, (err) => {
-        if (err) {
-            dispatch(_sendMessageFailure(err));
-        } else {
-            dispatch(_sendMessageSuccess());
-        }
-    });
+export const updateMessage = message => (dispatch) => {
+    dispatch(_updateMessage(message));
 };
 
 export const listMessages = () => (dispatch) => {
@@ -113,23 +118,11 @@ export const deleteMessage = id => (dispatch) => {
 
 /* Private actions */
 
-export const _startReply = reply => ({
-    type: actionTypes.START_REPLY,
-    reply,
-});
-
-export const _sendMessage = () => ({
-    type: actionTypes.SEND_MESSAGE,
-});
-
-export const _sendMessageFailure = err => ({
-    type: actionTypes.SEND_MESSAGE_FAILURE,
-    err,
-});
-
-export const _sendMessageSuccess = () => ({
-    type: actionTypes.SEND_MESSAGE_SUCCESS,
-});
+export const _startReply = reply => (dispatch) => {
+    dispatch(initialize('message', reply));
+    dispatch(reset('message'));
+    dispatch({ type: actionTypes.START_REPLY, reply });
+};
 
 export const _listMessages = () => ({
     type: actionTypes.LIST_MESSAGES,
@@ -168,10 +161,14 @@ export const _getMessageFailure = err => ({
     err,
 });
 
-export const _getMessageSuccess = result => ({
-    type: actionTypes.GET_MESSAGE_SUCCESS,
-    result,
-    id: result.id,
+export const _getMessageSuccess = result => (dispatch) => {
+    dispatch(_updateMessage(result));
+};
+
+export const _updateMessage = message => ({
+    type: actionTypes.UPDATE_MESSAGE,
+    id: message.id,
+    message,
 });
 
 export const _archiveMessage = () => ({
