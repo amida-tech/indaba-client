@@ -9,6 +9,11 @@ const messaging = {
         const body = message;
         requests.apiPostRequest(path, body, callback);
     },
+    reply: (id, message, callback) => {
+        const path = `${rootURI}/api/message/reply/${id}`;
+        const body = message;
+        requests.apiPostRequest(path, body, callback);
+    },
     list: (callback) => {
         const path = `${rootURI}/api/message/list`;
         requests.apiGetRequest(path, callback);
