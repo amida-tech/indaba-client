@@ -402,8 +402,8 @@
             "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
         },
         "SUBJECT_DELETE_CONFIRM": {
-            "TITLE": "Delete Subject with data?",
-            "CONTENT": "This subject has data associated with it, which will be lost if deleted. Click Save to delete the subject."
+            "TITLE": "Delete subject?",
+            "CONTENT": "Are you sure you want to delete?"
         }
     }
 }
