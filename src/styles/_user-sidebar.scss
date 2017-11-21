@@ -31,14 +31,10 @@ $block-class:'user-sidebar';
             background-color: #fff;
         }
 
-        .grommetux-button__icon,
         .grommetux-control-icon {
             @extend .small-icon;
 
             stroke: $header-font-color;
-            position: absolute;
-            right: 2px;
-            top: -6px;
         }
     }
 }

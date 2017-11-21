@@ -2,6 +2,8 @@ $block-class: 'user-status';
 
 @at-root {
     .#{$block-class} {
-        @extend .small-icon;
+        &__check {
+            @extend .small-icon;
+        }
     }
 }
