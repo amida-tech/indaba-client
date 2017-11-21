@@ -19,15 +19,17 @@ class UserProfile extends Component {
                     initialValues={this.props.initialValues}
                     onSubmit={ (values) => {
                         this.props.onSave();
-                        this.props.onUpdateUser(this.props.userId, {
-                            firstName: values.name.firstName,
-                            lastName: values.name.lastName,
-                            email: values.account.email,
-                            title: values.account.title,
-                            notifyLevel: values.preferences.notifications,
-                            status: values.preferences.status,
-                            notes: values.preferences.notes,
-                        }, this.props.vocab.ERROR);
+                        this.props.onUpdateUser(this.props.userId,
+                            Object.assign({}, this.props.user, {
+                                firstName: values.name.firstName,
+                                lastName: values.name.lastName,
+                                email: values.account.email,
+                                title: values.account.title,
+                                notifyLevel: values.preferences.notifyLevel,
+                                isActive: values.preferences.isActive,
+                                notes: values.preferences.notes,
+                            }),
+                            this.props.vocab.ERROR);
                     }}/>
                 </Modal>
         );
