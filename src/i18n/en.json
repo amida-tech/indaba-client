@@ -68,6 +68,7 @@
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
+        "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {

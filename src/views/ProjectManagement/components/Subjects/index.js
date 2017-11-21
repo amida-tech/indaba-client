@@ -83,15 +83,11 @@ class Subjects extends Component {
                         onDeleteClick={subject =>
                             this.subjectHasData(subject.id).then((hasData) => {
                                 if (hasData) {
-                                    this.props.actions.showSubjectDeleteConfirmModalForId(
-                                        subject.id,
-                                    );
+                                    window.alert(
+                                        this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA);
                                 } else {
-                                    this.props.actions.deleteSubject(
-                                        this.props.project,
-                                        subject.id,
-                                        false,
-                                        this.props.vocab.ERROR);
+                                    this.props.actions
+                                    .showSubjectDeleteConfirmModalForId(subject.id);
                                 }
                             }) }/>
                 </div>
