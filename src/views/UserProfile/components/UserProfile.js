@@ -10,6 +10,7 @@ class UserProfile extends Component {
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}
                 buttons={[{
+                    key: 'reset',
                     label: this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD,
                     onClick: () => this.props.actions.resetPassword(
                         this.props.vocab.ERROR,

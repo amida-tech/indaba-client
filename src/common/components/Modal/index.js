@@ -20,7 +20,7 @@ class Modal extends Component {
                     <div className='modal-c__footer'>
                         <div className='modal-c__left-button-wrapper'>
                             {(this.props.buttons || []).map(button =>
-                                <FooterButton {...button} />,
+                                <FooterButton {...button} key={button.key}/>,
                             )}
                         </div>
                         <div className='modal-c__button-wrapper'>
@@ -49,6 +49,7 @@ Modal.propTypes = {
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
     buttons: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.any.isRequired,
         label: PropTypes.string.isRequired,
         primary: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
