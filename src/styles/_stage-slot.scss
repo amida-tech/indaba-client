@@ -55,9 +55,15 @@ $block-class:'stage-slot';
         }
 
         &__left-icon {
+            @extend .small-icon;
+
             float: left;
             margin-right: 5px;
             fill: #a4aebf;
+
+            &:hover {
+                fill: $font-color;
+            }
         }
 
         &__flag-row {
