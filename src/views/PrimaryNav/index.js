@@ -21,7 +21,8 @@ class PrimaryNavContainer extends Component {
     }
 
     render() {
-        const isProjectManager = (this.props.user.roleID === 2);
+        const isProjectManager = ((this.props.user.profile.roleID === 2) ||
+            (this.props.user.profile.roleID === 1));
 
         return (
             <nav className='primary-nav'>

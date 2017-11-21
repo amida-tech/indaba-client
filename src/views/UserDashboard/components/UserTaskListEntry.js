@@ -8,9 +8,8 @@ import StatusLabel, { StatusLabelType } from '../../../common/components/StatusL
 
 class UserTaskListEntry extends Component {
     render() {
-        // const isProjectManager = (this.props.profile.roleID === 2);
+        // TODO: Once INBA-433 is done, this return where is the check goes
         return (
-            // {isProjectManager &&
             <div className='user-task-list-entry'
                  onClick={() => this.props.router.push(`/project/${this.props.projectId}`)}>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--subject'>
@@ -43,7 +42,6 @@ class UserTaskListEntry extends Component {
                     {this.props.progress}
                 </div>
             </div>
-            // }
         );
     }
 }
