@@ -1,0 +1,25 @@
+$block-class: 'collapsed-message';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 0.5em 1em;
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+
+        &__from {
+            @extend .small-font;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__body {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

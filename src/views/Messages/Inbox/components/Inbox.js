@@ -33,11 +33,13 @@ class Inbox extends Component {
             return false;
         }
         switch (this.props.messages.ui.filter) {
+        case FILTERS.SENT_MESSAGES:
+            return message.from === this.props.profile.email;
         case FILTERS.ALL_MESSAGES:
             return true;
         case FILTERS.UNREAD_MESSAGES:
             return !message.readAt;
-        default: return true;
+        default: return false;
         }
     }
 
@@ -87,6 +89,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
     users: state.user.users,
+    profile: state.user.profile,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
