@@ -5,6 +5,7 @@ import { Button } from 'grommet';
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
 import AddSubject from '../Modals/AddSubject';
+import SubjectDeleteConfirmModal from './SubjectDeleteConfirm';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
 class Subjects extends Component {
@@ -49,6 +50,19 @@ class Subjects extends Component {
                         }}
                         onCancel={() => this.setState({ showAddSubjectModal: false })}
                         vocab={this.props.vocab}/>}
+                {
+                    this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
+                    <SubjectDeleteConfirmModal vocab={this.props.vocab}
+                        actions={this.props.actions}
+                        onSave={() => {
+                            this.props.actions.deleteSubject(
+                                this.props.project,
+                                this.props.ui.showSubjectDeleteConfirmModalForId,
+                                false,
+                                this.props.vocab.ERROR);
+                            this.props.actions.showSubjectDeleteConfirmForModalId(null);
+                        }}/>
+                }
                 <div className='subjects__action'>
                     <Button className='subjects__action-button'
                         label={this.props.vocab.PROJECT.ADD_SUBJECT}
@@ -67,11 +81,19 @@ class Subjects extends Component {
                         subjects={this.props.subjects}
                         query={this.state.query}
                         onDeleteClick={subject =>
-                            this.props.actions.deleteSubject(
-                                this.props.project,
-                                subject.id,
-                                false,
-                                this.props.vocab.ERROR)}/>
+                            this.subjectHasData(subject.id).then((hasData) => {
+                                if (hasData) {
+                                    this.props.actions.showSubjectDeleteConfirmModalForId(
+                                        subject.id,
+                                    );
+                                } else {
+                                    this.props.actions.deleteSubject(
+                                        this.props.project,
+                                        subject.id,
+                                        false,
+                                        this.props.vocab.ERROR);
+                                }
+                            }) }/>
                 </div>
             </div>);
     }
@@ -82,6 +104,7 @@ Subjects.propTypes = {
     vocab: PropTypes.object.isRequired,
     subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 export default Subjects;
