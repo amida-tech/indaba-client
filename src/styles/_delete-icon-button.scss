@@ -3,7 +3,8 @@ $block-class: 'delete-icon-button';
 @at-root {
     .#{$block-class} {
         &__icon {
-            fill: $font-color;
+            @extend .small-icon;
+
             cursor: pointer;
 
             &:hover {

@@ -16,5 +16,9 @@ $block-class: 'pm-user-list-row';
             display: inline-flex;
             flex: 6;
         }
+
+        &__mail-button {
+            @extend .small-icon;
+        }
     }
 }
