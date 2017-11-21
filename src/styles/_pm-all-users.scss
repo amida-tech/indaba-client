@@ -13,5 +13,9 @@ $block-class: 'pm-all-users';
         &__search-container {
             @extend .pm-users-tab__search-container;
         }
+
+        .grommetux-control-icon {
+            @extend .small-icon;
+        }
     }
 }
