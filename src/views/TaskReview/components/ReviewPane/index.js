@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import IonIcon from 'react-ionicons';
 
-import * as Questions from '../Questions';
+import Questions from '../../../../common/components/Questions';
 
 class ReviewPane extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class ReviewPane extends Component {
         this.handleClickReview = this.handleClickReview.bind(this);
     }
 
-    handleClickReview(event) {
+    handleClickReview(event) { // TODO: INBA-443
         this.setState({ review: event.target.value === 'true' });
     }
 

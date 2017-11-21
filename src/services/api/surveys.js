@@ -7,14 +7,14 @@ const surveys = {
     getSurveys: (callback) => { // Coming soon.
         requests.apiTokenGetRequest(`${rootURI}/surveys?status=all`, callback);
     },
-    getSurveyById: (surveyId, callback) => {
-        requests.apiTokenGetRequest(`${rootURI}/surveys/${surveyId}`, callback);
-    },
     postSurvey: (requestBody, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/surveys`, requestBody, callback);
     },
     patchSurvey: (surveyId, requestBody, callback) => {
         requests.apiTokenPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
+    },
+    getSurveyById: (surveyId, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/surveys/${surveyId}`, callback);
     },
     getAssessment: (callback) => {
         requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);
@@ -31,7 +31,6 @@ const surveys = {
     copyAnswers: (assessmentId, requestBody, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
     },
-
 };
 
 export default surveys;

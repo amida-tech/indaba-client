@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
 import { updateProjectWithSurvey } from './projectActions';
 
-// API calls.
+// Survey API calls.
 export function getSurveys(errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys(
@@ -15,8 +15,7 @@ export function getSurveys(errorMessages) {
     };
 }
 
- // For creating new survey. For update, use patchSurvey() below.
-export function postSurvey(survey, projectId, productId, errorMessages) {
+export function postSurvey(survey, project, errorMessages) {
     const requestBody = {
         authorId: 1,
         name: survey.name,
@@ -35,16 +34,16 @@ export function postSurvey(survey, projectId, productId, errorMessages) {
             (surveyErr, surveyResp) => {
                 if (!surveyErr && surveyResp) {
                     const updateBody = {
-                        id: productId,
+                        id: project.productId,
                         surveyId: surveyResp.id,
                     };
                     apiService.projects.putSurveyToProduct(
-                        productId,
+                        project.productId,
                         updateBody,
                         (productErr, productResp) => {
                             if (!productErr && productResp) {
                                 dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
-                                dispatch(updateProjectWithSurvey(projectId, surveyResp.id));
+                                dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
                             } else {
                                 dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
                             }
@@ -90,7 +89,63 @@ export function getSurveyById(surveyId, errorMessages) {
     };
 }
 
-// Check on whether these should be private later.
+export function getAssessment(errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.getAssessment(
+            (assessErr, assessResp) => {
+                dispatch((!assessErr && assessResp) ?
+                    _getAssessmentSuccess(assessResp) :
+                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+            },
+        );
+    };
+}
+
+export function postAssessment(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.postAssessment(
+            requestBody,
+            (assessErr, assessResp) => {
+                dispatch((!assessErr && assessResp) ?
+                    _postAssessmentSuccess(assessResp) :
+                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+            },
+        );
+    };
+}
+
+export function getAnswers(assessmentId, errorMessages) {
+    return dispatch =>
+        apiService.surveys.getAnswers(
+            assessmentId,
+            (answerErr, answerResp) => {
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(_getAnswersSuccess(answerResp.answers));
+                }
+            },
+    );
+}
+
+// Answer related.
+export function postAnswer(assessmentId, requestBody, required, errorMessages) {
+    return (dispatch) => {
+        apiService.surveys.postAnswer(
+            assessmentId,
+            requestBody,
+            (answerErr, answerResp) => {
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(_postAnswerSuccess(requestBody, required));
+                }
+            },
+        );
+    };
+}
+
+// UI component related.
 export function setSurveyName(name, surveyId) {
     return {
         type: actionTypes.SET_SURVEY_NAME,
@@ -107,8 +162,21 @@ export function setSurveyStatus(status, surveyId) {
     };
 }
 
+export function setSurveySectionIndex(index) {
+    return {
+        type: actionTypes.SET_SURVEY_SECTION_INDEX,
+        index,
+    };
+}
 
 // Private functions.
+function _getSurveysSuccess(surveys) {
+    return {
+        type: actionTypes.GET_SURVEYS_SUCCESS,
+        surveys,
+    };
+}
+
 function _postSurveySuccess(survey) {
     return {
         type: actionTypes.POST_SURVEY_SUCCESS,
@@ -124,18 +192,41 @@ function _patchSurveySuccess(surveyId, survey) {
     };
 }
 
-function _getSurveysSuccess(surveys) {
-    return {
-        type: actionTypes.GET_SURVEYS_SUCCESS,
-        surveys,
-    };
-}
-
 function _getSurveyByIdSuccess(surveyId, survey) {
     return {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
+    };
+}
+
+function _getAssessmentSuccess(assessment) {
+    return {
+        type: actionTypes.GET_ASSESSMENT_SUCCESS,
+        assessment,
+    };
+}
+
+function _postAssessmentSuccess(assessmentId) {
+    return {
+        type: actionTypes.POST_ASSESSMENT_SUCCESS,
+        assessmentId,
+    };
+}
+
+function _getAnswersSuccess(answers) {
+    return {
+        type: actionTypes.GET_ANSWERS_SUCCESS,
+        answers,
+    };
+}
+
+function _postAnswerSuccess(response, required) {
+    return {
+        type: actionTypes.POST_ANSWER_SUCCESS,
+        questionId: response.answers[0].questionId,
+        answer: response.answers[0].answer,
+        required,
     };
 }
 

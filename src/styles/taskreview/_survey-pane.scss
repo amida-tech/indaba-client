@@ -1,15 +1,21 @@
-$block-class:'task-survey-list';
+$block-class:'survey-pane';
 
 @at-root {
     .#{$block-class} {
         margin-left: 1em;
 
-        &__wrapper {
+        &__controls {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             width: 100%;
-            padding-top: 1em;
-            padding-right: 1em;
+            padding: 1em;
+        }
+
+        &__select {
+            width: 40%;
+        }
+
+        &__accordion-buttons {
         }
 
         &__instructions {
