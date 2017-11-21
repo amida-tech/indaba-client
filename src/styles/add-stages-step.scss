@@ -32,8 +32,7 @@ $block-class: 'add-stages-step';
             background-color: #fff;
             border: 1px solid $border-color;
             border-top: none;
-            min-width: 90%;
-            height: 200px;
+            height: 150px;
 
             &-row {
                 display: flex;
@@ -45,11 +44,9 @@ $block-class: 'add-stages-step';
                 cursor: pointer;
 
                 &--title {
-                    @extend .small-font;
+                    @extend .lead-font;
 
-                    padding: 1rem;
-                    border-bottom: 1px solid $border-color;
-                    text-transform: uppercase;
+                    padding: 8px;
                 }
 
                 &--summary {
@@ -62,43 +59,62 @@ $block-class: 'add-stages-step';
                 }
             }
         }
-    }
 
-    .stage-summary {
-        min-width: 25%;
-
-        &__header {
-            @extend .small-font;
-
-            text-transform: uppercase;
-            padding-left: 10px;
-            padding-bottom: 1rem;
-            padding-top: 1rem;
-            border-bottom: 1px solid $border-color;
-            margin-bottom: 5%;
-        }
-
-        &__row {
+        &__workflow {
             display: flex;
-            padding: 10px;
+            flex-direction: column;
+            border: 1px solid $border-color;
+            border-top: none;
+            border-bottom: none;
+            cursor: pointer;
 
-            &:hover {
-                overflow: visible;
+            &-title {
+                @extend .lead-font;
+
+                padding: 8px;
+            }
+
+            &-summary {
+                color: $font-color;
             }
         }
 
-        &__left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            max-width: 50%;
-        }
+        .stage-summary {
+            width: 25%;
 
-        &__right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-width: 50%;
+            &__header {
+                @extend .small-font;
+
+                text-transform: uppercase;
+                padding-left: 10px;
+                padding-bottom: 1rem;
+                padding-top: 1rem;
+                border-bottom: 1px solid $border-color;
+                margin-bottom: 5%;
+            }
+
+            &__row {
+                display: flex;
+                padding: 10px;
+
+                &:hover {
+                    overflow: visible;
+                }
+            }
+
+            &__left {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                max-width: 50%;
+            }
+
+            &__right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 50%;
+            }
         }
     }
 }

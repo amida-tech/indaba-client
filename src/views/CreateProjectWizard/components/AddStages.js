@@ -54,14 +54,8 @@ class AddStages extends Component {
                 </div>
 
                 {this.props.project.stages.length <= 3 &&
-                    <div className='add-stage-placeholder'
+                    <div className='add-stage-workflow'
                         onClick={() => this.props.actions.showAddStageWizardModal(true)}>
-                        <div className='workflow-stage-title'>
-                            {this.props.vocab.PROJECT.STAGE_TITLE}
-                        </div>
-                        <div className='workflow-stage-summary'>
-                            {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
-                        </div>
                     </div>
                 }
             </Box>
