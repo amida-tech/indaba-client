@@ -399,6 +399,10 @@
             "IMPORT": "Import Project",
             "CREATE_INSTRUCTION": "Projects can be used to track workflow progress, manage users and collaborate with your team.",
             "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
+        },
+        "SUBJECT_DELETE_CONFIRM": {
+            "TITLE": "Delete Subject with data?",
+            "CONTENT": "This subject has data associated with it, which will be lost if deleted. Click Save to delete the subject."
         }
     }
 }
