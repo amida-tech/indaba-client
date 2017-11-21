@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { Button } from 'grommet';
+
+import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
 import AddSubject from '../Modals/AddSubject';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
@@ -13,6 +14,25 @@ class Subjects extends Component {
             query: '',
             showAddSubjectModal: false,
         };
+    }
+    subjectHasData(subjectId) {
+        const answerPromises = [];
+        this.props.tasks
+        .filter(task => task.uoaId === subjectId)
+        .map(task => answerPromises.push(
+            new Promise((resolve, reject) => {
+                apiService.surveys
+                .getAssessmentAnswersStatus(task.assessmentId, (err, response) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(response);
+                    }
+                });
+            }),
+        ));
+        return Promise.all(answerPromises)
+        .then(statuses => statuses.some(status => status.status !== 'new'));
     }
     render() {
         return (
