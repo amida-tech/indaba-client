@@ -56,12 +56,14 @@
 @import './projectmanagement/filter-wrapper.scss';
 @import './projectmanagement/sub-nav.scss';
 @import './projectmanagement/sub-nav-entry.scss';
-@import './projectmanagement/survey-builder.scss';
-@import './projectmanagement/create-question-panel.scss';
-@import './projectmanagement/create-survey-panel.scss';
-@import './projectmanagement/new-questions.scss';
-@import './projectmanagement/existing-questions.scss';
-@import './projectmanagement/survey-builder-form.scss';
+// Survey Builder view
+
+@import './surveybuilder/survey-builder.scss';
+@import './surveybuilder/add-question-panel.scss';
+@import './surveybuilder/create-survey-panel.scss';
+@import './surveybuilder/new-questions.scss';
+@import './surveybuilder/existing-questions.scss';
+@import './surveybuilder/survey-builder-form.scss';
 // Modals:
 @import './modals/modal.scss';
 @import './modals/footer-button.scss';

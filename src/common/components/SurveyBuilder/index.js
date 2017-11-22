@@ -6,7 +6,6 @@ import { arrayPush } from 'redux-form';
 import AddQuestionPanel from './AddQuestionPanel';
 import SurveyBuilderForm from './SurveyBuilderForm';
 
-// If this doesn't do as much I fear it will, just delete it and move the child layers up.
 class SurveyBuilder extends Component {
     render() {
         const initialValues = {
