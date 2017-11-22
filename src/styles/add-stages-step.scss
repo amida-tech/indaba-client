@@ -32,7 +32,7 @@ $block-class: 'add-stages-step';
             background-color: #fff;
             border: 1px solid $border-color;
             border-top: none;
-            height: 150px;
+            height: 200px;
 
             &-row {
                 display: flex;
@@ -83,14 +83,9 @@ $block-class: 'add-stages-step';
             width: 25%;
 
             &__header {
-                @extend .small-font;
+                @extend .lead-font;
 
-                text-transform: uppercase;
-                padding-left: 10px;
-                padding-bottom: 1rem;
-                padding-top: 1rem;
-                border-bottom: 1px solid $border-color;
-                margin-bottom: 5%;
+                padding: 8px;
             }
 
             &__row {
