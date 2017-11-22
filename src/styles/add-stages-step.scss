@@ -44,6 +44,10 @@ $block-class: 'add-stages-step';
                 border-bottom: none;
                 cursor: pointer;
 
+                &:hover {
+                    background-color: darken(#fff, 3);
+                }
+
                 &--title {
                     @extend .lead-font;
 
