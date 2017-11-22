@@ -17,9 +17,9 @@ export function toggleCheckBackend() {
 }
 
 export function logOut() {
-    cookie.remove('indaba-auth');
-    cookie.remove('auth-jwt-token');
-    cookie.remove('indaba-realm');
+    cookie.remove('indaba-auth', { path: '/' });
+    cookie.remove('auth-jwt-token', { path: '/' });
+    cookie.remove('indaba-realm', { path: '/' });
     return (dispatch) => {
         dispatch(_logOutSuccess());
     };

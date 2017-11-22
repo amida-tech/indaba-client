@@ -1,0 +1,14 @@
+$block-class:'survey-form';
+
+@at-root {
+    .#{$block-class} {
+        border: 1px solid $border-color;
+
+        .grommetux-header {
+            min-height: 0px
+        }
+        .grommetux-box--separator-bottom {
+            border-bottom: 0px;
+        }
+    }
+}

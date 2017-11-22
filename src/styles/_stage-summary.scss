@@ -6,8 +6,9 @@ $block-class:'stage-summary';
         flex-direction: column;
 
         &__header {
-            font-size: 12px;
-            text-transform: uppercase;
+            @extend .lead-font;
+
+            padding: 8px 4px;
         }
 
         &__row {
@@ -23,6 +24,7 @@ $block-class:'stage-summary';
             display: flex;
             flex-direction: column;
             max-width: 50%;
+            padding: 4px;
         }
 
         &__right {
@@ -30,6 +32,7 @@ $block-class:'stage-summary';
             display: flex;
             flex-direction: column;
             min-width: 50%;
+            padding: 4px;
 
             &:hover {
                 overflow: visible;

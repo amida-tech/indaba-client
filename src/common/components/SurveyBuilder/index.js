@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import CreateSurveyPane from './CreateSurveyPane';
 import AnswerPanel from './AnswerPanel';
 
-class Survey extends Component {
+class SurveyBuilder extends Component {
     render() {
         return (
             <div className='survey'>
                 <div className='survey_pane'>
-                    {this.props.profile.roleID === 2 &&
-                        <CreateSurveyPane
-                            actions={this.props.actions}
-                            vocab={this.props.vocab}/>}
+                    <CreateSurveyPane
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}/>
                     <AnswerPanel {...this.props} />
                 </div>
             </div>
@@ -20,7 +19,7 @@ class Survey extends Component {
     }
 }
 
-Survey.propTypes = {
+SurveyBuilder.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
@@ -28,4 +27,4 @@ Survey.propTypes = {
     actions: PropTypes.object,
 };
 
-export default Survey;
+export default SurveyBuilder;

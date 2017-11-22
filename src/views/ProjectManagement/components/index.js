@@ -10,7 +10,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
-import Survey from '../../../common/components/Survey';
+import SurveyBuilder from '../../../common/components/SurveyBuilder';
 import StatusChange from './Modals/StatusChange';
 import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
@@ -38,7 +38,7 @@ class ProjectManagementContainer extends Component {
             body = <WorkflowContainer {...this.props} />;
             break;
         case 'survey':
-            body = <Survey {...this.props} />;
+            body = <SurveyBuilder {...this.props} />;
             break;
         case 'users':
             body = <Users
