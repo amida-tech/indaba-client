@@ -1,8 +1,9 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
+import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
 import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
+import { GET_ANSWERS_SUCCESS, GET_SURVEY_BY_ID_SUCCESS, POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -19,11 +20,50 @@ export const initialState = {
             timestamp: null,
             signatureId: null,
         },
+        reqTotal: -1,
+        reqAnswers: 0,
+        lastSave: null,
+        form: {
+            surveyId: -1,
+            answers: [],
+        },
     },
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+    case GET_SURVEY_BY_ID_SUCCESS: {
+        const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
+            action.survey.questions;
+        const reqQuestions = filter(flatSurvey, question => question.required);
+        const flatAnswers = map(state.ui.form.answers, item =>
+            ({ questionId: item.questionId, answer: item.answer }));
+        const answers = intersectionWith(reqQuestions, flatAnswers,
+            (q, a) => q.id === a.questionId);
+        return update(state, { ui: {
+            form: { surveyId: { $set: action.surveyId } },
+            reqTotal: { $set: reqQuestions.length },
+            reqAnswers: { $set: answers.length },
+        } });
+    }
+    case GET_ANSWERS_SUCCESS:
+        return update(state, { ui: { reqAnswers: { $set: 0 },
+            form: { answers: { $set: action.answers } } } });
+    case POST_ANSWER_SUCCESS: {
+        const answerIndex = findIndex(state.ui.form.answers,
+            answer => answer.questionId === action.questionId);
+        const reqIncrease = answerIndex < 0 && action.required ?
+            state.ui.reqAnswers + 1 : state.ui.reqAnswers;
+        return answerIndex < 0 ?
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                lastSave: { $set: Date.now() },
+                form: { answers: {
+                    $push: [{ questionId: action.questionId, answer: action.answer }],
+                } } } }) :
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                lastSave: { $set: Date.now() },
+                form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
+    }
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
             { ui: { flags: { $set: action.flags } } });
@@ -57,7 +97,7 @@ export default (state = initialState, action) => {
                 timestamp: { $set: null },
             } } });
     case UPDATE_FLAGGED_QUESTION: {
-        const flagIndex = _.findIndex(state.ui.flags, flag =>
+        const flagIndex = findIndex(state.ui.flags, flag =>
             flag.id === action.activeId);
         if (action.data.resolved) {
             let nextId = 0; // Determines the next active question, if any.

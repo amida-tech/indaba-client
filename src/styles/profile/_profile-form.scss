@@ -112,5 +112,11 @@ $block-class: 'profile-form';
                 border: 1px solid $brand-color;
             }
         }
+
+        .grommetux-control-icon {
+            @extend .small-icon;
+
+            stroke: $header-font-color;
+        }
     }
 }

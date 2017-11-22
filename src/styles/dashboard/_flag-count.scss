@@ -6,9 +6,8 @@ $block-class: 'flag-count';
 
         &__icon {
             position: absolute;
-            fill: $header-font-color;
-            width: 3em;
-            height: 3em;
+
+            @extend .primary-icon;
         }
 
         &__value {

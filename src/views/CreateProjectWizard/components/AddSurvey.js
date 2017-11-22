@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Summary from '../../../common/components/Summary';
-import Survey from '../../../common/components/Survey';
+import SurveyBuilder from '../../../common/components/SurveyBuilder';
 
 class AddSurvey extends Component {
     render() {
@@ -13,7 +13,7 @@ class AddSurvey extends Component {
                     project={this.props.project}
                     survey={this.props.survey}
                     vocab={this.props.vocab} />
-                <Survey {...this.props}/>
+                <SurveyBuilder {...this.props}/>
             </div>
         );
     }

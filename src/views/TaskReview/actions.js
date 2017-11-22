@@ -1,5 +1,29 @@
+import { postAnswer } from '../../common/actions/surveyActions';
 import * as actionTypes from './actionTypes';
 
+// Survey Form:
+export function updateFormSurveyId(surveyId) {
+    return {
+        type: actionTypes.UPDATE_FORM_SURVEY_ID,
+        surveyId,
+    };
+}
+
+export function upsertAnswer(assessmentId, questionId, answer, required, errorMessages) {
+    const requestBody = {
+        status: 'new',
+        answers: [{
+            questionId,
+            answer,
+        }],
+    };
+
+    return (dispatch) => {
+        dispatch(postAnswer(assessmentId, requestBody, required, errorMessages));
+    };
+}
+
+// Discussion related:
 export function storeFlaggedIssues(flags) {
     return {
         type: actionTypes.STORE_FLAGGED_ISSUES,
