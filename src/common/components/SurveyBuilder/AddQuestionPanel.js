@@ -5,7 +5,7 @@ import NewQuestions from './NewQuestions';
 import ExistingQuestions from './ExistingQuestions';
 
 
-class CreateQuestionPanel extends Component {
+class AddQuestionPanel extends Component {
     render() {
         return (
             <div className='create-question-panel'>
@@ -27,4 +27,4 @@ class CreateQuestionPanel extends Component {
     }
 }
 
-export default CreateQuestionPanel;
+export default AddQuestionPanel;

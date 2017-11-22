@@ -318,6 +318,7 @@
         "DRAFT": "Draft",
         "PUBLISHED": "Published",
         "PUBLISH": "Publish survey",
+        "SECTION_NAME": "Section Name: ",
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
         "NEW_QUESTIONS": "New Questions",
@@ -330,16 +331,16 @@
         "REQUIRED_QUESTION": "Required Questions",
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
-        "QUESTIONS_TYPES": [
-            "Multiple Choice",
-            "Bullet Point",
-            "Checkbox",
-            "Long Text",
-            "Dropdown",
-            "Date",
-            "Number",
-            "Scale"
-        ],
+        "QUESTIONS_TYPES": {
+            "CHOICE": "Multiple Choice",
+            "BULLETPOINT": "Bullet Point",
+            "BOOL": "Checkbox",
+            "TEXT": "Long Text",
+            "DROPDOWN":"Dropdown",
+            "DATE": "Date",
+            "INTEGER": "Number",
+            "SCALE": "Scale"
+        },
         "SECTION_BREAK": "Section Break"
     },
     "USER": {

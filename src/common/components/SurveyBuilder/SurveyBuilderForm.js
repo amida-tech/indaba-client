@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { FieldArray, reduxForm } from 'redux-form';
 
-import CreateQuestionPanel from './CreateQuestionPanel';
-import CreateSurveyPanel from './CreateSurveyPanel';
+import CreateSectionPanel from './CreateSectionPanel';
 
 class SurveyBuilderForm extends Component {
     render() {
         return (
             <div className='survey-builder-form'>
                 <div className='survey-builder-form__pane'>
-                    <CreateQuestionPanel
-                        actions={this.props.actions}
-                        vocab={this.props.vocab}/>
-                    <CreateSurveyPanel {...this.props} />
+                    <FieldArray
+                        name='sections'
+                        component={CreateSectionPanel}
+                        vocab={this.props.vocab} />
                 </div>
             </div>
         );
