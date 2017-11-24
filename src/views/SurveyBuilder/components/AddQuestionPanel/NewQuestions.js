@@ -9,8 +9,7 @@ class NewQuestions extends Component {
                     return (
                         <div className='new-questions__types'
                             key={`question-type${type}`}
-                            onClick={() => this.props.formActions.questionPush(
-                                `sections[${Math.max(this.props.sectionIndex, 0)}].questions`,
+                            onClick={() => this.props.actions.insertQuestion(
                                 { type: type.toLowerCase(), text: '', required: false },
                             )}>
                             {this.props.vocab.SURVEY.QUESTIONS_TYPES[type]}
@@ -18,7 +17,7 @@ class NewQuestions extends Component {
                     );
                 })}
                 <div className='new-questions__break'
-                    onClick={() => this.props.formActions.sectionPush({ name: '', questions: [] })}>
+                    onClick={() => this.props.actions.insertSection({ name: '', questions: [] })}>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
                 </div>
             </div>

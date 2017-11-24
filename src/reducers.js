@@ -5,6 +5,7 @@ import * as CommonReducers from './common/reducers';
 import { LoginReducer } from './views/Login';
 import { ProjectManagementReducer } from './views/ProjectManagement';
 import { TaskReviewReducer } from './views/TaskReview';
+import { SurveyBuilderReducer } from './views/SurveyBuilder';
 import { CreateProjectWizardReducer } from './views/CreateProjectWizard';
 import { PMDashboardReducer } from './views/PMDashboard';
 import { UserDashboardReducer } from './views/UserDashboard';
@@ -26,6 +27,7 @@ const reducers = {
     routing: routerReducer,
     manager: ProjectManagementReducer,
     taskreview: TaskReviewReducer,
+    surveybuilder: SurveyBuilderReducer,
     wizard: CreateProjectWizardReducer,
     form: formReducer,
     pmdashboard: PMDashboardReducer,
