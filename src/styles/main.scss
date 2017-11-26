@@ -60,11 +60,11 @@
 @import './projectmanagement/sub-nav-entry.scss';
 // Survey Builder view
 
-@import './surveybuilder/survey-builder.scss';
 @import './surveybuilder/add-question-panel.scss';
 @import './surveybuilder/new-questions.scss';
 @import './surveybuilder/existing-questions.scss';
-@import './surveybuilder/survey-builder-form.scss';
+@import './surveybuilder/survey-builder.scss';
+@import './surveybuilder/create-survey-panel.scss';
 // Modals:
 @import './modals/modal.scss';
 @import './modals/footer-button.scss';
