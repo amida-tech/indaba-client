@@ -6,7 +6,7 @@ import { PATCH_SURVEY_SUCCESS, GET_SURVEY_BY_ID_SUCCESS } from '../../common/act
 
 export const initialState = {
     ui: {
-        sectionIndex: 0,
+        sectionView: 0,
     },
     form: {
         name: '',
@@ -37,12 +37,18 @@ export default (state = initialState, action) => {
         return update(state, { form: { $set: action.survey } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
+    case type.SURVEY_BUILDER_INSERT_SECTION:
+        return update(state, { form: { sections: { $push:
+            [{ name: (action.tempName + state.form.sections.length), questions: [] }] } } });
+    case type.SURVEY_BUILDER_UPDATE_SECTION:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+            { name: { $set: action.name } } } } });
     case type.SURVEY_BUILDER_INSERT_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { $push: action.question } } } } });
+            { questions: { $push: [action.question] } } } } });
     case type.SURVEY_BUILDER_UPDATE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { $set: action.question } } } } });
+            { questions: { [action.questionIndex]: { $set: action.question } } } } } });
     default:
         return state;
     }

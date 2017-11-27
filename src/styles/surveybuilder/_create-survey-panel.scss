@@ -2,5 +2,30 @@ $block-class: 'create-survey-panel';
 
 @at-root {
     .#{$block-class} {
+        &__instructions {
+            display: flex;
+            flex-direction: column;
+            color: $font-color;
+        }
+        &__instructions-entry {
+            border: none;
+            color: $font-color;
+            width: 200vh;
+            height: 10vh;
+        }
+        &__sections-list {
+
+        }
+        &__section {
+
+        }
+        &__section-name {
+            border: 2px solid $font-color;
+            
+
+        }
+        &__question {
+
+        }
     }
 }

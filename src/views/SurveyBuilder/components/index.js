@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
+import * as actions from '../actions';
 import AddQuestionPanel from './AddQuestionPanel';
 import CreateSurveyPanel from './CreateSurveyPanel';
 
@@ -10,7 +12,7 @@ class SurveyBuilder extends Component {
         return (
             <div className='survey-builder'>
                 <AddQuestionPanel
-                    sectionIndex={this.props.ui.sectionIndex}
+                    sectionView={this.props.ui.sectionView}
                     actions={this.props.actions}
                     vocab={this.props.vocab}/>
                 <CreateSurveyPanel
@@ -35,4 +37,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(SurveyBuilder);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyBuilder);
