@@ -8,7 +8,14 @@ class UserProfile extends Component {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.onClickToSubmit}
+                buttons={[{
+                    key: 'reset',
+                    label: this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD,
+                    onClick: () => this.props.actions.resetPassword(
+                        this.props.vocab.ERROR,
+                    ),
+                }]}>
                 <UserProfileForm
                     userId={this.props.userId}
                     user={this.props.user}
