@@ -5,10 +5,12 @@ $block-class: 'user-task-list-entry';
         display: flex;
         align-items: center;
         cursor: pointer;
-        padding: 1em 2em 1em 1em;
+        padding: 8px 16px;
 
-        &:nth-child(even) {
-            background-color: #fff;
+        @extend .lead-font;
+
+        &:hover {
+            background-color: #f3f3f3;
         }
 
         &__cell {
