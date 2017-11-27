@@ -6,7 +6,6 @@ $block-class: 'add-stages-step';
         flex-direction: column;
         margin-left: 10%;
         margin-right: 10%;
-        cursor: pointer;
 
         &__import-row {
             display: flex;
@@ -15,9 +14,7 @@ $block-class: 'add-stages-step';
         }
 
         &__imp {
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            border-radius: 2px;
+            @extend .small-font;
         }
 
         &__instructions {
@@ -34,6 +31,7 @@ $block-class: 'add-stages-step';
             border: 1px solid $border-color;
             border-top: none;
             height: 200px;
+            cursor: pointer;
 
             &-row {
                 display: flex;
@@ -65,61 +63,9 @@ $block-class: 'add-stages-step';
             }
         }
 
-        &__workflow {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid $border-color;
-            border-top: none;
-            border-bottom: none;
-            cursor: pointer;
-
-            &-title {
-                @extend .lead-font;
-
-                padding: 8px;
-            }
-
-            &-summary {
-                color: $font-color;
-            }
-        }
-
         .stage-summary {
             width: 25%;
-
-            &:hover {
-                background-color: darken(#fff, 2);
-            }
-
-            &__header {
-                @extend .lead-font;
-
-                padding: 8px;
-            }
-
-            &__row {
-                display: flex;
-
-                &:hover {
-                    overflow: visible;
-                }
-            }
-
-            &__left {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                max-width: 50%;
-                padding: 8px;
-            }
-
-            &__right {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                min-width: 50%;
-                padding: 8px;
-            }
+            padding: 8px;
         }
     }
 }

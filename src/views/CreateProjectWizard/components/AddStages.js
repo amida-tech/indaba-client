@@ -28,7 +28,7 @@ class AddStages extends Component {
             <hr className='divider'/>
             <div className='add-stages-step__import-row'>
 
-                <Button className='add-stages-step__import-row add-stages-step__import-row--imp'
+                <Button className='add-stages-step__imp'
                  label={this.props.vocab.PROJECT.IMPORT_STAGE} />
             </div>
             <hr className='divider' />
