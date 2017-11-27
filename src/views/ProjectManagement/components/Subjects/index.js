@@ -72,6 +72,7 @@ class Subjects extends Component {
                     this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
                     <SubjectDeleteConfirmModal vocab={this.props.vocab}
                         actions={this.props.actions}
+                        onCancel={() => this.props.actions.showSubjectDeleteConfirmModalForId(null)}
                         onSave={() => {
                             this.props.actions.deleteSubject(
                                 this.props.project,

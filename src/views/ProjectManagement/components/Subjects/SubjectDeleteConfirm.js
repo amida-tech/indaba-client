@@ -7,7 +7,7 @@ class SubjectDeleteConfirmModal extends Component {
     render() {
         return (
             <Modal title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
-                onCancel={() => this.props.actions.showSubjectDeleteConfirmModalForId(null)}
+                onCancel={this.props.onCancel}
                 onSave={this.props.onSave}
                 vocab={this.props.vocab}>
                 <div className='subject-delete-confirm-modal'>
