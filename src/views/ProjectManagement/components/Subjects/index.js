@@ -16,6 +16,23 @@ class Subjects extends Component {
             query: '',
             showAddSubjectModal: false,
         };
+        this.attemptSubjectDelete = this.attemptSubjectDelete.bind(this);
+    }
+    attemptSubjectDelete(subject) {
+        if (this.props.project.hasNeverBeenActive /* TODO INBA-490 */) {
+            this.props.actions.showSubjectDeleteConfirmModalForId(subject.id);
+        } else {
+            this.subjectHasData(subject.id).then((hasData) => {
+                if (hasData) {
+                    toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
+                        { autoClose: false,
+                            type: 'error' });
+                } else {
+                    this.props.actions
+                            .showSubjectDeleteConfirmModalForId(subject.id);
+                }
+            });
+        }
     }
     subjectHasData(subjectId) {
         const answerPromises = [];
@@ -81,17 +98,7 @@ class Subjects extends Component {
                         vocab={this.props.vocab}
                         subjects={this.props.subjects}
                         query={this.state.query}
-                        onDeleteClick={subject =>
-                            this.subjectHasData(subject.id).then((hasData) => {
-                                if (hasData) {
-                                    toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
-                                        { autoClose: false,
-                                            type: 'error' });
-                                } else {
-                                    this.props.actions
-                                    .showSubjectDeleteConfirmModalForId(subject.id);
-                                }
-                            }) }/>
+                        onDeleteClick={this.attemptSubjectDelete}/>
                 </div>
             </div>);
     }
