@@ -8,10 +8,18 @@ class UserProfile extends Component {
         return (
             <Modal title={this.props.vocab.PROJECT.USER_PROFILE}
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.onClickToSubmit}
+                buttons={[{
+                    key: 'reset',
+                    label: this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD,
+                    onClick: () => this.props.actions.resetPassword(
+                        this.props.vocab.ERROR,
+                    ),
+                }]}>
                 <UserProfileForm
                     userId={this.props.userId}
                     user={this.props.user}
+                    projectId={this.props.projectId}
                     project={this.props.project}
                     users={this.props.users}
                     tasks={this.props.tasks}
@@ -19,15 +27,17 @@ class UserProfile extends Component {
                     initialValues={this.props.initialValues}
                     onSubmit={ (values) => {
                         this.props.onSave();
-                        this.props.onUpdateUser(this.props.userId, {
-                            firstName: values.name.firstName,
-                            lastName: values.name.lastName,
-                            email: values.account.email,
-                            title: values.account.title,
-                            notifyLevel: values.preferences.notifications,
-                            status: values.preferences.status,
-                            notes: values.preferences.notes,
-                        }, this.props.vocab.ERROR);
+                        this.props.onUpdateUser(this.props.userId,
+                            Object.assign({}, this.props.user, {
+                                firstName: values.name.firstName,
+                                lastName: values.name.lastName,
+                                email: values.account.email,
+                                title: values.account.title,
+                                notifyLevel: values.preferences.notifyLevel,
+                                isActive: values.preferences.isActive,
+                                notes: values.preferences.notes,
+                            }),
+                            this.props.vocab.ERROR);
                     }}/>
                 </Modal>
         );

@@ -15,6 +15,7 @@ class MessageContainer extends Component {
         this.props.actions.discardReply();
         this.props.actions.listMessages();
         this.props.actions.listArchivedMessages();
+        this.props.actions.expandMessages([this.props.id]);
     }
     render() {
         return (
@@ -36,10 +37,12 @@ class MessageContainer extends Component {
                                     message={message} />,
                             );
 
+                            const insertAfterId = _.get(this.props, 'ui.reply.id',
+                                _.get(this.props, 'ui.reply.forwardId'));
                             if (this.props.ui.reply) {
                                 elements.splice(
                                     this.props.thread.findIndex(messageIter =>
-                                        messageIter.id === this.props.ui.reply.id) + 1,
+                                        messageIter.id === insertAfterId) + 1,
                                         0,
                                         <Message key='reply'
                                             vocab={this.props.vocab}
@@ -67,8 +70,7 @@ const mapStateToProps = (state, ownProps) => {
         .find(messageIter => messageIter.id === id);
     const thread = _.sortBy(message ?
         state.messages.messages.filter(messageIter =>
-            (messageIter.originalMessageId === message.originalMessageId) &&
-            (!messageIter.isArchived || messageIter.id === id)) :
+            messageIter.originalMessageId === message.originalMessageId) :
         [], 'timestamp');
     return {
         id,
