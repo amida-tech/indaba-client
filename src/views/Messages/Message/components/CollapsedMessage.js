@@ -7,7 +7,8 @@ class CollapsedMessage extends Component {
             <div className='collapsed-message'
                 onClick={() => {
                     this.props.actions.discardReply();
-                    this.props.goToMessage(this.props.message.id);
+                    this.props.actions.expandMessages([this.props.id]);
+                    this.props.goToMessage(this.props.id);
                 }}>
                 <div className='collapsed-message__from'>
                     {this.props.vocab.MESSAGES.FROM}:
