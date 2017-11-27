@@ -78,7 +78,7 @@ class Subjects extends Component {
                                 this.props.ui.showSubjectDeleteConfirmModalForId,
                                 false,
                                 this.props.vocab.ERROR);
-                            this.props.actions.showSubjectDeleteConfirmForModalId(null);
+                            this.props.actions.showSubjectDeleteConfirmModalForId(null);
                         }}/>
                 }
                 <div className='subjects__action'>
