@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
 import AddSubject from '../Modals/AddSubject';
-import SubjectDeleteConfirmModal from './SubjectDeleteConfirm';
+import SubjectDeleteConfirmModal from '../../../../common/components/SubjectDeleteConfirm';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
 class Subjects extends Component {
@@ -71,7 +71,6 @@ class Subjects extends Component {
                 {
                     this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
                     <SubjectDeleteConfirmModal vocab={this.props.vocab}
-                        actions={this.props.actions}
                         onCancel={() => this.props.actions.showSubjectDeleteConfirmModalForId(null)}
                         onSave={() => {
                             this.props.actions.deleteSubject(

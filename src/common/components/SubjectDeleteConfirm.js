@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../../../../common/components/Modal';
+import Modal from './Modal';
 
 class SubjectDeleteConfirmModal extends Component {
     render() {
@@ -20,7 +20,6 @@ class SubjectDeleteConfirmModal extends Component {
 
 SubjectDeleteConfirmModal.propTypes = {
     vocab: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
 };
 
