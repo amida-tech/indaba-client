@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'grommet';
+import { toast } from 'react-toastify';
 
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
@@ -83,8 +84,9 @@ class Subjects extends Component {
                         onDeleteClick={subject =>
                             this.subjectHasData(subject.id).then((hasData) => {
                                 if (hasData) {
-                                    window.alert(
-                                        this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA);
+                                    toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
+                                        { autoClose: false,
+                                            type: 'error' });
                                 } else {
                                     this.props.actions
                                     .showSubjectDeleteConfirmModalForId(subject.id);
