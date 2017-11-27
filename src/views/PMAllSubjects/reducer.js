@@ -5,6 +5,7 @@ const initialState = {
     subjects: [],
     ui: {
         query: '',
+        showDeleteConfirmModalForId: null,
     },
 };
 
@@ -18,6 +19,10 @@ export default (state = initialState, action) => {
         return update(state, {
             subjects: { $set: action.subjects },
         });
+    case actionTypes.PM_ALL_SUBJECTS_SHOW_DELETE_CONFIRM_MODAL_FOR_ID:
+        return update(state, { ui: {
+            showDeleteConfirmModalForId: { $set: action.id },
+        } });
     default:
         return state;
     }
