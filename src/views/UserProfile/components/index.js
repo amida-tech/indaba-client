@@ -55,8 +55,8 @@ const mapStateToProps = (state, ownProps) => {
                 title: user.title,
             },
             preferences: {
-                notifications: user.notifications,
-                status: user.status,
+                notifyLevel: user.notifyLevel,
+                isActive: user.isActive,
                 notes: user.notes,
             },
         },
