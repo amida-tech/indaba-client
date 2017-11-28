@@ -11,17 +11,59 @@ class PMAllSubjects extends Component {
         super(props);
         this.attemptSubjectDelete = this.attemptSubjectDelete.bind(this);
     }
+    subjectRequestToast() {
+        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+            { autoClose: false, type: 'error' },
+        );
+    }
+    subjectHasData(subjectId) {
+        return new Promise((resolve, reject) => {
+            const answerPromises = [];
+            apiService.tasks.getTasks((tasksErr, tasks) => {
+                if (tasksErr) {
+                    reject(tasksErr);
+                } else {
+                    tasks
+                    .filter(task => task.uoaId === subjectId)
+                    .map(task => answerPromises.push(
+                        new Promise((answerResolve, answerReject) => {
+                            apiService.surveys
+                            .getAssessmentAnswersStatus(task.assessmentId,
+                                (answerErr, response) => {
+                                    if (answerErr) {
+                                        answerReject(answerErr);
+                                    } else {
+                                        answerResolve(response);
+                                    }
+                                });
+                        })));
+                    Promise.all(answerPromises)
+                    .then(statuses => statuses.some(status => status.status !== 'new'))
+                    .then(resolve)
+                    .catch(reject);
+                }
+            });
+        });
+    }
     attemptSubjectDelete(subject) {
         apiService.projects.getProjects((err, projects) => {
             if (err) {
-                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                    { autoClose: false, type: 'error' });
+                this.subjectRequstToast();
             } else if (!projects.some(project => project.subjects.some(
                     subjectIter => subjectIter.id === subject.id,
                 ))) {
                 this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(subject.id);
             } else {
-                // TODO check if data has been collected on subject
+                this.subjectHasData(subject.id)
+                .then((hasData) => {
+                    if (!hasData) {
+                        this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(subject.id);
+                    } else {
+                        toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
+                            { autoClose: false, type: 'error' });
+                    }
+                })
+                .catch(this.subjectRequestToast);
             }
         });
     }
