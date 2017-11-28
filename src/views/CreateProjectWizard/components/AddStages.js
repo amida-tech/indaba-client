@@ -26,29 +26,32 @@ class AddStages extends Component {
                 survey={this.props.survey}
                 vocab={this.props.vocab} />
             <hr className='divider'/>
-            <Box direction='row' justify='end'
-                pad={{ vertical: 'small', horizontal: 'medium' }}>
-                <Button label={this.props.vocab.PROJECT.IMPORT_STAGE} />
-            </Box>
+            <div className='add-stages-step__import-row'>
+
+                <Button className='add-stages-step__imp'
+                 label={this.props.vocab.PROJECT.IMPORT_STAGE} />
+            </div>
             <hr className='divider' />
-            <p className='wizard-clarification'>
+            <p className='add-stages-step__instructions'>
                 {this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}
             </p>
             <hr className='divider' />
-            <Box direction='row'>
+            <Box className='add-stages-step__grid' direction='row'>
                 {this.props.project.stages.map((stage) => {
                     return <StageSummary stage={stage}
                         vocab={this.props.vocab}
                         userGroups={this.props.project.userGroups}
                         key={stage.id} />;
                 })}
-                {this.props.project.stages.length <= 3 &&
-                    <div className='add-stage-placeholder'
+
+                {
+                    this.props.project.stages.length <= 3 &&
+                    <div className='add-stages-step__grid-row'
                         onClick={() => this.props.actions.showAddStageWizardModal(true)}>
-                        <div className='workflow-stage-title'>
+                        <div className='add-stages-step__grid-row--title'>
                             {this.props.vocab.PROJECT.STAGE_TITLE}
                         </div>
-                        <div className='workflow-stage-summary'>
+                        <div className='add-stages-step__grid-row--summary'>
                             {this.props.vocab.PROJECT.SELECT_TO_EDIT_STAGE}
                         </div>
                     </div>
