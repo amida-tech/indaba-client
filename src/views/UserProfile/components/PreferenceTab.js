@@ -12,7 +12,8 @@ class PreferenceTab extends Component {
                     {this.props.vocab.USER.NOTIFY_LEVEL}
                     <Field className='preference-tab__input-select'
                         component='select'
-                        name='notifications'>
+                        name='notifyLevel'
+                        normalize={value => parseInt(value, 0)}>
                         <option className='preference-tab__input-option'
                             value={constants.notifications.OFF}>
                             {this.props.vocab.USER.NOTIFY_OFF}
@@ -31,7 +32,11 @@ class PreferenceTab extends Component {
                     {this.props.vocab.USER.STATUS}
                     <Field className='preference-tab__input-select'
                         component='select'
-                        name='status' >
+                        name='isActive'
+                        normalize={value => value === constants.status.ACTIVE}
+                        format={value => (value ?
+                            constants.status.ACTIVE :
+                            constants.status.INACTIVE)}>
                         <option className='preference-tab__input-option'
                             value={constants.status.ACTIVE}>
                             {this.props.vocab.USER.ACTIVE}

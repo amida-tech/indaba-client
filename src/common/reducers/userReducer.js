@@ -5,9 +5,9 @@ import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 export const constants = {
     notifications: {
-        OFF: 'OFF',
-        INTERNAL: 'INTERNAL',
-        EMAIL: 'EMAIL',
+        OFF: 0,
+        INTERNAL: 1,
+        EMAIL: 2,
     },
 
     status: {

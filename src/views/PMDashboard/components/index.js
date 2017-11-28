@@ -8,7 +8,6 @@ import { FILTERS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
 
-import NameChangeModal from './NameChangeModal';
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import ProjectGlance from './ProjectGlance';
@@ -52,13 +51,6 @@ class PMDashboard extends Component {
     render() {
         return (
             <div className='pm-dashboard'>
-                {
-                    this.props.ui.nameChangeModal &&
-                    <NameChangeModal
-                        {...this.props.ui.nameChangeModal}
-                        vocab={this.props.vocab}
-                        onOk={ () => this.props.actions.showNameChange(false) }/>
-                }
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
                         messages={this.props.messages}/>
