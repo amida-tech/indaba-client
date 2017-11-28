@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
 import AddSubject from '../Modals/AddSubject';
-import SubjectDeleteConfirmModal from '../../../../common/components/SubjectDeleteConfirm';
+import Modal from '../../../../common/components/Modal';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
 class Subjects extends Component {
@@ -70,7 +70,9 @@ class Subjects extends Component {
                         vocab={this.props.vocab}/>}
                 {
                     this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
-                    <SubjectDeleteConfirmModal vocab={this.props.vocab}
+                    <Modal vocab={this.props.vocab}
+                        title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
+                        bodyText={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.SIMPLE_CONFIRM}
                         onCancel={() => this.props.actions.showSubjectDeleteConfirmModalForId(null)}
                         onSave={() => {
                             this.props.actions.deleteSubject(

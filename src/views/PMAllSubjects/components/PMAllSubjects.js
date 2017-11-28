@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
+import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
 import SearchInput from '../../../common/components/Dashboard/SearchInput';
 import SubjectList from '../../../common/components/SubjectList';
-import SubjectDeleteConfirm from '../../../common/components/SubjectDeleteConfirm';
+import Modal from '../../../common/components/Modal';
 
 class PMAllSubjects extends Component {
     constructor(props) {
@@ -52,12 +53,16 @@ class PMAllSubjects extends Component {
             } else if (!projects.some(project => project.subjects.some(
                     subjectIter => subjectIter.id === subject.id,
                 ))) {
-                this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(subject.id);
+                this.props.actions.pmAllSubjectsShowDeleteConfirmModal(
+                    subject.id,
+                    CONFIRM_TYPE.SIMPLE);
             } else {
                 this.subjectHasData(subject.id)
                 .then((hasData) => {
                     if (!hasData) {
-                        this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(subject.id);
+                        this.props.actions.pmAllSubjectsShowDeleteConfirmModal(
+                            subject.id,
+                            CONFIRM_TYPE.ASSOCIATED_PROJECT);
                     } else {
                         toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
                             { autoClose: false, type: 'error' });
@@ -71,23 +76,30 @@ class PMAllSubjects extends Component {
         return (
             <div className='pm-all-subjects'>
                 {
-                    this.props.ui.showDeleteConfirmModalForId !== null &&
-                    <SubjectDeleteConfirm vocab={this.props.vocab}
+                    this.props.ui.showDeleteConfirmModal &&
+                    <Modal vocab={this.props.vocab}
+                        title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
+                        bodyText={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM[
+                            this.props.ui.showDeleteConfirmModal.confirmType ===
+                                CONFIRM_TYPE.SIMPLE ?
+                            'SIMPLE_CONFIRM' :
+                            'ASSOCIATED_PROJECT_CONFIRM'
+                        ]}
                         onCancel={() =>
-                            this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(null)}
-                            onSave={() => {
-                                apiService.subjects.deleteSubject(
-                                    this.props.ui.showDeleteConfirmModalForId,
-                                    (subjectErr) => {
-                                        if (subjectErr) {
-                                            toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                                                { autoClose: false, type: 'error' });
-                                        }
-                                        this.props.actions.pmAllSubjectsGetSubjects();
-                                    },
-                                );
-                                this.props.actions.pmAllSubjectsShowDeleteConfirmModalForId(null);
-                            }} />
+                            this.props.actions.pmAllSubjectsHideDeleteConfirmModal()}
+                        onSave={() => {
+                            apiService.subjects.deleteSubject(
+                                this.props.ui.showDeleteConfirmModal.id,
+                                (subjectErr) => {
+                                    if (subjectErr) {
+                                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                                            { autoClose: false, type: 'error' });
+                                    }
+                                    this.props.actions.pmAllSubjectsGetSubjects();
+                                },
+                            );
+                            this.props.actions.pmAllSubjectsHideeleteConfirmModal();
+                        }} />
                 }
                 <div className='pm-all-subjects__search-wrapper'>
                     <SearchInput className='pm-all-subjects__search'

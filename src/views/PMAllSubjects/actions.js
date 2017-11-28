@@ -6,9 +6,14 @@ export const pmAllSubjectsSetQuery = query => ({
     query,
 });
 
-export const pmAllSubjectsShowDeleteConfirmModalForId = id => ({
-    type: actionTypes.PM_ALL_SUBJECTS_SHOW_DELETE_CONFIRM_MODAL_FOR_ID,
+export const pmAllSubjectsHideDeleteConfirmModal = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_HIDE_DELETE_CONFIRM_MODAL,
+});
+
+export const pmAllSubjectsShowDeleteConfirmModal = (id, confirmType) => ({
+    type: actionTypes.PM_ALL_SUBJECTS_SHOW_DELETE_CONFIRM_MODAL,
     id,
+    confirmType,
 });
 
 export const pmAllSubjectsGetSubjects = () => (dispatch) => {
