@@ -64,6 +64,7 @@ class CreateProjectWizard extends Component {
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         onSave={this.props.actions.postProject}
+                        onCancel={this.props.actions}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
