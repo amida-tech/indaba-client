@@ -18,6 +18,11 @@ class Modal extends Component {
                         {this.props.children}
                     </div>
                     <div className='modal-c__footer'>
+                        <div className='modal-c__left-button-wrapper'>
+                            {(this.props.buttons || []).map(button =>
+                                <FooterButton {...button} key={button.key}/>,
+                            )}
+                        </div>
                         <div className='modal-c__button-wrapper'>
                             {this.props.onCancel &&
                                 <FooterButton
@@ -30,9 +35,6 @@ class Modal extends Component {
                                     primary={true}
                                     onClick={this.props.onSave}/>
                             }
-                            {(this.props.buttons || []).map(button =>
-                                <FooterButton {...button} />,
-                            )}
                         </div>
                     </div>
                 </div>
@@ -47,6 +49,7 @@ Modal.propTypes = {
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
     buttons: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.any.isRequired,
         label: PropTypes.string.isRequired,
         primary: PropTypes.bool,
         onClick: PropTypes.func.isRequired,
