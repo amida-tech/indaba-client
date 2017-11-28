@@ -48,7 +48,8 @@ export default (state = initialState, action) => {
             { questions: { $push: [action.question] } } } } });
     case type.SURVEY_BUILDER_UPDATE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { [action.questionIndex]: { $set: action.question } } } } } });
+        { questions: { [action.questionIndex]: { [action.field]:
+                { $set: action.question } } } } } } });
     default:
         return state;
     }

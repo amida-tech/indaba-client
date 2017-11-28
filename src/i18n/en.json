@@ -322,6 +322,7 @@
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
         "NEW_QUESTIONS": "New Questions",
+        "PHRASE_QUESTION": "Please phrase your question here.",
         "EXISTING": "Existing",
         "VIEW_ALL": "Viewing all questions",
         "ENTER_INSTRUCTIONS": "Enter instructions here",

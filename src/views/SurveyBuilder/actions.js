@@ -31,11 +31,12 @@ export function insertQuestion(sectionIndex, question) {
     };
 }
 
-export function updateQuestion(sectionIndex, questionIndex, question) {
+export function updateQuestion(sectionIndex, questionIndex, field, value) {
     return {
         type: actionTypes.SURVEY_BUILDER_UPDATE_QUESTION,
         sectionIndex,
         questionIndex,
-        question,
+        field,
+        value,
     };
 }

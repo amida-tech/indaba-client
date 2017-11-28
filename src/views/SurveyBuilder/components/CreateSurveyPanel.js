@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QuestionBuilder from './QuestionBuilder';
+import QuestionPanel from './QuestionPanel';
 
 class CreateSurveyPanel extends Component {
     render() {
@@ -22,10 +22,13 @@ class CreateSurveyPanel extends Component {
                                 onChange={event => this.props.actions.updateSection(
                                     sectionIndex, event.target.value)} />
                             {section.questions.map((question, questionIndex) => (
-                                <QuestionBuilder className='create-survey-panel__question'
+                                <QuestionPanel className='create-survey-panel__question'
                                     key={`key-question-${questionIndex}`}
+                                    sectionIndex={sectionIndex}
                                     questionIndex={questionIndex}
-                                    question={question} />
+                                    question={question}
+                                    actions={this.props.actions}
+                                    vocab={this.props.vocab} />
                             ))}
                         </div>
                     ))}
