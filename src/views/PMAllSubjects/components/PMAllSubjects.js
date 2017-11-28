@@ -98,7 +98,7 @@ class PMAllSubjects extends Component {
                                     this.props.actions.pmAllSubjectsGetSubjects();
                                 },
                             );
-                            this.props.actions.pmAllSubjectsHideeleteConfirmModal();
+                            this.props.actions.pmAllSubjectsHideDeleteConfirmModal();
                         }} />
                 }
                 <div className='pm-all-subjects__search-wrapper'>
