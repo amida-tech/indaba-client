@@ -1,15 +1,80 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { Button } from 'grommet';
+import { toast } from 'react-toastify';
+
+import apiService from '../../../../services/api';
+import Modal from '../../../../common/components/Modal';
+import { DELETE_TYPE } from '../../constants';
 import Summary from '../../../../common/components/Summary';
 import AddSubjectControl from './AddSubjectControl';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 
 class AddSubjects extends Component {
+    constructor(props) {
+        super(props);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleModalSave = this.handleModalSave.bind(this);
+    }
+    handleDeleteClick(subjectId) {
+        // if used in any other project, do DELETE, otherwise, do disassociate
+        apiService.projects.getProjects((projectsErr, projects) => {
+            if (projectsErr) {
+                toast(this.props.vocab.ERROR.SUBJECT_REQUEST, {
+                    autoClose: false, type: 'error',
+                });
+            } else {
+                const deleteType =
+                    projects.some(project =>
+                        project.id !== this.props.project.id &&
+                        project.subjects.some(subjectIter => subjectIter.id === subjectId)) ?
+                    DELETE_TYPE.DISASSOCIATE_FROM_PROJECT :
+                    DELETE_TYPE.DELETE;
+                this.props.actions.wizardShowSubjectDeleteConfirmModal(subjectId, deleteType);
+            }
+        });
+    }
+    handleModalSave() {
+        if (this.props.ui.showSubjectDeleteConfirmModal.deleteType === DELETE_TYPE.DELETE) {
+            apiService.subjects.deleteSubject(
+                this.props.ui.showSubjectDeleteConfirmModal.id,
+                (subjectErr) => {
+                    if (subjectErr) {
+                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                            { autoClose: false, type: 'error' });
+                    }
+                    this.props.actions.getProjectById(this.props.project.id);
+                },
+            );
+            this.props.actions.wizardHideSubjectDeleteConfirmModal();
+        } else {
+            apiService.projects.deleteUOA(
+                this.props.ui.showSubjectDeleteConfirmModal.id,
+                {
+                    productId: this.props.project.productId,
+                    uoaId: this.props.ui.showSubjectDeleteConfirmModal.id,
+                },
+                (uoaErr) => {
+                    if (uoaErr) {
+                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                            { autoClose: false, type: 'error' });
+                    }
+                    this.props.actions.getProjectById(this.props.project.id);
+                },
+            );
+            this.props.actions.wizardHideSubjectDeleteConfirmModal();
+        }
+    }
     render() {
         return (
             <div className='add-subjects'>
+                {
+                    this.props.ui.showSubjectDeleteConfirmModal &&
+                    <Modal title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
+                        bodyText={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.SIMPLE_CONFIRM}
+                        onCancel={() => this.props.actions.wizardHideSubjectDeletConfirmModal()}
+                        onSave={this.handleModalSave}/>
+                }
                 <Summary
                     project={this.props.project}
                     survey={this.props.survey}
@@ -31,12 +96,7 @@ class AddSubjects extends Component {
                     <div className='add-subjects__table-row'
                         key={`subject${subject.name}${subject.id}`}>
                         {subject.name}
-                        <DeleteIconButton onClick={() =>
-                            this.props.actions.deleteSubject(
-                                this.props.project,
-                                subject.id,
-                                true,
-                            this.props.vocab.ERROR)} />
+                        <DeleteIconButton onClick={() => this.handleDeleteClick(subject.id)} />
                     </div>,
                 )}
             </div>
@@ -51,6 +111,7 @@ AddSubjects.propTypes = {
     survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 export default AddSubjects;
