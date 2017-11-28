@@ -19,13 +19,30 @@ $block-class: 'question-panel';
 
         &__optional-controls {
             margin: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__additions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__checkboxes {
+            margin-right: 10px;
+            vertical-align: bottom;
+            background-color: #fafafa;
             input {
-                vertical-align: bottom;
-                margin-bottom: 4px;
+                margin-bottom: 6px;
+                vertical-align: middle;
             }
         }
 
         &__attach-icon {
+            vertical-align: top;
             margin-left: -4px;
             margin-bottom: -4px;
             fill: $font-color;
@@ -37,6 +54,12 @@ $block-class: 'question-panel';
 
         &__label {
             margin-left: 3px;
+        }
+
+        &__help-icon {
+            vertical-align: sub;
+            height: 16px;
+            fill: $font-color;
         }
     }
 }
