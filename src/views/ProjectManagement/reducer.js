@@ -18,6 +18,7 @@ export const initialState = {
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
         showSubjectDeleteConfirmModalForId: null,
+        showUserDeleteConfirmModal: null,
     },
 };
 
@@ -58,6 +59,19 @@ export default (state = initialState, action) => {
     case type.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID: {
         return update(state, { ui: {
             showSubjectDeleteConfirmModalForId: { $set: action.id },
+        } });
+    }
+    case type.PM_SHOW_USER_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserDeleteConfirmModal: { $set: {
+                id: action.id,
+                promptType: action.promptType,
+            } },
+        } });
+    }
+    case type.PM_HIDE_USER_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserDeleteConfirmModal: { $set: null },
         } });
     }
     default:

@@ -77,3 +77,17 @@ export function showSubjectDeleteConfirmModalForId(id) {
         id,
     };
 }
+
+export function pmShowUserDeleteConfirmModal(id, promptType) {
+    return {
+        type: actionTypes.PM_SHOW_USER_DELETE_CONFIRM_MODAL,
+        id,
+        promptType,
+    };
+}
+
+export function pmHideUserDeleteConfirmModal() {
+    return {
+        type: actionTypes.PM_HIDE_USER_DELETE_CONFIRM_MODAL,
+    };
+}
