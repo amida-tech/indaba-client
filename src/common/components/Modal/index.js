@@ -27,6 +27,7 @@ class Modal extends Component {
                             {this.props.onCancel &&
                                 <FooterButton
                                     label={this.props.vocab.COMMON.CANCEL}
+                                    primary={true}
                                     onClick={this.props.onCancel}/>
                             }
                             {this.props.onSave &&
