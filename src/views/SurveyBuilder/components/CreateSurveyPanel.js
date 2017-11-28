@@ -19,6 +19,7 @@ class CreateSurveyPanel extends Component {
                             key={`key-section-${sectionIndex}`}>
                             <input className='create-survey-panel__section-name'
                                 value={section.name}
+                                placeholder={this.props.vocab.SURVEY.SECTION_NAME}
                                 onChange={event => this.props.actions.updateSection(
                                     sectionIndex, event.target.value)} />
                             {section.questions.map((question, questionIndex) => (

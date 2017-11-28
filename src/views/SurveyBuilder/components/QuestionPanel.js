@@ -25,8 +25,29 @@ class QuestionPanel extends Component {
                         <IonIcon icon='ion-paperclip'
                             className='question-panel__attach-icon'
                             color='#A4AEBF'/>
-                        <span className='question-panel__label'>
+                        <span className='question-panel__icon-label'>
                             {this.props.vocab.SURVEY.ATTACH_FILE}
+                        </span>
+                    </div>
+                    <div className='question-panel__checkboxes'>
+                        <input type='checkbox'
+                            disabled={true} />
+                        <span className='question-panel__label'>
+                            {this.props.vocab.SURVEY.ADD_LINK}
+                        </span>
+                    </div>
+                    <div className='question-panel__checkboxes'>
+                        <input type='checkbox'
+                            disabled={true} />
+                        <span className='question-panel__label'>
+                            {this.props.vocab.SURVEY.REQUIRED_QUESTION}
+                        </span>
+                    </div>
+                    <div className='question-panel__checkboxes'>
+                        <input type='checkbox'
+                            disabled={true} />
+                        <span className='question-panel__label'>
+                            {this.props.vocab.SURVEY.WEIGHT}
                         </span>
                     </div>
                 </div>

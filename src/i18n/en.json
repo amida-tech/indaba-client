@@ -318,7 +318,7 @@
         "DRAFT": "Draft",
         "PUBLISHED": "Published",
         "PUBLISH": "Publish survey",
-        "SECTION_NAME": "Section Name: ",
+        "SECTION_NAME": "Section Name (Optional)",
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
         "NEW_QUESTIONS": "New Questions",

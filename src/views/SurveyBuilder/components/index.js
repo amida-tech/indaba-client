@@ -11,11 +11,11 @@ class SurveyBuilder extends Component {
     render() {
         return (
             <div className='survey-builder'>
-                <AddQuestionPanel
+                <AddQuestionPanel className='survey-builder__add-question'
                     sectionView={this.props.ui.sectionView}
                     actions={this.props.actions}
                     vocab={this.props.vocab}/>
-                <CreateSurveyPanel
+                <CreateSurveyPanel className='survey-builder__create-survey'
                     {...this.props}/>
                 </div>
         );

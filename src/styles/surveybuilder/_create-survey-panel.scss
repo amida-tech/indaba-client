@@ -3,6 +3,7 @@ $block-class: 'create-survey-panel';
 @at-root {
     .#{$block-class} {
         padding: 15px;
+        max-width: 60vw;
 
         &__instructions {
             display: flex;
@@ -12,9 +13,9 @@ $block-class: 'create-survey-panel';
         &__instructions-entry {
             border: none;
             color: $font-color;
-            width: 200vh;
-            height: 10vh;
+            height: 80px;
             resize: none;
+            margin-bottom: 5px;
             background-color: #fafafa;
         }
         &__sections-list {
@@ -28,8 +29,8 @@ $block-class: 'create-survey-panel';
             border-left: 0;
             border-right: 0;
             border-bottom: 0;
-            padding-top: 10px;
-            width: 200vh;
+            padding: 20px 0 10px 0;
+            width: 100%;
             font-size: 18px;
             background-color: #fafafa;
         }

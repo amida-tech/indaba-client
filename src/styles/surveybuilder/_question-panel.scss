@@ -2,8 +2,9 @@ $block-class: 'question-panel';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $font-color;
+        border: 1px solid $border-color;
         margin: 2px;
+        padding: 10px;
 
         &__header {
             margin: 5px;
@@ -30,8 +31,12 @@ $block-class: 'question-panel';
             fill: $font-color;
         }
 
-        &__label {
+        &__icon-label {
             margin-left: -4px;
+        }
+
+        &__label {
+            margin-left: 3px;
         }
     }
 }
