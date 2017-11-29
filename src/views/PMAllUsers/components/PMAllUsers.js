@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { toast } from 'react-toastify';
 import { Search } from 'grommet';
 
 import Modal from '../../../common/components/Modal';
@@ -18,7 +18,10 @@ class PMAllUsers extends Component {
     }
     handleDeleteClick(userId) {
         getDataState(userId)
-        .then(dataState => this.props.actions.pmAllUsersShowDeleteConfirmModal(userId, dataState));
+        .then(dataState => this.props.actions.pmAllUsersShowDeleteConfirmModal(userId, dataState))
+        .catch(() => toast(this.props.vocab.ERROR.USER_REQUEST, {
+            autoClose: false, type: 'error',
+        }));
     }
     handleDeleteModalSave(userId) {
         this.props.actions.deleteUser(userId, this.props.vocab.ERROR);
