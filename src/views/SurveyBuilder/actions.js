@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 
+// Form/data related.
 export function updateInstructions(instructions) {
     return {
         type: actionTypes.SURVEY_BUILDER_UPDATE_INSTRUCTIONS,

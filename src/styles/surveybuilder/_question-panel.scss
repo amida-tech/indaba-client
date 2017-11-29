@@ -17,6 +17,23 @@ $block-class: 'question-panel';
             background-color: #fafafa;
         }
 
+        &__menu {
+            border: 1px solid $border-color;
+        }
+
+        &__menu-button {
+            border-bottom: 1px solid $border-color;
+            color: $font-color;
+            padding: .2em;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        &__more-icon {
+            margin-bottom: -5px;
+        }
+
         &__option-panel {
             padding: .3em;
         }

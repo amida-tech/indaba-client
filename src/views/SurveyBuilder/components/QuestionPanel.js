@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import { has } from 'lodash';
 import { toast } from 'react-toastify';
-import { DateTime } from 'grommet';
+import { DateTime, Menu } from 'grommet';
 
 import Time from '../../../utils/Time';
 // import PropTypes from 'prop-types';
@@ -23,6 +23,24 @@ class QuestionPanel extends Component {
                             'text',
                             event.target.value,
                         )} />
+                        <Menu responsive={true}
+                            icon={<IonIcon icon='ion-ios-more'
+                                className='question-panel__more-icon'/>}>
+                            <div className='question-panel__menu'>
+                                <div className='question-panel__menu-button'
+                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    {this.props.vocab.SURVEY.MOVE_UP}
+                                </div>
+                                <div className='question-panel__menu-button'
+                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    {this.props.vocab.SURVEY.MOVE_DOWN}
+                                </div>
+                                <div className='question-panel__menu-button'
+                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    {this.props.vocab.SURVEY.DELETE_QUESTION}
+                                </div>
+                            </div>
+                        </Menu>
                 </div>
                 {has(this.props.question, 'meta.file') &&
                     <div className='question-panel__option-panel'>

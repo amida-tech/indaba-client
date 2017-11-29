@@ -28,6 +28,7 @@ class CreateSurveyPanel extends Component {
                                     sectionIndex={sectionIndex}
                                     questionIndex={questionIndex}
                                     question={question}
+                                    ui={this.props.ui}
                                     actions={this.props.actions}
                                     vocab={this.props.vocab} />
                             ))}
