@@ -70,3 +70,10 @@ export function closeTaskOptionsModal() {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
+
+export function startTaskAssign(task) {
+    return {
+        type: actionTypes.START_TASK_ASSIGN,
+        task,
+    };
+}
