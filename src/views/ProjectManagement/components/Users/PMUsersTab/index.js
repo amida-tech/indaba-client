@@ -25,7 +25,9 @@ class PMUsersTab extends Component {
                 if (tasksErr) {
                     reject(tasksErr);
                 } else {
-                    const statusPromises = (tasks || []).map(task =>
+                    const statusPromises = (tasks || [])
+                    .filter(task => task.projectId === this.props.project.id)
+                    .map(task =>
                         new Promise((statusResolve, statusReject) =>
                             apiService.surveys.getAssessmentAnswersStatus(
                                 task.assessmentId,
