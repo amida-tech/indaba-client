@@ -2,7 +2,7 @@ $block-class: 'message-container';
 
 @at-root {
     .#{$block-class} {
-        @extend .med-font;
+        @extend .large-font;
 
         width: 80%;
         margin-left: 10%;

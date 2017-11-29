@@ -13,7 +13,7 @@ $block-class: 'amida-footer';
         height: $footer-height;
 
         &__footer-title {
-            @extend .med-font;
+            @extend .large-font;
 
             margin-right: 1em;
         }

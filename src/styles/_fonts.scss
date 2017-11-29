@@ -1,52 +1,41 @@
 
 .lead-font {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .lead-font-bold {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 400;
+    color: $lead-font-color;
 }
 
 .x-small-font {
     font-size: 12px;
     line-height: 1.5;
-    font-weight: 500;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+    color: $font-color;
 }
 
 .small-font {
     font-size: 14px;
     line-height: 1.5;
-    font-weight: 500;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.med-font {
-    font-size: 18px;
-    line-height: 1.5;
     font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: $font-color;
 }
 
 .large-font {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 1.5;
     font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: $header-font-color;
 }
 
 .x-large-font {
     font-size: 32px;
     line-height: 1.5;
     font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: $header-font-color;
 }
