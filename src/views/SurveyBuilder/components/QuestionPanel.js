@@ -14,8 +14,9 @@ class QuestionPanel extends Component {
                 <div className='question-panel__header'>
                     {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                     <input className='question-panel__text'
+                        type='text'
                         placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
-                        value={this.props.question.text}
+                        value={this.props.question.text || ''}
                         onChange={event => this.props.actions.updateQuestion(
                             this.props.sectionIndex,
                             this.props.questionIndex,
@@ -41,7 +42,8 @@ class QuestionPanel extends Component {
                                 {this.props.vocab.SURVEY.ADD_LINK}
                             </span>
                             <input className='question-panel__link-input'
-                                value={this.props.question.meta.publication.link}
+                                type='text'
+                                value={this.props.question.meta.publication.link || ''}
                                 onChange={event => this.props.actions.updateMeta(
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
@@ -51,7 +53,8 @@ class QuestionPanel extends Component {
                         </div>
                         <div className='question-panel__link-fields-bottom'>
                             <input className='question-panel__title-input'
-                                value={this.props.question.meta.publication.title}
+                                type='text'
+                                value={this.props.question.meta.publication.title || ''}
                                 placeholder={this.props.vocab.SURVEY.ENTER_PUBLICATION}
                                 onChange={event => this.props.actions.updateMeta(
                                     this.props.sectionIndex,
@@ -60,7 +63,8 @@ class QuestionPanel extends Component {
                                     { title: event.target.value },
                                 )} />
                             <input className='question-panel__author-input'
-                                value={this.props.question.meta.publication.author}
+                                type='text'
+                                value={this.props.question.meta.publication.author || ''}
                                 placeholder={this.props.vocab.SURVEY.AUTHOR}
                                 onChange={event => this.props.actions.updateMeta(
                                     this.props.sectionIndex,

@@ -70,10 +70,11 @@ $block-class: 'question-panel';
 
         &__date-input {
             background-color: #fff;
-            .grommetux-date-time__input {
+            .grommetux-date-time__input, .grommetux-date-time__input:focus {
                 border-radius: 0;
                 font-size: 14px;
                 border: 1px solid $border-color;
+                padding: .3em;
             }
         }
 
