@@ -28,7 +28,6 @@ const cardSource = {
             return;
         }
         const slot = monitor.getDropResult();
-        console.log(JSON.stringify(slot));
         props.actions.assignTask(props.children.id, slot,
             props.project, props.vocab.ERROR);
     },
