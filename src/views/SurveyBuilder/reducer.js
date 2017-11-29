@@ -46,10 +46,20 @@ export default (state = initialState, action) => {
     case type.SURVEY_BUILDER_INSERT_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $push: [action.question] } } } } });
-    case type.SURVEY_BUILDER_UPDATE_QUESTION:
+    case type.SURVEY_BUILDER_UPDATE_QUESTION: {
+        if (action.field === 'meta' && state.form.sections[action.sectionIndex].questions[action.questionIndex].meta) {
+            return update(state, { form: { sections: { [action.sectionIndex]:
+            { questions: { [action.questionIndex]: { [action.field]:
+                { $merge: action.value } } } } } } });
+        }
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { [action.field]:
             { $set: action.value } } } } } } });
+    }
+    case type.SURVEY_BUILDER_UPDATE_META:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+        { questions: { [action.questionIndex]: { meta: { [action.field]:
+            { $merge: action.value } } } } } } } });
     case type.SURVEY_BUILDER_RESET_META:
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { meta:

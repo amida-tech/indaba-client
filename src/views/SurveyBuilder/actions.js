@@ -41,6 +41,16 @@ export function updateQuestion(sectionIndex, questionIndex, field, value) {
     };
 }
 
+export function updateMeta(sectionIndex, questionIndex, field, value) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_UPDATE_META,
+        sectionIndex,
+        questionIndex,
+        field,
+        value,
+    };
+}
+
 export function resetMeta(sectionIndex, questionIndex, field) {
     return {
         type: actionTypes.SURVEY_BUILDER_RESET_META,

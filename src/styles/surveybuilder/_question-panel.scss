@@ -8,7 +8,7 @@ $block-class: 'question-panel';
 
         &__header {
             margin: 5px;
-            font-size: 17px;
+            font-size: 1.3em;
         }
 
         &__text, textarea {
@@ -17,8 +17,68 @@ $block-class: 'question-panel';
             background-color: #fafafa;
         }
 
+        &__option-panel {
+            padding: .3em;
+        }
+
+        &__file-select {
+            border-radius: 2px;
+            padding: 0.2em 1em;
+            display: inline-block;
+            background-color: #d8d8d8;
+            color: $header-font-color;
+            cursor: pointer;
+        }
+
+        &__link-fields-top {
+            border: 1px solid $border-color;
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            background-color: #fff;
+        }
+
+        &__add-link {
+            width: 10%;
+            text-align: center;
+            padding: .2em;
+        }
+
+        &__link-input {
+            border: none;
+            border-left: 1px solid $border-color;
+            width: 90%;
+        }
+
+        &__link-fields-bottom {
+            margin-top: .4em;
+            display: flex;
+            flex-direction: row;
+            input {
+                padding: .3em;
+                border: 1px solid $border-color;
+            }
+        }
+
+        &__title-input {
+            width: 50%;
+        }
+
+        &__author-input {
+            width: 35%;
+        }
+
+        &__date-input {
+            background-color: #fff;
+            .grommetux-date-time__input {
+                border-radius: 0;
+                font-size: 14px;
+                border: 1px solid $border-color;
+            }
+        }
+
         &__optional-controls {
-            margin: 10px;
+            margin: .3em;
             display: flex;
             flex-direction: row;
             align-items: center;
