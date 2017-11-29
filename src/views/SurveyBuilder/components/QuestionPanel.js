@@ -36,7 +36,10 @@ class QuestionPanel extends Component {
                                     {this.props.vocab.SURVEY.MOVE_DOWN}
                                 </div>
                                 <div className='question-panel__menu-button'
-                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    onClick={() => this.props.actions.deleteQuestion(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                    )}>
                                     {this.props.vocab.SURVEY.DELETE_QUESTION}
                                 </div>
                             </div>

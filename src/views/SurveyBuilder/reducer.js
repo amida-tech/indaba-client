@@ -64,6 +64,13 @@ export default (state = initialState, action) => {
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { meta:
             { $unset: [action.field] } } } } } } });
+    case type.SURVEY_BUILDER_DELETE_QUESTION:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+            { questions: { $splice: [[action.questionIndex, 1]] } } } } });
+    case type.SURVEY_BUILDER_MOVE_UP_QUESTION:
+        return state;
+    case type.SURVEY_BUILDER_MOVE_DOWN_QUESTION:
+        return state;
     default:
         return state;
     }

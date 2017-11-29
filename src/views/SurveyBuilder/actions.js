@@ -60,3 +60,11 @@ export function resetMeta(sectionIndex, questionIndex, field) {
         field,
     };
 }
+
+export function deleteQuestion(sectionIndex, questionIndex) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_DELETE_QUESTION,
+        sectionIndex,
+        questionIndex,
+    };
+}
