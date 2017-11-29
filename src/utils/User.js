@@ -16,7 +16,7 @@ export const getDataState = (userId, projectId) => {
                 reject(tasksErr);
             } else {
                 const statusPromises = (tasks || [])
-                .filter(task => task.projectId === projectId)
+                .filter(task => projectId === undefined || task.projectId === projectId)
                 .map(task =>
                     new Promise((statusResolve, statusReject) =>
                         apiService.surveys.getAssessmentAnswersStatus(
