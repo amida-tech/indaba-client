@@ -68,3 +68,21 @@ export function deleteQuestion(sectionIndex, questionIndex) {
         questionIndex,
     };
 }
+
+export function moveUpQuestion(sectionIndex, questionIndex, errorMessages) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_MOVE_UP_QUESTION,
+        sectionIndex,
+        questionIndex,
+        errorMessages,
+    };
+}
+
+export function moveDownQuestion(sectionIndex, questionIndex, errorMessages) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_MOVE_DOWN_QUESTION,
+        sectionIndex,
+        questionIndex,
+        errorMessages,
+    };
+}

@@ -28,11 +28,19 @@ class QuestionPanel extends Component {
                                 className='question-panel__more-icon'/>}>
                             <div className='question-panel__menu'>
                                 <div className='question-panel__menu-button'
-                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    onClick={() => this.props.actions.moveUpQuestion(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        this.props.vocab.ERROR,
+                                    )}>
                                     {this.props.vocab.SURVEY.MOVE_UP}
                                 </div>
                                 <div className='question-panel__menu-button'
-                                    onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                                    onClick={() => this.props.actions.moveDownQuestion(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        this.props.vocab.ERROR,
+                                    )}>
                                     {this.props.vocab.SURVEY.MOVE_DOWN}
                                 </div>
                                 <div className='question-panel__menu-button'

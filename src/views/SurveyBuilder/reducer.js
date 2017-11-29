@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
-import { assign } from 'lodash';
+import { assign, cloneDeep } from 'lodash';
+import { toast } from 'react-toastify';
 
 import * as type from './actionTypes';
 import { PATCH_SURVEY_SUCCESS, GET_SURVEY_BY_ID_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
@@ -67,10 +68,31 @@ export default (state = initialState, action) => {
     case type.SURVEY_BUILDER_DELETE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $splice: [[action.questionIndex, 1]] } } } } });
-    case type.SURVEY_BUILDER_MOVE_UP_QUESTION:
-        return state;
-    case type.SURVEY_BUILDER_MOVE_DOWN_QUESTION:
-        return state;
+    case type.SURVEY_BUILDER_MOVE_UP_QUESTION: {
+        if (action.questionIndex === 0) {
+            toast(action.errorMessages.ALREADY_TOP);
+            return state;
+        }
+        const tempQuestionsArray = cloneDeep(state.form.sections[action.sectionIndex].questions);
+        const tempQuestion = tempQuestionsArray[action.questionIndex - 1];
+        tempQuestionsArray[action.questionIndex - 1] = tempQuestionsArray[action.questionIndex];
+        tempQuestionsArray[action.questionIndex] = tempQuestion;
+        return update(state, { form: { sections: { [action.sectionIndex]:
+            { questions: { $set: tempQuestionsArray } } } } });
+    }
+    case type.SURVEY_BUILDER_MOVE_DOWN_QUESTION: {
+        if ((action.questionIndex + 1) ===
+            state.form.sections[action.sectionIndex].questions.length) {
+            toast(action.errorMessages.ALREADY_BOTTOM);
+            return state;
+        }
+        const tempQuestionsArray = cloneDeep(state.form.sections[action.sectionIndex].questions);
+        const tempQuestion = tempQuestionsArray[action.questionIndex + 1];
+        tempQuestionsArray[action.questionIndex + 1] = tempQuestionsArray[action.questionIndex];
+        tempQuestionsArray[action.questionIndex] = tempQuestion;
+        return update(state, { form: { sections: { [action.sectionIndex]:
+            { questions: { $set: tempQuestionsArray } } } } });
+    }
     default:
         return state;
     }

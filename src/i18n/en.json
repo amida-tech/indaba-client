@@ -68,6 +68,8 @@
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
+        "ALREADY_TOP": "The question is already at the very top of the section.",
+        "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
