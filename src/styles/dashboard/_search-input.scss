@@ -5,11 +5,14 @@ $block-class: 'search-input';
         display: flex;
         align-items: center;
         position: relative;
+        color: $lead-font-color;
+
+        @extend .small-font;
 
         &__input,
         .grommet &__input:not(.grommetux-input) {
             flex: 1;
-            border: 1px solid $border-color;
+            border: 2px solid #e6edef;
             border-radius: 1px;
             padding: 8px;
 

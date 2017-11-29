@@ -7,7 +7,7 @@ $block-class: 'message-list';
         cursor: pointer;
 
         &__title {
-            @extend .x-large-font;
+            @extend .large-font;
 
             justify-content: space-between;
             padding-left: 24px;
@@ -16,8 +16,6 @@ $block-class: 'message-list';
             border-bottom: 1px solid $border-color;
             display: flex;
             align-items: flex-end;
-            font-weight: 500;
-            font-size: 18px;
         }
 
         &__title-link {
