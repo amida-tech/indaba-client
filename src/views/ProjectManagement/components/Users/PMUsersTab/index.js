@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Search } from 'grommet';
 
-import { renderName } from '../../../../../utils/User';
-
-import { PROMPT_TYPE } from '../../../constants';
-import apiService from '../../../../../services/api';
+import { renderName, DATA_STATE, getDataState } from '../../../../../utils/User';
 import Modal from '../../../../../common/components/Modal';
 import { UserProfileContainer } from '../../../../UserProfile';
 import PMUserList from '../../../../../common/components/PMUserList';
@@ -20,34 +17,7 @@ class PMUsersTab extends Component {
         this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
     }
     getDataState(userId) {
-        return new Promise((resolve, reject) => {
-            apiService.tasks.getTasksByUser(userId, (tasksErr, tasks) => {
-                if (tasksErr) {
-                    reject(tasksErr);
-                } else {
-                    const statusPromises = (tasks || [])
-                    .filter(task => task.projectId === this.props.project.id)
-                    .map(task =>
-                        new Promise((statusResolve, statusReject) =>
-                            apiService.surveys.getAssessmentAnswersStatus(
-                                task.assessmentId,
-                                (statusErr, statusResponse) =>
-                                (statusErr ?
-                                    statusReject(statusErr) :
-                                    statusResolve(statusResponse)))));
-                    if (statusPromises.length > 0) {
-                        Promise.all(statusPromises)
-                        .then(statuses => statuses.some(status => status.status !== 'new'))
-                        .then(hasData => resolve(hasData ?
-                            PROMPT_TYPE.HAS_DATA :
-                            PROMPT_TYPE.HAS_TASKS))
-                        .catch(reject);
-                    } else {
-                        resolve(PROMPT_TYPE.NEITHER);
-                    }
-                }
-            });
-        });
+        return getDataState(userId, this.props.project.id);
     }
     handleDeleteClick(userId) {
         this.getDataState(userId).then((promptType) => {
@@ -87,11 +57,11 @@ class PMUsersTab extends Component {
                     <Modal title={this.props.vocab.MODAL.USER_DELETE_CONFIRM.TITLE}
                         bodyText={
                             (
-                                deleteModal.promptType === PROMPT_TYPE.HAS_DATA &&
+                                deleteModal.promptType === DATA_STATE.HAS_DATA &&
                                 this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_DATA
                             ) ||
                             (
-                                deleteModal.promptType === PROMPT_TYPE.HAS_TASKS &&
+                                deleteModal.promptType === DATA_STATE.HAS_TASKS &&
                                 this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_TASKS
                             ) ||
                             this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_NOTHING
