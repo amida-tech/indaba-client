@@ -327,6 +327,8 @@
         "VIEW_ALL": "Viewing all questions",
         "ENTER_INSTRUCTIONS": "Enter instructions here",
         "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
+        "SELECT_FILE": "Select a file",
+        "NO_FILE": "No file chosen",
         "ATTACH_FILE": "Attach File",
         "ADD_LINK": "Add a Link",
         "REQUIRED_QUESTION": "Required Questions",

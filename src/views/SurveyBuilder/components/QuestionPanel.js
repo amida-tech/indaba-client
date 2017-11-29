@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
+import { has } from 'lodash';
+import { Button } from 'grommet';
+import { toast } from 'react-toastify';
 // import PropTypes from 'prop-types';
 
 class QuestionPanel extends Component {
@@ -18,10 +21,45 @@ class QuestionPanel extends Component {
                             event.target.value,
                         )} />
                 </div>
+                {has(this.props.question, 'meta.file') &&
+                    <div className='question-panel__file-panel'>
+                        <Button className=''
+                            label={this.props.vocab.SURVEY.SELECT_FILE}
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)} />
+                        {this.props.vocab.SURVEY.NO_FILE}
+                    </div>
+                }
+                {has(this.props.question, 'meta.publication') &&
+                    <div className=''>
+                        <input className=''
+                            value={this.props.question.meta.link}
+                            onChange={event => this.props.actions.updateQuestion(
+                                this.props.sectionIndex,
+                                this.props.questionIndex,
+                                'meta',
+                                { publication: event.target.value },
+                            )} />
+                    </div>
+                }
                 <div className='question-panel__optional-controls'>
                     <div className='question-panel__additions'>
                         <div className='question-panel__checkboxes'>
-                            <input type='checkbox' />
+                            <input type='checkbox'
+                                value={has(this.props.question, 'meta.file')}
+                                onChange={(event) => {
+                                    if (event.target.checked) {
+                                        this.props.actions.updateQuestion(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'meta',
+                                            { file: true });
+                                    } else {
+                                        this.props.actions.resetMeta(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'file');
+                                    }
+                                }} />
                             <IonIcon icon='ion-paperclip'
                                 className='question-panel__attach-icon' />
                             <span className='question-panel__icon-label'>
@@ -29,13 +67,34 @@ class QuestionPanel extends Component {
                             </span>
                         </div>
                         <div className='question-panel__checkboxes'>
-                            <input type='checkbox'/>
+                        <input type='checkbox'
+                            value={has(this.props.question, 'meta.publication')}
+                            onChange={(event) => {
+                                if (event.target.checked) {
+                                    this.props.actions.updateQuestion(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        'meta',
+                                        { publication: {} });
+                                } else {
+                                    this.props.actions.resetMeta(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        'publication');
+                                }
+                            }} />
                             <span className='question-panel__label'>
                                 {this.props.vocab.SURVEY.ADD_LINK}
                             </span>
                         </div>
                         <div className='question-panel__checkboxes'>
-                            <input type='checkbox'/>
+                            <input type='checkbox'
+                                value={this.props.question.required}
+                                onChange={event => this.props.actions.updateQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    'required',
+                                    event.target.checked)} />
                             <span className='question-panel__label'>
                                 {this.props.vocab.SURVEY.REQUIRED_QUESTION}
                             </span>

@@ -40,3 +40,12 @@ export function updateQuestion(sectionIndex, questionIndex, field, value) {
         value,
     };
 }
+
+export function resetMeta(sectionIndex, questionIndex, field) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_RESET_META,
+        sectionIndex,
+        questionIndex,
+        field,
+    };
+}

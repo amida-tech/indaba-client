@@ -49,7 +49,11 @@ export default (state = initialState, action) => {
     case type.SURVEY_BUILDER_UPDATE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { [action.field]:
-                { $set: action.question } } } } } } });
+            { $set: action.value } } } } } } });
+    case type.SURVEY_BUILDER_RESET_META:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+        { questions: { [action.questionIndex]: { meta:
+            { $unset: [action.field] } } } } } } });
     default:
         return state;
     }
