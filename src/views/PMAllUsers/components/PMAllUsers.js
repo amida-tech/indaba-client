@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { Search } from 'grommet';
 
-import { renderName } from '../../../utils/User';
+import Modal from '../../../common/components/Modal';
+import { renderName, DATA_STATE, getDataState } from '../../../utils/User';
 import PMUserList from '../../../common/components/PMUserList';
 import { UserProfileContainer } from '../../../views/UserProfile';
 import InviteUserForm from '../../../common/components/InviteUserForm';
@@ -12,6 +13,16 @@ class PMAllUsers extends Component {
         super(props);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.filterUser = this.filterUser.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
+    }
+    handleDeleteClick(userId) {
+        getDataState(userId)
+        .then(dataState => this.props.actions.pmAllUsersShowDeleteConfirmModal(userId, dataState));
+    }
+    handleDeleteModalSave(userId) {
+        this.props.actions.deleteUser(userId, this.props.vocab.ERROR);
+        this.props.actions.pmAllUsersHideDeleteConfirmModal();
     }
     handleSearchSelect(selection) {
         this.props.actions.pmAllUsersSetListQuery('');
@@ -22,6 +33,7 @@ class PMAllUsers extends Component {
             .includes((this.props.ui.listQuery).toLowerCase());
     }
     render() {
+        const deleteModal = this.props.ui.showDeleteConfirmModal;
         return (
             <div className='pm-all-users'>
                 <div className='pm-all-users__invite-container'>
@@ -51,8 +63,7 @@ class PMAllUsers extends Component {
                 </div>
                 <PMUserList {...this.props}
                     onUserNameClick={this.props.actions.pmAllUsersShowProfile}
-                    onUserDeleteClick={id =>
-                        this.props.actions.deleteUser(id, this.props.vocab.ERROR)}
+                    onUserDeleteClick={this.handleDeleteClick}
                     onUserMailClick={id =>
                         this.props.actions.sendMessage(
                             this.props.users.find(user => user.id === id))}/>
@@ -61,6 +72,23 @@ class PMAllUsers extends Component {
                     <UserProfileContainer userId={this.props.ui.showProfile}
                         onCancel={() => this.props.actions.pmAllUsersShowProfile(false)}
                         onSave={() => this.props.actions.pmAllUsersShowProfile(false)}/>
+                }
+                {
+                    deleteModal &&
+                    <Modal title={this.props.vocab.MODAL.USER_DELETE_CONFIRM.TITLE}
+                        bodyText={
+                            (
+                                deleteModal.promptType === DATA_STATE.HAS_DATA &&
+                                this.props.vocab.MODAL.USER_DELETE_CONFIRM.DELETE_WITH_DATA
+                            ) ||
+                            (
+                                deleteModal.promptType === DATA_STATE.HAS_TASKS &&
+                                this.props.vocab.MODAL.USER_DELETE_CONFIRM.DELETE_WITH_TASKS
+                            ) ||
+                            this.props.vocab.MODAL.USER_DELETE_CONFIRM.DELETE_WITH_NOTHING
+                        }
+                        onCancel={() => this.props.actions.pmAllUsersHideDeleteConfirmModal()}
+                        onSave={() => this.handleDeleteModalSave(deleteModal.id)}/>
                 }
             </div>
         );
