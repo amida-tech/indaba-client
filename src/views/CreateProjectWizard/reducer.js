@@ -18,6 +18,7 @@ const initialState = {
         },
         errorMessage: '',
         projectLink: -1,
+        showSubjectDeleteConfirmModal: null,
     },
     project: {
         id: 0,
@@ -52,6 +53,17 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
         } } });
+    case type.WIZARD_SHOW_SUBJECT_DELETE_CONFIRM_MODAL:
+        return update(state, { ui: {
+            showSubjectDeleteConfirmModal: { $set: {
+                id: action.id,
+                deleteType: action.deleteType },
+            },
+        } });
+    case type.WIZARD_HIDE_SUBJECT_DELETE_CONFIRM_MODAL:
+        return update(state, { ui: {
+            showSubjectDeleteConfirmModal: { $set: null },
+        } });
     case type.GO_TO_STEP:
         return update(state, { ui: { step: { $set: action.step } } });
     case type.SHOW_COMPLETE_WIZARD:

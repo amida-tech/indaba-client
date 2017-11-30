@@ -88,7 +88,8 @@ class CreateProjectWizard extends Component {
                             actions={this.props.actions}
                             project={this.props.project}
                             survey={this.props.survey}
-                            vocab={this.props.vocab} />
+                            vocab={this.props.vocab}
+                            ui={this.props.ui}/>
                     </Tab>
                     <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
