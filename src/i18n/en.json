@@ -403,7 +403,8 @@
         },
         "SUBJECT_DELETE_CONFIRM": {
             "TITLE": "Delete subject?",
-            "CONTENT": "Are you sure you want to delete?"
+            "SIMPLE_CONFIRM": "Are you sure you want to delete?",
+            "ASSOCIATED_PROJECT_CONFIRM": "This subject is currently associated with one or more projects. Are you sure you want to delete?"
         }
     }
 }
