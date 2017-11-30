@@ -69,20 +69,12 @@ export function deleteQuestion(sectionIndex, questionIndex) {
     };
 }
 
-export function moveUpQuestion(sectionIndex, questionIndex, errorMessages) {
+export function moveQuestion(sectionIndex, questionIndex, move, errorMessages) {
     return {
-        type: actionTypes.SURVEY_BUILDER_MOVE_UP_QUESTION,
+        type: actionTypes.SURVEY_BUILDER_MOVE_QUESTION,
         sectionIndex,
         questionIndex,
-        errorMessages,
-    };
-}
-
-export function moveDownQuestion(sectionIndex, questionIndex, errorMessages) {
-    return {
-        type: actionTypes.SURVEY_BUILDER_MOVE_DOWN_QUESTION,
-        sectionIndex,
-        questionIndex,
+        move,
         errorMessages,
     };
 }

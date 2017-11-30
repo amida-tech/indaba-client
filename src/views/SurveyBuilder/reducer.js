@@ -77,30 +77,22 @@ export default (state = initialState, action) => {
     case type.SURVEY_BUILDER_DELETE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $splice: [[action.questionIndex, 1]] } } } } });
-    case type.SURVEY_BUILDER_MOVE_UP_QUESTION: {
-        if (action.questionIndex === 0) {
+    case type.SURVEY_BUILDER_MOVE_QUESTION: {
+        if (action.questionIndex === 0 && action.move < 0) {
             toast(action.errorMessages.ALREADY_TOP);
             return state;
         }
-        const tempQuestionsArray = cloneDeep(state.form.sections[action.sectionIndex].questions);
-        const tempQuestion = tempQuestionsArray[action.questionIndex - 1];
-        tempQuestionsArray[action.questionIndex - 1] = tempQuestionsArray[action.questionIndex];
-        tempQuestionsArray[action.questionIndex] = tempQuestion;
-        return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { $set: tempQuestionsArray } } } } });
-    }
-    case type.SURVEY_BUILDER_MOVE_DOWN_QUESTION: {
-        if ((action.questionIndex + 1) ===
+        if ((action.questionIndex + action.move) ===
             state.form.sections[action.sectionIndex].questions.length) {
             toast(action.errorMessages.ALREADY_BOTTOM);
             return state;
         }
-        const tempQuestionsArray = cloneDeep(state.form.sections[action.sectionIndex].questions);
-        const tempQuestion = tempQuestionsArray[action.questionIndex + 1];
-        tempQuestionsArray[action.questionIndex + 1] = tempQuestionsArray[action.questionIndex];
-        tempQuestionsArray[action.questionIndex] = tempQuestion;
+        const tempArray = cloneDeep(state.form.sections[action.sectionIndex].questions);
+        const tempQuestion = tempArray[action.questionIndex + action.move];
+        tempArray[action.questionIndex + action.move] = tempArray[action.questionIndex];
+        tempArray[action.questionIndex] = tempQuestion;
         return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { $set: tempQuestionsArray } } } } });
+            { questions: { $set: tempArray } } } } });
     }
     default:
         return state;

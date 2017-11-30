@@ -32,19 +32,19 @@ class QuestionPanel extends Component {
                             className='question-panel__more-icon'/>}>
                         <div className='question-panel__menu'>
                             <div className='question-panel__menu-button'
-                                onClick={() => this.props.actions.moveUpQuestion(
+                                onClick={() => this.props.actions.moveQuestion(
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
-                                    this.props.vocab.ERROR,
-                                )}>
+                                    -1,
+                                    this.props.vocab.ERROR)}>
                                 {this.props.vocab.SURVEY.MOVE_UP}
                             </div>
                             <div className='question-panel__menu-button'
-                                onClick={() => this.props.actions.moveDownQuestion(
+                                onClick={() => this.props.actions.moveQuestion(
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
-                                    this.props.vocab.ERROR,
-                                )}>
+                                    1,
+                                    this.props.vocab.ERROR)}>
                                 {this.props.vocab.SURVEY.MOVE_DOWN}
                             </div>
                             <div className='question-panel__menu-button'
