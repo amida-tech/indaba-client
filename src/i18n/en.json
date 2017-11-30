@@ -410,7 +410,10 @@
             "TITLE": "Remove user?",
             "REMOVE_WITH_DATA": "This user has completed tasks in this project. Their progress will be saved but they will no longer be able to access this project.",
             "REMOVE_WITH_TASKS": "This user has assigned tasks in the project.",
-            "REMOVE_WITH_NOTHING": "Are you sure you want to remove this user from this project?"
+            "REMOVE_WITH_NOTHING": "Are you sure you want to remove this user from this project?",
+            "DELETE_WITH_DATA": "This user has completed tasks in one or more projects. Their progress will be saved but they will no longer be able to access Indaba.",
+            "DELETE_WITH_TASKS": "This user has assigned tasks in one or more projects.",
+            "DELETE_WITH_NOTHING": "Are you sure you want to delete this user?"
         }
     }
 }
