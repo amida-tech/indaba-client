@@ -16,7 +16,11 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth, realm));
-                dispatch(push('/project'));
+                if (this.props.profile.roleID === 1 || this.props.profile.roleID === 2 ){
+                    dispatch(push('/project'));
+                } else {
+                    dispatch(push('/task'));
+                }
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
                 dispatch(_clearLoginForm());
