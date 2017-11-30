@@ -14,7 +14,6 @@ class FooterButton extends Component {
 }
 
 FooterButton.propTypes = {
-    onCancel: PropTypes.func,
     label: PropTypes.string.isRequired,
     primary: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
