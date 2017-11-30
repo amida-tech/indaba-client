@@ -35,6 +35,20 @@ export function showAddUserGroupWizardModal(show) {
     };
 }
 
+export function wizardShowSubjectDeleteConfirmModal(id, deleteType) {
+    return {
+        type: actionTypes.WIZARD_SHOW_SUBJECT_DELETE_CONFIRM_MODAL,
+        id,
+        deleteType,
+    };
+}
+
+export function wizardHideSubjectDeleteConfirmModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_SUBJECT_DELETE_CONFIRM_MODAL,
+    };
+}
+
 export function goToStep(step) {
     return {
         type: actionTypes.GO_TO_STEP,

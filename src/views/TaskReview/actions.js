@@ -11,7 +11,7 @@ export function updateFormSurveyId(surveyId) {
 
 export function upsertAnswer(assessmentId, questionId, answer, required, errorMessages) {
     const requestBody = {
-        status: 'new',
+        status: 'in-progress',
         answers: [{
             questionId,
             answer,
