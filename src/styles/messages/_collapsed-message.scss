@@ -2,6 +2,7 @@ $block-class: 'collapsed-message';
 
 @at-root {
     .#{$block-class} {
+        margin-top: 1em;
         display: flex;
         flex-direction: column;
         background-color: white;

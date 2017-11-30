@@ -40,6 +40,9 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             background-color: $header-footer;
             line-height: 3em;
             overflow: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         &__button-wrapper {
