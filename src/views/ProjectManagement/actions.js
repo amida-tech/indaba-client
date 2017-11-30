@@ -77,3 +77,10 @@ export function showSubjectDeleteConfirmModalForId(id) {
         id,
     };
 }
+
+export function startTaskAssign(task) {
+    return {
+        type: actionTypes.START_TASK_ASSIGN,
+        task,
+    };
+}

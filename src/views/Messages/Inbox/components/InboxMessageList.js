@@ -9,7 +9,7 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 class InboxMessageList extends Component {
     constructor() {
         super();
-        this.renderMessage = this.renderMessage.bind(this);
+        this.renderThread = this.renderThread.bind(this);
         this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
     }
 
@@ -18,30 +18,31 @@ class InboxMessageList extends Component {
         return user ? renderName(user) : email;
     }
 
-    renderMessage(message) {
+    renderThread(thread) {
         return (
-            <div key={message.id}
+            <div key={thread.id}
                 className='inbox-message-list__entry'
-                onClick={() => this.props.onMessageClick(message.id)}>
+                onClick={() => this.props.onMessageClick(thread.id)}>
                 <div className='inbox-message-list__ inbox-message-list__from'>
-                    <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {this.renderUserFromEmail(message.from)}
+                    <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
+                    {this.renderUserFromEmail(thread.from)}
+                    {thread.threadLength > 1 && ` (${thread.threadLength})`}
                 </div>
                 <div className='inbox-message-list__subject'>
-                    {message.subject}
+                    {thread.subject}
                 </div>
                 <div className='inbox-message-list__date'>
-                    {Time.renderForInboxMessageList(this.props.createdAt)}
+                    {Time.renderForInboxMessageList(thread.createdAt)}
                 </div>
                 <div className='inbox-message-list__actions'>
-                    <div className={`inbox-message-list__unread-indicator ${!message.readAt ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
+                    <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
-                            !message.isArchived &&
+                            !thread.isArchived &&
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
-                                        this.props.actions.archiveMessage(message.id);
+                                        this.props.actions.archiveThread(thread.messages);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -50,12 +51,12 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.isArchived && !message.readAt &&
+                            !thread.isArchived && thread.unread &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
-                                        this.props.actions.markMessageAsRead(message.id);
+                                        this.props.actions.markMessageAsRead(thread.id);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -64,12 +65,12 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !message.isArchived && message.readAt &&
+                            !thread.isArchived && !thread.unread &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
-                                        this.props.actions.markMessageAsUnread(message.id);
+                                        this.props.actions.markMessageAsUnread(thread.id);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -78,12 +79,12 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.isArchived &&
+                            thread.isArchived &&
                             <PanelButton
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
-                                        this.props.actions.unarchiveMessage(message.id);
+                                        this.props.actions.unarchiveMessage(thread.id);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -92,11 +93,11 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            message.isArchived &&
+                            thread.isArchived &&
                             <PanelButton
                                 onClick={
                                     (event) => {
-                                        this.props.actions.deleteMessage(message.id);
+                                        this.props.actions.deleteMessage(thread.id);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -125,8 +126,8 @@ class InboxMessageList extends Component {
                     <div className='inbox-message-list__actions'>
                     </div>
                 </div>
-                {this.props.messages.map(this.renderMessage)}
-                {this.props.messages.length === 0 &&
+                {this.props.threads.map(this.renderThread)}
+                {this.props.threads.length === 0 &&
                     <div className='inbox-message-list__entry inbox-message-list__entry--empty'>
                         {this.props.vocab.MESSAGES.NO_MESSAGES}
                     </div>
@@ -137,14 +138,14 @@ class InboxMessageList extends Component {
 }
 
 InboxMessageList.propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.shape({
-        to: PropTypes.arrayOf(PropTypes.string).isRequired,
+    threads: PropTypes.arrayOf(PropTypes.shape({
         from: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
-        timestamp: PropTypes.string.isRequired,
-        readAt: PropTypes.string,
-        archived: PropTypes.boolean,
+        unread: PropTypes.bool.isRequired,
+        isArchived: PropTypes.boolean,
+        threadLength: PropTypes.number.isRequired,
+        createdAt: PropTypes.string.isRequired,
     })).isRequired,
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
