@@ -24,6 +24,7 @@ class UserDashboard extends Component {
         } else {
             this.props.actions.getSelfTasks(this.props.vocab.ERROR);
         }
+        this.props.actions.userDashGetMessages();
     }
 
     filterRow(row) {
