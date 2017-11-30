@@ -60,7 +60,8 @@ class UserDashboard extends Component {
             <div className='user-dashboard'>
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
-                        messages={this.props.messages}/>
+                        messages={this.props.messages}
+                        users={this.props.users}/>
                     <UserGlance vocab={this.props.vocab} {...this.props.glance} />
                 </SplitLayout>
                 <UserTaskListControls vocab={this.props.vocab}
@@ -90,6 +91,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.userdashboard.messages.slice(0, 4),
     ui: state.userdashboard.ui,
+    users: state.user.users,
     rows: [].concat(...state.tasks.data.map(task =>
         _generateRow(state, task.projectId, task))),
 });

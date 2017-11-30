@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Time from '../../../utils/Time';
+import { renderName } from '../../../utils/User';
 
 class MessageList extends Component {
     render() {
@@ -16,7 +17,10 @@ class MessageList extends Component {
                 {this.props.messages.map(message =>
                     <div key={message.id} className='message-list__row'>
                         <div className='message-list__name'>
-                            {message.from}
+                            {
+                                renderName(this.props.users.find(
+                                    user => user.email === message.from))
+                            }
                         </div>
                         <div className='message-list__subject'>
                             {message.subject}
@@ -39,6 +43,7 @@ MessageList.propTypes = {
         subject: PropTypes.string.isRequired,
         from: PropTypes.string.isRequired,
     })).isRequired,
+    users: PropTypes.arrayOf(PropTypes.Object).isRequired,
 };
 
 export default MessageList;
