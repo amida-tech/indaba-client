@@ -405,6 +405,12 @@
             "TITLE": "Delete subject?",
             "SIMPLE_CONFIRM": "Are you sure you want to delete?",
             "ASSOCIATED_PROJECT_CONFIRM": "This subject is currently associated with one or more projects. Are you sure you want to delete?"
+        },
+        "USER_DELETE_CONFIRM": {
+            "TITLE": "Remove user?",
+            "REMOVE_WITH_DATA": "This user has completed tasks in this project. Their progress will be saved but they will no longer be able to access this project.",
+            "REMOVE_WITH_TASKS": "This user has assigned tasks in the project.",
+            "REMOVE_WITH_NOTHING": "Are you sure you want to remove this user from this project?"
         }
     }
 }
