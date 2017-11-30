@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
+import IonIcon from 'react-ionicons';
 
 class NewQuestions extends Component {
     render() {
@@ -21,6 +22,8 @@ class NewQuestions extends Component {
                     onClick={() =>
                         this.props.actions.insertSection(this.props.vocab.SURVEY.SECTION_)}>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
+                    <IonIcon icon='ion-filing'
+                        className='new-questions__section-icon'/>
                 </div>
             </div>
         );
