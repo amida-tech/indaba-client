@@ -1,0 +1,13 @@
+$block-class: 'subject-delete-confirm-modal';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 2em;
+
+        @extend .med-font;
+    }
+}

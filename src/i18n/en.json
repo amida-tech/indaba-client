@@ -68,6 +68,7 @@
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
+        "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -399,6 +400,10 @@
             "IMPORT": "Import Project",
             "CREATE_INSTRUCTION": "Projects can be used to track workflow progress, manage users and collaborate with your team.",
             "IMPORT_INSTRUCTION": "Use the import manager to import a previous project to edit and customize."
+        },
+        "SUBJECT_DELETE_CONFIRM": {
+            "TITLE": "Delete subject?",
+            "CONTENT": "Are you sure you want to delete?"
         }
     }
 }
