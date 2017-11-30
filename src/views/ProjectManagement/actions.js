@@ -91,3 +91,10 @@ export function pmHideUserDeleteConfirmModal() {
         type: actionTypes.PM_HIDE_USER_DELETE_CONFIRM_MODAL,
     };
 }
+
+export function startTaskAssign(task) {
+    return {
+        type: actionTypes.START_TASK_ASSIGN,
+        task,
+    };
+}

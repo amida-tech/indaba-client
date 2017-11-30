@@ -242,7 +242,7 @@
         "SEARCH_TASKS": "Search for tasks",
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
-        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow",
+        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",
