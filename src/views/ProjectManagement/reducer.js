@@ -17,6 +17,8 @@ export const initialState = {
         },
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
+        showSubjectDeleteConfirmModalForId: null,
+        assignTaskInput: false,
     },
 };
 
@@ -54,6 +56,15 @@ export default (state = initialState, action) => {
             show: { $set: false },
             task: { $set: {} },
         } } });
+    case type.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID: {
+        return update(state, { ui: {
+            showSubjectDeleteConfirmModalForId: { $set: action.id },
+        } });
+    }
+    case type.START_TASK_ASSIGN:
+        return update(state, { ui: {
+            assignTaskInput: { $set: action.task },
+        } });
     default:
         return state;
     }

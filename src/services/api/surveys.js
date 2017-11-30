@@ -19,6 +19,9 @@ const surveys = {
     getAssessment: (callback) => {
         requests.apiTokenGetRequest(`${rootURI}/assessments`, callback);
     },
+    getAssessmentAnswersStatus: (id, callback) => {
+        requests.apiTokenGetRequest(`${rootURI}/assessment-answers/${id}/status`, callback);
+    },
     postAssessment: (requestBody, callback) => {
         requests.apiTokenPostRequest(`${rootURI}/assessments`, requestBody, callback);
     },

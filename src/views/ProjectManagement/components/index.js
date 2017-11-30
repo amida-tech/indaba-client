@@ -56,7 +56,9 @@ class ProjectManagementContainer extends Component {
             body = <Subjects vocab={this.props.vocab}
                     project={this.props.project}
                     subjects={this.props.project.subjects}
-                    actions={this.props.actions}/>;
+                    actions={this.props.actions}
+                    tasks={this.props.tasks}
+                    ui={this.props.ui}/>;
             break;
         default:
             body = null;

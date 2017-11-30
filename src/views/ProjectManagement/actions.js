@@ -70,3 +70,17 @@ export function closeTaskOptionsModal() {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
+
+export function showSubjectDeleteConfirmModalForId(id) {
+    return {
+        type: actionTypes.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID,
+        id,
+    };
+}
+
+export function startTaskAssign(task) {
+    return {
+        type: actionTypes.START_TASK_ASSIGN,
+        task,
+    };
+}
