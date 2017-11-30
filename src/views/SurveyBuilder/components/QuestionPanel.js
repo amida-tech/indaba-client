@@ -12,46 +12,50 @@ class QuestionPanel extends Component {
         return (
             <div className='question-panel'>
                 <div className='question-panel__header'>
-                    {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
-                    <input className='question-panel__text'
-                        type='text'
-                        placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
-                        value={this.props.question.text || ''}
-                        onChange={event => this.props.actions.updateQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                            'text',
-                            event.target.value,
-                        )} />
-                        <Menu responsive={true}
-                            icon={<IonIcon icon='ion-ios-more'
-                                className='question-panel__more-icon'/>}>
-                            <div className='question-panel__menu'>
-                                <div className='question-panel__menu-button'
-                                    onClick={() => this.props.actions.moveUpQuestion(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        this.props.vocab.ERROR,
-                                    )}>
-                                    {this.props.vocab.SURVEY.MOVE_UP}
-                                </div>
-                                <div className='question-panel__menu-button'
-                                    onClick={() => this.props.actions.moveDownQuestion(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        this.props.vocab.ERROR,
-                                    )}>
-                                    {this.props.vocab.SURVEY.MOVE_DOWN}
-                                </div>
-                                <div className='question-panel__menu-button'
-                                    onClick={() => this.props.actions.deleteQuestion(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                    )}>
-                                    {this.props.vocab.SURVEY.DELETE_QUESTION}
-                                </div>
+                    <div className='question-panel__question'>
+                        <span className='question-panel__question-number'>
+                            {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
+                        </span>
+                        <input className='question-panel__question-text'
+                            type='text'
+                            placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
+                            value={this.props.question.text || ''}
+                            onChange={event => this.props.actions.updateQuestion(
+                                this.props.sectionIndex,
+                                this.props.questionIndex,
+                                'text',
+                                event.target.value,
+                            )} />
+                    </div>
+                    <Menu responsive={true}
+                        icon={<IonIcon icon='ion-ios-more'
+                            className='question-panel__more-icon'/>}>
+                        <div className='question-panel__menu'>
+                            <div className='question-panel__menu-button'
+                                onClick={() => this.props.actions.moveUpQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    this.props.vocab.ERROR,
+                                )}>
+                                {this.props.vocab.SURVEY.MOVE_UP}
                             </div>
-                        </Menu>
+                            <div className='question-panel__menu-button'
+                                onClick={() => this.props.actions.moveDownQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    this.props.vocab.ERROR,
+                                )}>
+                                {this.props.vocab.SURVEY.MOVE_DOWN}
+                            </div>
+                            <div className='question-panel__menu-button'
+                                onClick={() => this.props.actions.deleteQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                )}>
+                                {this.props.vocab.SURVEY.DELETE_QUESTION}
+                            </div>
+                        </div>
+                    </Menu>
                 </div>
                 {has(this.props.question, 'meta.file') &&
                     <div className='question-panel__option-panel'>
