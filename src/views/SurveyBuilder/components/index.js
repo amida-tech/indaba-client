@@ -26,8 +26,8 @@ SurveyBuilder.propTypes = {
     project: PropTypes.object.isRequired,
     survey: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
-    vocab: PropTypes.object.isRequired,
     actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {

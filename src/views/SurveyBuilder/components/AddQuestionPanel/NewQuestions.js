@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
 import IonIcon from 'react-ionicons';
+import PropTypes from 'prop-types';
 
 class NewQuestions extends Component {
     render() {
@@ -20,7 +21,7 @@ class NewQuestions extends Component {
                 })}
                 <div className='new-questions__break'
                     onClick={() =>
-                        this.props.actions.insertSection(this.props.vocab.SURVEY.SECTION_)}>
+                        this.props.actions.insertSection()}>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
                     <IonIcon icon='ion-minus'
                         className='new-questions__section-icon'/>
@@ -29,5 +30,11 @@ class NewQuestions extends Component {
         );
     }
 }
+
+NewQuestions.propTypes = {
+    sectionView: PropTypes.number.isRequired,
+    actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default NewQuestions;

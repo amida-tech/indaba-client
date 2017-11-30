@@ -39,8 +39,8 @@ export default (state = initialState, action) => {
         }
         return initialState;
     }
-    case PATCH_SURVEY_SUCCESS:
-        return update(state, { form: { $set: action.survey } });
+    case PATCH_SURVEY_SUCCESS: // Not sure I want forceStatus coming back.
+        return update(state, { form: { $merge: action.survey } });
     case SET_SURVEY_STATUS:
         return update(state, { form: { status: { $set: action.status } } });
     case SET_SURVEY_NAME:
@@ -49,7 +49,7 @@ export default (state = initialState, action) => {
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
         return update(state, { form: { sections: { $push:
-            [{ name: (action.tempName + state.form.sections.length), questions: [] }] } } });
+            [{ name: '', questions: [] }] } } });
     case type.SURVEY_BUILDER_UPDATE_SECTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { name: { $set: action.name } } } } });

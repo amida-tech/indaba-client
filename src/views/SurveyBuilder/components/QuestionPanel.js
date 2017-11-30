@@ -3,9 +3,11 @@ import IonIcon from 'react-ionicons';
 import { has } from 'lodash';
 import { toast } from 'react-toastify';
 import { DateTime, Menu } from 'grommet';
+import PropTypes from 'prop-types';
 
+import StaticQuestion from './StaticQuestion';
+import DynamicQuestion from './DynamicQuestion';
 import Time from '../../../utils/Time';
-// import PropTypes from 'prop-types';
 
 class QuestionPanel extends Component {
     render() {
@@ -57,6 +59,12 @@ class QuestionPanel extends Component {
                         </div>
                     </Menu>
                 </div>
+                {this.props.question.type === 'choice' ||
+                    this.props.question.type === 'bool' ||
+                    this.props.question.type === 'dropdown' ?
+                    <DynamicQuestion {...this.props} /> :
+                    <StaticQuestion vocab={this.props.vocab}/>
+                }
                 {has(this.props.question, 'meta.file') &&
                     <div className='question-panel__option-panel'>
                         <div className='question-panel__file-select'
@@ -194,5 +202,19 @@ class QuestionPanel extends Component {
         );
     }
 }
+
+QuestionPanel.propTypes = {
+    ui: PropTypes.object.isRequired,
+    sectionIndex: PropTypes.number.isRequired,
+    questionIndex: PropTypes.number.isRequired,
+    question: PropTypes.shape({
+        id: PropTypes.number,
+        type: PropTypes.string.isRequired,
+        text: PropTypes.string,
+        required: PropTypes.bool,
+    }),
+    actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default QuestionPanel;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'grommet';
+import PropTypes from 'prop-types';
 
 import NewQuestions from './NewQuestions';
 import ExistingQuestions from './ExistingQuestions';
-
 
 class AddQuestionPanel extends Component {
     render() {
@@ -26,5 +26,11 @@ class AddQuestionPanel extends Component {
         );
     }
 }
+
+AddQuestionPanel.propTypes = {
+    sectionView: PropTypes.number.isRequired,
+    actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default AddQuestionPanel;

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import QuestionPanel from './QuestionPanel';
 
 class CreateSurveyPanel extends Component {
@@ -19,7 +21,8 @@ class CreateSurveyPanel extends Component {
                             key={`key-section-${sectionIndex}`}>
                             <input className='create-survey-panel__section-name'
                                 value={section.name}
-                                placeholder={this.props.vocab.SURVEY.SECTION_NAME}
+                                placeholder={this.props.vocab.SURVEY.SECTION_ +
+                                    (sectionIndex + 1) + this.props.vocab.SURVEY.NAME_OPTIONAL}
                                 onChange={event => this.props.actions.updateSection(
                                     sectionIndex, event.target.value)} />
                             {section.questions.map((question, questionIndex) => (
@@ -39,5 +42,17 @@ class CreateSurveyPanel extends Component {
         );
     }
 }
+
+CreateSurveyPanel.propTypes = {
+    ui: PropTypes.object.isRequired,
+    form: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string.isRequired,
+        sections: PropTypes.arrayOf(PropTypes.object),
+        status: PropTypes.string.isRequired,
+    }).isRequired,
+    actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default CreateSurveyPanel;

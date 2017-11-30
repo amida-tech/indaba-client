@@ -8,10 +8,9 @@ export function updateInstructions(instructions) {
     };
 }
 
-export function insertSection(tempName) {
+export function insertSection() {
     return {
         type: actionTypes.SURVEY_BUILDER_INSERT_SECTION,
-        tempName,
     };
 }
 
