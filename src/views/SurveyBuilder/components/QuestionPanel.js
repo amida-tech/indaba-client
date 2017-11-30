@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import StaticQuestion from './StaticQuestion';
 import DynamicQuestion from './DynamicQuestion';
+import { DYNAMIC, WEIGHTED } from '../constants';
 import Time from '../../../utils/Time';
 
 class QuestionPanel extends Component {
@@ -59,9 +60,7 @@ class QuestionPanel extends Component {
                         </div>
                     </Menu>
                 </div>
-                {this.props.question.type === 'choice' ||
-                    this.props.question.type === 'bool' ||
-                    this.props.question.type === 'dropdown' ?
+                {DYNAMIC.includes(this.props.question.type) ?
                     <DynamicQuestion {...this.props} /> :
                     <StaticQuestion
                         type={this.props.question.type}
@@ -189,7 +188,7 @@ class QuestionPanel extends Component {
                             </span>
                         </div>
                     </div>
-                    {this.props.question.type === 'choices' &&
+                    {WEIGHTED.includes(this.props.question.type) &&
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
                                 disabled={true} />

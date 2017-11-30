@@ -342,6 +342,9 @@
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
         "NAME_OPTIONAL": " Name (Optional)",
+        "USER_ENTERS": "Enter your answer here.",
+        "BP_ENTERS": "And a new text field will appear here.",
+        "NUM_ENTER": "Number goes here.",
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
             "BULLETPOINT": "Bullet Point",
@@ -353,13 +356,13 @@
             "SCALE": "Scale"
         },
         "QUESTIONS_EXPLAINED": {
-            "CHOICE": "",
-            "BULLETPOINT": "Additional input lines will appear as you start each new entry.",
-            "BOOL": "Checkbox",
-            "TEXT": "Simply enter a sentence.",
-            "DROPDOWN":"Dropdown",
-            "DATE": "Enter a date below.",
-            "INTEGER": "Number",
+            "CHOICE": "Enter further ",
+            "BULLETPOINT": "Additional input lines will appear as the user starts each new entry.",
+            "BOOL": "Enter the situations that would applyThe user would select the options that would otherwise apply to her/him.",
+            "TEXT": "The user will simply enter a sentence into a text field.",
+            "DROPDOWN":"The user would selection an option from those available in the dropdown.",
+            "DATE": "The user will enter a date in the provided field.",
+            "INTEGER": "The user would enter a whole number.",
             "SCALE": "Scale"
         },
         "SECTION_BREAK": "Section Break"
