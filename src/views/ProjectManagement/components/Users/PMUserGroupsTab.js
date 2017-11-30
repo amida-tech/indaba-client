@@ -42,7 +42,7 @@ class PMUserGroupsTab extends Component {
                     toast(this.props.vocab.ERROR.GROUP_DELETE,
                         { autoClose: false, type: 'error' });
                 }
-                this.props.actions.getProjectById(this.props.project.id);
+                this.props.actions.getProjectById(this.props.project.id, this.props.vocab.ERROR);
                 this.props.actions.pmHideUserGroupDeleteConfirmModal();
             },
         );
