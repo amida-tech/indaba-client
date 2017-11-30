@@ -63,7 +63,9 @@ class QuestionPanel extends Component {
                     this.props.question.type === 'bool' ||
                     this.props.question.type === 'dropdown' ?
                     <DynamicQuestion {...this.props} /> :
-                    <StaticQuestion vocab={this.props.vocab}/>
+                    <StaticQuestion
+                        type={this.props.question.type}
+                        vocab={this.props.vocab}/>
                 }
                 {has(this.props.question, 'meta.file') &&
                     <div className='question-panel__option-panel'>

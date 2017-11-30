@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 class StaticQuestion extends Component {
     render() {
         return (
-            <div className='static-question'>
-                Here we are.
+            <div>
+                Coming soon need sleep so bad.
             </div>
         );
     }
 }
 
 StaticQuestion.propTypes = {
+    type: PropTypes.string.isRequired,
     vocab: PropTypes.object.isRequired,
 };
 

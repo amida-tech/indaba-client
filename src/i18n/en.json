@@ -352,6 +352,16 @@
             "INTEGER": "Number",
             "SCALE": "Scale"
         },
+        "QUESTIONS_EXPLAINED": {
+            "CHOICE": "",
+            "BULLETPOINT": "Additional input lines will appear as you start each new entry.",
+            "BOOL": "Checkbox",
+            "TEXT": "Simply enter a sentence.",
+            "DROPDOWN":"Dropdown",
+            "DATE": "Enter a date below.",
+            "INTEGER": "Number",
+            "SCALE": "Scale"
+        },
         "SECTION_BREAK": "Section Break"
     },
     "USER": {
