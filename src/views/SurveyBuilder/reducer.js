@@ -3,7 +3,12 @@ import { assign, cloneDeep } from 'lodash';
 import { toast } from 'react-toastify';
 
 import * as type from './actionTypes';
-import { PATCH_SURVEY_SUCCESS, GET_SURVEY_BY_ID_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
+import {
+    GET_SURVEY_BY_ID_SUCCESS,
+    PATCH_SURVEY_SUCCESS,
+    SET_SURVEY_STATUS,
+    SET_SURVEY_NAME,
+ } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -36,6 +41,10 @@ export default (state = initialState, action) => {
     }
     case PATCH_SURVEY_SUCCESS:
         return update(state, { form: { $set: action.survey } });
+    case SET_SURVEY_STATUS:
+        return update(state, { form: { status: { $set: action.status } } });
+    case SET_SURVEY_NAME:
+        return update(state, { form: { name: { $set: action.name } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:

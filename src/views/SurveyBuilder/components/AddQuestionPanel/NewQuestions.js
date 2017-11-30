@@ -22,7 +22,7 @@ class NewQuestions extends Component {
                     onClick={() =>
                         this.props.actions.insertSection(this.props.vocab.SURVEY.SECTION_)}>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
-                    <IonIcon icon='ion-filing'
+                    <IonIcon icon='ion-minus'
                         className='new-questions__section-icon'/>
                 </div>
             </div>
