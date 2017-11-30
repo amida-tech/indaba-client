@@ -7,7 +7,6 @@ const initialState = {
     ui: {
         searchQuery: '',
         filter: FILTERS.ALL_PROJECTS,
-        nameChangeModal: false,
         names: [{
             projectId: 101,
             projectName: 'Home Business Study',
@@ -50,10 +49,6 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.PM_DASH_SET_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
-    case actionTypes.PM_DASH_SHOW_NAME_CHANGE:
-        return update(state, { ui: {
-            nameChangeModal: { $set: action.data },
-        } });
     default:
         return state;
     }
