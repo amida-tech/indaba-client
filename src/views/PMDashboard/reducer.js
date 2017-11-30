@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.PM_DASH_SET_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
-    case actionTypes.PM_GET_MESSAGES_SUCCESS:
+    case actionTypes.PM_DASH_GET_MESSAGES_SUCCESS:
         return update(state, {
             messages: { $set: action.messages },
         });

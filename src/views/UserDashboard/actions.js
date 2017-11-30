@@ -15,7 +15,7 @@ export function setFilter(filter) {
     };
 }
 
-export function userGetMessages() {
+export function userDashGetMessages() {
     return (dispatch) => {
         apiService.messaging.list((err, response) => {
             if (err) {
@@ -32,14 +32,14 @@ export function userGetMessages() {
 
 function _getMessagesFailure(err) {
     return {
-        type: actionTypes.USER_GET_MESSAGES_FAILURE,
+        type: actionTypes.USER_DASH_GET_MESSAGES_FAILURE,
         err,
     };
 }
 
 function _getMessagesSuccess(messages) {
     return {
-        type: actionTypes.USER_GET_MESSAGES_SUCCESS,
+        type: actionTypes.USER_DASH_GET_MESSAGES_SUCCESS,
         messages,
     };
 }

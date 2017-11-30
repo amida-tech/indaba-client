@@ -22,10 +22,10 @@ export default (state = initialState, action) => {
             filter: { $apply: filter =>
                 (filter === action.filter ? FILTERS.ALL_TASKS : action.filter) },
         } });
-    case actionTypes.USER_GET_MESSAGES_SUCCESS:
-        return update(state, { ui: {
+    case actionTypes.USER_DASH_GET_MESSAGES_SUCCESS:
+        return update(state, {
             messages: { $set: action.messages },
-        } });
+        });
     default:
         return state;
     }

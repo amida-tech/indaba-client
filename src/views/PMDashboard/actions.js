@@ -15,7 +15,7 @@ export function setFilter(filter) {
     };
 }
 
-export function pmGetMessages() {
+export function pmDashGetMessages() {
     return (dispatch) => {
         apiService.messaging.list((err, response) => {
             if (err) {
@@ -32,14 +32,14 @@ export function pmGetMessages() {
 
 function _getMessagesFailure(err) {
     return {
-        type: actionTypes.PM_GET_MESSAGES_FAILURE,
+        type: actionTypes.PM_DASH_GET_MESSAGES_FAILURE,
         err,
     };
 }
 
 function _getMessagesSuccess(messages) {
     return {
-        type: actionTypes.PM_GET_MESSAGES_SUCCESS,
+        type: actionTypes.PM_DASH_GET_MESSAGES_SUCCESS,
         messages,
     };
 }
