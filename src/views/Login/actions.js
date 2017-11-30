@@ -16,7 +16,7 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth, realm));
-                if (this.props.profile.roleID === 1 || this.props.profile.roleID === 2 ){
+                if (this.props.profile.roleID === 1 || this.props.profile.roleID === 2) {
                     dispatch(push('/project'));
                 } else {
                     dispatch(push('/task'));
