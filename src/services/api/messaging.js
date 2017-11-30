@@ -3,6 +3,15 @@ import config from '../../config';
 
 const rootURI = config.MESSAGING_API_HTTPS_URL;
 
+const makeGetParams = (params) => {
+    if (Object.keys(params) === 0) {
+        return '';
+    }
+    return `?${Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join('&')}`;
+};
+
 const messaging = {
     send: (message, callback) => {
         const path = `${rootURI}/api/message/send`;
@@ -14,8 +23,8 @@ const messaging = {
         const body = message;
         requests.apiPostRequest(path, body, callback);
     },
-    list: (callback) => {
-        const path = `${rootURI}/api/message/list`;
+    list: (callback, params) => {
+        const path = `${rootURI}/api/message/list${makeGetParams(params)}`;
         requests.apiGetRequest(path, callback);
     },
     listArchived: (callback) => {
