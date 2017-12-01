@@ -43,7 +43,7 @@ MessageList.propTypes = {
         subject: PropTypes.string.isRequired,
         from: PropTypes.string.isRequired,
     })).isRequired,
-    users: PropTypes.arrayOf(PropTypes.Object).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MessageList;
