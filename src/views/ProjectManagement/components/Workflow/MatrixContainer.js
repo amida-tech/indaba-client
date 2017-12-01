@@ -20,10 +20,7 @@ class MatrixContainer extends Component {
                         users={this.props.users}
                         profile={this.props.profile}
                         projectId={this.props.project.id}
-                        actions={this.props.actions}
-                        discussActions={this.props.discussActions}
-                        userActions={this.props.userActions}
-                        taskActions={this.props.taskActions} />}
+                        actions={this.props.actions} />}
                     <div className='matrix-container__task-matrix'>
                         <table className='table table-bordered workflow-table'
                             key='MatrixContainer'>
