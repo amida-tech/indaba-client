@@ -4,7 +4,7 @@ import config from '../../config';
 const rootURI = config.MESSAGING_API_HTTPS_URL;
 
 const makeGetParams = (params) => {
-    if (Object.keys(params) === 0) {
+    if (!params || Object.keys(params) === 0) {
         return '';
     }
     return `?${Object.keys(params)
