@@ -15,7 +15,8 @@ class MessageList extends Component {
                     </Link>
                 </div>
                 {this.props.messages.map(message =>
-                    <div key={message.id} className='message-list__row'>
+                    <div key={message.id} className='message-list__row'
+                        onClick={() => this.props.onMessageClick(message.id)}>
                         <div className='message-list__name'>
                             {
                                 renderName(this.props.users.find(
@@ -44,6 +45,7 @@ MessageList.propTypes = {
         from: PropTypes.string.isRequired,
     })).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onMessageClick: PropTypes.func.isRequired,
 };
 
 export default MessageList;

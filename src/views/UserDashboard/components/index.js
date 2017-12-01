@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
@@ -61,7 +62,8 @@ class UserDashboard extends Component {
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
                         messages={this.props.messages}
-                        users={this.props.users}/>
+                        users={this.props.users}
+                        onMessageClick={this.props.goToMessage}/>
                     <UserGlance vocab={this.props.vocab} {...this.props.glance} />
                 </SplitLayout>
                 <UserTaskListControls vocab={this.props.vocab}
@@ -99,6 +101,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
+    goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
 const _generateRow = (state, projectId, task) => { // TODO: INBA-439
