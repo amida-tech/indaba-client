@@ -3,11 +3,8 @@ $block-class: 'static-question';
 @at-root {
     .#{$block-class} {
         padding: 0 1em .5em 1em;
-
-        &__entry {
-            display: flex;
-            flex-direction: column;
-        }
+        display: flex;
+        flex-direction: column;
 
         &__bulletgroup {
             display: flex;

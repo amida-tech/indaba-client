@@ -2,5 +2,37 @@ $block-class: 'dynamic-question';
 
 @at-root {
     .#{$block-class} {
+        padding: 0 1em .5em 1em;
+        display: flex;
+        flex-direction: column;
+
+        &__choices {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        &__choices-entries {
+            display: flex;
+            flex-direction: row;
+            margin: 2px 2px 2px 20px;
+        }
+
+        &__masked-button {
+            background-color: Transparent;
+            border: none;
+            padding: 0;
+            margin-left: 2px;
+            margin-bottom: -5px;
+        }
+
+        &__icon {
+            height: 18px;
+            fill: $font-color;
+        }
+
+        &__scale {
+
+        }
     }
 }

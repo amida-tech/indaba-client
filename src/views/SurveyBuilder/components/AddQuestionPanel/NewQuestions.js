@@ -3,6 +3,8 @@ import { keys } from 'lodash';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 
+import { DYNAMIC } from '../../constants';
+
 class NewQuestions extends Component {
     render() {
         return (
@@ -11,10 +13,16 @@ class NewQuestions extends Component {
                     return (
                         <div className='new-questions__types'
                             key={`question-type${type}`}
-                            onClick={() => this.props.actions.insertQuestion(
+                            onClick={() => {
+                                const newQuestion = { type: type.toLowerCase(), text: '', required: false };
+                                if (DYNAMIC.contains(newQuestion.type)) {
+                                    newQuestion.choices = [{ text: '' }, { text: '' }];
+                                }
+                                this.props.actions.insertQuestion(
                                 this.props.sectionView,
-                                { type: type.toLowerCase(), text: '', required: false },
-                            )}>
+                                newQuestion,
+                            );
+                            }}>
                             {this.props.vocab.SURVEY.QUESTIONS_TYPES[type]}
                         </div>
                     );
