@@ -26,7 +26,7 @@ class MessageList extends Component {
                             {message.subject}
                         </div>
                         <div className='message-list__time'>
-                            {Time.renderForMessageList(message.timestamp)}
+                            {Time.renderForMessageList(message.createdAt)}
                         </div>
                     </div>,
                 )}
@@ -39,7 +39,7 @@ MessageList.propTypes = {
     vocab: PropTypes.object.isRequired,
     messages: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        timestamp: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
         subject: PropTypes.string.isRequired,
         from: PropTypes.string.isRequired,
     })).isRequired,
