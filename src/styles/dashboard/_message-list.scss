@@ -40,7 +40,8 @@ $block-class: 'message-list';
 
         &__name {
             flex: 2;
-            font-weight: 400;
+
+            @extend .lead-font-bold;
         }
 
         &__subject {
