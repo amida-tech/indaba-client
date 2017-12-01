@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import { find, intersection } from 'lodash';
 
 import { renderName } from '../../../../../utils/User';
 import Modal from '../../../../../common/components/Modal';
@@ -12,11 +12,13 @@ class TaskOptionsModal extends Component {
     render() {
         const currentUser = find(this.props.users, user =>
             user.id === this.props.task.userIds[0]);
-        const userOptions = this.props.users.map(user => (
-                user === currentUser ?
+        const userOptions = this.props.users.filter(user =>
+            intersection(user.usergroupId, this.props.userGroups).length > 0,
+        ).map((user) => {
+            return user === currentUser ?
                 { value: user, label: renderName(user) + this.props.vocab._CURRENTLY_ASSIGNED } :
-                { value: user, label: renderName(user) }
-            ));
+                { value: user, label: renderName(user) };
+        });
         const initialValues = {
             choice: null,
             notify: true,
