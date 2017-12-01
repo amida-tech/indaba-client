@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { find } from 'lodash';
 
 import { renderName } from '../../../../../utils/User';
 import Modal from '../../../../../common/components/Modal';
@@ -10,8 +10,8 @@ import TaskOptionsForm from './TaskOptionsForm';
 
 class TaskOptionsModal extends Component {
     render() {
-        const currentUser = _.find(this.props.users, user =>
-            user.id === this.props.task.userId);
+        const currentUser = find(this.props.users, user =>
+            user.id === this.props.task.userIds[0]);
         const userOptions = this.props.users.map(user => (
                 user === currentUser ?
                 { value: user, label: renderName(user) + this.props.vocab._CURRENTLY_ASSIGNED } :
@@ -41,18 +41,18 @@ class TaskOptionsModal extends Component {
                     initialValues={initialValues}
                     onSubmit={ (values) => {
                         if (values.choice === 'reassign') {
-                            this.props.taskActions.reassignTask(
+                            this.props.actions.reassignTask(
                                 values.reassignUser.value.id,
                                 this.props.task.id,
                                 this.props.projectId,
                             );
                         } else if (values.choice === 'force') {
-                            this.props.discussActions.forceTaskCompletion(
+                            this.props.actions.forceTaskCompletion(
                                 this.props.task.id,
                             );
                         }
                         if (values.notify === true) {
-                            this.props.userActions.notifyUser(
+                            this.props.actions.notifyUser(
                                 this.props.task.userId,
                                 values.message,
                                 this.props.profile.id,
@@ -73,9 +73,7 @@ TaskOptionsModal.propTypes = {
     onSave: PropTypes.func,
     projectId: PropTypes.number.isRequired,
     profile: PropTypes.object.isRequired,
-    discussActions: PropTypes.objectOf(PropTypes.func).isRequired,
-    taskActions: PropTypes.objectOf(PropTypes.func).isRequired,
-    userActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
