@@ -25,7 +25,6 @@ export function pmDashGetMessages() {
             }
         }, {
             limit: 4,
-            summary: true,
         });
     };
 }
