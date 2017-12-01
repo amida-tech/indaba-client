@@ -17,6 +17,9 @@ export const initialState = {
         },
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
+        showSubjectDeleteConfirmModalForId: null,
+        showUserDeleteConfirmModal: null,
+        assignTaskInput: false,
     },
 };
 
@@ -54,6 +57,28 @@ export default (state = initialState, action) => {
             show: { $set: false },
             task: { $set: {} },
         } } });
+    case type.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID: {
+        return update(state, { ui: {
+            showSubjectDeleteConfirmModalForId: { $set: action.id },
+        } });
+    }
+    case type.PM_SHOW_USER_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserDeleteConfirmModal: { $set: {
+                id: action.id,
+                promptType: action.promptType,
+            } },
+        } });
+    }
+    case type.PM_HIDE_USER_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserDeleteConfirmModal: { $set: null },
+        } });
+    }
+    case type.START_TASK_ASSIGN:
+        return update(state, { ui: {
+            assignTaskInput: { $set: action.task },
+        } });
     default:
         return state;
     }

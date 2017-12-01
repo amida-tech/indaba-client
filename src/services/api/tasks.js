@@ -17,6 +17,9 @@ const tasks = {
     postTask: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
     },
+    getTasks: (callback) => {
+        requests.apiGetRequest(getFullPath('tasks'), callback);
+    },
 };
 
 export default tasks;
