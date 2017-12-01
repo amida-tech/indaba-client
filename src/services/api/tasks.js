@@ -17,6 +17,9 @@ const tasks = {
     postTask: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
     },
+    putTask: (taskId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`tasks/${taskId}`), requestBody, callback);
+    },
     getTasks: (callback) => {
         requests.apiGetRequest(getFullPath('tasks'), callback);
     },
