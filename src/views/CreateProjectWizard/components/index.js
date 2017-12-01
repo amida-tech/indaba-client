@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { goBack } from 'react-router-redux';
 import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
@@ -64,6 +65,7 @@ class CreateProjectWizard extends Component {
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         onSave={this.props.actions.postProject}
+                        onCancel={this.props.onTitleModalCancel}
                         vocab={this.props.vocab} />
                 }
                 <Tabs className='project-wizard__tabs'
@@ -86,7 +88,8 @@ class CreateProjectWizard extends Component {
                             actions={this.props.actions}
                             project={this.props.project}
                             survey={this.props.survey}
-                            vocab={this.props.vocab} />
+                            vocab={this.props.vocab}
+                            ui={this.props.ui}/>
                     </Tab>
                     <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
@@ -157,6 +160,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, projectActions, surveyActions, { addNewUser }), dispatch),
+    onTitleModalCancel: () => dispatch(goBack()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

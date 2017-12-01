@@ -45,9 +45,9 @@ function _login() {
 }
 
 function _loginSuccess(response, realm) {
-    cookie.save('indaba-auth', (`Bearer ${response.token}`));
-    cookie.save('auth-jwt-token', response.token);
-    cookie.save('indaba-realm', realm);
+    cookie.save('indaba-auth', `Bearer ${response.token}`, { path: '/' });
+    cookie.save('auth-jwt-token', response.token, { path: '/' });
+    cookie.save('indaba-realm', realm, { path: '/' });
     return {
         type: actionTypes.LOGIN_SUCCESS,
         payload: response,

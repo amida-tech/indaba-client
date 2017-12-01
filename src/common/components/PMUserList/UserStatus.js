@@ -4,12 +4,13 @@ import IonIcon from 'react-ionicons';
 
 class UserStatus extends Component {
     render() {
-        const color = this.props.user.activationDate ? '#4EB276' : '#A4AEBF';
+        const color = this.props.user.activationDate ? '#4EB276' : '#7e848f';
         return (
             <div className='user-status'>
                 {this.props.user.invited ?
                     this.props.vocab.COMMON.PENDING :
-                    <IonIcon icon='ion-android-checkmark-circle' color={color}/>}
+                    <IonIcon className='user-status__check'
+                    icon='ion-android-checkmark-circle' color={color}/>}
             </div>
         );
     }

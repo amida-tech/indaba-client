@@ -64,7 +64,8 @@ class AddUsers extends Component {
                             groups={this.props.project.userGroups}
                             filter={this.props.ui.groupsFilter}
                             allUsers={this.props.user.users}
-                            actions={this.props.actions} />
+                            actions={this.props.actions}
+                            projectId={this.props.project.id}/>
                     </Tab>
                 </Tabs>
             </div>

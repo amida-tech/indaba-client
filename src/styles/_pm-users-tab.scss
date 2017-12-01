@@ -27,5 +27,9 @@ $block-class: 'pm-users-tab';
                 outline: none;
             }
         }
+
+        .grommetux-control-icon {
+            @extend .small-icon;
+        }
     }
 }

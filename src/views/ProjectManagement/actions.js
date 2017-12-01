@@ -70,3 +70,31 @@ export function closeTaskOptionsModal() {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
     };
 }
+
+export function showSubjectDeleteConfirmModalForId(id) {
+    return {
+        type: actionTypes.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID,
+        id,
+    };
+}
+
+export function pmShowUserDeleteConfirmModal(id, promptType) {
+    return {
+        type: actionTypes.PM_SHOW_USER_DELETE_CONFIRM_MODAL,
+        id,
+        promptType,
+    };
+}
+
+export function pmHideUserDeleteConfirmModal() {
+    return {
+        type: actionTypes.PM_HIDE_USER_DELETE_CONFIRM_MODAL,
+    };
+}
+
+export function startTaskAssign(task) {
+    return {
+        type: actionTypes.START_TASK_ASSIGN,
+        task,
+    };
+}

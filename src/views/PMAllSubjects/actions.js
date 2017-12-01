@@ -6,6 +6,16 @@ export const pmAllSubjectsSetQuery = query => ({
     query,
 });
 
+export const pmAllSubjectsHideDeleteConfirmModal = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_HIDE_DELETE_CONFIRM_MODAL,
+});
+
+export const pmAllSubjectsShowDeleteConfirmModal = (id, confirmType) => ({
+    type: actionTypes.PM_ALL_SUBJECTS_SHOW_DELETE_CONFIRM_MODAL,
+    id,
+    confirmType,
+});
+
 export const pmAllSubjectsGetSubjects = () => (dispatch) => {
     dispatch(_getSubjects());
     subjectsApi.getSubjects((err, response) => {

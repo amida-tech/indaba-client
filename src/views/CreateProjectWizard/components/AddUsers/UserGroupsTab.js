@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { toast } from 'react-toastify';
 import { Search } from 'grommet';
+
+import apiService from '../../../../services/api';
 import UserGroupList from '../../../../common/components/UserGroupList';
 
 class UserGroupsTab extends Component {
     constructor(props) {
         super(props);
         this.filterGroup = this.filterGroup.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    }
+
+    handleDeleteClick(groupId) {
+        apiService.projects.deleteGroup(groupId, (err) => {
+            if (err) {
+                toast(this.props.vocab.ERROR.GROUP_DELETE, {
+                    autoClose: false, type: 'error',
+                });
+            } else {
+                this.props.actions.getProjectById(this.props.projectId);
+            }
+        });
     }
 
     filterGroup(group) {
@@ -20,7 +35,6 @@ class UserGroupsTab extends Component {
 
     render() {
         return (
-
             <div className='wrapper'>
             <div className='user-groups-tab'>
                 <Search className='user-groups-tab__search-input'
@@ -31,7 +45,7 @@ class UserGroupsTab extends Component {
 
                 <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
                     users={this.props.allUsers}
-                    onDeleteClick={this.props.onRemoveUserGroup}/>
+                    onDeleteClick={this.handleDeleteClick}/>
             </div>
             </div>
 
@@ -44,6 +58,7 @@ UserGroupsTab.propTypes = {
     vocab: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     filter: PropTypes.string.isRequired,
+    projectId: PropTypes.number.isRequired,
     actions: PropTypes.shape({
         removeUser: PropTypes.func.isRequired,
     }).isRequired,

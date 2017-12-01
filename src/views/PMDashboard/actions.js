@@ -13,10 +13,3 @@ export function setFilter(filter) {
         filter,
     };
 }
-
-export function showNameChange(data) {
-    return {
-        type: actionTypes.PM_DASH_SHOW_NAME_CHANGE,
-        data,
-    };
-}

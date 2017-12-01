@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import _ from 'lodash';
 
 import * as actionTypes from './actionTypes';
+import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
         inboxTab: INBOX_TABS.INBOX,
         filter: FILTERS.ALL_MESSAGES,
         reply: false,
+        expandedMessages: [],
     },
     messages: [],
 };
@@ -20,6 +22,8 @@ const transformServerMessageToReduxMessage = message =>
 
 export default (state = initialState, action) => {
     const messageIndex = state.messages.findIndex(message => message.id === action.id);
+    const messageIndices = action.ids && action.ids.map(
+        id => state.messages.findIndex(message => message.id === id));
 
     switch (action.type) {
     case actionTypes.SET_ACTIVE_INBOX_TAB:
@@ -34,10 +38,15 @@ export default (state = initialState, action) => {
         return update(state, { messages: {
             [messageIndex]: { $unset: ['readAt'] },
         } });
-    case actionTypes.ARCHIVE_MESSAGE_SUCCESS:
-        return update(state, { messages: { [messageIndex]: {
-            isArchived: { $set: true },
-        } } });
+    case actionTypes.ARCHIVE_THREAD_SUCCESS: {
+        const edit = { messages: {} };
+        messageIndices.forEach((index) => {
+            edit.messages[index] = {
+                isArchived: { $set: true },
+            };
+        });
+        return update(state, edit);
+    }
     case actionTypes.UNARCHIVE_MESSAGE:
         return update(state, { messages: { [messageIndex]: {
             isArchived: { $set: false },
@@ -64,18 +73,28 @@ export default (state = initialState, action) => {
                     action.result.map(transformServerMessageToReduxMessage), 'id'),
             },
         });
-    case actionTypes.GET_MESSAGE_SUCCESS:
+    case actionTypes.UPDATE_MESSAGE:
         return update(state, {
             messages: (
                 messageIndex !== -1 ?
-                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.result) } } :
-                { $push: [transformServerMessageToReduxMessage(action.result)] }
+                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.message) } } :
+                { $push: [transformServerMessageToReduxMessage(action.message)] }
             ),
         });
+    case actionTypes.EXPAND_MESSAGES:
+        return update(state, { ui: {
+            expandedMessages: { $push: action.messageIds },
+        } });
+    case actionTypes.SET_EXPANDED_MESSAGES:
+        return update(state, { ui: {
+            expandedMessages: { $set: action.messageIds },
+        } });
     case actionTypes.DELETE_MESSAGE_SUCCESS:
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
         });
+    case LOG_OUT:
+        return initialState;
     default:
         return state;
     }

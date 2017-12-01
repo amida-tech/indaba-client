@@ -1,3 +1,5 @@
+import { initialize, reset } from 'redux-form';
+
 import * as actionTypes from './actionTypes';
 import apiService from '../../services/api';
 
@@ -21,15 +23,23 @@ export const markMessageAsUnread = id => ({
     id,
 });
 
-export const archiveMessage = id => (dispatch) => {
-    dispatch(_archiveMessage());
-    apiService.messaging.archive(id, (err) => {
-        if (err) {
-            dispatch(_archiveMessageFailure(err));
-        } else {
-            dispatch(_archiveMessageSuccess(id));
-        }
-    });
+export const archiveThread = ids => (dispatch) => {
+    dispatch(_archiveThread());
+    const archivePromises = [];
+    ids.forEach(id =>
+        archivePromises.push(new Promise((resolve, reject) => {
+            apiService.messaging.archive(id, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        })),
+    );
+    Promise.all(archivePromises)
+        .then(() => dispatch(_archiveThreadSuccess(ids)))
+        .catch(err => _archiveThreadFailure(err));
 };
 
 export const unarchiveMessage = id => ({
@@ -37,16 +47,27 @@ export const unarchiveMessage = id => ({
     id,
 });
 
-export const replyToMessage = message => (dispatch) => {
+export const startReply = message => (dispatch) => {
     dispatch(_startReply({
+        id: message.id,
         subject: message.subject,
         to: [message.from],
-        from: message.to,
+        from: message.owner,
+    }));
+};
+
+export const startReplyAll = message => (dispatch) => {
+    dispatch(_startReply({
+        id: message.id,
+        subject: message.subject,
+        to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
+        from: message.owner,
     }));
 };
 
 export const forwardMessage = message => (dispatch) => {
     dispatch(_startReply({
+        forwardId: message.id,
         subject: message.subject,
         from: message.to,
     }));
@@ -56,16 +77,19 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
-export const sendMessage = message => (dispatch) => {
-    dispatch(_sendMessage());
-    apiService.messaging.send(message, (err) => {
-        if (err) {
-            dispatch(_sendMessageFailure(err));
-        } else {
-            dispatch(_sendMessageSuccess());
-        }
-    });
+export const updateMessage = message => (dispatch) => {
+    dispatch(_updateMessage(message));
 };
+
+export const expandMessages = messageIds => ({
+    type: actionTypes.EXPAND_MESSAGES,
+    messageIds,
+});
+
+export const setExpandedMessages = messageIds => ({
+    type: actionTypes.SET_EXPANDED_MESSAGES,
+    messageIds,
+});
 
 export const listMessages = () => (dispatch) => {
     dispatch(_listMessages());
@@ -113,23 +137,11 @@ export const deleteMessage = id => (dispatch) => {
 
 /* Private actions */
 
-export const _startReply = reply => ({
-    type: actionTypes.START_REPLY,
-    reply,
-});
-
-export const _sendMessage = () => ({
-    type: actionTypes.SEND_MESSAGE,
-});
-
-export const _sendMessageFailure = err => ({
-    type: actionTypes.SEND_MESSAGE_FAILURE,
-    err,
-});
-
-export const _sendMessageSuccess = () => ({
-    type: actionTypes.SEND_MESSAGE_SUCCESS,
-});
+export const _startReply = reply => (dispatch) => {
+    dispatch(initialize('message', reply));
+    dispatch(reset('message'));
+    dispatch({ type: actionTypes.START_REPLY, reply });
+};
 
 export const _listMessages = () => ({
     type: actionTypes.LIST_MESSAGES,
@@ -168,24 +180,28 @@ export const _getMessageFailure = err => ({
     err,
 });
 
-export const _getMessageSuccess = result => ({
-    type: actionTypes.GET_MESSAGE_SUCCESS,
-    result,
-    id: result.id,
+export const _getMessageSuccess = result => (dispatch) => {
+    dispatch(_updateMessage(result));
+};
+
+export const _updateMessage = message => ({
+    type: actionTypes.UPDATE_MESSAGE,
+    id: message.id,
+    message,
 });
 
-export const _archiveMessage = () => ({
-    type: actionTypes.ARCHIVE_MESSAGE,
+export const _archiveThread = () => ({
+    type: actionTypes.ARCHIVE_THREAD,
 });
 
-export const _archiveMessageFailure = err => ({
-    type: actionTypes.ARCHIVE_MESSAGE_FAILURE,
+export const _archiveThreadFailure = err => ({
+    type: actionTypes.ARCHIVE_THREAD_FAILURE,
     err,
 });
 
-export const _archiveMessageSuccess = id => ({
-    type: actionTypes.ARCHIVE_MESSAGE_SUCCESS,
-    id,
+export const _archiveThreadSuccess = ids => ({
+    type: actionTypes.ARCHIVE_THREAD_SUCCESS,
+    ids,
 });
 
 export const _deleteMessage = () => ({

@@ -13,11 +13,23 @@ class Modal extends Component {
                 flush={true}
                 onClose={this.props.onCancel}>
                 <div className={`modal-c ${this.props.class || ''}`}>
-                    {this.props.title && <div className='modal-c__title'>{this.props.title}</div>}
+                    {
+                        this.props.title &&
+                        <div className='modal-c__title'>{this.props.title}</div>
+                    }
                     <div className='modal-c__container'>
+                        {
+                            this.props.bodyText &&
+                            <div className='modal-c__body-text'>{this.props.bodyText}</div>
+                        }
                         {this.props.children}
                     </div>
                     <div className='modal-c__footer'>
+                        <div className='modal-c__left-button-wrapper'>
+                            {(this.props.buttons || []).map(button =>
+                                <FooterButton {...button} key={button.key}/>,
+                            )}
+                        </div>
                         <div className='modal-c__button-wrapper'>
                             {this.props.onCancel &&
                                 <FooterButton
@@ -30,9 +42,6 @@ class Modal extends Component {
                                     primary={true}
                                     onClick={this.props.onSave}/>
                             }
-                            {(this.props.buttons || []).map(button =>
-                                <FooterButton {...button} />,
-                            )}
                         </div>
                     </div>
                 </div>
@@ -46,7 +55,9 @@ Modal.propTypes = {
     onSave: PropTypes.func,
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
+    bodyText: PropTypes.string,
     buttons: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.any.isRequired,
         label: PropTypes.string.isRequired,
         primary: PropTypes.bool,
         onClick: PropTypes.func.isRequired,

@@ -4,6 +4,15 @@ $block-class: 'message';
     .#{$block-class} {
         margin-top: 1em;
 
+        &--active {
+            border: 2px solid $brand-color;
+            border-radius: 4px;
+        }
+
+        &--compose {
+            margin-bottom: 1em;
+        }
+
         &__content {
             background-color: white;
             padding: 0.5em 1em;

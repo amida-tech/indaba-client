@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Search } from 'grommet';
 
-import { renderName } from '../../../../../utils/User';
-
+import { renderName, DATA_STATE, getDataState } from '../../../../../utils/User';
+import Modal from '../../../../../common/components/Modal';
 import { UserProfileContainer } from '../../../../UserProfile';
 import PMUserList from '../../../../../common/components/PMUserList';
 import InviteUserForm from '../../../../../common/components/InviteUserForm';
@@ -13,6 +13,23 @@ class PMUsersTab extends Component {
         super(props);
         this.filterUser = this.filterUser.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
+    }
+    getDataState(userId) {
+        return getDataState(userId, this.props.project.id);
+    }
+    handleDeleteClick(userId) {
+        this.getDataState(userId).then((promptType) => {
+            this.props.actions.pmShowUserDeleteConfirmModal(userId, promptType);
+        });
+    }
+    handleDeleteModalSave() {
+        this.props.actions.removeUser(
+            this.props.ui.showUserDeleteConfirmModal.id,
+            this.props.project.id,
+            this.props.vocab.ERROR);
+        this.props.actions.pmHideUserDeleteConfirmModal();
     }
     filterUser(user) {
         return renderName(user).toLowerCase()
@@ -26,6 +43,7 @@ class PMUsersTab extends Component {
             this.props.vocab.ERROR);
     }
     render() {
+        const deleteModal = this.props.ui.showUserDeleteConfirmModal;
         return (
             <div className='pm-users-tab'>
                 {this.props.ui.showProfile !== false &&
@@ -33,6 +51,23 @@ class PMUsersTab extends Component {
                         projectId={this.props.project.id}
                         onCancel={() => this.props.actions.pmProjectShowProfile(false)}
                         onSave={() => this.props.actions.pmProjectShowProfile(false)}/>
+                }
+                {
+                    this.props.ui.showUserDeleteConfirmModal &&
+                    <Modal title={this.props.vocab.MODAL.USER_DELETE_CONFIRM.TITLE}
+                        bodyText={
+                            (
+                                deleteModal.promptType === DATA_STATE.HAS_DATA &&
+                                this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_DATA
+                            ) ||
+                            (
+                                deleteModal.promptType === DATA_STATE.HAS_TASKS &&
+                                this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_TASKS
+                            ) ||
+                            this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_NOTHING
+                        }
+                        onCancel={() => this.props.actions.pmHideUserDeleteConfirmModal()}
+                        onSave={this.handleDeleteModalSave}/>
                 }
                 <div className='pm-users-tab__invite-container'>
                     <InviteUserForm vocab={this.props.vocab}
@@ -64,8 +99,7 @@ class PMUsersTab extends Component {
                     vocab={this.props.vocab}
                     groups={this.props.project.userGroups}
                     onUserNameClick={this.props.actions.pmProjectShowProfile}
-                    onUserDeleteClick={id => this.props.actions.removeUser(
-                            id, this.props.project.id, this.props.vocab.ERROR)}
+                    onUserDeleteClick={this.handleDeleteClick}
                     onUserMailClick={id => this.props.actions.sendMessage(
                         this.props.users.find(user => user.id === id))}/>
             </div>

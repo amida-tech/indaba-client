@@ -5,6 +5,9 @@ const tasks = {
     getTasksByProject: (projectId, callback) => {
         requests.apiGetRequest(getFullPath(`tasks-by-proj-id/${projectId}`), callback);
     },
+    getTaskById: (taskId, callback) => {
+        requests.apiGetRequest(getFullPath(`tasks/${taskId}`), callback);
+    },
     getSelfTasks: (callback) => {
         requests.apiGetRequest(getFullPath('tasks-self'), callback);
     },
@@ -13,6 +16,9 @@ const tasks = {
     },
     postTask: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
+    },
+    getTasks: (callback) => {
+        requests.apiGetRequest(getFullPath('tasks'), callback);
     },
 };
 

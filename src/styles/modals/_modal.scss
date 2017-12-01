@@ -25,11 +25,24 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             font-size: 18px;
         }
 
+        &__body-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 2em;
+
+            @extend .med-font;
+        }
+
         &__footer {
             padding-right: 1em;
             background-color: $header-footer;
             line-height: 3em;
             overflow: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         &__button-wrapper {
