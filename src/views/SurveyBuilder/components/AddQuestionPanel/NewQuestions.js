@@ -15,7 +15,7 @@ class NewQuestions extends Component {
                             key={`question-type${type}`}
                             onClick={() => {
                                 const newQuestion = { type: type.toLowerCase(), text: '', required: false };
-                                if (DYNAMIC.contains(newQuestion.type)) {
+                                if (DYNAMIC.includes(newQuestion.type)) {
                                     newQuestion.choices = [{ text: '' }, { text: '' }];
                                 }
                                 this.props.actions.insertQuestion(
