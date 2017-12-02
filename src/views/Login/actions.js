@@ -5,9 +5,9 @@ import apiService from '../../services/api';
 import * as actionTypes from './actionTypes';
 
 export function login(username, password, realm, errorMessages) {
-    const that = this;
     return (dispatch) => {
         dispatch(_login());
+
         const authPayload = {
             username,
             password,
@@ -17,7 +17,8 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth, realm));
-                if (that.props.profile.roleID === 1 || that.props.profile.roleID === 2) {
+                const roleID = cookie.load('roleID');
+                if (roleID === 1 || roleID === 2 || roleID === '1' || roleID === '2') {
                     dispatch(push('/project'));
                 } else {
                     dispatch(push('/task'));
