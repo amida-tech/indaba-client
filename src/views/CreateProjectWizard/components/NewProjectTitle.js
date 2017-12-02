@@ -24,6 +24,7 @@ class NewProjectTitle extends Component {
             title={this.props.vocab.PROJECT.PROJECT_TITLE}
             class='new-project-title__layer'
             onSave={() => this.props.onSave(
+
                 {
                     user: {
                         realmUserId: this.props.profile.id,
@@ -34,7 +35,9 @@ class NewProjectTitle extends Component {
                     langId: 1,
                 },
                 this.props.vocab.ERROR,
-            )}>
+            )}
+            onCancel={this.props.onCancel}
+            >
             <div className='new-project-title'>
                 <TextInput className='new-project-title__name'
                     placeHolder={this.props.vocab.PROJECT.TITLE}
