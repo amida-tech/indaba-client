@@ -46,6 +46,8 @@ $block-class: 'message-list';
 
         &__subject {
             flex: 3;
+
+            @extend .lead-font;
         }
 
         &__time {
