@@ -32,12 +32,8 @@ $block-class: 'question-panel';
         }
 
         &__menu-button {
-            border-bottom: 1px solid $border-color;
-            color: $font-color;
-            padding: .2em;
-            &:last-child {
-                border-bottom: 0;
-            }
+            background-color: Transparent;
+            border: none;
         }
 
         &__option-panel {

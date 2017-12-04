@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import { has } from 'lodash';
 import { toast } from 'react-toastify';
-import { DateTime, Menu } from 'grommet';
+import { DateTime } from 'grommet';
 import PropTypes from 'prop-types';
 
 import StaticQuestion from './StaticQuestion';
@@ -30,35 +30,32 @@ class QuestionPanel extends Component {
                                 event.target.value,
                             )} />
                     </div>
-                    <Menu responsive={true}
-                        icon={<IonIcon icon='ion-ios-more'
-                            className='question-panel__more-icon'/>}>
-                        <div className='question-panel__menu'>
-                            <div className='question-panel__menu-button'
-                                onClick={() => this.props.actions.moveQuestion(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    -1,
-                                    this.props.vocab.ERROR)}>
-                                {this.props.vocab.SURVEY.MOVE_UP}
-                            </div>
-                            <div className='question-panel__menu-button'
-                                onClick={() => this.props.actions.moveQuestion(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    1,
-                                    this.props.vocab.ERROR)}>
-                                {this.props.vocab.SURVEY.MOVE_DOWN}
-                            </div>
-                            <div className='question-panel__menu-button'
-                                onClick={() => this.props.actions.deleteQuestion(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                )}>
-                                {this.props.vocab.SURVEY.DELETE_QUESTION}
-                            </div>
-                        </div>
-                    </Menu>
+                    <button className='question-panel__menu-button'
+                        onClick={() => this.props.actions.moveQuestion(
+                            this.props.sectionIndex,
+                            this.props.questionIndex,
+                            -1,
+                            this.props.vocab.ERROR)}>
+                            <IonIcon icon='ion-arrow-up-c'
+                                className='question-panel__menu-icon'/>
+                    </button>
+                    <button className='question-panel__menu-button'
+                        onClick={() => this.props.actions.moveQuestion(
+                            this.props.sectionIndex,
+                            this.props.questionIndex,
+                            1,
+                            this.props.vocab.ERROR)}>
+                            <IonIcon icon='ion-arrow-down-c'
+                                className='question-panel__menu-icon'/>
+                    </button>
+                    <button className='question-panel__menu-button'
+                        onClick={() => this.props.actions.deleteQuestion(
+                            this.props.sectionIndex,
+                            this.props.questionIndex,
+                        )}>
+                        <IonIcon icon='ion-trash-b'
+                            className='question-panel__menu-icon'/>
+                    </button>
                 </div>
                 {DYNAMIC.includes(this.props.question.type) ?
                     <DynamicQuestion {...this.props} /> :
