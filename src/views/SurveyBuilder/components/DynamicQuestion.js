@@ -19,14 +19,29 @@ class DynamicQuestion extends Component {
                             <input className='dynamic-question__choices-input'
                                 type='text'
                                 placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
-                                value={choice.text} />
+                                value={choice.text || ''}
+                                onChange={event =>
+                                    this.props.actions.upsertChoice(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    index,
+                                    event.target.value,
+                                )} />
                             <button className='dynamic-question__masked-button'
-                                onClick={() => console.log('coming soon')}>
+                                onClick={() => this.props.actions.upsertChoice(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    index,
+                                    )}>
                                 <IonIcon icon='ion-ios-plus'
                                     className='dynamic-question__icon'/>
                             </button>
                             <button className='dynamic-question__masked-button'
-                                onClick={() => console.log('coming soon')}>
+                                onClick={() => this.props.actions.deleteChoice(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    index,
+                                    )}>
                                 <IonIcon icon='ion-trash-b'
                                     className='dynamic-question__icon'/>
                             </button>

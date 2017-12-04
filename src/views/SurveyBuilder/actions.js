@@ -41,6 +41,43 @@ export function updateQuestion(sectionIndex, questionIndex, field, value) {
     };
 }
 
+export function moveQuestion(sectionIndex, questionIndex, move, errorMessages) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_MOVE_QUESTION,
+        sectionIndex,
+        questionIndex,
+        move,
+        errorMessages,
+    };
+}
+
+export function deleteQuestion(sectionIndex, questionIndex) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_DELETE_QUESTION,
+        sectionIndex,
+        questionIndex,
+    };
+}
+
+export function upsertChoice(sectionIndex, questionIndex, choiceIndex, value) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_UPSERT_CHOICE,
+        sectionIndex,
+        questionIndex,
+        choiceIndex,
+        value,
+    };
+}
+
+export function deleteChoice(sectionIndex, questionIndex, choiceIndex) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_DELETE_CHOICE,
+        sectionIndex,
+        questionIndex,
+        choiceIndex,
+    };
+}
+
 export function updateMeta(sectionIndex, questionIndex, field, value) {
     return {
         type: actionTypes.SURVEY_BUILDER_UPDATE_META,
@@ -57,23 +94,5 @@ export function resetMeta(sectionIndex, questionIndex, field) {
         sectionIndex,
         questionIndex,
         field,
-    };
-}
-
-export function deleteQuestion(sectionIndex, questionIndex) {
-    return {
-        type: actionTypes.SURVEY_BUILDER_DELETE_QUESTION,
-        sectionIndex,
-        questionIndex,
-    };
-}
-
-export function moveQuestion(sectionIndex, questionIndex, move, errorMessages) {
-    return {
-        type: actionTypes.SURVEY_BUILDER_MOVE_QUESTION,
-        sectionIndex,
-        questionIndex,
-        move,
-        errorMessages,
     };
 }

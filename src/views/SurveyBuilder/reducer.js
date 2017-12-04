@@ -66,14 +66,19 @@ export default (state = initialState, action) => {
         { questions: { [action.questionIndex]: { [action.field]:
             { $set: action.value } } } } } } });
     }
-    case type.SURVEY_BUILDER_UPDATE_META:
+    case type.SURVEY_BUILDER_UPSERT_CHOICE:
+        if (action.value !== undefined) {
+            return update(state, { form: { sections: { [action.sectionIndex]:
+            { questions: { [action.questionIndex]: { choices: { [action.choiceIndex]: {
+                type: { $set: 'bool' }, text: { $set: action.value } } } } } } } } });
+        }
         return update(state, { form: { sections: { [action.sectionIndex]:
-        { questions: { [action.questionIndex]: { meta: { [action.field]:
-            { $merge: action.value } } } } } } } });
-    case type.SURVEY_BUILDER_RESET_META:
+        { questions: { [action.questionIndex]: { choices: {
+            $splice: [[action.choiceIndex + 1, 0, { text: '' }]] } } } } } } });
+    case type.SURVEY_BUILDER_DELETE_CHOICE:
         return update(state, { form: { sections: { [action.sectionIndex]:
-        { questions: { [action.questionIndex]: { meta:
-            { $unset: [action.field] } } } } } } });
+        { questions: { [action.questionIndex]: { choices: { $splice:
+            [[action.choiceIndex, 1]] } } } } } } });
     case type.SURVEY_BUILDER_DELETE_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $splice: [[action.questionIndex, 1]] } } } } });
@@ -94,6 +99,14 @@ export default (state = initialState, action) => {
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $set: tempArray } } } } });
     }
+    case type.SURVEY_BUILDER_UPDATE_META:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+        { questions: { [action.questionIndex]: { meta: { [action.field]:
+            { $merge: action.value } } } } } } } });
+    case type.SURVEY_BUILDER_RESET_META:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+        { questions: { [action.questionIndex]: { meta:
+            { $unset: [action.field] } } } } } } });
     default:
         return state;
     }
