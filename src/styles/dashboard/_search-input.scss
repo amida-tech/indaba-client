@@ -21,6 +21,7 @@ $block-class: 'search-input';
             &:active {
                 border: 2px solid $brand-color;
                 outline: none;
+                color: $lead-font-color;
             }
         }
 
