@@ -12,7 +12,7 @@ $block-class: 'search-input';
         &__input,
         .grommet &__input:not(.grommetux-input) {
             flex: 1;
-            border: 2px solid #e6edef;
+            border: 2px solid $border-color;
             border-radius: 2px;
             background-color: $element-background;
             padding: 8px;
