@@ -9,13 +9,16 @@ $block-class: 'dynamic-question';
         &__choices {
             display: flex;
             flex-direction: column;
-            width: 50%;
         }
 
-        &__choices-entries {
+        &__choices-fields {
             display: flex;
             flex-direction: row;
             margin: 2px 2px 2px 20px;
+        }
+
+        &__choices-input {
+            width: 25em;
         }
 
         &__masked-button {

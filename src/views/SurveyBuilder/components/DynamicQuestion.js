@@ -13,7 +13,7 @@ class DynamicQuestion extends Component {
             QuestionDisplay = (
                 <div className={'dynamic-question__choices'}>
                     {this.props.question.choices.map((choice, index) =>
-                        <div className='dynamic-question__choices-entries'
+                        <div className='dynamic-question__choices-fields'
                             key={this.props.sectionIndex + this.props.questionIndex +
                                 this.props.question.type + index}>
                             <input className='dynamic-question__choices-input'
