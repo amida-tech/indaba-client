@@ -28,6 +28,7 @@ class AddQuestionPanel extends Component {
 }
 
 AddQuestionPanel.propTypes = {
+    options: PropTypes.array.isRequired,
     sectionView: PropTypes.number.isRequired,
     actions: PropTypes.object,
     vocab: PropTypes.object.isRequired,

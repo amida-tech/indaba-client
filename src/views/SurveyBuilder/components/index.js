@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { cloneDeep } from 'lodash';
 import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
@@ -14,20 +15,21 @@ class SurveyBuilder extends Component {
                 ({ value: index,
                     label: (section.name ||
                     this.props.vocab.SURVEY.SECTION_ + (index + 1)) })) : [];
-        options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
+        const allOptions = cloneDeep(options);
+        allOptions.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
             <div className='survey-builder'>
                 <AddQuestionPanel className='survey-builder__add-question'
                     sectionView={this.props.ui.sectionView}
                     actions={this.props.actions}
-                    vocab={this.props.vocab}/>
+                    vocab={this.props.vocab}
+                    options={options} />
                 <CreateSurveyPanel className='survey-builder__create-survey'
                     ui={this.props.ui}
                     form={this.props.form}
                     actions={this.props.actions}
                     vocab={this.props.vocab}
-                    options={options}
-                    />
+                    options={allOptions} />
                 </div>
         );
     }
