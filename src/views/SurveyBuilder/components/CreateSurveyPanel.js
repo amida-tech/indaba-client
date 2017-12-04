@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
+import { Button } from 'grommet';
+import { toast } from 'react-toastify';
 
-import QuestionPanel from './QuestionPanel';
+import CreateSectionPanel from './CreateSectionPanel';
 
 class CreateSurveyPanel extends Component {
     render() {
         return (
             <div className='create-survey-panel'>
+                <div className='create-survey-panel__view-controls'>
+                    <Select className='create-survey-panel__view-select'
+                        options={this.props.options}
+                        value={this.props.ui.sectionView}
+                        clearable={false}
+                        disabled={this.props.options.length === 1}
+                        onChange={event => this.props.actions.changeSectionView(event.value)}/>
+                    <div className='create-survey-panel__accordion-buttons'>
+                        <Button className='create-survey-panel__button'
+                            label={this.props.vocab.PROJECT.EXPAND_ALL}
+                            onClick={() => toast('Coming as soon as James is allowed to sleep.')} />
+                        <Button className='create-survey-panel__button'
+                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}
+                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')} />
+                    </div>
+                </div>
                 <div className='create-survey-panel__instructions'>
                     {this.props.vocab.PROJECT.INSTRUCTIONS}
                     <textarea className='create-survey-panel__instructions-entry'
@@ -16,27 +35,22 @@ class CreateSurveyPanel extends Component {
                             this.props.actions.updateInstructions(event.target.value)} />
                 </div>
                 <div className='create-survey-panel__sections-list'>
-                    {this.props.form.sections.map((section, sectionIndex) => (
-                        <div className='create-survey-panel__section'
-                            key={`key-section-${sectionIndex}`}>
-                            <input className='create-survey-panel__section-name'
-                                value={section.name}
-                                placeholder={this.props.vocab.SURVEY.SECTION_ +
-                                    (sectionIndex + 1) + this.props.vocab.SURVEY.NAME_OPTIONAL}
-                                onChange={event => this.props.actions.updateSection(
-                                    sectionIndex, event.target.value)} />
-                            {section.questions.map((question, questionIndex) => (
-                                <QuestionPanel className='create-survey-panel__question'
-                                    key={`key-question-${questionIndex}`}
-                                    sectionIndex={sectionIndex}
-                                    questionIndex={questionIndex}
-                                    question={question}
-                                    ui={this.props.ui}
-                                    actions={this.props.actions}
-                                    vocab={this.props.vocab} />
-                            ))}
-                        </div>
-                    ))}
+                {this.props.ui.sectionView === -1 ?
+                    this.props.form.sections.map((section, sectionIndex) => (
+                        <CreateSectionPanel
+                            key={`key-section-${sectionIndex}`}
+                            ui={this.props.ui}
+                            section={section}
+                            sectionIndex={sectionIndex}
+                            actions={this.props.actions}
+                            vocab={this.props.vocab} />
+                    )) :
+                    <CreateSectionPanel
+                        ui={this.props.ui}
+                        section={this.props.form.sections[this.props.ui.sectionView]}
+                        sectionIndex={this.props.ui.sectionView}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab} />}
                 </div>
             </div>
         );

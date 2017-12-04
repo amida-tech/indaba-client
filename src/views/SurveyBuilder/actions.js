@@ -1,5 +1,12 @@
 import * as actionTypes from './actionTypes';
 
+export function changeSectionView(sectionView) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_CHANGE_SECTION_VIEW,
+        sectionView,
+    };
+}
+
 // Form/data related.
 export function updateInstructions(instructions) {
     return {

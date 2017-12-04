@@ -9,6 +9,12 @@ import CreateSurveyPanel from './CreateSurveyPanel';
 
 class SurveyBuilder extends Component {
     render() {
+        const options = this.props.form.sections ?
+            this.props.form.sections.map((section, index) =>
+                ({ value: index,
+                    label: (section.name ||
+                    this.props.vocab.SURVEY.SECTION_ + (index + 1)) })) : [];
+        options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
             <div className='survey-builder'>
                 <AddQuestionPanel className='survey-builder__add-question'
@@ -16,7 +22,12 @@ class SurveyBuilder extends Component {
                     actions={this.props.actions}
                     vocab={this.props.vocab}/>
                 <CreateSurveyPanel className='survey-builder__create-survey'
-                    {...this.props}/>
+                    ui={this.props.ui}
+                    form={this.props.form}
+                    actions={this.props.actions}
+                    vocab={this.props.vocab}
+                    options={options}
+                    />
                 </div>
         );
     }

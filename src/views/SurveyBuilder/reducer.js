@@ -12,7 +12,7 @@ import {
 
 export const initialState = {
     ui: {
-        sectionView: 0,
+        sectionView: -1,
     },
     form: {
         name: '',
@@ -45,6 +45,8 @@ export default (state = initialState, action) => {
         return update(state, { form: { status: { $set: action.status } } });
     case SET_SURVEY_NAME:
         return update(state, { form: { name: { $set: action.name } } });
+    case type.SURVEY_BUILDER_CHANGE_SECTION_VIEW:
+        return update(state, { ui: { sectionView: { $set: action.sectionView } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
