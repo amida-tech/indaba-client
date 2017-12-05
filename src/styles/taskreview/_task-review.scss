@@ -7,7 +7,6 @@ $block-class:'task-review';
         border-left: 2px solid $border-color;
 
         &__details-and-survey {
-            padding-top: 1em;
             width: 65%;
             height: calc(100vh - #{$primary-nav-height} - #{$footer-height-with-padding});
             overflow-y: scroll;
@@ -24,6 +23,8 @@ $block-class:'task-review';
         &__back-link {
             display: flex;
             align-items: flex-end;
+            padding-top: 24px;
+            background-color: $element-background;
         }
 
         &__back-arrow {

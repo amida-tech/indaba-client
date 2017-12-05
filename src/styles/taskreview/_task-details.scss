@@ -1,14 +1,14 @@
 $border-color: #e6edef;
-$element-background: #f7f8f9;
+$element-background: #f3f5f6;
 
 $block-class:'task-details';
 
 @at-root {
     .#{$block-class} {
+        background-color: $element-background;
         padding-top: 0.5em;
 
         &__header {
-            background-color: $element-background;
             margin-left: 1em;
             margin-top: 1em;
         }
@@ -45,7 +45,6 @@ $block-class:'task-details';
             display: inline-block;
             position: relative;
             text-align: left;
-            background-color: $element-background;
 
             &-label {
                 font-size: 12px;
