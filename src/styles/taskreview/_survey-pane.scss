@@ -14,7 +14,7 @@ $block-class:'survey-pane';
         }
 
         &__select {
-            width: 40%;
+            width: 50%;
         }
 
         &__accordion-buttons {
@@ -32,6 +32,11 @@ $block-class:'survey-pane';
             &-explained {
                 display: block;
             }
+        }
+
+        .Select-control {
+            border-radius: 2px;
+            color: $lead-font-color;
         }
     }
 }
