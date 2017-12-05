@@ -23,10 +23,23 @@ $block-class: 'create-survey-panel';
             flex-direction: row;
         }
 
+        &__survey-controls {
+            display: flex;
+            flex-direction: row;
+        }
+
         &__instructions {
             display: flex;
             flex-direction: column;
+            width: 90%;
             color: $font-color;
+        }
+
+        &__save-button {
+            margin: 2em 1em;
+            border-radius: 2px;
+            letter-spacing: 0.8px;
+            font-weight: 400;
         }
 
         &__instructions-entry {

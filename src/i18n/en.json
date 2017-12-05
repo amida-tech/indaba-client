@@ -330,6 +330,7 @@
         "EXISTING": "Existing",
         "VIEW_ALL": "Viewing all questions",
         "ENTER_INSTRUCTIONS": "Enter instructions for the whole survey here.",
+        "SAVE_PROGRESS": "Save Progress",
         "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
         "MOVE_UP": "Move Question Up",
         "MOVE_DOWN": "Move Question Down",

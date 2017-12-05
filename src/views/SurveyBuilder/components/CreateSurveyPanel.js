@@ -26,13 +26,19 @@ class CreateSurveyPanel extends Component {
                             onClick={() => toast('Coming as soon as James is allowed to zzzz.')} />
                     </div>
                 </div>
-                <div className='create-survey-panel__instructions'>
-                    {this.props.vocab.PROJECT.INSTRUCTIONS}
-                    <textarea className='create-survey-panel__instructions-entry'
-                        placeholder={this.props.vocab.SURVEY.ENTER_INSTRUCTIONS}
-                        value={this.props.form.description}
-                        onChange={event =>
-                            this.props.actions.updateInstructions(event.target.value)} />
+                <div className='create-survey-panel__survey-controls'>
+                    <div className='create-survey-panel__instructions'>
+                        {this.props.vocab.PROJECT.INSTRUCTIONS}
+                        <textarea className='create-survey-panel__instructions-entry'
+                            placeholder={this.props.vocab.SURVEY.ENTER_INSTRUCTIONS}
+                            value={this.props.form.description}
+                            onChange={event =>
+                                this.props.actions.updateInstructions(event.target.value)} />
+                    </div>
+                    <Button className='create-survey-panel__save-button'
+                        primary={true}
+                        label={this.props.vocab.SURVEY.SAVE_PROGRESS}
+                        onClick={() => toast('SAED')} />
                 </div>
                 <div className='create-survey-panel__sections-list'>
                 {this.props.ui.sectionView === -1 ?
