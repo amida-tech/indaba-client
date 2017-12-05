@@ -8,6 +8,7 @@ $block-class:'survey-pane';
             display: flex;
             justify-content: space-between;
             margin: 8px 4px;
+            padding-bottom: 8px;
             width: 100%;
             border-bottom: 2px solid $border-color;
         }
