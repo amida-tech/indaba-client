@@ -4,6 +4,7 @@ $block-class:'task-review';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
+        border-left: 2px solid $border-color;
 
         &__details-and-survey {
             padding-top: 1em;
@@ -26,7 +27,10 @@ $block-class:'task-review';
         }
 
         &__back-arrow {
-            fill: $header-font-color;
+            fill: #337ab7;
+            width: 12px;
+            margin-right: 2px;
+            margin-left: 2px;
         }
     }
 }

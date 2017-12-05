@@ -1,3 +1,6 @@
+$border-color: #e6edef;
+$element-background: #f7f8f9;
+
 $block-class:'task-details';
 
 @at-root {
@@ -5,6 +8,7 @@ $block-class:'task-details';
         padding-top: 0.5em;
 
         &__header {
+            background-color: $element-background;
             margin-left: 1em;
             margin-top: 1em;
         }
@@ -18,12 +22,13 @@ $block-class:'task-details';
         &__header-name {
             @extend .x-large-font;
 
-            padding-bottom: 0.5em;
+            padding-bottom: 16px;
         }
 
         &__info {
             min-width: 100%;
             border: 2px solid $border-color;
+            border-left: none;
             border-radius: 2px;
             display: inline-flex;
             flex-direction: row;
@@ -32,14 +37,15 @@ $block-class:'task-details';
         }
 
         &__info-box {
-            padding-top: 0.5em;
-            padding-bottom: 0.5em;
-            padding-left: 1em;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
             border-left: 2px solid $border-color;
             width: 25%;
             display: inline-block;
             position: relative;
             text-align: left;
+            background-color: $element-background;
 
             &-label {
                 font-size: 12px;
@@ -48,12 +54,16 @@ $block-class:'task-details';
             }
 
             &-survey {
+                @extend .lead-font;
+
                 max-width: 250px;
                 overflow: hidden;
                 white-space: normal;
             }
 
             &-title {
+                @extend .lead-font;
+
                 display: flex;
             }
 
@@ -69,9 +79,10 @@ $block-class:'task-details';
 
 .grommetux-date-time__input,
 .grommetux-date-time__input:focus {
+    @extend .lead-font;
+
     padding: 0;
     border: none;
-    font-size: 16px;
 }
 
 .grommetux-button__icon .grommetux-control-icon {
