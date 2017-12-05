@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
-import { Menu, Button } from 'grommet';
+import { Menu } from 'grommet';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 
@@ -56,12 +56,11 @@ class NewQuestions extends Component {
                 })}
                 <div className='new-questions__break'>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
-                    <Button
-                        onClick={() =>
-                            this.props.actions.insertSection()}>
+                    <button className='new-questions__masked-button'
+                        onClick={() => this.props.actions.insertSection()}>
                         <IonIcon icon='ion-minus'
                             className='new-questions__section-icon'/>
-                    </Button>
+                    </button>
                 </div>
             </div>
         );

@@ -29,6 +29,14 @@ $block-class: 'new-questions';
             font-size: 1.2em;
         }
 
+        &__masked-button {
+            background-color: Transparent;
+            border: none;
+            padding: 1em;
+            margin-left: 2px;
+            margin-bottom: 3.2px;
+        }
+
         &__break {
             display: flex;
             justify-content: space-between;
@@ -38,10 +46,6 @@ $block-class: 'new-questions';
             border-width: 1px 0;
             border-style: solid;
             border-color: $border-color;
-
-            .grommetux-button {
-                padding: 12px;
-            }
         }
     }
 }
