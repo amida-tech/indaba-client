@@ -33,9 +33,15 @@ export const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
-        const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
+        let flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
-        const reqQuestions = filter(flatSurvey, question => question.required);
+        let reqQuestions;
+        if (flatSurvey[0] === undefined) {
+            flatSurvey = [];
+            reqQuestions = [];
+        } else {
+            reqQuestions = filter(flatSurvey, question => question.required);
+        }
         const flatAnswers = map(state.ui.form.answers, item =>
             ({ questionId: item.questionId, answer: item.answer }));
         const answers = intersectionWith(reqQuestions, flatAnswers,

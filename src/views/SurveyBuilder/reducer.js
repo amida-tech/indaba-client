@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import * as type from './actionTypes';
 import {
     GET_SURVEY_BY_ID_SUCCESS,
+    POST_SURVEY_SUCCESS,
     PATCH_SURVEY_SUCCESS,
     SET_SURVEY_STATUS,
     SET_SURVEY_NAME,
@@ -18,10 +19,7 @@ export const initialState = {
         name: '',
         description: '',
         status: 'draft',
-        sections: [{
-            name: '',
-            questions: [],
-        }],
+        sections: [],
     },
 };
 
@@ -39,6 +37,9 @@ export default (state = initialState, action) => {
         }
         return initialState;
     }
+    case POST_SURVEY_SUCCESS:
+        return update(state, { form: { id: { $set: action.survey.id },
+            sections: { $set: [{ name: '', questions: [] }] } } });
     case PATCH_SURVEY_SUCCESS: // Not sure I want forceStatus coming back.
         return update(state, { form: { $merge: action.survey } });
     case SET_SURVEY_STATUS:

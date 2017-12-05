@@ -38,7 +38,11 @@ class CreateSurveyPanel extends Component {
                     <Button className='create-survey-panel__save-button'
                         primary={true}
                         label={this.props.vocab.SURVEY.SAVE_PROGRESS}
-                        onClick={() => toast('SAED')} />
+                        onClick={() => this.props.actions.patchSurvey(
+                            this.props.form,
+                            this.props.vocab.SURVEY.SUCCESS,
+                            this.props.vocab.ERROR,
+                        )} />
                 </div>
                 <div className='create-survey-panel__sections-list'>
                 {this.props.ui.sectionView === -1 ?

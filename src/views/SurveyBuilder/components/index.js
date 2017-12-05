@@ -5,6 +5,7 @@ import { cloneDeep } from 'lodash';
 import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
+import { patchSurvey } from '../../../common/actions/surveyActions';
 import AddQuestionPanel from './AddQuestionPanel';
 import CreateSurveyPanel from './CreateSurveyPanel';
 
@@ -51,7 +52,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { patchSurvey }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SurveyBuilder);
