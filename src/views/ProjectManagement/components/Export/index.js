@@ -9,12 +9,16 @@ class Export extends Component {
     constructor(props) {
         super(props);
 
+        this.addAllSubjects = this.addAllSubjects.bind(this);
         this.handleSubjectsChange = this.handleSubjectsChange.bind(this);
+    }
+    addAllSubjects() {
+        this.props.actions.pmExportAddAllSubjects(
+            this.props.subjects.map(({ name, id }) => ({ name, key: id })));
     }
     handleSubjectsChange(event, newValue) {
         if (newValue) {
-            this.props.actions.pmExportAddAllSubjects(
-                this.props.subjects.map(({ name, id }) => ({ name, key: id })));
+            this.addAllSubjects();
         }
     }
     render() {
@@ -98,11 +102,13 @@ class Export extends Component {
                                     {this.props.vocab.EXPORT.ENTER_SUBJECTS}
                                 </div>
                                 <div className='export__custom-actions'>
-                                    <div className='export__custom-action'>
-                                        {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
+                                    <div className='export__custom-action'
+                                        onClick={this.addAllSubjects}>
+                                        {this.props.vocab.EXPORT.ADD_ALL_SUBJECTS}
                                     </div>
-                                    <div className='export__custom-action'>
-                                        {this.props.vocab.EXPORT.REMOVE_ALL_QUESTIONS}
+                                    <div className='export__custom-action'
+                                        onClick={this.props.actions.pmExportRemoveAllSubjects}>
+                                        {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
                                     </div>
                                     <DeleteList entries={this.props.ui.subjects}
                                         onDelete={this.props.actions.pmExportRemoveSubject}/>
