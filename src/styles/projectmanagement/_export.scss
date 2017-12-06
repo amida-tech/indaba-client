@@ -1,0 +1,8 @@
+$block-class: 'export';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+    }
+}
