@@ -7,7 +7,7 @@ class Export extends Component {
         return (
             <form className='export'>
                 <div className='export__instructions'>
-                    {this.props.vocab.EXPORT.INSRUCTIONS}
+                    {this.props.vocab.EXPORT.INSTRUCTIONS}
                 </div>
                 <div className='export__interactions'>
                     <div className='export__configuration'>
