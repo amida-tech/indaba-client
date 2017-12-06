@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 
 class Export extends Component {
     render() {
@@ -88,4 +89,10 @@ Export.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default reduxForm({ form: 'export' })(Export);
+const selector = formValueSelector('export');
+
+export default connect(state => ({
+    selectedType: selector(state, 'export-type'),
+}))(
+    reduxForm({ form: 'export' })(Export),
+);
