@@ -1,7 +1,7 @@
  import React, { Component } from 'react';
  import PropTypes from 'prop-types';
  import Select from 'react-select';
- import { Button } from 'grommet';
+ // import { Button } from 'grommet';
  import Time from '../../../utils/Time';
  import SurveyForm from './SurveyForm';
 
@@ -23,13 +23,13 @@
                         disabled={this.props.options.length === 1}
                         onChange={event => this.props.actions.setSurveySectionIndex(event.value)}/>
                     <div className='survey-pane__accordion-buttons'>
-                        <Button className='survey-pane__button-expand'
-                            label={this.props.vocab.PROJECT.EXPAND_ALL}
+                        <button className='survey-pane__button-expand'
                             onClick={() => this.props.actions.showQuestion(
-                                this.props.survey.map((key, index) => index))} />
-                        <Button className='survey-pane__button-collapse'
-                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}
-                            onClick={this.props.actions.collapseAllQuestions} />
+                                this.props.survey.map((key, index) => index))}>
+                                {this.props.vocab.PROJECT.EXPAND_ALL}</button>
+                        <button className='survey-pane__button-collapse'
+                            onClick={this.props.actions.collapseAllQuestions}>
+                            {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
                 <div className='survey-pane__instructions'>

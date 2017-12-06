@@ -11,7 +11,6 @@ $block-class:'task-review';
         &__details-and-survey {
             width: 65%;
             height: calc(100vh - #{$primary-nav-height} - #{$footer-height-with-padding});
-            overflow-y: scroll;
             position: relative;
         }
 
