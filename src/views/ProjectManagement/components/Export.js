@@ -11,7 +11,7 @@ class Export extends Component {
                 </div>
                 <div className='export__interactions'>
                     <div className='export__configuration'>
-                        <div className='export__quick-section'>
+                        <div className='export__type-section'>
                             <label className='export__type-label'>
                                 <Field name='export-type'
                                     component='input'
@@ -23,7 +23,7 @@ class Export extends Component {
                                 {this.props.vocab.EXPORT.QUICK_EXPORT_EXPLANATION}
                             </div>
                         </div>
-                        <div className='export__custom-section'>
+                        <div className='export__type-section'>
                             <label className='export__type-label'>
                                 <Field name='export-type'
                                     component='input'

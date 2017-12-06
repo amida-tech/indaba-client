@@ -17,10 +17,36 @@ $block-class: 'export';
 
         &__configuration {
             flex: 1;
+            border: 1px solid $border-color;
+            background-color: #f7f8f9;
+        }
+
+        &__type-section {
+            padding: 16px 32px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        // input prefix needed to exceed bootstrap rule specifity
+        input.#{$block-class}__type-input {
+            margin-right: 16px;
+        }
+
+        &__type-label {
+            @extend .large-font;
+
+            display: flex;
+            align-items: baseline;
+        }
+
+        &__explanation {
+            @extend .med-font;
+
+            margin-left: 32px;
         }
 
         &__download {
             flex-basis: 200px;
+            margin-left: 30px;
         }
     }
 }
