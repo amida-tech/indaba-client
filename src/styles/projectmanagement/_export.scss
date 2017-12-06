@@ -4,5 +4,11 @@ $block-class: 'export';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
+
+        &__instructions {
+            @extend .med-font;
+
+            margin: 20px 40px;
+        }
     }
 }
