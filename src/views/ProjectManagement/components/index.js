@@ -10,6 +10,7 @@ import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
+import Export from './Export';
 import SurveyBuilder from '../../../common/components/SurveyBuilder';
 import StatusChange from './Modals/StatusChange';
 import { renderName } from '../../../utils/User';
@@ -59,6 +60,9 @@ class ProjectManagementContainer extends Component {
                     actions={this.props.actions}
                     tasks={this.props.tasks}
                     ui={this.props.ui}/>;
+            break;
+        case 'export':
+            body = <Export vocab={this.props.vocab} />;
             break;
         default:
             body = null;
