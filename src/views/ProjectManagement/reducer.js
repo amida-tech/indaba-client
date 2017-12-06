@@ -79,6 +79,19 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             assignTaskInput: { $set: action.task },
         } });
+    case type.PM_EXPORT_ADD_ALL_SUBJECTS:
+        return update(state, { ui: { export: {
+            subjects: { $set: action.subjects },
+        } } });
+    case type.PM_EXPORT_REMOVE_ALL_SUBJECTS:
+        return update(state, { ui: { export: {
+            subjects: { $set: [] },
+        } } });
+    case type.PM_EXPORT_REMOVE_SUBJECT:
+        return update(state, { ui: { export: {
+            subjects: { $apply: subjects =>
+                subjects.filter(subject => subject.key !== action.subject.key) },
+        } } });
     default:
         return state;
     }
