@@ -96,5 +96,5 @@ const selector = formValueSelector('export');
 export default connect(state => ({
     selectedType: selector(state, 'export-type'),
 }))(
-    reduxForm({ form: 'export' })(Export),
+    reduxForm({ form: 'export', initialValues: { 'export-type': 'quick' } })(Export),
 );
