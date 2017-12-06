@@ -1,7 +1,6 @@
  import React, { Component } from 'react';
  import PropTypes from 'prop-types';
  import Select from 'react-select';
- // import { Button } from 'grommet';
  import Time from '../../../utils/Time';
  import SurveyForm from './SurveyForm';
 

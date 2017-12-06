@@ -7,24 +7,45 @@ $block-class:'survey-pane';
         &__controls {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
             margin: 8px 4px;
             padding-bottom: 8px;
             width: 100%;
             border-bottom: 2px solid $border-color;
         }
 
+        &__accordion-buttons {
+            margin-right: 32px;
+        }
+
         &__button-expand {
-            border: none;
-            color: #337ab7;
+            border-radius: 2px;
+            color: $font-inverse-color;
             font-size: 14px;
             font-weight: 400;
+            margin-right: 8px;
+            padding: 4px 8px;
+            background-color: #a4aebf;
+            outline: none;
+
+            &:hover {
+                background-color: darken(#a4aebf, 5);
+            }
         }
 
         &__button-collapse {
-            border: none;
-            color: #337ab7;
+            color: $lead-font-color;
+            border-radius: 2px;
+            background-color: $font-inverse-color;
+            border: 1px solid $border-color;
             font-size: 14px;
             font-weight: 400;
+            padding: 4px 8px;
+            outline: none;
+
+            &:hover {
+                background-color: darken($font-inverse-color, 3);
+            }
         }
 
         &__select {
@@ -42,10 +63,6 @@ $block-class:'survey-pane';
             &-explained {
                 display: block;
             }
-        }
-
-        &__accordion-buttons {
-            ///
         }
 
         .Select-control {
