@@ -56,11 +56,12 @@ $block-class:'survey-pane';
             margin: 16px;
 
             &-header {
-                color: #a4aebf;
-                text-transform: uppercase;
+                @extend .small-font;
             }
 
             &-explained {
+                @extend .lead-font;
+
                 display: block;
             }
         }
