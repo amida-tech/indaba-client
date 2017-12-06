@@ -10,5 +10,17 @@ $block-class: 'export';
 
             margin: 20px 40px;
         }
+
+        &__interactions {
+            display: flex;
+        }
+
+        &__configuration {
+            flex: 1;
+        }
+
+        &__download {
+            flex-basis: 200px;
+        }
     }
 }
