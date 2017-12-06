@@ -20,6 +20,9 @@ export const initialState = {
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
+        export: {
+            subjects: [],
+        },
     },
 };
 

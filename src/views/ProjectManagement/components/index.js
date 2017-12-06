@@ -62,7 +62,10 @@ class ProjectManagementContainer extends Component {
                     ui={this.props.ui}/>;
             break;
         case 'export':
-            body = <Export vocab={this.props.vocab} />;
+            body = <Export vocab={this.props.vocab}
+                subjects={this.props.project.subjects}
+                actions={this.props.actions}
+                ui={this.props.ui.export}/>;
             break;
         default:
             body = null;

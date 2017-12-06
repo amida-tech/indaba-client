@@ -3,7 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 
+import DeleteList from './DeleteList';
+
 class Export extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSubjectsChange = this.handleSubjectsChange.bind(this);
+    }
+    handleSubjectsChange(event, newValue) {
+        if (newValue) {
+            this.props.actions.pmExportAddAllSubjects(
+                this.props.subjects.map(({ name, id }) => ({ name, key: id })));
+        }
+    }
     render() {
         const quickType = this.props.selectedType === 'quick';
         const customType = this.props.selectedType === 'custom';
@@ -44,6 +57,7 @@ class Export extends Component {
                                     <Field name='subjects'
                                         component='input'
                                         disabled={!customType}
+                                        onChange={this.handleSubjectsChange}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.CUSTOM_SUBJECTS}
                                 </label>
@@ -77,6 +91,24 @@ class Export extends Component {
                                 </label>
                             </div>
                         </div>
+                        {
+                            this.props.showSubjectsList &&
+                            <div className='export__custom-section'>
+                                <div className='export_custom-title'>
+                                    {this.props.vocab.EXPORT.ENTER_SUBJECTS}
+                                </div>
+                                <div className='export__custom-actions'>
+                                    <div className='export__custom-action'>
+                                        {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
+                                    </div>
+                                    <div className='export__custom-action'>
+                                        {this.props.vocab.EXPORT.REMOVE_ALL_QUESTIONS}
+                                    </div>
+                                    <DeleteList entries={this.props.ui.subjects}
+                                        onDelete={this.props.actions.pmExportRemoveSubject}/>
+                                </div>
+                            </div>
+                        }
                     </div>
                     <div className='export__download'>
                         <div className='export__download-instruction'>
@@ -94,12 +126,16 @@ class Export extends Component {
 
 Export.propTypes = {
     vocab: PropTypes.object.isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
+    actions: PropTypes.object.isRequired,
+    ui: PropTypes.object.isRequired,
 };
 
 const selector = formValueSelector('export');
 
 export default connect(state => ({
     selectedType: selector(state, 'export-type'),
+    showSubjectsList: selector(state, 'subjects'),
 }))(
     reduxForm({ form: 'export', initialValues: { 'export-type': 'quick' } })(Export),
 );
