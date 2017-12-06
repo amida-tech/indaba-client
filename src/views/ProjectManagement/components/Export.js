@@ -16,6 +16,7 @@ class Export extends Component {
                                 <Field name='export-type'
                                     component='input'
                                     type='radio'
+                                    value='quick'
                                     className='export__type-input' />
                                 {this.props.vocab.EXPORT.QUICK_EXPORT}
                             </label>
@@ -28,6 +29,7 @@ class Export extends Component {
                                 <Field name='export-type'
                                     component='input'
                                     type='radio'
+                                    value='custom'
                                     className='export__type-input' />
                                 {this.props.vocab.EXPORT.CUSTOM_EXPORT}
                             </label>
