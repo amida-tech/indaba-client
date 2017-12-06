@@ -98,7 +98,7 @@ class Export extends Component {
                         {
                             this.props.showSubjectsList &&
                             <div className='export__custom-section'>
-                                <div className='export_custom-title'>
+                                <div className='export__custom-title'>
                                     {this.props.vocab.EXPORT.ENTER_SUBJECTS}
                                 </div>
                                 <div className='export__custom-actions'>
