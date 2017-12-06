@@ -43,30 +43,35 @@ class Export extends Component {
                                 <label className='export__custom-choice'>
                                     <Field name='subjects'
                                         component='input'
+                                        disabled={!customType}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.CUSTOM_SUBJECTS}
                                 </label>
                                 <label className='export__custom-choice'>
                                     <Field name='files'
                                         component='input'
+                                        disabled={!customType}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.INCLUDE_FILES_LINKS}
                                 </label>
                                 <label className='export__custom-choice'>
                                     <Field name='comments'
                                         component='input'
+                                        disabled={!customType}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.INCLUDE_COMMENTS}
                                 </label>
                                 <label className='export__custom-choice'>
                                     <Field name='questions'
                                         component='input'
+                                        disabled={!customType}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.CUSTOM_QUESTIONS}
                                 </label>
                                 <label className='export__custom-choice'>
                                     <Field name='flags'
                                         component='input'
+                                        disabled={!customType}
                                         type='checkbox' />
                                     {this.props.vocab.EXPORT.INCLUDE_FLAGS}
                                 </label>
