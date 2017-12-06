@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Select from 'react-select';
-import { Button } from 'grommet';
+ import React, { Component } from 'react';
+ import PropTypes from 'prop-types';
+ import Select from 'react-select';
+ import { Button } from 'grommet';
 
-import Time from '../../../utils/Time';
-import SurveyForm from './SurveyForm';
+ import Time from '../../../utils/Time';
+ import SurveyForm from './SurveyForm';
 
-class SurveyPane extends Component {
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.ui.reqTotal !== -1 && nextProps.ui.reqAnswers >= nextProps.ui.reqTotal) {
+ class SurveyPane extends Component {
+     componentWillReceiveProps(nextProps) {
+         if (nextProps.ui.reqTotal !== -1 && nextProps.ui.reqAnswers >= nextProps.ui.reqTotal) {
             // Enable complete task.
-        }
-    }
+         }
+     }
 
-    render() {
-        return (
+     render() {
+         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
                     <Select className='survey-pane__select'
@@ -24,11 +24,11 @@ class SurveyPane extends Component {
                         disabled={this.props.options.length === 1}
                         onChange={event => this.props.actions.setSurveySectionIndex(event.value)}/>
                     <div className='survey-pane__accordion-buttons'>
-                        <Button className='survey-pane__button'
+                        <Button className='survey-pane__button-expand'
                             label={this.props.vocab.PROJECT.EXPAND_ALL}
                             onClick={() => this.props.actions.showQuestion(
                                 this.props.survey.map((key, index) => index))} />
-                        <Button className='survey-pane__button'
+                        <Button className='survey-pane__button-collapse'
                             label={this.props.vocab.PROJECT.COLLAPSE_ALL}
                             onClick={this.props.actions.collapseAllQuestions} />
                     </div>
@@ -49,12 +49,12 @@ class SurveyPane extends Component {
                 </div>
                 <SurveyForm {...this.props} />
             </div>
-        );
-    }
+         );
+     }
 }
 
-SurveyPane.propTypes = {
-    vocab: PropTypes.object.isRequired,
-};
+ SurveyPane.propTypes = {
+     vocab: PropTypes.object.isRequired,
+ };
 
-export default SurveyPane;
+ export default SurveyPane;

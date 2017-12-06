@@ -1,3 +1,5 @@
+$border-color: #e6edef;
+$element-background: #f3f5f6;
 $block-class:'task-review';
 
 @at-root {
@@ -14,7 +16,8 @@ $block-class:'task-review';
         }
 
         &__flag-sidebar {
-            background: #f1f1f1;
+            display: flex;
+            background: $element-background;
             width: calc(35% + 2.5em);
             margin-right: -2.5em;
             padding-right: 2.5em;
