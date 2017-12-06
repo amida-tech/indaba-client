@@ -5,6 +5,8 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 
 class Export extends Component {
     render() {
+        const quickType = this.props.selectedType === 'quick';
+        const customType = this.props.selectedType === 'custom';
         return (
             <form className='export'>
                 <div className='export__instructions'>
@@ -12,7 +14,7 @@ class Export extends Component {
                 </div>
                 <div className='export__interactions'>
                     <div className='export__configuration'>
-                        <div className='export__type-section'>
+                        <div className={`export__type-section ${!quickType ? 'export__type-section--inactive' : ''}`}>
                             <label className='export__type-label'>
                                 <Field name='export-type'
                                     component='input'
@@ -25,7 +27,7 @@ class Export extends Component {
                                 {this.props.vocab.EXPORT.QUICK_EXPORT_EXPLANATION}
                             </div>
                         </div>
-                        <div className='export__type-section'>
+                        <div className={`export__type-section ${!customType ? 'export__type-section--inactive' : ''}`}>
                             <label className='export__type-label'>
                                 <Field name='export-type'
                                     component='input'

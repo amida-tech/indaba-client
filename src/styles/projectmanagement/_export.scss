@@ -25,6 +25,10 @@ $block-class: 'export';
         &__type-section {
             padding: 16px 32px;
             border-bottom: 1px solid $border-color;
+
+            &--inactive {
+                color: lighten($font-color, 20%);
+            }
         }
 
         // input prefix needed to exceed bootstrap rule specifity
