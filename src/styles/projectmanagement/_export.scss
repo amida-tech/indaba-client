@@ -13,6 +13,7 @@ $block-class: 'export';
 
         &__interactions {
             display: flex;
+            align-items: flex-start;
         }
 
         &__configuration {
@@ -64,8 +65,20 @@ $block-class: 'export';
         }
 
         &__download {
-            flex-basis: 200px;
+            flex-basis: 240px;
             margin-left: 30px;
+            background-color: #f7f8f9;
+            border: 1px solid $border-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 8px 16px;
+        }
+
+        &__download-instruction {
+            @extend .large-font;
+
+            margin-bottom: 16px;
         }
     }
 }
