@@ -68,6 +68,28 @@ $block-class: 'export';
             }
         }
 
+        &__custom-section {
+            padding: 16px 32px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        &__custom-actions {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        &__custom-action {
+            margin-left: 16px;
+            cursor: pointer;
+            color: #3757bc;
+        }
+
+        &__custom-title {
+            @extend .med-font;
+
+            margin-bottom: 8px;
+        }
+
         &__download {
             flex-basis: 240px;
             margin-left: 30px;
