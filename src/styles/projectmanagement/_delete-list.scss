@@ -1,0 +1,29 @@
+$block-class: 'delete-list';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $page-background-color;
+        border: 1px solid $border-color;
+        padding: 8px 8px 16px;
+
+        &__entry {
+            @extend .small-font;
+
+            margin-left: 8px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            background-color: darken($page-background-color, 10%);
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        &__delete-icon {
+            width: 12px;
+            display: block;
+            margin-left: 4px;
+        }
+    }
+}
