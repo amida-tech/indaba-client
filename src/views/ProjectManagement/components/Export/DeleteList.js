@@ -13,11 +13,12 @@ class DeleteList extends Component {
                             className='delete-list__entry'>
                             {entry.name}
                             <div className='delete-list__delete-button'
-                                onClick={() => this.props.input.onChange(
+                                onClick={!this.props.disabled &&
+                                    (() => this.props.input.onChange(
                                     this.props.input.value.filter(
                                         valueIter => valueIter.key !== entry.key,
                                     ),
-                                )}>
+                                ))}>
                                 <IonIcon icon='ion-android-close'
                                     className='delete-list__delete-icon' />
                             </div>
@@ -37,6 +38,7 @@ DeleteList.propTypes = {
         })).isRequired,
         onChange: PropTypes.func.isRequired,
     }),
+    disabled: PropTypes.bool,
 };
 
 export default DeleteList;

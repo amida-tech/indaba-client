@@ -116,7 +116,8 @@ class Export extends Component {
                                     </div>
                                 </div>
                                 <Field name='subjectsList'
-                                    component={DeleteList} />
+                                    component={DeleteList}
+                                    disabled={!customType}/>
                             </div>
                         }
                     </div>
