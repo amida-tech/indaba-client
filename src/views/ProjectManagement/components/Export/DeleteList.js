@@ -7,8 +7,9 @@ class DeleteList extends Component {
         return (
             <div className='delete-list'>
                 {
+                    this.props.input.value.length > 0 ?
                     this.props.input.value.map(
-                        entry =>
+                        entry => (
                         <div key={entry.id}
                             className='delete-list__entry'>
                             {entry.name}
@@ -22,8 +23,10 @@ class DeleteList extends Component {
                                 <IonIcon icon='ion-android-close'
                                     className='delete-list__delete-icon' />
                             </div>
-                        </div>,
-                    )
+                        </div>)) :
+                    <div className='delete-list__empty'>
+                        {this.props.vocab.EXPORT.NONE_SELECTED}
+                    </div>
                 }
             </div>
         );
@@ -39,6 +42,7 @@ DeleteList.propTypes = {
         onChange: PropTypes.func.isRequired,
     }),
     disabled: PropTypes.bool,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default DeleteList;

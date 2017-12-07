@@ -28,5 +28,12 @@ $block-class: 'delete-list';
             position: relative;
             top: 1px;
         }
+
+        &__empty {
+            @extend .med-font;
+
+            margin-left: 8px;
+            margin-top: 8px;
+        }
     }
 }
