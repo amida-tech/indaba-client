@@ -7,13 +7,17 @@ class DeleteList extends Component {
         return (
             <div className='delete-list'>
                 {
-                    this.props.entries.map(
+                    this.props.input.value.map(
                         entry =>
                         <div key={entry.key}
                             className='delete-list__entry'>
                             {entry.name}
                             <div className='delete-list__delete-button'
-                                onClick={() => this.props.onDelete(entry)}>
+                                onClick={() => this.props.input.onChange(
+                                    this.props.input.value.filter(
+                                        valueIter => valueIter.key !== entry.key,
+                                    ),
+                                )}>
                                 <IonIcon icon='ion-android-close'
                                     className='delete-list__delete-icon' />
                             </div>
@@ -26,11 +30,13 @@ class DeleteList extends Component {
 }
 
 DeleteList.propTypes = {
-    entries: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        key: PropTypes.any.isRequired,
-    })).isRequired,
-    onDelete: PropTypes.func.isRequired,
+    input: PropTypes.shape({
+        value: PropTypes.arrayOf(PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            key: PropTypes.any.isRequired,
+        })).isRequired,
+        onChange: PropTypes.func.isRequired,
+    }),
 };
 
 export default DeleteList;

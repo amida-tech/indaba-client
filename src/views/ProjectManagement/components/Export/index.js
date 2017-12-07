@@ -111,8 +111,9 @@ class Export extends Component {
                                         {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
                                     </div>
                                 </div>
-                                <DeleteList entries={this.props.ui.subjects}
-                                    onDelete={this.props.actions.pmExportRemoveSubject}/>
+                                <DeleteList input={{
+                                    value: this.props.ui.subjects,
+                                    onChange: this.props.actions.pmExportAddAllSubjects }}/>
                             </div>
                         }
                     </div>
