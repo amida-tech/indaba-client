@@ -12,6 +12,7 @@ class ReviewPane extends Component {
                             id='review-agree'
                             checked={true}
                             name='review-assessment'
+                            disabled={this.props.displayMode}
                             value={true}
                             onChange={() => toast('Coming soon.')} />
                         <span>{this.props.vocab.COMMON_BUTTONS.AGREE}</span>
@@ -21,6 +22,7 @@ class ReviewPane extends Component {
                             id='review-disagree'
                             checked={false}
                             name='review-assessment'
+                            disabled={this.props.displayMode}
                             value={false}
                             onChange={() => toast('Coming soon.')} />
                         <span>{this.props.vocab.COMMON_BUTTONS.DISAGREE}</span>
@@ -29,7 +31,7 @@ class ReviewPane extends Component {
                 <textarea type='text'
                     className='review-pane__comment'
                     id='review-comment'
-                    disabled={true}
+                    disabled={this.props.displayMode}
                     placeholder={this.props.comment ||
                         this.props.vocab.COMMON_BUTTONS.COMMENT_TIP} />
             </div>

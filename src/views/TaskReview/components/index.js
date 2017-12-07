@@ -54,8 +54,7 @@ class TaskReview extends Component {
         }
 
         // TODO: INBA-522, task status === currently,
-        const displayMode = this.props.stage.blindReview || this.props.survey.status === 'draft' ||
-            !Time.isInPast(this.props.task.startDate) || this.props.stage.discussionParticipation;
+        const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate);
 
         return (
             <div className='task-review'>
@@ -85,7 +84,7 @@ class TaskReview extends Component {
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         stage={this.props.stage}
-                        displayMode={displayMode}
+                        taskDisabled={taskDisabled}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
                 </div>
