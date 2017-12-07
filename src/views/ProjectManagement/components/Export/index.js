@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm, formValueSelector, change } from 'redux-form';
 
 import DeleteList from './DeleteList';
 
@@ -9,16 +9,15 @@ class Export extends Component {
     constructor(props) {
         super(props);
 
+        this.removeAllSubjects = this.removeAllSubjects.bind(this);
         this.addAllSubjects = this.addAllSubjects.bind(this);
         this.handleSubjectsChange = this.handleSubjectsChange.bind(this);
     }
+    removeAllSubjects() {
+        this.props.setValue('subjectsList', []);
+    }
     addAllSubjects() {
-        this.props.initialize({
-            exportType: 'custom',
-            subjects: true,
-            subjectsList: this.props.subjects.map(({ name, id }) => ({ name, key: id })),
-        });
-        this.props.reset();
+        this.props.setValue('subjectsList', this.props.subjects.map(({ name, id }) => ({ name, key: id })));
     }
     handleSubjectsChange(event, newValue) {
         if (newValue) {
@@ -111,7 +110,7 @@ class Export extends Component {
                                         {this.props.vocab.EXPORT.ADD_ALL_SUBJECTS}
                                     </div>
                                     <div className='export__custom-action'
-                                        onClick={this.props.actions.pmExportRemoveAllSubjects}>
+                                        onClick={this.removeAllSubjects}>
                                         {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
                                     </div>
                                 </div>
@@ -147,6 +146,8 @@ const selector = formValueSelector('export');
 export default connect(state => ({
     selectedType: selector(state, 'exportType'),
     showSubjectsList: selector(state, 'subjects'),
+}), dispatch => ({
+    setValue: (field, value) => dispatch(change('export', field, value)),
 }))(
     reduxForm({ form: 'export', initialValues: { exportType: 'quick', subjectsList: [] } })(Export),
 );
