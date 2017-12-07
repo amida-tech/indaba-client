@@ -140,7 +140,12 @@ class Export extends Component {
                                             <div className='export__custom-action'
                                                 onClick={customType &&
                                                     (() => props.input.onChange(
-                                                        this.props.survey.questions))}>
+                                                        this.props.survey.questions.map(
+                                                            (question, index) => Object.assign(
+                                                                {},
+                                                                question,
+                                                                { displayIndex: index + 1 }),
+                                                        )))}>
                                                 {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
                                             </div>
                                             <div className='export__custom-action'
