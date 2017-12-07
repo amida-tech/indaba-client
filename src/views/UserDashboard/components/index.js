@@ -104,8 +104,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         state.projects.data[0];
     const subject = project !== undefined ?
         project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
-    const discussion = (state.discuss.data.find(findDiscuss =>
-        findDiscuss.taskId === task.id) || { data: [] });
+    const discussion = { data: [] };
     // const answered = discussion.data.filter(response =>
     //     response.value !== undefined).length;
     const survey = project !== undefined ? state.surveys.data.find(findSurvey =>

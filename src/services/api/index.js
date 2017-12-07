@@ -3,7 +3,7 @@ import users from './users';
 import projects from './projects';
 import surveys from './surveys';
 import tasks from './tasks';
-import discuss from './discuss';
+import discussions from './discussions';
 import messaging from './messaging';
 import subjects from './subjects';
 
@@ -13,7 +13,7 @@ const apiService = {
     projects,
     surveys,
     tasks,
-    discuss,
+    discussions,
     messaging,
     subjects,
 };
