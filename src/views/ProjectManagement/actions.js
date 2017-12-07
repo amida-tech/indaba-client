@@ -98,23 +98,3 @@ export function startTaskAssign(task) {
         task,
     };
 }
-
-export function pmExportAddAllSubjects(subjects) {
-    return {
-        type: actionTypes.PM_EXPORT_ADD_ALL_SUBJECTS,
-        subjects,
-    };
-}
-
-export function pmExportRemoveAllSubjects() {
-    return {
-        type: actionTypes.PM_EXPORT_REMOVE_ALL_SUBJECTS,
-    };
-}
-
-export function pmExportRemoveSubject(subject) {
-    return {
-        type: actionTypes.PM_EXPORT_REMOVE_SUBJECT,
-        subject,
-    };
-}

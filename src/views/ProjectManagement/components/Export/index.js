@@ -13,8 +13,12 @@ class Export extends Component {
         this.handleSubjectsChange = this.handleSubjectsChange.bind(this);
     }
     addAllSubjects() {
-        this.props.actions.pmExportAddAllSubjects(
-            this.props.subjects.map(({ name, id }) => ({ name, key: id })));
+        this.props.initialize({
+            exportType: 'custom',
+            subjects: true,
+            subjectsList: this.props.subjects.map(({ name, id }) => ({ name, key: id })),
+        });
+        this.props.reset();
     }
     handleSubjectsChange(event, newValue) {
         if (newValue) {
@@ -33,7 +37,7 @@ class Export extends Component {
                     <div className='export__configuration'>
                         <div className={`export__type-section ${!quickType ? 'export__type-section--inactive' : ''}`}>
                             <label className='export__type-label'>
-                                <Field name='export-type'
+                                <Field name='exportType'
                                     component='input'
                                     type='radio'
                                     value='quick'
@@ -46,7 +50,7 @@ class Export extends Component {
                         </div>
                         <div className={`export__type-section ${!customType ? 'export__type-section--inactive' : ''}`}>
                             <label className='export__type-label'>
-                                <Field name='export-type'
+                                <Field name='exportType'
                                     component='input'
                                     type='radio'
                                     value='custom'
@@ -111,9 +115,8 @@ class Export extends Component {
                                         {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
                                     </div>
                                 </div>
-                                <DeleteList input={{
-                                    value: this.props.ui.subjects,
-                                    onChange: this.props.actions.pmExportAddAllSubjects }}/>
+                                <Field name='subjectsList'
+                                    component={DeleteList} />
                             </div>
                         }
                     </div>
@@ -141,8 +144,8 @@ Export.propTypes = {
 const selector = formValueSelector('export');
 
 export default connect(state => ({
-    selectedType: selector(state, 'export-type'),
+    selectedType: selector(state, 'exportType'),
     showSubjectsList: selector(state, 'subjects'),
 }))(
-    reduxForm({ form: 'export', initialValues: { 'export-type': 'quick' } })(Export),
+    reduxForm({ form: 'export', initialValues: { exportType: 'quick', subjectsList: [] } })(Export),
 );
