@@ -121,27 +121,32 @@ class Export extends Component {
                         }
                         {
                             this.props.showQuestionsList &&
-                            <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
-                                <div className='export__custom-title'>
-                                    {this.props.vocab.EXPORT.SELECT_QUESTIONS}
-                                </div>
-                                <div className='export__custom-actions'>
-                                    <div className='export__custom-action'
-                                        onClick={customType && this.addAllSubjects}>
-                                        {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
+                            <Field name='questionsList' disabled={!customType}
+                                component={props => (
+                                    <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
+                                        <div className='export__custom-title'>
+                                            {this.props.vocab.EXPORT.SELECT_QUESTIONS}
+                                        </div>
+                                        <div className='export__custom-actions'>
+                                            <div className='export__custom-action'
+                                                onClick={customType &&
+                                                    (() => props.input.onChange(
+                                                        this.props.survey.questions))}>
+                                                {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
+                                            </div>
+                                            <div className='export__custom-action'
+                                                onClick={customType &&
+                                                    (() => props.input.onChange([]))}>
+                                                {this.props.vocab.EXPORT.REMOVE_ALL_QUESTIONS}
+                                            </div>
+                                        </div>
+                                        <DeleteList {...props} />
+                                        <QuestionSelectionList
+                                            questions={this.props.survey.questions}
+                                            onClick={() => null}
+                                            vocab={this.props.vocab}/>
                                     </div>
-                                    <div className='export__custom-action'
-                                        onClick={customType && this.removeAllSubjects}>
-                                        {this.props.vocab.EXPORT.REMOVE_ALL_QUESTIONS}
-                                    </div>
-                                </div>
-                                <Field name='questionsList'
-                                    component={DeleteList}
-                                    disabled={!customType}/>
-                                <QuestionSelectionList questions={this.props.survey.questions}
-                                    onClick={() => null}
-                                    vocab={this.props.vocab}/>
-                            </div>
+                                )} />
                         }
                     </div>
                     <div className='export__download'>
