@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector, change } from 'redux-form';
+import { unionBy } from 'lodash';
 
 import DeleteList from './DeleteList';
 import QuestionSelectionList from './QuestionSelectionList';
@@ -123,7 +124,12 @@ class Export extends Component {
                         {
                             this.props.showQuestionsList &&
                             <Field name='questionsList' disabled={!customType}
-                                format={value => value.map(({ text, id }) => ({ name: text, id }))}
+                                format={value => value.map(({ id, displayIndex }) =>
+                                ({
+                                    name: `${this.props.vocab.PROJECT.QUESTION_} ${displayIndex}`,
+                                    id,
+                                    displayIndex,
+                                }))}
                                 vocab={this.props.vocab}
                                 component={props => (
                                     <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
@@ -146,7 +152,9 @@ class Export extends Component {
                                         <DeleteList {...props} />
                                         <QuestionSelectionList
                                             questions={this.props.survey.questions}
-                                            onClick={() => null}
+                                            onClick={question => props.input.onChange(
+                                                unionBy(props.input.value, [question], 'id'),
+                                            )}
                                             vocab={this.props.vocab}/>
                                     </div>
                                 )} />

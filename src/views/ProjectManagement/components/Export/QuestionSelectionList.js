@@ -9,7 +9,8 @@ class QuestionSelectionList extends Component {
                     this.props.questions.map((question, index) =>
                     <div key={question.id}
                         className='question-selection-list__entry'
-                        onClick={() => this.props.onClick(question)}>
+                        onClick={() => this.props.onClick(
+                            Object.assign({}, question, { displayIndex: index + 1 }))}>
                         <div className='question-selection-list__header'>
                             {`${this.props.vocab.PROJECT.QUESTION_} ${index + 1}`}
                         </div>
