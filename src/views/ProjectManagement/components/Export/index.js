@@ -4,20 +4,17 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector, change } from 'redux-form';
 
 import DeleteList from './DeleteList';
+import QuestionSelectionList from './QuestionSelectionList';
 
 class Export extends Component {
     constructor(props) {
         super(props);
 
-        this.removeAllSubjects = this.removeAllSubjects.bind(this);
         this.addAllSubjects = this.addAllSubjects.bind(this);
         this.handleSubjectsChange = this.handleSubjectsChange.bind(this);
     }
-    removeAllSubjects() {
-        this.props.setValue('subjectsList', []);
-    }
     addAllSubjects() {
-        this.props.setValue('subjectsList', this.props.subjects.map(({ name, id }) => ({ name, key: id })));
+        this.props.setValue('subjectsList', [...this.props.subjects]);
     }
     handleSubjectsChange(event, newValue) {
         if (newValue) {
@@ -100,23 +97,50 @@ class Export extends Component {
                         </div>
                         {
                             this.props.showSubjectsList &&
+                            <Field name='subjectsList' disabled={!customType}
+                                component={props => (
+                                    <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
+                                        <div className='export__custom-title'>
+                                            {this.props.vocab.EXPORT.ENTER_SUBJECTS}
+                                        </div>
+                                        <div className='export__custom-actions'>
+                                            <div className='export__custom-action'
+                                                onClick={customType && (() =>
+                                                    props.input.onChange(this.props.subjects))}>
+                                                {this.props.vocab.EXPORT.ADD_ALL_SUBJECTS}
+                                            </div>
+                                            <div className='export__custom-action'
+                                                onClick={customType && (() =>
+                                                    props.input.onChange([]))}>
+                                                {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
+                                            </div>
+                                        </div>
+                                        <DeleteList {...props} />
+                                    </div>
+                                )} />
+                        }
+                        {
+                            this.props.showQuestionsList &&
                             <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
                                 <div className='export__custom-title'>
-                                    {this.props.vocab.EXPORT.ENTER_SUBJECTS}
+                                    {this.props.vocab.EXPORT.SELECT_QUESTIONS}
                                 </div>
                                 <div className='export__custom-actions'>
                                     <div className='export__custom-action'
                                         onClick={customType && this.addAllSubjects}>
-                                        {this.props.vocab.EXPORT.ADD_ALL_SUBJECTS}
+                                        {this.props.vocab.EXPORT.ADD_ALL_QUESTIONS}
                                     </div>
                                     <div className='export__custom-action'
                                         onClick={customType && this.removeAllSubjects}>
-                                        {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
+                                        {this.props.vocab.EXPORT.REMOVE_ALL_QUESTIONS}
                                     </div>
                                 </div>
-                                <Field name='subjectsList'
+                                <Field name='questionsList'
                                     component={DeleteList}
                                     disabled={!customType}/>
+                                <QuestionSelectionList questions={this.props.survey.questions}
+                                    onClick={() => null}
+                                    vocab={this.props.vocab}/>
                             </div>
                         }
                     </div>
@@ -146,8 +170,17 @@ const selector = formValueSelector('export');
 export default connect(state => ({
     selectedType: selector(state, 'exportType'),
     showSubjectsList: selector(state, 'subjects'),
+    showQuestionsList: selector(state, 'questions'),
 }), dispatch => ({
     setValue: (field, value) => dispatch(change('export', field, value)),
 }))(
-    reduxForm({ form: 'export', initialValues: { exportType: 'quick', subjectsList: [] } })(Export),
+    reduxForm({
+        form: 'export',
+        initialValues:
+        {
+            exportType: 'quick',
+            subjectsList: [],
+            questionsList: [],
+        },
+    })(Export),
 );

@@ -9,14 +9,14 @@ class DeleteList extends Component {
                 {
                     this.props.input.value.map(
                         entry =>
-                        <div key={entry.key}
+                        <div key={entry.id}
                             className='delete-list__entry'>
                             {entry.name}
                             <div className='delete-list__delete-button'
                                 onClick={!this.props.disabled &&
                                     (() => this.props.input.onChange(
                                     this.props.input.value.filter(
-                                        valueIter => valueIter.key !== entry.key,
+                                        valueIter => valueIter.id !== entry.id,
                                     ),
                                 ))}>
                                 <IonIcon icon='ion-android-close'
@@ -34,7 +34,7 @@ DeleteList.propTypes = {
     input: PropTypes.shape({
         value: PropTypes.arrayOf(PropTypes.shape({
             name: PropTypes.string.isRequired,
-            key: PropTypes.any.isRequired,
+            id: PropTypes.any.isRequired,
         })).isRequired,
         onChange: PropTypes.func.isRequired,
     }),
