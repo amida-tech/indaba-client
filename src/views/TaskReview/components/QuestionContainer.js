@@ -16,19 +16,20 @@ class QuestionContainer extends Component {
                     heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.index + 1)
                         + (this.props.question.required ? ' *' : '')}
                     {...this.props}>
-                    {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) ?
+                    <Questions
+                        {...this.props.question}
+                        assessmentId={this.props.assessmentId}
+                        answers={this.props.answers}
+                        displayMode={this.props.stage.blindReview ||
+                            this.props.stage.discussionParticipation}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab} />
+                    {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
                         <ReviewPane
                             question={this.props.question}
                             assessmentId={this.props.assessmentId}
                             answers={this.props.answers}
                             displayMode={this.props.stage.discussionParticipation}
-                            actions={this.props.actions}
-                            vocab={this.props.vocab} /> :
-                        <Questions
-                            {...this.props.question}
-                            assessmentId={this.props.assessmentId}
-                            answers={this.props.answers}
-                            displayMode={this.props.stage.blindReview}
                             actions={this.props.actions}
                             vocab={this.props.vocab} />}
                 </AccordionPanel>
