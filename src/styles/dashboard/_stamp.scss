@@ -49,11 +49,11 @@ $neutral-color: #e6edef;
             font-size: 48px;
             line-height: 48px;
             font-weight: 300;
+            color: $lead-font-color;
         }
 
         &__label {
-            @extend .small-font;
-
+            font-size: 14px;
             color: $lead-font-color;
         }
     }
