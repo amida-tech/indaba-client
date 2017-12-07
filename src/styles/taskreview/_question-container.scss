@@ -3,8 +3,17 @@ $block-class:'question-container';
 @at-root {
     .#{$block-class} {
         border-bottom: 1px solid $border-color;
+
         &:last-child {
-            border-width: 0px;
+            border-width: 0;
+        }
+
+        &__heading {
+            .grommetux-accordion-panel__header {
+                color: $lead-font-color;
+                font-size: 12px;
+                text-transform: uppercase;
+            }
         }
     }
 }

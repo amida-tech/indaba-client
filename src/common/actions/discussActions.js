@@ -37,13 +37,6 @@ export function updateFlaggedQuestion(taskId, projectId, activeId, data) {
     };
 }
 
-export function forceTaskCompletion(taskId) {
-    return {
-        type: actionTypes.FORCE_TASK_COMPLETION,
-        taskId,
-    };
-}
-
 // Private functions
 function _getDiscussSuccess(discuss) {
     return {

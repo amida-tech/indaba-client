@@ -12,11 +12,11 @@ class QuestionContainer extends Component {
         return (
             <Element name={`question${this.props.index}`}
                 className='question-container'>
-                <AccordionPanel
+                <AccordionPanel className='question-container__heading'
                     heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.index + 1)
                         + (this.props.question.required ? ' *' : '')}
                     {...this.props}>
-                    <Questions
+                    <Questions className='question-container__questions'
                         {...this.props.question}
                         assessmentId={this.props.assessmentId}
                         answers={this.props.answers}

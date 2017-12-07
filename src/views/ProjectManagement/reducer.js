@@ -14,6 +14,7 @@ export const initialState = {
         taskOptions: {
             show: false,
             task: {},
+            userGroups: [],
         },
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
@@ -51,11 +52,13 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             show: { $set: true },
             task: { $set: action.task },
+            userGroups: { $set: action.userGroups },
         } } });
     case type.CLOSE_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: false },
             task: { $set: {} },
+            userGroups: { $set: [] },
         } } });
     case type.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID: {
         return update(state, { ui: {

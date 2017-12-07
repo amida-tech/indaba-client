@@ -5,7 +5,13 @@ $block-class:'flag-header';
         margin-left: 10px;
 
         &__title {
-            font-size: 22px;
+            @extend .large-font;
+
+            font-weight: 300;
+        }
+
+        &__info {
+            @extend .small-font;
         }
     }
 }
