@@ -376,7 +376,8 @@
         "REMOVE_ALL_QUESTIONS": "Remove all questions",
         "NONE_SELECTED": "None selected",
         "DOWNLOAD_YOUR_DATA": "Download Your Data",
-        "EXPORT_CSV": "Export CSV"
+        "EXPORT_CSV": "Export CSV",
+        "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {

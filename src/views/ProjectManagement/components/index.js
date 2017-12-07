@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
@@ -66,7 +67,8 @@ class ProjectManagementContainer extends Component {
                 subjects={this.props.project.subjects}
                 actions={this.props.actions}
                 ui={this.props.ui.export}
-                survey={this.props.survey}/>;
+                survey={this.props.survey}
+                onSubmit={() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS)}/>;
             break;
         default:
             body = null;

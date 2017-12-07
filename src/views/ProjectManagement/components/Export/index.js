@@ -26,7 +26,7 @@ class Export extends Component {
         const quickType = this.props.selectedType === 'quick';
         const customType = this.props.selectedType === 'custom';
         return (
-            <form className='export'>
+            <form className='export' onSubmit={this.props.handleSubmit}>
                 <div className='export__instructions'>
                     {this.props.vocab.EXPORT.INSTRUCTIONS}
                 </div>
