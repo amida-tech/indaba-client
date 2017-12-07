@@ -20,6 +20,10 @@ $block-class: 'delete-list';
             border-radius: 3px;
         }
 
+        &__delete-button {
+            cursor: pointer;
+        }
+
         &__delete-icon {
             width: 12px;
             display: block;
