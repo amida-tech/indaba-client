@@ -73,6 +73,16 @@ $block-class: 'export';
             border-bottom: 1px solid $border-color;
         }
 
+        &__custom-section--inactive {
+            color: lighten($font-color, 20%);
+
+            .#{$block-class} {
+                &__custom-action {
+                    color: lighten(#3757bc, 30%);
+                }
+            }
+        }
+
         &__custom-actions {
             display: flex;
             margin-bottom: 8px;

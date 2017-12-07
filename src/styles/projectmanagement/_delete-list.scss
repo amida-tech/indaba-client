@@ -15,7 +15,7 @@ $block-class: 'delete-list';
             margin-top: 8px;
             display: flex;
             align-items: center;
-            background-color: darken($page-background-color, 10%);
+            background-color: #f7f8f9;
             padding: 4px 8px;
             border-radius: 3px;
         }
@@ -24,6 +24,9 @@ $block-class: 'delete-list';
             width: 12px;
             display: block;
             margin-left: 4px;
+            fill: $header-font-color;
+            position: relative;
+            top: 1px;
         }
     }
 }

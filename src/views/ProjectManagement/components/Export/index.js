@@ -101,7 +101,7 @@ class Export extends Component {
                         </div>
                         {
                             this.props.showSubjectsList &&
-                            <div className='export__custom-section'>
+                            <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
                                 <div className='export__custom-title'>
                                     {this.props.vocab.EXPORT.ENTER_SUBJECTS}
                                 </div>
