@@ -2,13 +2,8 @@ import update from 'immutability-helper';
 import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
-import {
-    GET_ANSWERS_SUCCESS,
-    GET_SURVEY_BY_ID_SUCCESS,
-    POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
-// import {
-//     GET_DISCUSSION_SUCCESS,
-//     POST_DISCUSSION_SUCCESS } from '../../common/actionTypes/discussionActionTypes';
+import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
+import { GET_ANSWERS_SUCCESS, GET_SURVEY_BY_ID_SUCCESS, POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -16,7 +11,7 @@ export const initialState = {
         showQuestions: [],
         flagSidebar: {
             activeId: 0, // Id of flag above.
-            entry: '',
+            comment: '',
             resolved: false,
             notifyUser: {
                 id: null,
@@ -25,13 +20,13 @@ export const initialState = {
             timestamp: null,
             signatureId: null,
         },
-    },
-    form: {
         reqTotal: -1,
         reqAnswers: 0,
         lastSave: null,
-        surveyId: -1,
-        answers: [],
+        form: {
+            surveyId: -1,
+            answers: [],
+        },
     },
 };
 
@@ -41,31 +36,33 @@ export default (state = initialState, action) => {
         const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
         const reqQuestions = filter(flatSurvey, question => question.required);
-        const flatAnswers = map(state.form.answers, item =>
+        const flatAnswers = map(state.ui.form.answers, item =>
             ({ questionId: item.questionId, answer: item.answer }));
         const answers = intersectionWith(reqQuestions, flatAnswers,
             (q, a) => q.id === a.questionId);
-        return update(state, { form: { surveyId: { $set: action.surveyId },
+        return update(state, { ui: {
+            form: { surveyId: { $set: action.surveyId } },
             reqTotal: { $set: reqQuestions.length },
-            reqAnswers: { $set: answers.length } } });
+            reqAnswers: { $set: answers.length },
+        } });
     }
     case GET_ANSWERS_SUCCESS:
-        return update(state, { form: { reqAnswers: { $set: 0 },
-            answers: { $set: action.answers } } });
+        return update(state, { ui: { reqAnswers: { $set: 0 },
+            form: { answers: { $set: action.answers } } } });
     case POST_ANSWER_SUCCESS: {
-        const answerIndex = findIndex(state.form.answers,
+        const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.questionId);
         const reqIncrease = answerIndex < 0 && action.required ?
             state.ui.reqAnswers + 1 : state.ui.reqAnswers;
         return answerIndex < 0 ?
-            update(state, { form: { reqAnswers: { $set: reqIncrease },
-                lastSave: { $set: Date.now() } },
-                answers: {
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                lastSave: { $set: Date.now() },
+                form: { answers: {
                     $push: [{ questionId: action.questionId, answer: action.answer }],
-                } }) :
-            update(state, { form: { reqAnswers: { $set: reqIncrease },
-                lastSave: { $set: Date.now() } },
-                answers: { [answerIndex]: { answer: { $set: action.answer } } } });
+                } } } }) :
+            update(state, { ui: { reqAnswers: { $set: reqIncrease },
+                lastSave: { $set: Date.now() },
+                form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
     }
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
@@ -85,7 +82,7 @@ export default (state = initialState, action) => {
             { ui: { flagSidebar: { signatureId: { $set: action.signatureId } } } });
     case type.UPDATE_FLAG_COMMENT:
         return update(state,
-            { ui: { flagSidebar: { entry: { $set: action.entry } } } });
+            { ui: { flagSidebar: { comment: { $set: action.comment } } } });
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
@@ -95,39 +92,39 @@ export default (state = initialState, action) => {
     case type.CANCEL_FLAGGED_UPDATE:
         return update(state,
             { ui: { flagSidebar: {
-                entry: { $set: '' },
+                comment: { $set: '' },
                 resolved: { $set: false },
                 timestamp: { $set: null },
             } } });
-    // case UPDATE_FLAGGED_QUESTION: {
-    //     const flagIndex = findIndex(state.ui.flags, flag =>
-    //         flag.id === action.activeId);
-    //     if (action.data.resolved) {
-    //         let nextId = 0; // Determines the next active question, if any.
-    //         if (flagIndex === 0 && state.ui.flags.length > 1) {
-    //             nextId = state.ui.flags[1].id;
-    //         } else if (flagIndex > 0) {
-    //             nextId = state.ui.flags[0].id;
-    //         }
-    //         return update(state, { ui: {
-    //             flags: { $splice: [[flagIndex, 1]] },
-    //             flagSidebar: {
-    //                 activeId: { $set: nextId },
-    //                 entry: { $set: '' },
-    //                 resolved: { $set: false },
-    //             } } });
-    //     }
-    //     return update(state, { ui: {
-    //         flags: { [flagIndex]: { flagHistory: { $push: [{
-    //             timestamp: action.data.timestamp,
-    //             entry: action.data.entry,
-    //             userId: action.data.signatureId,
-    //         }] } } },
-    //         flagSidebar: {
-    //             entry: { $set: '' },
-    //             resolved: { $set: false },
-    //         } } });
-    // }
+    case UPDATE_FLAGGED_QUESTION: {
+        const flagIndex = findIndex(state.ui.flags, flag =>
+            flag.id === action.activeId);
+        if (action.data.resolved) {
+            let nextId = 0; // Determines the next active question, if any.
+            if (flagIndex === 0 && state.ui.flags.length > 1) {
+                nextId = state.ui.flags[1].id;
+            } else if (flagIndex > 0) {
+                nextId = state.ui.flags[0].id;
+            }
+            return update(state, { ui: {
+                flags: { $splice: [[flagIndex, 1]] },
+                flagSidebar: {
+                    activeId: { $set: nextId },
+                    comment: { $set: '' },
+                    resolved: { $set: false },
+                } } });
+        }
+        return update(state, { ui: {
+            flags: { [flagIndex]: { flagHistory: { $push: [{
+                timestamp: action.data.timestamp,
+                comment: action.data.comment,
+                userId: action.data.signatureId,
+            }] } } },
+            flagSidebar: {
+                comment: { $set: '' },
+                resolved: { $set: false },
+            } } });
+    }
     default:
         return state;
     }

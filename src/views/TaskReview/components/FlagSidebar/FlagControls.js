@@ -6,8 +6,6 @@ import { renderName } from '../../../../utils/User';
 
 class FlagControls extends Component {
     render() {
-        console.log('fc');
-        console.log(this.props);
         return (
             <Box className='flag-controls'>
                 <CheckBox className='flag-controls__checkbox'
@@ -34,10 +32,11 @@ class FlagControls extends Component {
                     <Button className='flag-controls__button-group-send'
                         primary={true}
                         label={this.props.vocab.COMMON.SEND}
-                        onClick={() => this.props.actions.postDiscussions(
+                        onClick={() => this.props.actions.updateFlaggedQuestion(
                             this.props.task.id,
                             this.props.projectId,
-                            this.props.ui.flagSidebar.activeId)} />
+                            this.props.ui.flagSidebar.activeId,
+                            this.props.ui.flagSidebar)} />
                 </div>
             </Box>
         );
