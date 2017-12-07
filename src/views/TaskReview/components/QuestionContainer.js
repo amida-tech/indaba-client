@@ -20,8 +20,7 @@ class QuestionContainer extends Component {
                         {...this.props.question}
                         assessmentId={this.props.assessmentId}
                         answers={this.props.answers}
-                        displayMode={this.props.stage.blindReview ||
-                            this.props.stage.discussionParticipation}
+                        displayMode={this.props.displayMode}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
                     {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
@@ -29,7 +28,7 @@ class QuestionContainer extends Component {
                             question={this.props.question}
                             assessmentId={this.props.assessmentId}
                             answers={this.props.answers}
-                            displayMode={this.props.stage.discussionParticipation}
+                            displayMode={this.props.displayMode}
                             actions={this.props.actions}
                             vocab={this.props.vocab} />}
                 </AccordionPanel>
