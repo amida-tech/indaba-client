@@ -170,7 +170,8 @@ class Export extends Component {
                         <div className='export__download-instruction'>
                             {this.props.vocab.EXPORT.DOWNLOAD_YOUR_DATA}
                         </div>
-                        <button type='submit'>
+                        <button type='submit'
+                            className='export__export-button'>
                             {this.props.vocab.EXPORT.EXPORT_CSV}
                         </button>
                     </div>
