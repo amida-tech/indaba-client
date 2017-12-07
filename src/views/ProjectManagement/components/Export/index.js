@@ -106,11 +106,11 @@ class Export extends Component {
                                 </div>
                                 <div className='export__custom-actions'>
                                     <div className='export__custom-action'
-                                        onClick={this.addAllSubjects}>
+                                        onClick={customType && this.addAllSubjects}>
                                         {this.props.vocab.EXPORT.ADD_ALL_SUBJECTS}
                                     </div>
                                     <div className='export__custom-action'
-                                        onClick={this.removeAllSubjects}>
+                                        onClick={customType && this.removeAllSubjects}>
                                         {this.props.vocab.EXPORT.REMOVE_ALL_SUBJECTS}
                                     </div>
                                 </div>
