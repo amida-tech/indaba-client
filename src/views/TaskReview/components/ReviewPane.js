@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import IonIcon from 'react-ionicons';
 
-import Questions from '../../../../common/components/Questions';
+import Questions from './Questions';
 
 class ReviewPane extends Component {
     constructor(props) {
@@ -16,14 +15,20 @@ class ReviewPane extends Component {
     }
 
     render() {
-        const Question = Questions[this.props.type];
+        console.log(this.props);
         return (
             <Box className='review-pane'>
                 {!this.props.taskView &&
                 <button className='review-pane__flag-button'>
                     <IonIcon className='review-pane__flag-button--icon' icon='ion-ios-flag'/>
                 </button>}
-                <Question {...this.props}/>
+                <Questions
+                    {...this.props.question}
+                    assessmentId={this.props.assessmentId}
+                    answers={this.props.answers}
+                    displayMode={this.props.displayMode}
+                    actions={this.props.actions}
+                    vocab={this.props.vocab} />
                 <div className='review-pane__controls'>
                     <label className='review-pane__controls--radio'>
                         <input type='radio'
@@ -32,7 +37,7 @@ class ReviewPane extends Component {
                             name='review-assessment'
                             value={true}
                             onChange={this.handleClickReview} />
-                        <span>{this.props.vocab.AGREE}</span>
+                        <span>{this.props.vocab.COMMON_BUTTONS.AGREE}</span>
                     </label>
                     <label className='review-pane__controls--radio'>
                         <input type='radio'
@@ -41,21 +46,18 @@ class ReviewPane extends Component {
                             name='review-assessment'
                             value={false}
                             onChange={this.handleClickReview} />
-                        <span>{this.props.vocab.DISAGREE}</span>
+                        <span>{this.props.vocab.COMMON_BUTTONS.DISAGREE}</span>
                     </label> <br />
                     <input type='text'
                         className='review-pane__controls--comment'
                         id='review-comment'
                         disabled={this.props.review}
-                        placeholder={this.props.comment || this.props.vocab.COMMENT_TIP} />
+                        placeholder={this.props.comment ||
+                            this.props.vocab.COMMON_BUTTONS.COMMENT_TIP} />
                 </div>
             </Box>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary.COMMON_BUTTONS,
-});
-
-export default connect(mapStateToProps)(ReviewPane);
+export default ReviewPane;

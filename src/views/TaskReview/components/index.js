@@ -78,6 +78,7 @@ class TaskReview extends Component {
                         assessmentId={this.props.task.assessmentId}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
+                        stage={this.props.stage}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
                 </div>

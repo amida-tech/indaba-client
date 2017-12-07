@@ -17,6 +17,7 @@ class SurveyForm extends Component { // TODO: INBA-450
                         index={index}
                         assessmentId={this.props.assessmentId}
                         answers={this.props.answers}
+                        stage={this.props.stage}
                         actions={this.props.actions}
                         question={question}
                         {...this.props} />,
