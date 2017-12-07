@@ -1,5 +1,3 @@
-$border-color: #e6edef;
-$element-background: #f3f5f6;
 $block-class:'survey-pane';
 
 @at-root {
@@ -11,7 +9,6 @@ $block-class:'survey-pane';
             margin: 8px 4px;
             padding-bottom: 8px;
             width: 100%;
-            border-bottom: 2px solid $border-color;
         }
 
         &__accordion-buttons {
@@ -69,6 +66,7 @@ $block-class:'survey-pane';
         .Select-control {
             border-radius: 2px;
             color: $lead-font-color;
+            border: 2px solid $border-color;
         }
     }
 }
