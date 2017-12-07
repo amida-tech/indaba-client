@@ -17,16 +17,16 @@ class TaskOptionsForm extends Component {
                         component={TaskOptionsRadio}
                         type='radio'
                         value='force'
-                        label={this.props.vocab.FORCE} />
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE} />
                     <div className='task-options-form__header-paragraph'>
-                        {this.props.vocab.FORCE_PARAGRAPH}
+                        {this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE_PARAGRAPH}
                     </div>
                     <Field
                         name='choice'
                         component={TaskOptionsRadio}
                         type='radio'
                         value='reassign'
-                        label={this.props.vocab.REASSIGN} />
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.REASSIGN} />
                     <Field
                         name='reassignUser'
                         component={TaskOptionsSelect}
@@ -39,9 +39,9 @@ class TaskOptionsForm extends Component {
                         type='radio'
                         value='skip'
                         disabled={true}
-                        label={this.props.vocab.SKIP} />
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.SKIP} />
                     <div className='task-options-form__header-paragraph'>
-                        {this.props.vocab.SKIP_PARAGRAPH}
+                        {this.props.vocab.PROJECT.OPTIONS_MODAL.SKIP_PARAGRAPH}
                     </div>
                     <hr className='task-options-form__divider'/>
                     <Field
@@ -49,10 +49,10 @@ class TaskOptionsForm extends Component {
                         component={TaskOptionsCheckbox}
                         type='checkbox'
                         value='false'
-                        label={this.props.vocab.NOTIFY} />
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.NOTIFY} />
                     <div className='task-options__notify-user-warning'>
                         { renderName(this.props.currentUser)
-                            + this.props.vocab._WILL_BE_NOTIFIED }
+                            + this.props.vocab.PROJECT.OPTIONS_MODAL._WILL_BE_NOTIFIED }
                     </div>
                     <Field
                         name='message'

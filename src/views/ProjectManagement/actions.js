@@ -58,10 +58,11 @@ export function updateUserListSearchQuery(query) {
 }
 
 // Task Options Modal:
-export function showTaskOptionsModal(task) {
+export function showTaskOptionsModal(task, userGroups) {
     return {
         type: actionTypes.SHOW_TASK_OPTIONS_MODAL,
         task,
+        userGroups,
     };
 }
 
