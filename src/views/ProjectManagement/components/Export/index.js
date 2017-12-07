@@ -122,6 +122,7 @@ class Export extends Component {
                         {
                             this.props.showQuestionsList &&
                             <Field name='questionsList' disabled={!customType}
+                                format={value => value.map(({ text, id }) => ({ name: text, id }))}
                                 component={props => (
                                     <div className={`export__custom-section ${!customType ? 'export__custom-section--inactive' : ''}`}>
                                         <div className='export__custom-title'>
