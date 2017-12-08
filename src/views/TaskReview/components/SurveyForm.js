@@ -22,6 +22,16 @@ class SurveyForm extends Component { // TODO: INBA-450
                         {...this.props} />,
                     )}
                 </Accordion>
+                <div className='survey-form__submit'>
+                    <div className='survey-form__submit-instructions'>
+                    {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS}
+                    <br></br>
+                    {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_2}
+                    </div>
+                    <button className='survey-form__submit-button'
+                    onClick=''>
+                    {this.props.vocab.SURVEY.SUBMIT_SURVEY}</button>
+                </div>
             </div>
         );
     }
