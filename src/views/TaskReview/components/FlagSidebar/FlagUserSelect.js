@@ -12,7 +12,7 @@ class FlagUserSelect extends Component {
                 options={this.props.userOptions} />
         );
     }
-    }
+}
 
 FlagUserSelect.propTypes = {
     users: PropTypes.arrayOf(PropTypes.object),

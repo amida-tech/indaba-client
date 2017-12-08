@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, form, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field, form, reduxForm, submit, reset } from 'redux-form';
 
 import { renderName } from '../../../../utils/User';
 import FlagUserSelect from './FlagUserSelect';
@@ -12,9 +13,9 @@ class FlagControlsForm extends Component {
                 label: renderName(user),
                 value: user,
             })) : [];
+        console.log(this.props);
         return (
-            <form className='flag-controls-form'
-                onSubmit={this.props.handleSubmit}>
+            <form className='flag-controls-form'>
                 <Field className='flag-controls-form__discussion'
                     name='entry'
                     component='textarea'
@@ -32,11 +33,12 @@ class FlagControlsForm extends Component {
                     userOptions={userOptions} />
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
-                        onClick=''>
+                        disabled={this.props.submitting}
+                        onClick={this.props.reset}>
                         {this.props.vocab.COMMON.CANCEL}
                     </button>
                     <button className='flag-controls-form__button-send'
-                        onClick=''>
+                        onClick={this.props.discussionSend}>
                         {this.props.vocab.COMMON.SEND}
                     </button>
                 </div>
@@ -56,4 +58,18 @@ FlagControlsForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default reduxForm({ form: 'flag-controls-form' })(FlagControlsForm);
+const FORM_NAME = 'flag-controls-form';
+
+export default connect(null, dispatch => ({
+    discussionSend: () => dispatch(submit(FORM_NAME)),
+    discussionCancel: () => dispatch(reset(FORM_NAME)),
+}))(reduxForm({
+    form: FORM_NAME,
+    onSubmit: (values, dispatch, ownProps) => {
+        ownProps.actions.postDiscussion(
+            values,
+            ownProps.vocab.ERROR,
+        );
+    },
+    onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
+})(FlagControlsForm));
