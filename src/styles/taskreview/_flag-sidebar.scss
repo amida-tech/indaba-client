@@ -14,6 +14,7 @@ $block-class:'flag-sidebar';
             flex-flow: nowrap;
             justify-content: flex-end;
             position: relative;
+            background-color: $element-background;
         }
 
         &__controls {

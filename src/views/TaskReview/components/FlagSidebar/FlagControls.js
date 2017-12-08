@@ -12,7 +12,7 @@ class FlagControls extends Component {
                     checked={this.props.ui.flagSidebar.resolved}
                     onChange={event =>
                         this.props.actions.updateMarkResolved(event.target.checked)} />
-                        <label className='flag-controls__resolved'>
+                        <label className='flag-controls__checkbox-resolved'>
                         {this.props.vocab.PROJECT.MARK_RESOLVED}
                         </label>
                 <div className='flag-controls__notify'>
