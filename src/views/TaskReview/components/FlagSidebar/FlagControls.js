@@ -9,10 +9,12 @@ class FlagControls extends Component {
         return (
             <Box className='flag-controls'>
                 <CheckBox className='flag-controls__checkbox'
-                    label={this.props.vocab.PROJECT.MARK_RESOLVED}
                     checked={this.props.ui.flagSidebar.resolved}
                     onChange={event =>
                         this.props.actions.updateMarkResolved(event.target.checked)} />
+                        <label className='flag-controls__resolved'>
+                        {this.props.vocab.PROJECT.MARK_RESOLVED}
+                        </label>
                 <div className='flag-controls__notify'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}
                     <Select
