@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, CheckBox, Button } from 'grommet';
+import { Box, CheckBox } from 'grommet';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
@@ -28,18 +28,18 @@ class FlagControls extends Component {
                             this.props.actions.updateNotifyUser(event.option.value)} />
                 </div>
                 <div className='flag-controls__button-group'>
-                    <Button className='flag-controls__button-group-cancel'
-                        primary={false}
-                        label={this.props.vocab.COMMON.CANCEL}
-                        onClick={this.props.actions.cancelFlaggedUpdate} />
-                    <Button className='flag-controls__button-group-send'
-                        primary={true}
-                        label={this.props.vocab.COMMON.SEND}
+                    <button className='flag-controls__button-group-cancel'
+                        onClick={this.props.actions.cancelFlaggedUpdate} >
+                        {this.props.vocab.COMMON.CANCEL}
+                    </button>
+                    <button className='flag-controls__button-group-send'
                         onClick={() => this.props.actions.updateFlaggedQuestion(
                             this.props.task.id,
                             this.props.projectId,
                             this.props.ui.flagSidebar.activeId,
-                            this.props.ui.flagSidebar)} />
+                            this.props.ui.flagSidebar)} >
+                        {this.props.vocab.COMMON.SEND}
+                    </button>
                 </div>
             </Box>
         );
