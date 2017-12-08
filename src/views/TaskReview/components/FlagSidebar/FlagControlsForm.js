@@ -13,9 +13,9 @@ class FlagControlsForm extends Component {
                 label: renderName(user),
                 value: user,
             })) : [];
-        console.log(this.props);
         return (
-            <form className='flag-controls-form'>
+            <form className='flag-controls-form'
+                onSubmit={this.props.handleSubmit}>
                 <Field className='flag-controls-form__discussion'
                     name='entry'
                     component='textarea'
@@ -33,11 +33,12 @@ class FlagControlsForm extends Component {
                     userOptions={userOptions} />
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
-                        disabled={this.props.submitting}
-                        onClick={this.props.reset}>
+                        type='button'
+                        onClick={this.props.discussionCancel}>
                         {this.props.vocab.COMMON.CANCEL}
                     </button>
                     <button className='flag-controls-form__button-send'
+                        type='submit'
                         onClick={this.props.discussionSend}>
                         {this.props.vocab.COMMON.SEND}
                     </button>
