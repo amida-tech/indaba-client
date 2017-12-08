@@ -1,0 +1,43 @@
+$block-class: 'delete-list';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: $page-background-color;
+        border: 1px solid $border-color;
+        padding: 8px 8px 16px;
+
+        &__entry {
+            @extend .small-font;
+
+            margin-left: 8px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            background-color: #f7f8f9;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+
+        &__delete-button {
+            cursor: pointer;
+        }
+
+        &__delete-icon {
+            width: 12px;
+            display: block;
+            margin-left: 4px;
+            fill: $header-font-color;
+            position: relative;
+            top: 1px;
+        }
+
+        &__empty {
+            @extend .med-font;
+
+            margin-left: 8px;
+            margin-top: 8px;
+        }
+    }
+}
