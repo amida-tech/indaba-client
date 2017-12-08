@@ -20,8 +20,16 @@ $block-class:'flag-controls';
         }
 
         &__notify {
-            margin-top: 0;
+            color: $lead-font-color;
+            margin-top: 16px;
             margin-bottom: 1em;
+
+            .Select-control {
+                border: 1px solid $lead-font-color;
+                border-radius: 2px;
+                height: 32px;
+                margin-top: 8px;
+            }
         }
 
         &__button-group {
