@@ -27,11 +27,7 @@ const initialState = {
 };
 
 export const TaskReducer = (state = initialState, action) => {
-    const projectIndex = _.findIndex(state.data, projectTasks =>
-        projectTasks.projectId === action.projectId);
-    const taskIndex = state[projectIndex] ?
-        _.findIndex(state[projectIndex].tasks, task => task.id === action.taskId) :
-        null;
+    const taskIndex = _.findIndex(state.data, task => task.id === action.taskId);
     switch (action.type) {
     case type.GET_TASKS_BY_PROJECT_SUCCESS: {
         return update(state, {
@@ -55,8 +51,8 @@ export const TaskReducer = (state = initialState, action) => {
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { data: { [taskIndex]:
             { $merge: { endDate: action.endDate } } } });
-    case type.REASSIGN_TASK:
-        return update(state, { data: { userId: { $set: action.reassignId } } });
+    case type.PUT_TASK_SUCCESS:
+        return update(state, { data: { [taskIndex]: { $merge: action.taskChanges } } });
     case DELETE_PROJECT_USER_SUCCESS:
         return update(state, { data: { $apply: data => data.filter(task =>
                 !task.userIds.includes(action.userId)) } });

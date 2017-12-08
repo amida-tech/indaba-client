@@ -1,6 +1,6 @@
 import apiService from '../services/api';
 
-export const renderName = user => `${user.firstName} ${user.lastName}`;
+export const renderName = user => (user ? `${user.firstName} ${user.lastName}` : '');
 export const renderInitials = user => `${user.firstName.slice(0, 1)}${user.lastName.slice(0, 1)}`;
 
 export const DATA_STATE = {

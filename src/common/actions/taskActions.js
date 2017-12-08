@@ -1,5 +1,5 @@
-import { find } from 'lodash';
 import { toast } from 'react-toastify';
+import { find, pickBy, identity } from 'lodash';
 
 import { getAnswers } from '../actions/surveyActions';
 import { getProjectById } from '../actions/projectActions';
@@ -127,12 +127,24 @@ export function updateTaskEndDate(taskId, projectId, endDate) {
     };
 }
 
-export function reassignTask(reassignId, taskId, projectId) {
-    return {
-        type: actionTypes.REASSIGN_TASK,
-        reassignId,
-        taskId,
-        projectId,
+export function updateTask(taskId, userIds, endDate, errorMessages) {
+    const requestBody = pickBy({
+        userIds,
+        endDate,
+    }, identity);
+
+    return (dispatch) => {
+        apiService.tasks.putTask(
+            taskId,
+            requestBody,
+            (taskErr, taskResp) => {
+                if (taskErr) {
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                } else if (taskResp || []) {
+                    dispatch(_putTaskSuccess(taskId, requestBody));
+                }
+            },
+        );
     };
 }
 
@@ -171,6 +183,14 @@ function _postTaskSuccess(userId, slot, taskResp) {
             uoaId: slot.task.uoaId,
             endDate: slot.stageData.endDate,
         },
+    };
+}
+
+function _putTaskSuccess(taskId, taskChanges) {
+    return {
+        type: actionTypes.PUT_TASK_SUCCESS,
+        taskId,
+        taskChanges,
     };
 }
 
