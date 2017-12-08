@@ -5,7 +5,7 @@ import scroller from 'react-scroll/modules/mixins/scroller';
 import FlagHeader from './FlagHeader';
 import FlagQuestionList from './FlagQuestionList';
 import FlagCommentary from './FlagCommentary';
-import FlagControls from './FlagControls';
+import FlagControlsForm from './FlagControlsForm';
 
 class FlagSidebar extends Component {
     componentWillMount() {
@@ -36,7 +36,7 @@ class FlagSidebar extends Component {
                     <FlagQuestionList {...this.props} />
                     <div className='flag-sidebar__controls'>
                         <FlagCommentary {...this.props} />
-                        <FlagControls {...this.props} />
+                        <FlagControlsForm {...this.props} />
                     </div>
                 </div>
             </Box>
