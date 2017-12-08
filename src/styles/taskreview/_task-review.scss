@@ -17,7 +17,7 @@ $block-class:'task-review';
         &__flag-sidebar {
             display: flex;
             background: $element-background;
-            width: calc(35% + 2.5em);
+            //width: calc(35% + 2.5em);
             margin-right: -2.5em;
             padding-right: 2.5em;
         }
