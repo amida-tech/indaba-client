@@ -59,8 +59,11 @@
 @import './projectmanagement/filter-wrapper.scss';
 @import './projectmanagement/sub-nav.scss';
 @import './projectmanagement/sub-nav-entry.scss';
-// Survey Builder view
+@import './projectmanagement/export.scss';
+@import './projectmanagement/delete-list.scss';
+@import './projectmanagement/question-selection-list.scss';
 
+// Survey Builder view
 @import './surveybuilder/add-question-panel.scss';
 @import './surveybuilder/new-questions.scss';
 @import './surveybuilder/existing-questions.scss';
@@ -70,6 +73,7 @@
 @import './surveybuilder/question-panel.scss';
 @import './surveybuilder/static-question.scss';
 @import './surveybuilder/dynamic-question.scss';
+
 // Modals:
 @import './modals/modal.scss';
 @import './modals/footer-button.scss';

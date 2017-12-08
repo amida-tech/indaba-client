@@ -1,0 +1,27 @@
+$block-class: 'question-selection-list';
+
+@at-root {
+    .#{$block-class} {
+        max-height: 300px;
+        overflow-y: scroll;
+        background-color: $page-background-color;
+        border: 1px solid $border-color;
+
+        &__entry {
+            padding: 16px 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f6fafd;
+            }
+        }
+
+        &__header {
+            @extend .lead-font;
+        }
+
+        &__text {
+            @extend .med-font;
+        }
+    }
+}

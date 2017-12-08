@@ -116,7 +116,8 @@
             "Workflow",
             "Survey",
             "Users",
-            "Subject"
+            "Subject",
+            "Export"
         ],
         "CARD": {
             "ASSIGN_TASK": "Assign Task",
@@ -383,6 +384,29 @@
         "INACTIVE": "Inactive",
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this"
+    },
+    "EXPORT": {
+        "EXPORT": "Export",
+        "INSTRUCTIONS": "Select the quick option to download all project data. Use the custom option to export specific project data. Once selected, confirm options and click the export button.",
+        "QUICK_EXPORT": "Quick Export",
+        "QUICK_EXPORT_EXPLANATION": "Export project data for all subjects and questions, including flags, comments and attached files.",
+        "CUSTOM_EXPORT": "Custom Export",
+        "CUSTOM_EXPORT_EXPLANATION": "Generates a file based on options selected below.",
+        "CUSTOM_SUBJECTS": "Custom Subjects",
+        "CUSTOM_QUESTIONS": "Custom Questions",
+        "INCLUDE_FILES_LINKS": "Include files/links",
+        "INCLUDE_FLAGS": "Include flags",
+        "INCLUDE_COMMENTS": "Include comments",
+        "ENTER_SUBJECTS": "Enter subjects",
+        "ADD_ALL_SUBJECTS": "Add all subjects",
+        "REMOVE_ALL_SUBJECTS": "Remove all subjects",
+        "SELECT_QUESTIONS": "Select specific questions to export",
+        "ADD_ALL_QUESTIONS": "Add all questions",
+        "REMOVE_ALL_QUESTIONS": "Remove all questions",
+        "NONE_SELECTED": "None selected",
+        "DOWNLOAD_YOUR_DATA": "Download Your Data",
+        "EXPORT_CSV": "Export CSV",
+        "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {

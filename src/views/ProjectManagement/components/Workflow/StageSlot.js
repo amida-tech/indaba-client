@@ -45,7 +45,8 @@ class StageSlot extends Component {
     }
 
     handleTaskOptions() {
-        this.props.actions.showTaskOptionsModal(this.props.task);
+        this.props.actions.showTaskOptionsModal(this.props.task,
+            this.props.stageData.userGroups);
     }
     handleSearchSelect(selection) {
         this.props.actions.assignTask(selection.suggestion.value.id,

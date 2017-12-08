@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
@@ -24,6 +25,7 @@ class UserDashboard extends Component {
         } else {
             this.props.actions.getSelfTasks(this.props.vocab.ERROR);
         }
+        this.props.actions.userDashGetMessages();
     }
 
     filterRow(row) {
@@ -59,7 +61,9 @@ class UserDashboard extends Component {
             <div className='user-dashboard'>
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
-                        messages={this.props.messages}/>
+                        messages={this.props.messages}
+                        users={this.props.users}
+                        onMessageClick={this.props.goToMessage}/>
                     <UserGlance vocab={this.props.vocab} {...this.props.glance} />
                 </SplitLayout>
                 <UserTaskListControls vocab={this.props.vocab}
@@ -89,6 +93,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.userdashboard.messages.slice(0, 4),
     ui: state.userdashboard.ui,
+    users: state.user.users,
     rows: [].concat(...state.tasks.data.map(task =>
         _generateRow(state, task.projectId, task))),
 });
@@ -96,6 +101,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, { getSelfTasks, getTasksByUser, getProjects }), dispatch),
+    goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
 const _generateRow = (state, projectId, task) => { // TODO: INBA-439

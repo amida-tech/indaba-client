@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
+import Export from './Export';
 import StatusChange from './Modals/StatusChange';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import { renderName } from '../../../utils/User';
@@ -59,6 +61,14 @@ class ProjectManagementContainer extends Component {
                     actions={this.props.actions}
                     tasks={this.props.tasks}
                     ui={this.props.ui}/>;
+            break;
+        case 'export':
+            body = <Export vocab={this.props.vocab}
+                subjects={this.props.project.subjects}
+                actions={this.props.actions}
+                ui={this.props.ui.export}
+                survey={this.props.survey}
+                onSubmit={() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS)}/>;
             break;
         default:
             body = null;
