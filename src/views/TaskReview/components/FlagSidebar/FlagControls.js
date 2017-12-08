@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Box, CheckBox, Button, Select } from 'grommet';
+import { Box, CheckBox, Button } from 'grommet';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 
 import { renderName } from '../../../../utils/User';
 
@@ -17,7 +18,7 @@ class FlagControls extends Component {
                         </label>
                 <div className='flag-controls__notify'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}
-                    <Select
+                    <Select className='flag__controls__notify-selcet'
                         value={renderName(this.props.ui.flagSidebar.notifyUser)}
                         options={this.props.users.map(user => ({
                             label: renderName(user),
