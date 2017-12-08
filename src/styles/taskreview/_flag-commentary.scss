@@ -8,7 +8,7 @@ $block-class:'flag-commentary';
     .#{$block-class} {
         &__frame {
             padding: 1em;
-            background: #fff;
+            background: hsla(0, 0%, 98%, 1);
             color: $lead-font-color;
         }
 
@@ -23,7 +23,7 @@ $block-class:'flag-commentary';
             height: 20em;
             resize: none;
             border: 0;
-            background: #fff;
+            background-color: hsla(0, 0%, 98%, 1);
             padding: 1em;
             margin-right: 0;
         }
