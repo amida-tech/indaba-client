@@ -3,7 +3,7 @@ $block-class:'flag-header';
 @at-root {
     .#{$block-class} {
         margin-top: 24px;
-        margin-left: 14px;
+        margin-left: 16px;
 
         &__title {
             @extend .large-font;
