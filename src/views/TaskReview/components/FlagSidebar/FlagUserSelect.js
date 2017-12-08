@@ -7,7 +7,7 @@ class FlagUserSelect extends Component {
     render() {
         return (
             <Select
-                value={this.props.input.value.option || this.props.input.value}
+                value={this.props.input.value || this.props.userOptions[0]}
                 onChange={(event) => { this.props.input.onChange(event.value); }}
                 options={this.props.userOptions} />
         );
@@ -15,7 +15,7 @@ class FlagUserSelect extends Component {
     }
 
 FlagUserSelect.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    users: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default FlagUserSelect;

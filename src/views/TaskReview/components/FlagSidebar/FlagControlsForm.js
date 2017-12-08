@@ -32,15 +32,11 @@ class FlagControlsForm extends Component {
                     userOptions={userOptions} />
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
-                        onClick={this.props.actions.cancelFlaggedUpdate}>
+                        onClick=''>
                         {this.props.vocab.COMMON.CANCEL}
                     </button>
                     <button className='flag-controls-form__button-send'
-                        onClick={() => this.props.actions.updateFlaggedQuestion(
-                            this.props.task.id,
-                            this.props.projectId,
-                            this.props.ui.flagSidebar.activeId,
-                            this.props.ui.flagSidebar)}>
+                        onClick=''>
                         {this.props.vocab.COMMON.SEND}
                     </button>
                 </div>
