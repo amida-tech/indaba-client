@@ -9,8 +9,7 @@ import UserGroupList from '../../../../common/components/UserGroupList';
 import { updateUserGroupListSearchQuery } from '../../actions';
 
 const NO_STAGES = 0;
-const STAGES_ACTIVE = 1;
-const STAGES_INACTIVE = 2;
+const STAGES = 1;
 
 class PMUserGroupsTab extends Component {
     constructor(props) {
@@ -23,11 +22,11 @@ class PMUserGroupsTab extends Component {
         if (!this.props.project.stages.some(stage => stage.userGroups.includes(userGroupId))) {
             return NO_STAGES;
         }
-        return this.props.project.status === 1 ? STAGES_ACTIVE : STAGES_INACTIVE;
+        return STAGES;
     }
     handleDeleteClick(userGroupId) {
         const dataState = this.getDataState(userGroupId);
-        if (dataState === STAGES_ACTIVE) {
+        if (dataState === STAGES) {
             toast(this.props.vocab.ERROR.NO_DELETE_USER_GROUP_WITH_STAGES,
                 { autoClose: false, type: 'error' });
         } else {
@@ -58,9 +57,7 @@ class PMUserGroupsTab extends Component {
                     deleteModal &&
                     <Modal title={this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.TITLE}
                         bodyText={
-                            deleteModal.dataState === NO_STAGES ?
-                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_NOTHING :
-                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_STAGES
+                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_NOTHING
                         }
                         onCancel={this.props.actions.pmHideUserGroupDeleteConfirmModal}
                         onSave={this.handleDeleteModalSave}/>
