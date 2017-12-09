@@ -31,16 +31,10 @@ export function storeFlaggedIssues(flags) {
     };
 }
 
-export function showQuestion(questionIndex) {
+export function updateQuestionDisplay(questionArray) {
     return {
-        type: actionTypes.SHOW_QUESTION,
-        questionIndex,
-    };
-}
-
-export function collapseAllQuestions() {
-    return {
-        type: actionTypes.COLLAPSE_ALL_QUESTIONS,
+        type: actionTypes.UPDATE_QUESTION_DISPLAY,
+        questionArray,
     };
 }
 

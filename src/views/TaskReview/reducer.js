@@ -67,10 +67,8 @@ export default (state = initialState, action) => {
     case type.STORE_FLAGGED_ISSUES:
         return update(state,
             { ui: { flags: { $set: action.flags } } });
-    case type.SHOW_QUESTION:
-        return update(state, { ui: { showQuestions: { $set: action.questionIndex } } });
-    case type.COLLAPSE_ALL_QUESTIONS:
-        return update(state, { ui: { showQuestions: { $set: [] } } });
+    case type.UPDATE_QUESTION_DISPLAY:
+        return update(state, { ui: { showQuestions: { $set: action.questionArray } } });
     case type.SET_ACTIVE_FLAG:
         return update(state,
             { ui: { flagSidebar: {

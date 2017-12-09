@@ -12,7 +12,7 @@ class FlagSidebar extends Component {
         const initialShow = [];
         const issues = this.props.displaySurvey.filter((discussion, index) =>
             (discussion.flag === true ? initialShow.push(index) : false));
-        this.props.actions.showQuestion(initialShow);
+        this.props.actions.updateQuestionDisplay(initialShow);
         this.props.actions.storeFlaggedIssues(issues);
         this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
         this.props.actions.updateNotifyUser(this.props.taskedUser);

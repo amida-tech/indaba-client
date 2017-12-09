@@ -23,11 +23,11 @@ class SurveyPane extends Component {
                         onChange={event => this.props.actions.setSurveySectionIndex(event.value)}/>
                     <div className='survey-pane__accordion-buttons'>
                         <button className='survey-pane__button-expand'
-                            onClick={() => this.props.actions.showQuestion(
+                            onClick={() => this.props.actions.updateQuestionDisplay(
                                 this.props.survey.map((key, index) => index))}>
                                 {this.props.vocab.PROJECT.EXPAND_ALL}</button>
                         <button className='survey-pane__button-collapse'
-                            onClick={this.props.actions.collapseAllQuestions}>
+                            onClick={() => this.props.actions.updateQuestionDisplay([])}>
                             {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>

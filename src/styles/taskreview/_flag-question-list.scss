@@ -8,9 +8,12 @@ $block-class:'flag-question-list';
         min-width: 120px;
 
         &__item {
+            padding: 1em 2em;
+            border-bottom: 1px solid $border-color;;
             font-size: 12px;
             white-space: nowrap;
             overflow: hidden;
+            cursor: pointer;
 
             &:hover {
                 background-color: nth($brand-neutral-colors, 2);
