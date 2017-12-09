@@ -25,13 +25,6 @@ export const DiscussReducer = (state = initialState, action) => {
                 comment: action.data.comment,
                 userId: action.data.signatureId,
             }] } } } } });
-    case type.FORCE_TASK_COMPLETION:
-        return (update(state, { [taskIndex]: { discuss: {
-            $apply: (discuss) => {
-                return discuss.map((question) => {
-                    return update(question, { review: { $set: true } });
-                });
-            } } } }));
     case type.GET_DISCUSS_SUCCESS:
         return update(state, { data: { $set: action.discuss } });
     case type.REPORT_DISCUSS_ERROR:

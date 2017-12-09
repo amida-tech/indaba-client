@@ -15,15 +15,13 @@ class MatrixContainer extends Component {
             <div className='matrix-container'>
                 {this.props.ui.taskOptions.show &&
                     <TaskOptionsModal
-                        vocab={this.props.vocab.PROJECT.OPTIONS_MODAL}
+                        vocab={this.props.vocab}
                         task={this.props.ui.taskOptions.task}
+                        userGroups={this.props.ui.taskOptions.userGroups}
                         users={this.props.users}
                         profile={this.props.profile}
                         projectId={this.props.project.id}
-                        actions={this.props.actions}
-                        discussActions={this.props.discussActions}
-                        userActions={this.props.userActions}
-                        taskActions={this.props.taskActions} />}
+                        actions={this.props.actions} />}
                     <div className='matrix-container__task-matrix'>
                         <table className='table table-bordered workflow-table'
                             key='MatrixContainer'>
