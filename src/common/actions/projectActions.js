@@ -62,7 +62,7 @@ export function getProjectById(projectId, getTasks, errorMessages) {
                         dispatch(getSurveyById(projResp.surveyId, errorMessages));
                     }
                     if (getTasks === true) {
-                        dispatch(getTasksByProduct(projResp.productId, errorMessages));
+                        dispatch(getTasksByProduct(projResp.productId, projectId, errorMessages));
                     }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {
