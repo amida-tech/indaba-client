@@ -46,23 +46,9 @@ export function setActiveFlag(activeId, timestamp) {
     };
 }
 
-export function setSignatureId(signatureId) {
-    return {
-        type: actionTypes.SET_SIGNATURE_ID,
-        signatureId,
-    };
-}
-
 export function updateMarkResolved(resolved) {
     return {
         type: actionTypes.UPDATE_MARK_RESOLVED,
         resolved,
-    };
-}
-
-export function updateNotifyUser(notifyUser) {
-    return {
-        type: actionTypes.UPDATE_NOTIFY_USER,
-        notifyUser,
     };
 }

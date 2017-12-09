@@ -8,17 +8,6 @@ import FlagCommentary from './FlagCommentary';
 import FlagControlsForm from './FlagControlsForm';
 
 class FlagSidebar extends Component {
-    componentWillMount() {
-        const initialShow = [];
-        const issues = this.props.displaySurvey.filter((discussion, index) =>
-            (discussion.flag === true ? initialShow.push(index) : false));
-        this.props.actions.updateQuestionDisplay(initialShow);
-        this.props.actions.storeFlaggedIssues(issues);
-        this.props.actions.setActiveFlag(issues[0] ? issues[0].id : 0, new Date());
-        this.props.actions.updateNotifyUser(this.props.taskedUser);
-        this.props.actions.setSignatureId(this.props.profile.id);
-    }
-
     componentDidMount() {
         setTimeout(() => {
             scroller.scrollTo(`question${this.props.ui.showQuestions[0]}`, {
@@ -29,6 +18,9 @@ class FlagSidebar extends Component {
     }
 
     render() {
+        const initialValues = {
+            questionId: this.props.ui.flagSidebar.activeId,
+        };
         return (
             <Box className='flag-sidebar'>
                 <FlagHeader {...this.props} />
@@ -36,7 +28,9 @@ class FlagSidebar extends Component {
                     <FlagQuestionList {...this.props} />
                     <div className='flag-sidebar__controls'>
                         <FlagCommentary {...this.props} />
-                        <FlagControlsForm {...this.props} />
+                        <FlagControlsForm
+                            {...this.props}
+                            initialValues={initialValues} />
                     </div>
                 </div>
             </Box>

@@ -10,15 +10,10 @@ export const initialState = {
         flags: [],
         showQuestions: [],
         flagSidebar: {
-            activeId: 0, // Id of flag above.
+            activeId: -1, // Id of flag above.
             comment: '',
             resolved: false,
-            notifyUser: {
-                id: null,
-                name: null,
-            },
             timestamp: null,
-            signatureId: null,
         },
         reqTotal: -1,
         reqAnswers: 0,
@@ -40,7 +35,9 @@ export default (state = initialState, action) => {
             ({ questionId: item.questionId, answer: item.answer }));
         const answers = intersectionWith(reqQuestions, flatAnswers,
             (q, a) => q.id === a.questionId);
+        const setActive = flatSurvey.length > 0 ? flatSurvey[0].id : -1;
         return update(state, { ui: {
+            flagSidebar: { activeId: { $set: setActive }, timestamp: { $set: new Date() } },
             form: { surveyId: { $set: action.surveyId } },
             reqTotal: { $set: reqQuestions.length },
             reqAnswers: { $set: answers.length },
@@ -75,15 +72,9 @@ export default (state = initialState, action) => {
                 activeId: { $set: action.activeId },
                 timestamp: { $set: action.timestamp },
             } } });
-    case type.SET_SIGNATURE_ID:
-        return update(state,
-            { ui: { flagSidebar: { signatureId: { $set: action.signatureId } } } });
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
-    case type.UPDATE_NOTIFY_USER:
-        return update(state,
-            { ui: { flagSidebar: { notifyUser: { $set: action.notifyUser } } } });
     case UPDATE_FLAGGED_QUESTION: {
         const flagIndex = findIndex(state.ui.flags, flag =>
             flag.id === action.activeId);
@@ -106,7 +97,6 @@ export default (state = initialState, action) => {
             flags: { [flagIndex]: { flagHistory: { $push: [{
                 timestamp: action.data.timestamp,
                 comment: action.data.comment,
-                userId: action.data.signatureId,
             }] } } },
             flagSidebar: {
                 comment: { $set: '' },

@@ -61,6 +61,7 @@ const FORM_NAME = 'flag-controls-form';
 
 export default reduxForm({
     form: FORM_NAME,
+    enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
         ownProps.actions.postDiscussion(
             values,

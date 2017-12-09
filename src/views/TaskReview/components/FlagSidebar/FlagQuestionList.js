@@ -23,7 +23,8 @@ class FlagQuestionList extends Component {
             <div className='flag-question-list'>
                 {this.props.displaySurvey.map((question, index) => {
                     let modifier = '';
-                    if (question.id === this.props.ui.flagSidebar.activeId) {
+                    if (question.id === this.props.ui.flagSidebar.activeId ||
+                        (this.props.ui.flagSidebar.activeId === -1 && index === 0)) {
                         modifier = '--selected';
                     } else if (some(this.props.ui.flags, flag =>
                         flag.id === question.id)) {
