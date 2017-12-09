@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Field, form, reduxForm, submit, reset } from 'redux-form';
+import { Field, form, reduxForm, reset } from 'redux-form';
 
 import { renderName } from '../../../../utils/User';
 import FlagUserSelect from './FlagUserSelect';
@@ -34,12 +33,11 @@ class FlagControlsForm extends Component {
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
                         type='button'
-                        onClick={this.props.discussionCancel}>
+                        onClick={this.props.reset}>
                         {this.props.vocab.COMMON.CANCEL}
                     </button>
                     <button className='flag-controls-form__button-send'
-                        type='submit'
-                        onClick={this.props.discussionSend}>
+                        type='submit'>
                         {this.props.vocab.COMMON.SEND}
                     </button>
                 </div>
@@ -61,10 +59,7 @@ FlagControlsForm.propTypes = {
 
 const FORM_NAME = 'flag-controls-form';
 
-export default connect(null, dispatch => ({
-    discussionSend: () => dispatch(submit(FORM_NAME)),
-    discussionCancel: () => dispatch(reset(FORM_NAME)),
-}))(reduxForm({
+export default reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         ownProps.actions.postDiscussion(
@@ -73,4 +68,4 @@ export default connect(null, dispatch => ({
         );
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
-})(FlagControlsForm));
+})(FlagControlsForm);
