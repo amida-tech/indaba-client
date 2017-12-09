@@ -7,14 +7,14 @@ $block-class:'task-review';
         border-left: 2px solid $border-color;
 
         &__details-and-survey {
-            width: 75%;
+            width: 65%;
             height: calc(100vh - #{$primary-nav-height} - #{$footer-height-with-padding});
             position: relative;
             overflow-y: scroll;
         }
 
         &__flag-sidebar {
-            width: 25%;
+            width: 35%;
             background: $element-background;
             border-right: 2px solid $border-color;
         }

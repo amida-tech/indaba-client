@@ -5,9 +5,10 @@ $block-class:'flag-commentary';
 @at-root {
     .#{$block-class} {
         &__frame {
+            color: $font-color;
             padding: 1em;
-            background: hsla(0, 0%, 98%, 1);
-            color: $lead-font-color;
+            background: #ebeef0;
+            font-size: 14px;
         }
 
         &__timestamp {
@@ -21,8 +22,7 @@ $block-class:'flag-commentary';
             height: 20em;
             resize: none;
             border: 0;
-            background-color: hsla(0, 0%, 98%, 1);
-            padding: 1em;
+            background-color: #ebeef0;
             margin-right: 0;
         }
     }
