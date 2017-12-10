@@ -190,7 +190,7 @@
             "Review and Edit description",
             "All permissions description"
         ],
-        "BACK_TO_WORKFLOW": "Back to Workflow",
+        "TASK_BACK": "Back",
         "DATE_RANGE": "Date Range",
         "START_DATE": "Start Date (Stage is unavailable until this date)",
         "END_DATE": "End Date (Stage is unavailable until this date)",

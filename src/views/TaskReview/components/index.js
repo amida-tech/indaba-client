@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { flatten, find, isEmpty, map } from 'lodash';
+import { flatten, find, isEmpty, map, get } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -61,10 +61,10 @@ class TaskReview extends Component {
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
                     id='task-review__details-and-survey'>
-                    <Link to={`/project/${this.props.projectId}`}
+                    <Link to={get(this.props, 'location.state.referrer', '/task')}
                         className='task-review__back-link'>
                         <IonIcon icon='ion-android-arrow-back' className='task-review__back-arrow'/>
-                        {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
+                        {this.props.vocab.PROJECT.TASK_BACK}
                     </Link>
                     <TaskDetails
                         projectId={this.props.projectId}
