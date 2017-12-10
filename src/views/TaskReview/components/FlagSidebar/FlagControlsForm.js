@@ -19,17 +19,19 @@ class FlagControlsForm extends Component {
                     name='entry'
                     component='textarea'
                     placeholder={this.props.vocab.PROJECT.REPLY} />
-                <Field name='isResolved'
-                    component='input'
-                    type='checkbox'
-                    label={this.props.vocab.PROJECT.MARK_RESOLVED} />
-                <span className='flag-controls-form__notify-label'>
+                <div className='flag-controls-form__mark-resolve-section'>
+                    <Field name='isResolved'
+                        component='input'
+                        type='checkbox' />
+                    {this.props.vocab.PROJECT.MARK_RESOLVED}
+                </div>
+                <div className='flag-controls-form__notify-section'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}
-                </span>
-                <Field className='flag-controls-form__notify'
-                    name='notify'
-                    component={FlagUserSelect}
-                    userOptions={userOptions} />
+                    <Field className='flag-controls-form__notify'
+                        name='notify'
+                        component={FlagUserSelect}
+                        userOptions={userOptions} />
+                </div>
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
                         type='button'

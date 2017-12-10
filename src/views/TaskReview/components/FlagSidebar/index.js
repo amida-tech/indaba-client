@@ -18,8 +18,12 @@ class FlagSidebar extends Component {
     }
 
     render() {
+        console.log('FlagSidebar');
+        console.log(this.props);
         const initialValues = {
             questionId: this.props.ui.flagSidebar.activeId,
+            taskId: this.props.task.id,
+            stepId: this.props.task.stepId,
         };
         return (
             <Box className='flag-sidebar'>
