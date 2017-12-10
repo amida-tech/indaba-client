@@ -24,7 +24,7 @@ class FlagControlsForm extends Component {
                     component='textarea'
                     placeholder={this.props.vocab.PROJECT.REPLY} />
                 <div className='flag-controls-form__mark-resolve-section'>
-                    <Field name='isResolved'
+                    <Field name='isResolve'
                         component='input'
                         type='checkbox' />
                     {this.props.vocab.PROJECT.MARK_RESOLVED}
