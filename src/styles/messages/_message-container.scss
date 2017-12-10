@@ -17,7 +17,7 @@ $block-class: 'message-container';
         }
 
         &__back-link {
-            @extend .med-font;
+            @extend .large-font;
 
             display: flex;
             align-items: center;

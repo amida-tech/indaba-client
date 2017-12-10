@@ -2,7 +2,7 @@ $block-class: 'message-field';
 
 @at-root {
     .#{$block-class} {
-        @extend .large-font;
+        @extend .med-font;
 
         display: flex;
         flex-direction: row;
