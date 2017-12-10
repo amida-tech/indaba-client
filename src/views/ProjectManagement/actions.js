@@ -58,10 +58,11 @@ export function updateUserListSearchQuery(query) {
 }
 
 // Task Options Modal:
-export function showTaskOptionsModal(task) {
+export function showTaskOptionsModal(task, userGroups) {
     return {
         type: actionTypes.SHOW_TASK_OPTIONS_MODAL,
         task,
+        userGroups,
     };
 }
 
@@ -96,5 +97,19 @@ export function startTaskAssign(task) {
     return {
         type: actionTypes.START_TASK_ASSIGN,
         task,
+    };
+}
+
+export function pmShowUserGroupDeleteConfirmModal(id, dataState) {
+    return {
+        type: actionTypes.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL,
+        id,
+        dataState,
+    };
+}
+
+export function pmHideUserGroupDeleteConfirmModal() {
+    return {
+        type: actionTypes.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL,
     };
 }

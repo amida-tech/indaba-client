@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import _ from 'lodash';
+import { flatten, find, isEmpty, map, get } from 'lodash';
 import IonIcon from 'react-ionicons';
 
+import Time from '../../../utils/Time';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
-import { updateFlaggedQuestion } from '../../../common/actions/discussActions';
+import { postDiscussion } from '../../../common/actions/discussActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -21,7 +22,7 @@ function surveyMapperHelper(discuss, question) {
 }
 
 function surveyMapper(responses, questions) {
-    if (_.isEmpty(questions)) {
+    if (isEmpty(questions)) {
         return [];
     }
     return (responses ? questions.map(question =>
@@ -35,15 +36,16 @@ class TaskReview extends Component {
             this.props.params.taskId, this.props.vocab.ERROR);
     }
 
-    render() {
+    render() { // Pondering means to process all this just once.
         const options = this.props.survey.sections ?
             this.props.survey.sections.map((section, index) =>
                 ({ value: index, label: section.name })) : [];
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
+
         let displaySurvey;
         if (this.props.survey.sections && this.props.sectionIndex === -1) {
             displaySurvey = surveyMapper(this.props.responses,
-                        _.flatten(_.map(this.props.survey.sections, 'questions')));
+                        flatten(map(this.props.survey.sections, 'questions')));
         } else if (this.props.survey.sections) {
             displaySurvey = surveyMapper(this.props.responses,
                 this.props.survey.sections[this.props.sectionIndex].questions);
@@ -51,14 +53,18 @@ class TaskReview extends Component {
             displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
         }
 
+        // TODO: INBA-522, task status === currently,
+        const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
+            || this.props.profile.id !== this.props.taskedUser.id;
+
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
                     id='task-review__details-and-survey'>
-                    <Link to={`/project/${this.props.projectId}`}
+                    <Link to={get(this.props, 'location.state.referrer', '/task')}
                         className='task-review__back-link'>
                         <IonIcon icon='ion-android-arrow-back' className='task-review__back-arrow'/>
-                        {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
+                        {this.props.vocab.PROJECT.TASK_BACK}
                     </Link>
                     <TaskDetails
                         projectId={this.props.projectId}
@@ -78,6 +84,8 @@ class TaskReview extends Component {
                         assessmentId={this.props.task.assessmentId}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
+                        stage={this.props.stage}
+                        taskDisabled={taskDisabled}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
                 </div>
@@ -94,27 +102,27 @@ class TaskReview extends Component {
 const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const task = _.find(state.tasks.data, current => current.id === taskId) ||
+    const task = find(state.tasks.data, current => current.id === taskId) ||
         { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
     const project = state.projects.data[0].id > 0 ?
-        _.find(state.projects.data, projElem => projElem.id === projectId) :
+        find(state.projects.data, projElem => projElem.id === projectId) :
         state.projects.data[0];
     return {
         projectId,
-        taskedUser: _.find(state.user.users, user =>
+        taskedUser: find(state.user.users, user =>
             user.id === task.userIds[0]) || { firstName: '', lastName: '' },
         stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
-            _.find(project.stages, stage => stage.id === task.stepId) : { title: '' },
+            find(project.stages, stage => stage.id === task.stepId) : { title: '' },
         subject: (project.id > 0 && task.uoaId > 0) ?
-            _.find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
+            find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
         users: state.user.users,
         profile: state.user.profile,
         task,
         survey: state.surveys.data[0].name ?
-            _.find(state.surveys.data, survey => survey.id === project.surveyId) :
+            find(state.surveys.data, survey => survey.id === project.surveyId) :
             state.surveys.data[0],
         sectionIndex: state.surveys.ui.sectionIndex,
-        responses: _.find(state.discuss.data, talk => talk.taskId === task.id),
+        responses: find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
     };
@@ -123,7 +131,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, {
         updateTaskEndDate,
-        updateFlaggedQuestion,
+        postDiscussion,
         setSurveySectionIndex,
         getTaskById,
         postAnswer }),

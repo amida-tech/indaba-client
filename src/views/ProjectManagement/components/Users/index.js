@@ -70,7 +70,9 @@ class Users extends Component {
                             projectId={this.props.project.id}
                             onDeleteClick={this.props.actions.deleteUserGroup}
                             onGroupClick={groupId =>
-                                this.setState({ modalName: 'updategroup', modalId: groupId }) } />
+                                this.setState({ modalName: 'updategroup', modalId: groupId }) }
+                            ui={this.props.ui}
+                            actions={this.props.actions}/>
                     </Tab>
                 </Tabs>
             </div>

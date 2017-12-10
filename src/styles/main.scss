@@ -64,6 +64,9 @@
 @import './projectmanagement/answer-panel.scss';
 @import './projectmanagement/new-questions.scss';
 @import './projectmanagement/existing-questions.scss';
+@import './projectmanagement/export.scss';
+@import './projectmanagement/delete-list.scss';
+@import './projectmanagement/question-selection-list.scss';
 // Modals:
 @import './modals/modal.scss';
 @import './modals/footer-button.scss';
@@ -110,7 +113,7 @@
 @import './taskreview/choice.scss';
 @import './taskreview/choices.scss';
 @import './taskreview/flag-commentary.scss';
-@import './taskreview/flag-controls.scss';
+@import './taskreview/flag-controls-form.scss';
 @import './taskreview/flag-header.scss';
 @import './taskreview/flag-question-list.scss';
 @import './taskreview/flag-sidebar.scss';

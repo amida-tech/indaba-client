@@ -45,7 +45,8 @@ class StageSlot extends Component {
     }
 
     handleTaskOptions() {
-        this.props.actions.showTaskOptionsModal(this.props.task);
+        this.props.actions.showTaskOptionsModal(this.props.task,
+            this.props.stageData.userGroups);
     }
     handleSearchSelect(selection) {
         this.props.actions.assignTask(selection.suggestion.value.id,
@@ -94,7 +95,10 @@ class StageSlot extends Component {
             {this.props.user &&
                 <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
-                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
+                        <Link to={{
+                            pathname: `/task-review/${this.props.project.id}/${this.props.task.id}`,
+                            state: { referrer: document.location.pathname },
+                        }}>
                             <span>{renderName(this.props.user)}</span>
                         </Link>
                         <button className='stage-slot__masked-button stage-slot__right-icon'

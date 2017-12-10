@@ -5,6 +5,8 @@ $block-class: 'message-list';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
+        min-height: 220px;
+        border-bottom: 1px solid $border-color;
 
         &__title {
             @extend .med-font;
