@@ -7,7 +7,7 @@ $block-class: 'message-list';
         cursor: pointer;
 
         &__title {
-            @extend .large-font;
+            @extend .med-font;
 
             justify-content: space-between;
             padding-left: 24px;
