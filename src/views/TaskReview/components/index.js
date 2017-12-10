@@ -116,6 +116,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
         subject: (project.id > 0 && task.uoaId > 0) ?
             find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
         users: state.user.users,
+        projectUsers: project.users,
         profile: state.user.profile,
         task,
         survey: state.surveys.data[0].name ?

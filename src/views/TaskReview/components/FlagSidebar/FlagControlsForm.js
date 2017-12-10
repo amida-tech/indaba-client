@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { find } from 'lodash';
 import { Field, form, reduxForm, reset } from 'redux-form';
 
 import { renderName } from '../../../../utils/User';
@@ -7,11 +8,14 @@ import FlagUserSelect from './FlagUserSelect';
 
 class FlagControlsForm extends Component {
     render() {
-        const userOptions = this.props.users ?
-            this.props.users.map(user => ({
-                label: renderName(user),
-                value: user,
-            })) : [];
+        const userOptions = this.props.projectUsers ?
+            this.props.projectUsers.map((projUserId) => {
+                const current = find(this.props.users, user => user.id === projUserId);
+                return {
+                    label: renderName(current),
+                    value: current,
+                };
+            }) : [];
         return (
             <form className='flag-controls-form'
                 onSubmit={this.props.handleSubmit}>
