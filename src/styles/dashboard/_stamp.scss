@@ -25,7 +25,7 @@ $neutral-color: #e6edef;
 
         &--neutral {
             border-color: $neutral-color;
-            color: $font-color;
+            color: $lead-font-color;
         }
 
         &::before {
@@ -49,12 +49,10 @@ $neutral-color: #e6edef;
             font-size: 48px;
             line-height: 48px;
             font-weight: 300;
-            color: $lead-font-color;
         }
 
         &__label {
             font-size: 14px;
-            color: $lead-font-color;
         }
     }
 }
