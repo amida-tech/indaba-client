@@ -80,22 +80,12 @@ export default (state = initialState, action) => {
     case type.SET_SIGNATURE_ID:
         return update(state,
             { ui: { flagSidebar: { signatureId: { $set: action.signatureId } } } });
-    case type.UPDATE_FLAG_COMMENT:
-        return update(state,
-            { ui: { flagSidebar: { comment: { $set: action.comment } } } });
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
     case type.UPDATE_NOTIFY_USER:
         return update(state,
             { ui: { flagSidebar: { notifyUser: { $set: action.notifyUser } } } });
-    case type.CANCEL_FLAGGED_UPDATE:
-        return update(state,
-            { ui: { flagSidebar: {
-                comment: { $set: '' },
-                resolved: { $set: false },
-                timestamp: { $set: null },
-            } } });
     case UPDATE_FLAGGED_QUESTION: {
         const flagIndex = findIndex(state.ui.flags, flag =>
             flag.id === action.activeId);

@@ -15,31 +15,27 @@ class FlagCommentary extends Component {
                 {this.props.ui.flags.length > 0 &&
                     this.props.ui.flags[active].flagHistory.map((reply, index) => {
                         return (
-                        <div className='flag-commentary__frame'
-                            key={`flag-comment${index}`}>
-                            <div className='flag-commentary__timestamp'>
-                                {TaskStatus.formatDateTime(reply.timestamp)}
-                            </div>
-                            <div className='flag-commentary__comment'>
-                                {reply.comment}
-                            </div>
-                            <div className='flag-commentary__signature'>
-                                –{renderName(this.props.profile.id === reply.userId ?
-                                    this.props.profile :
-                                    _.find(this.props.users, user => user.id === reply.userId))}
-                            </div>
+                    <div className='flag-commentary__frame'
+                        key={`flag-comment${index}`}>
+                        <div className='flag-commentary__timestamp'>
+                            {TaskStatus.formatDateTime(reply.timestamp)}
                         </div>
+                        <div className='flag-commentary__comment'>
+                            {reply.comment}
+                        </div>
+                        <div className='flag-commentary__signature'>
+                            –{renderName(this.props.profile.id === reply.userId ?
+                                this.props.profile :
+                                _.find(this.props.users, user => user.id === reply.userId))}
+                        </div>
+                    </div>
                         );
                     })}
-                    {this.props.ui.flags.length === 0 &&
-                        <div className='flag-commentary__frame'>
-                            {this.props.vocab.PROJECT.NO_COMMENTS}
-                        </div>
-                    }
-                <textarea className='flag-commentary__discussion'
-                    placeholder={this.props.vocab.PROJECT.REPLY}
-                    value={this.props.ui.flagSidebar.comment}
-                    onChange={event => this.props.actions.updateFlagComment(event.target.value)} />
+                {this.props.ui.flags.length === 0 &&
+                    <div className='flag-commentary__frame'>
+                        {this.props.vocab.PROJECT.NO_COMMENTS}
+                    </div>
+                }
             </Box>
         );
     }
