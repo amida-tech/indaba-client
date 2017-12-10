@@ -64,7 +64,7 @@ class TaskReview extends Component {
                     <Link to={`/project/${this.props.projectId}`}
                         className='task-review__back-link'>
                         <IonIcon icon='ion-android-arrow-back' className='task-review__back-arrow'/>
-                        {this.props.vocab.PROJECT.BACK_TO_WORKFLOW}
+                        {this.props.vocab.PROJECT.TASK_BACK}
                     </Link>
                     <TaskDetails
                         projectId={this.props.projectId}
