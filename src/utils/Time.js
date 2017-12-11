@@ -1,6 +1,9 @@
 import * as moment from 'moment';
 
 export default {
+    validateTime(time) {
+        return moment(time, 'MM/DD/YYYY', true).isValid();
+    },
     renderForProjectList(time) {
         return moment(time).format('DD MMM Y');
     },

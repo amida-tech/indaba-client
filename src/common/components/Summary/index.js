@@ -37,6 +37,7 @@ class Summary extends Component {
                         return (this.props.survey.id >= 0 ?
                             this.props.actions.patchSurvey(
                                 this.props.survey,
+                                this.props.vocab.SURVEY.SUCCESS,
                                 this.props.vocab.ERROR) :
                             this.props.actions.postSurvey(
                                 this.props.survey,

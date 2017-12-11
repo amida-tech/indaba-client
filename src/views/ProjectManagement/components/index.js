@@ -12,8 +12,8 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
-import SurveyBuilder from '../../../common/components/SurveyBuilder';
 import StatusChange from './Modals/StatusChange';
+import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
@@ -117,7 +117,7 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui),
+        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
         survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
