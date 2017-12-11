@@ -8,16 +8,30 @@ $block-class:'flag-controls-form';
         display: block;
 
         &__checkbox {
-            margin-top: 1em;
-            display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
             flex-flow: nowrap;
+
+            &-resolved {
+                @extend .small-font;
+
+                color: $lead-font-color;
+            }
         }
+    }
 
         &__notify {
-            margin-top: 0;
+            color: $lead-font-color;
+            margin-top: 16px;
             margin-bottom: 1em;
+
+        .Select-control {
+            border: 1px solid $border-color;
+            border-radius: 2px;
+            height: 24px;
+            margin-top: 8px;
+            background-color: #ebeef0;
         }
+            }
 
         &__button-group {
             margin-top: 5px;
