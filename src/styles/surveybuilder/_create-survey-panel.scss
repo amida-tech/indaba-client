@@ -1,0 +1,54 @@
+$block-class: 'create-survey-panel';
+
+@at-root {
+    .#{$block-class} {
+        padding: 15px;
+        width: 100%;
+
+        &__view-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 2px solid $font-color;
+            align-items: center;
+            padding-bottom: .4em;
+        }
+
+        &__view-select {
+            width: 60%
+        }
+
+        &__accordion-buttons {
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__survey-controls {
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__instructions {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            color: $font-color;
+        }
+
+        &__save-button {
+            margin: 2em 1em;
+            border-radius: 2px;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+        }
+
+        &__instructions-entry {
+            border: none;
+            color: $font-color;
+            height: 5em;
+            resize: none;
+            margin-bottom: 5px;
+            background-color: #fafafa;
+        }
+    }
+}

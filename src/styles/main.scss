@@ -59,14 +59,21 @@
 @import './projectmanagement/filter-wrapper.scss';
 @import './projectmanagement/sub-nav.scss';
 @import './projectmanagement/sub-nav-entry.scss';
-@import './projectmanagement/survey.scss';
-@import './projectmanagement/create-survey-pane.scss';
-@import './projectmanagement/answer-panel.scss';
-@import './projectmanagement/new-questions.scss';
-@import './projectmanagement/existing-questions.scss';
 @import './projectmanagement/export.scss';
 @import './projectmanagement/delete-list.scss';
 @import './projectmanagement/question-selection-list.scss';
+
+// Survey Builder view
+@import './surveybuilder/add-question-panel.scss';
+@import './surveybuilder/new-questions.scss';
+@import './surveybuilder/existing-questions.scss';
+@import './surveybuilder/survey-builder.scss';
+@import './surveybuilder/create-survey-panel.scss';
+@import './surveybuilder/create-section-panel.scss';
+@import './surveybuilder/question-panel.scss';
+@import './surveybuilder/static-question.scss';
+@import './surveybuilder/dynamic-question.scss';
+
 // Modals:
 @import './modals/modal.scss';
 @import './modals/footer-button.scss';
@@ -113,7 +120,7 @@
 @import './taskreview/choice.scss';
 @import './taskreview/choices.scss';
 @import './taskreview/flag-commentary.scss';
-@import './taskreview/flag-controls.scss';
+@import './taskreview/flag-controls-form.scss';
 @import './taskreview/flag-header.scss';
 @import './taskreview/flag-question-list.scss';
 @import './taskreview/flag-sidebar.scss';

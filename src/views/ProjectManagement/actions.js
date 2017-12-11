@@ -99,3 +99,17 @@ export function startTaskAssign(task) {
         task,
     };
 }
+
+export function pmShowUserGroupDeleteConfirmModal(id, dataState) {
+    return {
+        type: actionTypes.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL,
+        id,
+        dataState,
+    };
+}
+
+export function pmHideUserGroupDeleteConfirmModal() {
+    return {
+        type: actionTypes.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL,
+    };
+}

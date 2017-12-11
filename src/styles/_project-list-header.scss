@@ -4,12 +4,10 @@ $block-class: 'project-list-header';
     .#{$block-class} {
         display: flex;
         padding: 8px 16px;
-
-        @extend .lead-font;
+        color: $header-font-color;
 
         &__title {
             color: $font-color;
-            font-weight: 500;
 
             &--project {
                 flex: 4;

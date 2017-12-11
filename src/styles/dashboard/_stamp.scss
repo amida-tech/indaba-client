@@ -2,7 +2,7 @@ $block-class: 'stamp';
 
 $bad-color: #af1212;
 $good-color: #68997d;
-$neutral-color: $header-font-color;
+$neutral-color: #e6edef;
 
 @at-root {
     .#{$block-class} {
@@ -25,7 +25,7 @@ $neutral-color: $header-font-color;
 
         &--neutral {
             border-color: $neutral-color;
-            color: $neutral-color;
+            color: $lead-font-color;
         }
 
         &::before {
@@ -48,6 +48,11 @@ $neutral-color: $header-font-color;
         &__value {
             font-size: 48px;
             line-height: 48px;
+            font-weight: 300;
+        }
+
+        &__label {
+            font-size: 14px;
         }
     }
 }

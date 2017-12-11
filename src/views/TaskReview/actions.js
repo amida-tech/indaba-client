@@ -59,13 +59,6 @@ export function setSignatureId(signatureId) {
     };
 }
 
-export function updateFlagComment(comment) {
-    return {
-        type: actionTypes.UPDATE_FLAG_COMMENT,
-        comment,
-    };
-}
-
 export function updateMarkResolved(resolved) {
     return {
         type: actionTypes.UPDATE_MARK_RESOLVED,
@@ -77,11 +70,5 @@ export function updateNotifyUser(notifyUser) {
     return {
         type: actionTypes.UPDATE_NOTIFY_USER,
         notifyUser,
-    };
-}
-
-export function cancelFlaggedUpdate() {
-    return {
-        type: actionTypes.CANCEL_FLAGGED_UPDATE,
     };
 }
