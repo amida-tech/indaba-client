@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import IonIcon from 'react-ionicons';
 import EditableTextInput from '../../../common/components/EditableTextInput';
-import Modal from '../../common/components/Modal';
-
 
 class StatusCard extends Component {
     render() {
