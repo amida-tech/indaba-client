@@ -84,9 +84,9 @@ class UserDashboard extends Component {
 const mapStateToProps = state => ({
     glance: {
         tasks: state.userdashboard.tasks.length,
-        newTasks: 0, // Come back to.
+        newTasks: state.userdashboard.answers.filter(answers => answers.status === 'new').length,
         lateTasks: state.userdashboard.tasks.filter(task => TaskStatus.endDateInPast(task)).length,
-        flagged: 0, // Come back to.
+        flagged: state.userdashboard.tasks.filter(task => task.flagCounter > 0).length,
     },
     profile: state.user.profile,
     vocab: state.settings.language.vocabulary,
