@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Summary from '../../../common/components/Summary';
-import SurveyBuilder from '../../../common/components/SurveyBuilder';
+import { SurveyBuilder } from '../../../views/SurveyBuilder';
 
 class AddSurvey extends Component {
     render() {

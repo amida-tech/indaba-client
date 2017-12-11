@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ExistingQuestions extends Component {
 
@@ -10,5 +11,11 @@ class ExistingQuestions extends Component {
         );
     }
 }
+
+ExistingQuestions.propTypes = {
+    sectionView: PropTypes.number.isRequired,
+    actions: PropTypes.object,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default ExistingQuestions;

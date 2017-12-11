@@ -29,7 +29,7 @@ const initialState = {
 export const TaskReducer = (state = initialState, action) => {
     const taskIndex = _.findIndex(state.data, task => task.id === action.taskId);
     switch (action.type) {
-    case type.GET_TASKS_BY_PROJECT_SUCCESS: {
+    case type.GET_TASKS_BY_PRODUCT_SUCCESS: {
         return update(state, {
             projectId: { $set: action.projectId },
             data: { $set: action.tasks },
