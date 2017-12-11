@@ -25,8 +25,10 @@ import * as taskActions from '../../../common/actions/taskActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
-        this.props.actions.getTasksByProject(this.props.params.projectId, this.props.vocab.ERROR);
+        this.props.actions.getProjectById(
+            this.props.params.projectId,
+            true,
+            this.props.vocab.ERROR);
     }
 
     render() {

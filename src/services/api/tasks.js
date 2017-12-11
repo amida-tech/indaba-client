@@ -2,8 +2,8 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const tasks = {
-    getTasksByProject: (projectId, callback) => {
-        requests.apiGetRequest(getFullPath(`tasks-by-proj-id/${projectId}`), callback);
+    getTasksByProduct: (productId, callback) => {
+        requests.apiGetRequest(getFullPath(`products/${productId}/tasks`), callback);
     },
     getTaskById: (taskId, callback) => {
         requests.apiGetRequest(getFullPath(`tasks/${taskId}`), callback);
