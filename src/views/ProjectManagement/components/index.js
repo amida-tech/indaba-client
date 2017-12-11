@@ -14,7 +14,6 @@ import Users from './Users';
 import Export from './Export';
 import StatusChange from './Modals/StatusChange';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
-import { renderName } from '../../../utils/User';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -140,7 +139,7 @@ const mapDispatchToProps = dispatch => ({
         { sendMessage: user => dispatch(push(
             {
                 pathname: '/messages/new',
-                state: { message: { to: renderName(user) } },
+                state: { message: { to: [user.email] } },
             },
         )) },
     ), dispatch),
