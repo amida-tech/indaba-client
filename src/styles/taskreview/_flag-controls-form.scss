@@ -21,12 +21,21 @@ $block-class:'flag-controls-form';
         }
 
         &__mark-resolve-section {
+            display: flex;
             color: $lead-font-color;
             margin-top: 16px;
             margin-bottom: 16px;
+            margin-left: 8px;
+        }
+
+        &__resolve-text {
+            margin-left: 8px;
         }
 
         &__notify-section {
+            color: $lead-font-color;
+            margin-bottom: 1em;
+
             .Select-control {
                 border-radius: 2px;
                 height: 24px;
