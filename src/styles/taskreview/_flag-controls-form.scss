@@ -20,9 +20,19 @@ $block-class:'flag-controls-form';
             outline: none;
         }
 
-        &__notify {
-            margin-top: 0;
-            margin-bottom: 1em;
+        &__mark-resolve-section {
+            color: $lead-font-color;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        &__notify-section {
+            .Select-control {
+                border-radius: 2px;
+                height: 24px;
+                margin-top: 8px;
+                background-color: #ececec;
+            }
         }
 
         &__button-group {
