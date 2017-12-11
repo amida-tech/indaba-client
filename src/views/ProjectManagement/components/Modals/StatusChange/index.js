@@ -52,6 +52,7 @@ class StatusChange extends Component {
         } else if (this.surveyConfirmed()) {
             this.props.actions.patchSurvey(Object.assign({}, this.props.survey,
                     { status: this.state.survey.published ? 'published' : 'draft' }),
+                this.props.vocab.SURVEY.SUCCESS,
                 this.props.vocab.ERROR);
             this.props.actions.updateStatusChange(false);
         }

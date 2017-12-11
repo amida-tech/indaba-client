@@ -1,7 +1,4 @@
-$header-font-color: #7e848f;
-$border-color: #dadcde;
 $brand-color: #4eb276;
-$font-color: #a4aebf;
 $header-footer: #f2f2f2;
 
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
@@ -32,7 +29,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             text-align: center;
             padding: 2em;
 
-            @extend .med-font;
+            @extend .large-font;
         }
 
         &__footer {

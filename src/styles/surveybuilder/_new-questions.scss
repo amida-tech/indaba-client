@@ -1,0 +1,51 @@
+$block-class: 'new-questions';
+
+@at-root {
+    .#{$block-class} {
+        &__types {
+            border-bottom: 1px solid $border-color;
+            padding: 0 1em;
+            display: flex;
+            flex-direction:row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__insert-label {
+            padding: .5em;
+            font-size: 12px;
+        }
+
+        &__menu-dropdown {
+            border-style: solid;
+            border-color: $font-color;
+            border-width: 2px;
+            border-radius: 4px;
+        }
+
+        &__menu-button {
+            border-bottom: 1px solid $font-color;
+            padding: .5em;
+            font-size: 1.2em;
+        }
+
+        &__masked-button {
+            background-color: Transparent;
+            border: none;
+            padding: 1em;
+            margin-left: 2px;
+            margin-bottom: 3.2px;
+        }
+
+        &__break {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1em;
+            margin-top: 40px;
+            border-width: 1px 0;
+            border-style: solid;
+            border-color: $border-color;
+        }
+    }
+}

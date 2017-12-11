@@ -33,9 +33,15 @@ export const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
-        const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
+        let flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
             action.survey.questions;
-        const reqQuestions = filter(flatSurvey, question => question.required);
+        let reqQuestions;
+        if (flatSurvey[0] === undefined) {
+            flatSurvey = [];
+            reqQuestions = [];
+        } else {
+            reqQuestions = filter(flatSurvey, question => question.required);
+        }
         const flatAnswers = map(state.ui.form.answers, item =>
             ({ questionId: item.questionId, answer: item.answer }));
         const answers = intersectionWith(reqQuestions, flatAnswers,
@@ -80,22 +86,12 @@ export default (state = initialState, action) => {
     case type.SET_SIGNATURE_ID:
         return update(state,
             { ui: { flagSidebar: { signatureId: { $set: action.signatureId } } } });
-    case type.UPDATE_FLAG_COMMENT:
-        return update(state,
-            { ui: { flagSidebar: { comment: { $set: action.comment } } } });
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
     case type.UPDATE_NOTIFY_USER:
         return update(state,
             { ui: { flagSidebar: { notifyUser: { $set: action.notifyUser } } } });
-    case type.CANCEL_FLAGGED_UPDATE:
-        return update(state,
-            { ui: { flagSidebar: {
-                comment: { $set: '' },
-                resolved: { $set: false },
-                timestamp: { $set: null },
-            } } });
     case UPDATE_FLAGGED_QUESTION: {
         const flagIndex = findIndex(state.ui.flags, flag =>
             flag.id === action.activeId);

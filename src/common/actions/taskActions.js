@@ -1,18 +1,18 @@
-import { find } from 'lodash';
 import { toast } from 'react-toastify';
+import { find, pickBy, identity } from 'lodash';
 
 import { getAnswers } from '../actions/surveyActions';
 import { getProjectById } from '../actions/projectActions';
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
 
-export function getTasksByProject(projectId, errorMessages) {
+export function getTasksByProduct(productId, projectId, errorMessages) {
     return (dispatch) => {
-        apiService.tasks.getTasksByProject(
-            projectId,
+        apiService.tasks.getTasksByProduct(
+            productId,
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
-                    dispatch(_getTasksByProjectSuccess(projectId, taskResp));
+                    dispatch(_getTasksByProductSuccess(projectId, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
                 }
@@ -28,7 +28,7 @@ export function getTaskById(projectId, taskId, errorMessages) {
             (taskErr, taskResp) => {
                 if (!taskErr && taskResp) {
                     dispatch(getAnswers(taskResp.assessmentId, errorMessages));
-                    dispatch(getProjectById(projectId, errorMessages)); // Safer but not perfect.
+                    dispatch(getProjectById(projectId, false, errorMessages));
                     dispatch(_getTaskByIdSuccess(projectId, taskResp));
                 } else {
                     dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
@@ -127,19 +127,31 @@ export function updateTaskEndDate(taskId, projectId, endDate) {
     };
 }
 
-export function reassignTask(reassignId, taskId, projectId) {
-    return {
-        type: actionTypes.REASSIGN_TASK,
-        reassignId,
-        taskId,
-        projectId,
+export function updateTask(taskId, userIds, endDate, errorMessages) {
+    const requestBody = pickBy({
+        userIds,
+        endDate,
+    }, identity);
+
+    return (dispatch) => {
+        apiService.tasks.putTask(
+            taskId,
+            requestBody,
+            (taskErr, taskResp) => {
+                if (taskErr) {
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                } else if (taskResp || []) {
+                    dispatch(_putTaskSuccess(taskId, requestBody));
+                }
+            },
+        );
     };
 }
 
 // Private
-function _getTasksByProjectSuccess(projectId, tasks) {
+function _getTasksByProductSuccess(projectId, tasks) {
     return {
-        type: actionTypes.GET_TASKS_BY_PROJECT_SUCCESS,
+        type: actionTypes.GET_TASKS_BY_PRODUCT_SUCCESS,
         projectId,
         tasks,
     };
@@ -171,6 +183,14 @@ function _postTaskSuccess(userId, slot, taskResp) {
             uoaId: slot.task.uoaId,
             endDate: slot.stageData.endDate,
         },
+    };
+}
+
+function _putTaskSuccess(taskId, taskChanges) {
+    return {
+        type: actionTypes.PUT_TASK_SUCCESS,
+        taskId,
+        taskChanges,
     };
 }
 

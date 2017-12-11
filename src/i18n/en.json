@@ -69,7 +69,10 @@
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
         "SUBJECT_NEED": "You've added a stage, but you need to add a subject to see the matrix.",
         "STAGE_NEED": "You've added a subject, but you need to add a stage to see it.",
+        "ALREADY_TOP": "The question is already at the very top of the section.",
+        "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
+        "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -114,7 +117,8 @@
             "Workflow",
             "Survey",
             "Users",
-            "Subject"
+            "Subject",
+            "Export"
         ],
         "CARD": {
             "ASSIGN_TASK": "Assign Task",
@@ -188,7 +192,7 @@
             "Review and Edit description",
             "All permissions description"
         ],
-        "BACK_TO_WORKFLOW": "Back to Workflow",
+        "TASK_BACK": "Back",
         "DATE_RANGE": "Date Range",
         "START_DATE": "Start Date (Stage is unavailable until this date)",
         "END_DATE": "End Date (Stage is unavailable until this date)",
@@ -323,25 +327,52 @@
         "UNPUBLISH": "Edit survey in draft mode",
         "PANE_INSTRUCTIONS": "Click on a new question to choose a question from a different survey",
         "NEW_QUESTIONS": "New Questions",
+        "INSERT_INTO": "Insert into...",
+        "PHRASE_QUESTION": "Please phrase your question here.",
         "EXISTING": "Existing",
         "VIEW_ALL": "Viewing all questions",
-        "ENTER_INSTRUCTIONS": "Enter instructions here",
+        "ENTER_INSTRUCTIONS": "Enter instructions for the whole survey here.",
+        "SAVE_PROGRESS": "Save Progress",
+        "SUCCESS": "Survey has been successfully created/updated.",
         "INSTRUCTIONS_OPTIONAL": "Instructions (optional)",
+        "MOVE_UP": "Move Question Up",
+        "MOVE_DOWN": "Move Question Down",
+        "DELETE_QUESTION": "Delete Question",
+        "SELECT_FILE": "Select a file",
+        "NO_FILE": "No file chosen",
+        "ADD_LINK": "Add Link",
+        "ENTER_PUBLICATION": "Enter Publication Title",
+        "AUTHOR": "Author",
         "ATTACH_FILE": "Attach File",
-        "ADD_LINK": "Add a Link",
+        "ADD_A_LINK": "Add a Link",
         "REQUIRED_QUESTION": "Required Questions",
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
-        "QUESTIONS_TYPES": [
-            "Multiple Choice",
-            "Bullet Point",
-            "Checkbox",
-            "Long Text",
-            "Dropdown",
-            "Date",
-            "Number",
-            "Scale"
-        ],
+        "NAME_OPTIONAL": " Name (Optional)",
+        "USER_ENTERS": "Enter your answer here.",
+        "BP_ENTERS": "And a new text field will appear here.",
+        "NUM_ENTER": "Number goes here.",
+        "CHOICE_ENTER": "Enter an option for the user to select.",
+        "QUESTIONS_TYPES": {
+            "CHOICE": "Multiple Choice",
+            "BULLETPOINT": "Bullet Point",
+            "BOOL": "Checkbox",
+            "TEXT": "Long Text",
+            "DROPDOWN":"Dropdown",
+            "DATE": "Date",
+            "INTEGER": "Number",
+            "SCALE": "Scale"
+        },
+        "QUESTIONS_EXPLAINED": {
+            "CHOICE": "The user will select one of the options you enter here.",
+            "BULLETPOINT": "Additional input lines will appear as the user starts each new entry.",
+            "BOOL": "Enter the options for the user to choose from. She/he can choose multiple.",
+            "TEXT": "The user will simply enter a sentence into a text field.",
+            "DROPDOWN":"The user would selection an option from those available in the dropdown.",
+            "DATE": "The user will enter a date in the provided field.",
+            "INTEGER": "The user would enter a whole number.",
+            "SCALE": "The users answers a question "
+        },
         "SECTION_BREAK": "Section Break"
     },
     "USER": {
@@ -354,6 +385,29 @@
         "INACTIVE": "Inactive",
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this"
+    },
+    "EXPORT": {
+        "EXPORT": "Export",
+        "INSTRUCTIONS": "Select the quick option to download all project data. Use the custom option to export specific project data. Once selected, confirm options and click the export button.",
+        "QUICK_EXPORT": "Quick Export",
+        "QUICK_EXPORT_EXPLANATION": "Export project data for all subjects and questions, including flags, comments and attached files.",
+        "CUSTOM_EXPORT": "Custom Export",
+        "CUSTOM_EXPORT_EXPLANATION": "Generates a file based on options selected below.",
+        "CUSTOM_SUBJECTS": "Custom Subjects",
+        "CUSTOM_QUESTIONS": "Custom Questions",
+        "INCLUDE_FILES_LINKS": "Include files/links",
+        "INCLUDE_FLAGS": "Include flags",
+        "INCLUDE_COMMENTS": "Include comments",
+        "ENTER_SUBJECTS": "Enter subjects",
+        "ADD_ALL_SUBJECTS": "Add all subjects",
+        "REMOVE_ALL_SUBJECTS": "Remove all subjects",
+        "SELECT_QUESTIONS": "Select specific questions to export",
+        "ADD_ALL_QUESTIONS": "Add all questions",
+        "REMOVE_ALL_QUESTIONS": "Remove all questions",
+        "NONE_SELECTED": "None selected",
+        "DOWNLOAD_YOUR_DATA": "Download Your Data",
+        "EXPORT_CSV": "Export CSV",
+        "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {
@@ -415,6 +469,11 @@
             "DELETE_WITH_DATA": "This user has completed tasks in one or more projects. Their progress will be saved but they will no longer be able to access Indaba.",
             "DELETE_WITH_TASKS": "This user has assigned tasks in one or more projects.",
             "DELETE_WITH_NOTHING": "Are you sure you want to delete this user?"
+        },
+        "USER_GROUP_DELETE_CONFIRM": {
+            "TITLE": "Remove user group?",
+            "DELETE_WITH_NOTHING": "Are you sure you want to delete this user group?",
+            "DELETE_WITH_STAGES": "This user group is currently assigned to one or more workflow stages."
         }
     }
 }
