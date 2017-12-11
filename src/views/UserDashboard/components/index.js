@@ -52,7 +52,7 @@ class UserDashboard extends Component {
     searchRow(row) {
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
         return row.subject.toLowerCase().includes(lowerQuery) ||
-            row.task.toLowerCase().includes(lowerQuery) ||
+            row.task.title.toLowerCase().includes(lowerQuery) ||
             row.survey.toLowerCase().includes(lowerQuery);
     }
     render() {
