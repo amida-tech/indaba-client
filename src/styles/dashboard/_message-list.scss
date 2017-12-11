@@ -9,7 +9,7 @@ $block-class: 'message-list';
         border-bottom: 1px solid $border-color;
 
         &__title {
-            @extend .x-large-font;
+            @extend .med-font;
 
             justify-content: space-between;
             padding-left: 24px;
@@ -18,8 +18,6 @@ $block-class: 'message-list';
             border-bottom: 1px solid $border-color;
             display: flex;
             align-items: flex-end;
-            font-weight: 500;
-            font-size: 18px;
         }
 
         &__title-link {
@@ -37,17 +35,21 @@ $block-class: 'message-list';
             border-bottom: 1px solid $border-color;
 
             &:hover {
-                background-color: #f7f7f7;
+                background-color: darken(#fafafa, 5%);
+                color: $lead-font-color;
             }
         }
 
         &__name {
             flex: 2;
-            font-weight: 400;
+
+            @extend .lead-font-bold;
         }
 
         &__subject {
             flex: 3;
+
+            @extend .lead-font;
         }
 
         &__time {

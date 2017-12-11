@@ -31,13 +31,13 @@ $filter-background: #fff;
         }
 
         &__button {
-            text-transform: uppercase;
+            @extend .small-font;
+
             text-align: center;
             display: flex;
             align-items: center;
-            padding: 0.4em 1em;
+            padding: 4px 8px;
             border: 1px solid $border-color;
-            font-size: 12px;
             background-color: $filter-background;
             cursor: pointer;
 
@@ -49,6 +49,7 @@ $filter-background: #fff;
 
             &:hover:not(&--active) {
                 background-color: darken(#fafafa, 5%);
+                color: $lead-font-color;
             }
         }
     }

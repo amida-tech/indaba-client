@@ -29,7 +29,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             text-align: center;
             padding: 2em;
 
-            @extend .med-font;
+            @extend .large-font;
         }
 
         &__footer {
