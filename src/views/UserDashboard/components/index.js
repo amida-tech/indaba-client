@@ -111,8 +111,6 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
     const answers = state.userdashboard.answers.find(findAnswers =>
         findAnswers.assessmentId === task.assessmentId);
-    const discussion = (state.discuss.data.find(findDiscuss =>
-        findDiscuss.taskId === task.id) || { data: [] });
     const survey = state.userdashboard.surveys.find(findSurvey =>
         findSurvey.id === task.surveyId);
     const recursiveSectionLength = (section) => {
@@ -124,6 +122,11 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     };
     const surveyLength = survey ? recursiveSectionLength(survey) : 0;
     const answered = get(answers, 'answers.length', 0);
+    const late = !!(task && answers &&
+        TaskStatus.endDateInPast(task) &&
+        !TaskStatus.responsesComplete({ response: answers.answers }, surveyLength));
+    const complete = answers &&
+    TaskStatus.responsesComplete({ response: answers.answers }, surveyLength);
 
     return {
         key: task.id,
@@ -134,11 +137,9 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         survey: survey ? survey.name : '',
         flags: task.flagCount,
         progress: `${answered}/${surveyLength} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
-        new: !!task.new,
-        late: TaskStatus.endDateInPast(task) && // survey.questions.length
-            !TaskStatus.responsesComplete({ response: discussion.data }, 0),
-        complete: TaskStatus.responsesComplete({ response: discussion.data },
-            surveyLength),
+        new: get(answers, 'status') === 'new',
+        late,
+        complete,
     };
 };
 
