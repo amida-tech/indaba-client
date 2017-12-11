@@ -12,9 +12,8 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
-import SurveyBuilder from '../../../common/components/SurveyBuilder';
 import StatusChange from './Modals/StatusChange';
-import { renderName } from '../../../utils/User';
+import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -25,8 +24,10 @@ import * as taskActions from '../../../common/actions/taskActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
-        this.props.actions.getTasksByProject(this.props.params.projectId, this.props.vocab.ERROR);
+        this.props.actions.getProjectById(
+            this.props.params.projectId,
+            true,
+            this.props.vocab.ERROR);
     }
 
     render() {
@@ -117,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui),
+        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
         survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
@@ -138,7 +139,7 @@ const mapDispatchToProps = dispatch => ({
         { sendMessage: user => dispatch(push(
             {
                 pathname: '/messages/new',
-                state: { message: { to: renderName(user) } },
+                state: { message: { to: [user.email] } },
             },
         )) },
     ), dispatch),

@@ -43,7 +43,10 @@ class AddSubjects extends Component {
                         toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
                             { autoClose: false, type: 'error' });
                     }
-                    this.props.actions.getProjectById(this.props.project.id);
+                    this.props.actions.getProjectById(
+                        this.props.project.id,
+                        false,
+                        this.props.vocab.ERROR);
                 },
             );
             this.props.actions.wizardHideSubjectDeleteConfirmModal();
@@ -59,7 +62,10 @@ class AddSubjects extends Component {
                         toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
                             { autoClose: false, type: 'error' });
                     }
-                    this.props.actions.getProjectById(this.props.project.id);
+                    this.props.actions.getProjectById(
+                        this.props.project.id,
+                        false,
+                        this.props.vocab.ERROR);
                 },
             );
             this.props.actions.wizardHideSubjectDeleteConfirmModal();
