@@ -23,6 +23,7 @@ import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 import StageModal from './Modals/Stage';
 import Modal from '../../../common/components/Modal';
+import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
@@ -30,6 +31,35 @@ class ProjectManagementContainer extends Component {
             this.props.params.projectId,
             true,
             this.props.vocab.ERROR);
+    }
+
+    stageHasData(stageId) {
+        return Promise.all(
+            this.props.tasks.filter(task => task.stepId === stageId &&
+                task.productId === this.props.project.productId).map(task =>
+                    new Promise((statusResolve, statusReject) => {
+                        apiService.surveys.getAssessmentAnswersStatus(task.assessmentId,
+                            (statusErr, statusResp) =>
+                                (statusErr ?
+                                statusReject(statusErr) :
+                                statusResolve(statusResp.status)),
+                        );
+                    }),
+            ),
+        )
+        .then(statuses => statuses.some(status => status !== 'new'))
+        .catch(() => toast(this.props.vocab.ERROR.STAGE_REQUEST));
+    }
+
+    handleStageDelete(stageId) {
+        this.stageHasData(stageId).then((hasData) => {
+            if (hasData) {
+                toast(this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.NO_DELETE,
+                    { type: 'error', autoClose: false });
+            } else {
+                this.props.actions.pmShowStageDeleteConfirmModal(stageId);
+            }
+        });
     }
 
     render() {
@@ -96,9 +126,7 @@ class ProjectManagementContainer extends Component {
                             project={this.props.project}
                             stageId={this.props.ui.editStage}
                             onCancel={() => this.props.actions.showStageModal(false)}
-                            onDeleteClick={() =>
-                                this.props.actions.pmShowStageDeleteConfirmModal(
-                                    this.props.ui.editStage)}
+                            onDeleteClick={() => this.handleStageDelete(this.props.ui.editStage)}
                             onAddStage={(stage) => {
                                 this.props.actions.showStageModal(false);
                                 this.props.actions.putStage(
