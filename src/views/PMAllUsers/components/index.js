@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import { renderName } from '../../../utils/User';
-
 import * as actions from '../actions';
 import * as userActions from '../../../common/actions/userActions';
 import PMAllUsers from './PMAllUsers';
@@ -29,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
         { sendMessage: user => dispatch(push(
             {
                 pathname: '/messages/new',
-                state: { message: { to: renderName(user) } },
+                state: { message: { to: [user.email] } },
             },
         )) },
     ), dispatch),

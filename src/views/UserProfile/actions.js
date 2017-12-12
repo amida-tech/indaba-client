@@ -10,7 +10,7 @@ export const getAllProfileData = (userId, projectId, errorMessages) => (dispatch
     dispatch(userActions.getUsers(errorMessages));
 
     if (projectId !== undefined) {
-        dispatch(projectActions.getProjectById(projectId));
+        dispatch(projectActions.getProjectById(projectId, false, errorMessages));
     }
 
     dispatch(getTasksForProfile(userId));

@@ -4,15 +4,16 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
 import Summary from '../../../common/components/Summary';
 import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
-import SurveyBuilder from '../../../common/components/SurveyBuilder';
+import Export from './Export';
 import StatusChange from './Modals/StatusChange';
-import { renderName } from '../../../utils/User';
+import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -23,8 +24,10 @@ import * as taskActions from '../../../common/actions/taskActions';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(this.props.params.projectId, this.props.vocab.ERROR);
-        this.props.actions.getTasksByProject(this.props.params.projectId, this.props.vocab.ERROR);
+        this.props.actions.getProjectById(
+            this.props.params.projectId,
+            true,
+            this.props.vocab.ERROR);
     }
 
     render() {
@@ -59,6 +62,14 @@ class ProjectManagementContainer extends Component {
                     actions={this.props.actions}
                     tasks={this.props.tasks}
                     ui={this.props.ui}/>;
+            break;
+        case 'export':
+            body = <Export vocab={this.props.vocab}
+                subjects={this.props.project.subjects}
+                actions={this.props.actions}
+                ui={this.props.ui.export}
+                survey={this.props.survey}
+                onSubmit={() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS)}/>;
             break;
         default:
             body = null;
@@ -107,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui),
+        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
         survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
@@ -128,7 +139,7 @@ const mapDispatchToProps = dispatch => ({
         { sendMessage: user => dispatch(push(
             {
                 pathname: '/messages/new',
-                state: { message: { to: renderName(user) } },
+                state: { message: { to: [user.email] } },
             },
         )) },
     ), dispatch),

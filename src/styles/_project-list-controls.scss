@@ -2,7 +2,7 @@ $block-class: 'project-list-controls';
 
 @at-root {
     .#{$block-class} {
-        padding: 2em;
+        padding: 24px;
         display: flex;
         flex-direction: column;
 

@@ -8,7 +8,20 @@ export function getDiscuss(taskId, errorMessages) { // errorMessages
             (discussErr, discussResp) => {
                 dispatch((!discussErr && discussResp) ?
                     _getDiscussSuccess(discussResp) :
-                    _reportDiscussError(errorMessages.FETCH_TASKS));
+                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
+            },
+        );
+    };
+}
+
+export function postDiscussion(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.discuss.postDiscussion(
+            requestBody,
+            (discussErr, discussResp) => {
+                dispatch((!discussErr && discussResp) ?
+                    _postDiscussionSuccess(discussResp) :
+                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
             },
         );
     };
@@ -42,6 +55,13 @@ function _getDiscussSuccess(discuss) {
     return {
         type: actionTypes.GET_DISCUSS_SUCCESS,
         discuss,
+    };
+}
+
+function _postDiscussionSuccess(discussion) {
+    return {
+        type: actionTypes.POST_DISCUSSION_SUCCESS,
+        discussion,
     };
 }
 

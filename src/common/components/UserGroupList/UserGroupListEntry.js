@@ -22,7 +22,7 @@ class UserGroupListEntry extends Component {
                 </div>
                 {this.props.onDeleteClick &&
                     <DeleteIconButton onClick={() =>
-                            this.props.onDeleteClick(this.props.group.id, this.props.projectId)}/>
+                            this.props.onDeleteClick(this.props.group.id)}/>
                 }
             </div>
         );
@@ -32,7 +32,6 @@ class UserGroupListEntry extends Component {
 UserGroupListEntry.propTypes = {
     group: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    projectId: PropTypes.number,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
 };

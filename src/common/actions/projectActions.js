@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
+import { getTasksByProduct } from './taskActions';
 import apiService from '../../services/api';
 
 // API calls.
@@ -51,7 +52,7 @@ export function putProject(project, errorMessages) {
     };
 }
 
-export function getProjectById(projectId, errorMessages) {
+export function getProjectById(projectId, getTasks, errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjectById(
             projectId,
@@ -59,6 +60,9 @@ export function getProjectById(projectId, errorMessages) {
                 if (!projErr && projResp) {
                     if (projResp.surveyId) {
                         dispatch(getSurveyById(projResp.surveyId, errorMessages));
+                    }
+                    if (getTasks === true) {
+                        dispatch(getTasksByProduct(projResp.productId, projectId, errorMessages));
                     }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {

@@ -33,7 +33,7 @@ $block-class: 'wizard-complete';
         }
 
         &__header {
-            @extend .med-font;
+            @extend .large-font;
 
             font-weight: 300;
             color: $header-font-color;

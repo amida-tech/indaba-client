@@ -28,7 +28,6 @@ class UserGroupList extends Component {
                     <UserGroupListEntry
                         key={group.id}
                         group={group}
-                        projectId={this.props.projectId}
                         onDeleteClick={this.props.onDeleteClick}
                         onGroupClick={this.props.onGroupClick &&
                             (() => this.props.onGroupClick(group.id))}
@@ -43,7 +42,6 @@ UserGroupList.propTypes = {
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object,
-    projectId: PropTypes.number,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
 };
