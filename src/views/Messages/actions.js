@@ -42,8 +42,21 @@ export const archiveThread = ids => (dispatch) => {
         .catch(err => _archiveThreadFailure(err));
 };
 
-export const unarchiveMessage = id => ({
-    type: actionTypes.UNARCHIVE_MESSAGE,
+export const unarchiveMessage = id => (dispatch) => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.unarchive(id, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                dispatch(_unarchiveMessageSuccess(id));
+                resolve(id);
+            }
+        });
+    });
+};
+
+const _unarchiveMessageSuccess = id => ({
+    type: actionTypes.UNARCHIVE_MESSAGE_SUCCESS,
     id,
 });
 
