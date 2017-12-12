@@ -2,10 +2,10 @@ $block-class: 'editable-text-input';
 
 @at-root {
     .#{$block-class} {
+        font-size: 22px;
+        font-weight: 300;
+        color: $lead-font-color;
         display: flex;
-        color: #51545c;
-        font-weight: 100;
-
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
         &__text-input,

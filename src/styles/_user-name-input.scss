@@ -5,10 +5,10 @@ $block-class:'user-name-input';
         display: flex;
 
         &__label {
+            @extend .small-font;
+
             flex: 1;
-            padding: 1em;
-            color: $font-color;
-            font-size: 16px;
+            padding: 16px;
         }
     }
 }
