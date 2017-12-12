@@ -6,17 +6,31 @@ $block-class: 'user-profile-form';
         flex-direction: column;
         min-height: 500px;
         min-width: 800px;
+        margin-left: 20px;
+        margin-right: 20px;
 
         &__tabs {
-            display: flex;
+            justify-content: flex-start;
             flex-flow: row nowrap;
             margin-top: 1em;
             cursor: pointer;
-        }
 
-        .grommetux-tab--active .grommetux-tab__label {
-            font-size: 14px;
-            color: nth($brand-neutral-colors, 2);
+            .user-profile-form__tabs-account,
+            .user-profile-form__tabs-groups,
+            .user-profile-form__tabs-tasks,
+            .user-profile-form__tabs-preference {
+                .grommetux-tab__label {
+                    @extend .lead-font-bold;
+                }
+            }
+
+            .grommetux-tab--active {
+                border-bottom: 2px solid nth($brand-neutral-colors, 2);
+            }
+
+            .grommetux-tab__label {
+                border: none;
+            }
         }
     }
 }
