@@ -74,6 +74,13 @@ export function showStageModal(show, stageId) {
     };
 }
 
+export function pmShowStageDeleteConfirmModal(stageId) {
+    return {
+        type: actionTypes.PM_SHOW_STAGE_DELETE_CONFIRM_MODAL,
+        stageId,
+    };
+}
+
 export function closeTaskOptionsModal() {
     return {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,

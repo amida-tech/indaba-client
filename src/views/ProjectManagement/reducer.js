@@ -27,6 +27,7 @@ export const initialState = {
         },
         showStage: false,
         editStage: null,
+        showStageDeleteConfirmModal: null,
     },
 };
 
@@ -106,6 +107,13 @@ export default (state = initialState, action) => {
             showStage: { $set: action.show },
             editStage: { $set: action.stageId !== undefined ? action.stageId : null },
         } });
+    case type.PM_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: {
+                stageId: action.stageId,
+            } },
+        } });
+    }
     default:
         return state;
     }
