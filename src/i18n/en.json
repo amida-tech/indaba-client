@@ -201,6 +201,7 @@
         "ADD_SUBJECT": "Add Subject",
         "ADD_SUBJECTS": "Add Subjects",
         "ADD_STAGE": "Add New Stage",
+        "DELETE_STAGE": "Delete Stage",
         "ADD_STAGES": "Add Stages",
         "SUBJECT_TITLE": "Subject Title",
         "STAGE_TITLE": "Stage Title",
@@ -479,6 +480,11 @@
             "TITLE": "Remove user group?",
             "DELETE_WITH_NOTHING": "Are you sure you want to delete this user group?",
             "DELETE_WITH_STAGES": "This user group is currently assigned to one or more workflow stages."
+        },
+        "STAGE_DELETE_CONFIRM": {
+            "TITLE": "Delete stage?",
+            "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
+            "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
         }
     }
 }
