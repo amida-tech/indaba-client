@@ -21,6 +21,8 @@ import * as surveyActions from '../../../common/actions/surveyActions';
 import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
+import StageModal from './Modals/Stage';
+import Modal from '../../../common/components/Modal';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
@@ -77,13 +79,41 @@ class ProjectManagementContainer extends Component {
         }
         return (
                 <div>
-                    { this.props.ui.statusModalId &&
+                    {
+                        this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
                             survey={this.props.survey}
                             actions={this.props.actions}
                             vocab={this.props.vocab}
-                            entity={modalEntities[this.props.ui.statusModalId]} /> }
+                            entity={modalEntities[this.props.ui.statusModalId]} />
+                    }
+                    {
+                        this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
+                        <StageModal
+                            vocab={this.props.vocab}
+                            projectId={this.props.project.id}
+                            project={this.props.project}
+                            stageId={this.props.ui.editStage}
+                            onCancel={() => this.props.actions.showStageModal(false)}
+                            onDeleteClick={() =>
+                                this.props.actions.pmShowStageDeleteConfirmModal(
+                                    this.props.ui.editStage)}
+                            onAddStage={(stage) => {
+                                this.props.actions.showStageModal(false);
+                                this.props.actions.putStage(
+                                    this.props.project,
+                                    stage,
+                                    false,
+                                    this.props.vocab.ERROR);
+                            }}
+                            userGroups={this.props.project.userGroups} />
+                    }
+                    {
+                        this.props.ui.showStageDeleteConfirmModal &&
+                        <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                            bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA} />
+                    }
                     <Summary
                         actions={this.props.actions}
                         project={this.props.project}
