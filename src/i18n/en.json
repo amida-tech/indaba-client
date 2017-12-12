@@ -352,16 +352,6 @@
         "SUBMIT_INSTRUCTIONS": "If you have completed the task, select submit.",
         "SUBMIT_INSTRUCTIONS_2":"Not completed? Return to ",
         "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
-        "QUESTIONS_TYPES": [
-            "Multiple Choice",
-            "Bullet Point",
-            "Checkbox",
-            "Long Text",
-            "Dropdown",
-            "Date",
-            "Number",
-            "Scale"
-        ],
         "NAME_OPTIONAL": " Name (Optional)",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
