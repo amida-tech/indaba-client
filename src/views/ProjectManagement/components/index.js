@@ -140,7 +140,8 @@ class ProjectManagementContainer extends Component {
                     {
                         this.props.ui.showStageDeleteConfirmModal &&
                         <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
-                            bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA} />
+                            bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
+                            onCancel={this.props.actions.pmHideStageDeleteConfirmModal}/>
                     }
                     <Summary
                         actions={this.props.actions}

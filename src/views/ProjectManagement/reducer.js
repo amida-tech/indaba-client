@@ -114,6 +114,11 @@ export default (state = initialState, action) => {
             } },
         } });
     }
+    case type.PM_HIDE_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: null },
+        } });
+    }
     default:
         return state;
     }
