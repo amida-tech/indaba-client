@@ -7,13 +7,12 @@ $block-class:'survey-pane';
             justify-content: space-between;
             align-items: baseline;
             border-bottom: 1px solid $border-color;
-            margin: 8px 4px;
-            padding-bottom: 8px;
+            padding: 16px;
             width: 100%;
         }
 
         &__accordion-buttons {
-            margin-right: 8px;
+            //
         }
 
         &__button-expand {
@@ -22,7 +21,7 @@ $block-class:'survey-pane';
             font-size: 14px;
             font-weight: 400;
             margin-right: 8px;
-            padding: 4px 8px;
+            padding: 8px;
             background-color: #a4aebf;
             outline: none;
 
@@ -38,7 +37,7 @@ $block-class:'survey-pane';
             border: 2px solid $border-color;
             font-size: 14px;
             font-weight: 400;
-            padding: 4px 8px;
+            padding: 8px;
             outline: none;
 
             &:hover {
@@ -47,7 +46,7 @@ $block-class:'survey-pane';
         }
 
         &__select {
-            width: 50%;
+            width: 75%;
         }
 
         &__instructions {
