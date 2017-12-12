@@ -242,14 +242,6 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
 }
 
 // Modals.
-export function showStageModal(show, stageId) {
-    return {
-        type: actionTypes.SHOW_STAGE_MODAL,
-        show,
-        stageId,
-    };
-}
-
 export function showAddSubjectModal(show) {
     return {
         type: actionTypes.SHOW_ADD_SUBJECT_MODAL,

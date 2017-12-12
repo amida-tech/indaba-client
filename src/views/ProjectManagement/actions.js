@@ -66,6 +66,14 @@ export function showTaskOptionsModal(task, userGroups) {
     };
 }
 
+export function showStageModal(show, stageId) {
+    return {
+        type: actionTypes.SHOW_STAGE_MODAL,
+        show,
+        stageId,
+    };
+}
+
 export function closeTaskOptionsModal() {
     return {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,

@@ -25,6 +25,8 @@ export const initialState = {
         export: {
             subjects: [],
         },
+        showStage: false,
+        editStage: null,
     },
 };
 
@@ -99,6 +101,11 @@ export default (state = initialState, action) => {
             showUserGroupDeleteConfirmModal: { $set: null },
         } });
     }
+    case type.SHOW_STAGE_MODAL:
+        return update(state, { ui: {
+            showStage: { $set: action.show },
+            editStage: { $set: action.stageId !== undefined ? action.stageId : null },
+        } });
     default:
         return state;
     }
