@@ -7,14 +7,18 @@ class ProjectGlance extends Component {
     render() {
         return (
             <div className='project-glance'>
-                <Stamp label={this.props.vocab.PROJECT.PROJECTS}
-                    value={this.props.projects} />
-                <Stamp label={this.props.vocab.PROJECT.STATUS_ACTIVE}
-                    value={this.props.active} />
-                <Stamp label={this.props.vocab.PROJECT.STATUS_INACTIVE}
-                    value={this.props.inactive} />
-                <Stamp label={this.props.vocab.PROJECT.FLAGS}
-                    value={this.props.flags} />
+                <div className='project-glance__group'>
+                    <Stamp label={this.props.vocab.PROJECT.PROJECTS}
+                        value={this.props.projects} />
+                    <Stamp label={this.props.vocab.PROJECT.STATUS_ACTIVE}
+                        value={this.props.active} />
+                </div>
+                <div className='project-glance__group'>
+                    <Stamp label={this.props.vocab.PROJECT.STATUS_INACTIVE}
+                        value={this.props.inactive} />
+                    <Stamp label={this.props.vocab.PROJECT.FLAGS}
+                        value={this.props.flags} />
+                </div>
             </div>
         );
     }
