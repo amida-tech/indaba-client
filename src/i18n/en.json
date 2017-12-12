@@ -64,6 +64,7 @@
         "USER_REQUEST": "Failed to insert or delete user.",
         "TASK_REQUEST": "Failed to insert or delete task.",
         "ASSESSMENT_REQUEST": "Failed to insert assessment.",
+        "USER_GROUP": "The system failed to assign users to the group.",
         "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
         "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again.",
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
