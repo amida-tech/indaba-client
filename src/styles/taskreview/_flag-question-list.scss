@@ -1,6 +1,3 @@
-$font-color: #a4aebf;
-$brand-neutral-colors: (#308253, #4eb276);
-
 $block-class:'flag-question-list';
 
 @at-root {
@@ -14,17 +11,24 @@ $block-class:'flag-question-list';
             overflow: hidden;
 
             &:hover {
-                background-color: #ececec;
+                background-color: darken($element-background, 5);
             }
 
             &:active {
                 background-color: #399862;
+                color: $font-inverse-color;
             }
 
             &--selected {
                 background-color: #399862;
                 color: #fff;
                 font-size: 12px;
+
+                &:active,
+                &:visited {
+                    background-color: nth($brand-neutral-colors, 2);
+                    color: #fff;
+                }
             }
 
             &--inactive {
