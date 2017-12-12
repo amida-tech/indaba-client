@@ -14,25 +14,14 @@ $block-class:'flag-question-list';
                 background-color: darken($element-background, 5);
             }
 
-            &:active {
-                background-color: #399862;
-                color: $font-inverse-color;
-            }
-
             &--selected {
                 background-color: #399862;
                 color: #fff;
                 font-size: 12px;
-
-                &:active,
-                &:visited {
-                    background-color: nth($brand-neutral-colors, 2);
-                    color: #fff;
-                }
             }
 
             &--inactive {
-                ///
+                border-right: 2px solid #4eb276;
             }
         }
     }
