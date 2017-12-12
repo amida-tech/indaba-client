@@ -31,16 +31,10 @@ export function storeFlaggedIssues(flags) {
     };
 }
 
-export function showQuestion(questionIndex) {
+export function updateQuestionDisplay(questionArray) {
     return {
-        type: actionTypes.SHOW_QUESTION,
-        questionIndex,
-    };
-}
-
-export function collapseAllQuestions() {
-    return {
-        type: actionTypes.COLLAPSE_ALL_QUESTIONS,
+        type: actionTypes.UPDATE_QUESTION_DISPLAY,
+        questionArray,
     };
 }
 
@@ -52,23 +46,9 @@ export function setActiveFlag(activeId, timestamp) {
     };
 }
 
-export function setSignatureId(signatureId) {
-    return {
-        type: actionTypes.SET_SIGNATURE_ID,
-        signatureId,
-    };
-}
-
 export function updateMarkResolved(resolved) {
     return {
         type: actionTypes.UPDATE_MARK_RESOLVED,
         resolved,
-    };
-}
-
-export function updateNotifyUser(notifyUser) {
-    return {
-        type: actionTypes.UPDATE_NOTIFY_USER,
-        notifyUser,
     };
 }
