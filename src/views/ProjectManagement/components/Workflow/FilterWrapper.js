@@ -3,6 +3,7 @@ import { Button } from 'grommet';
 import PropTypes from 'prop-types';
 
 import Filter from '../../../../common/components/Filter';
+import Modal from '../../../../common/components/Modal';
 import AddSubject from '../Modals/AddSubject';
 import StageModal from '../Modals/Stage';
 
@@ -42,13 +43,16 @@ class FilterWrapper extends Component {
                         label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         onClick={() => this.props.actions.showAddSubjectModal(true)}/>
                 </div>
-                {this.props.ui.showStage &&
+                {this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
                     <StageModal
                         vocab={this.props.vocab}
                         projectId={this.props.project.id}
                         project={this.props.project}
                         stageId={this.props.ui.editStage}
                         onCancel={() => this.props.actions.showStageModal(false)}
+                        onDeleteClick={() =>
+                            this.props.actions.pmShowStageDeleteConfirmModal(
+                                this.props.ui.editStage)}
                         onAddStage={(stage) => {
                             this.props.actions.showStageModal(false);
                             this.props.actions.putStage(
@@ -59,6 +63,11 @@ class FilterWrapper extends Component {
                         }}
                         userGroups={this.props.project.userGroups}
                     />
+                }
+                {
+                    this.props.ui.showStageDeleteConfirmModal &&
+                    <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                        bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA} />
                 }
                 {this.props.ui.showAddSubject &&
                     <AddSubject
