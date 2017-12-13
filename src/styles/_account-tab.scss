@@ -30,7 +30,7 @@ $block-class:'account-tab';
             color: $lead-font-color;
         }
 
-        button.account-tab__button {
+        .account-tab__button {
             @extend .small-font;
 
             background-color: #fff;
