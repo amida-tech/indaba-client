@@ -8,18 +8,18 @@ $block-class:'tasks-tab';
             padding: 1em;
             justify-content: space-between;
 
-            &:nth-child(odd) {
-                background-color: lighten(#d8d8d8, 10%);
+            &:hover {
+                background-color: #f3f3f3;
             }
         }
 
         &__cell {
+            @extend .lead-font;
+
             flex: 1;
 
             &--header {
-                color: $font-color;
-                font-weight: bold;
-                letter-spacing: 0.8px;
+                @extend .small-font;
             }
         }
     }
