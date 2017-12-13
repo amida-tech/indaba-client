@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { deleteStage } from '../../common/actions/projectActions';
 
 export function subnavigate(id) {
     return {
@@ -133,4 +134,8 @@ export function pmHideUserGroupDeleteConfirmModal() {
     return {
         type: actionTypes.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL,
     };
+}
+
+export function pmDeleteStage(projectId, stageId) {
+    return dispatch => dispatch(deleteStage(projectId, stageId));
 }
