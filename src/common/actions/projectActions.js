@@ -114,6 +114,22 @@ export function putStage(project, stage, fromWizard, errorMessages) {
     };
 }
 
+export function deleteStage(projectId, stageId) {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            apiService.projects.deleteWorkflowStep(stageId, (err, response) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(response);
+                }
+            });
+        }).then(() => {
+            dispatch(getProjectById(projectId));
+        });
+    };
+}
+
 export function addSubject(project, subjects, fromWizard, errorMessages) {
     const requestBody = {
         subjects,
