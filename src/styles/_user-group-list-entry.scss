@@ -7,15 +7,14 @@ $block-class: 'user-group-list-entry';
         align-items: center;
         padding: 8px 16px;
 
-        @extend .lead-font;
-
         &:hover {
             background-color: #f3f3f3;
         }
 
         &__name {
             flex: 1;
-            color: #7e848f;
+
+            @extend .lead-font;
         }
 
         &__badge-string {
