@@ -16,6 +16,10 @@ $block-class:'add-stage-form';
         &__header {
             padding: 0.5em, 1em;
             margin-top: 0.5em;
+
+            &-label {
+                @extend .small-font;
+            }
         }
 
         &__radio-button {
@@ -23,11 +27,15 @@ $block-class:'add-stage-form';
         }
 
         &__permission-label-text {
+            @extend .lead-font;
+
             margin-left: 0.5em;
             margin-right: 1em;
         }
 
         &__text-description {
+            @extend .lead-font;
+
             padding: 1em;
             font-size: 16px;
         }

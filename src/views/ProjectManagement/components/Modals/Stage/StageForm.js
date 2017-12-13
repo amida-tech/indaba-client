@@ -13,7 +13,9 @@ class StageForm extends Component {
             <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.STAGE_TITLE} </label>
+                        <label className='add-stage-form__header-label'>
+                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                         </label>
                         <div>
                             <Field
                                 name='title'
@@ -24,7 +26,9 @@ class StageForm extends Component {
                         </div>
                     </div>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} </label>
+                        <label className='add-stage-form__header-label'>
+                        {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
+                        </label>
                         <div>
                             <Field
                                 className='add-stage-form__input-field'
@@ -35,7 +39,9 @@ class StageForm extends Component {
                         </div>
                     </div>
                     <div className='add-stage-form__header'>
-                       <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
+                           <label className='add-stage-form__header-label'>
+                           {this.props.vocab.PROJECT.PERMISSIONS}
+                           </label>
                        <div className='add-stage-form__radio-control'>
                            {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
                                <label className='add-stage-form__radio-button' key={index}>
@@ -57,7 +63,9 @@ class StageForm extends Component {
                     </div>
                     <hr className='add-stage-form__divider'/>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
+                            <label className='add-stage-form__header-label'>
+                            {this.props.vocab.PROJECT.DATE_RANGE}
+                            </label>
                     </div>
                     <div className='add-stage-form__header add-stage-form__date-inputs-container'>
                         <div className='add-stage-form__start-label-and-input'>
