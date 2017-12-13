@@ -7,10 +7,11 @@ $block-class:'account-tab';
         padding: 2em;
 
         &__label {
+            @extend .small-font;
+
             display: flex;
             flex-direction: column;
             padding-bottom: 1em;
-            color: $font-color;
 
             &--text-input,
             .grommet &--text-input:not(.grommetux-input) {
@@ -23,6 +24,10 @@ $block-class:'account-tab';
                 font-weight: 100;
                 border-radius: 0;
             }
+        }
+
+        &__date {
+            color: $lead-font-color;
         }
 
         &__button {
