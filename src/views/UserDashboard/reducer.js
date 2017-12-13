@@ -36,12 +36,12 @@ export default (state = initialState, action) => {
         });
     case actionTypes.USER_DASH_GET_ANSWERS_SUCCESS:
         return update(state, {
-            answers: answers => unionBy(answers, [action.answers], 'assessmentId'),
-        });
+            answers: { $apply: answers => unionBy(answers, [action.answers], 'assessmentId'),
+            } });
     case actionTypes.USER_DASH_GET_SURVEY_BY_ID_SUCCESS:
         return update(state, {
-            surveys: surveys => unionBy(surveys, [action.survey], 'id'),
-        });
+            surveys: { $apply: surveys => unionBy(surveys, [action.survey], 'id'),
+            } });
     default:
         return state;
     }
