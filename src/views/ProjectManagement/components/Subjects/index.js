@@ -19,7 +19,7 @@ class Subjects extends Component {
         this.attemptSubjectDelete = this.attemptSubjectDelete.bind(this);
     }
     attemptSubjectDelete(subject) {
-        if (this.props.project.hasNeverBeenActive /* TODO INBA-490 */) {
+        if (!this.props.project.firstActivated) {
             this.props.actions.showSubjectDeleteConfirmModalForId(subject.id);
         } else {
             this.subjectHasData(subject.id).then((hasData) => {
