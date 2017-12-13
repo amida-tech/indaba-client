@@ -141,7 +141,18 @@ class ProjectManagementContainer extends Component {
                         this.props.ui.showStageDeleteConfirmModal &&
                         <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
                             bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
-                            onCancel={this.props.actions.pmHideStageDeleteConfirmModal}/>
+                            onCancel={this.props.actions.pmHideStageDeleteConfirmModal}
+                            onSave={() => this.props.actions.pmDeleteStage(
+                                this.props.project.id,
+                                this.props.ui.showStageDeleteConfirmModal.stageId)
+                            .then(() => {
+                                this.props.actions.showStageModal(false);
+                                this.props.actions.pmHideStageDeleteConfirmModal();
+                            }).catch(() => {
+                                toast(this.props.vocab.ERROR.STAGE_REQUEST,
+                                    { type: 'error', autoClose: false });
+                                this.props.actions.pmHideStageDeleteConfirmModal();
+                            }) } />
                     }
                     <Summary
                         actions={this.props.actions}
