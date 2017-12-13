@@ -5,6 +5,8 @@ $block-class:'preference-tab';
         padding: 1em;
 
         &__label {
+            @extend .small-font;
+
             display: flex;
             flex-direction: column;
             color: $font-color;
@@ -14,6 +16,10 @@ $block-class:'preference-tab';
         .grommet &__input-select {
             color: #51545c;
             font-weight: 400;
+        }
+
+        &__input-textarea {
+            @extend .lead-font;
         }
     }
 }
