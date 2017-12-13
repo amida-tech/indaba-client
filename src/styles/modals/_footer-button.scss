@@ -13,10 +13,18 @@ $block-class:'footer-button';
         color: $header-font-color;
         cursor: pointer;
 
+        &:hover {
+            background-color: darken(#d8d8d8, 5);
+        }
+
         &__primary {
             background-color: $brand-color;
             color: white;
             font-weight: bold;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 1);
+            }
         }
     }
 }

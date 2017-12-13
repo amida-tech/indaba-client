@@ -44,12 +44,22 @@ $block-class:'add-stage-form';
             margin-left: 15px;
         }
 
-        &__start-label-and-input {
-            float: left;
-        }
+        &__select {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
 
-        &__end-label-and-input {
-            float: left;
+            &-start {
+                &-label {
+                    @extend .lead-font;
+                }
+            }
+
+            &-end {
+                &-label {
+                    @extend .lead-font;
+                }
+            }
         }
 
         &__date-inputs-container {

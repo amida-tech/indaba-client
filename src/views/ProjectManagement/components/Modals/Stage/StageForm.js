@@ -67,9 +67,10 @@ class StageForm extends Component {
                             {this.props.vocab.PROJECT.DATE_RANGE}
                             </label>
                     </div>
-                    <div className='add-stage-form__header add-stage-form__date-inputs-container'>
-                        <div className='add-stage-form__start-label-and-input'>
-                            <span> {this.props.vocab.PROJECT.START_DATE}</span>
+                    <div className='add-stage-form__select'>
+                        <div className='add-stage-form__select-start'>
+                            <label className='add-stage-form__select-start-label'>
+                            {this.props.vocab.PROJECT.START_DATE}</label>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
                                   id='StartDate'
@@ -77,8 +78,9 @@ class StageForm extends Component {
                                   component={StageDateTime} />
                             </div>
                         </div>
-                        <div className='add-stage-form__end-label-and-input'>
-                            <span> {this.props.vocab.PROJECT.END_DATE}</span>
+                        <div className='add-stage-form__select-end'>
+                            <label className='add-stage-form__select-end-label'>
+                                {this.props.vocab.PROJECT.END_DATE}</label>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
                                  id='endDate'
