@@ -14,7 +14,7 @@ $block-class:'add-stage-form';
         }
 
         &__header {
-            padding: 0.5em, 1em;
+            padding: 8px, 16px;
             margin-top: 0.5em;
 
             &-label {
@@ -29,19 +29,19 @@ $block-class:'add-stage-form';
         &__permission-label-text {
             @extend .lead-font;
 
-            margin-left: 0.5em;
-            margin-right: 1em;
+            margin-left: 8px;
+            margin-right: 16px;
         }
 
         &__text-description {
             @extend .lead-font;
 
-            padding: 1em;
+            padding: 16px;
             font-size: 16px;
         }
 
         &__date-input-div {
-            margin-left: 15px;
+            margin-left: 16px;
         }
 
         &__select {
@@ -58,6 +58,8 @@ $block-class:'add-stage-form';
             &-end {
                 &-label {
                     @extend .lead-font;
+
+                    margin-right: 60px;
                 }
             }
         }
