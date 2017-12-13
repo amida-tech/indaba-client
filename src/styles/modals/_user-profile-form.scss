@@ -20,15 +20,18 @@ $block-class: 'user-profile-form';
             .user-profile-form__tabs-tasks,
             .user-profile-form__tabs-preference {
                 .grommetux-tab__label {
-                    @extend .lead-font-bold;
+                    font-size: 16px;
+                    color: $font-color;
+                    font-weight: 400;
                 }
             }
 
             .grommetux-tab--active {
                 border-bottom: 2px solid nth($brand-neutral-colors, 2);
+                font-weight: bold;
             }
 
-            .grommetux-tab__label {
+            label.grommetux-tab__label {
                 border: none;
             }
         }

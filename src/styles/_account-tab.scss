@@ -30,9 +30,18 @@ $block-class:'account-tab';
             color: $lead-font-color;
         }
 
-        &__button {
+        button.account-tab__button {
+            @extend .small-font;
+
+            background-color: #fff;
+            padding: 8px;
+            border: 2px solid #4eb276;
             margin-top: 1.5em;
-            width: 150px;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 1);
+                color: $font-inverse-color;
+            }
         }
     }
 }
