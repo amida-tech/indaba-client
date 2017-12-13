@@ -47,7 +47,7 @@ export default (state = initialState, action) => {
         });
         return update(state, edit);
     }
-    case actionTypes.UNARCHIVE_MESSAGE:
+    case actionTypes.UNARCHIVE_MESSAGE_SUCCESS:
         return update(state, { messages: { [messageIndex]: {
             isArchived: { $set: false },
         } } });
