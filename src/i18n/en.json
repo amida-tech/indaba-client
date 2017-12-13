@@ -187,10 +187,10 @@
             "Review and Edit"
         ],
         "DESC_ARRAY": [
-            "Complete Survey description",
-            "Review description",
-            "Review and comment description",
-            "Review and Edit description",
+            "Answer survey questions",
+            "View previous user's survey answers",
+            "View previous user's survey answers and leave comments",
+            "View and edit survey answers and comments",
             "All permissions description"
         ],
         "TASK_BACK": "Back",
