@@ -18,7 +18,7 @@ $block-class:'preference-tab';
             font-weight: 400;
         }
 
-        &__input-textarea {
+        .preference-tab__input-textarea {
             @extend .lead-font;
         }
     }
