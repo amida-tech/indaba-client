@@ -39,6 +39,10 @@ const messaging = {
         const path = `${rootURI}/api/message/archive/${id}`;
         requests.apiPutRequest(path, {}, callback);
     },
+    unarchive: (id, callback) => {
+        const path = `${rootURI}/api/message/unarchive/${id}`;
+        requests.apiPutRequest(path, {}, callback);
+    },
     delete: (id, callback) => {
         const path = `${rootURI}/api/message/delete/${id}`;
         requests.apiDeleteRequest(path, {}, callback);

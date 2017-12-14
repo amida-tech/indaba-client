@@ -5,10 +5,17 @@ $block-class:'flag-question-list';
         min-width: 120px;
 
         &__item {
+<<<<<<< HEAD
             @extend .small-font;
 
+=======
+            padding: 1em 2em;
+            border-bottom: 1px solid $border-color;;
+            font-size: 12px;
+>>>>>>> 771c1e2bc61ef549ced122a0276f44761225dee8
             white-space: nowrap;
             overflow: hidden;
+            cursor: pointer;
 
             &:hover {
                 background-color: darken($element-background, 5);
