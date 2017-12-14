@@ -21,9 +21,10 @@ $block-class: 'user-profile-form';
             .user-profile-form__tabs-tasks,
             .user-profile-form__tabs-preference {
                 .grommetux-tab__label {
-                    font-size: 16px;
+                    font-size: 14px;
                     color: $font-color-for-labels;
                     font-weight: 400;
+                    text-transform: uppercase;
                 }
             }
 
