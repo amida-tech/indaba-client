@@ -50,6 +50,13 @@ $block-class:'primary-nav';
                 color: darken(#388055, 20%);
             }
 
+            &:focus,
+            &:active {
+                text-decoration: none;
+                font-weight: 400;
+                color: darken(#388055, 30%);
+            }
+
             &--button {
                 height: 40px;
                 background-color: darken(#388055, 10%);
