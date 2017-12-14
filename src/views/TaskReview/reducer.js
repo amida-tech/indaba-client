@@ -2,8 +2,13 @@ import update from 'immutability-helper';
 import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
-import { UPDATE_FLAGGED_QUESTION } from '../../common/actionTypes/discussActionTypes';
-import { GET_ANSWERS_SUCCESS, GET_SURVEY_BY_ID_SUCCESS, POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
+import {
+    GET_DISCUSSIONS_SUCCESS,
+    POST_DISCUSSION_SUCCESS } from '../../common/actionTypes/discussionActionTypes';
+import {
+    GET_ANSWERS_SUCCESS,
+    GET_SURVEY_BY_ID_SUCCESS,
+    POST_ANSWER_SUCCESS } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
     ui: {
@@ -67,48 +72,48 @@ export default (state = initialState, action) => {
                 lastSave: { $set: Date.now() },
                 form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
     }
-    case type.STORE_FLAGGED_ISSUES:
-        return update(state,
-            { ui: { flags: { $set: action.flags } } });
+    case GET_DISCUSSIONS_SUCCESS:
+        return update(state, { ui: { flags: { $set: action.discussions } } });
+    case POST_DISCUSSION_SUCCESS:
+        return state;
     case type.UPDATE_QUESTION_DISPLAY:
         return update(state, { ui: { showQuestions: { $set: action.questionArray } } });
     case type.SET_ACTIVE_FLAG:
         return update(state,
-            { ui: { flagSidebar: {
-                activeId: { $set: action.activeId },
+            { ui: { flagSidebar: { activeId: { $set: action.activeId },
                 timestamp: { $set: action.timestamp },
             } } });
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
-    case UPDATE_FLAGGED_QUESTION: {
-        const flagIndex = findIndex(state.ui.flags, flag =>
-            flag.id === action.activeId);
-        if (action.data.resolved) {
-            let nextId = 0; // Determines the next active question, if any.
-            if (flagIndex === 0 && state.ui.flags.length > 1) {
-                nextId = state.ui.flags[1].id;
-            } else if (flagIndex > 0) {
-                nextId = state.ui.flags[0].id;
-            }
-            return update(state, { ui: {
-                flags: { $splice: [[flagIndex, 1]] },
-                flagSidebar: {
-                    activeId: { $set: nextId },
-                    comment: { $set: '' },
-                    resolved: { $set: false },
-                } } });
-        }
-        return update(state, { ui: {
-            flags: { [flagIndex]: { flagHistory: { $push: [{
-                timestamp: action.data.timestamp,
-                comment: action.data.comment,
-            }] } } },
-            flagSidebar: {
-                comment: { $set: '' },
-                resolved: { $set: false },
-            } } });
-    }
+    // case UPDATE_FLAGGED_QUESTION: {
+    //     const flagIndex = findIndex(state.ui.flags, flag =>
+    //         flag.id === action.activeId);
+    //     if (action.data.resolved) {
+    //         let nextId = 0; // Determines the next active question, if any.
+    //         if (flagIndex === 0 && state.ui.flags.length > 1) {
+    //             nextId = state.ui.flags[1].id;
+    //         } else if (flagIndex > 0) {
+    //             nextId = state.ui.flags[0].id;
+    //         }
+    //         return update(state, { ui: {
+    //             flags: { $splice: [[flagIndex, 1]] },
+    //             flagSidebar: {
+    //                 activeId: { $set: nextId },
+    //                 comment: { $set: '' },
+    //                 resolved: { $set: false },
+    //             } } });
+    //     }
+        // return update(state, { ui: {
+        //     flags: { [flagIndex]: { flagHistory: { $push: [{
+        //         timestamp: action.data.timestamp,
+        //         comment: action.data.comment,
+        //     }] } } },
+        //     flagSidebar: {
+        //         comment: { $set: '' },
+        //         resolved: { $set: false },
+        //     } } });
+    // }
     default:
         return state;
     }

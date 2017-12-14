@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { flatten, find, isEmpty, map, get } from 'lodash';
+import { flatten, find, map, get } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -10,30 +10,16 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
-import { postDiscussion } from '../../../common/actions/discussActions';
+import { getDiscussions, postDiscussion } from '../../../common/actions/discussionActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
-
-function surveyMapperHelper(discuss, question) {
-    const match = discuss.filter(chat => chat.id === question.id);
-    return (match.length > 0) ?
-        Object.assign({}, question, match[0], { taskView: true }) :
-        Object.assign({}, question, { taskView: true });
-}
-
-function surveyMapper(responses, questions) {
-    if (isEmpty(questions)) {
-        return [];
-    }
-    return (responses ? questions.map(question =>
-            surveyMapperHelper(responses.discuss, question)) : questions);
-}
 
 class TaskReview extends Component {
     componentWillMount() {
         this.props.actions.setSurveySectionIndex(-1);
         this.props.actions.getTaskById(this.props.params.projectId,
             this.props.params.taskId, this.props.vocab.ERROR);
+        this.props.actions.getDiscussions(this.props.params.taskId, this.props.vocab.ERROR);
     }
 
     render() { // Pondering means to process all this just once.
@@ -44,13 +30,11 @@ class TaskReview extends Component {
 
         let displaySurvey;
         if (this.props.survey.sections && this.props.sectionIndex === -1) {
-            displaySurvey = surveyMapper(this.props.responses,
-                        flatten(map(this.props.survey.sections, 'questions')));
+            displaySurvey = flatten(map(this.props.survey.sections, 'questions'));
         } else if (this.props.survey.sections) {
-            displaySurvey = surveyMapper(this.props.responses,
-                this.props.survey.sections[this.props.sectionIndex].questions);
+            displaySurvey = this.props.survey.sections[this.props.sectionIndex].questions;
         } else {
-            displaySurvey = surveyMapper(this.props.responses, this.props.survey.questions);
+            displaySurvey = this.props.survey.questions;
         }
 
         // TODO: INBA-522, task status === currently,
@@ -123,7 +107,6 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
             find(state.surveys.data, survey => survey.id === project.surveyId) :
             state.surveys.data[0],
         sectionIndex: state.surveys.ui.sectionIndex,
-        responses: find(state.discuss.data, talk => talk.taskId === task.id),
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
     };
@@ -133,6 +116,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, {
         updateTaskEndDate,
         postDiscussion,
+        getDiscussions,
         setSurveySectionIndex,
         getTaskById,
         postAnswer }),

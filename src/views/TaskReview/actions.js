@@ -24,13 +24,6 @@ export function upsertAnswer(assessmentId, questionId, answer, required, errorMe
 }
 
 // Discussion related:
-export function storeFlaggedIssues(flags) {
-    return {
-        type: actionTypes.STORE_FLAGGED_ISSUES,
-        flags,
-    };
-}
-
 export function updateQuestionDisplay(questionArray) {
     return {
         type: actionTypes.UPDATE_QUESTION_DISPLAY,

@@ -1,13 +1,13 @@
 import apiService from '../../services/api';
-import * as actionTypes from '../actionTypes/discussActionTypes';
+import * as actionTypes from '../actionTypes/discussionActionTypes';
 
-export function getDiscuss(taskId, errorMessages) { // errorMessages
+export function getDiscussions(taskId, errorMessages) { // errorMessages
     return (dispatch) => {
-        apiService.discuss.getDiscuss(
+        apiService.discussions.getDiscussions(
             taskId,
             (discussErr, discussResp) => {
                 dispatch((!discussErr && discussResp) ?
-                    _getDiscussSuccess(discussResp) :
+                    _getDiscussionsSuccess(discussResp) :
                     _reportDiscussError(errorMessages.FETCH_DISCUSS));
             },
         );
@@ -16,7 +16,7 @@ export function getDiscuss(taskId, errorMessages) { // errorMessages
 
 export function postDiscussion(requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.discuss.postDiscussion(
+        apiService.discussions.postDiscussion(
             requestBody,
             (discussErr, discussResp) => {
                 dispatch((!discussErr && discussResp) ?
@@ -29,12 +29,12 @@ export function postDiscussion(requestBody, errorMessages) {
 
 export function resolveQuestion(questionId, errorMessages) {
     return (dispatch) => {
-        apiService.discuss.markResolved(
+        apiService.discussions.markResolved(
             questionId,
             (discussErr, discussResp) => {
                 dispatch((!discussErr && discussResp) ?
                     _putDiscussResolveSuccess(questionId) :
-                    _reportDiscussError(errorMessages.FETCH_TASKS));
+                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
             },
         );
     };
@@ -51,10 +51,10 @@ export function updateFlaggedQuestion(taskId, projectId, activeId, data) {
 }
 
 // Private functions
-function _getDiscussSuccess(discuss) {
+function _getDiscussionsSuccess(discussions) {
     return {
-        type: actionTypes.GET_DISCUSS_SUCCESS,
-        discuss,
+        type: actionTypes.GET_DISCUSSIONS_SUCCESS,
+        discussions,
     };
 }
 
