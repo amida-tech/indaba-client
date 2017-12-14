@@ -16,17 +16,5 @@ $block-class:'flag-commentary';
             color: $timestamp-green;
             font-weight: bold;
         }
-
-        &__discussion {
-            width: 100%;
-            height: 20em;
-            resize: none;
-            border: 0;
-            background-color: #ebeef0;
-            margin-right: 0;
-            padding-left: 20px;
-            padding-right: 20px;
-            outline: none;
-        }
     }
 }

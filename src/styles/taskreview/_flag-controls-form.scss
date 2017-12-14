@@ -41,8 +41,8 @@ $block-class:'flag-controls-form';
             }
         }
 
-        &__button-group {
-            &__cancel {
+        &__button {
+            &-cancel {
                 border-radius: 2px;
                 color: $lead-font-color;
                 font-size: 14px;
@@ -57,7 +57,7 @@ $block-class:'flag-controls-form';
                 }
             }
 
-            &__send {
+            &-send {
                 border-radius: 2px;
                 color: $font-inverse-color;
                 font-size: 14px;

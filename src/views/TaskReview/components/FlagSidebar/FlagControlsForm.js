@@ -39,12 +39,12 @@ class FlagControlsForm extends Component {
                        userOptions={userOptions} />
                </div>
                <div className='flag-controls-form__button-group'>
-                   <button className='flag-controls-form__button-group__cancel'
+                   <button className='flag-controls-form__button-cancel'
                        type='button'
                        onClick={this.props.reset}>
                        {this.props.vocab.COMMON.CANCEL}
                    </button>
-                   <button className='flag-controls-form__button-group__send'
+                   <button className='flag-controls-form__button-send'
                        type='submit'>
                        {this.props.vocab.COMMON.SEND}
                    </button>
