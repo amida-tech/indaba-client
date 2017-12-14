@@ -5,20 +5,15 @@ $block-class:'flag-question-list';
         min-width: 120px;
 
         &__item {
-<<<<<<< HEAD
-<<<<<<< HEAD
             @extend .small-font;
 
-=======
             padding: 1em 2em;
-            border-bottom: 1px solid $border-color;;
+            border-bottom: 1px solid $border-color;
             font-size: 12px;
->>>>>>> 771c1e2bc61ef549ced122a0276f44761225dee8
-=======
+
             @extend .small-font;
             padding: 1em 2em; //Remove this and the bottom two if you feel it's right.
             border-bottom: 1px solid $border-color;
->>>>>>> 711afdbead548fc43e3b592f7c2f4d3fcbf4195f
             white-space: nowrap;
             overflow: hidden;
             cursor: pointer;
