@@ -18,7 +18,9 @@ $block-class:'add-stage-form';
             margin-top: 0.5em;
 
             &-label {
-                @extend .small-font;
+                color: #757575;
+                font-size: 14px;
+                font-weight: 400;
             }
         }
 
