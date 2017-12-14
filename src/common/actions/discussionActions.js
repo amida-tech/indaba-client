@@ -19,9 +19,12 @@ export function postDiscussion(requestBody, errorMessages) {
         apiService.discussions.postDiscussion(
             requestBody,
             (discussErr, discussResp) => {
-                dispatch((!discussErr && discussResp) ?
-                    _postDiscussionSuccess(discussResp) :
-                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
+                if (discussErr) {
+                    dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS));
+                } else {
+                    dispatch(_postDiscussionSuccess(discussResp));
+                    dispatch(getDiscussions(requestBody.taskId, errorMessages));
+                }
             },
         );
     };
