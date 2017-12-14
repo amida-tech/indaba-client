@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
+import { getUsers } from './userActions';
 import { getTasksByProduct } from './taskActions';
 import apiService from '../../services/api';
 
@@ -221,6 +222,25 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
     };
 }
 
+export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
+    const { title, users: userId } = groupData;
+
+    return (dispatch) => {
+        apiService.projects.putGroup(
+            groupId,
+            { title, userId, organizationId },
+            (groupErr) => {
+                if (groupErr) {
+                    dispatch(_reportProjectError(errorMessages.USER_GROUP));
+                } else {
+                    dispatch(getProjectById(projectId, errorMessages));
+                    dispatch(getUsers(errorMessages));
+                }
+            },
+        );
+    };
+}
+
 // Modals.
 export function showStageModal(show, stageId) {
     return {
@@ -272,14 +292,6 @@ export function deleteUserGroup(groupId, projectId) {
     return {
         type: actionTypes.DELETE_USER_GROUP,
         groupId,
-        projectId,
-    };
-}
-
-export function updateUserGroup(group, projectId) { // TODO: INBA-457
-    return {
-        type: actionTypes.UPDATE_USER_GROUP,
-        group,
         projectId,
     };
 }

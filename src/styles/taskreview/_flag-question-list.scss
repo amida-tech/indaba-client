@@ -6,9 +6,9 @@ $block-class:'flag-question-list';
 
         &__item {
             @extend .small-font;
-
             white-space: nowrap;
             overflow: hidden;
+            cursor: pointer;
 
             &:hover {
                 background-color: darken($element-background, 5);

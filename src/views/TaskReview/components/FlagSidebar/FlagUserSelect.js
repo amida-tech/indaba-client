@@ -15,7 +15,7 @@ class FlagUserSelect extends Component {
 }
 
 FlagUserSelect.propTypes = {
-    users: PropTypes.arrayOf(PropTypes.object),
+    userOptions: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default FlagUserSelect;

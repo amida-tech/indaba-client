@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
 
@@ -19,6 +20,21 @@ class SurveyForm extends Component { // TODO: INBA-450
                         {...this.props} />,
                     )}
                 </Accordion>
+                <div className='survey-form__submit'>
+                    <div className='survey-form__submit-instructions'>
+                        {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS}
+                        <br></br>
+                        {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_2}
+                        <Link className='survey-form__link' to='/task'>
+                            {this.props.vocab.COMMON.MY_TASKS}
+                        </Link>
+                        {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_3}
+                    </div>
+                    <button className='survey-form__submit-button'
+                        onClick=''>
+                        {this.props.vocab.SURVEY.SUBMIT_TASK}
+                    </button>
+                </div>
             </div>
         );
     }

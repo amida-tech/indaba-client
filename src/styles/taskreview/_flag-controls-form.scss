@@ -28,6 +28,15 @@ $block-class:'flag-controls-form';
         &__resolve-text {
             margin-left: 8px;
         }
+        
+        &__mark-resolve-section {
+            margin-bottom: .5em;
+        }
+
+        &__notify {
+            margin-top: 0;
+            margin-bottom: 1em;
+        }
 
         &__notify-section {
             color: $lead-font-color;
