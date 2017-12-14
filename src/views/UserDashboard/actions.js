@@ -34,7 +34,7 @@ export function userDashGetMessages() {
 export function getDashboardData(errorMessages, userId) {
     return (dispatch) => {
         (userId !== undefined ?
-            apiService.tasks.getTasksByUser.bind(userId) :
+            apiService.tasks.getTasksByUser.bind(null, userId) :
             apiService.tasks.getSelfTasks
         )(
             (taskErr, taskResp) => {
