@@ -6,6 +6,8 @@ $block-class:'flag-question-list';
 
         &__item {
             @extend .small-font;
+            padding: 1em 2em; //Remove this and the bottom two if you feel it's right.
+            border-bottom: 1px solid $border-color;
             white-space: nowrap;
             overflow: hidden;
             cursor: pointer;
