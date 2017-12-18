@@ -18,7 +18,6 @@ import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
-import * as discussionActions from '../../../common/actions/discussionActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 
@@ -134,7 +133,6 @@ const mapDispatchToProps = dispatch => ({
         projectActions,
         surveyActions,
         taskActions,
-        discussionActions,
         { addNewUser, notifyUser },
         { sendMessage: user => dispatch(push(
             {

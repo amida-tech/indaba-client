@@ -10,7 +10,6 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
-import { getDiscussions, postDiscussion } from '../../../common/actions/discussionActions';
 import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -115,8 +114,6 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, {
         updateTaskEndDate,
-        postDiscussion,
-        getDiscussions,
         setSurveySectionIndex,
         getTaskById,
         postAnswer }),
