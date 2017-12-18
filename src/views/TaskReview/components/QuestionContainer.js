@@ -32,6 +32,14 @@ class QuestionContainer extends Component {
                             displayMode={this.props.taskDisabled}
                             actions={this.props.actions}
                             vocab={this.props.vocab} />}
+                    {this.props.stage.allowEdit &&
+                        <ReviewPane
+                            question={this.props.question}
+                            assessmentId={this.props.assessmentId}
+                            answers={this.props.answers}
+                            displayMode={this.props.taskDisabled}
+                            actions={this.props.actions}
+                            vocab={this.props.vocab} />}
                 </AccordionPanel>
             </Element>
         );
