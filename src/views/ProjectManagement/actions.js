@@ -113,3 +113,15 @@ export function pmHideUserGroupDeleteConfirmModal() {
         type: actionTypes.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL,
     };
 }
+
+export function pmShowProjectTitleModal() {
+    return {
+        type: actionTypes.PM_SHOW_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function pmHideProjectTitleModal() {
+    return {
+        type: actionTypes.PM_HIDE_PROJECT_TITLE_MODAL,
+    };
+}

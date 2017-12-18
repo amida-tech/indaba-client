@@ -18,8 +18,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onNameChange={name =>
-                            this.props.actions.setProjectName(name, this.props.project.id)}
+                    onEditClick={this.props.actions.pmShowProjectTitleModal}
                     updateContent={() => this.props.actions.putProject(
                             this.props.project,
                             this.props.vocab.ERROR)}/>

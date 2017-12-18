@@ -16,13 +16,24 @@ class StatusCard extends Component {
                         </div>
                         <div className='status-card__name-value'>
                             {
-                                this.props.onNameChange && this.props.actions ?
+                                this.props.onNameChange && this.props.actions &&
                                 <EditableTextInput input={{
                                     value: this.props.name,
                                     onChange: evt => this.props.onNameChange(evt.target.value),
                                     onBlur: () => this.props.updateContent(),
-                                }} /> :
+                                }} />
+                            }
+                            {
+                                this.props.onEditClick &&
                                 this.props.name
+                            }
+                            {
+                                this.props.onEditClick &&
+                                <div className='status-card__edit-button'
+                                    onClick={this.props.onEditClick}>
+                                    <IonIcon icon='ion-android-create'
+                                        className='status-card__edit-icon'/>
+                                </div>
                             }
                         </div>
                     </div>
@@ -43,7 +54,7 @@ StatusCard.propTypes = {
     name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     onStatusChangeClick: PropTypes.func,
-    onNameChange: PropTypes.func,
+    onEditClick: PropTypes.func,
     updateContent: PropTypes.func,
 };
 
