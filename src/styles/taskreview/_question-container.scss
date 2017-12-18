@@ -3,6 +3,7 @@ $block-class:'question-container';
 @at-root {
     .#{$block-class} {
         border-bottom: 1px solid $border-color;
+        padding-left: 16px;
 
         &:last-child {
             border-width: 0;
