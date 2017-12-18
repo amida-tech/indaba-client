@@ -20,11 +20,13 @@ $block-class:'flag-question-list';
 
             &:hover {
                 background-color: darken($element-background, 5);
+                color: $lead-font-color;
             }
 
             &--selected {
-                background-color: #399862;
-                color: #fff;
+                background-color: darken($element-background, 5);
+                border-right: 3px solid #4eb276;
+                color: $lead-font-color;
                 font-size: 12px;
             }
 
