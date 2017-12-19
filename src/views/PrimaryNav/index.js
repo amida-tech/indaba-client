@@ -47,7 +47,7 @@ class PrimaryNavContainer extends Component {
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </Link>
                     <Button
-                        className={'primary-nav__item-nav primary-nav__item-nav--button'}
+                        className={'primary-nav__item-nav primary-nav__button'}
                         label={this.props.vocab.COMMON.CREATE}
                         onClick={() => this.props.actions.showCreateProject(true)}/>
                 </div>

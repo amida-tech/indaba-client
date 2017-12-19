@@ -39,7 +39,7 @@ $block-class:'primary-nav';
             color: $nav-text-color;
             font-size: 16px;
             margin-left: 20px;
-            font-weight: 400;
+            font-weight: 500;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             padding-left: 8px;
@@ -56,20 +56,24 @@ $block-class:'primary-nav';
                 font-weight: 400;
                 color: darken(#388055, 30%);
             }
+        }
 
-            &--button {
-                height: 40px;
-                background-color: darken(#388055, 10%);
-                border: 1px;
+        &__button {
+            height: 40px;
+            background-color: darken(#388055, 10%);
+            border: 1px;
+            color: $nav-text-color;
+            border-radius: 3px;
+            min-width: 10px;
+            font-size: 14px;
+
+            &:hover {
                 color: $nav-text-color;
-                border-radius: 3px;
-                min-width: 10px;
-                font-size: 14px;
+                font-weight: 700;
+            }
 
-                &:hover {
-                    color: $nav-text-color;
-                    font-weight: 700;
-                }
+            &:active {
+                color: $nav-text-color;
             }
         }
 
