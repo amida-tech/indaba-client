@@ -31,6 +31,7 @@ $block-class: 'status-card';
         }
 
         &__name-value {
+            display: flex;
             color: $header-font-color;
             font-size: 18px;
         }
