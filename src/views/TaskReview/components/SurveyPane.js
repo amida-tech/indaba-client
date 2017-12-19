@@ -12,6 +12,12 @@ class SurveyPane extends Component {
     }
 
     render() {
+        console.log('ANSWERZ');
+        console.log(this.props.answers);
+        const initialValues = {
+            answers: this.props.answers,
+            assessmentId: this.props.assessmentId,
+        };
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -45,7 +51,9 @@ class SurveyPane extends Component {
                                 Time.renderForSurveyAutosave(this.props.ui.lastSave))}
                     </span>
                 </div>
-                <SurveyForm {...this.props} />
+                <SurveyForm
+                    {...this.props}
+                    initialValues={initialValues} />
             </div>
         );
     }

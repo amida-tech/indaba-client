@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
+import { reduxForm } from 'redux-form';
 
 import QuestionContainer from './QuestionContainer';
 
@@ -15,7 +16,7 @@ class SurveyForm extends Component { // TODO: INBA-450
                     {this.props.survey.map((question, index) =>
                     <QuestionContainer
                         key={`questionpanel${index}`}
-                        index={index}
+                        questionIndex={index}
                         question={question}
                         {...this.props} />,
                     )}
@@ -44,4 +45,9 @@ SurveyForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default SurveyForm;
+const FORM_NAME = 'survey-form';
+
+export default reduxForm({
+    form: FORM_NAME,
+    enableReinitialize: true,
+})(SurveyForm);
