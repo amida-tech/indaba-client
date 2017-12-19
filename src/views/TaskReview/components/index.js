@@ -15,7 +15,6 @@ import * as actions from '../actions';
 
 class TaskReview extends Component {
     componentWillMount() {
-        console.log('mounting');
         this.props.actions.setSurveySectionIndex(-1);
         this.props.actions.getTaskById(this.props.params.projectId,
             this.props.params.taskId, this.props.vocab.ERROR);
@@ -89,9 +88,6 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
     const projectId = parseInt(ownProps.params.projectId, 10);
     const task = find(state.tasks.data, current => current.id === taskId) ||
         { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
-    console.log(state.tasks.data);
-    console.log('TASK');
-    console.log(task);
     const project = state.projects.data[0].id > 0 ?
         find(state.projects.data, projElem => projElem.id === projectId) :
         state.projects.data[0];
