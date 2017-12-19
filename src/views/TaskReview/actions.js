@@ -1,3 +1,4 @@
+import apiService from '../../services/api';
 import { postAnswer } from '../../common/actions/surveyActions';
 import * as actionTypes from './actionTypes';
 
@@ -24,10 +25,46 @@ export function upsertAnswer(assessmentId, questionId, answer, required, errorMe
 }
 
 // Discussion related:
-export function storeFlaggedIssues(flags) {
+export function getDiscussions(taskId, errorMessages) { // errorMessages
+    return (dispatch) => {
+        apiService.discussions.getDiscussions(
+            taskId,
+            (discussErr, discussResp) => {
+                dispatch((!discussErr && discussResp) ?
+                    _getDiscussionsSuccess(discussResp) :
+                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
+            },
+        );
+    };
+}
+
+export function postDiscussion(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.discussions.postDiscussion(
+            requestBody,
+            (discussErr, discussResp) => {
+                if (discussErr) {
+                    dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS));
+                } else {
+                    dispatch(_postDiscussionSuccess(discussResp));
+                    dispatch(getDiscussions(requestBody.taskId, errorMessages));
+                }
+            },
+        );
+    };
+}
+
+function _getDiscussionsSuccess(discussions) {
     return {
-        type: actionTypes.STORE_FLAGGED_ISSUES,
-        flags,
+        type: actionTypes.GET_DISCUSSIONS_SUCCESS,
+        discussions,
+    };
+}
+
+function _postDiscussionSuccess(discussion) {
+    return {
+        type: actionTypes.POST_DISCUSSION_SUCCESS,
+        discussion,
     };
 }
 
@@ -50,5 +87,12 @@ export function updateMarkResolved(resolved) {
     return {
         type: actionTypes.UPDATE_MARK_RESOLVED,
         resolved,
+    };
+}
+
+function _reportDiscussError(error) {
+    return {
+        type: actionTypes.REPORT_DISCUSS_ERROR,
+        error,
     };
 }

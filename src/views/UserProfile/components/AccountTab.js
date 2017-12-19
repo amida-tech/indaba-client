@@ -22,7 +22,7 @@ class AccountTab extends Component {
                         type='text'
                         className='account-tab__label--text-input'/>
                 </label>
-                <label className='account-tab__label'>
+                <div className='account-tab__label'>
                     {this.props.vocab.PROJECT.ACCOUNT_SINCE}
                     <div className='account-tab__date'>
                         {
@@ -40,7 +40,7 @@ class AccountTab extends Component {
                             </button>
                         }
                     </div>
-                </label>
+                </div>
             </div>
         );
     }

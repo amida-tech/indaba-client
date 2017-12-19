@@ -48,7 +48,7 @@ class SurveyPane extends Component {
                         {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
                             (this.props.ui.lastSave === null ?
                                 this.props.vocab.PROJECT.NOT_SAVED :
-                                Time.renderForSurveyAutosave(this.props.ui.lastSave))}
+                                Time.renderGeneralTimestamp(this.props.ui.lastSave))}
                     </span>
                 </div>
                 <SurveyForm

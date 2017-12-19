@@ -2,15 +2,12 @@ $block-class: 'sub-nav';
 
 @at-root {
     .#{$block-class} {
-        &__spacer {
-            //
-            &-container {
-                display: flex;
-                width: 25%;
-                flex: 1;
-                flex-direction: row;
-                justify-content: space-between;
-            }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        @media (min-width: 768px) {
+            width: 70%;
         }
     }
 }

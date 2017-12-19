@@ -1,3 +1,4 @@
+$font-color-for-labels: #757575;
 $block-class:'tasks-tab';
 
 @at-root {
@@ -8,8 +9,10 @@ $block-class:'tasks-tab';
             padding: 1em;
             justify-content: space-between;
 
-            &:nth-child(odd) {
-                background-color: lighten(#d8d8d8, 10%);
+            @extend .lead-font;
+
+            &:hover {
+                background-color: #f3f3f3;
             }
         }
 
@@ -17,9 +20,9 @@ $block-class:'tasks-tab';
             flex: 1;
 
             &--header {
-                color: $font-color;
-                font-weight: bold;
-                letter-spacing: 0.8px;
+                font-size: 14px;
+                color: $font-color-for-labels;
+                font-weight: 400;
             }
         }
     }

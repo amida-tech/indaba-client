@@ -53,17 +53,6 @@ body,
     padding-bottom: $footer-height-with-padding;
 }
 
-// Grommet overrides
-.grommet {
-    .grommetux-tabs {
-        border-bottom: none;
-    }
-
-    .grommetux-tab {
-        border-bottom: 3px solid $border-color;
-    }
-}
-
 .grommetux-text-input {
     margin-bottom: 1em;
 }
