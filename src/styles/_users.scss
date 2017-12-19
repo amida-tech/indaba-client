@@ -41,7 +41,10 @@ $block-class: 'users';
         }
 
         .grommetux-tab--active {
-            background-color: $border-color;
+            background-color: $element-background;
+            border-left: 2px solid $border-color;
+            border-right: 2px solid $border-color;
+            border-top: 2px solid $border-color;
         }
 
         .grommetux-tab {
