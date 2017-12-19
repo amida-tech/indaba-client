@@ -4,12 +4,13 @@ $block-class: 'sub-nav';
     .#{$block-class} {
         &__spacer-container {
             display: flex;
+            width: 40%;
             flex: 1;
             flex-direction: row;
             justify-content: space-around;
 
-            @media (min-width: 768px) {
-                min-width: 50%;
+            @media (width: 768px) {
+                width: 70%;
             }
         }
     }
