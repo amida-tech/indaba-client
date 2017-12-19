@@ -42,7 +42,7 @@ $block-class: 'add-users';
         }
 
         .grommetux-tab--active {
-            background-color: lighten(#d8d8d8, 5%);
+            background-color: $border-color;
 
             @extend .lead-font;
         }
