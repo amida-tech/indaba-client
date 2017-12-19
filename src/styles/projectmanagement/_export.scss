@@ -8,7 +8,8 @@ $block-class: 'export';
         &__instructions {
             @extend .med-font;
 
-            margin: 20px 40px;
+            margin: 24px 40px;
+            width: 65%;
         }
 
         &__interactions {
@@ -125,6 +126,11 @@ $block-class: 'export';
             background-color: #f7f8f9;
             align-self: stretch;
             padding: 6px 0;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 1);
+                color: $font-inverse-color;
+            }
         }
     }
 }
