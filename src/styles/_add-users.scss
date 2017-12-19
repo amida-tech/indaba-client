@@ -42,9 +42,8 @@ $block-class: 'add-users';
         }
 
         .grommetux-tab--active {
-            background-color: $border-color;
-
-            @extend .lead-font;
+            background-color: $element-background;
+            border: 2px solid $border-color;
         }
 
         .grommetux-tabs--justify-center {
