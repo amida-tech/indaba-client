@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 
 import QuestionContainer from './QuestionContainer';
 
@@ -47,7 +49,15 @@ SurveyForm.propTypes = {
 
 const FORM_NAME = 'survey-form';
 
-export default reduxForm({
-    form: FORM_NAME,
-    enableReinitialize: true,
-})(SurveyForm);
+const selector = formValueSelector(FORM_NAME);
+
+const mapStateToProps = state => ({
+    formAnswers: selector(state, 'answers'),
+});
+
+export default compose(
+    connect(mapStateToProps),
+    reduxForm({
+        form: FORM_NAME,
+        enableReinitialize: true }),
+)(SurveyForm);

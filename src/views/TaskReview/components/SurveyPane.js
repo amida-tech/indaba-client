@@ -12,10 +12,10 @@ class SurveyPane extends Component {
     }
 
     render() {
-        console.log('ANSWERZ');
-        console.log(this.props.answers);
         const initialValues = {
-            answers: this.props.answers,
+            answers: this.props.answers.map((answer) => {
+                return answer.comments ? answer : Object.assign({}, answer, { comments: [] });
+            }),
             assessmentId: this.props.assessmentId,
         };
         return (

@@ -3,6 +3,7 @@ import AccordionPanel from 'grommet/components/AccordionPanel';
 import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 import { FieldArray } from 'redux-form';
+import { find } from 'lodash';
 
 import ReviewPane from './ReviewPane';
 import Questions from './Questions';
@@ -27,11 +28,12 @@ class QuestionContainer extends Component {
                         vocab={this.props.vocab} />
                     {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
                         <FieldArray
-                            name='comment'
+                            name={`answers[${this.props.questionIndex}].comments`}
                             component={ReviewPane}
                             props={Object.assign({}, {
-                                question: this.props.question,
                                 questionIndex: this.props.questionIndex,
+                                formAnswer: find(this.props.formAnswers, answer =>
+                                    answer.questionId === this.props.question.id),
                                 displayMode: this.props.taskDisabled,
                                 vocab: this.props.vocab })}/>
                     }
