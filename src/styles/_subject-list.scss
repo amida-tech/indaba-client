@@ -2,6 +2,8 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
+        background-color: $element-background;
+
         &__entry {
             display: flex;
             justify-content: space-between;
@@ -12,7 +14,7 @@ $block-class: 'subject-list';
             @extend .lead-font;
 
             &:hover {
-                background-color: #f3f3f3;
+                background-color: #ededed;
             }
         }
 
