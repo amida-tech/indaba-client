@@ -1,0 +1,10 @@
+$block-class:'project-title-modal';
+
+@at-root {
+    .#{$block-class} {
+        color: red;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
