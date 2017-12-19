@@ -10,11 +10,12 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
-import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
 class TaskReview extends Component {
     componentWillMount() {
+        console.log('mounting');
         this.props.actions.setSurveySectionIndex(-1);
         this.props.actions.getTaskById(this.props.params.projectId,
             this.props.params.taskId, this.props.vocab.ERROR);
@@ -27,12 +28,12 @@ class TaskReview extends Component {
                 ({ value: index, label: section.name })) : [];
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
 
-        let displaySurvey;
+        let displaySurvey = [];
         if (this.props.survey.sections && this.props.sectionIndex === -1) {
             displaySurvey = flatten(map(this.props.survey.sections, 'questions'));
         } else if (this.props.survey.sections) {
             displaySurvey = this.props.survey.sections[this.props.sectionIndex].questions;
-        } else {
+        } else if (this.props.survey.questions) {
             displaySurvey = this.props.survey.questions;
         }
 
@@ -60,11 +61,12 @@ class TaskReview extends Component {
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
                     <SurveyPane
                         ui={this.props.ui}
+                        productId={this.props.productId}
+                        task={this.props.task}
                         answers={this.props.ui.form.answers}
                         survey={displaySurvey}
                         options={options}
                         surveyId={this.props.survey.id}
-                        assessmentId={this.props.task.assessmentId}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         stage={this.props.stage}
@@ -87,11 +89,15 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
     const projectId = parseInt(ownProps.params.projectId, 10);
     const task = find(state.tasks.data, current => current.id === taskId) ||
         { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
+    console.log(state.tasks.data);
+    console.log('TASK');
+    console.log(task);
     const project = state.projects.data[0].id > 0 ?
         find(state.projects.data, projElem => projElem.id === projectId) :
         state.projects.data[0];
     return {
         projectId,
+        productId: project.productId,
         taskedUser: find(state.user.users, user =>
             user.id === task.userIds[0]) || { firstName: '', lastName: '' },
         stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
@@ -116,6 +122,7 @@ const mapDispatchToProps = dispatch => ({
         updateTaskEndDate,
         setSurveySectionIndex,
         getTaskById,
+        moveTask,
         postAnswer }),
         dispatch),
 });

@@ -180,6 +180,7 @@
         "AGREE": "Agree",
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
+        "TASK_COMPLETED": "Task completed!",
         "PERM_ARRAY": [
             "Complete Survey",
             "Review",
