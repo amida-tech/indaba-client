@@ -31,7 +31,7 @@
     font-size: 18px;
     line-height: 1.5;
     font-weight: 400;
-    color: $header-font-color;
+    color: $lead-font-color;
 }
 
 .large-font {
@@ -46,5 +46,6 @@
     font-size: 32px;
     line-height: 1.5;
     font-weight: 300;
+    letter-spacing: -0.8px;
     color: $lead-font-color;
 }
