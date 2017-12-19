@@ -1,42 +1,41 @@
 import React, { Component } from 'react';
-import Box from 'grommet/components/Box';
-import _ from 'lodash';
+import { find, findIndex } from 'lodash';
 import PropTypes from 'prop-types';
 
-import TaskStatus from '../../../../utils/TaskStatus';
+import Time from '../../../../utils/Time';
 import { renderName } from '../../../../utils/User';
 
 class FlagCommentary extends Component {
     render() {
-        const active = _.findIndex(this.props.ui.flags, flag =>
-            flag.id === this.props.ui.flagSidebar.activeId);
+        const activeIndex = findIndex(this.props.ui.flags, flag =>
+            parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
         return (
-            <Box className='flag-commentary'>
-                {this.props.ui.flags.length > 0 &&
-                    this.props.ui.flags[active].flagHistory.map((reply, index) => {
+            <div className='flag-commentary'>
+                {activeIndex >= 0 &&
+                    this.props.ui.flags[activeIndex].discussion.map((reply, index) => {
                         return (
                     <div className='flag-commentary__frame'
                         key={`flag-comment${index}`}>
                         <div className='flag-commentary__timestamp'>
-                            {TaskStatus.formatDateTime(reply.timestamp)}
+                            {Time.renderGeneralTimestamp(reply.created)}
                         </div>
                         <div className='flag-commentary__comment'>
-                            {reply.comment}
+                            {reply.entry}
                         </div>
                         <div className='flag-commentary__signature'>
-                            –{renderName(this.props.profile.id === reply.userId ?
+                            –{renderName(this.props.profile.id === reply.userFromId ?
                                 this.props.profile :
-                                _.find(this.props.users, user => user.id === reply.userId))}
+                                find(this.props.users, user => user.id === reply.userFromId))}
                         </div>
                     </div>
                         );
                     })}
-                {this.props.ui.flags.length === 0 &&
+                {activeIndex < 0 &&
                     <div className='flag-commentary__frame'>
                         {this.props.vocab.PROJECT.NO_COMMENTS}
                     </div>
                 }
-            </Box>
+            </div>
         );
     }
 }

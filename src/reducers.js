@@ -21,7 +21,6 @@ const reducers = {
     projects: CommonReducers.ProjectReducer,
     surveys: CommonReducers.SurveyReducer,
     tasks: CommonReducers.TaskReducer,
-    discuss: CommonReducers.DiscussReducer,
     messages: MessagesReducer,
     login: LoginReducer,
     routing: routerReducer,

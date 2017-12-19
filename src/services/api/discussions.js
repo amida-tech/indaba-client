@@ -1,9 +1,9 @@
 import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
-const discuss = {
-    getDiscuss: (taskId, callback) => {
-        requests.apiGetRequest(getFullPath(`discussions/getByTaskId/${taskId}`), callback);
+const discussions = {
+    getDiscussions: (taskId, callback) => {
+        requests.apiGetRequest(getFullPath(`discussions?taskId=${taskId}`), callback);
     },
     postDiscussion: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('discussions'), requestBody, callback);
@@ -13,4 +13,4 @@ const discuss = {
     },
 };
 
-export default discuss;
+export default discussions;
