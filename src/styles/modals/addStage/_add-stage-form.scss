@@ -50,23 +50,19 @@ $block-class:'add-stage-form';
             display: flex;
             justify-content: space-between;
             margin-bottom: 24px;
+        }
 
-            &-start {
-                &-label {
-                    @extend .lead-font;
+        &__select-start-label {
+            @extend .lead-font;
 
-                    margin-left: 16px;
-                }
-            }
+            margin-left: 16px;
+        }
 
-            &-end {
-                &-label {
-                    @extend .lead-font;
+        &__select-end-label {
+            @extend .lead-font;
 
-                    margin-right: 60px;
-                    margin-left: 16px;
-                }
-            }
+            margin-right: 60px;
+            margin-left: 16px;
         }
 
         &__clear {
