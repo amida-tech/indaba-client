@@ -27,12 +27,12 @@ class TaskReview extends Component {
                 ({ value: index, label: section.name })) : [];
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
 
-        let displaySurvey;
+        let displaySurvey = [];
         if (this.props.survey.sections && this.props.sectionIndex === -1) {
             displaySurvey = flatten(map(this.props.survey.sections, 'questions'));
         } else if (this.props.survey.sections) {
             displaySurvey = this.props.survey.sections[this.props.sectionIndex].questions;
-        } else {
+        } else if (this.props.survey.questions) {
             displaySurvey = this.props.survey.questions;
         }
 
@@ -63,6 +63,8 @@ class TaskReview extends Component {
                         answers={this.props.ui.form.answers}
                         survey={displaySurvey}
                         options={options}
+                        users={this.props.users}
+                        profile={this.props.profile}
                         surveyId={this.props.survey.id}
                         assessmentId={this.props.task.assessmentId}
                         sectionIndex={this.props.sectionIndex}

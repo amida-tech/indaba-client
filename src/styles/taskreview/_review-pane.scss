@@ -2,6 +2,31 @@ $block-class:'review-pane';
 
 @at-root {
     .#{$block-class} {
+        &__display {
+            margin: 1em 2em;
+            color: $font-color;
+            border: 1px solid $font-color;
+            background-color: #fafafa;
+            padding: .5em;
+            width: 75%;
+        }
+
+        &__comment {
+            margin: 0 .5em;
+
+            &-reason {
+                color: #399862;
+                font-weight: bold;
+            }
+
+            &-text {
+
+            }
+
+            &-signature {
+                margin: 0 0 .3em .5em;
+            }
+        }
 
         &__controls {
             margin-top: 10px;
@@ -11,7 +36,7 @@ $block-class:'review-pane';
             margin-left: 2em;
         }
 
-        &__comment {
+        &__text {
             margin: 0 2em 1em 2em;
             width: 75%;
             height: 7em;

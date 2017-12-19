@@ -59,5 +59,13 @@ export default compose(
     connect(mapStateToProps),
     reduxForm({
         form: FORM_NAME,
-        enableReinitialize: true }),
+        enableReinitialize: true,
+        onSubmit: () => { // values, dispatch, ownProps
+            console.log('FIRED');
+            // ownProps.actions.postDiscussion(
+            //     values,
+            //     ownProps.vocab.ERROR,
+            // );
+        },
+    }),
 )(SurveyForm);

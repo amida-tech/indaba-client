@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
-import { FieldArray } from 'redux-form';
 import { find } from 'lodash';
 
 import ReviewPane from './ReviewPane';
@@ -27,15 +26,23 @@ class QuestionContainer extends Component {
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
                     {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
-                        <FieldArray
-                            name={`answers[${this.props.questionIndex}].comments`}
-                            component={ReviewPane}
-                            props={Object.assign({}, {
-                                questionIndex: this.props.questionIndex,
-                                formAnswer: find(this.props.formAnswers, answer =>
-                                    answer.questionId === this.props.question.id),
-                                displayMode: this.props.taskDisabled,
-                                vocab: this.props.vocab })}/>
+                        <ReviewPane
+                            users={this.props.users}
+                            profile={this.props.profile}
+                            questionIndex={this.props.questionIndex}
+                            question={this.props.question}
+                            users={this.props.users}
+                            comments={find(this.props.answers, answer =>
+                                answer.questionId === this.props.question.id).comments || []}
+                            displayMode={this.props.taskDisabled}
+                            vocab={this.props.vocab }
+                            onSubmit={(values) => {
+                                console.log('James look here.');
+                                console.log(values);
+                                // this.props.actions.updateProfile(
+                                //     values,
+                                //     this.props.vocab.ERROR);
+                            }}/>
                     }
                 </AccordionPanel>
             </Element>
