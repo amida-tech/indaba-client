@@ -159,7 +159,7 @@ export function postReview(assessmentId, answers, errorMessages) {
                 if (answerErr) {
                     dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {
-                    dispatch(_postReviewSuccess(answers));
+                    dispatch(getAnswers(assessmentId, errorMessages));
                 }
             },
         );
@@ -248,13 +248,6 @@ function _postAnswerSuccess(response, required) {
         questionId: response.answers[0].questionId,
         answer: response.answers[0].answer,
         required,
-    };
-}
-
-function _postReviewSuccess(answers) {
-    return {
-        type: actionTypes.POST_REVIEW_SUCCESS,
-        answers,
     };
 }
 
