@@ -10,7 +10,7 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
-import { getTaskById, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
 class TaskReview extends Component {
@@ -60,13 +60,14 @@ class TaskReview extends Component {
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
                     <SurveyPane
                         ui={this.props.ui}
+                        productId={this.props.productId}
+                        task={this.props.task}
                         answers={this.props.ui.form.answers}
                         survey={displaySurvey}
                         options={options}
                         users={this.props.users}
                         profile={this.props.profile}
                         surveyId={this.props.survey.id}
-                        assessmentId={this.props.task.assessmentId}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
                         stage={this.props.stage}
@@ -94,6 +95,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
         state.projects.data[0];
     return {
         projectId,
+        productId: project.productId,
         taskedUser: find(state.user.users, user =>
             user.id === task.userIds[0]) || { firstName: '', lastName: '' },
         stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
@@ -118,6 +120,7 @@ const mapDispatchToProps = dispatch => ({
         updateTaskEndDate,
         setSurveySectionIndex,
         getTaskById,
+        moveTask,
         postAnswer }),
         dispatch),
 });

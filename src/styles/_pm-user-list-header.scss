@@ -5,12 +5,11 @@ $block-class: 'pm-user-list-header';
         width: 100%;
         display: inline-flex;
 
-        @extend .lead-font;
+        @extend .small-font;
 
         &__cell {
             flex: 6;
-            color: $font-color;
-            font-weight: 500;
+            color: $lead-font-color;
             padding: 8px 16px;
             justify-content: center;
         }

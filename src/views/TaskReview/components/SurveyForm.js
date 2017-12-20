@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
 import { reduxForm, formValueSelector } from 'redux-form';
+import { toast } from 'react-toastify';
 
 import QuestionContainer from './QuestionContainer';
 
@@ -34,7 +35,14 @@ class SurveyForm extends Component { // TODO: INBA-450
                         {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_3}
                     </div>
                     <button className='survey-form__submit-button'
-                        onClick=''>
+                        onClick={() => {
+                            toast(this.props.vocab.PROJECT.TASK_COMPLETED);
+                            this.props.actions.moveTask(
+                                this.props.productId,
+                                this.props.task.uoaId,
+                                this.props.vocab.ERROR,
+                            );
+                        }}>
                         {this.props.vocab.SURVEY.SUBMIT_TASK}
                     </button>
                 </div>

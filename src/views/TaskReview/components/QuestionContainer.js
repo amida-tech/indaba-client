@@ -19,7 +19,7 @@ class QuestionContainer extends Component {
                     {...this.props}>
                     <Questions className='question-container__questions'
                         {...this.props.question}
-                        assessmentId={this.props.assessmentId}
+                        assessmentId={this.props.task.assessmentId}
                         answers={this.props.answers}
                         displayMode={this.props.taskDisabled || this.props.stage.blindReview
                             || this.props.stage.discussionParticipation}
@@ -31,9 +31,10 @@ class QuestionContainer extends Component {
                             profile={this.props.profile}
                             questionIndex={this.props.questionIndex}
                             question={this.props.question}
-                            users={this.props.users}
                             comments={find(this.props.answers, answer =>
                                 answer.questionId === this.props.question.id).comments || []}
+                            assessmentId={this.props.task.assessmentId}
+                            answers={this.props.answers}
                             displayMode={this.props.taskDisabled}
                             vocab={this.props.vocab }
                             onSubmit={(values) => {

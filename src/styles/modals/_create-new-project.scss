@@ -8,12 +8,12 @@ $block-class:'create-new-project'; // Bootstrap is doing its crap again. Call th
         }
 
         &__create-button.grommetux-button {
-            @extend .small-font;
-
+            font-size: 14px;
+            color: $font-inverse-color;
             padding: 12px;
             border-radius: 2px;
             height: 32px;
-            font-weight: 700;
+            font-weight: 500;
 
             &:hover {
                 background: darken(#4eb276, 10);
