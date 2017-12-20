@@ -40,6 +40,10 @@ Start both `indaba-client` and `greyscale/backend`.
 Go to `http://localhost:3000/login`
 Login with `test-adm@mail.net` / `testadmin`
 
+## Code Analysis
+1. run `$ gulp analysis`
+2. Files are written to `./artifacts`
+
 ## Building Dockerfile in Linux
 From the base directory of the project run `docker build --tag indaba-client .`
 To run the image `docker run --link indaba_be:indaba_be -e API_HTTP_URL=http://<address to be/>:3005 -e API_HTTPS_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
