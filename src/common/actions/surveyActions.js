@@ -253,7 +253,7 @@ function _postAnswerSuccess(response, required) {
 
 function _postReviewSuccess(answers) {
     return {
-        type: actionTypes.POST_ANSWERS_SUCCESS,
+        type: actionTypes.POST_REVIEW_SUCCESS,
         answers,
     };
 }
