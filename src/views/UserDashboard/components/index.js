@@ -11,6 +11,7 @@ import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
 import Time from '../../../utils/Time';
+import { questionListLengthFromSurvey } from '../../../utils/Survey';
 
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
@@ -113,14 +114,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         findAnswers.assessmentId === task.assessmentId);
     const survey = state.userdashboard.surveys.find(findSurvey =>
         findSurvey.id === task.surveyId);
-    const recursiveSectionLength = (section) => {
-        return get(section, 'questions.length', 0) +
-        (section.sections || []).reduce(
-            (acc, current) => recursiveSectionLength(current) + acc,
-            0,
-        );
-    };
-    const surveyLength = survey ? recursiveSectionLength(survey) : 0;
+    const surveyLength = survey ? questionListLengthFromSurvey(survey) : 0;
     const answered = get(answers, 'answers.length', 0);
     const late = !!(task && answers &&
         TaskStatus.endDateInPast(task) &&
