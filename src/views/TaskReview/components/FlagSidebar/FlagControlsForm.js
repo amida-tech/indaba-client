@@ -18,38 +18,38 @@ class FlagControlsForm extends Component {
             }) : [];
         return (
             <form className='flag-controls-form'
-               onSubmit={this.props.handleSubmit}>
-               <Field className='flag-controls-form__discussion'
-                   name='entry'
-                   component='textarea'
-                   placeholder={this.props.vocab.PROJECT.REPLY} />
-               <div className='flag-controls-form__mark-resolve-section'>
-                   <Field name='isResolve'
-                       component='input'
-                       type='checkbox' />
-                   <div className='flag-controls-form__resolve-text'>
-                       {this.props.vocab.PROJECT.MARK_RESOLVED}
-                   </div>
-               </div>
-               <div className='flag-controls-form__notify-section'>
-                   {this.props.vocab.PROJECT.NOTIFY_USER}
-                   <Field className='flag-controls-form__notify'
-                       name='notify'
-                       component={FlagUserSelect}
-                       userOptions={userOptions} />
-               </div>
-               <div className='flag-controls-form__button-group'>
-                   <button className='flag-controls-form__button-cancel'
-                       type='button'
-                       onClick={this.props.reset}>
-                       {this.props.vocab.COMMON.CANCEL}
-                   </button>
-                   <button className='flag-controls-form__button-send'
-                       type='submit'>
-                       {this.props.vocab.COMMON.SEND}
-                   </button>
-               </div>
-           </form>
+                onSubmit={this.props.handleSubmit}>
+                <Field className='flag-controls-form__discussion'
+                    name='entry'
+                    component='textarea'
+                    placeholder={this.props.vocab.PROJECT.REPLY} />
+                <div className='flag-controls-form__mark-resolve-section'>
+                    <Field name='isResolve'
+                        component='input'
+                        type='checkbox' />
+                    <div className='flag-controls-form__resolve-text'>
+                        {this.props.vocab.PROJECT.MARK_RESOLVED}
+                    </div>
+                </div>
+                <div className='flag-controls-form__notify-section'>
+                    {this.props.vocab.PROJECT.NOTIFY_USER}
+                    <Field className='flag-controls-form__notify'
+                        name='notify'
+                        component={FlagUserSelect}
+                        userOptions={userOptions} />
+                </div>
+                <div className='flag-controls-form__button-group'>
+                    <button className='flag-controls-form__button-cancel'
+                        type='button'
+                        onClick={this.props.reset}>
+                        {this.props.vocab.COMMON.CANCEL}
+                    </button>
+                    <button className='flag-controls-form__button-send'
+                        type='submit'>
+                        {this.props.vocab.COMMON.SEND}
+                    </button>
+                </div>
+            </form>
         );
     }
 }
