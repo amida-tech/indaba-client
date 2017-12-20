@@ -12,6 +12,11 @@ class SurveyPane extends Component {
     }
 
     render() {
+        const initialValues = {
+            answers: this.props.answers.map(answer => Object.assign({}, answer,
+                { comment: { reason: null, text: '' } })),
+            assessmentId: this.props.task.assessmentId,
+        };
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -45,7 +50,9 @@ class SurveyPane extends Component {
                                 Time.renderGeneralTimestamp(this.props.ui.lastSave))}
                     </span>
                 </div>
-                <SurveyForm {...this.props} />
+                <SurveyForm
+                    {...this.props}
+                    initialValues={initialValues} />
             </div>
         );
     }

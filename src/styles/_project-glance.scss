@@ -5,6 +5,14 @@ $block-class: 'project-glance';
         display: flex;
         align-items: center;
         width: 100%;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__group {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin: 4px 0;
+        }
     }
 }
