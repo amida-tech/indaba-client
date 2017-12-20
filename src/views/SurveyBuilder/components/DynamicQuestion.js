@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
+import { has } from 'lodash';
 
 class DynamicQuestion extends Component {
     render() {
@@ -16,35 +17,41 @@ class DynamicQuestion extends Component {
                         <div className='dynamic-question__choices-fields'
                             key={this.props.sectionIndex + this.props.questionIndex +
                                 this.props.question.type + index}>
-                            <input className='dynamic-question__choices-input'
-                                type='text'
-                                placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
-                                value={choice.text || ''}
-                                onChange={event =>
-                                    this.props.actions.upsertChoice(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    index,
-                                    event.target.value,
-                                )} />
-                            <button className='dynamic-question__masked-button'
-                                onClick={() => this.props.actions.upsertChoice(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    index,
-                                    )}>
-                                <IonIcon icon='ion-ios-plus'
-                                    className='dynamic-question__icon'/>
-                            </button>
-                            <button className='dynamic-question__masked-button'
-                                onClick={() => this.props.actions.deleteChoice(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    index,
-                                    )}>
-                                <IonIcon icon='ion-trash-b'
-                                    className='dynamic-question__icon'/>
-                            </button>
+                            <div className='dynamic-question__choices-group'>
+                                <input className='dynamic-question__choices-input'
+                                    type='text'
+                                    placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
+                                    value={choice.text || ''}
+                                    onChange={event =>
+                                        this.props.actions.upsertChoice(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        index,
+                                        event.target.value,
+                                    )} />
+                                <button className='dynamic-question__masked-button'
+                                    onClick={() => this.props.actions.upsertChoice(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        index,
+                                        )}>
+                                    <IonIcon icon='ion-ios-plus'
+                                        className='dynamic-question__icon'/>
+                                </button>
+                                <button className='dynamic-question__masked-button'
+                                    onClick={() => this.props.actions.deleteChoice(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        index,
+                                        )}>
+                                    <IonIcon icon='ion-trash-b'
+                                        className='dynamic-question__icon'/>
+                                </button>
+                            </div>
+                            {has(this.props.question, 'meta.weight') &&
+                                <input className='dynamic-question__weight-input'
+                                    placeholder={0} />
+                            }
                         </div>,
                             )}
                 </div>);

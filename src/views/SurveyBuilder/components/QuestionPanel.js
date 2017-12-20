@@ -188,7 +188,21 @@ class QuestionPanel extends Component {
                     {WEIGHTED.includes(this.props.question.type) &&
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
-                                disabled={true} />
+                                value={has(this.props.question, 'meta.weight')}
+                                onChange={(event) => {
+                                    if (event.target.checked) {
+                                        this.props.actions.updateQuestion(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'meta',
+                                            { weight: true });
+                                    } else {
+                                        this.props.actions.resetMeta(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'weight');
+                                    }
+                                }}/>
                             <span className='question-panel__label'>
                                 {this.props.vocab.SURVEY.WEIGHT}
                             </span>
