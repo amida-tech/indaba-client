@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
-import { reduxForm, formValueSelector } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { toast } from 'react-toastify';
 
 import QuestionContainer from './QuestionContainer';
@@ -12,7 +10,8 @@ import QuestionContainer from './QuestionContainer';
 class SurveyForm extends Component { // TODO: INBA-450
     render() {
         return (
-            <div className='survey-form'>
+            <form className='survey-form'
+                onSubmit={this.props.handleSubmit}>
                 <Accordion
                     active={this.props.ui.showQuestions}
                     openMulti={true}>
@@ -45,8 +44,9 @@ class SurveyForm extends Component { // TODO: INBA-450
                         }}>
                         {this.props.vocab.SURVEY.SUBMIT_TASK}
                     </button>
+                    <button type='submit'>'SUBMIT REVIEW CHANGE THIS TO VOCAB'</button>
                 </div>
-            </div>
+            </form>
         );
     }
 }
@@ -57,23 +57,15 @@ SurveyForm.propTypes = {
 
 const FORM_NAME = 'survey-form';
 
-const selector = formValueSelector(FORM_NAME);
-
-const mapStateToProps = state => ({
-    formAnswers: selector(state, 'answers'),
-});
-
-export default compose(
-    connect(mapStateToProps),
-    reduxForm({
-        form: FORM_NAME,
-        enableReinitialize: true,
-        onSubmit: () => { // values, dispatch, ownProps
-            console.log('FIRED');
+export default reduxForm({
+    form: FORM_NAME,
+    enableReinitialize: true,
+    onSubmit: (values) => { // values, dispatch, ownProps
+        console.log('Survey form values on submit');
+        console.log(values);
             // ownProps.actions.postDiscussion(
             //     values,
             //     ownProps.vocab.ERROR,
             // );
-        },
-    }),
-)(SurveyForm);
+    },
+})(SurveyForm);
