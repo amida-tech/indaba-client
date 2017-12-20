@@ -30,7 +30,7 @@ class ReviewPane extends Component {
                 <div className='review-pane__controls'>
                     <label className='review-pane__radio-controls'>
                         <Field
-                            name={`answers[${this.props.questionIndex}].newComment.reason`}
+                            name={`answers[${this.props.questionIndex}].comment.reason`}
                             component='input'
                             type='radio'
                             onClick={this.props.handleSubmit}
@@ -40,7 +40,7 @@ class ReviewPane extends Component {
                     </label>
                     <label className='review-pane__radio-controls'>
                         <Field
-                            name={`answers[${this.props.questionIndex}].newComment.reason`}
+                            name={`answers[${this.props.questionIndex}].comment.reason`}
                             component='input'
                             type='radio'
                             onClick={this.props.handleSubmit}
@@ -50,7 +50,7 @@ class ReviewPane extends Component {
                     </label>
                 </div>
                 <Field className='review-pane__text'
-                    name={`answers[${this.props.questionIndex}].newComment.text`}
+                    name={`answers[${this.props.questionIndex}].comment.text`}
                     component='textarea'
                     onBlur={this.props.handleSubmit}
                     disabled={this.props.displayMode}
