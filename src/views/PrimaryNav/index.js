@@ -12,13 +12,7 @@ import CreateNewProject from './CreateNewProject';
 
 
 class PrimaryNavContainer extends Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            userProfile: null,
-        };
-    }
 
     componentWillMount() {
         if (this.props.nav.ui.checkBackend) {
@@ -26,19 +20,11 @@ class PrimaryNavContainer extends Component {
             this.props.actions.getUsers(this.props.vocab.ERROR);
             this.props.actions.toggleCheckBackend();
         }
-        getProfile((error, results) => {
-            if (results) {
-                this.setState({
-                    userProfile: result,
-                });
-            }
-        })
     }
 
     render() {
-        const { userProfile } = this.state;
-        const isProjectManager = ((userProfile.roleID === 2) ||
-            (userProfile.roleID === 1));
+        const isProjectManager = ((this.props.user.profile.roleID === 2) ||
+            (this.props.user.profile.roleID === 1));
 
         return (
             <nav className='primary-nav'>
