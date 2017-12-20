@@ -74,7 +74,8 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
-        "COMING_SOON": "Coming soon."
+        "COMING_SOON": "Coming soon.",
+        "NO_ASSIGN_USER_OUT_OF_GROUP": "This user is not in the user group assigned to the stage and cannot be assigned to the task."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
