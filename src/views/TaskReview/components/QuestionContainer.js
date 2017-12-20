@@ -36,14 +36,7 @@ class QuestionContainer extends Component {
                             assessmentId={this.props.task.assessmentId}
                             answers={this.props.answers}
                             displayMode={this.props.taskDisabled}
-                            vocab={this.props.vocab }
-                            onSubmit={(values) => {
-                                console.log('James look here.');
-                                console.log(values);
-                                // this.props.actions.updateProfile(
-                                //     values,
-                                //     this.props.vocab.ERROR);
-                            }}/>
+                            vocab={this.props.vocab } />
                     }
                 </AccordionPanel>
             </Element>
