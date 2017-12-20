@@ -2,19 +2,19 @@ $block-class:'review-pane';
 
 @at-root {
     .#{$block-class} {
-        margin-right: 10px;
 
         &__controls {
             margin-top: 10px;
+        }
 
-            &--radio {
-                margin-left: 2em;
-            }
+        &__radio-controls {
+            margin-left: 2em;
+        }
 
-            &--comment {
-                width: 50%;
-                height: 7em;
-            }
+        &__comment {
+            margin: 0 2em 1em 2em;
+            width: 75%;
+            height: 7em;
         }
     }
 }

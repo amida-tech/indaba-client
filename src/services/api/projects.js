@@ -35,11 +35,17 @@ const projects = {
     postGroup: (organizationId, requestBody, callback) => {
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody, callback);
     },
+    putGroup: (groupId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`groups/${groupId}`), requestBody, callback);
+    },
     deleteGroup: (groupId, callback) => {
         requests.apiDeleteRequest(getFullPath(`groups/${groupId}`), {}, callback);
     },
     putWorkflowSteps: (workflowId, requestBody, callback) => { // Step Groups are part of this.
         requests.apiPutRequest(getFullPath(`workflows/${workflowId}/steps`), requestBody, callback);
+    },
+    deleteWorkflowStep: (stepId, callback) => {
+        requests.apiDeleteRequest(getFullPath(`workflows/${stepId}/steps`), {}, callback);
     },
     // deleteWorkflows: (workflowsId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);

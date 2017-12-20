@@ -15,8 +15,9 @@ class MatrixContainer extends Component {
             <div className='matrix-container'>
                 {this.props.ui.taskOptions.show &&
                     <TaskOptionsModal
-                        vocab={this.props.vocab.PROJECT.OPTIONS_MODAL}
+                        vocab={this.props.vocab}
                         task={this.props.ui.taskOptions.task}
+                        userGroups={this.props.ui.taskOptions.userGroups}
                         users={this.props.users}
                         profile={this.props.profile}
                         projectId={this.props.project.id}

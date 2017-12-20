@@ -2,6 +2,7 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
+        background-color: $element-background;
         border: 2px solid $border-color;
 
         &__invite-container {

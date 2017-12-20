@@ -1,6 +1,9 @@
 import * as moment from 'moment';
 
 export default {
+    validateTime(time) {
+        return moment(time, 'MM/DD/YYYY', true).isValid();
+    },
     renderForProjectList(time) {
         return moment(time).format('DD MMM Y');
     },
@@ -13,7 +16,7 @@ export default {
     renderForInboxMessageList(time) {
         return moment(time).format('DD MMM Y h:mmA');
     },
-    renderForSurveyAutosave(time) {
+    renderGeneralTimestamp(time) {
         return moment(time).format('MM/DD/YY hh:mmA');
     },
     renderEndDateForTaskList(time, vocab) {

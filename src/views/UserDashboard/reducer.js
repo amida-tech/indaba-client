@@ -1,4 +1,5 @@
 import update from 'immutability-helper';
+import { unionBy } from 'lodash';
 
 import * as actionTypes from './actionTypes';
 import { FILTERS } from './constants';
@@ -8,32 +9,10 @@ const initialState = {
         searchQuery: '',
         filter: FILTERS.ALL_TASKS,
     },
-    messages: [{
-        id: 129,
-        timestamp: '2017-07-21T11:45:47.591Z',
-        subject: 'Flagged question',
-        from: 'Abbie Hayes',
-    }, {
-        id: 128,
-        timestamp: '2017-07-21T11:44:59.627Z',
-        subject: 'Information About Survey',
-        from: 'Mae Lamb',
-    }, {
-        id: 112,
-        timestamp: '2017-07-21T11:40:23.199Z',
-        subject: 'Stage Force Completed',
-        from: 'Olga Harrington',
-    }, {
-        id: 82,
-        timestamp: '2017-07-21T11:37:51.348Z',
-        subject: 'Borrow a Clipboard?',
-        from: 'Earl Campbell',
-    }, {
-        id: 63,
-        timestamp: '2017-06-21T11:37:51.348Z',
-        subject: 'Blast From The Past',
-        from: '',
-    }],
+    messages: [],
+    tasks: [],
+    answers: [],
+    surveys: [],
 };
 
 export default (state = initialState, action) => {
@@ -47,6 +26,22 @@ export default (state = initialState, action) => {
             filter: { $apply: filter =>
                 (filter === action.filter ? FILTERS.ALL_TASKS : action.filter) },
         } });
+    case actionTypes.USER_DASH_GET_MESSAGES_SUCCESS:
+        return update(state, {
+            messages: { $set: action.messages },
+        });
+    case actionTypes.USER_DASH_GET_TASKS_SUCCESS:
+        return update(state, {
+            tasks: { $set: action.tasks },
+        });
+    case actionTypes.USER_DASH_GET_ANSWERS_SUCCESS:
+        return update(state, {
+            answers: { $apply: answers => unionBy(answers, [action.answers], 'assessmentId'),
+            } });
+    case actionTypes.USER_DASH_GET_SURVEY_BY_ID_SUCCESS:
+        return update(state, {
+            surveys: { $apply: surveys => unionBy(surveys, [action.survey], 'id'),
+            } });
     default:
         return state;
     }

@@ -54,12 +54,13 @@ class FilteredRow extends Component {
                     className='stage-slot-cell'>
                     <StageSlot task={task}
                         user={_.find(this.props.users, user => user.id === task.userIds[0])}
+                        users={this.props.users}
                         filtered={this.taskIsFilteredOut(task)}
                         stageData={this.props.stages.find(stage =>
                             stage.id === task.stepId)}
                         surveySize={this.props.surveySize}
                         project={this.props.project}
-                        vocab={this.props.vocab.PROJECT.CARD}/>
+                        vocab={this.props.vocab}/>
                 </td>,
             )}
             </tr>

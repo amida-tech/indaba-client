@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import Filter from '../../../../common/components/Filter';
 import AddSubject from '../Modals/AddSubject';
-import StageModal from '../Modals/Stage';
 
 class FilterWrapper extends Component {
     render() {
@@ -42,24 +41,6 @@ class FilterWrapper extends Component {
                         label={this.props.vocab.PROJECT.ADD_SUBJECT}
                         onClick={() => this.props.actions.showAddSubjectModal(true)}/>
                 </div>
-                {this.props.ui.showStage &&
-                    <StageModal
-                        vocab={this.props.vocab}
-                        projectId={this.props.project.id}
-                        project={this.props.project}
-                        stageId={this.props.ui.editStage}
-                        onCancel={() => this.props.actions.showStageModal(false)}
-                        onAddStage={(stage) => {
-                            this.props.actions.showStageModal(false);
-                            this.props.actions.putStage(
-                                this.props.project,
-                                stage,
-                                false,
-                                this.props.vocab.ERROR);
-                        }}
-                        userGroups={this.props.project.userGroups}
-                    />
-                }
                 {this.props.ui.showAddSubject &&
                     <AddSubject
                         vocab={this.props.vocab}

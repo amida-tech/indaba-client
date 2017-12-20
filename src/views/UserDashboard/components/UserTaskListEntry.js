@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router';
 
 import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
@@ -10,8 +10,11 @@ class UserTaskListEntry extends Component {
     render() {
         // TODO: Once INBA-433 is done, this return where is the check goes
         return (
-            <div className='user-task-list-entry'
-                onClick={() => this.props.router.push(`/task-review/${this.props.projectId}/${this.props.task.id}`)}>
+            <Link className='user-task-list-entry'
+                to={{
+                    pathname: `/task-review/${this.props.projectId}/${this.props.task.id}`,
+                    state: { referrer: document.location.pathname },
+                }}>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--subject'>
                     {this.props.subject}
                 </div>
@@ -41,7 +44,7 @@ class UserTaskListEntry extends Component {
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--progress'>
                     {this.props.progress}
                 </div>
-            </div>
+            </Link>
         );
     }
 }
@@ -58,4 +61,4 @@ UserTaskListEntry.propTypes = {
     late: PropTypes.bool.isRequired,
 };
 
-export default withRouter(UserTaskListEntry);
+export default UserTaskListEntry;

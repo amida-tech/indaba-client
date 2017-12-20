@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import { Search } from 'grommet';
+import { toast } from 'react-toastify';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
@@ -23,8 +24,16 @@ const stageSpotTarget = {
     hover() { // Possible args: props, monitor, component
     // ... Maybe make the assignee card opaque?
     },
-    drop(props) { // Possible args: monitor, component
-        return (props); // Dispatch to inform the state and DB of changes.
+    drop(props, monitor) { // Possible args: monitor, component
+        const dragUserId = monitor.getItem().id;
+        const usersGroups = props.users.find(user => user.id === dragUserId).usergroupId;
+        if (props.task.userId === undefined &&
+            props.stageData.userGroups.some(
+                groupId => usersGroups.includes(groupId))) {
+            return props; // Dispatch to inform the state and DB of changes.
+        }
+        toast(props.vocab.ERROR.NO_ASSIGN_USER_OUT_OF_GROUP);
+        return { rejection: 'drop-rejected' };
     },
 };
 function collect(connector, monitor) {
@@ -45,13 +54,14 @@ class StageSlot extends Component {
     }
 
     handleTaskOptions() {
-        this.props.actions.showTaskOptionsModal(this.props.task);
+        this.props.actions.showTaskOptionsModal(this.props.task,
+            this.props.stageData.userGroups);
     }
     handleSearchSelect(selection) {
         this.props.actions.assignTask(selection.suggestion.value.id,
         { stageData: this.props.stageData, task: this.props.task },
         this.props.project,
-        this.props.allVocab);
+        this.props.vocab);
         this.props.actions.startTaskAssign(false);
     }
 
@@ -61,22 +71,24 @@ class StageSlot extends Component {
         } else if (diff <= 0) {
             return '';
         } else if (diff === 1) {
-            return this.props.vocab.DUE_TOMORROW;
+            return this.props.vocab.PROJECT.CARD.DUE_TOMORROW;
         } else if (diff > 1) {
-            return this.props.vocab.DUE_IN + diff + this.props.vocab.DAYS;
+            return this.props.vocab.PROJECT.CARD.DUE_IN + diff + this.props.vocab.PROJECT.CARD.DAYS;
         }
         return '';
     }
 
     displayStatus(done, diff) {
         if (done) {
-            return { label: this.props.vocab.DONE, type: StatusLabelType.GOOD };
+            return { label: this.props.vocab.PROJECT.CARD.DONE, type: StatusLabelType.GOOD };
         }
         if (diff <= 0) {
-            return { label: this.props.vocab.LATE, type: StatusLabelType.BAD };
+            return { label: this.props.vocab.PROJECT.CARD.LATE, type: StatusLabelType.BAD };
         }
         if (!TaskStatus.responsesExist(this.props.task)) {
-            return { label: this.props.vocab.NOT_STARTED, type: StatusLabelType.NEUTRAL };
+            return {
+                label: this.props.vocab.PROJECT.CARD.NOT_STARTED,
+                type: StatusLabelType.NEUTRAL };
         }
         return null;
     }
@@ -94,17 +106,22 @@ class StageSlot extends Component {
             {this.props.user &&
                 <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
-                        <Link to={`/task-review/${this.props.project.id}/${this.props.task.id}`}>
+                        <Link to={{
+                            pathname: `/task-review/${this.props.project.id}/${this.props.task.id}`,
+                            state: { referrer: document.location.pathname },
+                        }}>
                             <span>{renderName(this.props.user)}</span>
                         </Link>
                         <button className='stage-slot__masked-button stage-slot__right-icon'
-                            title= {this.props.vocab.TASK_OPTIONS}
+                            title= {this.props.vocab.PROJECT.CARD.TASK_OPTIONS}
                             onClick={this.handleTaskOptions}>
                             <IonIcon icon='ion-ios-more'/>
                         </button>
                     </div>
                     <div className='stage-slot__flag-row'>
-                        <span className='stage-slot__role-span'>{this.props.vocab.ASSIGNEE}</span>
+                        <span className='stage-slot__role-span'>
+                            {this.props.vocab.PROJECT.CARD.ASSIGNEE}
+                        </span>
                         {TaskStatus.responsesFlagged(this.props.task) &&
                             <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
@@ -140,7 +157,7 @@ class StageSlot extends Component {
                     <div className='inline'
                       onClick={() => this.props.actions.startTaskAssign(this.props.task)}>
                         <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
-                        {this.props.vocab.ASSIGN_TASK}
+                        {this.props.vocab.PROJECT.CARD.ASSIGN_TASK}
                     </div>
                 }
               </div>
@@ -153,8 +170,6 @@ class StageSlot extends Component {
 
 const mapStateToProps = state => ({
     assignTaskInput: state.manager.ui.assignTaskInput,
-    users: state.user.users,
-    allVocab: state.settings.language.vocabulary,
 });
 
 const mapDispatchToProps = dispatch => ({

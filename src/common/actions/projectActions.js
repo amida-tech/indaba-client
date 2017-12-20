@@ -2,6 +2,8 @@ import { toast } from 'react-toastify';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
+import { getUsers } from './userActions';
+import { getTasksByProduct } from './taskActions';
 import apiService from '../../services/api';
 
 // API calls.
@@ -51,7 +53,7 @@ export function putProject(project, errorMessages) {
     };
 }
 
-export function getProjectById(projectId, errorMessages) {
+export function getProjectById(projectId, getTasks, errorMessages) {
     return (dispatch) => {
         apiService.projects.getProjectById(
             projectId,
@@ -59,6 +61,9 @@ export function getProjectById(projectId, errorMessages) {
                 if (!projErr && projResp) {
                     if (projResp.surveyId) {
                         dispatch(getSurveyById(projResp.surveyId, errorMessages));
+                    }
+                    if (getTasks === true) {
+                        dispatch(getTasksByProduct(projResp.productId, projectId, errorMessages));
                     }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {
@@ -106,6 +111,22 @@ export function putStage(project, stage, fromWizard, errorMessages) {
                 }
             },
         );
+    };
+}
+
+export function deleteStage(projectId, stageId) {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            apiService.projects.deleteWorkflowStep(stageId, (err, response) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(response);
+                }
+            });
+        }).then(() => {
+            dispatch(getProjectById(projectId));
+        });
     };
 }
 
@@ -217,15 +238,26 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
     };
 }
 
-// Modals.
-export function showStageModal(show, stageId) {
-    return {
-        type: actionTypes.SHOW_STAGE_MODAL,
-        show,
-        stageId,
+export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
+    const { title, users: userId } = groupData;
+
+    return (dispatch) => {
+        apiService.projects.putGroup(
+            groupId,
+            { title, userId, organizationId },
+            (groupErr) => {
+                if (groupErr) {
+                    dispatch(_reportProjectError(errorMessages.USER_GROUP));
+                } else {
+                    dispatch(getProjectById(projectId, errorMessages));
+                    dispatch(getUsers(errorMessages));
+                }
+            },
+        );
     };
 }
 
+// Modals.
 export function showAddSubjectModal(show) {
     return {
         type: actionTypes.SHOW_ADD_SUBJECT_MODAL,
@@ -268,14 +300,6 @@ export function deleteUserGroup(groupId, projectId) {
     return {
         type: actionTypes.DELETE_USER_GROUP,
         groupId,
-        projectId,
-    };
-}
-
-export function updateUserGroup(group, projectId) { // TODO: INBA-457
-    return {
-        type: actionTypes.UPDATE_USER_GROUP,
-        group,
         projectId,
     };
 }

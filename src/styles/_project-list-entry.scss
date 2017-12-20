@@ -10,7 +10,8 @@ $block-class: 'project-list-entry';
         @extend .lead-font;
 
         &:hover {
-            background-color: #f3f3f3;
+            background-color: darken(#fafafa, 5%);
+            color: $lead-font-color;
         }
 
         &__name {

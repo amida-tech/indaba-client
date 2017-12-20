@@ -20,7 +20,10 @@ class UserGroupsTab extends Component {
                     autoClose: false, type: 'error',
                 });
             } else {
-                this.props.actions.getProjectById(this.props.projectId);
+                this.props.actions.getProjectById(
+                    this.props.projectId,
+                    false,
+                    this.props.vocab.ERROR);
             }
         });
     }

@@ -14,12 +14,20 @@ export const initialState = {
         taskOptions: {
             show: false,
             task: {},
+            userGroups: [],
         },
         userGroupListSearchQuery: '',
         userListSearchQuery: '',
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
+        showUserGroupDeleteConfirmModal: null,
+        export: {
+            subjects: [],
+        },
+        showStage: false,
+        editStage: null,
+        showStageDeleteConfirmModal: null,
     },
 };
 
@@ -51,11 +59,13 @@ export default (state = initialState, action) => {
         return update(state, { ui: { taskOptions: {
             show: { $set: true },
             task: { $set: action.task },
+            userGroups: { $set: action.userGroups },
         } } });
     case type.CLOSE_TASK_OPTIONS_MODAL:
         return update(state, { ui: { taskOptions: {
             show: { $set: false },
             task: { $set: {} },
+            userGroups: { $set: [] },
         } } });
     case type.SHOW_SUBJECT_DELETE_CONFIRM_MODAL_FOR_ID: {
         return update(state, { ui: {
@@ -79,6 +89,36 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             assignTaskInput: { $set: action.task },
         } });
+    case type.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserGroupDeleteConfirmModal: { $set: {
+                id: action.id,
+                dataState: action.dataState,
+            } },
+        } });
+    }
+    case type.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showUserGroupDeleteConfirmModal: { $set: null },
+        } });
+    }
+    case type.SHOW_STAGE_MODAL:
+        return update(state, { ui: {
+            showStage: { $set: action.show },
+            editStage: { $set: action.stageId !== undefined ? action.stageId : null },
+        } });
+    case type.PM_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: {
+                stageId: action.stageId,
+            } },
+        } });
+    }
+    case type.PM_HIDE_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: null },
+        } });
+    }
     default:
         return state;
     }

@@ -2,8 +2,11 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const tasks = {
-    getTasksByProject: (projectId, callback) => {
-        requests.apiGetRequest(getFullPath(`tasks-by-proj-id/${projectId}`), callback);
+    getTasksByProduct: (productId, callback) => {
+        requests.apiGetRequest(getFullPath(`products/${productId}/tasks`), callback);
+    },
+    moveTask: (productId, uoaId, callback) => {
+        requests.apiGetRequest(getFullPath(`products/${productId}/move/${uoaId}`), callback);
     },
     getTaskById: (taskId, callback) => {
         requests.apiGetRequest(getFullPath(`tasks/${taskId}`), callback);
@@ -16,6 +19,9 @@ const tasks = {
     },
     postTask: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
+    },
+    putTask: (taskId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`tasks/${taskId}`), requestBody, callback);
     },
     getTasks: (callback) => {
         requests.apiGetRequest(getFullPath('tasks'), callback);

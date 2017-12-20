@@ -1,3 +1,4 @@
+import apiService from '../../services/api';
 import { postAnswer } from '../../common/actions/surveyActions';
 import * as actionTypes from './actionTypes';
 
@@ -24,23 +25,53 @@ export function upsertAnswer(assessmentId, questionId, answer, required, errorMe
 }
 
 // Discussion related:
-export function storeFlaggedIssues(flags) {
-    return {
-        type: actionTypes.STORE_FLAGGED_ISSUES,
-        flags,
+export function getDiscussions(taskId, errorMessages) { // errorMessages
+    return (dispatch) => {
+        apiService.discussions.getDiscussions(
+            taskId,
+            (discussErr, discussResp) => {
+                dispatch((!discussErr && discussResp) ?
+                    _getDiscussionsSuccess(discussResp) :
+                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
+            },
+        );
     };
 }
 
-export function showQuestion(questionIndex) {
-    return {
-        type: actionTypes.SHOW_QUESTION,
-        questionIndex,
+export function postDiscussion(requestBody, errorMessages) {
+    return (dispatch) => {
+        apiService.discussions.postDiscussion(
+            requestBody,
+            (discussErr, discussResp) => {
+                if (discussErr) {
+                    dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS));
+                } else {
+                    dispatch(_postDiscussionSuccess(discussResp));
+                    dispatch(getDiscussions(requestBody.taskId, errorMessages));
+                }
+            },
+        );
     };
 }
 
-export function collapseAllQuestions() {
+function _getDiscussionsSuccess(discussions) {
     return {
-        type: actionTypes.COLLAPSE_ALL_QUESTIONS,
+        type: actionTypes.GET_DISCUSSIONS_SUCCESS,
+        discussions,
+    };
+}
+
+function _postDiscussionSuccess(discussion) {
+    return {
+        type: actionTypes.POST_DISCUSSION_SUCCESS,
+        discussion,
+    };
+}
+
+export function updateQuestionDisplay(questionArray) {
+    return {
+        type: actionTypes.UPDATE_QUESTION_DISPLAY,
+        questionArray,
     };
 }
 
@@ -52,20 +83,6 @@ export function setActiveFlag(activeId, timestamp) {
     };
 }
 
-export function setSignatureId(signatureId) {
-    return {
-        type: actionTypes.SET_SIGNATURE_ID,
-        signatureId,
-    };
-}
-
-export function updateFlagComment(comment) {
-    return {
-        type: actionTypes.UPDATE_FLAG_COMMENT,
-        comment,
-    };
-}
-
 export function updateMarkResolved(resolved) {
     return {
         type: actionTypes.UPDATE_MARK_RESOLVED,
@@ -73,15 +90,9 @@ export function updateMarkResolved(resolved) {
     };
 }
 
-export function updateNotifyUser(notifyUser) {
+function _reportDiscussError(error) {
     return {
-        type: actionTypes.UPDATE_NOTIFY_USER,
-        notifyUser,
-    };
-}
-
-export function cancelFlaggedUpdate() {
-    return {
-        type: actionTypes.CANCEL_FLAGGED_UPDATE,
+        type: actionTypes.REPORT_DISCUSS_ERROR,
+        error,
     };
 }

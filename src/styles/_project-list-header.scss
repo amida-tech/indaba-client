@@ -5,11 +5,8 @@ $block-class: 'project-list-header';
         display: flex;
         padding: 8px 16px;
 
-        @extend .lead-font;
-
         &__title {
-            color: $font-color;
-            font-weight: 500;
+            color: $lead-font-color;
 
             &--project {
                 flex: 4;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
@@ -18,6 +19,7 @@ import ProjectListEntry from './ProjectListEntry';
 class PMDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
+        this.props.actions.pmDashGetMessages();
     }
 
     filterRow(row) {
@@ -53,7 +55,9 @@ class PMDashboard extends Component {
             <div className='pm-dashboard'>
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
-                        messages={this.props.messages}/>
+                        messages={this.props.messages}
+                        users={this.props.users}
+                        onMessageClick={this.props.goToMessage}/>
                     <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
                         flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
                 </SplitLayout>
@@ -94,10 +98,12 @@ const mapStateToProps = state => ({
         // flags calculated inline from rows.flags
     },
     messages: state.pmdashboard.messages.slice(0, 4),
+    users: state.user.users,
 });
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, { getProjects }), dispatch),
+    goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMDashboard);

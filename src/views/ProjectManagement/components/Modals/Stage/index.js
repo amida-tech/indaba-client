@@ -43,7 +43,12 @@ class StageModal extends Component {
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.onClickToSubmit}
+                buttons={this.props.stageId !== null ? [{
+                    key: 'delete-button',
+                    label: this.props.vocab.PROJECT.DELETE_STAGE,
+                    onClick: this.props.onDeleteClick,
+                }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
                     groups={groups}
@@ -58,6 +63,14 @@ class StageModal extends Component {
 
 StageModal.propTypes = {
     vocab: PropTypes.object.isRequired,
+    userGroups: PropTypes.array.isRequired,
+    stageId: PropTypes.number,
+    project: PropTypes.object.isRequired,
+
+    onClickToSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onAddStage: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func,
 };
 
 const stageMapping = (values) => {

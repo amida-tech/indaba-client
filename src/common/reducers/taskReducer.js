@@ -11,38 +11,22 @@ const initialState = {
     },
     projectId: 0,
     userId: 0,
-    data: [{
-        id: -1,
-        title: '',
-        description: '',
-        uoaId: -1,
-        stepId: -1,
-        endDate: '',
-        isCompleted: false,
-        userIds: [],
-        projectId: -1,
-        surveyId: -1,
-        flagCount: 0,
-    }],
+    data: [],
 };
 
 export const TaskReducer = (state = initialState, action) => {
-    const projectIndex = _.findIndex(state.data, projectTasks =>
-        projectTasks.projectId === action.projectId);
-    const taskIndex = state[projectIndex] ?
-        _.findIndex(state[projectIndex].tasks, task => task.id === action.taskId) :
-        null;
+    const taskIndex = _.findIndex(state.data, task => task.id === action.taskId);
     switch (action.type) {
-    case type.GET_TASKS_BY_PROJECT_SUCCESS: {
+    case type.GET_TASKS_BY_PRODUCT_SUCCESS: {
         return update(state, {
             projectId: { $set: action.projectId },
             data: { $set: action.tasks },
         });
     }
     case type.GET_TASK_BY_ID_SUCCESS:
-        return state.data[0].id < 0 ?
+        return taskIndex < 0 ?
             update(state, { projectId: { $set: action.projectId },
-                data: { $set: [action.task] } }) :
+                data: { $push: [action.task] } }) :
             update(state, { projectId: { $set: action.projectId },
                 data: { [taskIndex]: { $set: action.task } } });
     case type.GET_TASKS_BY_USER_SUCCESS:
@@ -55,8 +39,8 @@ export const TaskReducer = (state = initialState, action) => {
     case type.UPDATE_TASK_DUE_DATE:
         return update(state, { data: { [taskIndex]:
             { $merge: { endDate: action.endDate } } } });
-    case type.REASSIGN_TASK:
-        return update(state, { data: { userId: { $set: action.reassignId } } });
+    case type.PUT_TASK_SUCCESS:
+        return update(state, { data: { [taskIndex]: { $merge: action.taskChanges } } });
     case DELETE_PROJECT_USER_SUCCESS:
         return update(state, { data: { $apply: data => data.filter(task =>
                 !task.userIds.includes(action.userId)) } });

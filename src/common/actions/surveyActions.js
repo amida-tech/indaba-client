@@ -1,3 +1,6 @@
+import { pickBy, identity } from 'lodash';
+import { toast } from 'react-toastify';
+
 import * as actionTypes from '../actionTypes/surveyActionTypes';
 import apiService from '../../services/api';
 import { updateProjectWithSurvey } from './projectActions';
@@ -20,13 +23,6 @@ export function postSurvey(survey, project, errorMessages) {
         authorId: 1,
         name: survey.name,
         status: 'draft',
-        sections: [{
-            name: `${survey.name} - Part 1`,
-            questions: [{
-                required: false,
-                id: 1,
-            }],
-        }],
     };
     return (dispatch) => {
         apiService.surveys.postSurvey(
@@ -57,20 +53,25 @@ export function postSurvey(survey, project, errorMessages) {
     };
 }
 
-export function patchSurvey(survey, errorMessages) {
-    const requestBody = {
+export function patchSurvey(survey, successMessage, errorMessages) {
+    const requestBody = pickBy({
         name: survey.name,
         status: survey.status,
+        sections: survey.sections,
         forceStatus: true,
-    };
+    }, identity);
+
     return (dispatch) => {
         apiService.surveys.patchSurvey(
             survey.id,
             requestBody,
             (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp.length === 0) ?
-                    _patchSurveySuccess(survey.id, requestBody) :
-                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+                if (!surveyErr && surveyResp.length === 0) {
+                    dispatch(_patchSurveySuccess(survey.id, requestBody));
+                    toast(successMessage);
+                } else {
+                    dispatch(_reportSurveyError(errorMessages.FETCH_SURVEYS));
+                }
             },
         );
     };
