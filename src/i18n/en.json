@@ -36,7 +36,9 @@
         "NEW": "New",
         "LATE": "Late",
         "LOG_OUT": "Log Out",
-        "MY_TASKS":"My Tasks"
+        "MY_TASKS":"My Tasks",
+        "AGREE": "Agreed",
+        "DISAGREE": "Disagreed"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system and has been added to the project for you.",
@@ -353,9 +355,11 @@
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
         "SUBMIT_TASK": "Complete The Task",
+        "SAVE_REVIEW": "Save Review Progress",
         "SUBMIT_INSTRUCTIONS": "If you have completed the task, select submit.",
         "SUBMIT_INSTRUCTIONS_2":"Not completed? Return to ",
         "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
+        "REVIEW_INSTRUCTIONS": "Click 'Save Review Progress' if you wish to commit your comments.",
         "NAME_OPTIONAL": " Name (Optional)",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
