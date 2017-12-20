@@ -9,7 +9,7 @@ import Time from '../../../utils/Time';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
-import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
+import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
 import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -121,6 +121,7 @@ const mapDispatchToProps = dispatch => ({
         setSurveySectionIndex,
         getTaskById,
         moveTask,
+        postReview,
         postAnswer }),
         dispatch),
 });

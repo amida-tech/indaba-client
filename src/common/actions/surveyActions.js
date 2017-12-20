@@ -146,6 +146,26 @@ export function postAnswer(assessmentId, requestBody, required, errorMessages) {
     };
 }
 
+export function postReview(assessmentId, answers, errorMessages) {
+    const requestBody = {
+        status: 'in-progress',
+        answers,
+    };
+    return (dispatch) => {
+        apiService.surveys.postAnswer(
+            assessmentId,
+            requestBody,
+            (answerErr, answerResp) => {
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(_postReviewSuccess(answers));
+                }
+            },
+        );
+    };
+}
+
 // UI component related.
 export function setSurveyName(name, surveyId) {
     return {
@@ -228,6 +248,13 @@ function _postAnswerSuccess(response, required) {
         questionId: response.answers[0].questionId,
         answer: response.answers[0].answer,
         required,
+    };
+}
+
+function _postReviewSuccess(answers) {
+    return {
+        type: actionTypes.POST_ANSWERS_SUCCESS,
+        answers,
     };
 }
 

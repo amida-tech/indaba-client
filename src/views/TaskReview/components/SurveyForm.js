@@ -70,12 +70,10 @@ const FORM_NAME = 'survey-form';
 export default reduxForm({
     form: FORM_NAME,
     enableReinitialize: true,
-    onSubmit: (values) => { // dispatch, ownProps
-        console.log('Survey form values on submit');
-        console.log(values);
-        const requestBody = values.answers.map((answer) => {
+    onSubmit: (values, dispatch, ownProps) => {
+        const answers = values.answers.map((answer) => {
             if (answer.comment.reason === null ||
-                (answer.comment.reason === 'disagree' && answer.comment.text === null)) {
+                (answer.comment.reason === 'disagree' && answer.comment.text === '')) {
                 return omit(answer, ['comment']);
             }
             if (answer.comments) {
@@ -85,10 +83,10 @@ export default reduxForm({
             return (Object.assign({}, omit(answer, ['comment']), { comments: [answer.comment] }));
         },
         );
-        console.log(requestBody);
-            // ownProps.actions.postDiscussion(
-            //     values,
-            //     ownProps.vocab.ERROR,
-            // );
+        ownProps.actions.postReview(
+            values.assessmentId,
+            answers,
+            ownProps.vocab.ERROR,
+        );
     },
 })(SurveyForm);
