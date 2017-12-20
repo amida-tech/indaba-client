@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, form } from 'redux-form';
+import { Field } from 'redux-form';
 import { find } from 'lodash';
 
 import { renderName } from '../../../utils/User';
@@ -7,8 +7,7 @@ import { renderName } from '../../../utils/User';
 class ReviewPane extends Component {
     render() {
         return (
-            <form className='review-pane'
-                onSubmit={this.props.handleSubmit}>
+            <div className='review-pane'>
                 {this.props.comments.length > 0 &&
                     <div className='review-pane__display'>
                         {this.props.comments.map((comment, index) =>
@@ -56,7 +55,7 @@ class ReviewPane extends Component {
                     onBlur={this.props.handleSubmit}
                     disabled={this.props.displayMode}
                     placeholder={this.props.vocab.COMMON_BUTTONS.COMMENT_TIP} />
-            </form>
+            </div>
         );
     }
 }
