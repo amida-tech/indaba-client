@@ -74,7 +74,8 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
-        "COMING_SOON": "Coming soon."
+        "COMING_SOON": "Coming soon.",
+        "NO_ASSIGN_USER_OUT_OF_GROUP": "This user is not in the user group assigned to the stage and cannot be assigned to the task."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
@@ -187,10 +188,10 @@
             "Review and Edit"
         ],
         "DESC_ARRAY": [
-            "Complete Survey description",
-            "Review description",
-            "Review and comment description",
-            "Review and Edit description",
+            "Answer survey questions",
+            "View previous user's survey answers",
+            "View previous user's survey answers and leave comments",
+            "View and edit survey answers and comments",
             "All permissions description"
         ],
         "TASK_BACK": "Back",
@@ -201,6 +202,7 @@
         "ADD_SUBJECT": "Add Subject",
         "ADD_SUBJECTS": "Add Subjects",
         "ADD_STAGE": "Add New Stage",
+        "DELETE_STAGE": "Delete Stage",
         "ADD_STAGES": "Add Stages",
         "SUBJECT_TITLE": "Subject Title",
         "STAGE_TITLE": "Stage Title",
@@ -479,6 +481,11 @@
             "TITLE": "Remove user group?",
             "DELETE_WITH_NOTHING": "Are you sure you want to delete this user group?",
             "DELETE_WITH_STAGES": "This user group is currently assigned to one or more workflow stages."
+        },
+        "STAGE_DELETE_CONFIRM": {
+            "TITLE": "Delete stage?",
+            "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
+            "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
         }
     }
 }

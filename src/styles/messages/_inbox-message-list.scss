@@ -15,7 +15,7 @@ $block-class: 'inbox-message-list';
             align-items: center;
             padding: 8px 16px;
 
-            @extend .med-font;
+            @extend .lead-font;
 
             &:hover {
                 background-color: #f7f7f7;
@@ -26,9 +26,9 @@ $block-class: 'inbox-message-list';
             }
 
             &--title {
-                @extend .x-small-font;
+                @extend .small-font;
 
-                color: $font-color;
+                color: $lead-font-color;
                 box-shadow: none;
                 cursor: default;
             }

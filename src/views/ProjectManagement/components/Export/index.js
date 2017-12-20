@@ -157,7 +157,7 @@ class Export extends Component {
                                         <DeleteList {...props} />
                                         <QuestionSelectionList
                                             disabled={!customType}
-                                            questions={this.props.survey.questions}
+                                            survey={this.props.survey}
                                             onClick={question => props.input.onChange(
                                                 unionBy(props.input.value, [question], 'id'),
                                             )}

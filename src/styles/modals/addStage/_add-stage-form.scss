@@ -7,14 +7,21 @@ $block-class:'add-stage-form';
         margin-left: 20px;
 
         &__input-field {
+            color: $lead-font-color;
             border-radius: 0;
             height: 35px;
             width: 100%;
         }
 
         &__header {
-            padding: 0.5em, 1em;
+            padding: 8px, 16px;
             margin-top: 0.5em;
+
+            &-label {
+                color: #757575;
+                font-size: 14px;
+                font-weight: 400;
+            }
         }
 
         &__radio-button {
@@ -22,29 +29,40 @@ $block-class:'add-stage-form';
         }
 
         &__permission-label-text {
-            margin-left: 0.5em;
-            margin-right: 1em;
+            @extend .lead-font;
+
+            margin-left: 8px;
+            margin-right: 16px;
         }
 
         &__text-description {
-            padding: 1em;
+            @extend .lead-font;
+
+            padding: 16px;
             font-size: 16px;
         }
 
         &__date-input-div {
-            margin-left: 15px;
+            margin-left: 16px;
         }
 
-        &__start-label-and-input {
-            float: left;
+        &__select {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
         }
 
-        &__end-label-and-input {
-            float: left;
+        &__select-start-label {
+            @extend .lead-font;
+
+            margin-left: 16px;
         }
 
-        &__date-inputs-container {
-            margin-bottom: 30px;
+        &__select-end-label {
+            @extend .lead-font;
+
+            margin-right: 60px;
+            margin-left: 16px;
         }
 
         &__clear {

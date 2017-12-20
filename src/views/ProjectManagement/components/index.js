@@ -18,9 +18,11 @@ import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
-import * as discussActions from '../../../common/actions/discussActions';
 import { addNewUser, notifyUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
+import StageModal from './Modals/Stage';
+import Modal from '../../../common/components/Modal';
+import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
@@ -28,6 +30,35 @@ class ProjectManagementContainer extends Component {
             this.props.params.projectId,
             true,
             this.props.vocab.ERROR);
+    }
+
+    stageHasData(stageId) {
+        return Promise.all(
+            this.props.tasks.filter(task => task.stepId === stageId &&
+                task.productId === this.props.project.productId).map(task =>
+                    new Promise((statusResolve, statusReject) => {
+                        apiService.surveys.getAssessmentAnswersStatus(task.assessmentId,
+                            (statusErr, statusResp) =>
+                                (statusErr ?
+                                statusReject(statusErr) :
+                                statusResolve(statusResp.status)),
+                        );
+                    }),
+            ),
+        )
+        .then(statuses => statuses.some(status => status !== 'new'))
+        .catch(() => toast(this.props.vocab.ERROR.STAGE_REQUEST));
+    }
+
+    handleStageDelete(stageId) {
+        this.stageHasData(stageId).then((hasData) => {
+            if (hasData) {
+                toast(this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.NO_DELETE,
+                    { type: 'error', autoClose: false });
+            } else {
+                this.props.actions.pmShowStageDeleteConfirmModal(stageId);
+            }
+        });
     }
 
     render() {
@@ -77,13 +108,51 @@ class ProjectManagementContainer extends Component {
         }
         return (
                 <div>
-                    { this.props.ui.statusModalId &&
+                    {
+                        this.props.ui.statusModalId &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
                             survey={this.props.survey}
                             actions={this.props.actions}
                             vocab={this.props.vocab}
-                            entity={modalEntities[this.props.ui.statusModalId]} /> }
+                            entity={modalEntities[this.props.ui.statusModalId]} />
+                    }
+                    {
+                        this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
+                        <StageModal
+                            vocab={this.props.vocab}
+                            projectId={this.props.project.id}
+                            project={this.props.project}
+                            stageId={this.props.ui.editStage}
+                            onCancel={() => this.props.actions.showStageModal(false)}
+                            onDeleteClick={() => this.handleStageDelete(this.props.ui.editStage)}
+                            onAddStage={(stage) => {
+                                this.props.actions.showStageModal(false);
+                                this.props.actions.putStage(
+                                    this.props.project,
+                                    stage,
+                                    false,
+                                    this.props.vocab.ERROR);
+                            }}
+                            userGroups={this.props.project.userGroups} />
+                    }
+                    {
+                        this.props.ui.showStageDeleteConfirmModal &&
+                        <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                            bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
+                            onCancel={this.props.actions.pmHideStageDeleteConfirmModal}
+                            onSave={() => this.props.actions.pmDeleteStage(
+                                this.props.project.id,
+                                this.props.ui.showStageDeleteConfirmModal.stageId)
+                            .then(() => {
+                                this.props.actions.showStageModal(false);
+                                this.props.actions.pmHideStageDeleteConfirmModal();
+                            }).catch(() => {
+                                toast(this.props.vocab.ERROR.STAGE_REQUEST,
+                                    { type: 'error', autoClose: false });
+                                this.props.actions.pmHideStageDeleteConfirmModal();
+                            }) } />
+                    }
                     <Summary
                         actions={this.props.actions}
                         project={this.props.project}
@@ -134,7 +203,6 @@ const mapDispatchToProps = dispatch => ({
         projectActions,
         surveyActions,
         taskActions,
-        discussActions,
         { addNewUser, notifyUser },
         { sendMessage: user => dispatch(push(
             {

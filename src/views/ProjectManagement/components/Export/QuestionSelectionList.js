@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { questionListFromSurvey } from '../../../../utils/Survey';
+
 class QuestionSelectionList extends Component {
     render() {
         return (
             <div className='question-selection-list'>
                 {
-                    this.props.questions.map((question, index) =>
+                    questionListFromSurvey(this.props.survey)
+                    .map((question, index) =>
                     <div key={question.id}
                         className='question-selection-list__entry'
                         onClick={!this.props.disabled && (() => this.props.onClick(
@@ -25,7 +28,7 @@ class QuestionSelectionList extends Component {
 }
 
 QuestionSelectionList.propTypes = {
-    questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+    survey: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
 };
