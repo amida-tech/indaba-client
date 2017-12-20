@@ -2,7 +2,6 @@ $block-class:'survey-form';
 
 @at-root {
     .#{$block-class} {
-        padding: 16px;
         border: 1px solid $border-color;
 
         .grommetux-header {

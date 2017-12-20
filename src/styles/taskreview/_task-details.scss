@@ -46,7 +46,7 @@ $block-class:'task-details';
             &-label {
                 font-size: 12px;
                 text-transform: uppercase;
-                color: $font-color;
+                color: $lead-font-color;
             }
 
             &-survey {
@@ -58,8 +58,9 @@ $block-class:'task-details';
             }
 
             &-title {
-                @extend .lead-font;
+                @extend .med-font;
 
+                color: $lead-font-color;
                 display: flex;
             }
 

@@ -12,7 +12,7 @@ $block-class:'survey-pane';
         }
 
         &__accordion-buttons {
-            //
+            margin-right: 8px;
         }
 
         &__button-expand {
@@ -46,7 +46,7 @@ $block-class:'survey-pane';
         }
 
         &__select {
-            width: 75%;
+            width: 70%;
         }
 
         &__instructions {

@@ -27,7 +27,7 @@ class FlagQuestionList extends Component {
                         (this.props.ui.flagSidebar.activeId === -1 && index === 0)) {
                         modifier = '--selected';
                     } else if (some(this.props.ui.flags, flag =>
-                        flag.id === question.id)) {
+                        parseInt(flag.questionId, 10) === question.id)) {
                         modifier = '--inactive';
                     }
                     return (
