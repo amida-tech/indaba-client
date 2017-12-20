@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
+import { omit } from 'lodash';
 import { toast } from 'react-toastify';
 
 import QuestionContainer from './QuestionContainer';
@@ -69,9 +70,22 @@ const FORM_NAME = 'survey-form';
 export default reduxForm({
     form: FORM_NAME,
     enableReinitialize: true,
-    onSubmit: (values) => { // values, dispatch, ownProps
+    onSubmit: (values) => { // dispatch, ownProps
         console.log('Survey form values on submit');
         console.log(values);
+        const requestBody = values.answers.map((answer) => {
+            if (answer.comment.reason === null ||
+                (answer.comment.reason === 'disagree' && answer.comment.text === null)) {
+                return omit(answer, ['comment']);
+            }
+            if (answer.comments) {
+                answer.comments.push(answer.comment);
+                return omit(answer, ['comment']);
+            }
+            return (Object.assign({}, omit(answer, ['comment']), { comments: [answer.comment] }));
+        },
+        );
+        console.log(requestBody);
             // ownProps.actions.postDiscussion(
             //     values,
             //     ownProps.vocab.ERROR,
