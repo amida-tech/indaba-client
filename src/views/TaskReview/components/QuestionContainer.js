@@ -18,7 +18,7 @@ class QuestionContainer extends Component {
                     {...this.props}>
                     <Questions className='question-container__questions'
                         {...this.props.question}
-                        assessmentId={this.props.assessmentId}
+                        assessmentId={this.props.task.assessmentId}
                         answers={this.props.answers}
                         displayMode={this.props.taskDisabled || this.props.stage.blindReview
                             || this.props.stage.discussionParticipation}
@@ -27,7 +27,7 @@ class QuestionContainer extends Component {
                     {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
                         <ReviewPane
                             question={this.props.question}
-                            assessmentId={this.props.assessmentId}
+                            assessmentId={this.props.task.assessmentId}
                             answers={this.props.answers}
                             displayMode={this.props.taskDisabled}
                             actions={this.props.actions}
