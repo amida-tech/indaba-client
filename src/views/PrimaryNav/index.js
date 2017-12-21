@@ -12,6 +12,8 @@ import CreateNewProject from './CreateNewProject';
 
 
 class PrimaryNavContainer extends Component {
+
+
     componentWillMount() {
         if (this.props.nav.ui.checkBackend) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
@@ -21,6 +23,9 @@ class PrimaryNavContainer extends Component {
     }
 
     render() {
+        const isProjectManager = ((this.props.user.profile.roleID === 2) ||
+            (this.props.user.profile.roleID === 1));
+
         return (
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
@@ -36,20 +41,23 @@ class PrimaryNavContainer extends Component {
                     <Link className='primary-nav__item-nav' to='/task'>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
-
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/project'>
                         {this.props.vocab.PROJECT.PROJECTS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/users'>
                         {this.props.vocab.COMMON.ALL_USERS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Link className='primary-nav__item-nav' to='/subjects'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
-                    </Link>
+                    </Link>}
+                    {isProjectManager &&
                     <Button
                         className={'primary-nav__item-nav primary-nav__button'}
                         label={this.props.vocab.COMMON.CREATE}
-                        onClick={() => this.props.actions.showCreateProject(true)}/>
+                        onClick={() => this.props.actions.showCreateProject(true)}/>}
                 </div>
                 <div className='primary-nav__right'>
                     <Link className='primary-nav__link'
