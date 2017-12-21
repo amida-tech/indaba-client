@@ -51,6 +51,7 @@ class StageSlot extends Component {
         super(props);
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
+        this.filterToStageGroups = this.filterToStageGroups.bind(this);
     }
 
     handleTaskOptions() {
@@ -63,6 +64,9 @@ class StageSlot extends Component {
         this.props.project,
         this.props.vocab);
         this.props.actions.startTaskAssign(false);
+    }
+    filterToStageGroups(user) {
+        return user.usergroupId.some(groupId => this.props.stageData.userGroups.includes(groupId));
     }
 
     displayDueTime(done, diff) {
@@ -145,6 +149,7 @@ class StageSlot extends Component {
                             fill={true}
                             inline={true}
                             suggestions={this.props.users
+                                .filter(this.filterToStageGroups)
                                 .map(user => ({ label: renderName(user),
                                     value: user }))}
                             onSelect={this.handleSearchSelect}
