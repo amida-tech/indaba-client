@@ -33,6 +33,7 @@ class StageForm extends Component {
                             <Field
                                 className='add-stage-form__input-field'
                                 name='userGroups'
+                                normalize={values => values.map(value => value.value)}
                                 groups={this.props.groups}
                                 component={StageSelect}
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />

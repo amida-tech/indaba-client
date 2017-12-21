@@ -78,7 +78,7 @@ const stageMapping = (values) => {
         title: values.title,
         startDate: values.startDate,
         endDate: values.endDate,
-        userGroups: values.userGroups.map(group => group.value),
+        userGroups: values.userGroups,
         provideResponses: true,
         discussionParticipation: false,
         blindReview: false,
