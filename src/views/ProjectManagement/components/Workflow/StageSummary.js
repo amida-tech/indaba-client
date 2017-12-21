@@ -76,6 +76,9 @@ StageSummary.propTypes = {
     vocab: PropTypes.object.isRequired,
     stage: PropTypes.object.isRequired,
     userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    actions: PropTypes.shape({
+        showStageModal: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
 export default StageSummary;
