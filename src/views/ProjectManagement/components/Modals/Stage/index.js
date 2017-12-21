@@ -54,7 +54,7 @@ class StageModal extends Component {
                     groups={groups}
                     initialValues={initialValues}
                     onSubmit={values =>
-                            this.props.onAddStage(stageMapping(values), this.props.projectId)
+                            this.props.onAddStage(stageMapping(values), this.props.project.id)
                         } />
             </Modal>
         );

@@ -9,18 +9,22 @@ import StageSummary from '../../ProjectManagement/components/Workflow/StageSumma
 class AddStages extends Component {
     render() {
         return (<div className='add-stages-step'>
-            {this.props.ui.showAddStage && <StageModal
-                vocab={this.props.vocab}
-                userGroups={this.props.project.userGroups}
-                onCancel={() => this.props.actions.showAddStageWizardModal(false)}
-                onAddStage={(stage) => {
-                    this.props.actions.showAddStageWizardModal(false);
-                    this.props.actions.putStage(
-                        this.props.project,
-                        stage,
-                        true,
-                        this.props.vocab.ERROR);
-                }}/>}
+            {
+                this.props.ui.showAddStage &&
+                <StageModal vocab={this.props.vocab}
+                    userGroups={this.props.project.userGroups}
+                    onCancel={() => this.props.actions.showAddStageWizardModal(false)}
+                    project={this.props.project}
+                    onAddStage={(stage) => {
+                        this.props.actions.showAddStageWizardModal(false);
+                        this.props.actions.putStage(
+                            this.props.project,
+                            stage,
+                            true,
+                            this.props.vocab.ERROR);
+                    }
+                }/>
+            }
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
