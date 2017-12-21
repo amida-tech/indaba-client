@@ -230,6 +230,8 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
                     dispatch(_postUserGroupSuccess(
                         Object.assign({}, requestBody, groupResp.id),
                         projectId));
+                    dispatch(getProjectById(projectId, errorMessages));
+                    dispatch(getUsers(errorMessages));
                 } else {
                     dispatch(_reportProjectError(errorMessages.GROUP_REQUEST));
                 }
