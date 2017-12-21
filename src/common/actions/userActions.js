@@ -27,10 +27,12 @@ export function updateProfile(userData, errorMessages) {
     return (dispatch) => {
         apiService.users.putProfile(
             requestBody,
-            (profileErr, profileResp) => {
-                dispatch((!profileErr && profileResp) ?
-                    _putProfileSuccess(profileResp) :
-                    _reportUserError(errorMessages.PROFILE_REQUEST));
+            (profileErr) => {
+                if (profileErr) {
+                    dispatch(_reportUserError(errorMessages.PROFILE_REQUEST));
+                } else {
+                    dispatch(_putProfileSuccess(requestBody));
+                }
             },
         );
     };
@@ -175,7 +177,7 @@ function _getProfileSuccess(profile) {
 function _putProfileSuccess(profile) {
     return {
         type: actionTypes.PUT_PROFILE_SUCCESS,
-        profile: profile.data,
+        profile,
     };
 }
 
