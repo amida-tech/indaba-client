@@ -14,7 +14,7 @@ $block-class: 'question-panel';
         }
 
         &__question {
-            padding: 10px;
+            padding: 8px;
             width: 100%;
         }
 
@@ -22,11 +22,19 @@ $block-class: 'question-panel';
             ///
         }
 
-        &__question-text,
-        textarea {
-            width: 100%;
-            border: none;
+        &__question-text {
+            width: 90%;
             background-color: #fafafa;
+            resize: none;
+            outline: none;
+            border: 1px solid $border-color;
+            padding: 8px;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__menu {
