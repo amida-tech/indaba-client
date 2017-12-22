@@ -19,10 +19,12 @@ $block-class: 'question-panel';
         }
 
         &__question-number {
+            ///
         }
 
-        &__question-text, textarea {
-            width: 85%;
+        &__question-text,
+        textarea {
+            width: 100%;
             border: none;
             background-color: #fafafa;
         }
