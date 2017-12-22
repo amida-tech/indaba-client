@@ -104,9 +104,17 @@ class StageSlot extends Component {
         const done = TaskStatus.responsesComplete(this.props.task, this.props.surveySize);
 
         const labelDisplay = this.displayStatus(done, diff);
-
+        let stageClass = 'stage-slot ';
+        if (this.props.filtered) {
+            stageClass += 'stage-slot__filtered';
+        }
+        if (isOver && canDrop) {
+            stageClass += 'stage-slot--accept';
+        } else if (isOver && !canDrop) {
+            stageClass += 'stage-slot--deny';
+        }
         return connectDropTarget(
-        <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
+        <div className={stageClass}>
             {this.props.user &&
                 <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
@@ -141,7 +149,7 @@ class StageSlot extends Component {
              </div>
          }
          {!this.props.user &&
-              <div className='stage-slot__unassigned'>
+              <div className={`stage-slot__unassigned${stageClass}`}>
                   { (this.props.assignTaskInput.stepId === this.props.task.stepId &&
                      this.props.assignTaskInput.uoaId === this.props.task.uoaId) ?
                     <div className='stage-slot__assign-task-input'>

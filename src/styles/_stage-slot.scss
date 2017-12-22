@@ -7,6 +7,14 @@ $block-class:'stage-slot';
         color: $font-color;
         text-transform: uppercase;
 
+        &--accept {
+            background: rgba(0, 155, 50, 0.3);
+        }
+
+        &--deny {
+            background: rgba(255, 0, 0, 0.3);
+        }
+
         &__container > * {
             margin-bottom: 0.2em;
         }
