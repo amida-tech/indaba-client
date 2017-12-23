@@ -121,7 +121,6 @@ class ProjectManagementContainer extends Component {
                         this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
                         <StageModal
                             vocab={this.props.vocab}
-                            projectId={this.props.project.id}
                             project={this.props.project}
                             stageId={this.props.ui.editStage}
                             onCancel={() => this.props.actions.showStageModal(false)}
