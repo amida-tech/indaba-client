@@ -2,7 +2,7 @@ $block-class: 'filtered-row';
 
 @at-root {
     .#{$block-class} {
-        &__cell {
+        td.filtered-row__cell {
             padding: 0;
         }
     }
