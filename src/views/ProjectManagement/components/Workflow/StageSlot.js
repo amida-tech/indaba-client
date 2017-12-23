@@ -149,7 +149,7 @@ class StageSlot extends Component {
              </div>
          }
          {!this.props.user &&
-              <div className={`stage-slot__unassigned${stageClass}`}>
+              <div className='stage-slot__unassigned'>
                   { (this.props.assignTaskInput.stepId === this.props.task.stepId &&
                      this.props.assignTaskInput.uoaId === this.props.task.uoaId) ?
                     <div className='stage-slot__assign-task-input'>

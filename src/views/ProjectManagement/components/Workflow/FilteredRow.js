@@ -52,7 +52,7 @@ class FilteredRow extends Component {
             </td>
             {taskData.map(task =>
                 <td key={`StageSlot-${task.uoaId}-${task.stepId}`}
-                    className='filtered-row__cell'>
+                    className='p-0 filtered-row__cell'>
                     <StageSlot task={task}
                         user={_.find(this.props.users, user => user.id === task.userIds[0])}
                         users={this.props.users}

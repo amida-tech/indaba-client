@@ -2,10 +2,8 @@ $block-class: 'filtered-row';
 
 @at-root {
     .#{$block-class} {
-
         &__cell {
             padding: 0;
-            
         }
     }
 }
