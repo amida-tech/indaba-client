@@ -226,10 +226,8 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
             requestBody,
             (groupErr, groupResp) => {
                 if (!groupErr && groupResp) {
-                    requestBody.id = groupResp.id;
-                    dispatch(_postUserGroupSuccess(
-                        Object.assign({}, requestBody, groupResp.id),
-                        projectId));
+                    dispatch(getProjectById(projectId, errorMessages));
+                    dispatch(getUsers(errorMessages));
                 } else {
                     dispatch(_reportProjectError(errorMessages.GROUP_REQUEST));
                 }
@@ -369,14 +367,6 @@ function _deleteProjectUserSuccess(userId, projectId) {
     return {
         type: actionTypes.DELETE_PROJECT_USER_SUCCESS,
         userId,
-        projectId,
-    };
-}
-
-function _postUserGroupSuccess(group, projectId) {
-    return {
-        type: actionTypes.ADD_USER_GROUP,
-        group,
         projectId,
     };
 }
