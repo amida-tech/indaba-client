@@ -32,8 +32,6 @@ const initialState = {
 
 export const UserReducer = (state = initialState, action) => {
     switch (action.type) {
-    case type.PUT_PROFILE_SUCCESS:
-        return update(state, { profile: { $merge: action.profile } });
     case type.POST_NEW_USER_SUCCESS:
         return update(state, { users: { $push: [action.user] } });
     case type.NOTIFY_USER:

@@ -31,7 +31,7 @@ export function updateProfile(userData, errorMessages) {
                 if (profileErr) {
                     dispatch(_reportUserError(errorMessages.PROFILE_REQUEST));
                 } else {
-                    dispatch(_putProfileSuccess(requestBody));
+                    dispatch(getProfile(errorMessages));
                 }
             },
         );
@@ -169,14 +169,6 @@ export function notifyUser(userId, message, senderId) {
 function _getProfileSuccess(profile) {
     return {
         type: actionTypes.GET_PROFILE_SUCCESS,
-        profile,
-    };
-}
-
-
-function _putProfileSuccess(profile) {
-    return {
-        type: actionTypes.PUT_PROFILE_SUCCESS,
         profile,
     };
 }
