@@ -3,6 +3,7 @@ $block-class:'app';
 @at-root {
     .#{$block-class} {
         &__toast {
+            z-index: 90 !important;
             .toastify__progress {
                 background: $off-brand-color;
             }

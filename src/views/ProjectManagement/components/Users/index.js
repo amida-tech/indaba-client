@@ -20,6 +20,7 @@ class Users extends Component {
                     <SelectGroupUsers
                         allUsers={this.props.users}
                         users={this.props.project.users}
+                        userGroups={this.props.project.userGroups}
                         vocab={this.props.vocab}
                         onCancel={() => this.setState({ modalName: false })}
                         group={this.props.project.userGroups

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { get, some } from 'lodash';
+import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
 import FilteredList from './FilteredList';
@@ -10,8 +11,8 @@ class SelectGroupUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groupTitle: _.get(this.props, 'group.title', ''),
-            groupUserIds: _.get(this.props, 'group.users', []),
+            groupTitle: get(this.props, 'group.title', ''),
+            groupUserIds: get(this.props, 'group.users', []),
             projectUsersSelected: [],
             groupUsersSelected: [],
         };
@@ -90,10 +91,16 @@ class SelectGroupUsers extends Component {
             <Modal
                 onCancel={this.props.onCancel}
                 onSave={(this.state.groupTitle !== '') ?
-                    () => this.props.onSave({
-                        title: this.state.groupTitle,
-                        users: this.state.groupUserIds,
-                    }) :
+                    () => {
+                        if (some(this.props.userGroups, ['title', this.state.groupTitle])) {
+                            toast(this.props.vocab.ERROR.DUPLICATE);
+                        } else {
+                            this.props.onSave({
+                                title: this.state.groupTitle,
+                                users: this.state.groupUserIds,
+                            });
+                        }
+                    } :
                     undefined}
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
                 <div className='select-group-users'>
