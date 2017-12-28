@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { css } from 'glamor';
+
 import PrimaryNavContainer from './PrimaryNav';
 import SecondaryNavContainer from './SecondaryNav';
 import AmidaFooter from '../common/components/AmidaFooter';
@@ -20,7 +21,7 @@ class App extends Component {
                     <AmidaFooter/>
                 }
                 <ToastContainer
-                    className='app__toast'
+                    progressClassName={css({ background: '#4eb276' })}
                     position='top-right'
                     type='default'
                     autoClose={5000}
