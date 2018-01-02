@@ -43,7 +43,7 @@ $block-class: 'question-panel';
         }
 
         &__option-panel {
-            padding: 0 1em .4em 1em;
+            padding: 0 1em 0.4em;
         }
 
         &__file-select {
@@ -66,7 +66,7 @@ $block-class: 'question-panel';
         &__add-link {
             width: 10%;
             text-align: center;
-            padding: .2em;
+            padding: 0.2em;
         }
 
         &__link-input {
@@ -76,11 +76,12 @@ $block-class: 'question-panel';
         }
 
         &__link-fields-bottom {
-            margin-top: .4em;
+            margin-top: 0.4em;
             display: flex;
             flex-direction: row;
+
             input {
-                padding: .3em;
+                padding: 0.3em;
                 border: 1px solid $border-color;
             }
         }
@@ -95,16 +96,18 @@ $block-class: 'question-panel';
 
         &__date-input {
             background-color: #fff;
-            .grommetux-date-time__input, .grommetux-date-time__input:focus {
+
+            .grommetux-date-time__input,
+            .grommetux-date-time__input:focus {
                 border-radius: 0;
                 font-size: 14px;
                 border: 1px solid $border-color;
-                padding: .3em;
+                padding: 0.3em;
             }
         }
 
         &__optional-controls {
-            margin: .3em;
+            margin: 0.3em;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -122,6 +125,7 @@ $block-class: 'question-panel';
             margin-right: 10px;
             vertical-align: bottom;
             background-color: #fafafa;
+
             input {
                 margin-bottom: 6px;
                 vertical-align: middle;

@@ -44,7 +44,8 @@ class StageModal extends Component {
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}
-                buttons={this.props.stageId !== null ? [{
+                buttons={(this.props.stageId !== undefined && this.props.stageId !== null) ?
+                [{
                     key: 'delete-button',
                     label: this.props.vocab.PROJECT.DELETE_STAGE,
                     onClick: this.props.onDeleteClick,
@@ -54,7 +55,7 @@ class StageModal extends Component {
                     groups={groups}
                     initialValues={initialValues}
                     onSubmit={values =>
-                            this.props.onAddStage(stageMapping(values), this.props.projectId)
+                            this.props.onAddStage(stageMapping(values), this.props.project.id)
                         } />
             </Modal>
         );

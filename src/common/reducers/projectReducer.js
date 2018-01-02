@@ -92,9 +92,6 @@ export const ProjectReducer = (state = initialState, action) => {
             userGroups: { $apply: userGroups =>
                         userGroups.filter(userGroup => userGroup.id !== action.groupId),
             } } } });
-    case type.ADD_USER_GROUP:
-        return update(state, { data: { [projectIndex]: {
-            userGroups: { $push: [action.group] } } } });
     case type.UPDATE_USER_GROUP: // TODO: INBA-457
         groupIndex = state[projectIndex].userGroups
                     .findIndex(group => group.id === action.group.id);

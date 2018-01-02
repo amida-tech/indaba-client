@@ -18,7 +18,7 @@ class SurveyStatusBody extends Component {
           <label htmlFor='survey-status-check' className='toggle'></label>
           <div className='project-status-field'>
             <div className='project-status-text'>
-              {this.props.published ? vocab.SURVEY.STATUS_PUBLISHED : vocab.SURVEY.STATUS_DRAFT}
+              {this.props.published ? vocab.SURVEY.PUBLISHED : vocab.SURVEY.DRAFT}
             </div>
             <div className='project-status-label'>{surveyVocab.VALUE_LABEL}</div>
           </div>
