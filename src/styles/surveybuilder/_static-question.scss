@@ -2,7 +2,7 @@ $block-class: 'static-question';
 
 @at-root {
     .#{$block-class} {
-        padding: 0 1em .5em 1em;
+        padding: 0 1em 0.5em;
         display: flex;
         flex-direction: column;
 
@@ -13,30 +13,30 @@ $block-class: 'static-question';
 
         &__bulletpoint1 {
             width: 40%;
-            padding: .2em;
-            margin-bottom: .2em;
+            padding: 0.2em;
+            margin-bottom: 0.2em;
         }
 
         &__bulletpoint2 {
             width: 40%;
-            padding: .2em;
+            padding: 0.2em;
         }
 
         &__date {
             width: 20%;
-            padding: .2em;
+            padding: 0.2em;
             border: 1px solid #adadad;
-            background-color: #EBEBE4;
+            background-color: #ebebe4;
         }
 
         &__integer {
             width: 20%;
-            padding: .2em;
+            padding: 0.2em;
         }
 
         &__text {
             width: 40%;
-            padding: .2em;
+            padding: 0.2em;
         }
     }
 }

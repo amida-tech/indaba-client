@@ -6,13 +6,13 @@ $block-class: 'new-questions';
             border-bottom: 1px solid $border-color;
             padding: 0 1em;
             display: flex;
-            flex-direction:row;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
         }
 
         &__insert-label {
-            padding: .5em;
+            padding: 0.5em;
             font-size: 12px;
         }
 
@@ -25,7 +25,7 @@ $block-class: 'new-questions';
 
         &__menu-button {
             border-bottom: 1px solid $font-color;
-            padding: .5em;
+            padding: 0.5em;
             font-size: 1.2em;
         }
 
