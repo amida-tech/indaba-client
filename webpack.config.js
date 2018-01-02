@@ -12,7 +12,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const StyleLintPluginConfig = new StyleLintPlugin({
-    files: 'src/styles/*.scss',
+    files: 'src/styles/**/*.scss',
 });
 
 module.exports = {
