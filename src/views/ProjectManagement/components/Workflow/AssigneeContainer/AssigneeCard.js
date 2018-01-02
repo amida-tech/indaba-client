@@ -27,11 +27,8 @@ const cardSource = {
         if (!monitor.didDrop()) {
             return;
         }
-        const slot = monitor.getDropResult();
-        if (slot.rejection !== 'drop-rejected') {
-            props.actions.assignTask(props.children.id, slot,
-                props.project, props.vocab.ERROR);
-        }
+        props.actions.assignTask(props.children.id, monitor.getDropResult(),
+            props.project, props.vocab.ERROR);
     },
 };
 

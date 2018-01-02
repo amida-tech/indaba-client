@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import { Search } from 'grommet';
-import { toast } from 'react-toastify';
 import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
@@ -27,19 +26,8 @@ const stageSpotTarget = {
             props.project.userGroups.find(group => group.id === id).users),
             ).includes(monitor.getItem().id);
     },
-    hover() { // Possible args: props, monitor, component
-    // ... Maybe make the assignee card opaque?
-    },
-    drop(props, monitor) { // Possible args: monitor, component
-        const dragUserId = monitor.getItem().id;
-        const usersGroups = props.users.find(user => user.id === dragUserId).usergroupId;
-        if (props.task.userId === undefined &&
-            props.stageData.userGroups.some(
-                groupId => usersGroups.includes(groupId))) {
-            return props; // Dispatch to inform the state and DB of changes.
-        }
-        toast(props.vocab.ERROR.NO_ASSIGN_USER_OUT_OF_GROUP);
-        return { rejection: 'drop-rejected' };
+    drop(props) {
+        return props; // Dispatch to inform the state and DB of changes.
     },
 };
 function collect(connector, monitor) {

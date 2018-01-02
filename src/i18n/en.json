@@ -76,8 +76,7 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
-        "COMING_SOON": "Coming soon.",
-        "NO_ASSIGN_USER_OUT_OF_GROUP": "This user is not in the user group assigned to the stage and cannot be assigned to the task."
+        "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
@@ -213,7 +212,7 @@
         "STAGE_SETTINGS": "Stage Settings",
         "ASSIGN_USER_GROUPS": "Assign user group(s)",
         "PERMISSIONS": "Stage Permissions (Actions the user can take on the survey)",
-        "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
+        "DND_INSTRUCTIONS": "Drag the users below over the workflow matrix to assign them a task. You cannot assign a user to a previously assigned task, nor can you assign to users outside a stage's groups.",
         "FILTER_BY_GROUP": "Filter by groups",
         "INVITE_BY_EMAIL": "Not Listed? Invite by email",
         "RESEND_INVITATION": "Resend Invitation",
