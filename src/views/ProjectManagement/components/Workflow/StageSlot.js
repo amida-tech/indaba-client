@@ -6,6 +6,7 @@ import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import { Search } from 'grommet';
 import { toast } from 'react-toastify';
+import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
@@ -18,8 +19,13 @@ const Types = {
 };
 
 const stageSpotTarget = {
-    canDrop(props) { // Possible args: monitor
-        return props.task.userId === undefined;
+    canDrop(props, monitor) {
+        if (props.task.userId !== undefined) {
+            return false;
+        }
+        return flatten(props.stageData.userGroups.map(id =>
+            props.project.userGroups.find(group => group.id === id).users),
+            ).includes(monitor.getItem().id);
     },
     hover() { // Possible args: props, monitor, component
     // ... Maybe make the assignee card opaque?
