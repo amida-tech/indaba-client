@@ -20,7 +20,6 @@ class QuestionPanel extends Component {
                             {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                         </span>
                         <textarea className='question-panel__question-text'
-                            type='text'
                             placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
                             value={this.props.question.text || ''}
                             onChange={event => this.props.actions.updateQuestion(
