@@ -275,7 +275,7 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
     },
     "MESSAGES": {
         "RECENT_MESSAGES": "Recent Messages",
