@@ -18,7 +18,7 @@ const StyleLintPluginConfig = new StyleLintPlugin({
 module.exports = {
     devServer: {
         port: 3000,
-        host: "0.0.0.0",
+        host: '0.0.0.0',
         disableHostCheck: true,
         historyApiFallback: true,
     },
@@ -72,13 +72,13 @@ module.exports = {
         StyleLintPluginConfig,
         new webpack.DefinePlugin({
             'process.env': {
-                'API_HTTP_URL': JSON.stringify(process.env.API_HTTP_URL),
-                'API_HTTPS_URL': JSON.stringify(process.env.API_HTTPS_URL),
-                'AUTH_API_HTTPS_URL': JSON.stringify(process.env.AUTH_API_HTTPS_URL),
-                'AUTH_API_HTTP_URL': JSON.stringify(process.env.AUTH_API_HTTP_URL),
-                'REALM': JSON.stringify(process.env.REALM),
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            }
+                API_HTTP_URL: JSON.stringify(process.env.API_HTTP_URL),
+                API_HTTPS_URL: JSON.stringify(process.env.API_HTTPS_URL),
+                AUTH_API_HTTPS_URL: JSON.stringify(process.env.AUTH_API_HTTPS_URL),
+                AUTH_API_HTTP_URL: JSON.stringify(process.env.AUTH_API_HTTP_URL),
+                REALM: JSON.stringify(process.env.REALM),
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
         }),
     ],
 };
