@@ -57,7 +57,6 @@ Modal.propTypes = {
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
     bodyText: PropTypes.string,
-    form: PropTypes.string,
     buttons: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.any.isRequired,
         label: PropTypes.string.isRequired,
