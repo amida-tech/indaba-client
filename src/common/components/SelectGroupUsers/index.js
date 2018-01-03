@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { get, some } from 'lodash';
+import { filter, get } from 'lodash';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -92,7 +92,11 @@ class SelectGroupUsers extends Component {
                 onCancel={this.props.onCancel}
                 onSave={(this.state.groupTitle !== '') ?
                     () => {
-                        if (some(this.props.userGroups, ['title', this.state.groupTitle])) {
+                        const groupId = get(this.props, 'group.id', null);
+                        const duplicates = filter(this.props.userGroups, group =>
+                            group.title === this.state.groupTitle && group.id !== groupId);
+                        console.log(duplicates);
+                        if (duplicates.length > 0) {
                             toast(this.props.vocab.ERROR.DUPLICATE);
                         } else {
                             this.props.onSave({
