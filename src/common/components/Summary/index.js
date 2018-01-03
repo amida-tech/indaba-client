@@ -30,8 +30,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onNameChange={name =>
-                            this.props.actions.setSurveyName(name, this.props.survey.id)}
+                    onEditClick={this.props.actions.pmShowSurveyTitleModal}
                     updateContent={() => {
                         return (this.props.survey.id >= 0 ?
                             this.props.actions.patchSurvey(
@@ -60,8 +59,6 @@ Summary.propTypes = {
     actions: PropTypes.object,
 
     onStatusChangeClick: PropTypes.func,
-    onProjectNameChange: PropTypes.func,
-    onSurveyNameChange: PropTypes.func,
 };
 
 export default Summary;

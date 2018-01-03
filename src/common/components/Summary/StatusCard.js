@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import IonIcon from 'react-ionicons';
-import EditableTextInput from '../../../common/components/EditableTextInput';
 
 class StatusCard extends Component {
     render() {
@@ -15,18 +14,7 @@ class StatusCard extends Component {
                             {this.props.label}
                         </div>
                         <div className='status-card__name-value'>
-                            {
-                                this.props.onNameChange && this.props.actions &&
-                                <EditableTextInput input={{
-                                    value: this.props.name,
-                                    onChange: evt => this.props.onNameChange(evt.target.value),
-                                    onBlur: () => this.props.updateContent(),
-                                }} />
-                            }
-                            {
-                                this.props.onEditClick &&
-                                this.props.name
-                            }
+                            this.props.name
                             {
                                 this.props.onEditClick &&
                                 <div className='status-card__edit-button'
