@@ -26,7 +26,7 @@ class ProjectTitleModal extends Component {
     render() {
         return (
             <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
-                onCancel={this.props.actions.hideProjectTitleModal}
+                onCancel={this.props.actions.pmHideProjectTitleModal}
                 onSave={this.props.submit}>
                 <ProjectTitleReduxForm {...this.props} />
             </Modal>
