@@ -38,8 +38,6 @@ export const ProjectReducer = (state = initialState, action) => {
         return state.data[0].name ?
         update(state, { data: { $push: [action.project] } }) :
         update(state, { data: { $set: [action.project] } });
-    case type.PUT_PROJECT_SUCCESS:
-        return update(state, { data: { [projectIndex]: { $merge: action.project } } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
