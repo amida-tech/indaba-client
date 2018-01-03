@@ -3,13 +3,8 @@ $block-class:'text';
 @at-root {
     .#{$block-class} {
         &__field {
-            width: 40%;
+            width: 60%;
             padding: 5px;
-        }
-
-        &__label {
-            font-size: 18px;
-            margin-top: -5px;
         }
     }
 }
