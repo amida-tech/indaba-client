@@ -263,22 +263,6 @@ export function showAddSubjectModal(show) {
     };
 }
 
-export function setProjectName(name, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_NAME,
-        name,
-        projectId,
-    };
-}
-
-export function setProjectStatus(status, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_STATUS,
-        status,
-        projectId,
-    };
-}
-
 export function editSummaryDescription(id) {
     return {
         type: actionTypes.EDIT_SUMMARY_DESCRIPTION,

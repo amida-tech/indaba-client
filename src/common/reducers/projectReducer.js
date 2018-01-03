@@ -53,8 +53,6 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.TOGGLE_FILTER:
         return update(state, { data: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
-    case type.SET_PROJECT_STATUS:
-        return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
     case type.PUT_STAGE_SUCCESS: {
         const stageIndex = _.findIndex(state.data[projectIndex].stages,
             stage => stage.id === action.stage.id);
@@ -110,8 +108,6 @@ export const ProjectReducer = (state = initialState, action) => {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
-    case type.SET_PROJECT_NAME:
-        return update(state, { data: { [projectIndex]: { name: { $set: action.name } } } });
     case type.REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case LOG_OUT:

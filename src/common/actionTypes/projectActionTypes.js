@@ -5,7 +5,6 @@ export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
 export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
-export const SET_PROJECT_NAME = 'SET_PROJECT_NAME';
 
 // Modals:
 export const SHOW_ADD_SUBJECT_MODAL = 'SHOW_ADD_SUBJECT_MODAL';
