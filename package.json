@@ -12,7 +12,6 @@
     "moment": "^2.18.1",
     "path": "^0.12.7",
     "prop-types": "^15.5.10",
-    "rc-tooltip": "~3.4.6",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-click-outside": "^2.3.1",
