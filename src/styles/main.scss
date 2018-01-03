@@ -48,7 +48,6 @@
 @import './user-groups-tab';
 @import './wizard-complete.scss';
 @import './amida-footer';
-@import './app.scss';
 @import './secondary-nav';
 @import './icons.scss';
 @import './user-status.scss';
@@ -57,11 +56,11 @@
 @import './selectgroupusers/filtered-list.scss';
 // Project Management view
 @import './projectmanagement/filter-wrapper.scss';
-@import './projectmanagement/sub-nav.scss';
-@import './projectmanagement/sub-nav-entry.scss';
 @import './projectmanagement/export.scss';
 @import './projectmanagement/delete-list.scss';
 @import './projectmanagement/question-selection-list.scss';
+@import './projectmanagement/sub-nav-entry.scss';
+@import './projectmanagement/sub-nav.scss';
 
 // Survey Builder view
 @import './surveybuilder/add-question-panel.scss';

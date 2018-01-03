@@ -15,6 +15,7 @@ class AddUsers extends Component {
                     <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
+                        userGroups={this.props.project.userGroups}
                         allUsers={this.props.user.users}
                         onCancel={() => this.props.actions.showAddUserGroupWizardModal(false)}
                         onSave={(groupData) => {
