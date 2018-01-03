@@ -24,6 +24,7 @@ class SurveyTitleModal extends Component {
                                 this.props.project,
                                 this.props.vocab.ERROR);
                         }
+                        this.props.actions.pmHideSurveyTitleModal();
                     }}/>
             </Modal>
         );
