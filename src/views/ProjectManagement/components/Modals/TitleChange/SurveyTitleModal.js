@@ -7,11 +7,11 @@ import TitleForm from './TitleForm';
 class SurveyTitleModal extends Component {
     render() {
         return (
-            <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
+            <Modal title={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
                 onCancel={this.props.actions.pmHideSurveyTitleModal}
                 form='survey-title'>
                 <TitleForm form='survey-title'
-                    label={this.props.vocab.PROJECT.TITLE}
+                    label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL}
                     onSubmit={({ title: name }) => {
                         if (this.props.survey.id > 0) {
                             this.props.actions.patchSurvey(

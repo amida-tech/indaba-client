@@ -11,7 +11,7 @@ class ProjectTitleModal extends Component {
                 onCancel={this.props.actions.pmHideProjectTitleModal}
                 form='project-title'>
                 <TitleForm form='project-title'
-                    label={this.props.vocab.PROJECT.TITLE}
+                    label={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
                     onSubmit={({ title }) => {
                         this.props.actions.putProject({
                             id: this.props.projectId,

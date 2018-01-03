@@ -495,6 +495,10 @@
         "PROJECT_TITLE_MODAL": {
             "TITLE": "Project title",
             "TITLE_INPUT_LABEL": "Title"
+        },
+        "SURVEY_TITLE_MODAL": {
+            "TITLE": "Survey title",
+            "TITLE_INPUT_LABEL": "Title"
         }
     }
 }
