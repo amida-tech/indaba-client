@@ -45,7 +45,7 @@
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
-        "DUPLICATE": "Attempted to enter a duplicate value.",
+        "DUPLICATE": "Attempted to enter a duplicate value. Please enter a unique value instead.",
         "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
         "INVALID_LOGIN": "We weren't able to find your username or password.",
         "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
@@ -227,7 +227,7 @@
         "FILTER_FLAGGED": "Flagged",
         "INVITE_INSTRUCTION": "Not Listed? Invite by email",
         "ADD_SUBJECT_INSTRUCTION": "Add survey subjects or use the import manager to add subjects from a previous project.",
-        "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma. Press Enter to submit",
+        "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma. Press Enter to submit.",
         "IMPORT_SUBJECTS": "Import Subjects",
         "ADD_USERS_CLARIFICATION_1": "Enter users name and email to invite users to a project.",
         "ADD_USERS_CLARIFICATION_2": "Create a new Usergroup or search existing. Usergroups are multiple people who share the same role.",
@@ -251,7 +251,7 @@
         "SEARCH_TASKS": "Search for tasks",
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
-        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage",
+        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage.",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",
@@ -274,7 +274,7 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
     },
     "MESSAGES": {
         "RECENT_MESSAGES": "Recent Messages",

@@ -69,7 +69,7 @@ class StatusChange extends Component {
                 class='project-status-change-layer'
                 title={title}
                 onSave={this.save.bind(this)}
-                onCancel={this.props.onStatusChangeClose}>
+                onCancel={() => this.props.actions.updateStatusChange(false)}>
                 {this.props.entity === 'project' ?
                     <ProjectStatusBody {...this.state.project}
                         vocab={this.props.vocab}

@@ -21,7 +21,7 @@ class StageSummary extends Component {
 
         return (
             <div className='stage-summary'
-                onClick={() => this.props.actions.showStageModal(true, this.props.stage.id)}>
+                onClick={this.props.onClick}>
                 <div className='stage-summary__header'>
                     {this.props.stage.title}
                 </div>
@@ -76,6 +76,7 @@ StageSummary.propTypes = {
     vocab: PropTypes.object.isRequired,
     stage: PropTypes.object.isRequired,
     userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default StageSummary;
