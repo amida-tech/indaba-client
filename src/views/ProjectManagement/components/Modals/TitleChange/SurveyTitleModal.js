@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Modal from '../../../../../common/components/Modal';
+import TitleForm from './TitleForm';
+
+
+class SurveyTitleModal extends Component {
+    render() {
+        return (
+            <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
+                onCancel={this.props.actions.pmHideSurveyTitleModal}
+                form='survey-title'>
+                <TitleForm form='survey-title'
+                    label={this.props.vocab.PROJECT.TITLE}
+                    onSubmit={({ title: name }) => {
+                        return (this.props.survey.id >= 0 ?
+                            this.props.actions.patchSurvey(
+                                { name, id: this.props.survey.id },
+                                this.props.vocab.SURVEY.SUCCESS,
+                                this.props.vocab.ERROR) :
+                            this.props.actions.postSurvey(
+                                { name },
+                                this.props.project,
+                                this.props.vocab.ERROR));
+                    }}/>
+            </Modal>
+        );
+    }
+}
+
+SurveyTitleModal.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+    survey: PropTypes.object,
+};
+
+export default SurveyTitleModal;

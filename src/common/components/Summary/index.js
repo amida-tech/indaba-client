@@ -27,18 +27,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onEditClick={this.props.actions.pmShowSurveyTitleModal}
-                    updateContent={() => {
-                        return (this.props.survey.id >= 0 ?
-                            this.props.actions.patchSurvey(
-                                this.props.survey,
-                                this.props.vocab.SURVEY.SUCCESS,
-                                this.props.vocab.ERROR) :
-                            this.props.actions.postSurvey(
-                                this.props.survey,
-                                this.props.project,
-                                this.props.vocab.ERROR));
-                    }}>
+                    onEditClick={this.props.actions.pmShowSurveyTitleModal} >
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'

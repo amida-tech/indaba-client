@@ -14,6 +14,7 @@ import Users from './Users';
 import Export from './Export';
 import StatusChange from './Modals/StatusChange';
 import ProjectTitleModal from './Modals/TitleChange/ProjectTitleModal';
+import SurveyTitleModal from './Modals/TitleChange/SurveyTitleModal';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
@@ -123,6 +124,12 @@ class ProjectManagementContainer extends Component {
                         <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             projectId={this.props.project.id} />
+                    }
+                    {
+                        this.props.ui.showSurveyTitleModal &&
+                        <SurveyTitleModal vocab={this.props.vocab}
+                            actions={this.props.actions}
+                            survey={this.props.survey} />
                     }
                     {
                         this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
