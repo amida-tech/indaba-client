@@ -45,13 +45,14 @@ class FilteredRow extends Component {
                 stage => _taskLookup(stage, this.props.subject.id,
                 this.props.tasks, this.props.responses));
         return this.rowIsFilteredOut(taskData) ? null : (
-            <tr key={`SubjectHeader-${this.props.subject.key}`}>
+            <tr key={`SubjectHeader-${this.props.subject.key}`}
+                className='filtered-row'>
             <td key={this.props.subject.key} className='grid-subject'>
                 {this.props.subject.name}
             </td>
             {taskData.map(task =>
                 <td key={`StageSlot-${task.uoaId}-${task.stepId}`}
-                    className='stage-slot-cell'>
+                    className='filtered-row__cell'>
                     <StageSlot task={task}
                         user={_.find(this.props.users, user => user.id === task.userIds[0])}
                         users={this.props.users}
