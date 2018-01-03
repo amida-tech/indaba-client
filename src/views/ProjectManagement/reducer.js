@@ -26,6 +26,9 @@ export const initialState = {
         export: {
             subjects: [],
         },
+        showStage: false,
+        editStage: null,
+        showStageDeleteConfirmModal: null,
     },
 };
 
@@ -108,6 +111,23 @@ export default (state = initialState, action) => {
     case type.PM_HIDE_PROJECT_TITLE_MODAL: {
         return update(state, { ui: {
             showProjectTitleModal: { $set: false },
+        } });
+    }
+    case type.SHOW_STAGE_MODAL:
+        return update(state, { ui: {
+            showStage: { $set: action.show },
+            editStage: { $set: action.stageId !== undefined ? action.stageId : null },
+        } });
+    case type.PM_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: {
+                stageId: action.stageId,
+            } },
+        } });
+    }
+    case type.PM_HIDE_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: null },
         } });
     }
     default:

@@ -12,6 +12,11 @@ class SurveyPane extends Component {
     }
 
     render() {
+        const initialValues = {
+            answers: this.props.answers.map(answer => Object.assign({}, answer,
+                { comment: { reason: null, text: '' } })),
+            assessmentId: this.props.task.assessmentId,
+        };
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -23,11 +28,11 @@ class SurveyPane extends Component {
                         onChange={event => this.props.actions.setSurveySectionIndex(event.value)}/>
                     <div className='survey-pane__accordion-buttons'>
                         <button className='survey-pane__button-expand'
-                            onClick={() => this.props.actions.showQuestion(
+                            onClick={() => this.props.actions.updateQuestionDisplay(
                                 this.props.survey.map((key, index) => index))}>
                                 {this.props.vocab.PROJECT.EXPAND_ALL}</button>
                         <button className='survey-pane__button-collapse'
-                            onClick={this.props.actions.collapseAllQuestions}>
+                            onClick={() => this.props.actions.updateQuestionDisplay([])}>
                             {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
@@ -42,10 +47,12 @@ class SurveyPane extends Component {
                         {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
                             (this.props.ui.lastSave === null ?
                                 this.props.vocab.PROJECT.NOT_SAVED :
-                                Time.renderForSurveyAutosave(this.props.ui.lastSave))}
+                                Time.renderGeneralTimestamp(this.props.ui.lastSave))}
                     </span>
                 </div>
-                <SurveyForm {...this.props} />
+                <SurveyForm
+                    {...this.props}
+                    initialValues={initialValues} />
             </div>
         );
     }

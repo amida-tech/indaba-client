@@ -2,14 +2,12 @@ export const EDIT_SUMMARY_DESCRIPTION = 'EDIT_SUMMARY_DESCRIPTION'; // Not yet u
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const SET_PROJECT_STATUS = 'SET_PROJECT_STATUS';
 export const DELETE_USER_GROUP = 'DELETE_USER_GROUP';
-export const ADD_USER_GROUP = 'ADD_USER_GROUP';
 export const UPDATE_USER_GROUP = 'UPDATE_USER_GROUP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const SET_PROJECT_NAME = 'SET_PROJECT_NAME';
 
 // Modals:
-export const SHOW_STAGE_MODAL = 'SHOW_STAGE_MODAL';
 export const SHOW_ADD_SUBJECT_MODAL = 'SHOW_ADD_SUBJECT_MODAL';
 
 // Private function types.

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { find } from 'lodash';
 import { Field, form, reduxForm, reset } from 'redux-form';
 
 import { renderName } from '../../../../utils/User';
@@ -7,11 +8,14 @@ import FlagUserSelect from './FlagUserSelect';
 
 class FlagControlsForm extends Component {
     render() {
-        const userOptions = this.props.users ?
-            this.props.users.map(user => ({
-                label: renderName(user),
-                value: user,
-            })) : [];
+        const userOptions = this.props.projectUsers ?
+            this.props.projectUsers.map((projUserId) => {
+                const current = find(this.props.users, user => user.id === projUserId);
+                return {
+                    label: renderName(current),
+                    value: current,
+                };
+            }) : [];
         return (
             <form className='flag-controls-form'
                 onSubmit={this.props.handleSubmit}>
@@ -19,17 +23,21 @@ class FlagControlsForm extends Component {
                     name='entry'
                     component='textarea'
                     placeholder={this.props.vocab.PROJECT.REPLY} />
-                <Field name='isResolved'
-                    component='input'
-                    type='checkbox'
-                    label={this.props.vocab.PROJECT.MARK_RESOLVED} />
-                <span className='flag-controls-form__notify-label'>
+                <div className='flag-controls-form__mark-resolve-section'>
+                    <Field name='isResolve'
+                        component='input'
+                        type='checkbox' />
+                    <div className='flag-controls-form__resolve-text'>
+                        {this.props.vocab.PROJECT.MARK_RESOLVED}
+                    </div>
+                </div>
+                <div className='flag-controls-form__notify-section'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}
-                </span>
-                <Field className='flag-controls-form__notify'
-                    name='notify'
-                    component={FlagUserSelect}
-                    userOptions={userOptions} />
+                    <Field className='flag-controls-form__notify'
+                        name='notify'
+                        component={FlagUserSelect}
+                        userOptions={userOptions} />
+                </div>
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
                         type='button'
@@ -61,6 +69,7 @@ const FORM_NAME = 'flag-controls-form';
 
 export default reduxForm({
     form: FORM_NAME,
+    enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
         ownProps.actions.postDiscussion(
             values,

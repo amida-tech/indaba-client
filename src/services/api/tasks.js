@@ -5,6 +5,9 @@ const tasks = {
     getTasksByProduct: (productId, callback) => {
         requests.apiGetRequest(getFullPath(`products/${productId}/tasks`), callback);
     },
+    moveTask: (productId, uoaId, callback) => {
+        requests.apiGetRequest(getFullPath(`products/${productId}/move/${uoaId}`), callback);
+    },
     getTaskById: (taskId, callback) => {
         requests.apiGetRequest(getFullPath(`tasks/${taskId}`), callback);
     },

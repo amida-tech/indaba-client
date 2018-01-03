@@ -8,8 +8,6 @@ import { POST_NEW_USER_SUCCESS } from '../actionTypes/userActionTypes';
 const initialState = {
     ui: {
         errorMessage: '',
-        showStage: false,
-        editStage: null,
         showAddSubject: false,
     },
     data: [{
@@ -42,11 +40,6 @@ export const ProjectReducer = (state = initialState, action) => {
         update(state, { data: { $set: [action.project] } });
     case type.PUT_PROJECT_SUCCESS:
         return update(state, { data: { [projectIndex]: { $merge: action.project } } });
-    case type.SHOW_STAGE_MODAL:
-        return update(state, { ui: {
-            showStage: { $set: action.show },
-            editStage: { $set: action.stageId !== undefined ? action.stageId : null },
-        } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
@@ -99,9 +92,6 @@ export const ProjectReducer = (state = initialState, action) => {
             userGroups: { $apply: userGroups =>
                         userGroups.filter(userGroup => userGroup.id !== action.groupId),
             } } } });
-    case type.ADD_USER_GROUP:
-        return update(state, { data: { [projectIndex]: {
-            userGroups: { $push: [action.group] } } } });
     case type.UPDATE_USER_GROUP: // TODO: INBA-457
         groupIndex = state[projectIndex].userGroups
                     .findIndex(group => group.id === action.group.id);

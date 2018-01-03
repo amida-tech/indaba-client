@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Tabs, Tab } from 'grommet';
-import update from 'immutability-helper';
 
 import PMUsersTab from './PMUsersTab';
 import PMUserGroupsTab from './PMUserGroupsTab';
@@ -33,8 +32,13 @@ class Users extends Component {
                                     this.props.profile.organizationId,
                                     this.props.vocab.ERROR);
                             } else {
-                                this.props.actions.updateUserGroup(update(group,
-                                    { $merge: { id: this.state.modalId } }), this.props.project.id);
+                                this.props.actions.updateUserGroup(
+                                    this.state.modalId,
+                                    group,
+                                    this.props.project.id,
+                                    this.props.profile.organizationId,
+                                    this.props.vocab.ERROR,
+                                );
                             }
                             this.setState({ modalName: false });
                         }}/>

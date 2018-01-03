@@ -43,13 +43,19 @@ class StageModal extends Component {
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.onClickToSubmit}
+                buttons={(this.props.stageId !== undefined && this.props.stageId !== null) ?
+                [{
+                    key: 'delete-button',
+                    label: this.props.vocab.PROJECT.DELETE_STAGE,
+                    onClick: this.props.onDeleteClick,
+                }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
                     groups={groups}
                     initialValues={initialValues}
                     onSubmit={values =>
-                            this.props.onAddStage(stageMapping(values), this.props.projectId)
+                            this.props.onAddStage(stageMapping(values), this.props.project.id)
                         } />
             </Modal>
         );
@@ -58,6 +64,14 @@ class StageModal extends Component {
 
 StageModal.propTypes = {
     vocab: PropTypes.object.isRequired,
+    userGroups: PropTypes.array.isRequired,
+    stageId: PropTypes.number,
+    project: PropTypes.object.isRequired,
+
+    onClickToSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onAddStage: PropTypes.func.isRequired,
+    onDeleteClick: PropTypes.func,
 };
 
 const stageMapping = (values) => {
@@ -65,7 +79,7 @@ const stageMapping = (values) => {
         title: values.title,
         startDate: values.startDate,
         endDate: values.endDate,
-        userGroups: values.userGroups.map(group => group.value),
+        userGroups: values.userGroups,
         provideResponses: true,
         discussionParticipation: false,
         blindReview: false,

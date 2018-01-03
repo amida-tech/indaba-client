@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { deleteStage } from '../../common/actions/projectActions';
 
 export function subnavigate(id) {
     return {
@@ -66,6 +67,27 @@ export function showTaskOptionsModal(task, userGroups) {
     };
 }
 
+export function showStageModal(show, stageId) {
+    return {
+        type: actionTypes.SHOW_STAGE_MODAL,
+        show,
+        stageId,
+    };
+}
+
+export function pmShowStageDeleteConfirmModal(stageId) {
+    return {
+        type: actionTypes.PM_SHOW_STAGE_DELETE_CONFIRM_MODAL,
+        stageId,
+    };
+}
+
+export function pmHideStageDeleteConfirmModal() {
+    return {
+        type: actionTypes.PM_HIDE_STAGE_DELETE_CONFIRM_MODAL,
+    };
+}
+
 export function closeTaskOptionsModal() {
     return {
         type: actionTypes.CLOSE_TASK_OPTIONS_MODAL,
@@ -124,4 +146,8 @@ export function pmHideProjectTitleModal() {
     return {
         type: actionTypes.PM_HIDE_PROJECT_TITLE_MODAL,
     };
+}
+
+export function pmDeleteStage(projectId, stageId) {
+    return dispatch => dispatch(deleteStage(projectId, stageId));
 }

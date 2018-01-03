@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { List, ListItem } from 'grommet';
-import _ from 'lodash';
+import { some } from 'lodash';
 import scroller from 'react-scroll/modules/mixins/scroller';
 import PropTypes from 'prop-types';
 
@@ -11,7 +10,7 @@ class FlagQuestionList extends Component {
     }
 
     onChangeQuestion(id, index) {
-        this.props.actions.showQuestion([index]);
+        this.props.actions.updateQuestionDisplay([index]);
         this.props.actions.setActiveFlag(id, new Date());
         scroller.scrollTo(`question${index}`, {
             smooth: true,
@@ -21,23 +20,26 @@ class FlagQuestionList extends Component {
 
     render() {
         return (
-            <List className='flag-question-list'>
+            <div className='flag-question-list'>
                 {this.props.displaySurvey.map((question, index) => {
-                    return (_.some(this.props.ui.flags, flag =>
-                        flag.id === question.id)) ?
-                        <ListItem key={`listitem${question}${index}`}
-                            className={question.id === this.props.ui.flagSidebar.activeId ?
-                                'flag-question-list__item flag-question-list__item--selected' :
-                                'flag-question-list__item flag-question-list__item'}
+                    let modifier = '';
+                    if (question.id === this.props.ui.flagSidebar.activeId ||
+                        (this.props.ui.flagSidebar.activeId === -1 && index === 0)) {
+                        modifier = '--selected';
+                    } else if (some(this.props.ui.flags, flag =>
+                        parseInt(flag.questionId, 10) === question.id)) {
+                        modifier = '--inactive';
+                    }
+                    return (
+                        <div key={`listitem${question}${index}`}
+                            className={`flag-question-list__item flag-question-list__item${modifier}`}
                             onClick={this.onChangeQuestion.bind(event, question.id, index)}>
                             {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
-                        </ListItem> :
-                        <ListItem key={`listitem${question}${index}`}
-                            className='flag-question-list__item flag-question-list__item--inactive'>
-                            {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
-                        </ListItem>;
-                })}
-            </List>
+                        </div>
+                    );
+                })
+                }
+            </div>
         );
     }
 }

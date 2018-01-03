@@ -1,26 +1,54 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button } from 'grommet';
+import { toast } from 'react-toastify';
 
+import Modal from '../../../common/components/Modal';
 import Summary from '../../../common/components/Summary';
 import StageModal from '../../ProjectManagement/components/Modals/Stage';
 import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
 class AddStages extends Component {
+    handleStageDelete(stageId) {
+        this.props.actions.wizardShowStageDeleteConfirmModal(stageId);
+    }
     render() {
         return (<div className='add-stages-step'>
-            {this.props.ui.showAddStage && <StageModal
-                vocab={this.props.vocab}
-                userGroups={this.props.project.userGroups}
-                onCancel={() => this.props.actions.showAddStageWizardModal(false)}
-                onAddStage={(stage) => {
-                    this.props.actions.showAddStageWizardModal(false);
-                    this.props.actions.putStage(
-                        this.props.project,
-                        stage,
-                        true,
-                        this.props.vocab.ERROR);
-                }}/>}
+            {
+                this.props.ui.showAddStage && !this.props.ui.showStageDeleteConfirmModal &&
+                <StageModal vocab={this.props.vocab}
+                    userGroups={this.props.project.userGroups}
+                    onCancel={() => this.props.actions.wizardShowStageModal(false)}
+                    stageId={this.props.ui.stageEditId}
+                    project={this.props.project}
+                    onDeleteClick={() => this.handleStageDelete(this.props.ui.stageEditId)}
+                    onAddStage={(stage) => {
+                        this.props.actions.wizardShowStageModal(false);
+                        this.props.actions.putStage(
+                            this.props.project,
+                            stage,
+                            true,
+                            this.props.vocab.ERROR);
+                    }}
+                    actions={this.props.actions} />
+            }
+            {
+                this.props.ui.showStageDeleteConfirmModal &&
+                <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                    bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
+                    onCancel={this.props.actions.wizardHideStageDeleteConfirmModal}
+                    onSave={() => this.props.actions.wizardDeleteStage(
+                        this.props.project.id,
+                        this.props.ui.showStageDeleteConfirmModal.stageId)
+                    .then(() => {
+                        this.props.actions.wizardShowStageModal(false);
+                        this.props.actions.wizardHideStageDeleteConfirmModal();
+                    }).catch(() => {
+                        toast(this.props.vocab.ERROR.STAGE_REQUEST,
+                            { type: 'error', autoClose: false });
+                        this.props.actions.wizardHideStageDeleteConfirmModal();
+                    }) } />
+            }
             <Summary
                 project={this.props.project}
                 survey={this.props.survey}
@@ -39,6 +67,7 @@ class AddStages extends Component {
             <Box className='add-stages-step__grid' direction='row'>
                 {this.props.project.stages.map((stage) => {
                     return <StageSummary stage={stage}
+                        onClick={() => this.props.actions.wizardShowStageModal(true, stage.id)}
                         vocab={this.props.vocab}
                         userGroups={this.props.project.userGroups}
                         key={stage.id} />;
@@ -47,7 +76,7 @@ class AddStages extends Component {
                 {
                     this.props.project.stages.length <= 3 &&
                     <div className='add-stages-step__grid-row'
-                        onClick={() => this.props.actions.showAddStageWizardModal(true)}>
+                        onClick={() => this.props.actions.wizardShowStageModal(true)}>
                         <div className='add-stages-step__grid-row--title'>
                             {this.props.vocab.PROJECT.STAGE_TITLE}
                         </div>

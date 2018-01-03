@@ -7,6 +7,7 @@ import * as actionTypes from './actionTypes';
 export function login(username, password, realm, errorMessages) {
     return (dispatch) => {
         dispatch(_login());
+
         const authPayload = {
             username,
             password,

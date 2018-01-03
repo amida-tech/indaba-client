@@ -11,19 +11,7 @@ const initialState = {
     },
     projectId: 0,
     userId: 0,
-    data: [{
-        id: -1,
-        title: '',
-        description: '',
-        uoaId: -1,
-        stepId: -1,
-        endDate: '',
-        isCompleted: false,
-        userIds: [],
-        projectId: -1,
-        surveyId: -1,
-        flagCount: 0,
-    }],
+    data: [],
 };
 
 export const TaskReducer = (state = initialState, action) => {
@@ -36,9 +24,9 @@ export const TaskReducer = (state = initialState, action) => {
         });
     }
     case type.GET_TASK_BY_ID_SUCCESS:
-        return state.data[0].id < 0 ?
+        return taskIndex < 0 ?
             update(state, { projectId: { $set: action.projectId },
-                data: { $set: [action.task] } }) :
+                data: { $push: [action.task] } }) :
             update(state, { projectId: { $set: action.projectId },
                 data: { [taskIndex]: { $set: action.task } } });
     case type.GET_TASKS_BY_USER_SUCCESS:

@@ -44,9 +44,12 @@ class StatusChange extends Component {
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
-                this.props.actions.putProject(Object.assign({}, this.props.project,
-                        { status: this.state.project.active ? 1 : 0 }),
-                    this.props.vocab.ERROR);
+                const newProject = Object.assign({}, this.props.project,
+                        { status: this.state.project.active ? 1 : 0 });
+                if (!newProject.firstActivated) {
+                    newProject.firstActivated = new Date();
+                }
+                this.props.actions.putProject(newProject, this.props.vocab.ERROR);
                 this.props.actions.updateStatusChange(false);
             }
         } else if (this.surveyConfirmed()) {
@@ -66,7 +69,7 @@ class StatusChange extends Component {
                 class='project-status-change-layer'
                 title={title}
                 onSave={this.save.bind(this)}
-                onCancel={this.props.onStatusChangeClose}>
+                onCancel={() => this.props.actions.updateStatusChange(false)}>
                 {this.props.entity === 'project' ?
                     <ProjectStatusBody {...this.state.project}
                         vocab={this.props.vocab}

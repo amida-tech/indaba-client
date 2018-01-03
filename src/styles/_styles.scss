@@ -2,7 +2,7 @@
 $page-background-color: #fafafa;
 $header-font-color: #8a8f99;
 $lead-font-color: #637282;
-$font-color: #a4aebf;
+$font-color: #82909c;
 $border-color: #e6edef;
 $element-background: #f3f5f6;
 $font-inverse-color: #f7f8f9;
@@ -51,17 +51,6 @@ body,
     min-height: 100%;
     position: relative;
     padding-bottom: $footer-height-with-padding;
-}
-
-// Grommet overrides
-.grommet {
-    .grommetux-tabs {
-        border-bottom: none;
-    }
-
-    .grommetux-tab {
-        border-bottom: 3px solid $border-color;
-    }
 }
 
 .grommetux-text-input {

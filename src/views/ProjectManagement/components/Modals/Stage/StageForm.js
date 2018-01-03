@@ -13,7 +13,9 @@ class StageForm extends Component {
             <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.STAGE_TITLE} </label>
+                        <label className='add-stage-form__header-label'>
+                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                         </label>
                         <div>
                             <Field
                                 name='title'
@@ -24,18 +26,23 @@ class StageForm extends Component {
                         </div>
                     </div>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} </label>
+                        <label className='add-stage-form__header-label'>
+                        {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
+                        </label>
                         <div>
                             <Field
                                 className='add-stage-form__input-field'
                                 name='userGroups'
+                                normalize={values => values.map(value => value.value)}
                                 groups={this.props.groups}
                                 component={StageSelect}
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
                     <div className='add-stage-form__header'>
-                       <label> {this.props.vocab.PROJECT.PERMISSIONS} </label>
+                           <label className='add-stage-form__header-label'>
+                           {this.props.vocab.PROJECT.PERMISSIONS}
+                           </label>
                        <div className='add-stage-form__radio-control'>
                            {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
                                <label className='add-stage-form__radio-button' key={index}>
@@ -57,11 +64,14 @@ class StageForm extends Component {
                     </div>
                     <hr className='add-stage-form__divider'/>
                     <div className='add-stage-form__header'>
-                        <label> {this.props.vocab.PROJECT.DATE_RANGE} </label>
+                            <label className='add-stage-form__header-label'>
+                            {this.props.vocab.PROJECT.DATE_RANGE}
+                            </label>
                     </div>
-                    <div className='add-stage-form__header add-stage-form__date-inputs-container'>
-                        <div className='add-stage-form__start-label-and-input'>
-                            <span> {this.props.vocab.PROJECT.START_DATE}</span>
+                    <div className='add-stage-form__select'>
+                        <div className='add-stage-form__select-start'>
+                            <label className='add-stage-form__select-start-label'>
+                            {this.props.vocab.PROJECT.START_DATE}</label>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
                                   id='StartDate'
@@ -69,8 +79,9 @@ class StageForm extends Component {
                                   component={StageDateTime} />
                             </div>
                         </div>
-                        <div className='add-stage-form__end-label-and-input'>
-                            <span> {this.props.vocab.PROJECT.END_DATE}</span>
+                        <div className='add-stage-form__select-end'>
+                            <label className='add-stage-form__select-end-label'>
+                                {this.props.vocab.PROJECT.END_DATE}</label>
                             <div className='add-stage-form__date-input-div'>
                                 <Field
                                  id='endDate'

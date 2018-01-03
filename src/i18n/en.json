@@ -36,7 +36,9 @@
         "NEW": "New",
         "LATE": "Late",
         "LOG_OUT": "Log Out",
-        "MY_TASKS":"My Tasks"
+        "MY_TASKS":"My Tasks",
+        "AGREE": "Agreed",
+        "DISAGREE": "Disagreed"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system and has been added to the project for you.",
@@ -64,6 +66,7 @@
         "USER_REQUEST": "Failed to insert or delete user.",
         "TASK_REQUEST": "Failed to insert or delete task.",
         "ASSESSMENT_REQUEST": "Failed to insert assessment.",
+        "USER_GROUP": "The system failed to assign users to the group.",
         "GROUP_REQUEST": "The (re)assignment of the user groups to this stage has failed. Please try again.",
         "STAGE_REQUEST": "Something has gone wrong with stage request. Please try again.",
         "MAX_STAGES": "You can add up to 4 stages during set-up. Complete project to add stages from workflow",
@@ -73,7 +76,8 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
-        "COMING_SOON": "Coming soon."
+        "COMING_SOON": "Coming soon.",
+        "NO_ASSIGN_USER_OUT_OF_GROUP": "This user is not in the user group assigned to the stage and cannot be assigned to the task."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
@@ -179,6 +183,7 @@
         "AGREE": "Agree",
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
+        "TASK_COMPLETED": "Task completed!",
         "PERM_ARRAY": [
             "Complete Survey",
             "Review",
@@ -186,10 +191,10 @@
             "Review and Edit"
         ],
         "DESC_ARRAY": [
-            "Complete Survey description",
-            "Review description",
-            "Review and comment description",
-            "Review and Edit description",
+            "Answer survey questions",
+            "View previous user's survey answers",
+            "View previous user's survey answers and leave comments",
+            "View and edit survey answers and comments",
             "All permissions description"
         ],
         "TASK_BACK": "Back",
@@ -200,6 +205,7 @@
         "ADD_SUBJECT": "Add Subject",
         "ADD_SUBJECTS": "Add Subjects",
         "ADD_STAGE": "Add New Stage",
+        "DELETE_STAGE": "Delete Stage",
         "ADD_STAGES": "Add Stages",
         "SUBJECT_TITLE": "Subject Title",
         "STAGE_TITLE": "Stage Title",
@@ -348,6 +354,12 @@
         "REQUIRED_QUESTION": "Required Questions",
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
+        "SUBMIT_TASK": "Complete The Task",
+        "SAVE_REVIEW": "Save Review Progress",
+        "SUBMIT_INSTRUCTIONS": "If you have completed the task, select submit.",
+        "SUBMIT_INSTRUCTIONS_2":"Not completed? Return to ",
+        "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
+        "REVIEW_INSTRUCTIONS": "Click 'Save Review Progress' if you wish to commit your comments.",
         "NAME_OPTIONAL": " Name (Optional)",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
@@ -474,6 +486,11 @@
             "TITLE": "Remove user group?",
             "DELETE_WITH_NOTHING": "Are you sure you want to delete this user group?",
             "DELETE_WITH_STAGES": "This user group is currently assigned to one or more workflow stages."
+        },
+        "STAGE_DELETE_CONFIRM": {
+            "TITLE": "Delete stage?",
+            "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
+            "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
         },
         "PROJECT_TITLE_MODAL": {
             "TITLE": "Project title",

@@ -14,11 +14,9 @@ $block-class:'task-review';
         }
 
         &__flag-sidebar {
-            display: flex;
+            width: 35%;
             background: $element-background;
-            width: calc(35% + 2.5em);
-            margin-right: -2.5em;
-            padding-right: 2.5em;
+            border-right: 2px solid $border-color;
         }
 
         &__back-link {

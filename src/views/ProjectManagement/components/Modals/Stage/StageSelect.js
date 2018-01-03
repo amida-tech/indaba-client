@@ -5,7 +5,7 @@ class StageSelect extends Component {
     render() {
         return (
             <Select
-            className='add-stage-form__select' // Using a spread operator doesn't play well.
+                className='add-stage-form__select'
                 value={this.props.input.value}
                 onChange={this.props.input.onChange}
                 options={this.props.groups}
