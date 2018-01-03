@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../../../../common/components/Modal';
-import ProjectTitleForm from './ProjectTitleForm';
+import TitleForm from './TitleForm';
 
 
 class ProjectTitleModal extends Component {
@@ -10,7 +10,8 @@ class ProjectTitleModal extends Component {
             <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
                 onCancel={this.props.actions.pmHideProjectTitleModal}
                 form='project-title'>
-                <ProjectTitleForm {...this.props}
+                <TitleForm form='project-title'
+                    label={this.props.vocab.PROJECT.TITLE}
                     onSubmit={({ title }) => {
                         this.props.actions.putProject({
                             id: this.props.projectId,
