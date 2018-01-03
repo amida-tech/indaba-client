@@ -129,7 +129,8 @@ class ProjectManagementContainer extends Component {
                         this.props.ui.showSurveyTitleModal &&
                         <SurveyTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
-                            survey={this.props.survey} />
+                            survey={this.props.survey}
+                            project={this.props.project} />
                     }
                     {
                         this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
