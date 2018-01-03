@@ -23,6 +23,7 @@ export const initialState = {
         assignTaskInput: false,
         showUserGroupDeleteConfirmModal: null,
         showProjectTitleModal: false,
+        showSurveyTitleModal: false,
         export: {
             subjects: [],
         },
@@ -111,6 +112,16 @@ export default (state = initialState, action) => {
     case type.PM_HIDE_PROJECT_TITLE_MODAL: {
         return update(state, { ui: {
             showProjectTitleModal: { $set: false },
+        } });
+    }
+    case type.PM_SHOW_SURVEY_TITLE_MODAL: {
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: true },
+        } });
+    }
+    case type.PM_HIDE_SURVEY_TITLE_MODAL: {
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: false },
         } });
     }
     case type.SHOW_STAGE_MODAL:

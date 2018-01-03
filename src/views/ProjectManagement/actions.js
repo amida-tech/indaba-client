@@ -148,6 +148,18 @@ export function pmHideProjectTitleModal() {
     };
 }
 
+export function pmShowSurveyTitleModal() {
+    return {
+        type: actionTypes.PM_SHOW_SURVEY_TITLE_MODAL,
+    };
+}
+
+export function pmHideSurveyTitleModal() {
+    return {
+        type: actionTypes.PM_HIDE_SURVEY_TITLE_MODAL,
+    };
+}
+
 export function pmDeleteStage(projectId, stageId) {
     return dispatch => dispatch(deleteStage(projectId, stageId));
 }
