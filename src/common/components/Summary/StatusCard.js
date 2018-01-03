@@ -43,7 +43,6 @@ StatusCard.propTypes = {
     status: PropTypes.string.isRequired,
     onStatusChangeClick: PropTypes.func,
     onEditClick: PropTypes.func,
-    updateContent: PropTypes.func,
 };
 
 export default StatusCard;

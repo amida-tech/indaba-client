@@ -18,10 +18,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onEditClick={this.props.actions.pmShowProjectTitleModal}
-                    updateContent={() => this.props.actions.putProject(
-                            this.props.project,
-                            this.props.vocab.ERROR)}/>
+                    onEditClick={this.props.actions.pmShowProjectTitleModal} />
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey ? this.props.survey.name : ''}
