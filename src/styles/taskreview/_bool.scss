@@ -3,6 +3,8 @@ $block-class:'bool';
 @at-root {
     .#{$block-class} {
         &__field {
+            @extend .lead-font;
+
             :last-child {
                 margin-left: 10px;
             }
