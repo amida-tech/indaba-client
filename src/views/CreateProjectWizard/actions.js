@@ -101,3 +101,27 @@ export function wizardHideStageDeleteConfirmModal() {
 export function wizardDeleteStage(projectId, stageId) {
     return dispatch => dispatch(deleteStage(projectId, stageId));
 }
+
+export function wizardShowProjectTitleModal() {
+    return {
+        type: actionTypes.WIZARD_SHOW_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function wizardHideProjectTitleModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function wizardShowSurveyTitleModal() {
+    return {
+        type: actionTypes.WIZARD_SHOW_SURVEY_TITLE_MODAL,
+    };
+}
+
+export function wizardHideSurveyTitleModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_SURVEY_TITLE_MODAL,
+    };
+}

@@ -21,6 +21,8 @@ const initialState = {
         projectLink: -1,
         showSubjectDeleteConfirmModal: null,
         showStageDeleteConfirmModal: null,
+        showProjectTitleModal: false,
+        showSurveyTitleModal: false,
     },
     project: {
         id: 0,
@@ -102,6 +104,22 @@ export default (state = initialState, action) => {
             showStageDeleteConfirmModal: { $set: null },
         } });
     }
+    case type.WIZARD_SHOW_PROJECT_TITLE_MODAL:
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: true },
+        } });
+    case type.WIZARD_HIDE_PROJECT_TITLE_MODAL:
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: false },
+        } });
+    case type.WIZARD_SHOW_SURVEY_TITLE_MODAL:
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: true },
+        } });
+    case type.WIZARD_HIDE_SURVEY_TITLE_MODAL:
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: false },
+        } });
     default:
         return state;
     }
