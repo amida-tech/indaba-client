@@ -51,7 +51,7 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') &&
+                {has(this.props, 'meta.file') && value &&
                     <div className='questions__option-panel'>
                         <div className='questions__file-select'
                             onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
@@ -62,7 +62,7 @@ class Questions extends Component {
                         </span>
                     </div>
                 }
-                {has(this.props, 'meta.publication') &&
+                {has(this.props, 'meta.publication') && value &&
                     <div className='questions__option-panel'>
                         <div className='questions__link-fields-top'>
                             <span className='questions__add-link'>
