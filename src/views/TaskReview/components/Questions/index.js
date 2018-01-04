@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import { find, has } from 'lodash';
+import { toast } from 'react-toastify';
+import { DateTime } from 'grommet';
 
 import Bool from './Bool';
 import Text from './Text';
 import Choice from './Choice';
 import Choices from './Choices';
+import Time from '../../../../utils/Time';
 
 class Questions extends Component {
     render() {
@@ -42,9 +45,77 @@ class Questions extends Component {
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);
         }
+
+        console.log(this.props);
+
         return (
             <div className='questions'>
-                {QuestionType}
+                <div className='questions__type'>
+                    {QuestionType}
+                </div>
+                {has(this.props, 'meta.file') &&
+                    <div className='questions__option-panel'>
+                        <div className='questions__file-select'
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
+                            {this.props.vocab.SURVEY.SELECT_FILE}
+                        </div>
+                        <span className='questions__label'>
+                            {this.props.vocab.SURVEY.NO_FILE}
+                        </span>
+                    </div>
+                }
+                {has(this.props, 'meta.publication') &&
+                    <div className='questions__option-panel'>
+                        <div className='questions__link-fields-top'>
+                            <span className='questions__add-link'>
+                                {this.props.vocab.SURVEY.ADD_LINK}
+                            </span>
+                            <input className='questions__link-input'
+                                type='text'
+                                value={this.props.meta.publication.link || ''}
+                                onChange={event => this.props.actions.updateMeta(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    'publication',
+                                    { link: event.target.value },
+                                )} />
+                        </div>
+                        <div className='questions__link-fields-bottom'>
+                            <input className='questions__title-input'
+                                type='text'
+                                value={this.props.meta.publication.title || ''}
+                                placeholder={this.props.vocab.SURVEY.ENTER_PUBLICATION}
+                                onChange={event => this.props.actions.updateMeta(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    'publication',
+                                    { title: event.target.value },
+                                )} />
+                            <input className='questions__author-input'
+                                type='text'
+                                value={this.props.meta.publication.author || ''}
+                                placeholder={this.props.vocab.SURVEY.AUTHOR}
+                                onChange={event => this.props.actions.updateMeta(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    'publication',
+                                    { author: event.target.value },
+                                )} />
+                            <DateTime className='questions__date-input'
+                                value={this.props.meta.publication.date}
+                                format='MM/DD/YYYY'
+                                onChange={(event) => {
+                                    if (Time.validateTime(event)) {
+                                        this.props.actions.updateMeta(
+                                            this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        'publication',
+                                        { date: event });
+                                    }
+                                }} />
+                        </div>
+                    </div>
+                }
             </div>
         );
     }
