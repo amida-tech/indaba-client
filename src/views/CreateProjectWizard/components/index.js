@@ -59,7 +59,9 @@ class CreateProjectWizard extends Component {
             <Summary project={this.props.project}
                 survey={this.props.survey}
                 vocab={this.props.vocab}
-                actions={this.props.actions} />
+                actions={this.props.actions}
+                onProjectEditClick={this.props.actions.wizardShowProjectTitleModal}
+                onSurveyEditClick={this.props.actions.wizardShowSurveyTitleModal} />
         );
         return (!this.props.ui.showComplete ?
             <div className='project-wizard'>
