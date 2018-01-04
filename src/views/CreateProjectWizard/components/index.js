@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 import Summary from '../../../common/components/Summary';
 import ProjectTitleModal from '../../ProjectManagement/components/Modals/TitleChange/ProjectTitleModal';
+import SurveyTitleModal from '../../ProjectManagement/components/Modals/TitleChange/SurveyTitleModal';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
@@ -84,6 +85,14 @@ class CreateProjectWizard extends Component {
                         actions={this.props.actions}
                         projectId={this.props.project.id}
                         onCloseModal={this.props.actions.wizardHideProjectTitleModal} />
+                }
+                {
+                    this.props.ui.showSurveyTitleModal &&
+                    <SurveyTitleModal vocab={this.props.vocab}
+                        actions={this.props.actions}
+                        survey={this.props.survey}
+                        project={this.props.project}
+                        onCloseModal={this.props.actions.wizardHideSurveyTitleModal} />
                 }
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
