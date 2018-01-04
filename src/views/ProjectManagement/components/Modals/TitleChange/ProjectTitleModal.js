@@ -28,7 +28,7 @@ ProjectTitleModal.propTypes = {
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
-    onCloseModal: PropTypes.number.isRequired,
+    onCloseModal: PropTypes.func.isRequired,
 };
 
 export default ProjectTitleModal;
