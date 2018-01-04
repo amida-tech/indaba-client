@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import Summary from '../../../common/components/Summary';
+import ProjectTitleModal from '../../ProjectManagement/components/Modals/TitleChange/ProjectTitleModal';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
@@ -76,6 +77,13 @@ class CreateProjectWizard extends Component {
                         onSave={this.props.actions.postProject}
                         onCancel={this.props.onTitleModalCancel}
                         vocab={this.props.vocab} />
+                }
+                {
+                    this.props.ui.showProjectTitleModal &&
+                    <ProjectTitleModal vocab={this.props.vocab}
+                        actions={this.props.actions}
+                        projectId={this.props.project.id}
+                        onCloseModal={this.props.actions.wizardHideProjectTitleModal} />
                 }
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
