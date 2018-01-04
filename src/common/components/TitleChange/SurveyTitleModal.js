@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../../../../common/components/Modal';
+import Modal from '../Modal';
 import TitleForm from './TitleForm';
 
 

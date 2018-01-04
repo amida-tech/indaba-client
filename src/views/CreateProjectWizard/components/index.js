@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
 import Summary from '../../../common/components/Summary';
-import ProjectTitleModal from '../../ProjectManagement/components/Modals/TitleChange/ProjectTitleModal';
-import SurveyTitleModal from '../../ProjectManagement/components/Modals/TitleChange/SurveyTitleModal';
+import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
+import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
 import AddSubjects from './AddSubjects';
 import AddUsers from './AddUsers';
 import AddStages from './AddStages';
