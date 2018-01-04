@@ -8,7 +8,7 @@ class SurveyTitleModal extends Component {
     render() {
         return (
             <Modal title={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
-                onCancel={this.props.actions.pmHideSurveyTitleModal}
+                onCancel={this.props.onCloseModal}
                 form='survey-title'>
                 <TitleForm form='survey-title'
                     label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL}
@@ -24,7 +24,7 @@ class SurveyTitleModal extends Component {
                                 this.props.project,
                                 this.props.vocab.ERROR);
                         }
-                        this.props.actions.pmHideSurveyTitleModal();
+                        this.props.onCloseModal();
                     }}/>
             </Modal>
         );
@@ -36,6 +36,7 @@ SurveyTitleModal.propTypes = {
     actions: PropTypes.object.isRequired,
     survey: PropTypes.object,
     project: PropTypes.object,
+    onCloseModal: PropTypes.func.isRequired,
 };
 
 export default SurveyTitleModal;

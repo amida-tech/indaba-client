@@ -123,14 +123,16 @@ class ProjectManagementContainer extends Component {
                         this.props.ui.showProjectTitleModal &&
                         <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
-                            projectId={this.props.project.id} />
+                            projectId={this.props.project.id}
+                            onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
                     }
                     {
                         this.props.ui.showSurveyTitleModal &&
                         <SurveyTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             survey={this.props.survey}
-                            project={this.props.project} />
+                            project={this.props.project}
+                            onCloseModal={this.props.actions.pmHideSurveyTitleModal}/>
                     }
                     {
                         this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
@@ -172,6 +174,8 @@ class ProjectManagementContainer extends Component {
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
+                        onProjectEditClick={this.props.actions.pmShowProjectTitleModal}
+                        onSurveyEditClick={this.props.actions.pmShowSurveyTitleModal}
                         vocab={this.props.vocab}/>
                     <SubNav vocab={this.props.vocab}
                         subnavigate={this.props.actions.subnavigate}

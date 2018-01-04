@@ -18,7 +18,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onEditClick={this.props.actions.pmShowProjectTitleModal} />
+                    onEditClick={this.props.onProjectEditClick} />
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey ? this.props.survey.name : ''}
@@ -27,7 +27,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onEditClick={this.props.actions.pmShowSurveyTitleModal} >
+                    onEditClick={this.props.onSurveyEditClick} >
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'
@@ -45,6 +45,8 @@ Summary.propTypes = {
     actions: PropTypes.object,
 
     onStatusChangeClick: PropTypes.func,
+    onProjectEditClick: PropTypes.func,
+    onSurveyEditClick: PropTypes.func,
 };
 
 export default Summary;
