@@ -24,6 +24,20 @@ export function upsertAnswer(assessmentId, questionId, answer, required, errorMe
     };
 }
 
+export function upsertMeta(assessmentId, questionId, meta, required, errorMessages) {
+    const requestBody = {
+        status: 'in-progress',
+        answers: [{
+            questionId,
+            meta,
+        }],
+    };
+
+    return (dispatch) => {
+        dispatch(postAnswer(assessmentId, requestBody, required, errorMessages));
+    };
+}
+
 // Discussion related:
 export function getDiscussions(taskId, errorMessages) { // errorMessages
     return (dispatch) => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find, has } from 'lodash';
+import { find, has, merge } from 'lodash';
 import { toast } from 'react-toastify';
 import { DateTime } from 'grommet';
 
@@ -46,8 +46,6 @@ class Questions extends Component {
                 answer={value ? value.answer : ''} />);
         }
 
-        console.log(this.props);
-
         return (
             <div className='questions'>
                 <div className='questions__type'>
@@ -72,45 +70,46 @@ class Questions extends Component {
                             </span>
                             <input className='questions__link-input'
                                 type='text'
-                                value={this.props.meta.publication.link || ''}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { link: event.target.value },
-                                )} />
+                                defaultValue={this.props.meta.publication.link || ''}
+                                onBlur={event => this.props.actions.upsertMeta(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    merge(this.props.meta,
+                                        { publication: { link: event.target.value } }),
+                                    this.props.vocab.ERROR)} />
                         </div>
                         <div className='questions__link-fields-bottom'>
                             <input className='questions__title-input'
                                 type='text'
-                                value={this.props.meta.publication.title || ''}
+                                defaultValue={this.props.meta.publication.title || ''}
                                 placeholder={this.props.vocab.SURVEY.ENTER_PUBLICATION}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { title: event.target.value },
-                                )} />
+                                onBlur={event => this.props.actions.upsertMeta(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    merge(this.props.meta,
+                                        { publication: { title: event.target.value } }),
+                                    this.props.vocab.ERROR)} />
                             <input className='questions__author-input'
                                 type='text'
                                 value={this.props.meta.publication.author || ''}
                                 placeholder={this.props.vocab.SURVEY.AUTHOR}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { author: event.target.value },
-                                )} />
+                                onBlur={event => this.props.actions.updateMeta(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    merge(this.props.meta,
+                                        { publication: { author: event.target.value } }),
+                                    this.props.vocab.ERROR)} />
                             <DateTime className='questions__date-input'
                                 value={this.props.meta.publication.date}
                                 format='MM/DD/YYYY'
                                 onChange={(event) => {
                                     if (Time.validateTime(event)) {
                                         this.props.actions.updateMeta(
-                                            this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        'publication',
-                                        { date: event });
+                                            this.props.assessmentId,
+                                            this.props.id,
+                                            merge(this.props.meta,
+                                                { publication: { date: event.target.value } }),
+                                            this.props.vocab.ERROR);
                                     }
                                 }} />
                         </div>
