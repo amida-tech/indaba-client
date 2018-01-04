@@ -12,6 +12,7 @@ class SurveyTitleModal extends Component {
                 form='survey-title'>
                 <TitleForm form='survey-title'
                     label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL}
+                    initialValues={{ title: this.props.survey.id > 0 ? this.props.survey.name : '' }}
                     onSubmit={({ title: name }) => {
                         if (this.props.survey.id > 0) {
                             this.props.actions.patchSurvey(

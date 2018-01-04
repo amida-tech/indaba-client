@@ -12,9 +12,10 @@ class ProjectTitleModal extends Component {
                 form='project-title'>
                 <TitleForm form='project-title'
                     label={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_INPUT_LABEL}
+                    initialValues={{ title: this.props.project.name }}
                     onSubmit={({ title }) => {
                         this.props.actions.putProject({
-                            id: this.props.projectId,
+                            id: this.props.project.id,
                             name: title,
                         });
                         this.props.onCloseModal();
@@ -27,7 +28,7 @@ class ProjectTitleModal extends Component {
 ProjectTitleModal.propTypes = {
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    projectId: PropTypes.number.isRequired,
+    project: PropTypes.object.isRequired,
     onCloseModal: PropTypes.func.isRequired,
 };
 

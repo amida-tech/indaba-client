@@ -123,7 +123,7 @@ class ProjectManagementContainer extends Component {
                         this.props.ui.showProjectTitleModal &&
                         <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
-                            projectId={this.props.project.id}
+                            project={this.props.project}
                             onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
                     }
                     {
