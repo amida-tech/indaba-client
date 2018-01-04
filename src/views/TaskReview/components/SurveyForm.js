@@ -66,6 +66,13 @@ class SurveyForm extends Component { // TODO: INBA-450
 
 SurveyForm.propTypes = {
     vocab: PropTypes.object.isRequired,
+    survey: PropTypes.array.isRequired,
+    stage: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
+    productId: PropTypes.number.isRequired,
+    actions: PropTypes.shape({
+        moveTask: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
 const FORM_NAME = 'survey-form';
