@@ -1,3 +1,4 @@
+import { pickBy, identity } from 'lodash';
 import apiService from '../../services/api';
 import { postAnswer } from '../../common/actions/surveyActions';
 import * as actionTypes from './actionTypes';
@@ -10,27 +11,14 @@ export function updateFormSurveyId(surveyId) {
     };
 }
 
-export function upsertAnswer(assessmentId, questionId, answer, required, errorMessages) {
+export function upsertAnswer(assessmentId, questionId, answer, meta, required, errorMessages) {
     const requestBody = {
         status: 'in-progress',
-        answers: [{
+        answers: [pickBy({
             questionId,
             answer,
-        }],
-    };
-
-    return (dispatch) => {
-        dispatch(postAnswer(assessmentId, requestBody, required, errorMessages));
-    };
-}
-
-export function upsertMeta(assessmentId, questionId, meta, required, errorMessages) {
-    const requestBody = {
-        status: 'in-progress',
-        answers: [{
-            questionId,
             meta,
-        }],
+        }, identity)],
     };
 
     return (dispatch) => {
