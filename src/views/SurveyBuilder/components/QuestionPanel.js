@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import { has } from 'lodash';
-import { toast } from 'react-toastify';
-import { DateTime } from 'grommet';
 import PropTypes from 'prop-types';
 
 import StaticQuestion from './StaticQuestion';
 import DynamicQuestion from './DynamicQuestion';
 import { DYNAMIC, WEIGHTED } from '../constants';
-import Time from '../../../utils/Time';
 
 class QuestionPanel extends Component {
     render() {
@@ -62,74 +59,11 @@ class QuestionPanel extends Component {
                         type={this.props.question.type}
                         vocab={this.props.vocab}/>
                 }
-                {has(this.props.question, 'meta.file') &&
-                    <div className='question-panel__option-panel'>
-                        <div className='question-panel__file-select'
-                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                            {this.props.vocab.SURVEY.SELECT_FILE}
-                        </div>
-                        <span className='question-panel__label'>
-                            {this.props.vocab.SURVEY.NO_FILE}
-                        </span>
-                    </div>
-                }
-                {has(this.props.question, 'meta.publication') &&
-                    <div className='question-panel__option-panel'>
-                        <div className='question-panel__link-fields-top'>
-                            <span className='question-panel__add-link'>
-                                {this.props.vocab.SURVEY.ADD_LINK}
-                            </span>
-                            <input className='question-panel__link-input'
-                                type='text'
-                                value={this.props.question.meta.publication.link || ''}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { link: event.target.value },
-                                )} />
-                        </div>
-                        <div className='question-panel__link-fields-bottom'>
-                            <input className='question-panel__title-input'
-                                type='text'
-                                value={this.props.question.meta.publication.title || ''}
-                                placeholder={this.props.vocab.SURVEY.ENTER_PUBLICATION}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { title: event.target.value },
-                                )} />
-                            <input className='question-panel__author-input'
-                                type='text'
-                                value={this.props.question.meta.publication.author || ''}
-                                placeholder={this.props.vocab.SURVEY.AUTHOR}
-                                onChange={event => this.props.actions.updateMeta(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    'publication',
-                                    { author: event.target.value },
-                                )} />
-                            <DateTime className='question-panel__date-input'
-                                value={this.props.question.meta.publication.date}
-                                format='MM/DD/YYYY'
-                                onChange={(event) => {
-                                    if (Time.validateTime(event)) {
-                                        this.props.actions.updateMeta(
-                                            this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        'publication',
-                                        { date: event });
-                                    }
-                                }} />
-                        </div>
-                    </div>
-                }
                 <div className='question-panel__optional-controls'>
                     <div className='question-panel__additions'>
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
-                                value={has(this.props.question, 'meta.file')}
+                                checked={has(this.props.question, 'meta.file')}
                                 onChange={(event) => {
                                     if (event.target.checked) {
                                         this.props.actions.updateQuestion(
@@ -152,7 +86,7 @@ class QuestionPanel extends Component {
                         </div>
                         <div className='question-panel__checkboxes'>
                         <input type='checkbox'
-                            value={has(this.props.question, 'meta.publication')}
+                            checked={has(this.props.question, 'meta.publication')}
                             onChange={(event) => {
                                 if (event.target.checked) {
                                     this.props.actions.updateQuestion(
@@ -173,7 +107,7 @@ class QuestionPanel extends Component {
                         </div>
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
-                                value={this.props.question.required}
+                                checked={this.props.question.required}
                                 onChange={event => this.props.actions.updateQuestion(
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
@@ -187,7 +121,7 @@ class QuestionPanel extends Component {
                     {WEIGHTED.includes(this.props.question.type) &&
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
-                                value={has(this.props.question, 'meta.weight')}
+                                checked={has(this.props.question, 'meta.weight')}
                                 onChange={(event) => {
                                     if (event.target.checked) {
                                         this.props.actions.updateQuestion(
