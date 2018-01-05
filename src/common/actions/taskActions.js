@@ -76,14 +76,16 @@ export function assignTask(userId, slot, project, errorMessages) {
         };
     }
 
+    // console.log(slot);
+    // INBA-595: slot.task.uoaId, slot.task.stepId, project.id
+
     const surveyRequestBody = {
         name: slot.stageData.title,
         stage: slot.stageData.position, // May eventually change to stepId.
         surveys: [{
             id: project.surveyId,
         }],
-        group: find(project.userGroups, group =>
-            group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+        group: `${project.id}-${slot.task.uoaId}`,
     };
 
     const requestBody = {
