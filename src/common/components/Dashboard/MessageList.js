@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Time from '../../../utils/Time';
-import { renderName } from '../../../utils/User';
+import { renderNameByEmail } from '../../../utils/User';
 
 class MessageList extends Component {
     render() {
@@ -19,8 +19,7 @@ class MessageList extends Component {
                         onClick={() => this.props.onMessageClick(message.id)}>
                         <div className='message-list__name'>
                             {
-                                renderName(this.props.users.find(
-                                    user => user.email === message.from))
+                                renderNameByEmail(message.from, this.props.users)
                             }
                         </div>
                         <div className='message-list__subject'>
