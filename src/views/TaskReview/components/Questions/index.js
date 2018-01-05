@@ -52,7 +52,7 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') && value.answer &&
+                {has(this.props, 'meta.file') && has(value, 'answer') &&
                     <div className='questions__option-panel'>
                         <div className='questions__file-select'
                             onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
@@ -63,7 +63,7 @@ class Questions extends Component {
                         </span>
                     </div>
                 }
-                {has(this.props, 'meta.publication') && value.answer &&
+                {has(this.props, 'meta.publication') && has(value, 'answer') &&
                     <div className='questions__option-panel'>
                         <div className='questions__link-fields-top'>
                             <span className='questions__add-link'>
@@ -104,7 +104,7 @@ class Questions extends Component {
                                         { publication: { author: event.target.value } }),
                                     this.props.vocab.ERROR)} />
                             <DateTime className='questions__date-input'
-                                value={get(value, 'meta.publication.date', '')}
+                                defaultValue={get(value, 'meta.publication.date', '')}
                                 format='MM/DD/YYYY'
                                 onChange={(event) => {
                                     if (Time.validateTime(event)) {
