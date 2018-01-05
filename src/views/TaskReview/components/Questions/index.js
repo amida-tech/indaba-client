@@ -104,7 +104,7 @@ class Questions extends Component {
                                         { publication: { author: event.target.value } }),
                                     this.props.vocab.ERROR)} />
                             <DateTime className='questions__date-input'
-                                defaultValue={get(value, 'meta.publication.date', '')}
+                                value={get(value, 'meta.publication.date', '')}
                                 format='MM/DD/YYYY'
                                 onChange={(event) => {
                                     if (Time.validateTime(event)) {
