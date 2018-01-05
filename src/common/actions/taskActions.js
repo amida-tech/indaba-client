@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { find, pickBy, identity } from 'lodash';
+import { pickBy, identity } from 'lodash';
 import { push } from 'react-router-redux';
 
 import { getAnswers } from '../actions/surveyActions';
