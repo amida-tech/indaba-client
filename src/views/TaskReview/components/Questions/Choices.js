@@ -36,8 +36,6 @@ Choices.propTypes = {
     vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     common: PropTypes.bool,
-    text: PropTypes.string.isRequired,
-    required: PropTypes.bool,
 };
 
 export default Choices;

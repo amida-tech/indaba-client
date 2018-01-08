@@ -14,6 +14,9 @@ class NewQuestions extends Component {
 
     handleInsert(type, sectionIndex) {
         const newQuestion = { type: type.toLowerCase(), text: '', required: false };
+        if (newQuestion.type === 'bulletpoint') {
+            newQuestion.type = 'bullet';
+        }
         if (DYNAMIC.includes(newQuestion.type)) {
             newQuestion.choices = [{ text: '' }, { text: '' }];
         }

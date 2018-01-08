@@ -6,7 +6,7 @@ class StaticQuestion extends Component {
     render() {
         let QuestionDisplay;
         switch (this.props.type) {
-        case 'bulletpoint':
+        case 'bullet':
             QuestionDisplay = (
                 <div className='static-question__bulletgroup'>
                     <input className='static-question__bulletpoint1'
