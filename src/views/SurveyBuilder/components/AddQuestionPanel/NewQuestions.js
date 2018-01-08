@@ -18,6 +18,7 @@ class NewQuestions extends Component {
             newQuestion.type = 'bullet';
         } else if (newQuestion.type === 'dropdown') {
             newQuestion.type = 'choice';
+            newQuestion.meta = { subType: 'dropdown' };
         }
         if (DYNAMIC.includes(newQuestion.type)) {
             newQuestion.choices = [{ text: '' }, { text: '' }];
