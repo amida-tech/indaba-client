@@ -37,9 +37,9 @@ class SurveyPane extends Component {
                     </div>
                 </div>
                 <div className='survey-pane__instructions'>
-                    <span className='survey-pane__instructions-header'>
+                    <div className='survey-pane__instructions-header'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
-                    </span>
+                    </div>
                     <span className='survey-pane__instructions-explained'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED}
                     </span>
