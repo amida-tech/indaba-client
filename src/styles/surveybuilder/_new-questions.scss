@@ -25,14 +25,20 @@ $block-class: 'new-questions';
         &__menu-dropdown {
             border-style: solid;
             border-color: $font-color;
-            border-width: 2px;
-            border-radius: 4px;
+            border-width: 1px;
+            border-radius: 2px;
         }
 
         &__menu-button {
             border-bottom: 1px solid $font-color;
             padding: 0.5em;
-            font-size: 1.2em;
+            color: $lead-font-color;
+            font-size: 14px;
+
+            &:hover {
+                background-color: darken(#fff, 10);
+                color: darken($lead-font-color, 5);
+            }
         }
 
         &__masked-button {
