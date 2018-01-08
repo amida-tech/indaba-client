@@ -3,12 +3,18 @@ $block-class: 'new-questions';
 @at-root {
     .#{$block-class} {
         &__types {
+            font-size: 14px;
+            color: $lead-font-color;
             border-bottom: 1px solid $border-color;
             padding: 0 1em;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+        }
+
+        &__icon {
+            @extend .x-small-icon;
         }
 
         &__insert-label {

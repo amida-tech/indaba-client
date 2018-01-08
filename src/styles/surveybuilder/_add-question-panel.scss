@@ -34,9 +34,10 @@ $block-class: 'add-question-panel';
             border: 1px solid $border-color;
 
             &__label {
-                color: #727882;
+                @extend .small-font;
+
+                padding: 4px;
                 border-color: transparent;
-                padding: 5px;
                 margin-bottom: 0;
                 border-bottom: 0;
             }
