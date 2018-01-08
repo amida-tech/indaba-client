@@ -4,7 +4,6 @@ import { Box, Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
-import Summary from '../../../common/components/Summary';
 import StageModal from '../../ProjectManagement/components/Modals/Stage';
 import StageSummary from '../../ProjectManagement/components/Workflow/StageSummary';
 
@@ -49,10 +48,6 @@ class AddStages extends Component {
                         this.props.actions.wizardHideStageDeleteConfirmModal();
                     }) } />
             }
-            <Summary
-                project={this.props.project}
-                survey={this.props.survey}
-                vocab={this.props.vocab} />
             <hr className='divider'/>
             <div className='add-stages-step__import-row'>
 

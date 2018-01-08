@@ -490,6 +490,14 @@
             "TITLE": "Delete stage?",
             "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
             "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
+        },
+        "PROJECT_TITLE_MODAL": {
+            "TITLE": "Project title",
+            "TITLE_INPUT_LABEL": "Title"
+        },
+        "SURVEY_TITLE_MODAL": {
+            "TITLE": "Survey title",
+            "TITLE_INPUT_LABEL": "Title"
         }
     }
 }

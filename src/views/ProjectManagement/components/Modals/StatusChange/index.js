@@ -46,9 +46,6 @@ class StatusChange extends Component {
             if (this.projectConfirmed()) {
                 const newProject = Object.assign({}, this.props.project,
                         { status: this.state.project.active ? 1 : 0 });
-                if (!newProject.firstActivated) {
-                    newProject.firstActivated = new Date();
-                }
                 this.props.actions.putProject(newProject, this.props.vocab.ERROR);
                 this.props.actions.updateStatusChange(false);
             }

@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import apiService from '../../../../services/api';
 import Modal from '../../../../common/components/Modal';
 import { DELETE_TYPE } from '../../constants';
-import Summary from '../../../../common/components/Summary';
 import AddSubjectControl from './AddSubjectControl';
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 
@@ -81,10 +80,6 @@ class AddSubjects extends Component {
                         onCancel={() => this.props.actions.wizardHideSubjectDeletConfirmModal()}
                         onSave={this.handleModalSave}/>
                 }
-                <Summary
-                    project={this.props.project}
-                    survey={this.props.survey}
-                    vocab={this.props.vocab} />
                 <hr className='divider'/>
                 <div className='add-subjects__import-row'>
                     <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
