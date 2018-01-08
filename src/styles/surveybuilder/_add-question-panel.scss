@@ -7,10 +7,17 @@ $block-class: 'add-question-panel';
         position: relative;
         width: 320px;
         border: 1px solid $border-color;
+        margin-top: 24px;
 
         &__instructions {
             text-align: center;
-            margin: 5px;
+            margin: 8px;
+        }
+
+        &__tab {
+            &:hover {
+                background-color: darken(#fff, 5);
+            }
         }
 
         .grommetux-tabs {
