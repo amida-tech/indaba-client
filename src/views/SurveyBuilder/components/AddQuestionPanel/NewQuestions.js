@@ -16,6 +16,8 @@ class NewQuestions extends Component {
         const newQuestion = { type: type.toLowerCase(), text: '', required: false };
         if (newQuestion.type === 'bulletpoint') {
             newQuestion.type = 'bullet';
+        } else if (newQuestion.type === 'dropdown') {
+            newQuestion.type = 'choice';
         }
         if (DYNAMIC.includes(newQuestion.type)) {
             newQuestion.choices = [{ text: '' }, { text: '' }];
