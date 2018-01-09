@@ -3,12 +3,18 @@ $block-class: 'new-questions';
 @at-root {
     .#{$block-class} {
         &__types {
+            font-size: 14px;
+            color: $lead-font-color;
             border-bottom: 1px solid $border-color;
             padding: 0 1em;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+        }
+
+        &__icon {
+            @extend .x-small-icon;
         }
 
         &__insert-label {
@@ -18,15 +24,20 @@ $block-class: 'new-questions';
 
         &__menu-dropdown {
             border-style: solid;
-            border-color: $font-color;
-            border-width: 2px;
-            border-radius: 4px;
+            border-color: $border-color;
+            border-width: 1px;
+            border-radius: 2px;
         }
 
         &__menu-button {
-            border-bottom: 1px solid $font-color;
+            border-bottom: 2px solid $border-color;
             padding: 0.5em;
-            font-size: 1.2em;
+            color: $lead-font-color;
+            font-size: 14px;
+
+            &:hover {
+                color: #3757bc;
+            }
         }
 
         &__masked-button {
@@ -35,6 +46,20 @@ $block-class: 'new-questions';
             padding: 1em;
             margin-left: 2px;
             margin-bottom: 3.2px;
+            outline: none;
+
+            &:active {
+                outline: none;
+            }
+        }
+
+        &__section-icon {
+            fill: $lead-font-color;
+
+            &:active {
+                fill: $brand-color;
+                outline: none;
+            }
         }
 
         &__break {
