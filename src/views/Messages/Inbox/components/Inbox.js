@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
 
-import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
 
@@ -69,7 +68,7 @@ class Inbox extends Component {
         if (
             (this.props.messages.ui.filter === FILTERS.NOTIFICATIONS)
             !==
-            (threadEntry.from === config.SYS_MESSAGE_USER)) {
+            (threadEntry.systemMessage)) {
             return false;
         }
         switch (this.props.messages.ui.filter) {

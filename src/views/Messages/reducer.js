@@ -1,6 +1,7 @@
 import update from 'immutability-helper';
 import _ from 'lodash';
 
+import config from '../../config';
 import * as actionTypes from './actionTypes';
 import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 import { FILTERS, INBOX_TABS } from './constants';
@@ -18,6 +19,7 @@ const initialState = {
 const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
         timestamp: message.createdAt,
+        systemMessage: message.from === config.SYS_MESSAGE_USER,
     });
 
 export default (state = initialState, action) => {
