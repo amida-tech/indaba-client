@@ -2,6 +2,9 @@ $block-class:'choices';
 
 @at-root {
     .#{$block-class} {
-        // Placeholder
+        &__label {
+            font-size: 18px;
+            margin-top: -5px;
+        }
     }
 }

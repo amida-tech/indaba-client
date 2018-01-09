@@ -48,7 +48,7 @@ class Questions extends Component {
             QuestionType = (<Choices
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
-                answer={value ? value.answer : []} />);
+                answer={value ? value.answer : {}} />);
             break;
         case 'integer':
             QuestionType = (<Integer
