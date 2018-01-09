@@ -3,26 +3,23 @@ import PropTypes from 'prop-types';
 import { clone, get } from 'lodash';
 
 class Bullet extends Component {
-    addBullet(value, currentAnswer) {
-        return currentAnswer !== [] ? `${currentAnswer.join('‣')}‣${value}` : value;
-    }
-    editBullet(value, index, currentAnswer) {
+    upsertBullet(value, index, currentAnswer) {
         const tempAnswer = clone(currentAnswer);
-        if (currentAnswer === '') {
-            return tempAnswer.splice(index);
+        if (value === '') {
+            tempAnswer.splice(index);
+        } else {
+            tempAnswer[index] = value;
         }
-        tempAnswer[index] = value;
         return tempAnswer.join('‣');
     }
     render() {
-        console.log(this.props);
         let currentAnswer = get(this.props.answer, 'textValue', undefined);
         if (currentAnswer) {
             currentAnswer = currentAnswer.split('‣');
+            currentAnswer.push('');
         } else {
-            currentAnswer = [];
+            currentAnswer = [''];
         }
-        console.log(currentAnswer);
         return (
             <div className='bullet'>
                 {currentAnswer.map((answer, index) =>
@@ -31,21 +28,12 @@ class Bullet extends Component {
                         placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                         type='text'
                         disabled={this.props.displayMode}
-                        defaultValue={currentAnswer}
+                        defaultValue={currentAnswer[index]}
                         onBlur={(event) => {
                             this.props.upsertAnswer({ textValue:
-                                this.editBullet(event.target.value, index, currentAnswer) });
+                                this.upsertBullet(event.target.value, index, currentAnswer) });
                         }} />,
                 )}
-                <input className={`bullet__field${this.props.displayMode ? '--disabled' : ''}`}
-                    placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
-                    type='text'
-                    disabled={this.props.displayMode}
-                    defaultValue={''}
-                    onBlur={(event) => {
-                        this.props.upsertAnswer(
-                            { textValue: this.addBullet(event.target.value, currentAnswer) });
-                    }} />
             </div>
         );
     }
