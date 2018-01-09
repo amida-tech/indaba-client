@@ -12,7 +12,6 @@ import Time from '../../../utils/Time';
 
 class QuestionPanel extends Component {
     render() {
-        console.log(this.props);
         return (
             <div className='question-panel'>
                 <div className='question-panel__header'>

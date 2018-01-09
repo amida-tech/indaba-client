@@ -4,6 +4,7 @@ import { unionBy } from 'lodash';
 
 class Text extends Component {
     render() {
+        console.log(this.props);
         let currentAnswer;
         if (this.props.choicesId) {
             currentAnswer = find(this.props.answer.choices, item =>
@@ -36,6 +37,7 @@ class Text extends Component {
 Text.propTypes = {
     vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
+    displayMode: PropTypes.bool,
     common: PropTypes.bool,
 };
 

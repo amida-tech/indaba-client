@@ -35,6 +35,7 @@ class Choices extends Component {
 Choices.propTypes = {
     vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
+    displayMode: PropTypes.bool,
     common: PropTypes.bool,
 };
 
