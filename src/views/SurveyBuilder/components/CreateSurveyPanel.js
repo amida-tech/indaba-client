@@ -19,13 +19,12 @@ class CreateSurveyPanel extends Component {
                         onChange={event => this.props.actions.changeSectionView(event.value)}/>
                     <div className='create-survey-panel__accordion-buttons'>
                         <button className='create-survey-panel__button-expand'
-                            label={this.props.vocab.PROJECT.EXPAND_ALL}
-                            onClick={() => toast('Coming as soon as James is allowed to sleep.'
-                            </button>
+                            onClick={() => toast('Coming as soon as James is allowed to sleep.')}>
+                            {this.props.vocab.PROJECT.EXPAND_ALL} </button>
+
                         <button className='create-survey-panel__button-collapse'
-                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
-                            onClick={() => toast('Coming as soon as James is allowed to zzzz.'
-                        </button>
+                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')}>
+                            {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
