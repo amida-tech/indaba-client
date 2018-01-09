@@ -18,11 +18,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('projectstatusmodal'))}
-                    onNameChange={name =>
-                            this.props.actions.setProjectName(name, this.props.project.id)}
-                    updateContent={() => this.props.actions.putProject(
-                            this.props.project,
-                            this.props.vocab.ERROR)}/>
+                    onEditClick={this.props.onProjectEditClick} />
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
                     name={this.props.survey ? this.props.survey.name : ''}
@@ -31,19 +27,7 @@ class Summary extends Component {
                     onStatusChangeClick={
                         this.props.onStatusChangeClick &&
                         (() => this.props.onStatusChangeClick('surveystatusmodal'))}
-                    onNameChange={name =>
-                            this.props.actions.setSurveyName(name, this.props.survey.id)}
-                    updateContent={() => {
-                        return (this.props.survey.id >= 0 ?
-                            this.props.actions.patchSurvey(
-                                this.props.survey,
-                                this.props.vocab.SURVEY.SUCCESS,
-                                this.props.vocab.ERROR) :
-                            this.props.actions.postSurvey(
-                                this.props.survey,
-                                this.props.project,
-                                this.props.vocab.ERROR));
-                    }}>
+                    onEditClick={this.props.onSurveyEditClick} >
                     <IonIcon
                         icon='ion-ios-paper-outline'
                         fontSize='4em'
@@ -61,8 +45,8 @@ Summary.propTypes = {
     actions: PropTypes.object,
 
     onStatusChangeClick: PropTypes.func,
-    onProjectNameChange: PropTypes.func,
-    onSurveyNameChange: PropTypes.func,
+    onProjectEditClick: PropTypes.func,
+    onSurveyEditClick: PropTypes.func,
 };
 
 export default Summary;

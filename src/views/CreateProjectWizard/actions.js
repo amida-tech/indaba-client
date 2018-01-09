@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { deleteStage } from '../../common/actions/projectActions';
 
 export function projectWizardInitialize() {
     return {
@@ -17,14 +18,6 @@ export function updateWizardProjectSummary(summary) {
     return {
         type: actionTypes.UPDATE_WIZARD_PROJECT_SUMMARY,
         summary,
-    };
-}
-
-// Show Modals:
-export function showAddStageWizardModal(show) {
-    return {
-        type: actionTypes.SHOW_ADD_STAGE_WIZARD_MODAL,
-        show,
     };
 }
 
@@ -81,5 +74,54 @@ export function addUsersSetGroupsFilter(filter) {
     return {
         type: actionTypes.ADD_USERS_SET_GROUPS_FILTER,
         filter,
+    };
+}
+
+export function wizardShowStageModal(show, stageId) {
+    return {
+        type: actionTypes.WIZARD_SHOW_STAGE_MODAL,
+        show,
+        stageId,
+    };
+}
+
+export function wizardShowStageDeleteConfirmModal(stageId) {
+    return {
+        type: actionTypes.WIZARD_SHOW_STAGE_DELETE_CONFIRM_MODAL,
+        stageId,
+    };
+}
+
+export function wizardHideStageDeleteConfirmModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_STAGE_DELETE_CONFIRM_MODAL,
+    };
+}
+
+export function wizardDeleteStage(projectId, stageId) {
+    return dispatch => dispatch(deleteStage(projectId, stageId));
+}
+
+export function wizardShowProjectTitleModal() {
+    return {
+        type: actionTypes.WIZARD_SHOW_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function wizardHideProjectTitleModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function wizardShowSurveyTitleModal() {
+    return {
+        type: actionTypes.WIZARD_SHOW_SURVEY_TITLE_MODAL,
+    };
+}
+
+export function wizardHideSurveyTitleModal() {
+    return {
+        type: actionTypes.WIZARD_HIDE_SURVEY_TITLE_MODAL,
     };
 }

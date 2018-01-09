@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
 import { Search } from 'grommet';
-import { toast } from 'react-toastify';
+import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
@@ -18,22 +18,16 @@ const Types = {
 };
 
 const stageSpotTarget = {
-    canDrop(props) { // Possible args: monitor
-        return props.task.userId === undefined;
-    },
-    hover() { // Possible args: props, monitor, component
-    // ... Maybe make the assignee card opaque?
-    },
-    drop(props, monitor) { // Possible args: monitor, component
-        const dragUserId = monitor.getItem().id;
-        const usersGroups = props.users.find(user => user.id === dragUserId).usergroupId;
-        if (props.task.userId === undefined &&
-            props.stageData.userGroups.some(
-                groupId => usersGroups.includes(groupId))) {
-            return props; // Dispatch to inform the state and DB of changes.
+    canDrop(props, monitor) {
+        if (props.task.userId !== undefined) {
+            return false;
         }
-        toast(props.vocab.ERROR.NO_ASSIGN_USER_OUT_OF_GROUP);
-        return { rejection: 'drop-rejected' };
+        return flatten(props.stageData.userGroups.map(id =>
+            props.project.userGroups.find(group => group.id === id).users),
+            ).includes(monitor.getItem().id);
+    },
+    drop(props) {
+        return props; // Dispatch to inform the state and DB of changes.
     },
 };
 function collect(connector, monitor) {
@@ -51,6 +45,7 @@ class StageSlot extends Component {
         super(props);
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
+        this.filterToStageGroups = this.filterToStageGroups.bind(this);
     }
 
     handleTaskOptions() {
@@ -63,6 +58,9 @@ class StageSlot extends Component {
         this.props.project,
         this.props.vocab);
         this.props.actions.startTaskAssign(false);
+    }
+    filterToStageGroups(user) {
+        return user.usergroupId.some(groupId => this.props.stageData.userGroups.includes(groupId));
     }
 
     displayDueTime(done, diff) {
@@ -100,9 +98,17 @@ class StageSlot extends Component {
         const done = TaskStatus.responsesComplete(this.props.task, this.props.surveySize);
 
         const labelDisplay = this.displayStatus(done, diff);
-
+        let stageClass = 'stage-slot ';
+        if (this.props.filtered) {
+            stageClass += 'stage-slot__filtered';
+        }
+        if (isOver && canDrop) {
+            stageClass += 'stage-slot--accept';
+        } else if (isOver && !canDrop) {
+            stageClass += 'stage-slot--deny';
+        }
         return connectDropTarget(
-        <div className={`stage-slot ${this.props.filtered ? 'stage-slot__filtered' : ''}`}>
+        <div className={stageClass}>
             {this.props.user &&
                 <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
@@ -145,6 +151,7 @@ class StageSlot extends Component {
                             fill={true}
                             inline={true}
                             suggestions={this.props.users
+                                .filter(this.filterToStageGroups)
                                 .map(user => ({ label: renderName(user),
                                     value: user }))}
                             onSelect={this.handleSearchSelect}

@@ -1,0 +1,9 @@
+$block-class: 'filtered-row';
+
+@at-root {
+    .#{$block-class} {
+        td.filtered-row__cell {
+            padding: 0;
+        }
+    }
+}

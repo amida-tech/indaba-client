@@ -9,7 +9,7 @@ import Time from '../../../utils/Time';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
-import { setSurveySectionIndex, postAnswer } from '../../../common/actions/surveyActions';
+import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
 import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -36,9 +36,8 @@ class TaskReview extends Component {
             displaySurvey = this.props.survey.questions;
         }
 
-        // TODO: INBA-522, task status === currently,
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
-            || this.props.profile.id !== this.props.taskedUser.id;
+            || this.props.profile.id !== this.props.taskedUser.id || this.props.task.status !== 'current';
 
         return (
             <div className='task-review'>
@@ -65,6 +64,8 @@ class TaskReview extends Component {
                         answers={this.props.ui.form.answers}
                         survey={displaySurvey}
                         options={options}
+                        users={this.props.users}
+                        profile={this.props.profile}
                         surveyId={this.props.survey.id}
                         sectionIndex={this.props.sectionIndex}
                         instructions={this.props.survey.instructions}
@@ -119,6 +120,7 @@ const mapDispatchToProps = dispatch => ({
         setSurveySectionIndex,
         getTaskById,
         moveTask,
+        postReview,
         postAnswer }),
         dispatch),
 });

@@ -3,6 +3,7 @@ $block-class:'question-container';
 @at-root {
     .#{$block-class} {
         border-bottom: 1px solid $border-color;
+        padding: 16px;
 
         &:last-child {
             border-width: 0;
@@ -10,9 +11,7 @@ $block-class:'question-container';
 
         &__heading {
             .grommetux-accordion-panel__header {
-                color: $lead-font-color;
-                font-size: 12px;
-                text-transform: uppercase;
+                @extend .lead-font;
             }
         }
     }

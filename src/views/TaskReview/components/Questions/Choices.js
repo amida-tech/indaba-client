@@ -24,9 +24,6 @@ class Choices extends Component {
 
         return (
             <div className='choices'>
-                <div className='choices__label'>
-                    {this.props.text}
-                </div>
                 <div className='choices__radio'>
                     {choices}
                 </div>

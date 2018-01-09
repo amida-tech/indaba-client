@@ -136,6 +136,30 @@ export function pmHideUserGroupDeleteConfirmModal() {
     };
 }
 
+export function pmShowProjectTitleModal() {
+    return {
+        type: actionTypes.PM_SHOW_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function pmHideProjectTitleModal() {
+    return {
+        type: actionTypes.PM_HIDE_PROJECT_TITLE_MODAL,
+    };
+}
+
+export function pmShowSurveyTitleModal() {
+    return {
+        type: actionTypes.PM_SHOW_SURVEY_TITLE_MODAL,
+    };
+}
+
+export function pmHideSurveyTitleModal() {
+    return {
+        type: actionTypes.PM_HIDE_SURVEY_TITLE_MODAL,
+    };
+}
+
 export function pmDeleteStage(projectId, stageId) {
     return dispatch => dispatch(deleteStage(projectId, stageId));
 }

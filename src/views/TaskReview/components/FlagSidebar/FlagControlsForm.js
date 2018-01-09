@@ -27,7 +27,9 @@ class FlagControlsForm extends Component {
                     <Field name='isResolve'
                         component='input'
                         type='checkbox' />
-                    {this.props.vocab.PROJECT.MARK_RESOLVED}
+                    <div className='flag-controls-form__resolve-text'>
+                        {this.props.vocab.PROJECT.MARK_RESOLVED}
+                    </div>
                 </div>
                 <div className='flag-controls-form__notify-section'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}

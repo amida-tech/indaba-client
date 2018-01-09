@@ -14,11 +14,7 @@ class Text extends Component {
             currentAnswer = '';
         }
         return (
-            <div className='text' >
-                { !this.props.choicesId &&
-                    <div className='text__label'>
-                        {this.props.text}
-                    </div> }
+            <div className='text'>
                 <input className={`text__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'

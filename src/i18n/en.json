@@ -36,14 +36,16 @@
         "NEW": "New",
         "LATE": "Late",
         "LOG_OUT": "Log Out",
-        "MY_TASKS":"My Tasks"
+        "MY_TASKS":"My Tasks",
+        "AGREE": "Agreed",
+        "DISAGREE": "Disagreed"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system and has been added to the project for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
-        "DUPLICATE": "Attempted to enter a duplicate value.",
+        "DUPLICATE": "Attempted to enter a duplicate value. Please enter a unique value instead.",
         "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
         "INVALID_LOGIN": "We weren't able to find your username or password.",
         "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
@@ -74,8 +76,7 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
-        "COMING_SOON": "Coming soon.",
-        "NO_ASSIGN_USER_OUT_OF_GROUP": "This user is not in the user group assigned to the stage and cannot be assigned to the task."
+        "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
@@ -211,7 +212,7 @@
         "STAGE_SETTINGS": "Stage Settings",
         "ASSIGN_USER_GROUPS": "Assign user group(s)",
         "PERMISSIONS": "Stage Permissions (Actions the user can take on the survey)",
-        "DND_INSTRUCTIONS": "Drag and drop users to assign to a task",
+        "DND_INSTRUCTIONS": "Drag the users below over the workflow matrix to assign them a task. You cannot assign a user to a previously assigned task, nor can you assign to users outside a stage's groups.",
         "FILTER_BY_GROUP": "Filter by groups",
         "INVITE_BY_EMAIL": "Not Listed? Invite by email",
         "RESEND_INVITATION": "Resend Invitation",
@@ -226,7 +227,7 @@
         "FILTER_FLAGGED": "Flagged",
         "INVITE_INSTRUCTION": "Not Listed? Invite by email",
         "ADD_SUBJECT_INSTRUCTION": "Add survey subjects or use the import manager to add subjects from a previous project.",
-        "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma. Press Enter to submit",
+        "ADD_SUBJECT_CLARIFICATION": "Subjects are units of analysis. For example, cities, programs, or companies. Separate subjects with a comma. Press Enter to submit.",
         "IMPORT_SUBJECTS": "Import Subjects",
         "ADD_USERS_CLARIFICATION_1": "Enter users name and email to invite users to a project.",
         "ADD_USERS_CLARIFICATION_2": "Create a new Usergroup or search existing. Usergroups are multiple people who share the same role.",
@@ -250,7 +251,7 @@
         "SEARCH_TASKS": "Search for tasks",
         "SEARCH_FOR_SUBJECTS": "Search for a subject",
         "IMPORT_STAGE": "Import Stage",
-        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage",
+        "ADD_STAGES_CLARIFICATION": "Stages are the steps in your project workflow. Click the blank cell to add a new stage.",
         "SELECT_TO_EDIT_STAGE": "Select to edit stage",
         "CREATE_SURVEY": "Create Survey",
         "COMPLETE_PROJECT": "Complete Project",
@@ -273,7 +274,7 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets project managers configure each stage to specific users in chronological order based on date, preventing users from accessing the survey before the designated date. Upon completion, Indaba automatically reassigns the survey to the next user for review."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
     },
     "MESSAGES": {
         "RECENT_MESSAGES": "Recent Messages",
@@ -353,9 +354,11 @@
         "WEIGHT": "Weighted Value Question",
         "SECTION_": "Section ",
         "SUBMIT_TASK": "Complete The Task",
+        "SAVE_REVIEW": "Save Review Progress",
         "SUBMIT_INSTRUCTIONS": "If you have completed the task, select submit.",
         "SUBMIT_INSTRUCTIONS_2":"Not completed? Return to ",
         "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
+        "REVIEW_INSTRUCTIONS": "Click 'Save Review Progress' if you wish to commit your comments.",
         "NAME_OPTIONAL": " Name (Optional)",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
@@ -487,6 +490,14 @@
             "TITLE": "Delete stage?",
             "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
             "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
+        },
+        "PROJECT_TITLE_MODAL": {
+            "TITLE": "Project title",
+            "TITLE_INPUT_LABEL": "Title"
+        },
+        "SURVEY_TITLE_MODAL": {
+            "TITLE": "Survey title",
+            "TITLE_INPUT_LABEL": "Title"
         }
     }
 }

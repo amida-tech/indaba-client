@@ -8,6 +8,8 @@ import ProfileCheckBox from './ProfileCheckBox';
 
 class ProfileForm extends Component {
     render() {
+        const isProjectManager = ((this.props.profile.roleID === 1)
+            || (this.props.profile.roleID === 2));
         const notifyOptions = this.props.vocab.PROFILE.FORM.LEVELS.map((level, index) =>
             ({ value: index, label: level }));
         return (
@@ -67,12 +69,14 @@ class ProfileForm extends Component {
                         component={ProfileSelect}
                         options={notifyOptions}
                         type='select' />
+                    {isProjectManager &&
                     <label className='profile-form__field-label'>
-                    {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>
+                        {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>}
+                    {isProjectManager &&
                     <Field name='isActive'
-                        value={this.props.profile.isActive}
-                        component={ProfileCheckBox}
-                        type='checkbox' />
+                           value={this.props.profile.isActive}
+                           component={ProfileCheckBox}
+                           type='checkbox'/>}
                     <label className='profile-form__field-label'>
                     {this.props.vocab.PROFILE.FORM.NOTES} </label>
                     <Field name='bio'

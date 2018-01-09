@@ -6,10 +6,6 @@ class Choice extends Component {
     render() {
         return (
             <div className='choice'>
-                { !this.props.choicesId &&
-                    <div className='choice__label'>
-                        {this.props.text}
-                    </div> }
                 {this.props.choices.map(choice =>
                     <div className='choice__radio'
                         key={`key-choice-${choice.id}`}>

@@ -13,6 +13,8 @@ import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
 import StatusChange from './Modals/StatusChange';
+import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
+import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
@@ -118,10 +120,24 @@ class ProjectManagementContainer extends Component {
                             entity={modalEntities[this.props.ui.statusModalId]} />
                     }
                     {
+                        this.props.ui.showProjectTitleModal &&
+                        <ProjectTitleModal vocab={this.props.vocab}
+                            actions={this.props.actions}
+                            project={this.props.project}
+                            onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
+                    }
+                    {
+                        this.props.ui.showSurveyTitleModal &&
+                        <SurveyTitleModal vocab={this.props.vocab}
+                            actions={this.props.actions}
+                            survey={this.props.survey}
+                            project={this.props.project}
+                            onCloseModal={this.props.actions.pmHideSurveyTitleModal}/>
+                    }
+                    {
                         this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
                         <StageModal
                             vocab={this.props.vocab}
-                            projectId={this.props.project.id}
                             project={this.props.project}
                             stageId={this.props.ui.editStage}
                             onCancel={() => this.props.actions.showStageModal(false)}
@@ -158,6 +174,8 @@ class ProjectManagementContainer extends Component {
                         project={this.props.project}
                         survey={this.props.survey}
                         onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
+                        onProjectEditClick={this.props.actions.pmShowProjectTitleModal}
+                        onSurveyEditClick={this.props.actions.pmShowSurveyTitleModal}
                         vocab={this.props.vocab}/>
                     <SubNav vocab={this.props.vocab}
                         subnavigate={this.props.actions.subnavigate}

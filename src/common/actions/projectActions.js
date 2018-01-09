@@ -36,18 +36,18 @@ export function postProject(requestBody, errorMessages) {
 }
 
 export function putProject(project, errorMessages) {
-    const requestBody = {
-        codeName: project.name,
-        status: project.status,
-    };
+    const { status, name: codeName } = project;
+
     return (dispatch) => {
         apiService.projects.putProject(
             project.id,
-            requestBody,
-            (projectErr, projectResp) => {
-                dispatch((!projectErr && projectResp) ?
-                    _putProjectSuccess(project) :
-                    _reportProjectError(errorMessages.PROJECT_REQUEST));
+            { status, codeName },
+            (projectErr) => {
+                if (projectErr) {
+                    dispatch(_reportProjectError(errorMessages.PROJECT_REQUEST));
+                } else {
+                    dispatch(getProjectById(project.id, false, errorMessages));
+                }
             },
         );
     };
@@ -226,10 +226,8 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
             requestBody,
             (groupErr, groupResp) => {
                 if (!groupErr && groupResp) {
-                    requestBody.id = groupResp.id;
-                    dispatch(_postUserGroupSuccess(
-                        Object.assign({}, requestBody, groupResp.id),
-                        projectId));
+                    dispatch(getProjectById(projectId, errorMessages));
+                    dispatch(getUsers(errorMessages));
                 } else {
                     dispatch(_reportProjectError(errorMessages.GROUP_REQUEST));
                 }
@@ -265,22 +263,6 @@ export function showAddSubjectModal(show) {
     };
 }
 
-export function setProjectName(name, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_NAME,
-        name,
-        projectId,
-    };
-}
-
-export function setProjectStatus(status, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_STATUS,
-        status,
-        projectId,
-    };
-}
-
 export function editSummaryDescription(id) {
     return {
         type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
@@ -308,13 +290,6 @@ export function deleteUserGroup(groupId, projectId) {
 function _postProjectSuccess(project) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
-        project,
-    };
-}
-
-function _putProjectSuccess(project) {
-    return {
-        type: actionTypes.PUT_PROJECT_SUCCESS,
         project,
     };
 }
@@ -369,14 +344,6 @@ function _deleteProjectUserSuccess(userId, projectId) {
     return {
         type: actionTypes.DELETE_PROJECT_USER_SUCCESS,
         userId,
-        projectId,
-    };
-}
-
-function _postUserGroupSuccess(group, projectId) {
-    return {
-        type: actionTypes.ADD_USER_GROUP,
-        group,
         projectId,
     };
 }

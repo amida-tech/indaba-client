@@ -8,6 +8,7 @@ const initialState = {
     ui: {
         showProjectTitle: true,
         showAddStage: false,
+        stageEditId: null,
         step: 0,
         showComplete: false,
         addUsers: {
@@ -19,6 +20,9 @@ const initialState = {
         errorMessage: '',
         projectLink: -1,
         showSubjectDeleteConfirmModal: null,
+        showStageDeleteConfirmModal: null,
+        showProjectTitleModal: false,
+        showSurveyTitleModal: false,
     },
     project: {
         id: 0,
@@ -47,8 +51,18 @@ export default (state = initialState, action) => {
                 showProjectTitle: { $set: false },
                 projectLink: { $set: action.project.id },
                 errorMessage: { $set: '' } } });
-    case type.SHOW_ADD_STAGE_WIZARD_MODAL:
-        return update(state, { ui: { showAddStage: { $set: action.show } } });
+    case type.WIZARD_SHOW_STAGE_MODAL: {
+        if (action.show) {
+            return update(state, { ui: {
+                showAddStage: { $set: true },
+                stageEditId: { $set: action.stageId },
+            } });
+        }
+        return update(state, { ui: {
+            showAddStage: { $set: false },
+            stageEditId: { $set: action.stageId },
+        } });
+    }
     case type.SHOW_ADD_USER_GROUP_WIZARD_MODAL:
         return update(state, { ui: { addUsers: {
             showSelectGroupUsers: { $set: action.show },
@@ -78,6 +92,34 @@ export default (state = initialState, action) => {
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
+    case type.WIZARD_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: {
+                stageId: action.stageId,
+            } },
+        } });
+    }
+    case type.WIZARD_HIDE_STAGE_DELETE_CONFIRM_MODAL: {
+        return update(state, { ui: {
+            showStageDeleteConfirmModal: { $set: null },
+        } });
+    }
+    case type.WIZARD_SHOW_PROJECT_TITLE_MODAL:
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: true },
+        } });
+    case type.WIZARD_HIDE_PROJECT_TITLE_MODAL:
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: false },
+        } });
+    case type.WIZARD_SHOW_SURVEY_TITLE_MODAL:
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: true },
+        } });
+    case type.WIZARD_HIDE_SURVEY_TITLE_MODAL:
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: false },
+        } });
     default:
         return state;
     }

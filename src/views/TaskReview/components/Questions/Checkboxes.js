@@ -8,11 +8,7 @@ class Checkboxes extends Component {
             item.id === this.props.choicesId);
         const choicesAnswer = choicesCheck ? choicesCheck.boolValue : false;
         return (
-            <div className='checkboxes' >
-                { !this.props.choicesId &&
-                    <div className='checkboxes__label'>
-                        {this.props.text}
-                    </div> }
+            <div className='checkboxes'>
                 <input className={`checkboxes__field${this.props.displayMode ? '--disabled' : ''}`}
                     type='checkbox'
                     disabled={this.props.displayMode}

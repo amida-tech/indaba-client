@@ -146,23 +146,27 @@ export function postAnswer(assessmentId, requestBody, required, errorMessages) {
     };
 }
 
+export function postReview(assessmentId, answers, errorMessages) {
+    const requestBody = {
+        status: 'in-progress',
+        answers,
+    };
+    return (dispatch) => {
+        apiService.surveys.postAnswer(
+            assessmentId,
+            requestBody,
+            (answerErr, answerResp) => {
+                if (answerErr) {
+                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                } else if (answerResp || []) {
+                    dispatch(getAnswers(assessmentId, errorMessages));
+                }
+            },
+        );
+    };
+}
+
 // UI component related.
-export function setSurveyName(name, surveyId) {
-    return {
-        type: actionTypes.SET_SURVEY_NAME,
-        name,
-        surveyId,
-    };
-}
-
-export function setSurveyStatus(status, surveyId) {
-    return {
-        type: actionTypes.SET_SURVEY_STATUS,
-        status,
-        surveyId,
-    };
-}
-
 export function setSurveySectionIndex(index) {
     return {
         type: actionTypes.SET_SURVEY_SECTION_INDEX,

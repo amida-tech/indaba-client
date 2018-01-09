@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 class Bool extends Component {
     render() {
         return (
-            <div className='bool' >
-                <div className='bool__label'>
-                    {this.props.text}
-                </div>
+            <div className='bool'>
                 <label className='bool__field'>
                     <input className={`bool__input${this.props.displayMode ? '--disabled' : ''}`}
                         type='radio'

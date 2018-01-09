@@ -38,8 +38,6 @@ export const ProjectReducer = (state = initialState, action) => {
         return state.data[0].name ?
         update(state, { data: { $push: [action.project] } }) :
         update(state, { data: { $set: [action.project] } });
-    case type.PUT_PROJECT_SUCCESS:
-        return update(state, { data: { [projectIndex]: { $merge: action.project } } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
@@ -55,8 +53,6 @@ export const ProjectReducer = (state = initialState, action) => {
     case type.TOGGLE_FILTER:
         return update(state, { data: { [projectIndex]: {
             filter: { $apply: f => (f !== action.filter ? action.filter : '') } } } });
-    case type.SET_PROJECT_STATUS:
-        return update(state, { data: { [projectIndex]: { status: { $set: action.status } } } });
     case type.PUT_STAGE_SUCCESS: {
         const stageIndex = _.findIndex(state.data[projectIndex].stages,
             stage => stage.id === action.stage.id);
@@ -92,9 +88,6 @@ export const ProjectReducer = (state = initialState, action) => {
             userGroups: { $apply: userGroups =>
                         userGroups.filter(userGroup => userGroup.id !== action.groupId),
             } } } });
-    case type.ADD_USER_GROUP:
-        return update(state, { data: { [projectIndex]: {
-            userGroups: { $push: [action.group] } } } });
     case type.UPDATE_USER_GROUP: // TODO: INBA-457
         groupIndex = state[projectIndex].userGroups
                     .findIndex(group => group.id === action.group.id);
@@ -115,8 +108,6 @@ export const ProjectReducer = (state = initialState, action) => {
                 users: { $apply: users => users.filter(userId => userId !== action.userId) } })) },
             lastUpdated: { $set: new Date().toISOString() },
         } } });
-    case type.SET_PROJECT_NAME:
-        return update(state, { data: { [projectIndex]: { name: { $set: action.name } } } });
     case type.REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.error } } });
     case LOG_OUT:

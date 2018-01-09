@@ -22,6 +22,8 @@ export const initialState = {
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
         showUserGroupDeleteConfirmModal: null,
+        showProjectTitleModal: false,
+        showSurveyTitleModal: false,
         export: {
             subjects: [],
         },
@@ -100,6 +102,26 @@ export default (state = initialState, action) => {
     case type.PM_HIDE_USER_GROUP_DELETE_CONFIRM_MODAL: {
         return update(state, { ui: {
             showUserGroupDeleteConfirmModal: { $set: null },
+        } });
+    }
+    case type.PM_SHOW_PROJECT_TITLE_MODAL: {
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: true },
+        } });
+    }
+    case type.PM_HIDE_PROJECT_TITLE_MODAL: {
+        return update(state, { ui: {
+            showProjectTitleModal: { $set: false },
+        } });
+    }
+    case type.PM_SHOW_SURVEY_TITLE_MODAL: {
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: true },
+        } });
+    }
+    case type.PM_HIDE_SURVEY_TITLE_MODAL: {
+        return update(state, { ui: {
+            showSurveyTitleModal: { $set: false },
         } });
     }
     case type.SHOW_STAGE_MODAL:

@@ -19,8 +19,7 @@ class QuestionPanel extends Component {
                         <span className='question-panel__question-number'>
                             {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                         </span>
-                        <input className='question-panel__question-text'
-                            type='text'
+                        <textarea className='question-panel__question-text'
                             placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
                             value={this.props.question.text || ''}
                             onChange={event => this.props.actions.updateQuestion(
@@ -188,7 +187,21 @@ class QuestionPanel extends Component {
                     {WEIGHTED.includes(this.props.question.type) &&
                         <div className='question-panel__checkboxes'>
                             <input type='checkbox'
-                                disabled={true} />
+                                value={has(this.props.question, 'meta.weight')}
+                                onChange={(event) => {
+                                    if (event.target.checked) {
+                                        this.props.actions.updateQuestion(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'meta',
+                                            { weight: true });
+                                    } else {
+                                        this.props.actions.resetMeta(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'weight');
+                                    }
+                                }}/>
                             <span className='question-panel__label'>
                                 {this.props.vocab.SURVEY.WEIGHT}
                             </span>
