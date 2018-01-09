@@ -19,6 +19,9 @@ export default {
     renderGeneralTimestamp(time) {
         return moment(time).format('MM/DD/YY hh:mmA');
     },
+    renderForSurvey(time) {
+        return moment(time).format('YYYY-MM-DD');
+    },
     renderEndDateForTaskList(time, vocab) {
         return moment(time).calendar(null, {
             sameDay(now) {

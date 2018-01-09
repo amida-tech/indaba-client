@@ -33,10 +33,14 @@ class Choices extends Component {
 }
 
 Choices.propTypes = {
-    vocab: PropTypes.object.isRequired,
+    answer: PropTypes.object,
+    assessmentId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string,
     type: PropTypes.string.isRequired,
     displayMode: PropTypes.bool,
     common: PropTypes.bool,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default Choices;
