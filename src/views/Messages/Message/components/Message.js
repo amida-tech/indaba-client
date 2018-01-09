@@ -19,8 +19,6 @@ class Message extends Component {
         if (this.props.id && !this.props.message) {
             this.props.actions.getMessage(this.props.id);
         }
-
-        this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
     }
     render() {
         const compose = this.props.id === undefined;
@@ -48,7 +46,7 @@ class Message extends Component {
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
                             value={_.get(this.props, 'message.to', []).map(
-                                this.renderUserFromEmail,
+                                user => renderNameByEmail(user, this.props.users),
                             ).join(', ')}
                             component={ToField}
                             componentProps={{ users: this.props.users }}
