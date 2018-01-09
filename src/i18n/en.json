@@ -372,6 +372,7 @@
             "TEXT": "Long Text",
             "DROPDOWN":"Dropdown",
             "DATE": "Date",
+            "BOOL": "Bool",
             "INTEGER": "Number",
             "SCALE": "Scale"
         },
@@ -382,6 +383,7 @@
             "TEXT": "The user will simply enter a sentence into a text field.",
             "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
+            "BOOL": "The user will answer a yes or no question.",
             "INTEGER": "The user would enter a whole number.",
             "SCALE": "The users answers a question "
         },

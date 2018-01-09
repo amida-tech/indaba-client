@@ -2,7 +2,7 @@
 export const DYNAMIC = ['choice', 'choices', 'scale'];
 
 // Static questions only really need the question and if they're required.
-export const STATIC = ['bullet', 'date', 'integer', 'text'];
+export const STATIC = ['bool', 'bullet', 'date', 'integer', 'text'];
 
 // These questions are considered weighted.
-export const WEIGHTED = ['bool', 'choice', 'choices'];
+export const WEIGHTED = ['choice', 'choices'];
