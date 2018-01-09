@@ -2,6 +2,13 @@ $block-class:'bullet';
 
 @at-root {
     .#{$block-class} {
-        // Placeholder
+        display: flex;
+        flex-direction: column;
+
+        &__field {
+            padding: 0.2em;
+            margin: 0.2em;
+            width: 50%;
+        }
     }
 }
