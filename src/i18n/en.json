@@ -366,8 +366,8 @@
         "CHOICE_ENTER": "Enter an option for the user to select.",
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
-            "BULLETPOINT": "Bullet Point",
-            "BOOL": "Checkbox",
+            "BULLET": "Bullet Point",
+            "CHOICES": "Checkbox",
             "TEXT": "Long Text",
             "DROPDOWN":"Dropdown",
             "DATE": "Date",
@@ -376,7 +376,8 @@
         },
         "QUESTIONS_EXPLAINED": {
             "CHOICE": "The user will select one of the options you enter here.",
-            "BULLETPOINT": "Additional input lines will appear as the user starts each new entry.",
+            "CHOICES": "The user will select one or more of the options you enter here.",
+            "BULLET": "Additional input lines will appear as the user starts each new entry.",
             "BOOL": "Enter the options for the user to choose from. She/he can choose multiple.",
             "TEXT": "The user will simply enter a sentence into a text field.",
             "DROPDOWN":"The user will select an option from those available in the dropdown.",

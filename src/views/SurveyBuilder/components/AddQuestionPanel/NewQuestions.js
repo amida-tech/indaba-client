@@ -14,9 +14,7 @@ class NewQuestions extends Component {
 
     handleInsert(type, sectionIndex) {
         const newQuestion = { type: type.toLowerCase(), text: '', required: false };
-        if (newQuestion.type === 'bulletpoint') {
-            newQuestion.type = 'bullet';
-        } else if (newQuestion.type === 'dropdown') {
+        if (newQuestion.type === 'dropdown') {
             newQuestion.type = 'choice';
             newQuestion.meta = { subType: 'dropdown' };
         }
