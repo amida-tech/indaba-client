@@ -30,6 +30,7 @@ class Message extends Component {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
+        const systemMessage = _.get(this.props, 'message.systemMessage', false);
 
         if (!compose && !active &&
             !this.props.ui.expandedMessages.includes(_.get(this.props, 'message.id'))) {
@@ -88,14 +89,17 @@ class Message extends Component {
                                         <IonIcon icon='ion-email-unread'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton
-                                        onClick={() => this.props.actions
-                                                .forwardMessage(this.props.message) }>
-                                        <IonIcon icon='ion-arrow-right-a'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
                                     {
-                                        received && [
+                                        !systemMessage &&
+                                        <PanelButton
+                                            onClick={() => this.props.actions
+                                                .forwardMessage(this.props.message) }>
+                                            <IonIcon icon='ion-arrow-right-a'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
+                                    {
+                                        received && !systemMessage && [
                                             <PanelButton key='reply-button'
                                                 onClick={() => this.props.actions
                                                     .startReply(this.props.message) }>
@@ -142,7 +146,7 @@ class Message extends Component {
                     </div>
                 </form>
                 {
-                    !compose && received &&
+                    !compose && received && !systemMessage &&
                     <div className='message__inline-reply'
                         onClick={(evt) => {
                             this.props.actions.startReplyAll(this.props.message);
