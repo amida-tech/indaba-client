@@ -47,6 +47,20 @@ $block-class: 'new-questions';
             padding: 1em;
             margin-left: 2px;
             margin-bottom: 3.2px;
+            outline: none;
+
+            &:active {
+                outline: none;
+            }
+        }
+
+        &__section-icon {
+            fill: $lead-font-color;
+
+            &:active {
+                fill: $brand-color;
+                outline: none;
+            }
         }
 
         &__break {
