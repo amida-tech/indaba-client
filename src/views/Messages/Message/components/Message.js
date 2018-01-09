@@ -5,7 +5,7 @@ import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
 
-import { renderName } from '../../../../utils/User';
+import { renderName, renderNameByEmail } from '../../../../utils/User';
 import apiService from '../../../../services/api';
 
 import CollapsedMessage from './CollapsedMessage';
@@ -21,10 +21,6 @@ class Message extends Component {
         }
 
         this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
-    }
-    renderUserFromEmail(email) {
-        const user = this.props.users.find(userIter => userIter.email === email);
-        return user ? renderName(user) : email;
     }
     render() {
         const compose = this.props.id === undefined;
@@ -67,7 +63,7 @@ class Message extends Component {
                             value={
                                 compose ?
                                 renderName(this.props.profile) :
-                                this.renderUserFromEmail(_.get(this.props, 'message.from'))
+                                renderNameByEmail(_.get(this.props, 'message.from'), this.props.users)
                             }
                             name='from'/>
                     </div>
