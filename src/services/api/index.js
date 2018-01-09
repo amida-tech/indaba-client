@@ -6,6 +6,7 @@ import tasks from './tasks';
 import discussions from './discussions';
 import messaging from './messaging';
 import subjects from './subjects';
+import systemMessages from './systemMessages';
 
 const apiService = {
     auth,
@@ -16,6 +17,7 @@ const apiService = {
     discussions,
     messaging,
     subjects,
+    systemMessages,
 };
 
 export default apiService;
