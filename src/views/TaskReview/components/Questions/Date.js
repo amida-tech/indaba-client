@@ -28,7 +28,7 @@ class Date extends Component {
 }
 
 Date.propTypes = {
-    answer: PropTypes.object,
+    answer: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     assessmentId: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     text: PropTypes.string,

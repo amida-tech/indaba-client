@@ -2,6 +2,9 @@ $block-class:'integer';
 
 @at-root {
     .#{$block-class} {
-        // Placeholder
+        &__field {
+            width: 7%;
+            text-align: right;
+        }
     }
 }

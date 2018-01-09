@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { find } from 'lodash';
 
 import Bool from './Bool';
-import Date from './Date';
-import Text from './Text';
 import Choice from './Choice';
 import Choices from './Choices';
+import Date from './Date';
+import Integer from './Integer';
+import Text from './Text';
 
 class Questions extends Component {
     render() {
@@ -25,6 +26,12 @@ class Questions extends Component {
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : false} />);
             break;
+        case 'date':
+            QuestionType = (<Date
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : undefined} />);
+            break;
         case 'choice':
             QuestionType = (<Choice
                 {...this.props}
@@ -37,11 +44,11 @@ class Questions extends Component {
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : []} />);
             break;
-        case 'date':
-            QuestionType = (<Date
+        case 'integer':
+            QuestionType = (<Integer
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
-                answer={value ? value.answer : undefined} />);
+                answer={value ? value.answer : ''} />);
             break;
         default:
             QuestionType = (<Text
