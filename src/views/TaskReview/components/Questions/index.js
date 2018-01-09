@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { find, get } from 'lodash';
 
 import Bool from './Bool';
+import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
 import Date from './Date';
@@ -26,6 +27,12 @@ class Questions extends Component {
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : false} />);
+            break;
+        case 'bullet':
+            QuestionType = (<Bullet
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
             break;
         case 'date':
             QuestionType = (<Date
