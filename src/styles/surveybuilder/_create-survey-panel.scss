@@ -86,12 +86,14 @@ $block-class: 'create-survey-panel';
             color: $lead-font-color;
             height: 5em;
             resize: none;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            margin-top: 4px;
             background-color: #fafafa;
 
             &:focus {
                 border: 2px solid $brand-color;
                 outline: none;
+                padding: 8px;
             }
         }
     }

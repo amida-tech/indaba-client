@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Button } from 'grommet';
+// import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import CreateSectionPanel from './CreateSectionPanel';
@@ -28,6 +28,16 @@ class CreateSurveyPanel extends Component {
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
+                    <button className='create-survey-panel__save-button'
+                        label={this.props.vocab.SURVEY.SAVE_PROGRESS}
+                        onClick={() => this.props.actions.patchSurvey(
+                            this.props.form,
+                            this.props.vocab.SURVEY.SUCCESS,
+                            this.props.vocab.ERROR,
+                        )} />
+                    <button/>
+                </div>
+
                     <div className='create-survey-panel__instructions'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                         <textarea className='create-survey-panel__instructions-entry'
@@ -36,15 +46,6 @@ class CreateSurveyPanel extends Component {
                             onChange={event =>
                                 this.props.actions.updateInstructions(event.target.value)} />
                     </div>
-                    <Button className='create-survey-panel__save-button'
-                        primary={true}
-                        label={this.props.vocab.SURVEY.SAVE_PROGRESS}
-                        onClick={() => this.props.actions.patchSurvey(
-                            this.props.form,
-                            this.props.vocab.SURVEY.SUCCESS,
-                            this.props.vocab.ERROR,
-                        )} />
-                </div>
                 <div className='create-survey-panel__sections-list'>
                 {this.props.ui.sectionView === -1 ?
                     this.props.form.sections.map((section, sectionIndex) => (
