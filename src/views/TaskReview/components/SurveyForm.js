@@ -86,8 +86,9 @@ export default reduxForm({
                 (answer.comment.reason === 'disagree' && answer.comment.text === '')) {
                 return null;
             }
-            return (Object.assign({}, omit(answer, ['comment']), { comments: [answer.comment] }));
+            return (Object.assign({}, omit(answer, ['comment']), { comment: answer.comment }));
         }));
+        console.log(answers);
         ownProps.actions.postReview(
             values.assessmentId,
             answers,

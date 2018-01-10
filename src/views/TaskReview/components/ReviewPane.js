@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
-import { find } from 'lodash';
+import { find, has } from 'lodash';
 
 import { renderName } from '../../../utils/User';
 
@@ -8,9 +8,9 @@ class ReviewPane extends Component {
     render() {
         return (
             <div className='review-pane'>
-                {this.props.comments.length > 0 &&
+                {has(this.props, 'answer.commentHistory') &&
                     <div className='review-pane__display'>
-                        {this.props.comments.map((comment, index) =>
+                        {this.props.answer.commentHistory.map((comment, index) =>
                             <div className='review-pane__comment'
                                 key={`review-pane-comment${index}`}>
                                 <div className='review-pane__comment-reason'>
