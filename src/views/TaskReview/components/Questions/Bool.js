@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Bool extends Component {
     render() {
         return (
-            <div className='bool'>
+            <div className='bool' >
                 <label className='bool__field'>
                     <input className={`bool__input${this.props.displayMode ? '--disabled' : ''}`}
                         type='radio'
@@ -12,7 +12,9 @@ class Bool extends Component {
                         disabled={this.props.displayMode}
                         defaultChecked={this.props.answer ? this.props.answer.boolValue : false}
                         onClick={() => this.props.upsertAnswer({ boolValue: true }) } />
-                    {this.props.vocab.COMMON_BUTTONS.YES}
+                    <span className='bool__label'>
+                        {this.props.vocab.COMMON_BUTTONS.YES}
+                    </span>
                 </label>
                 <label className='bool__field'>
                     <input className={`bool__input${this.props.displayMode ? '--disabled' : ''}`}
@@ -21,12 +23,10 @@ class Bool extends Component {
                         disabled={this.props.displayMode}
                         defaultChecked={this.props.answer ? !this.props.answer.boolValue : false}
                         onClick={() => this.props.upsertAnswer({ boolValue: false }) } />
-                    {this.props.vocab.COMMON_BUTTONS.NO}
+                    <span className='bool__label'>
+                        {this.props.vocab.COMMON_BUTTONS.NO}
+                    </span>
                 </label>
-                { this.props.choicesId &&
-                    <span className='bool__choices-label'>
-                        {` ${this.props.choicesText}`}
-                    </span> }
             </div>
         );
     }
