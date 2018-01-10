@@ -135,6 +135,20 @@ export function moveTask(productId, uoaId, errorMessages) {
     };
 }
 
+export function forceTaskCompletion(productId, uoaId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.forceMoveTask(
+            productId,
+            uoaId,
+            (workflowErr) => {
+                if (workflowErr) {
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                }
+            },
+        );
+    };
+}
+
 export function updateTaskEndDate(taskId, projectId, endDate) {
     return {
         type: actionTypes.UPDATE_TASK_DUE_DATE,
