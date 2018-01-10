@@ -76,12 +76,9 @@ export function assignTask(userId, slot, project, errorMessages) {
         };
     }
 
-    // console.log(slot);
-    // INBA-595: slot.task.uoaId, slot.task.stepId, project.id
-
     const surveyRequestBody = {
         name: slot.stageData.title,
-        stage: slot.stageData.position, // May eventually change to stepId.
+        stage: slot.stageData.position,
         surveys: [{
             id: project.surveyId,
         }],
