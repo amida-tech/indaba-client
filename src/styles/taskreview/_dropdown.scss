@@ -1,0 +1,9 @@
+$block-class:'dropdown';
+
+@at-root {
+    .#{$block-class} {
+        &__field {
+            width: 50%;
+        }
+    }
+}

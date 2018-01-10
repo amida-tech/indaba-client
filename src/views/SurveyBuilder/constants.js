@@ -1,8 +1,8 @@
 // Comparisons for question types. Dynamic questions require more input.
-export const DYNAMIC = ['choice', 'choices', 'dropdown', 'scale'];
+export const DYNAMIC = ['choice', 'choices', 'scale'];
 
 // Static questions only really need the question and if they're required.
-export const STATIC = ['bulletpoint', 'date', 'integer', 'text'];
+export const STATIC = ['bool', 'bullet', 'date', 'integer', 'text'];
 
 // These questions are considered weighted.
-export const WEIGHTED = ['bool', 'choice', 'choices'];
+export const WEIGHTED = ['choice', 'choices'];

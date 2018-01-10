@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { unionBy } from 'lodash';
+import { get, unionBy } from 'lodash';
 
 class Text extends Component {
     render() {
-        let currentAnswer;
-        if (this.props.choicesId) {
-            currentAnswer = find(this.props.answer.choices, item =>
-                    item.id === this.props.choicesId);
-        } else if (this.props.answer) {
-            currentAnswer = this.props.answer.textValue;
-        } else {
-            currentAnswer = '';
-        }
         return (
             <div className='text'>
                 <input className={`text__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                     type='text'
                     disabled={this.props.displayMode}
-                    defaultValue={currentAnswer}
+                    defaultValue={get(this.props, 'answer.textValue', '')}
                     onBlur={(event) => {
                         const entry = (this.props.choicesId !== undefined ?
                         { choices: unionBy([{ id: this.props.choicesId,
@@ -34,11 +25,14 @@ class Text extends Component {
 }
 
 Text.propTypes = {
-    vocab: PropTypes.object.isRequired,
+    answer: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    assessmentId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string,
     type: PropTypes.string.isRequired,
+    displayMode: PropTypes.bool,
     common: PropTypes.bool,
-    text: PropTypes.string.isRequired,
-    required: PropTypes.bool,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default Text;

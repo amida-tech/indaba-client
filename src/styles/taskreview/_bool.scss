@@ -3,16 +3,13 @@ $block-class:'bool';
 @at-root {
     .#{$block-class} {
         &__field {
-            @extend .lead-font;
-
-            :last-child {
-                margin-left: 10px;
-                margin-right: 5px;
-            }
+            margin-left: 10px;
         }
 
-        .bool__input {
-            margin-right: 5px;
+        &__label {
+            @extend .lead-font;
+
+            margin-left: 5px;
         }
     }
 }
