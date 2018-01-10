@@ -36,18 +36,18 @@ export function postProject(requestBody, errorMessages) {
 }
 
 export function putProject(project, errorMessages) {
-    const requestBody = {
-        codeName: project.name,
-        status: project.status,
-    };
+    const { status, name: codeName } = project;
+
     return (dispatch) => {
         apiService.projects.putProject(
             project.id,
-            requestBody,
-            (projectErr, projectResp) => {
-                dispatch((!projectErr && projectResp) ?
-                    _putProjectSuccess(project) :
-                    _reportProjectError(errorMessages.PROJECT_REQUEST));
+            { status, codeName },
+            (projectErr) => {
+                if (projectErr) {
+                    dispatch(_reportProjectError(errorMessages.PROJECT_REQUEST));
+                } else {
+                    dispatch(getProjectById(project.id, false, errorMessages));
+                }
             },
         );
     };
@@ -263,22 +263,6 @@ export function showAddSubjectModal(show) {
     };
 }
 
-export function setProjectName(name, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_NAME,
-        name,
-        projectId,
-    };
-}
-
-export function setProjectStatus(status, projectId) {
-    return {
-        type: actionTypes.SET_PROJECT_STATUS,
-        status,
-        projectId,
-    };
-}
-
 export function editSummaryDescription(id) {
     return {
         type: actionTypes.EDIT_SUMMARY_DESCRIPTION,
@@ -306,13 +290,6 @@ export function deleteUserGroup(groupId, projectId) {
 function _postProjectSuccess(project) {
     return {
         type: actionTypes.POST_PROJECT_SUCCESS,
-        project,
-    };
-}
-
-function _putProjectSuccess(project) {
-    return {
-        type: actionTypes.PUT_PROJECT_SUCCESS,
         project,
     };
 }

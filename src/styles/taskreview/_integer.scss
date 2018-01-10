@@ -1,0 +1,10 @@
+$block-class:'integer';
+
+@at-root {
+    .#{$block-class} {
+        &__field {
+            width: 7%;
+            text-align: right;
+        }
+    }
+}

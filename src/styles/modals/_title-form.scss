@@ -1,0 +1,17 @@
+$block-class:'title-form';
+
+@at-root {
+    .#{$block-class} {
+        padding: 16px;
+        display: flex;
+
+        &__title-label {
+            @extend .lead-font;
+        }
+
+        &__title-input,
+        input:not(.grommetux-input) {
+            margin-left: 8px;
+        }
+    }
+}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Tabs, Tab } from 'grommet';
 
-import Summary from '../../../../common/components/Summary';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
@@ -27,10 +26,6 @@ class AddUsers extends Component {
                             );
                             this.props.actions.showAddUserGroupWizardModal(false);
                         }}/>}
-                <Summary
-                    project={this.props.project}
-                    survey={this.props.survey}
-                    vocab={this.props.vocab} />
                 <hr className='divider' />
                 <div className='add-users__import-row'>
                     {this.props.ui.tab === 1 &&

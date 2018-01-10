@@ -84,6 +84,7 @@
 @import './modals/task-options-form.scss';
 @import './modals/addStage/add-stage-form.scss';
 @import './modals/addStage/add-stage-date-time.scss';
+@import './modals/title-form.scss';
 // Login:
 @import './login/login-panel.scss';
 @import './login/login-form.scss';
@@ -117,13 +118,18 @@
 @import './messages/collapsed-message.scss';
 //Task Review
 @import './taskreview/bool.scss';
+@import './taskreview/bullet.scss';
 @import './taskreview/choice.scss';
 @import './taskreview/choices.scss';
+@import './taskreview/date.scss';
+@import './taskreview/dropdown.scss';
 @import './taskreview/flag-commentary.scss';
 @import './taskreview/flag-controls-form.scss';
 @import './taskreview/flag-header.scss';
 @import './taskreview/flag-question-list.scss';
 @import './taskreview/flag-sidebar.scss';
+@import './taskreview/integer.scss';
+@import './taskreview/scale.scss';
 @import './taskreview/question-container.scss';
 @import './taskreview/questions.scss';
 @import './taskreview/review-pane.scss';

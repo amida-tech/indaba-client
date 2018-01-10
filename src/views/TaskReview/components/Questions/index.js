@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import { find, get } from 'lodash';
 
 import Bool from './Bool';
-import Text from './Text';
+import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
+import Date from './Date';
+import Dropdown from './Dropdown';
+import Integer from './Integer';
+import Text from './Text';
 
 class Questions extends Component {
     render() {
@@ -21,20 +25,43 @@ class Questions extends Component {
         case 'bool':
             QuestionType = (<Bool
                 {...this.props}
-                upsertAnswer = {upsertAnswer}
+                upsertAnswer={upsertAnswer}
                 answer={value ? value.answer : false} />);
             break;
-        case 'choice':
-            QuestionType = (<Choice
+        case 'bullet':
+            QuestionType = (<Bullet
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
+            break;
+        case 'date':
+            QuestionType = (<Date
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : undefined} />);
+            break;
+        case 'choice':
+            QuestionType = (get(this.props, 'meta.subType') === 'dropdown') ?
+                (<Dropdown
+                    {...this.props}
+                    upsertAnswer = {upsertAnswer}
+                    answer={value ? value.answer : undefined} />) :
+                (<Choice
+                    {...this.props}
+                    upsertAnswer = {upsertAnswer}
+                    answer={value ? value.answer : undefined} />);
             break;
         case 'choices':
             QuestionType = (<Choices
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
-                answer={value ? value.answer : []} />);
+                answer={value ? value.answer : {}} />);
+            break;
+        case 'integer':
+            QuestionType = (<Integer
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
             break;
         default:
             QuestionType = (<Text

@@ -179,6 +179,7 @@
         "INSTRUCTIONS_EXPLAINED_2": "Form will autosave as questions are complete. Time of last save: ",
         "NOT_SAVED": "Has not yet been saved.",
         "ENTER_ANSWER": "Enter your answer here",
+        "SELECT_OPTION": "Choose an option",
         "AGREE": "Agree",
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
@@ -366,21 +367,23 @@
         "CHOICE_ENTER": "Enter an option for the user to select.",
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
-            "BULLETPOINT": "Bullet Point",
-            "BOOL": "Checkbox",
+            "BULLET": "Bullet Point",
+            "CHOICES": "Checkbox",
             "TEXT": "Long Text",
             "DROPDOWN":"Dropdown",
             "DATE": "Date",
+            "BOOL": "Bool",
             "INTEGER": "Number",
             "SCALE": "Scale"
         },
         "QUESTIONS_EXPLAINED": {
             "CHOICE": "The user will select one of the options you enter here.",
-            "BULLETPOINT": "Additional input lines will appear as the user starts each new entry.",
-            "BOOL": "Enter the options for the user to choose from. She/he can choose multiple.",
+            "BULLET": "Additional input lines will appear as the user starts each new entry.",
+            "CHOICES": "The user will select one or more of the options you enter here.",
             "TEXT": "The user will simply enter a sentence into a text field.",
-            "DROPDOWN":"The user would selection an option from those available in the dropdown.",
+            "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
+            "BOOL": "The user will answer a yes or no question.",
             "INTEGER": "The user would enter a whole number.",
             "SCALE": "The users answers a question "
         },
@@ -490,6 +493,14 @@
             "TITLE": "Delete stage?",
             "DELETE_NO_DATA": "Are you sure you want to delete this stage?",
             "NO_DELETE": "Data has already been collected in this stage. To prevent additional data being collected in this stage, delete assignments for all incomplete tasks."
+        },
+        "PROJECT_TITLE_MODAL": {
+            "TITLE": "Project title",
+            "TITLE_INPUT_LABEL": "Title"
+        },
+        "SURVEY_TITLE_MODAL": {
+            "TITLE": "Survey title",
+            "TITLE_INPUT_LABEL": "Title"
         }
     }
 }
