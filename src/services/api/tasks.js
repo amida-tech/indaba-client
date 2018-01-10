@@ -5,6 +5,11 @@ const tasks = {
     getTasksByProduct: (productId, callback) => {
         requests.apiGetRequest(getFullPath(`products/${productId}/tasks`), callback);
     },
+    forceMoveTask: (productId, uoaId, callback) => {
+        requests.apiGetRequest(
+            requests.addQueryParams(getFullPath(`products/${productId}/move/${uoaId}`), { force: true }),
+            callback);
+    },
     moveTask: (productId, uoaId, callback) => {
         requests.apiGetRequest(getFullPath(`products/${productId}/move/${uoaId}`), callback);
     },
