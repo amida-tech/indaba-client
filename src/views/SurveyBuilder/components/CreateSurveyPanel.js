@@ -28,14 +28,6 @@ class CreateSurveyPanel extends Component {
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
-                    <button className='create-survey-panel__survey-save'
-                        onClick={() => this.props.actions.patchSurvey(
-                            this.props.form,
-                            this.props.vocab.SURVEY.SUCCESS,
-                            this.props.vocab.ERROR,
-                        )}>
-                        {this.props.vocab.SURVEY.SAVE_PROGRESS}
-                    </button>
                 </div>
 
                     <div className='create-survey-panel__instructions'>
@@ -46,6 +38,14 @@ class CreateSurveyPanel extends Component {
                             onChange={event =>
                                 this.props.actions.updateInstructions(event.target.value)} />
                     </div>
+                    <button className='create-survey-panel__survey-save'
+                        onClick={() => this.props.actions.patchSurvey(
+                            this.props.form,
+                            this.props.vocab.SURVEY.SUCCESS,
+                            this.props.vocab.ERROR,
+                        )}>
+                        {this.props.vocab.SURVEY.SAVE_PROGRESS}
+                    </button>
                 <div className='create-survey-panel__sections-list'>
                 {this.props.ui.sectionView === -1 ?
                     this.props.form.sections.map((section, sectionIndex) => (
