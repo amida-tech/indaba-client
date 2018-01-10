@@ -28,14 +28,14 @@ class CreateSurveyPanel extends Component {
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
-                    <button className='create-survey-panel__save-button'
-                        label={this.props.vocab.SURVEY.SAVE_PROGRESS}
+                    <button className='create-survey-panel__survey-save'
                         onClick={() => this.props.actions.patchSurvey(
                             this.props.form,
                             this.props.vocab.SURVEY.SUCCESS,
                             this.props.vocab.ERROR,
-                        )} />
-                    <button/>
+                        )}>
+                        {this.props.vocab.SURVEY.SAVE_PROGRESS}
+                    </button>
                 </div>
 
                     <div className='create-survey-panel__instructions'>
