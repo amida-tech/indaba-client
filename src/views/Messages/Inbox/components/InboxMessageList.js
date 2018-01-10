@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../../utils/Time';
-import { renderName } from '../../../../utils/User';
+import { renderNameByEmail } from '../../../../utils/User';
 import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 
 class InboxMessageList extends Component {
     constructor() {
         super();
         this.renderThread = this.renderThread.bind(this);
-        this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
-    }
-
-    renderUserFromEmail(email) {
-        const user = this.props.users.find(userIter => userIter.email === email);
-        return user ? renderName(user) : email;
     }
 
     renderThread(thread) {
@@ -25,7 +19,7 @@ class InboxMessageList extends Component {
                 onClick={() => this.props.onMessageClick(thread.id)}>
                 <div className='inbox-message-list__ inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {this.renderUserFromEmail(thread.from)}
+                    {renderNameByEmail(thread.from, this.props.users)}
                     {thread.threadLength > 1 && ` (${thread.threadLength})`}
                 </div>
                 <div className='inbox-message-list__subject'>

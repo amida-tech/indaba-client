@@ -5,7 +5,7 @@ import _ from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
 
-import { renderName } from '../../../../utils/User';
+import { renderName, renderNameByEmail } from '../../../../utils/User';
 import apiService from '../../../../services/api';
 
 import CollapsedMessage from './CollapsedMessage';
@@ -19,17 +19,12 @@ class Message extends Component {
         if (this.props.id && !this.props.message) {
             this.props.actions.getMessage(this.props.id);
         }
-
-        this.renderUserFromEmail = this.renderUserFromEmail.bind(this);
-    }
-    renderUserFromEmail(email) {
-        const user = this.props.users.find(userIter => userIter.email === email);
-        return user ? renderName(user) : email;
     }
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
+        const systemMessage = _.get(this.props, 'message.systemMessage', false);
 
         if (!compose && !active &&
             !this.props.ui.expandedMessages.includes(_.get(this.props, 'message.id'))) {
@@ -51,7 +46,7 @@ class Message extends Component {
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
                             value={_.get(this.props, 'message.to', []).map(
-                                this.renderUserFromEmail,
+                                user => renderNameByEmail(user, this.props.users),
                             ).join(', ')}
                             component={ToField}
                             componentProps={{ users: this.props.users }}
@@ -66,7 +61,7 @@ class Message extends Component {
                             value={
                                 compose ?
                                 renderName(this.props.profile) :
-                                this.renderUserFromEmail(_.get(this.props, 'message.from'))
+                                renderNameByEmail(_.get(this.props, 'message.from'), this.props.users)
                             }
                             name='from'/>
                     </div>
@@ -88,14 +83,17 @@ class Message extends Component {
                                         <IonIcon icon='ion-email-unread'
                                             className='message__action-icon'/>
                                     </PanelButton>
-                                    <PanelButton
-                                        onClick={() => this.props.actions
-                                                .forwardMessage(this.props.message) }>
-                                        <IonIcon icon='ion-arrow-right-a'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
                                     {
-                                        received && [
+                                        !systemMessage &&
+                                        <PanelButton
+                                            onClick={() => this.props.actions
+                                                .forwardMessage(this.props.message) }>
+                                            <IonIcon icon='ion-arrow-right-a'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
+                                    {
+                                        received && !systemMessage && [
                                             <PanelButton key='reply-button'
                                                 onClick={() => this.props.actions
                                                     .startReply(this.props.message) }>
@@ -142,7 +140,7 @@ class Message extends Component {
                     </div>
                 </form>
                 {
-                    !compose && received &&
+                    !compose && received && !systemMessage &&
                     <div className='message__inline-reply'
                         onClick={(evt) => {
                             this.props.actions.startReplyAll(this.props.message);
