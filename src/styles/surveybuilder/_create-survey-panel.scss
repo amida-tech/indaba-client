@@ -28,6 +28,7 @@ $block-class: 'create-survey-panel';
         &__accordion-buttons {
             display: flex;
             flex-direction: row;
+            box-sizing: border-box;
         }
 
         &__button-expand {
@@ -38,6 +39,7 @@ $block-class: 'create-survey-panel';
             margin-right: 8px;
             background-color: #a4aebf;
             outline: none;
+            box-sizing: border-box;
 
             &:hover {
                 background-color: darken(#a4aebf, 5);
@@ -48,11 +50,11 @@ $block-class: 'create-survey-panel';
             color: $lead-font-color;
             border-radius: 2px;
             background-color: #fff;
-            box-sizing: padding-box;
             border: 2px solid $border-color;
             font-size: 14px;
             font-weight: 400;
             outline: none;
+            box-sizing: border-box;
 
             &:hover {
                 background-color: darken($font-inverse-color, 3);
