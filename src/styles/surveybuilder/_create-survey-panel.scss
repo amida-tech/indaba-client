@@ -64,6 +64,7 @@ $block-class: 'create-survey-panel';
         &__survey-controls {
             display: flex;
             flex-direction: row;
+            justify-content: flex-end;
         }
 
         &__instructions {
