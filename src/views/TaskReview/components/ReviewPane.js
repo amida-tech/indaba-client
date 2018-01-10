@@ -20,9 +20,8 @@ class ReviewPane extends Component {
                                     {comment.text}
                                 </div>
                                 <div className='review-pane__comment-signature'>
-                                    –{renderName(this.props.profile.id === comment.userId ?
-                                        this.props.profile :
-                                        find(this.props.users, user => user.id === comment.userId))}
+                                    –{renderName(find(this.props.users,
+                                        user => user.authId === comment.userId))}
                                 </div>
                             </div>,
                         )}
