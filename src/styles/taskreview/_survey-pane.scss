@@ -50,14 +50,14 @@ $block-class:'survey-pane';
         }
 
         &__instructions {
-            margin: 16px;
+            padding: 16px;
 
             &-header {
                 @extend .small-font;
             }
 
             &-explained {
-                @extend .lead-font;
+                @extend .small-font;
 
                 display: block;
             }

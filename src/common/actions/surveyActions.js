@@ -167,22 +167,6 @@ export function postReview(assessmentId, answers, errorMessages) {
 }
 
 // UI component related.
-export function setSurveyName(name, surveyId) {
-    return {
-        type: actionTypes.SET_SURVEY_NAME,
-        name,
-        surveyId,
-    };
-}
-
-export function setSurveyStatus(status, surveyId) {
-    return {
-        type: actionTypes.SET_SURVEY_STATUS,
-        status,
-        surveyId,
-    };
-}
-
 export function setSurveySectionIndex(index) {
     return {
         type: actionTypes.SET_SURVEY_SECTION_INDEX,

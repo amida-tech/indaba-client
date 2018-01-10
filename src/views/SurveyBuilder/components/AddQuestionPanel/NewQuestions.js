@@ -14,6 +14,10 @@ class NewQuestions extends Component {
 
     handleInsert(type, sectionIndex) {
         const newQuestion = { type: type.toLowerCase(), text: '', required: false };
+        if (newQuestion.type === 'dropdown') {
+            newQuestion.type = 'choice';
+            newQuestion.meta = { subType: 'dropdown' };
+        }
         if (DYNAMIC.includes(newQuestion.type)) {
             newQuestion.choices = [{ text: '' }, { text: '' }];
         }

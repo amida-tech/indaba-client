@@ -5,9 +5,13 @@ import { toast } from 'react-toastify';
 import { DateTime } from 'grommet';
 
 import Bool from './Bool';
-import Text from './Text';
+import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
+import Date from './Date';
+import Dropdown from './Dropdown';
+import Integer from './Integer';
+import Text from './Text';
 import Time from '../../../../utils/Time';
 
 class Questions extends Component {
@@ -28,17 +32,40 @@ class Questions extends Component {
                 upsertAnswer={upsertAnswer}
                 answer={value ? value.answer : false} />);
             break;
-        case 'choice':
-            QuestionType = (<Choice
+        case 'bullet':
+            QuestionType = (<Bullet
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
+            break;
+        case 'date':
+            QuestionType = (<Date
                 {...this.props}
                 upsertAnswer={upsertAnswer}
                 answer={value ? value.answer : undefined} />);
             break;
+        case 'choice':
+            QuestionType = (get(this.props, 'meta.subType') === 'dropdown') ?
+                (<Dropdown
+                    {...this.props}
+                    upsertAnswer = {upsertAnswer}
+                    answer={value ? value.answer : undefined} />) :
+                (<Choice
+                    {...this.props}
+                    upsertAnswer = {upsertAnswer}
+                    answer={value ? value.answer : undefined} />);
+            break;
         case 'choices':
             QuestionType = (<Choices
                 {...this.props}
-                upsertAnswer={upsertAnswer}
-                answer={value ? value.answer : []} />);
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : {}} />);
+            break;
+        case 'integer':
+            QuestionType = (<Integer
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
             break;
         default:
             QuestionType = (<Text

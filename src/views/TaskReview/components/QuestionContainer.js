@@ -14,8 +14,8 @@ class QuestionContainer extends Component {
             <Element name={`question${this.props.questionIndex}`}
                 className='question-container'>
                 <AccordionPanel className='question-container__heading'
-                    heading={this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)
-                        + (this.props.question.required ? ' *' : '')}
+                    heading={`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: ${
+                        this.props.question.text}${this.props.question.required ? ' *' : ''}`}
                     {...this.props}>
                     <Questions className='question-container__questions'
                         {...this.props.question}

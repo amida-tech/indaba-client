@@ -6,10 +6,6 @@ class Choice extends Component {
     render() {
         return (
             <div className='choice'>
-                { !this.props.choicesId &&
-                    <div className='choice__label'>
-                        {this.props.text}
-                    </div> }
                 {this.props.choices.map(choice =>
                     <div className='choice__radio'
                         key={`key-choice-${choice.id}`}>
@@ -38,11 +34,14 @@ class Choice extends Component {
 }
 
 Choice.propTypes = {
-    vocab: PropTypes.object.isRequired,
+    answer: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    assessmentId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string,
     type: PropTypes.string.isRequired,
+    displayMode: PropTypes.bool,
     common: PropTypes.bool,
-    text: PropTypes.string.isRequired,
-    required: PropTypes.bool,
+    vocab: PropTypes.object.isRequired,
 };
 
 export default Choice;

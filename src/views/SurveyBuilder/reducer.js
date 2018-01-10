@@ -7,8 +7,6 @@ import {
     GET_SURVEY_BY_ID_SUCCESS,
     POST_SURVEY_SUCCESS,
     PATCH_SURVEY_SUCCESS,
-    SET_SURVEY_STATUS,
-    SET_SURVEY_NAME,
  } from '../../common/actionTypes/surveyActionTypes';
 
 export const initialState = {
@@ -42,10 +40,6 @@ export default (state = initialState, action) => {
             sections: { $set: [{ name: '', questions: [] }] } } });
     case PATCH_SURVEY_SUCCESS: // Not sure I want forceStatus coming back.
         return update(state, { form: { $merge: action.survey } });
-    case SET_SURVEY_STATUS:
-        return update(state, { form: { status: { $set: action.status } } });
-    case SET_SURVEY_NAME:
-        return update(state, { form: { name: { $set: action.name } } });
     case type.SURVEY_BUILDER_CHANGE_SECTION_VIEW:
         return update(state, { ui: { sectionView: { $set: action.sectionView } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:

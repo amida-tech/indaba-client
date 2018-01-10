@@ -36,9 +36,8 @@ class TaskReview extends Component {
             displaySurvey = this.props.survey.questions;
         }
 
-        // TODO: INBA-522, task status === currently,
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
-            || this.props.profile.id !== this.props.taskedUser.id;
+            || this.props.profile.id !== this.props.taskedUser.id || this.props.task.status !== 'current';
 
         return (
             <div className='task-review'>

@@ -31,8 +31,10 @@ $block-class: 'status-card';
         }
 
         &__name-value {
-            color: $header-font-color;
-            font-size: 18px;
+            display: flex;
+            color: $lead-font-color;
+            font-size: 24px;
+            font-weight: 100;
         }
 
         &__status {
@@ -52,6 +54,10 @@ $block-class: 'status-card';
         &__create-icon {
             width: 1.6em;
             fill: $header-font-color;
+        }
+
+        &__edit-icon {
+            @extend .small-icon;
         }
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Layer } from 'grommet';
+import { submit } from 'redux-form';
 
 import FooterButton from './FooterButton';
 
@@ -67,5 +68,10 @@ Modal.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
 });
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return ownProps.form ?
+        { onSave: () => dispatch(submit(ownProps.form)) } :
+        {};
+};
 
-export default connect(mapStateToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

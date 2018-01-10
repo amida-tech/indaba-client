@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
-import { has } from 'lodash';
+import { get, has } from 'lodash';
 
 class DynamicQuestion extends Component {
     render() {
@@ -59,8 +59,10 @@ class DynamicQuestion extends Component {
         return (
             <div className='dynamic-question'>
                 <span className='dynamic-question__instructions'>
-                    {this.props.vocab.SURVEY.QUESTIONS_EXPLAINED[
-                        this.props.question.type.toUpperCase()]}
+                    {get(this.props.question, 'meta.subType') === 'dropdown' ?
+                        this.props.vocab.SURVEY.QUESTIONS_EXPLAINED.DROPDOWN :
+                        this.props.vocab.SURVEY.QUESTIONS_EXPLAINED[
+                            this.props.question.type.toUpperCase()]}
                 </span>
                 {QuestionDisplay}
             </div>
