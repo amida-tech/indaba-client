@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -70,6 +71,7 @@ module.exports = {
     plugins: [
         HtmlWebpackPluginConfig,
         StyleLintPluginConfig,
+        new Dotenv(),
         new webpack.DefinePlugin({
             'process.env': {
                 API_HTTP_URL: JSON.stringify(process.env.API_HTTP_URL),

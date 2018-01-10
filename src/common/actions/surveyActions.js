@@ -231,6 +231,7 @@ function _postAnswerSuccess(response, required) {
         type: actionTypes.POST_ANSWER_SUCCESS,
         questionId: response.answers[0].questionId,
         answer: response.answers[0].answer,
+        meta: response.answers[0].meta,
         required,
     };
 }

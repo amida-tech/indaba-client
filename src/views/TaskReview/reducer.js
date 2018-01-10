@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { flatten, map, filter, findIndex, intersectionWith } from 'lodash';
+import { flatten, has, map, filter, findIndex, intersectionWith } from 'lodash';
 
 import * as type from './actionTypes';
 import {
@@ -59,15 +59,18 @@ export default (state = initialState, action) => {
             answer => answer.questionId === action.questionId);
         const reqIncrease = answerIndex < 0 && action.required ?
             state.ui.reqAnswers + 1 : state.ui.reqAnswers;
+        const result = has(action, 'meta') ?
+            { questionId: action.questionId, answer: action.answer, meta: action.meta } :
+            { questionId: action.questionId, answer: action.answer };
         return answerIndex < 0 ?
             update(state, { ui: { reqAnswers: { $set: reqIncrease },
                 lastSave: { $set: Date.now() },
                 form: { answers: {
-                    $push: [{ questionId: action.questionId, answer: action.answer }],
+                    $push: [result],
                 } } } }) :
             update(state, { ui: { reqAnswers: { $set: reqIncrease },
                 lastSave: { $set: Date.now() },
-                form: { answers: { [answerIndex]: { answer: { $set: action.answer } } } } } });
+                form: { answers: { [answerIndex]: { $set: result } } } } });
     }
     case type.GET_DISCUSSIONS_SUCCESS:
         return update(state, { ui: { flags: { $set: action.discussions } } });

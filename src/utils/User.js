@@ -1,4 +1,15 @@
+import config from '../config';
 import apiService from '../services/api';
+
+const SYS_MESSAGE_USER_DISPLAY = 'Indaba';
+
+export const renderNameByEmail = (email, users) => {
+    if (email === config.SYS_MESSAGE_USER) {
+        return SYS_MESSAGE_USER_DISPLAY;
+    }
+    const user = users.find(userIter => userIter.email === email);
+    return user ? renderName(user) : email;
+};
 
 export const renderName = user => (user ? `${user.firstName} ${user.lastName}` : '');
 export const renderInitials = user => `${user.firstName.slice(0, 1)}${user.lastName.slice(0, 1)}`;
