@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import { omit, compact } from 'lodash';
+import { get, omit, compact } from 'lodash';
 import { toast } from 'react-toastify';
 
 import QuestionContainer from './QuestionContainer';
@@ -82,13 +82,13 @@ export default reduxForm({
     enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
         const answers = compact(values.answers.map((answer) => {
-            if (answer.comment.reason === null ||
-                (answer.comment.reason === 'disagree' && answer.comment.text === '')) {
+            if (get(answer, 'comment.reason') === undefined) {
+                return null;
+            } else if (answer.comment.reason === 'disagree' && answer.comment.text === '') {
                 return null;
             }
-            return (Object.assign({}, omit(answer, ['comment']), { comment: answer.comment }));
+            return omit(answer, ['comment.id', 'comment.userId', 'comment.language']);
         }));
-        console.log(answers);
         ownProps.actions.postReview(
             values.assessmentId,
             answers,
