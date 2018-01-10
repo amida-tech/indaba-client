@@ -67,6 +67,7 @@ $block-class: 'create-survey-panel';
         }
 
         &__instructions {
+            padding: 16px;
             display: flex;
             flex-direction: column;
             width: 90%;
@@ -82,11 +83,16 @@ $block-class: 'create-survey-panel';
 
         &__instructions-entry {
             border: none;
-            color: $font-color;
+            color: $lead-font-color;
             height: 5em;
             resize: none;
             margin-bottom: 5px;
             background-color: #fafafa;
+
+            &:focus {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
     }
 }
