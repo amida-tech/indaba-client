@@ -87,7 +87,7 @@ export default reduxForm({
             } else if (answer.comment.reason === 'disagree' && answer.comment.text === undefined) {
                 return null;
             }
-            return omit(answer, ['comment.id', 'comment.userId', 'comment.language']);
+            return omit(answer, ['comment.id', 'comment.userId', 'comment.language', 'commentHistory']);
         }));
         ownProps.actions.postReview(
             values.assessmentId,
