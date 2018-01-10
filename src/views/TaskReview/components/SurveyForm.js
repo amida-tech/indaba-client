@@ -84,7 +84,7 @@ export default reduxForm({
         const answers = compact(values.answers.map((answer) => {
             if (get(answer, 'comment.reason') === undefined) {
                 return null;
-            } else if (answer.comment.reason === 'disagree' && answer.comment.text === '') {
+            } else if (answer.comment.reason === 'disagree' && answer.comment.text === undefined) {
                 return null;
             }
             return omit(answer, ['comment.id', 'comment.userId', 'comment.language']);
