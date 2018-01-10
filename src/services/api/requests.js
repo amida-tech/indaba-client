@@ -21,65 +21,6 @@ export function apiAuthPostRequest(fullURI, requestBody, callback) {
 }
 
 /**
- * Executes a GET request on the given URI, using a token
- * @param {String} fullURI
- * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
-* */
-export function apiTokenGetRequest(fullURI, callback) {
-    fetch(fullURI, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
-}
-
-/**
- * Executes a POST request on the given URI, using a token
- * @param {String} fullURI
- * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
-* */
-export function apiTokenPostRequest(fullURI, requestBody, callback) {
-    fetch(fullURI, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(requestBody),
-    })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
-}
-
-/**
- * Executes a PATCH request on the given URI, using a token
- * @param {String} fullURI
- * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
-* */
-export function apiTokenPatchRequest(fullURI, requestBody, callback) {
-    fetch(fullURI, {
-        method: 'PATCH',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(requestBody),
-    })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
-}
-
-/**
  * Executes a GET request on the given URI
  * @param {String} fullURI
  * @param {Function} callback
@@ -107,6 +48,26 @@ export function apiGetRequest(fullURI, callback) {
 export function apiPostRequest(fullURI, requestBody, callback) {
     fetch(fullURI, {
         method: 'POST',
+        headers: {
+            Authorization: cookie.load('indaba-auth'),
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    })
+  .then(res => handleResponse(res, callback), issue => callback(issue));
+}
+
+/**
+ * Executes a PATCH request on the given URI
+ * @param {String} fullURI
+ * @param {Object} requestBody
+ * @param {Function} callback
+ * @return {Any} handled by callback.
+* */
+export function apiPatchRequest(fullURI, requestBody, callback) {
+    fetch(fullURI, {
+        method: 'PATCH',
         headers: {
             Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
