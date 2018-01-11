@@ -37,7 +37,6 @@ class CreateSurveyPanel extends Component {
                         {this.props.vocab.SURVEY.SAVE_PROGRESS}
                     </button>
                 </div>
-
                     <div className='create-survey-panel__instructions'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                         <textarea className='create-survey-panel__instructions-entry'
