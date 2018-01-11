@@ -5,8 +5,6 @@ import { get, has } from 'lodash';
 
 class DynamicQuestion extends Component {
     render() {
-        console.log('dynamic question');
-        console.log(this.props);
         let QuestionDisplay;
         if (this.props.type === 'scale') {
             QuestionDisplay = (
