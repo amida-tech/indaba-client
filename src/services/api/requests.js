@@ -1,6 +1,19 @@
 import cookie from 'react-cookies';
 import 'whatwg-fetch';
 
+const makeQueryParams = (params) => {
+    if (!params || Object.keys(params).length === 0) {
+        return '';
+    }
+    return `?${Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join('&')}`;
+};
+
+export function addQueryParams(url, params) {
+    return `${url}${makeQueryParams(params)}`;
+}
+
 /**
  * Executes a POST request on the given URI
  * @param {String} fullURI

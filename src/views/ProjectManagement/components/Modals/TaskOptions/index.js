@@ -55,7 +55,9 @@ class TaskOptionsModal extends Component {
                             );
                         } else if (values.choice === 'force') {
                             this.props.actions.forceTaskCompletion(
-                                this.props.task.id,
+                                this.props.task.productId,
+                                this.props.task.uoaId,
+                                this.props.vocab.ERROR,
                             );
                         }
                         if (values.notify === true) {
