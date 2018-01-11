@@ -9,7 +9,7 @@ $block-class: 'create-survey-panel';
 
         &__view-controls {
             display: flex;
-            padding: 16px;
+            padding: 8px;
             margin-top: 32px;
             flex-direction: row;
             justify-content: space-between;
@@ -35,11 +35,13 @@ $block-class: 'create-survey-panel';
             font-size: 12px;
             font-weight: 400;
             margin-right: 8px;
-            background-color: #a4aebf;
+            background-color: lighten($lead-font-color, 5%);
             outline: none;
+            padding: 4px 8px;
 
             &:hover {
-                background-color: darken(#a4aebf, 5);
+                background-color: darken(#a4aebf, 10);
+                padding: 4px 8px;
             }
         }
 
@@ -47,15 +49,17 @@ $block-class: 'create-survey-panel';
             color: $lead-font-color;
             border-radius: 2px;
             background-color: #fff;
-            border: 2px solid $border-color;
+            border: 1px solid lighten($lead-font-color, 5%);
             letter-spacing: 0.3px;
             font-size: 12px;
             font-weight: 400;
             outline: none;
             box-sizing: border-box;
+            padding: 4px 8px;
 
             &:hover {
                 background-color: darken($font-inverse-color, 3);
+                padding: 4px 8px;
             }
         }
 
