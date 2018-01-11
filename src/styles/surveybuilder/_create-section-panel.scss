@@ -2,7 +2,7 @@ $block-class: 'create-section-panel';
 
 @at-root {
     .#{$block-class} {
-        border: 2px solid $border-color;
+        border-top: 1px solid $border-color;
 
         &__section-name {
             @extend .med-font;
