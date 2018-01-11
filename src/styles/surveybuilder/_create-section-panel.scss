@@ -5,14 +5,14 @@ $block-class: 'create-section-panel';
         border: 2px solid $border-color;
 
         &__section-name {
+            @extend .med-font;
+
             border-top: none;
             border-left: none;
             border-right: none;
             padding: 16px;
             margin-bottom: 24px;
             width: 100%;
-            font-size: 1.6em;
-            color: $lead-font-color;
             background-color: #fafafa;
             outline: none;
 
