@@ -82,7 +82,7 @@ export function assignTask(userId, slot, project, errorMessages) {
         surveys: [{
             id: project.surveyId,
         }],
-        group: `${project.id}-${slot.task.uoaId}`,
+        group: `${project.productId}-${slot.task.uoaId}`,
     };
 
     const requestBody = {
