@@ -109,7 +109,7 @@ export function assignTask(userId, slot, project, errorMessages) {
                         requestBody,
                         (taskErr, taskResp) => {
                             dispatch(!taskErr && taskResp ?
-                                _postTaskSuccess(userId, slot, taskResp) :
+                                _postTaskSuccess(taskResp) :
                                 _reportTasksError(errorMessages.TASK_REQUEST));
                         },
                     );
@@ -204,16 +204,10 @@ function _getTasksByUserSuccess(userId, tasks) {
     };
 }
 
-function _postTaskSuccess(userId, slot, taskResp) {
+function _postTaskSuccess(taskResp) {
     return {
         type: actionTypes.POST_TASK_SUCCESS,
-        task: {
-            id: taskResp.id,
-            userIds: [userId],
-            stepId: slot.task.stepId,
-            uoaId: slot.task.uoaId,
-            endDate: slot.stageData.endDate,
-        },
+        task: taskResp,
     };
 }
 
