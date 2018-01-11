@@ -156,15 +156,6 @@ function _deleteUserSuccess(userId) {
     };
 }
 
-export function notifyUser(userId, message, senderId) {
-    return {
-        type: actionTypes.NOTIFY_USER,
-        userId,
-        message,
-        senderId,
-    };
-}
-
 // private
 function _getProfileSuccess(profile) {
     return {

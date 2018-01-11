@@ -1,6 +1,5 @@
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const POST_NEW_USER_SUCCESS = 'POST_NEW_USER_SUCCESS';
-export const NOTIFY_USER = 'NOTIFY_USER';
 
 // API calls.
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
