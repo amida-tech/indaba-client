@@ -13,9 +13,9 @@ class QuestionPanel extends Component {
             <div className='question-panel'>
                 <div className='question-panel__header'>
                     <div className='question-panel__question'>
-                        <span className='question-panel__question-number'>
+                        <div className='question-panel__question-number'>
                             {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
-                        </span>
+                        </div>
                         <textarea className='question-panel__question-text'
                             placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
                             value={this.props.question.text || ''}

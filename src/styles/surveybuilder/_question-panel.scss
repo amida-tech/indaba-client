@@ -3,33 +3,43 @@ $block-class: 'question-panel';
 @at-root {
     .#{$block-class} {
         border: 1px solid $border-color;
-        margin: 2px;
+        padding: 8px;
 
         &__header {
-            margin: 5px;
             font-size: 1.3em;
-            min-width: 50vw;
             display: flex;
             justify-content: space-between;
         }
 
         &__question {
+            display: flex;
+            flex-direction: column;
             padding: 8px;
             width: 100%;
-        }
 
-        &__question-text {
-            width: 90%;
-            background-color: #fafafa;
-            resize: none;
-            outline: none;
-            border: 1px solid $border-color;
-            padding: 8px;
+            &-number {
+                @extend .small-font;
 
-            &:focus,
-            &:active {
-                border: 2px solid $brand-color;
+                margin-bottom: 4px;
+                margin-left: 8px;
+            }
+
+            &-text {
+                @extend .lead-font;
+
+                overflow: hidden;
+                background-color: #fafafa;
+                resize: none;
                 outline: none;
+                border: 1px solid $border-color;
+                border-radius: 2px;
+                padding: 8px;
+
+                &:focus,
+                &:active {
+                    border-bottom: 2px solid $brand-color;
+                    outline: none;
+                }
             }
         }
 
