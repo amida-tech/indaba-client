@@ -20,10 +20,10 @@ class CreateSurveyPanel extends Component {
                     <div className='create-survey-panel__accordion-buttons'>
                         <Button className='create-survey-panel__button'
                             label={this.props.vocab.PROJECT.EXPAND_ALL}
-                            onClick={() => toast('Coming as soon as James is allowed to sleep.')} />
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)} />
                         <Button className='create-survey-panel__button'
                             label={this.props.vocab.PROJECT.COLLAPSE_ALL}
-                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')} />
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)} />
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>

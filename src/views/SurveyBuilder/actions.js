@@ -85,6 +85,16 @@ export function deleteChoice(sectionIndex, questionIndex, choiceIndex) {
     };
 }
 
+export function upsertWeight(sectionIndex, questionIndex, choiceIndex, value) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_UPSERT_WEIGHT,
+        sectionIndex,
+        questionIndex,
+        choiceIndex,
+        value,
+    };
+}
+
 export function resetMeta(sectionIndex, questionIndex, field) {
     return {
         type: actionTypes.SURVEY_BUILDER_RESET_META,
