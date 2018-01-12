@@ -39,7 +39,7 @@ $block-class: 'question-panel';
 
                 &:focus,
                 &:active {
-                    border-bottom: 2px solid $brand-color;
+                    border: 2px solid $brand-color;
                     outline: none;
                 }
             }

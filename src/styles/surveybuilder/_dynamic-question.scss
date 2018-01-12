@@ -47,6 +47,14 @@ $block-class: 'dynamic-question';
         &__weight-input {
             width: 5%;
             text-align: center;
+            color: $lead-font-color;
+            outline: none;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__instructions {
