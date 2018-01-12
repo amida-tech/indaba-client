@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find, get, has, merge } from 'lodash';
+import { find, get, has, merge, omit } from 'lodash';
 import { DateTime } from 'grommet';
 
 import FileForm from './FileForm';
@@ -83,12 +83,22 @@ class Questions extends Component {
                     <div className='questions__option-panel'>
                         <FileForm form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
+                            fileId={value.meta.fileId}
                             onFileUploaded={(fileId) => {
                                 this.props.actions.upsertAnswer(
                                     this.props.assessmentId,
                                     this.props.id,
                                     value.answer,
                                     merge(value.meta, { fileId }),
+                                    this.props.vocab.ERROR,
+                                );
+                            }}
+                            onFileRemoved={() => {
+                                this.props.actions.upsertAnswer(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    value.answer,
+                                    omit(value.meta, 'fileId'),
                                     this.props.vocab.ERROR,
                                 );
                             }}/>

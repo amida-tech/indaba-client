@@ -348,6 +348,8 @@
         "DELETE_QUESTION": "Delete Question",
         "SELECT_FILE": "Select a file",
         "NO_FILE": "No file chosen",
+        "ADD_FILE": "Add File",
+        "REMOVE_FILE": "Remove File",
         "ADD_LINK": "Add Link",
         "ENTER_PUBLICATION": "Enter Publication Title",
         "AUTHOR": "Author",
