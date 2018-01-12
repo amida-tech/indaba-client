@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { find, get, has, merge } from 'lodash';
-import { toast } from 'react-toastify';
 import { DateTime } from 'grommet';
 
+import FileForm from './FileForm';
 import Bool from './Bool';
 import Bullet from './Bullet';
 import Choice from './Choice';
@@ -80,15 +80,17 @@ class Questions extends Component {
                     {QuestionType}
                 </div>
                 {has(this.props, 'meta.file') && has(value, 'answer') &&
-                    <div className='questions__option-panel'>
-                        <div className='questions__file-select'
-                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                            {this.props.vocab.SURVEY.SELECT_FILE}
-                        </div>
-                        <span className='questions__label'>
-                            {this.props.vocab.SURVEY.NO_FILE}
-                        </span>
-                    </div>
+                    <FileForm form={`file-form-${this.props.id}`}
+                        vocab={this.props.vocab}
+                        onFileUploaded={(fileId) => {
+                            this.props.actions.upsertAnswer(
+                                this.props.assessmentId,
+                                this.props.id,
+                                value.answer,
+                                merge(value.meta, { fileId }),
+                                this.props.vocab.ERROR,
+                            );
+                        }}/>
                 }
                 {has(this.props, 'meta.publication') && has(value, 'answer') &&
                     <div className='questions__option-panel'>
