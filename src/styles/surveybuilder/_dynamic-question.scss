@@ -40,7 +40,8 @@ $block-class: 'dynamic-question';
 
         &__icon {
             height: 18px;
-            fill: $font-color;
+
+            @extend .small-icon;
         }
 
         &__weight-input {
