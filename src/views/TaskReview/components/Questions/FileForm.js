@@ -14,19 +14,15 @@ class FileForm extends Component {
                 {
                     this.props.file === undefined &&
                     <div className='file-form__add-form'>
-                        <div className='file-form__file-name'>
-                            <Field name='filename'
-                                className='file-form__file-input'
-                                component='input'
-                                type='text'/>
-                        </div>
-                        <div className='file-form__file-select'>
-                            <Field name={'file'}
-                                className='file-form__file-input'
-                                component={ReduxFormFileInput}/>
-                            {this.props.vocab.SURVEY.SELECT_FILE}
-                        </div>
-                        <button className='file-form__submit'
+                        <Field name='filename'
+                            className='file-form__file-name-input'
+                            component='input'
+                            placeholder={this.props.vocab.SURVEY.FILE_NAME_PLACEHOLDER}
+                            type='text'/>
+                        <Field name={'file'}
+                            className='file-form__file-input'
+                            component={ReduxFormFileInput}/>
+                        <button className='file-form__submit file-form__submit--add'
                             type='submit'>
                             {this.props.vocab.SURVEY.ADD_FILE}
                         </button>
@@ -38,7 +34,7 @@ class FileForm extends Component {
                         <div className='file-form__current-file-name'>
                             {this.props.file.filename}
                         </div>
-                        <button className='file-form__submit'>
+                        <button className='file-form__submit file-form__submit--remove'>
                             {this.props.vocab.SURVEY.REMOVE_FILE}
                         </button>
                     </div>

@@ -350,6 +350,7 @@
         "NO_FILE": "No file chosen",
         "ADD_FILE": "Add File",
         "REMOVE_FILE": "Remove File",
+        "FILE_NAME_PLACEHOLDER": "File name",
         "ADD_LINK": "Add Link",
         "ENTER_PUBLICATION": "Enter Publication Title",
         "AUTHOR": "Author",
