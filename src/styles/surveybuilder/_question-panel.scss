@@ -2,9 +2,10 @@ $block-class: 'question-panel';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $border-color;
+        border: 2px solid $border-color;
         padding: 8px;
         margin-bottom: 24px;
+        border-radius: 2px;
 
         &__header {
             font-size: 1.3em;
@@ -46,7 +47,7 @@ $block-class: 'question-panel';
 
         &__menu {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             border: none;
             padding-top: 8px;
             padding-left: 8px;
