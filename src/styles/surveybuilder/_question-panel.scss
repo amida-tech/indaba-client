@@ -4,6 +4,7 @@ $block-class: 'question-panel';
     .#{$block-class} {
         border: 1px solid $border-color;
         padding: 8px;
+        margin-bottom: 24px;
 
         &__header {
             font-size: 1.3em;
@@ -20,8 +21,8 @@ $block-class: 'question-panel';
             &-number {
                 @extend .small-font;
 
-                margin-bottom: 4px;
-                margin-left: 12px;
+                margin-bottom: 12px;
+                margin-left: 8px;
             }
 
             &-text {
