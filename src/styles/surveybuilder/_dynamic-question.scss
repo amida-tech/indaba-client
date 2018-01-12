@@ -21,6 +21,13 @@ $block-class: 'dynamic-question';
         &__choices-input {
             width: 25em;
             margin-bottom: 8px;
+            outline: none;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
         }
 
         &__masked-button {
