@@ -18,7 +18,7 @@ class SurveyPane extends Component {
                 { comment: { reason: null, text: '' } })),
             assessmentId: this.props.task.assessmentId,
         };
-        const showCommentForm = !(this.props.stage.provideResponses || this.props.stage.allowEdit);
+        const showCommentForm = this.props.stage.discussionParticipation;
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
