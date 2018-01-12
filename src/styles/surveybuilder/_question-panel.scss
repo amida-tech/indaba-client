@@ -53,12 +53,13 @@ $block-class: 'question-panel';
         }
 
         &__optional-controls {
-            margin: 0.3em;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            padding: 0 0 5px 10px;
+            border-top: 1px solid $border-color;
+            margin-top: 24px;
+            padding-top: 16px;
         }
 
         &__additions {

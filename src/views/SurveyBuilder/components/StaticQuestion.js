@@ -62,10 +62,10 @@ class StaticQuestion extends Component {
         }
         return (
             <div className='static-question'>
-                <span className='static-question__instructions'>
+                <div className='static-question__instructions'>
                     {this.props.vocab.SURVEY.QUESTIONS_EXPLAINED[
                         this.props.type.toUpperCase()]}
-                </span>
+                </div>
                 {QuestionDisplay}
             </div>
         );

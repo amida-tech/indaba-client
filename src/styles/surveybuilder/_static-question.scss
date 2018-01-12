@@ -9,6 +9,7 @@ $block-class: 'static-question';
         &__bool {
             &-field {
                 margin-left: 5px;
+                margin-bottom: 24px;
             }
 
             &-label {
@@ -49,6 +50,13 @@ $block-class: 'static-question';
         &__text {
             width: 40%;
             padding: 0.2em;
+        }
+
+        &__instructions {
+            @extend .small-font;
+
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
     }
 }
