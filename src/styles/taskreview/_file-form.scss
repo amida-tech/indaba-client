@@ -1,0 +1,18 @@
+$block-class: 'file-form';
+
+@at-root {
+    .#{$block-class} {
+        &__file-select {
+            border-radius: 2px;
+            padding: 0.2em 1em;
+            display: inline-block;
+            background-color: #d8d8d8;
+            color: $header-font-color;
+            cursor: pointer;
+        }
+
+        &__label {
+            margin-left: 3px;
+        }
+    }
+}

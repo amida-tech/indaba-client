@@ -11,22 +11,22 @@ class FileForm extends Component {
         return (
             <form className='file-form'
                 onSubmit={this.props.handleSubmit}>
-                <div className='questions__file-name'>
+                <div className='file-form__file-name'>
                     <Field name='filename'
-                        className='questions__file-input'
+                        className='file-form__file-input'
                         component='input'
                         type='text'/>
                 </div>
-                <div className='questions__file-select'>
+                <div className='file-form__file-select'>
                     <Field name={'file'}
-                        className='questions__file-input'
+                        className='file-form__file-input'
                         component={ReduxFormFileInput}/>
                     {this.props.vocab.SURVEY.SELECT_FILE}
                 </div>
-                <button className='question__file-submit'
+                <button className='file-form__file-submit'
                     type='submit'>
                 </button>
-                <div className='questions__label'>
+                <div className='file-form__label'>
                     {this.props.vocab.SURVEY.NO_FILE}
                 </div>
             </form>
