@@ -19,9 +19,10 @@ $block-class: 'dynamic-question';
         }
 
         &__choices-input {
-            width: 25em;
+            width: 54em;
             margin-bottom: 8px;
             outline: none;
+            padding: 4px;
 
             &:focus,
             &:active {
