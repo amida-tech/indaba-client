@@ -11,6 +11,34 @@ class QuestionPanel extends Component {
     render() {
         return (
             <div className='question-panel'>
+                <div className= 'question-panel__menu'>
+                <button className='question-panel__menu-button'
+                    onClick={() => this.props.actions.moveQuestion(
+                        this.props.sectionIndex,
+                        this.props.questionIndex,
+                        -1,
+                        this.props.vocab.ERROR)}>
+                        <IonIcon icon='ion-arrow-up-c'
+                            className='question-panel__menu-icon'/>
+                </button>
+                <button className='question-panel__menu-button'
+                    onClick={() => this.props.actions.moveQuestion(
+                        this.props.sectionIndex,
+                        this.props.questionIndex,
+                        1,
+                        this.props.vocab.ERROR)}>
+                        <IonIcon icon='ion-arrow-down-c'
+                            className='question-panel__menu-icon'/>
+                </button>
+                <button className='question-panel__menu-button'
+                    onClick={() => this.props.actions.deleteQuestion(
+                        this.props.sectionIndex,
+                        this.props.questionIndex,
+                    )}>
+                    <IonIcon icon='ion-trash-b'
+                        className='question-panel__menu-icon'/>
+                </button>
+                </div>
                 <div className='question-panel__header'>
                     <div className='question-panel__question'>
                         <div className='question-panel__question-number'>
@@ -26,32 +54,6 @@ class QuestionPanel extends Component {
                                 event.target.value,
                             )} />
                     </div>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.moveQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                            -1,
-                            this.props.vocab.ERROR)}>
-                            <IonIcon icon='ion-arrow-up-c'
-                                className='question-panel__menu-icon'/>
-                    </button>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.moveQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                            1,
-                            this.props.vocab.ERROR)}>
-                            <IonIcon icon='ion-arrow-down-c'
-                                className='question-panel__menu-icon'/>
-                    </button>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.deleteQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                        )}>
-                        <IonIcon icon='ion-trash-b'
-                            className='question-panel__menu-icon'/>
-                    </button>
                 </div>
                 {DYNAMIC.includes(this.props.question.type) ?
                     <DynamicQuestion {...this.props} /> :
