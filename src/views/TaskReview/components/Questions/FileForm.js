@@ -12,7 +12,7 @@ class FileForm extends Component {
             <form className='file-form'
                 onSubmit={this.props.handleSubmit}>
                 {
-                    this.props.fileId === undefined &&
+                    this.props.file === undefined &&
                     <div className='file-form__add-form'>
                         <div className='file-form__file-name'>
                             <Field name='filename'
@@ -33,8 +33,11 @@ class FileForm extends Component {
                     </div>
                 }
                 {
-                    this.props.fileId !== undefined &&
+                    this.props.file !== undefined &&
                     <div className='file-form__remove-form'>
+                        <div className='file-form__current-file-name'>
+                            {this.props.file.filename}
+                        </div>
                         <button className='file-form__submit'>
                             {this.props.vocab.SURVEY.REMOVE_FILE}
                         </button>
@@ -47,15 +50,15 @@ class FileForm extends Component {
 
 FileForm.propTypes = {
     vocab: PropTypes.object.isRequired,
-    fileId: PropTypes.number,
+    file: PropTypes.object,
     onFileUploaded: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
     onSubmit: (values, dispatch, ownProps) => {
-        if (ownProps.fileId === undefined) {
+        if (ownProps.file === undefined) {
             apiService.surveys.postFile(values.file[0], values.filename)
-            .then(({ id }) => ownProps.onFileUploaded(id))
+            .then(({ id }) => ownProps.onFileUploaded({ filename: values.filename, id }))
             .catch(() => toast(ownProps.vocab.ERROR.FILE_UPLOAD,
                 { type: 'error', autoClose: false }));
         } else {

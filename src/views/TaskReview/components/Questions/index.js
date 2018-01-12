@@ -83,13 +83,13 @@ class Questions extends Component {
                     <div className='questions__option-panel'>
                         <FileForm form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
-                            fileId={value.meta.fileId}
-                            onFileUploaded={(fileId) => {
+                            file={get(value, 'meta.file')}
+                            onFileUploaded={(file) => {
                                 this.props.actions.upsertAnswer(
                                     this.props.assessmentId,
                                     this.props.id,
                                     value.answer,
-                                    merge(value.meta, { fileId }),
+                                    merge(value.meta, { file }),
                                     this.props.vocab.ERROR,
                                 );
                             }}
@@ -98,7 +98,7 @@ class Questions extends Component {
                                     this.props.assessmentId,
                                     this.props.id,
                                     value.answer,
-                                    omit(value.meta, 'fileId'),
+                                    omit(value.meta, 'file'),
                                     this.props.vocab.ERROR,
                                 );
                             }}/>
