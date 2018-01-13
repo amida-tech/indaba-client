@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-// import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import CreateSectionPanel from './CreateSectionPanel';
