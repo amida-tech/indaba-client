@@ -6,27 +6,6 @@ class StaticQuestion extends Component {
     render() {
         let QuestionDisplay;
         switch (this.props.type) {
-        case 'bool':
-            QuestionDisplay = (
-                <div className='static-question__bool'>
-                    <label className='static-question__bool-field'>
-                        <input className={'static-question__bool-input'}
-                            type='radio'
-                            disabled={true} />
-                            <span className='static-question__bool-label'>
-                                {this.props.vocab.COMMON_BUTTONS.YES}
-                            </span>
-                    </label>
-                    <label className='static-question__bool-field'>
-                        <input className={'static-question__bool-input'}
-                            type='radio'
-                            disabled={true} />
-                        <span className='static-question__bool-label'>
-                            {this.props.vocab.COMMON_BUTTONS.NO}
-                        </span>
-                    </label>
-                </div>);
-            break;
         case 'bullet':
             QuestionDisplay = (
                 <div className='static-question__bulletgroup'>
