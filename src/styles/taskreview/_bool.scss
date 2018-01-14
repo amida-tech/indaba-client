@@ -1,0 +1,15 @@
+$block-class:'bool';
+
+@at-root {
+    .#{$block-class} {
+        &__field {
+            margin-left: 10px;
+        }
+
+        &__label {
+            @extend .lead-font;
+
+            margin-left: 5px;
+        }
+    }
+}

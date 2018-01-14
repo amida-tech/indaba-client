@@ -4,6 +4,7 @@ import { find, get, has, merge } from 'lodash';
 import { toast } from 'react-toastify';
 import { DateTime } from 'grommet';
 
+import Bool from './Bool';
 import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
@@ -25,6 +26,12 @@ class Questions extends Component {
             this.props.required,
             this.props.vocab.ERROR);
         switch (this.props.type) {
+        case 'bool':
+            QuestionType = (<Bool
+                {...this.props}
+                upsertAnswer={upsertAnswer}
+                answer={value ? value.answer : false} />);
+            break;
         case 'bullet':
             QuestionType = (<Bullet
                 {...this.props}
