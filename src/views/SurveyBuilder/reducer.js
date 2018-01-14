@@ -66,20 +66,16 @@ export default (state = initialState, action) => {
             $unset: ['id'] } } } } } });
     }
     case type.SURVEY_BUILDER_UPSERT_CHOICE: {
-        const newState = update(state, { form: { sections: { [action.sectionIndex]:
-        { questions: { [action.questionIndex]: { choices: {
-            $apply: (choices) => {
-                return choices.map(choice => omit(choice, ['id']));
-            } } } } } } } });
-        console.log(newState);
         if (action.value !== undefined) {
             return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { [action.questionIndex]: { choices: { [action.choiceIndex]: {
-                type: { $set: 'bool' }, text: { $set: action.value } } },
+            { questions: { [action.questionIndex]: { choices: {
+                $apply: choices => choices.map(choice => omit(choice, ['id'])),
+                [action.choiceIndex]: { text: { $set: action.value } } },
                 $unset: ['id'] } } } } } });
         }
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { choices: {
+            $apply: choices => choices.map(choice => omit(choice, ['id'])),
             $splice: [[action.choiceIndex + 1, 0, { text: '' }]] } } },
             $unset: ['id'] } } } });
     }
