@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import CreateSectionPanel from './CreateSectionPanel';
@@ -18,15 +17,25 @@ class CreateSurveyPanel extends Component {
                         disabled={this.props.options.length === 1}
                         onChange={event => this.props.actions.changeSectionView(event.value)}/>
                     <div className='create-survey-panel__accordion-buttons'>
-                        <Button className='create-survey-panel__button'
-                            label={this.props.vocab.PROJECT.EXPAND_ALL}
-                            onClick={() => toast('Coming as soon as James is allowed to sleep.')} />
-                        <Button className='create-survey-panel__button'
-                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}
-                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')} />
+                        <button className='create-survey-panel__button-expand'
+                            onClick={() => toast('Coming as soon as James is allowed to sleep.')}>
+                            {this.props.vocab.PROJECT.EXPAND_ALL} </button>
+
+                        <button className='create-survey-panel__button-collapse'
+                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')}>
+                            {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
+                    <button className='create-survey-panel__survey-save'
+                        onClick={() => this.props.actions.patchSurvey(
+                            this.props.form,
+                            this.props.vocab.SURVEY.SUCCESS,
+                            this.props.vocab.ERROR,
+                        )}>
+                        {this.props.vocab.SURVEY.SAVE_PROGRESS}
+                    </button>
+                </div>
                     <div className='create-survey-panel__instructions'>
                         {this.props.vocab.PROJECT.INSTRUCTIONS}
                         <textarea className='create-survey-panel__instructions-entry'
@@ -35,15 +44,6 @@ class CreateSurveyPanel extends Component {
                             onChange={event =>
                                 this.props.actions.updateInstructions(event.target.value)} />
                     </div>
-                    <Button className='create-survey-panel__save-button'
-                        primary={true}
-                        label={this.props.vocab.SURVEY.SAVE_PROGRESS}
-                        onClick={() => this.props.actions.patchSurvey(
-                            this.props.form,
-                            this.props.vocab.SURVEY.SUCCESS,
-                            this.props.vocab.ERROR,
-                        )} />
-                </div>
                 <div className='create-survey-panel__sections-list'>
                 {this.props.ui.sectionView === -1 ?
                     this.props.form.sections.map((section, sectionIndex) => (
