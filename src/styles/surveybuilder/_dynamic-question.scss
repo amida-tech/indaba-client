@@ -11,31 +11,35 @@ $block-class: 'dynamic-question';
             flex-direction: column;
         }
 
-        &__choices-fields {
+        &-group {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
 
-        &__choices-input {
-            width: 40em;
-            margin-bottom: 8px;
-            outline: none;
-            padding: 4px;
-
-            &:focus,
-            &:active {
-                border: 2px solid $brand-color;
-                outline: none;
+            &__choices-fields {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
             }
-        }
 
-        &__masked-button {
-            background-color: Transparent;
-            border: none;
-            padding: 0;
-            margin-left: 2px;
-            margin-bottom: -5px;
+            &__choices-input {
+                width: 40em;
+                margin-bottom: 8px;
+                outline: none;
+                padding: 4px;
+
+                &:focus,
+                &:active {
+                    border: 2px solid $brand-color;
+                    outline: none;
+                }
+            }
+
+            &__masked-button {
+                background-color: Transparent;
+                border: none;
+                padding: 0;
+                margin-left: 2px;
+                margin-bottom: -5px;
+            }
         }
 
         &__icon {
