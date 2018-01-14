@@ -34,8 +34,6 @@ export const UserReducer = (state = initialState, action) => {
     switch (action.type) {
     case type.POST_NEW_USER_SUCCESS:
         return update(state, { users: { $push: [action.user] } });
-    case type.NOTIFY_USER:
-        return state;
     case type.GET_PROFILE_SUCCESS:
         return update(state, { profile: { $set: action.profile } });
     case type.GET_USERS_SUCCESS:

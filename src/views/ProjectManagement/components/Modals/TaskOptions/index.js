@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 import { find, intersection } from 'lodash';
+import { toast } from 'react-toastify';
 
+import systemMessageService from '../../../../../services/api/systemMessages';
 import { renderName } from '../../../../../utils/User';
 import Modal from '../../../../../common/components/Modal';
 import TaskOptionsForm from './TaskOptionsForm';
@@ -53,15 +55,16 @@ class TaskOptionsModal extends Component {
                             );
                         } else if (values.choice === 'force') {
                             this.props.actions.forceTaskCompletion(
-                                this.props.task.id,
+                                this.props.task.productId,
+                                this.props.task.uoaId,
+                                this.props.vocab.ERROR,
                             );
                         }
                         if (values.notify === true) {
-                            this.props.actions.notifyUser(
-                                this.props.task.userId,
-                                values.message,
-                                this.props.profile.id,
-                            );
+                            systemMessageService.send({
+                                to: currentUser.email,
+                                message: values.message,
+                            }).catch(() => toast(this.props.vocab.ERROR.NOTIFY_FAILURE));
                         }
                         this.props.actions.closeTaskOptionsModal();
                     }

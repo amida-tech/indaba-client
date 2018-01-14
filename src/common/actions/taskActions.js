@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { find, pickBy, identity } from 'lodash';
+import { pickBy, identity } from 'lodash';
 import { push } from 'react-router-redux';
 
 import { getAnswers } from '../actions/surveyActions';
@@ -78,12 +78,11 @@ export function assignTask(userId, slot, project, errorMessages) {
 
     const surveyRequestBody = {
         name: slot.stageData.title,
-        stage: slot.stageData.position, // May eventually change to stepId.
+        stage: slot.stageData.position,
         surveys: [{
             id: project.surveyId,
         }],
-        group: find(project.userGroups, group =>
-            group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+        group: `${project.productId}-${slot.task.uoaId}`,
     };
 
     const requestBody = {
@@ -109,7 +108,7 @@ export function assignTask(userId, slot, project, errorMessages) {
                         requestBody,
                         (taskErr, taskResp) => {
                             dispatch(!taskErr && taskResp ?
-                                _postTaskSuccess(userId, slot, taskResp) :
+                                _postTaskSuccess(taskResp) :
                                 _reportTasksError(errorMessages.TASK_REQUEST));
                         },
                     );
@@ -129,6 +128,20 @@ export function moveTask(productId, uoaId, errorMessages) {
                     dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
                 } else {
                     dispatch(push('/task'));
+                }
+            },
+        );
+    };
+}
+
+export function forceTaskCompletion(productId, uoaId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.forceMoveTask(
+            productId,
+            uoaId,
+            (workflowErr) => {
+                if (workflowErr) {
+                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
                 }
             },
         );
@@ -190,16 +203,10 @@ function _getTasksByUserSuccess(userId, tasks) {
     };
 }
 
-function _postTaskSuccess(userId, slot, taskResp) {
+function _postTaskSuccess(taskResp) {
     return {
         type: actionTypes.POST_TASK_SUCCESS,
-        task: {
-            id: taskResp.id,
-            userIds: [userId],
-            stepId: slot.task.stepId,
-            uoaId: slot.task.uoaId,
-            endDate: slot.stageData.endDate,
-        },
+        task: taskResp,
     };
 }
 
