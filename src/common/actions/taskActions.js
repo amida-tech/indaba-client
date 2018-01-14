@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { find, pickBy, identity } from 'lodash';
+import { pickBy, identity } from 'lodash';
 import { push } from 'react-router-redux';
 
 import { getAnswers } from '../actions/surveyActions';
@@ -78,12 +78,11 @@ export function assignTask(userId, slot, project, errorMessages) {
 
     const surveyRequestBody = {
         name: slot.stageData.title,
-        stage: slot.stageData.position, // May eventually change to stepId.
+        stage: slot.stageData.position,
         surveys: [{
             id: project.surveyId,
         }],
-        group: find(project.userGroups, group =>
-            group.id === slot.stageData.userGroups[0]).title, // Not sure if important.
+        group: `${project.productId}-${slot.task.uoaId}`,
     };
 
     const requestBody = {
