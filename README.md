@@ -46,6 +46,6 @@ Login with `test-adm@mail.net` / `testadmin`
 
 ## Building Dockerfile in Linux
 From the base directory of the project run `docker build --tag indaba-client .`
-To run the image `docker run --link indaba_be:indaba_be -e API_HTTP_URL=http://<address to be/>:3005 -e API_HTTPS_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
+To run the image `docker run --link indaba_be:indaba_be -e API_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
 
-operationally it is not clear if API_HTTP_URL is the URL used to connect from the indaba client _server_ or from the indaba client _browser_. if browser then the value would be the external address.  if server then the value should be "indaba_be" (the name we linked the backend docker instance as to the client docker instance)
+operationally it is not clear if API_URL is the URL used to connect from the indaba client _server_ or from the indaba client _browser_. if browser then the value would be the external address.  if server then the value should be "indaba_be" (the name we linked the backend docker instance as to the client docker instance)

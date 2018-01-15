@@ -1,7 +1,7 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.SURVEY_API_HTTP_URL;
+const rootURI = config.SURVEY_API_URL;
 
 const surveys = {
     getSurveys: (callback) => { // Coming soon.

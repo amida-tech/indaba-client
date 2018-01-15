@@ -1,7 +1,7 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.MESSAGING_API_HTTPS_URL;
+const rootURI = config.MESSAGING_API_URL;
 
 const messaging = {
     send: (message, callback) => {

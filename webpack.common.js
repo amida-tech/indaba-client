@@ -64,14 +64,10 @@ module.exports = {
         new Dotenv(),
         new webpack.DefinePlugin({
             'process.env': {
-                API_HTTP_URL: JSON.stringify(process.env.API_HTTP_URL),
-                API_HTTPS_URL: JSON.stringify(process.env.API_HTTPS_URL),
-                AUTH_API_HTTPS_URL: JSON.stringify(process.env.AUTH_API_HTTPS_URL),
-                AUTH_API_HTTP_URL: JSON.stringify(process.env.AUTH_API_HTTP_URL),
-                SURVEY_API_HTTP_URL: JSON.stringify(process.env.SURVEY_API_HTTP_URL),
-                SURVEY_API_HTTPS_URL: JSON.stringify(process.env.SURVEY_API_HTTPS_URL),
-                MESSAGING_API_HTTP_URL: JSON.stringify(process.env.MESSAGING_API_HTTP_URL),
-                MESSAGING_API_HTTPS_URL: JSON.stringify(process.env.MESSAGING_API_HTTPS_URL),
+                API_URL: JSON.stringify(process.env.API_URL),
+                AUTH_API_URL: JSON.stringify(process.env.AUTH_API_URL),
+                SURVEY_API_URL: JSON.stringify(process.env.SURVEY_API_URL),
+                MESSAGING_API_URL: JSON.stringify(process.env.MESSAGING_API_URL),
                 REALM: JSON.stringify(process.env.REALM),
             },
         }),
