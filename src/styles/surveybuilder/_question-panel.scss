@@ -6,6 +6,7 @@ $block-class: 'question-panel';
         padding: 8px;
         margin-bottom: 24px;
         border-radius: 2px;
+        background-color: #fff;
 
         &__header {
             font-size: 1.3em;
@@ -27,8 +28,8 @@ $block-class: 'question-panel';
             }
 
             &-text {
-                @extend .lead-font;
-
+                color: #000;
+                font-size: 16px;
                 overflow: hidden;
                 background-color: #fafafa;
                 resize: none;

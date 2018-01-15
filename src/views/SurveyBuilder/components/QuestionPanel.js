@@ -17,16 +17,16 @@ class QuestionPanel extends Component {
                         <div className='question-panel__question-number'>
                         {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                         </div>
-                    <div className='question-panel__top-right'>
-                        <button className='question-panel__menu-button'
-                            onClick={() => this.props.actions.moveQuestion(
-                                this.props.sectionIndex,
-                                this.props.questionIndex,
-                                -1,
-                                this.props.vocab.ERROR)}>
-                                <IonIcon icon='ion-arrow-up-c'
-                                    className='question-panel__menu-icon'/>
-                        </button>
+                        <div className='question-panel__top-right'>
+                            <button className='question-panel__menu-button'
+                                onClick={() => this.props.actions.moveQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    -1,
+                                    this.props.vocab.ERROR)}>
+                                    <IonIcon icon='ion-arrow-up-c'
+                                        className='question-panel__menu-icon'/>
+                            </button>
                             <button className='question-panel__menu-button'
                                 onClick={() => this.props.actions.moveQuestion(
                                     this.props.sectionIndex,
