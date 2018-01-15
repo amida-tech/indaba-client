@@ -1,10 +1,10 @@
 import devConfig from './development';
-import stagingConfig from './staging';
+import productionConfig from './production';
 
 let config = devConfig; // eslint-disable-line prefer-const, import/no-mutable-exports
 
 if (process.env.NODE_ENV === 'production') {
-    config = stagingConfig;
+    config = productionConfig;
 }
 
 export default config;
