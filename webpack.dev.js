@@ -15,6 +15,27 @@ module.exports = merge(common, {
         historyApiFallback: true,
     },
     devtool: 'cheap-module-eval-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.(css|scss)$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: ['./node_modules'],
+                        },
+                    },
+                ],
+            },
+        ],
+    },
     plugins: [
         StyleLintPluginConfig,
     ],

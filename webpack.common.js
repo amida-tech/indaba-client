@@ -32,23 +32,6 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.(css|scss)$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            includePaths: ['./node_modules'],
-                        },
-                    },
-                ],
-            },
-            {
                 test: /\.(png|woff|woff2|eot|ttf)$/,
                 loader: 'url-loader?limit=100000',
             },
