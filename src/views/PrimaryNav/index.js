@@ -10,6 +10,7 @@ import { getUsers, getProfile } from '../../common/actions/userActions';
 import { getProjects } from '../../common/actions/projectActions';
 import CreateNewProject from './CreateNewProject';
 
+import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
 
@@ -34,7 +35,7 @@ class PrimaryNavContainer extends Component {
 
                 <div className='primary-nav__left'>
                     <Link to={'/project'}>
-                        <img src="/src/assets/indaba-logo-white.svg"
+                        <img src={IndabaLogoWhite}
                             className="primary-nav__indaba-logo"/>
                     </Link>
 
