@@ -9,43 +9,38 @@ $block-class: 'dynamic-question';
         &__choices {
             display: flex;
             flex-direction: column;
+
+            &-fields {
+                display: flex;
+                justify-content: space-between;
+                padding: 4px;
+                margin-bottom: 8px;
+            }
+
+            &-group {
+                display: flex;
+            }
+
+            &__input {
+                padding: 4px;
+                width: 50vw;
+            }
         }
 
-        &-group {
-            display: flex;
-
-            &__choices-fields {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            &__choices-input {
-                width: 40em;
-                margin-bottom: 8px;
-                outline: none;
-                padding: 4px;
-
-                &:focus,
-                &:active {
-                    border: 2px solid $brand-color;
-                    outline: none;
-                }
-            }
-
-            &__masked-button {
-                background-color: Transparent;
-                border: none;
-                padding: 0;
-                margin-left: 2px;
-                margin-bottom: -5px;
-            }
+        &__masked-button {
+            background-color: Transparent;
+            border: none;
+            padding: 0;
+            margin-left: 2px;
+            margin-bottom: -5px;
         }
 
         &__icon {
             height: 18px;
 
             @extend .small-icon;
+
+            fill: lighten($header-font-color, 10%);
         }
 
         &__weight-input {

@@ -5,8 +5,9 @@ $block-class: 'create-section-panel';
         border-top: 1px solid $border-color;
 
         &__section-name {
-            @extend .med-font;
+            @extend .large-font;
 
+            color: #333;
             border-top: none;
             border-left: none;
             border-right: none;

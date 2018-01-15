@@ -18,7 +18,7 @@ class DynamicQuestion extends Component {
                             key={this.props.sectionIndex + this.props.questionIndex +
                                 this.props.question.type + index}>
                             <div className='dynamic-question__choices-group'>
-                                <input className='dynamic-question__choices-input'
+                                <input className='dynamic-question__choices__input'
                                     type='text'
                                     placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
                                     value={choice.text || ''}
