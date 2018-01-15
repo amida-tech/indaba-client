@@ -10,20 +10,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body',
 });
 
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-
-const StyleLintPluginConfig = new StyleLintPlugin({
-    files: 'src/styles/**/*.scss',
-});
-
 module.exports = {
-    devServer: {
-        port: 3000,
-        host: '0.0.0.0',
-        disableHostCheck: true,
-        historyApiFallback: true,
-    },
-    devtool: 'cheap-module-eval-source-map',
     entry: './src/index.js',
     output: {
         path: path.resolve('dist'),
@@ -70,7 +57,6 @@ module.exports = {
     },
     plugins: [
         HtmlWebpackPluginConfig,
-        StyleLintPluginConfig,
         new Dotenv(),
         new webpack.DefinePlugin({
             'process.env': {
