@@ -68,7 +68,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "react-scripts build",
+    "build": "webpack --config webpack.prod.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "eslint": "./node_modules/.bin/eslint --fix src",
