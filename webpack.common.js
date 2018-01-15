@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -62,14 +61,5 @@ module.exports = {
     plugins: [
         HtmlWebpackPluginConfig,
         new Dotenv(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                API_URL: JSON.stringify(process.env.API_URL),
-                AUTH_API_URL: JSON.stringify(process.env.AUTH_API_URL),
-                SURVEY_API_URL: JSON.stringify(process.env.SURVEY_API_URL),
-                MESSAGING_API_URL: JSON.stringify(process.env.MESSAGING_API_URL),
-                REALM: JSON.stringify(process.env.REALM),
-            },
-        }),
     ],
 };
