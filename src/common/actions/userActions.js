@@ -106,7 +106,7 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
     };
 
     return (dispatch) => {
-        apiService.users.postNewUser(
+        apiService.users.inviteNewUser(
             requestBody,
             (userErr, userResp) => {
                 if (!userErr && userResp) {
