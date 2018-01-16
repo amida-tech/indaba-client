@@ -1,0 +1,7 @@
+$block-class: 'existing-questions';
+
+@at-root {
+    .#{$block-class} {
+        margin: 1em;
+    }
+}
