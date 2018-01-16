@@ -6,8 +6,6 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'react-select/dist/react-select.css';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
@@ -17,6 +15,8 @@ import SliderMonitor from 'redux-slider-monitor';
 import { createLogger } from 'redux-logger';
 import { createDevTools } from 'redux-devtools';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-select/dist/react-select.css';
 import './styles/main.scss';
 
 /** User Imports **/
