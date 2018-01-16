@@ -103,6 +103,10 @@ export default (state = initialState, action) => {
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $set: tempArray } } } } });
     }
+    case type.SURVEY_BUILDER_UPSERT_WEIGHT:
+        return update(state, { form: { sections: { [action.sectionIndex]:
+        { questions: { [action.questionIndex]: { choices: { [action.choiceIndex]: {
+            weight: { $set: action.value } } } } } } } } });
     case type.SURVEY_BUILDER_RESET_META:
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { meta:
