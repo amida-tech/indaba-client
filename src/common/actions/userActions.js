@@ -8,10 +8,18 @@ export function getProfile(errorMessages) {
         apiService.users.getProfile(
             (profileErr, profileResp) => {
                 dispatch((!profileErr && profileResp) ?
-                    _getProfileSuccess(profileResp) :
+                    getProfileSuccess(profileResp) :
                     _reportUserError(errorMessages.FETCH_PROFILE));
             },
         );
+    };
+}
+
+
+export function getProfileSuccess(profile) {
+    return {
+        type: actionTypes.GET_PROFILE_SUCCESS,
+        profile,
     };
 }
 
@@ -137,6 +145,7 @@ export function deleteUser(userId, errorMessages) {
     };
 }
 
+// Private
 function _deleteUser() {
     return {
         type: actionTypes.DELETE_USER,
@@ -153,14 +162,6 @@ function _deleteUserSuccess(userId) {
     return {
         type: actionTypes.DELETE_USER_SUCCESS,
         userId,
-    };
-}
-
-// private
-function _getProfileSuccess(profile) {
-    return {
-        type: actionTypes.GET_PROFILE_SUCCESS,
-        profile,
     };
 }
 
