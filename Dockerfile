@@ -4,8 +4,10 @@ FROM node:6.11
 copy ./ /indaba
 
 WORKDIR /indaba
-#run yarn
-RUN "yarn"
+# install dependencies
+RUN yarn
+# build
+RUN yarn build
 
 EXPOSE 3000
 
