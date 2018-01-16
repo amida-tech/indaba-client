@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { assign, cloneDeep, omit } from 'lodash';
+import { assign, cloneDeep, has, omit } from 'lodash';
 import { toast } from 'react-toastify';
 
 import * as type from './actionTypes';
@@ -60,10 +60,16 @@ export default (state = initialState, action) => {
                 { $merge: action.value } } },
                 $unset: ['id'] } } } });
         }
-        return update(state, { form: { sections: { [action.sectionIndex]:
+        const newState = update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { [action.field]:
             { $set: action.value },
             $unset: ['id'] } } } } } });
+        if (has(state.form.sections[action.sectionIndex].questions[action.questionIndex], 'choices')) {
+            return update(newState, { form: { sections: { [action.sectionIndex]:
+            { questions: { [action.questionIndex]: {
+                choices: { $apply: choices => choices.map(choice => omit(choice, ['id'])) } } } } } } });
+        }
+        return newState;
     }
     case type.SURVEY_BUILDER_UPSERT_CHOICE: {
         if (action.value !== undefined) {
