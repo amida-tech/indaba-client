@@ -41,7 +41,7 @@
         "DISAGREE": "Disagreed"
     },
     "TOAST": {
-        "EXISTS": "The user is already in the system and has been added to the project for you.",
+        "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
