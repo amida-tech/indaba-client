@@ -23,7 +23,15 @@ import './styles/main.scss';
 import reducers from './reducers';
 import routes from './routes';
 
-const DevTools = createDevTools(
+const DEVELOP = process.env.NODE_ENV === 'develop';
+
+let middleware = [routerMiddleware(browserHistory), thunk];
+if (DEVELOP) {
+    middleware = [...middleware, createLogger()];
+}
+
+const DevTools = DEVELOP ?
+createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
@@ -35,23 +43,17 @@ const DevTools = createDevTools(
       <SliderMonitor />
       <ChartMonitor />
   </DockMonitor>,
+) :
+null;
+
+const enhancer = DEVELOP ?
+compose(applyMiddleware(...middleware), DevTools.instrument()) :
+applyMiddleware(...middleware);
+
+const store = createStore(
+    reducers,
+    enhancer,
 );
-
-const store = configureStore();
-
-function configureStore() {
-    return createStore(
-        reducers,
-        compose(
-          applyMiddleware(
-            routerMiddleware(browserHistory),
-            createLogger(),
-            thunk,
-          ),
-          DevTools.instrument(),
-        ), // Middleware
-    );
-}
 
 const history = syncHistoryWithStore(browserHistory, store, {
     selectLocationState: () => store.getState().routing,
@@ -63,7 +65,10 @@ ReactDOM.render(
           <Router history={history}>
               {routes}
           </Router>
-          <DevTools />
+          {
+              DEVELOP &&
+              <DevTools />
+          }
       </div>
     </Provider>,
     document.getElementById('root'),
