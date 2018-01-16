@@ -48,6 +48,7 @@ $block-class: 'dynamic-question';
             text-align: center;
             color: $lead-font-color;
             outline: none;
+            flex-shrink: 0;
 
             &:focus,
             &:active {
