@@ -43,9 +43,5 @@ $block-class: 'invite-user-form';
                 background-color: darken($font-color, 10);
             }
         }
-
-        input::-webkit-input-placeholder {
-            color: #333;
-        }
     }
 }
