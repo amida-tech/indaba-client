@@ -30,8 +30,8 @@ COPY * /usr/src/app/
 RUN yarn build
 
 RUN rm -rf /usr/share/nginx/html/* || true
-RUN ls
 RUN chmod -R 777 ./dist/*
 RUN cp -r ./dist/* /usr/share/nginx/html/
 
+RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/nginx.conf
