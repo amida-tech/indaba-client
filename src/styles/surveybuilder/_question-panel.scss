@@ -2,39 +2,56 @@ $block-class: 'question-panel';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $border-color;
-        margin: 2px;
+        border: 2px solid $border-color;
+        padding: 8px;
+        margin-bottom: 24px;
+        border-radius: 2px;
+        background-color: #fff;
 
         &__header {
-            margin: 5px;
             font-size: 1.3em;
-            min-width: 50vw;
             display: flex;
             justify-content: space-between;
         }
 
         &__question {
+            display: flex;
+            flex-direction: column;
             padding: 8px;
             width: 100%;
-        }
 
-        &__question-text {
-            width: 90%;
-            background-color: #fafafa;
-            resize: none;
-            outline: none;
-            border: 1px solid $border-color;
-            padding: 8px;
+            &-number {
+                @extend .small-font;
 
-            &:focus,
-            &:active {
-                border: 2px solid $brand-color;
+                margin-bottom: 12px;
+                margin-left: 8px;
+            }
+
+            &-text {
+                color: #000;
+                font-size: 16px;
+                overflow: hidden;
+                background-color: #fafafa;
+                resize: none;
                 outline: none;
+                border: 1px solid $border-color;
+                border-radius: 2px;
+                padding: 8px;
+
+                &:focus,
+                &:active {
+                    border: 2px solid $brand-color;
+                    outline: none;
+                }
             }
         }
 
         &__menu {
-            border: 1px solid $border-color;
+            display: flex;
+            justify-content: space-between;
+            border: none;
+            padding-top: 8px;
+            padding-left: 8px;
         }
 
         &__menu-button {
@@ -42,13 +59,18 @@ $block-class: 'question-panel';
             border: none;
         }
 
+        &__menu-icon {
+            @extend .small-icon;
+        }
+
         &__optional-controls {
-            margin: 0.3em;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            padding: 0 0 5px 10px;
+            border-top: 1px solid $border-color;
+            margin-top: 24px;
+            padding-top: 16px;
         }
 
         &__additions {
@@ -60,7 +82,7 @@ $block-class: 'question-panel';
         &__checkboxes {
             margin-right: 10px;
             vertical-align: bottom;
-            background-color: #fafafa;
+            background-color: #fff;
 
             input {
                 margin-bottom: 6px;

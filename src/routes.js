@@ -13,64 +13,55 @@ import { PMAllUsersContainer } from './views/PMAllUsers';
 import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
+import Activate from './views/Activate/components';
 import App from './views/App';
 
 export default (
     <Route
-        key='/'
         path='/'
         component={App}
         indexRoute={DashboardContainer}>
         <Route
-            key='/project'
             path='/project'
             component={PMDashboard}/>
         <Route
-            key='/profile'
             path='/profile'
             component={ProfileContainer}/>
         <Route
-            key='/task(/:userId)'
             path='/task(/:userId)'
             component={UserDashboard}/>
         <Route
-            key='/project/:projectId'
             path='/project/:projectId'
             component={ProjectManagementContainer}/>
         <Route
-            key='/task-review/:projectId/:taskId'
             path='/task-review/:projectId/:taskId'
             component={TaskReview}/>
         <Route
-            key='/login(/:realm)'
             path='/login(/:realm)'
             component={LoginContainer}/>
         <Route
-            key='/create-new-project'
             path='/create-new-project'
             component={CreateProjectWizard}/>
         <Route
-            key='/users'
             path='/users'
             component={PMAllUsersContainer}/>
         <Route
-            key='/subjects'
             path='/subjects'
             component={PMAllSubjectsContainer}/>
         <Route
-            key='/messages'
             path='/messages'
             component={MessagesContainer}
             indexRoute={Inbox}>
             <IndexRoute component={Inbox}/>
             <Route
-                key='new'
                 path='new'
                 component={MessageContainer}/>
             <Route
-                key=':id'
                 path=':id'
                 component={MessageContainer}/>
         </Route>
+        <Route
+            path='/activate/:realm/:token'
+            component={Activate} />
     </Route>
 );

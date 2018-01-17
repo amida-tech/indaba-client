@@ -18,7 +18,7 @@ class DynamicQuestion extends Component {
                             key={this.props.sectionIndex + this.props.questionIndex +
                                 this.props.question.type + index}>
                             <div className='dynamic-question__choices-group'>
-                                <input className='dynamic-question__choices-input'
+                                <input className='dynamic-question__choices__input'
                                     type='text'
                                     placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
                                     value={choice.text || ''}
@@ -65,12 +65,12 @@ class DynamicQuestion extends Component {
         }
         return (
             <div className='dynamic-question'>
-                <span className='dynamic-question__instructions'>
+                <div className='dynamic-question__instructions'>
                     {get(this.props.question, 'meta.subType') === 'dropdown' ?
                         this.props.vocab.SURVEY.QUESTIONS_EXPLAINED.DROPDOWN :
                         this.props.vocab.SURVEY.QUESTIONS_EXPLAINED[
                             this.props.question.type.toUpperCase()]}
-                </span>
+                </div>
                 {QuestionDisplay}
             </div>
         );

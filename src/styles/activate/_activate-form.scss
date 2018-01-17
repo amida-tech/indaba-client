@@ -1,0 +1,45 @@
+$block-class: 'activate-form';
+
+@at-root {
+    .#{$block-class} {
+        text-align: center;
+        width: 30em;
+
+        &__label {
+            padding-bottom: 0.25em;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            @extend .small-font;
+        }
+
+        &__field {
+            border: 1px solid $border-color;
+            padding: 0.5em 1em;
+            margin-left: 8px;
+            width: 20em;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
+        }
+
+        &__submit {
+            margin: 1em 0;
+            letter-spacing: 0.3px;
+            font-weight: 400;
+            color: $font-inverse-color;
+            background-color: nth($brand-neutral-colors, 2);
+            border: none;
+            border-radius: 2px;
+            padding: 4px 8px;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+            }
+        }
+    }
+}
