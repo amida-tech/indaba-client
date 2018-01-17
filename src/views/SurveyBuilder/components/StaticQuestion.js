@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DateTime } from 'grommet';
 
 class StaticQuestion extends Component {
     render() {
@@ -21,7 +20,8 @@ class StaticQuestion extends Component {
             break;
         case 'date':
             QuestionDisplay = (
-                <DateTime className='static-question__date'
+                <input className='static-question__date'
+                    type='date'
                     format='MM/DD/YYYY'
                     disabled={true} />);
             break;

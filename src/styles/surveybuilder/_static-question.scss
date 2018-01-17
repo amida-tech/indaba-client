@@ -36,9 +36,10 @@ $block-class: 'static-question';
         }
 
         &__date {
-            width: 20%;
+            width: 15%;
             padding: 0.2em;
             border: 1px solid #adadad;
+            text-transform: uppercase;
         }
 
         &__integer {
