@@ -25,7 +25,7 @@ class QuestionContainer extends Component {
                             || this.props.stage.discussionParticipation}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
-                    {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
+                    {this.props.stage.discussionParticipation &&
                         <ReviewPane
                             users={this.props.users}
                             profile={this.props.profile}

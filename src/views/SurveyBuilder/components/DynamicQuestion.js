@@ -18,7 +18,7 @@ class DynamicQuestion extends Component {
                             key={this.props.sectionIndex + this.props.questionIndex +
                                 this.props.question.type + index}>
                             <div className='dynamic-question__choices-group'>
-                                <input className='dynamic-question__choices-input'
+                                <input className='dynamic-question__choices__input'
                                     type='text'
                                     placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
                                     value={choice.text || ''}
@@ -50,7 +50,14 @@ class DynamicQuestion extends Component {
                             </div>
                             {has(this.props.question, 'meta.weight') &&
                                 <input className='dynamic-question__weight-input'
-                                    placeholder={0} />
+                                    placeholder={0}
+                                    defaultValue={get(this.props.question, `choices[${index}].weight`, undefined)}
+                                    onBlur={event => this.props.actions.upsertWeight(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        index,
+                                        event.target.value,
+                                        )} />
                             }
                         </div>,
                             )}
@@ -58,12 +65,12 @@ class DynamicQuestion extends Component {
         }
         return (
             <div className='dynamic-question'>
-                <span className='dynamic-question__instructions'>
+                <div className='dynamic-question__instructions'>
                     {get(this.props.question, 'meta.subType') === 'dropdown' ?
                         this.props.vocab.SURVEY.QUESTIONS_EXPLAINED.DROPDOWN :
                         this.props.vocab.SURVEY.QUESTIONS_EXPLAINED[
                             this.props.question.type.toUpperCase()]}
-                </span>
+                </div>
                 {QuestionDisplay}
             </div>
         );
