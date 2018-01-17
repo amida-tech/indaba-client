@@ -24,6 +24,12 @@ $block-class: 'dynamic-question';
             &__input {
                 padding: 4px;
                 width: 50vw;
+
+                &:focus,
+                &:active {
+                    border: 2px solid $brand-color;
+                    outline: none;
+                }
             }
         }
 
