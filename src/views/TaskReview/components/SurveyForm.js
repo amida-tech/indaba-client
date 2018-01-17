@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import { omit, compact } from 'lodash';
+import { get, omit, compact } from 'lodash';
 
 class SurveyForm extends Component { // TODO: INBA-450
     render() {
@@ -32,11 +32,12 @@ export default reduxForm({
     enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
         const answers = compact(values.answers.map((answer) => {
-            if (answer.comment.reason === null ||
-                (answer.comment.reason === 'disagree' && answer.comment.text === '')) {
+            if (get(answer, 'comment.reason') === undefined) {
+                return null;
+            } else if (answer.comment.reason === 'disagree' && answer.comment.text === undefined) {
                 return null;
             }
-            return (Object.assign({}, omit(answer, ['comment']), { comments: [answer.comment] }));
+            return omit(answer, ['comment.id', 'comment.userId', 'comment.language', 'commentHistory']);
         }));
         ownProps.actions.postReview(
             values.assessmentId,

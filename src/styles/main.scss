@@ -67,6 +67,7 @@
 
 // Survey Builder view
 @import './surveybuilder/add-question-panel.scss';
+@import './surveybuilder/existing-question.scss';
 @import './surveybuilder/new-questions.scss';
 @import './surveybuilder/survey-builder.scss';
 @import './surveybuilder/create-survey-panel.scss';
@@ -117,7 +118,6 @@
 @import './messages/addressee.scss';
 @import './messages/collapsed-message.scss';
 //Task Review
-@import './taskreview/bool.scss';
 @import './taskreview/bullet.scss';
 @import './taskreview/choice.scss';
 @import './taskreview/choices.scss';

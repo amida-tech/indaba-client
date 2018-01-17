@@ -11,11 +11,44 @@ class QuestionPanel extends Component {
     render() {
         return (
             <div className='question-panel'>
+                <div className='question-panel__top'>
+                    <div className= 'question-panel__menu'>
+
+                        <div className='question-panel__question-number'>
+                        {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
+                        </div>
+                        <div className='question-panel__top-right'>
+                            <button className='question-panel__menu-button'
+                                onClick={() => this.props.actions.moveQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    -1,
+                                    this.props.vocab.ERROR)}>
+                                    <IonIcon icon='ion-arrow-up-c'
+                                        className='question-panel__menu-icon'/>
+                            </button>
+                            <button className='question-panel__menu-button'
+                                onClick={() => this.props.actions.moveQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    1,
+                                    this.props.vocab.ERROR)}>
+                                    <IonIcon icon='ion-arrow-down-c'
+                                        className='question-panel__menu-icon'/>
+                            </button>
+                            <button className='question-panel__menu-button'
+                                onClick={() => this.props.actions.deleteQuestion(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                )}>
+                                <IonIcon icon='ion-trash-b'
+                                    className='question-panel__menu-icon'/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div className='question-panel__header'>
                     <div className='question-panel__question'>
-                        <span className='question-panel__question-number'>
-                            {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
-                        </span>
                         <textarea className='question-panel__question-text'
                             placeholder={this.props.vocab.SURVEY.PHRASE_QUESTION}
                             value={this.props.question.text || ''}
@@ -26,32 +59,6 @@ class QuestionPanel extends Component {
                                 event.target.value,
                             )} />
                     </div>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.moveQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                            -1,
-                            this.props.vocab.ERROR)}>
-                            <IonIcon icon='ion-arrow-up-c'
-                                className='question-panel__menu-icon'/>
-                    </button>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.moveQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                            1,
-                            this.props.vocab.ERROR)}>
-                            <IonIcon icon='ion-arrow-down-c'
-                                className='question-panel__menu-icon'/>
-                    </button>
-                    <button className='question-panel__menu-button'
-                        onClick={() => this.props.actions.deleteQuestion(
-                            this.props.sectionIndex,
-                            this.props.questionIndex,
-                        )}>
-                        <IonIcon icon='ion-trash-b'
-                            className='question-panel__menu-icon'/>
-                    </button>
                 </div>
                 {DYNAMIC.includes(this.props.question.type) ?
                     <DynamicQuestion {...this.props} /> :

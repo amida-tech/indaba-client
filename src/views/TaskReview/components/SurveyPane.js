@@ -14,8 +14,7 @@ class SurveyPane extends Component {
 
     render() {
         const initialValues = {
-            answers: this.props.answers.map(answer => Object.assign({}, answer,
-                { comment: { reason: null, text: '' } })),
+            answers: this.props.answers,
             assessmentId: this.props.task.assessmentId,
         };
         const showCommentForm = this.props.stage.discussionParticipation;

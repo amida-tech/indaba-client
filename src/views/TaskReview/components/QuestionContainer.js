@@ -31,8 +31,8 @@ class QuestionContainer extends Component {
                             profile={this.props.profile}
                             questionIndex={this.props.questionIndex}
                             question={this.props.question}
-                            comments={find(this.props.answers, answer =>
-                                answer.questionId === this.props.question.id).comments || []}
+                            answer={find(this.props.answers, answer =>
+                                answer.questionId === this.props.question.id) || {}}
                             assessmentId={this.props.task.assessmentId}
                             answers={this.props.answers}
                             displayMode={this.props.taskDisabled}
