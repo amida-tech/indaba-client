@@ -1,6 +1,5 @@
 import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
-import getOutsidePath from '../../utils/getOutsidePath';
 
 const users = {
     getProfile: (callback) => {
@@ -28,7 +27,7 @@ const users = {
         requests.apiDeleteRequest(getFullPath(`users/${id}`), {}, callback);
     },
     activate: (requestBody, realm, token, callback) => {
-        requests.apiPostRequest(getOutsidePath(realm, `users/activate/${token}`), requestBody, callback);
+        requests.apiPostRequest(getFullPath(`users/activate/${token}`, realm), requestBody, callback);
     },
 };
 
