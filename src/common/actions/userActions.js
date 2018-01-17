@@ -8,10 +8,18 @@ export function getProfile(errorMessages) {
         apiService.users.getProfile(
             (profileErr, profileResp) => {
                 dispatch((!profileErr && profileResp) ?
-                    _getProfileSuccess(profileResp) :
+                    getProfileSuccess(profileResp) :
                     _reportUserError(errorMessages.FETCH_PROFILE));
             },
         );
+    };
+}
+
+
+export function getProfileSuccess(profile) {
+    return {
+        type: actionTypes.GET_PROFILE_SUCCESS,
+        profile,
     };
 }
 
@@ -106,7 +114,7 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
     };
 
     return (dispatch) => {
-        apiService.users.postNewUser(
+        apiService.users.inviteNewUser(
             requestBody,
             (userErr, userResp) => {
                 if (!userErr && userResp) {
@@ -137,6 +145,7 @@ export function deleteUser(userId, errorMessages) {
     };
 }
 
+// Private
 function _deleteUser() {
     return {
         type: actionTypes.DELETE_USER,
@@ -153,23 +162,6 @@ function _deleteUserSuccess(userId) {
     return {
         type: actionTypes.DELETE_USER_SUCCESS,
         userId,
-    };
-}
-
-export function notifyUser(userId, message, senderId) {
-    return {
-        type: actionTypes.NOTIFY_USER,
-        userId,
-        message,
-        senderId,
-    };
-}
-
-// private
-function _getProfileSuccess(profile) {
-    return {
-        type: actionTypes.GET_PROFILE_SUCCESS,
-        profile,
     };
 }
 

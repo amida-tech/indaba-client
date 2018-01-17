@@ -41,7 +41,7 @@
         "DISAGREE": "Disagreed"
     },
     "TOAST": {
-        "EXISTS": "The user is already in the system and has been added to the project for you.",
+        "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
@@ -76,6 +76,7 @@
         "ALREADY_BOTTOM": "The question is already at the very bottom of the section.",
         "NO_DELETE_SUBJECT_WITH_DATA": "This subject already has data collected and cannot be deleted.",
         "NO_DELETE_USER_GROUP_WITH_STAGES": "This user group is currently assigned to one or more workflow stages and may not be deleted.",
+        "NOTIFY_FAILURE": "The system was unable to notify the user of this action",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -372,7 +373,6 @@
             "TEXT": "Long Text",
             "DROPDOWN":"Dropdown",
             "DATE": "Date",
-            "BOOL": "Bool",
             "INTEGER": "Number",
             "SCALE": "Scale"
         },
@@ -383,7 +383,6 @@
             "TEXT": "The user will simply enter a sentence into a text field.",
             "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
-            "BOOL": "The user will answer a yes or no question.",
             "INTEGER": "The user would enter a whole number.",
             "SCALE": "The users answers a question "
         },

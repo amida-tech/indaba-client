@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
+import { getProfileSuccess } from '../../common/actions/userActions';
 import * as actionTypes from './actionTypes';
 
 export function login(username, password, realm, errorMessages) {
@@ -17,7 +18,14 @@ export function login(username, password, realm, errorMessages) {
         (err, auth) => {
             if (!err && auth) {
                 dispatch(_loginSuccess(auth, realm));
-                dispatch(push('/project'));
+                apiService.users.getProfile((profileErr, profileResp) => {
+                    if (!profileErr && profileResp) {
+                        dispatch(getProfileSuccess(profileResp));
+                        dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
+                    } else {
+                        dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                    }
+                });
             } else if (err && !auth) {
                 dispatch(_loginError(errorMessages.SERVER_ISSUE));
                 dispatch(_clearLoginForm());

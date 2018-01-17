@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-// import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import CreateSectionPanel from './CreateSectionPanel';
@@ -18,13 +17,12 @@ class CreateSurveyPanel extends Component {
                         disabled={this.props.options.length === 1}
                         onChange={event => this.props.actions.changeSectionView(event.value)}/>
                     <div className='create-survey-panel__accordion-buttons'>
-                        <button className='create-survey-panel__button-expand'
-                            onClick={() => toast('Coming as soon as James is allowed to sleep.')}>
-                            {this.props.vocab.PROJECT.EXPAND_ALL} </button>
-
-                        <button className='create-survey-panel__button-collapse'
-                            onClick={() => toast('Coming as soon as James is allowed to zzzz.')}>
-                            {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
+                        <button className='create-survey-panel__button'
+                            label={this.props.vocab.PROJECT.EXPAND_ALL}
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)} />
+                        <button className='create-survey-panel__button'
+                            label={this.props.vocab.PROJECT.COLLAPSE_ALL}
+                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)} />
                     </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>

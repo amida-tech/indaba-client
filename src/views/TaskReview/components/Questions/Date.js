@@ -19,7 +19,7 @@ class Date extends Component {
                     onChange={(event) => {
                         if (Time.validateTime(event)) {
                             this.props.upsertAnswer(
-                                { dateValue: Time.renderForSurvey(new Date(event)) });
+                                { dateValue: Time.renderForSurvey(event) });
                         }
                     }} />
             </div>
