@@ -26,6 +26,9 @@ const users = {
     deleteUser: (id, callback) => {
         requests.apiDeleteRequest(getFullPath(`users/${id}`), {}, callback);
     },
+    activate: (requestBody, realm, token, callback) => {
+        requests.apiPostRequest(getFullPath(`users/activate/${token}`, realm), requestBody, callback);
+    },
 };
 
 export default users;
