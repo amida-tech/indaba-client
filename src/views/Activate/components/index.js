@@ -25,6 +25,7 @@ class Activate extends Component {
                     onSubmit={
                         values => apiService.users.activate(
                             values,
+                            this.props.params.realm,
                             this.props.params.token,
                             (err) => {
                                 if (err) {
