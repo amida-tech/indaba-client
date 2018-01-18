@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import IndabaSMGreen from '../../assets/indaba-SM-green.svg';
+
 class AmidaFooter extends Component {
     render() {
         return (
@@ -7,7 +9,7 @@ class AmidaFooter extends Component {
                 <div className='amida-footer__footer-title'>
                     Powered by Amida
                 </div>
-                <img src="/src/assets/indaba-SM-green.svg"
+                <img src={IndabaSMGreen}
                     className="amida-footer__indaba-service-mark"/>
             </div>
         );
