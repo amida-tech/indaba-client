@@ -21,17 +21,19 @@ class CreateSectionPanel extends Component {
                                     { type: 'error', autoClose: false });
                                 this.props.actions.showSectionDeleteConfirmModal();
                             }) } />}
-                <input className='create-section-panel__section-name'
-                    value={this.props.section.name}
-                    placeholder={this.props.vocab.SURVEY.SECTION_ +
-                        (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME_OPTIONAL}
-                    onChange={event => this.props.actions.updateSection(
-                        this.props.sectionIndex, event.target.value)} />
-                <button className='create-section-panel__menu-button'
-                    onClick={() => this.props.actions.showSectionDeleteConfirmModal()}>
-                    <IonIcon icon='ion-trash-b'
-                        className='create-section-panel__menu-icon'/>
-                </button>
+                <div className='create-section-panel__section-header'>
+                    <input className='create-section-panel__section-name'
+                        value={this.props.section.name}
+                        placeholder={this.props.vocab.SURVEY.SECTION_ +
+                            (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME_OPTIONAL}
+                        onChange={event => this.props.actions.updateSection(
+                            this.props.sectionIndex, event.target.value)} />
+                    <button className='create-section-panel__menu-button'
+                        onClick={() => this.props.actions.showSectionDeleteConfirmModal()}>
+                        <IonIcon icon='ion-trash-b'
+                            className='create-section-panel__menu-icon'/>
+                    </button>
+                </div>
                 {this.props.section.questions.map((question, questionIndex) => (
                     <QuestionPanel className='create-section-panel__question'
                         key={`key-question-${questionIndex}`}

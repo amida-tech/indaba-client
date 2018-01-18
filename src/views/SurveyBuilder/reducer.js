@@ -44,8 +44,8 @@ export default (state = initialState, action) => {
     case type.SURVEY_BUILDER_CHANGE_SECTION_VIEW:
         return update(state, { ui: { sectionView: { $set: action.sectionView } } });
     case type.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL:
-        return update(state, { ui: { showSectionDeleteConfirmModal:
-            !state.ui.showSectionDeleteConfirmModal } });
+        return update(state, { ui: { showSectionDeleteConfirmModal: { $set:
+            !state.ui.showSectionDeleteConfirmModal } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
