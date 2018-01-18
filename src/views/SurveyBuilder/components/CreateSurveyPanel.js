@@ -3,12 +3,22 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 
+import Modal from '../../../common/components/Modal';
 import CreateSectionPanel from './CreateSectionPanel';
 
 class CreateSurveyPanel extends Component {
     render() {
         return (
             <div className='create-survey-panel'>
+                {this.props.ui.showSectionDeleteConfirmModal > -1 &&
+                    <Modal title={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.TITLE}
+                        bodyText={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.DELETE_WARNING}
+                        onCancel={() => this.props.actions.showSectionDeleteConfirmModal(-1)}
+                        onSave={() => {
+                            this.props.actions.deleteSection(
+                                this.props.ui.showSectionDeleteConfirmModal);
+                            this.props.actions.showSectionDeleteConfirmModal(-1);
+                        }} />}
                 <div className='create-survey-panel__view-controls'>
                     <Select className='create-survey-panel__view-select'
                         options={this.props.options}

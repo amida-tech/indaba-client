@@ -7,9 +7,10 @@ export function changeSectionView(sectionView) {
     };
 }
 
-export function showSectionDeleteConfirmModal() {
+export function showSectionDeleteConfirmModal(sectionIndex) {
     return {
         type: actionTypes.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL,
+        sectionIndex,
     };
 }
 

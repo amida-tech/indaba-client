@@ -12,7 +12,7 @@ import {
 export const initialState = {
     ui: {
         sectionView: -1,
-        showSectionDeleteConfirmModal: false,
+        showSectionDeleteConfirmModal: -1,
     },
     form: {
         name: '',
@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
         return update(state, { ui: { sectionView: { $set: action.sectionView } } });
     case type.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL:
         return update(state, { ui: { showSectionDeleteConfirmModal: { $set:
-            !state.ui.showSectionDeleteConfirmModal } } });
+            action.sectionIndex } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
