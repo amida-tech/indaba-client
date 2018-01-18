@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Time from '../../../utils/Time';
 import SurveyForm from './SurveyForm';
+import SurveyPresentation from './SurveyPresentation';
 
 class SurveyPane extends Component {
     componentWillReceiveProps(nextProps) {
@@ -16,6 +17,7 @@ class SurveyPane extends Component {
             answers: this.props.answers,
             assessmentId: this.props.task.assessmentId,
         };
+        const showCommentForm = this.props.stage.discussionParticipation;
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -49,9 +51,16 @@ class SurveyPane extends Component {
                                 Time.renderGeneralTimestamp(this.props.ui.lastSave))}
                     </span>
                 </div>
-                <SurveyForm
-                    {...this.props}
-                    initialValues={initialValues} />
+                {
+                    (this.props.stage.id === undefined || showCommentForm) ?
+                    <SurveyForm
+                        {...this.props}
+                        initialValues={initialValues}>
+                        <SurveyPresentation
+                            {...this.props} />
+                    </SurveyForm> :
+                    <SurveyPresentation {...this.props} />
+                }
             </div>
         );
     }

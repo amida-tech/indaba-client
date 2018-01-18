@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find, get, has, merge } from 'lodash';
-import { toast } from 'react-toastify';
+import { find, get, has, merge, omit } from 'lodash';
 import { DateTime } from 'grommet';
 
+import FileForm from './FileForm';
 import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
@@ -72,15 +72,29 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') && has(value, 'answer') &&
+                {has(this.props, 'meta.file') && has(value, 'answer') && !this.props.displayMode &&
                     <div className='questions__option-panel'>
-                        <div className='questions__file-select'
-                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                            {this.props.vocab.SURVEY.SELECT_FILE}
-                        </div>
-                        <span className='questions__label'>
-                            {this.props.vocab.SURVEY.NO_FILE}
-                        </span>
+                        <FileForm form={`file-form-${this.props.id}`}
+                            vocab={this.props.vocab}
+                            file={get(value, 'meta.file')}
+                            onFileUploaded={(file) => {
+                                this.props.actions.upsertAnswer(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    value.answer,
+                                    merge(value.meta, { file }),
+                                    this.props.vocab.ERROR,
+                                );
+                            }}
+                            onFileRemoved={() => {
+                                this.props.actions.upsertAnswer(
+                                    this.props.assessmentId,
+                                    this.props.id,
+                                    value.answer,
+                                    omit(value.meta, 'file'),
+                                    this.props.vocab.ERROR,
+                                );
+                            }}/>
                     </div>
                 }
                 {has(this.props, 'meta.publication') && has(value, 'answer') &&
