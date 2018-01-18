@@ -185,9 +185,9 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
 
             .project-status-text {
-                font-size: 18px;
-                font-weight: 600;
-                color: $header-font-color;
+                @extend .med-font;
+
+                font-size: 500;
             }
 
             .project-status-label {
@@ -197,13 +197,12 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
 
             .project-status-description p {
-                font-weight: 600;
-                color: $header-font-color;
+                @extend .lead-font;
             }
 
             .project-status-confirmation {
                 p {
-                    font-weight: 600;
+                    font-weight: 500;
                     color: $header-font-color;
                     margin-bottom: 1em;
                 }
