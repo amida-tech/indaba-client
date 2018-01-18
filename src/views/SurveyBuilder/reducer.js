@@ -12,6 +12,7 @@ import {
 export const initialState = {
     ui: {
         sectionView: -1,
+        showSectionDeleteConfirmModal: false,
     },
     form: {
         name: '',
@@ -42,14 +43,18 @@ export default (state = initialState, action) => {
         return update(state, { form: { $merge: action.survey } });
     case type.SURVEY_BUILDER_CHANGE_SECTION_VIEW:
         return update(state, { ui: { sectionView: { $set: action.sectionView } } });
+    case type.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL:
+        return update(state, { ui: { showSectionDeleteConfirmModal:
+            !state.ui.showSectionDeleteConfirmModal } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
-        return update(state, { form: { sections: { $push:
-            [{ name: '', questions: [] }] } } });
+        return update(state, { form: { sections: { $push: [{ name: '', questions: [] }] } } });
     case type.SURVEY_BUILDER_UPDATE_SECTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { name: { $set: action.name } } } } });
+    case type.SURVEY_BUILDER_DELETE_SECTION:
+        return update(state, { form: { sections: { $splice: [[action.sectionIndex, 1]] } } });
     case type.SURVEY_BUILDER_INSERT_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $push: [action.question] } } } } });

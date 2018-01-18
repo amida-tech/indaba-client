@@ -17,6 +17,15 @@ $block-class: 'create-survey-panel';
             border: 1px solid $border-color;
         }
 
+        &__menu-button {
+            background-color: Transparent;
+            border: none;
+        }
+
+        &__menu-icon {
+            @extend .small-icon;
+        }
+
         &__view-select {
             width: 60%;
         }
