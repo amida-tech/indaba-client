@@ -63,6 +63,7 @@ class CreateSurveyPanel extends Component {
                             ui={this.props.ui}
                             section={section}
                             sectionIndex={sectionIndex}
+                            sectionLength={this.props.form.sections.length}
                             actions={this.props.actions}
                             vocab={this.props.vocab} />
                     )) :
@@ -70,6 +71,7 @@ class CreateSurveyPanel extends Component {
                         ui={this.props.ui}
                         section={this.props.form.sections[this.props.ui.sectionView]}
                         sectionIndex={this.props.ui.sectionView}
+                        sectionLength={this.props.form.sections.length}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />}
                 </div>

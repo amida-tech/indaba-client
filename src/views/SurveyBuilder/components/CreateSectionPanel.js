@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
+import { toast } from 'react-toastify';
 
 import QuestionPanel from './QuestionPanel';
 
@@ -17,8 +18,14 @@ class CreateSectionPanel extends Component {
                         onChange={event => this.props.actions.updateSection(
                             this.props.sectionIndex, event.target.value)} />
                     <button className='create-section-panel__menu-button'
-                        onClick={() => this.props.actions.showSectionDeleteConfirmModal(
-                            this.props.sectionIndex)}>
+                        onClick={() => {
+                            if (this.props.sectionLength <= 1) {
+                                toast(this.props.vocab.ERROR.SECTION_MINIMUM);
+                            } else {
+                                this.props.actions.showSectionDeleteConfirmModal(
+                            this.props.sectionIndex);
+                            }
+                        }}>
                         <IonIcon icon='ion-trash-b'
                             className='create-section-panel__menu-icon'/>
                     </button>
