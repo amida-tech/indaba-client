@@ -123,6 +123,7 @@
 @import './taskreview/choices.scss';
 @import './taskreview/date.scss';
 @import './taskreview/dropdown.scss';
+@import './taskreview/file-form.scss';
 @import './taskreview/flag-commentary.scss';
 @import './taskreview/flag-controls-form.scss';
 @import './taskreview/flag-header.scss';
@@ -133,8 +134,8 @@
 @import './taskreview/question-container.scss';
 @import './taskreview/questions.scss';
 @import './taskreview/review-pane.scss';
-@import './taskreview/survey-form.scss';
 @import './taskreview/survey-pane.scss';
+@import './taskreview/survey-presentation.scss';
 @import './taskreview/task-details.scss';
 @import './taskreview/task-review.scss';
 @import './taskreview/text.scss';
@@ -142,3 +143,6 @@
 @import './pm-all-users.scss';
 // PMAllSubjects
 @import './pm-all-subjects.scss';
+// Activate
+@import './activate/activate.scss';
+@import './activate/activate-form.scss';

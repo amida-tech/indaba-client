@@ -6,6 +6,19 @@ $block-class: 'static-question';
         display: flex;
         flex-direction: column;
 
+        &__bool {
+            &-field {
+                margin-left: 5px;
+                margin-bottom: 24px;
+            }
+
+            &-label {
+                @extend .lead-font;
+
+                margin-left: 5px;
+            }
+        }
+
         &__bulletgroup {
             display: flex;
             flex-direction: column;
@@ -14,7 +27,7 @@ $block-class: 'static-question';
         &__bulletpoint1 {
             width: 40%;
             padding: 0.2em;
-            margin-bottom: 0.2em;
+            margin-bottom: 8px;
         }
 
         &__bulletpoint2 {
@@ -23,10 +36,10 @@ $block-class: 'static-question';
         }
 
         &__date {
-            width: 20%;
+            width: 15%;
             padding: 0.2em;
             border: 1px solid #adadad;
-            background-color: #ebebe4;
+            text-transform: uppercase;
         }
 
         &__integer {
@@ -37,6 +50,13 @@ $block-class: 'static-question';
         &__text {
             width: 40%;
             padding: 0.2em;
+        }
+
+        &__instructions {
+            @extend .small-font;
+
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
     }
 }
