@@ -4,7 +4,7 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: lighten($font-color, 5%);
+        color: $lead-font-color;
         font-size: 16px;
         padding: 16px;
         min-height: 104px;
@@ -22,7 +22,7 @@ $block-class:'stage-slot';
         }
 
         &__filtered {
-            opacity: 0.5;
+            opacity: 0.2;
         }
 
         &__name-row {

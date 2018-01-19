@@ -6,13 +6,13 @@ $block-class: 'sub-nav-entry';
         line-height: 18px;
         color: #727882;
         text-align: center;
-        margin-top: 2em;
-        padding-bottom: 22px;
+        // margin-top: 2em;
+        // padding-bottom: 22px;
         cursor: pointer;
 
         &--selected {
             border-bottom: 5px solid $off-brand-color;
-            padding-bottom: 17px;
+            padding-bottom: 5px;
             color: $brand-color;
         }
     }

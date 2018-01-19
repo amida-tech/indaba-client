@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'grommet';
 import PropTypes from 'prop-types';
 
 import Filter from '../../../../common/components/Filter';
@@ -32,14 +31,14 @@ class FilterWrapper extends Component {
                         this.props.actions.toggleFilter(filter, this.props.project.id)}
                     noSpace={true} />
                 <div className='filter-wrapper__add-button-panel'>
-                    <Button className='filter-wrapper__add-button'
-                        primary={true}
-                        label={this.props.vocab.PROJECT.ADD_STAGE}
-                        onClick={() => this.props.actions.showStageModal(true)}/>
-                    <Button className='filter-wrapper__add-button'
-                        primary={true}
-                        label={this.props.vocab.PROJECT.ADD_SUBJECT}
-                        onClick={() => this.props.actions.showAddSubjectModal(true)}/>
+                    <button className='filter-wrapper__add-button'
+                        onClick={() => this.props.actions.showStageModal(true)}>
+                        {this.props.vocab.PROJECT.ADD_STAGE}
+                        </button>
+                    <button className='filter-wrapper__add-button'
+                        onClick={() => this.props.actions.showAddSubjectModal(true)}>
+                        {this.props.vocab.PROJECT.ADD_SUBJECT}
+                        </button>
                 </div>
                 {this.props.ui.showAddSubject &&
                     <AddSubject
