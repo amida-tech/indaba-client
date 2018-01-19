@@ -1,8 +1,8 @@
 FROM nginx:stable
 
-# support running as arbitrary user which belogs to the root group
+# support running as arbitrary user which belongs to the root group
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
-# users are not allowed to listen on priviliged ports
+# users are not allowed to listen on privileged ports
 EXPOSE 8081
 
 
