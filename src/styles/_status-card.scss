@@ -25,9 +25,8 @@ $block-class: 'status-card';
 
         &__name-label {
             color: $font-color;
-            font-size: 12px;
+            font-size: 14px;
             margin-bottom: -5px;
-            text-transform: uppercase;
         }
 
         &__name-value {
@@ -38,9 +37,10 @@ $block-class: 'status-card';
         }
 
         &__status {
-            color: $header-font-color;
+            color: $lead-font-color;
             font-size: 18px;
             display: flex;
+            font-weight: 300;
 
             &:hover {
                 color: nth($brand-neutral-colors, 2);
