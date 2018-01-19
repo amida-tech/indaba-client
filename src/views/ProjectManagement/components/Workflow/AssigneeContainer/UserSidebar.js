@@ -23,7 +23,9 @@ class UserSidebar extends Component {
                     onChange={this.props.onGroupFilter}/>
                 <List className='user-sidebar__user-dropdown'>
                     {this.props.unassigned.map(unassignee =>
-                        <ListItem key={`Unassigned-${unassignee.props.children.id}`}>
+                        <ListItem key={`Unassigned-${unassignee.props.children.id}`}
+                            separator='none'
+                            pad='small'>
                             {unassignee}
                         </ListItem>,
                     )}
