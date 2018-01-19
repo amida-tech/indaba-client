@@ -2,10 +2,11 @@ $block-class:'invite-user';
 
 @at-root {
     .#{$block-class} {
-        margin: 0.5em;
+        background-color: rgba(245, 245, 245, 0.5);
+        padding: 8px;
 
         &__header {
-            margin-bottom: 0.5em;
+            padding: 8px;
         }
 
         &__email {
