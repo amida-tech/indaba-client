@@ -1,4 +1,10 @@
-FROM nginx
+FROM nginx:stable
+
+# support running as arbitrary user which belogs to the root group
+RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
+# users are not allowed to listen on priviliged ports
+EXPOSE 8081
+
 
 RUN apt-get update
 RUN apt-get install -qq curl
