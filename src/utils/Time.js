@@ -8,6 +8,9 @@ export default {
         return moment(time).format('DD MMM Y');
     },
     renderForMessageList(time) {
+        if (this.isToday(time)) {
+            return moment(time).format('h:mm A');
+        }
         return moment(time).format('DD MMM Y');
     },
     renderForTaskReview(time) {
