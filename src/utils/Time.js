@@ -13,6 +13,9 @@ export default {
         }
         return moment(time).format('DD MMM Y');
     },
+    renderForStageSummary(time) {
+        return moment(time).format('M/D/YY');
+    },
     renderForTaskReview(time) {
         return moment(time).format('MM/DD/YYYY');
     },

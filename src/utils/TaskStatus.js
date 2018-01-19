@@ -20,11 +20,6 @@ export default {
         return Math.round((new Date(task.endDate).getTime()
             - new Date().getTime()) / day);
     },
-    formatDate(date) {
-        const formDate = new Date(date);
-        return (`${formDate.getMonth() + 1}/${formDate.getDate()
-             }/${formDate.getFullYear()}`);
-    },
     formatUserGroups(userGroups) {
         return (userGroups.map(group => group.title).toString().replace(/,/, ', '));
     },
