@@ -140,13 +140,16 @@ body,
 
 .grid-subject {
     padding: 8px;
-    text-align: center;
+    text-align: top;
+    font-size: 16px;
     vertical-align: middle;
-    text-transform: uppercase;
 }
 
 .table-bordered .grid-subject {
-    vertical-align: middle;
+    vertical-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    color: #5d5d5d;
 }
 
 .center {

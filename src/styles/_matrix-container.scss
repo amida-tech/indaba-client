@@ -10,9 +10,9 @@ $block-class:'matrix-container';
 
         &__subject {
             background-color: #fff;
-            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 400;
             color: #5d5d5d;
-            text-align: center;
         }
 
         &__task-matrix {
