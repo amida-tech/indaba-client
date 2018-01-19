@@ -34,6 +34,8 @@ const surveys = {
     copyAnswers: (assessmentId, requestBody, callback) => {
         requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
     },
+    postFile: (file, filename) =>
+        requests.multipartFormDataPostRequest(`${rootURI}/files`, { file, filename }),
 };
 
 export default surveys;

@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
+import { has } from 'lodash';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -13,11 +14,11 @@ import CreateNewProject from './CreateNewProject';
 import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
-
-
     componentWillMount() {
-        if (this.props.nav.ui.checkBackend) {
+        if (!has(this.props.user.profile, 'roleID')) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
+        }
+        if (this.props.nav.ui.checkBackend) {
             this.props.actions.getUsers(this.props.vocab.ERROR);
             this.props.actions.toggleCheckBackend();
         }

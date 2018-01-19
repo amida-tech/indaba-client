@@ -136,6 +136,22 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
     .then(res => handleResponse(res, callback), issue => callback(issue));
 }
 
+export function multipartFormDataPostRequest(fullURI, data) {
+    const formData = new FormData();
+    Object.keys(data).forEach(name => formData.append(name, data[name]));
+
+    const call = {
+        method: 'POST',
+        headers: {
+            Authorization: cookie.load('indaba-auth'),
+            Accept: 'application/json',
+        },
+        body: formData,
+    };
+
+    return fetch(fullURI, call).then(decodeResponse);
+}
+
 // ////////////////
 // Private Helpers
 // ////////////////
