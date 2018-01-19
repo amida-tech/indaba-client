@@ -139,7 +139,6 @@ body,
 }
 
 .grid-subject {
-    padding: 8px;
     text-align: top;
     font-size: 16px;
     vertical-align: middle;
@@ -147,9 +146,10 @@ body,
 
 .table-bordered .grid-subject {
     vertical-align: left;
-    font-size: 20px;
+    padding-top: 16px;
+    font-size: 16px;
     font-weight: 400;
-    color: #5d5d5d;
+    color: lighten(#5d5d5d, 10);
 }
 
 .center {
