@@ -5,8 +5,8 @@ $block-class:'stage-slot';
 @at-root {
     .#{$block-class} {
         color: $font-color;
-        text-transform: uppercase;
-        padding: 8px;
+        font-size: 14px;
+        padding: 16px;
         min-height: 104px;
 
         &--accept {
