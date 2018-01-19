@@ -6,8 +6,9 @@ $block-class:'stage-summary';
         flex-direction: column;
 
         &__header {
-            @extend .lead-font;
-
+            font-size: 20px;
+            font-weight: 300;
+            color: #5d5d5d;
             padding: 8px 4px;
         }
 
