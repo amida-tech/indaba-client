@@ -31,14 +31,15 @@ $block-class: 'status-card';
 
         &__name-value {
             display: flex;
-            color: #5d5d5d;
+            color: $lead-font-color;
             font-size: 24px;
             font-weight: 100;
         }
 
         &__status {
-            color: #2a2a2a;
-            font-size: 18px;
+            color: $lead-font-color;
+            margin-top: 20px;
+            font-size: 24px;
             display: flex;
             font-weight: 300;
 

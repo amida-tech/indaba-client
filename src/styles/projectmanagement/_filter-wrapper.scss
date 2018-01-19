@@ -4,7 +4,8 @@ $block-class: 'filter-wrapper';
     .#{$block-class} {
         display: flex;
         background-color: $element-background;
-        padding: 16px 8px;
+        border: 1px solid border-color;
+        padding: 24px;
         justify-content: space-between;
         align-items: center;
         margin-top: 24px;

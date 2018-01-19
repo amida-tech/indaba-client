@@ -4,8 +4,8 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: $font-color;
-        font-size: 14px;
+        color: lighten($font-color, 5%);
+        font-size: 16px;
         padding: 16px;
         min-height: 104px;
 
@@ -40,6 +40,7 @@ $block-class:'stage-slot';
             font-size: 14px;
             display: flex;
             justify-content: space-between;
+            color: #5d5d5d;
         }
 
         &__role-span {
@@ -67,11 +68,13 @@ $block-class:'stage-slot';
         }
 
         &__left-icon {
-            @extend .small-icon;
-
+            width: 16px;
+            height: 16px;
+            fill: $header-font-color;
             float: left;
             margin-right: 5px;
-            fill: #a4aebf;
+            margin-top: 2px;
+            cursor: pointer;
 
             &:hover {
                 fill: $font-color;
