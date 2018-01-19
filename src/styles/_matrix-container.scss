@@ -6,10 +6,12 @@ $block-class:'matrix-container';
         display: flex;
         flex-direction: row;
         flex: 1;
-        background-color: #fdfdfd;
+        background-color: #fff;
 
         &__subject {
+            background-color: #fff;
             text-transform: uppercase;
+            color: #5d5d5d;
             text-align: center;
         }
 

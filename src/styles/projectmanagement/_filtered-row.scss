@@ -4,6 +4,11 @@ $block-class: 'filtered-row';
     .#{$block-class} {
         td.filtered-row__cell {
             padding: 0;
+            background-color: #fff;
+
+            &:hover {
+                background-color: darken(#fff, 3);
+            }
         }
     }
 }
