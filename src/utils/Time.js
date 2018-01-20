@@ -36,13 +36,13 @@ export default {
                     `[${vocab.TIME.DUE_TODAY}]`);
             },
             nextDay: `[${vocab.TIME.DUE_TOMORROW}]`,
-            nextWeek: 'DD MMM Y',
+            nextWeek: 'MM.DD.YYYY',
             lastDay: `[${vocab.TIME.OVERDUE}]`,
             lastWeek: `[${vocab.TIME.OVERDUE}]`,
             sameElse(now) {
                 return (this.isBefore(now) ?
                 `[${vocab.TIME.OVERDUE}]` :
-                'DD MMM Y');
+                'MM.DD.YYYY');
             },
         });
     },
