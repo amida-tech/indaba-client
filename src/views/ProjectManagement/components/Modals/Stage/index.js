@@ -15,8 +15,8 @@ class StageModal extends Component {
 
         let initialValues;
         if (this.props.stageId && this.props.project) {
-            initialValues = this.props.project.stages.find(stage =>
-                stage.id === this.props.stageId);
+            initialValues = Object.assign({}, this.props.project.stages.find(stage =>
+                stage.id === this.props.stageId));
             if (initialValues.blindReview) {
                 initialValues.permissions = '1';
             } else if (initialValues.discussionParticipation) {
@@ -26,10 +26,8 @@ class StageModal extends Component {
             } else {
                 initialValues.permissions = '0';
             }
-            initialValues.startDate = Time.validateTime(initialValues.startDate) ?
-                initialValues.startDate : Time.renderForTaskReview(initialValues.startDate);
-            initialValues.endDate = Time.validateTime(initialValues.endDate) ?
-                initialValues.endDate : Time.renderForTaskReview(initialValues.endDate);
+            initialValues.startDate = Time.renderForTaskReview(initialValues.startDate);
+            initialValues.endDate = Time.renderForTaskReview(initialValues.endDate);
         } else {
             initialValues = {
                 title: '',
