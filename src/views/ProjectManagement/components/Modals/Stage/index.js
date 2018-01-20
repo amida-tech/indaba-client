@@ -26,8 +26,10 @@ class StageModal extends Component {
             } else {
                 initialValues.permissions = '0';
             }
-            initialValues.startDate = Time.renderForTaskReview(new Date(initialValues.startDate));
-            initialValues.endDate = Time.renderForTaskReview(new Date(initialValues.endDate));
+            initialValues.startDate = Time.validateTime(initialValues.startDate) ?
+                initialValues.startDate : Time.renderForTaskReview(initialValues.startDate);
+            initialValues.endDate = Time.validateTime(initialValues.endDate) ?
+                initialValues.endDate : Time.renderForTaskReview(initialValues.endDate);
         } else {
             initialValues = {
                 title: '',
@@ -115,7 +117,7 @@ const stageMapping = (values) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    onClickToSubmit: () => dispatch(submit('add-stage-form')),
+    onClickToSubmit: () => dispatch(submit('stage-form')),
 });
 
 export default connect(null, mapDispatchToProps)(StageModal);
