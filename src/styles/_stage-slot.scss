@@ -46,7 +46,9 @@ $block-class:'stage-slot';
         &__role-span {
             font-size: 12px;
             font-weight: 400;
+            letter-spacing: 0.3px;
             align-items: flex-start;
+            color: lighten($font-color, 5%);
         }
 
         &__masked-button {
