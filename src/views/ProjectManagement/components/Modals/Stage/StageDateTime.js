@@ -3,11 +3,12 @@ import DateTime from 'grommet/components/DateTime';
 
 class StageDateTime extends Component {
     render() {
+        console.log(this.props);
         return (
             <DateTime
                 {...this.props.input}
                 format='MM/DD/YYYY'
-                className='add-stage-date-time' />
+                className='stage-date-time' />
         );
     }
 }

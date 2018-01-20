@@ -14,6 +14,8 @@ export default {
         return moment(time).format('DD MMM Y');
     },
     renderForStageSummary(time) {
+        console.log('we are calling this again');
+        console.log(time);
         return moment(time).format('M/D/YY');
     },
     renderForTaskReview(time) {
