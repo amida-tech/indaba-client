@@ -26,7 +26,7 @@ export default {
         return (`${moment(time).format('DD MMMM Y')} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
     },
     renderForStageSummary(time) {
-        return moment(time).format('M/D/YY');
+        return moment(time).format('MMM DD YYYY');
     },
     renderForQuestion(time) {
         return moment(time).format('MM/DD/YYYY');
