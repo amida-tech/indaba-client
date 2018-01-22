@@ -13,6 +13,9 @@ export default {
         }
         return moment(time).format('DD MMM Y');
     },
+    renderForAccountTab(time) {
+        return moment(time).format('MMM DD YYYY');
+    },
     renderForMessage(time, vocab, uppercase) {
         if (time === undefined) {
             return '';
