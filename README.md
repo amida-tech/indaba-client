@@ -7,12 +7,36 @@
 - ESLint (see .eslintrc, https://github.com/amida-tech/javascript)
 - Webpack (see webpack.config.js)
 
-## Running
-1. Install dependencies: `yarn`
-2. Run development server: `yarn start`
-3. Load site at http://localhost:3000
+
+## Build configurations
+Webpack is used to either build and serve a development build (`yarn develop`) or to build a set of production files (`yarn build`). The build configurations are in `webpack.dev.js` and `webpack.prod.js` respectively.
+
+### Environment
+Indaba client uses the indaba backend and 3 Amida microservices.
+At build time, (`yarn develop` or `yarn build`), webpack reads the following values from a `.env` file to populate the environment variables used by the client. You can also set the environment variables manually or with your production environment tools. Default values are provided for development builds but not production builds, and are shown in parentheses.
+
+1. Greyscale (Indaba backend) (https://github.com/amida-tech/greyscale)
+ - `API_URL ('http://localhost:3005')`
+
+ The Greyscale realm included in api requests is read from the environment variable:
+ - `REALM ('testorg')`
+1. Authentication (see https://github.com/amida-tech/amida-auth-microservice)
+ - `AUTH_API_URL ('http://localhost:4000/api/v0')`
+1. Survey service (see https://github.com/amida-tech/amida-survey-microservice)
+ - `SURVEY_API_URL ('https://localhost:9005/api/v1.0')`
+1. Messaging service (see https://github.com/amida-tech/amida-messaging-microservice)
+ - `MESSAGING_API_URL ('http://localhost:4002/api')`
+1. System message sender email
+ - `SYS_MESSAGE_USER ('indaba@example.com')`
 
 ## Development
+
+### Running
+1. Install dependencies: `yarn`
+2. Run development server: `yarn develop`
+3. Load site at http://localhost:3000
+
+### Contributing
 Before committing any changes, run the following commands:
 ```sh
 $ yarn eslint
@@ -46,6 +70,6 @@ Login with `test-adm@mail.net` / `testadmin`
 
 ## Building Dockerfile in Linux
 From the base directory of the project run `docker build --tag indaba-client .`
-To run the image `docker run --link indaba_be:indaba_be -e API_HTTP_URL=http://<address to be/>:3005 -e API_HTTPS_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
+To run the image `docker run --link indaba_be:indaba_be -e API_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
 
-operationally it is not clear if API_HTTP_URL is the URL used to connect from the indaba client _server_ or from the indaba client _browser_. if browser then the value would be the external address.  if server then the value should be "indaba_be" (the name we linked the backend docker instance as to the client docker instance)
+operationally it is not clear if API_URL is the URL used to connect from the indaba client _server_ or from the indaba client _browser_. if browser then the value would be the external address.  if server then the value should be "indaba_be" (the name we linked the backend docker instance as to the client docker instance)

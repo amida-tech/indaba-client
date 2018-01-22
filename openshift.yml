@@ -474,9 +474,7 @@ items:
       spec:
         containers:
         - env:
-          - name: API_HTTP_URL
-            value: greyscale.indaba-test.svc
-          - name: API_HTTPS_URL
+          - name: API_URL
             value: greyscale.indaba-test.svc
           image: 172.30.1.1:5000/indaba-test/indaba-client@sha256:fa1f8a36fc80bbb8ce46ae14279a63594d6698b2a6381ac807e4c95401accfe9
           imagePullPolicy: Always
