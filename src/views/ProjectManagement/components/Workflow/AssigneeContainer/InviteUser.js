@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Field, reduxForm, reset } from 'redux-form';
-import { Button } from 'grommet';
+// import { Button } from 'grommet';
 
 class InviteUser extends Component {
     render() {
@@ -27,12 +27,14 @@ class InviteUser extends Component {
                     placeholder={this.props.vocab.COMMON.EMAIL}
                     className='invite-user__email' />
                 <div className='invite-user__buttons'>
-                    <Button className='invite-user__button'
-                        secondary={true} label={this.props.vocab.COMMON.CLEAR}
-                        onClick={this.props.onClear}/>
-                    <Button className='invite-user__button'
-                        type='submit'
-                        primary={true} label={this.props.vocab.COMMON.INVITE}/>
+                    <button className='invite-user__button-clear'
+                        onClick={this.props.onClear}>
+                        {this.props.vocab.COMMON.CLEAR}
+                        </button>
+                    <button className='invite-user__button-invite'
+                        type='submit'>
+                        {this.props.vocab.COMMON.INVITE}
+                        </button>
                 </div>
             </form>
         );
