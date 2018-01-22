@@ -26,8 +26,8 @@ class StageModal extends Component {
             } else {
                 initialValues.permissions = '0';
             }
-            initialValues.startDate = Time.renderForTaskReview(initialValues.startDate);
-            initialValues.endDate = Time.renderForTaskReview(initialValues.endDate);
+            initialValues.startDate = Time.renderForQuestion(initialValues.startDate);
+            initialValues.endDate = Time.renderForQuestion(initialValues.endDate);
         } else {
             initialValues = {
                 title: '',

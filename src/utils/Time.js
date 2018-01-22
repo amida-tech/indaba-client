@@ -13,14 +13,32 @@ export default {
         }
         return moment(time).format('DD MMM Y');
     },
+    renderForMessage(time, vocab, uppercase) {
+        if (time === undefined) {
+            return '';
+        }
+        if (this.isToday(time)) {
+            return (`${vocab.TIME.TODAY} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
+        }
+        return (`${moment(time).format('DD MMMM Y')} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
+    },
     renderForStageSummary(time) {
         return moment(time).format('M/D/YY');
     },
-    renderForTaskReview(time) {
+    renderForQuestion(time) {
         return moment(time).format('MM/DD/YYYY');
     },
+    renderForTaskReview(time) {
+        return moment(time).format('MMMM D, YYYY');
+    },
     renderForInboxMessageList(time) {
-        return moment(time).format('DD MMM Y h:mmA');
+        return moment(time).format('DD MMM Y, h:mm A');
+    },
+    renderFlagTimestamp(time, vocab) {
+        if (this.isToday(time)) {
+            return (`${vocab.TIME.TODAY} ${moment(time).format('h:mmA')}`);
+        }
+        return moment(time).format('M/D/YY h:mmA');
     },
     renderGeneralTimestamp(time) {
         return moment(time).format('MM/DD/YY hh:mmA');

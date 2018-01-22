@@ -40,7 +40,7 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     <DateTime id='taskEndDate' className='task-details__info-box-datetime'
-                        format='MM/DD/YYYY'
+                        format='MMMM D, YYYY'
                         onChange={event =>
                             this.props.actions.updateTaskEndDate(
                                 this.props.task.id,

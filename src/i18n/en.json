@@ -97,6 +97,8 @@
         "COMMENT_TIP": "Enter your comment here"
     },
     "TIME": {
+        "TODAY": "Today",
+        "AT": "at",
         "DUE_TODAY": "Due Today",
         "DUE_TOMORROW": "Due Tomorrow",
         "OVERDUE": "Overdue"
