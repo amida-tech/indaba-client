@@ -5,9 +5,9 @@ $block-class:'add-stage-form';
         color: $lead-font-color;
         margin-right: 20px;
         margin-left: 20px;
+        padding: 24px;
 
         &__input-field {
-            color: $lead-font-color;
             border-radius: 2;
             height: 35px;
             width: 100%;
@@ -26,7 +26,7 @@ $block-class:'add-stage-form';
         }
 
         &__radio-button {
-            // 
+            //
         }
 
         &__permission-label-text {
@@ -38,9 +38,6 @@ $block-class:'add-stage-form';
 
         &__text-description {
             @extend .lead-font;
-
-            padding: 16px;
-            font-size: 16px;
         }
 
         &__date-input-div {
@@ -71,10 +68,6 @@ $block-class:'add-stage-form';
 
         &__divider {
             @extend .divider;
-
-            margin-top: 30px;
-            margin-bottom: 20px;
-            margin-left: -10px;
         }
 
         .Select--multi .Select-value {
