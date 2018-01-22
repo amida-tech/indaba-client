@@ -33,6 +33,32 @@ $block-class: 'dynamic-question';
             }
         }
 
+        &__scale {
+            &-field {
+                display: flex;
+                flex-direction: row;
+                padding: 4px;
+                margin-bottom: 8px;
+            }
+
+            &-label {
+                width: 5%;
+                padding-top: 5px;
+            }
+
+            &-input {
+                padding: 4px;
+                width: 7%;
+                text-align: center;
+
+                &:focus,
+                &:active {
+                    border: 2px solid $brand-color;
+                    outline: none;
+                }
+            }
+        }
+
         &__masked-button {
             background-color: Transparent;
             border: none;

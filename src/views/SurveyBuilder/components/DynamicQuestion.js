@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
-import { get, has } from 'lodash';
+import { get, has, keys } from 'lodash';
 
 class DynamicQuestion extends Component {
     render() {
         let QuestionDisplay;
-        if (this.props.type === 'scale') {
+        if (this.props.question.type === 'scale') {
+            const scaleValues = keys(this.props.vocab.SURVEY.SCALE_VALUES);
             QuestionDisplay = (
                 <div className='dynamic-question__scale'>
+                    {scaleValues.map(value =>
+                        <div className='dynamic-question__scale-field'
+                            key={this.props.sectionIndex + this.props.questionIndex +
+                                this.props.question.type + value}>
+                            <span className='dynamic-question__scale-label'>
+                                {this.props.vocab.SURVEY.SCALE_VALUES[value]}
+                            </span>
+                            <input className='dynamic-question__scale-input'
+                                type='number'
+                                placeholder={0}
+                                value={get(this.props.question, 'scaleLimits[value.toLowerCase()]', '')}
+                                onBlur={event => this.props.actions.upsertScale(
+                                    this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    value === 'MAX',
+                                    event.target.value,
+                                )} />
+                        </div>,
+                    )}
                 </div>);
         } else {
             QuestionDisplay = (
@@ -22,8 +42,7 @@ class DynamicQuestion extends Component {
                                     type='text'
                                     placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
                                     value={choice.text || ''}
-                                    onChange={event =>
-                                        this.props.actions.upsertChoice(
+                                    onChange={event => this.props.actions.upsertChoice(
                                         this.props.sectionIndex,
                                         this.props.questionIndex,
                                         index,

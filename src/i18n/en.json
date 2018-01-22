@@ -373,7 +373,13 @@
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
+        "MIN": "Min.",
+        "MAX": "Max.",
         "CHOICE_ENTER": "Enter an option for the user to select.",
+        "SCALE_VALUES": {
+            "MIN": "Min.",
+            "MAX": "Max."
+        },
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
             "BULLET": "Bullet Point",
@@ -392,7 +398,7 @@
             "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
             "INTEGER": "The user would enter a whole number.",
-            "SCALE": "The users answers a question "
+            "SCALE": "The users chooses an answer between one or two values you dictate. "
         },
         "SECTION_BREAK": "Section Break"
     },
