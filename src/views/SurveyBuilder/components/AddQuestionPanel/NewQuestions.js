@@ -19,7 +19,11 @@ class NewQuestions extends Component {
             newQuestion.meta = { subType: 'dropdown' };
         }
         if (DYNAMIC.includes(newQuestion.type)) {
-            newQuestion.choices = [{ text: '' }, { text: '' }];
+            if (newQuestion.type === 'scale') {
+                newQuestion.scaleLimits = { min: 0, max: 10 };
+            } else {
+                newQuestion.choices = [{ text: '' }, { text: '' }];
+            }
         }
         this.props.actions.insertQuestion(sectionIndex, newQuestion);
     }

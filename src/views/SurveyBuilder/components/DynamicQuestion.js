@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 import { get, has, keys } from 'lodash';
+import { toast } from 'react-toastify';
 
 class DynamicQuestion extends Component {
     render() {
@@ -10,23 +11,34 @@ class DynamicQuestion extends Component {
             const scaleValues = keys(this.props.vocab.SURVEY.SCALE_VALUES);
             QuestionDisplay = (
                 <div className='dynamic-question__scale'>
-                    {scaleValues.map(value =>
+                    {scaleValues.map(minmax =>
                         <div className='dynamic-question__scale-field'
                             key={this.props.sectionIndex + this.props.questionIndex +
-                                this.props.question.type + value}>
+                                this.props.question.type + minmax}>
                             <span className='dynamic-question__scale-label'>
-                                {this.props.vocab.SURVEY.SCALE_VALUES[value]}
+                                {this.props.vocab.SURVEY.SCALE_VALUES[minmax]}
                             </span>
                             <input className='dynamic-question__scale-input'
                                 type='number'
                                 placeholder={0}
-                                value={get(this.props.question, 'scaleLimits[value.toLowerCase()]', '')}
-                                onBlur={event => this.props.actions.upsertScale(
-                                    this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    value === 'MAX',
-                                    event.target.value,
-                                )} />
+                                max={minmax === 'MIN' ? get(this.props.question, 'scaleLimits.max', 10) - 1 : undefined}
+                                min={minmax === 'MAX' ? get(this.props.question, 'scaleLimits.min', 10) + 1 : undefined}
+                                value={get(this.props.question, `scaleLimits[${minmax.toLowerCase()}]`, '')}
+                                onChange={(event) => {
+                                    let value = parseInt(event.target.value, 10);
+                                    if (minmax === 'MIN') {
+                                        const maxValue = get(this.props.question, 'scaleLimits.max', 10);
+                                        if (value > maxValue) {
+                                            toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
+                                            value = maxValue - 1;
+                                        }
+                                    }
+                                    this.props.actions.upsertScale(
+                                        this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        minmax === 'MAX',
+                                        value);
+                                }} />
                         </div>,
                     )}
                 </div>);
@@ -102,7 +114,11 @@ DynamicQuestion.propTypes = {
     question: PropTypes.shape({
         type: PropTypes.string.isRequired,
         text: PropTypes.string,
-        choices: PropTypes.array.isRequired,
+        choices: PropTypes.array,
+        scaleLimits: PropTypes.shape({
+            min: PropTypes.number,
+            max: PropTypes.number,
+        }),
     }).isRequired,
     actions: PropTypes.object,
     vocab: PropTypes.object.isRequired,

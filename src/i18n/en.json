@@ -82,6 +82,7 @@
         "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
+        "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -373,12 +374,10 @@
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
-        "MIN": "Min.",
-        "MAX": "Max.",
         "CHOICE_ENTER": "Enter an option for the user to select.",
         "SCALE_VALUES": {
-            "MIN": "Min.",
-            "MAX": "Max."
+            "MAX": "Max.",
+            "MIN": "Min."
         },
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
