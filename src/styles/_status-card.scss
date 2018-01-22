@@ -27,7 +27,7 @@ $block-class: 'status-card';
         &__name-label {
             color: $font-color;
             font-size: 14px;
-            margin-bottom: -5px;
+            line-height: 14px;
         }
 
         &__name-value {
