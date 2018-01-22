@@ -8,7 +8,7 @@ $block-class:'add-stage-form';
 
         &__input-field {
             color: $lead-font-color;
-            border-radius: 0;
+            border-radius: 2;
             height: 35px;
             width: 100%;
         }
@@ -21,12 +21,12 @@ $block-class:'add-stage-form';
                 color: $font-color;
                 font-size: 14px;
                 line-height: 14px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
 
         &__radio-button {
-            margin-top: 10px;
+            // 
         }
 
         &__permission-label-text {
@@ -50,7 +50,6 @@ $block-class:'add-stage-form';
         &__select {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 24px;
         }
 
         &__select-start-label {
@@ -79,13 +78,19 @@ $block-class:'add-stage-form';
         }
 
         .Select--multi .Select-value {
-            color: nth($brand-neutral-colors, 1);
-            background-color: #c1e6d0;
-            border-color: nth($brand-neutral-colors, 1);
+            color: $lead-font-color;
+            background-color: #f1f4f7;
+            border: 1px solid  nth($brand-neutral-colors, 2);
+        }
+
+        .Select--multi .Select-value-label {
+            font-size: 14px;
+            padding: 4px;
+            color: #333;
         }
 
         .Select-option.is-focused {
-            background-color: rgba(197, 230, 207, 0.5);
+            background-color: #f1f4f7;
         }
     }
 }
