@@ -12,8 +12,8 @@ class StageForm extends Component {
         return (
             <form className='add-stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
-                    <div className='add-stage-form__header'>
-                        <label className='add-stage-form__header-label'>
+                    <div className='add-stage-form__title'>
+                        <label className='add-stage-form__title-label'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                          </label>
                         <div>
@@ -25,8 +25,8 @@ class StageForm extends Component {
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
-                    <div className='add-stage-form__header'>
-                        <label className='add-stage-form__header-label'>
+                    <div className='add-stage-form__group'>
+                        <label className='add-stage-form__group-name'>
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         </label>
                         <div>
@@ -39,8 +39,8 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
-                    <div className='add-stage-form__header'>
-                           <label className='add-stage-form__header-label'>
+                    <div className='add-stage-form__activities'>
+                           <label className='add-stage-form__activities-label'>
                            {this.props.vocab.PROJECT.PERMISSIONS}
                            </label>
                        <div className='add-stage-form__radio-control'>
@@ -63,8 +63,8 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.DESC_ARRAY[this.props.permissions]}
                     </div>
                     <hr className='add-stage-form__divider'/>
-                    <div className='add-stage-form__header'>
-                            <label className='add-stage-form__header-label'>
+                    <div className='add-stage-form__date'>
+                            <label className='add-stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                             </label>
                     </div>

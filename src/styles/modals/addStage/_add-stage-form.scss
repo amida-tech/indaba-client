@@ -3,9 +3,8 @@ $block-class:'add-stage-form';
 @at-root {
     .#{$block-class} {
         color: $lead-font-color;
-        margin-right: 20px;
-        margin-left: 20px;
-        padding: 24px;
+        margin: 24px;
+        padding: 8px;
 
         &__input-field {
             border-radius: 2;
@@ -13,9 +12,8 @@ $block-class:'add-stage-form';
             width: 100%;
         }
 
-        &__header {
-            padding: 8px, 16px;
-            margin-top: 0.5em;
+        &__title {
+            margin-bottom: 24px;
 
             &-label {
                 color: $font-color;
@@ -25,19 +23,56 @@ $block-class:'add-stage-form';
             }
         }
 
+        &__group {
+            margin-bottom: 24px;
+
+            &-name {
+                color: $font-color;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
+            }
+        }
+
+        &__activities {
+            margin-bottom: 8px;
+
+            &-label {
+                color: $font-color;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
+            }
+        }
+
+        &__date {
+            padding: 8px, 16px;
+
+            &-label {
+                color: $font-color;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
+            }
+        }
+
         &__radio-button {
             //
         }
 
         &__permission-label-text {
-            @extend .lead-font;
+            @extend .small-font;
 
+            color: $lead-font-color;
+            font-weight: 500;
             margin-left: 8px;
             margin-right: 16px;
         }
 
         &__text-description {
             @extend .lead-font;
+
+            margin-left: 24px;
         }
 
         &__date-input-div {
@@ -50,13 +85,13 @@ $block-class:'add-stage-form';
         }
 
         &__select-start-label {
-            @extend .lead-font;
+            @extend .small-font;
 
             margin-left: 16px;
         }
 
         &__select-end-label {
-            @extend .lead-font;
+            @extend .small-font;
 
             margin-right: 60px;
             margin-left: 16px;
@@ -68,6 +103,13 @@ $block-class:'add-stage-form';
 
         &__divider {
             @extend .divider;
+
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .Select-placeholder {
+            border: 1px solid $border-color;
         }
 
         .Select--multi .Select-value {
