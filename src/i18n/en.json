@@ -411,7 +411,7 @@
     },
     "EXPORT": {
         "EXPORT": "Export",
-        "INSTRUCTIONS": "Select the quick option to download all project data. Use the custom option to export specific project data. Once selected, confirm options and click the export button.",
+        "INSTRUCTIONS": "Select the quick option to download all project data.",
         "QUICK_EXPORT": "Quick Export",
         "QUICK_EXPORT_EXPLANATION": "Export project data for all subjects and questions, including flags, comments and attached files.",
         "CUSTOM_EXPORT": "Custom Export",
