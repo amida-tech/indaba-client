@@ -4,17 +4,14 @@ export default {
     validateTime(time) {
         return moment(time, 'MM/DD/YYYY', true).isValid();
     },
-    renderForProjectList(time) {
-        return moment(time).format('DD MMM Y');
+    renderCommon(time) {
+        return moment(time).format('MMM DD Y');
     },
     renderForMessageList(time) {
         if (this.isToday(time)) {
             return moment(time).format('h:mm A');
         }
-        return moment(time).format('DD MMM Y');
-    },
-    renderForAccountTab(time) {
-        return moment(time).format('MMM DD YYYY');
+        return this.renderCommon(time);
     },
     renderForMessage(time, vocab, uppercase) {
         if (time === undefined) {
@@ -23,28 +20,22 @@ export default {
         if (this.isToday(time)) {
             return (`${vocab.TIME.TODAY} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
         }
-        return (`${moment(time).format('DD MMMM Y')} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
-    },
-    renderForStageSummary(time) {
-        return moment(time).format('MMM DD YYYY');
+        return (`${moment(time).format('MMMM DD Y')} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
     },
     renderForQuestion(time) {
         return moment(time).format('MM/DD/YYYY');
     },
-    renderForTaskReview(time) {
-        return moment(time).format('MMMM D, YYYY');
-    },
     renderForInboxMessageList(time) {
-        return moment(time).format('DD MMM Y, h:mm A');
+        return moment(time).format('MMM DD YYYY, h:mm A');
     },
     renderFlagTimestamp(time, vocab) {
         if (this.isToday(time)) {
             return (`${vocab.TIME.TODAY} ${moment(time).format('h:mmA')}`);
         }
-        return moment(time).format('M/D/YY h:mmA');
+        return moment(time).format('MMM DD Y h:mmA');
     },
-    renderGeneralTimestamp(time) {
-        return moment(time).format('MM/DD/YY hh:mmA');
+    renderAutosave(time) {
+        return moment(time).format('MMM DD Y hh:mm a');
     },
     renderForSurvey(time) {
         return moment(time, 'MM/DD/YYYY').format('YYYY-MM-DD');
@@ -57,13 +48,13 @@ export default {
                     `[${vocab.TIME.DUE_TODAY}]`);
             },
             nextDay: `[${vocab.TIME.DUE_TOMORROW}]`,
-            nextWeek: 'MM.DD.YYYY',
+            nextWeek: 'MMM DD Y',
             lastDay: `[${vocab.TIME.OVERDUE}]`,
             lastWeek: `[${vocab.TIME.OVERDUE}]`,
             sameElse(now) {
                 return (this.isBefore(now) ?
                 `[${vocab.TIME.OVERDUE}]` :
-                'MM.DD.YYYY');
+                'MMM DD Y');
             },
         });
     },

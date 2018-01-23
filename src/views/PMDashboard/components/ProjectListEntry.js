@@ -36,7 +36,7 @@ class ProjectListEntry extends Component {
                 </div>
                 <div className='project-list-entry__last-updated'>
                     {this.props.vocab.PROJECT.LAST_UPDATED}
-                    {` ${Time.renderForProjectList(this.props.project.lastUpdated)}`}
+                    {` ${Time.renderCommon(this.props.project.lastUpdated)}`}
                 </div>
             </div>
         );

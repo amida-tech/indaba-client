@@ -29,7 +29,7 @@ class AccountTab extends Component {
                         {
                             this.props.user.lastActive === null ?
                                 this.props.vocab.PROJECT.NOT_ACCEPTED :
-                                Time.renderForAccountTab(this.props.user.created)
+                                Time.renderCommon(this.props.user.created)
                         }
                     </div>
                     <div className='account-tab__button-wrapper'>

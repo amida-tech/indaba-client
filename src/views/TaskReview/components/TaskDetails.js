@@ -46,7 +46,7 @@ class TaskDetails extends Component {
                                 this.props.task.id,
                                 this.props.projectId,
                                 event)}
-                        value={Time.renderForTaskReview(this.props.task.endDate)}/><br/>
+                        value={Time.renderCommon(this.props.task.endDate)}/><br/>
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>
