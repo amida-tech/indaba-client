@@ -6,13 +6,14 @@ $block-class:'scale';
         flex-direction: column;
 
         &__instructions {
-            margin: 0.2em 0;
+            margin: 0.2em;
         }
 
         &__field {
             width: 8%;
             text-align: center;
-            margin: 0.2em 0;
+            margin: 0.2em;
+            padding: 0.2em;
         }
     }
 }
