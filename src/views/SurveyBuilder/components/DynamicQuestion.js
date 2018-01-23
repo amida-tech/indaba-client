@@ -22,7 +22,7 @@ class DynamicQuestion extends Component {
                                 type='number'
                                 placeholder={0}
                                 max={minmax === 'MIN' ? get(this.props.question, 'scaleLimits.max', 10) - 1 : undefined}
-                                min={minmax === 'MAX' ? get(this.props.question, 'scaleLimits.min', 10) + 1 : undefined}
+                                min={minmax === 'MAX' ? get(this.props.question, 'scaleLimits.min', 1) + 1 : undefined}
                                 value={get(this.props.question, `scaleLimits[${minmax.toLowerCase()}]`, '')}
                                 onChange={(event) => {
                                     let value = parseInt(event.target.value, 10);
