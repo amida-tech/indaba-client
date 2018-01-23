@@ -1,5 +1,5 @@
 export default {
-    NODE_ENV: 'development',
+    NODE_ENV: process.env.NODE_ENV || 'development',
     API_URL: process.env.API_URL || 'http://localhost:3005',
 
     AUTH_API_URL: process.env.AUTH_API_URL || 'http://localhost:4000/api/v0',
