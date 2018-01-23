@@ -18,7 +18,7 @@ $block-class:'add-stage-form';
             &-label {
                 color: $font-color;
                 font-size: 14px;
-                line-height: 14px;
+                line-height: 20px;
                 font-weight: 500;
             }
         }
@@ -56,10 +56,6 @@ $block-class:'add-stage-form';
             }
         }
 
-        &__radio-button {
-            //
-        }
-
         &__permission-label-text {
             @extend .small-font;
 
@@ -70,9 +66,10 @@ $block-class:'add-stage-form';
         }
 
         &__text-description {
-            @extend .lead-font;
+            @extend .small-font;
 
             margin-left: 24px;
+            color: $lead-font-color;
         }
 
         &__date-input-div {
