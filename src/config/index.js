@@ -14,4 +14,6 @@ if (process.env.NODE_ENV === 'production') {
     config = devConfig;
 }
 
-export default config;
+const defaultConfig = config;
+
+export default defaultConfig;
