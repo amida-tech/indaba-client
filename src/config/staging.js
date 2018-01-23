@@ -1,5 +1,5 @@
 export default {
-    NODE_ENV: 'staging',
+    NODE_ENV: process.env.NODE_ENV || 'staging',
     API_URL: process.env.API_STAGING_URL || 'a93777759f18511e7b4a1060c5163e47-2052654379.us-west-2.elb.amazonaws.com:3005',
 
     AUTH_API_URL: process.env.AUTH_STAGING_API_URL || 'aa7e54a82ede111e7b4a1060c5163e47-61384471.us-west-2.elb.amazonaws.com:4000',
