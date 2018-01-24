@@ -13,14 +13,14 @@ export default {
         }
         return this.renderCommon(time);
     },
-    renderForMessage(time, vocab, uppercase) {
+    renderForMessage(time, vocab) {
         if (time === undefined) {
             return '';
         }
         if (this.isToday(time)) {
-            return (`${vocab.TIME.TODAY} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
+            return (`${vocab.TIME.TODAY} ${vocab.TIME.AT} ${moment(time).format('h:mm A')}`);
         }
-        return (`${moment(time).format('MMMM DD Y')} ${vocab.TIME.AT} ${moment(time).format(`h:mm ${uppercase ? 'A' : 'a'}`)}`);
+        return (`${moment(time).format('MMMM DD Y')} ${vocab.TIME.AT} ${moment(time).format('h:mm A')}`);
     },
     renderForQuestion(time) {
         return moment(time).format('MM/DD/YYYY');
