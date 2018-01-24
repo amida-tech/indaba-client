@@ -32,7 +32,7 @@ class Message extends Component {
                 message={
                     this.props.message &&
                     Object.assign({}, this.props.message, {
-                        from: this.renderUserFromEmail(this.props.message.from),
+                        from: renderNameByEmail(this.props.message.from, this.props.users),
                     })
                 }/>;
         }
