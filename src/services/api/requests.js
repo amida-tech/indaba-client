@@ -1,8 +1,6 @@
 import cookie from 'react-cookies';
 import 'whatwg-fetch';
-
-const formurlencoded = require('form-urlencoded');
-
+import formurlencoded from 'form-urlencoded';
 
 const makeQueryParams = (params) => {
     if (!params || Object.keys(params).length === 0) {
