@@ -58,7 +58,7 @@
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "CREATE_SURVEY": "Please create a survey before assigning tasks.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
-        "SURVEY_REQUEST": "The system failed to insert or update a new survey into the database. Please try again",
+        "SURVEY_REQUEST": "The system failed to insert or update a survey into the database. Please try again",
         "ANSWER_REQUEST": "The system failed to handle an answer request.",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",
         "GROUP_DELETE": "The system failed to delete the user group.",
@@ -82,6 +82,7 @@
         "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
+        "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -97,6 +98,8 @@
         "COMMENT_TIP": "Enter your comment here"
     },
     "TIME": {
+        "TODAY": "Today",
+        "AT": "at",
         "DUE_TODAY": "Due Today",
         "DUE_TOMORROW": "Due Tomorrow",
         "OVERDUE": "Overdue"
@@ -510,6 +513,10 @@
         "SURVEY_TITLE_MODAL": {
             "TITLE": "Survey title",
             "TITLE_INPUT_LABEL": "Title"
+        },
+        "SECTION_DELETE_CONFIRM": {
+            "TITLE": "Delete section?",
+            "DELETE_WARNING": "Are you sure you want to delete the entire section? Once you click 'Save Progress,' all questions contained will have to be re-entered."
         }
     }
 }

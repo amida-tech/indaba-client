@@ -84,12 +84,14 @@ export function updateProjectWithSurvey(projectId, surveyId) {
 
 export function putStage(project, stage, fromWizard, errorMessages) {
     const requestBody = [Object.assign({},
+        stage,
         {
             workflowId: project.workflowId,
             position: project.stages.length,
             role: 3,
+            startDate: new Date(stage.startDate),
+            endDate: new Date(stage.endDate),
         },
-        stage,
     )];
 
     return (dispatch) => {

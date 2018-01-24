@@ -7,6 +7,7 @@ import { Button } from 'grommet';
 
 import { renderName, renderNameByEmail } from '../../../../utils/User';
 import apiService from '../../../../services/api';
+import Time from '../../../../utils/Time';
 
 import CollapsedMessage from './CollapsedMessage';
 import MessageField from './MessageField';
@@ -32,11 +33,10 @@ class Message extends Component {
                 message={
                     this.props.message &&
                     Object.assign({}, this.props.message, {
-                        from: this.renderUserFromEmail(this.props.message.from),
+                        from: renderNameByEmail(this.props.message.from, this.props.users),
                     })
                 }/>;
         }
-
         return (
             <div className={`message ${active ? 'message--active' : ''} ${compose ? 'message--compose' : ''}`}
                 onClick={() => !compose && !active &&
@@ -52,7 +52,8 @@ class Message extends Component {
                             componentProps={{ users: this.props.users }}
                             name='to'/>
                         <div className='message__timestamp'>
-                            {this.props.message && this.props.message.timestamp}
+                            {this.props.message && Time.renderForMessage(
+                                this.props.message.timestamp, this.props.vocab)}
                         </div>
                     </div>
                     <div className='message__row'>
@@ -118,7 +119,7 @@ class Message extends Component {
                                 name='message'/>
                         </div>
                         <div className='message__body-timestamp'>
-                            {_.get(this.props, 'message.timestamp')}
+                            {Time.renderForMessage(_.get(this.props, 'message.timestamp'), this.props.vocab)}
                         </div>
                         {
                             compose &&
@@ -128,7 +129,7 @@ class Message extends Component {
                                     size='small'
                                     margin={{ right: 'small' }}
                                     colorIndex='grey-1'
-                                    onClick={this.props.actions.discardReply}/>
+                                    onClick={this.props.onCancel}/>
                                 <Button label={this.props.vocab.COMMON.SEND}
                                     box
                                     size='small'
@@ -168,6 +169,7 @@ class MessageSelector extends Component {
         super(props);
 
         this.submitForm = this.submitForm.bind(this);
+        this.cancelForm = this.cancelForm.bind(this);
         this.handleSendResponse = this.handleSendResponse.bind(this);
     }
     submitForm(values) {
@@ -182,6 +184,14 @@ class MessageSelector extends Component {
             apiService.messaging.reply(reply.id, message, this.handleSendResponse);
         } else {
             apiService.messaging.send(message, this.handleSendResponse);
+        }
+    }
+    cancelForm() {
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        if (_.has(reply, 'id')) {
+            this.props.actions.discardReply();
+        } else {
+            this.props.goToInbox();
         }
     }
     handleSendResponse(err, result) {
@@ -201,7 +211,8 @@ class MessageSelector extends Component {
                 initialValues={
                     reply
                 }
-                onSubmit={this.submitForm}/>
+                onSubmit={this.submitForm}
+                onCancel={this.cancelForm}/>
         );
     }
 }

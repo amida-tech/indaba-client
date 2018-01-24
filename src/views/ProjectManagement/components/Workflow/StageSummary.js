@@ -5,6 +5,7 @@ import { Box } from 'grommet';
 import _ from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
+import Time from '../../../../utils/Time';
 
 class StageSummary extends Component {
     render() {
@@ -31,7 +32,7 @@ class StageSummary extends Component {
                     className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
-                            {TaskStatus.formatDate(this.props.stage.startDate)}
+                            {Time.renderCommon(this.props.stage.startDate)}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.START_STAGE}
@@ -52,7 +53,7 @@ class StageSummary extends Component {
                     className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
-                            {TaskStatus.formatDate(this.props.stage.endDate)}
+                            {Time.renderCommon(this.props.stage.endDate)}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.END_STAGE}

@@ -4,20 +4,38 @@ export default {
     validateTime(time) {
         return moment(time, 'MM/DD/YYYY', true).isValid();
     },
-    renderForProjectList(time) {
-        return moment(time).format('DD MMM Y');
+    renderCommon(time) {
+        return moment(time).format('MMM DD Y');
     },
     renderForMessageList(time) {
-        return moment(time).format('DD MMM Y');
+        if (this.isToday(time)) {
+            return moment(time).format('h:mm A');
+        }
+        return this.renderCommon(time);
     },
-    renderForTaskReview(time) {
+    renderForMessage(time, vocab) {
+        if (time === undefined) {
+            return '';
+        }
+        if (this.isToday(time)) {
+            return (`${vocab.TIME.TODAY} ${vocab.TIME.AT} ${moment(time).format('h:mm A')}`);
+        }
+        return (`${moment(time).format('MMMM DD Y')} ${vocab.TIME.AT} ${moment(time).format('h:mm A')}`);
+    },
+    renderForQuestion(time) {
         return moment(time).format('MM/DD/YYYY');
     },
     renderForInboxMessageList(time) {
-        return moment(time).format('DD MMM Y h:mmA');
+        return moment(time).format('MMM DD YYYY, h:mm A');
     },
-    renderGeneralTimestamp(time) {
-        return moment(time).format('MM/DD/YY hh:mmA');
+    renderFlagTimestamp(time, vocab) {
+        if (this.isToday(time)) {
+            return (`${vocab.TIME.TODAY} ${moment(time).format('h:mmA')}`);
+        }
+        return moment(time).format('MMM DD Y h:mmA');
+    },
+    renderAutosave(time) {
+        return moment(time).format('MMM DD Y hh:mm a');
     },
     renderForSurvey(time) {
         return moment(time, 'MM/DD/YYYY').format('YYYY-MM-DD');
@@ -30,13 +48,13 @@ export default {
                     `[${vocab.TIME.DUE_TODAY}]`);
             },
             nextDay: `[${vocab.TIME.DUE_TOMORROW}]`,
-            nextWeek: 'DD MMM Y',
+            nextWeek: 'MMM DD Y',
             lastDay: `[${vocab.TIME.OVERDUE}]`,
             lastWeek: `[${vocab.TIME.OVERDUE}]`,
             sameElse(now) {
                 return (this.isBefore(now) ?
                 `[${vocab.TIME.OVERDUE}]` :
-                'DD MMM Y');
+                'MMM DD Y');
             },
         });
     },

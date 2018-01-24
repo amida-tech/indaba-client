@@ -1,5 +1,6 @@
 import cookie from 'react-cookies';
 import 'whatwg-fetch';
+import formurlencoded from 'form-urlencoded';
 
 const makeQueryParams = (params) => {
     if (!params || Object.keys(params).length === 0) {
@@ -21,14 +22,16 @@ export function addQueryParams(url, params) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
-export function apiAuthPostRequest(fullURI, requestBody, callback) {
+export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
+    const encodedRequestBodyObject = formurlencoded(requestBodyObject);
+
     fetch(fullURI, {
         method: 'POST',
         headers: {
             Accept: '*/*',
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: requestBody,
+        body: encodedRequestBodyObject,
     })
   .then(res => handleResponse(res, callback), issue => callback(issue));
 }
