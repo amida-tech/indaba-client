@@ -7,6 +7,13 @@ export function changeSectionView(sectionView) {
     };
 }
 
+export function showSectionDeleteConfirmModal(sectionIndex) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL,
+        sectionIndex,
+    };
+}
+
 // Form/data related.
 export function updateInstructions(instructions) {
     return {
@@ -27,6 +34,13 @@ export function updateSection(sectionIndex, name) {
         type: actionTypes.SURVEY_BUILDER_UPDATE_SECTION,
         sectionIndex,
         name,
+    };
+}
+
+export function deleteSection(sectionIndex) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_DELETE_SECTION,
+        sectionIndex,
     };
 }
 
