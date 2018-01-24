@@ -17,5 +17,9 @@ $block-class: 'pm-all-users';
         .grommetux-control-icon {
             @extend .small-icon;
         }
+
+        input::-webkit-input-placeholder {
+            color: #333;
+        }
     }
 }
