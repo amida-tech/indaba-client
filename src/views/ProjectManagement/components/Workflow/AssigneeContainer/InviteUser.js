@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Field, reduxForm, reset } from 'redux-form';
-// import { Button } from 'grommet';
 
 class InviteUser extends Component {
     render() {
