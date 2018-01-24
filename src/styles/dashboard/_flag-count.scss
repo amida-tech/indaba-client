@@ -14,14 +14,14 @@ $block-class: 'flag-count';
             position: absolute;
             top: 0;
             left: 16px;
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             color: $font-inverse-color;
             background-color: $brand-color;
             border-radius: 50%;
-            font-size: 12px;
+            font-size: 10px;
             text-align: center;
-            line-height: 18px;
+            line-height: 16px;
         }
     }
 }
