@@ -128,7 +128,7 @@ class Message extends Component {
                                     size='small'
                                     margin={{ right: 'small' }}
                                     colorIndex='grey-1'
-                                    onClick={this.props.actions.discardReply}/>
+                                    onClick={this.props.onCancel}/>
                                 <Button label={this.props.vocab.COMMON.SEND}
                                     box
                                     size='small'
@@ -168,6 +168,7 @@ class MessageSelector extends Component {
         super(props);
 
         this.submitForm = this.submitForm.bind(this);
+        this.cancelForm = this.cancelForm.bind(this);
         this.handleSendResponse = this.handleSendResponse.bind(this);
     }
     submitForm(values) {
@@ -182,6 +183,14 @@ class MessageSelector extends Component {
             apiService.messaging.reply(reply.id, message, this.handleSendResponse);
         } else {
             apiService.messaging.send(message, this.handleSendResponse);
+        }
+    }
+    cancelForm() {
+        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        if (_.has(reply, 'id')) {
+            this.props.actions.discardReply();
+        } else {
+            this.props.goToInbox();
         }
     }
     handleSendResponse(err, result) {
@@ -201,7 +210,8 @@ class MessageSelector extends Component {
                 initialValues={
                     reply
                 }
-                onSubmit={this.submitForm}/>
+                onSubmit={this.submitForm}
+                onCancel={this.cancelForm}/>
         );
     }
 }
