@@ -10,9 +10,10 @@ $block-class:'login-form';
         }
 
         &__input {
+            background-color: #fff;
             width: 100%;
-            border: 1px solid $border-color;
-            padding: 0.5em 1em;
+            transition: background-color 5000s ease-in-out 0s;
+            padding: 8px;
 
             &:focus,
             &:active {
