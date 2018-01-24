@@ -8,8 +8,8 @@ class Scale extends Component {
         return (
             <div className='scale'>
                 <span className='scale__instructions'>
-                    {`${this.props.vocab.SURVEY.SCALE_ENTER + this.props.scaleLimits.min +
-                    this.props.vocab.SURVEY._AND + this.props.scaleLimits.max}.` }
+                    {`${`${this.props.vocab.SURVEY.SCALE_ENTER + this.props.scaleLimits.min
+                    },${this.props.scaleLimits.max}`}.` }
                 </span>
                 <input className={`scale__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={0}

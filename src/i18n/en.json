@@ -375,8 +375,7 @@
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
         "CHOICE_ENTER": "Enter an option for the user to select.",
-        "SCALE_ENTER": "Please enter a value between ",
-        "_AND": " and ",
+        "SCALE_ENTER": "Please enter a value between these two numbers: ",
         "SCALE_VALUES": {
             "MAX": "Max.",
             "MIN": "Min."
