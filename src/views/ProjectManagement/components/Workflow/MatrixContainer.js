@@ -29,7 +29,6 @@ class MatrixContainer extends Component {
                                 <tr key={'Summary'}>
                                     <td className='matrix-container__subject'
                                         key='empty-subject-summary-row'>
-                                            {this.props.vocab.COMMON.SUBJECTS}
                                     </td>
                                     {this.props.project.stages.map(stage =>
                                     <td key={`StageSummary-${stage.id}`} className='stage-summary-cell'>
