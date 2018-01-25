@@ -1,4 +1,5 @@
 $element-background: #f3f5f6;
+$search-input-background: #fff;
 
 $block-class: 'search-input';
 
@@ -16,7 +17,7 @@ $block-class: 'search-input';
             flex: 1;
             border: 2px solid $border-color;
             border-radius: 2px;
-            background-color: #fff;
+            background-color: $search-input-background;
             padding: 8px;
 
             &:focus,
