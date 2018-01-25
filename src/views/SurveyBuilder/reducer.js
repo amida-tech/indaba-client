@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { assign, cloneDeep } from 'lodash';
+import { assign, cloneDeep, has, omit } from 'lodash';
 import { toast } from 'react-toastify';
 
 import * as type from './actionTypes';
@@ -12,6 +12,7 @@ import {
 export const initialState = {
     ui: {
         sectionView: -1,
+        showSectionDeleteConfirmModal: -1,
     },
     form: {
         name: '',
@@ -42,14 +43,18 @@ export default (state = initialState, action) => {
         return update(state, { form: { $merge: action.survey } });
     case type.SURVEY_BUILDER_CHANGE_SECTION_VIEW:
         return update(state, { ui: { sectionView: { $set: action.sectionView } } });
+    case type.SURVEY_BUILDER_SHOW_SECTION_DELETE_CONFIRM_MODAL:
+        return update(state, { ui: { showSectionDeleteConfirmModal: { $set:
+            action.sectionIndex } } });
     case type.SURVEY_BUILDER_UPDATE_INSTRUCTIONS:
         return update(state, { form: { description: { $set: action.instructions } } });
     case type.SURVEY_BUILDER_INSERT_SECTION:
-        return update(state, { form: { sections: { $push:
-            [{ name: '', questions: [] }] } } });
+        return update(state, { form: { sections: { $push: [{ name: '', questions: [] }] } } });
     case type.SURVEY_BUILDER_UPDATE_SECTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { name: { $set: action.name } } } } });
+    case type.SURVEY_BUILDER_DELETE_SECTION:
+        return update(state, { form: { sections: { $splice: [[action.sectionIndex, 1]] } } });
     case type.SURVEY_BUILDER_INSERT_QUESTION:
         return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $push: [action.question] } } } } });
@@ -57,21 +62,34 @@ export default (state = initialState, action) => {
         if (action.field === 'meta' && state.form.sections[action.sectionIndex].questions[action.questionIndex].meta) {
             return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { [action.questionIndex]: { [action.field]:
-                { $merge: action.value } } } } } } });
+                { $merge: action.value } } },
+                $unset: ['id'] } } } });
         }
-        return update(state, { form: { sections: { [action.sectionIndex]:
+        const newState = update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { [action.field]:
-            { $set: action.value } } } } } } });
+            { $set: action.value },
+            $unset: ['id'] } } } } } });
+        if (has(state.form.sections[action.sectionIndex].questions[action.questionIndex], 'choices')) {
+            return update(newState, { form: { sections: { [action.sectionIndex]:
+            { questions: { [action.questionIndex]: {
+                choices: { $apply: choices => choices.map(choice => omit(choice, ['id'])) } } } } } } });
+        }
+        return newState;
     }
-    case type.SURVEY_BUILDER_UPSERT_CHOICE:
+    case type.SURVEY_BUILDER_UPSERT_CHOICE: {
         if (action.value !== undefined) {
             return update(state, { form: { sections: { [action.sectionIndex]:
-            { questions: { [action.questionIndex]: { choices: { [action.choiceIndex]: {
-                type: { $set: 'bool' }, text: { $set: action.value } } } } } } } } });
+            { questions: { [action.questionIndex]: { choices: {
+                $apply: choices => choices.map(choice => omit(choice, ['id'])),
+                [action.choiceIndex]: { text: { $set: action.value } } },
+                $unset: ['id'] } } } } } });
         }
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { choices: {
-            $splice: [[action.choiceIndex + 1, 0, { text: '' }]] } } } } } } });
+            $apply: choices => choices.map(choice => omit(choice, ['id'])),
+            $splice: [[action.choiceIndex + 1, 0, { text: '' }]] } } },
+            $unset: ['id'] } } } });
+    }
     case type.SURVEY_BUILDER_DELETE_CHOICE:
         return update(state, { form: { sections: { [action.sectionIndex]:
         { questions: { [action.questionIndex]: { choices: { $splice:

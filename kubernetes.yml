@@ -29,4 +29,4 @@ spec:
           value: testorg
         ports:
         - name: nodejs-port
-          containerPort: 80
+          containerPort: 8081

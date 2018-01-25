@@ -8,7 +8,7 @@ class Date extends Component {
     render() {
         let currentAnswer = get(this.props, 'answer.dateValue', undefined);
         if (currentAnswer) {
-            currentAnswer = Time.renderForTaskReview(currentAnswer);
+            currentAnswer = Time.renderForQuestion(currentAnswer);
         }
         return (
             <div className='date'>

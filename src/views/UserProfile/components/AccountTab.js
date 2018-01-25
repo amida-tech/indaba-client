@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Field } from 'redux-form';
+import Time from '../../../utils/Time';
 
 class AccountTab extends Component {
     render() {
@@ -26,8 +27,9 @@ class AccountTab extends Component {
                     {this.props.vocab.PROJECT.ACCOUNT_SINCE}
                     <div className='account-tab__date'>
                         {
-                            this.props.user.activationDate ||
-                            this.props.vocab.PROJECT.NOT_ACCEPTED
+                            this.props.user.lastActive === null ?
+                                this.props.vocab.PROJECT.NOT_ACCEPTED :
+                                Time.renderCommon(this.props.user.created)
                         }
                     </div>
                     <div className='account-tab__button-wrapper'>

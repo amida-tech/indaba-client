@@ -23,7 +23,7 @@ import './styles/main.scss';
 import reducers from './reducers';
 import routes from './routes';
 
-const DEVELOP = process.env.NODE_ENV === 'develop';
+const DEVELOP = process.env.NODE_ENV === 'development';
 
 let middleware = [routerMiddleware(browserHistory), thunk];
 if (DEVELOP) {
