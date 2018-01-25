@@ -119,8 +119,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     const late = !!(task && answers &&
         TaskStatus.endDateInPast(task) &&
         !TaskStatus.responsesComplete({ response: answers.answers }, surveyLength));
-    const complete = answers &&
-    TaskStatus.responsesComplete({ response: answers.answers }, surveyLength);
+    const complete = task.complete;
 
     return {
         key: task.id,
