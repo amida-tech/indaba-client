@@ -27,8 +27,10 @@ class Export extends Component {
         const customType = this.props.selectedType === 'custom';
         return (
             <form className='export' onSubmit={this.props.handleSubmit}>
+            <div className='export__wrapper'>
                 <div className='export__instructions'>
                     {this.props.vocab.EXPORT.INSTRUCTIONS}
+                </div>
                 </div>
                 <div className='export__interactions'>
                     <div className='export__configuration'>
