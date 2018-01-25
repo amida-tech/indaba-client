@@ -5,17 +5,16 @@ $block-class:'title-form';
         padding: 16px;
         display: flex;
         width: 45vw;
+        justify-content: flex-start;
 
         &__title-label {
             @extend .lead-font;
-
-            margin-left: 5px;
         }
 
         &__title-input,
         input:not(.grommetux-input) {
-            margin-left: 8px;
             width: 42vw;
+            margin-top: 8px;
         }
     }
 }
