@@ -401,7 +401,7 @@
             "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
             "INTEGER": "The user would enter a whole number.",
-            "SCALE": "The users chooses an answer between one or two values you dictate. "
+            "SCALE": "The user answers a question bounded by one or two values."
         },
         "SECTION_BREAK": "Section Break"
     },
