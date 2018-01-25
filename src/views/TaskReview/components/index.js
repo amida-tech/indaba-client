@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { cloneDeep, every, flatten, find, get, has, map } from 'lodash';
+import { every, flatten, find, get, has, map } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -30,7 +30,7 @@ class TaskReview extends Component {
         const flatSurvey = this.props.survey.questions ?
             this.props.survey.questions : flatten(map(this.props.survey.sections, 'questions'));
         const displaySurvey = this.props.sectionIndex === -1 ?
-            cloneDeep(flatSurvey) : this.props.survey.sections[this.props.sectionIndex].questions;
+            flatSurvey : this.props.survey.sections[this.props.sectionIndex].questions;
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
             || this.props.profile.id !== this.props.taskedUser.id || this.props.task.status !== 'current';
         const reqCheck = every(flatSurvey, (question) => {
