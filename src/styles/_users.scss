@@ -13,10 +13,16 @@ $block-class: 'users';
             margin-bottom: 40px;
 
             &--left {
-                margin-right: 5px;
-                border-radius: 2px;
-                letter-spacing: 0.8px;
+                background-color: nth($brand-neutral-colors, 2);
+                color: #fdfdfd;
+                border: none;
+                padding: 8px 16px;
+                font-size: 12px;
                 font-weight: 400;
+                letter-spacing: 0.3px;
+                margin-left: 8px;
+                border-radius: 2px;
+                outline: none;
 
                 &:hover {
                     background: darken(#4eb276, 10);
@@ -25,9 +31,16 @@ $block-class: 'users';
             }
 
             &--right {
-                border-radius: 2px;
-                letter-spacing: 0.8px;
+                background-color: nth($brand-neutral-colors, 2);
+                color: #fdfdfd;
+                border: none;
+                padding: 8px 16px;
+                font-size: 12px;
                 font-weight: 400;
+                letter-spacing: 0.3px;
+                margin-left: 8px;
+                border-radius: 2px;
+                outline: none;
 
                 &:hover {
                     background: darken(#4eb276, 10);
