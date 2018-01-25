@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
 import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
-import _ from 'lodash';
+import { find, has, get } from 'lodash';
 
 import Summary from '../../../common/components/Summary';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
@@ -57,6 +57,9 @@ class CreateProjectWizard extends Component {
         this.props.actions.goToStep(newStep);
     }
     render() {
+        const surveyComplete = has(this.props.survey, 'id') &&
+            get(this.props.survey, 'sections', []).length > 0 &&
+            this.props.survey.sections.some(section => section.questions.length > 0);
         const summary = (
             <Summary project={this.props.project}
                 survey={this.props.survey}
@@ -98,7 +101,7 @@ class CreateProjectWizard extends Component {
                     activeIndex={this.props.ui.step}
                     onActive={this.changeStep}
                     responsive={true} >
-                    <Tab className={'project-wizard__tab project-wizard__tab--incomplete'}
+                    <Tab className={`project-wizard__tab project-wizard__tab--${surveyComplete ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         {summary}
                         <AddSurvey
@@ -174,11 +177,11 @@ CreateProjectWizard.propTypes = {
 
 const mapStateToProps = (state) => {
     const project = state.wizard.ui.projectLink > 0 ?
-            _.find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
+            find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
             state.wizard.project;
     return {
         project,
-        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
+        survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         user: state.user,
         ui: state.wizard.ui,

@@ -6,8 +6,9 @@ $block-class:'stage-summary';
         flex-direction: column;
 
         &__header {
-            @extend .lead-font;
-
+            font-size: 18px;
+            font-weight: 400;
+            color: $lead-font-color;
             padding: 8px 4px;
         }
 
@@ -55,8 +56,9 @@ $block-class:'stage-summary';
             white-space: nowrap;
             text-overflow: ellipsis;
             float: right;
-            font-size: 14px;
-            color: $header-font-color;
+            font-size: 16px;
+            font-weight: 300;
+            color: $lead-font-color;
 
             &--no-clip {
                 width: auto;
@@ -66,11 +68,13 @@ $block-class:'stage-summary';
 
         &__label {
             font-size: 12px;
+            letter-spacing: 0.3px;
             color: lighten($font-color, 5%);
-            text-transform: uppercase;
             overflow: hidden;
             white-space: nowrap;
+            font-weight: 400;
             text-overflow: ellipsis;
+            margin-top: 2px;
 
             &--no-clip {
                 overflow: visible;

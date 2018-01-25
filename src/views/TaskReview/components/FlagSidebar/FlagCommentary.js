@@ -17,7 +17,7 @@ class FlagCommentary extends Component {
                     <div className='flag-commentary__frame'
                         key={`flag-comment${index}`}>
                         <div className='flag-commentary__timestamp'>
-                            {Time.renderGeneralTimestamp(reply.created)}
+                            {Time.renderFlagTimestamp(reply.created, this.props.vocab)}
                         </div>
                         <div className='flag-commentary__comment'>
                             {reply.entry}

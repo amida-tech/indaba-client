@@ -2,7 +2,7 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
-        background-color: $element-background;
+        background-color: #fdfdfd;
 
         &__entry {
             display: flex;

@@ -5,6 +5,7 @@ $block-class: 'sub-nav';
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        margin-top: 80px;
 
         @media (min-width: 1200px) {
             width: 50%;
