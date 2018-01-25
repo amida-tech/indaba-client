@@ -5,8 +5,6 @@ import { get, omit, compact } from 'lodash';
 
 class SurveyForm extends Component { // TODO: INBA-450
     render() {
-        console.log('SurveyForm');
-        console.log(this.props);
         return (
             <form className='survey-form'
                 onSubmit={this.props.handleSubmit}>
