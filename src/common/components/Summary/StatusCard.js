@@ -13,7 +13,8 @@ class StatusCard extends Component {
                         <div className='status-card__name-label'>
                             {this.props.label}
                         </div>
-                        <div className='status-card__name-value'>
+                        <div className='status-card__name-value'
+                            onClick={this.props.onEditClick}>
                             { this.props.name }
                             {
                                 this.props.onEditClick &&

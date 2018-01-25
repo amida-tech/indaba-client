@@ -35,6 +35,11 @@ $block-class: 'status-card';
             color: $lead-font-color;
             font-size: 24px;
             font-weight: 100;
+            cursor: pointer;
+
+            &:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
         }
 
         &__status {
