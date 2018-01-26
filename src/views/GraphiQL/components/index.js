@@ -6,7 +6,9 @@ import apiService from '../../../services/api';
 export default class GraphQLContainer extends Component {
     render() {
         return (
-            <GraphiQL fetcher={apiService.messaging.graphqlFetcher} />
+            <div style={{ height: '800px' }}>
+                <GraphiQL fetcher={apiService.messaging.graphqlFetcher} />
+            </div>
         );
     }
 }
