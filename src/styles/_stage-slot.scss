@@ -4,9 +4,9 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: $font-color;
-        text-transform: uppercase;
-        padding: 8px;
+        color: $lead-font-color;
+        font-size: 16px;
+        padding: 16px;
         min-height: 104px;
 
         &--accept {
@@ -14,7 +14,7 @@ $block-class:'stage-slot';
         }
 
         &--deny {
-            background: rgba(255, 0, 0, 0.3);
+            background: rgba(255, 0, 0, 0.2);
         }
 
         &__container > * {
@@ -22,13 +22,14 @@ $block-class:'stage-slot';
         }
 
         &__filtered {
-            opacity: 0.5;
+            opacity: 0.2;
         }
 
         &__name-row {
             text-transform: none;
             color: $header-font-color;
             font-size: 18px;
+            font-weight: 400;
 
             span {
                 cursor: pointer;
@@ -36,14 +37,18 @@ $block-class:'stage-slot';
         }
 
         &__due-row {
-            font-size: 12px;
+            font-size: 14px;
             display: flex;
             justify-content: space-between;
+            color: #5d5d5d;
         }
 
         &__role-span {
             font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
             align-items: flex-start;
+            color: lighten($font-color, 5%);
         }
 
         &__masked-button {
@@ -65,11 +70,13 @@ $block-class:'stage-slot';
         }
 
         &__left-icon {
-            @extend .small-icon;
-
+            width: 16px;
+            height: 16px;
+            fill: $header-font-color;
             float: left;
             margin-right: 5px;
-            fill: #a4aebf;
+            margin-top: 2px;
+            cursor: pointer;
 
             &:hover {
                 fill: $font-color;

@@ -82,6 +82,7 @@
         "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
+        "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "COMING_SOON": "Coming soon."
     },
@@ -377,6 +378,11 @@
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
         "CHOICE_ENTER": "Enter an option for the user to select.",
+        "SCALE_ENTER": "Please enter a value between these two numbers: ",
+        "SCALE_VALUES": {
+            "MAX": "Max.",
+            "MIN": "Min."
+        },
         "QUESTIONS_TYPES": {
             "CHOICE": "Multiple Choice",
             "BULLET": "Bullet Point",
@@ -395,7 +401,7 @@
             "DROPDOWN":"The user will select an option from those available in the dropdown.",
             "DATE": "The user will enter a date in the provided field.",
             "INTEGER": "The user would enter a whole number.",
-            "SCALE": "The users answers a question "
+            "SCALE": "The user answers a question bounded by one or two values."
         },
         "SECTION_BREAK": "Section Break"
     },

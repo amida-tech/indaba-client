@@ -8,15 +8,17 @@ $block-class:'user-sidebar';
         flex-direction: column;
         position: relative;
         min-width: 320px;
+        padding: 16px;
 
         &__user-dropdown {
             overflow-y: scroll;
-            height: 300px;
+            height: 340px;
         }
 
         &__instructions {
             position: relative;
-            padding: 0.5em;
+            padding: 8px;
+            color: $lead-font-color;
         }
 
         &__wrapper {

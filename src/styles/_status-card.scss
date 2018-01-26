@@ -1,8 +1,10 @@
+$card-background: rgba(243, 245, 246, 0.5);
 $block-class: 'status-card';
 
 @at-root {
     .#{$block-class} {
         border: 1px solid $border-color;
+        background-color: $card-background;
         border-radius: 2px;
         display: flex;
         flex-direction: row;
@@ -25,9 +27,8 @@ $block-class: 'status-card';
 
         &__name-label {
             color: $font-color;
-            font-size: 12px;
-            margin-bottom: -5px;
-            text-transform: uppercase;
+            font-size: 14px;
+            line-height: 14px;
         }
 
         &__name-value {
@@ -43,9 +44,11 @@ $block-class: 'status-card';
         }
 
         &__status {
-            color: $header-font-color;
-            font-size: 18px;
+            color: $lead-font-color;
+            margin-top: 20px;
+            font-size: 24px;
             display: flex;
+            font-weight: 300;
 
             &:hover {
                 color: nth($brand-neutral-colors, 2);

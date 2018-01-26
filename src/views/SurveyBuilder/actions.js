@@ -90,6 +90,16 @@ export function upsertChoice(sectionIndex, questionIndex, choiceIndex, value) {
     };
 }
 
+export function upsertScale(sectionIndex, questionIndex, isMax, value) {
+    return {
+        type: actionTypes.SURVEY_BUILDER_UPSERT_SCALE,
+        sectionIndex,
+        questionIndex,
+        isMax,
+        value,
+    };
+}
+
 export function deleteChoice(sectionIndex, questionIndex, choiceIndex) {
     return {
         type: actionTypes.SURVEY_BUILDER_DELETE_CHOICE,

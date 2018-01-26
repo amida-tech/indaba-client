@@ -2,6 +2,18 @@ $block-class:'scale';
 
 @at-root {
     .#{$block-class} {
-        // Placeholder
+        display: flex;
+        flex-direction: column;
+
+        &__instructions {
+            margin: 0.2em;
+        }
+
+        &__field {
+            width: 8%;
+            text-align: center;
+            margin: 0.2em;
+            padding: 0.2em;
+        }
     }
 }

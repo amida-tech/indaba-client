@@ -10,6 +10,7 @@ import Choices from './Choices';
 import Date from './Date';
 import Dropdown from './Dropdown';
 import Integer from './Integer';
+import Scale from './Scale';
 import Text from './Text';
 import Time from '../../../../utils/Time';
 
@@ -56,6 +57,12 @@ class Questions extends Component {
             break;
         case 'integer':
             QuestionType = (<Integer
+                {...this.props}
+                upsertAnswer = {upsertAnswer}
+                answer={value ? value.answer : ''} />);
+            break;
+        case 'scale':
+            QuestionType = (<Scale
                 {...this.props}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);

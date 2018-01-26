@@ -2,13 +2,54 @@ import React, { Component } from 'react';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 import { get, has } from 'lodash';
+import { toast } from 'react-toastify';
 
 class DynamicQuestion extends Component {
     render() {
         let QuestionDisplay;
-        if (this.props.type === 'scale') {
+        if (this.props.question.type === 'scale') {
             QuestionDisplay = (
                 <div className='dynamic-question__scale'>
+                    <div className='dynamic-question__scale-field'>
+                        <span className='dynamic-question__scale-label'>
+                            {this.props.vocab.SURVEY.SCALE_VALUES.MAX}
+                        </span>
+                        <input className='dynamic-question__scale-input'
+                            type='number'
+                            placeholder={10}
+                            min={get(this.props.question, 'scaleLimits.min', 1) + 1}
+                            value={get(this.props.question, 'scaleLimits.max', '')}
+                            onChange={(event) => {
+                                let value = parseInt(event.target.value, 10);
+                                const minValue = get(this.props.question, 'scaleLimits.min', 1);
+                                if (value < minValue) {
+                                    toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
+                                    value = minValue + 1;
+                                }
+                                this.props.actions.upsertScale(this.props.sectionIndex,
+                                    this.props.questionIndex, true, value);
+                            }} />
+                        </div>
+                        <div className='dynamic-question__scale-field'>
+                            <span className='dynamic-question__scale-label'>
+                                {this.props.vocab.SURVEY.SCALE_VALUES.MIN}
+                            </span>
+                            <input className='dynamic-question__scale-input'
+                                type='number'
+                                placeholder={0}
+                                max={get(this.props.question, 'scaleLimits.max', 10) - 1}
+                                value={get(this.props.question, 'scaleLimits.min', '')}
+                                onChange={(event) => {
+                                    let value = parseInt(event.target.value, 10);
+                                    const maxValue = get(this.props.question, 'scaleLimits.max', 10);
+                                    if (value > maxValue) {
+                                        toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
+                                        value = maxValue - 1;
+                                    }
+                                    this.props.actions.upsertScale(this.props.sectionIndex,
+                                        this.props.questionIndex, false, value);
+                                }} />
+                            </div>
                 </div>);
         } else {
             QuestionDisplay = (
@@ -22,8 +63,7 @@ class DynamicQuestion extends Component {
                                     type='text'
                                     placeholder={this.props.vocab.SURVEY.CHOICE_ENTER}
                                     value={choice.text || ''}
-                                    onChange={event =>
-                                        this.props.actions.upsertChoice(
+                                    onChange={event => this.props.actions.upsertChoice(
                                         this.props.sectionIndex,
                                         this.props.questionIndex,
                                         index,
@@ -83,7 +123,11 @@ DynamicQuestion.propTypes = {
     question: PropTypes.shape({
         type: PropTypes.string.isRequired,
         text: PropTypes.string,
-        choices: PropTypes.array.isRequired,
+        choices: PropTypes.array,
+        scaleLimits: PropTypes.shape({
+            min: PropTypes.number,
+            max: PropTypes.number,
+        }),
     }).isRequired,
     actions: PropTypes.object,
     vocab: PropTypes.object.isRequired,

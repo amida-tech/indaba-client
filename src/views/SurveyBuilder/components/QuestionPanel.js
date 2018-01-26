@@ -13,7 +13,6 @@ class QuestionPanel extends Component {
             <div className='question-panel'>
                 <div className='question-panel__top'>
                     <div className= 'question-panel__menu'>
-
                         <div className='question-panel__question-number'>
                         {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                         </div>
