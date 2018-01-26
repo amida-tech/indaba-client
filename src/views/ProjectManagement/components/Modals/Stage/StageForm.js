@@ -12,13 +12,8 @@ class StageForm extends Component {
         return (
             <form className='stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
-<<<<<<< HEAD
                     <div className='add-stage-form__title'>
                         <label className='add-stage-form__title-label'>
-=======
-                    <div className='stage-form__header'>
-                        <label className='stage-form__header-label'>
->>>>>>> 6cdaf93d4a31dd87a4ece60e4459996bb61b48e4
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                          </label>
                         <div>
@@ -30,13 +25,8 @@ class StageForm extends Component {
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className='add-stage-form__group'>
                         <label className='add-stage-form__group-name'>
-=======
-                    <div className='stage-form__header'>
-                        <label className='stage-form__header-label'>
->>>>>>> 6cdaf93d4a31dd87a4ece60e4459996bb61b48e4
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         </label>
                         <div>
@@ -49,13 +39,9 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
-<<<<<<< HEAD
+
                     <div className='add-stage-form__activities'>
                            <label className='add-stage-form__activities-label'>
-=======
-                    <div className='stage-form__header'>
-                           <label className='stage-form__header-label'>
->>>>>>> 6cdaf93d4a31dd87a4ece60e4459996bb61b48e4
                            {this.props.vocab.PROJECT.PERMISSIONS}
                            </label>
                        <div className='stage-form__radio-control'>
