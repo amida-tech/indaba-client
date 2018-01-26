@@ -12,8 +12,8 @@ class StageForm extends Component {
         return (
             <form className='stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
-                    <div className='add-stage-form__title'>
-                        <label className='add-stage-form__title-label'>
+                    <div className='stage-form__title'>
+                        <label className='stage-form__title-label'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                          </label>
                         <div>
@@ -21,12 +21,12 @@ class StageForm extends Component {
                                 name='title'
                                 component='input'
                                 type='text'
-                                className='stage-form__input-field'
+                                className='form__input-field'
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
-                    <div className='add-stage-form__group'>
-                        <label className='add-stage-form__group-name'>
+                    <div className='stage-form__group'>
+                        <label className='stage-form__group-name'>
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         </label>
                         <div>
@@ -40,8 +40,8 @@ class StageForm extends Component {
                         </div>
                     </div>
 
-                    <div className='add-stage-form__activities'>
-                           <label className='add-stage-form__activities-label'>
+                    <div className='stage-form__activities'>
+                           <label className='stage-form__activities-label'>
                            {this.props.vocab.PROJECT.PERMISSIONS}
                            </label>
                        <div className='stage-form__radio-control'>
@@ -63,9 +63,9 @@ class StageForm extends Component {
                     <div className='stage-form__text-description'>
                         {this.props.vocab.PROJECT.DESC_ARRAY[this.props.permissions]}
                     </div>
-                    <hr className='add-stage-form__divider'/>
-                    <div className='add-stage-form__date'>
-                            <label className='add-stage-form__date-label'>
+                    <hr className='stage-form__divider'/>
+                    <div className='stage-form__date'>
+                            <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                             </label>
                     </div>

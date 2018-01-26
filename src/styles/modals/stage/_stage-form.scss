@@ -1,9 +1,11 @@
+$form-text: #333;
 $block-class:'stage-form';
 
 @at-root {
     .#{$block-class} {
         color: $lead-font-color;
-        margin: 24px;
+        margin: 16px;
+        margin-bottom: 24px;
         padding: 8px;
 
         &__input-field {
@@ -13,24 +15,24 @@ $block-class:'stage-form';
         }
 
         &__title {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
 
             &-label {
                 color: $font-color;
                 font-size: 14px;
                 line-height: 20px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
 
         &__group {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
 
             &-name {
                 color: $font-color;
                 font-size: 14px;
                 line-height: 20px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
 
@@ -41,7 +43,7 @@ $block-class:'stage-form';
                 color: $font-color;
                 font-size: 14px;
                 line-height: 20px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
 
@@ -56,24 +58,21 @@ $block-class:'stage-form';
                 color: $font-color;
                 font-size: 14px;
                 line-height: 20px;
-                font-weight: 400;
+                font-weight: 500;
             }
         }
 
         &__permission-label-text {
-            @extend .small-font;
-
-            color: $lead-font-color;
+            color: $form-text;
             font-weight: 400;
             margin-left: 8px;
             margin-right: 16px;
         }
 
         &__text-description {
-            @extend .small-font;
-
             margin-left: 24px;
-            color: $lead-font-color;
+            color: $form-text;
+            font-size: 16px;
         }
 
         &__date-input-div {
@@ -88,14 +87,14 @@ $block-class:'stage-form';
         &__select-start-label {
             @extend .small-font;
 
-            color: $lead-font-color;
+            color: $form-text;
             margin-left: 16px;
         }
 
         &__select-end-label {
             @extend .small-font;
 
-            color: $lead-font-color;
+            color: $form-text;
             margin-right: 60px;
             margin-left: 16px;
         }
@@ -112,7 +111,7 @@ $block-class:'stage-form';
         }
 
         .Select--multi .Select-value {
-            color: $lead-font-color;
+            color: $form-text;
             background-color: #f1f4f7;
             border: 1px solid  nth($brand-neutral-colors, 2);
         }
