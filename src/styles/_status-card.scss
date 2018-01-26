@@ -65,7 +65,11 @@ $block-class: 'status-card';
         }
 
         &__edit-icon {
-            @extend .small-icon;
+            fill: $lead-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
     }
 }
