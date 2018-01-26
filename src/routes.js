@@ -14,6 +14,7 @@ import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import Activate from './views/Activate/components';
+import { GraphiQLContainer } from './views/GraphiQL';
 import App from './views/App';
 
 export default (
@@ -21,6 +22,9 @@ export default (
         path='/'
         component={App}
         indexRoute={DashboardContainer}>
+        <Route
+            path='/graphiql'
+            component={GraphiQLContainer}/>
         <Route
             path='/project'
             component={PMDashboard}/>

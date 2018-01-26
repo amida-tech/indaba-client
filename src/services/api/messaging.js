@@ -38,6 +38,13 @@ const messaging = {
         const path = `${rootURI}/message/delete/${id}`;
         requests.apiDeleteRequest(path, {}, callback);
     },
+    graphqlFetcher: (graphQLParams) => {
+        return fetch(`${rootURI}/graphql`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(graphQLParams),
+        }).then(response => response.json);
+    },
 };
 
 export default messaging;
