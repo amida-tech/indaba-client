@@ -62,10 +62,18 @@ $block-class: 'status-card';
         &__create-icon {
             width: 1.6em;
             fill: $header-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
 
         &__edit-icon {
-            @extend .small-icon;
+            fill: $lead-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
     }
 }
