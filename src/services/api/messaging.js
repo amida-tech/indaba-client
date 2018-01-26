@@ -43,7 +43,7 @@ const messaging = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(graphQLParams),
-        }).then(response => response.json);
+        }).then(response => response.json());
     },
 };
 
