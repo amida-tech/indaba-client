@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { assign, omit } from 'lodash';
+// import { assign, omit } from 'lodash';
 import { Field, form, reduxForm, reset } from 'redux-form';
 import { toast } from 'react-toastify';
 
@@ -26,7 +26,7 @@ class FlagControlsForm extends Component {
                 <div className='flag-controls-form__notify-section'>
                     {this.props.vocab.PROJECT.NOTIFY_USER}
                     <Field className='flag-controls-form__notify'
-                        name='notify'
+                        name='userId'
                         component={FlagUserSelect}
                         userOptions={this.props.userOptions} />
                 </div>
@@ -64,13 +64,16 @@ export default reduxForm({
     form: FORM_NAME,
     enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
-        if (!values.notify) {
+        if (!values.userId) {
             toast(ownProps.vocab.ERROR.REQUIRE_FLAG_USER);
+        } else if (values.entry === '' || !values.entry) {
+            toast(ownProps.vocab.ERROR.EMPTY_TEXT);
         } else {
             ownProps.actions.postDiscussion(
-                assign({}, omit(values, 'notify'), { userId: values.notify.id }),
+                values,
                 ownProps.vocab.ERROR,
             );
+            toast(ownProps.vocab.SURVEY.FLAG_SENT);
         }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),

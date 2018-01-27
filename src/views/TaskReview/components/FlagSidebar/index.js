@@ -26,14 +26,14 @@ class FlagSidebar extends Component {
                 const current = find(this.props.users, user => user.id === projUserId);
                 return {
                     label: renderName(current),
-                    value: current,
+                    value: current.id,
                 };
             }) : [];
         const initialValues = {
             questionId: this.props.ui.flagSidebar.activeId,
             taskId: this.props.task.id,
             stepId: this.props.task.stepId,
-            notify: userOptions[0] || null,
+            userId: userOptions[0] === undefined ? null : userOptions[0].value,
         };
         return (
             <Box className='flag-sidebar'>

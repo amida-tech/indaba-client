@@ -6,12 +6,12 @@ import { find } from 'lodash';
 
 class FlagUserSelect extends Component {
     render() {
-        const value = find(this.props.userOptions, option =>
-            option.value === this.props.input.value) || this.props.userOptions[0];
         return (
             <Select
-                value={value}
+                value={find(this.props.userOptions, option =>
+                    option.value === this.props.input.value) || this.props.userOptions[0]}
                 onChange={(event) => { this.props.input.onChange(event.value); }}
+                clearable={false}
                 options={this.props.userOptions} />
         );
     }
