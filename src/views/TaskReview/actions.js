@@ -41,6 +41,7 @@ export function getDiscussions(taskId, errorMessages) { // errorMessages
 }
 
 export function postDiscussion(requestBody, errorMessages) {
+    console.log(requestBody);
     return (dispatch) => {
         apiService.discussions.postDiscussion(
             requestBody,
@@ -53,6 +54,7 @@ export function postDiscussion(requestBody, errorMessages) {
                 }
             },
         );
+        // }
     };
 }
 
@@ -82,13 +84,6 @@ export function setActiveFlag(activeId, timestamp) {
         type: actionTypes.SET_ACTIVE_FLAG,
         activeId,
         timestamp,
-    };
-}
-
-export function updateMarkResolved(resolved) {
-    return {
-        type: actionTypes.UPDATE_MARK_RESOLVED,
-        resolved,
     };
 }
 

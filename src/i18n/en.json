@@ -83,6 +83,7 @@
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
+        "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "COMING_SOON": "Coming soon."
     },

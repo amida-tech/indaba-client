@@ -8,8 +8,8 @@ const discussions = {
     postDiscussion: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('discussions'), requestBody, callback);
     },
-    markResolved: (questionId, callback) => {
-        requests.apiPutRequest(getFullPath(`discussions/resolve/${questionId}`), null, callback);
+    markResolved: (questionId, requestBody, callback) => {
+        requests.apiPutRequest(getFullPath(`discussions/resolve/${questionId}`), requestBody, callback);
     },
 };
 
