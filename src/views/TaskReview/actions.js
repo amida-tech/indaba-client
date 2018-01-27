@@ -41,7 +41,6 @@ export function getDiscussions(taskId, errorMessages) { // errorMessages
 }
 
 export function postDiscussion(requestBody, errorMessages) {
-    console.log(requestBody);
     return (dispatch) => {
         apiService.discussions.postDiscussion(
             requestBody,
@@ -54,7 +53,6 @@ export function postDiscussion(requestBody, errorMessages) {
                 }
             },
         );
-        // }
     };
 }
 
