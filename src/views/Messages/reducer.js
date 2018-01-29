@@ -14,7 +14,7 @@ const initialState = {
         expandedMessages: [],
     },
     messages: [],
-    thread: null,
+    thread: [],
 };
 
 const transformServerMessageToReduxMessage = message =>
@@ -98,7 +98,7 @@ export default (state = initialState, action) => {
         });
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
-            thread: { $set: action.thread },
+            thread: { $set: action.thread.messages },
         });
     case LOG_OUT:
         return initialState;
