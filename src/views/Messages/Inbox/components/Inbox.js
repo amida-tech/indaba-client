@@ -25,9 +25,20 @@ class Inbox extends Component {
     }
 
     componentWillMount() {
-        this.props.actions.listMessages();
-        this.props.actions.listArchivedMessages();
         this.props.actions.getUsers(this.props.vocab.ERROR);
+        this.loadByFilter();
+    }
+
+    loadByFilter() {
+        const variables = {
+            archived: this.props.messages.ui.inboxTab === InboxTabs.ARCHIVED,
+        };
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.getInboxThreads(variables);
+        } else {
+            this.props.actions.listMessages();
+            this.props.actions.listArchivedMessages();
+        }
     }
 
     handleThreadClick(threadId) {
@@ -98,6 +109,7 @@ class Inbox extends Component {
     }
 
     render() {
+        const isThreadList = this.props.messages.ui.filter === FILTERS.ALL_MESSAGES;
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
@@ -121,9 +133,8 @@ class Inbox extends Component {
                         active={this.props.messages.ui.filter}
                         onFilterClick={this.props.actions.setInboxFilter}/>
                 </div>
-                <InboxMessageList threads={this.props.messageRoots
-                        .map(this.makeInboxThreadRepresentation)
-                        .filter(this.evaluateFilter)}
+                <InboxMessageList entries={this.props.inboxList}
+                        thread={isThreadList}
                         vocab={this.props.vocab}
                         onMessageClick={this.handleThreadClick}
                         actions={this.props.actions}
@@ -146,6 +157,7 @@ const mapStateToProps = state => ({
     messageRoots: state.messages.messages.filter(message => message.parentMessageId === null),
     users: state.user.users,
     profile: state.user.profile,
+    inboxList: state.messages.inboxList,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
