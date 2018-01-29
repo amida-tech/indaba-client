@@ -31,7 +31,7 @@ class Inbox extends Component {
 
     loadByFilter() {
         const variables = {
-            archived: this.props.messages.ui.inboxTab === InboxTabs.ARCHIVED,
+            archived: this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED,
         };
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.getInboxThreads(variables);
