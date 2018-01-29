@@ -191,8 +191,8 @@ class MessageSelector extends Component {
     }
     handleSendResponse(err, result) {
         if (!err) {
-            this.props.actions.updateMessage(result);
             this.props.actions.discardReply();
+            this.props.actions.getThread(result.id);
             this.props.goToMessage(result.id);
         }
     }
