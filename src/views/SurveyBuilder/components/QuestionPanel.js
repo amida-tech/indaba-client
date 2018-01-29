@@ -86,7 +86,8 @@ class QuestionPanel extends Component {
                                 }} />
                             <IonIcon icon='ion-paperclip'
                                 className='question-panel__attach-icon' />
-                            <span className='question-panel__icon-label'>
+                            <span className='question-panel__icon-label'
+                            title= {this.props.vocab.SURVEY.ATTACH_TOOLTIP}>
                                 {this.props.vocab.SURVEY.ATTACH_FILE}
                             </span>
                         </div>
@@ -107,7 +108,8 @@ class QuestionPanel extends Component {
                                         'publication');
                                 }
                             }} />
-                            <span className='question-panel__label'>
+                            <span className='question-panel__label'
+                            title= {this.props.vocab.SURVEY.LINK_TOOLTIP}>
                                 {this.props.vocab.SURVEY.ADD_A_LINK}
                             </span>
                         </div>
@@ -119,7 +121,8 @@ class QuestionPanel extends Component {
                                     this.props.questionIndex,
                                     'required',
                                     event.target.checked)} />
-                            <span className='question-panel__label'>
+                            <span className='question-panel__label'
+                            title= {this.props.vocab.SURVEY.REQUIRED_TOOLTIP}>
                                 {this.props.vocab.SURVEY.REQUIRED_QUESTION}
                             </span>
                         </div>
