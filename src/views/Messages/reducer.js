@@ -15,6 +15,7 @@ const initialState = {
     },
     messages: [],
     thread: [],
+    inboxList: [],
 };
 
 const transformServerMessageToReduxMessage = message =>
@@ -99,6 +100,10 @@ export default (state = initialState, action) => {
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
             thread: { $set: action.thread.messages },
+        });
+    case actionTypes.GET_INBOX_THREADS_SUCCESS:
+        return update(state, {
+            inboxList: { $set: action.threads },
         });
     case LOG_OUT:
         return initialState;
