@@ -148,7 +148,22 @@ export const deleteMessage = id => (dispatch) => {
     });
 };
 
+export const getThread = messageId => (dispatch) => {
+    dispatch(_getThread());
+    apiService.messaging.graphql({ query: `{thread(messageId: ${messageId}){messages{from to subject message id}}}` })
+    .then(response => dispatch(_getThreadSuccess(response.data.thread)));
+};
+
 /* Private actions */
+
+const _getThread = () => ({
+    type: actionTypes.GET_THREAD,
+});
+
+const _getThreadSuccess = thread => ({
+    type: actionTypes.GET_THREAD_SUCCESS,
+    thread,
+});
 
 export const _startReply = reply => (dispatch) => {
     dispatch(initialize('message', reply));

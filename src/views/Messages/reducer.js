@@ -14,6 +14,7 @@ const initialState = {
         expandedMessages: [],
     },
     messages: [],
+    thread: null,
 };
 
 const transformServerMessageToReduxMessage = message =>
@@ -94,6 +95,10 @@ export default (state = initialState, action) => {
     case actionTypes.DELETE_MESSAGE_SUCCESS:
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
+        });
+    case actionTypes.GET_THREAD_SUCCESS:
+        return update(state, {
+            thread: { $set: action.thread },
         });
     case LOG_OUT:
         return initialState;
