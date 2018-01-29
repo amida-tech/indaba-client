@@ -7,7 +7,7 @@ export default class GraphQLContainer extends Component {
     render() {
         return (
             <div style={{ height: '800px' }}>
-                <GraphiQL fetcher={apiService.messaging.graphqlFetcher} />
+                <GraphiQL fetcher={apiService.messaging.graphql} />
             </div>
         );
     }

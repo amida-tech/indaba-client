@@ -39,7 +39,7 @@ const messaging = {
         const path = `${rootURI}/message/delete/${id}`;
         requests.apiDeleteRequest(path, {}, callback);
     },
-    graphqlFetcher: (graphQLParams) => {
+    graphql: (graphQLParams) => {
         return fetch(`${rootURI}/graphql`, {
             method: 'POST',
             headers: {
