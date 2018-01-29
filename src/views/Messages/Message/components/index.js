@@ -13,9 +13,10 @@ import Message from './Message';
 class MessageContainer extends Component {
     componentWillMount() {
         this.props.actions.discardReply();
-        this.props.actions.listMessages();
-        this.props.actions.listArchivedMessages();
-        this.props.actions.expandMessages([this.props.id]);
+        if (this.props.id) {
+            this.props.actions.getThread(this.props.id);
+            this.props.actions.expandMessages([this.props.id]);
+        }
     }
     render() {
         return (
@@ -66,16 +67,10 @@ const mapStateToProps = (state, ownProps) => {
     const id = ownProps.params.id !== undefined ?
         parseInt(ownProps.params.id, 10) :
         undefined;
-    const message = state.messages.messages
-        .find(messageIter => messageIter.id === id);
-    const thread = _.sortBy(message ?
-        state.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === message.originalMessageId) :
-        [], 'timestamp');
     return {
         id,
-        thread,
 
+        thread: state.messages.thread,
         vocab: state.settings.language.vocabulary,
         profile: state.user.profile,
         ui: state.messages.ui,
