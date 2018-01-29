@@ -94,8 +94,9 @@ const mapStateToProps = state => ({
     messages: state.userdashboard.messages.slice(0, 4),
     ui: state.userdashboard.ui,
     users: state.user.users,
-    rows: state.userdashboard.tasks.map(task =>
-        _generateRow(state, task.projectId, task)),
+    rows: state.userdashboard.tasks
+        .filter(task => task.complete || task.active)
+        .map(task => _generateRow(state, task.projectId, task)),
 });
 
 const mapDispatchToProps = dispatch => ({
