@@ -36,6 +36,11 @@ $block-class: 'status-card';
             color: $lead-font-color;
             font-size: 24px;
             font-weight: 100;
+            cursor: pointer;
+
+            &:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
         }
 
         &__status {
@@ -60,7 +65,11 @@ $block-class: 'status-card';
         }
 
         &__edit-icon {
-            @extend .small-icon;
+            fill: $lead-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
     }
 }

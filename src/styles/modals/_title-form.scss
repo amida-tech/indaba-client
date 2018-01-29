@@ -4,6 +4,8 @@ $block-class:'title-form';
     .#{$block-class} {
         padding: 16px;
         display: flex;
+        width: 45vw;
+        justify-content: flex-start;
 
         &__title-label {
             @extend .lead-font;
@@ -11,7 +13,9 @@ $block-class:'title-form';
 
         &__title-input,
         input:not(.grommetux-input) {
-            margin-left: 8px;
+            width: 43vw;
+            margin-top: 8px;
+            padding: 8px;
         }
     }
 }
