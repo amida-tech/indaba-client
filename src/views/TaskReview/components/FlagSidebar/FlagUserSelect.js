@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { find } from 'lodash';
 
-
 class FlagUserSelect extends Component {
     render() {
         return (
@@ -12,6 +11,7 @@ class FlagUserSelect extends Component {
                     option.value === this.props.input.value) || this.props.userOptions[0]}
                 onChange={(event) => { this.props.input.onChange(event.value); }}
                 clearable={false}
+                disabled={this.props.disabled}
                 options={this.props.userOptions} />
         );
     }

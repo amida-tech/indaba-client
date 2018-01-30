@@ -14,10 +14,12 @@ class FlagControlsForm extends Component {
                 <Field className='flag-controls-form__discussion'
                     name='entry'
                     component='textarea'
+                    disabled={this.props.disabled}
                     placeholder={this.props.vocab.PROJECT.REPLY} />
                 <div className='flag-controls-form__mark-resolve-section'>
                     <Field name='isResolve'
                         component='input'
+                        disabled={this.props.disabled}
                         type='checkbox' />
                     <div className='flag-controls-form__resolve-text'>
                         {this.props.vocab.PROJECT.MARK_RESOLVED}
@@ -28,15 +30,18 @@ class FlagControlsForm extends Component {
                     <Field className='flag-controls-form__notify'
                         name='userId'
                         component={FlagUserSelect}
+                        disabled={this.props.disabled}
                         userOptions={this.props.userOptions} />
                 </div>
                 <div className='flag-controls-form__button-group'>
                     <button className='flag-controls-form__button-cancel'
                         type='button'
+                        disabled={this.props.disabled}
                         onClick={this.props.reset}>
                         {this.props.vocab.COMMON.CANCEL}
                     </button>
                     <button className='flag-controls-form__button-send'
+                        disabled={this.props.disabled}
                         type='submit'>
                         {this.props.vocab.COMMON.SEND}
                     </button>

@@ -35,6 +35,7 @@ class FlagSidebar extends Component {
             stepId: this.props.task.stepId,
             userId: userOptions[0] === undefined ? null : userOptions[0].value,
         };
+
         return (
             <Box className='flag-sidebar'>
                 <FlagHeader {...this.props} />
@@ -44,6 +45,8 @@ class FlagSidebar extends Component {
                         <FlagCommentary {...this.props} />
                         <FlagControlsForm
                             {...this.props}
+                            disabled={!(this.props.taskedUser.id === this.props.profile.id ||
+                                this.props.flagCount > 0)}
                             userOptions={userOptions}
                             initialValues={initialValues} />
                     </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { flatten, find, map, get } from 'lodash';
+import { every, find, flatten, get, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -38,6 +38,10 @@ class TaskReview extends Component {
 
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
             || this.props.profile.id !== this.props.taskedUser.id || this.props.task.status !== 'current';
+
+        const flagCount = sumBy(this.props.ui.flags, (flag) => {
+            return every(flag.discussion, discuss => discuss.isResolve) ? 0 : 1;
+        });
 
         return (
             <div className='task-review'>
@@ -77,6 +81,7 @@ class TaskReview extends Component {
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     {...this.props}
+                    flagCount={flagCount}
                     displaySurvey={displaySurvey}/>
                 </div>
             </div>
