@@ -47,7 +47,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__container {
-            background-color: #fafafa;
+            background-color: #ffff;
             border-bottom: 1px solid $border-color;
             min-height: 100%;
 
@@ -93,7 +93,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             width: 60em;
 
             input[type=text] {
-                margin-bottom: 10px;
                 width: 100%;
             }
 
@@ -107,7 +106,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
 
             .Select-control {
-                margin-bottom: 30px;
                 width: 100%;
 
                 input[role=combobox] {

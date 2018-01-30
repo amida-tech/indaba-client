@@ -12,8 +12,8 @@ class StageForm extends Component {
         return (
             <form className='stage-form' onSubmit={this.props.handleSubmit}>
                 <div>
-                    <div className='stage-form__header'>
-                        <label className='stage-form__header-label'>
+                    <div className='stage-form__title'>
+                        <label className='stage-form__title-label'>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                          </label>
                         <div>
@@ -21,12 +21,12 @@ class StageForm extends Component {
                                 name='title'
                                 component='input'
                                 type='text'
-                                className='stage-form__input-field'
+                                className='form__input-field'
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
-                    <div className='stage-form__header'>
-                        <label className='stage-form__header-label'>
+                    <div className='stage-form__group'>
+                        <label className='stage-form__group-name'>
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         </label>
                         <div>
@@ -39,8 +39,9 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
-                    <div className='stage-form__header'>
-                           <label className='stage-form__header-label'>
+
+                    <div className='stage-form__activities'>
+                           <label className='stage-form__activities-label'>
                            {this.props.vocab.PROJECT.PERMISSIONS}
                            </label>
                        <div className='stage-form__radio-control'>
@@ -63,8 +64,8 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.DESC_ARRAY[this.props.permissions]}
                     </div>
                     <hr className='stage-form__divider'/>
-                    <div className='stage-form__header'>
-                            <label className='stage-form__header-label'>
+                    <div className='stage-form__date'>
+                            <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                             </label>
                     </div>
