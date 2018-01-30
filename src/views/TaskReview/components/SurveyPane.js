@@ -6,12 +6,6 @@ import SurveyForm from './SurveyForm';
 import SurveyPresentation from './SurveyPresentation';
 
 class SurveyPane extends Component {
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.ui.reqTotal !== -1 && nextProps.ui.reqAnswers >= nextProps.ui.reqTotal) {
-            // Enable complete task.
-        }
-    }
-
     render() {
         const initialValues = {
             answers: this.props.answers,
@@ -66,6 +60,7 @@ class SurveyPane extends Component {
     }
 }
 SurveyPane.propTypes = {
+    reqCheck: PropTypes.bool,
     vocab: PropTypes.object.isRequired,
 };
 export default SurveyPane;

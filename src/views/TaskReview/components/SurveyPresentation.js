@@ -36,14 +36,19 @@ class SurveyPresentation extends Component {
                                     {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_3}
                                 </div>}
                         </div>
-                        <button className='survey-presentation__submit-button'
+                        <button className={`survey-presentation__submit-button
+                            survey-presentation__submit-button${this.props.reqCheck ? '' : '--disabled'}`}
                             onClick={() => {
-                                toast(this.props.vocab.PROJECT.TASK_COMPLETED);
-                                this.props.actions.moveTask(
-                                    this.props.productId,
-                                    this.props.task.uoaId,
-                                    this.props.vocab.ERROR,
-                                );
+                                if (this.props.reqCheck) {
+                                    toast(this.props.vocab.PROJECT.TASK_COMPLETED);
+                                    this.props.actions.moveTask(
+                                        this.props.productId,
+                                        this.props.task.uoaId,
+                                        this.props.vocab.ERROR,
+                                    );
+                                } else {
+                                    toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
+                                }
                             }}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>

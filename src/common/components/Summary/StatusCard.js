@@ -15,6 +15,7 @@ class StatusCard extends Component {
                         </div>
                         <div className='status-card__name-value'
                         onClick={this.props.onEditClick}>
+                            onClick={this.props.onEditClick}>
                             { this.props.name }
                             {
                                 this.props.onEditClick &&

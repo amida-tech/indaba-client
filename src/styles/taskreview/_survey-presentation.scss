@@ -40,6 +40,16 @@ $block-class: 'survey-presentation';
                 background-color: nth($brand-neutral-colors, 1);
                 color: $font-inverse-color;
             }
+
+            &--disabled {
+                color: #a4aebf;
+                border: 2px solid #a4aebf;
+
+                &:hover {
+                    background-color: #e4e9eb;
+                    color: #a4aebf;
+                }
+            }
         }
     }
 }
