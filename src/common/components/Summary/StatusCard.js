@@ -14,11 +14,12 @@ class StatusCard extends Component {
                             {this.props.label}
                         </div>
                         <div className='status-card__name-value'
+                        onClick={this.props.onEditClick}>
                             onClick={this.props.onEditClick}>
                             { this.props.name }
                             {
                                 this.props.onEditClick &&
-                                <div className='status-card__edit-button'
+                                <div className='status-card__edit-icon'
                                     onClick={this.props.onEditClick}>
                                     <IonIcon icon='ion-android-create'
                                         className='status-card__edit-icon'/>
