@@ -73,7 +73,8 @@ export default reduxForm({
                 values,
                 ownProps.vocab.ERROR,
             );
-            toast(ownProps.vocab.SURVEY.FLAG_SENT);
+            toast(values.isResolve ? ownProps.vocab.SURVEY.MARK_SENT :
+                ownProps.vocab.SURVEY.FLAG_SENT);
         }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),

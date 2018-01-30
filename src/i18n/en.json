@@ -382,6 +382,7 @@
         "CHOICE_ENTER": "Enter an option for the user to select.",
         "SCALE_ENTER": "Please enter a value between these two numbers: ",
         "FLAG_SENT": "This question has been flagged.",
+        "MARK_SENT": "This discussions has been marked as resolved.",
         "SCALE_VALUES": {
             "MAX": "Max.",
             "MIN": "Min."
