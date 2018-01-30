@@ -25,9 +25,7 @@ const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
     componentWillMount() {
-        if (this.props.ui.showComplete) {
-            this.props.actions.projectWizardInitialize();
-        }
+        this.props.actions.projectWizardInitialize();
     }
     constructor(props) {
         super(props);
