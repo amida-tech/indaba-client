@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { assign, omit } from 'lodash';
 import { Field, form, reduxForm, reset } from 'redux-form';
 import { toast } from 'react-toastify';
 
