@@ -44,6 +44,7 @@ class CreateProjectWizard extends Component {
         this.handleContinue();
     }
     handleCancel() {
+        this.props.onWizardCancel();
     }
     handleContinue() {
         if (this.props.ui.step < NUM_WIZARD_STEPS - 1) {
@@ -79,7 +80,7 @@ class CreateProjectWizard extends Component {
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         onSave={this.props.actions.postProject}
-                        onCancel={this.props.onTitleModalCancel}
+                        onCancel={this.props.onWizardCancel}
                         vocab={this.props.vocab} />
                 }
                 {
@@ -191,7 +192,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions, projectActions, surveyActions, { addNewUser, surveyBuilderReset }), dispatch),
-    onTitleModalCancel: () => dispatch(goBack()),
+    onWizardCancel: () => dispatch(goBack()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
