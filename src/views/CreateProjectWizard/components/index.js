@@ -105,7 +105,6 @@ class CreateProjectWizard extends Component {
                         <AddSurvey
                             actions={this.props.actions}
                             project={this.props.project}
-                            survey={this.props.survey}
                             profile={this.props.user.profile}
                             vocab={this.props.vocab} />
                     </Tab>

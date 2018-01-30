@@ -15,7 +15,6 @@ class AddSurvey extends Component {
 
 AddSurvey.propTypes = {
     project: PropTypes.object.isRequired,
-    survey: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.object,
