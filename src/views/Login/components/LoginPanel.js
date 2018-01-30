@@ -28,8 +28,6 @@ class LoginPanel extends Component {
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
                 <div className='login-panel__link'>
-                </div>
-            </div>
         );
     }
 }
