@@ -24,6 +24,8 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+    case type.SURVEY_BUILDER_RESET:
+        return initialState;
     case GET_SURVEY_BY_ID_SUCCESS: {
         if (action.survey.id) {
             if (action.survey.questions) {
