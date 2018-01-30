@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import scroller from 'react-scroll/modules/mixins/scroller';
-import { find } from 'lodash';
+import { find, findIndex } from 'lodash';
 
 import { renderName } from '../../../../utils/User';
 import FlagHeader from './FlagHeader';
@@ -35,6 +35,8 @@ class FlagSidebar extends Component {
             stepId: this.props.task.stepId,
             userId: userOptions[0] === undefined ? null : userOptions[0].value,
         };
+        const activeIndex = findIndex(this.props.ui.flags, flag =>
+            parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
 
         return (
             <Box className='flag-sidebar'>
@@ -42,7 +44,9 @@ class FlagSidebar extends Component {
                 <div className='flag-sidebar__container'>
                     <FlagQuestionList {...this.props} />
                     <div className='flag-sidebar__controls'>
-                        <FlagCommentary {...this.props} />
+                        <FlagCommentary
+                            {...this.props}
+                            activeIndex={activeIndex} />
                         <FlagControlsForm
                             {...this.props}
                             disabled={!(this.props.taskedUser.id === this.props.profile.id ||

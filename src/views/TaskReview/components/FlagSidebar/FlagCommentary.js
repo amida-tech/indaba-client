@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { find, findIndex } from 'lodash';
+import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Time from '../../../../utils/Time';
@@ -7,12 +7,10 @@ import { renderName } from '../../../../utils/User';
 
 class FlagCommentary extends Component {
     render() {
-        const activeIndex = findIndex(this.props.ui.flags, flag =>
-            parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
         return (
             <div className='flag-commentary'>
-                {activeIndex >= 0 &&
-                    this.props.ui.flags[activeIndex].discussion.map((reply, index) => {
+                {this.props.activeIndex >= 0 &&
+                    this.props.ui.flags[this.props.activeIndex].discussion.map((reply, index) => {
                         return (
                     <div className='flag-commentary__frame'
                         key={`flag-comment${index}`}>
@@ -30,7 +28,7 @@ class FlagCommentary extends Component {
                     </div>
                         );
                     })}
-                {activeIndex < 0 &&
+                {this.props.activeIndex < 0 &&
                     <div className='flag-commentary__frame'>
                         {this.props.vocab.PROJECT.NO_COMMENTS}
                     </div>
@@ -47,6 +45,7 @@ FlagCommentary.propTypes = {
         flags: PropTypes.array,
         flagSideBar: PropTypes.object,
     }).isRequired,
+    activeIndex: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
 };
 
