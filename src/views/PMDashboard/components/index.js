@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(state.surveys.data.find(survey =>
             survey.id === project.surveyId), ['name', 'status', 'id']),
-        flags: project.flags,
+        flags: project.flags || 0,
     })),
     glance: {
         projects: state.projects.data.length,
