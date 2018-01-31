@@ -127,3 +127,9 @@ export function resetMeta(sectionIndex, questionIndex, field) {
         field,
     };
 }
+
+export function surveyBuilderReset() {
+    return {
+        type: actionTypes.SURVEY_BUILDER_RESET,
+    };
+}

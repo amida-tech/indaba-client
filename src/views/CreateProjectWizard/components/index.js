@@ -19,15 +19,15 @@ import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
+import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 import { addNewUser } from '../../../common/actions/userActions';
 
 const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
     componentWillMount() {
-        if (this.props.ui.showComplete) {
-            this.props.actions.projectWizardInitialize();
-        }
+        this.props.actions.surveyBuilderReset();
+        this.props.actions.projectWizardInitialize();
     }
     constructor(props) {
         super(props);
@@ -44,6 +44,7 @@ class CreateProjectWizard extends Component {
         this.handleContinue();
     }
     handleCancel() {
+        this.props.onWizardCancel();
     }
     handleContinue() {
         if (this.props.ui.step < NUM_WIZARD_STEPS - 1) {
@@ -79,7 +80,7 @@ class CreateProjectWizard extends Component {
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         onSave={this.props.actions.postProject}
-                        onCancel={this.props.onTitleModalCancel}
+                        onCancel={this.props.onWizardCancel}
                         vocab={this.props.vocab} />
                 }
                 {
@@ -107,7 +108,6 @@ class CreateProjectWizard extends Component {
                         <AddSurvey
                             actions={this.props.actions}
                             project={this.props.project}
-                            survey={this.props.survey}
                             profile={this.props.user.profile}
                             vocab={this.props.vocab} />
                     </Tab>
@@ -191,8 +191,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, projectActions, surveyActions, { addNewUser }), dispatch),
-    onTitleModalCancel: () => dispatch(goBack()),
+        actions, projectActions, surveyActions, { addNewUser, surveyBuilderReset }), dispatch),
+    onWizardCancel: () => dispatch(goBack()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
