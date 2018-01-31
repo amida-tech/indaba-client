@@ -42,6 +42,9 @@ $block-class: 'message-list';
 
         &__name {
             flex: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             @extend .lead-font-bold;
         }
