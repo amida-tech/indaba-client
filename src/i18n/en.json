@@ -210,7 +210,7 @@
         ],
         "TASK_BACK": "Back",
         "DATE_RANGE": "Date Range",
-            "START_DATE": "Start Date (Stage is unavailable until this date)",
+        "START_DATE": "Start Date (Stage is unavailable until this date)",
         "END_DATE": "End Date (Stage is unavailable after this date)",
         "STAGE": "Stage",
         "ADD_SUBJECT": "Add Subject",
