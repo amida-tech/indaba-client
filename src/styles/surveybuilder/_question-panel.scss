@@ -99,10 +99,12 @@ $block-class: 'question-panel';
 
         &__icon-label {
             margin-left: -4px;
+            cursor: pointer;
         }
 
         &__label {
             margin-left: 3px;
+            cursor: pointer;
         }
 
         &__help-icon {
