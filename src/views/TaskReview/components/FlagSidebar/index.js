@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import scroller from 'react-scroll/modules/mixins/scroller';
-import { find, findIndex } from 'lodash';
+import { find, findIndex, get, some } from 'lodash';
 
 import { renderName } from '../../../../utils/User';
 import FlagHeader from './FlagHeader';
@@ -50,7 +50,9 @@ class FlagSidebar extends Component {
                         <FlagControlsForm
                             {...this.props}
                             disabled={!(this.props.taskedUser.id === this.props.profile.id ||
-                                this.props.flagCount > 0)}
+                                some(get(this.props.ui.flags[activeIndex], 'discussion'), chat =>
+                                    (chat.userId === this.props.profile.id ||
+                                    chat.userFromId === this.props.profile.id) && !chat.isResolve))}
                             userOptions={userOptions}
                             initialValues={initialValues} />
                     </div>
