@@ -85,13 +85,6 @@ export function setActiveFlag(activeId, timestamp) {
     };
 }
 
-export function updateMarkResolved(resolved) {
-    return {
-        type: actionTypes.UPDATE_MARK_RESOLVED,
-        resolved,
-    };
-}
-
 function _reportDiscussError(error) {
     return {
         type: actionTypes.REPORT_DISCUSS_ERROR,

@@ -9,7 +9,7 @@ class FlagHeader extends Component {
                     {this.props.vocab.PROJECT.FLAGS}
                 </span>
                 <div className='flag-header__info'>
-                    {this.props.ui.flags.length}{this.props.vocab.PROJECT._FLAGS_REPORTED}
+                    {this.props.flagCount}{this.props.vocab.PROJECT._FLAGS_REPORTED}
                 </div>
             </div>
         );
@@ -21,6 +21,7 @@ FlagHeader.propTypes = {
         flags: PropTypes.array,
         flagSideBar: PropTypes.object,
     }).isRequired,
+    flagCount: PropTypes.number,
     vocab: PropTypes.object.isRequired,
 };
 

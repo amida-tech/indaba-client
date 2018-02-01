@@ -128,7 +128,7 @@ class StageSlot extends Component {
                         <span className='stage-slot__role-span'>
                             {this.props.vocab.PROJECT.CARD.ASSIGNEE}
                         </span>
-                        {TaskStatus.responsesFlagged(this.props.task) &&
+                        {this.props.task.flagged &&
                             <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
                             </div>

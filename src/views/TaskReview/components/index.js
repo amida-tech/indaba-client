@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { every, flatten, find, get, has, map } from 'lodash';
+import { every, find, flatten, get, has, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -36,6 +36,10 @@ class TaskReview extends Component {
         const reqCheck = every(flatSurvey, (question) => {
             return question.required ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
+        });
+
+        const flagCount = sumBy(this.props.ui.flags, (flag) => {
+            return every(flag.discussion, discuss => discuss.isResolve) ? 0 : 1;
         });
 
         return (
@@ -77,6 +81,7 @@ class TaskReview extends Component {
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     {...this.props}
+                    flagCount={flagCount}
                     displaySurvey={displaySurvey}/>
                 </div>
             </div>
