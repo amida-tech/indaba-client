@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import Time from '../../../../utils/Time';
+
 
 class CollapsedMessage extends Component {
     render() {
@@ -14,7 +16,8 @@ class CollapsedMessage extends Component {
                     {this.props.vocab.MESSAGES.FROM}:
                     {_.get(this.props, 'message.from')}
                     <div className='collapsed-message__timestamp'>
-                        {_.get(this.props, 'message.timestamp')}
+                    {this.props.message && Time.renderForMessage(
+                        this.props.message.timestamp, this.props.vocab)}
                     </div>
                 </div>
                 <div className='collapsed-message__body'>
