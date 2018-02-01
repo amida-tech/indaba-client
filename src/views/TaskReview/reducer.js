@@ -38,6 +38,12 @@ export default (state = initialState, action) => {
     }
     case GET_ANSWERS_SUCCESS:
         return update(state, { ui: { form: { answers: { $set: action.answers } } } });
+    case type.HOLD_ANSWER: {
+        const answerIndex = findIndex(state.ui.form.answers,
+            answer => answer.questionId === action.questionId);
+        return update(state, { ui: { form: { answers: { [answerIndex]: { answer:
+            { $set: action.answer } } } } } });
+    }
     case POST_ANSWER_SUCCESS: {
         const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.questionId);
