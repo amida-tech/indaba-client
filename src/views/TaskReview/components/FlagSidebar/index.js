@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import scroller from 'react-scroll/modules/mixins/scroller';
+import { get } from 'lodash';
 
 import FlagHeader from './FlagHeader';
 import FlagQuestionList from './FlagQuestionList';
@@ -23,16 +24,24 @@ class FlagSidebar extends Component {
             taskId: this.props.task.id,
             stepId: this.props.task.stepId,
         };
+        const completed = get(this.props, 'task.status') === 'completed';
         return (
             <Box className='flag-sidebar'>
                 <FlagHeader {...this.props} />
                 <div className='flag-sidebar__container'>
                     <FlagQuestionList {...this.props} />
                     <div className='flag-sidebar__controls'>
-                        <FlagCommentary {...this.props} />
-                        <FlagControlsForm
-                            {...this.props}
-                            initialValues={initialValues} />
+                        <FlagCommentary
+                            actions={this.props.actions}
+                            users={this.props.users}
+                            ui={this.props.ui}
+                            vocab={this.props.vocab}
+                            completed={completed} />
+                        {!completed &&
+                            <FlagControlsForm
+                                {...this.props}
+                                initialValues={initialValues} />
+                        }
                     </div>
                 </div>
             </Box>
