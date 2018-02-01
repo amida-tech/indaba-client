@@ -65,6 +65,7 @@ $block-class: 'message';
             background-color: white;
             padding: 0.5em 1em;
             cursor: pointer;
+            color: $font-color;
         }
 
         .grommetux-button:not(.grommetux-button--fill) {
