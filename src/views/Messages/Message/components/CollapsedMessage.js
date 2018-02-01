@@ -13,7 +13,7 @@ class CollapsedMessage extends Component {
                     this.props.goToMessage(this.props.id);
                 }}>
                 <div className='collapsed-message__from'>
-                    {this.props.vocab.MESSAGES.FROM}:
+                    {this.props.vocab.MESSAGES.FROM}{': '}
                     {_.get(this.props, 'message.from')}
                     <div className='collapsed-message__timestamp'>
                     {this.props.message && Time.renderForMessage(
