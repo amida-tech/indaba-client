@@ -37,7 +37,8 @@ class SurveyPresentation extends Component {
                                 </div>}
                         </div>
                         <button className={`survey-presentation__submit-button
-                            survey-presentation__submit-button${this.props.reqCheck ? '' : '--disabled'}`}
+                            survey-presentation__submit-button${this.props.reqCheck
+                                && this.props.flagCount === 0 ? '' : '--disabled'}`}
                             onClick={() => {
                                 if (this.props.reqCheck) {
                                     toast(this.props.vocab.PROJECT.TASK_COMPLETED);
