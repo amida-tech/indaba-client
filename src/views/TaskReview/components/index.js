@@ -10,7 +10,7 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
-import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, getSelfTasks, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
 class TaskReview extends Component {
@@ -32,7 +32,8 @@ class TaskReview extends Component {
         const displaySurvey = this.props.sectionIndex === -1 ?
             flatSurvey : this.props.survey.sections[this.props.sectionIndex].questions;
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
-            || this.props.profile.id !== this.props.taskedUser.id || this.props.task.status !== 'current';
+            || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current' &&
+            !this.props.task.active);
         const reqCheck = every(flatSurvey, (question) => {
             return question.required ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
@@ -74,6 +75,7 @@ class TaskReview extends Component {
                         instructions={this.props.survey.instructions}
                         stage={this.props.stage}
                         taskDisabled={taskDisabled}
+                        flagCount={flagCount}
                         reqCheck={reqCheck}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
@@ -124,6 +126,7 @@ const mapDispatchToProps = dispatch => ({
         updateTaskEndDate,
         setSurveySectionIndex,
         getTaskById,
+        getSelfTasks,
         moveTask,
         postReview,
         postAnswer }),
