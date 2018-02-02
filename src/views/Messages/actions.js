@@ -148,10 +148,11 @@ export const deleteMessage = id => (dispatch) => {
     });
 };
 
-export const getThread = messageId => (dispatch) => {
+export const getThread = originalMessageId => (dispatch) => {
     dispatch(_getThread());
-    apiService.messaging.graphql({ query: `{thread(messageId: ${messageId}){messages{from to subject message id}}}` })
-    .then(response => dispatch(_getThreadSuccess(response.data.thread)));
+    apiService.messaging.getThread(originalMessageId, (err, response) => {
+        dispatch(_getThreadSuccess(response));
+    });
 };
 
 export const getInboxThreads = archived => (dispatch) => {
