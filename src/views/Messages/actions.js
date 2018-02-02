@@ -148,6 +148,14 @@ export const deleteMessage = id => (dispatch) => {
     });
 };
 
+export const getThreadContainingMessage = messageId => (dispatch) => {
+    apiService.messaging.get(messageId, (err, messageResponse) => {
+        if (!err) {
+            dispatch(getThread(messageResponse.originalMessageId));
+        }
+    });
+};
+
 export const getThread = originalMessageId => (dispatch) => {
     dispatch(_getThread());
     apiService.messaging.getThread(originalMessageId, (err, response) => {
