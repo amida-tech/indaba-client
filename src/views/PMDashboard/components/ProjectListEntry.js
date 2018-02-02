@@ -35,8 +35,7 @@ class ProjectListEntry extends Component {
                     <FlagCount value={this.props.flags} />
                 </div>
                 <div className='project-list-entry__last-updated'>
-                    {this.props.vocab.PROJECT.LAST_UPDATED}
-                    {` ${Time.renderCommon(this.props.project.lastUpdated)}`}
+                    {Time.renderCommon(this.props.project.lastUpdated)}
                 </div>
             </div>
         );

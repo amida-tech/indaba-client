@@ -47,6 +47,9 @@ const projects = {
     deleteWorkflowStep: (stepId, callback) => {
         requests.apiDeleteRequest(getFullPath(`workflows/${stepId}/steps`), {}, callback);
     },
+    editSurvey: (surveyId) => {
+        requests.apiPutRequest(getFullPath(`projects/survey/${surveyId}`), {}, () => null);
+    },
     // deleteWorkflows: (workflowsId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
     // },
