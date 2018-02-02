@@ -79,9 +79,6 @@ export default reduxForm({
             );
             toast(values.isResolve ? ownProps.vocab.SURVEY.MARK_SENT :
                 ownProps.vocab.SURVEY.FLAG_SENT);
-            if (ownProps.flagCount <= 1 && values.isResolve) {
-                ownProps.actions.getSelfTasks(ownProps.vocab.ERROR);
-            }
         }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),

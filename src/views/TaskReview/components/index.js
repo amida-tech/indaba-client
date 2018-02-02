@@ -10,7 +10,7 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
-import { getTaskById, getSelfTasks, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
 class TaskReview extends Component {
@@ -38,7 +38,6 @@ class TaskReview extends Component {
             return question.required ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
         });
-
         const flagCount = sumBy(this.props.ui.flags, (flag) => {
             return every(flag.discussion, discuss => discuss.isResolve) ? 0 : 1;
         });
@@ -126,7 +125,6 @@ const mapDispatchToProps = dispatch => ({
         updateTaskEndDate,
         setSurveySectionIndex,
         getTaskById,
-        getSelfTasks,
         moveTask,
         postReview,
         postAnswer }),
