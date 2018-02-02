@@ -84,7 +84,9 @@
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
+        "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
+        "EMPTY_TEXT": "Please enter text into the field.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -383,6 +385,8 @@
         "NUM_ENTER": "Number goes here.",
         "CHOICE_ENTER": "Enter an option for the user to select.",
         "SCALE_ENTER": "Please enter a value between these two numbers: ",
+        "FLAG_SENT": "This question has been flagged.",
+        "MARK_SENT": "This discussions has been marked as resolved.",
         "SCALE_VALUES": {
             "MAX": "Max.",
             "MIN": "Min."
