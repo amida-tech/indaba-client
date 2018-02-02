@@ -14,7 +14,7 @@ class MessageContainer extends Component {
     componentWillMount() {
         this.props.actions.discardReply();
         if (this.props.id) {
-            this.props.actions.getThread(this.props.id);
+            this.props.actions.getThreadContainingMessage(this.props.id);
             this.props.actions.expandMessages([this.props.id]);
         }
     }
