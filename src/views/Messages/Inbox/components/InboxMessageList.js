@@ -48,7 +48,7 @@ class InboxMessageList extends Component {
                 onClick={() => this.props.onMessageClick(entry.originalMessageId)}>
                 <div className='inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {this.renderFrom(entry.from)}
+                    {this.renderFrom(entry.from || entry.senders)}
                     {this.props.thread && entry.count > 1 && ` (${entry.count})`}
                 </div>
                 <div className='inbox-message-list__subject'>
@@ -162,13 +162,19 @@ class InboxMessageList extends Component {
 
 InboxMessageList.propTypes = {
     entries: PropTypes.arrayOf(PropTypes.shape({
-        from: PropTypes.arrayOf(PropTypes.string).isRequired,
         subject: PropTypes.string.isRequired,
         originalMessageId: PropTypes.number.isRequired,
-        count: PropTypes.number.isRequired,
-        mostRecent: PropTypes.string.isRequired,
         unread: PropTypes.bool.isRequired,
-        isArchived: PropTypes.bool.isRequired,
+        // not required because they are not on thread entries
+        from: PropTypes.string,
+        isArchived: PropTypes.bool,
+
+        // on thread entries
+        mostRecent: PropTypes.string,
+        count: PropTypes.number,
+        senders: PropTypes.arrayOf(PropTypes.string),
+        archived: PropTypes.bool,
+        refMessageId: PropTypes.number,
     })),
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
