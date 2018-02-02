@@ -154,13 +154,12 @@ export const getThread = messageId => (dispatch) => {
     .then(response => dispatch(_getThreadSuccess(response.data.thread)));
 };
 
-export const getInboxThreads = variables => (dispatch) => {
-    apiService.messaging.graphql(
-        {
-            query: 'query ($archived:Boolean) {threads(archived: $archived) {from count subject mostRecent originalMessageId unread isArchived}}',
-            variables,
-        })
-    .then(response => dispatch(_getInboxThreadsSuccess(response.data.threads)));
+export const getInboxThreads = archived => (dispatch) => {
+    apiService.messaging.listThreads((err, response) => {
+        if (!err) {
+            dispatch(_getInboxThreadsSuccess(response));
+        }
+    }, { archived });
 };
 
 /* Private actions */
