@@ -45,7 +45,7 @@ class InboxMessageList extends Component {
         return (
             <div key={entry.originalMessageId}
                 className='inbox-message-list__entry'
-                onClick={() => this.props.onMessageClick(entry.originalMessageId)}>
+                onClick={() => this.props.onMessageClick(entry.refMessageId)}>
                 <div className='inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     {this.renderFrom(entry.from || entry.senders)}
