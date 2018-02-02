@@ -39,6 +39,10 @@ const messaging = {
         const path = `${rootURI}/message/delete/${id}`;
         requests.apiDeleteRequest(path, {}, callback);
     },
+    listThreads: (callback, params) => {
+        const path = requests.addQueryParams(`${rootURI}/thread`, params);
+        requests.apiGetRequest(path, callback);
+    },
     graphql: (graphQLParams) => {
         return fetch(`${rootURI}/graphql`, {
             method: 'POST',
