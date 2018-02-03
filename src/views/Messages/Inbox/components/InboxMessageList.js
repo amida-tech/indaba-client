@@ -20,30 +20,9 @@ class InboxMessageList extends Component {
         return renderNameByEmail(from, this.props.users);
     }
 
-    handleArchive(/* id */) {
-        // TODO archive all thread messages if this.props.thread, otherwise, archive just id
-        // this.props.actions.archiveThread(thread.messages);
-    }
-    handleUnarchive(/* id */) {
-        // TODO unarchive all thread messages if this.props.thread, otherwise, archive just id
-        // this.props.actions.unarchiveThread(thread.messages);
-    }
-    handleMarkAsRead(/* id */) {
-        // TODO mark all thread messages as read if this.props.thread, otherwise, archive just id
-        // this.props.actions.markMessageAsRead(entry.id);
-    }
-    handleMarkAsUnread(/* id */) {
-        // TODO mark all thread messages as unread if this.props.thread, otherwise, archive just id
-        // this.props.actions.markMessageAsUnread(entry.id);
-    }
-    handleDelete(/* id */) {
-        // TODO delete all thread messages if this.props.thread, otherwise, archive just id
-        // this.props.actions.deleteMessage(entry.id);
-    }
-
     renderEntry(entry) {
         return (
-            <div key={entry.originalMessageId}
+            <div key={entry.originalMessageId || entry.id}
                 className='inbox-message-list__entry'
                 onClick={() =>
                     this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
@@ -66,7 +45,7 @@ class InboxMessageList extends Component {
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
-                                        this.handleArchive(entry.originalMessageId);
+                                        this.props.onArchive(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -80,7 +59,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
-                                        this.handleMarkAsRead(entry.originalMessageId);
+                                        this.props.onMarkAsRead(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -94,7 +73,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
-                                        this.handleMarkAsUnread(entry.originalMessageId);
+                                        this.props.onMarkAsUnread(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -108,7 +87,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
-                                        this.handleUnarchiveThread(entry.originalMessageId);
+                                        this.props.onUnarchiveThread(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -121,7 +100,7 @@ class InboxMessageList extends Component {
                             <PanelButton
                                 onClick={
                                     (event) => {
-                                        this.handleDelete(entry.originalMessageId);
+                                        this.props.onDelete(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -180,9 +159,15 @@ InboxMessageList.propTypes = {
     })),
     vocab: PropTypes.object.isRequired,
     onMessageClick: PropTypes.func.isRequired,
-    actions: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
     thread: PropTypes.bool.isRequired,
+
+    onArchive: PropTypes.func.isRequired,
+    onUnarchive: PropTypes.func.isRequired,
+    onMarkAsRead: PropTypes.func.isRequired,
+    onMarkAsUnread: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+
 };
 
 export default InboxMessageList;
