@@ -35,6 +35,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
+    case actionTypes.CLEAR_INBOX:
+        return update(state, { inboxList: { $set: [] } });
     case actionTypes.MARK_MESSAGE_AS_READ:
         return update(state, { messages: { [messageIndex]: {
             readAt: { $set: new Date().toISOString() },
@@ -105,6 +107,10 @@ export default (state = initialState, action) => {
     case actionTypes.GET_INBOX_THREADS_SUCCESS:
         return update(state, {
             inboxList: { $set: action.threads },
+        });
+    case actionTypes.GET_INBOX_MESSAGES_SUCCESS:
+        return update(state, {
+            inboxList: { $set: action.messages.map(transformServerMessageToReduxMessage) },
         });
     case LOG_OUT:
         return initialState;

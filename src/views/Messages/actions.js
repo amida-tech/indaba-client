@@ -13,6 +13,10 @@ export const setInboxFilter = filter => ({
     filter,
 });
 
+export const clearInbox = () => ({
+    type: actionTypes.CLEAR_INBOX,
+});
+
 export const markMessageAsRead = id => ({
     type: actionTypes.MARK_MESSAGE_AS_READ,
     id,
@@ -104,6 +108,14 @@ export const setExpandedMessages = messageIds => ({
     messageIds,
 });
 
+export const getInboxMessages = params => (dispatch) => {
+    apiService.messaging.list((err, result) => {
+        if (!err) {
+            dispatch(_getInboxMessagesSuccess(result));
+        }
+    }, params);
+};
+
 export const listMessages = () => (dispatch) => {
     dispatch(_listMessages());
     apiService.messaging.list((err, result) => {
@@ -185,6 +197,11 @@ const _getThreadSuccess = thread => ({
 const _getInboxThreadsSuccess = threads => ({
     type: actionTypes.GET_INBOX_THREADS_SUCCESS,
     threads,
+});
+
+const _getInboxMessagesSuccess = messages => ({
+    type: actionTypes.GET_INBOX_MESSAGES_SUCCESS,
+    messages,
 });
 
 export const _startReply = reply => (dispatch) => {
