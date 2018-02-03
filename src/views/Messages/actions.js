@@ -116,28 +116,6 @@ export const getInboxMessages = params => (dispatch) => {
     }, params);
 };
 
-export const listMessages = () => (dispatch) => {
-    dispatch(_listMessages());
-    apiService.messaging.list((err, result) => {
-        if (err) {
-            dispatch(_listMessagesFailure(err));
-        } else {
-            dispatch(_listMessagesSuccess(result));
-        }
-    });
-};
-
-export const listArchivedMessages = () => (dispatch) => {
-    dispatch(_listArchivedMessages());
-    apiService.messaging.listArchived((err, result) => {
-        if (err) {
-            dispatch(_listArchivedMessagesFailure(err));
-        } else {
-            dispatch(_listArchivedMessagesSuccess(result));
-        }
-    });
-};
-
 export const getMessage = id => (dispatch) => {
     dispatch(_getMessage());
     apiService.messaging.get(id, (err, result) => {
@@ -209,34 +187,6 @@ export const _startReply = reply => (dispatch) => {
     dispatch(reset('message'));
     dispatch({ type: actionTypes.START_REPLY, reply });
 };
-
-export const _listMessages = () => ({
-    type: actionTypes.LIST_MESSAGES,
-});
-
-export const _listMessagesFailure = err => ({
-    type: actionTypes.LIST_MESSAGES_FAILURE,
-    err,
-});
-
-export const _listMessagesSuccess = result => ({
-    type: actionTypes.LIST_MESSAGES_SUCCESS,
-    result,
-});
-
-export const _listArchivedMessages = () => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES,
-});
-
-export const _listArchivedMessagesFailure = err => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES_FAILURE,
-    err,
-});
-
-export const _listArchivedMessagesSuccess = result => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS,
-    result,
-});
 
 export const _getMessage = () => ({
     type: actionTypes.GET_MESSAGE,

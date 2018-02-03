@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { sortBy, unionBy } from 'lodash';
+import { sortBy } from 'lodash';
 
 import config from '../../config';
 import * as actionTypes from './actionTypes';
@@ -66,20 +66,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
-    case actionTypes.LIST_MESSAGES_SUCCESS:
-        return update(state, {
-            messages: { $apply:
-                message => unionBy(message,
-                    action.result.map(transformServerMessageToReduxMessage), 'id'),
-            },
-        });
-    case actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS:
-        return update(state, {
-            messages: { $apply:
-                message => unionBy(message,
-                    action.result.map(transformServerMessageToReduxMessage), 'id'),
-            },
-        });
     case actionTypes.UPDATE_MESSAGE:
         return update(state, {
             messages: (
