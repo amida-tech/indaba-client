@@ -19,8 +19,6 @@ class Inbox extends Component {
     constructor() {
         super();
 
-        this.evaluateFilter = this.evaluateFilter.bind(this);
-        this.makeInboxThreadRepresentation = this.makeInboxThreadRepresentation.bind(this);
         this.handleThreadClick = this.handleThreadClick.bind(this);
         this.handleFilterClick = this.handleFilterClick.bind(this);
         this.handleTabClick = this.handleTabClick.bind(this);
@@ -82,45 +80,6 @@ class Inbox extends Component {
         }
         this.props.actions.setExpandedMessages(expanded);
         this.props.goToMessage(expanded.length > 0 ? expanded[0] : threadId);
-    }
-
-    evaluateFilter(threadEntry) {
-        const messages = this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === threadEntry.originalMessageId);
-        if (threadEntry.isArchived !==
-            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
-            return false;
-        }
-        if (
-            (this.props.messages.ui.filter === FILTERS.NOTIFICATIONS)
-            !==
-            (threadEntry.systemMessage)) {
-            return false;
-        }
-        switch (this.props.messages.ui.filter) {
-        case FILTERS.SENT_MESSAGES:
-            return messages.some(messageIter =>
-                messageIter.from === this.props.profile.email);
-        case FILTERS.ALL_MESSAGES:
-            return true;
-        case FILTERS.UNREAD_MESSAGES:
-            return messages.some(messageIter =>
-                !messageIter.readAt);
-        case FILTERS.NOTIFICATIONS:
-            return true;
-        default: return false;
-        }
-    }
-    makeInboxThreadRepresentation(message) {
-        const thread = _.sortBy(this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === message.originalMessageId), 'timestamp');
-        return Object.assign({}, message, {
-            threadLength: thread.length,
-            isArchived: thread.every(messageIter => messageIter.isArchived),
-            messages: thread.map(messageIter => messageIter.id),
-            unread: thread.some(messageIter => !messageIter.readAt),
-            createdAt: thread[thread.length - 1].createdAt,
-        });
     }
 
     render() {
