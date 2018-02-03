@@ -13,7 +13,7 @@ class InboxMessageList extends Component {
     }
 
     renderFrom(from) {
-        if (from.length !== undefined) {
+        if (Array.isArray(from)) {
             // return from.map(sender => renderNameByEmail(sender, this.props.users)).join(', ');
             return renderNameByEmail(from[0], this.props.users);
         }
@@ -45,10 +45,11 @@ class InboxMessageList extends Component {
         return (
             <div key={entry.originalMessageId}
                 className='inbox-message-list__entry'
-                onClick={() => this.props.onMessageClick(entry.refMessageId)}>
+                onClick={() =>
+                    this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
                 <div className='inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {this.renderFrom(entry.from || entry.senders)}
+                    {this.renderFrom(entry.from)}
                     {this.props.thread && entry.count > 1 && ` (${entry.count})`}
                 </div>
                 <div className='inbox-message-list__subject'>
@@ -166,14 +167,15 @@ InboxMessageList.propTypes = {
         originalMessageId: PropTypes.number.isRequired,
         unread: PropTypes.bool.isRequired,
         // not required because they are not on thread entries
-        from: PropTypes.string,
-        isArchived: PropTypes.bool,
+        from: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.arrayOf(PropTypes.string),
+        ]).isRequired,
+        isArchived: PropTypes.bool.isRequired,
 
         // on thread entries
         mostRecent: PropTypes.string,
         count: PropTypes.number,
-        senders: PropTypes.arrayOf(PropTypes.string),
-        archived: PropTypes.bool,
         refMessageId: PropTypes.number,
     })),
     vocab: PropTypes.object.isRequired,

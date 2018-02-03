@@ -22,6 +22,7 @@ const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
         timestamp: message.createdAt,
         systemMessage: message.from === config.SYS_MESSAGE_USER,
+        unread: message.readAt === null,
     });
 
 export default (state = initialState, action) => {
