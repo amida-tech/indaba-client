@@ -22,20 +22,37 @@ class Inbox extends Component {
         this.evaluateFilter = this.evaluateFilter.bind(this);
         this.makeInboxThreadRepresentation = this.makeInboxThreadRepresentation.bind(this);
         this.handleThreadClick = this.handleThreadClick.bind(this);
+        this.handleFilterClick = this.handleFilterClick.bind(this);
+        this.handleTabClick = this.handleTabClick.bind(this);
     }
 
     componentWillMount() {
         this.props.actions.getUsers(this.props.vocab.ERROR);
-        this.loadByFilter();
+        this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
     }
 
-    loadByFilter() {
-        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+    handleFilterClick(filter) {
+        this.props.actions.clearInbox();
+        this.props.actions.setInboxFilter(filter);
+        this.loadByFilter(filter, this.props.messages.ui.inboxTab);
+    }
+
+    handleTabClick(inboxTab) {
+        this.props.actions.clearInbox();
+        this.props.actions.setActiveInboxTab(inboxTab);
+        this.loadByFilter(this.props.messages.ui.filter, inboxTab);
+    }
+
+    loadByFilter(filter, inboxTab) {
+        if (filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.getInboxThreads(
-                this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED);
+                inboxTab === INBOX_TABS.ARCHIVED);
         } else {
-            this.props.actions.listMessages();
-            this.props.actions.listArchivedMessages();
+            this.props.actions.getInboxMessages({
+                archived: inboxTab === INBOX_TABS.ARCHIVED,
+                sent: filter === FILTERS.SENT_MESSAGES,
+                unread: filter === FILTERS.UNREAD_MESSAGES,
+            });
         }
     }
 
@@ -119,7 +136,7 @@ class Inbox extends Component {
                 <div className='inbox__top-row'>
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
-                        onSelectTab={this.props.actions.setActiveInboxTab}/>
+                        onSelectTab={this.handleTabClick}/>
                     <Button className='inbox__new-message-button'
                         primary={true}
                         label={this.props.vocab.MESSAGES.NEW_MESSAGE}
@@ -129,7 +146,7 @@ class Inbox extends Component {
                 <div className='inbox__filter'>
                     <Filter filters={filters}
                         active={this.props.messages.ui.filter}
-                        onFilterClick={this.props.actions.setInboxFilter}/>
+                        onFilterClick={this.handleFilterClick}/>
                 </div>
                 <InboxMessageList entries={this.props.inboxList}
                         thread={isThreadList}
