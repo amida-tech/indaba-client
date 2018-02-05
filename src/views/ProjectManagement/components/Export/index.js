@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector, change } from 'redux-form';
-import { unionBy } from 'lodash';
-
-import DeleteList from './DeleteList';
-import QuestionSelectionList from './QuestionSelectionList';
 
 class Export extends Component {
     constructor(props) {
@@ -24,7 +20,6 @@ class Export extends Component {
     }
     render() {
         const quickType = this.props.selectedType === 'quick';
-        const customType = this.props.selectedType === 'custom';
         return (
             <form className='export' onSubmit={this.props.handleSubmit}>
                 <div className='export__instructions'>
