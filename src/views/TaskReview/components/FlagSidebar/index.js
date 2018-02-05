@@ -35,8 +35,13 @@ class FlagSidebar extends Component {
             stepId: this.props.task.stepId,
             userId: userOptions[0] === undefined ? null : userOptions[0].value,
         };
+        const completed = get(this.props, 'task.status') === 'completed';
         const activeIndex = findIndex(this.props.ui.flags, flag =>
             parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
+        const formDisabled = !(this.props.taskedUser.id === this.props.profile.id ||
+            some(get(this.props.ui.flags[activeIndex], 'discussion'), chat =>
+            (chat.userId === this.props.profile.id ||
+            chat.userFromId === this.props.profile.id) && !chat.isResolve));
 
         return (
             <Box className='flag-sidebar'>
@@ -45,16 +50,19 @@ class FlagSidebar extends Component {
                     <FlagQuestionList {...this.props} />
                     <div className='flag-sidebar__controls'>
                         <FlagCommentary
-                            {...this.props}
-                            activeIndex={activeIndex} />
-                        <FlagControlsForm
-                            {...this.props}
-                            disabled={!(this.props.taskedUser.id === this.props.profile.id ||
-                                some(get(this.props.ui.flags[activeIndex], 'discussion'), chat =>
-                                    (chat.userId === this.props.profile.id ||
-                                    chat.userFromId === this.props.profile.id) && !chat.isResolve))}
-                            userOptions={userOptions}
-                            initialValues={initialValues} />
+                            actions={this.props.actions}
+                            users={this.props.users}
+                            ui={this.props.ui}
+                            vocab={this.props.vocab}
+                            activeIndex={activeIndex}
+                            completed={completed} />
+                        {!completed &&
+                            <FlagControlsForm
+                                {...this.props}
+                                disabled={formDisabled}
+                                userOptions={userOptions}
+                                initialValues={initialValues} />
+                        }
                     </div>
                 </div>
             </Box>

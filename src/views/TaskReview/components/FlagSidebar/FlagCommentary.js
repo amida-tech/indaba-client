@@ -12,7 +12,7 @@ class FlagCommentary extends Component {
                 {this.props.activeIndex >= 0 &&
                     this.props.ui.flags[this.props.activeIndex].discussion.map((reply, index) => {
                         return (
-                    <div className='flag-commentary__frame'
+                    <div className={`flag-commentary__frame${this.props.completed ? ' flag-commentary__frame--readonly' : ''}`}
                         key={`flag-comment${index}`}>
                         <div className='flag-commentary__timestamp'>
                             {Time.renderFlagTimestamp(reply.created, this.props.vocab)}
@@ -29,7 +29,7 @@ class FlagCommentary extends Component {
                         );
                     })}
                 {this.props.activeIndex < 0 &&
-                    <div className='flag-commentary__frame'>
+                    <div className={`flag-commentary__frame${this.props.completed ? ' flag-commentary__frame--readonly' : ''}`}>
                         {this.props.vocab.PROJECT.NO_COMMENTS}
                     </div>
                 }
@@ -41,6 +41,7 @@ class FlagCommentary extends Component {
 FlagCommentary.propTypes = {
     actions: PropTypes.objectOf(PropTypes.func).isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    completed: PropTypes.bool,
     ui: PropTypes.shape({
         flags: PropTypes.array,
         flagSideBar: PropTypes.object,
