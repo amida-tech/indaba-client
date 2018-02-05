@@ -144,7 +144,6 @@ InboxMessageList.propTypes = {
         subject: PropTypes.string.isRequired,
         originalMessageId: PropTypes.number.isRequired,
         unread: PropTypes.bool.isRequired,
-        // not required because they are not on thread entries
         from: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.arrayOf(PropTypes.string),
