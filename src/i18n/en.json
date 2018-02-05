@@ -531,6 +531,10 @@
         "SECTION_DELETE_CONFIRM": {
             "TITLE": "Delete section?",
             "DELETE_WARNING": "Are you sure you want to delete the entire section? Once you click 'Save Progress,' all questions contained will have to be re-entered."
+        },
+        "INACTIVE_CONFIRM": {
+            "TITLE": "Make Project Inactive?",
+            "WARNING": "Users have already been notified of assigned tasks and may have submitted data. Are you sure you want to de-activate this project?"
         }
     }
 }
