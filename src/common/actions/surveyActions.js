@@ -69,6 +69,7 @@ export function patchSurvey(survey, successMessage, errorMessages) {
                 if (!surveyErr && surveyResp.length === 0) {
                     dispatch(_patchSurveySuccess(survey.id, requestBody));
                     toast(successMessage);
+                    apiService.projects.editSurvey(survey.id);
                 } else {
                     dispatch(_reportSurveyError(errorMessages.FETCH_SURVEYS));
                 }
