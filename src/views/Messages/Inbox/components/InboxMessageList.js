@@ -14,7 +14,6 @@ class InboxMessageList extends Component {
 
     renderFrom(from) {
         if (Array.isArray(from)) {
-            // return from.map(sender => renderNameByEmail(sender, this.props.users)).join(', ');
             return renderNameByEmail(from[0], this.props.users);
         }
         return renderNameByEmail(from, this.props.users);
