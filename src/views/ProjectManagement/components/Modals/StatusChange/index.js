@@ -44,10 +44,14 @@ class StatusChange extends Component {
     save() {
         if (this.props.entity === 'project') {
             if (this.projectConfirmed()) {
-                const newProject = Object.assign({}, this.props.project,
-                        { status: this.state.project.active ? 1 : 0 });
-                this.props.actions.putProject(newProject, this.props.vocab.ERROR);
-                this.props.actions.updateStatusChange(false);
+                if (this.state.project.active) {
+                    const newProject = Object.assign({}, this.props.project,
+                            { status: 1 });
+                    this.props.actions.putProject(newProject, this.props.vocab.ERROR);
+                    this.props.actions.updateStatusChange(false);
+                } else {
+                    this.props.actions.showInactiveConfirmModal(true);
+                }
             }
         } else if (this.surveyConfirmed()) {
             this.props.actions.patchSurvey(Object.assign({}, this.props.survey,
