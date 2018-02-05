@@ -11,7 +11,15 @@ export function updateFormSurveyId(surveyId) {
     };
 }
 
-export function upsertAnswer(assessmentId, questionId, answer, meta, required, errorMessages) {
+export function holdAnswer(questionId, answer) {
+    return {
+        type: actionTypes.HOLD_ANSWER,
+        questionId,
+        answer,
+    };
+}
+
+export function upsertAnswer(assessmentId, questionId, answer, meta, errorMessages) {
     const requestBody = {
         status: 'in-progress',
         answers: [pickBy({
@@ -22,7 +30,7 @@ export function upsertAnswer(assessmentId, questionId, answer, meta, required, e
     };
 
     return (dispatch) => {
-        dispatch(postAnswer(assessmentId, requestBody, required, errorMessages));
+        dispatch(postAnswer(assessmentId, requestBody, errorMessages));
     };
 }
 

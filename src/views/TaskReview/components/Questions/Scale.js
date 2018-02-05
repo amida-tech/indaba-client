@@ -9,7 +9,7 @@ class Scale extends Component {
             <div className='scale'>
                 <span className='scale__instructions'>
                     {`${`${this.props.vocab.SURVEY.SCALE_ENTER + this.props.scaleLimits.min
-                    },${this.props.scaleLimits.max}`}.` }
+                    }, ${this.props.scaleLimits.max}`}.` }
                 </span>
                 <input className={`scale__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={0}
@@ -19,6 +19,10 @@ class Scale extends Component {
                     disabled={this.props.displayMode}
                     value={parseInt(get(this.props, 'answer.numberValue'), 10) || ''}
                     onChange={(event) => {
+                        this.props.holdAnswer(this.props.id,
+                            { numberValue: parseInt(event.target.value, 10) });
+                    }}
+                    onBlur={(event) => {
                         let value = parseInt(event.target.value, 10);
                         if (value < this.props.scaleLimits.min
                             || value > this.props.scaleLimits.max) {

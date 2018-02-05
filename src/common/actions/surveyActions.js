@@ -131,7 +131,7 @@ export function getAnswers(assessmentId, errorMessages) {
 }
 
 // Answer related.
-export function postAnswer(assessmentId, requestBody, required, errorMessages) {
+export function postAnswer(assessmentId, requestBody, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAnswer(
             assessmentId,
@@ -140,7 +140,7 @@ export function postAnswer(assessmentId, requestBody, required, errorMessages) {
                 if (answerErr) {
                     dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {
-                    dispatch(_postAnswerSuccess(requestBody, required));
+                    dispatch(_postAnswerSuccess(requestBody));
                 }
             },
         );
@@ -227,13 +227,12 @@ function _getAnswersSuccess(answers) {
     };
 }
 
-function _postAnswerSuccess(response, required) {
+function _postAnswerSuccess(response) {
     return {
         type: actionTypes.POST_ANSWER_SUCCESS,
         questionId: response.answers[0].questionId,
         answer: response.answers[0].answer,
         meta: response.answers[0].meta,
-        required,
     };
 }
 
