@@ -80,6 +80,7 @@
         "NOTIFY_FAILURE": "The system was unable to notify the user of this action",
         "FILE_UPLOAD": "Failed to upload the file.",
         "REQUIRE_ANSWERS": "Please answer all required questions.",
+        "FLAGGED_QUESTIONS": "You cannot complete a task if there are flagged questions awaiting resolution.",
         "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",

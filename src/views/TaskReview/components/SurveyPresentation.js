@@ -47,6 +47,8 @@ class SurveyPresentation extends Component {
                                         this.props.task.uoaId,
                                         this.props.vocab.ERROR,
                                     );
+                                } else if (this.props.flagCount > 0) {
+                                    toast(this.props.vocab.ERROR.FLAGGED_QUESTIONS);
                                 } else {
                                     toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
                                 }
