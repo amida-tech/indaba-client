@@ -52,6 +52,7 @@ class FlagSidebar extends Component {
                         <FlagCommentary
                             actions={this.props.actions}
                             users={this.props.users}
+                            profile={this.props.profile}
                             ui={this.props.ui}
                             vocab={this.props.vocab}
                             activeIndex={activeIndex}
