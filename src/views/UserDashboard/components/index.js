@@ -96,6 +96,11 @@ const mapStateToProps = state => ({
     users: state.user.users,
     rows: state.userdashboard.tasks
         .filter(task => task.complete || task.active)
+        .filter(task => get(
+            state.projects.data.find(findProject => findProject.id === task.projectId),
+            'status',
+            0,
+        ) === 1)
         .map(task => _generateRow(state, task.projectId, task)),
 });
 
