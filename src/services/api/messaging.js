@@ -1,4 +1,3 @@
-import cookie from 'react-cookies';
 import * as requests from './requests';
 import config from '../../config';
 
@@ -46,16 +45,6 @@ const messaging = {
     listThreads: (callback, params) => {
         const path = requests.addQueryParams(`${rootURI}/thread`, params);
         requests.apiGetRequest(path, callback);
-    },
-    graphql: (graphQLParams) => {
-        return fetch(`${rootURI}/graphql`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: cookie.load('indaba-auth'),
-            },
-            body: JSON.stringify(graphQLParams),
-        }).then(response => response.json());
     },
 };
 

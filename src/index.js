@@ -17,7 +17,6 @@ import { createDevTools } from 'redux-devtools';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.css';
-import 'graphiql/graphiql.css';
 import './styles/main.scss';
 
 /** User Imports **/
