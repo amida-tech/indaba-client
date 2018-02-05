@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
 
+import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
 
@@ -45,11 +46,16 @@ class Inbox extends Component {
         if (filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.getInboxThreads(
                 inboxTab === INBOX_TABS.ARCHIVED);
-        } else {
+        } else if (filter !== FILTERS.NOTIFICATIONS) {
             this.props.actions.getInboxMessages({
                 archived: inboxTab === INBOX_TABS.ARCHIVED,
                 sent: filter === FILTERS.SENT_MESSAGES,
                 unread: filter === FILTERS.UNREAD_MESSAGES,
+            });
+        } else {
+            this.props.actions.getInboxMessages({
+                archived: inboxTab === INBOX_TABS.ARCHIVED,
+                from: config.SYS_MESSAGE_USER,
             });
         }
     }
