@@ -11,6 +11,7 @@ export const initialState = {
             groups: {},
         },
         statusModalId: false,
+        showInactiveConfirmModal: false,
         taskOptions: {
             show: false,
             task: {},
@@ -42,7 +43,14 @@ export default (state = initialState, action) => {
             showProfile: { $set: action.userId },
         } });
     case type.UPDATE_STATUS_CHANGE:
-        return update(state, { ui: { statusModalId: { $set: action.status } } });
+        return update(state, { ui: {
+            statusModalId: { $set: action.status },
+            showInactiveConfirmModal: { $set: false },
+        } });
+    case type.SHOW_INACTIVE_CONFIRM_MODAL:
+        return update(state, { ui: {
+            showInactiveConfirmModal: { $set: action.show },
+        } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
