@@ -18,12 +18,11 @@ $block-class: 'user-task-list-entry';
             &--subject,
             &--task,
             &--survey {
-                flex: 2;
+                flex: 1;
             }
 
             &--due,
-            &--flags,
-            &--progress {
+            &--flags {
                 flex: 1;
             }
 
