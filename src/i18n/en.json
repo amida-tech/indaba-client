@@ -38,7 +38,9 @@
         "LOG_OUT": "Log Out",
         "MY_TASKS":"My Tasks",
         "AGREE": "Agreed",
-        "DISAGREE": "Disagreed"
+        "DISAGREE": "Disagreed",
+        "WELCOME_": "Welcome ",
+        "USER": "User!"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
