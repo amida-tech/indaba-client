@@ -129,6 +129,13 @@ export function startTaskAssign(task) {
     };
 }
 
+export function setAssignTaskQuery(query) {
+    return {
+        type: actionTypes.SET_ASSIGN_TASK_QUERY,
+        query,
+    };
+}
+
 export function pmShowUserGroupDeleteConfirmModal(id, dataState) {
     return {
         type: actionTypes.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL,

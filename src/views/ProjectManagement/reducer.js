@@ -22,6 +22,7 @@ export const initialState = {
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
+        assignTaskQuery: '',
         showUserGroupDeleteConfirmModal: null,
         showProjectTitleModal: false,
         showSurveyTitleModal: false,
@@ -98,6 +99,10 @@ export default (state = initialState, action) => {
     case type.START_TASK_ASSIGN:
         return update(state, { ui: {
             assignTaskInput: { $set: action.task },
+        } });
+    case type.SET_ASSIGN_TASK_QUERY:
+        return update(state, { ui: {
+            assignTaskQuery: { $set: action.query },
         } });
     case type.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL: {
         return update(state, { ui: {
