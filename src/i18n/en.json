@@ -39,7 +39,8 @@
         "MY_TASKS":"My Tasks",
         "AGREE": "Agreed",
         "DISAGREE": "Disagreed",
-        "CONFIRM": "Confirm"
+        "CONFIRM": "Confirm",
+        "REMOVE": "Remove"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
