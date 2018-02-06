@@ -17,7 +17,7 @@ class InboxMessageList extends Component {
             <div key={thread.id}
                 className='inbox-message-list__entry'
                 onClick={() => this.props.onMessageClick(thread.id)}>
-                <div className='inbox-message-list__ inbox-message-list__from'>
+                <div className='inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     {renderNameByEmail(thread.from, this.props.users)}
                     {thread.threadLength > 1 && ` (${thread.threadLength})`}
