@@ -99,11 +99,11 @@ export function assignTask(userId, slot, project, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAssessment(
             surveyRequestBody,
-            (assessErr, assessResp) => {
-                if (assessErr) {
-                    dispatch(_reportTasksError(assessErr, errorMessages.ASSESSMENT_REQUEST));
+            (assessmentErr, assessmentResp) => {
+                if (assessmentErr) {
+                    dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
                 } else {
-                    requestBody.assessmentId = assessResp.id;
+                    requestBody.assessmentId = assessmentResp.id;
                     apiService.tasks.postTask(
                         requestBody,
                         (taskErr, taskResp) => {
