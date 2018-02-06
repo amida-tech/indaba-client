@@ -172,6 +172,7 @@ function _getUsersSuccess(users) {
     };
 }
 
+// err is shorthand for the error response, errorMessage is the display message taken from props.
 function _reportUserError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_USER_ERROR,

@@ -349,6 +349,7 @@ function _deleteProjectUserSuccess(userId, projectId) {
     };
 }
 
+// err is shorthand for the error response, errorMessage is the display message taken from props.
 function _reportProjectError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_PROJECT_ERROR,

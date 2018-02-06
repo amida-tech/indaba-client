@@ -237,6 +237,7 @@ function _postAnswerSuccess(response) {
     };
 }
 
+// err is shorthand for the error response, errorMessage is the display message taken from props.
 function _reportSurveyError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_SURVEY_ERROR,

@@ -218,6 +218,7 @@ function _putTaskSuccess(taskId, taskChanges) {
     };
 }
 
+// err is shorthand for the error response, errorMessage is the display message taken from props.
 function _reportTasksError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_TASKS_ERROR,
