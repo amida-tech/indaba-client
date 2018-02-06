@@ -96,7 +96,7 @@ const mapStateToProps = state => ({
     users: state.user.users,
     rows: state.userdashboard.tasks
         .filter(task => task.complete || task.active)
-        // omit any tasks in projects that are inactive (hiding all beforr project data is loaded)
+        // omit any tasks in projects that are inactive (hiding all before project data is loaded)
         .filter(task => get(
             state.projects.data.find(findProject => findProject.id === task.projectId),
             'status',
