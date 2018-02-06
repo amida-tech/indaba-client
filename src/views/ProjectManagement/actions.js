@@ -22,6 +22,13 @@ export function updateStatusChange(status) {
     };
 }
 
+export function showInactiveConfirmModal(show) {
+    return {
+        type: actionTypes.SHOW_INACTIVE_CONFIRM_MODAL,
+        show,
+    };
+}
+
 export function inviteUser(user, projectId) {
     return {
         type: actionTypes.INVITE_USER,
