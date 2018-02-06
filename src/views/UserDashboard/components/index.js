@@ -96,7 +96,7 @@ const mapStateToProps = (state) => {
             tasks: rows.filter(row => !row.complete).length,
             newTasks: rows.filter(row => row.new).length,
             lateTasks: rows.filter(row => row.late).length,
-            flagged: state.userdashboard.tasks.filter(task => task.flagCounter > 0).length,
+            flagged: rows.filter(row => row.flags > 0).length,
         },
         profile: state.user.profile,
         vocab: state.settings.language.vocabulary,
