@@ -93,7 +93,7 @@ const mapStateToProps = (state) => {
         .map(task => _generateRow(state, task.projectId, task));
     return {
         glance: {
-            tasks: rows.length,
+            tasks: rows.filter(row => !row.complete).length,
             newTasks: rows.filter(row => row.new).length,
             lateTasks: rows.filter(row => row.late).length,
             flagged: state.userdashboard.tasks.filter(task => task.flagCounter > 0).length,
