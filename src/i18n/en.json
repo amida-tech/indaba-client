@@ -40,7 +40,8 @@
         "AGREE": "Agreed",
         "DISAGREE": "Disagreed",
         "CONFIRM": "Confirm",
-        "REMOVE": "Remove"
+        "REMOVE": "Remove",
+        "DELETE": "Delete"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
