@@ -18,9 +18,6 @@ const UserTaskListHeader = ({ vocab }) =>
         <div className='user-task-list-header__title user-task-list-header__title--flags'>
             {vocab.PROJECT.FLAGS}
         </div>
-        <div className='user-task-list-header__title user-task-list-header__title--progress'>
-            {vocab.PROJECT.PROGRESS}
-        </div>
     </div>;
 
 UserTaskListHeader.propTypes = {

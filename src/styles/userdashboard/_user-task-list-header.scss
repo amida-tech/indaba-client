@@ -13,12 +13,11 @@ $block-class: 'user-task-list-header';
             &--subject,
             &--task,
             &--survey {
-                flex: 2;
+                flex: 1;
             }
 
             &--flags,
-            &--due,
-            &--progress {
+            &--due {
                 flex: 1;
             }
         }
