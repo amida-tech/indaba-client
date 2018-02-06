@@ -63,7 +63,7 @@ class PrimaryNavContainer extends Component {
                 </div>
                 <div className='primary-nav__right'>
                     <div className='primary-nav__welcome'>
-                        {`${this.props.vocab.COMMON.WELCOME_ + renderName(get(this.props, 'user.profile', ''))}`}
+                        {`${this.props.vocab.COMMON.WELCOME_} ${renderName(get(this.props, 'user.profile'))}`}
                     </div>
                     <Link className='primary-nav__link'
                         to='/messages'>
