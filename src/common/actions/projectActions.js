@@ -15,7 +15,7 @@ export function getProjects(errorMessages) {
                     dispatch(getSurveys(errorMessages));
                     dispatch(_getProjectsSuccess(projectResp));
                 } else {
-                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
+                    dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
                 }
             },
         );
@@ -29,7 +29,7 @@ export function postProject(requestBody, errorMessages) {
             (projectErr, projectResp) => {
                 dispatch((!projectErr && projectResp) ?
                     _postProjectSuccess(projectResp) :
-                    _reportProjectError(errorMessages.PROJECT_REQUEST));
+                    _reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
             },
         );
     };
@@ -44,7 +44,7 @@ export function putProject(project, errorMessages) {
             { status, codeName },
             (projectErr) => {
                 if (projectErr) {
-                    dispatch(_reportProjectError(errorMessages.PROJECT_REQUEST));
+                    dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
                 } else {
                     dispatch(getProjectById(project.id, false, errorMessages));
                 }
@@ -67,7 +67,7 @@ export function getProjectById(projectId, getTasks, errorMessages) {
                     }
                     dispatch(_getProjectByIdSuccess(projResp));
                 } else {
-                    dispatch(_reportProjectError(errorMessages.FETCH_PROJECTS));
+                    dispatch(_reportProjectError(projErr, errorMessages.FETCH_PROJECTS));
                 }
             },
         );
@@ -108,7 +108,7 @@ export function putStage(project, stage, fromWizard, errorMessages) {
                     dispatch(_putStageSuccess(
                         Object.assign({}, requestBody[0], { id }), project.id));
                 } else {
-                    _reportProjectError(errorMessages.STAGE_REQUEST);
+                    _reportProjectError(stepErr, errorMessages.STAGE_REQUEST);
                 }
             },
         );
@@ -148,7 +148,7 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
                     }
                     dispatch(_postSubjectSuccess(uoaResp, project.id));
                 } else {
-                    dispatch(_reportProjectError(errorMessages.SUBJECT_REQUEST));
+                    dispatch(_reportProjectError(uoaErr, errorMessages.SUBJECT_REQUEST));
                 }
             },
         );
@@ -172,7 +172,7 @@ export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
             (uoaErr, uoaResp) => {
                 dispatch((!uoaErr && uoaResp) ?
                     _deleteSubjectSuccess(uoaId, project.id) :
-                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+                    _reportProjectError(uoaErr, errorMessages.PRODUCT_REQUEST));
             },
         );
     };
@@ -191,7 +191,7 @@ export function addUser(userId, projectId, errorMessages) {
             (userErr, userResp) => {
                 dispatch((!userErr && userResp) ?
                     _postProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
             },
         );
     };
@@ -207,7 +207,7 @@ export function removeUser(userId, projectId, errorMessages) {
             (userErr, userResp) => {
                 dispatch((!userErr && userResp) ?
                     _deleteProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(errorMessages.PRODUCT_REQUEST));
+                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
             },
         );
     };
@@ -230,7 +230,7 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
                     dispatch(getProjectById(projectId, errorMessages));
                     dispatch(getUsers(errorMessages));
                 } else {
-                    dispatch(_reportProjectError(errorMessages.GROUP_REQUEST));
+                    dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
                 }
             },
         );
@@ -246,7 +246,7 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
             { title, userId, organizationId },
             (groupErr) => {
                 if (groupErr) {
-                    dispatch(_reportProjectError(errorMessages.USER_GROUP));
+                    dispatch(_reportProjectError(groupErr, errorMessages.USER_GROUP));
                 } else {
                     dispatch(getProjectById(projectId, errorMessages));
                     dispatch(getUsers(errorMessages));
@@ -349,9 +349,10 @@ function _deleteProjectUserSuccess(userId, projectId) {
     };
 }
 
-function _reportProjectError(error) {
+function _reportProjectError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_PROJECT_ERROR,
-        error,
+        err,
+        errorMessage,
     };
 }

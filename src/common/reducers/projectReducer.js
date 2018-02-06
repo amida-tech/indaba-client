@@ -109,7 +109,7 @@ export const ProjectReducer = (state = initialState, action) => {
             lastUpdated: { $set: new Date().toISOString() },
         } } });
     case type.REPORT_PROJECT_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case LOG_OUT:
         return initialState;
     default:

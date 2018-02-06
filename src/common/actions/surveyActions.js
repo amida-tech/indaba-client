@@ -12,7 +12,7 @@ export function getSurveys(errorMessages) {
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp) ?
                     _getSurveysSuccess(surveyResp) :
-                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
             },
         );
     };
@@ -41,12 +41,13 @@ export function postSurvey(survey, project, errorMessages) {
                                 dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
                                 dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
                             } else {
-                                dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
+                                dispatch(_reportSurveyError(productErr,
+                                    errorMessages.SURVEY_REQUEST));
                             }
                         },
                     );
                 } else {
-                    dispatch(_reportSurveyError(errorMessages.SURVEY_REQUEST));
+                    dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
                 }
             },
         );
@@ -71,7 +72,7 @@ export function patchSurvey(survey, successMessage, errorMessages) {
                     toast(successMessage);
                     apiService.projects.editSurvey(survey.id);
                 } else {
-                    dispatch(_reportSurveyError(errorMessages.FETCH_SURVEYS));
+                    dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
                 }
             },
         );
@@ -85,7 +86,7 @@ export function getSurveyById(surveyId, errorMessages) {
             (surveyErr, surveyResp) => {
                 dispatch((!surveyErr && surveyResp) ?
                     _getSurveyByIdSuccess(surveyResp.id, surveyResp) :
-                    _reportSurveyError(errorMessages.FETCH_SURVEYS));
+                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
             },
         );
     };
@@ -97,7 +98,7 @@ export function getAssessment(errorMessages) {
             (assessErr, assessResp) => {
                 dispatch((!assessErr && assessResp) ?
                     _getAssessmentSuccess(assessResp) :
-                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
             },
         );
     };
@@ -110,7 +111,7 @@ export function postAssessment(requestBody, errorMessages) {
             (assessErr, assessResp) => {
                 dispatch((!assessErr && assessResp) ?
                     _postAssessmentSuccess(assessResp) :
-                    _reportSurveyError(errorMessages.FETCH_ASSESSMENT));
+                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
             },
         );
     };
@@ -122,7 +123,7 @@ export function getAnswers(assessmentId, errorMessages) {
             assessmentId,
             (answerErr, answerResp) => {
                 if (answerErr) {
-                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {
                     dispatch(_getAnswersSuccess(answerResp.answers));
                 }
@@ -138,7 +139,7 @@ export function postAnswer(assessmentId, requestBody, errorMessages) {
             requestBody,
             (answerErr, answerResp) => {
                 if (answerErr) {
-                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {
                     dispatch(_postAnswerSuccess(requestBody));
                 }
@@ -158,7 +159,7 @@ export function postReview(assessmentId, answers, errorMessages) {
             requestBody,
             (answerErr, answerResp) => {
                 if (answerErr) {
-                    dispatch(_reportSurveyError(errorMessages.ANSWER_REQUEST));
+                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
                 } else if (answerResp || []) {
                     dispatch(getAnswers(assessmentId, errorMessages));
                 }
@@ -236,9 +237,10 @@ function _postAnswerSuccess(response) {
     };
 }
 
-function _reportSurveyError(error) {
+function _reportSurveyError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_SURVEY_ERROR,
-        error,
+        err,
+        errorMessage,
     };
 }

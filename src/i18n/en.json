@@ -38,7 +38,8 @@
         "LOG_OUT": "Log Out",
         "MY_TASKS":"My Tasks",
         "AGREE": "Agreed",
-        "DISAGREE": "Disagreed"
+        "DISAGREE": "Disagreed",
+        "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password."
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",

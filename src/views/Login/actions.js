@@ -5,7 +5,7 @@ import apiService from '../../services/api';
 import { getProfileSuccess } from '../../common/actions/userActions';
 import * as actionTypes from './actionTypes';
 
-export function login(username, password, realm, errorMessages) {
+export function login(username, password, realm, referrer, errorMessages) {
     return (dispatch) => {
         dispatch(_login());
 
@@ -21,7 +21,11 @@ export function login(username, password, realm, errorMessages) {
                 apiService.users.getProfile((profileErr, profileResp) => {
                     if (!profileErr && profileResp) {
                         dispatch(getProfileSuccess(profileResp));
-                        dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
+                        if (referrer) {
+                            dispatch(push(referrer));
+                        } else {
+                            dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
+                        }
                     } else {
                         dispatch(_loginError(errorMessages.SERVER_ISSUE));
                     }
