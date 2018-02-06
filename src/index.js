@@ -25,7 +25,6 @@ import routes from './routes';
 
 const DEVELOP = process.env.NODE_ENV === 'development';
 
-
 let middleware = [routerMiddleware(browserHistory), thunk];
 if (DEVELOP) {
     middleware = [...middleware, createLogger()];
