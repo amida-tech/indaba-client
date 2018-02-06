@@ -91,7 +91,8 @@ class PMAllUsers extends Component {
                             this.props.vocab.MODAL.USER_DELETE_CONFIRM.DELETE_WITH_NOTHING
                         }
                         onCancel={() => this.props.actions.pmAllUsersHideDeleteConfirmModal()}
-                        onSave={() => this.handleDeleteModalSave(deleteModal.id)}/>
+                        onSave={() => this.handleDeleteModalSave(deleteModal.id)}
+                        saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
             </div>
         );
