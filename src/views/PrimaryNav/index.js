@@ -28,8 +28,6 @@ class PrimaryNavContainer extends Component {
     render() {
         const isProjectManager = ((this.props.user.profile.roleID === 2) ||
             (this.props.user.profile.roleID === 1));
-        const welcomeUser = has(this.props, 'user.profile') ? renderName(get(this.props, 'user.profile')) :
-            this.props.vocab.COMMON.USER;
         return (
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
@@ -65,7 +63,7 @@ class PrimaryNavContainer extends Component {
                 </div>
                 <div className='primary-nav__right'>
                     <div className='primary-nav__welcome'>
-                        {this.props.vocab.COMMON.WELCOME_ + welcomeUser}
+                        {`${this.props.vocab.COMMON.WELCOME_ + renderName(get(this.props, 'user.profile', ''))}`}
                     </div>
                     <Link className='primary-nav__link'
                         to='/messages'>

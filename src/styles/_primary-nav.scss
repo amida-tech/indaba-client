@@ -101,6 +101,16 @@ $block-class:'primary-nav';
             }
         }
 
+        &__welcome {
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 8px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         &__logout {
             align-items: center;
             color: $nav-text-color;
