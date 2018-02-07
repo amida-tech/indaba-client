@@ -28,35 +28,23 @@ export const markMessageAsUnread = id => ({
 });
 
 export const archiveThread = ids => () => {
-    const archivePromises = [];
-    ids.forEach(id =>
-        archivePromises.push(new Promise((resolve, reject) => {
-            apiService.messaging.archive(id, (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve();
-                }
-            });
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.archive(id, err =>
+                (err ? reject(err) : resolve()),
+            );
         })),
     );
-    return Promise.all(archivePromises);
 };
 
 export const unarchiveThread = ids => () => {
-    const unarchivePromises = [];
-    ids.forEach(id =>
-        unarchivePromises.push(new Promise((resolve, reject) => {
-            apiService.messaging.unarchive(id, (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve();
-                }
-            });
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.unarchive(id, err =>
+                (err ? reject(err) : resolve()),
+            );
         })),
     );
-    return Promise.all(unarchivePromises);
 };
 
 export const unarchiveMessage = id => (dispatch) => {

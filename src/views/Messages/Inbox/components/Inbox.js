@@ -35,6 +35,11 @@ class Inbox extends Component {
         this.loadCurrentFilter();
     }
 
+    getMessageIdsByThread(originalMessageId) {
+        return this.props.inboxList.find(thread =>
+            thread.originalMessageId === originalMessageId).messageIds;
+    }
+
     handleFilterClick(filter) {
         this.props.actions.clearInbox();
         this.props.actions.setInboxFilter(filter);
@@ -50,7 +55,7 @@ class Inbox extends Component {
     handleArchive(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.archiveThread(
-                this.props.inboxList.find(thread => thread.originalMessageId === id).messageIds,
+                this.getMessageIdsByThread(id),
             ).then(() => {
                 this.loadCurrentFilter();
             });
@@ -59,7 +64,7 @@ class Inbox extends Component {
     handleUnarchive(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.unarchiveThread(
-                this.props.inboxList.find(thread => thread.originalMessageId === id).messageIds,
+                this.getMessageIdsByThread(id),
             ).then(() => {
                 this.loadCurrentFilter();
             });
