@@ -47,6 +47,16 @@ export const unarchiveThread = ids => () => {
     );
 };
 
+export const markThreadAsRead = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.markAsRead(id, err =>
+                (err ? reject(err) : resolve()),
+            );
+        })),
+    );
+};
+
 export const unarchiveMessage = id => (dispatch) => {
     return new Promise((resolve, reject) => {
         apiService.messaging.unarchive(id, (err) => {
