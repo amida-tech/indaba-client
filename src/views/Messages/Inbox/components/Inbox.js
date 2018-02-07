@@ -210,15 +210,19 @@ class Inbox extends Component {
                     onMarkAsUnread={this.handleMarkAsUnread}
                     onDelete={this.handleDelete}/>
                 <div className='inbox__pager'>
-                    <button className='inbox__pager-button'
-                        onClick={this.handlePrevious}>
-                        {this.props.vocab.MESSAGES.PREVIOUS}
-                    </button>
-                    {this.props.messages.inboxPage}
-                    <button className='inbox__pager-button'
-                        onClick={this.handleNext}>
-                        {this.props.vocab.MESSAGES.NEXT}
-                    </button>
+                    <div className='inbox__pager-content'>
+                        <div className='inbox__pager-button'
+                            onClick={this.handlePrevious}>
+                            {this.props.vocab.MESSAGES.PREVIOUS}
+                        </div>
+                        <div className='inbox__page'>
+                            {this.props.messages.inboxPage + 1}
+                        </div>
+                        <div className='inbox__pager-button'
+                            onClick={this.handleNext}>
+                            {this.props.vocab.MESSAGES.NEXT}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
