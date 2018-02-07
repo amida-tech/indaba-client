@@ -70,6 +70,13 @@ export const unarchiveMessage = id => (dispatch) => {
     });
 };
 
+export const markAsUnread = id => () => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.markAsUnread(id, err =>
+            (err ? reject(err) : resolve()));
+    });
+};
+
 const _unarchiveMessageSuccess = id => ({
     type: actionTypes.UNARCHIVE_MESSAGE_SUCCESS,
     id,
