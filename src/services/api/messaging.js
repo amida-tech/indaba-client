@@ -46,6 +46,10 @@ const messaging = {
         const path = requests.addQueryParams(`${rootURI}/thread`, params);
         requests.apiGetRequest(path, callback);
     },
+    markAsRead: (id, callback) => {
+        const path = `${rootURI}/message/markAsRead/${id}`;
+        requests.apiPutRequest(path, {}, callback);
+    },
 };
 
 export default messaging;
