@@ -6,6 +6,7 @@ class ReduxFormFileInput extends Component {
             <input name={this.props.input.name}
                 className={this.props.className}
                 type='file'
+                disabled={this.props.disabled}
                 onChange={(event) => {
                     event.preventDefault();
                     this.props.input.onChange(event);

@@ -73,7 +73,7 @@ class Questions extends Component {
                 upsertAnswer={upsertAnswer}
                 answer={value ? value.answer : ''} />);
         }
-
+        const noValue = !has(value, 'answer');
         return (
             <div className='questions'>
                 <div className='questions__type'>
@@ -84,6 +84,7 @@ class Questions extends Component {
                         <FileForm form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
                             file={get(value, 'meta.file')}
+                            disabled={noValue}
                             onFileUploaded={(file) => {
                                 this.props.actions.upsertAnswer(
                                     this.props.assessmentId,
@@ -112,6 +113,7 @@ class Questions extends Component {
                             </span>
                             <input className='questions__link-input'
                                 type='text'
+                                disabled={noValue}
                                 defaultValue={get(value, 'meta.publication.link', '')}
                                 onBlur={event => this.props.actions.upsertAnswer(
                                     this.props.assessmentId,
@@ -124,6 +126,7 @@ class Questions extends Component {
                         <div className='questions__link-fields-bottom'>
                             <input className='questions__title-input'
                                 type='text'
+                                disabled={noValue}
                                 defaultValue={get(value, 'meta.publication.title', '')}
                                 placeholder={this.props.vocab.SURVEY.ENTER_PUBLICATION}
                                 onBlur={event => this.props.actions.upsertAnswer(
@@ -135,6 +138,7 @@ class Questions extends Component {
                                     this.props.vocab.ERROR)} />
                             <input className='questions__author-input'
                                 type='text'
+                                disabled={noValue}
                                 defaultValue={get(value, 'meta.publication.author', '')}
                                 placeholder={this.props.vocab.SURVEY.AUTHOR}
                                 onBlur={event => this.props.actions.upsertAnswer(
@@ -144,20 +148,25 @@ class Questions extends Component {
                                     merge(value.meta,
                                         { publication: { author: event.target.value } }),
                                     this.props.vocab.ERROR)} />
-                            <DateTime className='questions__date-input'
-                                value={get(value, 'meta.publication.date', '')}
-                                format='MM/DD/YYYY'
-                                onChange={(event) => {
-                                    if (Time.validateTime(event)) {
-                                        this.props.actions.upsertAnswer(
-                                            this.props.assessmentId,
-                                            this.props.id,
-                                            value.answer,
-                                            merge(value.meta,
-                                                { publication: { date: event } }),
-                                            this.props.vocab.ERROR);
-                                    }
-                                }} />
+                                { noValue ?
+                                    <input className='questions__date-disabled'
+                                        type='date'
+                                        disabled /> :
+                                    <DateTime className='questions__date-input'
+                                        value={get(value, 'meta.publication.date', '')}
+                                        format='MM/DD/YYYY'
+                                        onChange={(event) => {
+                                            if (Time.validateTime(event)) {
+                                                this.props.actions.upsertAnswer(
+                                                    this.props.assessmentId,
+                                                    this.props.id,
+                                                    value.answer,
+                                                    merge(value.meta,
+                                                        { publication: { date: event } }),
+                                                    this.props.vocab.ERROR);
+                                            }
+                                        }} />
+                                }
                         </div>
                     </div>
                 }
