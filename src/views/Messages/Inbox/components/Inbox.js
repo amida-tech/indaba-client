@@ -90,8 +90,8 @@ class Inbox extends Component {
     handleMarkAsRead(id) {
         this.handleAction(
             id,
-            this.props.markThreadAsRead,
-            this.props.markMessageAsRead,
+            this.props.actions.markThreadAsRead,
+            this.props.actions.markAsRead,
         );
     }
     handleMarkAsUnread(id) {
