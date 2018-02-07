@@ -28,6 +28,8 @@ class Inbox extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleMarkAsRead = this.handleMarkAsRead.bind(this);
         this.handleMarkAsUnread = this.handleMarkAsUnread.bind(this);
+
+        this.loadCurrentFilter = this.loadCurrentFilter.bind(this);
     }
 
     componentWillMount() {
@@ -56,18 +58,14 @@ class Inbox extends Component {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.archiveThread(
                 this.getMessageIdsByThread(id),
-            ).then(() => {
-                this.loadCurrentFilter();
-            });
+            ).then(this.loadCurrentFilter);
         }
     }
     handleUnarchive(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.unarchiveThread(
                 this.getMessageIdsByThread(id),
-            ).then(() => {
-                this.loadCurrentFilter();
-            });
+            ).then(this.loadCurrentFilter);
         }
     }
     handleDelete(/* id*/) {
@@ -76,18 +74,14 @@ class Inbox extends Component {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.markThreadAsRead(
                 this.getMessageIdsByThread(id),
-            ).then(() => {
-                this.loadCurrentFilter();
-            });
+            ).then(this.loadCurrentFilter);
         }
     }
     handleMarkAsUnread(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.markAsUnread(
                 this.props.inboxList.find(thread => thread.originalMessageId === id).refMessageId,
-            ).then(() => {
-                this.loadCurrentFilter();
-            });
+            ).then(this.loadCurrentFilter);
         }
     }
 
