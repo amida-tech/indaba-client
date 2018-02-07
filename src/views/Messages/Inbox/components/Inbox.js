@@ -59,6 +59,9 @@ class Inbox extends Component {
             this.props.actions.archiveThread(
                 this.getMessageIdsByThread(id),
             ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.archiveMessage(id)
+            .then(this.loadCurrentFilter);
         }
     }
     handleUnarchive(id) {
