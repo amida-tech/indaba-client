@@ -213,17 +213,17 @@ class Inbox extends Component {
                     onDelete={this.handleDelete}/>
                 <div className='inbox__pager'>
                     <div className='inbox__pager-content'>
-                        <div className='inbox__pager-button'
+                        <button className='inbox__pager-button'
                             onClick={this.handlePrevious}>
                             {this.props.vocab.MESSAGES.PREVIOUS}
-                        </div>
+                        </button>
                         <div className='inbox__page'>
                             {this.props.messages.inboxPage + 1}
                         </div>
-                        <div className='inbox__pager-button'
+                        <button className='inbox__pager-button'
                             onClick={this.handleNext}>
                             {this.props.vocab.MESSAGES.NEXT}
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
