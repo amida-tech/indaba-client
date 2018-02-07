@@ -47,6 +47,15 @@ export const markThreadAsRead = ids => () => {
     );
 };
 
+export const deleteThread = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.delete(id, (err, response) =>
+                (err ? reject(err) : resolve(response)));
+        })),
+    );
+};
+
 export const archiveMessage = id => () => {
     return new Promise((resolve, reject) => {
         apiService.messaging.archive(id, err =>
@@ -70,6 +79,15 @@ export const markAsUnread = id => (dispatch) => {
     })
     .then(response => dispatch(_putMessageSuccess(response)));
 };
+
+export const deleteMessage = id => () => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.delete(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    })
+    .then(response => _deleteMessageSuccess(response));
+};
+
 
 const _putMessageSuccess = message => ({
     type: actionTypes.PUT_MESSAGE_SUCCESS,
@@ -148,17 +166,6 @@ export const getMessage = id => (dispatch) => {
     });
 };
 
-export const deleteMessage = id => (dispatch) => {
-    dispatch(_deleteMessage());
-    apiService.messaging.delete(id, (err, result) => {
-        if (err) {
-            dispatch(_deleteMessageFailure(err));
-        } else {
-            dispatch(_deleteMessageSuccess(result));
-        }
-    });
-};
-
 export const getThreadContainingMessage = messageId => (dispatch) => {
     apiService.messaging.get(messageId, (err, messageResponse) => {
         if (!err) {
@@ -226,15 +233,6 @@ export const _updateMessage = message => ({
     type: actionTypes.UPDATE_MESSAGE,
     id: message.id,
     message,
-});
-
-export const _deleteMessage = () => ({
-    type: actionTypes.DELETE_MESSAGE,
-});
-
-export const _deleteMessageFailure = err => ({
-    type: actionTypes.DELETE_MESSAGE_FAILURE,
-    err,
 });
 
 export const _deleteMessageSuccess = id => ({
