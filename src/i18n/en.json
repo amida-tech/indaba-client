@@ -39,6 +39,7 @@
         "MY_TASKS":"My Tasks",
         "AGREE": "Agreed",
         "DISAGREE": "Disagreed",
+        "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password.",
         "WELCOME_": "Welcome "
     },
     "TOAST": {

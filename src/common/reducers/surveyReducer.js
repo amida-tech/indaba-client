@@ -38,7 +38,7 @@ export const SurveyReducer = (state = initialState, action) => {
     case type.SET_SURVEY_SECTION_INDEX:
         return update(state, { ui: { sectionIndex: { $set: action.index } } });
     case type.REPORT_SURVEY_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case LOG_OUT:
         return initialState;
     default:

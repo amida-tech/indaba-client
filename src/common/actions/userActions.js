@@ -9,7 +9,7 @@ export function getProfile(errorMessages) {
             (profileErr, profileResp) => {
                 dispatch((!profileErr && profileResp) ?
                     getProfileSuccess(profileResp) :
-                    _reportUserError(errorMessages.FETCH_PROFILE));
+                    _reportUserError(profileErr, errorMessages.FETCH_PROFILE));
             },
         );
     };
@@ -37,7 +37,7 @@ export function updateProfile(userData, errorMessages) {
             requestBody,
             (profileErr) => {
                 if (profileErr) {
-                    dispatch(_reportUserError(errorMessages.PROFILE_REQUEST));
+                    dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
                 } else {
                     dispatch(getProfile(errorMessages));
                 }
@@ -53,7 +53,7 @@ export function updateProfileById(id, userData, errorMessages) {
         apiService.users.putProfileById(id, userData,
         (err, response) => {
             if (err) {
-                dispatch(_updateProfileByIdFailure(err));
+                dispatch(_updateProfileByIdFailure(err, errorMessages.PROFILE_REQUEST));
             } else {
                 dispatch(_updateProfileByIdSuccess(response));
                 dispatch(getUsers(errorMessages));
@@ -67,8 +67,8 @@ function _updateProfileById() {
         type: actionTypes.UPDATE_PROFILE_BY_ID,
     };
 }
-function _updateProfileByIdFailure(err) {
-    return dispatch => dispatch(_reportUserError(err.message));
+function _updateProfileByIdFailure(err, errorMessage) {
+    return dispatch => dispatch(_reportUserError(err, errorMessage));
 }
 function _updateProfileByIdSuccess(response) {
     return {
@@ -91,9 +91,9 @@ export function getUsers(errorMessages) {
                 if (!err && users) {
                     dispatch(_getUsersSuccess(users));
                 } else if (err && !users) {
-                    dispatch(_reportUserError(errorMessages.SERVER_ISSUE));
+                    dispatch(_reportUserError(err, errorMessages.SERVER_ISSUE));
                 } else {
-                    dispatch(_reportUserError(errorMessages.FETCH_USERS));
+                    dispatch(_reportUserError(err, errorMessages.FETCH_USERS));
                 }
             },
         );
@@ -124,7 +124,7 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
                     if (userErr.e === 403) {
                         toast(errorMessages.DUPLICATE);
                     }
-                    dispatch(_reportUserError(errorMessages.USER_REQUEST));
+                    dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
                 }
             },
         );
@@ -136,8 +136,8 @@ export function deleteUser(userId, errorMessages) {
         dispatch(_deleteUser());
         apiService.users.deleteUser(userId, (err) => {
             if (err) {
-                dispatch(_deleteUserError(err));
-                dispatch(_reportUserError(errorMessages.USER_REQUEST));
+                dispatch(_deleteUserError(err, errorMessages.USER_REQUEST));
+                dispatch(_reportUserError(err, errorMessages.USER_REQUEST));
             } else {
                 dispatch(_deleteUserSuccess(userId));
             }
@@ -172,10 +172,12 @@ function _getUsersSuccess(users) {
     };
 }
 
-function _reportUserError(error) {
+// err is shorthand for the error response, errorMessage is the display message taken from props.
+function _reportUserError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_USER_ERROR,
-        error,
+        err,
+        errorMessage,
     };
 }
 

@@ -16,16 +16,17 @@ export function toggleCheckBackend() {
     };
 }
 
-export function logOut() {
+export function logOut(timeoutRef) {
     cookie.remove('indaba-auth', { path: '/' });
     cookie.remove('indaba-realm', { path: '/' });
     return (dispatch) => {
-        dispatch(_logOutSuccess());
+        dispatch(_logOutSuccess(timeoutRef));
     };
 }
 
-function _logOutSuccess() {
+function _logOutSuccess(timeoutRef) {
     return {
         type: actionTypes.LOG_OUT,
+        timeoutRef,
     };
 }
