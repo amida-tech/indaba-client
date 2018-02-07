@@ -91,6 +91,7 @@
         "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "EMPTY_TEXT": "Please enter text into the field.",
+        "BLANKS": "There are unfilled questions or options in the question list. Please give them a value or delete them.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
