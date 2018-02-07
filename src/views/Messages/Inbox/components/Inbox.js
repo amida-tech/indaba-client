@@ -74,7 +74,15 @@ class Inbox extends Component {
             .then(this.loadCurrentFilter);
         }
     }
-    handleDelete(/* id*/) {
+    handleDelete(id) {
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.deleteThread(
+                this.getMessageIdsByThread(id),
+            ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.deleteMessage(id)
+            .then(this.loadCurrentFilter);
+        }
     }
     handleMarkAsRead(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
@@ -180,7 +188,8 @@ class Inbox extends Component {
                         onArchive={this.handleArchive}
                         onUnarchive={this.handleUnarchive}
                         onMarkAsRead={this.handleMarkAsRead}
-                        onMarkAsUnread={this.handleMarkAsUnread}/>
+                        onMarkAsUnread={this.handleMarkAsUnread}
+                        onDelete={this.handleDelete}/>
             </div>
         );
     }
