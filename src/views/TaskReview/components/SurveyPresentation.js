@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
 
 class SurveyPresentation extends Component {
@@ -66,5 +67,20 @@ class SurveyPresentation extends Component {
         );
     }
 }
+
+SurveyPresentation.propTypes = {
+    profile: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object),
+    task: PropTypes.shape({
+        uoaId: PropTypes.number.isRequired,
+    }).isRequired,
+    stage: PropTypes.shape({
+        allowEdit: PropTypes.bool,
+        discussionParticipation: PropTypes.bool,
+    }).isRequired,
+    taskDisabled: PropTypes.bool,
+    offset: PropTypes.number,
+    vocab: PropTypes.object.isRequired,
+};
 
 export default SurveyPresentation;

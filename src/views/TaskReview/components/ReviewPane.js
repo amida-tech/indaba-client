@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form';
 import { find, has } from 'lodash';
+import PropTypes from 'prop-types';
 
 import { renderName } from '../../../utils/User';
 
@@ -58,5 +59,17 @@ class ReviewPane extends Component {
         );
     }
 }
+
+ReviewPane.propTypes = {
+    profile: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object),
+    handleSubmit: PropTypes.func.isRequired,
+    displayMode: PropTypes.bool,
+    questionIndex: PropTypes.number.isRequired,
+    answer: PropTypes.shape({
+        commentHistory: PropTypes.array,
+    }),
+    vocab: PropTypes.object.isRequired,
+};
 
 export default ReviewPane;

@@ -41,7 +41,14 @@ class TaskReview extends Component {
         const flagCount = sumBy(this.props.ui.flags, (flag) => {
             return every(flag.discussion, discuss => discuss.isResolve) ? 0 : 1;
         });
-
+        let offset = 0;
+        if (this.props.sectionIndex > -1) {
+            this.props.survey.sections.forEach((section, index) => {
+                if (index < this.props.sectionIndex) {
+                    offset += get(section, 'questions.length', 0);
+                }
+            });
+        }
         return (
             <div className='task-review'>
                 <div className='task-review__details-and-survey'
@@ -74,6 +81,7 @@ class TaskReview extends Component {
                         instructions={this.props.survey.instructions}
                         stage={this.props.stage}
                         taskDisabled={taskDisabled}
+                        offset={offset}
                         flagCount={flagCount}
                         reqCheck={reqCheck}
                         actions={this.props.actions}
@@ -82,6 +90,7 @@ class TaskReview extends Component {
                 <div className='task-review__flag-sidebar'>
                 <FlagSidebar
                     {...this.props}
+                    offset={offset}
                     flagCount={flagCount}
                     displaySurvey={displaySurvey}/>
                 </div>
