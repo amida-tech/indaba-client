@@ -183,7 +183,7 @@ class MessageSelector extends Component {
     }
     cancelForm() {
         const reply = this.props.reply || _.get(this.props, 'location.state.message');
-        if (_.has(reply, 'id')) {
+        if (_.has(reply, 'id') || _.has(reply, 'forwardId')) {
             this.props.actions.discardReply();
         } else {
             this.props.goToInbox();
