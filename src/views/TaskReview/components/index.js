@@ -52,6 +52,7 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.TASK_BACK}
                     </Link>
                     <TaskDetails
+                        profile={this.props.profile}
                         projectId={this.props.projectId}
                         surveyName={this.props.survey.name}
                         subject={this.props.subject}
