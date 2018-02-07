@@ -4,11 +4,12 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
-import { has } from 'lodash';
+import { get, has } from 'lodash';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
 import { getProjects } from '../../common/actions/projectActions';
+import { renderName } from '../../utils/User';
 import CreateNewProject from './CreateNewProject';
 
 import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
@@ -27,7 +28,6 @@ class PrimaryNavContainer extends Component {
     render() {
         const isProjectManager = ((this.props.user.profile.roleID === 2) ||
             (this.props.user.profile.roleID === 1));
-
         return (
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
@@ -62,6 +62,9 @@ class PrimaryNavContainer extends Component {
                         onClick={() => this.props.actions.showCreateProject(true)}/>}
                 </div>
                 <div className='primary-nav__right'>
+                    <div className='primary-nav__welcome'>
+                        {`${this.props.vocab.COMMON.WELCOME_} ${renderName(get(this.props, 'user.profile'))}`}
+                    </div>
                     <Link className='primary-nav__link'
                         to='/messages'>
                         <Icon className='primary-nav__envelope'

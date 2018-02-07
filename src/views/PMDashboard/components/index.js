@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-import { FILTERS } from '../constants';
+import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
 
@@ -31,9 +31,9 @@ class PMDashboard extends Component {
         case FILTERS.INACTIVE_PROJECTS:
             return row.project.status === 0;
         case FILTERS.PUBLISHED_SURVEYS:
-            return row.survey.status === 1;
+            return row.survey.status === SURVEY_STATUS.PUBLISHED;
         case FILTERS.SURVEYS_IN_DRAFT_MODE:
-            return row.survey.status === 0;
+            return row.survey.status === SURVEY_STATUS.DRAFT;
         case FILTERS.SURVEYS_WITH_FLAGS:
             return row.flags > 0;
         default:

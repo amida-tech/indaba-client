@@ -82,22 +82,30 @@ class UserDashboard extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    glance: {
-        tasks: state.userdashboard.tasks.length,
-        newTasks: state.userdashboard.answers.filter(answers => answers.status === 'new').length,
-        lateTasks: state.userdashboard.tasks.filter(task => TaskStatus.endDateInPast(task)).length,
-        flagged: state.userdashboard.tasks.filter(task => task.flagCounter > 0).length,
-    },
-    profile: state.user.profile,
-    vocab: state.settings.language.vocabulary,
-    messages: state.userdashboard.messages.slice(0, 4),
-    ui: state.userdashboard.ui,
-    users: state.user.users,
-    rows: state.userdashboard.tasks
+const mapStateToProps = (state) => {
+    const rows = state.userdashboard.tasks
         .filter(task => task.complete || task.active)
-        .map(task => _generateRow(state, task.projectId, task)),
-});
+        // omit any tasks in projects that are inactive (hiding all before project data is loaded)
+        .filter(task => get(
+            state.projects.data.find(findProject => findProject.id === task.projectId),
+            'status',
+            0) === 1)
+        .map(task => _generateRow(state, task.projectId, task));
+    return {
+        glance: {
+            tasks: rows.filter(row => !row.complete).length,
+            newTasks: rows.filter(row => row.new).length,
+            lateTasks: rows.filter(row => row.late).length,
+            flagged: state.userdashboard.tasks.filter(task => task.flagCounter > 0).length,
+        },
+        profile: state.user.profile,
+        vocab: state.settings.language.vocabulary,
+        messages: state.userdashboard.messages.slice(0, 4),
+        ui: state.userdashboard.ui,
+        users: state.user.users,
+        rows,
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},

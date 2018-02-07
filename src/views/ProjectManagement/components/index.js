@@ -23,6 +23,7 @@ import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 import StageModal from './Modals/Stage';
+import InactiveConfirm from './Modals/StatusChange/InactiveConfirm';
 import Modal from '../../../common/components/Modal';
 import apiService from '../../../services/api';
 
@@ -111,13 +112,19 @@ class ProjectManagementContainer extends Component {
         return (
                 <div>
                     {
-                        this.props.ui.statusModalId &&
+                        this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal &&
                         <StatusChange vocab={this.props.vocab}
                             project={this.props.project}
                             survey={this.props.survey}
                             actions={this.props.actions}
                             vocab={this.props.vocab}
                             entity={modalEntities[this.props.ui.statusModalId]} />
+                    }
+                    {
+                        this.props.ui.showInactiveConfirmModal &&
+                        <InactiveConfirm vocab={this.props.vocab}
+                            project={this.props.project}
+                            actions={this.props.actions} />
                     }
                     {
                         this.props.ui.showProjectTitleModal &&
