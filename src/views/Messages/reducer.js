@@ -26,6 +26,7 @@ const transformServerMessageToReduxMessage = message =>
 
 export default (state = initialState, action) => {
     const messageIndex = state.messages.findIndex(message => message.id === action.id);
+    const threadIndex = state.thread.findIndex(message => message.id === action.id);
 
     switch (action.type) {
     case actionTypes.SET_ACTIVE_INBOX_TAB:
@@ -34,14 +35,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { filter: { $set: action.filter } } });
     case actionTypes.CLEAR_INBOX:
         return update(state, { inboxList: { $set: [] } });
-    case actionTypes.MARK_MESSAGE_AS_READ:
-        return update(state, { messages: { [messageIndex]: {
-            readAt: { $set: new Date().toISOString() },
-        } } });
-    case actionTypes.MARK_MESSAGE_AS_UNREAD:
-        return update(state, { messages: {
-            [messageIndex]: { $unset: ['readAt'] },
-        } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
             reply: { $set: action.reply },
@@ -50,6 +43,12 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
+    case actionTypes.PUT_MESSAGE_SUCCESS:
+        return threadIndex === -1 ?
+        state :
+        update(state, { thread:
+            { [threadIndex]: { $set: transformServerMessageToReduxMessage(action.message) } },
+        });
     case actionTypes.UPDATE_MESSAGE:
         return update(state, {
             messages: (

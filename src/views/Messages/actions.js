@@ -17,16 +17,6 @@ export const clearInbox = () => ({
     type: actionTypes.CLEAR_INBOX,
 });
 
-export const markMessageAsRead = id => ({
-    type: actionTypes.MARK_MESSAGE_AS_READ,
-    id,
-});
-
-export const markMessageAsUnread = id => ({
-    type: actionTypes.MARK_MESSAGE_AS_UNREAD,
-    id,
-});
-
 export const archiveThread = ids => () => {
     return Promise.all(
         ids.map(id => new Promise((resolve, reject) => {
@@ -73,12 +63,19 @@ export const unarchiveMessage = id => () => {
     });
 };
 
-export const markAsUnread = id => () => {
+export const markAsUnread = id => (dispatch) => {
     return new Promise((resolve, reject) => {
-        apiService.messaging.markAsUnread(id, err =>
-            (err ? reject(err) : resolve()));
-    });
+        apiService.messaging.markAsUnread(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    })
+    .then(response => dispatch(_putMessageSuccess(response)));
 };
+
+const _putMessageSuccess = message => ({
+    type: actionTypes.PUT_MESSAGE_SUCCESS,
+    message,
+    id: message.id,
+});
 
 export const markAsRead = id => () => {
     return new Promise((resolve, reject) => {
