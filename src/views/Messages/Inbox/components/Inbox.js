@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Button } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import { sortBy } from 'lodash';
 
 import config from '../../../../config';
 import * as actions from '../../actions';
@@ -128,31 +127,8 @@ class Inbox extends Component {
     }
 
     handleThreadClick(threadId) {
-        const rootMessage = this.props.messages.messages
-            .find(messageIter => messageIter.id === threadId);
-        const messages = sortBy(this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === rootMessage.originalMessageId), 'createdAt');
-        let expanded;
-        switch (this.props.messages.ui.filter) {
-        case FILTERS.ALL_MESSAGES:
-            expanded = messages
-            .map(messageIter => messageIter.id);
-            break;
-        case FILTERS.SENT_MESSAGES:
-            expanded = messages
-            .filter(messageIter => messageIter.from === this.props.profile.email)
-            .map(messageIter => messageIter.id);
-            break;
-        case FILTERS.UNREAD_MESSAGES:
-            expanded = messages
-            .filter(messageIter => !messageIter.readAt)
-            .map(messageIter => messageIter.id);
-            break;
-        default:
-            expanded = [];
-        }
-        this.props.actions.setExpandedMessages(expanded);
-        this.props.goToMessage(expanded.length > 0 ? expanded[0] : threadId);
+        this.props.actions.setExpandedMessages([]);
+        this.props.goToMessage(threadId);
     }
 
     render() {
