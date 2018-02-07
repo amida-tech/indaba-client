@@ -157,16 +157,16 @@ class Inbox extends Component {
                         onFilterClick={this.handleFilterClick}/>
                 </div>
                 <InboxMessageList entries={this.props.inboxList}
-                        thread={isThreadList}
-                        vocab={this.props.vocab}
-                        onMessageClick={this.handleThreadClick}
-                        actions={this.props.actions}
-                        users={this.props.users}
-                        onArchive={this.handleArchive}
-                        onUnarchive={this.handleUnarchive}
-                        onMarkAsRead={this.handleMarkAsRead}
-                        onMarkAsUnread={this.handleMarkAsUnread}
-                        onDelete={this.handleDelete}/>
+                    thread={isThreadList}
+                    vocab={this.props.vocab}
+                    onMessageClick={this.handleThreadClick}
+                    actions={this.props.actions}
+                    users={this.props.users}
+                    onArchive={this.handleArchive}
+                    onUnarchive={this.handleUnarchive}
+                    onMarkAsRead={this.handleMarkAsRead}
+                    onMarkAsUnread={this.handleMarkAsUnread}
+                    onDelete={this.handleDelete}/>
             </div>
         );
     }
