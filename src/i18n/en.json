@@ -28,7 +28,7 @@
         "SKIP_THIS_STEP": "Skip This Step",
         "CONTINUE": "Continue",
         "GO_BACK": "Go Back",
-        "ANY": "Any",
+        "ALL": "All",
         "ACCOUNT": "Account",
         "PREFERENCE": "Preference",
         "PENDING": "Pending",
@@ -39,7 +39,8 @@
         "MY_TASKS":"My Tasks",
         "AGREE": "Agreed",
         "DISAGREE": "Disagreed",
-        "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password."
+        "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password.",
+        "WELCOME_": "Welcome "
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
@@ -533,6 +534,10 @@
         "SECTION_DELETE_CONFIRM": {
             "TITLE": "Delete section?",
             "DELETE_WARNING": "Are you sure you want to delete the entire section? Once you click 'Save Progress,' all questions contained will have to be re-entered."
+        },
+        "INACTIVE_CONFIRM": {
+            "TITLE": "Make Project Inactive?",
+            "WARNING": "Users have already been notified of assigned tasks and may have submitted data. Are you sure you want to de-activate this project?"
         }
     }
 }

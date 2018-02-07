@@ -6,3 +6,8 @@ export const FILTERS = {
     SURVEYS_IN_DRAFT_MODE: 'SURVEYS_IN_DRAFT_MODE',
     SURVEYS_WITH_FLAGS: 'SURVEYS_WITH_FLAGS',
 };
+
+export const SURVEY_STATUS = {
+    PUBLISHED: 'published',
+    DRAFT: 'draft',
+};

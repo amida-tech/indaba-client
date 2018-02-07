@@ -11,6 +11,7 @@ export const initialState = {
             groups: {},
         },
         statusModalId: false,
+        showInactiveConfirmModal: false,
         taskOptions: {
             show: false,
             task: {},
@@ -21,6 +22,7 @@ export const initialState = {
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
+        assignTaskQuery: '',
         showUserGroupDeleteConfirmModal: null,
         showProjectTitleModal: false,
         showSurveyTitleModal: false,
@@ -42,7 +44,14 @@ export default (state = initialState, action) => {
             showProfile: { $set: action.userId },
         } });
     case type.UPDATE_STATUS_CHANGE:
-        return update(state, { ui: { statusModalId: { $set: action.status } } });
+        return update(state, { ui: {
+            statusModalId: { $set: action.status },
+            showInactiveConfirmModal: { $set: false },
+        } });
+    case type.SHOW_INACTIVE_CONFIRM_MODAL:
+        return update(state, { ui: {
+            showInactiveConfirmModal: { $set: action.show },
+        } });
     case type.UPDATE_USER_SEARCH_GROUP:
         return (update(state, { ui: { userSidebarSearch: {
             group: { $set: action.group },
@@ -90,6 +99,10 @@ export default (state = initialState, action) => {
     case type.START_TASK_ASSIGN:
         return update(state, { ui: {
             assignTaskInput: { $set: action.task },
+        } });
+    case type.SET_ASSIGN_TASK_QUERY:
+        return update(state, { ui: {
+            assignTaskQuery: { $set: action.query },
         } });
     case type.PM_SHOW_USER_GROUP_DELETE_CONFIRM_MODAL: {
         return update(state, { ui: {
