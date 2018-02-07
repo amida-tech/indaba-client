@@ -21,6 +21,7 @@ class Message extends Component {
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
         const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
         const systemMessage = _.get(this.props, 'message.systemMessage', false);
+        const unread = _.get(this.props, 'message.unread');
 
         if (!compose && !active &&
             !this.props.ui.expandedMessages.includes(_.get(this.props, 'message.id'))) {
@@ -72,13 +73,16 @@ class Message extends Component {
                             !compose &&
                             <div className='message__body-actions'>
                                 <ButtonPanel>
-                                    <PanelButton
-                                        title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
-                                        onClick={() => this.props.actions
-                                                .markMessageAsUnread(this.props.message.id)}>
-                                        <IonIcon icon='ion-email-unread'
-                                            className='message__action-icon'/>
-                                    </PanelButton>
+                                    {
+                                        !unread &&
+                                        <PanelButton
+                                            title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
+                                            onClick={() => this.props.actions
+                                                    .markAsUnread(this.props.message.id)}>
+                                            <IonIcon icon='ion-email-unread'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
                                     {
                                         !systemMessage &&
                                         <PanelButton
