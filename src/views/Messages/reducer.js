@@ -71,7 +71,10 @@ export default (state = initialState, action) => {
         });
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
-            thread: { $set: sortBy(action.thread, 'createdAt') },
+            thread: { $set:
+                sortBy(action.thread, 'createdAt')
+                .map(transformServerMessageToReduxMessage),
+            },
         });
     case actionTypes.GET_INBOX_THREADS_SUCCESS:
         return update(state, {
