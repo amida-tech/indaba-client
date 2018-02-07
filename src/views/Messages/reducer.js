@@ -13,7 +13,6 @@ const initialState = {
         reply: false,
         expandedMessages: [],
     },
-    messages: [],
     thread: [],
     inboxList: [],
 };
@@ -25,7 +24,6 @@ const transformServerMessageToReduxMessage = message =>
     });
 
 export default (state = initialState, action) => {
-    const messageIndex = state.messages.findIndex(message => message.id === action.id);
     const threadIndex = state.thread.findIndex(message => message.id === action.id);
 
     switch (action.type) {
@@ -49,14 +47,6 @@ export default (state = initialState, action) => {
         update(state, { thread:
             { [threadIndex]: { $set: transformServerMessageToReduxMessage(action.message) } },
         });
-    case actionTypes.UPDATE_MESSAGE:
-        return update(state, {
-            messages: (
-                messageIndex !== -1 ?
-                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.message) } } :
-                { $push: [transformServerMessageToReduxMessage(action.message)] }
-            ),
-        });
     case actionTypes.EXPAND_MESSAGES:
         return update(state, { ui: {
             expandedMessages: { $push: action.messageIds },
@@ -65,10 +55,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             expandedMessages: { $set: action.messageIds },
         } });
-    case actionTypes.DELETE_MESSAGE_SUCCESS:
-        return update(state, {
-            messages: { $splice: [[messageIndex, 1]] },
-        });
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
             thread: { $set:

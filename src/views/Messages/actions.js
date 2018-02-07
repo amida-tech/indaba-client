@@ -84,8 +84,7 @@ export const deleteMessage = id => () => {
     return new Promise((resolve, reject) => {
         apiService.messaging.delete(id, (err, response) =>
             (err ? reject(err) : resolve(response)));
-    })
-    .then(response => _deleteMessageSuccess(response));
+    });
 };
 
 
@@ -133,10 +132,6 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
-export const updateMessage = message => (dispatch) => {
-    dispatch(_updateMessage(message));
-};
-
 export const expandMessages = messageIds => ({
     type: actionTypes.EXPAND_MESSAGES,
     messageIds,
@@ -153,17 +148,6 @@ export const getInboxMessages = params => (dispatch) => {
             dispatch(_getInboxMessagesSuccess(result));
         }
     }, params);
-};
-
-export const getMessage = id => (dispatch) => {
-    dispatch(_getMessage());
-    apiService.messaging.get(id, (err, result) => {
-        if (err) {
-            dispatch(_getMessageFailure(err));
-        } else {
-            dispatch(_getMessageSuccess(result));
-        }
-    });
 };
 
 export const getThreadContainingMessage = messageId => (dispatch) => {
@@ -210,32 +194,8 @@ const _getInboxMessagesSuccess = messages => ({
     messages,
 });
 
-export const _startReply = reply => (dispatch) => {
+const _startReply = reply => (dispatch) => {
     dispatch(initialize('message', reply));
     dispatch(reset('message'));
     dispatch({ type: actionTypes.START_REPLY, reply });
 };
-
-export const _getMessage = () => ({
-    type: actionTypes.GET_MESSAGE,
-});
-
-export const _getMessageFailure = err => ({
-    type: actionTypes.GET_MESSAGE_FAILURE,
-    err,
-});
-
-export const _getMessageSuccess = result => (dispatch) => {
-    dispatch(_updateMessage(result));
-};
-
-export const _updateMessage = message => ({
-    type: actionTypes.UPDATE_MESSAGE,
-    id: message.id,
-    message,
-});
-
-export const _deleteMessageSuccess = id => ({
-    type: actionTypes.DELETE_MESSAGE_SUCCESS,
-    id,
-});

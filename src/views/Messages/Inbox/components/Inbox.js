@@ -205,7 +205,6 @@ Inbox.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
-    messageRoots: state.messages.messages.filter(message => message.parentMessageId === null),
     users: state.user.users,
     profile: state.user.profile,
     inboxList: state.messages.inboxList,
