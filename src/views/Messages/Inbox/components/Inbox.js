@@ -81,6 +81,9 @@ class Inbox extends Component {
             this.props.actions.markThreadAsRead(
                 this.getMessageIdsByThread(id),
             ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.markAsRead(id)
+            .then(this.loadCurrentFilter);
         }
     }
     handleMarkAsUnread(id) {
