@@ -27,8 +27,7 @@ export const markMessageAsUnread = id => ({
     id,
 });
 
-export const archiveThread = ids => (dispatch) => {
-    dispatch(_archiveThread());
+export const archiveThread = ids => () => {
     const archivePromises = [];
     ids.forEach(id =>
         archivePromises.push(new Promise((resolve, reject) => {
@@ -41,9 +40,7 @@ export const archiveThread = ids => (dispatch) => {
             });
         })),
     );
-    return Promise.all(archivePromises)
-        .then(() => dispatch(_archiveThreadSuccess(ids)))
-        .catch(err => _archiveThreadFailure(err));
+    return Promise.all(archivePromises);
 };
 
 export const unarchiveMessage = id => (dispatch) => {
@@ -205,20 +202,6 @@ export const _updateMessage = message => ({
     type: actionTypes.UPDATE_MESSAGE,
     id: message.id,
     message,
-});
-
-export const _archiveThread = () => ({
-    type: actionTypes.ARCHIVE_THREAD,
-});
-
-export const _archiveThreadFailure = err => ({
-    type: actionTypes.ARCHIVE_THREAD_FAILURE,
-    err,
-});
-
-export const _archiveThreadSuccess = ids => ({
-    type: actionTypes.ARCHIVE_THREAD_SUCCESS,
-    ids,
 });
 
 export const _deleteMessage = () => ({
