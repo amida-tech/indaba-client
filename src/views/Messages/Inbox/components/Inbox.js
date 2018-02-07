@@ -69,6 +69,9 @@ class Inbox extends Component {
             this.props.actions.unarchiveThread(
                 this.getMessageIdsByThread(id),
             ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.unarchiveMessage(id)
+            .then(this.loadCurrentFilter);
         }
     }
     handleDelete(/* id*/) {
