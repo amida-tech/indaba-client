@@ -80,6 +80,13 @@ export const markAsUnread = id => () => {
     });
 };
 
+export const markAsRead = id => () => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.markAsRead(id, err =>
+            (err ? reject(err) : resolve()));
+    });
+};
+
 export const startReply = message => (dispatch) => {
     dispatch(_startReply({
         id: message.id,
