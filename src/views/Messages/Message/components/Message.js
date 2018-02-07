@@ -84,6 +84,16 @@ class Message extends Component {
                                         </PanelButton>
                                     }
                                     {
+                                        unread &&
+                                        <PanelButton
+                                            title={this.props.vocab.MESSAGES.MARK_AS_READ}
+                                            onClick={() => this.props.actions
+                                                    .markAsRead(this.props.message.id)}>
+                                            <IonIcon icon='ion-ios-checkmark-empty'
+                                                className='message__action-icon'/>
+                                        </PanelButton>
+                                    }
+                                    {
                                         !systemMessage &&
                                         <PanelButton
                                             onClick={() => this.props.actions
