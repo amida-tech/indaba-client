@@ -79,7 +79,7 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') && has(value, 'answer') && !this.props.displayMode &&
+                {has(this.props, 'meta.file') && !this.props.displayMode &&
                     <div className='questions__option-panel'>
                         <FileForm form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
@@ -105,7 +105,7 @@ class Questions extends Component {
                             }}/>
                     </div>
                 }
-                {has(this.props, 'meta.publication') && has(value, 'answer') &&
+                {has(this.props, 'meta.publication') &&
                     <div className='questions__option-panel'>
                         <div className='questions__link-fields-top'>
                             <span className='questions__add-link'>
