@@ -41,7 +41,7 @@ export const archiveThread = ids => (dispatch) => {
             });
         })),
     );
-    Promise.all(archivePromises)
+    return Promise.all(archivePromises)
         .then(() => dispatch(_archiveThreadSuccess(ids)))
         .catch(err => _archiveThreadFailure(err));
 };
