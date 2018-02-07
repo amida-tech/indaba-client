@@ -122,7 +122,7 @@ class Inbox extends Component {
         const rootMessage = this.props.messages.messages
             .find(messageIter => messageIter.id === threadId);
         const messages = sortBy(this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === rootMessage.originalMessageId), 'timestamp');
+            messageIter.originalMessageId === rootMessage.originalMessageId), 'createdAt');
         let expanded;
         switch (this.props.messages.ui.filter) {
         case FILTERS.ALL_MESSAGES:

@@ -48,7 +48,7 @@ class Message extends Component {
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && Time.renderForMessage(
-                                this.props.message.timestamp, this.props.vocab)}
+                                this.props.message.createdAt, this.props.vocab)}
                         </div>
                     </div>
                     <div className='message__row'>
@@ -114,7 +114,7 @@ class Message extends Component {
                                 name='message'/>
                         </div>
                         <div className='message__body-timestamp'>
-                            {Time.renderForMessage(_.get(this.props, 'message.timestamp'), this.props.vocab)}
+                            {Time.renderForMessage(_.get(this.props, 'message.createdAt'), this.props.vocab)}
                         </div>
                         {
                             compose &&
