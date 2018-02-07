@@ -60,6 +60,7 @@
         "FETCH_DISCUSS": "Fetch discuss failed.",
         "CREATE_SURVEY": "Please create a survey before assigning tasks.",
         "PROJECT_REQUEST": "The system failed to insert the new project into the database. Please try again.",
+        "PROJECT_ACTIVATE": "The system failed to activate the project.",
         "SURVEY_REQUEST": "The system failed to insert or update a survey into the database. Please try again",
         "ANSWER_REQUEST": "The system failed to handle an answer request.",
         "DISCUSS_REQUEST": "The system failed to make any kind of update to discussions.",

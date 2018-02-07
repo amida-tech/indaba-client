@@ -39,17 +39,20 @@ export function putProject(project, errorMessages) {
     const { status, name: codeName } = project;
 
     return (dispatch) => {
-        apiService.projects.putProject(
+        return new Promise((resolve, reject) => {
+            apiService.projects.putProject(
             project.id,
             { status, codeName },
             (projectErr) => {
                 if (projectErr) {
                     dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+                    reject(projectErr);
                 } else {
                     dispatch(getProjectById(project.id, false, errorMessages));
+                    resolve();
                 }
-            },
-        );
+            });
+        });
     };
 }
 
