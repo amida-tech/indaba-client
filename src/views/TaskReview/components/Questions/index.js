@@ -28,6 +28,7 @@ class Questions extends Component {
         case 'bullet':
             QuestionType = (<Bullet
                 {...this.props}
+                holdAnswer={this.props.actions.holdAnswer}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);
             break;

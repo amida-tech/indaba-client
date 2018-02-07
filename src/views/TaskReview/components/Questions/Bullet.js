@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { clone, get } from 'lodash';
+import { get } from 'lodash';
 
 class Bullet extends Component {
-    upsertBullet(value, index, currentAnswer) {
-        const tempAnswer = clone(currentAnswer);
-        if (value === '') {
-            tempAnswer.splice(index);
-        } else {
-            tempAnswer[index] = value;
-        }
-        return tempAnswer.join('‣');
-    }
     render() {
         let currentAnswer = get(this.props.answer, 'textValue', undefined);
         if (currentAnswer) {
@@ -22,18 +13,30 @@ class Bullet extends Component {
         }
         return (
             <div className='bullet'>
-                {currentAnswer.map((answer, index) =>
-                    <input className={`bullet__field${this.props.displayMode ? '--disabled' : ''}`}
+                {currentAnswer.map((answer, index) => {
+                    return (<input className={`bullet__field${this.props.displayMode ? '--disabled' : ''}`}
                         key={`bullet-${this.props.id}-${index}`}
                         placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                         type='text'
                         disabled={this.props.displayMode}
-                        defaultValue={currentAnswer[index]}
-                        onBlur={(event) => {
-                            this.props.upsertAnswer({ textValue:
-                                this.upsertBullet(event.target.value, index, currentAnswer) });
-                        }} />,
-                )}
+                        value={currentAnswer[index]}
+                        onChange={(event) => {
+                            currentAnswer[index] = event.target.value;
+                            if (index !== currentAnswer.length - 1) {
+                                currentAnswer.splice(currentAnswer.length - 1, 1);
+                            }
+                            if (event.target.value.match(/^\s*$/)) {
+                                currentAnswer.splice(index, 1);
+                            }
+                            this.props.holdAnswer(this.props.id,
+                                { textValue: currentAnswer.join('‣') });
+                        }}
+                        onBlur={() => {
+                            currentAnswer.splice(currentAnswer.length - 1, 1);
+                            this.props.upsertAnswer({ textValue: currentAnswer.join('‣') });
+                        }} />);
+                },
+            )}
             </div>
         );
     }
