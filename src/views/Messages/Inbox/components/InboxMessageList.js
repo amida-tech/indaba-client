@@ -86,7 +86,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
-                                        this.props.onUnarchiveThread(entry.originalMessageId);
+                                        this.props.onUnarchive(entry.originalMessageId);
                                         event.stopPropagation();
                                     }
                                 }>
