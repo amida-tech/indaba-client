@@ -142,6 +142,11 @@ export const setExpandedMessages = messageIds => ({
     messageIds,
 });
 
+export const setInboxPage = page => ({
+    type: actionTypes.SET_INBOX_PAGE,
+    page,
+});
+
 export const getInboxMessages = params => (dispatch) => {
     apiService.messaging.list((err, result) => {
         if (!err) {

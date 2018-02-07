@@ -15,6 +15,7 @@ const initialState = {
     },
     thread: [],
     inboxList: [],
+    inboxPage: 0,
 };
 
 const transformServerMessageToReduxMessage = message =>
@@ -33,6 +34,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { filter: { $set: action.filter } } });
     case actionTypes.CLEAR_INBOX:
         return update(state, { inboxList: { $set: [] } });
+    case actionTypes.SET_INBOX_PAGE:
+        return update(state, { inboxPage: { $set: action.page } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
             reply: { $set: action.reply },
