@@ -54,45 +54,45 @@ class Inbox extends Component {
         this.loadByFilter(this.props.messages.ui.filter, inboxTab);
     }
 
-    handleArchive(id) {
+    // this contains flow control logic common across the individual message handlers
+    handleAction(id, threadAction, messageAction) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
-            this.props.actions.archiveThread(
+            threadAction(
                 this.getMessageIdsByThread(id),
             ).then(this.loadCurrentFilter);
         } else {
-            this.props.actions.archiveMessage(id)
+            messageAction(id)
             .then(this.loadCurrentFilter);
         }
+    }
+
+    handleArchive(id) {
+        this.handleAction(
+            id,
+            this.props.actions.archiveThread,
+            this.props.actions.archiveMessage,
+        );
     }
     handleUnarchive(id) {
-        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
-            this.props.actions.unarchiveThread(
-                this.getMessageIdsByThread(id),
-            ).then(this.loadCurrentFilter);
-        } else {
-            this.props.actions.unarchiveMessage(id)
-            .then(this.loadCurrentFilter);
-        }
+        this.handleAction(
+            id,
+            this.props.actions.unarchiveThread,
+            this.props.actions.unarchiveMessage,
+        );
     }
     handleDelete(id) {
-        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
-            this.props.actions.deleteThread(
-                this.getMessageIdsByThread(id),
-            ).then(this.loadCurrentFilter);
-        } else {
-            this.props.actions.deleteMessage(id)
-            .then(this.loadCurrentFilter);
-        }
+        this.handleAction(
+            id,
+            this.props.actions.deleteThread,
+            this.props.action.deleteMessage,
+        );
     }
     handleMarkAsRead(id) {
-        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
-            this.props.actions.markThreadAsRead(
-                this.getMessageIdsByThread(id),
-            ).then(this.loadCurrentFilter);
-        } else {
-            this.props.actions.markAsRead(id)
-            .then(this.loadCurrentFilter);
-        }
+        this.handleAction(
+            id,
+            this.props.markThreadAsRead,
+            this.props.markMessageAsRead,
+        );
     }
     handleMarkAsUnread(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
@@ -108,6 +108,7 @@ class Inbox extends Component {
     loadCurrentFilter() {
         this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
     }
+
     loadByFilter(filter, inboxTab) {
         if (filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.getInboxThreads(
