@@ -77,11 +77,12 @@ const _putMessageSuccess = message => ({
     id: message.id,
 });
 
-export const markAsRead = id => () => {
+export const markAsRead = id => (dispatch) => {
     return new Promise((resolve, reject) => {
-        apiService.messaging.markAsRead(id, err =>
-            (err ? reject(err) : resolve()));
-    });
+        apiService.messaging.markAsRead(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    })
+    .then(response => dispatch(_putMessageSuccess(response)));
 };
 
 export const startReply = message => (dispatch) => {
