@@ -46,7 +46,7 @@ class AssigneeContainer extends Component {
 
         const groupFilters = this.props.project.userGroups.map(group =>
             ({ label: group.title, value: group }));
-        groupFilters.push({ label: this.props.vocab.COMMON.ANY, value: null });
+        groupFilters.push({ label: this.props.vocab.COMMON.ALL, value: null });
 
         return (
             <Box appCentered={false}
