@@ -81,7 +81,14 @@ class Inbox extends Component {
             });
         }
     }
-    handleMarkAsUnread(/* id*/) {
+    handleMarkAsUnread(id) {
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.markAsUnread(
+                this.props.inboxList.find(thread => thread.originalMessageId === id).refMessageId,
+            ).then(() => {
+                this.loadCurrentFilter();
+            });
+        }
     }
 
     loadCurrentFilter() {
@@ -166,7 +173,8 @@ class Inbox extends Component {
                         users={this.props.users}
                         onArchive={this.handleArchive}
                         onUnarchive={this.handleUnarchive}
-                        onMarkAsRead={this.handleMarkAsRead}/>
+                        onMarkAsRead={this.handleMarkAsRead}
+                        onMarkAsUnread={this.handleMarkAsUnread}/>
             </div>
         );
     }
