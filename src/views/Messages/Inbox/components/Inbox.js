@@ -159,13 +159,15 @@ class Inbox extends Component {
     }
 
     handleNext() {
-        const newPage = this.props.messages.inboxPage + 1;
-        this.props.actions.setInboxPage(newPage);
-        this.loadByFilter(
-            this.props.messages.ui.filter,
-            this.props.messages.ui.inboxTab,
-            newPage,
-        );
+        if (this.props.inboxList.length > 0) {
+            const newPage = this.props.messages.inboxPage + 1;
+            this.props.actions.setInboxPage(newPage);
+            this.loadByFilter(
+                this.props.messages.ui.filter,
+                this.props.messages.ui.inboxTab,
+                newPage,
+            );
+        }
     }
 
     handleThreadClick(threadId) {
