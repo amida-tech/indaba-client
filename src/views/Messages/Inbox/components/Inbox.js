@@ -91,6 +91,9 @@ class Inbox extends Component {
             this.props.actions.markAsUnread(
                 this.props.inboxList.find(thread => thread.originalMessageId === id).refMessageId,
             ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.markAsUnread(id)
+            .then(this.loadCurrentFilter);
         }
     }
 
