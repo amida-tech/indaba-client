@@ -56,7 +56,14 @@ class Inbox extends Component {
             });
         }
     }
-    handleUnarchive(/* id*/) {
+    handleUnarchive(id) {
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.unarchiveThread(
+                this.props.inboxList.find(thread => thread.originalMessageId === id).messageIds,
+            ).then(() => {
+                this.loadCurrentFilter();
+            });
+        }
     }
     handleDelete(/* id*/) {
     }
@@ -145,7 +152,8 @@ class Inbox extends Component {
                         onMessageClick={this.handleThreadClick}
                         actions={this.props.actions}
                         users={this.props.users}
-                        onArchive={this.handleArchive}/>
+                        onArchive={this.handleArchive}
+                        onUnarchive={this.handleUnarchive}/>
             </div>
         );
     }
