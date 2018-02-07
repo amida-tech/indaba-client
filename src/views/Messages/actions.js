@@ -43,6 +43,22 @@ export const archiveThread = ids => () => {
     return Promise.all(archivePromises);
 };
 
+export const unarchiveThread = ids => () => {
+    const unarchivePromises = [];
+    ids.forEach(id =>
+        unarchivePromises.push(new Promise((resolve, reject) => {
+            apiService.messaging.unarchive(id, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        })),
+    );
+    return Promise.all(unarchivePromises);
+};
+
 export const unarchiveMessage = id => (dispatch) => {
     return new Promise((resolve, reject) => {
         apiService.messaging.unarchive(id, (err) => {
