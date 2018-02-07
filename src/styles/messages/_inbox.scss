@@ -73,6 +73,7 @@ $block-class: 'inbox';
             border-color: $border-color;
             cursor: pointer;
             border: none;
+            outline: none;
 
             &:hover {
                 letter-spacing: 0.8px;

@@ -180,6 +180,8 @@ class Inbox extends Component {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
+        const noNext = this.props.inboxList.length === 0;
+        const noPrevious = this.props.messages.inboxPage === 0;
         return (
             <div className='inbox'>
                 <div className='inbox__title'>
@@ -213,17 +215,23 @@ class Inbox extends Component {
                     onDelete={this.handleDelete}/>
                 <div className='inbox__pager'>
                     <div className='inbox__pager-content'>
-                        <button className='inbox__pager-button'
-                            onClick={this.handlePrevious}>
-                            {this.props.vocab.MESSAGES.PREVIOUS}
-                        </button>
+                        {
+                            !noPrevious &&
+                            <button className={'inbox__pager-button'}
+                                onClick={this.handlePrevious}>
+                                {this.props.vocab.MESSAGES.PREVIOUS}
+                            </button>
+                        }
                         <div className='inbox__page'>
                             {this.props.messages.inboxPage + 1}
                         </div>
-                        <button className='inbox__pager-button'
-                            onClick={this.handleNext}>
-                            {this.props.vocab.MESSAGES.NEXT}
-                        </button>
+                        {
+                            !noNext &&
+                            <button className={'inbox__pager-button'}
+                                onClick={this.handleNext}>
+                                {this.props.vocab.MESSAGES.NEXT}
+                            </button>
+                        }
                     </div>
                 </div>
             </div>
