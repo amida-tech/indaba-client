@@ -65,16 +65,11 @@ export const archiveMessage = id => () => {
     });
 };
 
-export const unarchiveMessage = id => (dispatch) => {
+export const unarchiveMessage = id => () => {
     return new Promise((resolve, reject) => {
-        apiService.messaging.unarchive(id, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                dispatch(_unarchiveMessageSuccess(id));
-                resolve(id);
-            }
-        });
+        apiService.messaging.unarchive(id, err =>
+            (err ? reject(err) : resolve()),
+        );
     });
 };
 
@@ -84,11 +79,6 @@ export const markAsUnread = id => () => {
             (err ? reject(err) : resolve()));
     });
 };
-
-const _unarchiveMessageSuccess = id => ({
-    type: actionTypes.UNARCHIVE_MESSAGE_SUCCESS,
-    id,
-});
 
 export const startReply = message => (dispatch) => {
     dispatch(_startReply({
