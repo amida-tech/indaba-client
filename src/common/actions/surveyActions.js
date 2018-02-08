@@ -59,6 +59,7 @@ export function patchSurvey(survey, successMessage, errorMessages) {
         name: survey.name,
         status: survey.status,
         sections: survey.sections,
+        description: survey.description,
         forceStatus: true,
     }, identity);
 
