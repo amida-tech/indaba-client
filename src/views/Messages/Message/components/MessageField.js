@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
+const inputComponent = ({ input, meta: { touched, error } }) =>
+(
+    <input className={`message-field__value ${(touched && error) ? 'message-field__value--error' : ''}`}
+        {...input}/>
+);
+
 class MessageField extends Component {
     render() {
         return (
@@ -11,11 +17,7 @@ class MessageField extends Component {
                     this.props.input ?
                     <Field component={
                             this.props.component ||
-                            (
-                                props =>
-                                <input className={`message-field__value ${(props.meta.touched && props.meta.error) ? 'message-field__value--error' : ''}`}
-                                    {...props.input}/>
-                            )
+                            inputComponent
                         }
                         {...this.props.componentProps}
                         name={this.props.name}/> :
