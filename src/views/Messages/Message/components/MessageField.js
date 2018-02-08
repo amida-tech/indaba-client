@@ -9,9 +9,15 @@ class MessageField extends Component {
                 <div className='message-field__label'>{this.props.label}: </div>
                 {
                     this.props.input ?
-                    <Field component={this.props.component || 'input'}
+                    <Field component={
+                            this.props.component ||
+                            (
+                                props =>
+                                <input className={`message-field__value ${(props.meta.touched && props.meta.error) ? 'message-field__value--error' : ''}`}
+                                    {...props.input}/>
+                            )
+                        }
                         {...this.props.componentProps}
-                        className='message-field__value'
                         name={this.props.name}/> :
                     <div className='message-field__value'>
                         {this.props.value}
