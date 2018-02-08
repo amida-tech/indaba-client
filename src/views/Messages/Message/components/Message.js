@@ -113,9 +113,6 @@ class Message extends Component {
                                 value={_.get(this.props, 'message.message')}
                                 name='message'/>
                         </div>
-                        <div className='message__body-timestamp'>
-                            {Time.renderForMessage(_.get(this.props, 'message.timestamp'), this.props.vocab)}
-                        </div>
                         {
                             compose &&
                             <div className='message__body-buttons'>
