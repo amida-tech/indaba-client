@@ -17,10 +17,12 @@ class MessageList extends Component {
                 {this.props.messages.map(message =>
                     <div key={message.id} className='message-list__row'
                         onClick={() => this.props.onMessageClick(message.id)}>
-                        <div className='message-list__name'>
+                        <div className='message-list__name'
+                        title= {renderNameByEmail(message.from, this.props.users)}>
                             {
                                 renderNameByEmail(message.from, this.props.users)
                             }
+
                         </div>
                         <div className='message-list__subject'>
                             {message.subject}

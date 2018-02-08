@@ -46,6 +46,7 @@ class StageSlot extends Component {
         this.handleTaskOptions = this.handleTaskOptions.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.filterToStageGroups = this.filterToStageGroups.bind(this);
+        this.filterToQuery = this.filterToQuery.bind(this);
     }
 
     handleTaskOptions() {
@@ -61,6 +62,9 @@ class StageSlot extends Component {
     }
     filterToStageGroups(user) {
         return user.usergroupId.some(groupId => this.props.stageData.userGroups.includes(groupId));
+    }
+    filterToQuery(user) {
+        return renderName(user).toLowerCase().includes(this.props.assignTaskQuery.toLowerCase());
     }
 
     displayDueTime(done, diff) {
@@ -128,7 +132,7 @@ class StageSlot extends Component {
                         <span className='stage-slot__role-span'>
                             {this.props.vocab.PROJECT.CARD.ASSIGNEE}
                         </span>
-                        {TaskStatus.responsesFlagged(this.props.task) &&
+                        {this.props.task.flagged &&
                             <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
                             </div>
@@ -150,8 +154,12 @@ class StageSlot extends Component {
                         <Search
                             fill={true}
                             inline={true}
+                            value={this.props.assignTaskQuery}
+                            onDOMChange={evt =>
+                                this.props.actions.setAssignTaskQuery(evt.target.value)}
                             suggestions={this.props.users
                                 .filter(this.filterToStageGroups)
+                                .filter(this.filterToQuery)
                                 .map(user => ({ label: renderName(user),
                                     value: user }))}
                             onSelect={this.handleSearchSelect}
@@ -177,6 +185,7 @@ class StageSlot extends Component {
 
 const mapStateToProps = state => ({
     assignTaskInput: state.manager.ui.assignTaskInput,
+    assignTaskQuery: state.manager.ui.assignTaskQuery,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
+import { push, syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -18,6 +18,7 @@ import { createDevTools } from 'redux-devtools';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.css';
 import './styles/main.scss';
+import { logOut } from './common/actions/navActions';
 
 /** User Imports **/
 import reducers from './reducers';
@@ -25,7 +26,16 @@ import routes from './routes';
 
 const DEVELOP = process.env.NODE_ENV === 'development';
 
-let middleware = [routerMiddleware(browserHistory), thunk];
+const authInterceptor = ({ dispatch }) => next => (action) => {
+    if (action.err === 401) {
+        dispatch(logOut(document.location.pathname));
+        dispatch(push('/login'));
+    } else {
+        next(action);
+    }
+};
+
+let middleware = [routerMiddleware(browserHistory), thunk, authInterceptor];
 if (DEVELOP) {
     middleware = [...middleware, createLogger()];
 }

@@ -23,12 +23,12 @@ class Questions extends Component {
             this.props.id,
             newAnswer,
             get(value, 'meta', undefined),
-            this.props.required,
             this.props.vocab.ERROR);
         switch (this.props.type) {
         case 'bullet':
             QuestionType = (<Bullet
                 {...this.props}
+                holdAnswer={this.props.actions.holdAnswer}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);
             break;
@@ -64,6 +64,7 @@ class Questions extends Component {
         case 'scale':
             QuestionType = (<Scale
                 {...this.props}
+                holdAnswer={this.props.actions.holdAnswer}
                 upsertAnswer = {upsertAnswer}
                 answer={value ? value.answer : ''} />);
             break;
@@ -170,7 +171,6 @@ Questions.propTypes = {
     type: PropTypes.string.isRequired,
     common: PropTypes.bool,
     text: PropTypes.string.isRequired,
-    required: PropTypes.bool,
     choices: PropTypes.array,
 };
 

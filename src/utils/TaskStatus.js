@@ -9,9 +9,6 @@ export default {
             task.response.every(response => response.value !== undefined) &&
                 task.response.length === surveySize;
     },
-    responsesFlagged(task) {
-        return task.flagCount > 0;
-    },
     endDateInPast(task) {
         return Date.parse(task.endDate) < Date.now();
     },

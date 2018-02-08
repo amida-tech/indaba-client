@@ -92,12 +92,13 @@ $block-class:'stage-slot';
             display: flex;
             width: 100%;
             align-content: center;
+        }
 
-            &-cancel {
-                margin-left: 6px;
-                margin-right: 4px;
-                margin-top: 8px;
-            }
+        &__assign-task-input-cancel {
+            margin-left: 6px;
+            margin-right: 4px;
+            margin-top: 8px;
+            cursor: pointer;
         }
 
         .grommetux-search--inline,

@@ -16,11 +16,6 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 import ToField from './ToField';
 
 class Message extends Component {
-    componentWillMount() {
-        if (this.props.id && !this.props.message) {
-            this.props.actions.getMessage(this.props.id);
-        }
-    }
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
@@ -193,8 +188,8 @@ class MessageSelector extends Component {
     }
     handleSendResponse(err, result) {
         if (!err) {
-            this.props.actions.updateMessage(result);
             this.props.actions.discardReply();
+            this.props.actions.getThreadContainingMessage(result.id);
             this.props.goToMessage(result.id);
         }
     }

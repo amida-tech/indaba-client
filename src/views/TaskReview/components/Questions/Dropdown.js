@@ -12,16 +12,28 @@ class Dropdown extends Component {
         }
         return (
             <div className='dropdown'>
-                <Select className='dropdown__field'
-                    value={currentValue}
-                    placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
-                    disabled={this.props.displayMode}
-                    options={this.props.choices.map((entry) => {
-                        return { label: entry.text, value: entry.id };
-                    })}
-                    onChange={(event) => {
-                        this.props.upsertAnswer({ choice: event.option.value });
-                    }} />
+                {
+                    this.props.displayMode ?
+
+                    <select className='dropdown__field'
+                        value={currentValue}
+                        placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
+                        disabled={true}>
+                        <option className='dropdown__option'
+                            label={currentValue} />
+                    </select> :
+
+                    <Select className='dropdown__field'
+                        value={currentValue}
+                        placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
+                        readonly={this.props.displayMode}
+                        options={this.props.choices.map((entry) => {
+                            return { label: entry.text, value: entry.id };
+                        })}
+                        onChange={(event) => {
+                            this.props.upsertAnswer({ choice: event.option.value });
+                        }} />
+                }
             </div>
         );
     }

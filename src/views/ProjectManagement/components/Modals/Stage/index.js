@@ -32,6 +32,7 @@ class StageModal extends Component {
             initialValues = {
                 title: '',
                 userGroups: [],
+                position: this.props.project.stages.length,
                 permissions: '0',
                 startDate: '',
                 endDate: '',
@@ -80,6 +81,7 @@ const stageMapping = (values) => {
         startDate: values.startDate,
         endDate: values.endDate,
         userGroups: values.userGroups,
+        position: values.position,
         provideResponses: true,
         discussionParticipation: false,
         blindReview: false,

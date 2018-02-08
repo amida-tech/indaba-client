@@ -48,6 +48,13 @@ class CreateProjectWizard extends Component {
     }
     handleContinue() {
         if (this.props.ui.step < NUM_WIZARD_STEPS - 1) {
+            if (this.props.ui.step === 0) {
+                this.props.actions.patchSurvey(
+                    this.props.inProgressSurvey,
+                    this.props.vocab.SURVEY.SUCCESS,
+                    this.props.vocab.ERROR,
+                );
+            }
             this.changeStep(this.props.ui.step + 1);
         } else {
             this.props.actions.showCompleteWizard(true);
@@ -156,7 +163,8 @@ class CreateProjectWizard extends Component {
                 <WizardComplete
                     vocab={this.props.vocab}
                     projectLink={this.props.ui.projectLink}
-                    project={this.props.project} />
+                    project={this.props.project}
+                    survey={this.props.survey}/>
             </div>);
     }
 }
@@ -183,6 +191,7 @@ const mapStateToProps = (state) => {
         project,
         survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        inProgressSurvey: state.surveybuilder.form,
         user: state.user,
         ui: state.wizard.ui,
         vocab: state.settings.language.vocabulary,

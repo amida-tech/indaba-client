@@ -25,6 +25,15 @@ class UserProfile extends Component {
                     tasks={this.props.tasks}
                     vocab={this.props.vocab}
                     initialValues={this.props.initialValues}
+                    onResendActivation={
+                        () => this.props.actions.addNewUser(
+                            this.props.user,
+                            this.props.projectId,
+                            this.props.profile.organizationId,
+                            this.props.vocab.TOAST,
+                            this.props.vocab.ERROR,
+                        )
+                    }
                     onSubmit={ (values) => {
                         this.props.onSave();
                         this.props.onUpdateUser(this.props.userId,
