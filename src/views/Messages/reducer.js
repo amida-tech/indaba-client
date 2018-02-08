@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
+import { sortBy } from 'lodash';
 
 import config from '../../config';
 import * as actionTypes from './actionTypes';
@@ -14,12 +14,15 @@ const initialState = {
         expandedMessages: [],
     },
     messages: [],
+    thread: [],
+    inboxList: [],
 };
 
 const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
         timestamp: message.createdAt,
         systemMessage: message.from === config.SYS_MESSAGE_USER,
+        unread: message.readAt === null,
     });
 
 export default (state = initialState, action) => {
@@ -32,6 +35,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
+    case actionTypes.CLEAR_INBOX:
+        return update(state, { inboxList: { $set: [] } });
     case actionTypes.MARK_MESSAGE_AS_READ:
         return update(state, { messages: { [messageIndex]: {
             readAt: { $set: new Date().toISOString() },
@@ -61,20 +66,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
-    case actionTypes.LIST_MESSAGES_SUCCESS:
-        return update(state, {
-            messages: { $apply:
-                message => _.unionBy(message,
-                    action.result.map(transformServerMessageToReduxMessage), 'id'),
-            },
-        });
-    case actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS:
-        return update(state, {
-            messages: { $apply:
-                message => _.unionBy(message,
-                    action.result.map(transformServerMessageToReduxMessage), 'id'),
-            },
-        });
     case actionTypes.UPDATE_MESSAGE:
         return update(state, {
             messages: (
@@ -94,6 +85,18 @@ export default (state = initialState, action) => {
     case actionTypes.DELETE_MESSAGE_SUCCESS:
         return update(state, {
             messages: { $splice: [[messageIndex, 1]] },
+        });
+    case actionTypes.GET_THREAD_SUCCESS:
+        return update(state, {
+            thread: { $set: sortBy(action.thread, 'createdAt') },
+        });
+    case actionTypes.GET_INBOX_THREADS_SUCCESS:
+        return update(state, {
+            inboxList: { $set: action.threads },
+        });
+    case actionTypes.GET_INBOX_MESSAGES_SUCCESS:
+        return update(state, {
+            inboxList: { $set: action.messages.map(transformServerMessageToReduxMessage) },
         });
     case LOG_OUT:
         return initialState;

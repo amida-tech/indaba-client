@@ -8,6 +8,7 @@ import * as actions from '../actions';
 import {
     updateProfileById,
     resetPassword,
+    addNewUser,
 } from '../../../common/actions/userActions';
 
 import UserProfile from './UserProfile';
@@ -46,6 +47,7 @@ const mapStateToProps = (state, ownProps) => {
         project,
         users: state.user.users,
         tasks: state.userprofile.tasks,
+        profile: state.user.profile,
         initialValues: user && {
             name: {
                 firstName: user.firstName,
@@ -68,7 +70,8 @@ const mapDispatchToProps = dispatch => ({
     onUpdateUser: (userId, user, errorMessages) =>
         dispatch(updateProfileById(userId, user, errorMessages)),
     onClickToSubmit: () => dispatch(submit('user-profile')),
-    actions: bindActionCreators(Object.assign({}, actions, { resetPassword }), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions,
+        { resetPassword, addNewUser }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileContainer);

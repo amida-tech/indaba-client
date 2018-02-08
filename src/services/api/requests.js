@@ -172,7 +172,11 @@ function handleResponse(res, callback) {
 function decodeResponse(res) {
   // res.json() will crash on empty responses so we manually check for them
     return res.text().then((text) => {
-        if (text) return JSON.parse(text);
+        if (res.status === 401) {
+            return res.status;
+        } else if (text) {
+            return JSON.parse(text);
+        }
         return ''; // Was else return;
     });
 }

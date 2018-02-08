@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+
 import Modal from '../../../../../common/components/Modal';
 import ProjectStatusBody from './ProjectStatusBody';
 import SurveyStatusBody from './SurveyStatusBody';
@@ -47,7 +49,17 @@ class StatusChange extends Component {
                 if (this.state.project.active) {
                     const newProject = Object.assign({}, this.props.project,
                             { status: 1 });
-                    this.props.actions.putProject(newProject, this.props.vocab.ERROR);
+                    this.props.actions.putProject(newProject, this.props.vocab.ERROR)
+                    .catch((error) => {
+                        toast(
+                            // greyscale provides readable error messages in 4xx
+                            error.e >= 400 && error.e < 500 ?
+                            error.message :
+                            // fallback to generic error message
+                            this.props.vocab.ERROR.PROJECT_ACTIVATE,
+                            { type: 'error', autoClose: false },
+                        );
+                    });
                     this.props.actions.updateStatusChange(false);
                 } else {
                     this.props.actions.showInactiveConfirmModal(true);

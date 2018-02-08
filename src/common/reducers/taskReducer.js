@@ -45,7 +45,7 @@ export const TaskReducer = (state = initialState, action) => {
         return update(state, { data: { $apply: data => data.filter(task =>
                 !task.userIds.includes(action.userId)) } });
     case type.REPORT_TASKS_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.error } } });
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case LOG_OUT:
         return initialState;
     default:

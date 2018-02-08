@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
 
+import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
 
@@ -19,15 +20,44 @@ class Inbox extends Component {
     constructor() {
         super();
 
-        this.evaluateFilter = this.evaluateFilter.bind(this);
-        this.makeInboxThreadRepresentation = this.makeInboxThreadRepresentation.bind(this);
         this.handleThreadClick = this.handleThreadClick.bind(this);
+        this.handleFilterClick = this.handleFilterClick.bind(this);
+        this.handleTabClick = this.handleTabClick.bind(this);
     }
 
     componentWillMount() {
-        this.props.actions.listMessages();
-        this.props.actions.listArchivedMessages();
         this.props.actions.getUsers(this.props.vocab.ERROR);
+        this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
+    }
+
+    handleFilterClick(filter) {
+        this.props.actions.clearInbox();
+        this.props.actions.setInboxFilter(filter);
+        this.loadByFilter(filter, this.props.messages.ui.inboxTab);
+    }
+
+    handleTabClick(inboxTab) {
+        this.props.actions.clearInbox();
+        this.props.actions.setActiveInboxTab(inboxTab);
+        this.loadByFilter(this.props.messages.ui.filter, inboxTab);
+    }
+
+    loadByFilter(filter, inboxTab) {
+        if (filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.getInboxThreads(
+                inboxTab === INBOX_TABS.ARCHIVED);
+        } else if (filter !== FILTERS.NOTIFICATIONS) {
+            this.props.actions.getInboxMessages({
+                archived: inboxTab === INBOX_TABS.ARCHIVED,
+                sent: filter === FILTERS.SENT_MESSAGES,
+                unread: filter === FILTERS.UNREAD_MESSAGES,
+            });
+        } else {
+            this.props.actions.getInboxMessages({
+                archived: inboxTab === INBOX_TABS.ARCHIVED,
+                from: config.SYS_MESSAGE_USER,
+            });
+        }
     }
 
     handleThreadClick(threadId) {
@@ -58,46 +88,8 @@ class Inbox extends Component {
         this.props.goToMessage(expanded.length > 0 ? expanded[0] : threadId);
     }
 
-    evaluateFilter(threadEntry) {
-        const messages = this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === threadEntry.originalMessageId);
-        if (threadEntry.isArchived !==
-            (this.props.messages.ui.inboxTab === INBOX_TABS.ARCHIVED)) {
-            return false;
-        }
-        if (
-            (this.props.messages.ui.filter === FILTERS.NOTIFICATIONS)
-            !==
-            (threadEntry.systemMessage)) {
-            return false;
-        }
-        switch (this.props.messages.ui.filter) {
-        case FILTERS.SENT_MESSAGES:
-            return messages.some(messageIter =>
-                messageIter.from === this.props.profile.email);
-        case FILTERS.ALL_MESSAGES:
-            return true;
-        case FILTERS.UNREAD_MESSAGES:
-            return messages.some(messageIter =>
-                !messageIter.readAt);
-        case FILTERS.NOTIFICATIONS:
-            return true;
-        default: return false;
-        }
-    }
-    makeInboxThreadRepresentation(message) {
-        const thread = _.sortBy(this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === message.originalMessageId), 'timestamp');
-        return Object.assign({}, message, {
-            threadLength: thread.length,
-            isArchived: thread.every(messageIter => messageIter.isArchived),
-            messages: thread.map(messageIter => messageIter.id),
-            unread: thread.some(messageIter => !messageIter.readAt),
-            createdAt: thread[thread.length - 1].createdAt,
-        });
-    }
-
     render() {
+        const isThreadList = this.props.messages.ui.filter === FILTERS.ALL_MESSAGES;
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
@@ -109,7 +101,7 @@ class Inbox extends Component {
                 <div className='inbox__top-row'>
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
-                        onSelectTab={this.props.actions.setActiveInboxTab}/>
+                        onSelectTab={this.handleTabClick}/>
                     <Button className='inbox__new-message-button'
                         primary={true}
                         label={this.props.vocab.MESSAGES.NEW_MESSAGE}
@@ -119,11 +111,10 @@ class Inbox extends Component {
                 <div className='inbox__filter'>
                     <Filter filters={filters}
                         active={this.props.messages.ui.filter}
-                        onFilterClick={this.props.actions.setInboxFilter}/>
+                        onFilterClick={this.handleFilterClick}/>
                 </div>
-                <InboxMessageList threads={this.props.messageRoots
-                        .map(this.makeInboxThreadRepresentation)
-                        .filter(this.evaluateFilter)}
+                <InboxMessageList entries={this.props.inboxList}
+                        thread={isThreadList}
                         vocab={this.props.vocab}
                         onMessageClick={this.handleThreadClick}
                         actions={this.props.actions}
@@ -146,6 +137,7 @@ const mapStateToProps = state => ({
     messageRoots: state.messages.messages.filter(message => message.parentMessageId === null),
     users: state.user.users,
     profile: state.user.profile,
+    inboxList: state.messages.inboxList,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),

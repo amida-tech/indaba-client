@@ -22,7 +22,8 @@ class UserProfileForm extends Component {
                     title={this.props.vocab.COMMON.ACCOUNT}>
                         <FormSection name='account'>
                             <AccountTab vocab={this.props.vocab}
-                                user={this.props.user}/>
+                                user={this.props.user}
+                                onResendActivation={ this.props.onResendActivation}/>
                         </FormSection>
                     </Tab>
                     {
