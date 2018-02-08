@@ -174,7 +174,8 @@ class ProjectManagementContainer extends Component {
                                 toast(this.props.vocab.ERROR.STAGE_REQUEST,
                                     { type: 'error', autoClose: false });
                                 this.props.actions.pmHideStageDeleteConfirmModal();
-                            }) } />
+                            }) }
+                            saveLabel={this.props.vocab.COMMON.DELETE} />
                     }
                     <Summary
                         actions={this.props.actions}

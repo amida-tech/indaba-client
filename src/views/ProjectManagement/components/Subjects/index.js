@@ -81,7 +81,8 @@ class Subjects extends Component {
                                 false,
                                 this.props.vocab.ERROR);
                             this.props.actions.showSubjectDeleteConfirmModalForId(null);
-                        }}/>
+                        }}
+                        saveLabel={this.props.vocab.COMMON.DELETE} />
                 }
                 <div className='subjects__action'>
                     <Button className='subjects__action-button'

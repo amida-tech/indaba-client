@@ -67,7 +67,8 @@ class PMUsersTab extends Component {
                             this.props.vocab.MODAL.USER_DELETE_CONFIRM.REMOVE_WITH_NOTHING
                         }
                         onCancel={() => this.props.actions.pmHideUserDeleteConfirmModal()}
-                        onSave={this.handleDeleteModalSave}/>
+                        onSave={this.handleDeleteModalSave}
+                        saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
                 <div className='pm-users-tab__invite-container'>
                     <InviteUserForm vocab={this.props.vocab}

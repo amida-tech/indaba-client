@@ -99,7 +99,8 @@ class PMAllSubjects extends Component {
                                 },
                             );
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal();
-                        }} />
+                        }}
+                        saveLabel={this.props.vocab.COMMON.DELETE}/>
                 }
                 <div className='pm-all-subjects__search-wrapper'>
                     <SearchInput className='pm-all-subjects__search'
