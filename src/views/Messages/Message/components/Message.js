@@ -45,7 +45,11 @@ class Message extends Component {
                                 user => renderNameByEmail(user, this.props.users),
                             ).join(', ')}
                             component={ToField}
-                            componentProps={{ users: this.props.users }}
+                            componentProps={{
+                                users: this.props.users,
+                                actions: this.props.actions,
+                                query: this.props.ui.toQuery,
+                            }}
                             name='to'/>
                         <div className='message__timestamp'>
                             {this.props.message && Time.renderForMessage(
