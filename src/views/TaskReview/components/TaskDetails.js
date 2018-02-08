@@ -21,7 +21,7 @@ class TaskDetails extends Component {
                     </div>
                     <div className='task-details__header-right'>
                         <div className='task-details__header-label'>
-                            {this.props.vocab.PROJECT.TASK_PERMISSIONS}
+                            {this.props.vocab.PROJECT.ACTIVITY}
                         </div>
                         <div className='task-details__header-permissions'>
                             {renderPermissions(this.props.stage,

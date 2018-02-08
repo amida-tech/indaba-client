@@ -41,6 +41,9 @@ class UserTaskListEntry extends Component {
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--flags'>
                     <FlagCount value={this.props.flags}/>
                 </div>
+                <div className='user-task-list-entry__cell user-task-list-entry__cell--activity'>
+                    {this.props.activity}
+                </div>
             </Link>
         );
     }

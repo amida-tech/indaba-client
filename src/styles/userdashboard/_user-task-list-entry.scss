@@ -22,7 +22,8 @@ $block-class: 'user-task-list-entry';
             }
 
             &--due,
-            &--flags {
+            &--flags,
+            &--activity {
                 flex: 1;
             }
 
