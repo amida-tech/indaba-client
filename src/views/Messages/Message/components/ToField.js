@@ -45,6 +45,9 @@ class ToField extends Component {
                         onSelect={selection =>
                             this.handleSelect(selection, this.props.meta.dispatch)}
                     />
+                    {
+                        this.props.meta.touched && this.props.meta.error
+                    }
                 </div>
                 {
                     this.props.input.value !== '' &&
