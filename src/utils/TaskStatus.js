@@ -1,9 +1,4 @@
 export default {
-// methods to determine filter status
-    responsesExist(task) {
-        return task.response &&
-            task.response.some(response => response.value !== undefined);
-    },
     responsesComplete(task, surveySize) {
         return task.response &&
             task.response.every(response => response.value !== undefined) &&
