@@ -2,7 +2,7 @@ $block-class: 'users';
 
 @at-root {
     .#{$block-class} {
-        height: 100vh;
+        height: 80vh;
 
         &__action-btn {
             display: flex;
