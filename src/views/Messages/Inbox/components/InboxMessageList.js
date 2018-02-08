@@ -23,11 +23,12 @@ class InboxMessageList extends Component {
         return (
             <div key={entry.originalMessageId || entry.id}
                 className='inbox-message-list__entry'
-                onClick={() => this.props.onMessageClick(thread.id)}>
+                onClick={() =>
+                    this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
                 <div className='inbox-message-list__from'>
-                    <div className={`inbox-message-list__unread-indicator ${thread.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
-                    {renderNameByEmail(thread.from, this.props.users)}
-                    {thread.threadLength > 1 && ` (${thread.threadLength})`}
+                    <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
+                    {this.renderFrom(entry.from)}
+                    {this.props.thread && entry.count > 1 && ` (${entry.count})`}
                 </div>
                 <div className='inbox-message-list__subject'>
                     {entry.subject}
