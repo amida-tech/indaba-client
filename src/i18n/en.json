@@ -183,6 +183,7 @@
         "_FLAGS_REPORTED": " flag(s) reported on this stage",
         "QUESTION_": "Question ",
         "TASK_VIEW": "Task View",
+        "TASK_PERMISSIONS": "Task Permissions",
         "EXPAND_ALL": "Expand All",
         "COLLAPSE_ALL": "Collapse All",
         "TASK_DUE_DATE": "Task Due Date",

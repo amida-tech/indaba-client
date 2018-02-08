@@ -8,6 +8,12 @@ $block-class:'task-details';
         &__header {
             margin-left: 1em;
             margin-top: 1em;
+            display: flex;
+            flex-direction: row;
+
+            &-left {
+                width: 60%;
+            }
         }
 
         &__header-label {
@@ -17,6 +23,12 @@ $block-class:'task-details';
         }
 
         &__header-name {
+            @extend .x-large-font;
+
+            padding-bottom: 16px;
+        }
+
+        &__header-permissions {
             @extend .x-large-font;
 
             padding-bottom: 16px;

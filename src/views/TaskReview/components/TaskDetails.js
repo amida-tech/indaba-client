@@ -4,17 +4,29 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
+import { renderPermissions } from '../../../utils/Survey';
 
 class TaskDetails extends Component {
     render() {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <div className='task-details__header-label'>
-                        {this.props.vocab.PROJECT.TASK_VIEW}
+                    <div className='task-details__header-left'>
+                        <div className='task-details__header-label'>
+                            {this.props.vocab.PROJECT.TASK_VIEW}
+                        </div>
+                        <div className='task-details__header-name'>
+                            {renderName(this.props.taskedUser)}
+                        </div>
                     </div>
-                    <div className='task-details__header-name'>
-                        {renderName(this.props.taskedUser)}
+                    <div className='task-details__header-right'>
+                        <div className='task-details__header-label'>
+                            {this.props.vocab.PROJECT.TASK_PERMISSIONS}
+                        </div>
+                        <div className='task-details__header-permissions'>
+                            {renderPermissions(this.props.stage,
+                                this.props.vocab.PROJECT.PERM_ARRAY)}
+                        </div>
                     </div>
                 </div>
 

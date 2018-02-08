@@ -15,3 +15,14 @@ export const questionListFromSurvey = (section) => {
         .map(sectionIter => questionListFromSurvey(sectionIter))),
     ];
 };
+
+export const renderPermissions = (stage, permissionArray) => {
+    if (stage.blindReview) {
+        return permissionArray[1];
+    } else if (stage.discussionParticipation) {
+        return permissionArray[2];
+    } else if (stage.allowEdit) {
+        return permissionArray[3];
+    }
+    return permissionArray[0];
+};
