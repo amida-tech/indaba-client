@@ -13,6 +13,10 @@ export const setInboxFilter = filter => ({
     filter,
 });
 
+export const clearInbox = () => ({
+    type: actionTypes.CLEAR_INBOX,
+});
+
 export const markMessageAsRead = id => ({
     type: actionTypes.MARK_MESSAGE_AS_READ,
     id,
@@ -104,26 +108,12 @@ export const setExpandedMessages = messageIds => ({
     messageIds,
 });
 
-export const listMessages = () => (dispatch) => {
-    dispatch(_listMessages());
+export const getInboxMessages = params => (dispatch) => {
     apiService.messaging.list((err, result) => {
-        if (err) {
-            dispatch(_listMessagesFailure(err));
-        } else {
-            dispatch(_listMessagesSuccess(result));
+        if (!err) {
+            dispatch(_getInboxMessagesSuccess(result));
         }
-    });
-};
-
-export const listArchivedMessages = () => (dispatch) => {
-    dispatch(_listArchivedMessages());
-    apiService.messaging.listArchived((err, result) => {
-        if (err) {
-            dispatch(_listArchivedMessagesFailure(err));
-        } else {
-            dispatch(_listArchivedMessagesSuccess(result));
-        }
-    });
+    }, params);
 };
 
 export const getMessage = id => (dispatch) => {
@@ -148,41 +138,55 @@ export const deleteMessage = id => (dispatch) => {
     });
 };
 
+export const getThreadContainingMessage = messageId => (dispatch) => {
+    apiService.messaging.get(messageId, (err, messageResponse) => {
+        if (!err) {
+            dispatch(getThread(messageResponse.originalMessageId));
+        }
+    });
+};
+
+export const getThread = originalMessageId => (dispatch) => {
+    dispatch(_getThread());
+    apiService.messaging.getThread(originalMessageId, (err, response) => {
+        dispatch(_getThreadSuccess(response));
+    });
+};
+
+export const getInboxThreads = archived => (dispatch) => {
+    apiService.messaging.listThreads((err, response) => {
+        if (!err) {
+            dispatch(_getInboxThreadsSuccess(response));
+        }
+    }, { archived });
+};
+
 /* Private actions */
+
+const _getThread = () => ({
+    type: actionTypes.GET_THREAD,
+});
+
+const _getThreadSuccess = thread => ({
+    type: actionTypes.GET_THREAD_SUCCESS,
+    thread,
+});
+
+const _getInboxThreadsSuccess = threads => ({
+    type: actionTypes.GET_INBOX_THREADS_SUCCESS,
+    threads,
+});
+
+const _getInboxMessagesSuccess = messages => ({
+    type: actionTypes.GET_INBOX_MESSAGES_SUCCESS,
+    messages,
+});
 
 export const _startReply = reply => (dispatch) => {
     dispatch(initialize('message', reply));
     dispatch(reset('message'));
     dispatch({ type: actionTypes.START_REPLY, reply });
 };
-
-export const _listMessages = () => ({
-    type: actionTypes.LIST_MESSAGES,
-});
-
-export const _listMessagesFailure = err => ({
-    type: actionTypes.LIST_MESSAGES_FAILURE,
-    err,
-});
-
-export const _listMessagesSuccess = result => ({
-    type: actionTypes.LIST_MESSAGES_SUCCESS,
-    result,
-});
-
-export const _listArchivedMessages = () => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES,
-});
-
-export const _listArchivedMessagesFailure = err => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES_FAILURE,
-    err,
-});
-
-export const _listArchivedMessagesSuccess = result => ({
-    type: actionTypes.LIST_ARCHIVED_MESSAGES_SUCCESS,
-    result,
-});
 
 export const _getMessage = () => ({
     type: actionTypes.GET_MESSAGE,

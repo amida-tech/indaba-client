@@ -34,7 +34,7 @@ class AccountTab extends Component {
                     </div>
                     <div className='account-tab__button-wrapper'>
                         {
-                            !this.props.user.activationDate &&
+                            !this.props.user.isActive &&
                             <button
                                 onClick={this.props.onResendActivation}
                                 className='account-tab__button'>

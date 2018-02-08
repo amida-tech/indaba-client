@@ -41,6 +41,11 @@ export default (state = initialState, action) => {
     case type.HOLD_ANSWER: {
         const answerIndex = findIndex(state.ui.form.answers,
             answer => answer.questionId === action.questionId);
+        if (answerIndex === -1) {
+            return update(state, { ui: { form: { answers: { $push:
+                [{ questionId: action.questionId, answer: action.answer }],
+            } } } });
+        }
         return update(state, { ui: { form: { answers: { [answerIndex]: { answer:
             { $set: action.answer } } } } } });
     }
