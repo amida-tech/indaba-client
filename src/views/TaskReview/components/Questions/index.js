@@ -80,10 +80,11 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') && has(value, 'answer') && !this.props.displayMode &&
+                {has(this.props, 'meta.file') && has(value, 'answer') &&
                     <div className='questions__option-panel'>
                         <FileForm form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
+                            disabled={this.props.displayMode}
                             file={get(value, 'meta.file')}
                             onFileUploaded={(file) => {
                                 this.props.actions.upsertAnswer(

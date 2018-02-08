@@ -12,7 +12,7 @@ class FileForm extends Component {
             <form className='file-form'
                 onSubmit={this.props.handleSubmit}>
                 {
-                    this.props.file === undefined &&
+                    this.props.file === undefined && !this.props.disabled &&
                     <div className='file-form__add-form'>
                         <Field name={'file'}
                             className='file-form__file-input'
@@ -29,9 +29,12 @@ class FileForm extends Component {
                         <div className='file-form__current-file-name'>
                             {this.props.file.filename}
                         </div>
-                        <button className='file-form__submit file-form__submit--remove'>
-                            {this.props.vocab.SURVEY.REMOVE_FILE}
-                        </button>
+                        {
+                            !this.props.disabled &&
+                            <button className='file-form__submit file-form__submit--remove'>
+                                {this.props.vocab.SURVEY.REMOVE_FILE}
+                            </button>
+                        }
                     </div>
                 }
             </form>
