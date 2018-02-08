@@ -2,8 +2,6 @@ $block-class: 'users';
 
 @at-root {
     .#{$block-class} {
-        height: 80vh;
-
         &__action-btn {
             display: flex;
             background-color: $element-background;
