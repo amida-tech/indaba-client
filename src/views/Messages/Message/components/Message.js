@@ -218,9 +218,19 @@ class MessageSelector extends Component {
         const reply = this.props.reply || _.get(this.props, 'location.state.message');
         return (
             <MessageForm {...this.props}
-                validate={values =>
-                    (_.get(values, 'to.length', 0) > 0 ? {} : { to: this.props.vocab.MESSAGES.TO_REQUIRED })
-                }
+                validate={(values) => {
+                    const errors = {};
+                    if (_.get(values, 'to.length', 0) === 0) {
+                        errors.to = this.props.vocab.MESSAGES.TO_REQUIRED;
+                    }
+                    if (!values.subject) {
+                        errors.subject = this.props.vocab.MESSAGES.SUBJECT_REQUIRED;
+                    }
+                    if (!values.message) {
+                        errors.message = this.props.vocab.MESSAGES.MESSAGE_REQUIRED;
+                    }
+                    return errors;
+                } }
                 initialValues={
                     reply
                 }
