@@ -300,6 +300,8 @@
     },
     "MESSAGES": {
         "TO_REQUIRED": "One or more recipients must be added",
+        "SUBJECT_REQUIRED": "Subject required",
+        "MESSAGE_REQUIRED": "Message required",
         "RECENT_MESSAGES": "Recent Messages",
         "MESSAGES": "Messages",
         "INBOX": "Inbox",
