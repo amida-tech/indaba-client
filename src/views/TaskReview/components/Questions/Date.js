@@ -12,16 +12,21 @@ class Date extends Component {
         }
         return (
             <div className='date'>
-                <DateTime className={`date__field${this.props.displayMode ? '--disabled' : ''}`}
-                    value={currentAnswer}
-                    disabled={this.props.displayMode}
-                    format='MM/DD/YYYY'
-                    onChange={(event) => {
-                        if (Time.validateTime(event)) {
-                            this.props.upsertAnswer(
-                                { dateValue: Time.renderForSurvey(event) });
-                        }
-                    }} />
+                {
+                    this.props.displayMode ?
+                    <div className='date__field'>
+                        {currentAnswer}
+                    </div> :
+                    <DateTime className='date__field'
+                        value={currentAnswer}
+                        format='MM/DD/YYYY'
+                        onChange={(event) => {
+                            if (Time.validateTime(event)) {
+                                this.props.upsertAnswer(
+                                    { dateValue: Time.renderForSurvey(event) });
+                            }
+                        }} />
+                }
             </div>
         );
     }
