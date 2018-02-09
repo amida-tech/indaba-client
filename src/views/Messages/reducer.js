@@ -13,22 +13,18 @@ const initialState = {
         reply: false,
         expandedMessages: [],
     },
-    messages: [],
     thread: [],
     inboxList: [],
 };
 
 const transformServerMessageToReduxMessage = message =>
     Object.assign(message, {
-        timestamp: message.createdAt,
         systemMessage: message.from === config.SYS_MESSAGE_USER,
         unread: message.readAt === null,
     });
 
 export default (state = initialState, action) => {
-    const messageIndex = state.messages.findIndex(message => message.id === action.id);
-    const messageIndices = action.ids && action.ids.map(
-        id => state.messages.findIndex(message => message.id === id));
+    const threadIndex = state.thread.findIndex(message => message.id === action.id);
 
     switch (action.type) {
     case actionTypes.SET_ACTIVE_INBOX_TAB:
@@ -37,27 +33,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { filter: { $set: action.filter } } });
     case actionTypes.CLEAR_INBOX:
         return update(state, { inboxList: { $set: [] } });
-    case actionTypes.MARK_MESSAGE_AS_READ:
-        return update(state, { messages: { [messageIndex]: {
-            readAt: { $set: new Date().toISOString() },
-        } } });
-    case actionTypes.MARK_MESSAGE_AS_UNREAD:
-        return update(state, { messages: {
-            [messageIndex]: { $unset: ['readAt'] },
-        } });
-    case actionTypes.ARCHIVE_THREAD_SUCCESS: {
-        const edit = { messages: {} };
-        messageIndices.forEach((index) => {
-            edit.messages[index] = {
-                isArchived: { $set: true },
-            };
-        });
-        return update(state, edit);
-    }
-    case actionTypes.UNARCHIVE_MESSAGE_SUCCESS:
-        return update(state, { messages: { [messageIndex]: {
-            isArchived: { $set: false },
-        } } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
             reply: { $set: action.reply },
@@ -66,13 +41,11 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             reply: { $set: false },
         } });
-    case actionTypes.UPDATE_MESSAGE:
-        return update(state, {
-            messages: (
-                messageIndex !== -1 ?
-                { [messageIndex]: { $set: transformServerMessageToReduxMessage(action.message) } } :
-                { $push: [transformServerMessageToReduxMessage(action.message)] }
-            ),
+    case actionTypes.PUT_MESSAGE_SUCCESS:
+        return threadIndex === -1 ?
+        state :
+        update(state, { thread:
+            { [threadIndex]: { $set: transformServerMessageToReduxMessage(action.message) } },
         });
     case actionTypes.EXPAND_MESSAGES:
         return update(state, { ui: {
@@ -82,13 +55,12 @@ export default (state = initialState, action) => {
         return update(state, { ui: {
             expandedMessages: { $set: action.messageIds },
         } });
-    case actionTypes.DELETE_MESSAGE_SUCCESS:
-        return update(state, {
-            messages: { $splice: [[messageIndex, 1]] },
-        });
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
-            thread: { $set: sortBy(action.thread, 'createdAt') },
+            thread: { $set:
+                sortBy(action.thread, 'createdAt')
+                .map(transformServerMessageToReduxMessage),
+            },
         });
     case actionTypes.GET_INBOX_THREADS_SUCCESS:
         return update(state, {

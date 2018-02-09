@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Button } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import _ from 'lodash';
 
 import config from '../../../../config';
 import * as actions from '../../actions';
@@ -23,11 +22,23 @@ class Inbox extends Component {
         this.handleThreadClick = this.handleThreadClick.bind(this);
         this.handleFilterClick = this.handleFilterClick.bind(this);
         this.handleTabClick = this.handleTabClick.bind(this);
+        this.handleArchive = this.handleArchive.bind(this);
+        this.handleUnarchive = this.handleUnarchive.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleMarkAsRead = this.handleMarkAsRead.bind(this);
+        this.handleMarkAsUnread = this.handleMarkAsUnread.bind(this);
+
+        this.loadCurrentFilter = this.loadCurrentFilter.bind(this);
     }
 
     componentWillMount() {
         this.props.actions.getUsers(this.props.vocab.ERROR);
-        this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
+        this.loadCurrentFilter();
+    }
+
+    getMessageIdsByThread(originalMessageId) {
+        return this.props.inboxList.find(thread =>
+            thread.originalMessageId === originalMessageId).messageIds;
     }
 
     handleFilterClick(filter) {
@@ -40,6 +51,61 @@ class Inbox extends Component {
         this.props.actions.clearInbox();
         this.props.actions.setActiveInboxTab(inboxTab);
         this.loadByFilter(this.props.messages.ui.filter, inboxTab);
+    }
+
+    // this contains flow control logic common across the individual message handlers
+    handleAction(id, threadAction, messageAction) {
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            threadAction(
+                this.getMessageIdsByThread(id),
+            ).then(this.loadCurrentFilter);
+        } else {
+            messageAction(id)
+            .then(this.loadCurrentFilter);
+        }
+    }
+
+    handleArchive(id) {
+        this.handleAction(
+            id,
+            this.props.actions.archiveThread,
+            this.props.actions.archiveMessage,
+        );
+    }
+    handleUnarchive(id) {
+        this.handleAction(
+            id,
+            this.props.actions.unarchiveThread,
+            this.props.actions.unarchiveMessage,
+        );
+    }
+    handleDelete(id) {
+        this.handleAction(
+            id,
+            this.props.actions.deleteThread,
+            this.props.actions.deleteMessage,
+        );
+    }
+    handleMarkAsRead(id) {
+        this.handleAction(
+            id,
+            this.props.actions.markThreadAsRead,
+            this.props.actions.markAsRead,
+        );
+    }
+    handleMarkAsUnread(id) {
+        if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
+            this.props.actions.markAsUnread(
+                this.props.inboxList.find(thread => thread.originalMessageId === id).refMessageId,
+            ).then(this.loadCurrentFilter);
+        } else {
+            this.props.actions.markAsUnread(id)
+            .then(this.loadCurrentFilter);
+        }
+    }
+
+    loadCurrentFilter() {
+        this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
     }
 
     loadByFilter(filter, inboxTab) {
@@ -61,31 +127,8 @@ class Inbox extends Component {
     }
 
     handleThreadClick(threadId) {
-        const rootMessage = this.props.messages.messages
-            .find(messageIter => messageIter.id === threadId);
-        const messages = _.sortBy(this.props.messages.messages.filter(messageIter =>
-            messageIter.originalMessageId === rootMessage.originalMessageId), 'timestamp');
-        let expanded;
-        switch (this.props.messages.ui.filter) {
-        case FILTERS.ALL_MESSAGES:
-            expanded = messages
-            .map(messageIter => messageIter.id);
-            break;
-        case FILTERS.SENT_MESSAGES:
-            expanded = messages
-            .filter(messageIter => messageIter.from === this.props.profile.email)
-            .map(messageIter => messageIter.id);
-            break;
-        case FILTERS.UNREAD_MESSAGES:
-            expanded = messages
-            .filter(messageIter => !messageIter.readAt)
-            .map(messageIter => messageIter.id);
-            break;
-        default:
-            expanded = [];
-        }
-        this.props.actions.setExpandedMessages(expanded);
-        this.props.goToMessage(expanded.length > 0 ? expanded[0] : threadId);
+        this.props.actions.setExpandedMessages([]);
+        this.props.goToMessage(threadId);
     }
 
     render() {
@@ -118,7 +161,12 @@ class Inbox extends Component {
                         vocab={this.props.vocab}
                         onMessageClick={this.handleThreadClick}
                         actions={this.props.actions}
-                        users={this.props.users}/>
+                        users={this.props.users}
+                        onArchive={this.handleArchive}
+                        onUnarchive={this.handleUnarchive}
+                        onMarkAsRead={this.handleMarkAsRead}
+                        onMarkAsUnread={this.handleMarkAsUnread}
+                        onDelete={this.handleDelete}/>
             </div>
         );
     }
@@ -134,7 +182,6 @@ Inbox.propTypes = {
 const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     messages: state.messages,
-    messageRoots: state.messages.messages.filter(message => message.parentMessageId === null),
     users: state.user.users,
     profile: state.user.profile,
     inboxList: state.messages.inboxList,

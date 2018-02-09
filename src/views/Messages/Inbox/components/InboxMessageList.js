@@ -20,8 +20,9 @@ class InboxMessageList extends Component {
     }
 
     renderEntry(entry) {
+        const actionId = this.props.thread ? entry.originalMessageId : entry.id;
         return (
-            <div key={entry.originalMessageId || entry.id}
+            <div key={actionId}
                 className='inbox-message-list__entry'
                 onClick={() =>
                     this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
@@ -44,7 +45,7 @@ class InboxMessageList extends Component {
                             <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
-                                        this.props.onArchive(entry.originalMessageId);
+                                        this.props.onArchive(actionId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -58,7 +59,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
-                                        this.props.onMarkAsRead(entry.originalMessageId);
+                                        this.props.onMarkAsRead(actionId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -72,7 +73,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
-                                        this.props.onMarkAsUnread(entry.originalMessageId);
+                                        this.props.onMarkAsUnread(actionId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -86,7 +87,7 @@ class InboxMessageList extends Component {
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
-                                        this.props.onUnarchiveThread(entry.originalMessageId);
+                                        this.props.onUnarchive(actionId);
                                         event.stopPropagation();
                                     }
                                 }>
@@ -99,7 +100,7 @@ class InboxMessageList extends Component {
                             <PanelButton
                                 onClick={
                                     (event) => {
-                                        this.props.onDelete(entry.originalMessageId);
+                                        this.props.onDelete(actionId);
                                         event.stopPropagation();
                                     }
                                 }>

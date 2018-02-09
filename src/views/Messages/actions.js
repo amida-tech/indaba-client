@@ -17,52 +17,90 @@ export const clearInbox = () => ({
     type: actionTypes.CLEAR_INBOX,
 });
 
-export const markMessageAsRead = id => ({
-    type: actionTypes.MARK_MESSAGE_AS_READ,
-    id,
-});
-
-export const markMessageAsUnread = id => ({
-    type: actionTypes.MARK_MESSAGE_AS_UNREAD,
-    id,
-});
-
-export const archiveThread = ids => (dispatch) => {
-    dispatch(_archiveThread());
-    const archivePromises = [];
-    ids.forEach(id =>
-        archivePromises.push(new Promise((resolve, reject) => {
-            apiService.messaging.archive(id, (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve();
-                }
-            });
+export const archiveThread = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.archive(id, err =>
+                (err ? reject(err) : resolve()),
+            );
         })),
     );
-    Promise.all(archivePromises)
-        .then(() => dispatch(_archiveThreadSuccess(ids)))
-        .catch(err => _archiveThreadFailure(err));
 };
 
-export const unarchiveMessage = id => (dispatch) => {
+export const unarchiveThread = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.unarchive(id, err =>
+                (err ? reject(err) : resolve()),
+            );
+        })),
+    );
+};
+
+export const markThreadAsRead = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.markAsRead(id, err =>
+                (err ? reject(err) : resolve()),
+            );
+        })),
+    );
+};
+
+export const deleteThread = ids => () => {
+    return Promise.all(
+        ids.map(id => new Promise((resolve, reject) => {
+            apiService.messaging.delete(id, (err, response) =>
+                (err ? reject(err) : resolve(response)));
+        })),
+    );
+};
+
+export const archiveMessage = id => () => {
     return new Promise((resolve, reject) => {
-        apiService.messaging.unarchive(id, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                dispatch(_unarchiveMessageSuccess(id));
-                resolve(id);
-            }
-        });
+        apiService.messaging.archive(id, err =>
+            (err ? reject(err) : resolve()),
+        );
     });
 };
 
-const _unarchiveMessageSuccess = id => ({
-    type: actionTypes.UNARCHIVE_MESSAGE_SUCCESS,
-    id,
+export const unarchiveMessage = id => () => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.unarchive(id, err =>
+            (err ? reject(err) : resolve()),
+        );
+    });
+};
+
+export const markAsUnread = id => (dispatch) => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.markAsUnread(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    })
+    .then(response => dispatch(_putMessageSuccess(response)));
+};
+
+export const deleteMessage = id => () => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.delete(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    });
+};
+
+
+const _putMessageSuccess = message => ({
+    type: actionTypes.PUT_MESSAGE_SUCCESS,
+    message,
+    id: message.id,
 });
+
+export const markAsRead = id => (dispatch) => {
+    return new Promise((resolve, reject) => {
+        apiService.messaging.markAsRead(id, (err, response) =>
+            (err ? reject(err) : resolve(response)));
+    })
+    .then(response => dispatch(_putMessageSuccess(response)));
+};
 
 export const startReply = message => (dispatch) => {
     dispatch(_startReply({
@@ -94,10 +132,6 @@ export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
 });
 
-export const updateMessage = message => (dispatch) => {
-    dispatch(_updateMessage(message));
-};
-
 export const expandMessages = messageIds => ({
     type: actionTypes.EXPAND_MESSAGES,
     messageIds,
@@ -114,28 +148,6 @@ export const getInboxMessages = params => (dispatch) => {
             dispatch(_getInboxMessagesSuccess(result));
         }
     }, params);
-};
-
-export const getMessage = id => (dispatch) => {
-    dispatch(_getMessage());
-    apiService.messaging.get(id, (err, result) => {
-        if (err) {
-            dispatch(_getMessageFailure(err));
-        } else {
-            dispatch(_getMessageSuccess(result));
-        }
-    });
-};
-
-export const deleteMessage = id => (dispatch) => {
-    dispatch(_deleteMessage());
-    apiService.messaging.delete(id, (err, result) => {
-        if (err) {
-            dispatch(_deleteMessageFailure(err));
-        } else {
-            dispatch(_deleteMessageSuccess(result));
-        }
-    });
 };
 
 export const getThreadContainingMessage = messageId => (dispatch) => {
@@ -182,55 +194,8 @@ const _getInboxMessagesSuccess = messages => ({
     messages,
 });
 
-export const _startReply = reply => (dispatch) => {
+const _startReply = reply => (dispatch) => {
     dispatch(initialize('message', reply));
     dispatch(reset('message'));
     dispatch({ type: actionTypes.START_REPLY, reply });
 };
-
-export const _getMessage = () => ({
-    type: actionTypes.GET_MESSAGE,
-});
-
-export const _getMessageFailure = err => ({
-    type: actionTypes.GET_MESSAGE_FAILURE,
-    err,
-});
-
-export const _getMessageSuccess = result => (dispatch) => {
-    dispatch(_updateMessage(result));
-};
-
-export const _updateMessage = message => ({
-    type: actionTypes.UPDATE_MESSAGE,
-    id: message.id,
-    message,
-});
-
-export const _archiveThread = () => ({
-    type: actionTypes.ARCHIVE_THREAD,
-});
-
-export const _archiveThreadFailure = err => ({
-    type: actionTypes.ARCHIVE_THREAD_FAILURE,
-    err,
-});
-
-export const _archiveThreadSuccess = ids => ({
-    type: actionTypes.ARCHIVE_THREAD_SUCCESS,
-    ids,
-});
-
-export const _deleteMessage = () => ({
-    type: actionTypes.DELETE_MESSAGE,
-});
-
-export const _deleteMessageFailure = err => ({
-    type: actionTypes.DELETE_MESSAGE_FAILURE,
-    err,
-});
-
-export const _deleteMessageSuccess = id => ({
-    type: actionTypes.DELETE_MESSAGE_SUCCESS,
-    id,
-});
