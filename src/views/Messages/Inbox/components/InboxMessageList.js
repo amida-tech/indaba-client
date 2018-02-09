@@ -116,7 +116,7 @@ class InboxMessageList extends Component {
     render() {
         return (
             <div className='inbox-message-list'>
-                <div className='inbox-message-list__entry inbox-message-list__entry--title'>
+                <div className='inbox-message-list__header'>
                     <div className='inbox-message-list__from'>
                         {this.props.vocab.MESSAGES.FROM}
                     </div>

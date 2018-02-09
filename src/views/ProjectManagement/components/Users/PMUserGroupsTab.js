@@ -60,7 +60,8 @@ class PMUserGroupsTab extends Component {
                             this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_NOTHING
                         }
                         onCancel={this.props.actions.pmHideUserGroupDeleteConfirmModal}
-                        onSave={this.handleDeleteModalSave}/>
+                        onSave={this.handleDeleteModalSave}
+                        saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
                 <div className='pm-user-groups-tab__search-container'>
                     <input type='text' className='pm-user-groups-tab__input'

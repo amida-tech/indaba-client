@@ -120,7 +120,7 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
                 if (!userErr && userResp) {
                     toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
                     dispatch(_postNewUserSuccess(userResp, projectId));
-                } else {
+                } else if (userErr) {
                     if (userErr.e === 403) {
                         toast(errorMessages.DUPLICATE);
                     }

@@ -39,14 +39,22 @@ class TaskDetails extends Component {
                     <div className='task-details__info-box-label'>
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
-                    <DateTime id='taskEndDate' className='task-details__info-box-datetime'
-                        format='MMMM D, YYYY'
-                        onChange={event =>
-                            this.props.actions.updateTaskEndDate(
-                                this.props.task.id,
-                                this.props.projectId,
-                                event)}
-                        value={Time.renderCommon(this.props.task.endDate)}/><br/>
+                    { this.props.profile.roleID === 2 ?
+                        <DateTime id='taskEndDate' className='task-details__info-box-datetime'
+                            format='MMMM D, YYYY'
+                            onChange={(event) => {
+                                this.props.actions.updateTask(
+                                    this.props.task.id,
+                                    this.props.task.userIds,
+                                    new Date(event),
+                                    this.props.vocab.ERROR);
+                            }
+                                }
+                            value={Time.renderCommon(this.props.task.endDate)} /> :
+                        <div className='task-details__info-box-title'>
+                            {Time.renderCommon(this.props.task.endDate)}
+                        </div>
+                    }
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>
@@ -63,10 +71,19 @@ class TaskDetails extends Component {
 }
 
 TaskDetails.propTypes = {
+    profile: PropTypes.shape({
+        roleID: PropTypes.number,
+    }).isRequired,
+    actions: PropTypes.shape({
+        updateTask: PropTypes.func.isRequired,
+    }).isRequired,
     stage: PropTypes.shape({
         title: PropTypes.string,
     }).isRequired,
-    task: PropTypes.object.isRequired,
+    task: PropTypes.shape({
+        userIds: PropTypes.array,
+        endDate: PropTypes.date,
+    }),
     taskedUser: PropTypes.object.isRequired,
     surveyName: PropTypes.string.isRequired,
     subject: PropTypes.object.isRequired,

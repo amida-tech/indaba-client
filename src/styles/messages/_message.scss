@@ -28,7 +28,8 @@ $block-class: 'message';
         }
 
         &__timestamp {
-            font-weight: 600;
+            font-weight: 400;
+            font-size: 14px;
         }
 
         &__body-actions {
@@ -64,6 +65,7 @@ $block-class: 'message';
             background-color: white;
             padding: 0.5em 1em;
             cursor: pointer;
+            color: $font-color;
         }
 
         .grommetux-button:not(.grommetux-button--fill) {
