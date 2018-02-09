@@ -45,7 +45,7 @@ class StageForm extends Component {
                            {this.props.vocab.PROJECT.PERMISSIONS}
                            </label>
                        <div className='stage-form__radio-control'>
-                           {this.props.vocab.PROJECT.PERM_ARRAY.map((permission, index) =>
+                           {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) =>
                                <label className='stage-form__radio-button' key={index}>
                                    <Field
                                        name='permissions'
@@ -61,7 +61,7 @@ class StageForm extends Component {
                        </div>
                     </div>
                     <div className='stage-form__text-description'>
-                        {this.props.vocab.PROJECT.DESC_ARRAY[this.props.permissions]}
+                        {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                     </div>
                     <hr className='stage-form__divider'/>
                     <div className='stage-form__date'>

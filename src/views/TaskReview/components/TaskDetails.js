@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
-import { renderPermissions } from '../../../utils/Survey';
 
 class TaskDetails extends Component {
     render() {
@@ -23,9 +22,9 @@ class TaskDetails extends Component {
                         <div className='task-details__header-label'>
                             {this.props.vocab.PROJECT.ACTIVITY}
                         </div>
-                        <div className='task-details__header-permissions'>
-                            {renderPermissions(this.props.stage,
-                                this.props.vocab.PROJECT.PERM_ARRAY)}
+                        <div className='task-details__header-permissions'
+                            title={this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.activity]}>
+                            {this.props.vocab.PROJECT.ACTIVITY_OPTIONS[this.props.activity]}
                         </div>
                     </div>
                 </div>

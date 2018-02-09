@@ -16,13 +16,13 @@ export const questionListFromSurvey = (section) => {
     ];
 };
 
-export const renderPermissions = (stage, permissionArray) => {
+export const renderPermissions = (stage) => {
     if (stage.blindReview) {
-        return permissionArray[1];
+        return 1;
     } else if (stage.discussionParticipation) {
-        return permissionArray[2];
+        return 2;
     } else if (stage.allowEdit) {
-        return permissionArray[3];
+        return 3;
     }
-    return permissionArray[0];
+    return 0;
 };

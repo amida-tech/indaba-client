@@ -90,8 +90,7 @@ const mapStateToProps = (state) => {
             state.projects.data.find(findProject => findProject.id === task.projectId),
             'status',
             0) === 1)
-        .map(task => _generateRow(state, task.projectId, task,
-            state.settings.language.vocabulary.PROJECT.PERM_ARRAY));
+        .map(task => _generateRow(state, task.projectId, task));
     return {
         glance: {
             tasks: rows.filter(row => !row.complete).length,
@@ -114,7 +113,7 @@ const mapDispatchToProps = dispatch => ({
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
-const _generateRow = (state, projectId, task, permissionsArray) => { // TODO: INBA-439
+const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     const project = state.projects.data[0].name ?
         state.projects.data.find(findProject => findProject.id === projectId) :
         state.projects.data[0];
@@ -141,7 +140,7 @@ const _generateRow = (state, projectId, task, permissionsArray) => { // TODO: IN
         survey: survey ? survey.name : '',
         flags: task.flagCount,
         progress: `${answered}/${surveyLength} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
-        activity: renderPermissions(stage, permissionsArray),
+        activity: renderPermissions(stage),
         new: get(answers, 'status') === 'new',
         late,
         complete,
