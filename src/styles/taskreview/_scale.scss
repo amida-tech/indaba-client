@@ -10,10 +10,14 @@ $block-class:'scale';
         }
 
         &__field {
-            width: 8%;
+            width: 20%;
             text-align: center;
             margin: 0.2em;
             padding: 0.2em;
+
+            &--disabled {
+                width: 20%;
+            }
         }
     }
 }
