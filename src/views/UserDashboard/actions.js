@@ -27,6 +27,7 @@ export function userDashGetMessages() {
             }
         }, {
             limit: 4,
+            received: true,
         });
     };
 }
