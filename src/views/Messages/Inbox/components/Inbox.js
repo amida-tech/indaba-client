@@ -83,7 +83,7 @@ class Inbox extends Component {
         this.handleAction(
             id,
             this.props.actions.deleteThread,
-            this.props.action.deleteMessage,
+            this.props.actions.deleteMessage,
         );
     }
     handleMarkAsRead(id) {
