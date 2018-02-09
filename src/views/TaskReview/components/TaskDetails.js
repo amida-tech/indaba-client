@@ -10,11 +10,22 @@ class TaskDetails extends Component {
         return (
             <div className='task-details'>
                 <div className='task-details__header'>
-                    <div className='task-details__header-label'>
-                        {this.props.vocab.PROJECT.TASK_VIEW}
+                    <div className='task-details__header-left'>
+                        <div className='task-details__header-label'>
+                            {this.props.vocab.PROJECT.TASK_VIEW}
+                        </div>
+                        <div className='task-details__header-name'>
+                            {renderName(this.props.taskedUser)}
+                        </div>
                     </div>
-                    <div className='task-details__header-name'>
-                        {renderName(this.props.taskedUser)}
+                    <div className='task-details__header-right'>
+                        <div className='task-details__header-label'>
+                            {this.props.vocab.PROJECT.ACTIVITY}
+                        </div>
+                        <div className='task-details__header-permissions'
+                            title={this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.activity]}>
+                            {this.props.vocab.PROJECT.ACTIVITY_OPTIONS[this.props.activity]}
+                        </div>
                     </div>
                 </div>
 

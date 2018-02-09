@@ -187,6 +187,7 @@
         "_FLAGS_REPORTED": " flag(s) reported on this stage",
         "QUESTION_": "Question ",
         "TASK_VIEW": "Task View",
+        "ACTIVITY": "Activity",
         "EXPAND_ALL": "Expand All",
         "COLLAPSE_ALL": "Collapse All",
         "TASK_DUE_DATE": "Task Due Date",
@@ -205,18 +206,17 @@
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
         "TASK_COMPLETED": "Task completed!",
-        "PERM_ARRAY": [
+        "ACTIVITY_OPTIONS": [
             "Complete Survey",
             "Review",
             "Review and Comment",
             "Review and Edit"
         ],
-        "DESC_ARRAY": [
-            "Answer survey questions",
-            "View previous user's survey answers",
-            "View previous user's survey answers and leave comments",
-            "View and edit survey answers and comments",
-            "All permissions description"
+        "ACTIVITY_DESC": [
+            "Complete the survey questions and raise flags if needed.",
+            "View previous user's survey answers and raise flags if needed.",
+            "View previous user's survey answers and leave comments and flags if needed.",
+            "View previous user's survey answers and comments and edit them."
         ],
         "TASK_BACK": "Back",
         "DATE_RANGE": "Date Range",

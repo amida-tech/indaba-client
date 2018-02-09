@@ -11,7 +11,7 @@ import { FILTERS } from '../constants';
 
 import TaskStatus from '../../../utils/TaskStatus';
 import Time from '../../../utils/Time';
-import { questionListLengthFromSurvey } from '../../../utils/Survey';
+import { renderPermissions, questionListLengthFromSurvey } from '../../../utils/Survey';
 
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
@@ -117,6 +117,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
     const project = state.projects.data[0].name ?
         state.projects.data.find(findProject => findProject.id === projectId) :
         state.projects.data[0];
+    const stage = project.stages.find(step => step.id === task.stepId);
     const subject = project !== undefined ?
         project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
     const answers = state.userdashboard.answers.find(findAnswers =>
@@ -139,6 +140,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         survey: survey ? survey.name : '',
         flags: task.flagCount,
         progress: `${answered}/${surveyLength} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
+        activity: renderPermissions(stage),
         new: get(answers, 'status') === 'new',
         late,
         complete,

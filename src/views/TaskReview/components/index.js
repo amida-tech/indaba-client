@@ -9,6 +9,7 @@ import Time from '../../../utils/Time';
 import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
+import { renderPermissions } from '../../../utils/Survey';
 import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
 import { getTaskById, moveTask, updateTask } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
@@ -65,6 +66,7 @@ class TaskReview extends Component {
                         subject={this.props.subject}
                         task={this.props.task}
                         taskedUser={this.props.taskedUser}
+                        activity={renderPermissions(this.props.stage)}
                         vocab={this.props.vocab}
                         stage={this.props.stage}
                         actions={this.props.actions}

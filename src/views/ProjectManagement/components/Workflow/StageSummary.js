@@ -61,7 +61,7 @@ class StageSummary extends Component {
                     </div>
                     <div className='stage-summary__right'>
                         <div className='stage-summary__value'>
-                            {this.props.vocab.PROJECT.PERM_ARRAY[permissions]}
+                            {this.props.vocab.PROJECT.ACTIVITY_OPTIONS[permissions]}
                         </div>
                         <div className='stage-summary__label'>
                             {this.props.vocab.STAGE.PERMISSIONS}
