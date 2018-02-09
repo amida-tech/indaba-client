@@ -5,5 +5,11 @@ $block-class:'dropdown';
         &__field {
             width: 50%;
         }
+
+        &__field-disabled {
+            width: 50%;
+            background-color: #EBEBE4;
+            padding: 0.1em;
+        }
     }
 }

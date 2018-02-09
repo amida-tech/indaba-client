@@ -14,7 +14,7 @@ class Dropdown extends Component {
             <div className='dropdown'>
                 {
                     this.props.displayMode ?
-                    <select className='dropdown__field'
+                    <select className='dropdown__field-disabled'
                         value={currentValue}
                         placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
                         disabled={true}>
