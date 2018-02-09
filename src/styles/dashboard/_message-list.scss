@@ -47,16 +47,28 @@ $block-class: 'message-list';
             text-overflow: ellipsis;
 
             @extend .lead-font-bold;
+
+            &--unread {
+                font-weight: bold;
+            }
         }
 
         &__subject {
             flex: 3;
 
             @extend .lead-font;
+
+            &--unread {
+                font-weight: bold;
+            }
         }
 
         &__time {
             flex: 1;
+
+            &--unread {
+                font-weight: bold;
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ import { renderNameByEmail } from '../../../utils/User';
 
 class MessageList extends Component {
     render() {
+        console.log('messagelist');
+        console.log(this.props);
         return (
             <div className='message-list'>
                 <div className='message-list__title'>
@@ -14,23 +16,27 @@ class MessageList extends Component {
                         {this.props.vocab.MESSAGES.GO_MESSAGE_LINK}
                     </Link>
                 </div>
-                {this.props.messages.map(message =>
-                    <div key={message.id} className='message-list__row'
-                        onClick={() => this.props.onMessageClick(message.id)}>
-                        <div className='message-list__name'
-                        title= {renderNameByEmail(message.from, this.props.users)}>
-                            {
-                                renderNameByEmail(message.from, this.props.users)
-                            }
-
-                        </div>
-                        <div className='message-list__subject'>
-                            {message.subject}
-                        </div>
-                        <div className='message-list__time'>
-                            {Time.renderForMessageList(message.createdAt)}
-                        </div>
-                    </div>,
+                {this.props.messages.map((message) => {
+                    const unread = message.readAt ? '' : '--unread';
+                    return (
+                        <div key={message.id}
+                            className={'message-list__row'}
+                            onClick={() => this.props.onMessageClick(message.id)}>
+                            <div className={`message-list__unread-indicator message-list__unread-indicator${unread}`} />
+                            <div className={`message-list__name message-list__name${unread}`}
+                                title= {renderNameByEmail(message.from, this.props.users)}>
+                                    {
+                                        renderNameByEmail(message.from, this.props.users)
+                                    }
+                            </div>
+                            <div className={`message-list__subject message-list__subject${unread}`}>
+                                {message.subject}
+                            </div>
+                            <div className={`message-list__time message-list__time${unread}`}>
+                                {Time.renderForMessageList(message.createdAt)}
+                            </div>
+                            </div>);
+                },
                 )}
             </div>
         );
