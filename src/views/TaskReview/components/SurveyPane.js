@@ -60,6 +60,21 @@ class SurveyPane extends Component {
     }
 }
 SurveyPane.propTypes = {
+    actions: PropTypes.shape({
+        setSurveySectionIndex: PropTypes.func.isRequired,
+        updateQuestionDisplay: PropTypes.func.isRequired,
+    }).isRequired,
+    stage: PropTypes.shape({
+        id: PropTypes.number,
+        discussionParticipation: PropTypes.bool,
+    }),
+    task: PropTypes.shape({
+        assessmentId: PropTypes.number,
+    }).isRequired,
+    survey: PropTypes.array.isRequired,
+    options: PropTypes.array.isRequired,
+    sectionIndex: PropTypes.number.isRequired,
+    ui: PropTypes.object.isRequired,
     reqCheck: PropTypes.bool,
     vocab: PropTypes.object.isRequired,
 };

@@ -35,7 +35,7 @@ class FlagQuestionList extends Component {
                             className={`flag-question-list__item flag-question-list__item${modifier}`}
                             onClick={() =>
                                 this.onChangeQuestion(question.id, index)}>
-                            {this.props.vocab.PROJECT.QUESTION_ + (index + 1) }
+                            {this.props.vocab.PROJECT.QUESTION_ + (index + this.props.offset + 1) }
                         </div>
                     );
                 })
