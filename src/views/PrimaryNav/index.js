@@ -40,19 +40,23 @@ class PrimaryNavContainer extends Component {
                             className="primary-nav__indaba-logo"/>
                     </Link>
 
-                    <Link className='primary-nav__item-nav' to='/task'>
+                    <Link className='primary-nav__item-nav' to='/task'
+                        activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/project'>
+                    <Link className='primary-nav__item-nav' to='/project'
+                        activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.PROJECT.PROJECTS}
                     </Link>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/users'>
+                    <Link className='primary-nav__item-nav' to='/users'
+                        activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_USERS}
                     </Link>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/subjects'>
+                    <Link className='primary-nav__item-nav' to='/subjects'
+                        activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </Link>}
                     {isProjectManager &&
