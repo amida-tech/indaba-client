@@ -12,6 +12,7 @@ const initialState = {
         filter: FILTERS.ALL_MESSAGES,
         reply: false,
         expandedMessages: [],
+        toQuery: '',
     },
     thread: [],
     inboxList: [],
@@ -28,6 +29,8 @@ export default (state = initialState, action) => {
     const threadIndex = state.thread.findIndex(message => message.id === action.id);
 
     switch (action.type) {
+    case actionTypes.SET_TO_QUERY:
+        return update(state, { ui: { toQuery: { $set: action.query } } });
     case actionTypes.SET_ACTIVE_INBOX_TAB:
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:

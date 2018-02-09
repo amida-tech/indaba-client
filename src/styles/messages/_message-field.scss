@@ -25,6 +25,10 @@ $block-class: 'message-field';
                 background-color: #fff;
                 transition: background-color 5000s ease-in-out 0s;
             }
+
+            &--error {
+                outline: 1px solid red;
+            }
         }
     }
 }

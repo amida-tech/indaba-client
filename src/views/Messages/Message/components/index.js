@@ -51,6 +51,7 @@ class MessageContainer extends Component {
                                             reply={this.props.ui.reply}
                                             actions={this.props.actions}
                                             users={this.props.users}
+                                            ui={this.props.ui}
                                             goToMessage={this.props.goToMessage}/>);
                             }
                             return elements;

@@ -299,6 +299,9 @@
         "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
     },
     "MESSAGES": {
+        "TO_REQUIRED": "One or more recipients must be added",
+        "SUBJECT_REQUIRED": "Subject required",
+        "MESSAGE_REQUIRED": "Message required",
         "RECENT_MESSAGES": "Recent Messages",
         "MESSAGES": "Messages",
         "INBOX": "Inbox",

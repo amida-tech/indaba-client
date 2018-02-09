@@ -17,6 +17,11 @@ export const clearInbox = () => ({
     type: actionTypes.CLEAR_INBOX,
 });
 
+export const setToQuery = query => ({
+    type: actionTypes.SET_TO_QUERY,
+    query,
+});
+
 export const archiveThread = ids => () => {
     return Promise.all(
         ids.map(id => new Promise((resolve, reject) => {

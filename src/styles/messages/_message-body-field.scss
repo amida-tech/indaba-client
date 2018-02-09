@@ -13,6 +13,10 @@ $block-class: 'message-body-field';
             color: darken($font-color, 30);
             padding-top: 16px;
             line-height: 1.5;
+
+            &--error {
+                outline: 1px solid red;
+            }
         }
     }
 }
