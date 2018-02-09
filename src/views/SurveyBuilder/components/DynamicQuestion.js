@@ -20,6 +20,12 @@ class DynamicQuestion extends Component {
                             min={get(this.props.question, 'scaleLimits.min', 1) + 1}
                             value={get(this.props.question, 'scaleLimits.max', '')}
                             onChange={(event) => {
+                                this.props.actions.upsertScale(this.props.sectionIndex,
+                                    this.props.questionIndex,
+                                    true,
+                                    parseInt(event.target.value, 10));
+                            }}
+                            onBlur={(event) => {
                                 let value = parseInt(event.target.value, 10);
                                 const minValue = get(this.props.question, 'scaleLimits.min', 1);
                                 if (value < minValue) {
@@ -40,6 +46,12 @@ class DynamicQuestion extends Component {
                                 max={get(this.props.question, 'scaleLimits.max', 10) - 1}
                                 value={get(this.props.question, 'scaleLimits.min', '')}
                                 onChange={(event) => {
+                                    this.props.actions.upsertScale(this.props.sectionIndex,
+                                        this.props.questionIndex,
+                                        false,
+                                        parseInt(event.target.value, 10));
+                                }}
+                                onBlur={(event) => {
                                     let value = parseInt(event.target.value, 10);
                                     const maxValue = get(this.props.question, 'scaleLimits.max', 10);
                                     if (value > maxValue) {
