@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { has, some } from 'lodash';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -40,11 +41,28 @@ class CreateSurveyPanel extends Component {
                 </div>
                 <div className='create-survey-panel__survey-controls'>
                     <button className='create-survey-panel__survey-save'
-                        onClick={() => this.props.actions.patchSurvey(
-                            this.props.form,
-                            this.props.vocab.SURVEY.SUCCESS,
-                            this.props.vocab.ERROR,
-                        )}>
+                        onClick={() => {
+                            const blanks = some(this.props.form.sections, (section) => {
+                                return some(section.questions, (question) => {
+                                    if (question.text.match(/^\s*$/) !== null) {
+                                        return true;
+                                    }
+                                    if (has(question, 'choices')) {
+                                        return some(question.choices, choice => choice.text.match(/^\s*$/) !== null);
+                                    }
+                                    return false;
+                                });
+                            });
+                            if (blanks) {
+                                toast(this.props.vocab.ERROR.BLANKS);
+                            } else {
+                                this.props.actions.patchSurvey(
+                                    this.props.form,
+                                    this.props.vocab.SURVEY.SUCCESS,
+                                    this.props.vocab.ERROR);
+                            }
+                        }
+                    }>
                         {this.props.vocab.SURVEY.SAVE_PROGRESS}
                     </button>
                 </div>
