@@ -142,6 +142,11 @@ export const setExpandedMessages = messageIds => ({
     messageIds,
 });
 
+export const setInboxPage = page => ({
+    type: actionTypes.SET_INBOX_PAGE,
+    page,
+});
+
 export const getInboxMessages = params => (dispatch) => {
     apiService.messaging.list((err, result) => {
         if (!err) {
@@ -165,12 +170,12 @@ export const getThread = originalMessageId => (dispatch) => {
     });
 };
 
-export const getInboxThreads = archived => (dispatch) => {
+export const getInboxThreads = params => (dispatch) => {
     apiService.messaging.listThreads((err, response) => {
         if (!err) {
             dispatch(_getInboxThreadsSuccess(response));
         }
-    }, { archived });
+    }, params);
 };
 
 /* Private actions */

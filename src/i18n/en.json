@@ -320,7 +320,9 @@
             "UNREAD_MESSAGES": "Unread Messages",
             "NOTIFICATIONS": "Notifications"
         },
-        "NO_MESSAGES": "No messages"
+        "NO_MESSAGES": "No messages",
+        "PREVIOUS": "Previous",
+        "NEXT": "Next"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",

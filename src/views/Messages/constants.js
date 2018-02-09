@@ -10,3 +10,5 @@ export const INBOX_TABS = {
     INBOX: 'INBOX',
     ARCHIVED: 'ARCHIVED',
 };
+
+export const INBOX_COUNT = 8;
