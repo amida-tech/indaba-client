@@ -80,7 +80,7 @@ class TaskReview extends Component {
                         profile={this.props.profile}
                         surveyId={this.props.survey.id}
                         sectionIndex={this.props.sectionIndex}
-                        instructions={this.props.survey.instructions}
+                        instructions={this.props.survey.description}
                         stage={this.props.stage}
                         taskDisabled={taskDisabled}
                         offset={offset}
