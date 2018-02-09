@@ -15,22 +15,21 @@ class MessageList extends Component {
                     </Link>
                 </div>
                 {this.props.messages.map((message) => {
-                    const unread = message.readAt ? '' : '--unread';
                     return (
                         <div key={message.id}
-                            className={'message-list__row'}
+                            className={`message-list__row ${message.readAt ? '' : 'message-list__row--unread'}`}
                             onClick={() => this.props.onMessageClick(message.id)}>
-                            <div className={`message-list__unread-indicator message-list__unread-indicator${unread}`} />
-                            <div className={`message-list__name message-list__name${unread}`}
+                            <div className='message-list__unread-indicator' />
+                            <div className={'message-list__name'}
                                 title= {renderNameByEmail(message.from, this.props.users)}>
                                     {
                                         renderNameByEmail(message.from, this.props.users)
                                     }
                             </div>
-                            <div className={`message-list__subject message-list__subject${unread}`}>
+                            <div className='message-list__subject'>
                                 {message.subject}
                             </div>
-                            <div className={`message-list__time message-list__time${unread}`}>
+                            <div className='message-list__time'>
                                 {Time.renderForMessageList(message.createdAt)}
                             </div>
                             </div>);
