@@ -16,9 +16,11 @@ class FileForm extends Component {
                     <div className='file-form__add-form'>
                         <Field name={'file'}
                             className='file-form__file-input'
+                            disabled={this.props.disabled}
                             component={ReduxFormFileInput}/>
                         <button className='file-form__submit file-form__submit--add'
-                            type='submit'>
+                            type='submit'
+                            disabled={this.props.disabled}>
                             {this.props.vocab.SURVEY.ADD_FILE}
                         </button>
                     </div>
