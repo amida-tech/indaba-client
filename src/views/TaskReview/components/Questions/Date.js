@@ -13,10 +13,14 @@ class Date extends Component {
         return (
             <div className='date'>
                 {
-                    this.props.displayMode ?
-                    <div className='date__field'>
-                        {currentAnswer}
-                    </div> :
+                    (this.props.displayMode &&
+                    (
+                        currentAnswer ?
+                        <div className='date__field'>
+                            {currentAnswer}
+                        </div> :
+                        this.props.vocab.SURVEY.NO_DATE_ENTERED
+                    )) ||
                     <DateTime className='date__field'
                         value={currentAnswer}
                         format='MM/DD/YYYY'
