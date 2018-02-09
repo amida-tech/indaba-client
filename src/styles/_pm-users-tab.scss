@@ -4,6 +4,7 @@ $block-class: 'pm-users-tab';
     .#{$block-class} {
         background-color: #fdfdfd;
         border: 2px solid $border-color;
+        margin-bottom: 80px;
 
         &__invite-container {
             background-color: #f9f9f9;

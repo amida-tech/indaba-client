@@ -66,5 +66,9 @@ $block-class:'questions';
                 padding: 0.3em;
             }
         }
+
+        &__date-disabled {
+            text-transform: uppercase;
+        }
     }
 }

@@ -10,7 +10,7 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
-import { getTaskById, moveTask, updateTaskEndDate } from '../../../common/actions/taskActions';
+import { getTaskById, moveTask, updateTask } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
 class TaskReview extends Component {
@@ -59,6 +59,7 @@ class TaskReview extends Component {
                         {this.props.vocab.PROJECT.TASK_BACK}
                     </Link>
                     <TaskDetails
+                        profile={this.props.profile}
                         projectId={this.props.projectId}
                         surveyName={this.props.survey.name}
                         subject={this.props.subject}
@@ -66,6 +67,7 @@ class TaskReview extends Component {
                         taskedUser={this.props.taskedUser}
                         vocab={this.props.vocab}
                         stage={this.props.stage}
+                        actions={this.props.actions}
                         updateTaskEndDate={this.props.actions.updateTaskEndDate} />
                     <SurveyPane
                         ui={this.props.ui}
@@ -131,7 +133,7 @@ const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, {
-        updateTaskEndDate,
+        updateTask,
         setSurveySectionIndex,
         getTaskById,
         moveTask,

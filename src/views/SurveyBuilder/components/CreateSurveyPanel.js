@@ -18,7 +18,8 @@ class CreateSurveyPanel extends Component {
                             this.props.actions.deleteSection(
                                 this.props.ui.showSectionDeleteConfirmModal);
                             this.props.actions.showSectionDeleteConfirmModal(-1);
-                        }} />}
+                        }}
+                        saveLabel={this.props.vocab.COMMON.DELETE}/>}
                 <div className='create-survey-panel__view-controls'>
                     <Select className='create-survey-panel__view-select'
                         options={this.props.options}

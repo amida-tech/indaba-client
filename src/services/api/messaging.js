@@ -38,6 +38,14 @@ const messaging = {
         const path = `${rootURI}/message/delete/${id}`;
         requests.apiDeleteRequest(path, {}, callback);
     },
+    getThread: (originalMessageId, callback) => {
+        const path = `${rootURI}/thread/${originalMessageId}`;
+        requests.apiGetRequest(path, callback);
+    },
+    listThreads: (callback, params) => {
+        const path = requests.addQueryParams(`${rootURI}/thread`, params);
+        requests.apiGetRequest(path, callback);
+    },
 };
 
 export default messaging;

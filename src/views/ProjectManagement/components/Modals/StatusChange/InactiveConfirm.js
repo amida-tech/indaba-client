@@ -7,6 +7,7 @@ class InactiveConfirm extends Component {
             <Modal
                 title={this.props.vocab.MODAL.INACTIVE_CONFIRM.TITLE}
                 bodyText={this.props.vocab.MODAL.INACTIVE_CONFIRM.WARNING}
+                saveLabel={this.props.vocab.COMMON.CONFIRM}
                 onSave={ () => {
                     const newProject = Object.assign({}, this.props.project,
                             { status: 0 });

@@ -15,7 +15,7 @@ export function getTasksByProduct(productId, projectId, errorMessages) {
                 if (!taskErr && taskResp) {
                     dispatch(_getTasksByProductSuccess(projectId, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
                 }
             },
         );
@@ -32,7 +32,7 @@ export function getTaskById(projectId, taskId, errorMessages) {
                     dispatch(getProjectById(projectId, false, errorMessages));
                     dispatch(_getTaskByIdSuccess(projectId, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
                 }
             },
         );
@@ -46,7 +46,7 @@ export function getSelfTasks(errorMessages) {
                 if (!taskErr && taskResp && taskResp.length > 0) {
                     dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
                 }
             },
         );
@@ -61,7 +61,7 @@ export function getTasksByUser(userId, errorMessages) {
                 if (!taskErr && taskResp) {
                     dispatch(_getTasksByUserSuccess(userId, taskResp));
                 } else {
-                    dispatch(_reportTasksError(errorMessages.FETCH_TASKS));
+                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
                 }
             },
         );
@@ -72,7 +72,7 @@ export function assignTask(userId, slot, project, errorMessages) {
     if (project.surveyId < 0 || !project.surveyId) {
         toast(errorMessages.CREATE_SURVEY);
         return (dispatch) => {
-            dispatch(_reportTasksError(errorMessages.ASSESSMENT_REQUEST));
+            dispatch(_reportTasksError(null, errorMessages.ASSESSMENT_REQUEST));
         };
     }
 
@@ -99,17 +99,17 @@ export function assignTask(userId, slot, project, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAssessment(
             surveyRequestBody,
-            (assessErr, assessResp) => {
-                if (assessErr) {
-                    dispatch(_reportTasksError(errorMessages.ASSESSMENT_REQUEST));
+            (assessmentErr, assessmentResp) => {
+                if (assessmentErr) {
+                    dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
                 } else {
-                    requestBody.assessmentId = assessResp.id;
+                    requestBody.assessmentId = assessmentResp.id;
                     apiService.tasks.postTask(
                         requestBody,
                         (taskErr, taskResp) => {
                             dispatch(!taskErr && taskResp ?
                                 _postTaskSuccess(taskResp) :
-                                _reportTasksError(errorMessages.TASK_REQUEST));
+                                _reportTasksError(taskErr, errorMessages.TASK_REQUEST));
                         },
                     );
                 }
@@ -125,7 +125,7 @@ export function moveTask(productId, uoaId, errorMessages) {
             uoaId,
             (workflowErr) => {
                 if (workflowErr) {
-                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                    dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
                 } else {
                     dispatch(push('/task'));
                 }
@@ -141,7 +141,7 @@ export function forceTaskCompletion(productId, uoaId, errorMessages) {
             uoaId,
             (workflowErr) => {
                 if (workflowErr) {
-                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                    dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
                 }
             },
         );
@@ -169,7 +169,7 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
             requestBody,
             (taskErr, taskResp) => {
                 if (taskErr) {
-                    dispatch(_reportTasksError(errorMessages.TASK_REQUEST));
+                    dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST));
                 } else if (taskResp || []) {
                     dispatch(_putTaskSuccess(taskId, requestBody));
                 }
@@ -218,9 +218,11 @@ function _putTaskSuccess(taskId, taskChanges) {
     };
 }
 
-function _reportTasksError(error) {
+// err is shorthand for the error response, errorMessage is the display message taken from props.
+function _reportTasksError(err, errorMessage) {
     return {
         type: actionTypes.REPORT_TASKS_ERROR,
-        error,
+        err,
+        errorMessage,
     };
 }

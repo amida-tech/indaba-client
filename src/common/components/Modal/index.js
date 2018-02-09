@@ -39,7 +39,7 @@ class Modal extends Component {
                             }
                             {this.props.onSave &&
                                 <FooterButton
-                                    label={this.props.vocab.COMMON.SAVE}
+                                    label={this.props.saveLabel || this.props.vocab.COMMON.SAVE}
                                     primary={true}
                                     onClick={this.props.onSave}/>
                             }
@@ -54,6 +54,7 @@ class Modal extends Component {
 Modal.propTypes = {
     onCancel: PropTypes.func,
     onSave: PropTypes.func,
+    saveLabel: PropTypes.string,
     vocab: PropTypes.object.isRequired,
     title: PropTypes.string,
     bodyText: PropTypes.string,

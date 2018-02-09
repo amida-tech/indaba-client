@@ -16,11 +16,6 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 import ToField from './ToField';
 
 class Message extends Component {
-    componentWillMount() {
-        if (this.props.id && !this.props.message) {
-            this.props.actions.getMessage(this.props.id);
-        }
-    }
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
@@ -118,9 +113,6 @@ class Message extends Component {
                                 value={_.get(this.props, 'message.message')}
                                 name='message'/>
                         </div>
-                        <div className='message__body-timestamp'>
-                            {Time.renderForMessage(_.get(this.props, 'message.timestamp'), this.props.vocab)}
-                        </div>
                         {
                             compose &&
                             <div className='message__body-buttons'>
@@ -188,7 +180,7 @@ class MessageSelector extends Component {
     }
     cancelForm() {
         const reply = this.props.reply || _.get(this.props, 'location.state.message');
-        if (_.has(reply, 'id')) {
+        if (_.has(reply, 'id') || _.has(reply, 'forwardId')) {
             this.props.actions.discardReply();
         } else {
             this.props.goToInbox();
@@ -196,8 +188,8 @@ class MessageSelector extends Component {
     }
     handleSendResponse(err, result) {
         if (!err) {
-            this.props.actions.updateMessage(result);
             this.props.actions.discardReply();
+            this.props.actions.getThreadContainingMessage(result.id);
             this.props.goToMessage(result.id);
         }
     }

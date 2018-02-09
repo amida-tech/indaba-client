@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import LoginForm from './LoginForm';
 
 class LoginPanel extends Component {
@@ -17,11 +16,13 @@ class LoginPanel extends Component {
                             values.username,
                             values.password,
                             this.props.realm,
+                            this.props.ui.timeoutRef,
                             this.props.vocab.ERROR);
                     }}/>
-                {this.props.ui.error &&
+                {(this.props.ui.error || this.props.ui.timeout) &&
                     <div className='login-panel__error-message'>
-                        {this.props.ui.error}
+                        {this.props.ui.timeout ?
+                            this.props.vocab.COMMON.TIMEOUT : this.props.ui.error}
                     </div>
                 }
                 <div className='login-panel__link'>
