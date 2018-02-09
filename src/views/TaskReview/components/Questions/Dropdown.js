@@ -26,7 +26,7 @@ class Dropdown extends Component {
                     <Select className='dropdown__field'
                         value={currentValue}
                         placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
-                        readonly={this.props.displayMode}
+                        readOnly={this.props.displayMode}
                         options={this.props.choices.map((entry) => {
                             return { label: entry.text, value: entry.id };
                         })}
