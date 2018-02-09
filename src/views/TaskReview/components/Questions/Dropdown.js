@@ -14,7 +14,6 @@ class Dropdown extends Component {
             <div className='dropdown'>
                 {
                     this.props.displayMode ?
-
                     <select className='dropdown__field'
                         value={currentValue}
                         placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
@@ -22,7 +21,6 @@ class Dropdown extends Component {
                         <option className='dropdown__option'
                             label={currentValue} />
                     </select> :
-
                     <Select className='dropdown__field'
                         value={currentValue}
                         placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
