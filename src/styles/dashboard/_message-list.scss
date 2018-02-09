@@ -40,6 +40,17 @@ $block-class: 'message-list';
             }
         }
 
+        &__unread-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 6px;
+
+            &--unread {
+                background-color: $brand-color;
+            }
+        }
+
         &__name {
             flex: 2;
             white-space: nowrap;

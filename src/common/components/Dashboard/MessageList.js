@@ -6,8 +6,6 @@ import { renderNameByEmail } from '../../../utils/User';
 
 class MessageList extends Component {
     render() {
-        console.log('messagelist');
-        console.log(this.props);
         return (
             <div className='message-list'>
                 <div className='message-list__title'>
@@ -36,8 +34,7 @@ class MessageList extends Component {
                                 {Time.renderForMessageList(message.createdAt)}
                             </div>
                             </div>);
-                },
-                )}
+                })}
             </div>
         );
     }
