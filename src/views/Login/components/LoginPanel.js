@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import LoginForm from './LoginForm';
+import ForgotModal from './ForgotModal';
 
 class LoginPanel extends Component {
     render() {
         return (
             <div className='login-panel'>
+                {
+                    this.props.ui.showForgotPasswordFor &&
+                    <ForgotModal {...this.props}
+                        email={this.props.currentEmail}/>
+                }
                 <div className='login-panel__title'>
                     {this.props.vocab.COMMON.WELCOME}
                 </div>
@@ -25,7 +32,9 @@ class LoginPanel extends Component {
                             this.props.vocab.COMMON.TIMEOUT : this.props.ui.error}
                     </div>
                 }
-                <div className='login-panel__link'>
+                <div className='login-panel__link'
+                    onClick={() =>
+                        this.props.actions.showForgotPasswordFor(this.props.currentEmail)} >
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
             </div>
