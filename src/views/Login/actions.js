@@ -42,6 +42,14 @@ export function login(username, password, realm, referrer, errorMessages) {
     };
 }
 
+export function requestResetToken(email) {
+    return () => new Promise((resolve, reject) => {
+        apiService.auth.requestResetToken(email, err =>
+            (err ? reject(err) : resolve()),
+        );
+    });
+}
+
 export function showForgotPasswordFor(email) {
     return {
         type: actionTypes.SHOW_FORGOT_PASSWORD_FOR,
