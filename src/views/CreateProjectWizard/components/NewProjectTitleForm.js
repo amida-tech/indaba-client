@@ -16,9 +16,10 @@ class NewProjectTitleForm extends Component {
                         this.props.vocab.VALIDATE.FIELD_REQUIRED :
                         undefined)}/>
                 <div className='new-project-title__summary-container'>
-                    <textarea className='new-project-title__summary'
+                    <Field component='textarea'
+                        name='project.description'
                         placeholder={this.props.vocab.PROJECT.SUMMARY}
-                        onChange={this.handleSummaryEntry} />
+                        className='new-project-title__summary' />
                 </div>
                 {this.props.errorMessage &&
                     <div className='new-project-title__error'>
