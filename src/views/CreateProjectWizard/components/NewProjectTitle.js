@@ -26,19 +26,20 @@ class NewProjectTitle extends Component {
             form='new-project-title-form'
             onCancel={this.props.onCancel}>
             <NewProjectTitleForm onSubmit={
-                values => this.props.onSave(
-                    Object.assign({},
-                        {
-                            user: {
-                                realmUserId: this.props.profile.id,
-                                organizationId: this.props.profile.organizationId,
+                (values) => {
+                    this.props.actions.postProject(
+                        Object.assign({},
+                            {
+                                user: {
+                                    realmUserId: this.props.profile.id,
+                                    organizationId: this.props.profile.organizationId,
+                                },
+                                langId: 1,
                             },
-                            langId: 1,
-                        },
-                        values.project,
-                    ),
-                this.props.vocab.ERROR,
-            ) }
+                            values.project,
+                        ),
+                        this.props.vocab.ERROR);
+                } }
             vocab={this.props.vocab} />
         </Modal>;
     }
@@ -50,11 +51,7 @@ NewProjectTitle.propTypes = {
         id: PropTypes.number.isRequired,
         organizationId: PropTypes.number.isRequired,
     }),
-    title: PropTypes.string.isRequired,
-    summary: PropTypes.string,
-    onSave: PropTypes.func.isRequired,
-    updateTitle: PropTypes.func.isRequired,
-    updateSummary: PropTypes.func.isRequired,
+    actions: PropTypes.object.isRequired,
 };
 
 export default NewProjectTitle;
