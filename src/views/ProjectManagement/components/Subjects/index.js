@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
-import AddSubject from '../Modals/AddSubject';
+import SubjectModal from '../Modals/Subject';
 import Modal from '../../../../common/components/Modal';
 import SearchInput from '../../../../common/components/Dashboard/SearchInput';
 
@@ -57,7 +57,7 @@ class Subjects extends Component {
         return (
             <div className='subjects'>
                 {this.state.showAddSubjectModal &&
-                    <AddSubject
+                    <SubjectModal
                         onAddSubject={(subject) => {
                             this.setState({ showAddSubjectModal: false });
                             this.props.actions.addSubject(
