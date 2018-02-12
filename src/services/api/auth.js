@@ -14,6 +14,11 @@ const auth = {
 
         requests.apiAuthPostRequest(path, body, callback);
     },
+    requestResetToken: (email, callback) => {
+        const path = `${rootURI}/auth/reset-password`;
+        const body = { email };
+        requests.apiAuthPostRequest(path, body, callback);
+    },
 };
 
 export default auth;
