@@ -352,6 +352,7 @@
         "PERMISSIONS": "Permissions"
     },
     "SURVEY": {
+        "NO_DATE_ENTERED": "No date entered",
         "RETIRED": "Retired",
         "DRAFT": "Draft",
         "PUBLISHED": "Published",
