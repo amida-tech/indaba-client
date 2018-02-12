@@ -84,6 +84,7 @@ class CreateProjectWizard extends Component {
                         errorMessage={this.props.ui.errorMessage}
                         actions={this.props.actions}
                         onCancel={this.props.onWizardCancel}
+                        survey={this.props.survey}
                         vocab={this.props.vocab} />
                 }
                 {
