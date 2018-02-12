@@ -58,11 +58,11 @@ class Subjects extends Component {
             <div className='subjects'>
                 {this.state.showAddSubjectModal &&
                     <SubjectModal
-                        onAddSubject={(subject) => {
+                        onAddSubject={(subjects) => {
                             this.setState({ showAddSubjectModal: false });
                             this.props.actions.addSubject(
                                 this.props.project,
-                                [{ name: subject }],
+                                subjects,
                                 false,
                                 this.props.vocab.ERROR);
                         }}

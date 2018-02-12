@@ -44,11 +44,11 @@ class FilterWrapper extends Component {
                     <SubjectModal
                         vocab={this.props.vocab}
                         onCancel={() => this.props.actions.showAddSubjectModal(false)}
-                        onAddSubject={(subject) => {
+                        onAddSubject={(subjects) => {
                             this.props.actions.showAddSubjectModal(false);
                             this.props.actions.addSubject(
                                 this.props.project,
-                                [{ name: subject }],
+                                subjects,
                                 false,
                                 this.props.vocab.ERROR);
                         }}

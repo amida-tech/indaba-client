@@ -7,6 +7,9 @@ class SubjectForm extends Component {
     render() {
         return (
             <form className='subject-form' onSubmit={this.props.handleSubmit}>
+                <div className='subject-form__instructions'>
+                    {this.props.vocab.PROJECT.SUBJECT_TITLE_INSTRUCTION}
+                </div>
                 <Field
                     name='subjects'
                     component='input'
@@ -20,7 +23,6 @@ class SubjectForm extends Component {
 
 SubjectForm.propTypes = {
     vocab: PropTypes.object.isRequired,
-    permissions: PropTypes.string,
 };
 
 export default compose(

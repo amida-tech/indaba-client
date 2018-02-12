@@ -1,0 +1,15 @@
+$form-text: #333;
+$block-class:'subject-form';
+
+@at-root {
+    .#{$block-class} {
+        padding: 1em;
+
+        &__instructions {
+            @extend .small-font;
+
+            color: $form-text;
+            margin-bottom: 1em;
+        }
+    }
+}

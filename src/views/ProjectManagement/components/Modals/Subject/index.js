@@ -16,7 +16,9 @@ class SubjectModal extends Component {
                 onSave={this.props.onClickToSubmit}>
                 <SubjectForm
                     vocab={this.props.vocab}
-                    onSubmit={values => this.props.onAddSubject(values)} />
+                    onSubmit={(values) => {
+                        this.props.onAddSubject(subjectMapping(values));
+                    }} />
             </Modal>
         );
     }
@@ -26,7 +28,12 @@ SubjectModal.propTypes = {
     vocab: PropTypes.object.isRequired,
     onClickToSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onAddStage: PropTypes.func.isRequired,
+    onAddSubject: PropTypes.func.isRequired,
+};
+
+const subjectMapping = (values) => {
+    return values.subjects.split(/\s*,\s*/).filter(subject =>
+        subject).map((subject) => { return { name: subject }; });
 };
 
 const mapDispatchToProps = dispatch => ({

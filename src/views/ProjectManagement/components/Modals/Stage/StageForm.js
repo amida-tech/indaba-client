@@ -21,7 +21,7 @@ class StageForm extends Component {
                                 name='title'
                                 component='input'
                                 type='text'
-                                className='stage-form__input-field'
+                                className='form__input-field'
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
@@ -39,6 +39,7 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
+
                     <div className='stage-form__activities'>
                            <label className='stage-form__activities-label'>
                            {this.props.vocab.PROJECT.PERMISSIONS}
