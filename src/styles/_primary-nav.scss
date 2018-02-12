@@ -45,6 +45,7 @@ $block-class:'primary-nav';
             padding-left: 8px;
             padding-right: 8px;
             position: relative;
+            outline: none;
 
             &:hover {
                 text-decoration: none;
@@ -52,9 +53,14 @@ $block-class:'primary-nav';
             }
 
             &:focus,
-            &:active {
+            &:active,
+            &:visited {
                 text-decoration: none;
                 font-weight: 400;
+            }
+
+            &:focus {
+                color: $nav-text-color;
             }
 
             &--active,
