@@ -36,6 +36,8 @@ class LoginPanel extends Component {
 LoginPanel.propTypes = {
     vocab: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
+    currentEmail: PropTypes.string,
 };
 
 export default LoginPanel;
