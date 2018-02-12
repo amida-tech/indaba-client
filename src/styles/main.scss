@@ -4,7 +4,6 @@
 @import './styles.scss';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
-@import './new-project-title.scss';
 @import './user-sidebar.scss';
 @import './invite-user.scss';
 @import './assignee-card.scss';
@@ -52,6 +51,9 @@
 @import './icons.scss';
 @import './user-status.scss';
 @import './validated-text-input.scss';
+// Create Project Wizard
+@import './createprojectwizard/new-project-title-form.scss';
+@import './createprojectwizard/new-project-title.scss';
 // SelectGroupUsers
 @import './selectgroupusers/select-group-users.scss';
 @import './selectgroupusers/filtered-list.scss';
