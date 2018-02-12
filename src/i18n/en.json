@@ -100,7 +100,8 @@
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
-        "NUMBER": "Not a number."
+        "NUMBER": "Not a number.",
+        "FIELD_REQUIRED": "Required field must not be blank."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
