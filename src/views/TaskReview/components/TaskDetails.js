@@ -52,7 +52,7 @@ class TaskDetails extends Component {
                     </div>
                     { this.props.profile.roleID === 2 ?
                         <DateTime id='taskEndDate' className='task-details__info-box-datetime'
-                            format='MMMM D, YYYY'
+
                             onChange={(event) => {
                                 this.props.actions.updateTask(
                                     this.props.task.id,
