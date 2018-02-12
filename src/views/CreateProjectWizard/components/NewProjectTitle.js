@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { TextInput } from 'grommet';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../common/components/Modal';
+import NewProjectTitleForm from './NewProjectTitleForm';
 
 class NewProjectTitle extends Component {
     constructor(props) {
@@ -23,36 +23,23 @@ class NewProjectTitle extends Component {
         return <Modal
             title={this.props.vocab.PROJECT.PROJECT_TITLE}
             class='new-project-title__layer'
-            onSave={() => this.props.onSave(
-
-                {
-                    user: {
-                        realmUserId: this.props.profile.id,
-                        organizationId: this.props.profile.organizationId,
-                    },
-                    codeName: this.props.title,
-                    description: this.props.summary,
-                    langId: 1,
-                },
+            form='new-project-title-form'
+            onCancel={this.props.onCancel}>
+            <NewProjectTitleForm onSubmit={
+                values => this.props.onSave(
+                    Object.assign({},
+                        {
+                            user: {
+                                realmUserId: this.props.profile.id,
+                                organizationId: this.props.profile.organizationId,
+                            },
+                            langId: 1,
+                        },
+                        values.project,
+                    ),
                 this.props.vocab.ERROR,
-            )}
-            onCancel={this.props.onCancel}
-            >
-            <div className='new-project-title'>
-                <TextInput className='new-project-title__name'
-                    placeHolder={this.props.vocab.PROJECT.TITLE}
-                    onDOMChange={this.handleTitleEntry} />
-                <div className='new-project-title__summary-container'>
-                    <textarea className='new-project-title__summary'
-                        placeholder={this.props.vocab.PROJECT.SUMMARY}
-                        onChange={this.handleSummaryEntry} />
-                </div>
-                {this.props.errorMessage &&
-                    <div className='new-project-title__error'>
-                        {this.props.errorMessage}
-                    </div>
-                }
-            </div>
+            ) }
+            vocab={this.props.vocab} />
         </Modal>;
     }
 }
