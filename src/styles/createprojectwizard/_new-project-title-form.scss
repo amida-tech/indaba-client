@@ -6,9 +6,15 @@ $block-class: 'new-project-title-form';
         flex-direction: column;
         padding: 3em 2em;
 
+        &__field {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
+        }
+
         &__summary-container {
             padding-bottom: 0.5em;
-            margin-top: 8px;
         }
 
         &__summary {

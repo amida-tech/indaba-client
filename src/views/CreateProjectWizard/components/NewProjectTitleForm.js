@@ -4,17 +4,32 @@ import { Field, reduxForm } from 'redux-form';
 import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
 
 class NewProjectTitleForm extends Component {
+    constructor(props) {
+        super(props);
+        this.handleValidate = this.handleValidate.bind(this);
+    }
+    handleValidate(value) {
+        return !value ?
+        this.props.vocab.VALIDATE.FIELD_REQUIRED :
+        undefined;
+    }
     render() {
         return (
             <form onSubmit={this.props.handleSubmit}
                 className='new-project-title-form'>
-                <Field component={ValidatedTextInput}
-                    name='project.codeName'
-                    className='new-project-title-form__name'
-                    placeholder={this.props.vocab.PROJECT.TITLE}
-                    validate={value => (!value ?
-                        this.props.vocab.VALIDATE.FIELD_REQUIRED :
-                        undefined)}/>
+                <div className='new-project-title-form__field'>
+                    <Field component={ValidatedTextInput}
+                        name='project.codeName'
+                        placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
+                        validate={this.handleValidate}
+                        />
+                </div>
+                <div className='new-project-title-form__field'>
+                    <Field component={ValidatedTextInput}
+                        name='survey.name'
+                        placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
+                        validate={this.handleValidate}/>
+                </div>
                 <div className='new-project-title-form__summary-container'>
                     <Field component='textarea'
                         name='project.description'
