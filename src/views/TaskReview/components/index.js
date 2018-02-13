@@ -36,7 +36,7 @@ class TaskReview extends Component {
             || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current' &&
             !this.props.task.active);
         const reqCheck = every(flatSurvey, (question) => {
-            return question.required ? has(find(this.props.ui.form.answers,
+            return get(question, 'required') === true ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
         });
         const flagCount = sumBy(this.props.ui.flags, (flag) => {
