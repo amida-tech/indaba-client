@@ -561,7 +561,7 @@
         },
         "FORGOT_PASSWORD": {
             "TITLE": "Reset Password",
-            "BODY": "If you cannot remember your password, click the 'Reset Passord' Button. You will receive an email with instructions to reset your password.",
+            "BODY": "If you cannot remember your password, click the 'Reset Password' Button. You will receive an email with instructions to reset your password.",
             "BUTTON_LABEL": "Reset Password"
         }
     }
