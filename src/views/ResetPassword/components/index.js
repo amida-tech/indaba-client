@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import * as actions from './actions';
 import ResetPasswordForm from './ResetPasswordForm';
@@ -11,6 +12,7 @@ class ResetPasswordContainer extends Component {
             <ResetPasswordForm {...this.props}
                 onSubmit={({ password }) =>
                     this.props.actions.resetPassword(this.props.token, password)
+                    .catch(err => toast(err.message, { type: 'error', autoClose: false }))
                 }/>
         );
     }
