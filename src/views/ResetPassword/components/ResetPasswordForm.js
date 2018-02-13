@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-import apiService from '../../../services/api';
 import { required } from '../../../common/validation';
 import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
 
 class ResetPasswordForm extends Component {
     render() {
         return (
-            <form className='reset-password-form'>
+            <form onSubmit={this.props.handleSubmit}
+                className='reset-password-form'>
                 <div className='reset-password-form__instructions'>
                     {this.props.vocab.RESET_PASSWORD.INSTRUCTIONS}
                 </div>
@@ -18,10 +18,10 @@ class ResetPasswordForm extends Component {
                         name='password'
                         validate={required(this.props.vocab)}/>
                 </div>
-                <div className='reset-password-form__button'
-                    onClick={apiService.auth.resetPassword}>
+                <button className='reset-password-form__button'
+                    type='submit'>
                     {this.props.vocab.RESET_PASSWORD.LINK}
-                </div>
+                </button>
             </form>
         );
     }
