@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
 
@@ -12,7 +13,10 @@ class ForgotModal extends Component {
                 onCancel={() => this.props.actions.showForgotPasswordFor(null)}
                 onSave={() => this.props.actions.requestResetToken(
                     this.props.email,
-                )} />
+                ).then(() => {
+                    toast(this.props.vocab.MODAL.FORGOT_PASSWORD.EMAIL_SENT);
+                    this.props.actions.showForgotPasswordFor(null);
+                })} />
         );
     }
 }
