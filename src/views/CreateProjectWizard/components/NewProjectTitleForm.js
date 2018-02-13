@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import { required } from '../../../common/validation';
 import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
 
 class NewProjectTitleForm extends Component {
     constructor(props) {
         super(props);
         this.handleValidate = this.handleValidate.bind(this);
-    }
-    handleValidate(value) {
-        return !value ?
-        this.props.vocab.VALIDATE.FIELD_REQUIRED :
-        undefined;
     }
     render() {
         return (
@@ -21,14 +17,14 @@ class NewProjectTitleForm extends Component {
                     <Field component={ValidatedTextInput}
                         name='project.codeName'
                         placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
-                        validate={this.handleValidate}
+                        validate={required(this.props.vocab)}
                         />
                 </div>
                 <div className='new-project-title-form__field'>
                     <Field component={ValidatedTextInput}
                         name='survey.name'
                         placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
-                        validate={this.handleValidate}/>
+                        validate={required(this.props.vocab)}/>
                 </div>
                 <div className='new-project-title-form__summary-container'>
                     <Field component='textarea'
