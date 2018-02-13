@@ -31,7 +31,7 @@ class TaskReview extends Component {
         const flatSurvey = this.props.survey.questions ?
             this.props.survey.questions : compact(flatten(map(this.props.survey.sections, 'questions')));
         const displaySurvey = this.props.sectionIndex === -1 ?
-            flatSurvey : this.props.survey.sections[this.props.sectionIndex].questions;
+            flatSurvey : compact(get(this.props.survey, `sections[${this.props.sectionIndex}].questions`));
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
             || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current' &&
             !this.props.task.active);
