@@ -164,7 +164,7 @@ export function multipartFormDataPostRequest(fullURI, data) {
 // Private Helpers
 // ////////////////
 function handleResponse(res) {
-    if (res.status >= 200 && res.status < 300) {
+    if (res.ok) {
         return decodeResponse(res);
     }
     return decodeResponse(res).then(decoded => Promise.reject(decoded));
