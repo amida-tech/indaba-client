@@ -467,7 +467,7 @@
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "RESET_PASSWORD": {
-        "INSTRUCTIONS": "Click the link below to reset your password.",
+        "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
         "LINK": "Reset"
     },
     "MODAL": {
