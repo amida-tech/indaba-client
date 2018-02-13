@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import apiService from '../../../services/api';
+import * as actions from './actions';
 import ResetPasswordForm from './ResetPasswordForm';
 
 class ResetPasswordContainer extends Component {
     render() {
         return (
             <ResetPasswordForm {...this.props}
-                onSubmit={({ password }) => {
-                    apiService.auth.resetPassword(this.props.token, password);
-                }}/>
+                onSubmit={({ password }) =>
+                    this.props.actions.resetPassword(this.props.token, password)
+                }/>
         );
     }
 }
@@ -20,4 +21,8 @@ const mapStateToProps = (state, ownProps) => ({
     token: ownProps.params.token,
 });
 
-export default connect(mapStateToProps)(ResetPasswordContainer);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer);
