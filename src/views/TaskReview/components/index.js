@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { every, find, flatten, get, has, map, sumBy } from 'lodash';
+import { compact, every, find, flatten, get, has, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -29,7 +29,7 @@ class TaskReview extends Component {
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
 
         const flatSurvey = this.props.survey.questions ?
-            this.props.survey.questions : flatten(map(this.props.survey.sections, 'questions'));
+            this.props.survey.questions : compact(flatten(map(this.props.survey.sections, 'questions')));
         const displaySurvey = this.props.sectionIndex === -1 ?
             flatSurvey : this.props.survey.sections[this.props.sectionIndex].questions;
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)

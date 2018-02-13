@@ -28,10 +28,10 @@ export const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
-        let flatSurvey;
+        let flatSurvey = [];
         if (has(action.survey, 'questions')) {
             flatSurvey = get(action.survey, 'questions', []);
-        } else {
+        } else if (has(action.survey, 'sections')) {
             flatSurvey = compact(flatten(map(action.survey.sections, 'questions')));
         }
         const setActive = flatSurvey.length > 0 ? flatSurvey[0].id : -1;
