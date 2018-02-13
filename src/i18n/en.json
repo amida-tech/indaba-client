@@ -469,7 +469,8 @@
     "RESET_PASSWORD": {
         "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
         "LINK": "Reset",
-        "EMAIL_REQUIRED": "Enter your email to reset your password."
+        "EMAIL_REQUIRED": "Enter your email to reset your password.",
+        "PASSWORD_RESET_SUCCESS": "Your password has been reset. You can now log in with your new password."
     },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {

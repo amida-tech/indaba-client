@@ -12,6 +12,7 @@ class ResetPasswordContainer extends Component {
             <ResetPasswordForm {...this.props}
                 onSubmit={({ password }) =>
                     this.props.actions.resetPassword(this.props.token, password)
+                    .then(() => toast(this.props.vocab.RESET_PASSWORD.PASSWORD_RESET_SUCCESS))
                     .catch(err => toast(err.message, { type: 'error', autoClose: false }))
                 }/>
         );
