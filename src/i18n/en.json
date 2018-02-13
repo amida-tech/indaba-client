@@ -466,6 +466,10 @@
         "EXPORT_CSV": "Export CSV",
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
+    "RESET_PASSWORD": {
+        "INSTRUCTIONS": "Click the link below to reset your password.",
+        "LINK": "Reset"
+    },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {
             "PROJECT_TAB": {
