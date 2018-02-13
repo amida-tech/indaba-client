@@ -22,10 +22,10 @@ export function addQueryParams(url, params) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
-export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
+export function apiAuthPostRequest(fullURI, requestBodyObject) {
     const encodedRequestBodyObject = formurlencoded(requestBodyObject);
 
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'POST',
         headers: {
             Accept: '*/*',
@@ -33,8 +33,7 @@ export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
         },
         body: encodedRequestBodyObject,
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(handleResponse);
 }
 
 /**
