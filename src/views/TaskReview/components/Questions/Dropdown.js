@@ -14,19 +14,17 @@ class Dropdown extends Component {
             <div className='dropdown'>
                 {
                     this.props.displayMode ?
-
-                    <select className='dropdown__field'
+                    <select className='dropdown__field-disabled'
                         value={currentValue}
                         placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
                         disabled={true}>
                         <option className='dropdown__option'
                             label={currentValue} />
                     </select> :
-
                     <Select className='dropdown__field'
                         value={currentValue}
                         placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
-                        readonly={this.props.displayMode}
+                        readOnly={this.props.displayMode}
                         options={this.props.choices.map((entry) => {
                             return { label: entry.text, value: entry.id };
                         })}

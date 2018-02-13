@@ -7,20 +7,6 @@ export function projectWizardInitialize() {
     };
 }
 
-export function updateWizardProjectTitle(title) {
-    return {
-        type: actionTypes.UPDATE_WIZARD_PROJECT_TITLE,
-        title,
-    };
-}
-
-export function updateWizardProjectSummary(summary) {
-    return {
-        type: actionTypes.UPDATE_WIZARD_PROJECT_SUMMARY,
-        summary,
-    };
-}
-
 export function showAddUserGroupWizardModal(show) {
     return {
         type: actionTypes.SHOW_ADD_USER_GROUP_WIZARD_MODAL,

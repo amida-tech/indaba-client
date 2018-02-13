@@ -23,16 +23,20 @@ export function getProjects(errorMessages) {
 }
 
 export function postProject(requestBody, errorMessages) {
-    return (dispatch) => {
+    return dispatch => new Promise((resolve, reject) => {
         apiService.projects.postProject(
             requestBody,
             (projectErr, projectResp) => {
-                dispatch((!projectErr && projectResp) ?
-                    _postProjectSuccess(projectResp) :
-                    _reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+                if (projectErr) {
+                    dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+                    reject(projectErr);
+                } else {
+                    dispatch(_postProjectSuccess(projectResp));
+                    resolve(projectResp);
+                }
             },
         );
-    };
+    });
 }
 
 export function putProject(project, errorMessages) {

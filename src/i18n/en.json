@@ -100,7 +100,8 @@
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
-        "NUMBER": "Not a number."
+        "NUMBER": "Not a number.",
+        "FIELD_REQUIRED": "Required field must not be blank."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -176,6 +177,8 @@
         "SURVEY": "Survey",
         "TITLE": "Title",
         "SUBJECT": "Subject",
+        "PROJECT_TITLE": "Project Title",
+        "SURVEY_TITLE": "Survey Title",
         "SUBJECT_NAME": "Subject Name",
         "STATUS": "Status",
         "SUMMARY": "Summary",
@@ -353,6 +356,7 @@
         "PERMISSIONS": "Permissions"
     },
     "SURVEY": {
+        "NO_DATE_ENTERED": "No date entered",
         "RETIRED": "Retired",
         "DRAFT": "Draft",
         "PUBLISHED": "Published",
