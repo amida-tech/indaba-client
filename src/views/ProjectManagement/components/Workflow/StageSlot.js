@@ -87,7 +87,7 @@ class StageSlot extends Component {
         if (diff <= 0) {
             return { label: this.props.vocab.PROJECT.CARD.LATE, type: StatusLabelType.BAD };
         }
-        if (!TaskStatus.responsesExist(this.props.task)) {
+        if (!this.props.task.flagHistory && this.props.task.assessmentStatus === 'new') {
             return {
                 label: this.props.vocab.PROJECT.CARD.NOT_STARTED,
                 type: StatusLabelType.NEUTRAL };
@@ -99,7 +99,7 @@ class StageSlot extends Component {
         const { isOver, canDrop, connectDropTarget } = this.props;
 
         const diff = TaskStatus.daysUntilDue(this.props.task);
-        const done = TaskStatus.responsesComplete(this.props.task, this.props.surveySize);
+        const done = this.props.task.status === 'completed';
 
         const labelDisplay = this.displayStatus(done, diff);
         let stageClass = 'stage-slot ';
