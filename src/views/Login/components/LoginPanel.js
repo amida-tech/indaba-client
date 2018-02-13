@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 import LoginForm from './LoginForm';
 import ForgotModal from './ForgotModal';
@@ -33,8 +34,11 @@ class LoginPanel extends Component {
                     </div>
                 }
                 <div className='login-panel__link'
-                    onClick={() =>
-                        this.props.actions.showForgotPasswordFor(this.props.currentEmail)} >
+                    onClick={() => (
+                        this.props.currentEmail ?
+                        this.props.actions.showForgotPasswordFor(this.props.currentEmail) :
+                        toast(this.props.vocab.RESET_PASSWORD.EMAIL_REQUIRED)
+                    )} >
                     {this.props.vocab.COMMON.FORGOT_PASSWORD}
                 </div>
             </div>
