@@ -34,10 +34,29 @@ $block-class: 'message-list';
             background: #fff;
             border-bottom: 1px solid $border-color;
 
+            &--unread {
+                .#{$block-class}__unread-indicator {
+                    background-color: $brand-color;
+                }
+
+                .#{$block-class}__name,
+                .#{$block-class}__subject,
+                .#{$block-class}__time {
+                    font-weight: bold;
+                }
+            }
+
             &:hover {
                 background-color: darken(#fafafa, 5%);
                 color: $lead-font-color;
             }
+        }
+
+        &__unread-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 6px;
         }
 
         &__name {
