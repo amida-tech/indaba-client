@@ -30,7 +30,8 @@ class CreateSectionPanel extends Component {
                             className='create-section-panel__menu-icon'/>
                     </button>
                 </div>
-                {this.props.section.questions.map((question, questionIndex) => (
+                {this.props.section.questions &&
+                    this.props.section.questions.map((question, questionIndex) => (
                     <QuestionPanel className='create-section-panel__question'
                         key={`key-question-${questionIndex}`}
                         sectionIndex={this.props.sectionIndex}
