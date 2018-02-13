@@ -11,5 +11,9 @@ $block-class:'subject-form';
             color: $form-text;
             margin-bottom: 1em;
         }
+
+        &__input-field {
+            width: 100%;
+        }
     }
 }
