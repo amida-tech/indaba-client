@@ -12,12 +12,11 @@ class ResetPasswordForm extends Component {
                 <div className='reset-password-form__instructions'>
                     {this.props.vocab.RESET_PASSWORD.INSTRUCTIONS}
                 </div>
-                <div className='reset-password-form__password'>
-                    <Field component={ValidatedTextInput}
-                        password={true}
-                        name='password'
-                        validate={required(this.props.vocab)}/>
-                </div>
+                <Field component={ValidatedTextInput}
+                    className='reset-password-form__password'
+                    password={true}
+                    name='password'
+                    validate={required(this.props.vocab)}/>
                 <button className='reset-password-form__button'
                     type='submit'>
                     {this.props.vocab.RESET_PASSWORD.LINK}
