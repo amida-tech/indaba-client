@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'redux';
-import { Field, reduxForm, form } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 class SubjectForm extends Component {
+    constructor(props) {
+        super(props);
+        this.handleValidate = this.handleValidate.bind(this);
+    }
+
     render() {
         return (
             <form className='subject-form' onSubmit={this.props.handleSubmit}>
@@ -25,6 +29,4 @@ SubjectForm.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-export default compose(
-    reduxForm({ form: 'subject-form' }),
-)(SubjectForm);
+export default reduxForm({ form: 'subject-form' })(SubjectForm);
