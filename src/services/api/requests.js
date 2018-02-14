@@ -163,19 +163,18 @@ export function multipartFormDataPostRequest(fullURI, data) {
 // ////////////////
 // Private Helpers
 // ////////////////
-function handleResponse(res) {
-    if (res.ok) {
-        return decodeResponse(res);
+function handleResponse(response) {
+    if (response.ok) {
+        return decodeResponse(response);
     }
-    return decodeResponse(res).then(decoded => Promise.reject(decoded));
+    return decodeResponse(response).then(decoded => Promise.reject(
+        { response, body: decoded }));
 }
 
 function decodeResponse(res) {
     // res.json() will crash on empty responses so we manually check for them
     return res.text().then((text) => {
-        if (res.status === 401) {
-            return res.status;
-        } else if (text) {
+        if (text) {
             try {
                 return JSON.parse(text);
             } catch (e) {
