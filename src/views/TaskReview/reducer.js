@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { flatten, has, map, findIndex } from 'lodash';
+import { compact, flatten, get, has, map, findIndex } from 'lodash';
 
 import * as type from './actionTypes';
 import {
@@ -28,9 +28,13 @@ export const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case GET_SURVEY_BY_ID_SUCCESS: {
-        const flatSurvey = action.survey.sections ? flatten(map(action.survey.sections, 'questions')) :
-            action.survey.questions;
-        const setActive = flatSurvey !== undefined && flatSurvey.length > 0 ? flatSurvey[0].id : -1;
+        let flatSurvey = [];
+        if (has(action.survey, 'questions')) {
+            flatSurvey = get(action.survey, 'questions', []);
+        } else if (has(action.survey, 'sections')) {
+            flatSurvey = compact(flatten(map(action.survey.sections, 'questions')));
+        }
+        const setActive = flatSurvey.length > 0 ? flatSurvey[0].id : -1;
         return update(state, { ui: { flagSidebar: { activeId: { $set: setActive },
             timestamp: { $set: new Date() } },
             form: { surveyId: { $set: action.surveyId } },
