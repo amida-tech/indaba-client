@@ -11,7 +11,8 @@ class SurveyPresentation extends Component {
             <div className='survey-presentation'>
                 <Accordion
                     active={this.props.ui.showQuestions}
-                    openMulti={true}>
+                    openMulti={true}
+                    animate={false}>
                     {this.props.survey.map((question, index) =>
                         <QuestionContainer
                             key={`questionpanel${index}`}
