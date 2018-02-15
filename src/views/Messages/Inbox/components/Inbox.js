@@ -180,7 +180,8 @@ class Inbox extends Component {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
-        const noNext = this.props.inboxList.length === 0;
+        const noNext = this.props.messages.inboxCount <=
+            (INBOX_COUNT * (this.props.messages.inboxPage + 1));
         const noPrevious = this.props.messages.inboxPage === 0;
         return (
             <div className='inbox'>
@@ -222,9 +223,12 @@ class Inbox extends Component {
                                 {this.props.vocab.MESSAGES.PREVIOUS}
                             </button>
                         }
-                        <div className='inbox__page'>
-                            {this.props.messages.inboxPage + 1}
-                        </div>
+                        {
+                            (this.props.messages.inboxPage !== 0 || !noNext) &&
+                            <div className='inbox__page'>
+                                {this.props.messages.inboxPage + 1}
+                            </div>
+                        }
                         {
                             !noNext &&
                             <button className={'inbox__pager-button'}
