@@ -81,7 +81,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
-    goToMessage: id => dispatch(push(`/messages/${id}`)),
+    goToMessage: (id) => {
+        dispatch(actions.markAsRead(id));
+        dispatch(push(`/messages/${id}`));
+    },
     goToInbox: () => dispatch(push('/messages')),
 });
 
