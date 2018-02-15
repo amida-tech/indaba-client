@@ -16,6 +16,7 @@ const initialState = {
     },
     thread: [],
     inboxList: [],
+    inboxCount: 0,
     inboxPage: 0,
 };
 
@@ -70,11 +71,13 @@ export default (state = initialState, action) => {
         });
     case actionTypes.GET_INBOX_THREADS_SUCCESS:
         return update(state, {
-            inboxList: { $set: action.threads },
+            inboxList: { $set: action.response.threads },
+            inboxCount: { $set: action.response.count },
         });
     case actionTypes.GET_INBOX_MESSAGES_SUCCESS:
         return update(state, {
-            inboxList: { $set: action.messages.map(transformServerMessageToReduxMessage) },
+            inboxList: { $set: action.response.messages.map(transformServerMessageToReduxMessage) },
+            inboxCount: { $set: action.response.count },
         });
     case LOG_OUT:
         return initialState;

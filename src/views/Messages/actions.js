@@ -194,14 +194,14 @@ const _getThreadSuccess = thread => ({
     thread,
 });
 
-const _getInboxThreadsSuccess = threads => ({
+const _getInboxThreadsSuccess = response => ({
     type: actionTypes.GET_INBOX_THREADS_SUCCESS,
-    threads,
+    response,
 });
 
-const _getInboxMessagesSuccess = messages => ({
+const _getInboxMessagesSuccess = response => ({
     type: actionTypes.GET_INBOX_MESSAGES_SUCCESS,
-    messages,
+    response,
 });
 
 const _startReply = reply => (dispatch) => {
