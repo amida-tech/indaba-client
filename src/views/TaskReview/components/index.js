@@ -24,7 +24,7 @@ class TaskReview extends Component {
 
     render() { // Pondering means to process all this just once.
         const options = [];
-        let flatSurvey;
+        let flatSurvey = [];
         if (this.props.survey.questions) {
             flatSurvey = this.props.survey.questions;
         } else if (has(this.props, 'survey.sections')) {
