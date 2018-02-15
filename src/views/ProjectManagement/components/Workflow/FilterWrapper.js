@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Filter from '../../../../common/components/Filter';
-import AddSubject from '../Modals/AddSubject';
+import SubjectModal from '../Modals/Subject';
 
 class FilterWrapper extends Component {
     render() {
@@ -41,15 +41,14 @@ class FilterWrapper extends Component {
                         </button>
                 </div>
                 {this.props.ui.showAddSubject &&
-                    <AddSubject
+                    <SubjectModal
                         vocab={this.props.vocab}
-                        projectId={this.props.project.id}
                         onCancel={() => this.props.actions.showAddSubjectModal(false)}
-                        onAddSubject={(subject) => {
+                        onAddSubject={(subjects) => {
                             this.props.actions.showAddSubjectModal(false);
                             this.props.actions.addSubject(
                                 this.props.project,
-                                [{ name: subject }],
+                                subjects,
                                 false,
                                 this.props.vocab.ERROR);
                         }}
