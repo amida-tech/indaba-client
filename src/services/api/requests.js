@@ -184,6 +184,15 @@ function handleResponse(response) {
     });
 }
 
+function handleResponseRejectWithResponse(response) {
+    if (response.ok) {
+        return decodeResponse(response);
+    }
+    return decodeResponse(response).then(body =>
+        Promise.reject({ response, body }),
+    );
+}
+
 function decodeResponse(res) {
     // res.json() will crash on empty responses so we manually check for them
     return res.text().then((text) => {
