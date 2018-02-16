@@ -33,7 +33,7 @@ class ToField extends Component {
                 <div className='to-field__search-wrapper'>
                     <Search onDOMChange={evt => this.props.actions.setToQuery(evt.target.value)}
                         value={this.props.query}
-                        onBlur={this.props.input.onBlur}
+                        onBlur={() => this.props.input.onBlur(this.props.input.value)}
                         suggestions=
                         {
                             this.props.users
