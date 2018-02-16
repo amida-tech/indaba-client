@@ -167,8 +167,16 @@ function handleResponse(response) {
     if (response.ok) {
         return decodeResponse(response);
     }
-    return decodeResponse(response).then(decoded => Promise.reject(
-        { response, body: decoded }));
+    return decodeResponse(response).then((body) => {
+        // reject with a normalized error structure that includes the original
+        // response object and the decoded body
+        // currently only for 401 so the auth middleware can detect it without
+        // having to change every other error handler that just expects the body
+        if (response.status === 401) {
+            return Promise.reject({ response, body });
+        }
+        return Promise.reject(body);
+    });
 }
 
 function decodeResponse(res) {
