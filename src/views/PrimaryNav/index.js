@@ -15,6 +15,11 @@ import CreateNewProject from './CreateNewProject';
 import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.onRefreshCheck = this.onRefreshCheck.bind(this);
+    }
+
     componentWillMount() {
         if (!has(this.props.user.profile, 'roleID')) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
@@ -22,6 +27,16 @@ class PrimaryNavContainer extends Component {
         if (this.props.nav.ui.checkBackend) {
             this.props.actions.getUsers(this.props.vocab.ERROR);
             this.props.actions.toggleCheckBackend();
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('load', this.onRefreshCheck);
+    }
+
+    onRefreshCheck() {
+        if (sessionStorage.getItem('indaba') !== 'true') {
+            this.props.actions.logOut('');
         }
     }
 
@@ -82,8 +97,7 @@ class PrimaryNavContainer extends Component {
                             size='2x' />
                     </Link>
                     <Link className='primary-nav__logout'
-                        onClick={() => this.props.actions.logOut('')}
-                        to='/login'>
+                        onClick={() => this.props.actions.logOut('')}>
                         {this.props.vocab.COMMON.LOG_OUT}
                     </Link>
                 </div>

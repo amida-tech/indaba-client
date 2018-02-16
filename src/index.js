@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { push, syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -29,7 +29,6 @@ const DEVELOP = process.env.NODE_ENV === 'development';
 const authInterceptor = ({ dispatch }) => next => (action) => {
     if (action.err === 401) {
         dispatch(logOut(document.location.pathname));
-        dispatch(push('/login'));
     } else {
         next(action);
     }

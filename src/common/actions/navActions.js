@@ -1,4 +1,5 @@
 import cookie from 'react-cookies';
+import { push } from 'react-router-redux';
 
 import * as actionTypes from '../actionTypes/navActionTypes';
 
@@ -20,6 +21,7 @@ export function logOut(timeoutRef) {
     cookie.remove('indaba-auth', { path: '/' });
     cookie.remove('indaba-realm', { path: '/' });
     return (dispatch) => {
+        dispatch(push('/login'));
         dispatch(_logOutSuccess(timeoutRef));
     };
 }
