@@ -36,6 +36,11 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
     .then(handleResponse);
 }
 
+const optionalCallbackSuccess = callback => response =>
+    (callback ? callback(null, response) : response);
+const optionalCallbackError = callback => response =>
+    (callback ? callback(response) : Promise.reject(response));
+
 /**
  * Executes a GET request on the given URI
  * @param {String} fullURI
@@ -43,7 +48,7 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
  * @return {Any} handled by callback. Generally the response data.
 * */
 export function apiGetRequest(fullURI, callback) {
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'GET',
         headers: {
             Authorization: cookie.load('indaba-auth'),
