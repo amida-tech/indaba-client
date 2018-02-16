@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { filter, get } from 'lodash';
+import { compact, filter, get } from 'lodash';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -12,7 +12,7 @@ class SelectGroupUsers extends Component {
         super(props);
         this.state = {
             groupTitle: get(this.props, 'group.title', ''),
-            groupUserIds: get(this.props, 'group.users', []),
+            groupUserIds: compact(get(this.props, 'group.users', [])),
             projectUsersSelected: [],
             groupUsersSelected: [],
         };
