@@ -11,9 +11,7 @@ const projects = {
     putSurveyToProduct: (productId, requestBody, callback) => {
         requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody, callback);
     },
-    postUOA: (requestBody, callback) => { // For time being, we don't delete these.
-        requests.apiPostRequest(getFullPath('uoas'), requestBody, callback);
-    },
+    postUOA: requestBody => requests.apiPostRequest(getFullPath('uoas'), requestBody),
     deleteUOA: (uoaId, requestBody, callback) => {
         requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), requestBody, callback);
     },

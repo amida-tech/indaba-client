@@ -118,21 +118,19 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
         productId: project.productId,
     };
 
-    return (dispatch) => {
-        apiService.projects.postUOA(
-            requestBody,
-            (uoaErr, uoaResp) => {
-                if (!uoaErr && uoaResp) {
-                    if (!fromWizard && !project.stages.length) {
-                        toast(errorMessages.STAGE_NEED);
-                    }
-                    dispatch(_postSubjectSuccess(uoaResp, project.id));
-                } else {
-                    dispatch(_reportProjectError(uoaErr, errorMessages.SUBJECT_REQUEST));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.postUOA(requestBody)
+        .then((uoaResp) => {
+            if (!fromWizard && !project.stages.length) {
+                toast(errorMessages.STAGE_NEED);
+            }
+            dispatch(_postSubjectSuccess(uoaResp, project.id));
+            return uoaResp;
+        })
+        .catch((uoaErr) => {
+            dispatch(_reportProjectError(uoaErr, errorMessages.SUBJECT_REQUEST));
+            throw uoaErr;
+        });
 }
 
 export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
