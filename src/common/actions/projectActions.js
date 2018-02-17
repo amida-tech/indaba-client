@@ -47,24 +47,22 @@ export function putProject(project, errorMessages) {
 }
 
 export function getProjectById(projectId, getTasks, errorMessages) {
-    return (dispatch) => {
-        apiService.projects.getProjectById(
-            projectId,
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
-                    if (projResp.surveyId) {
-                        dispatch(getSurveyById(projResp.surveyId, errorMessages));
-                    }
-                    if (getTasks === true) {
-                        dispatch(getTasksByProduct(projResp.productId, projectId, errorMessages));
-                    }
-                    dispatch(_getProjectByIdSuccess(projResp));
-                } else {
-                    dispatch(_reportProjectError(projErr, errorMessages.FETCH_PROJECTS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.getProjectById(projectId)
+        .then((projectResp) => {
+            if (projectResp.surveyId) {
+                dispatch(getSurveyById(projectResp.surveyId, errorMessages));
+            }
+            if (getTasks === true) {
+                dispatch(getTasksByProduct(projectResp.productId, projectId, errorMessages));
+            }
+            dispatch(_getProjectByIdSuccess(projectResp));
+            return projectResp;
+        })
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
+            throw projectErr;
+        });
 }
 
 export function updateProjectWithSurvey(projectId, surveyId) {

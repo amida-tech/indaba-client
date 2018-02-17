@@ -5,9 +5,7 @@ import getFullPath from '../../utils/getFullPath';
 
 const projects = {
     getProjects: () => requests.apiGetRequest(getFullPath('projects')),
-    getProjectById: (projectId, callback) => {
-        requests.apiGetRequest(getFullPath(`projects/${projectId}`), callback);
-    },
+    getProjectById: projectId => requests.apiGetRequest(getFullPath(`projects/${projectId}`)),
     postProject: requestBody => requests.apiPostRequest(getFullPath('projects'), requestBody),
     putProject: (projectId, requestBody) => requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody),
     putSurveyToProduct: (productId, requestBody, callback) => {
