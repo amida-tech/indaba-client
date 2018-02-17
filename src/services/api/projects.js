@@ -4,9 +4,7 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const projects = {
-    getProjects: (callback) => {
-        requests.apiGetRequest(getFullPath('projects'), callback);
-    },
+    getProjects: () => requests.apiGetRequest(getFullPath('projects')),
     getProjectById: (projectId, callback) => {
         requests.apiGetRequest(getFullPath(`projects/${projectId}`), callback);
     },

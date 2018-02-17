@@ -7,20 +7,18 @@ import { getTasksByProduct } from './taskActions';
 import Time from '../../utils/Time';
 import apiService from '../../services/api';
 
-// API calls.
 export function getProjects(errorMessages) {
-    return (dispatch) => {
-        apiService.projects.getProjects(
-            (projectErr, projectResp) => {
-                if (!projectErr && projectResp) {
-                    dispatch(getSurveys(errorMessages));
-                    dispatch(_getProjectsSuccess(projectResp));
-                } else {
-                    dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.getProjects()
+        .then((projectResp) => {
+            dispatch(getSurveys(errorMessages));
+            dispatch(_getProjectsSuccess(projectResp));
+            return projectResp;
+        })
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
+            throw projectErr;
+        });
 }
 
 export function postProject(requestBody, errorMessages) {
