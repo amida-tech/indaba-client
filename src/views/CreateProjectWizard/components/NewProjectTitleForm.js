@@ -5,10 +5,6 @@ import { required } from '../../../common/validation';
 import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
 
 class NewProjectTitleForm extends Component {
-    constructor(props) {
-        super(props);
-        this.handleValidate = this.handleValidate.bind(this);
-    }
     render() {
         return (
             <form onSubmit={this.props.handleSubmit}
