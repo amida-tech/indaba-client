@@ -84,26 +84,23 @@ export function putStage(project, stage, fromWizard, errorMessages) {
         },
     )];
 
-    return (dispatch) => {
-        apiService.projects.putWorkflowSteps(
-            project.workflowId,
-            requestBody,
-            (stepErr, stepResp) => {
-                if (!stepErr && stepResp) {
-                    if (!fromWizard && !project.subjects.length) {
-                        toast(errorMessages.SUBJECT_NEED);
-                    } else if (fromWizard && project.stages.length >= 3) {
-                        toast(errorMessages.MAX_STAGES);
-                    }
-                    const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
-                    dispatch(_putStageSuccess(
+    return dispatch =>
+        apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
+        .then((stepResp) => {
+            if (!fromWizard && !project.subjects.length) {
+                toast(errorMessages.SUBJECT_NEED);
+            } else if (fromWizard && project.stages.length >= 3) {
+                toast(errorMessages.MAX_STAGES);
+            }
+            const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
+            dispatch(_putStageSuccess(
                         Object.assign({}, requestBody[0], { id }), project.id));
-                } else {
-                    _reportProjectError(stepErr, errorMessages.STAGE_REQUEST);
-                }
-            },
-        );
-    };
+            return stepResp;
+        })
+        .catch((stepErr) => {
+            _reportProjectError(stepErr, errorMessages.STAGE_REQUEST);
+            throw stepErr;
+        });
 }
 
 export function deleteStage(projectId, stageId) {
