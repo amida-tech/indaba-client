@@ -53,8 +53,8 @@ class StatusChange extends Component {
                     .catch((error) => {
                         toast(
                             // greyscale provides readable error messages in 4xx
-                            error.e >= 400 && error.e < 500 ?
-                            error.message :
+                            error.body.e >= 400 && error.body.e < 500 ?
+                            error.body.message :
                             // fallback to generic error message
                             this.props.vocab.ERROR.PROJECT_ACTIVATE,
                             { type: 'error', autoClose: false },
