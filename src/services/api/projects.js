@@ -8,11 +8,8 @@ const projects = {
     getProjectById: (projectId, callback) => {
         requests.apiGetRequest(getFullPath(`projects/${projectId}`), callback);
     },
-    postProject: (requestBody, callback) => {
-        requests.apiPostRequest(getFullPath('projects'), requestBody, callback);
-    },
-    putProject: (projectId, requestBody) =>
-        requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody),
+    postProject: requestBody => requests.apiPostRequest(getFullPath('projects'), requestBody),
+    putProject: (projectId, requestBody) => requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody),
     putSurveyToProduct: (productId, requestBody, callback) => {
         requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody, callback);
     },
