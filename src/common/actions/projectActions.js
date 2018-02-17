@@ -43,22 +43,13 @@ export function postProject(requestBody, errorMessages) {
 export function putProject(project, errorMessages) {
     const { status, name: codeName } = project;
 
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            apiService.projects.putProject(
-            project.id,
-            { status, codeName },
-            (projectErr) => {
-                if (projectErr) {
-                    dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
-                    reject(projectErr);
-                } else {
-                    dispatch(getProjectById(project.id, false, errorMessages));
-                    resolve();
-                }
-            });
+    return dispatch =>
+        apiService.projects.putProject(project.id, { status, codeName })
+        .then(() => dispatch(getProjectById(project.id, false, errorMessages)))
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+            throw projectErr;
         });
-    };
 }
 
 export function getProjectById(projectId, getTasks, errorMessages) {
