@@ -390,6 +390,7 @@
         "REQUIRED_QUESTION": "Required Questions",
         "REQUIRED_TOOLTIP": "Respondent must answer the question to submit the survey",
         "WEIGHT": "Weighted Value Question",
+        "WEIGHT_TOOLTIP": "Allows assignment of values that make some answers more meaningful than others.",
         "SECTION_": "Section ",
         "SUBMIT_TASK": "Complete The Task",
         "SAVE_REVIEW": "Save Review Progress",
