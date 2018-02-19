@@ -51,6 +51,7 @@ class MessageContainer extends Component {
                                             reply={this.props.ui.reply}
                                             actions={this.props.actions}
                                             users={this.props.users}
+                                            ui={this.props.ui}
                                             goToMessage={this.props.goToMessage}/>);
                             }
                             return elements;
@@ -80,7 +81,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions), dispatch),
-    goToMessage: id => dispatch(push(`/messages/${id}`)),
+    goToMessage: (id) => {
+        dispatch(actions.markAsRead(id));
+        dispatch(push(`/messages/${id}`));
+    },
     goToInbox: () => dispatch(push('/messages')),
 });
 

@@ -17,6 +17,11 @@ export const clearInbox = () => ({
     type: actionTypes.CLEAR_INBOX,
 });
 
+export const setToQuery = query => ({
+    type: actionTypes.SET_TO_QUERY,
+    query,
+});
+
 export const archiveThread = ids => () => {
     return Promise.all(
         ids.map(id => new Promise((resolve, reject) => {
@@ -142,6 +147,11 @@ export const setExpandedMessages = messageIds => ({
     messageIds,
 });
 
+export const setInboxPage = page => ({
+    type: actionTypes.SET_INBOX_PAGE,
+    page,
+});
+
 export const getInboxMessages = params => (dispatch) => {
     apiService.messaging.list((err, result) => {
         if (!err) {
@@ -165,12 +175,12 @@ export const getThread = originalMessageId => (dispatch) => {
     });
 };
 
-export const getInboxThreads = archived => (dispatch) => {
+export const getInboxThreads = params => (dispatch) => {
     apiService.messaging.listThreads((err, response) => {
         if (!err) {
             dispatch(_getInboxThreadsSuccess(response));
         }
-    }, { archived });
+    }, params);
 };
 
 /* Private actions */

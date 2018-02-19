@@ -100,7 +100,8 @@
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
-        "NUMBER": "Not a number."
+        "NUMBER": "Not a number.",
+        "FIELD_REQUIRED": "Required field must not be blank."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -176,6 +177,8 @@
         "SURVEY": "Survey",
         "TITLE": "Title",
         "SUBJECT": "Subject",
+        "PROJECT_TITLE": "Project Title",
+        "SURVEY_TITLE": "Survey Title",
         "SUBJECT_NAME": "Subject Name",
         "STATUS": "Status",
         "SUMMARY": "Summary",
@@ -228,7 +231,8 @@
         "ADD_STAGE": "Add New Stage",
         "DELETE_STAGE": "Delete Stage",
         "ADD_STAGES": "Add Stages",
-        "SUBJECT_TITLE": "Subject Title",
+        "SUBJECT_TITLE": "Subject titles",
+        "SUBJECT_TITLE_INSTRUCTION": "You may enter multiple subjects separated by commas.",
         "STAGE_TITLE": "Stage Title",
         "STAGE_TITLE_INSTRUCTION": "Enter a stage title. Try Fill Out Survey or Review Stage",
         "STAGE_SETTINGS": "Stage Settings",
@@ -299,6 +303,9 @@
         "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
     },
     "MESSAGES": {
+        "TO_REQUIRED": "One or more recipients must be added",
+        "SUBJECT_REQUIRED": "Subject required",
+        "MESSAGE_REQUIRED": "Message required",
         "RECENT_MESSAGES": "Recent Messages",
         "MESSAGES": "Messages",
         "INBOX": "Inbox",
@@ -320,7 +327,9 @@
             "UNREAD_MESSAGES": "Unread Messages",
             "NOTIFICATIONS": "Notifications"
         },
-        "NO_MESSAGES": "No messages"
+        "NO_MESSAGES": "No messages",
+        "PREVIOUS": "Previous",
+        "NEXT": "Next"
     },
     "PROJECT_LIST_FILTER": {
         "ALL_PROJECTS": "All Projects",
@@ -347,6 +356,7 @@
         "PERMISSIONS": "Permissions"
     },
     "SURVEY": {
+        "NO_DATE_ENTERED": "No date entered",
         "RETIRED": "Retired",
         "DRAFT": "Draft",
         "PUBLISHED": "Published",

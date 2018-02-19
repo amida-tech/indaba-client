@@ -13,7 +13,7 @@ import InboxTabs from './InboxTabs';
 import Filter from '../../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
 
-import { FILTERS, INBOX_TABS } from '../../constants';
+import { FILTERS, INBOX_TABS, INBOX_COUNT } from '../../constants';
 
 class Inbox extends Component {
     constructor() {
@@ -29,6 +29,9 @@ class Inbox extends Component {
         this.handleMarkAsUnread = this.handleMarkAsUnread.bind(this);
 
         this.loadCurrentFilter = this.loadCurrentFilter.bind(this);
+
+        this.handlePrevious = this.handlePrevious.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
 
     componentWillMount() {
@@ -42,15 +45,21 @@ class Inbox extends Component {
     }
 
     handleFilterClick(filter) {
-        this.props.actions.clearInbox();
-        this.props.actions.setInboxFilter(filter);
-        this.loadByFilter(filter, this.props.messages.ui.inboxTab);
+        if (filter !== this.props.messages.ui.filter) {
+            this.props.actions.clearInbox();
+            this.props.actions.setInboxFilter(filter);
+            this.props.actions.setInboxPage(0);
+            this.loadByFilter(filter, this.props.messages.ui.inboxTab, 0);
+        }
     }
 
     handleTabClick(inboxTab) {
-        this.props.actions.clearInbox();
-        this.props.actions.setActiveInboxTab(inboxTab);
-        this.loadByFilter(this.props.messages.ui.filter, inboxTab);
+        if (inboxTab !== this.props.messages.ui.inboxTab) {
+            this.props.actions.clearInbox();
+            this.props.actions.setActiveInboxTab(inboxTab);
+            this.props.actions.setInboxPage(0);
+            this.loadByFilter(this.props.messages.ui.filter, inboxTab, 0);
+        }
     }
 
     // this contains flow control logic common across the individual message handlers
@@ -105,24 +114,59 @@ class Inbox extends Component {
     }
 
     loadCurrentFilter() {
-        this.loadByFilter(this.props.messages.ui.filter, this.props.messages.ui.inboxTab);
+        this.loadByFilter(
+            this.props.messages.ui.filter,
+            this.props.messages.ui.inboxTab,
+            this.props.messages.inboxPage,
+        );
     }
 
-    loadByFilter(filter, inboxTab) {
+    loadByFilter(filter, inboxTab, inboxPage) {
         if (filter === FILTERS.ALL_MESSAGES) {
-            this.props.actions.getInboxThreads(
-                inboxTab === INBOX_TABS.ARCHIVED);
+            this.props.actions.getInboxThreads({
+                archived: inboxTab === INBOX_TABS.ARCHIVED,
+                limit: INBOX_COUNT,
+                offset: inboxPage * INBOX_COUNT,
+            });
         } else if (filter !== FILTERS.NOTIFICATIONS) {
             this.props.actions.getInboxMessages({
                 archived: inboxTab === INBOX_TABS.ARCHIVED,
                 sent: filter === FILTERS.SENT_MESSAGES,
                 unread: filter === FILTERS.UNREAD_MESSAGES,
+                limit: INBOX_COUNT,
+                offset: inboxPage * INBOX_COUNT,
             });
         } else {
             this.props.actions.getInboxMessages({
                 archived: inboxTab === INBOX_TABS.ARCHIVED,
                 from: config.SYS_MESSAGE_USER,
+                limit: INBOX_COUNT,
+                offset: inboxPage * INBOX_COUNT,
             });
+        }
+    }
+
+    handlePrevious() {
+        if (this.props.messages.inboxPage !== 0) {
+            const newPage = this.props.messages.inboxPage - 1;
+            this.props.actions.setInboxPage(newPage);
+            this.loadByFilter(
+                this.props.messages.ui.filter,
+                this.props.messages.ui.inboxTab,
+                newPage,
+            );
+        }
+    }
+
+    handleNext() {
+        if (this.props.inboxList.length > 0) {
+            const newPage = this.props.messages.inboxPage + 1;
+            this.props.actions.setInboxPage(newPage);
+            this.loadByFilter(
+                this.props.messages.ui.filter,
+                this.props.messages.ui.inboxTab,
+                newPage,
+            );
         }
     }
 
@@ -136,6 +180,8 @@ class Inbox extends Component {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
+        const noNext = this.props.inboxList.length === 0;
+        const noPrevious = this.props.messages.inboxPage === 0;
         return (
             <div className='inbox'>
                 <div className='inbox__title'>
@@ -157,16 +203,37 @@ class Inbox extends Component {
                         onFilterClick={this.handleFilterClick}/>
                 </div>
                 <InboxMessageList entries={this.props.inboxList}
-                        thread={isThreadList}
-                        vocab={this.props.vocab}
-                        onMessageClick={this.handleThreadClick}
-                        actions={this.props.actions}
-                        users={this.props.users}
-                        onArchive={this.handleArchive}
-                        onUnarchive={this.handleUnarchive}
-                        onMarkAsRead={this.handleMarkAsRead}
-                        onMarkAsUnread={this.handleMarkAsUnread}
-                        onDelete={this.handleDelete}/>
+                    thread={isThreadList}
+                    vocab={this.props.vocab}
+                    onMessageClick={this.handleThreadClick}
+                    actions={this.props.actions}
+                    users={this.props.users}
+                    onArchive={this.handleArchive}
+                    onUnarchive={this.handleUnarchive}
+                    onMarkAsRead={this.handleMarkAsRead}
+                    onMarkAsUnread={this.handleMarkAsUnread}
+                    onDelete={this.handleDelete}/>
+                <div className='inbox__pager'>
+                    <div className='inbox__pager-content'>
+                        {
+                            !noPrevious &&
+                            <button className={'inbox__pager-button'}
+                                onClick={this.handlePrevious}>
+                                {this.props.vocab.MESSAGES.PREVIOUS}
+                            </button>
+                        }
+                        <div className='inbox__page'>
+                            {this.props.messages.inboxPage + 1}
+                        </div>
+                        {
+                            !noNext &&
+                            <button className={'inbox__pager-button'}
+                                onClick={this.handleNext}>
+                                {this.props.vocab.MESSAGES.NEXT}
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
         );
     }

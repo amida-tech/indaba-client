@@ -4,7 +4,6 @@
 @import './styles.scss';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
-@import './new-project-title.scss';
 @import './user-sidebar.scss';
 @import './invite-user.scss';
 @import './assignee-card.scss';
@@ -51,6 +50,10 @@
 @import './secondary-nav';
 @import './icons.scss';
 @import './user-status.scss';
+@import './validated-text-input.scss';
+// Create Project Wizard
+@import './createprojectwizard/new-project-title-form.scss';
+@import './createprojectwizard/new-project-title.scss';
 // SelectGroupUsers
 @import './selectgroupusers/select-group-users.scss';
 @import './selectgroupusers/filtered-list.scss';
@@ -81,6 +84,7 @@
 @import './modals/user-profile-form.scss';
 @import './modals/create-new-project.scss';
 @import './modals/task-options-form.scss';
+@import './modals/subject/subject-form.scss';
 @import './modals/stage/stage-form.scss';
 @import './modals/stage/stage-date-time.scss';
 @import './modals/title-form.scss';

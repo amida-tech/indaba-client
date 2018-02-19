@@ -9,20 +9,21 @@ class UserGroupListEntry extends Component {
         const users = this.props.group.users.map(
             userId => this.props.users.find(user => user.id === userId));
         return (
-            <div className='user-group-list-entry'>
-                <div className='user-group-list-entry__name'
-                    onClick={this.props.onGroupClick}>
+            <div className='user-group-list-entry'
+                onClick={this.props.onGroupClick} >
+                <div className='user-group-list-entry__name'>
                     {this.props.group.title}
                 </div>
-                <div className='user-group-list-entry__badge-string'
-                    onClick={this.props.onGroupClick}>
+                <div className='user-group-list-entry__badge-string'>
                     {users.map(user =>
                         user && <UserBadge key={user.id} user={user}/>,
                     )}
                 </div>
                 {this.props.onDeleteClick &&
-                    <DeleteIconButton onClick={() =>
-                            this.props.onDeleteClick(this.props.group.id)}/>
+                    <DeleteIconButton onClick={(event) => {
+                        this.props.onDeleteClick(this.props.group.id);
+                        event.stopPropagation();
+                    } } />
                 }
             </div>
         );

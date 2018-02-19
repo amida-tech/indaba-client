@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
+const inputComponent = ({ input, meta: { touched, error } }) =>
+(
+    <textarea className={`message-body-field__value ${(touched && error) ? 'message-body-field__value--error' : ''}`}
+        autoFocus
+        {...input}/>
+);
+
 class MessageBodyField extends Component {
     render() {
         return (
             <div className='message-body-field'>
                 {
                     this.props.input ?
-                    <Field component='textarea'
-                        className='message-body-field__value'
-                        name={this.props.name}
-                        autoFocus/> :
+                    <Field component={inputComponent}
+                        name={this.props.name}/> :
                     <div className='message-body-field__value'>
                         {this.props.value}
                     </div>

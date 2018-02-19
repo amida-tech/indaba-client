@@ -41,10 +41,6 @@ export default (state = initialState, action) => {
     switch (action.type) {
     case type.PROJECT_WIZARD_INITIALIZE:
         return initialState;
-    case type.UPDATE_WIZARD_PROJECT_TITLE:
-        return update(state, { project: { name: { $set: action.title } } });
-    case type.UPDATE_WIZARD_PROJECT_SUMMARY:
-        return update(state, { project: { summary: { $set: action.summary } } });
     case POST_PROJECT_SUCCESS:
         return update(state,
             { ui: {

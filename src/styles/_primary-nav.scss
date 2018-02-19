@@ -1,5 +1,5 @@
 $nav-text-color: #e0e0e0;
-$nav-create-button-background: #308253;
+$nav-dark-color: #308253;
 
 $block-class:'primary-nav';
 
@@ -48,24 +48,29 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken(#388055, 30%);
+                color: darken($nav-dark-color, 30%);
             }
 
             &:focus,
-            &:active {
+            &:active,
+            &:visited {
                 text-decoration: none;
                 font-weight: 400;
             }
 
+            &:focus {
+                color: $nav-text-color;
+            }
+
             &--active,
             &--active:focus {
-                color: darken(#388055, 30%);
+                color: darken($nav-dark-color, 30%);
             }
         }
 
         &__button {
             height: 40px;
-            background-color: darken(#388055, 10%);
+            background-color: darken($nav-dark-color, 10%);
             border: 1px;
             color: $nav-text-color;
             border-radius: 3px;
@@ -95,14 +100,14 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken(#388055, 20%);
+                color: darken($nav-dark-color, 20%);
             }
 
             &:focus,
             &:active {
                 text-decoration: none;
                 font-weight: 400;
-                color: darken(#388055, 30%);
+                color: darken($nav-dark-color, 30%);
             }
         }
 
@@ -127,7 +132,7 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken(#388055, 20%);
+                color: darken($nav-dark-color, 20%);
             }
 
             &:focus {

@@ -7,7 +7,7 @@ import TaskStatus from '../../../../utils/TaskStatus';
 const _taskLookup = (stage, subjectId, tasks, responses) => {
     const newTask = Object.assign({}, tasks.find(
         element => element.uoaId === subjectId && element.stepId === stage.id) ||
-        { stepId: stage.id, uoaId: subjectId, userIds: [] });
+        { stepId: stage.id, uoaId: subjectId, userIds: [], assessmentStatus: 'new', flagHistory: false });
     const response = _.find(responses, chat => chat.taskId === newTask.id);
     if (response) newTask.response = response.discuss;
     return newTask;
@@ -20,16 +20,13 @@ class FilteredRow extends Component {
             return !_.isEmpty(taskData.userIds);
         case 'late':
             return !taskData.userIds ||
-                (!(TaskStatus.endDateInPast(taskData) &&
-                !TaskStatus.responsesComplete(taskData, this.props.surveySize)));
+                (!(TaskStatus.endDateInPast(taskData) && taskData.status !== 'completed'));
         case 'inprogress':
-            return !taskData.userIds ||
-                (!(TaskStatus.responsesExist(taskData) &&
-                !TaskStatus.responsesComplete(taskData, this.props.surveySize)));
+            return !taskData.userIds || taskData.status === 'completed' || (!taskData.flagHistory && taskData.assessmentStatus === 'new');
         case 'notstarted':
-            return !taskData.userIds || TaskStatus.responsesExist(taskData);
+            return !taskData.userIds || taskData.status === 'completed' || taskData.flagHistory || taskData.assessmentStatus === 'in-progress';
         case 'flagged':
-            return !taskData.userIds || !TaskStatus.responsesFlagged(taskData);
+            return !taskData.userIds || !taskData.flagged;
         default:
             return '';
         }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 import { toast } from 'react-toastify';
+import { get } from 'lodash';
 
 import QuestionPanel from './QuestionPanel';
 
@@ -30,7 +31,7 @@ class CreateSectionPanel extends Component {
                             className='create-section-panel__menu-icon'/>
                     </button>
                 </div>
-                {this.props.section.questions.map((question, questionIndex) => (
+                {get(this.props.section, 'questions', []).map((question, questionIndex) => (
                     <QuestionPanel className='create-section-panel__question'
                         key={`key-question-${questionIndex}`}
                         sectionIndex={this.props.sectionIndex}

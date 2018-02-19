@@ -13,11 +13,11 @@ class SurveyPresentation extends Component {
                     active={this.props.ui.showQuestions}
                     openMulti={true}>
                     {this.props.survey.map((question, index) =>
-                    <QuestionContainer
-                        key={`questionpanel${index}`}
-                        questionIndex={index}
-                        question={question}
-                        {...this.props} />,
+                        <QuestionContainer
+                            key={`questionpanel${index}`}
+                            questionIndex={index}
+                            question={question}
+                            {...this.props} />,
                     )}
                 </Accordion>
                 {!this.props.taskDisabled &&

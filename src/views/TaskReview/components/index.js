@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { every, find, flatten, get, has, map, sumBy } from 'lodash';
+import { compact, every, find, flatten, get, has, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -29,14 +29,14 @@ class TaskReview extends Component {
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
 
         const flatSurvey = this.props.survey.questions ?
-            this.props.survey.questions : flatten(map(this.props.survey.sections, 'questions'));
+            this.props.survey.questions : compact(flatten(map(this.props.survey.sections, 'questions')));
         const displaySurvey = this.props.sectionIndex === -1 ?
-            flatSurvey : this.props.survey.sections[this.props.sectionIndex].questions;
+            flatSurvey : compact(get(this.props.survey, `sections[${this.props.sectionIndex}].questions`));
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
             || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current' &&
             !this.props.task.active);
         const reqCheck = every(flatSurvey, (question) => {
-            return question.required ? has(find(this.props.ui.form.answers,
+            return get(question, 'required') === true ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
         });
         const flagCount = sumBy(this.props.ui.flags, (flag) => {

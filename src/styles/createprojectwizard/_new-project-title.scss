@@ -1,0 +1,15 @@
+$block-class:'new-project-title';
+$bad-color: #af1212;
+
+@at-root {
+    .#{$block-class} {
+        &__layer {
+            width: 800px;
+        }
+
+        &__error {
+            width: 50%;
+            color: $bad-color;
+        }
+    }
+}

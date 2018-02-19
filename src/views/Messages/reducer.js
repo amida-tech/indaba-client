@@ -12,9 +12,11 @@ const initialState = {
         filter: FILTERS.ALL_MESSAGES,
         reply: false,
         expandedMessages: [],
+        toQuery: '',
     },
     thread: [],
     inboxList: [],
+    inboxPage: 0,
 };
 
 const transformServerMessageToReduxMessage = message =>
@@ -27,12 +29,16 @@ export default (state = initialState, action) => {
     const threadIndex = state.thread.findIndex(message => message.id === action.id);
 
     switch (action.type) {
+    case actionTypes.SET_TO_QUERY:
+        return update(state, { ui: { toQuery: { $set: action.query } } });
     case actionTypes.SET_ACTIVE_INBOX_TAB:
         return update(state, { ui: { inboxTab: { $set: action.tab } } });
     case actionTypes.SET_INBOX_FILTER:
         return update(state, { ui: { filter: { $set: action.filter } } });
     case actionTypes.CLEAR_INBOX:
         return update(state, { inboxList: { $set: [] } });
+    case actionTypes.SET_INBOX_PAGE:
+        return update(state, { inboxPage: { $set: action.page } });
     case actionTypes.START_REPLY:
         return update(state, { ui: {
             reply: { $set: action.reply },

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Search } from 'grommet';
 import _ from 'lodash';
-import { Field, change } from 'redux-form';
 
 import { renderName } from '../../../../utils/User';
 import Addressee from './Addressee';
@@ -18,10 +17,10 @@ class ToField extends Component {
     searchFilter(user) {
         return !this.props.input.value.includes(user.email);
     }
-    handleSelect(selection, dispatch) {
+    handleSelect(selection) {
         this.props.input.onChange(_.union(this.props.input.value,
             [selection.suggestion.value.email]));
-        dispatch(change(this.props.meta.form, 'to-search', ''));
+        this.props.actions.setToQuery('');
     }
     handleRemove(email) {
         this.props.input.onChange(
@@ -32,21 +31,23 @@ class ToField extends Component {
         return (
             <div className='to-field'>
                 <div className='to-field__search-wrapper'>
-                    <Field name='to-search'
-                        component={props =>
-                            <Search onDOMChange={evt => props.input.onChange(evt.target.value)}
-                                value={props.input.value}
-                                suggestions={
-                                    this.props.users
-                                        .filter(this.searchFilter)
-                                        .filter(user => renderName(user).toLowerCase()
-                                            .includes(props.input.value.toLowerCase()))
-                                    .map(user => ({ label: renderName(user),
-                                        value: user }))}
-                                        onSelect={selection =>
-                                            this.handleSelect(selection,
-                                                this.props.meta.dispatch)} />
-                            }/>
+                    <Search onDOMChange={evt => this.props.actions.setToQuery(evt.target.value)}
+                        value={this.props.query}
+                        onBlur={() => this.props.input.onBlur(this.props.input.value)}
+                        suggestions=
+                        {
+                            this.props.users
+                            .filter(this.searchFilter)
+                            .filter(user => renderName(user).toLowerCase()
+                                .includes(this.props.query.toLowerCase()))
+                            .map(user => ({ label: renderName(user), value: user }))
+                        }
+                        onSelect={selection =>
+                            this.handleSelect(selection, this.props.meta.dispatch)}
+                    />
+                    {
+                        this.props.meta.touched && this.props.meta.error
+                    }
                 </div>
                 {
                     this.props.input.value !== '' &&

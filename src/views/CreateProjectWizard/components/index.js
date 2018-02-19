@@ -80,14 +80,11 @@ class CreateProjectWizard extends Component {
             <div className='project-wizard'>
                 {this.props.ui.showProjectTitle &&
                     <NewProjectTitle
-                        title={this.props.project.name}
-                        summary={this.props.project.summary}
-                        updateTitle={this.props.actions.updateWizardProjectTitle}
-                        updateSummary={this.props.actions.updateWizardProjectSummary}
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
-                        onSave={this.props.actions.postProject}
+                        actions={this.props.actions}
                         onCancel={this.props.onWizardCancel}
+                        survey={this.props.survey}
                         vocab={this.props.vocab} />
                 }
                 {

@@ -57,9 +57,14 @@ export default (state = initialState, action) => {
             { name: { $set: action.name } } } } });
     case type.SURVEY_BUILDER_DELETE_SECTION:
         return update(state, { form: { sections: { $splice: [[action.sectionIndex, 1]] } } });
-    case type.SURVEY_BUILDER_INSERT_QUESTION:
-        return update(state, { form: { sections: { [action.sectionIndex]:
+    case type.SURVEY_BUILDER_INSERT_QUESTION: {
+        if (has(state.form, `sections[${action.sectionIndex}].questions`)) {
+            return update(state, { form: { sections: { [action.sectionIndex]:
             { questions: { $push: [action.question] } } } } });
+        }
+        return update(state, { form: { sections: { [action.sectionIndex]: { $set: {
+            questions: [action.question] } } } } });
+    }
     case type.SURVEY_BUILDER_UPDATE_QUESTION: {
         if (action.field === 'meta' && state.form.sections[action.sectionIndex].questions[action.questionIndex].meta) {
             return update(state, { form: { sections: { [action.sectionIndex]:
