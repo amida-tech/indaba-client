@@ -55,17 +55,15 @@ class AddSubjects extends Component {
                 {
                     productId: this.props.project.productId,
                     uoaId: this.props.ui.showSubjectDeleteConfirmModal.id,
-                },
-                (uoaErr) => {
-                    if (uoaErr) {
-                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                            { autoClose: false, type: 'error' });
-                    }
-                    this.props.actions.getProjectById(
-                        this.props.project.id,
-                        false,
-                        this.props.vocab.ERROR);
-                },
+                })
+            .catch(() => {
+                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                    { autoClose: false, type: 'error' });
+            })
+            .then(() => this.props.actions.getProjectById(
+                this.props.project.id,
+                false,
+                this.props.vocab.ERROR),
             );
             this.props.actions.wizardHideSubjectDeleteConfirmModal();
         }

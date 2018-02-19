@@ -134,26 +134,21 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
 }
 
 export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
-    if (!fromWizard) {
-        // TODO: Safety check on tasks.
-    }
-
     const requestBody = {
         productId: project.productId,
         uoaId,
     };
 
-    return (dispatch) => {
-        apiService.projects.deleteUOA(
-            uoaId,
-            requestBody,
-            (uoaErr, uoaResp) => {
-                dispatch((!uoaErr && uoaResp) ?
-                    _deleteSubjectSuccess(uoaId, project.id) :
-                    _reportProjectError(uoaErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.deleteUOA(uoaId, requestBody)
+        .then((uoaResp) => {
+            dispatch(_deleteSubjectSuccess(uoaId, project.id));
+            return uoaResp;
+        })
+        .catch((uoaErr) => {
+            dispatch(_reportProjectError(uoaErr, errorMessages.PRODUCT_REQUEST));
+            throw uoaErr;
+        });
 }
 
 export function addUser(userId, projectId, errorMessages) {
