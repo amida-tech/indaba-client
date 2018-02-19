@@ -50,6 +50,9 @@ const projects = {
     editSurvey: (surveyId) => {
         requests.apiPutRequest(getFullPath(`projects/survey/${surveyId}`), {}, () => null);
     },
+    exportData: (productId, callback) => {
+        requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`), callback);
+    },
     // deleteWorkflows: (workflowsId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
     // },

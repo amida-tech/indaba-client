@@ -263,6 +263,22 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
     };
 }
 
+export function exportData(productId, errorMessages) {
+    return dispatch => new Promise((resolve, reject) => {
+        apiService.projects.exportData(
+            productId,
+            (dataErr) => {
+                if (dataErr) {
+                    dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
+                    reject();
+                } else {
+                    resolve();
+                }
+            },
+        );
+    });
+}
+
 // Modals.
 export function showAddSubjectModal(show) {
     return {
