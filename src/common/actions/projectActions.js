@@ -279,13 +279,13 @@ export function exportData(productId, errorMessages) {
                     if (typeof dataResp === 'object') {
                         data = JSON.stringify(dataResp, undefined, 4);
                     }
-                    const blob = new Blob([data], { type: 'text/json' });
+                    const blob = new Blob([data], { type: 'text/csv' });
                     // const e = new MouseEvent('MouseEvents');
                     const a = document.createElement('a');
 
                     a.download = `indaba-${this.props.projectName}-${Time.renderForExport(new Date())}.csv`;
                     a.href = window.URL.createObjectUrl(blob);
-                    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+                    a.dataset.downloadurl = ['text/csv', a.download, a.href].join(':');
                     a.click();
                     resolve();
                 }
