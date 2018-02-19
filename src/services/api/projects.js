@@ -7,10 +7,10 @@ const projects = {
     getProjects: () => requests.apiGetRequest(getFullPath('projects')),
     getProjectById: projectId => requests.apiGetRequest(getFullPath(`projects/${projectId}`)),
     postProject: requestBody => requests.apiPostRequest(getFullPath('projects'), requestBody),
-    putProject: (projectId, requestBody) => requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody),
-    putSurveyToProduct: (productId, requestBody, callback) => {
-        requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody, callback);
-    },
+    putProject: (projectId, requestBody) =>
+        requests.apiPutRequest(getFullPath(`projects/${projectId}`), requestBody),
+    putSurveyToProduct: (productId, requestBody) =>
+        requests.apiPutRequest(getFullPath(`products/${productId}`), requestBody),
     postUOA: requestBody => requests.apiPostRequest(getFullPath('uoas'), requestBody),
     deleteUOA: (uoaId, requestBody) =>
         requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), requestBody),
