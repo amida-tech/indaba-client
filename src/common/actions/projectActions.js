@@ -158,15 +158,9 @@ export function addUser(userId, projectId, errorMessages) {
     };
 
     return (dispatch) => {
-        apiService.projects.postProjectUsers(
-            projectId,
-            requestBody,
-            (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _postProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
+        apiService.projects.postProjectUsers(projectId, requestBody)
+        .then(() => dispatch(_postProjectUserSuccess(userId, projectId)))
+        .catch(userErr => dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST)));
     };
 }
 

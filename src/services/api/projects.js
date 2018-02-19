@@ -14,9 +14,8 @@ const projects = {
     postUOA: requestBody => requests.apiPostRequest(getFullPath('uoas'), requestBody),
     deleteUOA: (uoaId, requestBody) =>
         requests.apiDeleteRequest(getFullPath(`uoas/${uoaId}`), requestBody),
-    postProjectUsers: (projectId, requestBody, callback) => {
-        requests.apiPostRequest(getFullPath(`projects/${projectId}/users`), requestBody, callback);
-    },
+    postProjectUsers: (projectId, requestBody) =>
+        requests.apiPostRequest(getFullPath(`projects/${projectId}/users`), requestBody),
     deleteProjectUsers: (projectId, userId, callback) => {
         requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), null, callback);
     },
