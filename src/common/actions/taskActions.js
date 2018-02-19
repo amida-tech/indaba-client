@@ -75,10 +75,10 @@ export function assignTask(userId, slot, project, errorMessages) {
             dispatch(_reportTasksError(null, errorMessages.ASSESSMENT_REQUEST));
         };
     }
-
+    console.log(slot.stageData);
     const surveyRequestBody = {
         name: slot.stageData.title,
-        stage: slot.stageData.position,
+        stage: slot.stageData.id,
         surveys: [{
             id: project.surveyId,
         }],
@@ -88,7 +88,7 @@ export function assignTask(userId, slot, project, errorMessages) {
     const requestBody = {
         userId,
         title: slot.stageData.title,
-        stepId: slot.task.stepId,
+        stepId: slot.stageData.id,
         uoaId: slot.task.uoaId,
         startDate: slot.stageData.startDate,
         endDate: slot.stageData.endDate,
