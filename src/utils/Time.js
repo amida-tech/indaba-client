@@ -40,6 +40,9 @@ export default {
     renderForSurvey(time) {
         return moment(time, 'MM/DD/YYYY').format('YYYY-MM-DD');
     },
+    renderForExport(time) {
+        return moment(time).format('MM/DD/YYYY_hh:mm');
+    },
     renderEndDateForTaskList(time, vocab) {
         return moment(time).calendar(null, {
             sameDay(now) {

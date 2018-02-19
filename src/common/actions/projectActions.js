@@ -4,6 +4,7 @@ import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
 import { getUsers } from './userActions';
 import { getTasksByProduct } from './taskActions';
+import Time from '../../utils/Time';
 import apiService from '../../services/api';
 
 // API calls.
@@ -267,11 +268,25 @@ export function exportData(productId, errorMessages) {
     return dispatch => new Promise((resolve, reject) => {
         apiService.projects.exportData(
             productId,
-            (dataErr) => {
+            (dataErr, dataResp) => {
                 if (dataErr) {
                     dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
                     reject();
                 } else {
+                    console.log('JAMES');
+                    console.log(dataResp);
+                    let data;
+                    if (typeof dataResp === 'object') {
+                        data = JSON.stringify(dataResp, undefined, 4);
+                    }
+                    const blob = new Blob([data], { type: 'text/json' });
+                    // const e = new MouseEvent('MouseEvents');
+                    const a = document.createElement('a');
+
+                    a.download = `indaba-${this.props.projectName}-${Time.renderForExport(new Date())}.csv`;
+                    a.href = window.URL.createObjectUrl(blob);
+                    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+                    a.click();
                     resolve();
                 }
             },
