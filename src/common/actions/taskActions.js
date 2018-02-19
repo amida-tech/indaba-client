@@ -75,7 +75,7 @@ export function assignTask(userId, slot, project, errorMessages) {
             dispatch(_reportTasksError(null, errorMessages.ASSESSMENT_REQUEST));
         };
     }
-    console.log(slot.stageData);
+
     const surveyRequestBody = {
         name: slot.stageData.title,
         stage: slot.stageData.id,
