@@ -168,15 +168,9 @@ export function removeUser(userId, projectId, errorMessages) {
     // TODO: Do safety call for tasks assigned to this user.
 
     return (dispatch) => {
-        apiService.projects.deleteProjectUsers(
-            projectId,
-            userId,
-            (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _deleteProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
+        apiService.projects.deleteProjectUsers(projectId, userId)
+        .then(() => dispatch(_deleteProjectUserSuccess(userId, projectId)))
+        .catch(userErr => dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST)));
     };
 }
 
