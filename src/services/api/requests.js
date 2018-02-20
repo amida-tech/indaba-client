@@ -159,7 +159,7 @@ export function multipartFormDataPostRequest(fullURI, data) {
 // Private Helpers
 // ////////////////
 function handleResponse(res, callback) {
-  // successful http response
+    // successful http response
     if (res.status >= 200 && res.status < 300) {
         decodeResponse(res).then(data => callback(null, data));
     } else if (res.status > 400) {
@@ -170,13 +170,17 @@ function handleResponse(res, callback) {
 }
 
 function decodeResponse(res) {
-  // res.json() will crash on empty responses so we manually check for them
+    // res.json() will crash on empty responses so we manually check for them
     return res.text().then((text) => {
         if (res.status === 401) {
             return res.status;
         } else if (text) {
-            return JSON.parse(text);
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                return text;
+            }
         }
-        return ''; // Was else return;
+        return '';
     });
 }

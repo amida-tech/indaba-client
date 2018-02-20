@@ -467,6 +467,12 @@
         "EXPORT_CSV": "Export CSV",
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
+    "RESET_PASSWORD": {
+        "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
+        "LINK": "Reset",
+        "EMAIL_REQUIRED": "Enter your email to reset your password.",
+        "PASSWORD_RESET_SUCCESS": "Your password has been reset. You can now log in with your new password."
+    },
     "MODAL": {
         "STATUS_CHANGE_MODAL": {
             "PROJECT_TAB": {
@@ -553,6 +559,12 @@
         "INACTIVE_CONFIRM": {
             "TITLE": "Make Project Inactive?",
             "WARNING": "Users have already been notified of assigned tasks and may have submitted data. Are you sure you want to de-activate this project?"
+        },
+        "FORGOT_PASSWORD": {
+            "TITLE": "Reset Password",
+            "BODY": "If you cannot remember your password, click the 'Reset Password' Button. You will receive an email with instructions to reset your password.",
+            "BUTTON_LABEL": "Reset Password",
+            "EMAIL_SENT": "A link to reset your password has been sent to your email address."
         }
     }
 }
