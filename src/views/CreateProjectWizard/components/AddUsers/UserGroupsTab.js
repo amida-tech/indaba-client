@@ -14,17 +14,12 @@ class UserGroupsTab extends Component {
     }
 
     handleDeleteClick(groupId) {
-        apiService.projects.deleteGroup(groupId, (err) => {
-            if (err) {
-                toast(this.props.vocab.ERROR.GROUP_DELETE, {
-                    autoClose: false, type: 'error',
-                });
-            } else {
-                this.props.actions.getProjectById(
-                    this.props.projectId,
-                    false,
-                    this.props.vocab.ERROR);
-            }
+        apiService.projects.deleteGroup(groupId)
+        .then(() => {
+            this.props.actions.getProjectById(this.props.projectId, false, this.props.vocab.ERROR);
+        })
+        .catch(() => {
+            toast(this.props.vocab.ERROR.GROUP_DELETE, { autoClose: false, type: 'error' });
         });
     }
 
