@@ -51,15 +51,18 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <InfiniteCalendar id='taskEndDate'
-                        className='task-details__info-box-datetime'
-
+                        <InfiniteCalendar
+                        displayOptions={{
+                            layout: 'portrait',
+                        }}
+                            id='taskEndDate'
+                            className='task-details__info-box-datetime'
                             onChange={(event) => {
                                 this.props.actions.updateTask(
-                                    this.props.task.id,
-                                    this.props.task.userIds,
-                                    new Date(event),
-                                    this.props.vocab.ERROR);
+                                this.props.task.id,
+                                this.props.task.userIds,
+                                new Date(event),
+                                this.props.vocab.ERROR);
                             }
                                 }
                             value={Time.renderCommon(this.props.task.endDate)} /> :
