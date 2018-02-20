@@ -192,20 +192,17 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
         users: groupData.users,
         projectId,
     };
-    return (dispatch) => {
-        apiService.projects.postGroup(
-            organizationId,
-            requestBody,
-            (groupErr, groupResp) => {
-                if (!groupErr && groupResp) {
-                    dispatch(getProjectById(projectId, errorMessages));
-                    dispatch(getUsers(errorMessages));
-                } else {
-                    dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.postGroup(organizationId, requestBody)
+        .then((groupResp) => {
+            dispatch(getProjectById(projectId, errorMessages));
+            dispatch(getUsers(errorMessages));
+            return groupResp;
+        })
+        .catch((groupErr) => {
+            dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
+            throw groupErr;
+        });
 }
 
 export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
