@@ -31,20 +31,23 @@ class SurveyPane extends Component {
                             {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
-                <div className='survey-pane__instructions'>
-                    <div className='survey-pane__instructions-header'>
-                        {this.props.vocab.PROJECT.INSTRUCTIONS}
+                {!this.props.stage.blindReview &&
+                    <div className='survey-pane__instructions'>
+                        <div className='survey-pane__instructions-header'>
+                            {this.props.vocab.PROJECT.INSTRUCTIONS}
+                        </div>
+                        <span className='survey-pane__instructions-explained'>
+                            {this.props.instructions ||
+                                this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED}
+                        </span>
+                        <span className='survey-pane__instructions-explained'>
+                            {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
+                                (this.props.ui.lastSave === null ?
+                                    this.props.vocab.PROJECT.NOT_SAVED :
+                                    Time.renderAutosave(this.props.ui.lastSave))}
+                        </span>
                     </div>
-                    <span className='survey-pane__instructions-explained'>
-                        {this.props.instructions || this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED}
-                    </span>
-                    <span className='survey-pane__instructions-explained'>
-                        {this.props.vocab.PROJECT.INSTRUCTIONS_EXPLAINED_2 +
-                            (this.props.ui.lastSave === null ?
-                                this.props.vocab.PROJECT.NOT_SAVED :
-                                Time.renderAutosave(this.props.ui.lastSave))}
-                    </span>
-                </div>
+                }
                 {
                     (this.props.stage.id === undefined || showCommentForm) ?
                     <SurveyForm
@@ -67,6 +70,7 @@ SurveyPane.propTypes = {
     stage: PropTypes.shape({
         id: PropTypes.number,
         discussionParticipation: PropTypes.bool,
+        blindReview: PropTypes.bool,
     }),
     task: PropTypes.shape({
         assessmentId: PropTypes.number,
