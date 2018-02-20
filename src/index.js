@@ -15,6 +15,7 @@ import SliderMonitor from 'redux-slider-monitor';
 import { createLogger } from 'redux-logger';
 import { createDevTools } from 'redux-devtools';
 
+import 'react-infinite-calendar/styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select/dist/react-select.css';
 import './styles/main.scss';
