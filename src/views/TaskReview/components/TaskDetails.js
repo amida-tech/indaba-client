@@ -52,11 +52,26 @@ class TaskDetails extends Component {
                     </div>
                     { this.props.profile.roleID === 2 ?
                         <InfiniteCalendar
+                            id='taskEndDate'
+                            className='task-details__info-box-datetime'
                         displayOptions={{
                             layout: 'portrait',
                         }}
-                            id='taskEndDate'
-                            className='task-details__info-box-datetime'
+                        theme={{
+                            selectionColor: 'rgb(48, 130, 82)',
+                            textColor: {
+                                default: '#333',
+                                active: '#FFF',
+                            },
+                            weekdayColor: 'rgb(78, 178, 118)',
+                            headerColor: 'rgb(48, 130, 82)',
+                            floatingNav: {
+                                background: 'rgba(81, 67, 138, 0.96)',
+                                color: '#FFF',
+                                chevron: '#FFA726',
+                            },
+                        }}
+
                             onChange={(event) => {
                                 this.props.actions.updateTask(
                                 this.props.task.id,
