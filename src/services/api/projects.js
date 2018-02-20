@@ -27,9 +27,8 @@ const projects = {
         requests.apiPutRequest(getFullPath(`workflows/${workflowId}/steps`), requestBody),
     deleteWorkflowStep: stepId =>
         requests.apiDeleteRequest(getFullPath(`workflows/${stepId}/steps`), {}),
-    editSurvey: (surveyId) => {
-        requests.apiPutRequest(getFullPath(`projects/survey/${surveyId}`), {}, () => null);
-    },
+    editSurvey: surveyId =>
+        requests.apiPutRequest(getFullPath(`projects/survey/${surveyId}`), {}),
     exportData: (productId, callback) => {
         requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`), callback);
     },
