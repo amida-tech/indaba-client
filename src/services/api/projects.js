@@ -50,9 +50,6 @@ const projects = {
             }
         });
     },
-    // deleteWorkflows: (workflowsId, callback) => {
-    //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
-    // },
 };
 
 export default projects;
