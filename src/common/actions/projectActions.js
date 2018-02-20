@@ -157,21 +157,31 @@ export function addUser(userId, projectId, errorMessages) {
         projectId,
     };
 
-    return (dispatch) => {
+    return dispatch =>
         apiService.projects.postProjectUsers(projectId, requestBody)
-        .then(() => dispatch(_postProjectUserSuccess(userId, projectId)))
-        .catch(userErr => dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST)));
-    };
+        .then((userResponse) => {
+            dispatch(_postProjectUserSuccess(userId, projectId));
+            return userResponse;
+        })
+        .catch((userErr) => {
+            dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
+            throw userErr;
+        });
 }
 
 export function removeUser(userId, projectId, errorMessages) {
     // TODO: Do safety call for tasks assigned to this user.
 
-    return (dispatch) => {
+    return dispatch =>
         apiService.projects.deleteProjectUsers(projectId, userId)
-        .then(() => dispatch(_deleteProjectUserSuccess(userId, projectId)))
-        .catch(userErr => dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST)));
-    };
+        .then((userResponse) => {
+            dispatch(_deleteProjectUserSuccess(userId, projectId));
+            return userResponse;
+        })
+        .catch((userErr) => {
+            dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
+            throw userErr;
+        });
 }
 
 export function addUserGroup(groupData, projectId, organizationId, errorMessages) {
