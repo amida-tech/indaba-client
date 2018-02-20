@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import InfiniteCalendar from 'react-infinite-calendar';
 import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
+import Calender from '../../../common/components/DateInput/Calendar';
 
 class TaskDetails extends Component {
     render() {
@@ -51,36 +51,7 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <InfiniteCalendar
-                            id='taskEndDate'
-                            className='task-details__info-box-datetime'
-                        displayOptions={{
-                            layout: 'portrait',
-                        }}
-                        theme={{
-                            selectionColor: 'rgb(48, 130, 82)',
-                            textColor: {
-                                default: '#333',
-                                active: '#FFF',
-                            },
-                            weekdayColor: 'rgb(78, 178, 118)',
-                            headerColor: 'rgb(48, 130, 82)',
-                            floatingNav: {
-                                background: 'rgba(81, 67, 138, 0.96)',
-                                color: '#FFF',
-                                chevron: '#FFA726',
-                            },
-                        }}
-
-                            onChange={(event) => {
-                                this.props.actions.updateTask(
-                                this.props.task.id,
-                                this.props.task.userIds,
-                                new Date(event),
-                                this.props.vocab.ERROR);
-                            }
-                                }
-                            value={Time.renderCommon(this.props.task.endDate)} /> :
+                        <Calender {...this.props} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>
