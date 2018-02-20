@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DateTime from 'grommet/components/DateTime';
+import InfiniteCalendar from 'react-infinite-calendar';
 import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
@@ -51,7 +51,8 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <DateTime id='taskEndDate' className='task-details__info-box-datetime'
+                        <InfiniteCalendar id='taskEndDate'
+                        className='task-details__info-box-datetime'
 
                             onChange={(event) => {
                                 this.props.actions.updateTask(
