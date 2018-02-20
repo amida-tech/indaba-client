@@ -264,7 +264,7 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
     };
 }
 
-export function exportData(productId, errorMessages) {
+export function exportData(productId, projectName, errorMessages) {
     return dispatch => new Promise((resolve, reject) => {
         apiService.projects.exportData(
             productId,
@@ -273,18 +273,9 @@ export function exportData(productId, errorMessages) {
                     dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
                     reject();
                 } else {
-                    console.log('JAMES');
-                    console.log(dataResp);
-                    let data;
-                    if (typeof dataResp === 'object') {
-                        data = JSON.stringify(dataResp, undefined, 4);
-                    }
-                    const blob = new Blob([data], { type: 'text/csv' });
-                    // const e = new MouseEvent('MouseEvents');
                     const a = document.createElement('a');
-
-                    a.download = `indaba-${this.props.projectName}-${Time.renderForExport(new Date())}.csv`;
-                    a.href = window.URL.createObjectUrl(blob);
+                    a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.csv`;
+                    a.href = URL.createObjectURL(new Blob([dataResp], { type: 'text/csv' }));
                     a.dataset.downloadurl = ['text/csv', a.download, a.href].join(':');
                     a.click();
                     resolve();

@@ -106,6 +106,7 @@ class ProjectManagementContainer extends Component {
                 onSubmit={() => {
                     this.props.actions.exportData(
                         this.props.project.productId,
+                        this.props.project.name,
                         this.props.vocab.ERROR)
                     .then(() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS))
                     .catch(() => toast(this.props.vocab.ERROR.DATA_REQUEST));
