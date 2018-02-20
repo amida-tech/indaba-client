@@ -4,6 +4,7 @@ import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class SecondaryNavContainer extends Component {
     render() {
+        sessionStorage.setItem('indaba', 'true');
         return (
             <nav className='secondary-nav'>
                 <div className='secondary-nav__left'>
