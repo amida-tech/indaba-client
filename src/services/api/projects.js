@@ -20,9 +20,8 @@ const projects = {
         requests.apiDeleteRequest(getFullPath(`projects/${projectId}/users/${userId}`), null),
     postGroup: (organizationId, requestBody) =>
         requests.apiPostRequest(getFullPath(`organizations/${organizationId}/groups`), requestBody),
-    putGroup: (groupId, requestBody, callback) => {
-        requests.apiPutRequest(getFullPath(`groups/${groupId}`), requestBody, callback);
-    },
+    putGroup: (groupId, requestBody) =>
+        requests.apiPutRequest(getFullPath(`groups/${groupId}`), requestBody),
     deleteGroup: (groupId, callback) => {
         requests.apiDeleteRequest(getFullPath(`groups/${groupId}`), {}, callback);
     },

@@ -208,20 +208,17 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
 export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
     const { title, users: userId } = groupData;
 
-    return (dispatch) => {
-        apiService.projects.putGroup(
-            groupId,
-            { title, userId, organizationId },
-            (groupErr) => {
-                if (groupErr) {
-                    dispatch(_reportProjectError(groupErr, errorMessages.USER_GROUP));
-                } else {
-                    dispatch(getProjectById(projectId, errorMessages));
-                    dispatch(getUsers(errorMessages));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.putGroup(groupId, { title, userId, organizationId })
+        .then((groupResp) => {
+            dispatch(getProjectById(projectId, errorMessages));
+            dispatch(getUsers(errorMessages));
+            return groupResp;
+        })
+        .catch((groupErr) => {
+            dispatch(_reportProjectError(groupErr, errorMessages.USER_GROUP));
+            throw groupErr;
+        });
 }
 
 export function exportData(productId, projectName, errorMessages) {
