@@ -5,5 +5,9 @@ $block-class: 'survey-builder';
         display: flex;
         flex-direction: row;
         flex: 1;
+
+        &__disabled {
+            opacity: 0.2;
+        }
     }
 }

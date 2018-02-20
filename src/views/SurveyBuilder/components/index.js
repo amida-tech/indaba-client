@@ -19,6 +19,7 @@ class SurveyBuilder extends Component {
         const allOptions = cloneDeep(options);
         allOptions.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
+            <div className='survey-builder__disabled'>
             <div className='survey-builder'>
                 <AddQuestionPanel className='survey-builder__add-question'
                     sectionView={this.props.ui.sectionView}
@@ -32,6 +33,7 @@ class SurveyBuilder extends Component {
                     vocab={this.props.vocab}
                     options={allOptions} />
                 </div>
+            </div>
         );
     }
 }
