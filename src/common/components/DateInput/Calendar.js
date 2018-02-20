@@ -1,8 +1,9 @@
 import React from 'react';
-import InfiniteCalendar from 'react-infinite-calendar';
-import Time from '../../../utils/Time';
+import PropTypes from 'prop-types';
 
-export default props => (
+import InfiniteCalendar from 'react-infinite-calendar';
+
+const Calendar = ({ onChange, value }) => (
     <InfiniteCalendar
         displayOptions={{
             layout: 'portrait',
@@ -23,13 +24,17 @@ export default props => (
             },
         }}
 
-        onChange={(event) => {
-            props.actions.updateTask(
-                props.task.id,
-                props.task.userIds,
-                new Date(event),
-                props.vocab.ERROR);
-        }}
-        value={Time.renderCommon(props.task.endDate)}
+        onSelect={onChange}
+        selected={value}
     />
 );
+
+Calendar.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]).isRequired,
+};
+
+export default Calendar;

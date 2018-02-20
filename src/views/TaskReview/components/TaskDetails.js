@@ -51,7 +51,14 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <Calender {...this.props} /> :
+                        <Calender value={this.props.task.endDate}
+                            onChange={(event) => {
+                                this.props.actions.updateTask(
+                                    this.props.task.id,
+                                    this.props.task.userIds,
+                                    new Date(event),
+                                    this.props.vocab.ERROR);
+                            }} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>
