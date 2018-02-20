@@ -31,7 +31,8 @@ class SurveyPane extends Component {
                             {this.props.vocab.PROJECT.COLLAPSE_ALL}</button>
                     </div>
                 </div>
-                {!this.props.stage.blindReview &&
+                {!(this.props.stage.blindReview || this.props.stage.allowEdit
+                    || this.props.stage.discussionParticipation) &&
                     <div className='survey-pane__instructions'>
                         <div className='survey-pane__instructions-header'>
                             {this.props.vocab.PROJECT.INSTRUCTIONS}
@@ -71,6 +72,7 @@ SurveyPane.propTypes = {
         id: PropTypes.number,
         discussionParticipation: PropTypes.bool,
         blindReview: PropTypes.bool,
+        allowEdit: PropTypes.bool,
     }),
     task: PropTypes.shape({
         assessmentId: PropTypes.number,
