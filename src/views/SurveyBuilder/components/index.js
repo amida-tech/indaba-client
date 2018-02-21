@@ -20,7 +20,7 @@ class SurveyBuilder extends Component {
         allOptions.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
             <div className='survey-builder'>
-                <div className={`survey-builder__status survey-builder__status--${surveyStatus ? 'draft' : 'active'}`}
+                <div className={`survey-builder__status survey-builder__status--${surveyStatus ? 'draft' : 'active'}`} >
                     <AddQuestionPanel className='survey-builder__add-question'
                     sectionView={this.props.ui.sectionView}
                     actions={this.props.actions}
