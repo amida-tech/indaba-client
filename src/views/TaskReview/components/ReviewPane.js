@@ -63,7 +63,7 @@ class ReviewPane extends Component {
 ReviewPane.propTypes = {
     profile: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object),
-    handleSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func,
     displayMode: PropTypes.bool,
     questionIndex: PropTypes.number.isRequired,
     answer: PropTypes.shape({

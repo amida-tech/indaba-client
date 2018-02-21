@@ -121,15 +121,16 @@ export function postAssessment(requestBody, errorMessages) {
 export function completeAssessment(assessmentId, errorMessages) {
     const requestBody = {
         status: 'completed',
+        answers: [],
     };
 
     return dispatch => new Promise((resolve, reject) => {
-        apiService.tasks.completeAssessment(
+        apiService.surveys.postAnswer(
             assessmentId,
             requestBody,
             (assessErr) => {
                 if (assessErr) {
-                    dispatch(_reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
+                    dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
                     reject();
                 } else {
                     resolve();
