@@ -22,6 +22,7 @@ export const initialState = {
             surveyId: -1,
             answers: [],
         },
+        taskReviewDateExpanded: false,
     },
 };
 
@@ -77,6 +78,10 @@ export default (state = initialState, action) => {
     case type.UPDATE_MARK_RESOLVED:
         return update(state,
             { ui: { flagSidebar: { resolved: { $set: action.resolved } } } });
+    case type.EXPAND_TASK_REVIEW_DATE:
+        return update(state, { ui: {
+            taskReviewDateExpanded: { $set: action.expand },
+        } });
     default:
         return state;
     }
