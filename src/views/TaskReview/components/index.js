@@ -70,7 +70,8 @@ class TaskReview extends Component {
                         vocab={this.props.vocab}
                         stage={this.props.stage}
                         actions={this.props.actions}
-                        updateTaskEndDate={this.props.actions.updateTaskEndDate} />
+                        updateTaskEndDate={this.props.actions.updateTaskEndDate}
+                        taskReviewDateExpanded={this.props.ui.taskReviewDateExpanded} />
                     <SurveyPane
                         ui={this.props.ui}
                         productId={this.props.productId}

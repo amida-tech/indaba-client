@@ -6,12 +6,13 @@ import Calendar from './Calendar';
 
 class DateInput extends Component {
     render() {
-        const { expanded, value, onChange } = this.props;
+        const { expanded, value, onChange, onExpand } = this.props;
         return (
             expanded ?
             <Calendar value={value} onChange={onChange} /> :
             <div className='date-input'>
-                <div className='date-input__value'>
+                <div className='date-input__value'
+                    onClick={onExpand}>
                     {value}
                     <IonIcon icon='ion-android-calendar' />
                 </div>
@@ -26,6 +27,8 @@ DateInput.propTypes = {
         PropTypes.string,
         PropTypes.object,
     ]).isRequired,
+    onChange: PropTypes.func.isRequired,
+    onExpand: PropTypes.func.isRequired,
 };
 
 export default DateInput;

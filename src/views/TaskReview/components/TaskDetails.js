@@ -59,7 +59,8 @@ class TaskDetails extends Component {
                                     new Date(event),
                                     this.props.vocab.ERROR);
                             }}
-                            expanded={false} /> :
+                            onExpand={() => this.props.actions.expandTaskReviewDate(true)}
+                            expanded={this.props.taskReviewDateExpanded} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>
@@ -98,6 +99,7 @@ TaskDetails.propTypes = {
     subject: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
+    taskReviewDateExpanded: PropTypes.bool.isRequired,
 };
 
 export default TaskDetails;
