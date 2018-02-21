@@ -6,7 +6,7 @@ $block-class: 'survey-builder';
         flex-direction: row;
         flex: 1;
 
-        &__disabled {
+        &__active {
             opacity: 0.2;
             pointer-events: none;
         }
