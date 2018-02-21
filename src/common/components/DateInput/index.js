@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
+import enhanceWithClickOutside from 'react-click-outside';
 
+import Time from '../../../utils/Time';
 import Calendar from './Calendar';
 
 class DateInput extends Component {
+    handleClickOutside() {
+        this.props.onDismiss();
+    }
     render() {
         const { expanded, value, onChange, onExpand } = this.props;
         return (
@@ -33,6 +38,7 @@ DateInput.propTypes = {
     ]).isRequired,
     onChange: PropTypes.func.isRequired,
     onExpand: PropTypes.func.isRequired,
+    onDismiss: PropTypes.func.isRequired,
 };
 
-export default DateInput;
+export default enhanceWithClickOutside(DateInput);
