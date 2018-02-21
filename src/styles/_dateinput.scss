@@ -8,5 +8,16 @@ $block-class: 'date-input';
             position: absolute;
             right: 0;
         }
+
+        &__value {
+            display: flex;
+            align-items: center;
+
+            @extend .med-font;
+        }
+
+        &__value-icon {
+            @extend .small-icon;
+        }
     }
 }

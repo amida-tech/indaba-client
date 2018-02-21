@@ -22,7 +22,8 @@ class DateInput extends Component {
                     <div className='date-input__value'
                         onClick={onExpand}>
                         {Time.renderCommon(value)}
-                        <IonIcon icon='ion-android-calendar' />
+                        <IonIcon icon='ion-android-calendar'
+                            className='date-input__value-icon'/>
                     </div>
                 }
             </div>
