@@ -120,7 +120,7 @@ export function postAssessment(requestBody, errorMessages) {
 
 export function completeAssessment(assessmentId, errorMessages) {
     const requestBody = {
-        status: 'complete',
+        status: 'completed',
     };
 
     return dispatch => new Promise((resolve, reject) => {
