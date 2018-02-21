@@ -118,6 +118,27 @@ export function postAssessment(requestBody, errorMessages) {
     };
 }
 
+export function completeAssessment(assessmentId, errorMessages) {
+    const requestBody = {
+        status: 'complete',
+    };
+
+    return dispatch => new Promise((resolve, reject) => {
+        apiService.tasks.completeAssessment(
+            assessmentId,
+            requestBody,
+            (assessErr) => {
+                if (assessErr) {
+                    dispatch(_reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
+                    reject();
+                } else {
+                    resolve();
+                }
+            },
+        );
+    });
+}
+
 export function getAnswers(assessmentId, errorMessages) {
     return dispatch =>
         apiService.surveys.getAnswers(
