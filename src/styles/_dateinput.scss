@@ -1,0 +1,12 @@
+$block-class: 'date-input';
+
+@at-root {
+    .#{$block-class} {
+        position: relative;
+
+        &__calendar-wrapper {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
