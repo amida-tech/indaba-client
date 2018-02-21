@@ -8,14 +8,18 @@ class DateInput extends Component {
     render() {
         const { expanded, value, onChange, onExpand } = this.props;
         return (
-            expanded ?
-            <Calendar value={value} onChange={onChange} /> :
             <div className='date-input'>
-                <div className='date-input__value'
-                    onClick={onExpand}>
-                    {value}
-                    <IonIcon icon='ion-android-calendar' />
-                </div>
+                {
+                    expanded ?
+                    <div className='date-input__calendar-wrapper'>
+                        <Calendar value={value} onChange={onChange} />
+                    </div> :
+                    <div className='date-input__value'
+                        onClick={onExpand}>
+                        {value}
+                        <IonIcon icon='ion-android-calendar' />
+                    </div>
+                }
             </div>
         );
     }
