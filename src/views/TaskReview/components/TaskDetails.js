@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
-import Calender from '../../../common/components/DateInput/Calendar';
+import DateInput from '../../../common/components/DateInput';
 
 class TaskDetails extends Component {
     render() {
@@ -51,14 +51,15 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <Calender value={this.props.task.endDate}
+                        <DateInput value={this.props.task.endDate}
                             onChange={(event) => {
                                 this.props.actions.updateTask(
                                     this.props.task.id,
                                     this.props.task.userIds,
                                     new Date(event),
                                     this.props.vocab.ERROR);
-                            }} /> :
+                            }}
+                            expanded={false} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>
