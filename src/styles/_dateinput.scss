@@ -7,6 +7,10 @@ $block-class: 'date-input';
         &__calendar-wrapper {
             position: absolute;
             right: 0;
+
+            &--inline {
+                position: static;
+            }
         }
 
         &__value {

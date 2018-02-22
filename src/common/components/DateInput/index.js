@@ -23,13 +23,13 @@ class DateInput extends Component {
         this.setState({ expanded: true });
     }
     render() {
-        const { value, onChange } = this.props;
+        const { value, onChange, inline } = this.props;
         const { expanded } = this.state;
         return (
             <div className='date-input'>
                 {
                     expanded ?
-                    <div className='date-input__calendar-wrapper'>
+                    <div className={`date-input__calendar-wrapper ${inline ? 'date-input__calendar-wrapper--inline' : ''}`}>
                         <Calendar value={value} onChange={onChange} />
                     </div> :
                     <div className='date-input__value'
@@ -50,6 +50,10 @@ DateInput.propTypes = {
         PropTypes.object,
     ]).isRequired,
     onChange: PropTypes.func.isRequired,
+    // true if the expanded picker should be kept in the document flow
+    // otherwise, the expanded picker will have absolute position and
+    // overlap other elements until collapsed
+    inline: PropTypes.bool,
 };
 
 export default enhanceWithClickOutside(DateInput);
