@@ -119,19 +119,21 @@ export function assignTask(userId, slot, project, errorMessages) {
 }
 
 export function moveTask(productId, uoaId, errorMessages) {
-    return (dispatch) => {
+    return dispatch => new Promise((resolve, reject) => {
         apiService.tasks.moveTask(
             productId,
             uoaId,
             (workflowErr) => {
                 if (workflowErr) {
                     dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+                    reject();
                 } else {
                     dispatch(push('/task'));
+                    resolve();
                 }
             },
         );
-    };
+    });
 }
 
 export function forceTaskCompletion(productId, uoaId, errorMessages) {
