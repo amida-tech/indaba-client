@@ -14,6 +14,7 @@ import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import Activate from './views/Activate/components';
+import ResetPassword from './views/ResetPassword/components';
 import App from './views/App';
 
 export default (
@@ -63,5 +64,8 @@ export default (
         <Route
             path='/activate/:realm/:token'
             component={Activate} />
+        <Route
+            path='/reset-password/:token'
+            component={ResetPassword} />
     </Route>
 );

@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
         } });
     case actionTypes.USER_DASH_GET_MESSAGES_SUCCESS:
         return update(state, {
-            messages: { $set: action.messages },
+            messages: { $set: action.messages.messages },
         });
     case actionTypes.USER_DASH_GET_TASKS_SUCCESS:
         return update(state, {

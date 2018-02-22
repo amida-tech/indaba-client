@@ -1,1 +1,1 @@
-export const SECONDARY = ['/login', '/activate'];
+export const SECONDARY = ['/login', '/activate', '/reset-password'];

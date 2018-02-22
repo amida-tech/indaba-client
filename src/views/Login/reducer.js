@@ -7,6 +7,7 @@ const initialState = {
     ui: {
         error: '',
         timeoutRef: '',
+        showForgotPasswordFor: null,
     },
 };
 
@@ -24,6 +25,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { error: { $set: action.error } } });
     case LOG_OUT:
         return update(state, { ui: { timeoutRef: { $set: action.timeoutRef } } });
+    case actionTypes.SHOW_FORGOT_PASSWORD_FOR:
+        return update(state, { ui: { showForgotPasswordFor: { $set: action.email } } });
     default:
         return state;
     }

@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ValidatedTextInput = ({ meta: { touched, error }, input, placeholder, className }) => {
+const ValidatedTextInput = ({
+    meta: { touched, error },
+    input,
+    placeholder,
+    className,
+    password }) => {
     const finalClassName = [
         'validated-text-input',
         (touched && error) ? 'validated-text-input--error' : '',
@@ -10,7 +15,7 @@ const ValidatedTextInput = ({ meta: { touched, error }, input, placeholder, clas
     const finalPlaceholder = (touched && error) ? error : placeholder;
 
     return (
-        <input type='text'
+        <input type={password ? 'password' : 'text'}
             className={finalClassName}
             placeholder={finalPlaceholder}
             {...input} />
