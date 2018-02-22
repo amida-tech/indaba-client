@@ -97,7 +97,6 @@ TaskDetails.propTypes = {
     subject: PropTypes.object.isRequired,
     projectId: PropTypes.number.isRequired,
     vocab: PropTypes.object.isRequired,
-    taskReviewDateExpanded: PropTypes.bool.isRequired,
 };
 
 export default TaskDetails;
