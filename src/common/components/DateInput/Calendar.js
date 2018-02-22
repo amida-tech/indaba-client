@@ -21,7 +21,7 @@ const Calendar = ({ onChange, value, pickerProps = {} }) => (
             weekdayColor: 'rgb(78, 178, 118)',
             headerColor: 'rgb(48, 130, 82)',
             floatingNav: {
-                background: 'rgba(81, 67, 138, 0.96)',
+                background: 'rgba(72, 165, 109, 1)',
                 color: '#FFF',
                 chevron: '#FFA726',
             },
