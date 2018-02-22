@@ -7,13 +7,24 @@ import Time from '../../../utils/Time';
 import Calendar from './Calendar';
 
 class DateInput extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            expanded: false,
+        };
+
+        this.expand = this.expand.bind(this);
+    }
     handleClickOutside() {
-        if (this.props.expanded) {
-            this.props.onDismiss();
-        }
+        this.setState({ expanded: false });
+    }
+    expand() {
+        this.setState({ expanded: true });
     }
     render() {
-        const { expanded, value, onChange, onExpand } = this.props;
+        const { value, onChange } = this.props;
+        const { expanded } = this.state;
         return (
             <div className='date-input'>
                 {
@@ -22,7 +33,7 @@ class DateInput extends Component {
                         <Calendar value={value} onChange={onChange} />
                     </div> :
                     <div className='date-input__value'
-                        onClick={onExpand}>
+                        onClick={this.expand}>
                         {Time.renderCommon(value)}
                         <IonIcon icon='ion-android-calendar'
                             className='date-input__value-icon'/>
@@ -34,14 +45,11 @@ class DateInput extends Component {
 }
 
 DateInput.propTypes = {
-    expanded: PropTypes.bool.isRequired,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
     ]).isRequired,
     onChange: PropTypes.func.isRequired,
-    onExpand: PropTypes.func.isRequired,
-    onDismiss: PropTypes.func.isRequired,
 };
 
 export default enhanceWithClickOutside(DateInput);

@@ -58,10 +58,7 @@ class TaskDetails extends Component {
                                     this.props.task.userIds,
                                     new Date(event),
                                     this.props.vocab.ERROR);
-                            }}
-                            onExpand={() => this.props.actions.expandTaskReviewDate(true)}
-                            onDismiss={() => this.props.actions.expandTaskReviewDate(false)}
-                            expanded={this.props.taskReviewDateExpanded} /> :
+                            }} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>

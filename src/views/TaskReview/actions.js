@@ -85,13 +85,6 @@ export function updateQuestionDisplay(questionArray) {
     };
 }
 
-export function expandTaskReviewDate(expand) {
-    return {
-        type: actionTypes.EXPAND_TASK_REVIEW_DATE,
-        expand,
-    };
-}
-
 export function setActiveFlag(activeId, timestamp) {
     return {
         type: actionTypes.SET_ACTIVE_FLAG,
