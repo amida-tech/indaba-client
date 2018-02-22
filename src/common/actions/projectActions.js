@@ -274,9 +274,9 @@ export function exportData(productId, projectName, errorMessages) {
                     reject();
                 } else {
                     const a = document.createElement('a');
-                    a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.csv`;
-                    a.href = URL.createObjectURL(new Blob([dataResp], { type: 'text/csv' }));
-                    a.dataset.downloadurl = ['text/csv', a.download, a.href].join(':');
+                    a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
+                    a.href = URL.createObjectURL(new Blob([_stringToBytes(dataResp)], { type: 'application/zip' }));
+                    a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
                     a.click();
                     resolve();
                 }
@@ -385,4 +385,12 @@ function _reportProjectError(err, errorMessage) {
         err,
         errorMessage,
     };
+}
+
+function _stringToBytes(str) {
+    const bytes = new Uint8Array(str.length);
+    for (let i = 0; i < str.length; i += 1) {
+        bytes[i] = str.charCodeAt(i);
+    }
+    return bytes;
 }
