@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import InfiniteCalendar from 'react-infinite-calendar';
 
-const Calendar = ({ onChange, value }) => (
+const Calendar = ({ onChange, value, pickerProps = {} }) => (
     <InfiniteCalendar
-        displayOptions={{
-            layout: 'portrait',
-        }}
+        {...pickerProps}
 
-        theme={{
+        displayOptions={Object.assign({},
+            { layout: 'portrait' },
+            pickerProps.displayOptions,
+        )}
+
+        theme={Object.assign({}, {
             selectionColor: 'rgb(48, 130, 82)',
             textColor: {
                 default: '#333',
@@ -22,7 +25,8 @@ const Calendar = ({ onChange, value }) => (
                 color: '#FFF',
                 chevron: '#FFA726',
             },
-        }}
+        },
+        pickerProps.theme)}
 
         onSelect={onChange}
         selected={value}
