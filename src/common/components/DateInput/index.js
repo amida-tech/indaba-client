@@ -8,7 +8,9 @@ import Calendar from './Calendar';
 
 class DateInput extends Component {
     handleClickOutside() {
-        this.props.onDismiss();
+        if (this.props.expanded) {
+            this.props.onDismiss();
+        }
     }
     render() {
         const { expanded, value, onChange, onExpand } = this.props;
