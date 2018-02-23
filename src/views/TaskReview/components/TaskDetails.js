@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import DateTime from 'grommet/components/DateTime';
 import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
+import DateInput from '../../../common/components/DateInput';
 
 class TaskDetails extends Component {
     render() {
@@ -51,17 +51,14 @@ class TaskDetails extends Component {
                         {this.props.vocab.PROJECT.TASK_DUE_DATE}
                     </div>
                     { this.props.profile.roleID === 2 ?
-                        <DateTime id='taskEndDate' className='task-details__info-box-datetime'
-                            format='MMMM D, YYYY'
+                        <DateInput value={this.props.task.endDate}
                             onChange={(event) => {
                                 this.props.actions.updateTask(
                                     this.props.task.id,
                                     this.props.task.userIds,
                                     new Date(event),
                                     this.props.vocab.ERROR);
-                            }
-                                }
-                            value={Time.renderCommon(this.props.task.endDate)} /> :
+                            }} /> :
                         <div className='task-details__info-box-title'>
                             {Time.renderCommon(this.props.task.endDate)}
                         </div>

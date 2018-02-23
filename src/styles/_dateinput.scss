@@ -1,0 +1,27 @@
+$block-class: 'date-input';
+
+@at-root {
+    .#{$block-class} {
+        position: relative;
+
+        &__calendar-wrapper {
+            position: absolute;
+            right: 0;
+
+            &--inline {
+                position: static;
+            }
+        }
+
+        &__value {
+            display: flex;
+            align-items: center;
+
+            @extend .med-font;
+        }
+
+        &__value-icon {
+            @extend .small-icon;
+        }
+    }
+}
