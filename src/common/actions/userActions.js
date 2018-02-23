@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-
+import { get } from 'lodash';
 import apiService from '../../services/api';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
@@ -26,7 +26,7 @@ export function getProfileSuccess(profile) {
 export function updateProfile(userData, errorMessages) {
     const requestBody = Object.assign({}, userData);
     if (typeof requestBody.notifyLevel !== 'number') {
-        requestBody.notifyLevel = userData.notifyLevel.value;
+        requestBody.notifyLevel = get(userData.notifyLevel, 'value', 2);
     }
     if (typeof requestBody.isActive !== 'boolean') {
         requestBody.isActive = userData.isActive.value;
