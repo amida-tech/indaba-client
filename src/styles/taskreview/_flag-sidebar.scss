@@ -10,8 +10,8 @@ $block-class:'flag-sidebar';
         &__container {
             margin-top: 1em;
             display: flex;
-            flex-direction: row;
             flex-flow: nowrap;
+            flex-direction: row;
             justify-content: flex-end;
             position: relative;
             background-color: $element-background;
