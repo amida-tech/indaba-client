@@ -127,5 +127,9 @@ $block-class:'stage-form';
         .Select-option.is-focused {
             background-color: #f1f4f7;
         }
+
+        .date-input__calendar-wrapper {
+            position: relative;
+        }
     }
 }
