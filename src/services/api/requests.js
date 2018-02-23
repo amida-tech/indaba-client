@@ -33,7 +33,8 @@ export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
         },
         body: encodedRequestBodyObject,
     })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 /**
@@ -51,7 +52,8 @@ export function apiGetRequest(fullURI, callback) {
             'Content-Type': 'application/json',
         },
     })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 /**
@@ -71,7 +73,8 @@ export function apiPostRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 /**
@@ -91,7 +94,8 @@ export function apiPatchRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 /**
@@ -111,7 +115,8 @@ export function apiPutRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-  .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 /**
@@ -136,7 +141,8 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
     }
 
     fetch(fullURI, call)
-    .then(res => handleResponse(res, callback), issue => callback(issue));
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 export function multipartFormDataPostRequest(fullURI, data) {
@@ -158,15 +164,11 @@ export function multipartFormDataPostRequest(fullURI, data) {
 // ////////////////
 // Private Helpers
 // ////////////////
-function handleResponse(res, callback) {
-    // successful http response
+function handleResponse(res) {
     if (res.status >= 200 && res.status < 300) {
-        decodeResponse(res).then(data => callback(null, data));
-    } else if (res.status > 400) {
-        decodeResponse(res).then(data => callback(data, true));
-    } else {
-        decodeResponse(res).then(data => callback(data));
+        return decodeResponse(res);
     }
+    return decodeResponse(res).then(decoded => Promise.reject(decoded));
 }
 
 function decodeResponse(res) {
