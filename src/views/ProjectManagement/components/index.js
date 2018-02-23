@@ -103,7 +103,14 @@ class ProjectManagementContainer extends Component {
                 actions={this.props.actions}
                 ui={this.props.ui.export}
                 survey={this.props.survey}
-                onSubmit={() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS)}/>;
+                onSubmit={() => {
+                    this.props.actions.exportData(
+                        this.props.project.productId,
+                        this.props.project.name,
+                        this.props.vocab.ERROR)
+                    .then(() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS))
+                    .catch(() => toast(this.props.vocab.ERROR.DATA_REQUEST));
+                }}/>;
             break;
         default:
             body = null;

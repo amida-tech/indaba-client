@@ -10,7 +10,7 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { renderPermissions } from '../../../utils/Survey';
-import { setSurveySectionIndex, postAnswer, postReview } from '../../../common/actions/surveyActions';
+import { setSurveySectionIndex, completeAssessment, postAnswer, postReview } from '../../../common/actions/surveyActions';
 import { getTaskById, moveTask, updateTask } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -137,6 +137,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, {
         updateTask,
         setSurveySectionIndex,
+        completeAssessment,
         getTaskById,
         moveTask,
         postReview,

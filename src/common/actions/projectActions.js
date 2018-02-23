@@ -4,6 +4,7 @@ import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
 import { getUsers } from './userActions';
 import { getTasksByProduct } from './taskActions';
+import Time from '../../utils/Time';
 import apiService from '../../services/api';
 
 // API calls.
@@ -263,6 +264,28 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
     };
 }
 
+export function exportData(productId, projectName, errorMessages) {
+    return dispatch => new Promise((resolve, reject) => {
+        apiService.projects.exportData(
+            productId,
+            (dataErr, dataResp) => {
+                if (dataErr) {
+                    dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
+                    reject();
+                } else {
+                    const URL = window.URL || window.webkitURL;
+                    const a = document.createElement('a');
+                    a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
+                    a.href = URL.createObjectURL(new Blob([_stringToBytes(dataResp)], { type: 'application/zip' }));
+                    a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
+                    a.click();
+                    resolve();
+                }
+            },
+        );
+    });
+}
+
 // Modals.
 export function showAddSubjectModal(show) {
     return {
@@ -363,4 +386,12 @@ function _reportProjectError(err, errorMessage) {
         err,
         errorMessage,
     };
+}
+
+function _stringToBytes(str) {
+    const bytes = new Uint8Array(str.length);
+    for (let i = 0; i < str.length; i += 1) {
+        bytes[i] = str.charCodeAt(i);
+    }
+    return bytes;
 }

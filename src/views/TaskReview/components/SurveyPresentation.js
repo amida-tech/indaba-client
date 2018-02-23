@@ -42,12 +42,14 @@ class SurveyPresentation extends Component {
                                 && this.props.flagCount === 0 ? '' : '--disabled'}`}
                             onClick={() => {
                                 if (this.props.reqCheck && this.props.flagCount === 0) {
-                                    toast(this.props.vocab.PROJECT.TASK_COMPLETED);
                                     this.props.actions.moveTask(
                                         this.props.productId,
                                         this.props.task.uoaId,
                                         this.props.vocab.ERROR,
-                                    );
+                                    ).then(() => this.props.actions.completeAssessment(
+                                        this.props.task.assessmentId,
+                                        this.props.vocab.ERROR,
+                                    )).then(() => toast(this.props.vocab.PROJECT.TASK_COMPLETED));
                                 } else if (this.props.flagCount > 0) {
                                     toast(this.props.vocab.ERROR.FLAGGED_QUESTIONS);
                                 } else {
