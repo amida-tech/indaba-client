@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { compact, every, find, flatten, get, has, map, sumBy } from 'lodash';
+import { compact, clone, every, find, flatten, get, has, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -23,13 +23,22 @@ class TaskReview extends Component {
     }
 
     render() { // Pondering means to process all this just once.
-        const options = this.props.survey.sections ?
-            this.props.survey.sections.map((section, index) =>
-                ({ value: index, label: section.name })) : [];
+        const options = [];
+        let flatSurvey = [];
+        if (this.props.survey.questions) {
+            flatSurvey = this.props.survey.questions;
+        } else if (has(this.props, 'survey.sections')) {
+            flatSurvey = compact(flatten(map(this.props.survey.sections, (section, index) => {
+                options.push({ value: index, label: section.name });
+                if (has(section, 'questions')) {
+                    const newQuestions = clone(section.questions);
+                    newQuestions[0].sectionName = section.name;
+                    return newQuestions;
+                }
+                return [];
+            })));
+        }
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
-
-        const flatSurvey = this.props.survey.questions ?
-            this.props.survey.questions : compact(flatten(map(this.props.survey.sections, 'questions')));
         const displaySurvey = this.props.sectionIndex === -1 ?
             flatSurvey : compact(get(this.props.survey, `sections[${this.props.sectionIndex}].questions`));
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
