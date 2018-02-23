@@ -96,6 +96,7 @@
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "EMPTY_TEXT": "Please enter text into the field.",
         "BLANKS": "There are unfilled questions or options in the question list. Please give them a value or delete them.",
+        "DATA_REQUEST": "There has been a problem with downloading your data.",
         "COMING_SOON": "Coming soon."
     },
     "VALIDATE": {
@@ -391,6 +392,7 @@
         "REQUIRED_QUESTION": "Required Questions",
         "REQUIRED_TOOLTIP": "Respondent must answer the question to submit the survey",
         "WEIGHT": "Weighted Value Question",
+        "WEIGHT_TOOLTIP": "Assign a numerical value to each response option.",
         "SECTION_": "Section ",
         "SUBMIT_TASK": "Complete The Task",
         "SAVE_REVIEW": "Save Review Progress",

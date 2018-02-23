@@ -145,11 +145,12 @@ class QuestionPanel extends Component {
                                             'weight');
                                     }
                                 }}/>
-                            <span className='question-panel__label'>
+                            <span className='question-panel__label'
+                                title={this.props.vocab.SURVEY.WEIGHT_TOOLTIP}>
                                 {this.props.vocab.SURVEY.WEIGHT}
+                                <IonIcon icon='ion-help-circled'
+                                    className='question-panel__help-icon' />
                             </span>
-                            <IonIcon icon='ion-help-circled'
-                                className='question-panel__help-icon' />
                         </div>}
                 </div>
             </div>

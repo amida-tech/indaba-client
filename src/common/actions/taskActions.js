@@ -78,7 +78,7 @@ export function assignTask(userId, slot, project, errorMessages) {
 
     const surveyRequestBody = {
         name: slot.stageData.title,
-        stage: slot.stageData.position,
+        stage: slot.stageData.id,
         surveys: [{
             id: project.surveyId,
         }],
@@ -88,7 +88,7 @@ export function assignTask(userId, slot, project, errorMessages) {
     const requestBody = {
         userId,
         title: slot.stageData.title,
-        stepId: slot.task.stepId,
+        stepId: slot.stageData.id,
         uoaId: slot.task.uoaId,
         startDate: slot.stageData.startDate,
         endDate: slot.stageData.endDate,
@@ -119,19 +119,21 @@ export function assignTask(userId, slot, project, errorMessages) {
 }
 
 export function moveTask(productId, uoaId, errorMessages) {
-    return (dispatch) => {
+    return dispatch => new Promise((resolve, reject) => {
         apiService.tasks.moveTask(
             productId,
             uoaId,
             (workflowErr) => {
                 if (workflowErr) {
                     dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+                    reject();
                 } else {
                     dispatch(push('/task'));
+                    resolve();
                 }
             },
         );
-    };
+    });
 }
 
 export function forceTaskCompletion(productId, uoaId, errorMessages) {
