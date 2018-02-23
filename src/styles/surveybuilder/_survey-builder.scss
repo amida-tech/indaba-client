@@ -1,3 +1,4 @@
+$form-text: #333;
 $block-class: 'survey-builder';
 
 @at-root {
@@ -9,7 +10,7 @@ $block-class: 'survey-builder';
         &__draft-warning {
             font-size: 24px;
             font-weight: 100;
-            color: #333;
+            color: $form-text;
             padding: 32px;
         }
 
