@@ -41,8 +41,7 @@ $block-class:'task-details';
             border-left: none;
             border-radius: 2px;
             display: inline-flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            flex-flow: row wrap;
             justify-content: space-between;
         }
 
