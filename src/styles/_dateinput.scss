@@ -15,7 +15,7 @@ $block-class: 'date-input';
 
         &__value {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
 
             @extend .med-font;
         }
