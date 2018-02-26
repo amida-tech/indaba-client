@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
+import { get, findIndex } from 'lodash';
 
 import * as type from '../actionTypes/taskActionTypes';
 import { LOG_OUT } from '../actionTypes/navActionTypes';
@@ -15,7 +15,8 @@ const initialState = {
 };
 
 export const TaskReducer = (state = initialState, action) => {
-    const taskIndex = _.findIndex(state.data, task => task.id === action.taskId);
+    const taskIndex = findIndex(state.data, task => task.id === action.taskId
+        || task.id === get(action.task, 'id'));
     switch (action.type) {
     case type.GET_TASKS_BY_PRODUCT_SUCCESS: {
         return update(state, {
