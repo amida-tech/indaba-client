@@ -42,7 +42,7 @@ $block-class: 'message-list';
                 .#{$block-class}__name,
                 .#{$block-class}__subject,
                 .#{$block-class}__time {
-                    font-weight: bold;
+                    color: #333;
                 }
             }
 
@@ -65,13 +65,13 @@ $block-class: 'message-list';
             overflow: hidden;
             text-overflow: ellipsis;
 
-            @extend .small-font;
+            @extend .lead-font;
         }
 
         &__subject {
             flex: 3;
 
-            @extend .small-font;
+            @extend .lead-font;
         }
 
         &__time {
