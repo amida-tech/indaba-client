@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "bootstrap": "^3.3.7",
     "dotenv-webpack": "^1.5.4",
     "express": "^4.16.2",
@@ -54,7 +56,6 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
-    "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "es6-plato": "^1.0.14",
     "eslint": "^3.19.0",
