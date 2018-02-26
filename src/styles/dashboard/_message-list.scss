@@ -11,12 +11,9 @@ $block-class: 'message-list';
 
         &__title {
             justify-content: space-between;
-            height: 3em;
             border-bottom: 1px solid $border-color;
             display: flex;
-            padding-left: 18px;
-            padding-right: 32px;
-            padding-top: 18px;
+            padding: 12px 32px 12px 12px;
             font-size: 18px;
             color: $title-color;
         }
@@ -27,7 +24,7 @@ $block-class: 'message-list';
 
         &__row {
             height: 3em;
-            padding-left: 18px;
+            padding-left: 8px;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -72,12 +69,18 @@ $block-class: 'message-list';
             flex: 3;
             font-size: 15px;
             color: $title-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         &__time {
             font-size: 15px;
             flex: 1;
             color: $title-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }
