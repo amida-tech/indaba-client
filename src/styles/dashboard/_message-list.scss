@@ -65,13 +65,13 @@ $block-class: 'message-list';
             overflow: hidden;
             text-overflow: ellipsis;
 
-            @extend .lead-font-bold;
+            @extend .small-font;
         }
 
         &__subject {
             flex: 3;
 
-            @extend .lead-font;
+            @extend .small-font;
         }
 
         &__time {
