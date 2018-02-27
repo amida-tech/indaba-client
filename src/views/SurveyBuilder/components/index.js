@@ -25,18 +25,18 @@ class SurveyBuilder extends Component {
                     <div className='survey-builder__draft-warning'>
                     {this.props.vocab.SURVEY.DRAFT_WARNING}</div>
                     }
-                <div className={`survey-builder__status survey-builder__status--${this.props.form.status} ? 'draft' : 'published'}`} >
+                <div className={`survey-builder__status survey-builder__contents--${this.props.form.status} ? 'draft' : 'published'}`} >
                     <AddQuestionPanel className='survey-builder__add-question'
-                    sectionView={this.props.ui.sectionView}
-                    actions={this.props.actions}
-                    vocab={this.props.vocab}
-                    options={options} />
-                <CreateSurveyPanel className='survey-builder__create-survey'
-                    ui={this.props.ui}
-                    form={this.props.form}
-                    actions={this.props.actions}
-                    vocab={this.props.vocab}
-                    options={allOptions} />
+                        sectionView={this.props.ui.sectionView}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}
+                        options={options} />
+                    <CreateSurveyPanel className='survey-builder__create-survey'
+                        ui={this.props.ui}
+                        form={this.props.form}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}
+                        options={allOptions} />
                 </div>
             </div>
         );

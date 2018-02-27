@@ -3,7 +3,6 @@ $block-class: 'survey-builder';
 
 @at-root {
     .#{$block-class} {
-        flex-direction: row;
         flex: 1;
         display: block;
 
@@ -14,7 +13,7 @@ $block-class: 'survey-builder';
             padding: 32px;
         }
 
-        &__status {
+        &__contents {
             display: flex;
 
             &--published {
