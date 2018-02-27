@@ -28,7 +28,7 @@ class QuestionContainer extends Component {
                             || this.props.stage.discussionParticipation}
                         actions={this.props.actions}
                         vocab={this.props.vocab} />
-                    {this.props.stage.discussionParticipation &&
+                    {this.props.showCommentForm &&
                         <ReviewPane
                             users={this.props.users}
                             profile={this.props.profile}
@@ -38,7 +38,9 @@ class QuestionContainer extends Component {
                                 answer.questionId === this.props.question.id) || {}}
                             assessmentId={this.props.task.assessmentId}
                             answers={this.props.answers}
-                            displayMode={this.props.taskDisabled}
+                            entryMode={this.props.stage.discussionParticipation}
+                            displayMode={this.props.taskDisabled || this.props.stage.blindReview
+                                || this.props.stage.allowEdit}
                             vocab={this.props.vocab } />
                     }
                 </AccordionPanel>

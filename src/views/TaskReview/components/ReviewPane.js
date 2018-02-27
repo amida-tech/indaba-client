@@ -27,34 +27,37 @@ class ReviewPane extends Component {
                             </div>,
                         )}
                     </div> }
-                <div className='review-pane__controls'>
-                    <label className='review-pane__radio-controls'>
-                        <Field
-                            name={`answers[${this.props.questionIndex}].comment.reason`}
-                            component='input'
-                            type='radio'
-                            onClick={this.props.handleSubmit}
+                {this.props.entryMode &&
+                    <div className='review-pane__control-container'>
+                        <div className='review-pane__controls'>
+                            <label className='review-pane__radio-controls'>
+                                <Field
+                                    name={`answers[${this.props.questionIndex}].comment.reason`}
+                                    component='input'
+                                    type='radio'
+                                    onClick={this.props.handleSubmit}
+                                    disabled={this.props.displayMode}
+                                    value='agree' />
+                                <span>{this.props.vocab.COMMON_BUTTONS.AGREE}</span>
+                            </label>
+                            <label className='review-pane__radio-controls'>
+                                <Field
+                                    name={`answers[${this.props.questionIndex}].comment.reason`}
+                                    component='input'
+                                    type='radio'
+                                    onClick={this.props.handleSubmit}
+                                    disabled={this.props.displayMode}
+                                    value='disagree' />
+                                <span>{this.props.vocab.COMMON_BUTTONS.DISAGREE}</span>
+                            </label>
+                        </div>
+                        <Field className='review-pane__text'
+                            name={`answers[${this.props.questionIndex}].comment.text`}
+                            component='textarea'
+                            onBlur={this.props.handleSubmit}
                             disabled={this.props.displayMode}
-                            value='agree' />
-                        <span>{this.props.vocab.COMMON_BUTTONS.AGREE}</span>
-                    </label>
-                    <label className='review-pane__radio-controls'>
-                        <Field
-                            name={`answers[${this.props.questionIndex}].comment.reason`}
-                            component='input'
-                            type='radio'
-                            onClick={this.props.handleSubmit}
-                            disabled={this.props.displayMode}
-                            value='disagree' />
-                        <span>{this.props.vocab.COMMON_BUTTONS.DISAGREE}</span>
-                    </label>
-                </div>
-                <Field className='review-pane__text'
-                    name={`answers[${this.props.questionIndex}].comment.text`}
-                    component='textarea'
-                    onBlur={this.props.handleSubmit}
-                    disabled={this.props.displayMode}
-                    placeholder={this.props.vocab.COMMON_BUTTONS.COMMENT_TIP} />
+                            placeholder={this.props.vocab.COMMON_BUTTONS.COMMENT_TIP} />
+                    </div>}
             </div>
         );
     }
@@ -69,6 +72,7 @@ ReviewPane.propTypes = {
     answer: PropTypes.shape({
         commentHistory: PropTypes.array,
     }),
+    entryMode: PropTypes.bool,
     vocab: PropTypes.object.isRequired,
 };
 

@@ -11,7 +11,8 @@ class SurveyPane extends Component {
             answers: this.props.answers,
             assessmentId: this.props.task.assessmentId,
         };
-        const showCommentForm = this.props.stage.discussionParticipation;
+        const showCommentForm = this.props.stage.discussionParticipation ||
+            this.props.stage.blindReview || this.props.stage.allowEdit;
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -49,15 +50,17 @@ class SurveyPane extends Component {
                         </span>
                     </div>
                 }
-                {
-                    (this.props.stage.id === undefined || showCommentForm) ?
+                {(this.props.stage.id === undefined || showCommentForm) ?
                     <SurveyForm
                         {...this.props}
                         initialValues={initialValues}>
                         <SurveyPresentation
-                            {...this.props} />
+                            {...this.props}
+                            showCommentForm={showCommentForm} />
                     </SurveyForm> :
-                    <SurveyPresentation {...this.props} />
+                    <SurveyPresentation
+                        {...this.props}
+                        showCommentForm={showCommentForm} />
                 }
             </div>
         );

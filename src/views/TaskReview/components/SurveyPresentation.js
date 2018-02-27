@@ -59,7 +59,7 @@ class SurveyPresentation extends Component {
                             }}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>
-                        {(this.props.stage.allowEdit || this.props.stage.discussionParticipation) &&
+                        {this.props.stage.discussionParticipation &&
                             <button className='survey-presentation__submit-button'
                                 type='submit'>
                                 {this.props.vocab.SURVEY.SAVE_REVIEW}
@@ -83,6 +83,7 @@ SurveyPresentation.propTypes = {
     }).isRequired,
     taskDisabled: PropTypes.bool,
     offset: PropTypes.number,
+    showCommentForm: PropTypes.bool,
     vocab: PropTypes.object.isRequired,
 };
 
