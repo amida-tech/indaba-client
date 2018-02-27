@@ -6,6 +6,7 @@ class StageDateTime extends Component {
         return (
             <DateInput
                 {...this.props.input}
+                inline={true}
                 format='MM/DD/YYYY'
                 className='stage-date-time' />
         );
