@@ -25,7 +25,7 @@ class SurveyBuilder extends Component {
                     <div className='survey-builder__draft-warning'>
                     {this.props.vocab.SURVEY.DRAFT_WARNING}</div>
                     }
-                <div className={`survey-builder__status survey-builder__contents--${this.props.form.status} ? 'draft' : 'published'}`} >
+                <div className={`survey-builder__contents survey-builder__contents--${this.props.form.status} ? 'draft' : 'published'}`} >
                     <AddQuestionPanel className='survey-builder__add-question'
                         sectionView={this.props.ui.sectionView}
                         actions={this.props.actions}
