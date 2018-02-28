@@ -29,7 +29,7 @@ class FileForm extends Component {
                     this.props.file !== undefined &&
                     <div className='file-form__remove-form'>
                         <div className='file-form__current-file-name'>
-                            {this.props.file.filename}
+                            <a href={this.props.file.url}> {this.props.file.filename} </a>
                         </div>
                         {
                             !this.props.disabled &&
