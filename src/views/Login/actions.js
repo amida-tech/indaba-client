@@ -13,32 +13,30 @@ export function login(username, password, realm, referrer, errorMessages) {
             username,
             password,
         };
-        apiService.auth.login(
-        authPayload,
-        (err, auth) => {
-            if (!err && auth) {
-                dispatch(_loginSuccess(auth, realm));
-                apiService.users.getProfile((profileErr, profileResp) => {
-                    if (!profileErr && profileResp) {
-                        dispatch(getProfileSuccess(profileResp));
-                        if (referrer) {
-                            dispatch(push(referrer));
-                        } else {
-                            dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
-                        }
+        apiService.auth.login(authPayload)
+        .then((auth) => {
+            dispatch(_loginSuccess(auth, realm));
+            apiService.users.getProfile((profileErr, profileResp) => {
+                if (!profileErr && profileResp) {
+                    dispatch(getProfileSuccess(profileResp));
+                    if (referrer) {
+                        dispatch(push(referrer));
                     } else {
-                        dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                        dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
                     }
-                });
-            } else if (err && !auth) {
-                dispatch(_loginError(errorMessages.SERVER_ISSUE));
-                dispatch(_clearLoginForm());
-            } else {
+                } else {
+                    dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                }
+            });
+        })
+        .catch((err) => {
+            if (err.response) {
                 dispatch(_loginError(errorMessages.INVALID_LOGIN));
-                dispatch(_clearLoginForm());
+            } else {
+                dispatch(_loginError(errorMessages.SERVER_ISSUE));
             }
-        },
-      );
+            dispatch(_clearLoginForm());
+        });
     };
 }
 

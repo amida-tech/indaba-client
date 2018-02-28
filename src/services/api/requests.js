@@ -22,10 +22,10 @@ export function addQueryParams(url, params) {
  * @param {Function} callback
  * @return {Any} handled by callback.
 * */
-export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
+export function apiAuthPostRequest(fullURI, requestBodyObject) {
     const encodedRequestBodyObject = formurlencoded(requestBodyObject);
 
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'POST',
         headers: {
             Accept: '*/*',
@@ -33,8 +33,7 @@ export function apiAuthPostRequest(fullURI, requestBodyObject, callback) {
         },
         body: encodedRequestBodyObject,
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(handleResponse);
 }
 
 /**
@@ -176,19 +175,26 @@ export function putObjectRequest(file, fullURI) {
 // Private Helpers
 // ////////////////
 
-function handleResponse(res) {
-    if (res.status >= 200 && res.status < 300) {
-        return decodeResponse(res);
+function handleResponse(response) {
+    if (response.ok) {
+        return decodeResponse(response);
     }
-    return decodeResponse(res).then(decoded => Promise.reject(decoded));
+    return decodeResponse(response).then((body) => {
+        // reject with a normalized error structure that includes the original
+        // response object and the decoded body
+        // currently only for 401 so the auth middleware can detect it without
+        // having to change every other error handler that just expects the body
+        if (response.status === 401) {
+            return Promise.reject({ response, body });
+        }
+        return Promise.reject(body);
+    });
 }
 
 function decodeResponse(res) {
     // res.json() will crash on empty responses so we manually check for them
     return res.text().then((text) => {
-        if (res.status === 401) {
-            return res.status;
-        } else if (text) {
+        if (text) {
             try {
                 return JSON.parse(text);
             } catch (e) {
