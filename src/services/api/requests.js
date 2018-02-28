@@ -172,20 +172,12 @@ export function getSignedRequest(file, rootURI) {
 // Private Helpers
 // ////////////////
 
-function uploadFileToAws(file, signedRequest, url) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('PUT', signedRequest);
-
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                return url;
-            }
-            return false;
-        }
-        return true;
-    };
-    xhr.send(file);
+function uploadFileToAws(file, signedRequest) {
+    return fetch(signedRequest, {
+        method: 'PUT',
+        body: file,
+    })
+    .then(handleResponse);
 }
 
 function handleResponse(res) {
