@@ -1,3 +1,5 @@
+import uuid from 'uuid/v4';
+
 import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
@@ -54,13 +56,14 @@ const projects = {
         requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`), callback);
     },
     postFileToAws: (file, callback) => {
-        requests.apiGetRequest(`${getFullPath('sign-s3')}?file-name=${file.name}&file-type=${file.type}`,
+        const filename = `${file.name}_${uuid()}`;
+        requests.apiGetRequest(`${getFullPath('sign-s3')}?file-name=${filename}&file-type=${file.type}`,
         (urlErr, { signedRequest, url }) => {
             if (!urlErr) {
                 requests.putObjectRequest(file, signedRequest,
                     (putErr) => {
                         if (!putErr) {
-                            callback(null, { url, filename: file.name });
+                            callback(null, { url, filename });
                         } else {
                             callback(putErr);
                         }
