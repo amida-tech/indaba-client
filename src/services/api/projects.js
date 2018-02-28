@@ -53,6 +53,12 @@ const projects = {
     exportData: (productId, callback) => {
         requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`), callback);
     },
+    postFileToAws: (file) => {
+        requests.apiGetRequest(`${getFullPath('sign-s3')}?file-name=${file.name}&file-type=${file.type}`,
+        (err, response) => {
+            requests.putObjectRequest(file, response.signedRequest);
+        });
+    },
     // deleteWorkflows: (workflowsId, callback) => {
     //     requests.apiDeleteRequest(getFullPath(`workflows/${workflowsId}/`), null, callback);
     // },

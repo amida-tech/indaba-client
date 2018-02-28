@@ -161,24 +161,20 @@ export function multipartFormDataPostRequest(fullURI, data) {
     return fetch(fullURI, call).then(decodeResponse);
 }
 
-export function getSignedRequest(file, rootURI) {
-    return apiGetRequest(`${rootURI}?file-name=${file.name}&file-type=${file.type}`,
-        (err, response) => {
-            uploadFileToAws(file, response.signedRequest, response.url);
-        });
-}
-
-// ////////////////
-// Private Helpers
-// ////////////////
-
-function uploadFileToAws(file, signedRequest) {
-    return fetch(signedRequest, {
+/**
+ * Blindly put a body object to a given url
+* */
+export function putObjectRequest(file, fullURI) {
+    return fetch(fullURI, {
         method: 'PUT',
         body: file,
     })
     .then(handleResponse);
 }
+
+// ////////////////
+// Private Helpers
+// ////////////////
 
 function handleResponse(res) {
     if (res.status >= 200 && res.status < 300) {
