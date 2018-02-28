@@ -39,7 +39,7 @@ class QuestionContainer extends Component {
                                 answer.questionId === this.props.question.id) || {}}
                             assessmentId={this.props.task.assessmentId}
                             answers={this.props.answers}
-                            entryMode={!this.props.stage.discussionParticipation}
+                            entryMode={this.props.stage.discussionParticipation}
                             displayMode={this.props.taskDisabled || this.props.stage.blindReview
                                 || this.props.stage.allowEdit}
                             vocab={this.props.vocab } />

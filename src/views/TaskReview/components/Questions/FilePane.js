@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
-
-import ReduxFormFileInput from '../../../../common/components/ReduxFormFileInput';
 
 class FilePane extends Component {
     render() {
@@ -10,11 +7,10 @@ class FilePane extends Component {
             <div className='file-pane'>
                 {this.props.file === undefined &&
                     <div className='file-pane__add-form'>
-                        <Field name={'file'}
+                        <input name={'file'}
                             className='file-pane__file-input'
-                            disabled={this.props.disabled}
-                            component={ReduxFormFileInput}/>
-                        <button className='file-pane__submit file-pane_submit--add'
+                            disabled={this.props.disabled} />
+                        <button className='file-pane__submit file-pane__submit--add'
                             type='submit'
                             disabled={this.props.disabled}>
                             {this.props.vocab.SURVEY.ADD_FILE}
