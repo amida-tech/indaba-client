@@ -163,12 +163,13 @@ export function multipartFormDataPostRequest(fullURI, data) {
 /**
  * Blindly put a body object to a given url
 * */
-export function putObjectRequest(file, fullURI) {
+export function putObjectRequest(file, fullURI, callback) {
     return fetch(fullURI, {
         method: 'PUT',
         body: file,
     })
-    .then(handleResponse);
+    .then(handleResponse)
+    .then(res => callback(null, res), issue => callback(issue));
 }
 
 // ////////////////
