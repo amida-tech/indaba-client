@@ -54,6 +54,9 @@ export default reduxForm({
     onSubmit: (values, dispatch, ownProps) => {
         if (ownProps.file === undefined) {
             if (values.file) {
+                // Upload File to AWS and File name to survey service
+                apiService.surveys.postFileToAws(values.file[0]);
+                // TODO: Only store the file name on survey service, not to actual file
                 apiService.surveys.postFile(values.file[0], values.file[0].name)
                 .then(({ id }) => ownProps.onFileUploaded({ filename: values.file[0].name, id }))
                 .catch(() => toast(ownProps.vocab.ERROR.FILE_UPLOAD, { type: 'error', autoClose: false }));

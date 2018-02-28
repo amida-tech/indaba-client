@@ -1,7 +1,10 @@
 import * as requests from './requests';
 import config from '../../config';
 
+import getFullPath from '../../utils/getFullPath';
+
 const rootURI = config.SURVEY_API_URL;
+
 
 const surveys = {
     getSurveys: (callback) => { // Coming soon.
@@ -34,6 +37,12 @@ const surveys = {
     copyAnswers: (assessmentId, requestBody, callback) => {
         requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
     },
+
+    // TODO: Move this to the appropriate file or leave here
+    postFileToAws: (file) => {
+        requests.getSignedRequest(file, getFullPath('sign-s3'));
+    },
+
     postFile: (file, filename) =>
         requests.multipartFormDataPostRequest(`${rootURI}/files`, { file, filename }),
 };

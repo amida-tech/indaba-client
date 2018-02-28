@@ -161,9 +161,74 @@ export function multipartFormDataPostRequest(fullURI, data) {
     return fetch(fullURI, call).then(decodeResponse);
 }
 
+// export function getSignedRequest(file, fullURI) {
+//     const NewfullURI = `${fullURI}?file-name=${file.name}&file-type=${file.type}`;
+//
+//     fetch(NewfullURI, {
+//         method: 'GET',
+//         headers: {
+//             Authorization: cookie.load('indaba-auth'),
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json',
+//         },
+//     })
+//     .then((response) => {
+//         console.log(`RESPONSE IS: ${response.signedRequest}`);
+//         console.log(`RESPONSE IS: ${response.body.signedRequest}`);
+//         console.log(`RESPONSE IS: ${response.status}`);
+//         console.log(`RESPONSE IS: ${response.url}`);
+//         console.log(`RESPONSE IS: ${response.signedRequest}`);
+//     });
+// }
+
+// TODO: Re-write this using fetch like the other functions
+export function getSignedRequest(file, rootURI) {
+    const xhr = new XMLHttpRequest();
+
+    // In order to get unique file names, we append the time stamp
+    // TODO: Uncomment this and use the same name generated as the file name stored on surveyService
+    // const currentDate = new Date();
+    // const currentUnixTimeStamp = currentDate.getTime();
+    // const updatedFilename = `${file.name}_${currentUnixTimeStamp}`;
+
+    xhr.open('GET', `${rootURI}?file-name=${file.name}&file-type=${file.type}`);
+    // xhr.open('GET', `${rootURI}?file-name=${updatedFilename}&file-type=${file.type}`);
+    xhr.setRequestHeader('Authorization', cookie.load('indaba-auth'));
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                uploadFileToAws(file, response.signedRequest, response.url);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    };
+    xhr.send();
+}
+
 // ////////////////
 // Private Helpers
 // ////////////////
+
+function uploadFileToAws(file, signedRequest, url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                return url;
+            }
+            return false;
+        }
+        return true;
+    };
+    xhr.send(file);
+}
+
 function handleResponse(res) {
     if (res.status >= 200 && res.status < 300) {
         return decodeResponse(res);
