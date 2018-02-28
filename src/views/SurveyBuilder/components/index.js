@@ -20,18 +20,25 @@ class SurveyBuilder extends Component {
         allOptions.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
             <div className='survey-builder'>
-                <AddQuestionPanel className='survey-builder__add-question'
-                    sectionView={this.props.ui.sectionView}
-                    actions={this.props.actions}
-                    vocab={this.props.vocab}
-                    options={options} />
-                <CreateSurveyPanel className='survey-builder__create-survey'
-                    ui={this.props.ui}
-                    form={this.props.form}
-                    actions={this.props.actions}
-                    vocab={this.props.vocab}
-                    options={allOptions} />
+                    {
+                    this.props.form.status === 'published' &&
+                    <div className='survey-builder__draft-warning'>
+                    {this.props.vocab.SURVEY.DRAFT_WARNING}</div>
+                    }
+                <div className={`survey-builder__contents survey-builder__contents--${this.props.form.status === 'draft' ? 'draft' : 'published'}`} >
+                    <AddQuestionPanel className='survey-builder__add-question'
+                        sectionView={this.props.ui.sectionView}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}
+                        options={options} />
+                    <CreateSurveyPanel className='survey-builder__create-survey'
+                        ui={this.props.ui}
+                        form={this.props.form}
+                        actions={this.props.actions}
+                        vocab={this.props.vocab}
+                        options={allOptions} />
                 </div>
+            </div>
         );
     }
 }

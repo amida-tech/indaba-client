@@ -408,6 +408,7 @@
         "SCALE_ENTER": "Please enter a value between these two numbers: ",
         "FLAG_SENT": "This question has been flagged.",
         "MARK_SENT": "This discussions has been marked as resolved.",
+        "DRAFT_WARNING":"The Survey is published. Switch to draft to make changes.",
         "SCALE_VALUES": {
             "MAX": "Max.",
             "MIN": "Min."
