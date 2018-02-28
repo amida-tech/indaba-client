@@ -50,7 +50,7 @@ class SurveyPane extends Component {
                         </span>
                     </div>
                 }
-                {(this.props.stage.id === undefined || showCommentForm) ?
+                {(this.props.stage.id === undefined || this.props.stage.discussionParticipation) ?
                     <SurveyForm
                         {...this.props}
                         initialValues={initialValues}>
