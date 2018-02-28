@@ -4,6 +4,7 @@ import { find, get, has, merge, omit } from 'lodash';
 import { DateTime } from 'grommet';
 
 import FileForm from './FileForm';
+import FilePane from './FilePane';
 import Bullet from './Bullet';
 import Choice from './Choice';
 import Choices from './Choices';
@@ -82,7 +83,9 @@ class Questions extends Component {
                 </div>
                 {has(this.props, 'meta.file') &&
                     <div className='questions__option-panel'>
-                        <FileForm form={`file-form-${this.props.id}`}
+                    {this.props.fileEntryMode ?
+                        <FileForm
+                            form={`file-form-${this.props.id}`}
                             vocab={this.props.vocab}
                             disabled={noValue || this.props.displayMode}
                             file={get(value, 'meta.file')}
@@ -103,7 +106,11 @@ class Questions extends Component {
                                     omit(value.meta, 'file'),
                                     this.props.vocab.ERROR,
                                 );
-                            }}/>
+                            }}/> :
+                        <FilePane
+                            vocab={this.props.vocab}
+                            disabled={noValue || this.props.displayMode}
+                            file={get(value, 'meta.file')} />}
                     </div>
                 }
                 {has(this.props, 'meta.publication') &&

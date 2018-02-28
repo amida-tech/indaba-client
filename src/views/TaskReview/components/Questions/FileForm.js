@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { toast } from 'react-toastify';
 
-import ReduxFormFileInput from '../../../../common/components/ReduxFormFileInput';
+import FilePane from './FilePane';
 import apiService from '../../../../services/api';
 
 class FileForm extends Component {
@@ -11,34 +11,10 @@ class FileForm extends Component {
         return (
             <form className='file-form'
                 onSubmit={this.props.handleSubmit}>
-                {
-                    this.props.file === undefined &&
-                    <div className='file-form__add-form'>
-                        <Field name={'file'}
-                            className='file-form__file-input'
-                            disabled={this.props.disabled}
-                            component={ReduxFormFileInput}/>
-                        <button className='file-form__submit file-form__submit--add'
-                            type='submit'
-                            disabled={this.props.disabled}>
-                            {this.props.vocab.SURVEY.ADD_FILE}
-                        </button>
-                    </div>
-                }
-                {
-                    this.props.file !== undefined &&
-                    <div className='file-form__remove-form'>
-                        <div className='file-form__current-file-name'>
-                            {this.props.file.filename}
-                        </div>
-                        {
-                            !this.props.disabled &&
-                            <button className='file-form__submit file-form__submit--remove'>
-                                {this.props.vocab.SURVEY.REMOVE_FILE}
-                            </button>
-                        }
-                    </div>
-                }
+                <FilePane
+                    vocab={this.props.vocab}
+                    disabled={this.props.displayMode}
+                    file={this.props.file} />
             </form>
         );
     }
