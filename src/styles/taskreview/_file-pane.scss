@@ -1,0 +1,40 @@
+$block-class: 'file-pane';
+
+@at-root {
+    .#{$block-class} {
+        &__add-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &__file-input {
+            margin-top: 4px;
+        }
+
+        &__remove-form {
+            display: flex;
+            flex-direction: row;
+        }
+
+        &__submit {
+            color: #333;
+
+            &--remove {
+                margin-left: 8px;
+            }
+
+            &--add {
+                margin-top: 4px;
+            }
+
+            &:disabled {
+                color: graytext;
+            }
+        }
+
+        &__label {
+            margin-left: 3px;
+        }
+    }
+}

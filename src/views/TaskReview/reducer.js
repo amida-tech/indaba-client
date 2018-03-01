@@ -65,7 +65,7 @@ export default (state = initialState, action) => {
                     $push: [result],
                 } } } }) :
             update(state, { ui: { lastSave: { $set: Date.now() },
-                form: { answers: { [answerIndex]: { $set: result } } } } });
+                form: { answers: { [answerIndex]: { $merge: result } } } } });
     }
     case type.GET_DISCUSSIONS_SUCCESS:
         return update(state, { ui: { flags: { $set: action.discussions } } });
