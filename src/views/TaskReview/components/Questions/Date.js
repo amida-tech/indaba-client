@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { DateTime } from 'grommet';
+
+import DateInput from '../../../../common/components/DateInput';
 import Time from '../../../../utils/Time';
 
 class Date extends Component {
@@ -21,13 +22,13 @@ class Date extends Component {
                         </div> :
                         this.props.vocab.SURVEY.NO_DATE_ENTERED
                     )) ||
-                    <DateTime className='date__field'
+                    <DateInput className='date__field'
                         value={currentAnswer}
-                        format='MM/DD/YYYY'
-                        onChange={(event) => {
-                            if (Time.validateTime(event)) {
+                        inline={true}
+                        onChange={(date) => {
+                            if (Time.validateTime(date)) {
                                 this.props.upsertAnswer(
-                                    { dateValue: Time.renderForSurvey(event) });
+                                    { dateValue: Time.renderForSurvey(date) });
                             }
                         }} />
                 }
