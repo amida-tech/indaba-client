@@ -43,7 +43,7 @@ export default reduxForm({
             return omit(answer, ['comment.id', 'comment.userId', 'comment.language', 'commentHistory']);
         }));
         if (disagreeCheck.length > 0) {
-            toast(ownProps.vocab.ERROR.DISAGREE_COMMENTS + disagreeCheck.toString().replace(/,/g, ', '));
+            toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
         }
         ownProps.actions.postReview(
             values.assessmentId,
