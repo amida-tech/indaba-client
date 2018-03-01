@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
+import { toast } from 'react-toastify';
 import { get, omit, compact } from 'lodash';
 
 class SurveyForm extends Component { // TODO: INBA-450
@@ -31,14 +32,19 @@ export default reduxForm({
     form: FORM_NAME,
     enableReinitialize: true,
     onSubmit: (values, dispatch, ownProps) => {
-        const answers = compact(values.answers.map((answer) => {
+        const disagreeCheck = [];
+        const answers = compact(values.answers.map((answer, index) => {
             if (get(answer, 'comment.reason') === undefined) {
                 return null;
-            } else if (answer.comment.reason === 'disagree' && answer.comment.text === undefined) {
+            } else if (answer.comment.reason === 'disagree' && !answer.comment.text) {
+                disagreeCheck.push(index + 1);
                 return null;
             }
             return omit(answer, ['comment.id', 'comment.userId', 'comment.language', 'commentHistory']);
         }));
+        if (disagreeCheck.length > 0) {
+            toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
+        }
         ownProps.actions.postReview(
             values.assessmentId,
             answers,
