@@ -36,7 +36,7 @@ export default reduxForm({
         const answers = compact(values.answers.map((answer, index) => {
             if (get(answer, 'comment.reason') === undefined) {
                 return null;
-            } else if (answer.comment.reason === 'disagree' && answer.comment.text === undefined) {
+            } else if (answer.comment.reason === 'disagree' && !answer.comment.text) {
                 disagreeCheck.push(index + 1);
                 return null;
             }
