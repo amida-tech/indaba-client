@@ -32,7 +32,7 @@ class QuestionContainer extends Component {
                         <ReviewPane
                             users={this.props.users}
                             profile={this.props.profile}
-                            questionIndex={this.props.questionIndex}
+                            questionIndex={this.props.questionIndex + this.props.offset}
                             question={this.props.question}
                             answer={find(this.props.answers, answer =>
                                 answer.questionId === this.props.question.id) || {}}
