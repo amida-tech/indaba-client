@@ -34,8 +34,8 @@ class StageModal extends Component {
                 userGroups: [],
                 position: this.props.project.stages.length,
                 permissions: '0',
-                startDate: '',
-                endDate: '',
+                startDate: new Date(),
+                endDate: new Date(),
             };
         }
 
