@@ -29,7 +29,7 @@ class FileForm extends Component {
                     this.props.file !== undefined &&
                     <div className='file-form__remove-form'>
                         <div className='file-form__current-file-name'>
-                            {this.props.file.filename}
+                            <a href={this.props.file.url}> {this.props.file.filename} </a>
                         </div>
                         {
                             !this.props.disabled &&
@@ -54,9 +54,14 @@ export default reduxForm({
     onSubmit: (values, dispatch, ownProps) => {
         if (ownProps.file === undefined) {
             if (values.file) {
-                apiService.surveys.postFile(values.file[0], values.file[0].name)
-                .then(({ id }) => ownProps.onFileUploaded({ filename: values.file[0].name, id }))
-                .catch(() => toast(ownProps.vocab.ERROR.FILE_UPLOAD, { type: 'error', autoClose: false }));
+                // Upload File to AWS and File name to survey service
+                apiService.projects.postFileToAws(values.file[0], (err, response) => {
+                    if (err) {
+                        toast(ownProps.vocab.ERROR.FILE_UPLOAD, { type: 'error', autoClose: false });
+                    } else {
+                        ownProps.onFileUploaded(response);
+                    }
+                });
             } else {
                 toast(ownProps.vocab.ERROR.FILE_WARNING);
             }
