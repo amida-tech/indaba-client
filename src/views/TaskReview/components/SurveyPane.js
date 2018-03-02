@@ -11,6 +11,7 @@ class SurveyPane extends Component {
     constructor(props) {
         super(props);
         this.onCompleteTask = this.onCompleteTask.bind(this);
+        this.storeFormRef = this.storeFormRef.bind(this);
     }
     onCompleteTask() {
         const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
@@ -28,6 +29,9 @@ class SurveyPane extends Component {
         } else {
             toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
         }
+    }
+    storeFormRef(formRef) {
+        this.formRef = formRef;
     }
     render() {
         const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
@@ -76,6 +80,7 @@ class SurveyPane extends Component {
                 }
                 {(this.props.stage.id === undefined || this.props.stage.discussionParticipation) ?
                     <SurveyForm
+                        ref={this.storeFormRef}
                         {...this.props}
                         initialValues={initialValues}>
                         <SurveyPresentation
