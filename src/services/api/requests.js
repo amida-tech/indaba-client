@@ -36,6 +36,11 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
     .then(handleResponse);
 }
 
+const optionalCallbackSuccess = callback => response =>
+    (callback ? callback(null, response) : response);
+const optionalCallbackError = callback => response =>
+    (callback ? callback(response) : Promise.reject(response));
+
 /**
  * Executes a GET request on the given URI
  * @param {String} fullURI
@@ -43,7 +48,7 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
  * @return {Any} handled by callback. Generally the response data.
 * */
 export function apiGetRequest(fullURI, callback) {
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'GET',
         headers: {
             Authorization: cookie.load('indaba-auth'),
@@ -51,8 +56,8 @@ export function apiGetRequest(fullURI, callback) {
             'Content-Type': 'application/json',
         },
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(callback ? handleResponse : handleResponseRejectWithResponse)
+    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
 }
 
 /**
@@ -63,7 +68,7 @@ export function apiGetRequest(fullURI, callback) {
  * @return {Any} handled by callback.
 * */
 export function apiPostRequest(fullURI, requestBody, callback) {
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'POST',
         headers: {
             Authorization: cookie.load('indaba-auth'),
@@ -72,8 +77,8 @@ export function apiPostRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(callback ? handleResponse : handleResponseRejectWithResponse)
+    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
 }
 
 /**
@@ -84,7 +89,7 @@ export function apiPostRequest(fullURI, requestBody, callback) {
  * @return {Any} handled by callback.
 * */
 export function apiPatchRequest(fullURI, requestBody, callback) {
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'PATCH',
         headers: {
             Authorization: cookie.load('indaba-auth'),
@@ -93,8 +98,8 @@ export function apiPatchRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(callback ? handleResponse : handleResponseRejectWithResponse)
+    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
 }
 
 /**
@@ -105,7 +110,7 @@ export function apiPatchRequest(fullURI, requestBody, callback) {
  * @return {Any} handled by callback.
 * */
 export function apiPutRequest(fullURI, requestBody, callback) {
-    fetch(fullURI, {
+    return fetch(fullURI, {
         method: 'PUT',
         headers: {
             Authorization: cookie.load('indaba-auth'),
@@ -114,8 +119,8 @@ export function apiPutRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    .then(callback ? handleResponse : handleResponseRejectWithResponse)
+    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
 }
 
 /**
@@ -139,9 +144,9 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
         call.body = JSON.stringify(requestBody);
     }
 
-    fetch(fullURI, call)
-    .then(handleResponse)
-    .then(res => callback(null, res), issue => callback(issue));
+    return fetch(fullURI, call)
+    .then(callback ? handleResponse : handleResponseRejectWithResponse)
+    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
 }
 
 export function multipartFormDataPostRequest(fullURI, data) {
@@ -190,6 +195,15 @@ function handleResponse(response) {
         }
         return Promise.reject(body);
     });
+}
+
+function handleResponseRejectWithResponse(response) {
+    if (response.ok) {
+        return decodeResponse(response);
+    }
+    return decodeResponse(response).then(body =>
+        Promise.reject({ response, body }),
+    );
 }
 
 function decodeResponse(res) {
