@@ -49,7 +49,7 @@ DateInput.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
-    ]).isRequired,
+    ]),
     onChange: PropTypes.func.isRequired,
     // true if the expanded picker should be kept in the document flow
     // otherwise, the expanded picker will have absolute position and
