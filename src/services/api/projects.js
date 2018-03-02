@@ -29,9 +29,8 @@ const projects = {
         requests.apiDeleteRequest(getFullPath(`workflows/${stepId}/steps`), {}),
     editSurvey: surveyId =>
         requests.apiPutRequest(getFullPath(`projects/survey/${surveyId}`), {}),
-    exportData: (productId, callback) => {
-        requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`), callback);
-    },
+    exportData: productId =>
+        requests.apiGetRequest(getFullPath(`products/${productId}/export.csv`)),
     postFileToAws: (file) => {
         const filename = `${file.name}_${uuid()}`;
         return requests.apiGetRequest(`${getFullPath('sign-s3')}?file-name=${filename}&file-type=${file.type}`)
