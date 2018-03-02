@@ -39,6 +39,7 @@ class SurveyPresentation extends Component {
                         </div>
                         <button className={`survey-presentation__submit-button
                             survey-presentation__submit-button${!this.props.preventComplete ? '' : '--disabled'}`}
+                            type='button'
                             onClick={this.props.onCompleteTask}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>
