@@ -273,12 +273,17 @@ export function exportData(productId, projectName, errorMessages) {
                     dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
                     reject();
                 } else {
-                    const URL = window.URL || window.webkitURL;
-                    const a = document.createElement('a');
-                    a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
-                    a.href = URL.createObjectURL(new Blob([_stringToBytes(dataResp)], { type: 'application/zip' }));
-                    a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
-                    a.click();
+                    const blob = new Blob([_stringToBytes(dataResp)], { type: 'application/zip' });
+                    if (window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveOrOpenBlob(blob,
+                            `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`);
+                    } else {
+                        const a = document.createElement('a');
+                        a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
+                        a.href = URL.createObjectURL(blob);
+                        a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
+                        a.click();
+                    }
                     resolve();
                 }
             },
