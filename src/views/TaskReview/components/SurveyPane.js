@@ -1,18 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+
 import Time from '../../../utils/Time';
 import SurveyForm from './SurveyForm';
 import SurveyPresentation from './SurveyPresentation';
 
 class SurveyPane extends Component {
+    constructor(props) {
+        super(props);
+        this.onCompleteTask = this.onCompleteTask.bind(this);
+        this.storeFormRef = this.storeFormRef.bind(this);
+    }
+    onCompleteTask() {
+        const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
+        if (!preventComplete) {
+            this.props.actions.moveTask(
+                this.props.productId,
+                this.props.task.uoaId,
+                this.props.vocab.ERROR,
+                ).then(() => this.props.actions.completeAssessment(
+                    this.props.task.assessmentId,
+                    this.props.vocab.ERROR,
+                    )).then(() => toast(this.props.vocab.PROJECT.TASK_COMPLETED));
+        } else if (this.props.flagCount > 0) {
+            toast(this.props.vocab.ERROR.FLAGGED_QUESTIONS);
+        } else {
+            toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
+        }
+    }
+    storeFormRef(formRef) {
+        this.formRef = formRef;
+    }
     render() {
+        const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
         const initialValues = {
             answers: this.props.answers,
             assessmentId: this.props.task.assessmentId,
         };
         const showCommentForm = this.props.stage.discussionParticipation ||
             this.props.stage.blindReview || this.props.stage.allowEdit;
+
+        const handleCompleteTaskClick = this.props.stage.discussionParticipation ?
+            () => this.formRef.submit()
+            .then(this.onCompleteTask)
+            .catch(() => null) :
+            this.onCompleteTask;
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -52,14 +86,19 @@ class SurveyPane extends Component {
                 }
                 {(this.props.stage.id === undefined || this.props.stage.discussionParticipation) ?
                     <SurveyForm
+                        ref={this.storeFormRef}
                         {...this.props}
                         initialValues={initialValues}>
                         <SurveyPresentation
                             {...this.props}
+                            onCompleteTask={handleCompleteTaskClick}
+                            preventComplete={preventComplete}
                             showCommentForm={showCommentForm} />
                     </SurveyForm> :
                     <SurveyPresentation
                         {...this.props}
+                        onCompleteTask={handleCompleteTaskClick}
+                        preventComplete={preventComplete}
                         showCommentForm={showCommentForm} />
                 }
             </div>

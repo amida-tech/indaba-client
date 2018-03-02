@@ -177,17 +177,21 @@ export function postReview(assessmentId, answers, errorMessages) {
         answers,
     };
     return (dispatch) => {
-        apiService.surveys.postAnswer(
-            assessmentId,
-            requestBody,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(getAnswers(assessmentId, errorMessages));
-                }
-            },
-        );
+        return new Promise((resolve, reject) => {
+            apiService.surveys.postAnswer(
+                assessmentId,
+                requestBody,
+                (answerErr, answerResp) => {
+                    if (answerErr) {
+                        dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+                        reject(answerErr);
+                    } else if (answerResp || []) {
+                        dispatch(getAnswers(assessmentId, errorMessages));
+                        resolve(answerResp);
+                    }
+                },
+            );
+        });
     };
 }
 
