@@ -41,11 +41,10 @@ export function login(username, password, realm, referrer, errorMessages) {
 }
 
 export function requestResetToken(email) {
-    return () => new Promise((resolve, reject) => {
-        apiService.auth.requestResetToken(email, err =>
-            (err ? reject(err) : resolve()),
-        );
-    });
+    return (dispatch) => {
+        return apiService.auth.requestResetToken(email)
+        .then(() => dispatch(_requestResetTokenSuccess()));
+    };
 }
 
 export function showForgotPasswordFor(email) {
@@ -84,5 +83,11 @@ function _loginError(error) {
     return {
         type: actionTypes.LOGIN_ERROR,
         error,
+    };
+}
+
+function _requestResetTokenSuccess() {
+    return {
+        type: actionTypes.REQUEST_RESET_TOKEN_SUCCESS,
     };
 }
