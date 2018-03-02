@@ -45,10 +45,10 @@ export default reduxForm({
         if (disagreeCheck.length > 0) {
             toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
         }
-        ownProps.actions.postReview(
-            values.assessmentId,
+        const postResponse = ownProps.actions.postReview(values.assessmentId,
             answers,
             ownProps.vocab.ERROR,
         );
+        return disagreeCheck.length > 0 ? Promise.reject() : postResponse;
     },
 })(SurveyForm);
