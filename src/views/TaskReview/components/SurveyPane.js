@@ -41,6 +41,12 @@ class SurveyPane extends Component {
         };
         const showCommentForm = this.props.stage.discussionParticipation ||
             this.props.stage.blindReview || this.props.stage.allowEdit;
+
+        const handleCompleteTaskClick = this.props.stage.discussionParticipation ?
+            () => this.formRef.submit()
+            .then(this.onCompleteTask)
+            .catch(() => null) :
+            this.onCompleteTask;
         return (
             <div className='survey-pane'>
                 <div className='survey-pane__controls'>
@@ -85,13 +91,13 @@ class SurveyPane extends Component {
                         initialValues={initialValues}>
                         <SurveyPresentation
                             {...this.props}
-                            onCompleteTask={this.onCompleteTask}
+                            onCompleteTask={handleCompleteTaskClick}
                             preventComplete={preventComplete}
                             showCommentForm={showCommentForm} />
                     </SurveyForm> :
                     <SurveyPresentation
                         {...this.props}
-                        onCompleteTask={this.onCompleteTask}
+                        onCompleteTask={handleCompleteTaskClick}
                         preventComplete={preventComplete}
                         showCommentForm={showCommentForm} />
                 }
