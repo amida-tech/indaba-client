@@ -1,12 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+
 import Time from '../../../utils/Time';
 import SurveyForm from './SurveyForm';
 import SurveyPresentation from './SurveyPresentation';
 
 class SurveyPane extends Component {
+    constructor(props) {
+        super(props);
+        this.onCompleteTask = this.onCompleteTask.bind(this);
+    }
+    onCompleteTask() {
+        const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
+        if (!preventComplete) {
+            this.props.actions.moveTask(
+                this.props.productId,
+                this.props.task.uoaId,
+                this.props.vocab.ERROR,
+                ).then(() => this.props.actions.completeAssessment(
+                    this.props.task.assessmentId,
+                    this.props.vocab.ERROR,
+                    )).then(() => toast(this.props.vocab.PROJECT.TASK_COMPLETED));
+        } else if (this.props.flagCount > 0) {
+            toast(this.props.vocab.ERROR.FLAGGED_QUESTIONS);
+        } else {
+            toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
+        }
+    }
     render() {
+        const preventComplete = !this.props.reqCheck || this.props.flagCount !== 0;
         const initialValues = {
             answers: this.props.answers,
             assessmentId: this.props.task.assessmentId,
@@ -56,10 +80,14 @@ class SurveyPane extends Component {
                         initialValues={initialValues}>
                         <SurveyPresentation
                             {...this.props}
+                            onCompleteTask={this.onCompleteTask}
+                            preventComplete={preventComplete}
                             showCommentForm={showCommentForm} />
                     </SurveyForm> :
                     <SurveyPresentation
                         {...this.props}
+                        onCompleteTask={this.onCompleteTask}
+                        preventComplete={preventComplete}
                         showCommentForm={showCommentForm} />
                 }
             </div>

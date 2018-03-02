@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Accordion from 'grommet/components/Accordion';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
 
@@ -39,24 +38,8 @@ class SurveyPresentation extends Component {
                                 </div>}
                         </div>
                         <button className={`survey-presentation__submit-button
-                            survey-presentation__submit-button${this.props.reqCheck
-                                && this.props.flagCount === 0 ? '' : '--disabled'}`}
-                            onClick={() => {
-                                if (this.props.reqCheck && this.props.flagCount === 0) {
-                                    this.props.actions.moveTask(
-                                        this.props.productId,
-                                        this.props.task.uoaId,
-                                        this.props.vocab.ERROR,
-                                    ).then(() => this.props.actions.completeAssessment(
-                                        this.props.task.assessmentId,
-                                        this.props.vocab.ERROR,
-                                    )).then(() => toast(this.props.vocab.PROJECT.TASK_COMPLETED));
-                                } else if (this.props.flagCount > 0) {
-                                    toast(this.props.vocab.ERROR.FLAGGED_QUESTIONS);
-                                } else {
-                                    toast(this.props.vocab.ERROR.REQUIRE_ANSWERS);
-                                }
-                            }}>
+                            survey-presentation__submit-button${!this.props.preventComplete ? '' : '--disabled'}`}
+                            onClick={this.props.onCompleteTask}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>
                         {this.props.stage.discussionParticipation &&
@@ -85,6 +68,8 @@ SurveyPresentation.propTypes = {
     offset: PropTypes.number,
     showCommentForm: PropTypes.bool,
     vocab: PropTypes.object.isRequired,
+    preventComplete: PropTypes.bool,
+    onCompleteTask: PropTypes.func,
 };
 
 export default SurveyPresentation;
