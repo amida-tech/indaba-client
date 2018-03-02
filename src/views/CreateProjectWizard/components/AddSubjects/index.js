@@ -17,20 +17,20 @@ class AddSubjects extends Component {
     }
     handleDeleteClick(subjectId) {
         // if used in any other project, do DELETE, otherwise, do disassociate
-        apiService.projects.getProjects((projectsErr, projects) => {
-            if (projectsErr) {
-                toast(this.props.vocab.ERROR.SUBJECT_REQUEST, {
-                    autoClose: false, type: 'error',
-                });
-            } else {
-                const deleteType =
-                    projects.some(project =>
-                        project.id !== this.props.project.id &&
-                        project.subjects.some(subjectIter => subjectIter.id === subjectId)) ?
-                    DELETE_TYPE.DISASSOCIATE_FROM_PROJECT :
-                    DELETE_TYPE.DELETE;
-                this.props.actions.wizardShowSubjectDeleteConfirmModal(subjectId, deleteType);
-            }
+        apiService.projects.getProjects()
+        .then((projects) => {
+            const deleteType =
+                projects.some(project =>
+                    project.id !== this.props.project.id &&
+                    project.subjects.some(subjectIter => subjectIter.id === subjectId)) ?
+                DELETE_TYPE.DISASSOCIATE_FROM_PROJECT :
+                DELETE_TYPE.DELETE;
+            this.props.actions.wizardShowSubjectDeleteConfirmModal(subjectId, deleteType);
+        })
+        .catch(() => {
+            toast(this.props.vocab.ERROR.SUBJECT_REQUEST, {
+                autoClose: false, type: 'error',
+            });
         });
     }
     handleModalSave() {
