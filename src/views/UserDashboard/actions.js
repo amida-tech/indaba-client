@@ -78,14 +78,15 @@ function _getAnswers(assessmentId, errorMessages) {
 
 function _getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveyById(surveyId,
-            (surveyErr, surveyResp) => {
-                if (surveyErr) {
-                    _reportError(errorMessages.SURVEY_REQUEST);
-                } else {
-                    dispatch(_getSurveyByIdSuccess(surveyResp));
-                }
-            });
+        apiService.surveys.getSurveyById(surveyId)
+        .then((surveyResp) => {
+            dispatch(_getSurveyByIdSuccess(surveyResp));
+            return surveyResp;
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportError(errorMessages.SURVEY_REQUEST));
+            throw surveyErr;
+        });
     };
 }
 

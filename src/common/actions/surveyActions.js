@@ -72,14 +72,15 @@ export function patchSurvey(survey, successMessage, errorMessages) {
 
 export function getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveyById(
-            surveyId,
-            (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _getSurveyByIdSuccess(surveyResp.id, surveyResp) :
-                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            },
-        );
+        apiService.surveys.getSurveyById(surveyId)
+        .then((surveyResp) => {
+            dispatch(_getSurveyByIdSuccess(surveyResp.id, surveyResp));
+            return surveyResp;
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+            throw surveyErr;
+        });
     };
 }
 
