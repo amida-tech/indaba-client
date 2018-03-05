@@ -8,13 +8,15 @@ import { updateProjectWithSurvey } from './projectActions';
 // Survey API calls.
 export function getSurveys(errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveys(
-            (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _getSurveysSuccess(surveyResp) :
-                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            },
-        );
+        apiService.surveys.getSurveys()
+        .then((surveyResp) => {
+            dispatch(_getSurveysSuccess(surveyResp));
+            return surveyResp;
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+            throw surveyErr;
+        });
     };
 }
 
