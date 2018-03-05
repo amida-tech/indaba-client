@@ -20,9 +20,6 @@ const surveys = {
         requests.apiGetRequest(`${rootURI}/assessment-answers/${assessmentId}`),
     postAnswer: (assessmentId, requestBody) =>
         requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody),
-    copyAnswers: (assessmentId, requestBody, callback) => {
-        requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
-    },
     postFile: (file, filename) =>
         requests.multipartFormDataPostRequest(`${rootURI}/files`, { file, filename }),
 };
