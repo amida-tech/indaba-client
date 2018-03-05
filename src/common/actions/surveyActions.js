@@ -108,16 +108,15 @@ export function completeAssessment(assessmentId, errorMessages) {
 
 export function getAnswers(assessmentId, errorMessages) {
     return dispatch =>
-        apiService.surveys.getAnswers(
-            assessmentId,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_getAnswersSuccess(answerResp.answers));
-                }
-            },
-    );
+        apiService.surveys.getAnswers(assessmentId)
+        .then((answerResp) => {
+            dispatch(_getAnswersSuccess(answerResp.answers));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
 }
 
 // Answer related.

@@ -63,16 +63,15 @@ function _reportError(message) {
 
 function _getAnswers(assessmentId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getAnswers(
-            assessmentId,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportError(errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_getAnswersSuccess(answerResp, assessmentId));
-                }
-            },
-        );
+        return apiService.surveys.getAnswers(assessmentId)
+        .then((answerResp) => {
+            dispatch(_getAnswersSuccess(answerResp, assessmentId));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportError(errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
     };
 }
 
