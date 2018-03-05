@@ -29,9 +29,7 @@ export function upsertAnswer(assessmentId, questionId, answer, meta, errorMessag
         }, identity)],
     };
 
-    return (dispatch) => {
-        dispatch(postAnswer(assessmentId, requestBody, errorMessages));
-    };
+    return dispatch => dispatch(postAnswer(assessmentId, requestBody, errorMessages));
 }
 
 // Discussion related:

@@ -90,19 +90,10 @@ export function completeAssessment(assessmentId, errorMessages) {
         answers: [],
     };
 
-    return dispatch => new Promise((resolve, reject) => {
-        apiService.surveys.postAnswer(
-            assessmentId,
-            requestBody,
-            (assessErr) => {
-                if (assessErr) {
-                    dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
-                    reject();
-                } else {
-                    resolve();
-                }
-            },
-        );
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
+    .catch((assessErr) => {
+        dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
+        throw assessErr;
     });
 }
 
@@ -121,19 +112,16 @@ export function getAnswers(assessmentId, errorMessages) {
 
 // Answer related.
 export function postAnswer(assessmentId, requestBody, errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.postAnswer(
-            assessmentId,
-            requestBody,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_postAnswerSuccess(requestBody));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.surveys.postAnswer(assessmentId, requestBody)
+        .then((answerResp) => {
+            dispatch(_postAnswerSuccess(requestBody));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
 }
 
 export function postReview(assessmentId, answers, errorMessages) {
@@ -141,23 +129,16 @@ export function postReview(assessmentId, answers, errorMessages) {
         status: 'in-progress',
         answers,
     };
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            apiService.surveys.postAnswer(
-                assessmentId,
-                requestBody,
-                (answerErr, answerResp) => {
-                    if (answerErr) {
-                        dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                        reject(answerErr);
-                    } else if (answerResp || []) {
-                        dispatch(getAnswers(assessmentId, errorMessages));
-                        resolve(answerResp);
-                    }
-                },
-            );
+    return dispatch =>
+        apiService.surveys.postAnswer(assessmentId, requestBody)
+        .then((answerResp) => {
+            dispatch(getAnswers(assessmentId, errorMessages));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
         });
-    };
 }
 
 // UI component related.

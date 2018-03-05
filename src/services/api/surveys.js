@@ -18,9 +18,8 @@ const surveys = {
         requests.apiPostRequest(`${rootURI}/assessments`, requestBody),
     getAnswers: assessmentId =>
         requests.apiGetRequest(`${rootURI}/assessment-answers/${assessmentId}`),
-    postAnswer: (assessmentId, requestBody, callback) => {
-        requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody, callback);
-    },
+    postAnswer: (assessmentId, requestBody) =>
+        requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}`, requestBody),
     copyAnswers: (assessmentId, requestBody, callback) => {
         requests.apiPostRequest(`${rootURI}/assessment-answers/${assessmentId}/as-copy`, requestBody, callback);
     },
