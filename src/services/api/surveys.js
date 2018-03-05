@@ -12,9 +12,8 @@ const surveys = {
         requests.apiPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody),
     getSurveyById: surveyId =>
         requests.apiGetRequest(`${rootURI}/surveys/${surveyId}`),
-    getAssessmentAnswersStatus: (id, callback) => {
-        requests.apiGetRequest(`${rootURI}/assessment-answers/${id}/status`, callback);
-    },
+    getAssessmentAnswersStatus: id =>
+        requests.apiGetRequest(`${rootURI}/assessment-answers/${id}/status`),
     postAssessment: (requestBody, callback) => {
         requests.apiPostRequest(`${rootURI}/assessments`, requestBody, callback);
     },

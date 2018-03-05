@@ -35,21 +35,10 @@ class Subjects extends Component {
         }
     }
     subjectHasData(subjectId) {
-        const answerPromises = [];
+        const answerPromises =
         this.props.tasks
         .filter(task => task.uoaId === subjectId)
-        .map(task => answerPromises.push(
-            new Promise((resolve, reject) => {
-                apiService.surveys
-                .getAssessmentAnswersStatus(task.assessmentId, (err, response) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(response);
-                    }
-                });
-            }),
-        ));
+        .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
         return Promise.all(answerPromises)
         .then(statuses => statuses.some(status => status.status !== 'new'));
     }

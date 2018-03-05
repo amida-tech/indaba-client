@@ -37,17 +37,10 @@ class ProjectManagementContainer extends Component {
 
     stageHasData(stageId) {
         return Promise.all(
-            this.props.tasks.filter(task => task.stepId === stageId &&
-                task.productId === this.props.project.productId).map(task =>
-                    new Promise((statusResolve, statusReject) => {
-                        apiService.surveys.getAssessmentAnswersStatus(task.assessmentId,
-                            (statusErr, statusResp) =>
-                                (statusErr ?
-                                statusReject(statusErr) :
-                                statusResolve(statusResp.status)),
-                        );
-                    }),
-            ),
+            this.props.tasks
+            .filter(task => task.stepId === stageId &&
+                task.productId === this.props.project.productId)
+            .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId)),
         )
         .then(statuses => statuses.some(status => status !== 'new'))
         .catch(() => toast(this.props.vocab.ERROR.STAGE_REQUEST));

@@ -28,14 +28,7 @@ export const getDataState = (userId, projectId) => {
             } else {
                 const statusPromises = (tasks || [])
                 .filter(task => projectId === undefined || task.projectId === projectId)
-                .map(task =>
-                    new Promise((statusResolve, statusReject) =>
-                        apiService.surveys.getAssessmentAnswersStatus(
-                            task.assessmentId,
-                            (statusErr, statusResponse) =>
-                            (statusErr ?
-                                statusReject(statusErr) :
-                                statusResolve(statusResponse)))));
+                .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
                 if (statusPromises.length > 0) {
                     Promise.all(statusPromises)
                     .then(statuses => statuses.some(status => status.status !== 'new'))

@@ -19,25 +19,13 @@ class PMAllSubjects extends Component {
     }
     subjectHasData(subjectId) {
         return new Promise((resolve, reject) => {
-            const answerPromises = [];
             apiService.tasks.getTasks((tasksErr, tasks) => {
                 if (tasksErr) {
                     reject(tasksErr);
                 } else {
-                    tasks
+                    const answerPromises = tasks
                     .filter(task => task.uoaId === subjectId)
-                    .map(task => answerPromises.push(
-                        new Promise((answerResolve, answerReject) => {
-                            apiService.surveys
-                            .getAssessmentAnswersStatus(task.assessmentId,
-                                (answerErr, response) => {
-                                    if (answerErr) {
-                                        answerReject(answerErr);
-                                    } else {
-                                        answerResolve(response);
-                                    }
-                                });
-                        })));
+                    .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
                     Promise.all(answerPromises)
                     .then(statuses => statuses.some(status => status.status !== 'new'))
                     .then(resolve)
