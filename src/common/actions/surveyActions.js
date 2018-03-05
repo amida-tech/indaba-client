@@ -84,18 +84,6 @@ export function getSurveyById(surveyId, errorMessages) {
     };
 }
 
-export function getAssessment(errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.getAssessment(
-            (assessErr, assessResp) => {
-                dispatch((!assessErr && assessResp) ?
-                    _getAssessmentSuccess(assessResp) :
-                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
-            },
-        );
-    };
-}
-
 export function postAssessment(requestBody, errorMessages) {
     return (dispatch) => {
         apiService.surveys.postAssessment(
@@ -222,13 +210,6 @@ function _getSurveyByIdSuccess(surveyId, survey) {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
-    };
-}
-
-function _getAssessmentSuccess(assessment) {
-    return {
-        type: actionTypes.GET_ASSESSMENT_SUCCESS,
-        assessment,
     };
 }
 
