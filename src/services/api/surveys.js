@@ -6,9 +6,8 @@ const rootURI = config.SURVEY_API_URL;
 const surveys = {
     getSurveys: () =>
         requests.apiGetRequest(`${rootURI}/surveys?status=all`),
-    postSurvey: (requestBody, callback) => {
-        requests.apiPostRequest(`${rootURI}/surveys`, requestBody, callback);
-    },
+    postSurvey: requestBody =>
+        requests.apiPostRequest(`${rootURI}/surveys`, requestBody),
     patchSurvey: (surveyId, requestBody, callback) => {
         requests.apiPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
     },

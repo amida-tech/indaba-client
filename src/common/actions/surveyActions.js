@@ -27,27 +27,22 @@ export function postSurvey(survey, project, errorMessages) {
         status: 'draft',
     };
     return (dispatch) => {
-        apiService.surveys.postSurvey(
-            requestBody,
-            (surveyErr, surveyResp) => {
-                if (!surveyErr && surveyResp) {
-                    const updateBody = {
-                        id: project.productId,
-                        surveyId: surveyResp.id,
-                    };
-                    apiService.projects.putSurveyToProduct(project.productId, updateBody)
-                    .then(() => {
-                        dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
-                        dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
-                    })
-                    .catch(productErr =>
-                        dispatch(_reportSurveyError(productErr, errorMessages.SURVEY_REQUEST)),
-                    );
-                } else {
-                    dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
-                }
-            },
-        );
+        apiService.surveys.postSurvey(requestBody)
+        .then((surveyResp) => {
+            const updateBody = {
+                id: project.productId,
+                surveyId: surveyResp.id,
+            };
+            return apiService.projects.putSurveyToProduct(project.productId, updateBody)
+            .then(() => {
+                dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
+                dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
+            });
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
+            throw surveyErr;
+        });
     };
 }
 
