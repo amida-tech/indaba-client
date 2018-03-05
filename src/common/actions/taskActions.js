@@ -97,24 +97,21 @@ export function assignTask(userId, slot, project, errorMessages) {
     };
 
     return (dispatch) => {
-        apiService.surveys.postAssessment(
-            surveyRequestBody,
-            (assessmentErr, assessmentResp) => {
-                if (assessmentErr) {
-                    dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
-                } else {
-                    requestBody.assessmentId = assessmentResp.id;
-                    apiService.tasks.postTask(
-                        requestBody,
-                        (taskErr, taskResp) => {
-                            dispatch(!taskErr && taskResp ?
-                                _postTaskSuccess(taskResp) :
-                                _reportTasksError(taskErr, errorMessages.TASK_REQUEST));
-                        },
-                    );
-                }
-            },
-        );
+        apiService.surveys.postAssessment(surveyRequestBody)
+        .then((assessmentResp) => {
+            requestBody.assessmentId = assessmentResp.id;
+            apiService.tasks.postTask(
+                requestBody,
+                (taskErr, taskResp) => {
+                    dispatch(!taskErr && taskResp ?
+                        _postTaskSuccess(taskResp) :
+                        _reportTasksError(taskErr, errorMessages.TASK_REQUEST));
+                },
+            );
+        })
+        .catch((assessmentErr) => {
+            dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
+        });
     };
 }
 

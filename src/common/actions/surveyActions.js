@@ -84,19 +84,6 @@ export function getSurveyById(surveyId, errorMessages) {
     };
 }
 
-export function postAssessment(requestBody, errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.postAssessment(
-            requestBody,
-            (assessErr, assessResp) => {
-                dispatch((!assessErr && assessResp) ?
-                    _postAssessmentSuccess(assessResp) :
-                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
-            },
-        );
-    };
-}
-
 export function completeAssessment(assessmentId, errorMessages) {
     const requestBody = {
         status: 'completed',
@@ -210,13 +197,6 @@ function _getSurveyByIdSuccess(surveyId, survey) {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
-    };
-}
-
-function _postAssessmentSuccess(assessmentId) {
-    return {
-        type: actionTypes.POST_ASSESSMENT_SUCCESS,
-        assessmentId,
     };
 }
 

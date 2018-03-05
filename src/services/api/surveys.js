@@ -14,9 +14,8 @@ const surveys = {
         requests.apiGetRequest(`${rootURI}/surveys/${surveyId}`),
     getAssessmentAnswersStatus: id =>
         requests.apiGetRequest(`${rootURI}/assessment-answers/${id}/status`),
-    postAssessment: (requestBody, callback) => {
-        requests.apiPostRequest(`${rootURI}/assessments`, requestBody, callback);
-    },
+    postAssessment: requestBody =>
+        requests.apiPostRequest(`${rootURI}/assessments`, requestBody),
     getAnswers: (assessmentId, callback) => {
         requests.apiGetRequest(`${rootURI}/assessment-answers/${assessmentId}`, callback);
     },
