@@ -8,9 +8,8 @@ const surveys = {
         requests.apiGetRequest(`${rootURI}/surveys?status=all`),
     postSurvey: requestBody =>
         requests.apiPostRequest(`${rootURI}/surveys`, requestBody),
-    patchSurvey: (surveyId, requestBody, callback) => {
-        requests.apiPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody, callback);
-    },
+    patchSurvey: (surveyId, requestBody) =>
+        requests.apiPatchRequest(`${rootURI}/surveys/${surveyId}`, requestBody),
     getSurveyById: (surveyId, callback) => {
         requests.apiGetRequest(`${rootURI}/surveys/${surveyId}`, callback);
     },

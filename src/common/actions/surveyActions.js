@@ -56,19 +56,17 @@ export function patchSurvey(survey, successMessage, errorMessages) {
     }, identity);
 
     return (dispatch) => {
-        apiService.surveys.patchSurvey(
-            survey.id,
-            requestBody,
-            (surveyErr, surveyResp) => {
-                if (!surveyErr && surveyResp.length === 0) {
-                    dispatch(_patchSurveySuccess(survey.id, requestBody));
-                    toast(successMessage);
-                    apiService.projects.editSurvey(survey.id);
-                } else {
-                    dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-                }
-            },
-        );
+        apiService.surveys.patchSurvey(survey.id, requestBody)
+        .then((surveyResp) => {
+            dispatch(_patchSurveySuccess(survey.id, requestBody));
+            toast(successMessage);
+            apiService.projects.editSurvey(survey.id);
+            return surveyResp;
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+            throw surveyErr;
+        });
     };
 }
 
