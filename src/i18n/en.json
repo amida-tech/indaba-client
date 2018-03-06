@@ -212,6 +212,7 @@
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
         "TASK_COMPLETED": "Task completed!",
+        "PROGRESS_SAVED": "Progress saved.",
         "ACTIVITY_OPTIONS": [
             "Complete Survey",
             "Review",

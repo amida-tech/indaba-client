@@ -44,11 +44,11 @@ export default reduxForm({
         }));
         if (disagreeCheck.length > 0) {
             toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
+            return null;
         }
-        const postResponse = ownProps.actions.postReview(values.assessmentId,
-            answers,
-            ownProps.vocab.ERROR,
-        );
-        return disagreeCheck.length > 0 ? Promise.reject() : postResponse;
+        return ownProps.actions.postReview(values.assessmentId,
+                answers,
+                ownProps.vocab.ERROR,
+            ).then(toast(ownProps.vocab.PROJECT.PROGRESS_SAVED));
     },
 })(SurveyForm);
