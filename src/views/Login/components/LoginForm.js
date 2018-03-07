@@ -18,6 +18,7 @@ class LoginForm extends Component {
                     placeholder={this.props.vocab.COMMON.PASSWORD}
                     type='password' />
                 <Button className='login-form__sign-in-button'
+                    type='submit'
                     primary
                     label={this.props.vocab.COMMON.SIGN_IN}
                     onClick={this.props.handleSubmit} />
