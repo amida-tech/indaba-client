@@ -3,7 +3,7 @@ $block-class:'text';
 @at-root {
     .#{$block-class} {
         &__field {
-            width: 60%;
+            width: 100%;
             padding: 5px;
         }
     }

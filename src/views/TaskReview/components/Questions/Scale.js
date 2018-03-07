@@ -11,7 +11,7 @@ class Scale extends Component {
                     {`${`${this.props.vocab.SURVEY.SCALE_ENTER + this.props.scaleLimits.min
                     }, ${this.props.scaleLimits.max}`}.` }
                 </span>
-                <input className={`scale__field${this.props.displayMode ? '--disabled' : ''}`}
+                <input className={`scale__field scale__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={0}
                     type='number'
                     max={this.props.scaleLimits.max}

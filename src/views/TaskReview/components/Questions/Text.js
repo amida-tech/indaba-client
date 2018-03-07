@@ -6,9 +6,8 @@ class Text extends Component {
     render() {
         return (
             <div className='text'>
-                <input className={`text__field${this.props.displayMode ? '--disabled' : ''}`}
+                <textarea className={`text__field text__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
-                    type='text'
                     disabled={this.props.displayMode}
                     defaultValue={get(this.props, 'answer.textValue', '')}
                     onBlur={(event) => {
