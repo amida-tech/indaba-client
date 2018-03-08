@@ -44,7 +44,7 @@ export default reduxForm({
         }));
         if (disagreeCheck.length > 0) {
             toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
-            return null;
+            return Promise.reject();
         }
         return ownProps.actions.postReview(values.assessmentId,
                 answers,
