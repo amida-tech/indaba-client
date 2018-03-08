@@ -7,79 +7,62 @@ import { getTasksByProduct } from './taskActions';
 import Time from '../../utils/Time';
 import apiService from '../../services/api';
 
-// API calls.
 export function getProjects(errorMessages) {
-    return (dispatch) => {
-        apiService.projects.getProjects(
-            (projectErr, projectResp) => {
-                if (!projectErr && projectResp) {
-                    dispatch(getSurveys(errorMessages));
-                    dispatch(_getProjectsSuccess(projectResp));
-                } else {
-                    dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.getProjects()
+        .then((projectResp) => {
+            dispatch(getSurveys(errorMessages));
+            dispatch(_getProjectsSuccess(projectResp));
+            return projectResp;
+        })
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
+            throw projectErr;
+        });
 }
 
 export function postProject(requestBody, errorMessages) {
-    return dispatch => new Promise((resolve, reject) => {
-        apiService.projects.postProject(
-            requestBody,
-            (projectErr, projectResp) => {
-                if (projectErr) {
-                    dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
-                    reject(projectErr);
-                } else {
-                    dispatch(_postProjectSuccess(projectResp));
-                    resolve(projectResp);
-                }
-            },
-        );
-    });
+    return dispatch =>
+        apiService.projects.postProject(requestBody)
+        .then((projectResp) => {
+            dispatch(_postProjectSuccess(projectResp));
+            return projectResp;
+        })
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+            throw projectErr;
+        });
 }
 
 export function putProject(project, errorMessages) {
     const { status, name: codeName } = project;
 
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            apiService.projects.putProject(
-            project.id,
-            { status, codeName },
-            (projectErr) => {
-                if (projectErr) {
-                    dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
-                    reject(projectErr);
-                } else {
-                    dispatch(getProjectById(project.id, false, errorMessages));
-                    resolve();
-                }
-            });
+    return dispatch =>
+        apiService.projects.putProject(project.id, { status, codeName })
+        .then(() => dispatch(getProjectById(project.id, false, errorMessages)))
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+            throw projectErr;
         });
-    };
 }
 
 export function getProjectById(projectId, getTasks, errorMessages) {
-    return (dispatch) => {
-        apiService.projects.getProjectById(
-            projectId,
-            (projErr, projResp) => {
-                if (!projErr && projResp) {
-                    if (projResp.surveyId) {
-                        dispatch(getSurveyById(projResp.surveyId, errorMessages));
-                    }
-                    if (getTasks === true) {
-                        dispatch(getTasksByProduct(projResp.productId, projectId, errorMessages));
-                    }
-                    dispatch(_getProjectByIdSuccess(projResp));
-                } else {
-                    dispatch(_reportProjectError(projErr, errorMessages.FETCH_PROJECTS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.getProjectById(projectId)
+        .then((projectResp) => {
+            if (projectResp.surveyId) {
+                dispatch(getSurveyById(projectResp.surveyId, errorMessages));
+            }
+            if (getTasks === true) {
+                dispatch(getTasksByProduct(projectResp.productId, projectId, errorMessages));
+            }
+            dispatch(_getProjectByIdSuccess(projectResp));
+            return projectResp;
+        })
+        .catch((projectErr) => {
+            dispatch(_reportProjectError(projectErr, errorMessages.FETCH_PROJECTS));
+            throw projectErr;
+        });
 }
 
 export function updateProjectWithSurvey(projectId, surveyId) {
@@ -101,42 +84,31 @@ export function putStage(project, stage, fromWizard, errorMessages) {
         },
     )];
 
-    return (dispatch) => {
-        apiService.projects.putWorkflowSteps(
-            project.workflowId,
-            requestBody,
-            (stepErr, stepResp) => {
-                if (!stepErr && stepResp) {
-                    if (!fromWizard && !project.subjects.length) {
-                        toast(errorMessages.SUBJECT_NEED);
-                    } else if (fromWizard && project.stages.length >= 3) {
-                        toast(errorMessages.MAX_STAGES);
-                    }
-                    const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
-                    dispatch(_putStageSuccess(
+    return dispatch =>
+        apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
+        .then((stepResp) => {
+            if (!fromWizard && !project.subjects.length) {
+                toast(errorMessages.SUBJECT_NEED);
+            } else if (fromWizard && project.stages.length >= 3) {
+                toast(errorMessages.MAX_STAGES);
+            }
+            const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
+            dispatch(_putStageSuccess(
                         Object.assign({}, requestBody[0], { id }), project.id));
-                } else {
-                    _reportProjectError(stepErr, errorMessages.STAGE_REQUEST);
-                }
-            },
-        );
-    };
+            return stepResp;
+        })
+        .catch((stepErr) => {
+            _reportProjectError(stepErr, errorMessages.STAGE_REQUEST);
+            throw stepErr;
+        });
 }
 
 export function deleteStage(projectId, stageId) {
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            apiService.projects.deleteWorkflowStep(stageId, (err, response) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(response);
-                }
-            });
-        }).then(() => {
+    return dispatch =>
+        apiService.projects.deleteWorkflowStep(stageId)
+        .then(() => {
             dispatch(getProjectById(projectId));
         });
-    };
 }
 
 export function addSubject(project, subjects, fromWizard, errorMessages) {
@@ -146,44 +118,37 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
         productId: project.productId,
     };
 
-    return (dispatch) => {
-        apiService.projects.postUOA(
-            requestBody,
-            (uoaErr, uoaResp) => {
-                if (!uoaErr && uoaResp) {
-                    if (!fromWizard && !project.stages.length) {
-                        toast(errorMessages.STAGE_NEED);
-                    }
-                    dispatch(_postSubjectSuccess(uoaResp, project.id));
-                } else {
-                    dispatch(_reportProjectError(uoaErr, errorMessages.SUBJECT_REQUEST));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.postUOA(requestBody)
+        .then((uoaResp) => {
+            if (!fromWizard && !project.stages.length) {
+                toast(errorMessages.STAGE_NEED);
+            }
+            dispatch(_postSubjectSuccess(uoaResp, project.id));
+            return uoaResp;
+        })
+        .catch((uoaErr) => {
+            dispatch(_reportProjectError(uoaErr, errorMessages.SUBJECT_REQUEST));
+            throw uoaErr;
+        });
 }
 
 export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
-    if (!fromWizard) {
-        // TODO: Safety check on tasks.
-    }
-
     const requestBody = {
         productId: project.productId,
         uoaId,
     };
 
-    return (dispatch) => {
-        apiService.projects.deleteUOA(
-            uoaId,
-            requestBody,
-            (uoaErr, uoaResp) => {
-                dispatch((!uoaErr && uoaResp) ?
-                    _deleteSubjectSuccess(uoaId, project.id) :
-                    _reportProjectError(uoaErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.deleteUOA(uoaId, requestBody)
+        .then((uoaResp) => {
+            dispatch(_deleteSubjectSuccess(uoaId, project.id));
+            return uoaResp;
+        })
+        .catch((uoaErr) => {
+            dispatch(_reportProjectError(uoaErr, errorMessages.PRODUCT_REQUEST));
+            throw uoaErr;
+        });
 }
 
 export function addUser(userId, projectId, errorMessages) {
@@ -192,33 +157,31 @@ export function addUser(userId, projectId, errorMessages) {
         projectId,
     };
 
-    return (dispatch) => {
-        apiService.projects.postProjectUsers(
-            projectId,
-            requestBody,
-            (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _postProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.postProjectUsers(projectId, requestBody)
+        .then((userResponse) => {
+            dispatch(_postProjectUserSuccess(userId, projectId));
+            return userResponse;
+        })
+        .catch((userErr) => {
+            dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
+            throw userErr;
+        });
 }
 
 export function removeUser(userId, projectId, errorMessages) {
     // TODO: Do safety call for tasks assigned to this user.
 
-    return (dispatch) => {
-        apiService.projects.deleteProjectUsers(
-            projectId,
-            userId,
-            (userErr, userResp) => {
-                dispatch((!userErr && userResp) ?
-                    _deleteProjectUserSuccess(userId, projectId) :
-                    _reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.deleteProjectUsers(projectId, userId)
+        .then((userResponse) => {
+            dispatch(_deleteProjectUserSuccess(userId, projectId));
+            return userResponse;
+        })
+        .catch((userErr) => {
+            dispatch(_reportProjectError(userErr, errorMessages.PRODUCT_REQUEST));
+            throw userErr;
+        });
 }
 
 export function addUserGroup(groupData, projectId, organizationId, errorMessages) {
@@ -229,66 +192,56 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
         users: groupData.users,
         projectId,
     };
-    return (dispatch) => {
-        apiService.projects.postGroup(
-            organizationId,
-            requestBody,
-            (groupErr, groupResp) => {
-                if (!groupErr && groupResp) {
-                    dispatch(getProjectById(projectId, errorMessages));
-                    dispatch(getUsers(errorMessages));
-                } else {
-                    dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.postGroup(organizationId, requestBody)
+        .then((groupResp) => {
+            dispatch(getProjectById(projectId, errorMessages));
+            dispatch(getUsers(errorMessages));
+            return groupResp;
+        })
+        .catch((groupErr) => {
+            dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
+            throw groupErr;
+        });
 }
 
 export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
     const { title, users: userId } = groupData;
 
-    return (dispatch) => {
-        apiService.projects.putGroup(
-            groupId,
-            { title, userId, organizationId },
-            (groupErr) => {
-                if (groupErr) {
-                    dispatch(_reportProjectError(groupErr, errorMessages.USER_GROUP));
-                } else {
-                    dispatch(getProjectById(projectId, errorMessages));
-                    dispatch(getUsers(errorMessages));
-                }
-            },
-        );
-    };
+    return dispatch =>
+        apiService.projects.putGroup(groupId, { title, userId, organizationId })
+        .then((groupResp) => {
+            dispatch(getProjectById(projectId, errorMessages));
+            dispatch(getUsers(errorMessages));
+            return groupResp;
+        })
+        .catch((groupErr) => {
+            dispatch(_reportProjectError(groupErr, errorMessages.USER_GROUP));
+            throw groupErr;
+        });
 }
 
 export function exportData(productId, projectName, errorMessages) {
-    return dispatch => new Promise((resolve, reject) => {
-        apiService.projects.exportData(
-            productId,
-            (dataErr, dataResp) => {
-                if (dataErr) {
-                    dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
-                    reject();
-                } else {
-                    const blob = new Blob([_stringToBytes(dataResp)], { type: 'application/zip' });
-                    if (window.navigator.msSaveOrOpenBlob) {
-                        window.navigator.msSaveOrOpenBlob(blob,
-                            `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`);
-                    } else {
-                        const a = document.createElement('a');
-                        a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
-                        a.href = URL.createObjectURL(blob);
-                        a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
-                        a.click();
-                    }
-                    resolve();
-                }
-            },
-        );
-    });
+    return dispatch =>
+        apiService.projects.exportData(productId)
+        .then((dataResp) => {
+            const blob = new Blob([_stringToBytes(dataResp)], { type: 'application/zip' });
+            if (window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(blob,
+                    `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`);
+            } else {
+                const a = document.createElement('a');
+                a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
+                a.href = URL.createObjectURL(blob);
+                a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
+                a.click();
+            }
+            return dataResp;
+        })
+        .catch((dataErr) => {
+            dispatch(_reportProjectError(dataErr, errorMessages.DATA_REQUEST));
+            throw dataErr;
+        });
 }
 
 // Modals.

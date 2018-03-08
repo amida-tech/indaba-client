@@ -47,17 +47,16 @@ class PMAllSubjects extends Component {
         });
     }
     attemptSubjectDelete(subject) {
-        apiService.projects.getProjects((err, projects) => {
-            if (err) {
-                this.subjectRequstToast();
-            } else if (!projects.some(project => project.subjects.some(
+        apiService.projects.getProjects()
+        .then((projects) => {
+            if (!projects.some(project => project.subjects.some(
                     subjectIter => subjectIter.id === subject.id,
                 ))) {
-                this.props.actions.pmAllSubjectsShowDeleteConfirmModal(
+                return this.props.actions.pmAllSubjectsShowDeleteConfirmModal(
                     subject.id,
                     CONFIRM_TYPE.SIMPLE);
-            } else {
-                this.subjectHasData(subject.id)
+            }
+            return this.subjectHasData(subject.id)
                 .then((hasData) => {
                     if (!hasData) {
                         this.props.actions.pmAllSubjectsShowDeleteConfirmModal(
@@ -67,10 +66,9 @@ class PMAllSubjects extends Component {
                         toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
                             { autoClose: false, type: 'error' });
                     }
-                })
-                .catch(this.subjectRequestToast);
-            }
-        });
+                });
+        })
+        .catch(this.subjectRequestToast);
     }
     render() {
         return (

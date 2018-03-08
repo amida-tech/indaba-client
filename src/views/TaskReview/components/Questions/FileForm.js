@@ -55,13 +55,9 @@ export default reduxForm({
         if (ownProps.file === undefined) {
             if (values.file) {
                 // Upload File to AWS and File name to survey service
-                apiService.projects.postFileToAws(values.file[0], (err, response) => {
-                    if (err) {
-                        toast(ownProps.vocab.ERROR.FILE_UPLOAD, { type: 'error', autoClose: false });
-                    } else {
-                        ownProps.onFileUploaded(response);
-                    }
-                });
+                apiService.projects.postFileToAws(values.file[0])
+                .then(ownProps.onFileUploaded)
+                .catch(() => toast(ownProps.vocab.ERROR.FILE_UPLOAD, { type: 'error', autoClose: false }));
             } else {
                 toast(ownProps.vocab.ERROR.FILE_WARNING);
             }

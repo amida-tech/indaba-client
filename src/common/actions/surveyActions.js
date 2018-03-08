@@ -33,18 +33,13 @@ export function postSurvey(survey, project, errorMessages) {
                         id: project.productId,
                         surveyId: surveyResp.id,
                     };
-                    apiService.projects.putSurveyToProduct(
-                        project.productId,
-                        updateBody,
-                        (productErr, productResp) => {
-                            if (!productErr && productResp) {
-                                dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
-                                dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
-                            } else {
-                                dispatch(_reportSurveyError(productErr,
-                                    errorMessages.SURVEY_REQUEST));
-                            }
-                        },
+                    apiService.projects.putSurveyToProduct(project.productId, updateBody)
+                    .then(() => {
+                        dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
+                        dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
+                    })
+                    .catch(productErr =>
+                        dispatch(_reportSurveyError(productErr, errorMessages.SURVEY_REQUEST)),
                     );
                 } else {
                     dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));

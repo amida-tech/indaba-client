@@ -34,17 +34,13 @@ class PMUserGroupsTab extends Component {
         }
     }
     handleDeleteModalSave() {
-        apiService.projects.deleteGroup(
-            this.props.ui.showUserGroupDeleteConfirmModal.id,
-            (err) => {
-                if (err) {
-                    toast(this.props.vocab.ERROR.GROUP_DELETE,
-                        { autoClose: false, type: 'error' });
-                }
-                this.props.actions.getProjectById(this.props.project.id, this.props.vocab.ERROR);
-                this.props.actions.pmHideUserGroupDeleteConfirmModal();
-            },
-        );
+        apiService.projects.deleteGroup(this.props.ui.showUserGroupDeleteConfirmModal.id)
+        .catch(() => toast(this.props.vocab.ERROR.GROUP_DELETE,
+            { autoClose: false, type: 'error' }))
+        .then(() => {
+            this.props.actions.getProjectById(this.props.project.id, this.props.vocab.ERROR);
+            this.props.actions.pmHideUserGroupDeleteConfirmModal();
+        });
     }
     filterGroup(group, query) {
         return group.title.toLowerCase().includes(query.toLowerCase());
