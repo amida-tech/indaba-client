@@ -1,3 +1,4 @@
+$title-color: #333;
 $block-class: 'message-list';
 
 @at-root {
@@ -9,25 +10,21 @@ $block-class: 'message-list';
         border-bottom: 1px solid $border-color;
 
         &__title {
-            @extend .med-font;
-
             justify-content: space-between;
-            padding-left: 24px;
-            padding-bottom: 0.5em;
-            height: 3em;
             border-bottom: 1px solid $border-color;
             display: flex;
-            align-items: flex-end;
+            padding: 16px;
+            font-size: 18px;
+            color: $title-color;
         }
 
         &__title-link {
-            font-size: 16px;
-            padding-right: 16px;
+            font-size: 18px;
         }
 
         &__row {
             height: 3em;
-            padding-left: 32px;
+            padding-left: 8px;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -42,13 +39,13 @@ $block-class: 'message-list';
                 .#{$block-class}__name,
                 .#{$block-class}__subject,
                 .#{$block-class}__time {
-                    font-weight: bold;
+                    color: #333;
+                    font-weight: 500;
                 }
             }
 
             &:hover {
-                background-color: darken(#fafafa, 5%);
-                color: $lead-font-color;
+                background-color: darken(#fafafa, 2%);
             }
         }
 
@@ -60,22 +57,30 @@ $block-class: 'message-list';
         }
 
         &__name {
-            flex: 2;
+            flex: 1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-
-            @extend .lead-font-bold;
+            font-size: 15px;
+            color: $title-color;
         }
 
         &__subject {
-            flex: 3;
-
-            @extend .lead-font;
+            flex: 2;
+            font-size: 15px;
+            color: $title-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         &__time {
+            font-size: 15px;
             flex: 1;
+            color: $title-color;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }
