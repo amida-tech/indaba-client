@@ -1,0 +1,47 @@
+$block-class: 'survey-status-form';
+
+@at-root {
+    .#{$block-class} {
+        &__top-section {
+            padding: 0 1.5em 0.3em;
+            input {
+                float: right;
+            }
+        }
+
+        &__section {
+            padding: 0 1.5em 0.3em;
+        }
+
+        input:checked ~ .survey-status-form__field > .survey-status-form__text {
+            color: $brand-color;
+        }
+
+        &__label {
+            color: $font-color;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        &__description p {
+            @extend .lead-font;
+        }
+
+        &__confirmation {
+            p {
+                font-weight: 500;
+                color: $header-font-color;
+                margin-bottom: 1em;
+            }
+
+            input {
+                margin-right: 1em;
+            }
+
+            label {
+                font-weight: normal;
+                color: $header-font-color;
+            }
+        }
+    }
+}
