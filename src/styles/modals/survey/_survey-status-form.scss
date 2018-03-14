@@ -43,10 +43,14 @@ $block-class: 'survey-status-form';
         }
 
         &__confirmation {
-            p {
+            span {
                 font-weight: 500;
                 color: $header-font-color;
+                margin-top: 24px;
                 margin-bottom: 1em;
+                font-size: 16px;
+                line-height: 1.375;
+                display: block;
             }
 
             input {

@@ -40,7 +40,7 @@ class ProjectStatusForm extends Component {
                 <hr className='divider'/>
                 <div className='project-status-form__section'>
                     <div className='project-status-form__confirmation'>
-                        <p>{confirmVocab.TITLE}</p>
+                        <span>{confirmVocab.TITLE}</span>
                         <Field
                             component={ConfirmationCheckbox}
                             checked={this.props.draftConfirm}

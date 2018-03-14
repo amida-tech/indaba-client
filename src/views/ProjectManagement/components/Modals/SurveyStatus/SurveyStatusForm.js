@@ -37,7 +37,7 @@ class SurveyStatusForm extends Component {
                 <hr className='divider'/>
                 <div className='survey-status-form__section'>
                     <div className='survey-status-form__confirmation'>
-                        <p>{confirmVocab.TITLE}</p>
+                        <span>{confirmVocab.TITLE}</span>
                         <Field
                             component={ConfirmationCheckbox}
                             checked={this.props.accessConfirm}
