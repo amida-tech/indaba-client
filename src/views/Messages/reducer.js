@@ -65,7 +65,7 @@ export default (state = initialState, action) => {
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
             thread: { $set:
-                sortBy(action.thread, 'createdAt')
+                sortBy(action.thread, 'createdAt').reverse()
                 .map(transformServerMessageToReduxMessage),
             },
         });
