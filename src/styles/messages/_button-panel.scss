@@ -1,0 +1,26 @@
+$block-class: 'button-panel';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid $border-color;
+        border-radius: 2px;
+        overflow: hidden;
+        align-items: center;
+
+        &__button {
+            width: 30px;
+            height: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                border-left: 1px solid $border-color;
+            }
+        }
+    }
+}

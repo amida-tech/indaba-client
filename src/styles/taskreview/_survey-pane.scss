@@ -1,0 +1,72 @@
+$block-class:'survey-pane';
+
+@at-root {
+    .#{$block-class} {
+        &__controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid $border-color;
+            padding: 16px;
+            width: 100%;
+        }
+
+        &__accordion-buttons {
+            margin-right: 8px;
+        }
+
+        &__button-expand {
+            border-radius: 2px;
+            color: $font-inverse-color;
+            font-size: 14px;
+            font-weight: 400;
+            margin-right: 8px;
+            padding: 8px;
+            background-color: #a4aebf;
+            outline: none;
+
+            &:hover {
+                background-color: darken(#a4aebf, 5);
+            }
+        }
+
+        &__button-collapse {
+            color: $lead-font-color;
+            border-radius: 2px;
+            background-color: $font-inverse-color;
+            border: 2px solid $border-color;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 8px;
+            outline: none;
+
+            &:hover {
+                background-color: darken($font-inverse-color, 3);
+            }
+        }
+
+        &__select {
+            width: 70%;
+        }
+
+        &__instructions {
+            padding: 16px;
+
+            &-header {
+                @extend .small-font;
+            }
+
+            &-explained {
+                @extend .small-font;
+
+                display: block;
+            }
+        }
+
+        .Select-control {
+            border-radius: 2px;
+            color: $lead-font-color;
+            border: 2px solid $border-color;
+        }
+    }
+}

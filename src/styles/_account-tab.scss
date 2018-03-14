@@ -1,0 +1,50 @@
+$font-color-for-labels: #757575;
+$block-class:'account-tab';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+
+        &__label {
+            color: $font-color-for-labels;
+            font-weight: 400;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1em;
+
+            &--text-input,
+            .grommet &--text-input:not(.grommetux-input) {
+                color: #51545c;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding-left: 0;
+                font-size: 1.5em;
+                font-weight: 100;
+                border-radius: 0;
+            }
+        }
+
+        &__date {
+            color: $lead-font-color;
+        }
+
+        button.account-tab__button {
+            color: $lead-font-color;
+            font-weight: 500;
+            font-size: 14px;
+            background-color: #fff;
+            padding: 8px;
+            border: 2px solid #4eb276;
+            margin-top: 1.5em;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 1);
+                color: $font-inverse-color;
+            }
+        }
+    }
+}

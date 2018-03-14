@@ -1,0 +1,42 @@
+
+$brand-neutral-colors: (#308253, #4eb276);
+$block-class:'user-sidebar';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-width: 320px;
+        padding: 16px;
+
+        &__user-dropdown {
+            overflow-y: scroll;
+            height: 340px;
+        }
+
+        &__instructions {
+            position: relative;
+            padding: 8px;
+            color: $lead-font-color;
+        }
+
+        &__wrapper {
+            margin: 0.5em;
+        }
+
+        &__user-filter-by-group {
+            overflow: visible;
+            margin: 0.5em;
+            margin-top: 0;
+            width: calc(100% - 1em);
+            background-color: #fff;
+        }
+
+        .grommetux-control-icon {
+            @extend .small-icon;
+
+            stroke: $header-font-color;
+        }
+    }
+}

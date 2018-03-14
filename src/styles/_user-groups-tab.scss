@@ -1,0 +1,18 @@
+$block-class:'user-groups-tab';
+
+@at-root {
+    .#{$block-class} {
+        &__search-input {
+            background-color: #fff;
+        }
+    }
+
+    .wrapper {
+        background-color: #fafafa;
+        border: 1px solid $border-color;
+        padding: 1rem;
+        margin-left: 10%;
+        margin-right: 10%;
+        min-height: 500px;
+    }
+}

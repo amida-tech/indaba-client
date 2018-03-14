@@ -1,0 +1,85 @@
+$block-class:'stage-summary';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+
+        &__header {
+            font-size: 18px;
+            font-weight: 400;
+            color: $lead-font-color;
+            padding: 8px 4px;
+        }
+
+        &__row {
+            display: flex;
+
+            &:hover {
+                overflow: visible;
+            }
+        }
+
+        &__left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 50%;
+            padding: 4px;
+        }
+
+        &__right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 50%;
+            padding: 4px;
+
+            &:hover {
+                overflow: visible;
+                z-index: +100;
+
+                .#{$block-class}__value {
+                    @extend .#{$block-class}__value--no-clip;
+                }
+
+                .#{$block-class}__label {
+                    @extend .#{$block-class}__label--no-clip;
+                }
+            }
+        }
+
+        &__value {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            float: right;
+            font-size: 16px;
+            font-weight: 300;
+            color: $lead-font-color;
+
+            &--no-clip {
+                width: auto;
+                overflow: visible;
+            }
+        }
+
+        &__label {
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            color: lighten($font-color, 5%);
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 400;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+
+            &--no-clip {
+                overflow: visible;
+                width: auto;
+            }
+        }
+    }
+}

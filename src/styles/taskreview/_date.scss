@@ -1,0 +1,10 @@
+$block-class:'date';
+
+@at-root {
+    .#{$block-class} {
+        &__field {
+            border: 1px solid $border-color;
+            padding: 0.3em;
+        }
+    }
+}

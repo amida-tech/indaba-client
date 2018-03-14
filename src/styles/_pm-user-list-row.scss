@@ -1,0 +1,24 @@
+$block-class: 'pm-user-list-row';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        cursor: pointer;
+
+        @extend .lead-font;
+
+        &:hover {
+            background-color: #ededed;
+        }
+
+        &__cell {
+            padding: 8px 16px;
+            display: inline-flex;
+            flex: 6;
+        }
+
+        &__mail-button {
+            @extend .small-icon;
+        }
+    }
+}

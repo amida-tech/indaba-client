@@ -1,0 +1,88 @@
+$block-class: 'inbox';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5em;
+
+        &__title {
+            @extend .x-large-font;
+
+            margin-bottom: 1em;
+        }
+
+        &__top-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__new-message-button {
+            letter-spacing: 0.8px;
+            font-weight: 400;
+            color: #7e848f;
+            background-color: #fff;
+            border-radius: 2px;
+
+            &:hover {
+                letter-spacing: 0.8px;
+                font-weight: 400;
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+                text-decoration: none;
+            }
+        }
+
+        &__filter {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 1.5em 0;
+        }
+
+        &__pager {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__pager-content {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            border: 1px solid $border-color;
+            border-width: 0 1px 1px;
+            background-color: #fff;
+        }
+
+        &__page {
+            padding: 4px 8px;
+            border: 1px solid $border-color;
+            border-width: 0 1px;
+            text-align: center;
+        }
+
+        &__pager-button {
+            padding: 4px 8px;
+            letter-spacing: 0.8px;
+            font-weight: 400;
+            color: #7e848f;
+            border-radius: 2px;
+            border-color: $border-color;
+            cursor: pointer;
+            border: none;
+            outline: none;
+
+            &:hover {
+                letter-spacing: 0.8px;
+                font-weight: 400;
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+}

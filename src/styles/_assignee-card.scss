@@ -1,0 +1,14 @@
+$block-class:'assignee-card';
+
+@at-root {
+    .#{$block-class} {
+        height: 100%;
+        width: 100%;
+        padding: 16px;
+        font-size: 16px;
+        color: #5d5d5d;
+        background-color: #fff;
+        border: 2px solid $border-color;
+        border-radius: 2px;
+    }
+}

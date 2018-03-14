@@ -1,0 +1,109 @@
+$tag-height: 1.25em; // 20px
+
+$block-class:'stage-slot';
+
+@at-root {
+    .#{$block-class} {
+        color: $lead-font-color;
+        font-size: 16px;
+        padding: 16px;
+        min-height: 104px;
+
+        &--accept {
+            background: rgba(0, 155, 50, 0.3);
+        }
+
+        &--deny {
+            background: rgba(255, 0, 0, 0.2);
+        }
+
+        &__container > * {
+            margin-bottom: 0.2em;
+        }
+
+        &__filtered {
+            opacity: 0.2;
+        }
+
+        &__name-row {
+            text-transform: none;
+            color: $header-font-color;
+            font-size: 18px;
+            font-weight: 400;
+
+            span {
+                cursor: pointer;
+            }
+        }
+
+        &__due-row {
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            color: #5d5d5d;
+        }
+
+        &__role-span {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            align-items: flex-start;
+            color: lighten($font-color, 5%);
+        }
+
+        &__masked-button {
+            background-color: Transparent;
+            background-repeat: no-repeat;
+            border: none !important;
+            padding: 0;
+            height: 1em;
+        }
+
+        &__right-icon {
+            float: right;
+            fill: $brand-color;
+        }
+
+        &__right-icon-container {
+            padding-bottom: 10px;
+            margin-top: -7px;
+        }
+
+        &__left-icon {
+            width: 16px;
+            height: 16px;
+            fill: $header-font-color;
+            float: left;
+            margin-right: 5px;
+            margin-top: 2px;
+            cursor: pointer;
+
+            &:hover {
+                fill: $font-color;
+            }
+        }
+
+        &__flag-row {
+            margin-top: -8px;
+            margin-bottom: 30px;
+        }
+
+        &__assign-task-input {
+            display: flex;
+            width: 100%;
+            align-content: center;
+        }
+
+        &__assign-task-input-cancel {
+            margin-left: 6px;
+            margin-right: 4px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .grommetux-search--inline,
+        .grommetux-control-icon-search {
+            fill: $header-font-color;
+        }
+    }
+}

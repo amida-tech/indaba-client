@@ -1,0 +1,18 @@
+$block-class: 'user-glance';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__group {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin: 4px 0;
+        }
+    }
+}

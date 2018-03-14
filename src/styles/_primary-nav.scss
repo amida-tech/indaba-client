@@ -1,0 +1,150 @@
+$nav-text-color: #e0e0e0;
+$nav-dark-color: #308253;
+
+$block-class:'primary-nav';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        background-color: nth($brand-neutral-colors, 1);
+        height: $primary-nav-height;
+
+        &__left {
+            display: flex;
+            align-items: center;
+            margin-left: 10%;
+        }
+
+        &__right {
+            display: flex;
+            align-items: baseline;
+            flex-direction: row;
+            margin-right: 10%;
+        }
+
+        &__indaba-logo {
+            padding-top: 2px;
+            width: 140px;
+            height: 64px;
+            margin-left: 2%;
+            margin-bottom: 2px;
+        }
+
+        &__item-nav {
+            justify-content: space-between;
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            margin-left: 20px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-left: 8px;
+            padding-right: 8px;
+            position: relative;
+
+            &:hover {
+                text-decoration: none;
+                color: darken($nav-dark-color, 30%);
+            }
+
+            &:focus,
+            &:active,
+            &:visited {
+                text-decoration: none;
+                font-weight: 400;
+            }
+
+            &:focus {
+                color: $nav-text-color;
+            }
+
+            &--active,
+            &--active:focus {
+                color: darken($nav-dark-color, 30%);
+            }
+        }
+
+        &__button {
+            height: 40px;
+            background-color: darken($nav-dark-color, 10%);
+            border: 1px;
+            color: $nav-text-color;
+            border-radius: 3px;
+            min-width: 10px;
+            font-size: 14px;
+
+            &:hover {
+                color: $nav-text-color;
+                font-weight: 700;
+            }
+
+            &:active {
+                color: $nav-text-color;
+            }
+        }
+
+        &__envelope,
+        &__user {
+            width: 16px;
+            height: 16px;
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            &:hover {
+                text-decoration: none;
+                color: darken($nav-dark-color, 20%);
+            }
+
+            &:focus,
+            &:active {
+                text-decoration: none;
+                font-weight: 400;
+                color: darken($nav-dark-color, 30%);
+            }
+        }
+
+        &__welcome {
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 8px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        &__logout {
+            align-items: center;
+            color: $nav-text-color;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 8px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            &:hover {
+                text-decoration: none;
+                color: darken($nav-dark-color, 20%);
+            }
+
+            &:focus {
+                font-weight: 400;
+                color: $nav-text-color;
+            }
+        }
+
+        &__link {
+            color: $nav-text-color;
+            padding-right: 16px;
+            padding-left: 16px;
+        }
+    }
+}

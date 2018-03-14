@@ -1,0 +1,28 @@
+$sidebar-width: 320px;
+$block-class:'matrix-container';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        background-color: #fff;
+
+        &__subject {
+            background-color: #fff;
+            font-size: 16px;
+            font-weight: 400;
+            vertical-align: bottom;
+            color: #5d5d5d;
+        }
+
+        &__task-matrix {
+            overflow: scroll;
+            flex-grow: 1;
+        }
+
+        &__sidebar {
+            flex-basis: $sidebar-width;
+        }
+    }
+}

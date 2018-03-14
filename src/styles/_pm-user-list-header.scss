@@ -1,0 +1,17 @@
+$block-class: 'pm-user-list-header';
+
+@at-root {
+    .#{$block-class} {
+        width: 100%;
+        display: inline-flex;
+
+        @extend .small-font;
+
+        &__cell {
+            flex: 6;
+            color: $lead-font-color;
+            padding: 8px 16px;
+            justify-content: center;
+        }
+    }
+}

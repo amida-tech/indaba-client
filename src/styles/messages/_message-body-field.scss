@@ -1,0 +1,22 @@
+$block-class: 'message-body-field';
+
+@at-root {
+    .#{$block-class} {
+        flex: 1;
+
+        &__value {
+            height: 100%;
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+            color: darken($font-color, 30);
+            padding-top: 16px;
+            line-height: 1.5;
+
+            &--error {
+                outline: 1px solid red;
+            }
+        }
+    }
+}

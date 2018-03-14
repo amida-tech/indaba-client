@@ -1,16 +1,12 @@
-/* eslint-disable */
-// ^ disabling ESLINT errors for stuff we aren't using yet... we will use it in the future.
 /** Modules **/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { Provider } from 'react-redux';
-import { LOCATION_CHANGE, syncHistoryWithStore, routerMiddleware, routerActions } from 'react-router-redux';
-import { Router, Route, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
-import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import { push, syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
+import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/css/bootstrap-theme.css';
+import { get } from 'lodash';
 
 /** Developer Tools **/
 import ChartMonitor from 'redux-devtools-chart-monitor';
@@ -18,62 +14,74 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 import LogMonitor from 'redux-devtools-log-monitor';
 import SliderMonitor from 'redux-slider-monitor';
 import { createLogger } from 'redux-logger';
-import { createDevTools, persistState } from 'redux-devtools';
+import { createDevTools } from 'redux-devtools';
+
+import 'react-infinite-calendar/styles.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-select/dist/react-select.css';
+import './styles/main.scss';
+import { logOut } from './common/actions/navActions';
 
 /** User Imports **/
 import reducers from './reducers';
 import routes from './routes';
-import layouts from './layouts';
 
-const IS_PROD = process.env.NODE_ENV !== 'development';
-const NOOP = () => null;
-// TODO: Figure out the production/development configuration setup later.
+const DEVELOP = process.env.NODE_ENV === 'development';
 
+const authInterceptor = ({ dispatch }) => next => (action) => {
+    if (get(action, 'err.response.status') === 401) {
+        dispatch(logOut(document.location.pathname));
+        dispatch(push('/login'));
+    } else {
+        next(action);
+    }
+};
 
-let DevTools = createDevTools(
+let middleware = [routerMiddleware(browserHistory), thunk, authInterceptor];
+if (DEVELOP) {
+    middleware = [...middleware, createLogger()];
+}
+
+const DevTools = DEVELOP ?
+createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
     changeMonitorKey="ctrl-m"
     fluid={true}
-    defaultSize={0}
-    defaultIsVisible={true}>
+    defaultSize={0.2}
+    defaultIsVisible={false}>
       <LogMonitor />
       <SliderMonitor />
       <ChartMonitor />
-  </DockMonitor>
-);
+  </DockMonitor>,
+) :
+null;
+
+const enhancer = DEVELOP ?
+compose(applyMiddleware(...middleware), DevTools.instrument()) :
+applyMiddleware(...middleware);
 
 const store = createStore(
     reducers,
-    compose(
-      applyMiddleware(
-        routerMiddleware(browserHistory),
-        createLogger(),
-        thunk
-      ),
-      DevTools.instrument()
-    ) // Middleware
+    enhancer,
 );
 
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: state => store.getState().routing
+    selectLocationState: () => store.getState().routing,
 });
 
 ReactDOM.render(
     <Provider store={store}>
       <div className="main-page">
           <Router history={history}>
-            {routes.map(route =>
-                <Route
-                    key={route.path}
-                    path={route.path}
-                    component={route.component}
-                />
-            )}
+              {routes}
           </Router>
-          <DevTools />
+          {
+              DEVELOP &&
+              <DevTools />
+          }
       </div>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );

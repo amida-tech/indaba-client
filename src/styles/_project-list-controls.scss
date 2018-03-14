@@ -1,0 +1,18 @@
+$block-class: 'project-list-controls';
+
+@at-root {
+    .#{$block-class} {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+
+        &__search {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        &__filter {
+            margin-top: 1.5em;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+$block-class: 'create-section-panel';
+
+@at-root {
+    .#{$block-class} {
+        border-top: 1px solid $border-color;
+
+        &__section-header {
+            display: flex;
+            margin-bottom: 24px;
+            border-bottom: 2px solid darken($border-color, 5);
+        }
+
+        &__section-name {
+            @extend .large-font;
+
+            color: #333;
+            border: none;
+            padding: 16px;
+            margin-left: 2px;
+            width: 100%;
+            background-color: #fafafa;
+            outline: none;
+
+            &:focus {
+                outline: none;
+                border-bottom: 2px solid $brand-color;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+            }
+        }
+
+        &__menu-button {
+            background-color: Transparent;
+            border: none;
+            margin: 0 10px;
+        }
+
+        &__menu-icon {
+            @extend .small-icon;
+        }
+    }
+}

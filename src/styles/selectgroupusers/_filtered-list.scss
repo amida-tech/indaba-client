@@ -1,0 +1,24 @@
+$block-class: 'filtered-list';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        height: 300px;
+
+        &__query,
+        .grommet &__query:not(.grommetux-input) {
+            margin: 1em;
+        }
+
+        &__item {
+            padding: 1.5em;
+        }
+
+        .grommetux-list--selectable .grommetux-list-item--selected:hover {
+            background-color: #a0d6b5;
+            color: $header-font-color;
+        }
+    }
+}

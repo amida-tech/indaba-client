@@ -1,0 +1,30 @@
+$block-class:'login-form';
+
+@at-root {
+    .#{$block-class} {
+        text-align: center;
+
+        &__field {
+            padding-bottom: 0.25em;
+            width: 30em;
+        }
+
+        &__input {
+            background-color: #fff;
+            width: 100%;
+            padding: 8px;
+            border: 2px solid $border-color;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
+        }
+
+        &__sign-in-button {
+            margin: 1em 0;
+            width: 100%;
+        }
+    }
+}

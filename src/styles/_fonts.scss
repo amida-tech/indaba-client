@@ -1,0 +1,51 @@
+
+.lead-font {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $lead-font-color;
+}
+
+.lead-font-bold {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: $lead-font-color;
+}
+
+.x-small-font {
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $font-color;
+}
+
+.small-font {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $font-color;
+}
+
+.med-font {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $lead-font-color;
+}
+
+.large-font {
+    font-size: 22px;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    color: $lead-font-color;
+}
+
+.x-large-font {
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: 300;
+    letter-spacing: -0.8px;
+    color: $lead-font-color;
+}

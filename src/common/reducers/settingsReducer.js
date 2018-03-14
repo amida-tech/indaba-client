@@ -1,12 +1,18 @@
-import en from '../../i18n/en';
+import en from '../../i18n/en.json';
+import { LOG_OUT } from '../actionTypes/navActionTypes';
 
 const initialState = {
-  language: {
-    choice: 'en',
-    vocabulary: en
-  }
+    language: {
+        choice: 'en',
+        vocabulary: en,
+    },
 };
 
 export const SettingsReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+    case LOG_OUT:
+        return initialState;
+    default:
+        return state;
+    }
 };

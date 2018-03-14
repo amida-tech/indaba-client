@@ -1,0 +1,26 @@
+$block-class: 'pm-user-groups-tab';
+
+@at-root {
+    .#{$block-class} {
+        border: 2px solid $border-color;
+        border-radius: 2px;
+        justify-content: center;
+        background-color: #fdfdfd;
+
+        &__search-container {
+            padding: 1em;
+        }
+
+        &__input {
+            padding: 5px 5px 5px 10px;
+            width: 100%;
+            border: 1px solid $border-color;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
+        }
+    }
+}

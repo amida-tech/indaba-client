@@ -1,0 +1,30 @@
+$block-class: 'status-label';
+
+$bad-color: #af1212;
+$good-color: #68997d;
+$neutral-color: #a4aebf;
+
+@at-root {
+    .#{$block-class} {
+        color: white;
+        font-size: 10px; // em dependent calc
+        display: inline-block;
+        height: $tag-height; // 20px
+        padding: 0 1em;
+        margin-right: 5px;
+        border-radius: 2px;
+
+        &--bad {
+            background-color: $bad-color;
+        }
+
+        &--good {
+            background-color: $good-color;
+        }
+
+        &--neutral {
+            background-color: $neutral-color;
+            min-width: 85px;
+        }
+    }
+}

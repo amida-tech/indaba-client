@@ -1,0 +1,116 @@
+$block-class: 'question-panel';
+
+@at-root {
+    .#{$block-class} {
+        border: 2px solid $border-color;
+        padding: 8px;
+        margin-bottom: 24px;
+        border-radius: 2px;
+        background-color: #fff;
+
+        &__header {
+            font-size: 1.3em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__question {
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            width: 100%;
+
+            &-number {
+                @extend .small-font;
+
+                margin-bottom: 12px;
+                margin-left: 8px;
+            }
+
+            &-text {
+                color: #000;
+                font-size: 16px;
+                overflow: hidden;
+                background-color: #fafafa;
+                resize: none;
+                outline: none;
+                border: 1px solid $border-color;
+                border-radius: 2px;
+                padding: 8px;
+
+                &:focus,
+                &:active {
+                    border: 2px solid $brand-color;
+                    outline: none;
+                }
+            }
+        }
+
+        &__menu {
+            display: flex;
+            justify-content: space-between;
+            border: none;
+            padding-top: 8px;
+            padding-left: 8px;
+        }
+
+        &__menu-button {
+            background-color: Transparent;
+            border: none;
+        }
+
+        &__menu-icon {
+            @extend .small-icon;
+        }
+
+        &__optional-controls {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid $border-color;
+            margin-top: 24px;
+            padding-top: 16px;
+        }
+
+        &__additions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__checkboxes {
+            margin-right: 10px;
+            vertical-align: bottom;
+            background-color: #fff;
+
+            input {
+                margin-bottom: 6px;
+                vertical-align: middle;
+            }
+        }
+
+        &__attach-icon {
+            vertical-align: top;
+            margin-left: -4px;
+            margin-bottom: -4px;
+            fill: $font-color;
+        }
+
+        &__icon-label {
+            margin-left: -4px;
+            cursor: pointer;
+        }
+
+        &__label {
+            margin-left: 3px;
+            cursor: pointer;
+        }
+
+        &__help-icon {
+            vertical-align: sub;
+            height: 16px;
+            fill: $font-color;
+        }
+    }
+}

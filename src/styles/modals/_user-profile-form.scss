@@ -1,0 +1,38 @@
+$font-color-for-labels: #757575;
+$block-class: 'user-profile-form';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        min-height: 500px;
+        min-width: 800px;
+        margin-left: 20px;
+        margin-right: 20px;
+
+        &__tabs {
+            justify-content: flex-start;
+            flex-flow: row nowrap;
+            margin-top: 1em;
+            cursor: pointer;
+
+            .grommetux-tab--active {
+                border-bottom: 2px solid nth($brand-neutral-colors, 2);
+                font-weight: bold;
+            }
+
+            label.grommetux-tab__label {
+                border: none;
+            }
+        }
+
+        &__tab {
+            .grommetux-tab__label {
+                font-size: 14px;
+                color: $font-color-for-labels;
+                font-weight: 400;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

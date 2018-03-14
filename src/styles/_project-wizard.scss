@@ -1,0 +1,67 @@
+$block-class: 'project-wizard';
+
+@at-root {
+    .#{$block-class} {
+        &__tabs {
+            position: relative;
+
+            &::after {
+                content: '';
+                border-bottom: 2px solid #ccc;
+                width: 80%;
+                position: absolute;
+                z-index: -1;
+                bottom: 12px;
+            }
+        }
+
+        .project-wizard__tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: none;
+
+            &::after {
+                content: '';
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                display: block;
+            }
+        }
+
+        .project-wizard__tab--complete {
+            &::after {
+                background-color: nth($brand-neutral-colors, 2);
+                border: 2px solid nth($brand-neutral-colors, 1);
+            }
+        }
+
+        .project-wizard__tab--incomplete {
+            &::after {
+                background-color: $page-background-color;
+                border: 2px solid $brand-color;
+            }
+        }
+
+        .grommetux-tab__label {
+            @extend .lead-font;
+
+            font-size: 14px;
+            color: #7e848f;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .grommetux-tab--active {
+            .grommetux-tab__label {
+                font-weight: 600;
+                color: #707680;
+            }
+        }
+
+        .grommetux-tabs {
+            border: none;
+        }
+    }
+}

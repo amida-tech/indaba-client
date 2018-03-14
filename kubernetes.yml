@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: amida-indaba-client-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: amida-indaba-client
+    spec:
+      imagePullSecrets:
+      - name: elijahsecret3
+      containers:
+      - name: amida-indaba-client
+        image: elijahgeorge1/indaba-client
+        env:
+        - name: API_URL
+          value: http://a93777759f18511e7b4a1060c5163e47-2052654379.us-west-2.elb.amazonaws.com:3005
+        - name: AUTH_API_URL
+          value: http://aa7e54a82ede111e7b4a1060c5163e47-61384471.us-west-2.elb.amazonaws.com:4000/api/v0
+        - name: SURVEY_API_URL
+          value: http://a51eab6f4f0e511e7b4a1060c5163e47-1629568428.us-west-2.elb.amazonaws.com:9005/api/v1.0
+        - name: MESSAGING_API_URL
+          value: http://a4303acc7a3f011e7b4a1060c5163e47-1089830322.us-west-2.elb.amazonaws.com:4001
+        - name: NODE_ENV
+          value: development
+        - name: REALM
+          value: testorg
+        ports:
+        - name: nodejs-port
+          containerPort: 8081

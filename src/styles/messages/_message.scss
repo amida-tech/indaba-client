@@ -1,0 +1,75 @@
+$block-class: 'message';
+
+@at-root {
+    .#{$block-class} {
+        margin-top: 1em;
+
+        &--active {
+            border: 2px solid $brand-color;
+            border-radius: 4px;
+        }
+
+        &--compose {
+            margin-bottom: 1em;
+        }
+
+        &__content {
+            background-color: white;
+            padding: 0.5em 1em;
+            border-bottom: 1px solid $border-color;
+        }
+
+        &__row {
+            border-bottom: 1px solid $border-color;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0.5em 0;
+        }
+
+        &__timestamp {
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        &__body-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1em;
+        }
+
+        &__action-icon {
+            fill: #7e848f;
+            flex: 1;
+        }
+
+        &__body-field-wrapper {
+            min-height: 8em;
+            display: flex;
+        }
+
+        &__body-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-bottom: 0.5em;
+            border-radius: 2px;
+        }
+
+        &__body-timestamp {
+            margin-top: 1em;
+        }
+
+        &__inline-reply {
+            min-height: 8em;
+            background-color: white;
+            padding: 0.5em 1em;
+            cursor: pointer;
+            color: $font-color;
+        }
+
+        .grommetux-button:not(.grommetux-button--fill) {
+            border-radius: 2px;
+        }
+    }
+}

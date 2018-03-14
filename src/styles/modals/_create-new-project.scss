@@ -1,0 +1,24 @@
+$block-class:'create-new-project'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
+
+@at-root {
+    .#{$block-class} {
+        &__button-panel {
+            padding: 2em 2em 0;
+            text-align: center;
+        }
+
+        &__create-button.grommetux-button {
+            font-size: 14px;
+            color: $font-inverse-color;
+            padding: 12px;
+            border-radius: 2px;
+            height: 32px;
+            font-weight: 500;
+
+            &:hover {
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
+    }
+}

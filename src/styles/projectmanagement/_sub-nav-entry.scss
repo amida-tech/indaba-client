@@ -1,0 +1,17 @@
+$block-class: 'sub-nav-entry';
+
+@at-root {
+    .#{$block-class} {
+        font-size: 14px;
+        line-height: 18px;
+        color: #727882;
+        text-align: center;
+        cursor: pointer;
+
+        &--selected {
+            border-bottom: 5px solid $off-brand-color;
+            padding-bottom: 5px;
+            color: $brand-color;
+        }
+    }
+}

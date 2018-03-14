@@ -1,0 +1,62 @@
+$block-class: 'static-question';
+
+@at-root {
+    .#{$block-class} {
+        padding: 0 1em 0.5em;
+        display: flex;
+        flex-direction: column;
+
+        &__bool {
+            &-field {
+                margin-left: 5px;
+                margin-bottom: 24px;
+            }
+
+            &-label {
+                @extend .lead-font;
+
+                margin-left: 5px;
+            }
+        }
+
+        &__bulletgroup {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__bulletpoint1 {
+            width: 40%;
+            padding: 0.2em;
+            margin-bottom: 8px;
+        }
+
+        &__bulletpoint2 {
+            width: 40%;
+            padding: 0.2em;
+        }
+
+        &__date {
+            width: 15%;
+            padding: 0.2em;
+            border: 1px solid #adadad;
+            text-transform: uppercase;
+        }
+
+        &__integer {
+            width: 20%;
+            padding: 0.2em;
+        }
+
+        &__text {
+            width: 40%;
+            padding: 0.2em;
+        }
+
+        &__instructions {
+            @extend .small-font;
+
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+    }
+}

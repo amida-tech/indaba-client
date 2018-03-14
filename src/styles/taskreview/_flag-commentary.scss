@@ -1,0 +1,24 @@
+$timestamp-green: #429664;
+
+$block-class:'flag-commentary';
+
+@at-root {
+    .#{$block-class} {
+        &__frame {
+            color: $font-color;
+            padding: 1em;
+            background: #fff;
+            font-size: 14px;
+
+            &--readonly {
+                height: 20em;
+            }
+        }
+
+        &__timestamp {
+            margin-bottom: 3px;
+            color: $timestamp-green;
+            font-weight: bold;
+        }
+    }
+}

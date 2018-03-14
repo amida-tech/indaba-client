@@ -1,0 +1,36 @@
+$block-class:'task-review';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: row;
+        border-left: 2px solid $border-color;
+
+        &__details-and-survey {
+            width: 65%;
+            height: calc(100vh - #{$primary-nav-height} - #{$footer-height-with-padding});
+            position: relative;
+            overflow-y: scroll;
+        }
+
+        &__flag-sidebar {
+            width: 35%;
+            background: $element-background;
+            border-right: 2px solid $border-color;
+        }
+
+        &__back-link {
+            display: flex;
+            align-items: flex-end;
+            padding-top: 24px;
+            background-color: $element-background;
+        }
+
+        &__back-arrow {
+            fill: #337ab7;
+            width: 12px;
+            margin-right: 2px;
+            margin-left: 2px;
+        }
+    }
+}

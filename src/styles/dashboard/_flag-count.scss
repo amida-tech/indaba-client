@@ -1,0 +1,27 @@
+$block-class: 'flag-count';
+
+@at-root {
+    .#{$block-class} {
+        position: relative;
+
+        &__icon {
+            position: absolute;
+
+            @extend .primary-icon;
+        }
+
+        &__value {
+            position: absolute;
+            top: 0;
+            left: 16px;
+            width: 14px;
+            height: 14px;
+            color: $font-inverse-color;
+            background-color: $brand-color;
+            border-radius: 50%;
+            font-size: 10px;
+            text-align: center;
+            line-height: 16px;
+        }
+    }
+}

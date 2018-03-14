@@ -1,0 +1,30 @@
+$block-class: 'project-list-header';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        padding: 8px 16px;
+
+        &__title {
+            color: $lead-font-color;
+
+            &--project {
+                flex: 4;
+            }
+
+            &--survey {
+                flex: 4;
+            }
+
+            &--flags {
+                flex: 1;
+            }
+
+            &--last-updated {
+                flex: 3;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+}

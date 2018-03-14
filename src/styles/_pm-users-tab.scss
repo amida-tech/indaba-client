@@ -1,0 +1,37 @@
+$block-class: 'pm-users-tab';
+
+@at-root {
+    .#{$block-class} {
+        background-color: #fdfdfd;
+        border: 2px solid $border-color;
+        margin-bottom: 80px;
+
+        &__invite-container {
+            background-color: #f9f9f9;
+            border-bottom: 1px solid $border-color;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        &__search-container {
+            padding: 1em;
+        }
+
+        &__text-input {
+            padding: 8px;
+            width: 100%;
+            border: 1px solid $border-color;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
+        }
+
+        .grommetux-control-icon {
+            @extend .small-icon;
+        }
+    }
+}

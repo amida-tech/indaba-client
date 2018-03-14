@@ -1,0 +1,99 @@
+$block-class:'task-details';
+
+@at-root {
+    .#{$block-class} {
+        background-color: $element-background;
+        padding-top: 0.5em;
+
+        &__header {
+            margin-left: 16px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: row;
+
+            &-left {
+                width: 50%;
+            }
+        }
+
+        &__header-label {
+            @extend .x-small-font;
+
+            text-transform: uppercase;
+        }
+
+        &__header-name {
+            @extend .x-large-font;
+
+            padding-bottom: 16px;
+        }
+
+        &__header-permissions {
+            @extend .x-large-font;
+
+            padding-bottom: 16px;
+        }
+
+        &__info {
+            min-width: 100%;
+            border: 2px solid $border-color;
+            border-left: none;
+            border-radius: 2px;
+            display: inline-flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+
+        &__info-box {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
+            border-left: 2px solid $border-color;
+            width: 25%;
+            display: inline-block;
+            position: relative;
+            text-align: left;
+
+            &-label {
+                font-size: 12px;
+                text-transform: uppercase;
+                color: $lead-font-color;
+            }
+
+            &-survey {
+                @extend .lead-font;
+
+                max-width: 250px;
+                overflow: hidden;
+                white-space: normal;
+            }
+
+            &-title {
+                @extend .med-font;
+
+                color: $lead-font-color;
+                display: flex;
+            }
+
+            &--first {
+                border-left: none;
+                padding-left: 1em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+            }
+        }
+    }
+}
+
+.grommetux-date-time__input,
+.grommetux-date-time__input:focus {
+    @extend .lead-font;
+
+    padding: 0;
+    border: none;
+}
+
+.grommetux-button__icon .grommetux-control-icon {
+    vertical-align: vertical;
+}

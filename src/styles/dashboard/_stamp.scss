@@ -1,0 +1,59 @@
+$block-class: 'stamp';
+
+$bad-color: #af1212;
+$good-color: #68997d;
+$neutral-color: #e6edef;
+
+@at-root {
+    .#{$block-class} {
+        flex: 1;
+        border: 2px solid $neutral-color;
+        border-radius: 50%;
+        margin: 0 8px;
+        position: relative;
+        max-width: 128px;
+        min-width: 100px;
+
+        &--bad {
+            border-color: $bad-color;
+            color: $bad-color;
+        }
+
+        &--good {
+            border-color: $good-color;
+            color: $good-color;
+        }
+
+        &--neutral {
+            border-color: $neutral-color;
+            color: $lead-font-color;
+        }
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        &__value {
+            font-size: 48px;
+            line-height: 48px;
+            font-weight: 300;
+        }
+
+        &__label {
+            font-size: 14px;
+        }
+    }
+}

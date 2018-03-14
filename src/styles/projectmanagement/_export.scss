@@ -1,0 +1,151 @@
+$block-class: 'export';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+
+        &__wrapper {
+            display: flex;
+            background-color: $element-background;
+            border: 1px solid $border-color;
+            padding: 24px;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        &__instructions {
+            @extend .lead-font;
+
+            width: 65%;
+        }
+
+        &__interactions {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__configuration {
+            flex: 1;
+            border: 1px solid $border-color;
+            background-color: #f7f8f9;
+        }
+
+        &__type-section {
+            padding: 16px 32px;
+            border-bottom: 1px solid $border-color;
+
+            &--inactive {
+                opacity: 0.5;
+                font-size: 18px;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        // input prefix needed to exceed bootstrap rule specifity
+        input.#{$block-class}__type-input {
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        &__type-label {
+            @extend .med-font;
+
+            display: flex;
+            align-items: baseline;
+        }
+
+        &__explanation {
+            font-size: 14px;
+            color: $lead-font-color;
+            margin-left: 32px;
+        }
+
+        &__custom-choices {
+            margin: 16px;
+            padding: 16px 12px;
+            border: 1px solid $border-color;
+            background-color: $page-background-color;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__custom-choice {
+            @extend .small-font;
+
+            flex-basis: 200px;
+
+            input {
+                margin-right: 8px;
+            }
+        }
+
+        &__custom-section {
+            padding: 16px 32px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        &__custom-section--inactive {
+            color: lighten($font-color, 20%);
+
+            .#{$block-class} {
+                &__custom-action {
+                    color: lighten(#3757bc, 30%);
+                }
+            }
+        }
+
+        &__custom-actions {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        &__custom-action {
+            margin-left: 16px;
+            cursor: pointer;
+            color: #3757bc;
+        }
+
+        &__custom-title {
+            @extend .med-font;
+
+            margin-bottom: 8px;
+        }
+
+        &__download {
+            flex-basis: 240px;
+            margin-left: 30px;
+            background-color: #f7f8f9;
+            border: 1px solid $border-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 8px 16px;
+        }
+
+        &__download-instruction {
+            @extend .large-font;
+
+            margin-bottom: 16px;
+        }
+
+        &__export-button {
+            @extend .small-font;
+
+            border: 2px solid $brand-color;
+            border-radius: 3px;
+            background-color: #f7f8f9;
+            align-self: stretch;
+            padding: 6px 0;
+
+            &:hover {
+                background-color: nth($brand-neutral-colors, 1);
+                color: $font-inverse-color;
+            }
+        }
+    }
+}

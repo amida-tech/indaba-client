@@ -1,0 +1,18 @@
+$block-class:'flag-header';
+
+@at-root {
+    .#{$block-class} {
+        margin-top: 24px;
+        margin-left: 16px;
+
+        &__title {
+            @extend .large-font;
+
+            font-weight: 300;
+        }
+
+        &__info {
+            @extend .small-font;
+        }
+    }
+}

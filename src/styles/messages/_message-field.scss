@@ -1,0 +1,34 @@
+$block-class: 'message-field';
+
+@at-root {
+    .#{$block-class} {
+        @extend .med-font;
+
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        &__label {
+            margin-right: 1em;
+        }
+
+        &__value {
+            border: none;
+            outline: none;
+            flex: 1;
+
+            &:-webkit-autofill,
+            :-webkit-autofill:hover,
+            :-webkit-autofill:focus,
+            :active,
+            :focus {
+                background-color: #fff;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+
+            &--error {
+                outline: 1px solid red;
+            }
+        }
+    }
+}

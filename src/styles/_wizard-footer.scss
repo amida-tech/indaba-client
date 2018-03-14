@@ -1,0 +1,45 @@
+$block-class: 'wizard-footer';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        background-color: #f2f2f2;
+        justify-content: space-between;
+        padding: 1.5rem;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+
+        &__button {
+            background-color: #fff;
+
+            &--continue {
+                background-color: nth($brand-neutral-colors, 2);
+                color: #fff;
+                border-radius: 2px;
+                margin-right: 16px;
+            }
+
+            &--back {
+                margin-left: 16px;
+                background-color: #f2f2f2;
+                color: $header-font-color;
+            }
+
+            &--skip {
+                border: 2px solid $header-font-color;
+                color: $header-font-color;
+                border-radius: 2px;
+            }
+
+            &--cancel {
+                color: $header-font-color;
+                border-radius: 2px;
+                background-color: #d9dcde;
+                border: 2px solid $header-font-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+$card-background: rgba(243, 245, 246, 0.5);
+$block-class: 'status-card';
+
+@at-root {
+    .#{$block-class} {
+        border: 1px solid $border-color;
+        background-color: $card-background;
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        padding: 0.5em 2em;
+        margin: 0 0.5em;
+
+        &--icon {
+            padding-left: 0.5em;
+        }
+
+        &__left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 1em;
+        }
+
+        &__name-label {
+            color: $font-color;
+            font-size: 14px;
+            line-height: 14px;
+        }
+
+        &__name-value {
+            display: flex;
+            color: $lead-font-color;
+            font-size: 24px;
+            font-weight: 100;
+            cursor: pointer;
+
+            &:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
+        }
+
+        &__status {
+            color: $lead-font-color;
+            margin-top: 20px;
+            font-size: 24px;
+            display: flex;
+            font-weight: 300;
+
+            &:hover {
+                color: nth($brand-neutral-colors, 2);
+            }
+
+            &--editable {
+                cursor: pointer;
+            }
+        }
+
+        &__create-icon {
+            width: 1.6em;
+            fill: $header-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
+        }
+
+        &__edit-icon {
+            fill: $lead-font-color;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
+        }
+    }
+}

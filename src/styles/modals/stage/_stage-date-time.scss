@@ -1,0 +1,12 @@
+$block-class:'stage-date-time';
+
+@at-root {
+    .#{$block-class} {
+        border: 1px solid #dadcde;
+        height: 35px;
+        border-radius: 2px;
+        width: 300px;
+        padding-top: 5px;
+        padding-left: 5px;
+    }
+}

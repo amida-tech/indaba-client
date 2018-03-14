@@ -1,0 +1,26 @@
+$font-color-for-labels: #757575;
+$block-class:'preference-tab';
+
+@at-root {
+    .#{$block-class} {
+        padding: 1em;
+
+        &__label {
+            color: $font-color-for-labels;
+            font-size: 14px;
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__input-select,
+        .grommet &__input-select {
+            color: #51545c;
+            font-weight: 400;
+        }
+
+        .preference-tab__input-textarea {
+            @extend .lead-font;
+        }
+    }
+}

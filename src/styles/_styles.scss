@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+$page-background-color: #fdfdfd;
+$header-font-color: #8a8f99;
+$lead-font-color: #637282;
+$font-color: #82909c;
+$border-color: #e6e6e6;
+$element-background: #f3f5f6;
+$font-inverse-color: #f7f8f9;
+// grommet brand colors
+$brand-color: #4eb276;
+$off-brand-color: #4eb276;
+$brand-font-family: 'Roboto';
+$layer-overlay-background-color: rgba(white, 0.8);
+$layer-background-color: none;
+// TODO still need override
+$brand-neutral-colors: (#308253, #4d8061);
+$brand-accent-colors: #4eb276;
+$brand-link-color: #00854e;
+$brand-status-colors: (
+    critical: #ff324d,
+    error: #ff324d,
+    warning: #ffd602,
+    ok: #8cc800,
+    unknown: #a8a8a8,
+    disabled: #a8a8a8
+) !default;
+$brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
+$brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
+
+$primary-nav-height: 64px;
+$footer-height: 48px;
+$footer-height-with-padding: 64px;
+
+@import 'grommet/scss/grommet-core/index.scss';
+
+body {
+    font-family: 'Roboto';
+    background-color: $page-background-color;
+    color: $header-font-color;
+    overflow-y: auto;
+}
+
+html,
+body,
+#root,
+.main-page {
+    height: 100%;
+}
+
+.app {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: $footer-height-with-padding;
+}
+
+.grommetux-text-input {
+    margin-bottom: 1em;
+}
+
+.grommetux-search .grommetux-search__input,
+.grommetux-select__input {
+    font-size: 16px;
+    padding: 7px 4px;
+    border-radius: 0;
+}
+
+.grommetux-search__drop,
+.grommetux-search__suggestion {
+    @extend .small-font;
+}
+
+.grommetux-search--fill {
+    width: 100%;
+}
+
+.invite-user {
+    .grommetux-box--direction-column.grommetux-box--pad-between-small > *:not(:last-child) {
+        margin-bottom: 4px;
+    }
+
+    .grommetux-box--direction-row.grommetux-box--pad-between-small > *:not(:last-child) {
+        margin-right: 4px;
+    }
+}
+
+.divider {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top-color: #d8d8d8;
+    clear: both;
+}
+
+.main-divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.main-body {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.workflow {
+    div {
+        color: $font-color;
+        text-transform: uppercase;
+    }
+}
+
+.grid-column {
+    overflow-x: auto;
+    border-right: none;
+}
+
+.workflow-table {
+    width: 100%;
+
+    .stage-slot-cell,
+    .stage-summary-cell {
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .stage-summary-cell:hover {
+        background-color: darken(#fff, 2);
+    }
+
+    margin-bottom: 0;
+    border-right: none;
+
+    th:last-child,
+    td:last-child,
+    tr,
+    tbody {
+        // Do we even need this.
+    }
+}
+
+.grid-subject {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.table-bordered .grid-subject {
+    padding-top: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    color: $lead-font-color;
+}
+
+.center {
+    float: left;
+}

@@ -1,0 +1,74 @@
+$block-class: 'users-tab';
+
+@at-root {
+    .#{$block-class} {
+        border: 2px solid $border-color;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        min-height: 500px;
+
+        &__wrapper {
+            background-color: $element-background;
+            padding: 1rem;
+            height: 50%;
+        }
+
+        &__invite-container {
+            width: 80%;
+            margin-right: 10%;
+            margin-left: 10%;
+            padding-top: 0.5rem;
+            border: 1px solid $border-color;
+        }
+
+        &__invite-wrapper {
+            background-color: #fafafa;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        &__text-input {
+            flex: 1;
+            display: flex;
+            min-width: 100%;
+        }
+
+        &__entry {
+            display: flex;
+            padding: 8px 16px;
+            justify-content: space-between;
+            border-bottom: 1px solid $border-color;
+
+            &:nth-child(even) {
+                background-color: lighten(#d8d8d8, 10%);
+            }
+        }
+
+        &__name-container {
+            display: flex;
+            align-items: center;
+        }
+
+        &__name {
+            margin-left: 1em;
+        }
+
+        &__search {
+            background-color: #fff;
+            margin-bottom: 1rem;
+
+            &__input {
+                padding: 5px 5px 5px 10px;
+                width: 100%;
+                border: 1px solid $border-color;
+            }
+
+            &__btn {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+}
