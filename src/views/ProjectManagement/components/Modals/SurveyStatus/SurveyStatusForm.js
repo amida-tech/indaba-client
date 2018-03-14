@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { form, Field, reduxForm, reset, submit } from 'redux-form';
-import ConfirmationCheckbox from './ConfirmationCheckbox';
+import { form, Field, reduxForm, reset } from 'redux-form';
+import ConfirmationCheckbox from '../ConfirmationCheckbox';
 
 class SurveyStatusForm extends Component {
     render() {
@@ -11,7 +10,8 @@ class SurveyStatusForm extends Component {
         return (
             <form className='survey-status-form'>
                 <div className='survey-status-form__top-section'>
-                    <input id='survey-status-check'
+                    <Field id='survey-status-check'
+                        component='input'
                         type='checkbox'
                         className='toggle-native-check'
                         checked={this.props.published}
@@ -38,19 +38,22 @@ class SurveyStatusForm extends Component {
                 <div className='survey-status-form__section'>
                     <div className='survey-status-form__confirmation'>
                         <p>{confirmVocab.TITLE}</p>
-                        <ConfirmationCheckbox
+                        <Field
+                            component={ConfirmationCheckbox}
                             checked={this.props.accessConfirm}
                             onCheck={this.props.onCheck}
                             name='accessConfirm'
                             label={confirmVocab.CHECKBOX_ACCESS} />
                         <br/>
-                        <ConfirmationCheckbox
+                        <Field
+                            component={ConfirmationCheckbox}
                             checked={this.props.editConfirm}
                             onCheck={this.props.onCheck}
                             name='editConfirm'
                             label={confirmVocab.CHECKBOX_EDIT} />
                         <br/>
-                        <ConfirmationCheckbox
+                        <Field
+                            component={ConfirmationCheckbox}
                             checked={this.props.usersConfirm}
                             onCheck={this.props.onCheck}
                             name='usersConfirm'
@@ -64,9 +67,7 @@ class SurveyStatusForm extends Component {
 
 const FORM_NAME = 'survey-status-form';
 
-export default connect(null, dispatch => ({
-    onPlusClick: () => dispatch(submit(FORM_NAME)),
-}))(reduxForm({
+export default reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         // Check the checkboxes to ensure they are all true.
@@ -76,4 +77,4 @@ export default connect(null, dispatch => ({
             ownProps.vocab.ERROR);
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
-})(SurveyStatusForm));
+})(SurveyStatusForm);
