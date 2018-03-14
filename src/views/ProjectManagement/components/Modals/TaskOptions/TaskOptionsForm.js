@@ -33,16 +33,6 @@ class TaskOptionsForm extends Component {
                         type='select'
                         currentUser={this.props.currentUser}
                         userOptions={this.props.userOptions}/>
-                    <Field
-                        name='choice'
-                        component={TaskOptionsRadio}
-                        type='radio'
-                        value='skip'
-                        disabled={true}
-                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.SKIP} />
-                    <div className='task-options-form__header-paragraph'>
-                        {this.props.vocab.PROJECT.OPTIONS_MODAL.SKIP_PARAGRAPH}
-                    </div>
                     <hr className='task-options-form__divider'/>
                     <Field
                         name='notify'
