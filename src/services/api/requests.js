@@ -54,6 +54,8 @@ export function apiGetRequest(fullURI, callback) {
             Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache,no-store,must-revalidate', // ,max-age=-1,private'
+            Pragma: 'no-cache',
         },
     })
     .then(callback ? handleResponse : handleResponseRejectWithResponse)
