@@ -117,7 +117,7 @@ class ProjectManagementContainer extends Component {
                 <div>
                     {
                         this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal &&
-                        (this.props.ui.statusModalId === 'project' ?
+                        (this.props.ui.statusModalId === 'projectstatusmodal' ?
                             <ProjectStatus vocab={this.props.vocab}
                                 project={this.props.project}
                                 actions={this.props.actions}

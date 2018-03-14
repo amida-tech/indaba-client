@@ -32,9 +32,9 @@ class ProjectStatusForm extends Component {
                 <hr className='divider'/>
                 <div className='project-status-form__section'>
                     <div className='project-status-form__description'>
-                        <p>{projectVocab.INSTRUCTION_DEACTIVATE}</p>
-                        <p>{projectVocab.INSTRUCTION_DRAFT_CONSTRAINT}</p>
-                        <p>{projectVocab.INSTRUCTION_REACTIVATE}</p>
+                        <span>{projectVocab.INSTRUCTION_DEACTIVATE}</span>
+                        <span>{projectVocab.INSTRUCTION_DRAFT_CONSTRAINT}</span>
+                        <span>{projectVocab.INSTRUCTION_REACTIVATE}</span>
                     </div>
                 </div>
                 <hr className='divider'/>

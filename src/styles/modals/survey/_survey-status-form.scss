@@ -4,6 +4,7 @@ $block-class: 'survey-status-form';
     .#{$block-class} {
         &__top-section {
             padding: 0 1.5em 0.3em;
+
             input {
                 float: right;
             }
@@ -17,14 +18,28 @@ $block-class: 'survey-status-form';
             color: $brand-color;
         }
 
+        &__text {
+            @extend .med-font;
+
+            font-size: 500;
+        }
+
         &__label {
             color: $font-color;
             font-size: 12px;
             text-transform: uppercase;
         }
 
-        &__description p {
-            @extend .lead-font;
+        &__description {
+            max-width: 576px;
+
+            span {
+                @extend .lead-font;
+
+                margin-top: 24px;
+                margin-bottom: 24px;
+                display: block;
+            }
         }
 
         &__confirmation {

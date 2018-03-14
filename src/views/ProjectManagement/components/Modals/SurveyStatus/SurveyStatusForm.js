@@ -29,9 +29,9 @@ class SurveyStatusForm extends Component {
                 <hr className='divider'/>
                 <div className='survey-status-form__section'>
                     <div className='survey-status-form__description'>
-                        <p>{surveyVocab.INSTRUCTION_PUBLISH}</p>
-                        <p>{surveyVocab.INSTRUCTION_DRAFT_CONSTRAINT}</p>
-                        <p>{surveyVocab.INSTRUCTION_PROJECT_STATUS}</p>
+                        <span>{surveyVocab.INSTRUCTION_PUBLISH}</span>
+                        <span>{surveyVocab.INSTRUCTION_DRAFT_CONSTRAINT}</span>
+                        <span>{surveyVocab.INSTRUCTION_PROJECT_STATUS}</span>
                     </div>
                 </div>
                 <hr className='divider'/>
