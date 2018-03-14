@@ -14,7 +14,7 @@ class Bullet extends Component {
         return (
             <div className='bullet'>
                 {currentAnswer.map((answer, index) =>
-                    <input className={`bullet__field${this.props.displayMode ? '--disabled' : ''}`}
+                    <input className={`bullet__field bullet__field${this.props.displayMode ? '--disabled' : ''}`}
                         key={`bullet-${this.props.id}-${index}`}
                         placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
                         type='text'

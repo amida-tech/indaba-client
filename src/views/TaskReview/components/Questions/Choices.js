@@ -9,7 +9,7 @@ class Choices extends Component {
                 {this.props.choices.map((choice, index) =>
                     <div className='choices__row'
                         key={`choices-${this.props.id}-${index}`}>
-                        <input className={`choices__field${this.props.displayMode ? '--disabled' : ''}`}
+                        <input className={`choices__field choices__field${this.props.displayMode ? '--disabled' : ''}`}
                             type='checkbox'
                             disabled={this.props.displayMode}
                             defaultChecked={get(find(this.props.answer.choices, item =>

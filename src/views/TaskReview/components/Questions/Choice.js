@@ -9,7 +9,7 @@ class Choice extends Component {
                 {this.props.choices.map(choice =>
                     <div className='choice__radio'
                         key={`key-choice-${choice.id}`}>
-                        <input className={`choice__field${this.props.displayMode ? '--disabled' : ''}`}
+                        <input className={`choice__field choice__field${this.props.displayMode ? '--disabled' : ''}`}
                             type='radio'
                             name={`choice${this.props.id}`}
                             value={choice.id}

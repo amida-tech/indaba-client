@@ -10,7 +10,7 @@ class Integer extends Component {
         }
         return (
             <div className='integer'>
-                <input className={`integer__field${this.props.displayMode ? '--disabled' : ''}`}
+                <input className={`integer__field integer__field${this.props.displayMode ? '--disabled' : ''}`}
                     placeholder={0}
                     type='number'
                     disabled={this.props.displayMode}
