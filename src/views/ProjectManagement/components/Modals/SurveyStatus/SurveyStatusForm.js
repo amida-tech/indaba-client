@@ -4,7 +4,6 @@ import ConfirmationCheckbox from '../ConfirmationCheckbox';
 
 class SurveyStatusForm extends Component {
     render() {
-        console.log(this.props.published);
         const vocab = this.props.vocab;
         const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
         const confirmVocab = this.props.published ? surveyVocab.PUBLISHED : surveyVocab.DRAFT;
