@@ -169,51 +169,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 background-color: $font-color;
                 transition: left 0.2s;
             }
-
-            .project-status-section {
-                padding: 0 1.5em 0.3em;
-            }
-
-            .project-status-value input {
-                float: right;
-            }
-
-            input:checked ~ .project-status-field > .project-status-text {
-                color: $brand-color;
-            }
-
-            .project-status-text {
-                @extend .med-font;
-
-                font-size: 500;
-            }
-
-            .project-status-label {
-                color: $font-color;
-                font-size: 12px;
-                text-transform: uppercase;
-            }
-
-            .project-status-description p {
-                @extend .lead-font;
-            }
-
-            .project-status-confirmation {
-                p {
-                    font-weight: 500;
-                    color: $header-font-color;
-                    margin-bottom: 1em;
-                }
-
-                input {
-                    margin-right: 1em;
-                }
-
-                label {
-                    font-weight: normal;
-                    color: $header-font-color;
-                }
-            }
         }
     }
 }
