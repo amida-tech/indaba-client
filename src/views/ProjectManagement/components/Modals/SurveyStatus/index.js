@@ -15,7 +15,7 @@ class SurveyStatus extends Component {
                     onCancel={() => this.props.actions.updateStatusChange(false)}>
                         <SurveyStatusForm
                             initialValues={{
-                                published: this.props.survey.status,
+                                published: this.props.survey.status === 'published',
                                 editConfirm: false,
                                 accessConfirm: false,
                                 usersConfirm: false,
@@ -24,6 +24,7 @@ class SurveyStatus extends Component {
                             vocab={this.props.vocab}
                             published={this.props.published}
                             patchSurvey={this.props.actions.patchSurvey}
+                            updateStatusChange={this.props.actions.updateStatusChange}
                             />
                 </Modal>
         );

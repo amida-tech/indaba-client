@@ -4,6 +4,7 @@ import ConfirmationCheckbox from '../ConfirmationCheckbox';
 
 class SurveyStatusForm extends Component {
     render() {
+        console.log(this.props.published);
         const vocab = this.props.vocab;
         const surveyVocab = this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB;
         const confirmVocab = this.props.published ? surveyVocab.PUBLISHED : surveyVocab.DRAFT;
@@ -64,11 +65,12 @@ export default reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         // Check the checkboxes to ensure they are all true.
-        if (values.draftConfirm && values.accessConfirm && values.usersConfirm) {
-            ownProps.patchSurvey(Object.assign({}, this.props.survey,
+        if (values.editConfirm && values.accessConfirm && values.usersConfirm) {
+            ownProps.patchSurvey(Object.assign({}, ownProps.survey,
                     { status: values.published ? 'published' : 'draft' }),
                 ownProps.vocab.SURVEY.SUCCESS,
                 ownProps.vocab.ERROR);
+            ownProps.updateStatusChange(false);
         }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
