@@ -13,9 +13,8 @@ class SurveyStatusForm extends Component {
                     <Field id='survey-status-check'
                         component='input'
                         type='checkbox'
-                        className='toggle-native-check'
-                        checked={this.props.published}
-                        onChange={event => this.props.onCheck('published', event.target.checked)}/>
+                        name='published'
+                        className='toggle-native-check'/>
                     <label htmlFor='survey-status-check' className='toggle'></label>
                     <div className='survey-status-form__field'>
                         <div className='survey-status-form__text'>
@@ -40,22 +39,16 @@ class SurveyStatusForm extends Component {
                         <span>{confirmVocab.TITLE}</span>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.accessConfirm}
-                            onCheck={this.props.onCheck}
                             name='accessConfirm'
                             label={confirmVocab.CHECKBOX_ACCESS} />
                         <br/>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.editConfirm}
-                            onCheck={this.props.onCheck}
                             name='editConfirm'
                             label={confirmVocab.CHECKBOX_EDIT} />
                         <br/>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.usersConfirm}
-                            onCheck={this.props.onCheck}
                             name='usersConfirm'
                             label={confirmVocab.CHECKBOX_USERS}/>
                     </div>
@@ -71,10 +64,12 @@ export default reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         // Check the checkboxes to ensure they are all true.
-        ownProps.patchSurvey(Object.assign({}, this.props.survey,
-                { status: this.state.survey.published ? 'published' : 'draft' }),
-            ownProps.vocab.SURVEY.SUCCESS,
-            ownProps.vocab.ERROR);
+        if (values.draftConfirm && values.accessConfirm && values.usersConfirm) {
+            ownProps.patchSurvey(Object.assign({}, this.props.survey,
+                    { status: values.published ? 'published' : 'draft' }),
+                ownProps.vocab.SURVEY.SUCCESS,
+                ownProps.vocab.ERROR);
+        }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),
 })(SurveyStatusForm);

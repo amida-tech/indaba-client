@@ -14,9 +14,8 @@ class ProjectStatusForm extends Component {
                     <Field id='project-status-check'
                         component='input'
                         type='checkbox'
-                        className='toggle-native-check'
-                        checked={this.props.active}
-                        onChange={event => this.props.onCheck('active', event.target.checked)}/>
+                        name='active'
+                        className='toggle-native-check' />
                     <label htmlFor='project-status-check' className='toggle'></label>
                     <div className='project-status-form__field'>
                         <div className='project-status-form__text'>
@@ -43,22 +42,16 @@ class ProjectStatusForm extends Component {
                         <span>{confirmVocab.TITLE}</span>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.draftConfirm}
-                            onCheck={this.props.onCheck}
                             name='draftConfirm'
                             label={confirmVocab.CHECKBOX_DRAFT} />
                         <br/>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.accessConfirm}
-                            onCheck={this.props.onCheck}
                             name='accessConfirm'
                             label={confirmVocab.CHECKBOX_ACCESS}/>
                         <br/>
                         <Field
                             component={ConfirmationCheckbox}
-                            checked={this.props.usersConfirm}
-                            onCheck={this.props.onCheck}
                             name='usersConfirm'
                             label={confirmVocab.CHECKBOX_USERS} />
                     </div>
@@ -74,7 +67,7 @@ export default reduxForm({
     form: FORM_NAME,
     onSubmit: (values, dispatch, ownProps) => {
         // Check the checkboxes to ensure they are all true.
-        if (ownProps.project.active) {
+        if (values.active && values.draftConfirm && values.accessConfirm && values.usersConfirm) {
             const newProject = Object.assign({}, ownProps.project,
                     { status: 1 });
             ownProps.putProject(newProject, ownProps.vocab.ERROR)
@@ -89,7 +82,7 @@ export default reduxForm({
                 );
             });
             ownProps.updateStatusChange(false);
-        } else {
+        } else if (values.draftConfirm && values.accessConfirm && values.usersConfirm) {
             ownProps.showInactiveConfirmModal(true);
         }
     },

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { submit } from 'redux-form';
+import { formValueSelector, submit } from 'redux-form';
 import { connect } from 'react-redux';
 
 import Modal from '../../../../../common/components/Modal';
@@ -13,17 +13,30 @@ class SurveyStatus extends Component {
                     title={this.props.vocab.MODAL.STATUS_CHANGE_MODAL.SURVEY_TAB.TITLE}
                     onSave={this.props.onClickToSubmit}
                     onCancel={() => this.props.actions.updateStatusChange(false)}>
-                        <SurveyStatusForm {...this.props.survey}
+                        <SurveyStatusForm
+                            initialValues={{
+                                published: this.props.survey.status,
+                                editConfirm: false,
+                                accessConfirm: false,
+                                usersConfirm: false,
+                            }}
+                            survey={this.props.survey}
                             vocab={this.props.vocab}
+                            published={this.props.published}
                             patchSurvey={this.props.actions.patchSurvey}
                             />
                 </Modal>
         );
     }
 }
+const selector = formValueSelector('survey-status-form');
+
+const mapStateToProps = state => ({
+    published: selector(state, 'published'),
+});
 
 const mapDispatchToProps = dispatch => ({
     onClickToSubmit: () => dispatch(submit('survey-status-form')),
 });
 
-export default connect(null, mapDispatchToProps)(SurveyStatus);
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyStatus);
