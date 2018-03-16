@@ -4,9 +4,7 @@ $block-class:'stage-form';
 @at-root {
     .#{$block-class} {
         color: $lead-font-color;
-        margin: 16px;
-        margin-bottom: 24px;
-        padding: 8px;
+        padding: 24px 24px 32px;
 
         &__input-field {
             border-radius: 2;
