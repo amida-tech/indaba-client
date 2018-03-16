@@ -63,29 +63,29 @@ function _reportError(message) {
 
 function _getAnswers(assessmentId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getAnswers(
-            assessmentId,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportError(errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_getAnswersSuccess(answerResp, assessmentId));
-                }
-            },
-        );
+        return apiService.surveys.getAnswers(assessmentId)
+        .then((answerResp) => {
+            dispatch(_getAnswersSuccess(answerResp, assessmentId));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportError(errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
     };
 }
 
 function _getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveyById(surveyId,
-            (surveyErr, surveyResp) => {
-                if (surveyErr) {
-                    _reportError(errorMessages.SURVEY_REQUEST);
-                } else {
-                    dispatch(_getSurveyByIdSuccess(surveyResp));
-                }
-            });
+        apiService.surveys.getSurveyById(surveyId)
+        .then((surveyResp) => {
+            dispatch(_getSurveyByIdSuccess(surveyResp));
+            return surveyResp;
+        })
+        .catch((surveyErr) => {
+            dispatch(_reportError(errorMessages.SURVEY_REQUEST));
+            throw surveyErr;
+        });
     };
 }
 
