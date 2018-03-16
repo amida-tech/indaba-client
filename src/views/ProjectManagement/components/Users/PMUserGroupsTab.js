@@ -26,7 +26,9 @@ class PMUserGroupsTab extends Component {
     }
     handleDeleteClick(userGroupId) {
         const dataState = this.getDataState(userGroupId);
-        if (dataState === STAGES) {
+        if (dataState === NO_STAGES) {
+            this.props.actions.pmShowUserGroupDeleteConfirmModal(userGroupId, dataState);
+        } else if (this.props.project.status === 1) {
             toast(this.props.vocab.ERROR.NO_DELETE_USER_GROUP_WITH_STAGES,
                 { autoClose: false, type: 'error' });
         } else {
@@ -53,7 +55,9 @@ class PMUserGroupsTab extends Component {
                     deleteModal &&
                     <Modal title={this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.TITLE}
                         bodyText={
-                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_NOTHING
+                            deleteModal.dataState === NO_STAGES ?
+                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_NOTHING :
+                            this.props.vocab.MODAL.USER_GROUP_DELETE_CONFIRM.DELETE_WITH_STAGES
                         }
                         onCancel={this.props.actions.pmHideUserGroupDeleteConfirmModal}
                         onSave={this.handleDeleteModalSave}
