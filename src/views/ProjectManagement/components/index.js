@@ -29,10 +29,20 @@ import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(
-            this.props.params.projectId,
-            true,
-            this.props.vocab.ERROR);
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        } else {
+            this.props.actions.getProjectById(
+                this.props.params.projectId,
+                true,
+                this.props.vocab.ERROR);
+        }
+    }
+
+    componentWillReceiveProps() {
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        }
     }
 
     stageHasData(stageId) {

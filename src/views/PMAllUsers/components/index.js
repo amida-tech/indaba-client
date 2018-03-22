@@ -8,6 +8,17 @@ import * as userActions from '../../../common/actions/userActions';
 import PMAllUsers from './PMAllUsers';
 
 class PMAllUsersContainer extends Component {
+    componentWillMount() {
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        }
+    }
+    componentWillReceiveProps() {
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        }
+    }
+
     render() {
         return (
             <PMAllUsers {...this.props} />

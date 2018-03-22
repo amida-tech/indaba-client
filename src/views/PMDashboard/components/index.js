@@ -18,8 +18,18 @@ import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
     componentWillMount() {
-        this.props.actions.getProjects(this.props.vocab.ERROR);
-        this.props.actions.pmDashGetMessages();
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        } else {
+            this.props.actions.getProjects(this.props.vocab.ERROR);
+            this.props.actions.pmDashGetMessages();
+        }
+    }
+
+    componentWillReceiveProps() {
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        }
     }
 
     filterRow(row) {
@@ -98,6 +108,7 @@ const mapStateToProps = state => ({
         // flags calculated inline from rows.flags
     },
     messages: state.pmdashboard.messages.slice(0, 4),
+    profile: state.user.profile,
     users: state.user.users,
 });
 

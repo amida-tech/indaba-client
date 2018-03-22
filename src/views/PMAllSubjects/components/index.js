@@ -7,8 +7,19 @@ import PMAllSubjects from './PMAllSubjects';
 
 class PMAllSubjectsContainer extends Component {
     componentWillMount() {
-        this.props.actions.pmAllSubjectsGetSubjects();
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        } else {
+            this.props.actions.pmAllSubjectsGetSubjects();
+        }
     }
+
+    componentWillReceiveProps() {
+        if (this.props.profile.roleID === 3) {
+            this.props.router.push('/task');
+        }
+    }
+
     render() {
         return (
             <PMAllSubjects {...this.props} />
