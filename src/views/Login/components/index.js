@@ -27,8 +27,10 @@ const LOGIN_FORM_NAME = 'login-form';
 const selector = formValueSelector(LOGIN_FORM_NAME);
 
 const mapStateToProps = (state, ownProps) => {
+    console.log('JAMES');
+    console.log(ownProps);
     return {
-        realm: ownProps.params.realm || config.REALM || 'testorg',
+        realm: ownProps.match.params.realm || config.REALM || 'testorg',
         vocab: state.settings.language.vocabulary,
         ui: state.login.ui,
         currentEmail: selector(state, 'username'),

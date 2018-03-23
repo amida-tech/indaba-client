@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { compact, clone, every, find, flatten, get, has, map, sumBy } from 'lodash';
 import IonIcon from 'react-ionicons';
 

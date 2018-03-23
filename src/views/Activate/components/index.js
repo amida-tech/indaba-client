@@ -25,8 +25,8 @@ class Activate extends Component {
                     onSubmit={
                         values => apiService.users.activate(
                             values,
-                            this.props.params.realm,
-                            this.props.params.token,
+                            this.props.match.params.realm,
+                            this.props.match.params.token,
                             (err) => {
                                 if (err) {
                                     if (has(ServerErrorsToVocabError, err.message)) {
