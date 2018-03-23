@@ -1,4 +1,5 @@
 import { push } from 'react-router-redux';
+// import { browserHistory } from 'react-router-dom';
 import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
@@ -8,7 +9,6 @@ import * as actionTypes from './actionTypes';
 export function login(username, password, realm, referrer, errorMessages) {
     return (dispatch) => {
         dispatch(_login());
-
         const authPayload = {
             username,
             password,
@@ -22,6 +22,8 @@ export function login(username, password, realm, referrer, errorMessages) {
                     if (referrer) {
                         dispatch(push(referrer));
                     } else {
+                        console.log('Login');
+                        console.log(profileResp);
                         dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
                     }
                 } else {

@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { push } from 'react-router-redux'; // syncHistoryWithStore
-import { BrowserRouter } from 'react-router-dom'; // browserHistory
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux';
+import { Route } from 'react-router-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { get } from 'lodash';
@@ -23,8 +24,8 @@ import './styles/main.scss';
 import { logOut } from './common/actions/navActions';
 
 /** User Imports **/
+import App from './views/App';
 import reducers from './reducers';
-import routes from './routes';
 
 const DEVELOP = process.env.NODE_ENV === 'development';
 
@@ -37,8 +38,9 @@ const authInterceptor = ({ dispatch }) => next => (action) => {
     }
 };
 
-// let middleware = [routerMiddleware(browserHistory), thunk, authInterceptor];
-let middleware = [thunk, authInterceptor];
+const history = createHistory();
+
+let middleware = [thunk, authInterceptor, routerMiddleware(history)];
 if (DEVELOP) {
     middleware = [...middleware, createLogger()];
 }
@@ -68,16 +70,13 @@ const store = createStore(
     enhancer,
 );
 
-// const history = syncHistoryWithStore(browserHistory, store, {
-//     selectLocationState: () => store.getState().routing,
-// });
-
 ReactDOM.render(
     <Provider store={store}>
         <div className='main-page'>
-            <BrowserRouter>
-                {routes}
-            </BrowserRouter>
+            <ConnectedRouter history={history}>
+                <Route path='/'
+                    component={App}/>
+            </ConnectedRouter>
             { DEVELOP && <DevTools /> }
         </div>
     </Provider>,

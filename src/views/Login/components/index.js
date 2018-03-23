@@ -27,7 +27,7 @@ const LOGIN_FORM_NAME = 'login-form';
 const selector = formValueSelector(LOGIN_FORM_NAME);
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('JAMES');
+    console.log('Login Params:');
     console.log(ownProps);
     return {
         realm: ownProps.match.params.realm || config.REALM || 'testorg',

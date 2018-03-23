@@ -6,6 +6,7 @@ import PrimaryNavContainer from './PrimaryNav';
 import SecondaryNavContainer from './SecondaryNav';
 import { SECONDARY } from './SecondaryNav/constants';
 import AmidaFooter from '../common/components/AmidaFooter';
+import routes from '../routes';
 
 class App extends Component {
     render() { // Check if react-router doesn't have something for this.
@@ -19,7 +20,7 @@ class App extends Component {
                     <SecondaryNavContainer /> :
                     <PrimaryNavContainer /> }
                 <div className='main-body'>
-                    {this.props.children}
+                    {routes}
                 </div>
                 {
                     this.props.location.pathname !== '/create-new-project' &&
