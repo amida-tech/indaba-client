@@ -66,8 +66,6 @@ class MessageContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     const id = parseInt(get(ownProps.match, 'params.id'), 10) || undefined;
-    console.log('MessageContainer check');
-    console.log(id);
     return {
         id,
 

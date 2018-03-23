@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { has } from 'lodash';
+import { get, has } from 'lodash';
 import { toast } from 'react-toastify';
 
 import apiService from '../../../services/api';
@@ -25,8 +25,8 @@ class Activate extends Component {
                     onSubmit={
                         values => apiService.users.activate(
                             values,
-                            this.props.match.params.realm,
-                            this.props.match.params.token,
+                            get(this.props.match, 'params.realm'),
+                            get(this.props.match, 'params.token'),
                             (err) => {
                                 if (err) {
                                     if (has(ServerErrorsToVocabError, err.message)) {
@@ -52,10 +52,12 @@ class Activate extends Component {
 }
 
 Activate.propTypes = {
-    params: PropTypes.shape({
-        realm: PropTypes.string.isRequired,
-        token: PropTypes.string.isRequired,
-    }).isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            realm: PropTypes.string.isRequired,
+            token: PropTypes.string.isRequired,
+        }).isRequired,
+    }),
     vocab: PropTypes.object.isRequired,
 };
 
