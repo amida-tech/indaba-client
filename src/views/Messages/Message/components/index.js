@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import IonIcon from 'react-ionicons';
 import { push } from 'react-router-redux';
-import _ from 'lodash';
+import { get } from 'lodash';
 
 import * as actions from '../../actions';
 
@@ -38,8 +38,8 @@ class MessageContainer extends Component {
                                     message={message} />,
                             );
 
-                            const insertAfterId = _.get(this.props, 'ui.reply.id',
-                                _.get(this.props, 'ui.reply.forwardId'));
+                            const insertAfterId = get(this.props, 'ui.reply.id',
+                                get(this.props, 'ui.reply.forwardId'));
                             if (this.props.ui.reply) {
                                 elements.splice(
                                     this.props.thread.findIndex(messageIter =>
@@ -65,9 +65,9 @@ class MessageContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const id = ownProps.params.id !== undefined ?
-        parseInt(ownProps.params.id, 10) :
-        undefined;
+    const id = parseInt(get(ownProps.match, 'params.id'), 10) || undefined;
+    console.log('MessageContainer check');
+    console.log(id);
     return {
         id,
 

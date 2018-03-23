@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { submit, formValueSelector } from 'redux-form';
+import { get } from 'lodash';
 
 import * as actions from '../actions';
 import config from '../../../config';
@@ -27,10 +28,8 @@ const LOGIN_FORM_NAME = 'login-form';
 const selector = formValueSelector(LOGIN_FORM_NAME);
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('Login Params:');
-    console.log(ownProps);
     return {
-        realm: ownProps.match.params.realm || config.REALM || 'testorg',
+        realm: get(ownProps.match, 'params.realm') || config.REALM || 'testorg',
         vocab: state.settings.language.vocabulary,
         ui: state.login.ui,
         currentEmail: selector(state, 'username'),

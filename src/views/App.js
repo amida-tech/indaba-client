@@ -10,8 +10,6 @@ import routes from '../routes';
 
 class App extends Component {
     render() { // Check if react-router doesn't have something for this.
-        console.log('App');
-        console.log(this.props);
         const subRoot = this.props.location.pathname.substring(0, this.props.location.pathname.indexOf('/', 2)) ||
             this.props.location.pathname;
         return (

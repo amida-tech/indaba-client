@@ -24,7 +24,7 @@ class UserDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
         this.props.actions.getDashboardData(this.props.vocab.ERROR,
-            this.props.params.userId);
+            get(this.props.match, 'params.userId'));
         this.props.actions.userDashGetMessages();
     }
 

@@ -19,7 +19,7 @@ class Message extends Component {
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
-        const active = _.get(this.props, 'params.id') === _.get(this.props, 'id', '').toString();
+        const active = _.get(this.props.match, 'params.id') === _.get(this.props, 'id', '').toString();
         const systemMessage = _.get(this.props, 'message.systemMessage', false);
         const unread = _.get(this.props, 'message.unread');
 

@@ -17,9 +17,9 @@ import * as actions from '../actions';
 class TaskReview extends Component {
     componentWillMount() {
         this.props.actions.setSurveySectionIndex(-1);
-        this.props.actions.getTaskById(this.props.params.projectId,
-            this.props.params.taskId, this.props.vocab.ERROR);
-        this.props.actions.getDiscussions(this.props.params.taskId, this.props.vocab.ERROR);
+        this.props.actions.getTaskById(get(this.props.match, 'params.projectId'),
+            get(this.props.match, 'params.taskId'), this.props.vocab.ERROR);
+        this.props.actions.getDiscussions(get(this.props.match, 'params.taskId'), this.props.vocab.ERROR);
     }
 
     render() { // Pondering means to process all this just once.
@@ -113,8 +113,8 @@ class TaskReview extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
-    const taskId = parseInt(ownProps.params.taskId, 10);
-    const projectId = parseInt(ownProps.params.projectId, 10);
+    const taskId = parseInt(get(ownProps.match, 'params.taskId'), 10);
+    const projectId = parseInt(get(ownProps.match, 'params.projectId'), 10);
     const task = find(state.tasks.data, current => current.id === taskId) ||
         { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
     const project = state.projects.data[0].id > 0 ?
