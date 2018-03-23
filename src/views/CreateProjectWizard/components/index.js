@@ -26,18 +26,8 @@ const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
     componentWillMount() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        } else {
-            this.props.actions.surveyBuilderReset();
-            this.props.actions.projectWizardInitialize();
-        }
-    }
-
-    componentWillReceiveProps() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        }
+        this.props.actions.surveyBuilderReset();
+        this.props.actions.projectWizardInitialize();
     }
 
     constructor(props) {

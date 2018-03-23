@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { find, get, merge } from 'lodash';
 import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
@@ -29,20 +29,10 @@ import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        } else {
-            this.props.actions.getProjectById(
-                this.props.params.projectId,
-                true,
-                this.props.vocab.ERROR);
-        }
-    }
-
-    componentWillReceiveProps() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        }
+        this.props.actions.getProjectById(
+            get(this.props.match, 'params.projectId'),
+            true,
+            this.props.vocab.ERROR);
     }
 
     stageHasData(stageId) {
@@ -214,17 +204,17 @@ ProjectManagementContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
+    const projectId = parseInt(get(ownProps.match, 'params.projectId'), 10) || state.projects[0].id;
     const project = state.projects.data[0].name ?
-        _.find(state.projects.data, current => current.id === projectId) :
+        find(state.projects.data, current => current.id === projectId) :
         state.projects.data[0];
     return {
         project,
         tasks: state.tasks.data,
         responses: state.discuss,
         vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
-        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
+        ui: merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
+        survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
             { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
         tab: state.manager.ui.subnav,
         users: state.user.users,

@@ -18,18 +18,8 @@ import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
     componentWillMount() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        } else {
-            this.props.actions.getProjects(this.props.vocab.ERROR);
-            this.props.actions.pmDashGetMessages();
-        }
-    }
-
-    componentWillReceiveProps() {
-        if (this.props.profile.roleID === 3) {
-            this.props.router.push('/task');
-        }
+        this.props.actions.getProjects(this.props.vocab.ERROR);
+        this.props.actions.pmDashGetMessages();
     }
 
     filterRow(row) {

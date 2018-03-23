@@ -22,8 +22,6 @@ export function login(username, password, realm, referrer, errorMessages) {
                     if (referrer) {
                         dispatch(push(referrer));
                     } else {
-                        console.log('Login');
-                        console.log(profileResp);
                         dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
                     }
                 } else {

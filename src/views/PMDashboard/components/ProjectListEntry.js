@@ -10,7 +10,7 @@ class ProjectListEntry extends Component {
         return (
             <div className='project-list-entry'
                 onClick={() =>
-                    this.props.router.push(`/project/${this.props.project.id}`)}>
+                    this.props.history.push(`/project/${this.props.project.id}`)}>
                 <div className='project-list-entry__name'>
                     {this.props.project.name}
                 </div>
