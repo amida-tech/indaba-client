@@ -1,5 +1,4 @@
 import { push } from 'react-router-redux';
-// import { browserHistory } from 'react-router-dom';
 import cookie from 'react-cookies';
 
 import apiService from '../../services/api';
