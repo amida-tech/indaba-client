@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { get, has } from 'lodash';
+import { has } from 'lodash';
 import { toast } from 'react-toastify';
 
 import apiService from '../../../services/api';
@@ -25,8 +25,8 @@ class Activate extends Component {
                     onSubmit={
                         values => apiService.users.activate(
                             values,
-                            get(this.props.match, 'params.realm'),
-                            get(this.props.match, 'params.token'),
+                            this.props.match.params.realm,
+                            this.props.match.params.token,
                             (err) => {
                                 if (err) {
                                     if (has(ServerErrorsToVocabError, err.message)) {

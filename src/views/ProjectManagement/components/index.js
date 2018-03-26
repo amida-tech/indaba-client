@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { find, get, merge } from 'lodash';
+import { find, merge } from 'lodash';
 import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
@@ -30,7 +30,7 @@ import apiService from '../../../services/api';
 class ProjectManagementContainer extends Component {
     componentWillMount() {
         this.props.actions.getProjectById(
-            get(this.props.match, 'params.projectId'),
+            this.props.match.params.projectId,
             true,
             this.props.vocab.ERROR);
     }
@@ -198,13 +198,18 @@ class ProjectManagementContainer extends Component {
 ProjectManagementContainer.displayName = 'Project Manager';
 
 ProjectManagementContainer.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            projectId: PropTypes.string.isRequired,
+        }).isRequired,
+    }),
     vocab: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     tab: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(get(ownProps.match, 'params.projectId'), 10) || state.projects[0].id;
+    const projectId = parseInt(ownProps.match.params.projectId, 10) || state.projects[0].id;
     const project = state.projects.data[0].name ?
         find(state.projects.data, current => current.id === projectId) :
         state.projects.data[0];
