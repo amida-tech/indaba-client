@@ -25,6 +25,12 @@ export default (
             <ProtectedRoute path='/project/:projectId'
                 exact
                 component={ProjectManagementContainer}/>
+            <ProtectedRoute path='/users'
+                exact
+                component={PMAllUsersContainer}/>
+            <ProtectedRoute path='/subjects'
+                exact
+                component={PMAllSubjectsContainer}/>
         </Switch>
         <Switch>
             <PrivateRoute path='/task'
@@ -57,10 +63,6 @@ export default (
             component={TaskReview}/>
         <ProtectedRoute path='/create-new-project'
             component={CreateProjectWizard}/>
-        <ProtectedRoute path='/users'
-            component={PMAllUsersContainer}/>
-        <ProtectedRoute path='/subjects'
-            component={PMAllSubjectsContainer}/>
         <Route path='/activate/:realm/:token'
             component={Activate} />
         <Route path='/reset-password/:token'

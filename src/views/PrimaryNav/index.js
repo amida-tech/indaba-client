@@ -35,27 +35,31 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
 
                 <div className='primary-nav__left'>
-                    <NavLink to={isProjectManager ? '/project' : '/task'}>
+                    <NavLink to={isProjectManager ? '/project' : '/task'} exact>
                         <img src={IndabaLogoWhite}
                             className="primary-nav__indaba-logo"/>
                     </NavLink>
-                    <NavLink className='primary-nav__item-nav' to='/task'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/task' exact>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </NavLink>
                     {isProjectManager &&
-                    <NavLink className='primary-nav__item-nav' to='/project'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/project' exact>
                         {this.props.vocab.PROJECT.PROJECTS}
                     </NavLink>}
                     {isProjectManager &&
-                    <NavLink className='primary-nav__item-nav' to='/users'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/users'>
                         {this.props.vocab.COMMON.ALL_USERS}
                     </NavLink>}
                     {isProjectManager &&
-                    <NavLink className='primary-nav__item-nav' to='/subjects'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/subjects'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </NavLink>}
                     {isProjectManager &&
@@ -91,11 +95,13 @@ class PrimaryNavContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+    return ({
     nav: state.nav,
     user: state.user,
     vocab: state.settings.language.vocabulary,
     ui: state.nav.ui,
+    routing: state.routing,
 });
 
 const mapDispatchToProps = dispatch => ({
