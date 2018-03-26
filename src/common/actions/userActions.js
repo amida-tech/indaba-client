@@ -33,16 +33,11 @@ export function updateProfile(userData, errorMessages) {
     }
 
     return (dispatch) => {
-        apiService.users.putProfile(
-            requestBody,
-            (profileErr) => {
-                if (profileErr) {
-                    dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
-                } else {
-                    dispatch(getProfile(errorMessages));
-                }
-            },
-        );
+        apiService.users.putProfile(requestBody)
+        .then(() => dispatch(getProfile(errorMessages)))
+        .catch((profileErr) => {
+            dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
+        });
     };
 }
 

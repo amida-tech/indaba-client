@@ -3,9 +3,8 @@ import getFullPath from '../../utils/getFullPath';
 
 const users = {
     getProfile: () => requests.apiGetRequest(getFullPath('users/self')),
-    putProfile: (requestBody, callback) => {
-        requests.apiPutRequest(getFullPath('users/self'), requestBody, callback);
-    },
+    putProfile: requestBody =>
+        requests.apiPutRequest(getFullPath('users/self'), requestBody),
     putProfileById: (id, requestBody, callback) => {
         requests.apiPutRequest(getFullPath(`users/${id}`), requestBody, callback);
     },
