@@ -123,13 +123,13 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
 export function deleteUser(userId, errorMessages) {
     return (dispatch) => {
         dispatch(_deleteUser());
-        apiService.users.deleteUser(userId, (err) => {
-            if (err) {
-                dispatch(_deleteUserError(err, errorMessages.USER_REQUEST));
-                dispatch(_reportUserError(err, errorMessages.USER_REQUEST));
-            } else {
-                dispatch(_deleteUserSuccess(userId));
-            }
+        apiService.users.deleteUser(userId)
+        .then(() => {
+            dispatch(_deleteUserSuccess(userId));
+        })
+        .catch((err) => {
+            dispatch(_deleteUserError(err, errorMessages.USER_REQUEST));
+            dispatch(_reportUserError(err, errorMessages.USER_REQUEST));
         });
     };
 }

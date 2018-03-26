@@ -10,9 +10,7 @@ const users = {
     getUsers: () => requests.apiGetRequest(getFullPath('users')),
     inviteNewUser: requestBody =>
         requests.apiPostRequest(getFullPath('users/self/organization/invite'), requestBody),
-    deleteUser: (id, callback) => {
-        requests.apiDeleteRequest(getFullPath(`users/${id}`), {}, callback);
-    },
+    deleteUser: id => requests.apiDeleteRequest(getFullPath(`users/${id}`), {}),
     activate: (requestBody, realm, token, callback) => {
         requests.apiPostRequest(getFullPath(`users/activate/${token}`, realm), requestBody, callback);
     },
