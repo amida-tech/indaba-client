@@ -7,7 +7,6 @@ import { CreateProjectWizard } from './views/CreateProjectWizard';
 import { TaskReview } from './views/TaskReview';
 import { PMDashboard } from './views/PMDashboard';
 import { UserDashboard } from './views/UserDashboard';
-import { MessagesContainer } from './views/Messages';
 import { PMAllUsersContainer } from './views/PMAllUsers';
 import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import ProtectedRoute from './ProtectedRoute';
@@ -41,19 +40,17 @@ export default (
             <Route path='/login/:realm'
                 component={LoginContainer}/>
         </Switch>
-        <MessagesContainer>
-            <Switch>
-                <PrivateRoute path='/messages/new'
-                    exact
-                    component={MessageContainer}/>
-                <PrivateRoute path='/messages/:id'
-                    exact
-                    component={MessageContainer}/>
-                <PrivateRoute path='/messages'
-                    exact
-                    component={Inbox}/>
-            </Switch>
-        </MessagesContainer>
+        <Switch>
+            <PrivateRoute path='/messages/new'
+                exact
+                component={MessageContainer}/>
+            <PrivateRoute path='/messages/:id'
+                exact
+                component={MessageContainer}/>
+            <PrivateRoute path='/messages'
+                exact
+                component={Inbox}/>
+        </Switch>
         <PrivateRoute path='/profile'
             component={ProfileContainer}/>
         <PrivateRoute path='/task-review/:projectId/:taskId'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import _ from 'lodash';
+import { get, has } from 'lodash';
 import IonIcon from 'react-ionicons';
 import { Button } from 'grommet';
 
@@ -18,13 +18,13 @@ import ToField from './ToField';
 class Message extends Component {
     render() {
         const compose = this.props.id === undefined;
-        const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
-        const active = _.get(this.props.match, 'params.id') === _.get(this.props, 'id', '').toString();
-        const systemMessage = _.get(this.props, 'message.systemMessage', false);
-        const unread = _.get(this.props, 'message.unread');
+        const received = get(this.props, 'message.to', []).includes(this.props.profile.email);
+        const active = get(this.props, 'match.params.id') === get(this.props, 'id', '').toString();
+        const systemMessage = get(this.props, 'message.systemMessage', false);
+        const unread = get(this.props, 'message.unread');
 
         if (!compose && !active &&
-            !this.props.ui.expandedMessages.includes(_.get(this.props, 'message.id'))) {
+            !this.props.ui.expandedMessages.includes(get(this.props, 'message.id'))) {
             return <CollapsedMessage {...this.props}
                 message={
                     this.props.message &&
@@ -41,7 +41,7 @@ class Message extends Component {
                     <div className='message__row message__row--to'>
                         <MessageField label={this.props.vocab.MESSAGES.TO}
                             input={compose}
-                            value={_.get(this.props, 'message.to', []).map(
+                            value={get(this.props, 'message.to', []).map(
                                 user => renderNameByEmail(user, this.props.users),
                             ).join(', ')}
                             component={ToField}
@@ -62,14 +62,14 @@ class Message extends Component {
                             value={
                                 compose ?
                                 renderName(this.props.profile) :
-                                renderNameByEmail(_.get(this.props, 'message.from'), this.props.users)
+                                renderNameByEmail(get(this.props, 'message.from'), this.props.users)
                             }
                             name='from'/>
                     </div>
                     <div className='message__row'>
                         <MessageField label={this.props.vocab.MESSAGES.SUBJECT}
                             input={compose}
-                            value={_.get(this.props, 'message.subject')}
+                            value={get(this.props, 'message.subject')}
                             name='subject'/>
                     </div>
                     <div className='message__body-section'>
@@ -128,7 +128,7 @@ class Message extends Component {
                         <div className='message__body-field-wrapper'>
                             <MessageBodyField
                                 input={compose}
-                                value={_.get(this.props, 'message.message')}
+                                value={get(this.props, 'message.message')}
                                 name='message'/>
                         </div>
                         {
@@ -183,44 +183,44 @@ class MessageSelector extends Component {
         this.handleSendResponse = this.handleSendResponse.bind(this);
     }
     submitForm(values) {
-        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        const reply = this.props.reply || get(this.props, 'location.state.message');
         const message = {
             subject: values.subject,
             to: values.to,
             from: this.props.profile.email,
             message: values.message,
         };
-        if (_.has(reply, 'id')) {
-            apiService.messaging.reply(reply.id, message, this.handleSendResponse);
+        if (has(reply, 'id')) {
+            apiService.messaging.reply(reply.id, message)
+            .then(this.handleSendResponse);
         } else {
-            apiService.messaging.send(message, this.handleSendResponse);
+            apiService.messaging.send(message)
+            .then(this.handleSendResponse);
         }
     }
     cancelForm() {
-        const reply = this.props.reply || _.get(this.props, 'location.state.message');
-        if (_.has(reply, 'id') || _.has(reply, 'forwardId')) {
+        const reply = this.props.reply || get(this.props, 'location.state.message');
+        if (has(reply, 'id') || has(reply, 'forwardId')) {
             this.props.actions.discardReply();
         } else {
             this.props.goToInbox();
         }
     }
-    handleSendResponse(err, result) {
-        if (!err) {
-            this.props.actions.discardReply();
-            this.props.actions.getThreadContainingMessage(result.id);
-            this.props.goToMessage(result.id);
-        }
+    handleSendResponse(result) {
+        this.props.actions.discardReply();
+        this.props.actions.getThreadContainingMessage(result.id);
+        this.props.goToMessage(result.id);
     }
     render() {
         if (this.props.id !== undefined) {
             return (<Message {...this.props} />);
         }
-        const reply = this.props.reply || _.get(this.props, 'location.state.message');
+        const reply = this.props.reply || get(this.props, 'location.state.message');
         return (
             <MessageForm {...this.props}
                 validate={(values) => {
                     const errors = {};
-                    if (_.get(values, 'to.length', 0) === 0) {
+                    if (get(values, 'to.length', 0) === 0) {
                         errors.to = this.props.vocab.MESSAGES.TO_REQUIRED;
                     }
                     if (!values.subject) {
