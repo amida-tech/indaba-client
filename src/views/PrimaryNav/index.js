@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
@@ -35,30 +35,29 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
 
                 <div className='primary-nav__left'>
-                    <Link to={isProjectManager ? '/project' : '/task'}>
+                    <NavLink to={isProjectManager ? '/project' : '/task'}>
                         <img src={IndabaLogoWhite}
                             className="primary-nav__indaba-logo"/>
-                    </Link>
-
-                    <Link className='primary-nav__item-nav' to='/task'
+                    </NavLink>
+                    <NavLink className='primary-nav__item-nav' to='/task'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.MY_TASKS}
-                    </Link>
+                    </NavLink>
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/project'
+                    <NavLink className='primary-nav__item-nav' to='/project'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.PROJECT.PROJECTS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/users'
+                    <NavLink className='primary-nav__item-nav' to='/users'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_USERS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/subjects'
+                    <NavLink className='primary-nav__item-nav' to='/subjects'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
                     <Button
                         className={'primary-nav__item-nav primary-nav__button'}
@@ -69,23 +68,23 @@ class PrimaryNavContainer extends Component {
                     <div className='primary-nav__welcome'>
                         {`${this.props.vocab.COMMON.WELCOME_} ${renderName(get(this.props, 'user.profile'))}`}
                     </div>
-                    <Link className='primary-nav__link'
+                    <NavLink className='primary-nav__link'
                         to='/messages'>
                         <Icon className='primary-nav__envelope'
                             name='envelope-o'
                             size='2x' />
-                    </Link>
-                    <Link className='primary-nav__link'
+                    </NavLink>
+                    <NavLink className='primary-nav__link'
                         to='/profile'>
                         <Icon className='primary-nav__user'
                             name='user-o'
                             size='2x' />
-                    </Link>
-                    <Link className='primary-nav__logout'
+                    </NavLink>
+                    <NavLink className='primary-nav__logout'
                         onClick={() => this.props.actions.logOut('')}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
-                    </Link>
+                    </NavLink>
                 </div>
             </nav>
         );

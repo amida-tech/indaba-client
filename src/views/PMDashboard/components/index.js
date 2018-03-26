@@ -98,6 +98,7 @@ const mapStateToProps = state => ({
         // flags calculated inline from rows.flags
     },
     messages: state.pmdashboard.messages.slice(0, 4),
+    profile: state.user.profile,
     users: state.user.users,
 });
 

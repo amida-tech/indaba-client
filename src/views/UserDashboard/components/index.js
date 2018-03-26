@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 import * as actions from '../actions';
 import { getSelfTasks, getTasksByUser } from '../../../common/actions/taskActions';
@@ -24,7 +25,7 @@ class UserDashboard extends Component {
     componentWillMount() {
         this.props.actions.getProjects(this.props.vocab.ERROR);
         this.props.actions.getDashboardData(this.props.vocab.ERROR,
-            this.props.params.userId);
+            this.props.match.params.userId);
         this.props.actions.userDashGetMessages();
     }
 
@@ -81,6 +82,15 @@ class UserDashboard extends Component {
         );
     }
 }
+
+UserDashboard.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            userId: PropTypes.string,
+        }).isRequired,
+    }),
+    vocab: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => {
     const rows = state.userdashboard.tasks

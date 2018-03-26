@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { push, syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 because of history bug on later versions.
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux';
+import { Route } from 'react-router-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { get } from 'lodash';
@@ -23,8 +24,8 @@ import './styles/main.scss';
 import { logOut } from './common/actions/navActions';
 
 /** User Imports **/
+import App from './views/App';
 import reducers from './reducers';
-import routes from './routes';
 
 const DEVELOP = process.env.NODE_ENV === 'development';
 
@@ -37,7 +38,9 @@ const authInterceptor = ({ dispatch }) => next => (action) => {
     }
 };
 
-let middleware = [routerMiddleware(browserHistory), thunk, authInterceptor];
+const history = createHistory();
+
+let middleware = [thunk, authInterceptor, routerMiddleware(history)];
 if (DEVELOP) {
     middleware = [...middleware, createLogger()];
 }
@@ -67,21 +70,15 @@ const store = createStore(
     enhancer,
 );
 
-const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: () => store.getState().routing,
-});
-
 ReactDOM.render(
     <Provider store={store}>
-      <div className="main-page">
-          <Router history={history}>
-              {routes}
-          </Router>
-          {
-              DEVELOP &&
-              <DevTools />
-          }
-      </div>
+        <div className='main-page'>
+            <ConnectedRouter history={history}>
+                <Route path='/'
+                    component={App}/>
+            </ConnectedRouter>
+            { DEVELOP && <DevTools /> }
+        </div>
     </Provider>,
     document.getElementById('root'),
 );

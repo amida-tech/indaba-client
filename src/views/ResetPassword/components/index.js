@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import { get } from 'lodash';
 
 import * as actions from './actions';
 import ResetPasswordForm from './ResetPasswordForm';
@@ -21,7 +22,7 @@ class ResetPasswordContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
     vocab: state.settings.language.vocabulary,
-    token: ownProps.params.token,
+    token: get(ownProps.match, 'params.token'),
 });
 
 const mapDispatchToProps = dispatch => ({
