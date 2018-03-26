@@ -1,9 +1,6 @@
 import React from 'react';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    console.log('Privateroute is private');
-    console.log(rest);
-    console.log(this.props);
     return (
         <Route
             {...rest}
