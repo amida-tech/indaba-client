@@ -5,9 +5,8 @@ const users = {
     getProfile: () => requests.apiGetRequest(getFullPath('users/self')),
     putProfile: requestBody =>
         requests.apiPutRequest(getFullPath('users/self'), requestBody),
-    putProfileById: (id, requestBody, callback) => {
-        requests.apiPutRequest(getFullPath(`users/${id}`), requestBody, callback);
-    },
+    putProfileById: (id, requestBody) =>
+        requests.apiPutRequest(getFullPath(`users/${id}`), requestBody),
     getUsers: (callback) => {
         requests.apiGetRequest(getFullPath('users'), callback);
     },

@@ -45,14 +45,14 @@ export function updateProfileById(id, userData, errorMessages) {
     return (dispatch) => {
         dispatch(_updateProfileById());
 
-        apiService.users.putProfileById(id, userData,
-        (err, response) => {
-            if (err) {
-                dispatch(_updateProfileByIdFailure(err, errorMessages.PROFILE_REQUEST));
-            } else {
-                dispatch(_updateProfileByIdSuccess(response));
-                dispatch(getUsers(errorMessages));
-            }
+        apiService.users.putProfileById(id, userData)
+        .then((response) => {
+            dispatch(_updateProfileByIdSuccess(response));
+            dispatch(getUsers(errorMessages));
+            return response;
+        })
+        .catch((err) => {
+            dispatch(_updateProfileByIdFailure(err, errorMessages.PROFILE_REQUEST));
         });
     };
 }
