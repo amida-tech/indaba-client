@@ -33,7 +33,7 @@ export function updateProfile(userData, errorMessages) {
     }
 
     return (dispatch) => {
-        apiService.users.putProfile(requestBody)
+        return apiService.users.putProfile(requestBody)
         .then(() => dispatch(getProfile(errorMessages)))
         .catch((profileErr) => {
             dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
@@ -45,7 +45,7 @@ export function updateProfileById(id, userData, errorMessages) {
     return (dispatch) => {
         dispatch(_updateProfileById());
 
-        apiService.users.putProfileById(id, userData)
+        return apiService.users.putProfileById(id, userData)
         .then((response) => {
             dispatch(_updateProfileByIdSuccess(response));
             dispatch(getUsers(errorMessages));
