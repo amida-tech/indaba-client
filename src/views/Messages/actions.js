@@ -22,75 +22,30 @@ export const setToQuery = query => ({
     query,
 });
 
-export const archiveThread = ids => () => {
-    return Promise.all(
-        ids.map(id => new Promise((resolve, reject) => {
-            apiService.messaging.archive(id, err =>
-                (err ? reject(err) : resolve()),
-            );
-        })),
-    );
-};
+export const archiveThread = ids => () =>
+    Promise.all(ids.map(id => apiService.messaging.archive(id)));
 
-export const unarchiveThread = ids => () => {
-    return Promise.all(
-        ids.map(id => new Promise((resolve, reject) => {
-            apiService.messaging.unarchive(id, err =>
-                (err ? reject(err) : resolve()),
-            );
-        })),
-    );
-};
+export const unarchiveThread = ids => () =>
+    Promise.all(ids.map(id => apiService.messaging.unarchive(id)));
 
-export const markThreadAsRead = ids => () => {
-    return Promise.all(
-        ids.map(id => new Promise((resolve, reject) => {
-            apiService.messaging.markAsRead(id, err =>
-                (err ? reject(err) : resolve()),
-            );
-        })),
-    );
-};
+export const markThreadAsRead = ids => () =>
+    Promise.all(ids.map(id => apiService.messaging.markAsRead(id)));
 
-export const deleteThread = ids => () => {
-    return Promise.all(
-        ids.map(id => new Promise((resolve, reject) => {
-            apiService.messaging.delete(id, (err, response) =>
-                (err ? reject(err) : resolve(response)));
-        })),
-    );
-};
+export const deleteThread = ids => () =>
+    Promise.all(ids.map(id => apiService.messaging.delete(id)));
 
-export const archiveMessage = id => () => {
-    return new Promise((resolve, reject) => {
-        apiService.messaging.archive(id, err =>
-            (err ? reject(err) : resolve()),
-        );
-    });
-};
+export const archiveMessage = id => () =>
+    apiService.messaging.archive(id);
 
-export const unarchiveMessage = id => () => {
-    return new Promise((resolve, reject) => {
-        apiService.messaging.unarchive(id, err =>
-            (err ? reject(err) : resolve()),
-        );
-    });
-};
+export const unarchiveMessage = id => () =>
+    apiService.messaging.unarchive(id);
 
-export const markAsUnread = id => (dispatch) => {
-    return new Promise((resolve, reject) => {
-        apiService.messaging.markAsUnread(id, (err, response) =>
-            (err ? reject(err) : resolve(response)));
-    })
+export const markAsUnread = id => dispatch =>
+    apiService.messaging.markAsUnread(id)
     .then(response => dispatch(_putMessageSuccess(response)));
-};
 
-export const deleteMessage = id => () => {
-    return new Promise((resolve, reject) => {
-        apiService.messaging.delete(id, (err, response) =>
-            (err ? reject(err) : resolve(response)));
-    });
-};
+export const deleteMessage = id => () =>
+    apiService.messaging.delete(id);
 
 
 const _putMessageSuccess = message => ({
@@ -99,39 +54,32 @@ const _putMessageSuccess = message => ({
     id: message.id,
 });
 
-export const markAsRead = id => (dispatch) => {
-    return new Promise((resolve, reject) => {
-        apiService.messaging.markAsRead(id, (err, response) =>
-            (err ? reject(err) : resolve(response)));
-    })
+export const markAsRead = id => dispatch =>
+    apiService.messaging.markAsRead(id)
     .then(response => dispatch(_putMessageSuccess(response)));
-};
 
-export const startReply = message => (dispatch) => {
-    dispatch(_startReply({
+export const startReply = message =>
+    _startReply({
         id: message.id,
         subject: message.subject,
         to: [message.from],
         from: message.owner,
-    }));
-};
+    });
 
-export const startReplyAll = message => (dispatch) => {
-    dispatch(_startReply({
+export const startReplyAll = message =>
+    _startReply({
         id: message.id,
         subject: message.subject,
         to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
         from: message.owner,
-    }));
-};
+    });
 
-export const forwardMessage = message => (dispatch) => {
-    dispatch(_startReply({
+export const forwardMessage = message =>
+    _startReply({
         forwardId: message.id,
         subject: message.subject,
         from: message.to,
-    }));
-};
+    });
 
 export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
@@ -152,36 +100,23 @@ export const setInboxPage = page => ({
     page,
 });
 
-export const getInboxMessages = params => (dispatch) => {
-    apiService.messaging.list((err, result) => {
-        if (!err) {
-            dispatch(_getInboxMessagesSuccess(result));
-        }
-    }, params);
-};
+export const getInboxMessages = params => dispatch =>
+    apiService.messaging.list(params)
+    .then(result => dispatch(_getInboxMessagesSuccess(result)));
 
-export const getThreadContainingMessage = messageId => (dispatch) => {
-    apiService.messaging.get(messageId, (err, messageResponse) => {
-        if (!err) {
-            dispatch(getThread(messageResponse.originalMessageId));
-        }
-    });
-};
+export const getThreadContainingMessage = messageId => dispatch =>
+    apiService.messaging.get(messageId)
+    .then(messageResponse => dispatch(getThread(messageResponse.originalMessageId)));
 
 export const getThread = originalMessageId => (dispatch) => {
     dispatch(_getThread());
-    apiService.messaging.getThread(originalMessageId, (err, response) => {
-        dispatch(_getThreadSuccess(response));
-    });
+    return apiService.messaging.getThread(originalMessageId)
+    .then(response => dispatch(_getThreadSuccess(response)));
 };
 
-export const getInboxThreads = params => (dispatch) => {
-    apiService.messaging.listThreads((err, response) => {
-        if (!err) {
-            dispatch(_getInboxThreadsSuccess(response));
-        }
-    }, params);
-};
+export const getInboxThreads = params => dispatch =>
+    apiService.messaging.listThreads(params)
+    .then(response => dispatch(_getInboxThreadsSuccess(response)));
 
 /* Private actions */
 

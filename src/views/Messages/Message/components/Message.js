@@ -191,9 +191,11 @@ class MessageSelector extends Component {
             message: values.message,
         };
         if (_.has(reply, 'id')) {
-            apiService.messaging.reply(reply.id, message, this.handleSendResponse);
+            apiService.messaging.reply(reply.id, message)
+            .then(this.handleSendResponse);
         } else {
-            apiService.messaging.send(message, this.handleSendResponse);
+            apiService.messaging.send(message)
+            .then(this.handleSendResponse);
         }
     }
     cancelForm() {
@@ -204,12 +206,10 @@ class MessageSelector extends Component {
             this.props.goToInbox();
         }
     }
-    handleSendResponse(err, result) {
-        if (!err) {
-            this.props.actions.discardReply();
-            this.props.actions.getThreadContainingMessage(result.id);
-            this.props.goToMessage(result.id);
-        }
+    handleSendResponse(result) {
+        this.props.actions.discardReply();
+        this.props.actions.getThreadContainingMessage(result.id);
+        this.props.goToMessage(result.id);
     }
     render() {
         if (this.props.id !== undefined) {
