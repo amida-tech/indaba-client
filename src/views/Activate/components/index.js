@@ -26,25 +26,23 @@ class Activate extends Component {
                         values => apiService.users.activate(
                             values,
                             this.props.params.realm,
-                            this.props.params.token,
-                            (err) => {
-                                if (err) {
-                                    if (has(ServerErrorsToVocabError, err.message)) {
-                                        toast(
-                                            this.props.vocab.ERROR[
-                                                ServerErrorsToVocabError[err.message]
-                                            ],
-                                            { type: 'error', autoClose: false });
-                                    } else {
-                                        toast(this.props.vocab.ERROR.ACTIVATION_FAILURE,
-                                            { type: 'error', autoClose: false });
-                                    }
-                                } else {
-                                    toast(this.props.vocab.TOAST.ACTIVATION_SUCCESS,
-                                        { onClose: this.props.redirectToLogin });
-                                }
-                            },
-                        )
+                            this.props.params.token)
+                        .then(() => {
+                            toast(this.props.vocab.TOAST.ACTIVATION_SUCCESS,
+                                { onClose: this.props.redirectToLogin });
+                        })
+                        .catch((err) => {
+                            if (has(ServerErrorsToVocabError, err.message)) {
+                                toast(
+                                    this.props.vocab.ERROR[
+                                        ServerErrorsToVocabError[err.message]
+                                    ],
+                                    { type: 'error', autoClose: false });
+                            } else {
+                                toast(this.props.vocab.ERROR.ACTIVATION_FAILURE,
+                                    { type: 'error', autoClose: false });
+                            }
+                        })
                     }/>
             </div>
         );

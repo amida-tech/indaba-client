@@ -11,9 +11,8 @@ const users = {
     inviteNewUser: requestBody =>
         requests.apiPostRequest(getFullPath('users/self/organization/invite'), requestBody),
     deleteUser: id => requests.apiDeleteRequest(getFullPath(`users/${id}`), {}),
-    activate: (requestBody, realm, token, callback) => {
-        requests.apiPostRequest(getFullPath(`users/activate/${token}`, realm), requestBody, callback);
-    },
+    activate: (requestBody, realm, token) =>
+        requests.apiPostRequest(getFullPath(`users/activate/${token}`, realm), requestBody),
 };
 
 export default users;
