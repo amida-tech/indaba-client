@@ -81,17 +81,13 @@ export function resetPassword(errorMessages) {
 
 export function getUsers(errorMessages) {
     return (dispatch) => {
-        apiService.users.getUsers(
-            (err, users) => {
-                if (!err && users) {
-                    dispatch(_getUsersSuccess(users));
-                } else if (err && !users) {
-                    dispatch(_reportUserError(err, errorMessages.SERVER_ISSUE));
-                } else {
-                    dispatch(_reportUserError(err, errorMessages.FETCH_USERS));
-                }
-            },
-        );
+        return apiService.users.getUsers()
+        .then((users) => {
+            dispatch(_getUsersSuccess(users));
+            return users;
+        }).catch((err) => {
+            dispatch(_reportUserError(err, errorMessages.SERVER_ISSUE));
+        });
     };
 }
 
