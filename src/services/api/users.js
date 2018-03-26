@@ -2,9 +2,7 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const users = {
-    getProfile: (callback) => {
-        requests.apiGetRequest(getFullPath('users/self'), callback);
-    },
+    getProfile: () => requests.apiGetRequest(getFullPath('users/self')),
     putProfile: (requestBody, callback) => {
         requests.apiPutRequest(getFullPath('users/self'), requestBody, callback);
     },

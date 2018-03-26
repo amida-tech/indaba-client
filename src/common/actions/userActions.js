@@ -5,13 +5,13 @@ import * as actionTypes from '../actionTypes/userActionTypes';
 
 export function getProfile(errorMessages) {
     return (dispatch) => {
-        apiService.users.getProfile(
-            (profileErr, profileResp) => {
-                dispatch((!profileErr && profileResp) ?
-                    getProfileSuccess(profileResp) :
-                    _reportUserError(profileErr, errorMessages.FETCH_PROFILE));
-            },
-        );
+        return apiService.users.getProfile()
+        .then((profileResp) => {
+            dispatch(getProfileSuccess(profileResp));
+            return profileResp;
+        }).catch((profileErr) => {
+            dispatch(_reportUserError(profileErr, errorMessages.FETCH_PROFILE));
+        });
     };
 }
 

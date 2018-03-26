@@ -16,17 +16,17 @@ export function login(username, password, realm, referrer, errorMessages) {
         apiService.auth.login(authPayload)
         .then((auth) => {
             dispatch(_loginSuccess(auth, realm));
-            apiService.users.getProfile((profileErr, profileResp) => {
-                if (!profileErr && profileResp) {
-                    dispatch(getProfileSuccess(profileResp));
-                    if (referrer) {
-                        dispatch(push(referrer));
-                    } else {
-                        dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
-                    }
+            apiService.users.getProfile()
+            .then((profileResp) => {
+                dispatch(getProfileSuccess(profileResp));
+                if (referrer) {
+                    dispatch(push(referrer));
                 } else {
-                    dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                    dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
                 }
+            })
+            .catch(() => {
+                dispatch(_loginError(errorMessages.SERVER_ISSUE));
             });
         })
         .catch((err) => {
