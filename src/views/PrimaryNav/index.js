@@ -95,8 +95,7 @@ class PrimaryNavContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return ({
+const mapStateToProps = state => ({
     nav: state.nav,
     user: state.user,
     vocab: state.settings.language.vocabulary,
