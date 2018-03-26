@@ -1,19 +1,18 @@
 import React from 'react';
+import cookie from 'react-cookies';
+import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    console.log('Privateroute is private');
-    console.log(rest);
-    console.log(this.props);
     return (
         <Route
             {...rest}
-            render={props =>
-                (this.props.profile.roleID === 3 ?
-                    <Redirect
-                        to={{ pathname: '/task' }} /> :
+            render={(props) => {
+                return (cookie.load('indaba-auth') === undefined ?
+                    <Redirect to={{ pathname: '/login' }} /> :
                     <Component {...props} />
-                )} />
+                );
+            }
+            } />
     );
 };
-
 export default PrivateRoute;

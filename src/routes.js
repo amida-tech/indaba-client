@@ -10,7 +10,8 @@ import { UserDashboard } from './views/UserDashboard';
 import { MessagesContainer } from './views/Messages';
 import { PMAllUsersContainer } from './views/PMAllUsers';
 import { PMAllSubjectsContainer } from './views/PMAllSubjects';
-// import { PrivateRoute } from './PrivateRoute';
+import ProtectedRoute from './ProtectedRoute';
+import PrivateRoute from './PrivateRoute';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import Activate from './views/Activate/components';
@@ -19,18 +20,18 @@ import ResetPassword from './views/ResetPassword/components';
 export default (
     <div>
         <Switch>
-            <Route path='/project'
+            <ProtectedRoute path='/project'
                 exact
                 component={PMDashboard}/>
-            <Route path='/project/:projectId'
+            <ProtectedRoute path='/project/:projectId'
                 exact
                 component={ProjectManagementContainer}/>
         </Switch>
         <Switch>
-            <Route path='/task'
+            <PrivateRoute path='/task'
                 exact
                 component={UserDashboard}/>
-            <Route path='/task/:userId'
+            <PrivateRoute path='/task/:userId'
                 component={UserDashboard}/>
         </Switch>
         <Switch>
@@ -42,26 +43,26 @@ export default (
         </Switch>
         <MessagesContainer>
             <Switch>
-                <Route path='/messages/new'
+                <PrivateRoute path='/messages/new'
                     exact
                     component={MessageContainer}/>
-                <Route path='/messages/:id'
+                <PrivateRoute path='/messages/:id'
                     exact
                     component={MessageContainer}/>
-                <Route path='/messages'
+                <PrivateRoute path='/messages'
                     exact
                     component={Inbox}/>
             </Switch>
         </MessagesContainer>
-        <Route path='/profile'
+        <PrivateRoute path='/profile'
             component={ProfileContainer}/>
-        <Route path='/task-review/:projectId/:taskId'
+        <PrivateRoute path='/task-review/:projectId/:taskId'
             component={TaskReview}/>
-        <Route path='/create-new-project'
+        <ProtectedRoute path='/create-new-project'
             component={CreateProjectWizard}/>
-        <Route path='/users'
+        <ProtectedRoute path='/users'
             component={PMAllUsersContainer}/>
-        <Route path='/subjects'
+        <ProtectedRoute path='/subjects'
             component={PMAllSubjectsContainer}/>
         <Route path='/activate/:realm/:token'
             component={Activate} />
