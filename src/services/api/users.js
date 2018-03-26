@@ -8,9 +8,8 @@ const users = {
     putProfileById: (id, requestBody) =>
         requests.apiPutRequest(getFullPath(`users/${id}`), requestBody),
     getUsers: () => requests.apiGetRequest(getFullPath('users')),
-    inviteNewUser: (requestBody, callback) => {
-        requests.apiPostRequest(getFullPath('users/self/organization/invite'), requestBody, callback);
-    },
+    inviteNewUser: requestBody =>
+        requests.apiPostRequest(getFullPath('users/self/organization/invite'), requestBody),
     deleteUser: (id, callback) => {
         requests.apiDeleteRequest(getFullPath(`users/${id}`), {}, callback);
     },

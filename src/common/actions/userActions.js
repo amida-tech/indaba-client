@@ -105,20 +105,18 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
     };
 
     return (dispatch) => {
-        apiService.users.inviteNewUser(
-            requestBody,
-            (userErr, userResp) => {
-                if (!userErr && userResp) {
-                    toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
-                    dispatch(_postNewUserSuccess(userResp, projectId));
-                } else if (userErr) {
-                    if (userErr.e === 403) {
-                        toast(errorMessages.DUPLICATE);
-                    }
-                    dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
-                }
-            },
-        );
+        apiService.users.inviteNewUser(requestBody)
+        .then((userResp) => {
+            toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
+            dispatch(_postNewUserSuccess(userResp, projectId));
+            return userResp;
+        })
+        .catch((userErr) => {
+            if (userErr.e === 403) {
+                toast(errorMessages.DUPLICATE);
+            }
+            dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
+        });
     };
 }
 
