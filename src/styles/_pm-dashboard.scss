@@ -11,5 +11,13 @@ $block-class:'pm-dashboard';
             border-radius: 2px;
             background-color: $element-background;
         }
+
+        &__no-data {
+            @extend .large-font;
+
+            color: #333;
+            text-align: center;
+            margin: 1em;
+        }
     }
 }

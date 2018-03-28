@@ -302,7 +302,8 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time.",
+        "NO_PROJECTS": "Please click the Create button to begin a new project."
     },
     "MESSAGES": {
         "TO_REQUIRED": "One or more recipients must be added",
