@@ -10,12 +10,8 @@ const tasks = {
     moveTask: (productId, uoaId) =>
         requests.apiGetRequest(getFullPath(`products/${productId}/move/${uoaId}`)),
     getTaskById: taskId => requests.apiGetRequest(getFullPath(`tasks/${taskId}`)),
-    getSelfTasks: (callback) => {
-        requests.apiGetRequest(getFullPath('tasks-self'), callback);
-    },
-    getTasksByUser: (userId, callback) => {
-        requests.apiGetRequest(getFullPath(`tasks-by-user-id/${userId}`), callback);
-    },
+    getSelfTasks: () => requests.apiGetRequest(getFullPath('tasks-self')),
+    getTasksByUser: userId => requests.apiGetRequest(getFullPath(`tasks-by-user-id/${userId}`)),
     postTask: (requestBody, callback) => {
         requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
     },

@@ -34,32 +34,18 @@ export function getTaskById(projectId, taskId, errorMessages) {
 }
 
 export function getSelfTasks(errorMessages) {
-    return (dispatch) => {
-        apiService.tasks.getSelfTasks(
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp && taskResp.length > 0) {
-                    dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp));
-                } else {
-                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+    apiService.tasks.getSelfTasks()
+    .then(taskResp => dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp)))
+    .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
 }
 
+
 export function getTasksByUser(userId, errorMessages) {
-    return (dispatch) => {
-        apiService.tasks.getTasksByUser(
-            userId,
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    dispatch(_getTasksByUserSuccess(userId, taskResp));
-                } else {
-                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+    apiService.tasks.getTasksByUser(userId)
+    .then(taskResp => dispatch(_getTasksByUserSuccess(userId, taskResp)))
+    .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
 }
 
 export function assignTask(userId, slot, project, errorMessages) {

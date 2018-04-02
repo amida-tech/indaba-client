@@ -19,13 +19,9 @@ export const getAllProfileData = (userId, projectId, errorMessages) => (dispatch
 export const getTasksForProfile = userId => (dispatch) => {
     dispatch(_getTasksForProfile());
 
-    taskService.getTasksByUser(userId, (err, response) => {
-        if (err) {
-            dispatch(_getTasksForProfileFailure(err));
-        } else {
-            dispatch(_getTasksForProfileSuccess(response));
-        }
-    });
+    taskService.getTasksByUser(userId)
+    .then(response => dispatch(_getTasksForProfileSuccess(response)))
+    .catch(err => dispatch(_getTasksForProfileFailure(err)));
 };
 
 const _getAllProfileData = () => ({
