@@ -18,20 +18,14 @@ class PMAllSubjects extends Component {
         );
     }
     subjectHasData(subjectId) {
-        return new Promise((resolve, reject) => {
-            apiService.tasks.getTasks((tasksErr, tasks) => {
-                if (tasksErr) {
-                    reject(tasksErr);
-                } else {
-                    const answerPromises = tasks
-                    .filter(task => task.uoaId === subjectId)
-                    .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
-                    Promise.all(answerPromises)
-                    .then(statuses => statuses.some(status => status.status !== 'new'))
-                    .then(resolve)
-                    .catch(reject);
-                }
-            });
+        return apiService.tasks.getTasks()
+        .then((tasks) => {
+            const answerPromises = tasks
+            .filter(task => task.uoaId === subjectId)
+            .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
+
+            return Promise.all(answerPromises)
+            .then(statuses => statuses.some(status => status.status !== 'new'));
         });
     }
     attemptSubjectDelete(subject) {
