@@ -36,11 +36,11 @@ class AddSubjects extends Component {
     handleModalSave() {
         if (this.props.ui.showSubjectDeleteConfirmModal.deleteType === DELETE_TYPE.DELETE) {
             apiService.subjects.deleteSubject(this.props.ui.showSubjectDeleteConfirmModal.id)
-            .catch((subjectErr) => {
-                if (subjectErr) {
-                    toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                        { autoClose: false, type: 'error' });
-                }
+            .catch(() => {
+                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                    { autoClose: false, type: 'error' });
+            })
+            .then(() => {
                 this.props.actions.getProjectById(
                     this.props.project.id,
                     false,
