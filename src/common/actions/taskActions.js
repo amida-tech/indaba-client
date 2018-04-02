@@ -9,16 +9,14 @@ import apiService from '../../services/api';
 
 export function getTasksByProduct(productId, projectId, errorMessages) {
     return (dispatch) => {
-        apiService.tasks.getTasksByProduct(
-            productId,
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    dispatch(_getTasksByProductSuccess(projectId, taskResp));
-                } else {
-                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-                }
-            },
-        );
+        apiService.tasks.getTasksByProduct(productId)
+        .then((taskResp) => {
+            dispatch(_getTasksByProductSuccess(projectId, taskResp));
+            return taskResp;
+        })
+        .catch((taskErr) => {
+            dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
+        });
     };
 }
 

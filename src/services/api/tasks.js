@@ -2,9 +2,8 @@ import * as requests from './requests';
 import getFullPath from '../../utils/getFullPath';
 
 const tasks = {
-    getTasksByProduct: (productId, callback) => {
-        requests.apiGetRequest(getFullPath(`products/${productId}/tasks`), callback);
-    },
+    getTasksByProduct: productId =>
+        requests.apiGetRequest(getFullPath(`products/${productId}/tasks`)),
     forceMoveTask: (productId, uoaId, callback) => {
         requests.apiGetRequest(
             requests.addQueryParams(getFullPath(`products/${productId}/move/${uoaId}`), { force: true }),
