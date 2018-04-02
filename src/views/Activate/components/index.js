@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { has } from 'lodash';
+import { has, get } from 'lodash';
 import { toast } from 'react-toastify';
 
 import apiService from '../../../services/api';
@@ -32,10 +32,10 @@ class Activate extends Component {
                                 { onClose: this.props.redirectToLogin });
                         })
                         .catch((err) => {
-                            if (has(ServerErrorsToVocabError, err.message)) {
+                            if (has(ServerErrorsToVocabError, get(err, 'body.message'))) {
                                 toast(
                                     this.props.vocab.ERROR[
-                                        ServerErrorsToVocabError[err.message]
+                                        ServerErrorsToVocabError[err.body.message]
                                     ],
                                     { type: 'error', autoClose: false });
                             } else {
