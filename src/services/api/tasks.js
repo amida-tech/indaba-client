@@ -9,9 +9,7 @@ const tasks = {
             requests.addQueryParams(getFullPath(`products/${productId}/move/${uoaId}`), { force: true })),
     moveTask: (productId, uoaId) =>
         requests.apiGetRequest(getFullPath(`products/${productId}/move/${uoaId}`)),
-    getTaskById: (taskId, callback) => {
-        requests.apiGetRequest(getFullPath(`tasks/${taskId}`), callback);
-    },
+    getTaskById: taskId => requests.apiGetRequest(getFullPath(`tasks/${taskId}`)),
     getSelfTasks: (callback) => {
         requests.apiGetRequest(getFullPath('tasks-self'), callback);
     },

@@ -21,20 +21,16 @@ export function getTasksByProduct(productId, projectId, errorMessages) {
 }
 
 export function getTaskById(projectId, taskId, errorMessages) {
-    return (dispatch) => {
-        apiService.tasks.getTaskById(
-            taskId,
-            (taskErr, taskResp) => {
-                if (!taskErr && taskResp) {
-                    dispatch(getAnswers(taskResp.assessmentId, errorMessages));
-                    dispatch(getProjectById(projectId, false, errorMessages));
-                    dispatch(_getTaskByIdSuccess(projectId, taskResp));
-                } else {
-                    dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-                }
-            },
-        );
-    };
+    return dispatch =>
+    apiService.tasks.getTaskById(taskId)
+    .then((taskResp) => {
+        dispatch(getAnswers(taskResp.assessmentId, errorMessages));
+        dispatch(getProjectById(projectId, false, errorMessages));
+        dispatch(_getTaskByIdSuccess(projectId, taskResp));
+    })
+    .catch((taskErr) => {
+        dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
+    });
 }
 
 export function getSelfTasks(errorMessages) {
