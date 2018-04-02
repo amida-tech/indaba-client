@@ -43,17 +43,12 @@ export function getDiscussions(taskId, errorMessages) { // errorMessages
 
 export function postDiscussion(requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.discussions.postDiscussion(
-            requestBody,
-            (discussErr, discussResp) => {
-                if (discussErr) {
-                    dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS));
-                } else {
-                    dispatch(_postDiscussionSuccess(discussResp));
-                    dispatch(getDiscussions(requestBody.taskId, errorMessages));
-                }
-            },
-        );
+        apiService.discussions.postDiscussion(requestBody)
+        .then((discussResp) => {
+            dispatch(_postDiscussionSuccess(discussResp));
+            dispatch(getDiscussions(requestBody.taskId, errorMessages));
+        })
+        .catch(() => dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS)));
     };
 }
 
