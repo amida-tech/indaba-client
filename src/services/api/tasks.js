@@ -12,9 +12,7 @@ const tasks = {
     getTaskById: taskId => requests.apiGetRequest(getFullPath(`tasks/${taskId}`)),
     getSelfTasks: () => requests.apiGetRequest(getFullPath('tasks-self')),
     getTasksByUser: userId => requests.apiGetRequest(getFullPath(`tasks-by-user-id/${userId}`)),
-    postTask: (requestBody, callback) => {
-        requests.apiPostRequest(getFullPath('tasks'), requestBody, callback);
-    },
+    postTask: requestBody => requests.apiPostRequest(getFullPath('tasks'), requestBody),
     putTask: (taskId, requestBody, callback) => {
         requests.apiPutRequest(getFullPath(`tasks/${taskId}`), requestBody, callback);
     },
