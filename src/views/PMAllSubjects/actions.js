@@ -18,13 +18,9 @@ export const pmAllSubjectsShowDeleteConfirmModal = (id, confirmType) => ({
 
 export const pmAllSubjectsGetSubjects = () => (dispatch) => {
     dispatch(_getSubjects());
-    subjectsApi.getSubjects((err, response) => {
-        if (err) {
-            dispatch(_getSubjectsError(err));
-        } else {
-            dispatch(_getSubjectsSuccess(response));
-        }
-    });
+    subjectsApi.getSubjects()
+    .then(response => dispatch(_getSubjectsSuccess(response)))
+    .catch(err => dispatch(_getSubjectsError(err)));
 };
 
 const _getSubjects = () => ({
