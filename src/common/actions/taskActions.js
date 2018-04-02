@@ -128,17 +128,9 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
     }
 
     return (dispatch) => {
-        apiService.tasks.putTask(
-            taskId,
-            requestBody,
-            (taskErr, taskResp) => {
-                if (taskErr) {
-                    dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST));
-                } else if (taskResp || []) {
-                    dispatch(_putTaskSuccess(taskId, requestBody));
-                }
-            },
-        );
+        apiService.tasks.putTask(taskId, requestBody)
+        .then(() => dispatch(_putTaskSuccess(taskId, requestBody)))
+        .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
     };
 }
 
