@@ -114,20 +114,11 @@ export function assignTask(userId, slot, project, errorMessages) {
 }
 
 export function moveTask(productId, uoaId, errorMessages) {
-    return dispatch => new Promise((resolve, reject) => {
-        apiService.tasks.moveTask(
-            productId,
-            uoaId,
-            (workflowErr) => {
-                if (workflowErr) {
-                    dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
-                    reject();
-                } else {
-                    dispatch(push('/task'));
-                    resolve();
-                }
-            },
-        );
+    return dispatch => apiService.tasks.moveTask(productId, uoaId)
+    .then(() => dispatch(push('/task')))
+    .catch((workflowErr) => {
+        dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+        throw workflowErr;
     });
 }
 
