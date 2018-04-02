@@ -35,14 +35,9 @@ export function upsertAnswer(assessmentId, questionId, answer, meta, errorMessag
 // Discussion related:
 export function getDiscussions(taskId, errorMessages) { // errorMessages
     return (dispatch) => {
-        apiService.discussions.getDiscussions(
-            taskId,
-            (discussErr, discussResp) => {
-                dispatch((!discussErr && discussResp) ?
-                    _getDiscussionsSuccess(discussResp) :
-                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
-            },
-        );
+        apiService.discussions.getDiscussions(taskId)
+        .then(discussResp => dispatch(_getDiscussionsSuccess(discussResp)))
+        .catch(() => dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS)));
     };
 }
 
