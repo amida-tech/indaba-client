@@ -3,9 +3,7 @@ import getFullPath from '../../utils/getFullPath';
 
 const subjects = {
     getSubjects: () => requests.apiGetRequest(getFullPath('uoas')),
-    deleteSubject: (id, callback) => {
-        requests.apiDeleteRequest(getFullPath(`uoas/${id}`), {}, callback);
-    },
+    deleteSubject: id => requests.apiDeleteRequest(getFullPath(`uoas/${id}`), {}),
 };
 
 export default subjects;

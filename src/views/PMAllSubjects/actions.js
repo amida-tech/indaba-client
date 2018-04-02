@@ -39,13 +39,9 @@ const _getSubjectsSuccess = subjects => ({
 
 export const pmAllSubjectsDeleteSubject = id => (dispatch) => {
     dispatch(_deleteSubject());
-    subjectsApi.deleteSubject(id, (err, response) => {
-        if (err) {
-            dispatch(_deleteSubjectError(err));
-        } else {
-            dispatch(_deleteSubjectSuccess(response));
-        }
-    });
+    subjectsApi.deleteSubject(id)
+    .then(response => dispatch(_deleteSubjectSuccess(response)))
+    .catch(err => dispatch(_deleteSubjectError(err)));
 };
 
 const _deleteSubject = () => ({

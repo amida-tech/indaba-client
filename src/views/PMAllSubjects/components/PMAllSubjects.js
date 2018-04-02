@@ -69,15 +69,12 @@ class PMAllSubjects extends Component {
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal()}
                         onSave={() => {
                             apiService.subjects.deleteSubject(
-                                this.props.ui.showDeleteConfirmModal.id,
-                                (subjectErr) => {
-                                    if (subjectErr) {
-                                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                                            { autoClose: false, type: 'error' });
-                                    }
-                                    this.props.actions.pmAllSubjectsGetSubjects();
-                                },
-                            );
+                                this.props.ui.showDeleteConfirmModal.id)
+                            .then(() => this.props.actions.pmAllSubjectsGetSubjects())
+                            .catch(() => {
+                                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                                    { autoClose: false, type: 'error' });
+                            });
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal();
                         }}
                         saveLabel={this.props.vocab.COMMON.DELETE}/>
