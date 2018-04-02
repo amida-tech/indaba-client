@@ -133,15 +133,10 @@ export function moveTask(productId, uoaId, errorMessages) {
 
 export function forceTaskCompletion(productId, uoaId, errorMessages) {
     return (dispatch) => {
-        apiService.tasks.forceMoveTask(
-            productId,
-            uoaId,
-            (workflowErr) => {
-                if (workflowErr) {
-                    dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
-                }
-            },
-        );
+        return apiService.tasks.forceMoveTask(productId, uoaId)
+        .catch((workflowErr) => {
+            dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+        });
     };
 }
 
