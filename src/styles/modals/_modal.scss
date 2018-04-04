@@ -9,6 +9,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         max-height: 100%;
         border: 1px solid $border-color;
         border-radius: 3px;
+        background-color: rgba(255, 255, 255, 1);
         box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
         // space at the top for positioning, space on the other side to show box-shadow
 
@@ -49,7 +50,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         &__container {
             background-color: #ffff;
             border-bottom: 1px solid $border-color;
-            min-height: 100%;
 
             // specific layers
             &.task-view-layer {
