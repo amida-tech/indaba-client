@@ -53,6 +53,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__container {
+            background-color: #fff;
             border-bottom: 1px solid $border-color;
             height: 100%;
 
