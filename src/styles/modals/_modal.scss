@@ -4,6 +4,11 @@ $header-footer: #f2f2f2;
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
 @at-root {
+    .grommetux-layer .grommetux-layer__container {
+        display: block;
+        flex-direction: none;
+    }
+
     .#{$block-class} {
         margin: 4em 1em 1em;
         max-height: 100%;
@@ -48,8 +53,8 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__container {
-            background-color: #ffff;
             border-bottom: 1px solid $border-color;
+            height: 100%;
 
             // specific layers
             &.task-view-layer {
