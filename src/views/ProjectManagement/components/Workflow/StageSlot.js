@@ -97,7 +97,6 @@ class StageSlot extends Component {
 
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
-
         const diff = TaskStatus.daysUntilDue(this.props.task);
         const done = this.props.task.status === 'completed';
 

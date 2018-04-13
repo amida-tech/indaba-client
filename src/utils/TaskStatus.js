@@ -9,8 +9,16 @@ export default {
     },
     daysUntilDue(task) {
         const day = 24 * 60 * 60 * 1000;
-        return Math.round((new Date(task.endDate).getTime()
-            - new Date().getTime()) / day);
+        const newDate = new Date(task.endDate).getTime();
+        const currentTime = new Date().getTime();
+        const updatedDate = newDate - currentTime;
+        const newDateRounded = Math.round((updatedDate) / day);
+        const testDate = (updatedDate / day);
+        const lessThanOneDayLeft = 1;
+        const result = testDate > 0 && testDate < 1
+            ? lessThanOneDayLeft
+            : newDateRounded;
+        return result;
     },
     formatUserGroups(userGroups) {
         return (userGroups.map(group => group.title).toString().replace(/,/, ', '));
