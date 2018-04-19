@@ -234,7 +234,9 @@ export function exportData(productId, projectName, errorMessages) {
                 a.download = `indaba-${projectName}-${Time.renderForExport(new Date())}.zip`;
                 a.href = URL.createObjectURL(blob);
                 a.dataset.downloadurl = ['application/zip', a.download, a.href].join(':');
+                document.body.appendChild(a);
                 a.click();
+                document.body.removeChild(a);
             }
             return dataResp;
         })
