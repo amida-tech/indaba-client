@@ -10,7 +10,8 @@ const initialState = {
         errorMessage: '',
         showAddSubject: false,
     },
-    data: [{
+    data: [],
+    empty: {
         id: -1,
         name: '',
         status: 0,
@@ -21,7 +22,7 @@ const initialState = {
         stages: [],
         userGroups: [],
         subjects: [],
-    }],
+    },
 };
 
 export const ProjectReducer = (state = initialState, action) => {
@@ -35,17 +36,17 @@ export const ProjectReducer = (state = initialState, action) => {
 
     switch (action.type) {
     case type.POST_PROJECT_SUCCESS:
-        return state.data[0].name ?
+        return state.data.length === 0 ?
         update(state, { data: { $push: [action.project] } }) :
         update(state, { data: { $set: [action.project] } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
-        return (!state.data[0].name ?
+        return (state.data.length === 0 ?
             update(state, { data: { $set: action.projects } }) :
             update(state, { data: { $merge: action.projects } }));
     case type.GET_PROJECT_BY_ID_SUCCESS:
-        return (!state.data[0].name ?
+        return (state.data.length === 0 ?
             update(state, { data: { $set: [action.project] } }) :
             update(state, { data: { [projectIndex]: { $merge: action.project } } }));
     case type.UPDATE_PROJECT_WITH_SURVEY:
