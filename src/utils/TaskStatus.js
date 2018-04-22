@@ -12,11 +12,10 @@ export default {
         const newDate = new Date(task.endDate).getTime();
         const currentTime = new Date().getTime();
         const updatedDate = newDate - currentTime;
-        const newDateRounded = Math.round((updatedDate) / day);
-        const testDate = (updatedDate / day);
-        const lessThanOneDayLeft = 1;
-        const result = testDate > 0 && testDate < 1
-            ? lessThanOneDayLeft
+        const newDateRounded = Math.floor((updatedDate) / day);
+        const exactDiff = (updatedDate / day);
+        const result = exactDiff > 0 && exactDiff < 2
+            ? exactDiff
             : newDateRounded;
         return result;
     },

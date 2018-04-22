@@ -157,6 +157,7 @@
             "ASSIGNEE": "Assignee",
             "DUE_IN": "Due in ",
             "DAYS": " Days",
+            "DUE_TODAY": "Due Today",
             "DUE_TOMORROW": "Due Tomorrow",
             "MORE_OPTIONS": "More Options",
             "TASK_OPTIONS": "Task Options"

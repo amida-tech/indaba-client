@@ -53,10 +53,29 @@ class TaskDetails extends Component {
                     { this.props.profile.roleID === 2 ?
                         <DateInput value={this.props.task.endDate}
                             onChange={(event) => {
+                                // TODO TODO TODO TODO TODO TODO TODO TODO TODO
+                                // TODO Find the original TASK CREATION piece...
+                                // TODO TODO TODO TODO TODO TODO TODO TODO TODO
+
+                                // meta
+                                // :
+                                // {form: "stage-form",
+                                // field: "endDate",
+                                // touch: false,
+                                // persistentSubmitErrors: false}
+                                // payload
+                                // :
+                                // Sat Apr 21 2018 00:00:00 GMT-0400 (Eastern Daylight Time) {}
+                                // type
+                                // :
+                                // "@@redux-form/CHANGE"
+
+                                const endOfDay = new Date(event).setHours(23, 59, 59, 999);
+                                console.log('>>>>> endOfDay: ', endOfDay);
                                 this.props.actions.updateTask(
                                     this.props.task.id,
                                     this.props.task.userIds,
-                                    new Date(event),
+                                    new Date(endOfDay),
                                     this.props.vocab.ERROR);
                             }} /> :
                         <div className='task-details__info-box-title'>
