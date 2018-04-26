@@ -84,6 +84,8 @@ class StageSlot extends Component {
     }
 
     displayStatus(done, diff) {
+        // console.log('displayStatus');
+        // console.log(diff);
         if (done) {
             return { label: this.props.vocab.PROJECT.CARD.DONE, type: StatusLabelType.GOOD };
         }

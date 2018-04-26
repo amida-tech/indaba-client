@@ -53,11 +53,12 @@ class TaskDetails extends Component {
                     { this.props.profile.roleID === 2 ?
                         <DateInput value={this.props.task.endDate}
                             onChange={(event) => {
-                                const endOfDay = new Date(event).setHours(23, 59, 59, 999);
+                                const endOfDay = new Date(event);
+                                endOfDay.setHours(23, 59, 59, 999);
                                 this.props.actions.updateTask(
                                     this.props.task.id,
                                     this.props.task.userIds,
-                                    new Date(endOfDay),
+                                    endOfDay,
                                     this.props.vocab.ERROR);
                             }} /> :
                         <div className='task-details__info-box-title'>
