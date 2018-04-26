@@ -156,13 +156,15 @@ export function updateTaskEndDate(taskId, projectId, endDate) {
     };
 }
 
-export function updateTask(taskId, userIds, lastDay, errorMessages) {
-    const endDate = new Date(lastDay);
-    endDate.setHours(23, 59, 59, 999);
+export function updateTask(taskId, userIds, endDate, errorMessages) {
     const requestBody = pickBy({
         userIds,
         endDate,
     }, identity);
+
+    if (requestBody.endDate !== undefined) {
+        requestBody.endDate.setHours(23, 59, 59, 999);
+    }
 
     return (dispatch) => {
         apiService.tasks.putTask(
