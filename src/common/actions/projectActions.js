@@ -74,17 +74,17 @@ export function updateProjectWithSurvey(projectId, surveyId) {
 }
 
 export function putStage(project, stage, fromWizard, errorMessages) {
-    const endDate = new Date(stage.endDate);
-    endDate.setHours(23, 59, 59, 999);
     const requestBody = [Object.assign({},
         stage,
         {
             workflowId: project.workflowId,
             role: 3,
             startDate: stage.startDate,
-            endDate,
+            endDate: stage.endDate,
         },
     )];
+    requestBody[0].endDate.setHours(23, 59, 59, 999);
+
     return dispatch =>
         apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
         .then((stepResp) => {
