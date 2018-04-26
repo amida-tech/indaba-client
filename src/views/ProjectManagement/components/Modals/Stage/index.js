@@ -4,7 +4,6 @@ import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../../common/components/Modal';
-import Time from '../../../../../utils/Time';
 import StageForm from './StageForm';
 
 class StageModal extends Component {
@@ -26,8 +25,6 @@ class StageModal extends Component {
             } else {
                 initialValues.permissions = '0';
             }
-            initialValues.startDate = Time.renderForQuestion(initialValues.startDate);
-            initialValues.endDate = Time.renderForQuestion(initialValues.endDate);
         } else {
             initialValues = {
                 title: '',
