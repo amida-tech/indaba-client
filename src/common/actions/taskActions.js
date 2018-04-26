@@ -156,7 +156,9 @@ export function updateTaskEndDate(taskId, projectId, endDate) {
     };
 }
 
-export function updateTask(taskId, userIds, endDate, errorMessages) {
+export function updateTask(taskId, userIds, lastDay, errorMessages) {
+    const endDate = new Date(lastDay);
+    endDate.setHours(23, 59, 59, 999);
     const requestBody = pickBy({
         userIds,
         endDate,
