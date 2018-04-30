@@ -66,11 +66,16 @@ class PMDashboard extends Component {
                     filter={this.props.ui.filter} />
                 <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
-                    {this.props.rows.filter(this.filterRow.bind(this))
+                    { this.props.ui.noData ?
+                        (<div className='pm-dashboard__no-data'>
+                            {this.props.vocab.PROJECT.NO_PROJECTS}
+                        </div>) :
+                    this.props.rows.filter(this.filterRow.bind(this))
                         .filter(this.searchRow.bind(this))
                         .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
                             vocab={this.props.vocab}
-                        />)}
+                        />)
+                    }
                 </div>
             </div>
         );
