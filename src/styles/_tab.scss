@@ -1,0 +1,35 @@
+$element-background: #f3f5f6;
+$block-class:'tab';
+
+@at-root {
+    .#{$block-class} {
+        width: 150px;
+        display: flex;
+        justify-content: start;
+        font-family: $brand-font-family;
+
+        &__link {
+            cursor: pointer;
+
+            &--active {
+                background-color: $element-background;
+                border-left: 2px solid $border-color;
+                border-right: 2px solid $border-color;
+                border-top: 2px solid $border-color;
+            }
+        }
+
+        &__title {
+            width: 150px;
+            font-weight: 400;
+            line-height: 24px;
+            display: flex;
+            font-size: 14px;
+            color: $header-font-color;
+            padding-bottom: 2px;
+            padding-top: 2px;
+            border-bottom: none;
+            justify-content: center;
+        }
+    }
+}

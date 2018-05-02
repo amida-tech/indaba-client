@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Tabs, Tab } from 'grommet';
+import { Button } from 'grommet';
+// import { Button, Tabs, Tab } from 'grommet';
 
 import PMUsersTab from './PMUsersTab';
 import PMUserGroupsTab from './PMUserGroupsTab';
+import Tabs from '../../../../common/components/Tabs/Tabs';
+import Tab from '../../../../common/components/Tabs/Tab';
 import AddUserModal from '../../../../common/components/AddUserModal';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 
