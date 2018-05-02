@@ -79,10 +79,11 @@ export function putStage(project, stage, fromWizard, errorMessages) {
         {
             workflowId: project.workflowId,
             role: 3,
-            startDate: new Date(stage.startDate),
-            endDate: new Date(stage.endDate),
+            startDate: stage.startDate,
+            endDate: stage.endDate,
         },
     )];
+    requestBody[0].endDate.setHours(23, 59, 59, 999);
 
     return dispatch =>
         apiService.projects.putWorkflowSteps(project.workflowId, requestBody)

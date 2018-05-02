@@ -162,6 +162,10 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
         endDate,
     }, identity);
 
+    if (requestBody.endDate !== undefined) {
+        requestBody.endDate.setHours(23, 59, 59, 999);
+    }
+
     return (dispatch) => {
         apiService.tasks.putTask(
             taskId,
