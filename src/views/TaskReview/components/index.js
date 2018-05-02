@@ -112,14 +112,14 @@ class TaskReview extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => { // TODO: INBA-439
+const mapStateToProps = (state, ownProps) => {
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
     const task = find(state.tasks.data, current => current.id === taskId) ||
         { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
-    const project = state.projects.data[0].id > 0 ?
+    const project = state.projects.data.length !== 0 ?
         find(state.projects.data, projElem => projElem.id === projectId) :
-        state.projects.data[0];
+        state.projects.empty;
     return {
         projectId,
         productId: project.productId,
