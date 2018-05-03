@@ -26,8 +26,7 @@ import { logOut } from './common/actions/navActions';
 import reducers from './reducers';
 import routes from './routes';
 
-const DEVELOP = process.env.NODE_ENV === 'development' &&
-    !(navigator.userAgent.indexOf('MSIE') > 0 || navigator.userAgent.indexOf('Trident/7.0') > 0);
+const DEVELOP = process.env.NODE_ENV === 'development' && !(navigator.userAgent.match('MSIE|Trident/7.0|Edge'));
 
 const authInterceptor = ({ dispatch }) => next => (action) => {
     if (get(action, 'err.response.status') === 401) {
