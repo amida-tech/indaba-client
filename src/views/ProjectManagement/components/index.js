@@ -12,7 +12,8 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
-import StatusChange from './Modals/StatusChange';
+import ProjectStatus from './Modals/ProjectStatus';
+import SurveyStatus from './Modals/SurveyStatus';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
@@ -23,7 +24,7 @@ import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 import StageModal from './Modals/Stage';
-import InactiveConfirm from './Modals/StatusChange/InactiveConfirm';
+import InactiveConfirm from './Modals/ProjectStatus/InactiveConfirm';
 import Modal from '../../../common/components/Modal';
 import apiService from '../../../services/api';
 
@@ -58,10 +59,6 @@ class ProjectManagementContainer extends Component {
     }
 
     render() {
-        const modalEntities = {
-            projectstatusmodal: 'project',
-            surveystatusmodal: 'survey',
-        };
         let body;
         switch (this.props.tab) {
         case 'workflow':
@@ -113,12 +110,15 @@ class ProjectManagementContainer extends Component {
                 <div>
                     {
                         this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal &&
-                        <StatusChange vocab={this.props.vocab}
-                            project={this.props.project}
-                            survey={this.props.survey}
-                            actions={this.props.actions}
-                            vocab={this.props.vocab}
-                            entity={modalEntities[this.props.ui.statusModalId]} />
+                        (this.props.ui.statusModalId === 'projectstatusmodal' ?
+                            <ProjectStatus vocab={this.props.vocab}
+                                project={this.props.project}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} /> :
+                            <SurveyStatus vocab={this.props.vocab}
+                                survey={this.props.survey}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} />)
                     }
                     {
                         this.props.ui.showInactiveConfirmModal &&
