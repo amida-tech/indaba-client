@@ -75,9 +75,9 @@ class StageForm extends Component {
                             {this.props.vocab.PROJECT.START_DATE}</label>
                             <div className='stage-form__date-input-div'>
                                 <Field
-                                  id='StartDate'
-                                  name='startDate'
-                                  component={StageDateTime} />
+                                    id='StartDate'
+                                    name='startDate'
+                                    component={StageDateTime} />
                             </div>
                         </div>
                         <div className='stage-form__select-end'>
@@ -85,9 +85,9 @@ class StageForm extends Component {
                                 {this.props.vocab.PROJECT.END_DATE}</label>
                             <div className='stage-form__date-input-div'>
                                 <Field
-                                 id='endDate'
-                                 name='endDate'
-                                 component={StageDateTime} />
+                                    id='endDate'
+                                    name='endDate'
+                                    component={StageDateTime} />
                             </div>
                         </div>
                         <div className='stage-form__clear'></div>

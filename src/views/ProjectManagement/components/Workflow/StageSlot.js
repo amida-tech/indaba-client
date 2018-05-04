@@ -72,7 +72,10 @@ class StageSlot extends Component {
             return '';
         } else if (diff <= 0) {
             return '';
-        } else if (diff === 1) {
+        }
+        if (diff > 0 && diff < 1) {
+            return this.props.vocab.PROJECT.CARD.DUE_TODAY;
+        } else if (diff >= 1 && diff < 2) {
             return this.props.vocab.PROJECT.CARD.DUE_TOMORROW;
         } else if (diff > 1) {
             return this.props.vocab.PROJECT.CARD.DUE_IN + diff + this.props.vocab.PROJECT.CARD.DAYS;
@@ -97,10 +100,8 @@ class StageSlot extends Component {
 
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
-
         const diff = TaskStatus.daysUntilDue(this.props.task);
         const done = this.props.task.status === 'completed';
-
         const labelDisplay = this.displayStatus(done, diff);
         let stageClass = 'stage-slot ';
         if (this.props.filtered) {
