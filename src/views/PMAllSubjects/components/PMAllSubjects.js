@@ -94,7 +94,11 @@ class PMAllSubjects extends Component {
                         onChange={evt =>
                             this.props.actions.pmAllSubjectsSetQuery(evt.target.value)} />
                 </div>
-                <SubjectList subjects={this.props.subjects}
+                <SubjectList
+                    isOrderedByNameAscending={this.props.formState.isOrderedByNameAscending}
+                    sortNamesAsc={this.props.actions.pmAllSubjectsOrderByNameAscending}
+                    sortNamesDesc={this.props.actions.pmAllSubjectsOrderByNameDescending}
+                    subjects={this.props.subjects}
                     query={this.props.ui.query}
                     onDeleteClick={this.attemptSubjectDelete}
                     vocab={this.props.vocab}/>

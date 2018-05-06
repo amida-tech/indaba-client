@@ -12,11 +12,23 @@ class SubjectList extends Component {
         return subject.name.toLowerCase().includes(this.props.query.toLowerCase());
     }
     render() {
+        const caretUp = (<span className='fa fa-sort-up' />);
+        const caretDown = (<span className='fa fa-sort-down' />);
         return (
             <div className='subject-list'>
                 <div className='subject-list__header'>
-                    <div className='subject-list__header-title subject-list__header-title--name'>
-                        {this.props.vocab.PROJECT.SUBJECT_NAME}
+                    <div
+                        className='subject-list__header-title subject-list__header-title--name'
+                        onClick={
+                            !this.props.isOrderedByNameAscending
+                                ? this.props.sortNamesAsc
+                                : this.props.sortNamesDesc
+                        }
+                    >
+                        <span>
+                            {`${this.props.vocab.COMMON.SUBJECTS} `}
+                            {this.props.isOrderedByNameAscending ? caretUp : caretDown}
+                        </span>
                     </div>
                     <div className='subject-list__header-title subject-list__header-title--actions'>
                         {this.props.vocab.COMMON.ACTIONS}
