@@ -26,8 +26,8 @@ class SubjectList extends Component {
                         }
                     >
                         <span>
-                            {`${this.props.vocab.COMMON.SUBJECTS} `}
                             {this.props.isOrderedByNameAscending ? caretUp : caretDown}
+                            {` ${this.props.vocab.COMMON.SUBJECTS}`}
                         </span>
                     </div>
                     <div className='subject-list__header-title subject-list__header-title--actions'>
