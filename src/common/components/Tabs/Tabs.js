@@ -18,6 +18,9 @@ class Tabs extends Component {
 
     renderTabsDisplay() {
         return React.Children.map(this.props.children, (child, index) => {
+            if (child === null) {
+                return null;
+            }
             return React.cloneElement(child, {
                 onClick: this.handleTabClick,
                 tabIndex: index,
