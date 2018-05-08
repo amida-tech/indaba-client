@@ -41,6 +41,14 @@ $block-class: 'add-users';
             }
         }
 
+        &__tabs__nav {
+            display: flex;
+            border-bottom: 1px solid $border-color;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom: 0;
+        }
+
         .grommetux-tab--active {
             background-color: $element-background;
             border: 2px solid $border-color;
