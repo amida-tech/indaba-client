@@ -65,7 +65,7 @@ class Users extends Component {
                         primary
                         onClick={() => this.setState({ modalName: 'addgroup' })}/>
                 </div>
-                <Tabs justify='start'>
+                <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <PMUsersTab {...this.props}/>
                     </Tab>

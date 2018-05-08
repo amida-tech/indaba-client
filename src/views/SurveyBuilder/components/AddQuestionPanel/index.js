@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Tabs, Tab } from 'grommet';
 import PropTypes from 'prop-types';
 
+import Tabs from '../../../../common/components/Tabs/Tabs';
+import Tab from '../../../../common/components/Tabs/Tab';
 import NewQuestions from './NewQuestions';
 import ExistingQuestions from './ExistingQuestions';
 
@@ -12,13 +13,13 @@ class AddQuestionPanel extends Component {
                 <div className='add-question-panel__instructions'>
                     {this.props.vocab.SURVEY.PANE_INSTRUCTIONS}
                 </div>
-                <Tabs className='add-question-panel__tabs'>
-                    <Tab className='add-question-panel__tab'
-                        title={this.props.vocab.SURVEY.NEW_QUESTIONS}>
+                <Tabs>
+                    <Tab title={this.props.vocab.SURVEY.NEW_QUESTIONS}
+                        className='add-question-panel__tab'>
                         <NewQuestions {...this.props}/>
                     </Tab>
-                    <Tab className='add-question-panel__tab'
-                        title={this.props.vocab.SURVEY.EXISTING}>
+                    <Tab title={this.props.vocab.SURVEY.EXISTING}
+                        className='add-question-panel__tab'>
                         <ExistingQuestions {...this.props}/>
                     </Tab>
                 </Tabs>

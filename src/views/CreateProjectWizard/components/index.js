@@ -6,6 +6,8 @@ import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { find, has, get } from 'lodash';
 
+// import Tabs from '../../../common/components/Tabs/Tabs';
+// import Tab from '../../../common/components/Tabs/Tab';
 import Summary from '../../../common/components/Summary';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
@@ -105,7 +107,7 @@ class CreateProjectWizard extends Component {
                 <Tabs className='project-wizard__tabs'
                     activeIndex={this.props.ui.step}
                     onActive={this.changeStep}
-                    responsive={true} >
+                    responsive={true}>
                     <Tab className={`project-wizard__tab project-wizard__tab--${surveyComplete ? 'complete' : 'incomplete'}`}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         {summary}

@@ -3,14 +3,12 @@ $block-class:'tab';
 
 @at-root {
     .#{$block-class} {
-        width: 150px;
+        min-width: 150px;
         display: flex;
         justify-content: start;
         font-family: $brand-font-family;
 
         &__link {
-            cursor: pointer;
-
             &--active {
                 background-color: $element-background;
                 border-left: 2px solid $border-color;
@@ -29,6 +27,7 @@ $block-class:'tab';
             padding: 5px 12px;
             border-bottom: none;
             justify-content: center;
+            cursor: pointer;
         }
     }
 }
