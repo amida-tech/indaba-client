@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
-// import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { find, has, get } from 'lodash';
 

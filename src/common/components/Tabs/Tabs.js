@@ -9,7 +9,7 @@ class Tabs extends Component {
         this.handleTabClick = this.handleTabClick.bind(this);
     }
 
-    componnetWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if ((nextProps.activeTabIndex || nextProps.activeTabIndex === 0) &&
             this.state.activeTabIndex !== nextProps.activeTabIndex) {
             this.setState({ activeTabIndex: nextProps.activeTabIndex });
