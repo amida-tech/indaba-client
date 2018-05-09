@@ -9,11 +9,21 @@ class Tabs extends Component {
         this.handleTabClick = this.handleTabClick.bind(this);
     }
 
+    componnetWillReceiveProps(nextProps) {
+        if ((nextProps.activeTabIndex || nextProps.activeTabIndex === 0) &&
+            this.state.activeTabIndex !== nextProps.activeTabIndex) {
+            this.setState({ activeTabIndex: nextProps.activeTabIndex });
+        }
+    }
+
     handleTabClick(tabIndex) {
         this.setState({
             activeTabIndex: tabIndex ===
                 this.state.activeTabIndex ? this.props.defaultActiveTabIndex : tabIndex,
         });
+        if (this.props.onActive) {
+            this.props.onActive(tabIndex);
+        }
     }
 
     renderTabsDisplay() {
@@ -51,8 +61,10 @@ class Tabs extends Component {
 }
 
 Tabs.propTypes = {
+    activeTabIndex: PropTypes.number,
     defaultActiveTabIndex: PropTypes.number,
     className: PropTypes.string,
+    onActive: PropTypes.func,
 };
 
 Tabs.defaultProps = {

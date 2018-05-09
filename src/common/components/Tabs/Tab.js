@@ -4,8 +4,9 @@ class Tab extends Component {
     render() {
         const className = this.props.className ? `${this.props.className}__link` : 'tab__link';
         return (
-            <li className={this.props.className ? this.props.className : 'tab'}>
-                <div className={className + (this.props.isActive ? ` ${className}--active` : '')}
+            <li className={(this.props.className ? `${this.props.className} ` : 'tab ') +
+                (this.props.classModifier ? `${this.props.className}--${this.props.classModifier}` : '')}>
+                <div className={className + (this.props.isActive ? ` ${className}--active ` : ' ')}
                     onClick={(event) => {
                         event.preventDefault();
                         this.props.onClick(this.props.tabIndex);
@@ -25,6 +26,7 @@ Tab.propTypes = {
     tabIndex: PropTypes.number,
     isActive: PropTypes.bool,
     className: PropTypes.string,
+    classModifier: PropTypes.string,
 };
 
 export default Tab;
