@@ -11,6 +11,7 @@ import { PMAllUsersContainer } from './views/PMAllUsers';
 import { PMAllSubjectsContainer } from './views/PMAllSubjects';
 import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
+import RedirectRoute from './RedirectRoute';
 import Inbox from './views/Messages/Inbox/components/Inbox';
 import MessageContainer from './views/Messages/Message/components';
 import Activate from './views/Activate/components';
@@ -67,5 +68,6 @@ export default (
             component={Activate} />
         <Route path='/reset-password/:token'
             component={ResetPassword} />
+        <RedirectRoute path ='/' exact/>
     </div>
 );
