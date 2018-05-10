@@ -28,9 +28,15 @@ class ToField extends Component {
                 emailIter => emailIter !== email));
     }
     render() {
+        const submitFailed = this.props.meta.submitFailed;
+        const touched = this.props.meta.touched;
+        const valid = this.props.meta.valid;
+        const toFieldSearchWrapperClassName = (submitFailed && !valid) || (touched && !valid)
+            ? 'to-field__search-wrapper to-field__search-wrapper--error'
+            : 'to-field__search-wrapper';
         return (
             <div className='to-field'>
-                <div className='to-field__search-wrapper'>
+                <div className={toFieldSearchWrapperClassName}>
                     <Search onDOMChange={evt => this.props.actions.setToQuery(evt.target.value)}
                         value={this.props.query}
                         onBlur={() => this.props.input.onBlur(this.props.input.value)}
