@@ -68,6 +68,6 @@ export default (
             component={Activate} />
         <Route path='/reset-password/:token'
             component={ResetPassword} />
-        <RedirectRoute path ='/' exact/>
+        <RedirectRoute path ='/*' exact/>
     </div>
 );
