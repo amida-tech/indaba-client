@@ -7,10 +7,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={(props) => {
-                return (cookie.load('indaba-auth') === undefined ?
-                    <Redirect to={{ pathname: '/login' }} /> :
-                    <Component {...props} />
-                );
+                if ((cookie.load('indaba-auth') === undefined || cookie.load('indaba-roleID') === undefined)) {
+                    return (<Redirect to={{ pathname: '/login' }} />);
+                }
+                if (Component === undefined) {
+                    return (<Redirect to={{ pathname: (cookie.load('indaba-roleID') === 2 ? '/project' : '/task') }}/>);
+                }
+                return (<Component {...props} />);
             }
             } />
     );

@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
             render={(props) => {
                 if (rest.profile.roleID === 3) {
                     return (<Redirect to={{ pathname: '/task' }} />);
-                } else if (cookie.load('indaba-auth') === undefined) {
+                } else if (cookie.load('indaba-auth') === undefined || cookie.load('indaba-roleID') === undefined) {
                     return (<Redirect to={{ pathname: '/login' }} />);
                 }
                 return (<Component {...props} />);
