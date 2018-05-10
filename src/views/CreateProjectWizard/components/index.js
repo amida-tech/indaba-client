@@ -29,6 +29,7 @@ class CreateProjectWizard extends Component {
         this.props.actions.surveyBuilderReset();
         this.props.actions.projectWizardInitialize();
     }
+
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);

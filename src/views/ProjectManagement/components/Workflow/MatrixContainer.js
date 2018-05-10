@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import { compose } from 'redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import TaskOptionsModal from '../Modals/TaskOptions';

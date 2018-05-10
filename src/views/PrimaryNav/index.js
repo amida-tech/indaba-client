@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
@@ -35,30 +35,33 @@ class PrimaryNavContainer extends Component {
                     onCancel={() => this.props.actions.showCreateProject(false)}/>}
 
                 <div className='primary-nav__left'>
-                    <Link to={isProjectManager ? '/project' : '/task'}>
+                    <NavLink to={isProjectManager ? '/project' : '/task'} exact>
                         <img src={IndabaLogoWhite}
                             className="primary-nav__indaba-logo"/>
-                    </Link>
-
-                    <Link className='primary-nav__item-nav' to='/task'
-                        activeClassName='primary-nav__item-nav--active'>
+                    </NavLink>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/task' exact>
                         {this.props.vocab.COMMON.MY_TASKS}
-                    </Link>
+                    </NavLink>
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/project'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/project' exact>
                         {this.props.vocab.PROJECT.PROJECTS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/users'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/users'>
                         {this.props.vocab.COMMON.ALL_USERS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/subjects'
-                        activeClassName='primary-nav__item-nav--active'>
+                    <NavLink className='primary-nav__item-nav'
+                        activeClassName='primary-nav__item-nav--active'
+                        to='/subjects'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
-                    </Link>}
+                    </NavLink>}
                     {isProjectManager &&
                     <Button
                         className={'primary-nav__item-nav primary-nav__button'}
@@ -69,23 +72,23 @@ class PrimaryNavContainer extends Component {
                     <div className='primary-nav__welcome'>
                         {`${this.props.vocab.COMMON.WELCOME_} ${renderName(get(this.props, 'user.profile'))}`}
                     </div>
-                    <Link className='primary-nav__link'
+                    <NavLink className='primary-nav__link'
                         to='/messages'>
                         <Icon className='primary-nav__envelope'
                             name='envelope-o'
                             size='2x' />
-                    </Link>
-                    <Link className='primary-nav__link'
+                    </NavLink>
+                    <NavLink className='primary-nav__link'
                         to='/profile'>
                         <Icon className='primary-nav__user'
                             name='user-o'
                             size='2x' />
-                    </Link>
-                    <Link className='primary-nav__logout'
+                    </NavLink>
+                    <NavLink className='primary-nav__logout'
                         onClick={() => this.props.actions.logOut('')}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
-                    </Link>
+                    </NavLink>
                 </div>
             </nav>
         );
@@ -97,6 +100,7 @@ const mapStateToProps = state => ({
     user: state.user,
     vocab: state.settings.language.vocabulary,
     ui: state.nav.ui,
+    routing: state.routing,
 });
 
 const mapDispatchToProps = dispatch => ({

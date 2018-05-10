@@ -25,8 +25,8 @@ class Activate extends Component {
                     onSubmit={
                         values => apiService.users.activate(
                             values,
-                            this.props.params.realm,
-                            this.props.params.token)
+                            this.props.match.params.realm,
+                            this.props.match.params.token)
                         .then(() => {
                             toast(this.props.vocab.TOAST.ACTIVATION_SUCCESS,
                                 { onClose: this.props.redirectToLogin });
@@ -50,10 +50,12 @@ class Activate extends Component {
 }
 
 Activate.propTypes = {
-    params: PropTypes.shape({
-        realm: PropTypes.string.isRequired,
-        token: PropTypes.string.isRequired,
-    }).isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            realm: PropTypes.string.isRequired,
+            token: PropTypes.string.isRequired,
+        }).isRequired,
+    }),
     vocab: PropTypes.object.isRequired,
 };
 

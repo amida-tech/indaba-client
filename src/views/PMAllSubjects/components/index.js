@@ -9,6 +9,7 @@ class PMAllSubjectsContainer extends Component {
     componentWillMount() {
         this.props.actions.pmAllSubjectsGetSubjects();
     }
+
     render() {
         return (
             <PMAllSubjects {...this.props} />

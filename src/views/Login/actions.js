@@ -8,7 +8,6 @@ import * as actionTypes from './actionTypes';
 export function login(username, password, realm, referrer, errorMessages) {
     return (dispatch) => {
         dispatch(_login());
-
         const authPayload = {
             username,
             password,
@@ -22,6 +21,7 @@ export function login(username, password, realm, referrer, errorMessages) {
                 if (referrer) {
                     dispatch(push(referrer));
                 } else {
+                    cookie.save('indaba-roleID', profileResp.roleID, { path: '/' });
                     dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
                 }
             })
