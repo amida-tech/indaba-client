@@ -5,27 +5,12 @@ $block-class:'question-container';
         border-bottom: 1px solid $border-color;
         padding: 16px;
 
-        &__section-name {
-            @extend .large-font;
-
-            color: #333;
-            border-bottom: 2px solid darken($border-color, 5);
-            padding: 16px 0;
-            margin-bottom: 16px;
-            margin-left: 2px;
-            width: 100%;
-            background-color: #fafafa;
-            outline: none;
-        }
-
         &:last-child {
             border-width: 0;
         }
 
-        &__heading {
-            .grommetux-accordion-panel__header {
-                @extend .lead-font;
-            }
+        .grommetux-accordion-panel__header {
+            @extend .lead-font;
         }
     }
 }
