@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 // import Accordion from 'grommet/components/Accordion';
+import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
 
@@ -16,10 +17,12 @@ class SurveyPresentation extends Component {
                               (<div className='survey-presentation__section-name'>
                                   {question.sectionName}
                               </div>)}
-                            <QuestionContainer
-                                questionIndex={index}
-                                question={question}
-                                {...this.props} />
+                            <Element name={`question${this.props.questionIndex}`}>
+                                <QuestionContainer
+                                    questionIndex={index}
+                                    question={question}
+                                    {...this.props} />
+                            </Element>
                         </div>);
                 })}
                 {!this.props.taskDisabled &&
