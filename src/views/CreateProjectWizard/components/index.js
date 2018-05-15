@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
-import { Tabs, Tab } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { find, has, get } from 'lodash';
 
+import Tabs from '../../../common/components/Tabs/Tabs';
+import Tab from '../../../common/components/Tabs/Tab';
 import Summary from '../../../common/components/Summary';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
@@ -103,10 +104,10 @@ class CreateProjectWizard extends Component {
                         onCloseModal={this.props.actions.wizardHideSurveyTitleModal} />
                 }
                 <Tabs className='project-wizard__tabs'
-                    activeIndex={this.props.ui.step}
-                    onActive={this.changeStep}
-                    responsive={true} >
-                    <Tab className={`project-wizard__tab project-wizard__tab--${surveyComplete ? 'complete' : 'incomplete'}`}
+                    activeTabIndex={this.props.ui.step}
+                    onActive={this.changeStep}>
+                    <Tab className='project-wizard__tab'
+                        classModifier={surveyComplete ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         {summary}
                         <AddSurvey
@@ -115,7 +116,8 @@ class CreateProjectWizard extends Component {
                             profile={this.props.user.profile}
                             vocab={this.props.vocab} />
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         {summary}
                         <AddSubjects
@@ -125,7 +127,8 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             ui={this.props.ui}/>
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.users.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         {summary}
                         <AddUsers
@@ -136,7 +139,8 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             user={this.props.user} />
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         {summary}
                         <AddStages

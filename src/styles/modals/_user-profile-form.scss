@@ -16,22 +16,38 @@ $block-class: 'user-profile-form';
             margin-top: 1em;
             cursor: pointer;
 
-            .grommetux-tab--active {
-                border-bottom: 2px solid nth($brand-neutral-colors, 2);
-                font-weight: bold;
-            }
-
-            label.grommetux-tab__label {
-                border: none;
+            &__nav {
+                display: flex;
+                margin: 0 0 1em;
+                border-bottom: 1px solid $border-color;
             }
         }
 
         &__tab {
-            .grommetux-tab__label {
+            display: flex;
+            margin: 12px 0 0;
+            border-bottom: 1px solid $border-color;
+            font-size: 14px;
+            color: $font-color-for-labels;
+            font-weight: 400;
+            text-transform: uppercase;
+
+            &__title {
+                font-weight: 400;
+                line-height: 24px;
+                display: flex;
                 font-size: 14px;
                 color: $font-color-for-labels;
-                font-weight: 400;
-                text-transform: uppercase;
+                padding: 5px 12px;
+                border-bottom: none;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            &__link {
+                &--active {
+                    border-bottom: 2px solid nth($brand-neutral-colors, 2);
+                }
             }
         }
     }
