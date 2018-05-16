@@ -12,15 +12,16 @@ class NewProjectTitleForm extends Component {
                 <div className='new-project-title-form__field'>
                     <Field component={ValidatedTextInput}
                         name='project.codeName'
+                        vocab={this.props.vocab.VALIDATE}
                         placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
-                        validate={required(this.props.vocab)}
-                        />
+                        validate={[required]} />
                 </div>
                 <div className='new-project-title-form__field'>
                     <Field component={ValidatedTextInput}
                         name='survey.name'
+                        vocab={this.props.vocab.VALIDATE}
                         placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
-                        validate={required(this.props.vocab)}/>
+                        validate={[required]} />
                 </div>
                 <div className='new-project-title-form__summary-container'>
                     <Field component='textarea'
