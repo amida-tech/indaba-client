@@ -13,7 +13,6 @@ const ValidatedTextInput = ({
         (touched && error) ? 'validated-text-input--error' : '',
         className || '',
     ].join(' ');
-    // const finalPlaceholder = (touched && error) ? error : placeholder;
     const finalPlaceholder = placeholder + ((touched && error) ? vocab._IS_REQUIRED : '');
     return (
         <input type={password ? 'password' : 'text'}
