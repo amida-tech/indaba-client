@@ -32,6 +32,7 @@ export const initialState = {
         showStage: false,
         editStage: null,
         showStageDeleteConfirmModal: null,
+        isOrderedByNameAscending: true,
     },
 };
 
@@ -154,6 +155,18 @@ export default (state = initialState, action) => {
             showStageDeleteConfirmModal: { $set: null },
         } });
     }
+    case type.PM_PROJECT_SUBJECTS_ORDER_BY_NAME_ASC:
+        return update(state, {
+            ui: {
+                isOrderedByNameAscending: { $set: true },
+            },
+        });
+    case type.PM_PROJECT_SUBJECTS_ORDER_BY_NAME_DESC:
+        return update(state, {
+            ui: {
+                isOrderedByNameAscending: { $set: false },
+            },
+        });
     default:
         return state;
     }
