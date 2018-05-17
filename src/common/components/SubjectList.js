@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'react-fa';
 
 import DeleteIconButton from './DeleteIconButton';
 
@@ -12,8 +13,6 @@ class SubjectList extends Component {
         return subject.name.toLowerCase().includes(this.props.query.toLowerCase());
     }
     render() {
-        const caretUp = (<span className='fa fa-sort-up' />);
-        const caretDown = (<span className='fa fa-sort-down' />);
         return (
             <div className='subject-list'>
                 <div className='subject-list__header'>
@@ -26,7 +25,11 @@ class SubjectList extends Component {
                         }
                     >
                         <span>
-                            {this.props.isOrderedByNameAscending ? caretUp : caretDown}
+                            <Icon
+                                name={this.props.isOrderedByNameAscending
+                                    ? 'sort-up'
+                                    : 'sort-down'}
+                            />
                             {` ${this.props.vocab.COMMON.SUBJECTS}`}
                         </span>
                     </div>
