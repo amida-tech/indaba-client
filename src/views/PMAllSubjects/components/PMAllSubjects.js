@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import _ from 'lodash';
 
 import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
@@ -58,6 +59,12 @@ class PMAllSubjects extends Component {
         })
         .catch(this.subjectRequestToast);
     }
+    orderSubjectsByNameAscending(subjects) {
+        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+    }
+    orderSubjectsByNameDescending(subjects) {
+        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
+    }
     render() {
         return (
             <div className='pm-all-subjects'>
@@ -98,7 +105,9 @@ class PMAllSubjects extends Component {
                     isOrderedByNameAscending={this.props.formState.isOrderedByNameAscending}
                     sortNamesAsc={this.props.actions.pmAllSubjectsOrderByNameAscending}
                     sortNamesDesc={this.props.actions.pmAllSubjectsOrderByNameDescending}
-                    subjects={this.props.subjects}
+                    subjects={this.props.formState.isOrderedByNameAscending
+                        ? this.orderSubjectsByNameAscending(this.props.subjects)
+                        : this.orderSubjectsByNameDescending(this.props.subjects)}
                     query={this.props.ui.query}
                     onDeleteClick={this.attemptSubjectDelete}
                     vocab={this.props.vocab}/>
