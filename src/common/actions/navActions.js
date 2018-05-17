@@ -19,6 +19,7 @@ export function toggleCheckBackend() {
 export function logOut(timeoutRef) {
     cookie.remove('indaba-auth', { path: '/' });
     cookie.remove('indaba-realm', { path: '/' });
+    cookie.remove('indaba-roleID', { path: '/' });
     return (dispatch) => {
         dispatch(_logOutSuccess(timeoutRef));
     };
