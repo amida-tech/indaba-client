@@ -34,13 +34,16 @@ class FilteredList extends Component {
                     onChange={this.handleQuery}/>
                 <List className='filtered-list'
                     {...listProps}>
-                    {this.props.items.map(item => (
+                    {this.props.items.map((item) => {
+                        console.log('>>>>> FilteredList > item: ', item);
+                        return (
                         <ListItem className='filtered-list__item'
                             key={item.key}
                             style={{ display: this.filter(item) ? undefined : 'none' }}>
                             {item.label}
                         </ListItem>
-                    ))}
+                        );
+                    })}
                 </List>
             </div>
         );

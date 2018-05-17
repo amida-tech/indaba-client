@@ -86,6 +86,9 @@ class SelectGroupUsers extends Component {
         };
     }
     render() {
+        console.log('>>>>> allUsers: ', this.props.allUsers);
+        console.log('>>>>> userGroups: ', this.props.userGroups);
+        console.log('>>>>> groupUserIds: ', this.state.groupUserIds);
         const nonGroupIds = this.nonGroupIds();
         return (
             <Modal
@@ -136,7 +139,8 @@ class SelectGroupUsers extends Component {
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
-                                onSelect={this.handleGroupUsersSelect}/>
+                                onSelect={this.handleGroupUsersSelect}
+                            />
                         </div>
                     </div>
                 </div>
