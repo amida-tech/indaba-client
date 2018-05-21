@@ -10,7 +10,7 @@ import PMAllUsers from './PMAllUsers';
 
 class PMAllUsersContainer extends Component {
     componentWillMount() {
-        this.props.actions.checkProtect(this.props.profile);
+        this.props.actions.checkProtection(this.props.profile);
     }
 
     render() {

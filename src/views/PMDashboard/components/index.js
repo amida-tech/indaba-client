@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
+import { checkProtection } from '../../../common/actions/navActions';
 
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
@@ -111,7 +112,10 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, { getProjects }), dispatch),
+    actions: bindActionCreators(Object.assign({},
+        actions,
+        { getProjects, checkProtection }),
+    dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
