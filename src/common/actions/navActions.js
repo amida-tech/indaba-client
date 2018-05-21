@@ -12,13 +12,11 @@ export function showCreateProject(show) {
 }
 
 export function checkProtection(profile) {
-    return dispatch => new Promise((resolve, reject) => {
+    return dispatch => new Promise((resolve) => {
         if (cookie.load('indaba-auth') === undefined) {
             dispatch(push('/login'));
-            reject();
         } else if (get(profile, 'roleID') === 3 || cookie.load('indaba-roleID') === '3') {
             dispatch(push('/task'));
-            reject();
         }
         resolve();
     });
