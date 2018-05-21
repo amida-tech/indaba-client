@@ -62,7 +62,11 @@ class CreateProjectWizard extends Component {
         this.props.actions.goToStep(newStep);
     }
     componentWillMount() {
-        this.props.actions.checkProtection(this.props.user.profile);
+        this.props.actions.checkProtection(this.props.user.profile)
+            .then(() => {
+                this.props.actions.surveyBuilderReset();
+                this.props.actions.projectWizardInitialize();
+            });
     }
     render() {
         const surveyComplete = has(this.props.survey, 'id') &&
