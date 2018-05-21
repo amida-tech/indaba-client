@@ -1,5 +1,6 @@
 import cookie from 'react-cookies';
-
+import { get } from 'lodash';
+import { push } from 'react-router-redux';
 import * as actionTypes from '../actionTypes/navActionTypes';
 
 
@@ -8,6 +9,19 @@ export function showCreateProject(show) {
         type: actionTypes.SHOW_CREATE_PROJECT,
         show,
     };
+}
+
+export function checkProtection(profile) {
+    return dispatch => new Promise((resolve, reject) => {
+        if (cookie.load('indaba-auth') === undefined) {
+            dispatch(push('/login'));
+            reject();
+        } else if (get(profile, 'roleID') === 3 || cookie.load('indaba-roleID') === '3') {
+            dispatch(push('/task'));
+            reject();
+        }
+        resolve();
+    });
 }
 
 export function toggleCheckBackend() {

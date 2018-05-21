@@ -18,8 +18,11 @@ import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
     componentWillMount() {
-        this.props.actions.getProjects(this.props.vocab.ERROR);
-        this.props.actions.pmDashGetMessages();
+        this.props.actions.checkProtection(this.props.profile)
+            .then(() => {
+                this.props.actions.getProjects(this.props.vocab.ERROR);
+                this.props.actions.pmDashGetMessages();
+            });
     }
 
     filterRow(row) {
@@ -87,23 +90,24 @@ PMDashboard.propTypes = {
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    ui: state.pmdashboard.ui,
-    rows: state.projects.data.map(project => ({
+const mapStateToProps = store => ({
+    vocab: store.settings.language.vocabulary,
+    ui: store.pmdashboard.ui,
+    profile: store.user.profile,
+    rows: store.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
-        survey: _.pick(state.surveys.data.find(survey =>
+        survey: _.pick(store.surveys.data.find(survey =>
             survey.id === project.surveyId), ['name', 'status', 'id']),
         flags: project.flags || 0,
     })),
     glance: {
-        projects: state.projects.data.length,
-        active: state.projects.data.filter(project => project.status === 1).length,
-        inactive: state.projects.data.filter(project => project.status === 0).length,
+        projects: store.projects.data.length,
+        active: store.projects.data.filter(project => project.status === 1).length,
+        inactive: store.projects.data.filter(project => project.status === 0).length,
         // flags calculated inline from rows.flags
     },
-    messages: state.pmdashboard.messages.slice(0, 4),
-    users: state.user.users,
+    messages: store.pmdashboard.messages.slice(0, 4),
+    users: store.user.users,
 });
 
 const mapDispatchToProps = dispatch => ({
