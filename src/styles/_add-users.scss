@@ -41,30 +41,12 @@ $block-class: 'add-users';
             }
         }
 
-        .grommetux-tab--active {
-            background-color: $element-background;
-            border: 2px solid $border-color;
-        }
-
-        .grommetux-tabs--justify-center {
-            justify-content: flex-start;
+        &__tabs__nav {
+            display: flex;
+            border-bottom: 1px solid $border-color;
             margin-left: 10%;
             margin-right: 10%;
-        }
-
-        .grommetux-tab {
-            width: 150px;
-            display: flex;
-        }
-
-        .grommetux-tab__label {
-            @extend .lead-font;
-
-            color: $header-font-color;
-            width: 150px;
-            display: flex;
-            padding-bottom: 4px;
-            padding-top: 4px;
+            margin-bottom: 0;
         }
 
         .divider {
