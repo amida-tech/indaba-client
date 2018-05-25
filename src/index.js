@@ -26,6 +26,8 @@ import { logOut } from './common/actions/navActions';
 import reducers from './reducers';
 import routes from './routes';
 
+console.log('React Version:');
+console.log(React.version);
 const DEVELOP = process.env.NODE_ENV === 'development' && !(navigator.userAgent.match('MSIE|Trident/7.0|Edge'));
 
 const authInterceptor = ({ dispatch }) => next => (action) => {
