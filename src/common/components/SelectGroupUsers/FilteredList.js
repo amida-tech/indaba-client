@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { List, ListItem } from 'grommet';
+// import { List, ListItem } from 'grommet';
+import List from './List';
 import SearchInput from '../../../common/components/Dashboard/SearchInput';
 
 class FilteredList extends Component {
@@ -21,30 +22,38 @@ class FilteredList extends Component {
             onSelect: this.props.onSelect,
         };
         if (this.props.selected) {
-            listProps.selected =
-                this.props.selected.length === 1 ?
-                this.props.selected[0] :
-                this.props.selected;
+            listProps.selected = this.props.selected.length === 1
+                ? this.props.selected[0]
+                : this.props.selected;
         }
 
+        console.log('>>>>> FilteredList > selected: ', this.props.selected);
+        // console.log('>>>>> items: ', this.props.items);
+        // console.log('>>>>> listProps.selected: ', listProps.selected);
+
         return (
-            <div className='filtered-list'>
+            <div>
                 <SearchInput
                     placeholder={this.props.placeHolder}
                     onChange={this.handleQuery}/>
-                <List className='filtered-list'
-                    {...listProps}>
-                    {this.props.items.map((item) => {
-                        console.log('>>>>> FilteredList > item: ', item);
-                        return (
-                        <ListItem className='filtered-list__item'
-                            key={item.key}
-                            style={{ display: this.filter(item) ? undefined : 'none' }}>
-                            {item.label}
-                        </ListItem>
-                        );
-                    })}
-                </List>
+                {
+                // <List className='filtered-list'
+                //     {...listProps}>
+                //     {this.props.items.map((item) => {
+                //         return (
+                //         <ListItem className='filtered-list__item'
+                //             key={item.key}
+                //             style={{ display: this.filter(item) ? undefined : 'none' }}>
+                //             {item.label}
+                //         </ListItem>
+                //         );
+                //     })}
+                // </List>
+                <List
+                    {...listProps}
+                    items={this.props.items}
+                />
+                }
             </div>
         );
     }

@@ -33,9 +33,11 @@ class SelectGroupUsers extends Component {
         this.setState({ groupTitle: evt.target.value });
     }
     handleProjectUsersSelect(selection) {
+        console.log('>>>>> handleProjectUsersSelect > selection: ', selection);
         this.setState({ projectUsersSelected: selection.length ? selection : [selection] });
     }
     handleGroupUsersSelect(selection) {
+        console.log('>>>>> handleProjectUsersSelect > selection: ', selection);
         this.setState({ groupUsersSelected: selection.length ? selection : [selection] });
     }
     handleAdd() {
@@ -90,6 +92,8 @@ class SelectGroupUsers extends Component {
         console.log('>>>>> userGroups: ', this.props.userGroups);
         console.log('>>>>> groupUserIds: ', this.state.groupUserIds);
         const nonGroupIds = this.nonGroupIds();
+        console.log('>>>>> nonGroupIds: ', nonGroupIds);
+        console.log('>>>>> projectUsersSelected: ', this.state.projectUsersSelected);
         return (
             <Modal
                 onCancel={this.props.onCancel}
@@ -122,7 +126,8 @@ class SelectGroupUsers extends Component {
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}
-                                selected={this.state.projectUsersSelected}/>
+                                selected={this.state.projectUsersSelected}
+                            />
                         </div>
                         <div className='select-group-users__buttons'>
                             <div className='select-group-users__button'
@@ -140,6 +145,7 @@ class SelectGroupUsers extends Component {
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
                                 onSelect={this.handleGroupUsersSelect}
+                                selected={this.state.groupUsersSelected}
                             />
                         </div>
                     </div>
