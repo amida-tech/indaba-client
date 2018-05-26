@@ -1,4 +1,4 @@
-/** Modules **/
+/** Modules * */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -8,7 +8,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { get } from 'lodash';
 
-/** Developer Tools **/
+/** Developer Tools * */
 import ChartMonitor from 'redux-devtools-chart-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 import LogMonitor from 'redux-devtools-log-monitor';
@@ -22,7 +22,7 @@ import 'react-select/dist/react-select.css';
 import './styles/main.scss';
 import { logOut } from './common/actions/navActions';
 
-/** User Imports **/
+/** User Imports * */
 import reducers from './reducers';
 import routes from './routes';
 
