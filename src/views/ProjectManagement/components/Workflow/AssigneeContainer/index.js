@@ -62,7 +62,6 @@ class AssigneeContainer extends Component {
                 separator='all'>
                 <UserSidebar
                     groupFilters={groupFilters}
-                    unassigned={unassigned}
                     unassignedCards={unassignedCards}
                     onSearch={this.onSearch}
                     search={this.props.search}
