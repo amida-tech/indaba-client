@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Select } from 'grommet';
-import List from '../../../../../common/components/SelectGroupUsers/List';
 import SearchInput from '../../../../../common/components/Dashboard/SearchInput';
 
 class UserSidebar extends Component {
@@ -23,10 +22,7 @@ class UserSidebar extends Component {
                     value={this.props.search.group && this.props.search.group.title}
                     onChange={this.props.onGroupFilter}
                 />
-                <List
-                    onSelect={() => {}}
-                    itemsJSX={this.props.unassignedCards}
-                />
+                <div className='filtered-list'>{this.props.unassignedCards}</div>
             </div>
         );
     }

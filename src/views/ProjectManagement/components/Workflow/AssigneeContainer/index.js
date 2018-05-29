@@ -40,9 +40,18 @@ class AssigneeContainer extends Component {
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => this.searchFilter(renderName(user)))
             .filter(user => this.groupFilter(user));
-        const unassignedCards = unassigned.map(unassignee =>
-                React.createElement(AssigneeCard, this.props, unassignee),
+        const unassignedCards = unassigned.map((unassignee) => {
+            return (
+                <AssigneeCard
+                    key={unassignee.id}
+                    actions={this.props.actions}
+                    project={this.props.project}
+                    vocab={this.props.vocab}
+                >
+                    {unassignee}
+                </AssigneeCard>
             );
+        });
 
         const groupFilters = this.props.project.userGroups.map(group =>
             ({ label: group.title, value: group }));
