@@ -86,12 +86,7 @@ class SelectGroupUsers extends Component {
         };
     }
     render() {
-        console.log('>>>>> allUsers: ', this.props.allUsers);
-        console.log('>>>>> userGroups: ', this.props.userGroups);
-        console.log('>>>>> groupUserIds: ', this.state.groupUserIds);
         const nonGroupIds = this.nonGroupIds();
-        console.log('>>>>> nonGroupIds: ', nonGroupIds);
-        console.log('>>>>> projectUsersSelected: ', this.state.projectUsersSelected);
         return (
             <Modal
                 onCancel={this.props.onCancel}
