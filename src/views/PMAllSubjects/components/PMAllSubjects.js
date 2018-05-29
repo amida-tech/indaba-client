@@ -18,20 +18,14 @@ class PMAllSubjects extends Component {
         );
     }
     subjectHasData(subjectId) {
-        return new Promise((resolve, reject) => {
-            apiService.tasks.getTasks((tasksErr, tasks) => {
-                if (tasksErr) {
-                    reject(tasksErr);
-                } else {
-                    const answerPromises = tasks
-                    .filter(task => task.uoaId === subjectId)
-                    .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
-                    Promise.all(answerPromises)
-                    .then(statuses => statuses.some(status => status.status !== 'new'))
-                    .then(resolve)
-                    .catch(reject);
-                }
-            });
+        return apiService.tasks.getTasks()
+        .then((tasks) => {
+            const answerPromises = tasks
+            .filter(task => task.uoaId === subjectId)
+            .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
+
+            return Promise.all(answerPromises)
+            .then(statuses => statuses.some(status => status.status !== 'new'));
         });
     }
     attemptSubjectDelete(subject) {
@@ -75,15 +69,12 @@ class PMAllSubjects extends Component {
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal()}
                         onSave={() => {
                             apiService.subjects.deleteSubject(
-                                this.props.ui.showDeleteConfirmModal.id,
-                                (subjectErr) => {
-                                    if (subjectErr) {
-                                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                                            { autoClose: false, type: 'error' });
-                                    }
-                                    this.props.actions.pmAllSubjectsGetSubjects();
-                                },
-                            );
+                                this.props.ui.showDeleteConfirmModal.id)
+                            .then(() => this.props.actions.pmAllSubjectsGetSubjects())
+                            .catch(() => {
+                                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                                    { autoClose: false, type: 'error' });
+                            });
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal();
                         }}
                         saveLabel={this.props.vocab.COMMON.DELETE}/>

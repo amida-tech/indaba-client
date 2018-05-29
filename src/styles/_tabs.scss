@@ -1,0 +1,11 @@
+$block-class:'tabs';
+
+@at-root {
+    .#{$block-class} {
+        &__nav {
+            display: flex;
+            margin: 12px 0 0;
+            border-bottom: 1px solid $border-color;
+        }
+    }
+}

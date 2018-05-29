@@ -16,31 +16,22 @@ $block-class: 'add-question-panel';
         }
 
         &__tab {
-            &:hover {
-                background-color: darken(#fff, 5);
+            @extend .tab !optional;
+
+            &__link--active {
+                @extend .tab__link--active !optional;
+
+                border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+                border-top: 1px solid $border-color;
             }
-        }
-
-        .grommetux-tabs {
-            border: 0;
-        }
-
-        .grommetux-tab--active {
-            background-color: #ebeaea;
-        }
-
-        .grommetux-tab {
-            cursor: pointer;
-            border-radius: 2px;
-            border: 1px solid $border-color;
 
             &__label {
-                @extend .small-font;
+                @extend .tab__label !optional;
+            }
 
-                padding: 4px;
-                border-color: transparent;
-                margin-bottom: 0;
-                border-bottom: 0;
+            &__title {
+                @extend .tab__title !optional;
             }
         }
     }

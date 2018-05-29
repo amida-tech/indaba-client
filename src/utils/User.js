@@ -21,25 +21,17 @@ export const DATA_STATE = {
 };
 
 export const getDataState = (userId, projectId) => {
-    return new Promise((resolve, reject) => {
-        apiService.tasks.getTasksByUser(userId, (tasksErr, tasks) => {
-            if (tasksErr) {
-                reject(tasksErr);
-            } else {
-                const statusPromises = (tasks || [])
-                .filter(task => projectId === undefined || task.projectId === projectId)
-                .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
-                if (statusPromises.length > 0) {
-                    Promise.all(statusPromises)
-                    .then(statuses => statuses.some(status => status.status !== 'new'))
-                    .then(hasData => resolve(hasData ?
-                        DATA_STATE.HAS_DATA :
-                        DATA_STATE.HAS_TASKS))
-                    .catch(reject);
-                } else {
-                    resolve(DATA_STATE.NEITHER);
-                }
-            }
-        });
+    return apiService.tasks.getTasksByUser(userId)
+    .then((tasks) => {
+        const statusPromises = (tasks || [])
+        .filter(task => projectId === undefined || task.projectId === projectId)
+        .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
+
+        if (statusPromises.length > 0) {
+            return Promise.all(statusPromises)
+            .then(statuses => statuses.some(status => status.status !== 'new'))
+            .then(hasData => (hasData ? DATA_STATE.HAS_DATA : DATA_STATE.HAS_TASKS));
+        }
+        return DATA_STATE.NEITHER;
     });
 };
