@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class List extends Component {
 
     renderListItem() {
+        if (this.props.itemsJSX) {
+            return this.props.itemsJSX;
+        }
         const items = this.props.items.map((item, index) => {
-            // console.log('>>>>> renderListItem > index: ', index);
-            // console.log('>>>>> renderListItem > item: ', item);
-
             const className = this.props.selected === index
                 ? 'filtered-list__item filtered-list__item--selected'
                 : 'filtered-list__item';
-
-            console.log('>>>>> renderListItem > selected: ', this.props.selected);
-            console.log('>>>>> renderListItem > index: ', index);
-            console.log('>>>>> renderListItem > className: ', className);
-
             return (
                 <div
                     className={className}
                     key={`index-${index}-id-${item.key}`}
                     onClick={this.props.onSelect.bind(this, index)}
-                    // data-index={index}
                 >
                     {item.label}
                 </div>
@@ -30,15 +25,18 @@ class List extends Component {
     }
 
     render() {
-        // vars
-        console.log('>>>>> List > selected: ', this.props.selected);
-
         return (
-            <div className='filtered-list'>
+            <div className={this.props.className || 'filtered-list'}>
                 {this.renderListItem()}
             </div>
         );
     }
 }
+
+List.propTypes = {
+    selected: PropTypes.bool.isRequired,
+    items: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired,
+};
 
 export default List;

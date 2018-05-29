@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { List, ListItem } from 'grommet';
 import List from './List';
 import SearchInput from '../../../common/components/Dashboard/SearchInput';
 
@@ -16,9 +15,8 @@ class FilteredList extends Component {
         this.setState({ query: evt.target.value });
     }
     render() {
-        // list selection breaks if selected is passed in as undefined inline
         const listProps = {
-            selectable: 'multiple',
+            // selectable: 'multiple', // TODO
             onSelect: this.props.onSelect,
         };
         if (this.props.selected) {
@@ -27,33 +25,16 @@ class FilteredList extends Component {
                 : this.props.selected;
         }
 
-        console.log('>>>>> FilteredList > selected: ', this.props.selected);
-        // console.log('>>>>> items: ', this.props.items);
-        // console.log('>>>>> listProps.selected: ', listProps.selected);
-
         return (
             <div>
                 <SearchInput
                     placeholder={this.props.placeHolder}
-                    onChange={this.handleQuery}/>
-                {
-                // <List className='filtered-list'
-                //     {...listProps}>
-                //     {this.props.items.map((item) => {
-                //         return (
-                //         <ListItem className='filtered-list__item'
-                //             key={item.key}
-                //             style={{ display: this.filter(item) ? undefined : 'none' }}>
-                //             {item.label}
-                //         </ListItem>
-                //         );
-                //     })}
-                // </List>
+                    onChange={this.handleQuery}
+                />
                 <List
                     {...listProps}
                     items={this.props.items}
                 />
-                }
             </div>
         );
     }

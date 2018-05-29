@@ -39,8 +39,8 @@ class AssigneeContainer extends Component {
         const unassigned = this.props.project.users
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => this.searchFilter(renderName(user)))
-            .filter(user => this.groupFilter(user))
-            .map(unassignee =>
+            .filter(user => this.groupFilter(user));
+        const unassignedCards = unassigned.map(unassignee =>
                 React.createElement(AssigneeCard, this.props, unassignee),
             );
 
@@ -54,6 +54,7 @@ class AssigneeContainer extends Component {
                 <UserSidebar
                     groupFilters={groupFilters}
                     unassigned={unassigned}
+                    unassignedCards={unassignedCards}
                     onSearch={this.onSearch}
                     search={this.props.search}
                     onGroupFilter={this.onGroupFilter}

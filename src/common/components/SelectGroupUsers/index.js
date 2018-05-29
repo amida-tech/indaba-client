@@ -33,11 +33,9 @@ class SelectGroupUsers extends Component {
         this.setState({ groupTitle: evt.target.value });
     }
     handleProjectUsersSelect(selection) {
-        console.log('>>>>> handleProjectUsersSelect > selection: ', selection);
         this.setState({ projectUsersSelected: selection.length ? selection : [selection] });
     }
     handleGroupUsersSelect(selection) {
-        console.log('>>>>> handleProjectUsersSelect > selection: ', selection);
         this.setState({ groupUsersSelected: selection.length ? selection : [selection] });
     }
     handleAdd() {
