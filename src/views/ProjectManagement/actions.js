@@ -177,3 +177,15 @@ export function pmHideSurveyTitleModal() {
 export function pmDeleteStage(projectId, stageId) {
     return dispatch => dispatch(deleteStage(projectId, stageId));
 }
+
+export function pmProjectSubjectsOrderByNameAscending() {
+    return {
+        type: actionTypes.PM_PROJECT_SUBJECTS_ORDER_BY_NAME_ASC,
+    };
+}
+
+export function pmProjectSubjectsOrderByNameDescending() {
+    return {
+        type: actionTypes.PM_PROJECT_SUBJECTS_ORDER_BY_NAME_DESC,
+    };
+}

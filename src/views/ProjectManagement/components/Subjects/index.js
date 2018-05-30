@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'grommet';
 import { toast } from 'react-toastify';
+import { orderBy } from 'lodash';
 
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
@@ -41,6 +42,12 @@ class Subjects extends Component {
         .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
         return Promise.all(answerPromises)
         .then(statuses => statuses.some(status => status.status !== 'new'));
+    }
+    orderSubjectsByNameAscending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+    }
+    orderSubjectsByNameDescending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
     }
     render() {
         return (
@@ -87,8 +94,13 @@ class Subjects extends Component {
                             onChange={evt => this.setState({ query: evt.target.value })} />
                     </div>
                     <SubjectList
+                        isOrderedByNameAscending={this.props.isOrderedByNameAscending}
+                        sortNamesAsc={this.props.actions.pmProjectSubjectsOrderByNameAscending}
+                        sortNamesDesc={this.props.actions.pmProjectSubjectsOrderByNameDescending}
+                        subjects={this.props.isOrderedByNameAscending
+                            ? this.orderSubjectsByNameAscending(this.props.subjects)
+                            : this.orderSubjectsByNameDescending(this.props.subjects)}
                         vocab={this.props.vocab}
-                        subjects={this.props.subjects}
                         query={this.state.query}
                         onDeleteClick={this.attemptSubjectDelete}/>
                 </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { orderBy } from 'lodash';
 
 import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
@@ -52,6 +53,12 @@ class PMAllSubjects extends Component {
         })
         .catch(this.subjectRequestToast);
     }
+    orderSubjectsByNameAscending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+    }
+    orderSubjectsByNameDescending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
+    }
     render() {
         return (
             <div className='pm-all-subjects'>
@@ -85,7 +92,13 @@ class PMAllSubjects extends Component {
                         onChange={evt =>
                             this.props.actions.pmAllSubjectsSetQuery(evt.target.value)} />
                 </div>
-                <SubjectList subjects={this.props.subjects}
+                <SubjectList
+                    isOrderedByNameAscending={this.props.formState.isOrderedByNameAscending}
+                    sortNamesAsc={this.props.actions.pmAllSubjectsOrderByNameAscending}
+                    sortNamesDesc={this.props.actions.pmAllSubjectsOrderByNameDescending}
+                    subjects={this.props.formState.isOrderedByNameAscending
+                        ? this.orderSubjectsByNameAscending(this.props.subjects)
+                        : this.orderSubjectsByNameDescending(this.props.subjects)}
                     query={this.props.ui.query}
                     onDeleteClick={this.attemptSubjectDelete}
                     vocab={this.props.vocab}/>

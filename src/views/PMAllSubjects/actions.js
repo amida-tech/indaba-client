@@ -37,6 +37,14 @@ const _getSubjectsSuccess = subjects => ({
     subjects,
 });
 
+export const pmAllSubjectsOrderByNameAscending = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_ORDER_BY_NAME_ASC,
+});
+
+export const pmAllSubjectsOrderByNameDescending = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_ORDER_BY_NAME_DESC,
+});
+
 export const pmAllSubjectsDeleteSubject = id => (dispatch) => {
     dispatch(_deleteSubject());
     subjectsApi.deleteSubject(id)

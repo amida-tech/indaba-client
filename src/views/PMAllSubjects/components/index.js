@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
     vocab: state.settings.language.vocabulary,
     subjects: state.pmallsubjects.subjects,
     ui: state.pmallsubjects.ui,
+    formState: state.pmallsubjects.formState,
 });
 
 const mapDispatchToProps = dispatch => ({
