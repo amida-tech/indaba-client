@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'grommet';
 import { toast } from 'react-toastify';
-import _ from 'lodash';
+import { orderBy } from 'lodash';
 
 import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
@@ -44,10 +44,10 @@ class Subjects extends Component {
         .then(statuses => statuses.some(status => status.status !== 'new'));
     }
     orderSubjectsByNameAscending(subjects) {
-        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
     }
     orderSubjectsByNameDescending(subjects) {
-        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
     }
     render() {
         return (

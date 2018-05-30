@@ -55,6 +55,9 @@ SubjectList.propTypes = {
     query: PropTypes.string.isRequired,
     subjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteClick: PropTypes.func.isRequired,
+    isOrderedByNameAscending: PropTypes.bool.isRequired,
+    sortNamesAsc: PropTypes.func.isRequired,
+    sortNamesDesc: PropTypes.func.isRequired,
 };
 
 export default SubjectList;

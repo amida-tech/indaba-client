@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import _ from 'lodash';
+import { orderBy } from 'lodash';
 
 import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
@@ -60,10 +60,10 @@ class PMAllSubjects extends Component {
         .catch(this.subjectRequestToast);
     }
     orderSubjectsByNameAscending(subjects) {
-        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
     }
     orderSubjectsByNameDescending(subjects) {
-        return _.orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
     }
     render() {
         return (
