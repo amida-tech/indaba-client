@@ -2,18 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
+import { required } from '../../../../../common/validation';
 import ValidatedTextInput from '../../../../../common/components/ValidatedTextInput';
 
 class SubjectForm extends Component {
-    constructor(props) {
-        super(props);
-        this.handleValidate = this.handleValidate.bind(this);
-    }
-
-    handleValidate(value) {
-        return !value ? this.props.vocab.VALIDATE.FIELD_REQUIRED : undefined;
-    }
-
     render() {
         return (
             <form className='subject-form' onSubmit={this.props.handleSubmit}>
@@ -23,8 +15,9 @@ class SubjectForm extends Component {
                 <Field component={ValidatedTextInput}
                     name='subjects'
                     className='subject-form__input-field'
+                    vocab={this.props.vocab.VALIDATE}
                     placeholder={this.props.vocab.PROJECT.SUBJECT_TITLE}
-                    validate={this.handleValidate} />
+                    validate={[required]} />
             </form>
         );
     }
