@@ -81,7 +81,9 @@ class ProjectManagementContainer extends Component {
                 ui={this.props.ui}/>;
             break;
         case 'subject':
-            body = <Subjects vocab={this.props.vocab}
+            body = <Subjects
+                    isOrderedByNameAscending={this.props.isOrderedByNameAscending}
+                    vocab={this.props.vocab}
                     project={this.props.project}
                     subjects={this.props.project.subjects}
                     actions={this.props.actions}
@@ -220,6 +222,7 @@ const mapStateToProps = (store, ownProps) => {
         tab: store.manager.ui.subnav,
         users: store.user.users,
         profile: store.user.profile,
+        isOrderedByNameAscending: store.manager.ui.isOrderedByNameAscending,
     };
 };
 

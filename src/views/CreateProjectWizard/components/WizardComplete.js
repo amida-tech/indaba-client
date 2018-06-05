@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab, Button } from 'grommet';
+import { Button } from 'grommet';
 import { has, get } from 'lodash';
 
+import Tabs from '../../../common/components/Tabs/Tabs';
+import Tab from '../../../common/components/Tabs/Tab';
 import Modal from '../../../common/components/Modal';
 
 class WizardComplete extends Component {
@@ -16,16 +18,20 @@ class WizardComplete extends Component {
                     {this.props.vocab.PROJECT.PROJECT_CREATE_SUCCESS}
                 </h1>
                 <Tabs className='wizard-complete__tabs'>
-                    <Tab className={`wizard-complete__tab wizard-complete__tab--${surveyComplete ? 'complete' : 'incomplete'}`}
+                    <Tab className='wizard-complete__tab'
+                        classModifier={surveyComplete ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                     </Tab>
-                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='wizard-complete__tab'
+                        classModifier={this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                     </Tab>
-                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='wizard-complete__tab'
+                        classModifier={this.props.project.users.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                     </Tab>
-                    <Tab className={`wizard-complete__tab wizard-complete__tab--${this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='wizard-complete__tab'
+                        classModifier={this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                     </Tab>
                 </Tabs>

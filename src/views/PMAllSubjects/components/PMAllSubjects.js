@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { orderBy } from 'lodash';
 
 import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
@@ -18,20 +19,14 @@ class PMAllSubjects extends Component {
         );
     }
     subjectHasData(subjectId) {
-        return new Promise((resolve, reject) => {
-            apiService.tasks.getTasks((tasksErr, tasks) => {
-                if (tasksErr) {
-                    reject(tasksErr);
-                } else {
-                    const answerPromises = tasks
-                    .filter(task => task.uoaId === subjectId)
-                    .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
-                    Promise.all(answerPromises)
-                    .then(statuses => statuses.some(status => status.status !== 'new'))
-                    .then(resolve)
-                    .catch(reject);
-                }
-            });
+        return apiService.tasks.getTasks()
+        .then((tasks) => {
+            const answerPromises = tasks
+            .filter(task => task.uoaId === subjectId)
+            .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
+
+            return Promise.all(answerPromises)
+            .then(statuses => statuses.some(status => status.status !== 'new'));
         });
     }
     attemptSubjectDelete(subject) {
@@ -58,6 +53,12 @@ class PMAllSubjects extends Component {
         })
         .catch(this.subjectRequestToast);
     }
+    orderSubjectsByNameAscending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
+    }
+    orderSubjectsByNameDescending(subjects) {
+        return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
+    }
     render() {
         return (
             <div className='pm-all-subjects'>
@@ -75,15 +76,12 @@ class PMAllSubjects extends Component {
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal()}
                         onSave={() => {
                             apiService.subjects.deleteSubject(
-                                this.props.ui.showDeleteConfirmModal.id,
-                                (subjectErr) => {
-                                    if (subjectErr) {
-                                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                                            { autoClose: false, type: 'error' });
-                                    }
-                                    this.props.actions.pmAllSubjectsGetSubjects();
-                                },
-                            );
+                                this.props.ui.showDeleteConfirmModal.id)
+                            .then(() => this.props.actions.pmAllSubjectsGetSubjects())
+                            .catch(() => {
+                                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                                    { autoClose: false, type: 'error' });
+                            });
                             this.props.actions.pmAllSubjectsHideDeleteConfirmModal();
                         }}
                         saveLabel={this.props.vocab.COMMON.DELETE}/>
@@ -94,7 +92,13 @@ class PMAllSubjects extends Component {
                         onChange={evt =>
                             this.props.actions.pmAllSubjectsSetQuery(evt.target.value)} />
                 </div>
-                <SubjectList subjects={this.props.subjects}
+                <SubjectList
+                    isOrderedByNameAscending={this.props.formState.isOrderedByNameAscending}
+                    sortNamesAsc={this.props.actions.pmAllSubjectsOrderByNameAscending}
+                    sortNamesDesc={this.props.actions.pmAllSubjectsOrderByNameDescending}
+                    subjects={this.props.formState.isOrderedByNameAscending
+                        ? this.orderSubjectsByNameAscending(this.props.subjects)
+                        : this.orderSubjectsByNameDescending(this.props.subjects)}
                     query={this.props.ui.query}
                     onDeleteClick={this.attemptSubjectDelete}
                     vocab={this.props.vocab}/>

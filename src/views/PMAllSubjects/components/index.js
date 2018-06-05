@@ -23,6 +23,7 @@ const mapStateToProps = store => ({
     subjects: store.pmallsubjects.subjects,
     ui: store.pmallsubjects.ui,
     profile: store.user.profile,
+    formState: store.pmallsubjects.formState,
 });
 
 const mapDispatchToProps = dispatch => ({
