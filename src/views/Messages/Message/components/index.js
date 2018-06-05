@@ -4,14 +4,16 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import IonIcon from 'react-ionicons';
 import { push } from 'react-router-redux';
-import _ from 'lodash';
+import { get } from 'lodash';
 
+import { checkProtection } from '../../../../common/actions/navActions';
 import * as actions from '../../actions';
 
 import Message from './Message';
 
 class MessageContainer extends Component {
     componentWillMount() {
+        this.props.actions.checkProtection(this.props.profile);
         this.props.actions.discardReply();
         if (this.props.id) {
             this.props.actions.getThreadContainingMessage(this.props.id);
@@ -38,8 +40,8 @@ class MessageContainer extends Component {
                                     message={message} />,
                             );
 
-                            const insertAfterId = _.get(this.props, 'ui.reply.id',
-                                _.get(this.props, 'ui.reply.forwardId'));
+                            const insertAfterId = get(this.props, 'ui.reply.id',
+                                get(this.props, 'ui.reply.forwardId'));
                             if (this.props.ui.reply) {
                                 elements.splice(
                                     this.props.thread.findIndex(messageIter =>
@@ -64,23 +66,22 @@ class MessageContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (store, ownProps) => {
     const id = ownProps.params.id !== undefined ?
         parseInt(ownProps.params.id, 10) :
         undefined;
     return {
         id,
-
-        thread: state.messages.thread,
-        vocab: state.settings.language.vocabulary,
-        profile: state.user.profile,
-        ui: state.messages.ui,
-        users: state.user.users,
+        thread: store.messages.thread,
+        vocab: store.settings.language.vocabulary,
+        profile: store.user.profile,
+        ui: store.messages.ui,
+        users: store.user.users,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, { checkProtection }), dispatch),
     goToMessage: (id) => {
         dispatch(actions.markAsRead(id));
         dispatch(push(`/messages/${id}`));
