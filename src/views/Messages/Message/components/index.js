@@ -6,14 +6,12 @@ import IonIcon from 'react-ionicons';
 import { push } from 'react-router-redux';
 import { get } from 'lodash';
 
-import { checkProtection } from '../../../../common/actions/navActions';
 import * as actions from '../../actions';
 
 import Message from './Message';
 
 class MessageContainer extends Component {
     componentWillMount() {
-        this.props.actions.checkProtection(this.props.profile);
         this.props.actions.discardReply();
         if (this.props.id) {
             this.props.actions.getThreadContainingMessage(this.props.id);
@@ -81,7 +79,7 @@ const mapStateToProps = (store, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, { checkProtection }), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
     goToMessage: (id) => {
         dispatch(actions.markAsRead(id));
         dispatch(push(`/messages/${id}`));

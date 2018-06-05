@@ -5,15 +5,10 @@ import { bindActionCreators } from 'redux';
 import { submit } from 'redux-form';
 
 import * as actions from '../../../common/actions/userActions';
-import { checkProtection } from '../../../common/actions/navActions';
 import ProfileForm from './ProfileForm';
 import ResetPasswordPanel from './ResetPasswordPanel';
 
 class ProfileContainer extends Component {
-    componentWillMount() {
-        this.props.actions.checkProtection(this.props.profile);
-    }
-
     render() {
         return (
             <div className='profile'>
@@ -47,7 +42,7 @@ const mapStateToProps = (store) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, { checkProtection }), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions), dispatch),
     onClickToSubmit: () => dispatch(submit('update-profile-form')),
 });
 

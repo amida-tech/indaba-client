@@ -8,7 +8,6 @@ import { push } from 'react-router-redux';
 import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
-import { checkProtection } from '../../../../common/actions/navActions';
 import InboxTabs from './InboxTabs';
 import Filter from '../../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
@@ -35,7 +34,6 @@ class Inbox extends Component {
     }
 
     componentWillMount() {
-        this.props.actions.checkProtection(this.props.profile);
         this.props.actions.getUsers(this.props.vocab.ERROR);
         this.loadCurrentFilter();
     }
@@ -259,8 +257,7 @@ const mapStateToProps = store => ({
     inboxList: store.messages.inboxList,
 });
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({},
-        actions, userActions, { checkProtection }), dispatch),
+    actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
