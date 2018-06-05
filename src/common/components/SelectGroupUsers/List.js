@@ -23,7 +23,6 @@ class List extends Component {
         });
         return items;
     }
-
     render() {
         return (
             <div className={this.props.className || 'filtered-list'}>
@@ -34,8 +33,8 @@ class List extends Component {
 }
 
 List.propTypes = {
-    selected: PropTypes.bool.isRequired,
-    items: PropTypes.string.isRequired,
+    selected: PropTypes.number.isRequired,
+    items: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
 };
 

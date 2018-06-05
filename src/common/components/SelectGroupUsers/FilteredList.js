@@ -8,12 +8,15 @@ class FilteredList extends Component {
         this.state = { query: '' };
         this.handleQuery = this.handleQuery.bind(this);
     }
+
     filter(item) {
         return item.searchKey.toLowerCase().includes(this.state.query.toLowerCase());
     }
+
     handleQuery(evt) {
         this.setState({ query: evt.target.value });
     }
+
     render() {
         const listProps = {
             // selectable: 'multiple', // TODO
@@ -22,9 +25,8 @@ class FilteredList extends Component {
         if (this.props.selected) {
             listProps.selected = this.props.selected.length === 1
                 ? this.props.selected[0]
-                : this.props.selected;
+                : -1;
         }
-
         return (
             <div>
                 <SearchInput
