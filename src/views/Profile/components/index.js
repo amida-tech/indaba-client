@@ -33,11 +33,11 @@ ProfileContainer.propTypes = {
     profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (store) => {
     return {
-        vocab: state.settings.language.vocabulary,
-        ui: state.user.ui,
-        profile: state.user.profile,
+        vocab: store.settings.language.vocabulary,
+        ui: store.user.ui,
+        profile: store.user.profile,
     };
 };
 

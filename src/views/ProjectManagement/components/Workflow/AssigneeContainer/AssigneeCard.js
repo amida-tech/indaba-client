@@ -45,7 +45,7 @@ class AssigneeCard extends Component {
         const { isDragging, connectDragSource } = this.props;
 
         return connectDragSource(
-            <div className='assignee-card'>
+            <div className='assignee-card' key={this.props.key}>
                 { renderName(this.props.children) }
                 { isDragging }
             </div>,

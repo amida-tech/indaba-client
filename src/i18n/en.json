@@ -104,7 +104,8 @@
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
         "NUMBER": "Not a number.",
-        "FIELD_REQUIRED": "Required field must not be blank."
+        "FIELD_REQUIRED": "Required field must not be blank.",
+        "_IS_REQUIRED": " is a required field."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -474,6 +475,7 @@
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "RESET_PASSWORD": {
+        "NEW_PASSWORD": "New Password",
         "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
         "LINK": "Reset",
         "EMAIL_REQUIRED": "Enter your email to reset your password.",

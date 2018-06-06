@@ -35,30 +35,20 @@ export function upsertAnswer(assessmentId, questionId, answer, meta, errorMessag
 // Discussion related:
 export function getDiscussions(taskId, errorMessages) { // errorMessages
     return (dispatch) => {
-        apiService.discussions.getDiscussions(
-            taskId,
-            (discussErr, discussResp) => {
-                dispatch((!discussErr && discussResp) ?
-                    _getDiscussionsSuccess(discussResp) :
-                    _reportDiscussError(errorMessages.FETCH_DISCUSS));
-            },
-        );
+        apiService.discussions.getDiscussions(taskId)
+        .then(discussResp => dispatch(_getDiscussionsSuccess(discussResp)))
+        .catch(() => dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS)));
     };
 }
 
 export function postDiscussion(requestBody, errorMessages) {
     return (dispatch) => {
-        apiService.discussions.postDiscussion(
-            requestBody,
-            (discussErr, discussResp) => {
-                if (discussErr) {
-                    dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS));
-                } else {
-                    dispatch(_postDiscussionSuccess(discussResp));
-                    dispatch(getDiscussions(requestBody.taskId, errorMessages));
-                }
-            },
-        );
+        apiService.discussions.postDiscussion(requestBody)
+        .then((discussResp) => {
+            dispatch(_postDiscussionSuccess(discussResp));
+            dispatch(getDiscussions(requestBody.taskId, errorMessages));
+        })
+        .catch(() => dispatch(_reportDiscussError(errorMessages.FETCH_DISCUSS)));
     };
 }
 

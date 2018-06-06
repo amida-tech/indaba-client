@@ -35,24 +35,18 @@ export function userDashGetMessages() {
 }
 
 export function getDashboardData(errorMessages, userId) {
-    return (dispatch) => {
+    return dispatch =>
         (userId !== undefined ?
-            apiService.tasks.getTasksByUser.bind(null, userId) :
-            apiService.tasks.getSelfTasks
-        )(
-            (taskErr, taskResp) => {
-                if (taskErr) {
-                    dispatch(_reportError(errorMessages.FETCH_TASKS));
-                } else if (taskResp && taskResp.length > 0) {
-                    dispatch(_getTasksSuccess(taskResp));
-                    taskResp.forEach(task =>
-                        dispatch(_getAnswers(task.assessmentId, errorMessages)));
-                    uniq(taskResp.map(task => task.surveyId)).forEach(surveyId =>
-                        dispatch(_getSurveyById(surveyId, errorMessages)));
-                }
-            },
-        );
-    };
+            apiService.tasks.getTasksByUser(userId) :
+            apiService.tasks.getSelfTasks()
+        )
+        .then((taskResp) => {
+            dispatch(_getTasksSuccess(taskResp));
+            taskResp.forEach(task => dispatch(_getAnswers(task.assessmentId, errorMessages)));
+            uniq(taskResp.map(task => task.surveyId)).forEach(surveyId =>
+                dispatch(_getSurveyById(surveyId, errorMessages)));
+        })
+        .catch(() => dispatch(_reportError(errorMessages.FETCH_TASKS)));
 }
 
 function _reportError(message) {

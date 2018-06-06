@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import IonIcon from 'react-ionicons';
 import { push } from 'react-router-redux';
-import _ from 'lodash';
+import { get } from 'lodash';
 
 import * as actions from '../../actions';
 
@@ -38,8 +38,8 @@ class MessageContainer extends Component {
                                     message={message} />,
                             );
 
-                            const insertAfterId = _.get(this.props, 'ui.reply.id',
-                                _.get(this.props, 'ui.reply.forwardId'));
+                            const insertAfterId = get(this.props, 'ui.reply.id',
+                                get(this.props, 'ui.reply.forwardId'));
                             if (this.props.ui.reply) {
                                 elements.splice(
                                     this.props.thread.findIndex(messageIter =>
@@ -64,18 +64,17 @@ class MessageContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (store, ownProps) => {
     const id = ownProps.params.id !== undefined ?
         parseInt(ownProps.params.id, 10) :
         undefined;
     return {
         id,
-
-        thread: state.messages.thread,
-        vocab: state.settings.language.vocabulary,
-        profile: state.user.profile,
-        ui: state.messages.ui,
-        users: state.user.users,
+        thread: store.messages.thread,
+        vocab: store.settings.language.vocabulary,
+        profile: store.user.profile,
+        ui: store.messages.ui,
+        users: store.user.users,
     };
 };
 
