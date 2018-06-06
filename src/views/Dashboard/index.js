@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class DashboardContainer extends Component {
     render() {
@@ -7,10 +6,4 @@ class DashboardContainer extends Component {
     }
 }
 
-const mapStateToProps = () => { // Needed args: state
-    return {
-    // vocabulary: state.getIn(['settings', 'language', 'vocabulary'])
-    };
-};
-
-export default connect(mapStateToProps)(DashboardContainer);
+export default DashboardContainer;

@@ -30,10 +30,11 @@ import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(
-            this.props.params.projectId,
-            true,
-            this.props.vocab.ERROR);
+        this.props.actions.checkProtection(this.props.profile)
+            .then(this.props.actions.getProjectById(
+                this.props.params.projectId,
+                true,
+                this.props.vocab.ERROR));
     }
 
     stageHasData(stageId) {
@@ -205,23 +206,23 @@ ProjectManagementContainer.propTypes = {
     tab: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
-    const project = state.projects.data.length !== 0 ?
-        find(state.projects.data, current => current.id === projectId) :
-        state.projects.empty;
+const mapStateToProps = (store, ownProps) => {
+    const projectId = parseInt(ownProps.params.projectId, 10) || store.projects[0].id;
+    const project = store.projects.data.length !== 0 ?
+        find(store.projects.data, current => current.id === projectId) :
+        store.projects.empty;
     return {
         project,
-        tasks: state.tasks.data,
-        responses: state.discuss,
-        vocab: state.settings.language.vocabulary,
-        ui: merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
-        survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
-        tab: state.manager.ui.subnav,
-        users: state.user.users,
-        profile: state.user.profile,
-        isOrderedByNameAscending: state.manager.ui.isOrderedByNameAscending,
+        tasks: store.tasks.data,
+        responses: store.discuss,
+        vocab: store.settings.language.vocabulary,
+        ui: merge({}, store.manager.ui, store.projects.ui, store.nav.ui, store.surveys.ui),
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        tab: store.manager.ui.subnav,
+        users: store.user.users,
+        profile: store.user.profile,
+        isOrderedByNameAscending: store.manager.ui.isOrderedByNameAscending,
     };
 };
 

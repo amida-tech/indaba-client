@@ -19,6 +19,7 @@ export function login(username, password, realm, referrer, errorMessages) {
             apiService.users.getProfile()
             .then((profileResp) => {
                 dispatch(getProfileSuccess(profileResp));
+                cookie.save('indaba-roleID', profileResp.roleID, { path: '/' });
                 if (referrer) {
                     dispatch(push(referrer));
                 } else {

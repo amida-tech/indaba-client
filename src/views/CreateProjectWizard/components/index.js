@@ -20,16 +20,13 @@ import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
-import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 import { addNewUser } from '../../../common/actions/userActions';
+import { checkProtection } from '../../../common/actions/navActions';
+import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 
 const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
-    componentWillMount() {
-        this.props.actions.surveyBuilderReset();
-        this.props.actions.projectWizardInitialize();
-    }
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);
@@ -64,6 +61,13 @@ class CreateProjectWizard extends Component {
     changeStep(step) {
         const newStep = Math.min(Math.max(step, 0), NUM_WIZARD_STEPS);
         this.props.actions.goToStep(newStep);
+    }
+    componentWillMount() {
+        this.props.actions.checkProtection(this.props.user.profile)
+            .then(() => {
+                this.props.actions.surveyBuilderReset();
+                this.props.actions.projectWizardInitialize();
+            });
     }
     render() {
         const surveyComplete = has(this.props.survey, 'id') &&
@@ -184,24 +188,28 @@ CreateProjectWizard.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-    const project = state.wizard.ui.projectLink > 0 ?
-            find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
-            state.wizard.project;
+const mapStateToProps = (store) => {
+    const project = store.wizard.ui.projectLink > 0 ?
+            find(store.projects.data, item => item.id === store.wizard.ui.projectLink) :
+            store.wizard.project;
     return {
         project,
-        survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
-        inProgressSurvey: state.surveybuilder.form,
-        user: state.user,
-        ui: state.wizard.ui,
-        vocab: state.settings.language.vocabulary,
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        inProgressSurvey: store.surveybuilder.form,
+        user: store.user,
+        ui: store.wizard.ui,
+        vocab: store.settings.language.vocabulary,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, projectActions, surveyActions, { addNewUser, surveyBuilderReset }), dispatch),
+        actions,
+        projectActions,
+        surveyActions,
+        { addNewUser, surveyBuilderReset, checkProtection }),
+    dispatch),
     onWizardCancel: () => dispatch(goBack()),
 });
 

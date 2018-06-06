@@ -5,9 +5,14 @@ import { push } from 'react-router-redux';
 
 import * as actions from '../actions';
 import * as userActions from '../../../common/actions/userActions';
+import { checkProtection } from '../../../common/actions/navActions';
 import PMAllUsers from './PMAllUsers';
 
 class PMAllUsersContainer extends Component {
+    componentWillMount() {
+        this.props.actions.checkProtection(this.props.profile);
+    }
+
     render() {
         return (
             <PMAllUsers {...this.props} />
@@ -15,15 +20,16 @@ class PMAllUsersContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    users: state.user.users,
-    ui: state.pmallusers.ui,
-    organizationId: state.user.profile.organizationId,
+const mapStateToProps = store => ({
+    vocab: store.settings.language.vocabulary,
+    users: store.user.users,
+    ui: store.pmallusers.ui,
+    organizationId: store.user.profile.organizationId,
+    profile: store.user.profile,
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, userActions,
+    actions: bindActionCreators(Object.assign({}, actions, userActions, { checkProtection },
         { sendMessage: user => dispatch(push(
             {
                 pathname: '/messages/new',
