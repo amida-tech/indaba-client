@@ -6,6 +6,9 @@ $block-class: 'filtered-list';
         flex-direction: column;
         align-items: stretch;
         height: 300px;
+        margin-top: 10px;
+        border: 1px solid #e9e9e9;
+        overflow: scroll;
 
         &__query,
         .grommet &__query:not(.grommetux-input) {
@@ -13,7 +16,16 @@ $block-class: 'filtered-list';
         }
 
         &__item {
-            padding: 1.5em;
+            padding: 5px;
+            color: black;
+
+            &--selected {
+                background-color: fade-in(#a0d6b5, 0.9);
+            }
+
+            &:hover {
+                background-color: fade-in(#e9e9e9, 0.9);
+            }
         }
 
         .grommetux-list--selectable .grommetux-list-item--selected:hover {
