@@ -17,7 +17,7 @@ class SurveyPresentation extends Component {
                               (<div className='survey-presentation__section-name'>
                                   {question.sectionName}
                               </div>)}
-                            <Element name={`question${this.props.questionIndex}`}>
+                            <Element name={`question${index}`}>
                                 <QuestionContainer
                                     questionIndex={index}
                                     question={question}
