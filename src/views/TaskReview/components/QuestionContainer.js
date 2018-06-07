@@ -5,20 +5,25 @@ import ReviewPane from './ReviewPane';
 import Questions from './Questions';
 
 class QuestionContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.changeQuestionsDisplay = this.changeQuestionsDisplay.bind(this);
+    }
+    changeQuestionsDisplay() {
+        let newShowQuestions;
+        if (this.props.ui.showQuestions.includes(this.props.questionIndex)) {
+            newShowQuestions = this.props.ui.showQuestions
+                .filter(index => index !== this.props.questionIndex);
+        } else {
+            newShowQuestions = this.props.ui.showQuestions.slice();
+            newShowQuestions.push(this.props.questionIndex);
+        }
+        this.props.actions.updateQuestionDisplay(newShowQuestions);
+    }
     render() {
         return (
             <details className='question-container'
-                onClick={() => {
-                    let newShowQuestions;
-                    if (this.props.ui.showQuestions.includes(this.props.questionIndex)) {
-                        newShowQuestions = this.props.ui.showQuestions
-                            .filter(index => index !== this.props.questionIndex);
-                    } else {
-                        newShowQuestions = this.props.ui.showQuestions.slice();
-                        newShowQuestions.push(this.props.questionIndex);
-                    }
-                    this.props.actions.updateQuestionDisplay(newShowQuestions);
-                }}
+                onClick={this.changeQuestionsDisplay}
                 open={this.props.ui.showQuestions.includes(this.props.questionIndex)}>
                   <summary className='question-container__summary'>
                       {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + this.props.offset + 1)}: ${
