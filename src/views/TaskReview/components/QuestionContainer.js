@@ -1,3 +1,5 @@
+import 'details-element-polyfill';
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { find } from 'lodash';
@@ -8,6 +10,7 @@ class QuestionContainer extends Component {
     constructor(props) {
         super(props);
         this.changeQuestionsDisplay = this.changeQuestionsDisplay.bind(this);
+        this.stopDetails = this.stopDetails.bind(this);
     }
     changeQuestionsDisplay() {
         let newShowQuestions;
@@ -20,6 +23,9 @@ class QuestionContainer extends Component {
         }
         this.props.actions.updateQuestionDisplay(newShowQuestions);
     }
+    stopDetails(e) {
+        e.stopPropagation();
+    }
     render() {
         return (
             <details className='question-container'
@@ -29,30 +35,32 @@ class QuestionContainer extends Component {
                       {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + this.props.offset + 1)}: ${
                       this.props.question.text}${this.props.question.required ? ' *' : ''}`}
                   </summary>
-                  <Questions className='question-container__questions'
-                      {...this.props.question}
-                      assessmentId={this.props.task.assessmentId}
-                      answers={this.props.answers}
-                      fileEntryMode={!this.props.stage.discussionParticipation}
-                      displayMode={this.props.taskDisabled || this.props.stage.blindReview
-                          || this.props.stage.discussionParticipation}
-                      actions={this.props.actions}
-                      vocab={this.props.vocab} />
-                  {this.props.showCommentForm &&
-                      <ReviewPane
-                          users={this.props.users}
-                          profile={this.props.profile}
-                          questionIndex={this.props.questionIndex + this.props.offset}
-                          question={this.props.question}
-                          answer={find(this.props.answers, answer =>
-                              answer.questionId === this.props.question.id) || {}}
+                  <div onClick={this.stopDetails}>
+                      <Questions className='question-container__questions'
+                          {...this.props.question}
                           assessmentId={this.props.task.assessmentId}
                           answers={this.props.answers}
-                          entryMode={this.props.stage.discussionParticipation}
+                          fileEntryMode={!this.props.stage.discussionParticipation}
                           displayMode={this.props.taskDisabled || this.props.stage.blindReview
-                              || this.props.stage.allowEdit}
-                          vocab={this.props.vocab } />
-                  }
+                              || this.props.stage.discussionParticipation}
+                          actions={this.props.actions}
+                          vocab={this.props.vocab} />
+                      {this.props.showCommentForm &&
+                          <ReviewPane
+                              users={this.props.users}
+                              profile={this.props.profile}
+                              questionIndex={this.props.questionIndex + this.props.offset}
+                              question={this.props.question}
+                              answer={find(this.props.answers, answer =>
+                                  answer.questionId === this.props.question.id) || {}}
+                              assessmentId={this.props.task.assessmentId}
+                              answers={this.props.answers}
+                              entryMode={this.props.stage.discussionParticipation}
+                              displayMode={this.props.taskDisabled || this.props.stage.blindReview
+                                  || this.props.stage.allowEdit}
+                              vocab={this.props.vocab } />
+                      }
+                  </div>
             </details>
         );
     }
