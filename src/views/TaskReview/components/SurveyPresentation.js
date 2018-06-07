@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-// import Accordion from 'grommet/components/Accordion';
 import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
