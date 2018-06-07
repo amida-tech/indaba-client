@@ -5,12 +5,20 @@ $block-class:'question-container';
         border-bottom: 1px solid $border-color;
         padding: 16px;
 
+        summary::-webkit-details-marker {
+            font-size: 15px;
+        }
+
         &:last-child {
             border-width: 0;
         }
 
         &__summary {
             @extend .lead-font;
+
+            &::before {
+                font-size: 15px;
+            }
 
             pointer-events: none;
         }
