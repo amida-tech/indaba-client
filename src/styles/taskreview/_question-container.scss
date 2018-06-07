@@ -9,8 +9,10 @@ $block-class:'question-container';
             border-width: 0;
         }
 
-        .grommetux-accordion-panel__header {
+        &__summary {
             @extend .lead-font;
+
+            pointer-events: none;
         }
     }
 }

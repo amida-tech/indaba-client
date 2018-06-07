@@ -8,7 +8,7 @@ class QuestionContainer extends Component {
     render() {
         return (
             <details className='question-container'
-                onToggle={() => {
+                onClick={() => {
                     let newShowQuestions;
                     if (this.props.ui.showQuestions.includes(this.props.questionIndex)) {
                         newShowQuestions = this.props.ui.showQuestions
@@ -20,7 +20,7 @@ class QuestionContainer extends Component {
                     this.props.actions.updateQuestionDisplay(newShowQuestions);
                 }}
                 open={this.props.ui.showQuestions.includes(this.props.questionIndex)}>
-                  <summary>
+                  <summary className='question-container__summary'>
                       {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + this.props.offset + 1)}: ${
                       this.props.question.text}${this.props.question.required ? ' *' : ''}`}
                   </summary>
