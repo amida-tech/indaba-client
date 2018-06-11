@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import LoginForm from './LoginForm';
 import ForgotModal from './ForgotModal';
 
-
 class LoginPanel extends Component {
     render() {
         return (
