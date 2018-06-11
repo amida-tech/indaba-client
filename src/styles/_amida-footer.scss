@@ -4,21 +4,31 @@ $block-class: 'amida-footer';
     .#{$block-class} {
         position: absolute;
         bottom: 0;
+        padding-left: 10%;
         padding-right: 10%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         background-color: hsl(216, 2, 93);
         width: 100%;
         height: $footer-height;
 
+        &__version {
+            margin-left: 1em;
+            font-size: 10px;
+        }
+
         &__footer-title {
             font-size: 18px;
+        }
+
+        &__footer-text {
             margin-right: 1em;
         }
 
         &__indaba-service-mark {
             height: 40px;
+            width: 37.06px;
             padding-top: 2px;
             padding-bottom: 2px;
         }

@@ -43,7 +43,9 @@
         "REMOVE": "Remove",
         "DELETE": "Delete",
         "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password.",
-        "WELCOME_": "Welcome "
+        "WELCOME_": "Welcome ",
+        "POWERED_BY_AMIDA": "Powered by Amida",
+        "VERSION_": "Version "
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",

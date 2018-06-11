@@ -11,4 +11,6 @@ export default {
     REALM: process.env.REALM || 'testorg',
 
     SYS_MESSAGE_USER: process.env.SYS_MESSAGE_USER || 'indaba@example.com',
+
+    INDABA_VERSION: process.env.INDABA_VERSION || 'X.X',
 };
