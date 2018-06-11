@@ -33,7 +33,9 @@ class Stamp extends Component {
 Stamp.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(Object.values(StampType)),
+    // TODO: Should this be required?
+    type: PropTypes.oneOf(Object.keys(StampType)
+        .map(entry => StampType[entry])),
 };
 
 Stamp.defaultProps = {

@@ -52,7 +52,8 @@
 @import './user-status.scss';
 @import './validated-text-input.scss';
 @import './dateinput.scss';
-
+@import './tabs.scss';
+@import './tab.scss';
 // Create Project Wizard
 @import './createprojectwizard/new-project-title-form.scss';
 @import './createprojectwizard/new-project-title.scss';
@@ -89,6 +90,8 @@
 @import './modals/subject/subject-form.scss';
 @import './modals/stage/stage-form.scss';
 @import './modals/stage/stage-date-time.scss';
+@import './modals/survey/project-status-form.scss';
+@import './modals/survey/survey-status-form.scss';
 @import './modals/title-form.scss';
 // Login:
 @import './login/login-panel.scss';

@@ -104,7 +104,8 @@
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
         "NUMBER": "Not a number.",
-        "FIELD_REQUIRED": "Required field must not be blank."
+        "FIELD_REQUIRED": "Required field must not be blank.",
+        "_IS_REQUIRED": " is a required field."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -157,6 +158,7 @@
             "ASSIGNEE": "Assignee",
             "DUE_IN": "Due in ",
             "DAYS": " Days",
+            "DUE_TODAY": "Due Today",
             "DUE_TOMORROW": "Due Tomorrow",
             "MORE_OPTIONS": "More Options",
             "TASK_OPTIONS": "Task Options"
@@ -302,7 +304,8 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time.",
+        "NO_PROJECTS": "Please click the Create button to begin a new project."
     },
     "MESSAGES": {
         "TO_REQUIRED": "One or more recipients must be added",
@@ -472,6 +475,7 @@
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "RESET_PASSWORD": {
+        "NEW_PASSWORD": "New Password",
         "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
         "LINK": "Reset",
         "EMAIL_REQUIRED": "Enter your email to reset your password.",

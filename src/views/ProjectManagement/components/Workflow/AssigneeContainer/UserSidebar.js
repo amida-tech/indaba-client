@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import { List, ListItem, Select } from 'grommet';
+import { Select } from 'grommet';
 import SearchInput from '../../../../../common/components/Dashboard/SearchInput';
 
 class UserSidebar extends Component {
@@ -14,22 +13,16 @@ class UserSidebar extends Component {
                 <div className='user-sidebar__wrapper'>
                     <SearchInput
                         placeholder={this.props.vocab.COMMON.SEARCH}
-                        onChange={this.props.onSearch}/>
+                        onChange={this.props.onSearch}
+                    />
                 </div>
                 <Select className='user-sidebar__user-filter-by-group'
                     placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
                     value={this.props.search.group && this.props.search.group.title}
-                    onChange={this.props.onGroupFilter}/>
-                <List className='user-sidebar__user-dropdown'>
-                    {this.props.unassigned.map(unassignee =>
-                        <ListItem key={`Unassigned-${unassignee.props.children.id}`}
-                            separator='none'
-                            pad='small'>
-                            {unassignee}
-                        </ListItem>,
-                    )}
-                </List>
+                    onChange={this.props.onGroupFilter}
+                />
+                <div className='filtered-list'>{this.props.unassignedCards}</div>
             </div>
         );
     }
@@ -38,7 +31,7 @@ class UserSidebar extends Component {
 UserSidebar.propTypes = {
     vocab: PropTypes.object.isRequired,
     search: PropTypes.object.isRequired,
-    unassigned: PropTypes.array.isRequired,
+    unassignedCards: PropTypes.array.isRequired,
     groupFilters: PropTypes.array.isRequired,
     onSearch: PropTypes.func.isRequired,
     onGroupFilter: PropTypes.func.isRequired,

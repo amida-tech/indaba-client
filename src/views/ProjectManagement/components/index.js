@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { find, merge } from 'lodash';
 import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
@@ -12,7 +12,8 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
-import StatusChange from './Modals/StatusChange';
+import ProjectStatus from './Modals/ProjectStatus';
+import SurveyStatus from './Modals/SurveyStatus';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
 import { SurveyBuilder } from '../../../views/SurveyBuilder';
@@ -23,16 +24,17 @@ import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 import StageModal from './Modals/Stage';
-import InactiveConfirm from './Modals/StatusChange/InactiveConfirm';
+import InactiveConfirm from './Modals/ProjectStatus/InactiveConfirm';
 import Modal from '../../../common/components/Modal';
 import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(
-            this.props.params.projectId,
-            true,
-            this.props.vocab.ERROR);
+        this.props.actions.checkProtection(this.props.profile)
+            .then(this.props.actions.getProjectById(
+                this.props.params.projectId,
+                true,
+                this.props.vocab.ERROR));
     }
 
     stageHasData(stageId) {
@@ -58,10 +60,6 @@ class ProjectManagementContainer extends Component {
     }
 
     render() {
-        const modalEntities = {
-            projectstatusmodal: 'project',
-            surveystatusmodal: 'survey',
-        };
         let body;
         switch (this.props.tab) {
         case 'workflow':
@@ -83,7 +81,9 @@ class ProjectManagementContainer extends Component {
                 ui={this.props.ui}/>;
             break;
         case 'subject':
-            body = <Subjects vocab={this.props.vocab}
+            body = <Subjects
+                    isOrderedByNameAscending={this.props.isOrderedByNameAscending}
+                    vocab={this.props.vocab}
                     project={this.props.project}
                     subjects={this.props.project.subjects}
                     actions={this.props.actions}
@@ -113,12 +113,15 @@ class ProjectManagementContainer extends Component {
                 <div>
                     {
                         this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal &&
-                        <StatusChange vocab={this.props.vocab}
-                            project={this.props.project}
-                            survey={this.props.survey}
-                            actions={this.props.actions}
-                            vocab={this.props.vocab}
-                            entity={modalEntities[this.props.ui.statusModalId]} />
+                        (this.props.ui.statusModalId === 'projectstatusmodal' ?
+                            <ProjectStatus vocab={this.props.vocab}
+                                project={this.props.project}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} /> :
+                            <SurveyStatus vocab={this.props.vocab}
+                                survey={this.props.survey}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} />)
                     }
                     {
                         this.props.ui.showInactiveConfirmModal &&
@@ -203,22 +206,23 @@ ProjectManagementContainer.propTypes = {
     tab: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
-    const project = state.projects.data[0].name ?
-        _.find(state.projects.data, current => current.id === projectId) :
-        state.projects.data[0];
+const mapStateToProps = (store, ownProps) => {
+    const projectId = parseInt(ownProps.params.projectId, 10) || store.projects[0].id;
+    const project = store.projects.data.length !== 0 ?
+        find(store.projects.data, current => current.id === projectId) :
+        store.projects.empty;
     return {
         project,
-        tasks: state.tasks.data,
-        responses: state.discuss,
-        vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
-        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
-        tab: state.manager.ui.subnav,
-        users: state.user.users,
-        profile: state.user.profile,
+        tasks: store.tasks.data,
+        responses: store.discuss,
+        vocab: store.settings.language.vocabulary,
+        ui: merge({}, store.manager.ui, store.projects.ui, store.nav.ui, store.surveys.ui),
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId) ||
+            { id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        tab: store.manager.ui.subnav,
+        users: store.user.users,
+        profile: store.user.profile,
+        isOrderedByNameAscending: store.manager.ui.isOrderedByNameAscending,
     };
 };
 

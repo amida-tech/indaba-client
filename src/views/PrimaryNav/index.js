@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'grommet';
 import { Icon } from 'react-fa';
 import { get, has } from 'lodash';
+import cookie from 'react-cookies';
+import { push } from 'react-router-redux';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -16,6 +18,9 @@ import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
     componentWillMount() {
+        if (cookie.load('indaba-auth') === undefined) {
+            this.props.redirectToLogin();
+        }
         if (!has(this.props.user.profile, 'roleID')) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
         }
@@ -102,6 +107,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions,
         { getProfile, getUsers, getProjects }), dispatch),
+    redirectToLogin: () => dispatch(push('/login')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

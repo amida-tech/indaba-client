@@ -39,10 +39,19 @@ class AssigneeContainer extends Component {
         const unassigned = this.props.project.users
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => this.searchFilter(renderName(user)))
-            .filter(user => this.groupFilter(user))
-            .map(unassignee =>
-                React.createElement(AssigneeCard, this.props, unassignee),
+            .filter(user => this.groupFilter(user));
+        const unassignedCards = unassigned.map((unassignee) => {
+            return (
+                <AssigneeCard
+                    key={unassignee.id}
+                    actions={this.props.actions}
+                    project={this.props.project}
+                    vocab={this.props.vocab}
+                >
+                    {unassignee}
+                </AssigneeCard>
             );
+        });
 
         const groupFilters = this.props.project.userGroups.map(group =>
             ({ label: group.title, value: group }));
@@ -53,7 +62,7 @@ class AssigneeContainer extends Component {
                 separator='all'>
                 <UserSidebar
                     groupFilters={groupFilters}
-                    unassigned={unassigned}
+                    unassignedCards={unassignedCards}
                     onSearch={this.onSearch}
                     search={this.props.search}
                     onGroupFilter={this.onGroupFilter}

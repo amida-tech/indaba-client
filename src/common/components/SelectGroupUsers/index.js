@@ -119,7 +119,8 @@ class SelectGroupUsers extends Component {
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}
-                                selected={this.state.projectUsersSelected}/>
+                                selected={this.state.projectUsersSelected}
+                            />
                         </div>
                         <div className='select-group-users__buttons'>
                             <div className='select-group-users__button'
@@ -136,7 +137,9 @@ class SelectGroupUsers extends Component {
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
-                                onSelect={this.handleGroupUsersSelect}/>
+                                onSelect={this.handleGroupUsersSelect}
+                                selected={this.state.groupUsersSelected}
+                            />
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,6 @@ import { push } from 'react-router-redux';
 import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
-
 import InboxTabs from './InboxTabs';
 import Filter from '../../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
@@ -250,12 +249,12 @@ Inbox.propTypes = {
     goToMessage: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    messages: state.messages,
-    users: state.user.users,
-    profile: state.user.profile,
-    inboxList: state.messages.inboxList,
+const mapStateToProps = store => ({
+    vocab: store.settings.language.vocabulary,
+    messages: store.messages,
+    users: store.user.users,
+    profile: store.user.profile,
+    inboxList: store.messages.inboxList,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),

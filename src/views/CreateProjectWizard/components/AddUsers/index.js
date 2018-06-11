@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Tabs, Tab } from 'grommet';
+import { Button } from 'grommet';
 
+import Tabs from '../../../../common/components/Tabs/Tabs';
+import Tab from '../../../../common/components/Tabs/Tab';
 import SelectGroupUsers from '../../../../common/components/SelectGroupUsers';
 import UsersTab from './UsersTab';
 import UserGroupsTab from './UserGroupsTab';
@@ -43,7 +45,8 @@ class AddUsers extends Component {
                 <p className='add-users__instructions add-users__instructions--bottom'>
                     {this.props.vocab.PROJECT.ADD_USERS_CLARIFICATION_2}
                 </p>
-                <Tabs onActive={this.props.actions.addUsersSetTab}>
+                <Tabs onActive={this.props.actions.addUsersSetTab}
+                    className='add-users__tabs'>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
                         <UsersTab
                             vocab={this.props.vocab}

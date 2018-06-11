@@ -56,7 +56,7 @@ class TaskDetails extends Component {
                                 this.props.actions.updateTask(
                                     this.props.task.id,
                                     this.props.task.userIds,
-                                    new Date(event),
+                                    event,
                                     this.props.vocab.ERROR);
                             }} /> :
                         <div className='task-details__info-box-title'>
