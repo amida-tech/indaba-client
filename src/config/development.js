@@ -12,5 +12,5 @@ export default {
 
     SYS_MESSAGE_USER: process.env.SYS_MESSAGE_USER || 'indaba@example.com',
 
-    INDABA_VERSION: process.env.INDABA_VERSION || 'X.X',
+    INDABA_VERSION: process.env.INDABA_VERSION || 'X.x.x',
 };
