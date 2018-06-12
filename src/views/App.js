@@ -11,7 +11,6 @@ import PrimaryNavContainer from './PrimaryNav';
 import SecondaryNavContainer from './SecondaryNav';
 import { SECONDARY } from './SecondaryNav/constants';
 
-import config from '../config';
 import AmidaFooter from '../common/components/AmidaFooter';
 
 class App extends Component {
@@ -38,7 +37,6 @@ class App extends Component {
                 {
                     this.props.location.pathname !== '/create-new-project' &&
                     <AmidaFooter
-                        versionNumber={this.props.versionNumber}
                         versionText={this.props.versionText}
                         footerText={this.props.footerText}/>
                 }
@@ -59,7 +57,6 @@ class App extends Component {
 
 const mapStateToProps = store => ({
     profile: store.user.profile,
-    versionNumber: config.INDABA_VERSION,
     versionText: store.settings.language.vocabulary.COMMON.VERSION_,
     footerText: store.settings.language.vocabulary.COMMON.POWERED_BY_AMIDA,
 });
