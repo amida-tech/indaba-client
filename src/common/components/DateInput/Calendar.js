@@ -38,7 +38,7 @@ Calendar.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
-    ]).isRequired,
+    ]),
 };
 
 export default Calendar;

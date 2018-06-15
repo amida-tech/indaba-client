@@ -7,10 +7,7 @@ import Time from '../../../../utils/Time';
 
 class Date extends Component {
     render() {
-        let currentAnswer = get(this.props, 'answer.dateValue', undefined);
-        if (currentAnswer) {
-            currentAnswer = Time.renderForQuestion(currentAnswer);
-        }
+        const currentAnswer = get(this.props, 'answer.dateValue', undefined);
         return (
             <div className='date'>
                 {
