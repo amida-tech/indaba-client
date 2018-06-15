@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Accordion from 'grommet/components/Accordion';
+import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
 
@@ -8,18 +8,22 @@ class SurveyPresentation extends Component {
     render() {
         return (
             <div className='survey-presentation'>
-                <Accordion
-                    active={this.props.ui.showQuestions}
-                    openMulti={true}
-                    animate={false}>
-                    {this.props.survey.map((question, index) =>
-                        <QuestionContainer
-                            key={`questionpanel${index}`}
-                            questionIndex={index}
-                            question={question}
-                            {...this.props} />,
-                    )}
-                </Accordion>
+                {this.props.survey.map((question, index) => {
+                    return (
+                        <div className='survey-presentation__question'
+                            key={`questionpanel${index}`}>
+                            {question.sectionName &&
+                              (<div className='survey-presentation__section-name'>
+                                  {question.sectionName}
+                              </div>)}
+                            <Element name={`question${index}`}>
+                                <QuestionContainer
+                                    questionIndex={index}
+                                    question={question}
+                                    {...this.props} />
+                            </Element>
+                        </div>);
+                })}
                 {!this.props.taskDisabled &&
                     <div className='survey-presentation__submit'>
                         <div className='survey-presentation__submit-instructions'>
