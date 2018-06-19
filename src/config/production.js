@@ -6,4 +6,5 @@ export default {
     REALM: process.env.REALM,
 
     SYS_MESSAGE_USER: process.env.SYS_MESSAGE_USER,
+    INDABA_VERSION: process.env.INDABA_VERSION || 'X.x.x',
 };
