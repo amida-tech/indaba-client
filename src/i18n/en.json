@@ -98,6 +98,7 @@
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "EMPTY_TEXT": "Please enter text into the field.",
         "BLANKS": "There are unfilled questions or options in the question list. Please give them a value or delete them.",
+        "BLANK_SECTION": "The are unfilled section names. Please give them a value or delete them.",
         "DISAGREE_COMMENTS": "All other responses have been recorded, but please disagree and provide a comment for the following questions: ",
         "DATA_REQUEST": "There has been a problem with downloading your data.",
         "COMING_SOON": "Coming soon."
@@ -182,7 +183,6 @@
         "SURVEY": "Survey",
         "TITLE": "Title",
         "SUBJECT": "Subject",
-        "PROJECT_TITLE": "Project Title",
         "SURVEY_TITLE": "Survey Title",
         "SUBJECT_NAME": "Subject Name",
         "STATUS": "Status",
@@ -406,6 +406,7 @@
         "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
         "REVIEW_INSTRUCTIONS": "Click 'Save Review Progress' if you wish to commit your comments.",
         "NAME_OPTIONAL": " Name (Optional)",
+        "NAME": " Name",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
