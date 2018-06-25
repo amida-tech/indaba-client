@@ -54,17 +54,15 @@ class CreateSurveyPanel extends Component {
                                     });
                                 });
                                 const blankSection = some(this.props.form.sections, (section) => {
-                                    return some(section.name, (secName) => {
-                                        return (secName.text.match(/^\s*$/) !== null);
-                                    });
+                                    return (section.name.match(/^\s*$/) !== null);
                                 });
                                 if (blanks) {
                                     toast(this.props.vocab.ERROR.BLANKS);
                                 }
-                                if (!blankSection) {
+                                if (blankSection) {
                                     toast(this.props.vocab.ERROR.BLANK_SECTION);
                                 }
-                                if (!blanks && blankSection) {
+                                if (!blanks && !blankSection) {
                                     this.props.actions.patchSurvey(
                                         this.props.form,
                                         this.props.vocab.SURVEY.SUCCESS,
