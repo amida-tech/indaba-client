@@ -15,7 +15,7 @@ class CreateSectionPanel extends Component {
                         type='text'
                         defaultValue={this.props.section.name}
                         placeholder={this.props.vocab.SURVEY.SECTION_ +
-                            (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME_OPTIONAL}
+                            (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME}
                         onChange={event => this.props.actions.updateSection(
                             this.props.sectionIndex, event.target.value)} />
                     <button className='create-section-panel__menu-button'
