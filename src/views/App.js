@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { css } from 'glamor';
+import 'react-toastify/dist/ReactToastify.min.css';
 import cookie from 'react-cookies';
 import { get } from 'lodash';
 import { push } from 'react-router-redux';
@@ -41,7 +41,7 @@ class App extends Component {
                         footerText={this.props.footerText}/>
                 }
                 <ToastContainer
-                    progressClassName={css({ background: '#4eb276' })}
+                    className='app__toast'
                     position='top-right'
                     type='default'
                     autoClose={5000}
