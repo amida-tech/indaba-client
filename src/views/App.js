@@ -42,6 +42,7 @@ class App extends Component {
                 }
                 <ToastContainer
                     className='app__toast'
+                    progressClassName='toastify__progress'
                     position='top-right'
                     type='default'
                     autoClose={5000}
