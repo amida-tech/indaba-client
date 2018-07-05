@@ -91,6 +91,7 @@
         "REQUIRE_ANSWERS": "Please answer all required questions.",
         "FLAGGED_QUESTIONS": "You cannot complete a task if there are flagged questions awaiting resolution.",
         "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
+        "STRONG_PASS_REQUIRED": "Your password is invalid. Please check the instructions on a proper password.",
         "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
         "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
@@ -452,6 +453,7 @@
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this",
         "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account",
+        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number and one symbol.",
         "ACTIVATE": "Activate"
     },
     "EXPORT": {
