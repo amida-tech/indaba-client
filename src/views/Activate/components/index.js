@@ -9,8 +9,9 @@ import apiService from '../../../services/api';
 import ActivateForm from './ActivateForm';
 
 const ServerErrorsToVocabError = {
-    'Token is not valid': 'INVALID_TOKEN',
-    'Password field is required!': 'PASSWORD_REQUIRED',
+    401: 'INVALID_TOKEN',
+    400: 'PASSWORD_REQUIRED',
+    500: 'SERVER_ISSUE',
 };
 
 class Activate extends Component {
@@ -18,7 +19,12 @@ class Activate extends Component {
         return (
             <div className='activate'>
                 <div className='activate__instructions'>
-                    {this.props.vocab.USER.ACTIVATE_INSTRUCTIONS}
+                    <span className='activate__statement'>
+                        {this.props.vocab.USER.ACTIVATE_INSTRUCTIONS}
+                    </span>
+                    <span className='activate__statement'>
+                        {this.props.vocab.USER.PASSWORD_INSTRUCTIONS}
+                    </span>
                 </div>
                 <ActivateForm
                     vocab={this.props.vocab}
@@ -32,10 +38,10 @@ class Activate extends Component {
                                 { onClose: this.props.redirectToLogin });
                         })
                         .catch((err) => {
-                            if (has(ServerErrorsToVocabError, get(err, 'body.message'))) {
+                            if (has(ServerErrorsToVocabError, get(err, 'body.statusCode'))) {
                                 toast(
                                     this.props.vocab.ERROR[
-                                        ServerErrorsToVocabError[err.body.message]
+                                        ServerErrorsToVocabError[err.body.statusCode]
                                     ],
                                     { type: 'error', autoClose: false });
                             } else {

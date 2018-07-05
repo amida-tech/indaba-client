@@ -452,8 +452,8 @@
         "INACTIVE": "Inactive",
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this",
-        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account",
-        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number and one symbol.",
+        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account.",
+        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number, and one symbol.",
         "ACTIVATE": "Activate"
     },
     "EXPORT": {
