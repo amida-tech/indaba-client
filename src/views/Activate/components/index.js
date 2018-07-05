@@ -38,10 +38,10 @@ class Activate extends Component {
                                 { onClose: this.props.redirectToLogin });
                         })
                         .catch((err) => {
-                            if (has(ServerErrorsToVocabError, get(err, 'body.statusCode'))) {
+                            if (has(ServerErrorsToVocabError, get(err.response, 'status'))) {
                                 toast(
                                     this.props.vocab.ERROR[
-                                        ServerErrorsToVocabError[err.body.statusCode]
+                                        ServerErrorsToVocabError[err.response.status]
                                     ],
                                     { type: 'error', autoClose: false });
                             } else {
