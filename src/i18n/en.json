@@ -91,7 +91,7 @@
         "REQUIRE_ANSWERS": "Please answer all required questions.",
         "FLAGGED_QUESTIONS": "You cannot complete a task if there are flagged questions awaiting resolution.",
         "INVALID_TOKEN": "The activation token is invalid and your account has not been activated. Please contact your administrator to receive a new one.",
-        "PASSWORD_REQUIRED": "Either you have not provided a password, or it does not follow the criteria in the instructions. Please try again.",
+        "PASSWORD_REQUIRED": "Either you have not provided your first name, a password, or the password does not follow the criteria in the instructions. Please try again.",
         "ACTIVATION_FAILURE": "The authentication services could not be reached, or maybe down for maintenance. Please try again later.",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
         "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
