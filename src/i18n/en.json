@@ -49,8 +49,7 @@
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
-        "INVITED": "An invite has been sent to the user.",
-        "ACTIVATION_SUCCESS": "Your account has been activated. You will be redirected to the login page."
+        "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
         "DUPLICATE": "Attempted to enter a duplicate value. Please enter a unique value instead.",
@@ -91,7 +90,7 @@
         "REQUIRE_ANSWERS": "Please answer all required questions.",
         "FLAGGED_QUESTIONS": "You cannot complete a task if there are flagged questions awaiting resolution.",
         "INVALID_TOKEN": "The activation token is invalid and your account has not been activated. Please contact your administrator to receive a new one.",
-        "PASSWORD_REQUIRED": "Either you have not provided your first name, a password, or the password does not follow the criteria in the instructions. Please try again.",
+        "ACTIVATE_SUBMISSION_INVALID": "Either you have not provided your first name, a password, or the password does not follow the criteria in the instructions. Please try again.",
         "ACTIVATION_FAILURE": "The authentication services could not be reached, or maybe down for maintenance. Please try again later.",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
         "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
@@ -101,7 +100,14 @@
         "BLANK_SECTION": "The are unfilled section names. Please give them a value or delete them.",
         "DISAGREE_COMMENTS": "All other responses have been recorded, but please disagree and provide a comment for the following questions: ",
         "DATA_REQUEST": "There has been a problem with downloading your data.",
+        "PASSWORD_BLANK": "Please provide a valid password.",
+        "FIRSTNAME_BLANK": "Please provide your first name.",
         "COMING_SOON": "Coming soon."
+    },
+    "ACTIVATE": {
+        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account.",
+        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number, and one symbol.",
+        "ACTIVATION_SUCCESS": "Your account has been activated. You will be redirected to the login page."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
@@ -451,8 +457,6 @@
         "INACTIVE": "Inactive",
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this",
-        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account.",
-        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number, and one symbol.",
         "ACTIVATE": "Activate"
     },
     "EXPORT": {
