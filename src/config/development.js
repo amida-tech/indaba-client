@@ -6,7 +6,7 @@ export default {
 
     SURVEY_API_URL: process.env.SURVEY_API_URL || 'http://localhost:9005/api/v1.0',
 
-    MESSAGING_API_URL: process.env.MESSAGING_API_URL || 'http://localhost:4002/api',
+    MESSAGING_API_URL: process.env.MESSAGING_API_URL || 'http://localhost:4002/api/v1',
 
     REALM: process.env.REALM || 'testorg',
 
