@@ -184,7 +184,6 @@
             "NOTIFY_MESSAGE": "Your task has been forced to the next step. If you have questions, contact the project manager."
         },
         "PROJECT": "Project",
-        "PROJECT_TITLE": "Project Title",
         "PROJECTS": "Projects",
         "SURVEY": "Survey",
         "TITLE": "Title",
@@ -390,7 +389,6 @@
         "DELETE_QUESTION": "Delete Question",
         "SELECT_FILE": "Select a file",
         "NO_FILE": "No file chosen",
-        "ADD_FILE": "Add File",
         "REMOVE_FILE": "Remove File",
         "FILE_NAME_PLACEHOLDER": "File name",
         "ADD_LINK": "Add Link",
