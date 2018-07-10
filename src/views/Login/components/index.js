@@ -28,7 +28,7 @@ const selector = formValueSelector(LOGIN_FORM_NAME);
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        realm: ownProps.params.realm || config.REALM || 'testorg',
+        realm: ownProps.params.realm || config.INDABA_CLIENT_DEFAULT_REALM || 'testorg',
         vocab: state.settings.language.vocabulary,
         ui: state.login.ui,
         currentEmail: selector(state, 'username'),
