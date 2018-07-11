@@ -1,0 +1,72 @@
+$block-class: 'add-stages';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: 10%;
+
+        &__import-row {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em 2em;
+        }
+
+        &__import-button {
+            @extend .disabled-button;
+        }
+
+        &__instructions {
+            @extend .lead-font;
+
+            display: flex;
+            justify-content: center;
+            margin: 2em;
+        }
+
+        &__grid {
+            display: flex;
+            background-color: #fff;
+            border: 1px solid $border-color;
+            border-top: none;
+            height: 200px;
+            cursor: pointer;
+
+            &-row {
+                display: flex;
+                flex-direction: column;
+                width: 25%;
+                border: 1px solid $border-color;
+                border-top: none;
+                border-bottom: none;
+                padding: 8px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken(#fff, 2);
+                }
+
+                &--title {
+                    @extend .lead-font;
+
+                    padding: 8px;
+                }
+
+                &--summary {
+                    color: $font-color;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding-top: 10%;
+                }
+            }
+        }
+
+        .stage-summary {
+            width: 25%;
+            padding: 8px;
+        }
+    }
+}
