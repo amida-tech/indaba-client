@@ -37,7 +37,8 @@ class PrimaryNavContainer extends Component {
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
-                    onCancel={() => this.props.actions.showCreateProject(false)}/>}
+                    showCreateProject={this.props.actions.showCreateProject}
+                    goToNewProject={this.props.goToNewProject}/>}
 
                 <div className='primary-nav__left'>
                     <Link to={isProjectManager ? '/project' : '/task'}>
@@ -108,6 +109,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions,
         { getProfile, getUsers, getProjects }), dispatch),
     redirectToLogin: () => dispatch(push('/login')),
+    goToNewProject: () => dispatch(push('/create-new-project')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

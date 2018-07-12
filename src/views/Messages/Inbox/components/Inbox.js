@@ -17,7 +17,6 @@ class Inbox extends Component {
     constructor() {
         super();
 
-        this.handleNewMessage = this.handleNewMessage.bind(this);
         this.handleThreadClick = this.handleThreadClick.bind(this);
         this.handleFilterClick = this.handleFilterClick.bind(this);
         this.handleTabClick = this.handleTabClick.bind(this);
@@ -36,10 +35,6 @@ class Inbox extends Component {
     componentWillMount() {
         this.props.actions.getUsers(this.props.vocab.ERROR);
         this.loadCurrentFilter();
-    }
-
-    handleNewMessage() {
-        this.props.goToNew();
     }
 
     getMessageIdsByThread(originalMessageId) {
@@ -196,7 +191,7 @@ class Inbox extends Component {
                         vocab={this.props.vocab}
                         onSelectTab={this.handleTabClick}/>
                     <button className='inbox__new-message-button'
-                        onClick={this.handleNewMessage}>
+                        onClick={this.props.goToNew}>
                         <span>{this.props.vocab.MESSAGES.NEW_MESSAGE}</span>
                     </button>
                 </div>

@@ -15,15 +15,6 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 import ToField from './ToField';
 
 class Message extends Component {
-    constructor(props) {
-        super(props);
-        this.handleCancel = this.handleCancel.bind(this);
-    }
-
-    handleCancel() {
-        this.props.onCancel();
-    }
-
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);

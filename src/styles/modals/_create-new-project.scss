@@ -7,13 +7,12 @@ $block-class:'create-new-project'; // Bootstrap is doing its crap again. Call th
             text-align: center;
         }
 
-        &__create-button.grommetux-button {
-            font-size: 14px;
-            color: $font-inverse-color;
-            padding: 12px;
-            border-radius: 2px;
-            height: 32px;
-            font-weight: 500;
+        &__import-button {
+            @extend .disabled-button;
+        }
+
+        &__create-button {
+            @extend .standard-button;
 
             &:hover {
                 background: darken(#4eb276, 10);
