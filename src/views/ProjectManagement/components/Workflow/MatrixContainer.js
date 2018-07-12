@@ -23,7 +23,7 @@ class MatrixContainer extends Component {
                         projectId={this.props.project.id}
                         actions={this.props.actions} />}
                     <div className='matrix-container__task-matrix'>
-                        <table className='table table-bordered workflow-table'
+                        <div className='matrix-container__stage'
                             key='MatrixContainer'>
                             <thead>
                                 <tr key={'Summary'}>
@@ -56,7 +56,7 @@ class MatrixContainer extends Component {
                                       filter={this.props.project.filter}/>,
                                 )}
                             </tbody>
-                        </table>
+                        </div>
                     </div>
                 <div className='matrix-container__sidebar'>
                     <AssigneeContainer {...this.props} />
