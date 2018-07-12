@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, form, reduxForm } from 'redux-form';
-import { Button } from 'grommet';
 
 import LoginField from './LoginField';
 
@@ -17,11 +16,11 @@ class LoginForm extends Component {
                     component={LoginField}
                     placeholder={this.props.vocab.COMMON.PASSWORD}
                     type='password' />
-                <Button className='login-form__sign-in-button'
-                    type='submit'
-                    primary
-                    label={this.props.vocab.COMMON.SIGN_IN}
-                    onClick={this.props.handleSubmit} />
+                <button className='login-form__signin-button'
+                    onClick={this.props.handleSubmit}
+                    type='submit'>
+                    <span>{this.props.vocab.COMMON.SIGN_IN}</span>
+                </button>
             </form>
         );
     }
