@@ -97,9 +97,8 @@ body,
 }
 
 .main-body {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .workflow {
@@ -112,30 +111,6 @@ body,
 .grid-column {
     overflow-x: auto;
     border-right: none;
-}
-
-.workflow-table {
-    width: 100%;
-
-    .stage-slot-cell,
-    .stage-summary-cell {
-        background-color: white;
-        cursor: pointer;
-    }
-
-    .stage-summary-cell:hover {
-        background-color: darken(#fff, 2);
-    }
-
-    margin-bottom: 0;
-    border-right: none;
-
-    th:last-child,
-    td:last-child,
-    tr,
-    tbody {
-        // Do we even need this.
-    }
 }
 
 .grid-subject {
