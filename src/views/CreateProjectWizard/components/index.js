@@ -161,6 +161,7 @@ class CreateProjectWizard extends Component {
                     onBack={this.props.ui.step !== 0 ? this.handleBack : undefined}
                     onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
+                    step={this.props.ui.step}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
             </div> :

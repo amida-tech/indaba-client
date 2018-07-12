@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
-import { Footer, Button, Box } from 'grommet';
 
 class WizardFooter extends Component {
     render() {
         return (
-            <Footer justify='between'>
-                <div className='wizard-footer'>
-                    <div>
-                        <Button className='wizard-footer__button wizard-footer__button--back'
-                            label={this.props.vocab.COMMON.GO_BACK}
-                            onClick={this.props.onBack}/>
-                    </div>
-                    <Box direction='row'
-                        pad={{ between: 'small' }}>
-                        <Button
-                            className='wizard-footer__button wizard-footer__button--cancel'
-                            label={this.props.vocab.COMMON.CANCEL}
-                            onClick={this.props.onCancel}/>
-                        <Button
-                            className='wizard-footer__button wizard-footer__button--skip'
-                            label={this.props.vocab.COMMON.SKIP_THIS_STEP}
-                            onClick={this.props.onSkip}/>
-                        <Button
-                            className='wizard-footer__button wizard-footer__button--continue'
-                            label={this.props.finalStep ?
+            <div className='wizard-footer'>
+                <div>
+                    <button className={`wizard-footer__button wizard-footer__button${
+                        this.props.step === 0 ? '--disabled' : '--back'}`}
+                        onClick={this.props.onBack}>
+                        <span>{this.props.vocab.COMMON.GO_BACK}</span>
+                    </button>
+                </div>
+                <div>
+                    <button className='wizard-footer__button wizard-footer__button--cancel'
+                        onClick={this.props.onCancel}>
+                        <span>{this.props.vocab.COMMON.CANCEL}</span>
+                    </button>
+                    <button className='wizard-footer__button wizard-footer__button--skip'
+                        onClick={this.props.onSkip}>
+                        <span>{this.props.vocab.COMMON.SKIP_THIS_STEP}</span>
+                    </button>
+                    <button className='wizard-footer__button wizard-footer__button--continue'
+                        onClick={this.props.onContinue}>
+                        <span>
+                            {this.props.finalStep ?
                                 this.props.vocab.PROJECT.COMPLETE_PROJECT :
                                 this.props.vocab.COMMON.CONTINUE}
-                            onClick={this.props.onContinue}/>
-                    </Box>
+                        </span>
+                    </button>
                 </div>
-            </Footer>);
+            </div>
+        );
     }
 }
 
