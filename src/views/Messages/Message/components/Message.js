@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import IonIcon from 'react-ionicons';
-import { Button } from 'grommet';
 
 import { renderName, renderNameByEmail } from '../../../../utils/User';
 import apiService from '../../../../services/api';
@@ -16,6 +15,15 @@ import ButtonPanel, { PanelButton } from '../../components/ButtonPanel';
 import ToField from './ToField';
 
 class Message extends Component {
+    constructor(props) {
+        super(props);
+        this.handleCancel = this.handleCancel.bind(this);
+    }
+
+    handleCancel() {
+        this.props.onCancel();
+    }
+
     render() {
         const compose = this.props.id === undefined;
         const received = _.get(this.props, 'message.to', []).includes(this.props.profile.email);
@@ -134,18 +142,14 @@ class Message extends Component {
                         {
                             compose &&
                             <div className='message__body-buttons'>
-                                <Button label={this.props.vocab.COMMON.CANCEL}
-                                    box
-                                    size='small'
-                                    margin={{ right: 'small' }}
-                                    colorIndex='grey-1'
-                                    onClick={this.props.onCancel}/>
-                                <Button label={this.props.vocab.COMMON.SEND}
-                                    box
-                                    size='small'
-                                    type='submit'
-                                    margin='none'
-                                    primary/>
+                                <button className='message__body-cancel-button'
+                                    onClick={this.props.onCancel}>
+                                    <span>{this.props.vocab.COMMON.CANCEL}</span>
+                                </button>
+                                <button className='message__body-send-button'
+                                    type='submit'>
+                                    <span>{this.props.vocab.COMMON.SEND}</span>
+                                </button>
                             </div>
                         }
                     </div>
