@@ -3,8 +3,8 @@ $block-class:'matrix-container';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 4fr 2fr;
         flex: 1;
         background-color: #fff;
 
@@ -17,7 +17,6 @@ $block-class:'matrix-container';
         }
 
         &__task-matrix {
-            overflow: scroll;
             flex-grow: 1;
         }
 
