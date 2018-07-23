@@ -13,7 +13,8 @@ class Search extends Component {
         this.setState(() => ({ listOpen: false }));
     }
     render() {
-        return <div onBlur={this.handleClickOutside}>
+        console.log(this.state.listOpen);
+        return <div onBlur={() => this.handleClickOutside()}>
             <div className='search-input'>
                 <input className='search-input__input'
                        type='text'
@@ -26,7 +27,9 @@ class Search extends Component {
             </div>
             { this.state.listOpen && <ul className='subject-list'>
                 {this.props.list.map(item => (
-                    <li className='subject-list__entry' key={item.value.id}>
+                    <li className='subject-list__entry'
+                        onMouseDown={() => { this.props.onSelect(item); }}
+                        key={item.value.id}>
                         {item.label}</li>
                 ))} </ul>}
         </div>;

@@ -29,7 +29,7 @@ class PMAllUsers extends Component {
     }
     handleSearchSelect(selection) {
         this.props.actions.pmAllUsersSetListQuery('');
-        this.props.actions.pmAllUsersShowProfile(selection.suggestion.value.id);
+        this.props.actions.pmAllUsersShowProfile(selection.value.id);
     }
     filterUser(user) {
         return renderName(user).toLowerCase()
