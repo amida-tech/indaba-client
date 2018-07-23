@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import { Search } from 'grommet';
 
 import Modal from '../../../common/components/Modal';
 import { renderName, DATA_STATE, getDataState } from '../../../utils/User';
 import PMUserList from '../../../common/components/PMUserList';
 import { UserProfileContainer } from '../../../views/UserProfile';
 import InviteUserForm from '../../../common/components/InviteUserForm';
+import Search from '../../../common/components/Search';
 
 class PMAllUsers extends Component {
     constructor(props) {
@@ -51,19 +51,17 @@ class PMAllUsers extends Component {
                             );
                         }}/>
                 </div>
-                <div className='pm-all-users__search-container'>
-                    <Search
-                        fill={true}
-                        inline={true}
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onDOMChange={evt =>
-                            this.props.actions.pmAllUsersSetListQuery(evt.target.value)}
-                        value={this.props.ui.listQuery}
-                        suggestions={this.props.users.filter(this.filterUser)
-                            .map(user => ({ label: renderName(user),
-                                value: user }))}
-                        onSelect={this.handleSearchSelect}/>
-                </div>
+                 <div className='pm-all-users__search-container'>
+                     <Search
+                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                         value={this.props.ui.listQuery}
+                         list={this.props.users.filter(this.filterUser)
+                             .map(user => ({ label: renderName(user),
+                                 value: user }))}
+                         onChange={evt =>
+                             this.props.actions.pmAllUsersSetListQuery(evt.target.value)}
+                         onSelect={this.handleSearchSelect}/>
+                 </div>
                 <PMUserList {...this.props}
                     onUserNameClick={this.props.actions.pmAllUsersShowProfile}
                     onUserDeleteClick={this.handleDeleteClick}
