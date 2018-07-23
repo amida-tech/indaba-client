@@ -13,7 +13,6 @@ class Search extends Component {
         this.setState(() => ({ listOpen: false }));
     }
     render() {
-        console.log(this.state.listOpen);
         return <div onBlur={() => this.handleClickOutside()}>
             <div className='search-input'>
                 <input className='search-input__input'
