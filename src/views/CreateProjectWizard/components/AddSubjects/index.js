@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import apiService from '../../../../services/api';
@@ -78,7 +77,9 @@ class AddSubjects extends Component {
                 }
                 <hr className='divider'/>
                 <div className='add-subjects__import-row'>
-                    <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
+                    <button className='add-subjects__import-button' disabled>
+                        <span>{this.props.vocab.PROJECT.IMPORT_SUBJECTS}</span>
+                    </button>
                 </div>
                 <hr className='divider'/>
                 <p className='add-subjects__instructions'>

@@ -13,16 +13,7 @@ $block-class: 'users';
             margin-bottom: 40px;
 
             &--left {
-                background-color: nth($brand-neutral-colors, 2);
-                color: #fdfdfd;
-                border: none;
-                padding: 8px 16px;
-                font-size: 12px;
-                font-weight: 400;
-                letter-spacing: 0.3px;
-                margin-left: 8px;
-                border-radius: 2px;
-                outline: none;
+                @extend .standard-button;
 
                 &:hover {
                     background: darken(#4eb276, 10);
@@ -31,16 +22,7 @@ $block-class: 'users';
             }
 
             &--right {
-                background-color: nth($brand-neutral-colors, 2);
-                color: #fdfdfd;
-                border: none;
-                padding: 8px 16px;
-                font-size: 12px;
-                font-weight: 400;
-                letter-spacing: 0.3px;
-                margin-left: 8px;
-                border-radius: 2px;
-                outline: none;
+                @extend .standard-button;
 
                 &:hover {
                     background: darken(#4eb276, 10);

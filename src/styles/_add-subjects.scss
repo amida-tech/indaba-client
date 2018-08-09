@@ -9,6 +9,10 @@ $block-class: 'add-subjects';
             margin-right: 10%;
         }
 
+        &__import-button {
+            @extend .disabled-button;
+        }
+
         &__table-row {
             display: flex;
             align-content: center;

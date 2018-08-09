@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 
 import Tabs from '../../../../common/components/Tabs/Tabs';
 import Tab from '../../../../common/components/Tabs/Tab';
@@ -29,14 +28,16 @@ class AddUsers extends Component {
                             this.props.actions.showAddUserGroupWizardModal(false);
                         }}/>}
                 <hr className='divider' />
-                <div className='add-users__import-row'>
+                <div className='add-users__control-row'>
                     {this.props.ui.tab === 1 &&
-                        <Button className='add-users__import-row-button'
-                            label={this.props.vocab.PROJECT.CREATE_USER_GROUP}
-                            primary
-                            onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}/>}
-                    <Button className='add-users__import-row-button'
-                        label={this.props.vocab.PROJECT.IMPORT_USERS} />
+                        <button className='add-users__control-row-button'
+                            onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}>
+                            <span>{this.props.vocab.PROJECT.CREATE_USER_GROUP}</span>
+                        </button>
+                    }
+                    <button className='add-users__control-row-import-button' disabled>
+                        <span>{this.props.vocab.PROJECT.IMPORT_USERS}</span>
+                    </button>
                 </div>
                 <hr className='divider' />
                 <p className='add-users__instructions add-users__instructions--top'>

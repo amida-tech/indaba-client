@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, form, reduxForm } from 'redux-form';
-import { Button } from 'grommet';
 
 import ProfileSelect from './ProfileSelect';
 import ProfileCheckBox from './ProfileCheckBox';
@@ -18,10 +17,10 @@ class ProfileForm extends Component {
                     <div className='profile-form__form-title'>
                         {this.props.vocab.PROFILE.FORM.PROFILE_SETTINGS}
                     </div>
-                    <Button className='profile-form__button'
-                        primary={true}
-                        label={this.props.vocab.PROFILE.FORM.SAVE_SETTINGS}
-                        onClick={this.props.handleSubmit}/>
+                    <button className='profile-form__button'
+                        onClick={this.props.handleSubmit}>
+                            <span>{this.props.vocab.PROFILE.FORM.SAVE_SETTINGS}</span>
+                        </button>
                 </div>
                 <div className='profile-form__user-info'>
                     <div className='profile-form__section-header'>

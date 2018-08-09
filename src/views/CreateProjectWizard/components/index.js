@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
+import { goBack, push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { find, has, get } from 'lodash';
 
@@ -161,12 +161,14 @@ class CreateProjectWizard extends Component {
                     onBack={this.props.ui.step !== 0 ? this.handleBack : undefined}
                     onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1) ?
                         this.handleSkip : undefined}
+                    step={this.props.ui.step}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
             </div> :
             <div className='project-wizard project-wizard--complete'>
                 <WizardComplete
                     vocab={this.props.vocab}
+                    onWizardComplete={this.props.onWizardComplete}
                     projectLink={this.props.ui.projectLink}
                     project={this.props.project}
                     survey={this.props.survey}/>
@@ -211,6 +213,7 @@ const mapDispatchToProps = dispatch => ({
         { addNewUser, surveyBuilderReset, checkProtection }),
     dispatch),
     onWizardCancel: () => dispatch(goBack()),
+    onWizardComplete: link => dispatch(push(`/project/${link}`)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);
