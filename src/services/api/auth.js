@@ -1,7 +1,7 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.AUTH_API_URL;
+const rootURI = config.AUTH_MICROSERVICE_URL;
 
 const auth = {
     login: (authPayload) => { // Auth does not use cookies for login.
