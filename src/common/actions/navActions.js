@@ -1,8 +1,8 @@
 import cookie from 'react-cookies';
 import { get } from 'lodash';
 import { push } from 'react-router-redux';
+import apiService from '../../services/api';
 import * as actionTypes from '../actionTypes/navActionTypes';
-
 
 export function showCreateProject(show) {
     return {
@@ -22,6 +22,22 @@ export function checkProtection(profile) {
     });
 }
 
+export function checkRefresh() {
+    return dispatch => new Promise(resolve =>
+        apiService.auth.requestRefreshToken(
+              cookie.load('indaba-username'),
+              cookie.load('indaba-refresh'),
+          ).then((refreshResp) => {
+              cookie.save('indaba-auth', `Bearer ${refreshResp.token}`, { path: '/' });
+              cookie.save('indaba-expire', Date.now() + (refreshResp.ttl * 1000), { path: '/' });
+              dispatch(_refreshTokenSuccess());
+              return resolve();
+          }).catch(() => {
+              logOut('');
+          }),
+    );
+}
+
 export function toggleCheckBackend() {
     return {
         type: actionTypes.TOGGLE_CHECK_BACKEND,
@@ -37,6 +53,12 @@ export function logOut(timeoutRef) {
     cookie.remove('indaba-roleID', { path: '/' });
     return (dispatch) => {
         dispatch(_logOutSuccess(timeoutRef));
+    };
+}
+
+function _refreshTokenSuccess() {
+    return {
+        type: actionTypes.REFRESH_TOKEN_SUCCESS,
     };
 }
 

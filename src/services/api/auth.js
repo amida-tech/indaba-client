@@ -1,4 +1,3 @@
-import cookie from 'react-cookies';
 import * as requests from './requests';
 import config from '../../config';
 
