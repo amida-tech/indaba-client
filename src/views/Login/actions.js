@@ -68,6 +68,9 @@ function _login() {
 function _loginSuccess(response, realm) {
     cookie.save('indaba-auth', `Bearer ${response.token}`, { path: '/' });
     cookie.save('indaba-realm', realm, { path: '/' });
+    if (cookie.load('indaba-refresh') === 'true') {
+        cookie.save('indaba-refresh', response.refreshToken, { path: '/' });
+    }
     return {
         type: actionTypes.LOGIN_SUCCESS,
         payload: response,
