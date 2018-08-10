@@ -102,7 +102,7 @@ class PrimaryNavContainer extends Component {
                             size='2x' />
                     </Link>
                     <Link className='primary-nav__logout'
-                        onClick={this.logOut}
+                        onClick={this.handleLogOut}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
                     </Link>

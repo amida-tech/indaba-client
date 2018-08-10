@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cookie from 'react-cookies';
 import { toast } from 'react-toastify';
 
 import LoginForm from './LoginForm';
@@ -33,6 +34,20 @@ class LoginPanel extends Component {
                             this.props.vocab.COMMON.TIMEOUT : this.props.ui.error}
                     </div>
                 }
+                <div className='login-panel__remember-me'>
+                    <input type='checkbox'
+                        className='login-panel__remember-checkbox'
+                        onClick={(event) => {
+                            if (event.target.checked) {
+                                cookie.save('indaba-refresh', true, { path: '/' });
+                            } else {
+                                cookie.remove('indaba-refresh', { path: '/' });
+                            }
+                        }} />
+                        <span className='login-panel__remember-text'>
+                            {this.props.vocab.COMMON.STAY_LOGGED_IN}
+                        </span>
+                </div>
                 <div className='login-panel__link'
                     onClick={() => (
                         this.props.currentEmail ?
