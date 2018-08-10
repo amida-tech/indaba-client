@@ -29,7 +29,9 @@ export function toggleCheckBackend() {
 }
 
 export function logOut(timeoutRef) {
+    cookie.remove('indaba-username', { path: '/' });
     cookie.remove('indaba-auth', { path: '/' });
+    cookie.remove('indaba-expire', { path: '/' });
     cookie.remove('indaba-refresh', { path: '/' });
     cookie.remove('indaba-realm', { path: '/' });
     cookie.remove('indaba-roleID', { path: '/' });

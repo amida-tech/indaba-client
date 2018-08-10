@@ -16,7 +16,7 @@ export function addQueryParams(url, params) {
 }
 
 /**
- * Executes a POST request on the given URI
+ * Executes a POST request specific to auth on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
 * */
@@ -158,6 +158,18 @@ export function putObjectRequest(file, fullURI) {
 // ////////////////
 // Private Helpers
 // ////////////////
+
+function checkAuth() {
+    console.log('Checking time.');
+    const timeLeft = cookie.load('indaba-expire') - Date.now();
+    console.log(`${new Date(timeLeft)} is cut off time.`);
+    if (timeLeft < 120000) {
+        console.log('Two minute warning.');
+        if (cookie.load('indaba-refresh') !== undefined) {
+            // Call to the auth service.
+        }
+    }
+}
 
 function handleResponse(response) {
     if (response.ok) {

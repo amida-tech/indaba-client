@@ -15,7 +15,7 @@ export function login(username, password, realm, referrer, errorMessages) {
         };
         apiService.auth.login(authPayload)
         .then((auth) => {
-            dispatch(_loginSuccess(auth, realm));
+            dispatch(_loginSuccess(username, auth, realm));
             apiService.users.getProfile()
             .then((profileResp) => {
                 dispatch(getProfileSuccess(profileResp));
@@ -65,8 +65,10 @@ function _login() {
     };
 }
 
-function _loginSuccess(response, realm) {
+function _loginSuccess(username, response, realm) {
+    cookie.save('indaba-username', username, { path: '/' });
     cookie.save('indaba-auth', `Bearer ${response.token}`, { path: '/' });
+    cookie.save('indaba-expire', Date.now() + (response.ttl * 1000), { path: '/' });
     cookie.save('indaba-realm', realm, { path: '/' });
     if (cookie.load('indaba-refresh') === 'true') {
         cookie.save('indaba-refresh', response.refreshToken, { path: '/' });
