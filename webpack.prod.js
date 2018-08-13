@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -9,24 +9,25 @@ module.exports = merge(common, {
         rules: [
             {
                 test: /\.(css|scss)$/,
-                use: ExtractTextPlugin.extract({
-                    use: ['css-loader',
-                        {
+                use: [
+                   MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
                             loader: 'sass-loader',
                             options: {
                                 includePaths: ['./node_modules'],
                             },
-                        },
-                    ],
-                }),
+                    },
+                ]
             },
         ],
     },
+    mode: 'production',
     plugins: [
         new UglifyJSPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new ExtractTextPlugin('style.css'),
+        new MiniCssExtractPlugin('style.css'),
     ],
 });

@@ -20,6 +20,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 use: [
                     'babel-loader',
                     {
@@ -29,7 +30,6 @@ module.exports = {
                         },
                     },
                 ],
-                exclude: /node_modules/,
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf)$/,
