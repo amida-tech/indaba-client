@@ -6,7 +6,6 @@ RUN yarn
 RUN yarn build
 
 FROM nginx:stable
-
+ENV NODE_ENV "production"
 COPY --from=builder /app/dist /usr/share/nginx/html
-
 
