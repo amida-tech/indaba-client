@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const common = require('./webpack.common.js');
 
@@ -23,11 +23,18 @@ module.exports = merge(common, {
         ],
     },
     mode: 'production',
+    optimization: {
+        minimizer: [
+          new UglifyJsPlugin()
+        ],
+        splitChunks: {
+            chunks: 'all'
+        }
+      },
     plugins: [
-        new UglifyJSPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new MiniCssExtractPlugin('style.css'),
+        new MiniCssExtractPlugin(),
     ],
 });

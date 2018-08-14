@@ -1,5 +1,5 @@
 FROM node:6.14.3-alpine as builder
-ENV NODE_ENV "development"
+ENV NODE_ENV "production"
 WORKDIR /app
 COPY ./ /app
 RUN yarn
