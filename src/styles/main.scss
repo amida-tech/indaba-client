@@ -105,7 +105,8 @@
 @import './dashboard/flag-count.scss';
 @import './dashboard/split-layout.scss';
 @import './dashboard/stamp.scss';
-@import './dashboard/search-input.scss';
+@import './dashboard/search.scss';
+@import './dashboard/filter-input.scss'; // To be removed.
 @import './dashboard/message-list.scss';
 // User Dashboard
 @import './userdashboard/user-dashboard.scss';

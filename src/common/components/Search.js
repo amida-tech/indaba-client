@@ -14,19 +14,19 @@ class Search extends Component {
     }
     render() {
         return <div onBlur={() => this.handleClickOutside()}>
-            <div className='search-input'>
-                <input className='search-input__input'
+            <div className='search'>
+                <input className='search__input'
                        type='text'
                        placeholder={this.props.placeholder}
                        value={this.props.value}
                        onChange={this.props.onChange}
                        onClick={() => { this.setState(prev => ({ listOpen: !prev.listOpen })); }}
                 />
-                <IonIcon className='search-input__icon' icon='ion-android-search'/>
+                <IonIcon className='search__icon' icon='ion-android-search'/>
             </div>
-            { this.state.listOpen && <ul className='subject-list'>
+            { this.state.listOpen && <ul className='search__list'>
                 {this.props.list.map(item => (
-                    <li className='subject-list__entry'
+                    <li className='search__entry'
                         onMouseDown={() => { this.props.onSelect(item); }}
                         key={item.value.id}>
                         {item.label}</li>
