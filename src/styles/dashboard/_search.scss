@@ -12,8 +12,7 @@ $block-class: 'search';
 
         @extend .small-font;
 
-        &__input,
-        .grommet &__input:not(.grommetux-input) {
+        &__input {
             flex: 1;
             border: 2px solid $border-color;
             border-radius: 2px;
@@ -36,6 +35,10 @@ $block-class: 'search';
 
         &__list {
             background-color: #fdfdfd;
+            z-index: 20;
+            position: absolute;
+            width: 100%;
+            margin-left: 0;
         }
 
         &__entry {
