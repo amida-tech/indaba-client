@@ -37,8 +37,9 @@ $block-class: 'search';
             background-color: #fdfdfd;
             z-index: 20;
             position: absolute;
-            width: 100%;
+            width: 75%;
             margin-left: 0;
+            background-color: rgba(248, 248, 248, 0.95)
         }
 
         &__entry {
@@ -47,8 +48,10 @@ $block-class: 'search';
             flex-direction: row;
             align-items: center;
             padding: 8px 16px;
-
-            @extend .lead-font;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 400;
+            color: #82909c;
 
             &:hover {
                 background-color: #ededed;
