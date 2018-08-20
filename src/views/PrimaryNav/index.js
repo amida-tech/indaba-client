@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { Button } from 'grommet';
 import { Icon } from 'react-fa';
 import { get, has } from 'lodash';
 import cookie from 'react-cookies';
@@ -17,6 +16,21 @@ import CreateNewProject from './CreateNewProject';
 import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleLogOut = this.handleLogOut.bind(this);
+        this.handleShowCreateProject = this.handleShowCreateProject.bind(this);
+    }
+
+    handleLogOut() {
+        this.props.actions.logOut('');
+    }
+
+    handleShowCreateProject() {
+        this.props.actions.showCreateProject(true);
+    }
+
     componentWillMount() {
         if (cookie.load('indaba-auth') === undefined) {
             this.props.redirectToLogin();
@@ -37,7 +51,8 @@ class PrimaryNavContainer extends Component {
             <nav className='primary-nav'>
                 {this.props.ui.showCreateProject &&
                 <CreateNewProject vocab={this.props.vocab}
-                    onCancel={() => this.props.actions.showCreateProject(false)}/>}
+                    showCreateProject={this.props.actions.showCreateProject}
+                    goToNewProject={this.props.goToNewProject}/>}
 
                 <div className='primary-nav__left'>
                     <Link to={isProjectManager ? '/project' : '/task'}>
@@ -65,10 +80,10 @@ class PrimaryNavContainer extends Component {
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </Link>}
                     {isProjectManager &&
-                    <Button
-                        className={'primary-nav__item-nav primary-nav__button'}
-                        label={this.props.vocab.COMMON.CREATE}
-                        onClick={() => this.props.actions.showCreateProject(true)}/>}
+                        <button className='primary-nav__item-nav primary-nav__button'
+                            onClick={this.handleShowCreateProject}>
+                            <span>{this.props.vocab.COMMON.CREATE}</span>
+                        </button>}
                 </div>
                 <div className='primary-nav__right'>
                     <div className='primary-nav__welcome'>
@@ -87,7 +102,7 @@ class PrimaryNavContainer extends Component {
                             size='2x' />
                     </Link>
                     <Link className='primary-nav__logout'
-                        onClick={() => this.props.actions.logOut('')}
+                        onClick={this.logOut}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
                     </Link>
@@ -108,6 +123,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions,
         { getProfile, getUsers, getProjects }), dispatch),
     redirectToLogin: () => dispatch(push('/login')),
+    goToNewProject: () => dispatch(push('/create-new-project')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

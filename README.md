@@ -25,7 +25,7 @@ At build time, (`yarn develop` or `yarn build`), webpack reads the following val
 1. Survey service (see https://github.com/amida-tech/amida-survey-microservice)
  - `SURVEY_API_URL ('https://localhost:9005/api/v1.0')`
 1. Messaging service (see https://github.com/amida-tech/amida-messaging-microservice)
- - `MESSAGING_API_URL ('http://localhost:4002/api')`
+ - `MESSAGING_API_URL ('http://localhost:4001/api/v1')`
 1. System message sender email
  - `SYS_MESSAGE_USER ('indaba@example.com')`
 

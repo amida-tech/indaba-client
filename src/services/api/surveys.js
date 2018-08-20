@@ -1,7 +1,7 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.SURVEY_API_URL;
+const rootURI = config.SURVEY_MICROSERVICE_URL;
 
 const surveys = {
     getSurveys: () =>

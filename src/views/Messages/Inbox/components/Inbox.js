@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
@@ -191,10 +190,10 @@ class Inbox extends Component {
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
                         onSelectTab={this.handleTabClick}/>
-                    <Button className='inbox__new-message-button'
-                        primary={true}
-                        label={this.props.vocab.MESSAGES.NEW_MESSAGE}
-                        path='/messages/new' />
+                    <button className='inbox__new-message-button'
+                        onClick={this.props.goToNew}>
+                        <span>{this.props.vocab.MESSAGES.NEW_MESSAGE}</span>
+                    </button>
                 </div>
                 <hr className='divider'/>
                 <div className='inbox__filter'>
@@ -259,6 +258,7 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
+    goToNew: () => dispatch(push('/messages/new')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);

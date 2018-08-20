@@ -20,10 +20,10 @@ $block-class: 'inbox';
         }
 
         &__new-message-button {
+            @extend .alt-button;
+
             letter-spacing: 0.8px;
             font-weight: 400;
-            color: #7e848f;
-            background-color: #fff;
             border-radius: 2px;
 
             &:hover {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 import { orderBy } from 'lodash';
 
@@ -18,7 +17,18 @@ class Subjects extends Component {
             showAddSubjectModal: false,
         };
         this.attemptSubjectDelete = this.attemptSubjectDelete.bind(this);
+        this.showAddSubjectModal = this.showAddSubjectModal.bind(this);
+        this.closeAddSubjectModal = this.closeAddSubjectModal.bind(this);
     }
+
+    showAddSubjectModal() {
+        this.setState({ showAddSubjectModal: true });
+    }
+
+    closeAddSubjectModal() {
+        this.setState({ showAddSubjectModal: false });
+    }
+
     attemptSubjectDelete(subject) {
         if (!this.props.project.firstActivated) {
             this.props.actions.showSubjectDeleteConfirmModalForId(subject.id);
@@ -62,7 +72,7 @@ class Subjects extends Component {
                                 false,
                                 this.props.vocab.ERROR);
                         }}
-                        onCancel={() => this.setState({ showAddSubjectModal: false })}
+                        onCancel={this.closeAddSubjectModal}
                         vocab={this.props.vocab}/>}
                 {
                     this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
@@ -81,10 +91,10 @@ class Subjects extends Component {
                         saveLabel={this.props.vocab.COMMON.DELETE} />
                 }
                 <div className='subjects__action'>
-                    <Button className='subjects__action-button'
-                        label={this.props.vocab.PROJECT.ADD_SUBJECT}
-                        primary
-                        onClick={() => this.setState({ showAddSubjectModal: true })}/>
+                    <button className='subjects__action-button'
+                        onClick={this.showAddSubjectModal}>
+                        <span>{this.props.vocab.PROJECT.ADD_SUBJECT}</span>
+                    </button>
                 </div>
                 <hr className='divider' />
                 <div className='subjects__table'>

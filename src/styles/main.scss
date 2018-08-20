@@ -2,6 +2,7 @@
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
 @import './styles.scss';
+@import './buttons.scss';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -41,7 +42,7 @@
 @import './pm-dashboard.scss';
 @import './status-label.scss';
 @import './fonts.scss';
-@import './add-stages-step.scss';
+@import './add-stages.scss';
 @import './project-wizard';
 @import './wizard-footer.scss';
 @import './user-groups-tab';

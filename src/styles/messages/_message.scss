@@ -56,6 +56,19 @@ $block-class: 'message';
             border-radius: 2px;
         }
 
+        &__body-cancel-button {
+            @extend .alt-button;
+
+            color: $header-font-color;
+            border-radius: 2px;
+            background-color: #d9dcde;
+            border: 2px solid $header-font-color;
+        }
+
+        &__body-send-button {
+            @extend .standard-button;
+        }
+
         &__body-timestamp {
             margin-top: 1em;
         }

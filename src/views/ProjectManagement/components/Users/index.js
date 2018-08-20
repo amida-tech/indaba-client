@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 
 import PMUsersTab from './PMUsersTab';
 import PMUserGroupsTab from './PMUserGroupsTab';
@@ -13,7 +12,24 @@ class Users extends Component {
     constructor(props) {
         super(props);
         this.state = { modalName: false };
+
+        this.showAddUserModal = this.showAddUserModal.bind(this);
+        this.showAddGroupModal = this.showAddGroupModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
+
+    showAddUserModal() {
+        this.setState({ modalName: 'adduser' });
+    }
+
+    showAddGroupModal() {
+        this.setState({ modalName: 'addgroup' });
+    }
+
+    closeModal() {
+        this.setState({ modalName: false });
+    }
+
     render() {
         return (
             <div className='users'>
@@ -24,7 +40,7 @@ class Users extends Component {
                         users={this.props.project.users}
                         userGroups={this.props.project.userGroups}
                         vocab={this.props.vocab}
-                        onCancel={() => this.setState({ modalName: false })}
+                        onCancel={this.closeModal}
                         group={this.props.project.userGroups
                             .find(group => group.id === this.state.modalId)}
                         onSave={(group) => {
@@ -49,21 +65,21 @@ class Users extends Component {
                 {
                     this.state.modalName === 'adduser' &&
                     <AddUserModal vocab={this.props.vocab}
-                        onCancel={() => this.setState({ modalName: false })}
-                        onSave={() => this.setState({ modalName: false })}
+                        onCancel={this.closeModal}
+                        onSave={this.closeModal}
                         actions={this.props.actions}
                         projectId={this.props.project.id}
                         organizationId={this.props.profile.organizationId}/>
                 }
                 <div className='users__action-btn'>
-                    <Button className='users__action-btn--left'
-                        label={this.props.vocab.PROJECT.ADD_USER}
-                        primary
-                        onClick={() => this.setState({ modalName: 'adduser' })}/>
-                    <Button className='users__action-btn--right'
-                        label={this.props.vocab.PROJECT.ADD_USER_GROUP}
-                        primary
-                        onClick={() => this.setState({ modalName: 'addgroup' })}/>
+                    <button className='users__action-btn--left'
+                        onClick={this.showAddUserModal}>
+                            <span>{this.props.vocab.PROJECT.ADD_USER}</span>
+                    </button>
+                    <button className='users__action-btn--right'
+                        onClick={this.showAddGroupModal}>
+                        <span>{this.props.vocab.PROJECT.ADD_USER_GROUP}</span>
+                    </button>
                 </div>
                 <Tabs>
                     <Tab title={this.props.vocab.PROJECT.USERS}>
