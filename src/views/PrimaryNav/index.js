@@ -21,10 +21,20 @@ class PrimaryNavContainer extends Component {
 
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleShowCreateProject = this.handleShowCreateProject.bind(this);
+        this.checkAuth = this.checkAuth.bind(this);
     }
 
     handleLogOut() {
         this.props.actions.logOut('');
+    }
+
+    checkAuth() {
+        const timeLeft = cookie.load('indaba-expire') - Date.now();
+        if (timeLeft < 180000) {
+            if (cookie.load('indaba-refresh') !== undefined) {
+                this.props.actions.checkRefresh();
+            }
+        }
     }
 
     handleShowCreateProject() {
@@ -41,6 +51,12 @@ class PrimaryNavContainer extends Component {
         if (this.props.nav.ui.checkBackend) {
             this.props.actions.getUsers(this.props.vocab.ERROR);
             this.props.actions.toggleCheckBackend();
+        }
+    }
+
+    componentDidMount() {
+        if (cookie.load('indaba-refresh') !== undefined) {
+            setInterval(this.checkAuth, 60000);
         }
     }
 
@@ -102,7 +118,7 @@ class PrimaryNavContainer extends Component {
                             size='2x' />
                     </Link>
                     <Link className='primary-nav__logout'
-                        onClick={this.logOut}
+                        onClick={this.handleLogOut}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
                     </Link>
