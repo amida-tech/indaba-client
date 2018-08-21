@@ -34,12 +34,11 @@ $block-class: 'search';
         }
 
         &__list {
-            background-color: #fdfdfd;
             z-index: 20;
             position: absolute;
             width: 75%;
             margin-left: 0;
-            background-color: rgba(248, 248, 248, 0.95)
+            background-color: rgba(248, 248, 248, 0.95);
         }
 
         &__entry {
