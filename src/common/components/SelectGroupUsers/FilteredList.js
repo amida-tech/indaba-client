@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import List from './List';
-import SearchInput from '../../../common/components/Dashboard/SearchInput';
+import FilterInput from '../../../common/components/Dashboard/FilterInput';
 
 class FilteredList extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class FilteredList extends Component {
         }
         return (
             <div>
-                <SearchInput
+                <FilterInput
                     placeholder={this.props.placeHolder}
                     onChange={this.handleQuery}
                 />

@@ -16,7 +16,7 @@ export function addQueryParams(url, params) {
 }
 
 /**
- * Executes a POST request on the given URI
+ * Executes a POST request specific to auth on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
 * */
@@ -158,7 +158,6 @@ export function putObjectRequest(file, fullURI) {
 // ////////////////
 // Private Helpers
 // ////////////////
-
 function handleResponse(response) {
     if (response.ok) {
         return decodeResponse(response);

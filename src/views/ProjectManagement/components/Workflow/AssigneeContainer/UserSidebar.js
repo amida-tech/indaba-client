@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Select } from 'grommet';
-import SearchInput from '../../../../../common/components/Dashboard/SearchInput';
+import FilterInput from '../../../../../common/components/Dashboard/FilterInput';
 
 class UserSidebar extends Component {
     render() {
@@ -11,7 +11,7 @@ class UserSidebar extends Component {
                     {this.props.vocab.PROJECT.DND_INSTRUCTIONS}
                 </div>
                 <div className='user-sidebar__wrapper'>
-                    <SearchInput
+                    <FilterInput
                         placeholder={this.props.vocab.COMMON.SEARCH}
                         onChange={this.props.onSearch}
                     />

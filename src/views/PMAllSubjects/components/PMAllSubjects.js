@@ -4,7 +4,7 @@ import { orderBy } from 'lodash';
 
 import { CONFIRM_TYPE } from '../constants';
 import apiService from '../../../services/api';
-import SearchInput from '../../../common/components/Dashboard/SearchInput';
+import FilterInput from '../../../common/components/Dashboard/FilterInput';
 import SubjectList from '../../../common/components/SubjectList';
 import Modal from '../../../common/components/Modal';
 
@@ -87,7 +87,7 @@ class PMAllSubjects extends Component {
                         saveLabel={this.props.vocab.COMMON.DELETE}/>
                 }
                 <div className='pm-all-subjects__search-wrapper'>
-                    <SearchInput className='pm-all-subjects__search'
+                    <FilterInput className='pm-all-subjects__search'
                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_SUBJECTS}
                         onChange={evt =>
                             this.props.actions.pmAllSubjectsSetQuery(evt.target.value)} />
