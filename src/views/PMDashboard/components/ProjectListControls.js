@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ProjectFilter from './ProjectFilter';
-import SearchInput from '../../../common/components/Dashboard/SearchInput';
+import FilterInput from '../../../common/components/Dashboard/FilterInput';
 
 class ProjectListControls extends Component {
     render() {
         return (
             <div className='project-list-controls'>
                 <div className='project-list-controls__search'>
-                    <SearchInput
+                    <FilterInput
                         placeholder={this.props.vocab.PROJECT.SEARCH_PROJECT}
                         onChange={evt => this.props.actions.setSearchQuery(evt.target.value)} />
                 </div>

@@ -7,7 +7,7 @@ import apiService from '../../../../services/api';
 import SubjectList from '../../../../common/components/SubjectList';
 import SubjectModal from '../Modals/Subject';
 import Modal from '../../../../common/components/Modal';
-import SearchInput from '../../../../common/components/Dashboard/SearchInput';
+import FilterInput from '../../../../common/components/Dashboard/FilterInput';
 
 class Subjects extends Component {
     constructor(props) {
@@ -99,7 +99,7 @@ class Subjects extends Component {
                 <hr className='divider' />
                 <div className='subjects__table'>
                     <div className='subjects__search-wrapper'>
-                        <SearchInput className='subjects__search'
+                        <FilterInput className='subjects__search'
                             placeholder={this.props.vocab.PROJECT.SEARCH_FOR_SUBJECTS}
                             onChange={evt => this.setState({ query: evt.target.value })} />
                     </div>

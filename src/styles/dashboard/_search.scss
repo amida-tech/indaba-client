@@ -1,0 +1,60 @@
+$element-background: #f3f5f6;
+$search-input-background: #fff;
+
+$block-class: 'search';
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: $lead-font-color;
+
+        @extend .small-font;
+
+        &__input {
+            flex: 1;
+            border: 2px solid $border-color;
+            border-radius: 2px;
+            background-color: $search-input-background;
+            padding: 8px;
+
+            &:focus,
+            &:active {
+                border: 2px solid $brand-color;
+                outline: none;
+            }
+        }
+
+        &__icon {
+            @extend .small-icon;
+
+            position: absolute;
+            right: 0.5em;
+        }
+
+        &__list {
+            z-index: 20;
+            position: absolute;
+            width: 75%;
+            margin-left: 0;
+            background-color: rgba(248, 248, 248, 0.95);
+        }
+
+        &__entry {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 400;
+            color: #82909c;
+
+            &:hover {
+                background-color: #ededed;
+            }
+        }
+    }
+}
