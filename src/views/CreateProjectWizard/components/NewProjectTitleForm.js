@@ -23,12 +23,6 @@ class NewProjectTitleForm extends Component {
                         placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
                         validate={[required]} />
                 </div>
-                <div className='new-project-title-form__summary-container'>
-                    <Field component='textarea'
-                        name='project.description'
-                        placeholder={this.props.vocab.PROJECT.SUMMARY}
-                        className='new-project-title-form__summary' />
-                </div>
                 {this.props.errorMessage &&
                     <div className='new-project-title-form__error'>
                         {this.props.errorMessage}
