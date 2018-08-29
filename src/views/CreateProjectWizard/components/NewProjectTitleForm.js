@@ -9,10 +9,8 @@ class NewProjectTitleForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit}
                 className='new-project-title-form'>
+
                     <div className='new-project-title-form__field'>
-                    <label className='new-project-title-form__label'>
-                    {this.props.vocab.PROJECT.NAME_PROJECT}
-                    </label>
                         <Field component={ValidatedTextInput}
                             name='project.codeName'
                             vocab={this.props.vocab.VALIDATE}
@@ -20,9 +18,6 @@ class NewProjectTitleForm extends Component {
                             validate={[required]} />
                     </div>
                         <div className='new-project-title-form__field'>
-                        <label className='new-project-title-form__label'>
-                        {this.props.vocab.PROJECT.NAME_SURVEY}
-                        </label>
                             <Field component={ValidatedTextInput}
                                 name='survey.name'
                                 vocab={this.props.vocab.VALIDATE}
