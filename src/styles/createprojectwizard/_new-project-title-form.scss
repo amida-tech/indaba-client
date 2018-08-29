@@ -2,17 +2,21 @@ $block-class: 'new-project-title-form';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        padding: 16px;
-        flex-direction: column;
+        flex-direction: row;
+        padding: 3em 2em;
+        justify-content: space-around;
 
         &__field {
-            margin-bottom: 24px;
-            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
+
+            @extend .large-font;
         }
 
         &__label {
-            margin-bottom: 4px;
+            margin-bottom: 16px;
 
             @extend .small-font;
         }

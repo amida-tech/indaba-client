@@ -222,7 +222,7 @@
         "COMMENT_TIP": "Enter your comment here",
         "TASK_COMPLETED": "Task completed!",
         "PROGRESS_SAVED": "Progress saved.",
-        "NAME_INSTRUCTIONS": "Name the project and the Survey. (You can change name anytime)",
+        "NAME_INSTRUCTIONS": "Name the project and the survey. (You can change the name anytime)",
         "ACTIVITY_OPTIONS": [
             "Complete Survey",
             "Review",
