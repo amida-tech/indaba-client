@@ -3,19 +3,18 @@ $block-class: 'new-project-title-form';
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: row;
-        padding: 3em 2em;
-        justify-content: space-around;
+        padding: 16px;
+        flex-direction: column;
+
+        &__field {
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
 
         &__label {
             margin-bottom: 4px;
 
             @extend .small-font;
-        }
-
-        &__field {
-            margin-bottom: 24px;
-            font-size: 24px;
         }
 
         &__summary-container {

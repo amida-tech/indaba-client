@@ -19,9 +19,6 @@ class Modal extends Component {
                          <div className='modal-c__title'>{this.props.title}</div>
                     }
                     <div className='modal-c__container'>
-                    <label className='modal-c__container__label'>
-                    {this.props.vocab.PROJECT.NAME_INSTRUCTIONS}
-                    </label>
                         {
                             this.props.bodyText &&
                             <div className='modal-c__body-text'>{this.props.bodyText}</div>

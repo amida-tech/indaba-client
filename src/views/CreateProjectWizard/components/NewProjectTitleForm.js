@@ -9,7 +9,9 @@ class NewProjectTitleForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit}
                 className='new-project-title-form'>
-
+                <label className='new-project-title-form__label'>
+                {this.props.vocab.PROJECT.NAME_INSTRUCTIONS}
+                </label>
                     <div className='new-project-title-form__field'>
                         <Field component={ValidatedTextInput}
                             name='project.codeName'
