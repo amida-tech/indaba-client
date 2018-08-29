@@ -9,20 +9,26 @@ class NewProjectTitleForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit}
                 className='new-project-title-form'>
-                <div className='new-project-title-form__field'>
-                    <Field component={ValidatedTextInput}
-                        name='project.codeName'
-                        vocab={this.props.vocab.VALIDATE}
-                        placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
-                        validate={[required]} />
-                </div>
-                <div className='new-project-title-form__field'>
-                    <Field component={ValidatedTextInput}
-                        name='survey.name'
-                        vocab={this.props.vocab.VALIDATE}
-                        placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
-                        validate={[required]} />
-                </div>
+                    <div className='new-project-title-form__field'>
+                    <label className='new-project-title-form__label'>
+                    {this.props.vocab.PROJECT.NAME_PROJECT}
+                    </label>
+                        <Field component={ValidatedTextInput}
+                            name='project.codeName'
+                            vocab={this.props.vocab.VALIDATE}
+                            placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
+                            validate={[required]} />
+                    </div>
+                        <div className='new-project-title-form__field'>
+                        <label className='new-project-title-form__label'>
+                        {this.props.vocab.PROJECT.NAME_SURVEY}
+                        </label>
+                            <Field component={ValidatedTextInput}
+                                name='survey.name'
+                                vocab={this.props.vocab.VALIDATE}
+                                placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
+                                validate={[required]} />
+                        </div>
                 {this.props.errorMessage &&
                     <div className='new-project-title-form__error'>
                         {this.props.errorMessage}

@@ -222,6 +222,8 @@
         "COMMENT_TIP": "Enter your comment here",
         "TASK_COMPLETED": "Task completed!",
         "PROGRESS_SAVED": "Progress saved.",
+        "NAME_PROJECT": "Name the project. (You can change name anytime)",
+        "NAME_SURVEY": "Name the survey. (You can change name anytime)",
         "ACTIVITY_OPTIONS": [
             "Complete Survey",
             "Review",
