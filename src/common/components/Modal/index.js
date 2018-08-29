@@ -16,7 +16,7 @@ class Modal extends Component {
                 <div className={`modal-c ${this.props.class || ''}`}>
                     {
                         this.props.title &&
-                        <div className='modal-c__title'></div>
+                        <div className='modal-c__title'>{this.props.title}</div>
                     }
                     <div className='modal-c__container'>
                         {
