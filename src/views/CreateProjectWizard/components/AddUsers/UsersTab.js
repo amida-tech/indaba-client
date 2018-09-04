@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Search } from 'grommet';
 import PropTypes from 'prop-types';
 
 import DeleteIconButton from '../../../../common/components/DeleteIconButton';
 import UserBadge from '../../../../common/components/UserBadge';
 import InviteUserForm from '../../../../common/components/InviteUserForm';
+import Search from '../../../../common/components/Search';
 import { renderName } from '../../../../utils/User';
 
 class UsersTab extends Component {
@@ -19,7 +19,7 @@ class UsersTab extends Component {
     handleSearchSelect(selection) {
         this.props.actions.addUsersSetUsersFilter('');
         this.props.actions.addUser(
-            selection.suggestion.value.id,
+            selection.value.id,
             this.props.projectId,
             this.props.vocab.ERROR);
     }
@@ -62,15 +62,13 @@ class UsersTab extends Component {
                     }} />
                 <div className='users-tab__search'>
                     <Search
-                        fill={true}
-                        inline={true}
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onDOMChange={evt =>
-                            this.props.actions.addUsersSetUsersFilter(evt.target.value)}
                         value={this.props.filter}
-                        suggestions={this.props.allUsers.filter(this.searchFilter)
+                        list={this.props.allUsers.filter(this.searchFilter)
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
+                        onChange={evt =>
+                            this.props.actions.addUsersSetUsersFilter(evt.target.value)}
                         onSelect={this.handleSearchSelect}/>
                         </div>
                 </div>

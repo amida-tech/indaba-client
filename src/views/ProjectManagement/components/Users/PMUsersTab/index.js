@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Search } from 'grommet';
 
 import { renderName, DATA_STATE, getDataState } from '../../../../../utils/User';
 import Modal from '../../../../../common/components/Modal';
 import { UserProfileContainer } from '../../../../UserProfile';
 import PMUserList from '../../../../../common/components/PMUserList';
 import InviteUserForm from '../../../../../common/components/InviteUserForm';
+import Search from '../../../../../common/components/Search';
 
 class PMUsersTab extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class PMUsersTab extends Component {
     handleSearchSelect(selection) {
         this.props.actions.updateUserListSearchQuery('');
         this.props.actions.addUser(
-            selection.suggestion.value.id,
+            selection.value.id,
             this.props.project.id,
             this.props.vocab.ERROR);
     }
@@ -84,15 +84,13 @@ class PMUsersTab extends Component {
                 </div>
                 <div className='pm-users-tab__search-container'>
                     <Search
-                        fill={true}
-                        inline={true}
                         placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        onDOMChange={evt =>
-                            this.props.actions.updateUserListSearchQuery(evt.target.value)}
                         value={this.props.ui.userListSearchQuery}
-                        suggestions={this.props.allUsers.filter(this.filterUser)
+                        list={this.props.allUsers.filter(this.filterUser)
                             .map(user => ({ label: renderName(user),
                                 value: user }))}
+                        onChange={evt =>
+                            this.props.actions.updateUserListSearchQuery(evt.target.value)}
                         onSelect={this.handleSearchSelect}/>
                 </div>
                 <PMUserList
