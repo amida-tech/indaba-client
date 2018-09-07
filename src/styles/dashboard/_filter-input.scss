@@ -20,8 +20,8 @@ $block-class: 'filter-input';
             background-color: $search-input-background;
             padding: 8px;
 
-            &:focus,
-            &:active {
+            &:active,
+            &:focus {
                 border: 2px solid $brand-color;
                 outline: none;
             }
