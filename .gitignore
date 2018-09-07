@@ -28,3 +28,10 @@ yarn-error.log*
 .idea
 
 .env
+
+# gradle files used by Mike H.
+.gradle
+gradlew.bat
+gradlew
+build.gradle
+gradle
