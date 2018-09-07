@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Box } from 'grommet';
+import Box from 'grommet/components/Box';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';

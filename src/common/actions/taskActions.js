@@ -2,8 +2,8 @@ import { toast } from 'react-toastify';
 import { pickBy, identity } from 'lodash';
 import { push } from 'react-router-redux';
 
-import { getAnswers } from '../actions/surveyActions';
-import { getProjectById } from '../actions/projectActions';
+import { getAnswers } from './surveyActions';
+import { getProjectById } from './projectActions';
 import * as actionTypes from '../actionTypes/taskActionTypes';
 import apiService from '../../services/api';
 

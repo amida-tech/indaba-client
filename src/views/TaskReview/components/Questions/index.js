@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { find, get, has, merge, omit } from 'lodash';
-import { DateTime } from 'grommet';
+import DateTime from 'grommet/components/DateTime';
 
 import FileForm from './FileForm';
 import FilePane from './FilePane';

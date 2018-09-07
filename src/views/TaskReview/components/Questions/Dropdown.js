@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Select } from 'grommet';
+import Select from 'grommet/components/Select';
 
 class Dropdown extends Component {
     render() {

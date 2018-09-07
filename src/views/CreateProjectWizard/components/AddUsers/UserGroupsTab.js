@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import { Search } from 'grommet';
+import Search from 'grommet/components/Search';
 
 import apiService from '../../../../services/api';
 import UserGroupList from '../../../../common/components/UserGroupList';

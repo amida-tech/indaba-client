@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Select } from 'grommet';
+import Select from 'grommet/components/Select';
 import FilterInput from '../../../../../common/components/Dashboard/FilterInput';
 
 class UserSidebar extends Component {

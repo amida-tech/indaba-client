@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Layer } from 'grommet';
+import Layer from 'grommet/components/Layer';
 import { submit } from 'redux-form';
 
 import FooterButton from './FooterButton';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from 'grommet';
+import Select from 'grommet/components/Select';
 
 class TaskOptionsSelect extends Component {
     render() {

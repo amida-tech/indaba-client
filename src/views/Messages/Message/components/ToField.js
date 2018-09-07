@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Search } from 'grommet';
+import Search from 'grommet/components/Search';
 import _ from 'lodash';
 
 import { renderName } from '../../../../utils/User';

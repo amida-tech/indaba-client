@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box } from 'grommet';
+import Box from 'grommet/components/Box';
 import enhanceWithClickOutside from 'react-click-outside';
 import IonIcon from 'react-ionicons';
 

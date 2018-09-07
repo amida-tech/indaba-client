@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
-import { Search } from 'grommet';
+import Search from 'grommet/components/Search';
 import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
