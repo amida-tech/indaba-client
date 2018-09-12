@@ -4,12 +4,12 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
-import Search from 'grommet/components/Search';
 import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
 import * as actions from '../../actions';
+import Search from '../../../../common/components/Search';
 import * as taskActions from '../../../../common/actions/taskActions';
 import { renderName } from '../../../../utils/User';
 
@@ -45,6 +45,7 @@ class StageSlot extends Component {
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.filterToStageGroups = this.filterToStageGroups.bind(this);
         this.filterToQuery = this.filterToQuery.bind(this);
+        this.handleAssignTask = this.handleAssignTask.bind(this);
     }
 
     handleTaskOptions() {
@@ -53,7 +54,7 @@ class StageSlot extends Component {
     }
 
     handleSearchSelect(selection) {
-        this.props.actions.assignTask(selection.suggestion.value.id,
+        this.props.actions.assignTask(selection.value.id,
             { stageData: this.props.stageData, task: this.props.task },
             this.props.project,
             this.props.vocab);
@@ -98,6 +99,10 @@ class StageSlot extends Component {
             };
         }
         return null;
+    }
+
+    handleAssignTask(event) {
+        this.props.actions.setAssignTaskQuery(event.target.value);
     }
 
     render() {
@@ -155,17 +160,15 @@ class StageSlot extends Component {
                      && this.props.assignTaskInput.uoaId === this.props.task.uoaId)
                       ? <div className='stage-slot__assign-task-input'>
                           <Search
-                              fill={true}
-                              inline={true}
                               value={this.props.assignTaskQuery}
-                              onDOMChange={evt => this.props.actions.setAssignTaskQuery(evt.target.value)}
-                              suggestions={this.props.users
+                              list={this.props.users
                                   .filter(this.filterToStageGroups)
                                   .filter(this.filterToQuery)
                                   .map(user => ({
                                       label: renderName(user),
                                       value: user,
                                   }))}
+                              onChange={this.handleAssignTask}
                               onSelect={this.handleSearchSelect}
                           />
                           <div className='stage-slot__assign-task-input-cancel'

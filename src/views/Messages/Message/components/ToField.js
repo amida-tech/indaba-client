@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Search from 'grommet/components/Search';
 import _ from 'lodash';
 
+import Search from '../../../../common/components/Search';
 import { renderName } from '../../../../utils/User';
 import Addressee from './Addressee';
 
@@ -13,6 +13,7 @@ class ToField extends Component {
         this.searchFilter = this.searchFilter.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleUpdateToQuery = this.handleUpdateToQuery.bind(this);
     }
 
     searchFilter(user) {
@@ -21,7 +22,7 @@ class ToField extends Component {
 
     handleSelect(selection) {
         this.props.input.onChange(_.union(this.props.input.value,
-            [selection.suggestion.value.email]));
+            [selection.value.email]));
         this.props.actions.setToQuery('');
     }
 
@@ -31,6 +32,10 @@ class ToField extends Component {
                 emailIter => emailIter !== email,
             ),
         );
+    }
+
+    handleUpdateToQuery(event) {
+        this.props.actions.setToQuery(evt.target.value);
     }
 
     render() {
@@ -43,17 +48,17 @@ class ToField extends Component {
         return (
             <div className='to-field'>
                 <div className={toFieldSearchWrapperClassName}>
-                    <Search onDOMChange={evt => this.props.actions.setToQuery(evt.target.value)}
+                    <Search
                         value={this.props.query}
+                        list={
+                            this.props.users
+                                .filter(this.searchFilter)
+                                .filter(user => renderName(user).toLowerCase()
+                                    .includes(this.props.query.toLowerCase()))
+                                .map(user => ({ label: renderName(user), value: user }))
+                        }
                         onBlur={() => this.props.input.onBlur(this.props.input.value)}
-                        suggestions=
-                            {
-                                this.props.users
-                                    .filter(this.searchFilter)
-                                    .filter(user => renderName(user).toLowerCase()
-                                        .includes(this.props.query.toLowerCase()))
-                                    .map(user => ({ label: renderName(user), value: user }))
-                            }
+                        onChange={this.handleUpdateToQuery}
                         onSelect={selection => this.handleSelect(selection, this.props.meta.dispatch)}
                     />
                     {
