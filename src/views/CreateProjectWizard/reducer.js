@@ -43,37 +43,54 @@ export default (state = initialState, action) => {
         return initialState;
     case POST_PROJECT_SUCCESS:
         return update(state,
-            { ui: {
-                showProjectTitle: { $set: false },
-                projectLink: { $set: action.project.id },
-                errorMessage: { $set: '' } } });
+            {
+                ui: {
+                    showProjectTitle: { $set: false },
+                    projectLink: { $set: action.project.id },
+                    errorMessage: { $set: '' },
+                },
+            });
     case type.WIZARD_SHOW_STAGE_MODAL: {
         if (action.show) {
-            return update(state, { ui: {
-                showAddStage: { $set: true },
-                stageEditId: { $set: action.stageId },
-            } });
+            return update(state, {
+                ui: {
+                    showAddStage: { $set: true },
+                    stageEditId: { $set: action.stageId },
+                },
+            });
         }
-        return update(state, { ui: {
-            showAddStage: { $set: false },
-            stageEditId: { $set: action.stageId },
-        } });
+        return update(state, {
+            ui: {
+                showAddStage: { $set: false },
+                stageEditId: { $set: action.stageId },
+            },
+        });
     }
     case type.SHOW_ADD_USER_GROUP_WIZARD_MODAL:
-        return update(state, { ui: { addUsers: {
-            showSelectGroupUsers: { $set: action.show },
-        } } });
-    case type.WIZARD_SHOW_SUBJECT_DELETE_CONFIRM_MODAL:
-        return update(state, { ui: {
-            showSubjectDeleteConfirmModal: { $set: {
-                id: action.id,
-                deleteType: action.deleteType },
+        return update(state, {
+            ui: {
+                addUsers: {
+                    showSelectGroupUsers: { $set: action.show },
+                },
             },
-        } });
+        });
+    case type.WIZARD_SHOW_SUBJECT_DELETE_CONFIRM_MODAL:
+        return update(state, {
+            ui: {
+                showSubjectDeleteConfirmModal: {
+                    $set: {
+                        id: action.id,
+                        deleteType: action.deleteType,
+                    },
+                },
+            },
+        });
     case type.WIZARD_HIDE_SUBJECT_DELETE_CONFIRM_MODAL:
-        return update(state, { ui: {
-            showSubjectDeleteConfirmModal: { $set: null },
-        } });
+        return update(state, {
+            ui: {
+                showSubjectDeleteConfirmModal: { $set: null },
+            },
+        });
     case type.GO_TO_STEP:
         return update(state, { ui: { step: { $set: action.step } } });
     case type.SHOW_COMPLETE_WIZARD:
@@ -89,33 +106,47 @@ export default (state = initialState, action) => {
     case REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case type.WIZARD_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
-        return update(state, { ui: {
-            showStageDeleteConfirmModal: { $set: {
-                stageId: action.stageId,
-            } },
-        } });
+        return update(state, {
+            ui: {
+                showStageDeleteConfirmModal: {
+                    $set: {
+                        stageId: action.stageId,
+                    },
+                },
+            },
+        });
     }
     case type.WIZARD_HIDE_STAGE_DELETE_CONFIRM_MODAL: {
-        return update(state, { ui: {
-            showStageDeleteConfirmModal: { $set: null },
-        } });
+        return update(state, {
+            ui: {
+                showStageDeleteConfirmModal: { $set: null },
+            },
+        });
     }
     case type.WIZARD_SHOW_PROJECT_TITLE_MODAL:
-        return update(state, { ui: {
-            showProjectTitleModal: { $set: true },
-        } });
+        return update(state, {
+            ui: {
+                showProjectTitleModal: { $set: true },
+            },
+        });
     case type.WIZARD_HIDE_PROJECT_TITLE_MODAL:
-        return update(state, { ui: {
-            showProjectTitleModal: { $set: false },
-        } });
+        return update(state, {
+            ui: {
+                showProjectTitleModal: { $set: false },
+            },
+        });
     case type.WIZARD_SHOW_SURVEY_TITLE_MODAL:
-        return update(state, { ui: {
-            showSurveyTitleModal: { $set: true },
-        } });
+        return update(state, {
+            ui: {
+                showSurveyTitleModal: { $set: true },
+            },
+        });
     case type.WIZARD_HIDE_SURVEY_TITLE_MODAL:
-        return update(state, { ui: {
-            showSurveyTitleModal: { $set: false },
-        } });
+        return update(state, {
+            ui: {
+                showSurveyTitleModal: { $set: false },
+            },
+        });
     default:
         return state;
     }

@@ -16,8 +16,8 @@ class StatusCard extends Component {
                         <div className='status-card__name-value'
                             onClick={this.props.onEditClick}>
                             { this.props.name }
-                            {this.props.onEditClick &&
-                                <div className='status-card__edit-icon'
+                            {this.props.onEditClick
+                                && <div className='status-card__edit-icon'
                                     onClick={this.props.onEditClick}>
                                     <IonIcon icon='ion-android-create'
                                         className='status-card__edit-icon'/>
@@ -29,8 +29,8 @@ class StatusCard extends Component {
                 <div className={`status-card__status ${this.props.onStatusChangeClick ? 'status-card__status--editable' : ''}`}
                     onClick={this.props.onStatusChangeClick}>
                     {this.props.status}
-                    {this.props.onStatusChangeClick &&
-                        <IonIcon icon='ion-android-create' className='status-card__create-icon'/>}
+                    {this.props.onStatusChangeClick
+                        && <IonIcon icon='ion-android-create' className='status-card__create-icon'/>}
                 </div>
             </div>
         );

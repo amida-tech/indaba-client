@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class List extends Component {
-
     renderListItem() {
         if (this.props.itemsJSX) {
             return this.props.itemsJSX;
@@ -23,6 +22,7 @@ class List extends Component {
         });
         return items;
     }
+
     render() {
         return (
             <div className={this.props.className || 'filtered-list'}>

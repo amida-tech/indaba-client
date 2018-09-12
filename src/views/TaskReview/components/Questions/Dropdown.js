@@ -7,30 +7,29 @@ class Dropdown extends Component {
     render() {
         let currentValue = get(this.props, 'answer', undefined);
         if (currentValue) {
-            currentValue = this.props.choices.find(choice =>
-                choice.id === currentValue.choice).text;
+            currentValue = this.props.choices.find(choice => choice.id === currentValue.choice).text;
         }
         return (
             <div className='dropdown'>
                 {
-                    this.props.displayMode ?
-                    <select className='dropdown__field-disabled'
-                        value={currentValue}
-                        placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
-                        disabled={true}>
-                        <option className='dropdown__option'
-                            label={currentValue} />
-                    </select> :
-                    <Select className='dropdown__field'
-                        value={currentValue}
-                        placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
-                        readOnly={this.props.displayMode}
-                        options={this.props.choices.map((entry) => {
-                            return { label: entry.text, value: entry.id };
-                        })}
-                        onChange={(event) => {
-                            this.props.upsertAnswer({ choice: event.option.value });
-                        }} />
+                    this.props.displayMode
+                        ? <select className='dropdown__field-disabled'
+                            value={currentValue}
+                            placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
+                            disabled={true}>
+                            <option className='dropdown__option'
+                                label={currentValue} />
+                        </select>
+                        : <Select className='dropdown__field'
+                            value={currentValue}
+                            placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
+                            readOnly={this.props.displayMode}
+                            options={this.props.choices.map((entry) => {
+                                return { label: entry.text, value: entry.id };
+                            })}
+                            onChange={(event) => {
+                                this.props.upsertAnswer({ choice: event.option.value });
+                            }} />
                 }
             </div>
         );

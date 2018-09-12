@@ -9,18 +9,20 @@ class Search extends Component {
         this.state = { listOpen: false };
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
+
     handleClickOutside() {
         this.setState(() => ({ listOpen: false }));
     }
+
     render() {
         return <div onBlur={() => this.handleClickOutside()}>
             <div className='search'>
                 <input className='search__input'
-                       type='text'
-                       placeholder={this.props.placeholder}
-                       value={this.props.value}
-                       onChange={this.props.onChange}
-                       onClick={() => { this.setState(prev => ({ listOpen: !prev.listOpen })); }}
+                    type='text'
+                    placeholder={this.props.placeholder}
+                    value={this.props.value}
+                    onChange={this.props.onChange}
+                    onClick={() => { this.setState(prev => ({ listOpen: !prev.listOpen })); }}
                 />
                 <IonIcon className='search__icon' icon='ion-android-search'/>
             </div>

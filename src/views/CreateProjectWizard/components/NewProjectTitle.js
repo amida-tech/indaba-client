@@ -36,15 +36,16 @@ class NewProjectTitle extends Component {
                                 },
                                 langId: 1,
                             },
-                            values.project,
-                        ),
-                        this.props.vocab.ERROR)
-                    .then((project) => {
-                        this.props.actions.postSurvey(
-                            Object.assign({}, this.props.survey, values.survey),
-                            project,
-                            this.props.vocab.ERROR);
-                    });
+                            values.project),
+                        this.props.vocab.ERROR,
+                    )
+                        .then((project) => {
+                            this.props.actions.postSurvey(
+                                Object.assign({}, this.props.survey, values.survey),
+                                project,
+                                this.props.vocab.ERROR,
+                            );
+                        });
                 } }
             vocab={this.props.vocab} />
         </Modal>;

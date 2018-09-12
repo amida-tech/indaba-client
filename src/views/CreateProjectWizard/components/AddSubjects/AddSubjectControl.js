@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, submit, reset } from 'redux-form';
+import {
+    Field, reduxForm, submit, reset,
+} from 'redux-form';
 import IonIcon from 'react-ionicons';
 
 class AddSubjectControl extends Component {
@@ -45,9 +47,8 @@ export default connect(null, dispatch => ({
     onSubmit: (values, dispatch, ownProps) => {
         ownProps.addSubject(
             ownProps.project,
-            values.subjects.split(/\s*,\s*/).filter(subject =>
-                subject).map((subject) => { return { name: subject }; }),
-                true,
+            values.subjects.split(/\s*,\s*/).filter(subject => subject).map((subject) => { return { name: subject }; }),
+            true,
             ownProps.vocab.ERROR,
         );
     },

@@ -11,16 +11,16 @@ class Tabs extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.activeTabIndex || nextProps.activeTabIndex === 0) &&
-            this.state.activeTabIndex !== nextProps.activeTabIndex) {
+        if ((nextProps.activeTabIndex || nextProps.activeTabIndex === 0)
+            && this.state.activeTabIndex !== nextProps.activeTabIndex) {
             this.setState({ activeTabIndex: nextProps.activeTabIndex });
         }
     }
 
     handleTabClick(tabIndex) {
         this.setState({
-            activeTabIndex: tabIndex ===
-                this.state.activeTabIndex ? this.props.defaultActiveTabIndex : tabIndex,
+            activeTabIndex: tabIndex
+                === this.state.activeTabIndex ? this.props.defaultActiveTabIndex : tabIndex,
         });
         if (this.props.onActive) {
             this.props.onActive(tabIndex);

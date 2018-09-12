@@ -7,7 +7,8 @@ const ValidatedTextInput = ({
     placeholder,
     vocab,
     className,
-    password }) => {
+    password,
+}) => {
     const finalClassName = [
         'validated-text-input',
         (touched && error) ? 'validated-text-input--error' : '',

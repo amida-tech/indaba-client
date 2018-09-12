@@ -9,8 +9,7 @@ import Time from '../../../../utils/Time';
 
 class StageSummary extends Component {
     render() {
-        const userGroups = this.props.stage.userGroups.map(stageGroup =>
-            _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
+        const userGroups = this.props.stage.userGroups.map(stageGroup => _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         let permissions = 0;
         if (this.props.stage.allowEdit) {
             permissions = 3;

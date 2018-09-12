@@ -22,12 +22,12 @@ export function pmDashGetMessages() {
             limit: 4,
             received: true,
         })
-        .then((response) => {
-            dispatch(_getMessagesSuccess(response));
-        })
-        .catch((error) => {
-            dispatch(_getMessagesFailure(error));
-        });
+            .then((response) => {
+                dispatch(_getMessagesSuccess(response));
+            })
+            .catch((error) => {
+                dispatch(_getMessagesFailure(error));
+            });
     };
 }
 

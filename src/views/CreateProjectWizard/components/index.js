@@ -35,15 +35,19 @@ class CreateProjectWizard extends Component {
         this.handleContinue = this.handleContinue.bind(this);
         this.changeStep = this.changeStep.bind(this);
     }
+
     handleBack() {
         this.changeStep(this.props.ui.step - 1);
     }
+
     handleSkip() {
         this.handleContinue();
     }
+
     handleCancel() {
         this.props.onWizardCancel();
     }
+
     handleContinue() {
         if (this.props.ui.step < NUM_WIZARD_STEPS - 1) {
             if (this.props.ui.step === 0) {
@@ -58,10 +62,12 @@ class CreateProjectWizard extends Component {
             this.props.actions.showCompleteWizard(true);
         }
     }
+
     changeStep(step) {
         const newStep = Math.min(Math.max(step, 0), NUM_WIZARD_STEPS);
         this.props.actions.goToStep(newStep);
     }
+
     componentWillMount() {
         this.props.actions.checkProtection(this.props.user.profile)
             .then(() => {
@@ -69,10 +75,11 @@ class CreateProjectWizard extends Component {
                 this.props.actions.projectWizardInitialize();
             });
     }
+
     render() {
-        const surveyComplete = has(this.props.survey, 'id') &&
-            get(this.props.survey, 'sections', []).length > 0 &&
-            this.props.survey.sections.some(section => section.questions.length > 0);
+        const surveyComplete = has(this.props.survey, 'id')
+            && get(this.props.survey, 'sections', []).length > 0
+            && this.props.survey.sections.some(section => section.questions.length > 0);
         const summary = (
             <Summary project={this.props.project}
                 survey={this.props.survey}
@@ -81,10 +88,10 @@ class CreateProjectWizard extends Component {
                 onProjectEditClick={this.props.actions.wizardShowProjectTitleModal}
                 onSurveyEditClick={this.props.actions.wizardShowSurveyTitleModal} />
         );
-        return (!this.props.ui.showComplete ?
-            <div className='project-wizard'>
-                {this.props.ui.showProjectTitle &&
-                    <NewProjectTitle
+        return (!this.props.ui.showComplete
+            ? <div className='project-wizard'>
+                {this.props.ui.showProjectTitle
+                    && <NewProjectTitle
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         actions={this.props.actions}
@@ -93,15 +100,15 @@ class CreateProjectWizard extends Component {
                         vocab={this.props.vocab} />
                 }
                 {
-                    this.props.ui.showProjectTitleModal &&
-                    <ProjectTitleModal vocab={this.props.vocab}
+                    this.props.ui.showProjectTitleModal
+                    && <ProjectTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         project={this.props.project}
                         onCloseModal={this.props.actions.wizardHideProjectTitleModal} />
                 }
                 {
-                    this.props.ui.showSurveyTitleModal &&
-                    <SurveyTitleModal vocab={this.props.vocab}
+                    this.props.ui.showSurveyTitleModal
+                    && <SurveyTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         survey={this.props.survey}
                         project={this.props.project}
@@ -159,13 +166,13 @@ class CreateProjectWizard extends Component {
                     vocab={this.props.vocab}
                     finalStep={this.props.ui.step === NUM_WIZARD_STEPS - 1}
                     onBack={this.props.ui.step !== 0 ? this.handleBack : undefined}
-                    onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1) ?
-                        this.handleSkip : undefined}
+                    onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1)
+                        ? this.handleSkip : undefined}
                     step={this.props.ui.step}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
-            </div> :
-            <div className='project-wizard project-wizard--complete'>
+            </div>
+            : <div className='project-wizard project-wizard--complete'>
                 <WizardComplete
                     vocab={this.props.vocab}
                     onWizardComplete={this.props.onWizardComplete}
@@ -191,13 +198,15 @@ CreateProjectWizard.propTypes = {
 };
 
 const mapStateToProps = (store) => {
-    const project = store.wizard.ui.projectLink > 0 ?
-            find(store.projects.data, item => item.id === store.wizard.ui.projectLink) :
-            store.wizard.project;
+    const project = store.wizard.ui.projectLink > 0
+        ? find(store.projects.data, item => item.id === store.wizard.ui.projectLink)
+        : store.wizard.project;
     return {
         project,
-        survey: find(store.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [] },
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId)
+            || {
+                id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
+            },
         inProgressSurvey: store.surveybuilder.form,
         user: store.user,
         ui: store.wizard.ui,

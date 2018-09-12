@@ -9,8 +9,9 @@ import PMAllSubjects from './PMAllSubjects';
 class PMAllSubjectsContainer extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.profile)
-          .then(this.props.actions.pmAllSubjectsGetSubjects());
+            .then(this.props.actions.pmAllSubjectsGetSubjects());
     }
+
     render() {
         return (
             <PMAllSubjects {...this.props} />

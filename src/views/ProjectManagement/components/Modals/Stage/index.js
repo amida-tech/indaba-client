@@ -8,14 +8,11 @@ import StageForm from './StageForm';
 
 class StageModal extends Component {
     render() {
-        const groups = this.props.userGroups.map((group, key) =>
-            ({ value: group.id, label: group.title, key }),
-        );
+        const groups = this.props.userGroups.map((group, key) => ({ value: group.id, label: group.title, key }));
 
         let initialValues;
         if (this.props.stageId && this.props.project) {
-            initialValues = Object.assign({}, this.props.project.stages.find(stage =>
-                stage.id === this.props.stageId));
+            initialValues = Object.assign({}, this.props.project.stages.find(stage => stage.id === this.props.stageId));
             if (initialValues.blindReview) {
                 initialValues.permissions = '1';
             } else if (initialValues.discussionParticipation) {
@@ -42,19 +39,18 @@ class StageModal extends Component {
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
                 onSave={this.props.onClickToSubmit}
-                buttons={(this.props.stageId !== undefined && this.props.stageId !== null) ?
-                [{
-                    key: 'delete-button',
-                    label: this.props.vocab.PROJECT.DELETE_STAGE,
-                    onClick: this.props.onDeleteClick,
-                }] : null}>
+                buttons={(this.props.stageId !== undefined && this.props.stageId !== null)
+                    ? [{
+                        key: 'delete-button',
+                        label: this.props.vocab.PROJECT.DELETE_STAGE,
+                        onClick: this.props.onDeleteClick,
+                    }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
                     groups={groups}
                     initialValues={initialValues}
-                    onSubmit={values =>
-                            this.props.onAddStage(stageMapping(values), this.props.project.id)
-                        } />
+                    onSubmit={values => this.props.onAddStage(stageMapping(values), this.props.project.id)
+                    } />
             </Modal>
         );
     }

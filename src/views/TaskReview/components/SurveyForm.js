@@ -36,7 +36,7 @@ export default reduxForm({
         const answers = compact(values.answers.map((answer, index) => {
             if (get(answer, 'comment.reason') === undefined) {
                 return null;
-            } else if (answer.comment.reason === 'disagree' && !answer.comment.text) {
+            } if (answer.comment.reason === 'disagree' && !answer.comment.text) {
                 disagreeCheck.push(index + 1);
                 return null;
             }
@@ -47,8 +47,7 @@ export default reduxForm({
             return Promise.reject();
         }
         return ownProps.actions.postReview(values.assessmentId,
-                answers,
-                ownProps.vocab.ERROR,
-            ).then(toast(ownProps.vocab.PROJECT.PROGRESS_SAVED));
+            answers,
+            ownProps.vocab.ERROR).then(toast(ownProps.vocab.PROJECT.PROGRESS_SAVED));
     },
 })(SurveyForm);

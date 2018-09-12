@@ -12,16 +12,15 @@ import TaskOptionsForm from './TaskOptionsForm';
 
 class TaskOptionsModal extends Component {
     render() {
-        const currentUser = find(this.props.users, user =>
-            user.id === this.props.task.userIds[0]);
-        const userOptions = this.props.users.filter(user =>
-            intersection(user.usergroupId, this.props.userGroups).length > 0,
-        ).map((user) => {
-            return user === currentUser ?
-            { value: user,
-                label: renderName(user) +
-                    this.props.vocab.PROJECT.OPTIONS_MODAL._CURRENTLY_ASSIGNED } :
-                { value: user, label: renderName(user) };
+        const currentUser = find(this.props.users, user => user.id === this.props.task.userIds[0]);
+        const userOptions = this.props.users.filter(user => intersection(user.usergroupId, this.props.userGroups).length > 0).map((user) => {
+            return user === currentUser
+                ? {
+                    value: user,
+                    label: renderName(user)
+                    + this.props.vocab.PROJECT.OPTIONS_MODAL._CURRENTLY_ASSIGNED,
+                }
+                : { value: user, label: renderName(user) };
         });
         const initialValues = {
             choice: null,

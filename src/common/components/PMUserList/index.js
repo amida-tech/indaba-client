@@ -10,14 +10,13 @@ class PMUserList extends Component {
             <div className='pm-user-list'>
                 <PMUserListHeader vocab={this.props.vocab} groups={!!this.props.groups} />
                 {
-                    this.props.users.map(user =>
-                        <PMUserListRow user={user}
-                            groups={this.props.groups}
-                            key={user.id}
-                            onNameClick={() => this.props.onUserNameClick(user.id)}
-                            onDeleteClick={() => this.props.onUserDeleteClick(user.id)}
-                            onMailClick={() => this.props.onUserMailClick(user.id)}
-                            vocab={this.props.vocab}/>)
+                    this.props.users.map(user => <PMUserListRow user={user}
+                        groups={this.props.groups}
+                        key={user.id}
+                        onNameClick={() => this.props.onUserNameClick(user.id)}
+                        onDeleteClick={() => this.props.onUserDeleteClick(user.id)}
+                        onMailClick={() => this.props.onUserMailClick(user.id)}
+                        vocab={this.props.vocab}/>)
                 }
             </div>
         );

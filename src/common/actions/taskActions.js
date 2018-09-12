@@ -10,42 +10,39 @@ import apiService from '../../services/api';
 export function getTasksByProduct(productId, projectId, errorMessages) {
     return (dispatch) => {
         apiService.tasks.getTasksByProduct(productId)
-        .then((taskResp) => {
-            dispatch(_getTasksByProductSuccess(projectId, taskResp));
-            return taskResp;
-        })
-        .catch((taskErr) => {
-            dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-        });
+            .then((taskResp) => {
+                dispatch(_getTasksByProductSuccess(projectId, taskResp));
+                return taskResp;
+            })
+            .catch((taskErr) => {
+                dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
+            });
     };
 }
 
 export function getTaskById(projectId, taskId, errorMessages) {
-    return dispatch =>
-    apiService.tasks.getTaskById(taskId)
-    .then((taskResp) => {
-        dispatch(getAnswers(taskResp.assessmentId, errorMessages));
-        dispatch(getProjectById(projectId, false, errorMessages));
-        dispatch(_getTaskByIdSuccess(projectId, taskResp));
-    })
-    .catch((taskErr) => {
-        dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
-    });
+    return dispatch => apiService.tasks.getTaskById(taskId)
+        .then((taskResp) => {
+            dispatch(getAnswers(taskResp.assessmentId, errorMessages));
+            dispatch(getProjectById(projectId, false, errorMessages));
+            dispatch(_getTaskByIdSuccess(projectId, taskResp));
+        })
+        .catch((taskErr) => {
+            dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS));
+        });
 }
 
 export function getSelfTasks(errorMessages) {
-    return dispatch =>
-    apiService.tasks.getSelfTasks()
-    .then(taskResp => dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp)))
-    .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
+    return dispatch => apiService.tasks.getSelfTasks()
+        .then(taskResp => dispatch(_getTasksByUserSuccess(taskResp[0].userIds[0], taskResp)))
+        .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
 }
 
 
 export function getTasksByUser(userId, errorMessages) {
-    return dispatch =>
-    apiService.tasks.getTasksByUser(userId)
-    .then(taskResp => dispatch(_getTasksByUserSuccess(userId, taskResp)))
-    .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
+    return dispatch => apiService.tasks.getTasksByUser(userId)
+        .then(taskResp => dispatch(_getTasksByUserSuccess(userId, taskResp)))
+        .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.FETCH_TASKS)));
 }
 
 export function assignTask(userId, slot, project, errorMessages) {
@@ -78,33 +75,33 @@ export function assignTask(userId, slot, project, errorMessages) {
 
     return (dispatch) => {
         apiService.surveys.postAssessment(surveyRequestBody)
-        .then((assessmentResp) => {
-            requestBody.assessmentId = assessmentResp.id;
-            apiService.tasks.postTask(requestBody)
-            .then(taskResp => dispatch(_postTaskSuccess(taskResp)))
-            .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
-        })
-        .catch((assessmentErr) => {
-            dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
-        });
+            .then((assessmentResp) => {
+                requestBody.assessmentId = assessmentResp.id;
+                apiService.tasks.postTask(requestBody)
+                    .then(taskResp => dispatch(_postTaskSuccess(taskResp)))
+                    .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
+            })
+            .catch((assessmentErr) => {
+                dispatch(_reportTasksError(assessmentErr, errorMessages.ASSESSMENT_REQUEST));
+            });
     };
 }
 
 export function moveTask(productId, uoaId, errorMessages) {
     return dispatch => apiService.tasks.moveTask(productId, uoaId)
-    .then(() => dispatch(push('/task')))
-    .catch((workflowErr) => {
-        dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
-        throw workflowErr;
-    });
+        .then(() => dispatch(push('/task')))
+        .catch((workflowErr) => {
+            dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+            throw workflowErr;
+        });
 }
 
 export function forceTaskCompletion(productId, uoaId, errorMessages) {
     return (dispatch) => {
         return apiService.tasks.forceMoveTask(productId, uoaId)
-        .catch((workflowErr) => {
-            dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
-        });
+            .catch((workflowErr) => {
+                dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
+            });
     };
 }
 
@@ -129,8 +126,8 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
 
     return (dispatch) => {
         apiService.tasks.putTask(taskId, requestBody)
-        .then(() => dispatch(_putTaskSuccess(taskId, requestBody)))
-        .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
+            .then(() => dispatch(_putTaskSuccess(taskId, requestBody)))
+            .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
     };
 }
 

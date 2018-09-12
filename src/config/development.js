@@ -1,6 +1,6 @@
 export default {
     NODE_ENV: 'development',
-    GREYSCALE_URL: window.GREYSCALE_URL||process.env.GREYSCALE_URL || 'http://localhost:3005',
+    GREYSCALE_URL: window.GREYSCALE_URL || process.env.GREYSCALE_URL || 'http://localhost:3005',
 
     AUTH_MICROSERVICE_URL: window.AUTH_MICROSERVICE_URL || process.env.AUTH_MICROSERVICE_URL || 'http://localhost:4000/api/v1',
 

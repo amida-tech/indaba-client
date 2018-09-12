@@ -29,11 +29,11 @@ class InviteUser extends Component {
                     <button className='invite-user__button-clear'
                         onClick={this.props.onClear}>
                         {this.props.vocab.COMMON.CLEAR}
-                        </button>
+                    </button>
                     <button className='invite-user__button-invite'
                         type='submit'>
                         {this.props.vocab.COMMON.INVITE}
-                        </button>
+                    </button>
                 </div>
             </form>
         );

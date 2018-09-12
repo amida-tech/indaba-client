@@ -47,22 +47,23 @@ class TaskDetails extends Component {
                         </div>
                     </div>
                     <div className='task-details__info-box'>
-                    <div className='task-details__info-box-label'>
-                        {this.props.vocab.PROJECT.TASK_DUE_DATE}
-                    </div>
-                    { this.props.profile.roleID === 2 ?
-                        <DateInput value={this.props.task.endDate}
-                            onChange={(event) => {
-                                this.props.actions.updateTask(
-                                    this.props.task.id,
-                                    this.props.task.userIds,
-                                    event,
-                                    this.props.vocab.ERROR);
-                            }} /> :
-                        <div className='task-details__info-box-title'>
-                            {Time.renderCommon(this.props.task.endDate)}
+                        <div className='task-details__info-box-label'>
+                            {this.props.vocab.PROJECT.TASK_DUE_DATE}
                         </div>
-                    }
+                        { this.props.profile.roleID === 2
+                            ? <DateInput value={this.props.task.endDate}
+                                onChange={(event) => {
+                                    this.props.actions.updateTask(
+                                        this.props.task.id,
+                                        this.props.task.userIds,
+                                        event,
+                                        this.props.vocab.ERROR,
+                                    );
+                                }} />
+                            : <div className='task-details__info-box-title'>
+                                {Time.renderCommon(this.props.task.endDate)}
+                            </div>
+                        }
                     </div>
                     <div className='task-details__info-box'>
                         <div className='task-details__info-box-label'>

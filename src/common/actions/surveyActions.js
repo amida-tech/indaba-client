@@ -9,14 +9,14 @@ import { updateProjectWithSurvey } from './projectActions';
 export function getSurveys(errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveys()
-        .then((surveyResp) => {
-            dispatch(_getSurveysSuccess(surveyResp));
-            return surveyResp;
-        })
-        .catch((surveyErr) => {
-            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            throw surveyErr;
-        });
+            .then((surveyResp) => {
+                dispatch(_getSurveysSuccess(surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
@@ -28,21 +28,21 @@ export function postSurvey(survey, project, errorMessages) {
     };
     return (dispatch) => {
         apiService.surveys.postSurvey(requestBody)
-        .then((surveyResp) => {
-            const updateBody = {
-                id: project.productId,
-                surveyId: surveyResp.id,
-            };
-            return apiService.projects.putSurveyToProduct(project.productId, updateBody)
-            .then(() => {
-                dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
-                dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
+            .then((surveyResp) => {
+                const updateBody = {
+                    id: project.productId,
+                    surveyId: surveyResp.id,
+                };
+                return apiService.projects.putSurveyToProduct(project.productId, updateBody)
+                    .then(() => {
+                        dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
+                        dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
+                    });
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
+                throw surveyErr;
             });
-        })
-        .catch((surveyErr) => {
-            dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
-            throw surveyErr;
-        });
     };
 }
 
@@ -57,30 +57,30 @@ export function patchSurvey(survey, successMessage, errorMessages) {
 
     return (dispatch) => {
         apiService.surveys.patchSurvey(survey.id, requestBody)
-        .then((surveyResp) => {
-            dispatch(_patchSurveySuccess(survey.id, requestBody));
-            toast(successMessage);
-            apiService.projects.editSurvey(survey.id);
-            return surveyResp;
-        })
-        .catch((surveyErr) => {
-            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            throw surveyErr;
-        });
+            .then((surveyResp) => {
+                dispatch(_patchSurveySuccess(survey.id, requestBody));
+                toast(successMessage);
+                apiService.projects.editSurvey(survey.id);
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
 export function getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveyById(surveyId)
-        .then((surveyResp) => {
-            dispatch(_getSurveyByIdSuccess(surveyResp.id, surveyResp));
-            return surveyResp;
-        })
-        .catch((surveyErr) => {
-            dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            throw surveyErr;
-        });
+            .then((surveyResp) => {
+                dispatch(_getSurveyByIdSuccess(surveyResp.id, surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
@@ -91,15 +91,14 @@ export function completeAssessment(assessmentId, errorMessages) {
     };
 
     return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
-    .catch((assessErr) => {
-        dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
-        throw assessErr;
-    });
+        .catch((assessErr) => {
+            dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
+            throw assessErr;
+        });
 }
 
 export function getAnswers(assessmentId, errorMessages) {
-    return dispatch =>
-        apiService.surveys.getAnswers(assessmentId)
+    return dispatch => apiService.surveys.getAnswers(assessmentId)
         .then((answerResp) => {
             dispatch(_getAnswersSuccess(answerResp.answers));
             return answerResp;
@@ -112,8 +111,7 @@ export function getAnswers(assessmentId, errorMessages) {
 
 // Answer related.
 export function postAnswer(assessmentId, requestBody, errorMessages) {
-    return dispatch =>
-        apiService.surveys.postAnswer(assessmentId, requestBody)
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
         .then((answerResp) => {
             dispatch(_postAnswerSuccess(requestBody));
             return answerResp;
@@ -129,8 +127,7 @@ export function postReview(assessmentId, answers, errorMessages) {
         status: 'in-progress',
         answers,
     };
-    return dispatch =>
-        apiService.surveys.postAnswer(assessmentId, requestBody)
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
         .then((answerResp) => {
             dispatch(getAnswers(assessmentId, errorMessages));
             return answerResp;

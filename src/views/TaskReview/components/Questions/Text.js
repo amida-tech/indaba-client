@@ -11,10 +11,14 @@ class Text extends Component {
                     disabled={this.props.displayMode}
                     defaultValue={get(this.props, 'answer.textValue', '')}
                     onBlur={(event) => {
-                        const entry = (this.props.choicesId !== undefined ?
-                        { choices: unionBy([{ id: this.props.choicesId,
-                            textValue: event.target.value }], this.props.answer, 'id') } :
-                        { textValue: event.target.value });
+                        const entry = (this.props.choicesId !== undefined
+                            ? {
+                                choices: unionBy([{
+                                    id: this.props.choicesId,
+                                    textValue: event.target.value,
+                                }], this.props.answer, 'id'),
+                            }
+                            : { textValue: event.target.value });
                         this.props.upsertAnswer(entry);
                     }}
                 />

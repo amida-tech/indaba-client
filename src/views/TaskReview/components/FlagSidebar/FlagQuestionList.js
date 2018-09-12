@@ -23,18 +23,16 @@ class FlagQuestionList extends Component {
             <div className='flag-question-list'>
                 {this.props.displaySurvey.map((question, index) => {
                     let modifier = '';
-                    if (question.id === this.props.ui.flagSidebar.activeId ||
-                        (this.props.ui.flagSidebar.activeId === -1 && index === 0)) {
+                    if (question.id === this.props.ui.flagSidebar.activeId
+                        || (this.props.ui.flagSidebar.activeId === -1 && index === 0)) {
                         modifier = '--selected';
-                    } else if (some(this.props.ui.flags, flag =>
-                        parseInt(flag.questionId, 10) === question.id)) {
+                    } else if (some(this.props.ui.flags, flag => parseInt(flag.questionId, 10) === question.id)) {
                         modifier = '--inactive';
                     }
                     return (
                         <div key={`listitem${question}${index}`}
                             className={`flag-question-list__item flag-question-list__item${modifier}`}
-                            onClick={() =>
-                                this.onChangeQuestion(question.id, index)}>
+                            onClick={() => this.onChangeQuestion(question.id, index)}>
                             {this.props.vocab.PROJECT.QUESTION_ + (index + this.props.offset + 1) }
                         </div>
                     );

@@ -9,9 +9,11 @@ class SubjectList extends Component {
         super(props);
         this.filter = this.filter.bind(this);
     }
+
     filter(subject) {
         return subject.name.toLowerCase().includes(this.props.query.toLowerCase());
     }
+
     render() {
         return (
             <div className='subject-list'>
@@ -37,14 +39,13 @@ class SubjectList extends Component {
                         {this.props.vocab.COMMON.ACTIONS}
                     </div>
                 </div>
-                {this.props.subjects.filter(this.filter).map(subject =>
-                    <div className='subject-list__entry'
-                        key={subject.id}>
-                        <div className='subject-list__entry-name'>
-                            {subject.name}
-                        </div>
-                        <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
-                    </div>)
+                {this.props.subjects.filter(this.filter).map(subject => <div className='subject-list__entry'
+                    key={subject.id}>
+                    <div className='subject-list__entry-name'>
+                        {subject.name}
+                    </div>
+                    <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
+                </div>)
                 }
             </div>);
     }

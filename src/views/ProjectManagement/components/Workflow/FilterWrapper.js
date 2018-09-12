@@ -27,21 +27,20 @@ class FilterWrapper extends Component {
             <div className='filter-wrapper'>
                 <Filter filters={filters}
                     active={this.props.project.filter}
-                    onFilterClick={filter =>
-                        this.props.actions.toggleFilter(filter, this.props.project.id)}
+                    onFilterClick={filter => this.props.actions.toggleFilter(filter, this.props.project.id)}
                     noSpace={true} />
                 <div className='filter-wrapper__add-button-panel'>
                     <button className='filter-wrapper__add-button'
                         onClick={() => this.props.actions.showStageModal(true)}>
                         {this.props.vocab.PROJECT.ADD_STAGE}
-                        </button>
+                    </button>
                     <button className='filter-wrapper__add-button'
                         onClick={() => this.props.actions.showAddSubjectModal(true)}>
                         {this.props.vocab.PROJECT.ADD_SUBJECT}
-                        </button>
+                    </button>
                 </div>
-                {this.props.ui.showAddSubject &&
-                    <SubjectModal
+                {this.props.ui.showAddSubject
+                    && <SubjectModal
                         vocab={this.props.vocab}
                         onCancel={() => this.props.actions.showAddSubjectModal(false)}
                         onAddSubject={(subjects) => {
@@ -50,7 +49,8 @@ class FilterWrapper extends Component {
                                 this.props.project,
                                 subjects,
                                 false,
-                                this.props.vocab.ERROR);
+                                this.props.vocab.ERROR,
+                            );
                         }}
                     />
                 }

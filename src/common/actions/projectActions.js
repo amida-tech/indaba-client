@@ -8,8 +8,7 @@ import Time from '../../utils/Time';
 import apiService from '../../services/api';
 
 export function getProjects(errorMessages) {
-    return dispatch =>
-        apiService.projects.getProjects()
+    return dispatch => apiService.projects.getProjects()
         .then((projectResp) => {
             dispatch(getSurveys(errorMessages));
             dispatch(_getProjectsSuccess(projectResp));
@@ -22,8 +21,7 @@ export function getProjects(errorMessages) {
 }
 
 export function postProject(requestBody, errorMessages) {
-    return dispatch =>
-        apiService.projects.postProject(requestBody)
+    return dispatch => apiService.projects.postProject(requestBody)
         .then((projectResp) => {
             dispatch(_postProjectSuccess(projectResp));
             return projectResp;
@@ -37,8 +35,7 @@ export function postProject(requestBody, errorMessages) {
 export function putProject(project, errorMessages) {
     const { status, name: codeName } = project;
 
-    return dispatch =>
-        apiService.projects.putProject(project.id, { status, codeName })
+    return dispatch => apiService.projects.putProject(project.id, { status, codeName })
         .then(() => dispatch(getProjectById(project.id, false, errorMessages)))
         .catch((projectErr) => {
             dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
@@ -47,8 +44,7 @@ export function putProject(project, errorMessages) {
 }
 
 export function getProjectById(projectId, getTasks, errorMessages) {
-    return dispatch =>
-        apiService.projects.getProjectById(projectId)
+    return dispatch => apiService.projects.getProjectById(projectId)
         .then((projectResp) => {
             if (projectResp.surveyId) {
                 dispatch(getSurveyById(projectResp.surveyId, errorMessages));
@@ -81,14 +77,12 @@ export function putStage(project, stage, fromWizard, errorMessages) {
             role: 3,
             startDate: stage.startDate,
             endDate: stage.endDate,
-        },
-    )];
+        })];
     if (typeof requestBody[0].endDate === 'object') {
         requestBody[0].endDate.setHours(23, 59, 59, 999);
     }
 
-    return dispatch =>
-        apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
+    return dispatch => apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
         .then((stepResp) => {
             if (!fromWizard && !project.subjects.length) {
                 toast(errorMessages.SUBJECT_NEED);
@@ -97,7 +91,8 @@ export function putStage(project, stage, fromWizard, errorMessages) {
             }
             const id = stepResp.inserted[0] ? stepResp.inserted[0] : stepResp.updated[0];
             dispatch(_putStageSuccess(
-                        Object.assign({}, requestBody[0], { id }), project.id));
+                Object.assign({}, requestBody[0], { id }), project.id,
+            ));
             return stepResp;
         })
         .catch((stepErr) => {
@@ -107,8 +102,7 @@ export function putStage(project, stage, fromWizard, errorMessages) {
 }
 
 export function deleteStage(projectId, stageId) {
-    return dispatch =>
-        apiService.projects.deleteWorkflowStep(stageId)
+    return dispatch => apiService.projects.deleteWorkflowStep(stageId)
         .then(() => {
             dispatch(getProjectById(projectId));
         });
@@ -121,8 +115,7 @@ export function addSubject(project, subjects, fromWizard, errorMessages) {
         productId: project.productId,
     };
 
-    return dispatch =>
-        apiService.projects.postUOA(requestBody)
+    return dispatch => apiService.projects.postUOA(requestBody)
         .then((uoaResp) => {
             if (!fromWizard && !project.stages.length) {
                 toast(errorMessages.STAGE_NEED);
@@ -142,8 +135,7 @@ export function deleteSubject(project, uoaId, fromWizard, errorMessages) {
         uoaId,
     };
 
-    return dispatch =>
-        apiService.projects.deleteUOA(uoaId, requestBody)
+    return dispatch => apiService.projects.deleteUOA(uoaId, requestBody)
         .then((uoaResp) => {
             dispatch(_deleteSubjectSuccess(uoaId, project.id));
             return uoaResp;
@@ -160,8 +152,7 @@ export function addUser(userId, projectId, errorMessages) {
         projectId,
     };
 
-    return dispatch =>
-        apiService.projects.postProjectUsers(projectId, requestBody)
+    return dispatch => apiService.projects.postProjectUsers(projectId, requestBody)
         .then((userResponse) => {
             dispatch(_postProjectUserSuccess(userId, projectId));
             return userResponse;
@@ -175,8 +166,7 @@ export function addUser(userId, projectId, errorMessages) {
 export function removeUser(userId, projectId, errorMessages) {
     // TODO: Do safety call for tasks assigned to this user.
 
-    return dispatch =>
-        apiService.projects.deleteProjectUsers(projectId, userId)
+    return dispatch => apiService.projects.deleteProjectUsers(projectId, userId)
         .then((userResponse) => {
             dispatch(_deleteProjectUserSuccess(userId, projectId));
             return userResponse;
@@ -195,8 +185,7 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
         users: groupData.users,
         projectId,
     };
-    return dispatch =>
-        apiService.projects.postGroup(organizationId, requestBody)
+    return dispatch => apiService.projects.postGroup(organizationId, requestBody)
         .then((groupResp) => {
             dispatch(getProjectById(projectId, errorMessages));
             dispatch(getUsers(errorMessages));
@@ -211,8 +200,7 @@ export function addUserGroup(groupData, projectId, organizationId, errorMessages
 export function updateUserGroup(groupId, groupData, projectId, organizationId, errorMessages) {
     const { title, users: userId } = groupData;
 
-    return dispatch =>
-        apiService.projects.putGroup(groupId, { title, userId, organizationId })
+    return dispatch => apiService.projects.putGroup(groupId, { title, userId, organizationId })
         .then((groupResp) => {
             dispatch(getProjectById(projectId, errorMessages));
             dispatch(getUsers(errorMessages));
@@ -225,8 +213,7 @@ export function updateUserGroup(groupId, groupData, projectId, organizationId, e
 }
 
 export function exportData(productId, projectName, errorMessages) {
-    return dispatch =>
-        apiService.projects.exportData(productId)
+    return dispatch => apiService.projects.exportData(productId)
         .then((dataResp) => {
             const blob = new Blob([_stringToBytes(dataResp)], { type: 'application/zip' });
             if (window.navigator.msSaveOrOpenBlob) {

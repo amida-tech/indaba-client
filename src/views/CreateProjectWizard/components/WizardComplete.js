@@ -17,9 +17,9 @@ class WizardComplete extends Component {
     }
 
     render() {
-        const surveyComplete = has(this.props.survey, 'id') &&
-            get(this.props.survey, 'sections', []).length > 0 &&
-            this.props.survey.sections.some(section => section.questions.length > 0);
+        const surveyComplete = has(this.props.survey, 'id')
+            && get(this.props.survey, 'sections', []).length > 0
+            && this.props.survey.sections.some(section => section.questions.length > 0);
         return <Modal>
             <div className='wizard-complete'>
                 <h1 className='wizard-complete__header'>

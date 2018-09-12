@@ -48,7 +48,7 @@ class UserProfile extends Component {
                             }),
                             this.props.vocab.ERROR);
                     }}/>
-                </Modal>
+            </Modal>
         );
     }
 }

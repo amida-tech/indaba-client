@@ -2,9 +2,9 @@ const day = 24 * 60 * 60 * 1000;
 
 export default {
     responsesComplete(task, surveySize) {
-        return task.response &&
-            task.response.every(response => response.value !== undefined) &&
-                task.response.length === surveySize;
+        return task.response
+            && task.response.every(response => response.value !== undefined)
+                && task.response.length === surveySize;
     },
     endDateInPast(task) {
         return Date.parse(task.endDate) < Date.now();

@@ -23,19 +23,17 @@ export function checkProtection(profile) {
 }
 
 export function checkRefresh() {
-    return dispatch => new Promise(resolve =>
-        apiService.auth.requestRefreshToken(
-              cookie.load('indaba-username'),
-              cookie.load('indaba-refresh'),
-          ).then((refreshResp) => {
-              cookie.save('indaba-auth', `Bearer ${refreshResp.token}`, { path: '/' });
-              cookie.save('indaba-expire', Date.now() + (refreshResp.ttl * 1000), { path: '/' });
-              dispatch(_refreshTokenSuccess());
-              return resolve();
-          }).catch(() => {
-              logOut('');
-          }),
-    );
+    return dispatch => new Promise(resolve => apiService.auth.requestRefreshToken(
+        cookie.load('indaba-username'),
+        cookie.load('indaba-refresh'),
+    ).then((refreshResp) => {
+        cookie.save('indaba-auth', `Bearer ${refreshResp.token}`, { path: '/' });
+        cookie.save('indaba-expire', Date.now() + (refreshResp.ttl * 1000), { path: '/' });
+        dispatch(_refreshTokenSuccess());
+        return resolve();
+    }).catch(() => {
+        logOut('');
+    }));
 }
 
 export function toggleCheckBackend() {

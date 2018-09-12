@@ -9,26 +9,24 @@ class ReviewPane extends Component {
     render() {
         return (
             <div className='review-pane'>
-                {has(this.props, 'answer.commentHistory') &&
-                    <div className='review-pane__display'>
-                        {this.props.answer.commentHistory.map((comment, index) =>
-                            <div className='review-pane__comment'
-                                key={`review-pane-comment${index}`}>
-                                <div className='review-pane__comment-reason'>
-                                    {this.props.vocab.COMMON[comment.reason.toUpperCase()]}
-                                </div>
-                                <div className='review-pane__comment-text'>
-                                    {comment.text}
-                                </div>
-                                <div className='review-pane__comment-signature'>
+                {has(this.props, 'answer.commentHistory')
+                    && <div className='review-pane__display'>
+                        {this.props.answer.commentHistory.map((comment, index) => <div className='review-pane__comment'
+                            key={`review-pane-comment${index}`}>
+                            <div className='review-pane__comment-reason'>
+                                {this.props.vocab.COMMON[comment.reason.toUpperCase()]}
+                            </div>
+                            <div className='review-pane__comment-text'>
+                                {comment.text}
+                            </div>
+                            <div className='review-pane__comment-signature'>
                                     –{renderName(find(this.props.users,
-                                        user => user.authId === comment.userId))}
-                                </div>
-                            </div>,
-                        )}
+                                    user => user.authId === comment.userId))}
+                            </div>
+                        </div>)}
                     </div> }
-                {this.props.entryMode &&
-                    <div className='review-pane__control-container'>
+                {this.props.entryMode
+                    && <div className='review-pane__control-container'>
                         <div className='review-pane__controls'>
                             <label className='review-pane__radio-controls'>
                                 <Field

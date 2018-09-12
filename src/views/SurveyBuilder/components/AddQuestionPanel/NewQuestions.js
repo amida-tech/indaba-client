@@ -35,26 +35,23 @@ class NewQuestions extends Component {
                     return (
                         <div className='new-questions__types'
                             key={`question-type${type}`}>
-                                {this.props.vocab.SURVEY.QUESTIONS_TYPES[type]}
-                            {this.props.sectionView < 0 ?
-                                    <Menu responsive={true}
-                                        icon={<IonIcon icon='ion-ios-plus'
-                                            className='new-questions__icon'/>}>
-                                        <span className='new-questions__insert-label'>
-                                            {this.props.vocab.SURVEY.INSERT_INTO}
-                                        </span>
-                                        <div className='new-questions__menu-dropdown'>
-                                            {this.props.options.map(option =>
-                                                <div className='new-questions__menu-button'
-                                                    key={`question-menu${type}${option.value}`}
-                                                    onClick={() =>
-                                                        this.handleInsert(type, option.value)}>
-                                                    {option.label}
-                                                </div>,
-                                            )}
-                                        </div>
-                                    </Menu> :
-                                <button className='new-questions__masked-button'
+                            {this.props.vocab.SURVEY.QUESTIONS_TYPES[type]}
+                            {this.props.sectionView < 0
+                                ? <Menu responsive={true}
+                                    icon={<IonIcon icon='ion-ios-plus'
+                                        className='new-questions__icon'/>}>
+                                    <span className='new-questions__insert-label'>
+                                        {this.props.vocab.SURVEY.INSERT_INTO}
+                                    </span>
+                                    <div className='new-questions__menu-dropdown'>
+                                        {this.props.options.map(option => <div className='new-questions__menu-button'
+                                            key={`question-menu${type}${option.value}`}
+                                            onClick={() => this.handleInsert(type, option.value)}>
+                                            {option.label}
+                                        </div>)}
+                                    </div>
+                                </Menu>
+                                : <button className='new-questions__masked-button'
                                     onClick={() => this.handleInsert(type, this.props.sectionView)}>
                                     <IonIcon icon='ion-ios-plus'
                                         className='new-questions__icon'/>

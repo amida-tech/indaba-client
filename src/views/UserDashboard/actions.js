@@ -24,27 +24,25 @@ export function userDashGetMessages() {
             limit: 4,
             received: true,
         })
-        .then((response) => {
-            dispatch(_getMessagesSuccess(response));
-            return response;
-        })
-        .catch((error) => {
-            dispatch(_getMessagesFailure(error));
-        });
+            .then((response) => {
+                dispatch(_getMessagesSuccess(response));
+                return response;
+            })
+            .catch((error) => {
+                dispatch(_getMessagesFailure(error));
+            });
     };
 }
 
 export function getDashboardData(errorMessages, userId) {
-    return dispatch =>
-        (userId !== undefined ?
-            apiService.tasks.getTasksByUser(userId) :
-            apiService.tasks.getSelfTasks()
-        )
+    return dispatch => (userId !== undefined
+        ? apiService.tasks.getTasksByUser(userId)
+        : apiService.tasks.getSelfTasks()
+    )
         .then((taskResp) => {
             dispatch(_getTasksSuccess(taskResp));
             taskResp.forEach(task => dispatch(_getAnswers(task.assessmentId, errorMessages)));
-            uniq(taskResp.map(task => task.surveyId)).forEach(surveyId =>
-                dispatch(_getSurveyById(surveyId, errorMessages)));
+            uniq(taskResp.map(task => task.surveyId)).forEach(surveyId => dispatch(_getSurveyById(surveyId, errorMessages)));
         })
         .catch(() => dispatch(_reportError(errorMessages.FETCH_TASKS)));
 }
@@ -59,28 +57,28 @@ function _reportError(message) {
 function _getAnswers(assessmentId, errorMessages) {
     return (dispatch) => {
         return apiService.surveys.getAnswers(assessmentId)
-        .then((answerResp) => {
-            dispatch(_getAnswersSuccess(answerResp, assessmentId));
-            return answerResp;
-        })
-        .catch((answerErr) => {
-            dispatch(_reportError(errorMessages.ANSWER_REQUEST));
-            throw answerErr;
-        });
+            .then((answerResp) => {
+                dispatch(_getAnswersSuccess(answerResp, assessmentId));
+                return answerResp;
+            })
+            .catch((answerErr) => {
+                dispatch(_reportError(errorMessages.ANSWER_REQUEST));
+                throw answerErr;
+            });
     };
 }
 
 function _getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
         apiService.surveys.getSurveyById(surveyId)
-        .then((surveyResp) => {
-            dispatch(_getSurveyByIdSuccess(surveyResp));
-            return surveyResp;
-        })
-        .catch((surveyErr) => {
-            dispatch(_reportError(errorMessages.SURVEY_REQUEST));
-            throw surveyErr;
-        });
+            .then((surveyResp) => {
+                dispatch(_getSurveyByIdSuccess(surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportError(errorMessages.SURVEY_REQUEST));
+                throw surveyErr;
+            });
     };
 }
 

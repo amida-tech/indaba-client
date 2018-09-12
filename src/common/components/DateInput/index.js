@@ -16,29 +16,34 @@ class DateInput extends Component {
 
         this.expand = this.expand.bind(this);
     }
+
     handleClickOutside() {
         this.setState({ expanded: false });
     }
+
     expand() {
         this.setState({ expanded: true });
     }
+
     render() {
-        const { value, onChange, inline, pickerProps } = this.props;
+        const {
+            value, onChange, inline, pickerProps,
+        } = this.props;
         const { expanded } = this.state;
         return (
             <div className='date-input'>
                 {
-                    expanded ?
-                    <div className={`date-input__calendar-wrapper ${inline ? 'date-input__calendar-wrapper--inline' : ''}`}>
-                        <Calendar value={value} onChange={onChange}
-                            pickerProps={pickerProps} />
-                    </div> :
-                    <div className='date-input__value'
-                        onClick={this.expand}>
-                        {Time.renderCommon(value)}
-                        <IonIcon icon='ion-android-calendar'
-                            className='date-input__value-icon'/>
-                    </div>
+                    expanded
+                        ? <div className={`date-input__calendar-wrapper ${inline ? 'date-input__calendar-wrapper--inline' : ''}`}>
+                            <Calendar value={value} onChange={onChange}
+                                pickerProps={pickerProps} />
+                        </div>
+                        : <div className='date-input__value'
+                            onClick={this.expand}>
+                            {Time.renderCommon(value)}
+                            <IonIcon icon='ion-android-calendar'
+                                className='date-input__value-icon'/>
+                        </div>
                 }
             </div>
         );

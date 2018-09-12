@@ -30,13 +30,14 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions, { checkProtection },
-        { sendMessage: user => dispatch(push(
-            {
-                pathname: '/messages/new',
-                state: { message: { to: [user.email] } },
-            },
-        )) },
-    ), dispatch),
+        {
+            sendMessage: user => dispatch(push(
+                {
+                    pathname: '/messages/new',
+                    state: { message: { to: [user.email] } },
+                },
+            )),
+        }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PMAllUsersContainer);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find, get, has, merge, omit } from 'lodash';
+import {
+    find, get, has, merge, omit,
+} from 'lodash';
 import DateTime from 'grommet/components/DateTime';
 
 import FileForm from './FileForm';
@@ -24,7 +26,8 @@ class Questions extends Component {
             this.props.id,
             newAnswer,
             get(value, 'meta', undefined),
-            this.props.vocab.ERROR);
+            this.props.vocab.ERROR,
+        );
         switch (this.props.type) {
         case 'bullet':
             QuestionType = (<Bullet
@@ -40,12 +43,12 @@ class Questions extends Component {
                 answer={value ? value.answer : undefined} />);
             break;
         case 'choice':
-            QuestionType = (get(this.props, 'meta.subType') === 'dropdown') ?
-                (<Dropdown
+            QuestionType = (get(this.props, 'meta.subType') === 'dropdown')
+                ? (<Dropdown
                     {...this.props}
                     upsertAnswer = {upsertAnswer}
-                    answer={value ? value.answer : undefined} />) :
-                (<Choice
+                    answer={value ? value.answer : undefined} />)
+                : (<Choice
                     {...this.props}
                     upsertAnswer = {upsertAnswer}
                     answer={value ? value.answer : undefined} />);
@@ -81,40 +84,40 @@ class Questions extends Component {
                 <div className='questions__type'>
                     {QuestionType}
                 </div>
-                {has(this.props, 'meta.file') &&
-                    <div className='questions__option-panel'>
-                    {this.props.fileEntryMode ?
-                        <FileForm
-                            form={`file-form-${this.props.id}`}
-                            vocab={this.props.vocab}
-                            disabled={noValue || this.props.displayMode}
-                            file={get(value, 'meta.file')}
-                            onFileUploaded={(file) => {
-                                this.props.actions.upsertAnswer(
-                                    this.props.assessmentId,
-                                    this.props.id,
-                                    value.answer,
-                                    merge(value.meta, { file }),
-                                    this.props.vocab.ERROR,
-                                );
-                            }}
-                            onFileRemoved={() => {
-                                this.props.actions.upsertAnswer(
-                                    this.props.assessmentId,
-                                    this.props.id,
-                                    value.answer,
-                                    omit(value.meta, 'file'),
-                                    this.props.vocab.ERROR,
-                                );
-                            }}/> :
-                        <FilePane
-                            vocab={this.props.vocab}
-                            disabled={noValue || this.props.displayMode}
-                            file={get(value, 'meta.file')} />}
+                {has(this.props, 'meta.file')
+                    && <div className='questions__option-panel'>
+                        {this.props.fileEntryMode
+                            ? <FileForm
+                                form={`file-form-${this.props.id}`}
+                                vocab={this.props.vocab}
+                                disabled={noValue || this.props.displayMode}
+                                file={get(value, 'meta.file')}
+                                onFileUploaded={(file) => {
+                                    this.props.actions.upsertAnswer(
+                                        this.props.assessmentId,
+                                        this.props.id,
+                                        value.answer,
+                                        merge(value.meta, { file }),
+                                        this.props.vocab.ERROR,
+                                    );
+                                }}
+                                onFileRemoved={() => {
+                                    this.props.actions.upsertAnswer(
+                                        this.props.assessmentId,
+                                        this.props.id,
+                                        value.answer,
+                                        omit(value.meta, 'file'),
+                                        this.props.vocab.ERROR,
+                                    );
+                                }}/>
+                            : <FilePane
+                                vocab={this.props.vocab}
+                                disabled={noValue || this.props.displayMode}
+                                file={get(value, 'meta.file')} />}
                     </div>
                 }
-                {has(this.props, 'meta.publication') &&
-                    <div className='questions__option-panel'>
+                {has(this.props, 'meta.publication')
+                    && <div className='questions__option-panel'>
                         <div className='questions__link-fields-top'>
                             <span className='questions__add-link'>
                                 {this.props.vocab.SURVEY.ADD_LINK}
@@ -129,7 +132,8 @@ class Questions extends Component {
                                     value.answer,
                                     merge(value.meta,
                                         { publication: { link: event.target.value } }),
-                                    this.props.vocab.ERROR)} />
+                                    this.props.vocab.ERROR,
+                                )} />
                         </div>
                         <div className='questions__link-fields-bottom'>
                             <input className='questions__title-input'
@@ -143,7 +147,8 @@ class Questions extends Component {
                                     value.answer,
                                     merge(value.meta,
                                         { publication: { title: event.target.value } }),
-                                    this.props.vocab.ERROR)} />
+                                    this.props.vocab.ERROR,
+                                )} />
                             <input className='questions__author-input'
                                 type='text'
                                 disabled={noValue || this.props.displayMode}
@@ -155,26 +160,28 @@ class Questions extends Component {
                                     value.answer,
                                     merge(value.meta,
                                         { publication: { author: event.target.value } }),
-                                    this.props.vocab.ERROR)} />
-                                { (noValue || this.props.displayMode) ?
-                                    <input className='questions__date-disabled'
-                                        value={get(value, 'meta.publication.date', 'MM/DD/YYYY')}
-                                        disabled={true} /> :
-                                    <DateTime className='questions__date-input'
-                                        value={get(value, 'meta.publication.date', '')}
-                                        format='MM/DD/YYYY'
-                                        onChange={(event) => {
-                                            if (Time.validateTime(event)) {
-                                                this.props.actions.upsertAnswer(
-                                                    this.props.assessmentId,
-                                                    this.props.id,
-                                                    value.answer,
-                                                    merge(value.meta,
-                                                        { publication: { date: event } }),
-                                                    this.props.vocab.ERROR);
-                                            }
-                                        }} />
-                                }
+                                    this.props.vocab.ERROR,
+                                )} />
+                            { (noValue || this.props.displayMode)
+                                ? <input className='questions__date-disabled'
+                                    value={get(value, 'meta.publication.date', 'MM/DD/YYYY')}
+                                    disabled={true} />
+                                : <DateTime className='questions__date-input'
+                                    value={get(value, 'meta.publication.date', '')}
+                                    format='MM/DD/YYYY'
+                                    onChange={(event) => {
+                                        if (Time.validateTime(event)) {
+                                            this.props.actions.upsertAnswer(
+                                                this.props.assessmentId,
+                                                this.props.id,
+                                                value.answer,
+                                                merge(value.meta,
+                                                    { publication: { date: event } }),
+                                                this.props.vocab.ERROR,
+                                            );
+                                        }
+                                    }} />
+                            }
                         </div>
                     </div>
                 }

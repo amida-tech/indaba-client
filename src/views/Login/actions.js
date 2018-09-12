@@ -14,37 +14,37 @@ export function login(username, password, realm, referrer, errorMessages) {
             password,
         };
         apiService.auth.login(authPayload)
-        .then((auth) => {
-            dispatch(_loginSuccess(username, auth, realm));
-            apiService.users.getProfile()
-            .then((profileResp) => {
-                dispatch(getProfileSuccess(profileResp));
-                cookie.save('indaba-roleID', profileResp.roleID, { path: '/' });
-                if (referrer) {
-                    dispatch(push(referrer));
-                } else {
-                    dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
-                }
+            .then((auth) => {
+                dispatch(_loginSuccess(username, auth, realm));
+                apiService.users.getProfile()
+                    .then((profileResp) => {
+                        dispatch(getProfileSuccess(profileResp));
+                        cookie.save('indaba-roleID', profileResp.roleID, { path: '/' });
+                        if (referrer) {
+                            dispatch(push(referrer));
+                        } else {
+                            dispatch(push(profileResp.roleID === 2 ? '/project' : '/task'));
+                        }
+                    })
+                    .catch(() => {
+                        dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                    });
             })
-            .catch(() => {
-                dispatch(_loginError(errorMessages.SERVER_ISSUE));
+            .catch((err) => {
+                if (err.response) {
+                    dispatch(_loginError(errorMessages.INVALID_LOGIN));
+                } else {
+                    dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                }
+                dispatch(_clearLoginForm());
             });
-        })
-        .catch((err) => {
-            if (err.response) {
-                dispatch(_loginError(errorMessages.INVALID_LOGIN));
-            } else {
-                dispatch(_loginError(errorMessages.SERVER_ISSUE));
-            }
-            dispatch(_clearLoginForm());
-        });
     };
 }
 
 export function requestResetToken(email) {
     return (dispatch) => {
         return apiService.auth.requestResetToken(email)
-        .then(() => dispatch(_requestResetTokenSuccess()));
+            .then(() => dispatch(_requestResetTokenSuccess()));
     };
 }
 

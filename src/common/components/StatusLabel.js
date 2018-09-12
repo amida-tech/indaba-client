@@ -13,8 +13,7 @@ const _modifiers = {
     [StatusLabelType.NEUTRAL]: 'neutral',
 };
 
-const StatusLabel = ({ label, type }) =>
-    <div className={`status-label status-label--${_modifiers[type]}`}>{label}</div>;
+const StatusLabel = ({ label, type }) => <div className={`status-label status-label--${_modifiers[type]}`}>{label}</div>;
 
 StatusLabel.propTypes = {
     type: PropTypes.oneOf(Object.keys(StatusLabelType)
