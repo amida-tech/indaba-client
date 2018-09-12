@@ -35,7 +35,7 @@ class ToField extends Component {
     }
 
     handleUpdateToQuery(event) {
-        this.props.actions.setToQuery(evt.target.value);
+        this.props.actions.setToQuery(event.target.value);
     }
 
     render() {
@@ -59,7 +59,7 @@ class ToField extends Component {
                         }
                         onBlur={() => this.props.input.onBlur(this.props.input.value)}
                         onChange={this.handleUpdateToQuery}
-                        onSelect={selection => this.handleSelect(selection, this.props.meta.dispatch)}
+                        onSelect={this.handleSelect}
                     />
                     {
                         this.props.meta.touched && this.props.meta.error
