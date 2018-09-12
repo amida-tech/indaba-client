@@ -18,6 +18,7 @@ class UserProfileContainer extends Component {
         this.props.actions.getAllProfileData(this.props.userId,
             this.props.projectId, this.props.vocab.ERROR);
     }
+
     render() {
         return (
             <UserProfile {...this.props} />
@@ -67,8 +68,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    onUpdateUser: (userId, user, errorMessages) =>
-        dispatch(updateProfileById(userId, user, errorMessages)),
+    onUpdateUser: (userId, user, errorMessages) => dispatch(updateProfileById(userId, user, errorMessages)),
     onClickToSubmit: () => dispatch(submit('user-profile')),
     actions: bindActionCreators(Object.assign({}, actions,
         { resetPassword, addNewUser }), dispatch),

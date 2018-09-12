@@ -61,12 +61,12 @@ class PrimaryNavContainer extends Component {
     }
 
     render() {
-        const isProjectManager = ((this.props.user.profile.roleID === 2) ||
-            (this.props.user.profile.roleID === 1));
+        const isProjectManager = ((this.props.user.profile.roleID === 2)
+            || (this.props.user.profile.roleID === 1));
         return (
             <nav className='primary-nav'>
-                {this.props.ui.showCreateProject &&
-                <CreateNewProject vocab={this.props.vocab}
+                {this.props.ui.showCreateProject
+                && <CreateNewProject vocab={this.props.vocab}
                     showCreateProject={this.props.actions.showCreateProject}
                     goToNewProject={this.props.goToNewProject}/>}
 
@@ -80,23 +80,23 @@ class PrimaryNavContainer extends Component {
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/project'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/project'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.PROJECT.PROJECTS}
                     </Link>}
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/users'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/users'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_USERS}
                     </Link>}
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/subjects'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/subjects'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </Link>}
-                    {isProjectManager &&
-                        <button className='primary-nav__item-nav primary-nav__button'
+                    {isProjectManager
+                        && <button className='primary-nav__item-nav primary-nav__button'
                             onClick={this.handleShowCreateProject}>
                             <span>{this.props.vocab.COMMON.CREATE}</span>
                         </button>}

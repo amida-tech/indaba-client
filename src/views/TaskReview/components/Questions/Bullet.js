@@ -13,29 +13,27 @@ class Bullet extends Component {
         }
         return (
             <div className='bullet'>
-                {currentAnswer.map((answer, index) =>
-                    <input className={`bullet__field bullet__field${this.props.displayMode ? '--disabled' : ''}`}
-                        key={`bullet-${this.props.id}-${index}`}
-                        placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
-                        type='text'
-                        disabled={this.props.displayMode}
-                        value={currentAnswer[index]}
-                        onChange={(event) => {
-                            currentAnswer[index] = event.target.value;
-                            if (index !== currentAnswer.length - 1) {
-                                currentAnswer.splice(currentAnswer.length - 1, 1);
-                            }
-                            if (event.target.value.match(/^\s*$/)) {
-                                currentAnswer.splice(index, 1);
-                            }
-                            this.props.holdAnswer(this.props.id,
-                                { textValue: currentAnswer.join('‣') });
-                        }}
-                        onBlur={() => {
+                {currentAnswer.map((answer, index) => <input className={`bullet__field bullet__field${this.props.displayMode ? '--disabled' : ''}`}
+                    key={`bullet-${this.props.id}-${index}`}
+                    placeholder={this.props.vocab.PROJECT.ENTER_ANSWER}
+                    type='text'
+                    disabled={this.props.displayMode}
+                    value={currentAnswer[index]}
+                    onChange={(event) => {
+                        currentAnswer[index] = event.target.value;
+                        if (index !== currentAnswer.length - 1) {
                             currentAnswer.splice(currentAnswer.length - 1, 1);
-                            this.props.upsertAnswer({ textValue: currentAnswer.join('‣') });
-                        }} />,
-            )}
+                        }
+                        if (event.target.value.match(/^\s*$/)) {
+                            currentAnswer.splice(index, 1);
+                        }
+                        this.props.holdAnswer(this.props.id,
+                            { textValue: currentAnswer.join('‣') });
+                    }}
+                    onBlur={() => {
+                        currentAnswer.splice(currentAnswer.length - 1, 1);
+                        this.props.upsertAnswer({ textValue: currentAnswer.join('‣') });
+                    }} />)}
             </div>
         );
     }

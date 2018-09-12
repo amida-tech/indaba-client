@@ -38,8 +38,7 @@ class Inbox extends Component {
     }
 
     getMessageIdsByThread(originalMessageId) {
-        return this.props.inboxList.find(thread =>
-            thread.originalMessageId === originalMessageId).messageIds;
+        return this.props.inboxList.find(thread => thread.originalMessageId === originalMessageId).messageIds;
     }
 
     handleFilterClick(filter) {
@@ -68,7 +67,7 @@ class Inbox extends Component {
             ).then(this.loadCurrentFilter);
         } else {
             messageAction(id)
-            .then(this.loadCurrentFilter);
+                .then(this.loadCurrentFilter);
         }
     }
 
@@ -79,6 +78,7 @@ class Inbox extends Component {
             this.props.actions.archiveMessage,
         );
     }
+
     handleUnarchive(id) {
         this.handleAction(
             id,
@@ -86,6 +86,7 @@ class Inbox extends Component {
             this.props.actions.unarchiveMessage,
         );
     }
+
     handleDelete(id) {
         this.handleAction(
             id,
@@ -93,6 +94,7 @@ class Inbox extends Component {
             this.props.actions.deleteMessage,
         );
     }
+
     handleMarkAsRead(id) {
         this.handleAction(
             id,
@@ -100,6 +102,7 @@ class Inbox extends Component {
             this.props.actions.markAsRead,
         );
     }
+
     handleMarkAsUnread(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.markAsUnread(
@@ -107,7 +110,7 @@ class Inbox extends Component {
             ).then(this.loadCurrentFilter);
         } else {
             this.props.actions.markAsUnread(id)
-            .then(this.loadCurrentFilter);
+                .then(this.loadCurrentFilter);
         }
     }
 
@@ -178,8 +181,8 @@ class Inbox extends Component {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
-        const noNext = this.props.messages.inboxCount <=
-            (INBOX_COUNT * (this.props.messages.inboxPage + 1));
+        const noNext = this.props.messages.inboxCount
+            <= (INBOX_COUNT * (this.props.messages.inboxPage + 1));
         const noPrevious = this.props.messages.inboxPage === 0;
         return (
             <div className='inbox'>
@@ -215,21 +218,21 @@ class Inbox extends Component {
                 <div className='inbox__pager'>
                     <div className='inbox__pager-content'>
                         {
-                            !noPrevious &&
-                            <button className={'inbox__pager-button'}
+                            !noPrevious
+                            && <button className={'inbox__pager-button'}
                                 onClick={this.handlePrevious}>
                                 {this.props.vocab.MESSAGES.PREVIOUS}
                             </button>
                         }
                         {
-                            (this.props.messages.inboxPage !== 0 || !noNext) &&
-                            <div className='inbox__page'>
+                            (this.props.messages.inboxPage !== 0 || !noNext)
+                            && <div className='inbox__page'>
                                 {this.props.messages.inboxPage + 1}
                             </div>
                         }
                         {
-                            !noNext &&
-                            <button className={'inbox__pager-button'}
+                            !noNext
+                            && <button className={'inbox__pager-button'}
                                 onClick={this.handleNext}>
                                 {this.props.vocab.MESSAGES.NEXT}
                             </button>

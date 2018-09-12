@@ -6,9 +6,9 @@ class UserStatus extends Component {
     render() {
         return (
             <div className='user-status'>
-                {this.props.user.lastActive === null ?
-                    this.props.vocab.COMMON.PENDING :
-                    <IonIcon icon='ion-android-checkmark-circle'
+                {this.props.user.lastActive === null
+                    ? this.props.vocab.COMMON.PENDING
+                    : <IonIcon icon='ion-android-checkmark-circle'
                         className={`user-status__icon${this.props.user.isActive ? '' : '--inactive'}`} />}
             </div>
         );

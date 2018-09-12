@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, form, reduxForm, reset } from 'redux-form';
+import {
+    Field, form, reduxForm, reset,
+} from 'redux-form';
 import { toast } from 'react-toastify';
 
 import FlagUserSelect from './FlagUserSelect';
@@ -77,8 +79,8 @@ export default reduxForm({
                 values,
                 ownProps.vocab.ERROR,
             );
-            toast(values.isResolve ? ownProps.vocab.SURVEY.MARK_SENT :
-                ownProps.vocab.SURVEY.FLAG_SENT);
+            toast(values.isResolve ? ownProps.vocab.SURVEY.MARK_SENT
+                : ownProps.vocab.SURVEY.FLAG_SENT);
         }
     },
     onSubmitSuccess: (result, dispatch) => dispatch(reset(FORM_NAME)),

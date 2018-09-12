@@ -6,8 +6,11 @@ import TaskStatus from '../../../../utils/TaskStatus';
 
 const _taskLookup = (stage, subjectId, tasks, responses) => {
     const newTask = Object.assign({}, tasks.find(
-        element => element.uoaId === subjectId && element.stepId === stage.id) ||
-        { stepId: stage.id, uoaId: subjectId, userIds: [], assessmentStatus: 'new', flagHistory: false });
+        element => element.uoaId === subjectId && element.stepId === stage.id,
+    )
+        || {
+            stepId: stage.id, uoaId: subjectId, userIds: [], assessmentStatus: 'new', flagHistory: false,
+        });
     const response = _.find(responses, chat => chat.taskId === newTask.id);
     if (response) newTask.response = response.discuss;
     return newTask;
@@ -19,8 +22,8 @@ class FilteredRow extends Component {
         case 'unassigned':
             return !_.isEmpty(taskData.userIds);
         case 'late':
-            return !taskData.userIds ||
-                (!(TaskStatus.endDateInPast(taskData) && taskData.status !== 'completed'));
+            return !taskData.userIds
+                || (!(TaskStatus.endDateInPast(taskData) && taskData.status !== 'completed'));
         case 'inprogress':
             return !taskData.userIds || taskData.status === 'completed' || (!taskData.flagHistory && taskData.assessmentStatus === 'new');
         case 'notstarted':
@@ -37,30 +40,27 @@ class FilteredRow extends Component {
     }
 
     render() {
-        const taskData =
-            this.props.stages.map(
-                stage => _taskLookup(stage, this.props.subject.id,
-                this.props.tasks, this.props.responses));
+        const taskData = this.props.stages.map(
+            stage => _taskLookup(stage, this.props.subject.id,
+                this.props.tasks, this.props.responses),
+        );
         return this.rowIsFilteredOut(taskData) ? null : (
             <tr key={`SubjectHeader-${this.props.subject.key}`}
                 className='filtered-row'>
-            <td key={this.props.subject.key} className='grid-subject'>
-                {this.props.subject.name}
-            </td>
-            {taskData.map(task =>
-                <td key={`StageSlot-${task.uoaId}-${task.stepId}`}
+                <td key={this.props.subject.key} className='grid-subject'>
+                    {this.props.subject.name}
+                </td>
+                {taskData.map(task => <td key={`StageSlot-${task.uoaId}-${task.stepId}`}
                     className='filtered-row__cell'>
                     <StageSlot task={task}
                         user={_.find(this.props.users, user => user.id === task.userIds[0])}
                         users={this.props.users}
                         filtered={this.taskIsFilteredOut(task)}
-                        stageData={this.props.stages.find(stage =>
-                            stage.id === task.stepId)}
+                        stageData={this.props.stages.find(stage => stage.id === task.stepId)}
                         surveySize={this.props.surveySize}
                         project={this.props.project}
                         vocab={this.props.vocab}/>
-                </td>,
-            )}
+                </td>)}
             </tr>
         );
     }

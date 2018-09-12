@@ -22,16 +22,14 @@ class InboxTabs extends Component {
         return (
             <div className='inbox-tabs'>
                 {
-                    Object.keys(tabs).map(key =>
-                        <div key={key}
-                            className={`inbox-tabs__tab ${this.props.active === key ? 'inbox-tabs__tab--active' : ''}`}
-                            onClick={() => this.props.onSelectTab(key)} >
-                            {tabs[key].icon()}
-                            <div className='inbox-tabs__label'>
-                                {tabs[key].title}
-                            </div>
-                        </div>,
-                    )
+                    Object.keys(tabs).map(key => <div key={key}
+                        className={`inbox-tabs__tab ${this.props.active === key ? 'inbox-tabs__tab--active' : ''}`}
+                        onClick={() => this.props.onSelectTab(key)} >
+                        {tabs[key].icon()}
+                        <div className='inbox-tabs__label'>
+                            {tabs[key].title}
+                        </div>
+                    </div>)
                 }
             </div>
         );

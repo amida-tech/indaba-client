@@ -18,6 +18,7 @@ class MessageContainer extends Component {
             this.props.actions.expandMessages([this.props.id]);
         }
     }
+
     render() {
         return (
             <div className='message-container'>
@@ -31,28 +32,26 @@ class MessageContainer extends Component {
                 {
                     (() => {
                         if (this.props.id !== undefined) {
-                            const elements = this.props.thread.map(message =>
-                                <Message {...this.props}
-                                    key={message.id}
-                                    id={message.id}
-                                    message={message} />,
-                            );
+                            const elements = this.props.thread.map(message => <Message {...this.props}
+                                key={message.id}
+                                id={message.id}
+                                message={message} />);
 
                             const insertAfterId = get(this.props, 'ui.reply.id',
                                 get(this.props, 'ui.reply.forwardId'));
                             if (this.props.ui.reply) {
                                 elements.splice(
-                                    this.props.thread.findIndex(messageIter =>
-                                        messageIter.id === insertAfterId) + 1,
-                                        0,
-                                        <Message key='reply'
-                                            vocab={this.props.vocab}
-                                            profile={this.props.profile}
-                                            reply={this.props.ui.reply}
-                                            actions={this.props.actions}
-                                            users={this.props.users}
-                                            ui={this.props.ui}
-                                            goToMessage={this.props.goToMessage}/>);
+                                    this.props.thread.findIndex(messageIter => messageIter.id === insertAfterId) + 1,
+                                    0,
+                                    <Message key='reply'
+                                        vocab={this.props.vocab}
+                                        profile={this.props.profile}
+                                        reply={this.props.ui.reply}
+                                        actions={this.props.actions}
+                                        users={this.props.users}
+                                        ui={this.props.ui}
+                                        goToMessage={this.props.goToMessage}/>,
+                                );
                             }
                             return elements;
                         }
@@ -65,9 +64,9 @@ class MessageContainer extends Component {
 }
 
 const mapStateToProps = (store, ownProps) => {
-    const id = ownProps.params.id !== undefined ?
-        parseInt(ownProps.params.id, 10) :
-        undefined;
+    const id = ownProps.params.id !== undefined
+        ? parseInt(ownProps.params.id, 10)
+        : undefined;
     return {
         id,
         thread: store.messages.thread,

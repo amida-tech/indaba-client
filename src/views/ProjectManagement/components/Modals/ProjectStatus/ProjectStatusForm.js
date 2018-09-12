@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import { form, Field, reduxForm, reset } from 'redux-form';
+import {
+    form, Field, reduxForm, reset,
+} from 'redux-form';
 import ConfirmationCheckbox from '../ConfirmationCheckbox';
 
 class ProjectStatusForm extends Component {
@@ -19,9 +21,9 @@ class ProjectStatusForm extends Component {
                     <label htmlFor='project-status-check' className='toggle'></label>
                     <div className='project-status-form__field'>
                         <div className='project-status-form__text'>
-                            {this.props.active ?
-                              vocab.PROJECT.STATUS_ACTIVE :
-                              vocab.PROJECT.STATUS_INACTIVE}
+                            {this.props.active
+                                ? vocab.PROJECT.STATUS_ACTIVE
+                                : vocab.PROJECT.STATUS_INACTIVE}
                         </div>
                         <div className='project-status-form__label'>
                             {projectVocab.VALUE_LABEL}
@@ -69,18 +71,18 @@ export default reduxForm({
         // Check the checkboxes to ensure they are all true.
         if (values.active && values.draftConfirm && values.accessConfirm && values.usersConfirm) {
             const newProject = Object.assign({}, ownProps.project,
-                    { status: 1 });
+                { status: 1 });
             ownProps.putProject(newProject, ownProps.vocab.ERROR)
-            .catch((error) => {
-                toast(
+                .catch((error) => {
+                    toast(
                     // greyscale provides readable error messages in 4xx
-                    error.body.e >= 400 && error.body.e < 500 ?
-                    error.body.message :
-                    // fallback to generic error message
-                    ownProps.vocab.ERROR.PROJECT_ACTIVATE,
-                    { type: 'error', autoClose: false },
-                );
-            });
+                        error.body.e >= 400 && error.body.e < 500
+                            ? error.body.message
+                        // fallback to generic error message
+                            : ownProps.vocab.ERROR.PROJECT_ACTIVATE,
+                        { type: 'error', autoClose: false },
+                    );
+                });
             ownProps.updateStatusChange(false);
         } else if (values.draftConfirm && values.accessConfirm && values.usersConfirm) {
             ownProps.showInactiveConfirmModal(true);

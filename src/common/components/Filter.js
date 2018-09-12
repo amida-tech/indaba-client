@@ -5,21 +5,20 @@ class Filter extends Component {
     isActive(key) {
         if (typeof this.props.active === 'string') {
             return key === this.props.active;
-        } else if (typeof this.props.active === 'object') {
+        } if (typeof this.props.active === 'object') {
             return this.props.active.includes(key);
         }
         return false;
     }
+
     render() {
         return (
             <div className={`filter ${this.props.noSpace ? 'filter--no-space' : ''}`}>
-                {this.props.filters.map(filter =>
-                    <div className={`filter__button ${this.isActive(filter.key) ? 'filter__button--active' : ''}`}
-                        key={filter.key}
-                        onClick={() => this.props.onFilterClick(filter.key)}>
-                        {filter.label}
-                    </div>,
-                )}
+                {this.props.filters.map(filter => <div className={`filter__button ${this.isActive(filter.key) ? 'filter__button--active' : ''}`}
+                    key={filter.key}
+                    onClick={() => this.props.onFilterClick(filter.key)}>
+                    {filter.label}
+                </div>)}
             </div>
         );
     }

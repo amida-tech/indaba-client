@@ -24,19 +24,19 @@ class App extends Component {
     }
 
     render() { // Check if react-router doesn't have something for this.
-        const subRoot = this.props.location.pathname.substring(0, this.props.location.pathname.indexOf('/', 2)) ||
-            this.props.location.pathname;
+        const subRoot = this.props.location.pathname.substring(0, this.props.location.pathname.indexOf('/', 2))
+            || this.props.location.pathname;
         return (
             <div className='app'>
-                {SECONDARY.includes(subRoot) ?
-                    <SecondaryNavContainer /> :
-                    <PrimaryNavContainer /> }
+                {SECONDARY.includes(subRoot)
+                    ? <SecondaryNavContainer />
+                    : <PrimaryNavContainer /> }
                 <div className='main-body'>
                     {this.props.children}
                 </div>
                 {
-                    this.props.location.pathname !== '/create-new-project' &&
-                    <AmidaFooter
+                    this.props.location.pathname !== '/create-new-project'
+                    && <AmidaFooter
                         versionText={this.props.versionText}
                         footerText={this.props.footerText}/>
                 }

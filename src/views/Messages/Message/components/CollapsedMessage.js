@@ -16,8 +16,9 @@ class CollapsedMessage extends Component {
                     {this.props.vocab.MESSAGES.FROM}{': '}
                     {_.get(this.props, 'message.from')}
                     <div className='collapsed-message__timestamp'>
-                    {this.props.message && Time.renderForMessage(
-                        this.props.message.createdAt, this.props.vocab)}
+                        {this.props.message && Time.renderForMessage(
+                            this.props.message.createdAt, this.props.vocab,
+                        )}
                     </div>
                 </div>
                 <div className='collapsed-message__body'>

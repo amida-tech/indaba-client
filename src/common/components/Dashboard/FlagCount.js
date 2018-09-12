@@ -9,11 +9,11 @@ class FlagCount extends Component {
             <div className='flag-count'>
                 <IonIcon icon='ion-ios-flag'
                     className='flag-count__icon'/>
-                    {this.props.value > 0 &&
-                        <div className='flag-count__value'>
+                {this.props.value > 0
+                        && <div className='flag-count__value'>
                             {this.props.value}
                         </div>
-                    }
+                }
             </div>
         );
     }

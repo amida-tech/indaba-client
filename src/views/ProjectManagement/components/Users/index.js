@@ -33,9 +33,9 @@ class Users extends Component {
     render() {
         return (
             <div className='users'>
-                {(this.state.modalName === 'addgroup' ||
-                    this.state.modalName === 'updategroup') &&
-                    <SelectGroupUsers
+                {(this.state.modalName === 'addgroup'
+                    || this.state.modalName === 'updategroup')
+                    && <SelectGroupUsers
                         allUsers={this.props.users}
                         users={this.props.project.users}
                         userGroups={this.props.project.userGroups}
@@ -49,7 +49,8 @@ class Users extends Component {
                                     group,
                                     this.props.project.id,
                                     this.props.profile.organizationId,
-                                    this.props.vocab.ERROR);
+                                    this.props.vocab.ERROR,
+                                );
                             } else {
                                 this.props.actions.updateUserGroup(
                                     this.state.modalId,
@@ -63,8 +64,8 @@ class Users extends Component {
                         }}/>
                 }
                 {
-                    this.state.modalName === 'adduser' &&
-                    <AddUserModal vocab={this.props.vocab}
+                    this.state.modalName === 'adduser'
+                    && <AddUserModal vocab={this.props.vocab}
                         onCancel={this.closeModal}
                         onSave={this.closeModal}
                         actions={this.props.actions}
@@ -74,7 +75,7 @@ class Users extends Component {
                 <div className='users__action-btn'>
                     <button className='users__action-btn--left'
                         onClick={this.showAddUserModal}>
-                            <span>{this.props.vocab.PROJECT.ADD_USER}</span>
+                        <span>{this.props.vocab.PROJECT.ADD_USER}</span>
                     </button>
                     <button className='users__action-btn--right'
                         onClick={this.showAddGroupModal}>
@@ -92,8 +93,7 @@ class Users extends Component {
                             vocab={this.props.vocab}
                             projectId={this.props.project.id}
                             onDeleteClick={this.props.actions.deleteUserGroup}
-                            onGroupClick={groupId =>
-                                this.setState({ modalName: 'updategroup', modalId: groupId }) }
+                            onGroupClick={groupId => this.setState({ modalName: 'updategroup', modalId: groupId }) }
                             ui={this.props.ui}
                             actions={this.props.actions}/>
                     </Tab>

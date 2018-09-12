@@ -14,17 +14,19 @@ class CreateSectionPanel extends Component {
                     <input className='create-section-panel__section-name'
                         type='text'
                         defaultValue={this.props.section.name}
-                        placeholder={this.props.vocab.SURVEY.SECTION_ +
-                            (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME}
+                        placeholder={this.props.vocab.SURVEY.SECTION_
+                            + (this.props.sectionIndex + 1) + this.props.vocab.SURVEY.NAME}
                         onChange={event => this.props.actions.updateSection(
-                            this.props.sectionIndex, event.target.value)} />
+                            this.props.sectionIndex, event.target.value,
+                        )} />
                     <button className='create-section-panel__menu-button'
                         onClick={() => {
                             if (this.props.sectionLength <= 1) {
                                 toast(this.props.vocab.ERROR.SECTION_MINIMUM);
                             } else {
                                 this.props.actions.showSectionDeleteConfirmModal(
-                            this.props.sectionIndex);
+                                    this.props.sectionIndex,
+                                );
                             }
                         }}>
                         <IonIcon icon='ion-trash-b'

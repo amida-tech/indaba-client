@@ -8,8 +8,8 @@ class UserGroupList extends Component {
         return (
             <div className='user-group-list'>
                 {
-                    this.props.columnHeaders &&
-                    <div className='user-group-list__header'>
+                    this.props.columnHeaders
+                    && <div className='user-group-list__header'>
                         <div className={'user-group-list__header-section '
                             + 'user-group-list__header-section--name'}>
                             {this.props.vocab.PROJECT.GROUP_NAME}
@@ -24,14 +24,13 @@ class UserGroupList extends Component {
                         </div>
                     </div>
                 }
-                {this.props.groups.map(group =>
-                    <UserGroupListEntry
-                        key={group.id}
-                        group={group}
-                        onDeleteClick={this.props.onDeleteClick}
-                        onGroupClick={this.props.onGroupClick &&
-                            (() => this.props.onGroupClick(group.id))}
-                        users={this.props.users}/>)}
+                {this.props.groups.map(group => <UserGroupListEntry
+                    key={group.id}
+                    group={group}
+                    onDeleteClick={this.props.onDeleteClick}
+                    onGroupClick={this.props.onGroupClick
+                            && (() => this.props.onGroupClick(group.id))}
+                    users={this.props.users}/>)}
             </div>
         );
     }

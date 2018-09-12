@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { form, Field, reduxForm, reset } from 'redux-form';
+import {
+    form, Field, reduxForm, reset,
+} from 'redux-form';
 import ConfirmationCheckbox from '../ConfirmationCheckbox';
 
 class SurveyStatusForm extends Component {
@@ -66,9 +68,9 @@ export default reduxForm({
         // Check the checkboxes to ensure they are all true.
         if (values.editConfirm && values.accessConfirm && values.usersConfirm) {
             ownProps.patchSurvey(Object.assign({}, ownProps.survey,
-                    { status: values.published ? 'published' : 'draft' }),
-                ownProps.vocab.SURVEY.SUCCESS,
-                ownProps.vocab.ERROR);
+                { status: values.published ? 'published' : 'draft' }),
+            ownProps.vocab.SURVEY.SUCCESS,
+            ownProps.vocab.ERROR);
             ownProps.updateStatusChange(false);
         }
     },

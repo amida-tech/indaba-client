@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Field, reduxForm, form, formValueSelector } from 'redux-form';
+import {
+    Field, reduxForm, form, formValueSelector,
+} from 'redux-form';
 
 import StageDateTime from './StageDateTime';
 import StageSelect from './StageSelect';
@@ -14,8 +16,8 @@ class StageForm extends Component {
                 <div>
                     <div className='stage-form__title'>
                         <label className='stage-form__title-label'>
-                        {this.props.vocab.PROJECT.STAGE_TITLE}
-                         </label>
+                            {this.props.vocab.PROJECT.STAGE_TITLE}
+                        </label>
                         <div>
                             <Field
                                 name='title'
@@ -27,7 +29,7 @@ class StageForm extends Component {
                     </div>
                     <div className='stage-form__group'>
                         <label className='stage-form__group-name'>
-                        {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
+                            {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         </label>
                         <div>
                             <Field
@@ -41,38 +43,36 @@ class StageForm extends Component {
                     </div>
 
                     <div className='stage-form__activities'>
-                           <label className='stage-form__activities-label'>
-                           {this.props.vocab.PROJECT.PERMISSIONS}
-                           </label>
-                       <div className='stage-form__radio-control'>
-                           {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) =>
-                               <label className='stage-form__radio-button' key={index}>
-                                   <Field
-                                       name='permissions'
-                                       component='input'
-                                       type='radio'
-                                       value={`${index}`} />
-                                   <span
-                                       className='stage-form__permission-label-text'>
-                                       {permission}
-                                   </span>
-                               </label>,
-                           )}
-                       </div>
+                        <label className='stage-form__activities-label'>
+                            {this.props.vocab.PROJECT.PERMISSIONS}
+                        </label>
+                        <div className='stage-form__radio-control'>
+                            {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
+                                <Field
+                                    name='permissions'
+                                    component='input'
+                                    type='radio'
+                                    value={`${index}`} />
+                                <span
+                                    className='stage-form__permission-label-text'>
+                                    {permission}
+                                </span>
+                            </label>)}
+                        </div>
                     </div>
                     <div className='stage-form__text-description'>
                         {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                     </div>
                     <hr className='stage-form__divider'/>
                     <div className='stage-form__date'>
-                            <label className='stage-form__date-label'>
+                        <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
-                            </label>
+                        </label>
                     </div>
                     <div className='stage-form__select'>
                         <div className='stage-form__select-start'>
                             <label className='stage-form__select-start-label'>
-                            {this.props.vocab.PROJECT.START_DATE}</label>
+                                {this.props.vocab.PROJECT.START_DATE}</label>
                             <div className='stage-form__date-input-div'>
                                 <Field
                                     id='StartDate'

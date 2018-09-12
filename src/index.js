@@ -42,25 +42,25 @@ if (DEVELOP) {
     middleware = [...middleware, createLogger()];
 }
 
-const DevTools = DEVELOP ?
-createDevTools(
-  <DockMonitor
-    toggleVisibilityKey="ctrl-h"
-    changePositionKey="ctrl-q"
-    changeMonitorKey="ctrl-m"
-    fluid={true}
-    defaultSize={0.2}
-    defaultIsVisible={false}>
-      <LogMonitor />
-      <SliderMonitor />
-      <ChartMonitor />
-  </DockMonitor>,
-) :
-null;
+const DevTools = DEVELOP
+    ? createDevTools(
+        <DockMonitor
+            toggleVisibilityKey="ctrl-h"
+            changePositionKey="ctrl-q"
+            changeMonitorKey="ctrl-m"
+            fluid={true}
+            defaultSize={0.2}
+            defaultIsVisible={false}>
+            <LogMonitor />
+            <SliderMonitor />
+            <ChartMonitor />
+        </DockMonitor>,
+    )
+    : null;
 
-const enhancer = DEVELOP ?
-compose(applyMiddleware(...middleware), DevTools.instrument()) :
-applyMiddleware(...middleware);
+const enhancer = DEVELOP
+    ? compose(applyMiddleware(...middleware), DevTools.instrument())
+    : applyMiddleware(...middleware);
 
 const store = createStore(
     reducers,
@@ -73,12 +73,12 @@ const history = syncHistoryWithStore(browserHistory, store, {
 
 ReactDOM.render(
     <Provider store={store}>
-      <div className="main-page">
-          <Router history={history}>
-              {routes}
-          </Router>
-          { DEVELOP && <DevTools /> }
-      </div>
+        <div className="main-page">
+            <Router history={history}>
+                {routes}
+            </Router>
+            { DEVELOP && <DevTools /> }
+        </div>
     </Provider>,
     document.getElementById('root'),
 );

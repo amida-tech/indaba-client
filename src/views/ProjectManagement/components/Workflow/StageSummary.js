@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from 'grommet';
+import Box from 'grommet/components/Box';
 import _ from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
@@ -9,8 +9,7 @@ import Time from '../../../../utils/Time';
 
 class StageSummary extends Component {
     render() {
-        const userGroups = this.props.stage.userGroups.map(stageGroup =>
-            _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
+        const userGroups = this.props.stage.userGroups.map(stageGroup => _.find(this.props.userGroups, userGroup => userGroup.id === stageGroup));
         let permissions = 0;
         if (this.props.stage.allowEdit) {
             permissions = 3;

@@ -70,15 +70,15 @@ class PMDashboard extends Component {
                     filter={this.props.ui.filter} />
                 <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
-                    { this.props.ui.noData ?
-                        (<div className='pm-dashboard__no-data'>
+                    { this.props.ui.noData
+                        ? (<div className='pm-dashboard__no-data'>
                             {this.props.vocab.PROJECT.NO_PROJECTS}
-                        </div>) :
-                    this.props.rows.filter(this.filterRow.bind(this))
-                        .filter(this.searchRow.bind(this))
-                        .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                            vocab={this.props.vocab}
-                        />)
+                        </div>)
+                        : this.props.rows.filter(this.filterRow.bind(this))
+                            .filter(this.searchRow.bind(this))
+                            .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
+                                vocab={this.props.vocab}
+                            />)
                     }
                 </div>
             </div>
@@ -97,8 +97,7 @@ const mapStateToProps = store => ({
     profile: store.user.profile,
     rows: store.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
-        survey: _.pick(store.surveys.data.find(survey =>
-            survey.id === project.surveyId), ['name', 'status', 'id']),
+        survey: _.pick(store.surveys.data.find(survey => survey.id === project.surveyId), ['name', 'status', 'id']),
         flags: project.flags || 0,
     })),
     glance: {

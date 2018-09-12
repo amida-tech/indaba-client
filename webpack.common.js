@@ -13,7 +13,7 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.resolve('dist'),
-        filename: 'index_bundle.js',
+        filename: '[name].[contenthash].js',
         publicPath: '/',
     },
     module: {

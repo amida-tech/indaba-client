@@ -45,6 +45,7 @@ class StageSlot extends Component {
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.filterToStageGroups = this.filterToStageGroups.bind(this);
         this.filterToQuery = this.filterToQuery.bind(this);
+        this.handleAssignTask = this.handleAssignTask.bind(this);
     }
 
     handleTaskOptions() {
@@ -100,9 +101,11 @@ class StageSlot extends Component {
         return null;
     }
 
+    handleAssignTask(event) {
+        this.props.actions.setAssignTaskQuery(event.target.value);
+    }
+
     render() {
-        console.log('stageslot');
-        console.log(this.props);
         const { isOver, canDrop, connectDropTarget } = this.props;
         const diff = TaskStatus.daysUntilDue(this.props.task);
         const done = this.props.task.status === 'completed';
@@ -165,7 +168,7 @@ class StageSlot extends Component {
                                       label: renderName(user),
                                       value: user,
                                   }))}
-                              onChange={evt => this.props.actions.setAssignTaskQuery(evt.target.value)}
+                              onChange={this.handleAssignTask}
                               onSelect={this.handleSearchSelect}
                           />
                           <div className='stage-slot__assign-task-input-cancel'

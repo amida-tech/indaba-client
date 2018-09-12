@@ -10,25 +10,25 @@ class FileForm extends Component {
     render() {
         return (
             <form className='file-form'
-                  onSubmit={this.props.handleSubmit}>
+                onSubmit={this.props.handleSubmit}>
                 {
-                    this.props.file === undefined &&
-                    <div className='file-form__add-form'>
+                    this.props.file === undefined
+                    && <div className='file-form__add-form'>
                         <Field name={'file'}
-                               className='file-form__file-input'
-                               disabled={this.props.disabled}
-                               component={ReduxFormFileInput}/>
+                            className='file-form__file-input'
+                            disabled={this.props.disabled}
+                            component={ReduxFormFileInput}/>
                     </div>
                 }
                 {
-                    this.props.file !== undefined &&
-                    <div className='file-form__remove-form'>
+                    this.props.file !== undefined
+                    && <div className='file-form__remove-form'>
                         <div className='file-form__current-file-name'>
                             <a href={this.props.file.url}> {this.props.file.filename} </a>
                         </div>
                         {
-                            !this.props.disabled &&
-                            <button className='file-form__submit file-form__submit--remove'>
+                            !this.props.disabled
+                            && <button className='file-form__submit file-form__submit--remove'>
                                 {this.props.vocab.SURVEY.REMOVE_FILE}
                             </button>
                         }
@@ -64,4 +64,3 @@ export default reduxForm({
         }
     },
 })(FileForm);
-

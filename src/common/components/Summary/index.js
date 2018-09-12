@@ -12,12 +12,12 @@ class Summary extends Component {
                     label={this.props.vocab.PROJECT.PROJECT}
                     name={this.props.project ? this.props.project.name : ''}
                     actions={this.props.actions}
-                    status={this.props.project.status ?
-                        this.props.vocab.PROJECT.STATUS_ACTIVE :
-                        this.props.vocab.PROJECT.STATUS_INACTIVE}
+                    status={this.props.project.status
+                        ? this.props.vocab.PROJECT.STATUS_ACTIVE
+                        : this.props.vocab.PROJECT.STATUS_INACTIVE}
                     onStatusChangeClick={
-                        this.props.onStatusChangeClick &&
-                        (() => this.props.onStatusChangeClick('projectstatusmodal'))}
+                        this.props.onStatusChangeClick
+                        && (() => this.props.onStatusChangeClick('projectstatusmodal'))}
                     onEditClick={this.props.onProjectEditClick} />
                 <StatusCard
                     label={this.props.vocab.PROJECT.SURVEY}
@@ -25,8 +25,8 @@ class Summary extends Component {
                     actions={this.props.actions}
                     status={this.props.vocab.SURVEY[this.props.survey.status.toUpperCase()]}
                     onStatusChangeClick={
-                        this.props.onStatusChangeClick &&
-                        (() => this.props.onStatusChangeClick('surveystatusmodal'))}
+                        this.props.onStatusChangeClick
+                        && (() => this.props.onStatusChangeClick('surveystatusmodal'))}
                     onEditClick={this.props.onSurveyEditClick} >
                     <IonIcon
                         icon='ion-ios-paper-outline'

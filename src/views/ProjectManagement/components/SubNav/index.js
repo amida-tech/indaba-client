@@ -14,15 +14,14 @@ class SubNav extends Component {
 
         return (
             <div className='sub-nav'>
-                {subNavEntries.map((entry, i) =>
-                    <SubNavEntry
-                        {...entry}
-                        first={i === 0}
-                        selected={this.props.selected === entry.key}
-                        onClick={() => this.props.subnavigate(entry.key)}
-                        />)
-                    }
-                </div>
+                {subNavEntries.map((entry, i) => <SubNavEntry
+                    {...entry}
+                    first={i === 0}
+                    selected={this.props.selected === entry.key}
+                    onClick={() => this.props.subnavigate(entry.key)}
+                />)
+                }
+            </div>
         );
     }
 }

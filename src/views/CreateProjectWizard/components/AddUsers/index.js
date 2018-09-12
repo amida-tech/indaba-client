@@ -11,8 +11,8 @@ class AddUsers extends Component {
     render() {
         return (
             <div className='add-users'>
-                {this.props.ui.showSelectGroupUsers &&
-                    <SelectGroupUsers
+                {this.props.ui.showSelectGroupUsers
+                    && <SelectGroupUsers
                         vocab={this.props.vocab}
                         users={this.props.project.users}
                         userGroups={this.props.project.userGroups}
@@ -29,8 +29,8 @@ class AddUsers extends Component {
                         }}/>}
                 <hr className='divider' />
                 <div className='add-users__control-row'>
-                    {this.props.ui.tab === 1 &&
-                        <button className='add-users__control-row-button'
+                    {this.props.ui.tab === 1
+                        && <button className='add-users__control-row-button'
                             onClick={() => this.props.actions.showAddUserGroupWizardModal(true)}>
                             <span>{this.props.vocab.PROJECT.CREATE_USER_GROUP}</span>
                         </button>

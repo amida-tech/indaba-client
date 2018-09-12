@@ -24,7 +24,7 @@ class AddUserModal extends Component {
                             this.props.vocab.ERROR,
                         );
                     }
-                }/>
+                    }/>
             </Modal>
         );
     }

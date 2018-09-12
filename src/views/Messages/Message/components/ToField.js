@@ -13,6 +13,7 @@ class ToField extends Component {
         this.searchFilter = this.searchFilter.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleUpdateToQuery = this.handleUpdateToQuery.bind(this);
     }
 
     searchFilter(user) {
@@ -31,6 +32,10 @@ class ToField extends Component {
                 emailIter => emailIter !== email,
             ),
         );
+    }
+
+    handleUpdateToQuery(event) {
+        this.props.actions.setToQuery(event.target.value);
     }
 
     render() {
@@ -53,8 +58,8 @@ class ToField extends Component {
                                 .map(user => ({ label: renderName(user), value: user }))
                         }
                         onBlur={() => this.props.input.onBlur(this.props.input.value)}
-                        onChange={evt => this.props.actions.setToQuery(evt.target.value)}
-                        onSelect={selection => this.handleSelect(selection, this.props.meta.dispatch)}
+                        onChange={this.handleUpdateToQuery}
+                        onSelect={this.handleSelect}
                     />
                     {
                         this.props.meta.touched && this.props.meta.error

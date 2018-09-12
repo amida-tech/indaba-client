@@ -12,8 +12,8 @@ class SurveyPresentation extends Component {
                     return (
                         <div className='survey-presentation__question'
                             key={`questionpanel${index}`}>
-                            {question.sectionName &&
-                              (<div className='survey-presentation__section-name'>
+                            {question.sectionName
+                              && (<div className='survey-presentation__section-name'>
                                   {question.sectionName}
                               </div>)}
                             <Element name={`question${index}`}>
@@ -24,16 +24,16 @@ class SurveyPresentation extends Component {
                             </Element>
                         </div>);
                 })}
-                {!this.props.taskDisabled &&
-                    <div className='survey-presentation__submit'>
+                {!this.props.taskDisabled
+                    && <div className='survey-presentation__submit'>
                         <div className='survey-presentation__submit-instructions'>
                             {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS}
                             <br></br>
-                            {(this.props.stage.allowEdit ||
-                                this.props.stage.discussionParticipation) &&
-                                this.props.vocab.SURVEY.REVIEW_INSTRUCTIONS }
-                            {!this.props.stage.discussionParticipation &&
-                                <div className='survey-presentation__additional-instructions'>
+                            {(this.props.stage.allowEdit
+                                || this.props.stage.discussionParticipation)
+                                && this.props.vocab.SURVEY.REVIEW_INSTRUCTIONS }
+                            {!this.props.stage.discussionParticipation
+                                && <div className='survey-presentation__additional-instructions'>
                                     {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_2}
                                     <Link className='survey-presentation__link' to='/task'>
                                         {this.props.vocab.COMMON.MY_TASKS}
@@ -43,12 +43,12 @@ class SurveyPresentation extends Component {
                         </div>
                         <button className={`survey-presentation__submit-button
                             survey-presentation__submit-button${!this.props.preventComplete ? '' : '--disabled'}`}
-                            type='button'
-                            onClick={this.props.onCompleteTask}>
+                        type='button'
+                        onClick={this.props.onCompleteTask}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>
-                        {this.props.stage.discussionParticipation &&
-                            <button className='survey-presentation__submit-button'
+                        {this.props.stage.discussionParticipation
+                            && <button className='survey-presentation__submit-button'
                                 type='submit'>
                                 {this.props.vocab.SURVEY.SAVE_REVIEW}
                             </button>}

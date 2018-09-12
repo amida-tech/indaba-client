@@ -12,6 +12,7 @@ class QuestionContainer extends Component {
         this.changeQuestionsDisplay = this.changeQuestionsDisplay.bind(this);
         this.stopDetails = this.stopDetails.bind(this);
     }
+
     changeQuestionsDisplay() {
         let newShowQuestions;
         if (this.props.ui.showQuestions.includes(this.props.questionIndex)) {
@@ -23,44 +24,45 @@ class QuestionContainer extends Component {
         }
         this.props.actions.updateQuestionDisplay(newShowQuestions);
     }
+
     stopDetails(e) {
         e.stopPropagation();
     }
+
     render() {
         return (
             <details className='question-container'
                 onClick={this.changeQuestionsDisplay}
                 open={this.props.ui.showQuestions.includes(this.props.questionIndex)}>
-                  <summary className='question-container__summary'>
-                      {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + this.props.offset + 1)}: ${
-                      this.props.question.text}${this.props.question.required ? ' *' : ''}`}
-                  </summary>
-                  <div onClick={this.stopDetails}>
-                      <Questions className='question-container__questions'
-                          {...this.props.question}
-                          assessmentId={this.props.task.assessmentId}
-                          answers={this.props.answers}
-                          fileEntryMode={!this.props.stage.discussionParticipation}
-                          displayMode={this.props.taskDisabled || this.props.stage.blindReview
+                <summary className='question-container__summary'>
+                    {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + this.props.offset + 1)}: ${
+                        this.props.question.text}${this.props.question.required ? ' *' : ''}`}
+                </summary>
+                <div onClick={this.stopDetails}>
+                    <Questions className='question-container__questions'
+                        {...this.props.question}
+                        assessmentId={this.props.task.assessmentId}
+                        answers={this.props.answers}
+                        fileEntryMode={!this.props.stage.discussionParticipation}
+                        displayMode={this.props.taskDisabled || this.props.stage.blindReview
                               || this.props.stage.discussionParticipation}
-                          actions={this.props.actions}
-                          vocab={this.props.vocab} />
-                      {this.props.showCommentForm &&
-                          <ReviewPane
+                        actions={this.props.actions}
+                        vocab={this.props.vocab} />
+                    {this.props.showCommentForm
+                          && <ReviewPane
                               users={this.props.users}
                               profile={this.props.profile}
                               questionIndex={this.props.questionIndex + this.props.offset}
                               question={this.props.question}
-                              answer={find(this.props.answers, answer =>
-                                  answer.questionId === this.props.question.id) || {}}
+                              answer={find(this.props.answers, answer => answer.questionId === this.props.question.id) || {}}
                               assessmentId={this.props.task.assessmentId}
                               answers={this.props.answers}
                               entryMode={this.props.stage.discussionParticipation}
                               displayMode={this.props.taskDisabled || this.props.stage.blindReview
                                   || this.props.stage.allowEdit}
                               vocab={this.props.vocab } />
-                      }
-                  </div>
+                    }
+                </div>
             </details>
         );
     }

@@ -7,7 +7,7 @@ class WizardFooter extends Component {
                 <div>
                     <button className={`wizard-footer__button wizard-footer__button${
                         this.props.step === 0 ? '--disabled' : '--back'}`}
-                        onClick={this.props.onBack}>
+                    onClick={this.props.onBack}>
                         <span>{this.props.vocab.COMMON.GO_BACK}</span>
                     </button>
                 </div>
@@ -23,9 +23,9 @@ class WizardFooter extends Component {
                     <button className='wizard-footer__button wizard-footer__button--continue'
                         onClick={this.props.onContinue}>
                         <span>
-                            {this.props.finalStep ?
-                                this.props.vocab.PROJECT.COMPLETE_PROJECT :
-                                this.props.vocab.COMMON.CONTINUE}
+                            {this.props.finalStep
+                                ? this.props.vocab.PROJECT.COMPLETE_PROJECT
+                                : this.props.vocab.COMMON.CONTINUE}
                         </span>
                     </button>
                 </div>

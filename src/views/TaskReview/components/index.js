@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import { compact, clone, every, find, flatten, get, has, map, sumBy } from 'lodash';
+import {
+    compact, clone, every, find, flatten, get, has, map, sumBy,
+} from 'lodash';
 import IonIcon from 'react-ionicons';
 
 import Time from '../../../utils/Time';
@@ -10,7 +12,9 @@ import FlagSidebar from './FlagSidebar';
 import TaskDetails from './TaskDetails';
 import SurveyPane from './SurveyPane';
 import { renderPermissions } from '../../../utils/Survey';
-import { setSurveySectionIndex, completeAssessment, postAnswer, postReview } from '../../../common/actions/surveyActions';
+import {
+    setSurveySectionIndex, completeAssessment, postAnswer, postReview,
+} from '../../../common/actions/surveyActions';
 import { getTaskById, moveTask, updateTask } from '../../../common/actions/taskActions';
 import * as actions from '../actions';
 
@@ -39,11 +43,11 @@ class TaskReview extends Component {
             })));
         }
         options.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
-        const displaySurvey = this.props.sectionIndex === -1 ?
-            flatSurvey : compact(get(this.props.survey, `sections[${this.props.sectionIndex}].questions`));
+        const displaySurvey = this.props.sectionIndex === -1
+            ? flatSurvey : compact(get(this.props.survey, `sections[${this.props.sectionIndex}].questions`));
         const taskDisabled = this.props.survey.status !== 'published' || !Time.isInPast(this.props.task.startDate)
-            || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current' &&
-            !this.props.task.active);
+            || this.props.profile.id !== this.props.taskedUser.id || (this.props.task.status !== 'current'
+            && !this.props.task.active);
         const reqCheck = every(flatSurvey, (question) => {
             return get(question, 'required') === true ? has(find(this.props.ui.form.answers,
                 resp => resp.questionId === question.id), 'answer') : true;
@@ -101,11 +105,11 @@ class TaskReview extends Component {
                         vocab={this.props.vocab} />
                 </div>
                 <div className='task-review__flag-sidebar'>
-                <FlagSidebar
-                    {...this.props}
-                    offset={offset}
-                    flagCount={flagCount}
-                    displaySurvey={displaySurvey}/>
+                    <FlagSidebar
+                        {...this.props}
+                        offset={offset}
+                        flagCount={flagCount}
+                        displaySurvey={displaySurvey}/>
                 </div>
             </div>
         );
@@ -115,27 +119,28 @@ class TaskReview extends Component {
 const mapStateToProps = (state, ownProps) => {
     const taskId = parseInt(ownProps.params.taskId, 10);
     const projectId = parseInt(ownProps.params.projectId, 10);
-    const task = find(state.tasks.data, current => current.id === taskId) ||
-        { id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1 };
-    const project = state.projects.data.length !== 0 ?
-        find(state.projects.data, projElem => projElem.id === projectId) :
-        state.projects.empty;
+    const task = find(state.tasks.data, current => current.id === taskId)
+        || {
+            id: -1, title: '', endDate: '', userIds: [], stepId: -1, uoaId: -1,
+        };
+    const project = state.projects.data.length !== 0
+        ? find(state.projects.data, projElem => projElem.id === projectId)
+        : state.projects.empty;
     return {
         projectId,
         productId: project.productId,
-        taskedUser: find(state.user.users, user =>
-            user.id === task.userIds[0]) || { firstName: '', lastName: '' },
-        stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0) ?
-            find(project.stages, stage => stage.id === task.stepId) : { title: '' },
-        subject: (project.id > 0 && task.uoaId > 0) ?
-            find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
+        taskedUser: find(state.user.users, user => user.id === task.userIds[0]) || { firstName: '', lastName: '' },
+        stage: (project.id > 0 && task.stepId > 0 && project.stages.length > 0)
+            ? find(project.stages, stage => stage.id === task.stepId) : { title: '' },
+        subject: (project.id > 0 && task.uoaId > 0)
+            ? find(project.subjects, subject => subject.id === task.uoaId) : { name: '' },
         users: state.user.users,
         projectUsers: project.users,
         profile: state.user.profile,
         task,
-        survey: state.surveys.data[0].name ?
-            find(state.surveys.data, survey => survey.id === project.surveyId) :
-            state.surveys.data[0],
+        survey: state.surveys.data[0].name
+            ? find(state.surveys.data, survey => survey.id === project.surveyId)
+            : state.surveys.data[0],
         sectionIndex: state.surveys.ui.sectionIndex,
         ui: state.taskreview.ui,
         vocab: state.settings.language.vocabulary,
@@ -150,8 +155,9 @@ const mapDispatchToProps = dispatch => ({
         getTaskById,
         moveTask,
         postReview,
-        postAnswer }),
-        dispatch),
+        postAnswer,
+    }),
+    dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskReview);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import { Search } from 'grommet';
+import Search from 'grommet/components/Search';
 
 import apiService from '../../../../services/api';
 import UserGroupList from '../../../../common/components/UserGroupList';
@@ -15,12 +15,12 @@ class UserGroupsTab extends Component {
 
     handleDeleteClick(groupId) {
         apiService.projects.deleteGroup(groupId)
-        .then(() => {
-            this.props.actions.getProjectById(this.props.projectId, false, this.props.vocab.ERROR);
-        })
-        .catch(() => {
-            toast(this.props.vocab.ERROR.GROUP_DELETE, { autoClose: false, type: 'error' });
-        });
+            .then(() => {
+                this.props.actions.getProjectById(this.props.projectId, false, this.props.vocab.ERROR);
+            })
+            .catch(() => {
+                toast(this.props.vocab.ERROR.GROUP_DELETE, { autoClose: false, type: 'error' });
+            });
     }
 
     filterGroup(group) {
@@ -34,17 +34,17 @@ class UserGroupsTab extends Component {
     render() {
         return (
             <div className='wrapper'>
-            <div className='user-groups-tab'>
-                <Search className='user-groups-tab__search-input'
-                    placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                    fill={true}
-                    inline={true}
-                    onSelect={this.handleSearchSelect}/>
+                <div className='user-groups-tab'>
+                    <Search className='user-groups-tab__search-input'
+                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                        fill={true}
+                        inline={true}
+                        onSelect={this.handleSearchSelect}/>
 
-                <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
-                    users={this.props.allUsers}
-                    onDeleteClick={this.handleDeleteClick}/>
-            </div>
+                    <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
+                        users={this.props.allUsers}
+                        onDeleteClick={this.handleDeleteClick}/>
+                </div>
             </div>
 
         );

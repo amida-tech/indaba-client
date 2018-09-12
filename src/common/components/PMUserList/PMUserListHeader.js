@@ -6,8 +6,8 @@ export default ({ vocab, groups }) => (
             {vocab.COMMON.NAME}
         </div>
         {
-            groups &&
-            <div className='pm-user-list-header__cell'>
+            groups
+            && <div className='pm-user-list-header__cell'>
                 {vocab.PROJECT.USER_GROUPS}
             </div>
         }

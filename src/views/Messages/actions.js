@@ -22,30 +22,22 @@ export const setToQuery = query => ({
     query,
 });
 
-export const archiveThread = ids => () =>
-    Promise.all(ids.map(id => apiService.messaging.archive(id)));
+export const archiveThread = ids => () => Promise.all(ids.map(id => apiService.messaging.archive(id)));
 
-export const unarchiveThread = ids => () =>
-    Promise.all(ids.map(id => apiService.messaging.unarchive(id)));
+export const unarchiveThread = ids => () => Promise.all(ids.map(id => apiService.messaging.unarchive(id)));
 
-export const markThreadAsRead = ids => () =>
-    Promise.all(ids.map(id => apiService.messaging.markAsRead(id)));
+export const markThreadAsRead = ids => () => Promise.all(ids.map(id => apiService.messaging.markAsRead(id)));
 
-export const deleteThread = ids => () =>
-    Promise.all(ids.map(id => apiService.messaging.delete(id)));
+export const deleteThread = ids => () => Promise.all(ids.map(id => apiService.messaging.delete(id)));
 
-export const archiveMessage = id => () =>
-    apiService.messaging.archive(id);
+export const archiveMessage = id => () => apiService.messaging.archive(id);
 
-export const unarchiveMessage = id => () =>
-    apiService.messaging.unarchive(id);
+export const unarchiveMessage = id => () => apiService.messaging.unarchive(id);
 
-export const markAsUnread = id => dispatch =>
-    apiService.messaging.markAsUnread(id)
+export const markAsUnread = id => dispatch => apiService.messaging.markAsUnread(id)
     .then(response => dispatch(_putMessageSuccess(response)));
 
-export const deleteMessage = id => () =>
-    apiService.messaging.delete(id);
+export const deleteMessage = id => () => apiService.messaging.delete(id);
 
 
 const _putMessageSuccess = message => ({
@@ -54,32 +46,28 @@ const _putMessageSuccess = message => ({
     id: message.id,
 });
 
-export const markAsRead = id => dispatch =>
-    apiService.messaging.markAsRead(id)
+export const markAsRead = id => dispatch => apiService.messaging.markAsRead(id)
     .then(response => dispatch(_putMessageSuccess(response)));
 
-export const startReply = message =>
-    _startReply({
-        id: message.id,
-        subject: message.subject,
-        to: [message.from],
-        from: message.owner,
-    });
+export const startReply = message => _startReply({
+    id: message.id,
+    subject: message.subject,
+    to: [message.from],
+    from: message.owner,
+});
 
-export const startReplyAll = message =>
-    _startReply({
-        id: message.id,
-        subject: message.subject,
-        to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
-        from: message.owner,
-    });
+export const startReplyAll = message => _startReply({
+    id: message.id,
+    subject: message.subject,
+    to: [message.from, ...message.to].filter(recipient => recipient !== message.owner),
+    from: message.owner,
+});
 
-export const forwardMessage = message =>
-    _startReply({
-        forwardId: message.id,
-        subject: message.subject,
-        from: message.to,
-    });
+export const forwardMessage = message => _startReply({
+    forwardId: message.id,
+    subject: message.subject,
+    from: message.to,
+});
 
 export const discardReply = () => ({
     type: actionTypes.DISCARD_REPLY,
@@ -100,22 +88,19 @@ export const setInboxPage = page => ({
     page,
 });
 
-export const getInboxMessages = params => dispatch =>
-    apiService.messaging.list(params)
+export const getInboxMessages = params => dispatch => apiService.messaging.list(params)
     .then(result => dispatch(_getInboxMessagesSuccess(result)));
 
-export const getThreadContainingMessage = messageId => dispatch =>
-    apiService.messaging.get(messageId)
+export const getThreadContainingMessage = messageId => dispatch => apiService.messaging.get(messageId)
     .then(messageResponse => dispatch(getThread(messageResponse.originalMessageId)));
 
 export const getThread = originalMessageId => (dispatch) => {
     dispatch(_getThread());
     return apiService.messaging.getThread(originalMessageId)
-    .then(response => dispatch(_getThreadSuccess(response)));
+        .then(response => dispatch(_getThreadSuccess(response)));
 };
 
-export const getInboxThreads = params => dispatch =>
-    apiService.messaging.listThreads(params)
+export const getInboxThreads = params => dispatch => apiService.messaging.listThreads(params)
     .then(response => dispatch(_getInboxThreadsSuccess(response)));
 
 /* Private actions */

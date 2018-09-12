@@ -27,15 +27,15 @@ class AccountTab extends Component {
                     {this.props.vocab.PROJECT.ACCOUNT_SINCE}
                     <div className='account-tab__date'>
                         {
-                            this.props.user.lastActive === null ?
-                                this.props.vocab.PROJECT.NOT_ACCEPTED :
-                                Time.renderCommon(this.props.user.created)
+                            this.props.user.lastActive === null
+                                ? this.props.vocab.PROJECT.NOT_ACCEPTED
+                                : Time.renderCommon(this.props.user.created)
                         }
                     </div>
                     <div className='account-tab__button-wrapper'>
                         {
-                            !this.props.user.isActive &&
-                            <button
+                            !this.props.user.isActive
+                            && <button
                                 onClick={this.props.onResendActivation}
                                 className='account-tab__button'>
                                 {this.props.vocab.PROJECT.RESEND_INVITATION}

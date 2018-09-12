@@ -36,47 +36,53 @@ class Subjects extends Component {
             this.subjectHasData(subject.id).then((hasData) => {
                 if (hasData) {
                     toast(this.props.vocab.ERROR.NO_DELETE_SUBJECT_WITH_DATA,
-                        { autoClose: false,
-                            type: 'error' });
+                        {
+                            autoClose: false,
+                            type: 'error',
+                        });
                 } else {
                     this.props.actions
-                            .showSubjectDeleteConfirmModalForId(subject.id);
+                        .showSubjectDeleteConfirmModalForId(subject.id);
                 }
             });
         }
     }
+
     subjectHasData(subjectId) {
-        const answerPromises =
-        this.props.tasks
-        .filter(task => task.uoaId === subjectId)
-        .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
+        const answerPromises = this.props.tasks
+            .filter(task => task.uoaId === subjectId)
+            .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId));
         return Promise.all(answerPromises)
-        .then(statuses => statuses.some(status => status.status !== 'new'));
+            .then(statuses => statuses.some(status => status.status !== 'new'));
     }
+
     orderSubjectsByNameAscending(subjects) {
         return orderBy(subjects, [subject => subject.name.toLowerCase()], ['asc']);
     }
+
     orderSubjectsByNameDescending(subjects) {
         return orderBy(subjects, [subject => subject.name.toLowerCase()], ['desc']);
     }
+
     render() {
         return (
             <div className='subjects'>
-                {this.state.showAddSubjectModal &&
-                    <SubjectModal
+                {this.state.showAddSubjectModal
+                    && <SubjectModal
                         onAddSubject={(subjects) => {
                             this.setState({ showAddSubjectModal: false });
                             this.props.actions.addSubject(
                                 this.props.project,
                                 subjects,
                                 false,
-                                this.props.vocab.ERROR);
+                                this.props.vocab.ERROR,
+                            );
                         }}
                         onCancel={this.closeAddSubjectModal}
                         vocab={this.props.vocab}/>}
                 {
-                    this.props.ui.showSubjectDeleteConfirmModalForId !== null &&
-                    <Modal vocab={this.props.vocab}
+                    this.props.ui.showSubjectDeleteConfirmModalForId !== null
+                    && <Modal vocab={this.props.vocab}
                         title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
                         bodyText={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.SIMPLE_CONFIRM}
                         onCancel={() => this.props.actions.showSubjectDeleteConfirmModalForId(null)}
@@ -85,7 +91,8 @@ class Subjects extends Component {
                                 this.props.project,
                                 this.props.ui.showSubjectDeleteConfirmModalForId,
                                 false,
-                                this.props.vocab.ERROR);
+                                this.props.vocab.ERROR,
+                            );
                             this.props.actions.showSubjectDeleteConfirmModalForId(null);
                         }}
                         saveLabel={this.props.vocab.COMMON.DELETE} />

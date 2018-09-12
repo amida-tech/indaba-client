@@ -7,8 +7,8 @@ const makeQueryParams = (params) => {
         return '';
     }
     return `?${Object.keys(params)
-    .map(key => `${key}=${encodeURIComponent(params[key])}`)
-    .join('&')}`;
+        .map(key => `${key}=${encodeURIComponent(params[key])}`)
+        .join('&')}`;
 };
 
 export function addQueryParams(url, params) {
@@ -31,7 +31,7 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
         },
         body: encodedRequestBodyObject,
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 /**
@@ -49,7 +49,7 @@ export function apiGetRequest(fullURI) {
             Pragma: 'no-cache',
         },
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 /**
@@ -67,7 +67,7 @@ export function apiPostRequest(fullURI, requestBody) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 /**
@@ -85,7 +85,7 @@ export function apiPatchRequest(fullURI, requestBody) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 /**
@@ -103,7 +103,7 @@ export function apiPutRequest(fullURI, requestBody) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 /**
@@ -152,7 +152,7 @@ export function putObjectRequest(file, fullURI) {
         method: 'PUT',
         body: file,
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 // ////////////////
@@ -162,9 +162,7 @@ function handleResponse(response) {
     if (response.ok) {
         return decodeResponse(response);
     }
-    return decodeResponse(response).then(body =>
-        Promise.reject({ response, body }),
-    );
+    return decodeResponse(response).then(body => Promise.reject({ response, body }));
 }
 
 function decodeResponse(res) {

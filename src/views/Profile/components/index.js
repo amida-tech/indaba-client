@@ -19,7 +19,8 @@ class ProfileContainer extends Component {
                     onSubmit={(values) => {
                         this.props.actions.updateProfile(
                             values,
-                            this.props.vocab.ERROR);
+                            this.props.vocab.ERROR,
+                        );
                     }} />
                 <ResetPasswordPanel {...this.props} />
             </div>

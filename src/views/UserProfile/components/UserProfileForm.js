@@ -28,8 +28,8 @@ class UserProfileForm extends Component {
                         </FormSection>
                     </Tab>
                     {
-                        this.props.projectId !== undefined &&
-                        <Tab className='user-profile-form__tab'
+                        this.props.projectId !== undefined
+                        && <Tab className='user-profile-form__tab'
                             title={this.props.vocab.PROJECT.USER_GROUPS}>
                             <ProfileUserGroupsTab project={this.props.project}
                                 userId={this.props.userId}
@@ -38,8 +38,8 @@ class UserProfileForm extends Component {
                         </Tab>
                     }
                     {
-                        this.props.projectId !== undefined &&
-                        <Tab className='user-profile-form__tab'
+                        this.props.projectId !== undefined
+                        && <Tab className='user-profile-form__tab'
                             title={this.props.vocab.PROJECT.TASKS}>
                             <TasksTab project={this.props.project}
                                 tasks={this.props.tasks}

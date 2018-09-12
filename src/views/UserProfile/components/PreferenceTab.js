@@ -34,9 +34,9 @@ class PreferenceTab extends Component {
                         component='select'
                         name='isActive'
                         normalize={value => value === constants.status.ACTIVE}
-                        format={value => (value ?
-                            constants.status.ACTIVE :
-                            constants.status.INACTIVE)}>
+                        format={value => (value
+                            ? constants.status.ACTIVE
+                            : constants.status.INACTIVE)}>
                         <option className='preference-tab__input-option'
                             value={constants.status.ACTIVE}>
                             {this.props.vocab.USER.ACTIVE}

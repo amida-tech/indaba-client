@@ -5,8 +5,8 @@ class SubNavEntry extends Component {
     render() {
         return (
             <div
-                className={`sub-nav-entry ${this.props.selected ?
-                    'sub-nav-entry--selected' : ''} `}
+                className={`sub-nav-entry ${this.props.selected
+                    ? 'sub-nav-entry--selected' : ''} `}
                 onClick={this.props.onClick}>
                 {this.props.label}
             </div>

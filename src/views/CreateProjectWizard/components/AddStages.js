@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Box } from 'grommet';
+import Box from 'grommet/components/Box';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -11,11 +11,12 @@ class AddStages extends Component {
     handleStageDelete(stageId) {
         this.props.actions.wizardShowStageDeleteConfirmModal(stageId);
     }
+
     render() {
         return (<div className='add-stages'>
             {
-                this.props.ui.showAddStage && !this.props.ui.showStageDeleteConfirmModal &&
-                <StageModal vocab={this.props.vocab}
+                this.props.ui.showAddStage && !this.props.ui.showStageDeleteConfirmModal
+                && <StageModal vocab={this.props.vocab}
                     userGroups={this.props.project.userGroups}
                     onCancel={() => this.props.actions.wizardShowStageModal(false)}
                     stageId={this.props.ui.stageEditId}
@@ -27,26 +28,28 @@ class AddStages extends Component {
                             this.props.project,
                             stage,
                             true,
-                            this.props.vocab.ERROR);
+                            this.props.vocab.ERROR,
+                        );
                     }}
                     actions={this.props.actions} />
             }
             {
-                this.props.ui.showStageDeleteConfirmModal &&
-                <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                this.props.ui.showStageDeleteConfirmModal
+                && <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
                     bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
                     onCancel={this.props.actions.wizardHideStageDeleteConfirmModal}
                     onSave={() => this.props.actions.wizardDeleteStage(
                         this.props.project.id,
-                        this.props.ui.showStageDeleteConfirmModal.stageId)
-                    .then(() => {
-                        this.props.actions.wizardShowStageModal(false);
-                        this.props.actions.wizardHideStageDeleteConfirmModal();
-                    }).catch(() => {
-                        toast(this.props.vocab.ERROR.STAGE_REQUEST,
-                            { type: 'error', autoClose: false });
-                        this.props.actions.wizardHideStageDeleteConfirmModal();
-                    }) } />
+                        this.props.ui.showStageDeleteConfirmModal.stageId,
+                    )
+                        .then(() => {
+                            this.props.actions.wizardShowStageModal(false);
+                            this.props.actions.wizardHideStageDeleteConfirmModal();
+                        }).catch(() => {
+                            toast(this.props.vocab.ERROR.STAGE_REQUEST,
+                                { type: 'error', autoClose: false });
+                            this.props.actions.wizardHideStageDeleteConfirmModal();
+                        }) } />
             }
             <hr className='divider'/>
             <div className='add-stages__import-row'>
@@ -69,8 +72,8 @@ class AddStages extends Component {
                 })}
 
                 {
-                    this.props.project.stages.length <= 3 &&
-                    <div className='add-stages__grid-row'
+                    this.props.project.stages.length <= 3
+                    && <div className='add-stages__grid-row'
                         onClick={() => this.props.actions.wizardShowStageModal(true)}>
                         <div className='add-stages__grid-row--title'>
                             {this.props.vocab.PROJECT.STAGE_TITLE}

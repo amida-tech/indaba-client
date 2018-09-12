@@ -40,7 +40,6 @@ function collect(connect, monitor) {
 }
 
 class AssigneeCard extends Component {
-
     render() {
         const { isDragging, connectDragSource } = this.props;
 

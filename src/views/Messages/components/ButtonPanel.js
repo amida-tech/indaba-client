@@ -6,8 +6,8 @@ export class PanelButton extends Component {
         return (
             <div className='button-panel__button' {...this.props}
                 onClick={
-                    this.props.onClick &&
-                    ((evt) => {
+                    this.props.onClick
+                    && ((evt) => {
                         evt.stopPropagation();
                         this.props.onClick(evt);
                     })

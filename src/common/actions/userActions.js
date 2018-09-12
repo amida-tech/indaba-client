@@ -6,12 +6,12 @@ import * as actionTypes from '../actionTypes/userActionTypes';
 export function getProfile(errorMessages) {
     return (dispatch) => {
         return apiService.users.getProfile()
-        .then((profileResp) => {
-            dispatch(getProfileSuccess(profileResp));
-            return profileResp;
-        }).catch((profileErr) => {
-            dispatch(_reportUserError(profileErr, errorMessages.FETCH_PROFILE));
-        });
+            .then((profileResp) => {
+                dispatch(getProfileSuccess(profileResp));
+                return profileResp;
+            }).catch((profileErr) => {
+                dispatch(_reportUserError(profileErr, errorMessages.FETCH_PROFILE));
+            });
     };
 }
 
@@ -34,10 +34,10 @@ export function updateProfile(userData, errorMessages) {
 
     return (dispatch) => {
         return apiService.users.putProfile(requestBody)
-        .then(() => dispatch(getProfile(errorMessages)))
-        .catch((profileErr) => {
-            dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
-        });
+            .then(() => dispatch(getProfile(errorMessages)))
+            .catch((profileErr) => {
+                dispatch(_reportUserError(profileErr, errorMessages.PROFILE_REQUEST));
+            });
     };
 }
 
@@ -46,14 +46,14 @@ export function updateProfileById(id, userData, errorMessages) {
         dispatch(_updateProfileById());
 
         return apiService.users.putProfileById(id, userData)
-        .then((response) => {
-            dispatch(_updateProfileByIdSuccess(response));
-            dispatch(getUsers(errorMessages));
-            return response;
-        })
-        .catch((err) => {
-            dispatch(_updateProfileByIdFailure(err, errorMessages.PROFILE_REQUEST));
-        });
+            .then((response) => {
+                dispatch(_updateProfileByIdSuccess(response));
+                dispatch(getUsers(errorMessages));
+                return response;
+            })
+            .catch((err) => {
+                dispatch(_updateProfileByIdFailure(err, errorMessages.PROFILE_REQUEST));
+            });
     };
 }
 
@@ -82,12 +82,12 @@ export function resetPassword(errorMessages) {
 export function getUsers(errorMessages) {
     return (dispatch) => {
         return apiService.users.getUsers()
-        .then((users) => {
-            dispatch(_getUsersSuccess(users));
-            return users;
-        }).catch((err) => {
-            dispatch(_reportUserError(err, errorMessages.SERVER_ISSUE));
-        });
+            .then((users) => {
+                dispatch(_getUsersSuccess(users));
+                return users;
+            }).catch((err) => {
+                dispatch(_reportUserError(err, errorMessages.SERVER_ISSUE));
+            });
     };
 }
 
@@ -106,17 +106,17 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
 
     return (dispatch) => {
         apiService.users.inviteNewUser(requestBody)
-        .then((userResp) => {
-            toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
-            dispatch(_postNewUserSuccess(userResp, projectId));
-            return userResp;
-        })
-        .catch((userErr) => {
-            if (userErr.e === 403) {
-                toast(errorMessages.DUPLICATE);
-            }
-            dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
-        });
+            .then((userResp) => {
+                toast(userResp.registered ? toastMessages.EXISTS : toastMessages.INVITED);
+                dispatch(_postNewUserSuccess(userResp, projectId));
+                return userResp;
+            })
+            .catch((userErr) => {
+                if (userErr.e === 403) {
+                    toast(errorMessages.DUPLICATE);
+                }
+                dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
+            });
     };
 }
 
@@ -124,13 +124,13 @@ export function deleteUser(userId, errorMessages) {
     return (dispatch) => {
         dispatch(_deleteUser());
         apiService.users.deleteUser(userId)
-        .then(() => {
-            dispatch(_deleteUserSuccess(userId));
-        })
-        .catch((err) => {
-            dispatch(_deleteUserError(err, errorMessages.USER_REQUEST));
-            dispatch(_reportUserError(err, errorMessages.USER_REQUEST));
-        });
+            .then(() => {
+                dispatch(_deleteUserSuccess(userId));
+            })
+            .catch((err) => {
+                dispatch(_deleteUserError(err, errorMessages.USER_REQUEST));
+                dispatch(_reportUserError(err, errorMessages.USER_REQUEST));
+            });
     };
 }
 

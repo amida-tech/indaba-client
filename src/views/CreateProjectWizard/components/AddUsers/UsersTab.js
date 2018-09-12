@@ -21,7 +21,8 @@ class UsersTab extends Component {
         this.props.actions.addUser(
             selection.value.id,
             this.props.projectId,
-            this.props.vocab.ERROR);
+            this.props.vocab.ERROR,
+        );
     }
 
     handleUserRemove(userId, projectId) {
@@ -41,8 +42,7 @@ class UsersTab extends Component {
                     <UserBadge user={user}/>
                     <div className='users-tab__name'>{renderName(user)}</div>
                 </div>
-                <DeleteIconButton onClick={() =>
-                    this.handleUserRemove(userId, this.props.projectId)} />
+                <DeleteIconButton onClick={() => this.handleUserRemove(userId, this.props.projectId)} />
             </div>
         );
     }
@@ -50,27 +50,29 @@ class UsersTab extends Component {
     render() {
         return (
             <div className='users-tab'>
-            <div className='users-tab__wrapper'>
-                <InviteUserForm vocab={this.props.vocab}
-                    onSubmit={(values) => {
-                        this.props.actions.addNewUser(
-                            values,
-                            this.props.projectId,
-                            this.props.profile.organizationId,
-                            this.props.vocab.TOAST,
-                            this.props.vocab.ERROR);
-                    }} />
-                <div className='users-tab__search'>
-                    <Search
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        value={this.props.filter}
-                        list={this.props.allUsers.filter(this.searchFilter)
-                            .map(user => ({ label: renderName(user),
-                                value: user }))}
-                        onChange={evt =>
-                            this.props.actions.addUsersSetUsersFilter(evt.target.value)}
-                        onSelect={this.handleSearchSelect}/>
-                        </div>
+                <div className='users-tab__wrapper'>
+                    <InviteUserForm vocab={this.props.vocab}
+                        onSubmit={(values) => {
+                            this.props.actions.addNewUser(
+                                values,
+                                this.props.projectId,
+                                this.props.profile.organizationId,
+                                this.props.vocab.TOAST,
+                                this.props.vocab.ERROR,
+                            );
+                        }} />
+                    <div className='users-tab__search'>
+                        <Search
+                            placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                            value={this.props.filter}
+                            list={this.props.allUsers.filter(this.searchFilter)
+                                .map(user => ({
+                                    label: renderName(user),
+                                    value: user,
+                                }))}
+                            onChange={evt => this.props.actions.addUsersSetUsersFilter(evt.target.value)}
+                            onSelect={this.handleSearchSelect}/>
+                    </div>
                 </div>
                 <div className='users-tab__user-list'>
                     {this.props.projectUsers.map(this.renderUserEntry)}

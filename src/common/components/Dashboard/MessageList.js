@@ -22,9 +22,9 @@ class MessageList extends Component {
                             <div className='message-list__unread-indicator' />
                             <div className={'message-list__name'}
                                 title= {renderNameByEmail(message.from, this.props.users)}>
-                                    {
-                                        renderNameByEmail(message.from, this.props.users)
-                                    }
+                                {
+                                    renderNameByEmail(message.from, this.props.users)
+                                }
                             </div>
                             <div className='message-list__subject'>
                                 {message.subject}
@@ -32,7 +32,7 @@ class MessageList extends Component {
                             <div className='message-list__time'>
                                 {Time.renderForMessageList(message.createdAt)}
                             </div>
-                            </div>);
+                        </div>);
                 })}
             </div>
         );

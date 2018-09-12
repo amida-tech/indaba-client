@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import List from './List';
-import FilterInput from '../../../common/components/Dashboard/FilterInput';
+import FilterInput from '../Dashboard/FilterInput';
 
 class FilteredList extends Component {
     constructor(props) {
