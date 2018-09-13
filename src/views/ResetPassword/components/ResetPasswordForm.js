@@ -16,7 +16,9 @@ class ResetPasswordForm extends Component {
                     className='reset-password-form__password'
                     password={true}
                     name='password'
-                    validate={required(this.props.vocab)}/>
+                    placeholder={this.props.vocab.RESET_PASSWORD.NEW_PASSWORD}
+                    vocab={this.props.vocab.VALIDATE}
+                    validate={[required]}/>
                 <button className='reset-password-form__button'
                     type='submit'>
                     {this.props.vocab.RESET_PASSWORD.LINK}

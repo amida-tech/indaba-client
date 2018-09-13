@@ -24,8 +24,7 @@ class InboxMessageList extends Component {
         return (
             <div key={actionId}
                 className='inbox-message-list__entry'
-                onClick={() =>
-                    this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
+                onClick={() => this.props.onMessageClick(this.props.thread ? entry.refMessageId : entry.id)}>
                 <div className='inbox-message-list__from'>
                     <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     {this.renderFrom(entry.from)}
@@ -41,8 +40,8 @@ class InboxMessageList extends Component {
                     <div className={`inbox-message-list__unread-indicator ${entry.unread ? 'inbox-message-list__unread-indicator--unread' : ''}`} />
                     <ButtonPanel>
                         {
-                            !entry.isArchived &&
-                            <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
+                            !entry.isArchived
+                            && <PanelButton title={this.props.vocab.MESSAGES.ARCHIVE}
                                 onClick={
                                     (event) => {
                                         this.props.onArchive(actionId);
@@ -54,8 +53,8 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !entry.isArchived && entry.unread &&
-                            <PanelButton
+                            !entry.isArchived && entry.unread
+                            && <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_READ}
                                 onClick={
                                     (event) => {
@@ -68,8 +67,8 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            !entry.isArchived && !entry.unread &&
-                            <PanelButton
+                            !entry.isArchived && !entry.unread
+                            && <PanelButton
                                 title={this.props.vocab.MESSAGES.MARK_AS_UNREAD}
                                 onClick={
                                     (event) => {
@@ -82,8 +81,8 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            entry.isArchived &&
-                            <PanelButton
+                            entry.isArchived
+                            && <PanelButton
                                 title={this.props.vocab.MESSAGES.RETURN_TO_INBOX}
                                 onClick={
                                     (event) => {
@@ -96,8 +95,8 @@ class InboxMessageList extends Component {
                             </PanelButton>
                         }
                         {
-                            entry.isArchived &&
-                            <PanelButton
+                            entry.isArchived
+                            && <PanelButton
                                 onClick={
                                     (event) => {
                                         this.props.onDelete(actionId);
@@ -113,6 +112,7 @@ class InboxMessageList extends Component {
             </div>
         );
     }
+
     render() {
         return (
             <div className='inbox-message-list'>
@@ -130,8 +130,8 @@ class InboxMessageList extends Component {
                     </div>
                 </div>
                 {this.props.entries.map(this.renderEntry)}
-                {this.props.entries.length === 0 &&
-                    <div className='inbox-message-list__entry inbox-message-list__entry--empty'>
+                {this.props.entries.length === 0
+                    && <div className='inbox-message-list__entry inbox-message-list__entry--empty'>
                         {this.props.vocab.MESSAGES.NO_MESSAGES}
                     </div>
                 }

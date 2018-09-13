@@ -13,19 +13,18 @@ class TasksTab extends Component {
                         {this.props.vocab.COMMON.SUBJECTS}
                     </div>
                 </div>
-                {this.props.project.stages.map(stage =>
-                    this.props.tasks.some(task => task.userIds.includes(this.props.userId)
-                        && task.stepId === stage.id) &&
-                    <div className='tasks-tab__row' key={stage.id}>
+                {this.props.project.stages.map(stage => this.props.tasks.some(task => task.userIds.includes(this.props.userId)
+                        && task.stepId === stage.id)
+                    && <div className='tasks-tab__row' key={stage.id}>
                         <div className='tasks-tab__cell'>
                             {stage.title}
                         </div>
                         <div className='tasks-tab__cell'>
-                            {this.props.tasks.filter(task =>
-                                task.userIds.includes(this.props.userId) &&
-                                task.stepId === stage.id)
+                            {this.props.tasks.filter(task => task.userIds.includes(this.props.userId)
+                                && task.stepId === stage.id)
                                 .map(task => this.props.project.subjects.find(
-                                    subject => subject.id === task.uoaId).name)
+                                    subject => subject.id === task.uoaId,
+                                ).name)
                                 .join(',')
                             }
                         </div>

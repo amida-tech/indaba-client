@@ -9,8 +9,7 @@ const Calendar = ({ onChange, value, pickerProps = {} }) => (
 
         displayOptions={Object.assign({},
             { layout: 'portrait' },
-            pickerProps.displayOptions,
-        )}
+            pickerProps.displayOptions)}
 
         theme={Object.assign({}, {
             selectionColor: 'rgb(48, 130, 82)',
@@ -38,7 +37,7 @@ Calendar.propTypes = {
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
-    ]).isRequired,
+    ]),
 };
 
 export default Calendar;

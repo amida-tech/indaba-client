@@ -17,17 +17,17 @@ export function setFilter(filter) {
 
 export function pmDashGetMessages() {
     return (dispatch) => {
-        apiService.messaging.list((err, response) => {
-            if (err) {
-                dispatch(_getMessagesFailure());
-            } else {
-                dispatch(_getMessagesSuccess(response));
-            }
-        }, {
+        apiService.messaging.list({
             archived: false,
             limit: 4,
             received: true,
-        });
+        })
+            .then((response) => {
+                dispatch(_getMessagesSuccess(response));
+            })
+            .catch((error) => {
+                dispatch(_getMessagesFailure(error));
+            });
     };
 }
 

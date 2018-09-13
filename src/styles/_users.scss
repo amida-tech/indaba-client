@@ -13,16 +13,7 @@ $block-class: 'users';
             margin-bottom: 40px;
 
             &--left {
-                background-color: nth($brand-neutral-colors, 2);
-                color: #fdfdfd;
-                border: none;
-                padding: 8px 16px;
-                font-size: 12px;
-                font-weight: 400;
-                letter-spacing: 0.3px;
-                margin-left: 8px;
-                border-radius: 2px;
-                outline: none;
+                @extend .standard-button;
 
                 &:hover {
                     background: darken(#4eb276, 10);
@@ -31,50 +22,13 @@ $block-class: 'users';
             }
 
             &--right {
-                background-color: nth($brand-neutral-colors, 2);
-                color: #fdfdfd;
-                border: none;
-                padding: 8px 16px;
-                font-size: 12px;
-                font-weight: 400;
-                letter-spacing: 0.3px;
-                margin-left: 8px;
-                border-radius: 2px;
-                outline: none;
+                @extend .standard-button;
 
                 &:hover {
                     background: darken(#4eb276, 10);
                     border-color: darken(#4eb276, 10);
                 }
             }
-        }
-
-        .grommetux-tabs {
-            margin-bottom: 0;
-        }
-
-        .grommetux-tab--active {
-            background-color: $element-background;
-            border-left: 2px solid $border-color;
-            border-right: 2px solid $border-color;
-            border-top: 2px solid $border-color;
-        }
-
-        .grommetux-tab {
-            width: 150px;
-            display: flex;
-            justify-content: center;
-            font-family: $brand-font-family;
-        }
-
-        .grommetux-tab__label {
-            font-weight: 400;
-            display: flex;
-            font-size: 14px;
-            color: $header-font-color;
-            padding-bottom: 2px;
-            padding-top: 2px;
-            border-bottom: none;
         }
     }
 }

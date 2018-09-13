@@ -18,13 +18,9 @@ export const pmAllSubjectsShowDeleteConfirmModal = (id, confirmType) => ({
 
 export const pmAllSubjectsGetSubjects = () => (dispatch) => {
     dispatch(_getSubjects());
-    subjectsApi.getSubjects((err, response) => {
-        if (err) {
-            dispatch(_getSubjectsError(err));
-        } else {
-            dispatch(_getSubjectsSuccess(response));
-        }
-    });
+    subjectsApi.getSubjects()
+        .then(response => dispatch(_getSubjectsSuccess(response)))
+        .catch(err => dispatch(_getSubjectsError(err)));
 };
 
 const _getSubjects = () => ({
@@ -41,15 +37,19 @@ const _getSubjectsSuccess = subjects => ({
     subjects,
 });
 
+export const pmAllSubjectsOrderByNameAscending = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_ORDER_BY_NAME_ASC,
+});
+
+export const pmAllSubjectsOrderByNameDescending = () => ({
+    type: actionTypes.PM_ALL_SUBJECTS_ORDER_BY_NAME_DESC,
+});
+
 export const pmAllSubjectsDeleteSubject = id => (dispatch) => {
     dispatch(_deleteSubject());
-    subjectsApi.deleteSubject(id, (err, response) => {
-        if (err) {
-            dispatch(_deleteSubjectError(err));
-        } else {
-            dispatch(_deleteSubjectSuccess(response));
-        }
-    });
+    subjectsApi.deleteSubject(id)
+        .then(response => dispatch(_deleteSubjectSuccess(response)))
+        .catch(err => dispatch(_deleteSubjectError(err)));
 };
 
 const _deleteSubject = () => ({

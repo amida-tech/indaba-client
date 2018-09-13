@@ -2,6 +2,7 @@
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
 @import './styles.scss';
+@import './buttons.scss';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -41,7 +42,7 @@
 @import './pm-dashboard.scss';
 @import './status-label.scss';
 @import './fonts.scss';
-@import './add-stages-step.scss';
+@import './add-stages.scss';
 @import './project-wizard';
 @import './wizard-footer.scss';
 @import './user-groups-tab';
@@ -52,7 +53,9 @@
 @import './user-status.scss';
 @import './validated-text-input.scss';
 @import './dateinput.scss';
-
+@import './tabs.scss';
+@import './tab.scss';
+@import './app.scss';
 // Create Project Wizard
 @import './createprojectwizard/new-project-title-form.scss';
 @import './createprojectwizard/new-project-title.scss';
@@ -65,8 +68,6 @@
 @import './projectmanagement/sub-nav.scss';
 @import './projectmanagement/sub-nav-entry.scss';
 @import './projectmanagement/export.scss';
-@import './projectmanagement/sub-nav-entry.scss';
-@import './projectmanagement/sub-nav.scss';
 
 // Survey Builder view
 @import './surveybuilder/add-question-panel.scss';
@@ -89,6 +90,8 @@
 @import './modals/subject/subject-form.scss';
 @import './modals/stage/stage-form.scss';
 @import './modals/stage/stage-date-time.scss';
+@import './modals/survey/project-status-form.scss';
+@import './modals/survey/survey-status-form.scss';
 @import './modals/title-form.scss';
 // Login:
 @import './login/login-panel.scss';
@@ -101,7 +104,8 @@
 @import './dashboard/flag-count.scss';
 @import './dashboard/split-layout.scss';
 @import './dashboard/stamp.scss';
-@import './dashboard/search-input.scss';
+@import './dashboard/search.scss';
+@import './dashboard/filter-input.scss'; // To be removed.
 @import './dashboard/message-list.scss';
 // User Dashboard
 @import './userdashboard/user-dashboard.scss';

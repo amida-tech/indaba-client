@@ -4,12 +4,12 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import IonIcon from 'react-ionicons';
-import { Search } from 'grommet';
 import { flatten } from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
 import StatusLabel, { StatusLabelType } from '../../../../common/components/StatusLabel';
 import * as actions from '../../actions';
+import Search from '../../../../common/components/Search';
 import * as taskActions from '../../../../common/actions/taskActions';
 import { renderName } from '../../../../utils/User';
 
@@ -22,9 +22,7 @@ const stageSpotTarget = {
         if (props.task.userId !== undefined) {
             return false;
         }
-        return flatten(props.stageData.userGroups.map(id =>
-            props.project.userGroups.find(group => group.id === id).users),
-            ).includes(monitor.getItem().id);
+        return flatten(props.stageData.userGroups.map(id => props.project.userGroups.find(group => group.id === id).users)).includes(monitor.getItem().id);
     },
     drop(props) {
         return props; // Dispatch to inform the state and DB of changes.
@@ -47,22 +45,26 @@ class StageSlot extends Component {
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.filterToStageGroups = this.filterToStageGroups.bind(this);
         this.filterToQuery = this.filterToQuery.bind(this);
+        this.handleAssignTask = this.handleAssignTask.bind(this);
     }
 
     handleTaskOptions() {
         this.props.actions.showTaskOptionsModal(this.props.task,
             this.props.stageData.userGroups);
     }
+
     handleSearchSelect(selection) {
-        this.props.actions.assignTask(selection.suggestion.value.id,
-        { stageData: this.props.stageData, task: this.props.task },
-        this.props.project,
-        this.props.vocab);
+        this.props.actions.assignTask(selection.value.id,
+            { stageData: this.props.stageData, task: this.props.task },
+            this.props.project,
+            this.props.vocab);
         this.props.actions.startTaskAssign(false);
     }
+
     filterToStageGroups(user) {
         return user.usergroupId.some(groupId => this.props.stageData.userGroups.includes(groupId));
     }
+
     filterToQuery(user) {
         return renderName(user).toLowerCase().includes(this.props.assignTaskQuery.toLowerCase());
     }
@@ -70,11 +72,14 @@ class StageSlot extends Component {
     displayDueTime(done, diff) {
         if (done) {
             return '';
-        } else if (diff <= 0) {
+        } if (diff <= 0) {
             return '';
-        } else if (diff === 1) {
+        }
+        if (diff > 0 && diff < 1) {
+            return this.props.vocab.PROJECT.CARD.DUE_TODAY;
+        } if (diff >= 1 && diff < 2) {
             return this.props.vocab.PROJECT.CARD.DUE_TOMORROW;
-        } else if (diff > 1) {
+        } if (diff > 1) {
             return this.props.vocab.PROJECT.CARD.DUE_IN + diff + this.props.vocab.PROJECT.CARD.DAYS;
         }
         return '';
@@ -90,17 +95,20 @@ class StageSlot extends Component {
         if (!this.props.task.flagHistory && this.props.task.assessmentStatus === 'new') {
             return {
                 label: this.props.vocab.PROJECT.CARD.NOT_STARTED,
-                type: StatusLabelType.NEUTRAL };
+                type: StatusLabelType.NEUTRAL,
+            };
         }
         return null;
     }
 
+    handleAssignTask(event) {
+        this.props.actions.setAssignTaskQuery(event.target.value);
+    }
+
     render() {
         const { isOver, canDrop, connectDropTarget } = this.props;
-
         const diff = TaskStatus.daysUntilDue(this.props.task);
         const done = this.props.task.status === 'completed';
-
         const labelDisplay = this.displayStatus(done, diff);
         let stageClass = 'stage-slot ';
         if (this.props.filtered) {
@@ -112,9 +120,9 @@ class StageSlot extends Component {
             stageClass += 'stage-slot--deny';
         }
         return connectDropTarget(
-        <div className={stageClass}>
-            {this.props.user &&
-                <div className='stage-slot__container'>
+            <div className={stageClass}>
+                {this.props.user
+                && <div className='stage-slot__container'>
                     <div className='stage-slot__name-row'>
                         <Link to={{
                             pathname: `/task-review/${this.props.project.id}/${this.props.task.id}`,
@@ -132,8 +140,8 @@ class StageSlot extends Component {
                         <span className='stage-slot__role-span'>
                             {this.props.vocab.PROJECT.CARD.ASSIGNEE}
                         </span>
-                        {this.props.task.flagged &&
-                            <div className='stage-slot__right-icon-container'>
+                        {this.props.task.flagged
+                            && <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
                             </div>
                         }
@@ -144,42 +152,41 @@ class StageSlot extends Component {
                         </div>
                         { labelDisplay && <StatusLabel {...labelDisplay} /> }
                     </div>
-             </div>
-         }
-         {!this.props.user &&
-              <div className='stage-slot__unassigned'>
-                  { (this.props.assignTaskInput.stepId === this.props.task.stepId &&
-                     this.props.assignTaskInput.uoaId === this.props.task.uoaId) ?
-                    <div className='stage-slot__assign-task-input'>
-                        <Search
-                            fill={true}
-                            inline={true}
-                            value={this.props.assignTaskQuery}
-                            onDOMChange={evt =>
-                                this.props.actions.setAssignTaskQuery(evt.target.value)}
-                            suggestions={this.props.users
-                                .filter(this.filterToStageGroups)
-                                .filter(this.filterToQuery)
-                                .map(user => ({ label: renderName(user),
-                                    value: user }))}
-                            onSelect={this.handleSearchSelect}
-                            />
-                        <div className='stage-slot__assign-task-input-cancel'
+                </div>
+                }
+                {!this.props.user
+              && <div className='stage-slot__unassigned'>
+                  { (this.props.assignTaskInput.stepId === this.props.task.stepId
+                     && this.props.assignTaskInput.uoaId === this.props.task.uoaId)
+                      ? <div className='stage-slot__assign-task-input'>
+                          <Search
+                              value={this.props.assignTaskQuery}
+                              list={this.props.users
+                                  .filter(this.filterToStageGroups)
+                                  .filter(this.filterToQuery)
+                                  .map(user => ({
+                                      label: renderName(user),
+                                      value: user,
+                                  }))}
+                              onChange={this.handleAssignTask}
+                              onSelect={this.handleSearchSelect}
+                          />
+                          <div className='stage-slot__assign-task-input-cancel'
                               onClick={() => this.props.actions.startTaskAssign(false)}>
                               x
-                        </div>
-                    </div> :
-                    <div className='inline'
-                      onClick={() => this.props.actions.startTaskAssign(this.props.task)}>
-                        <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
-                        {this.props.vocab.PROJECT.CARD.ASSIGN_TASK}
-                    </div>
-                }
+                          </div>
+                      </div>
+                      : <div className='inline'
+                          onClick={() => this.props.actions.startTaskAssign(this.props.task)}>
+                          <IonIcon className='stage-slot__left-icon' icon='ion-ios-plus'/>
+                          {this.props.vocab.PROJECT.CARD.ASSIGN_TASK}
+                      </div>
+                  }
               </div>
-         }
-        {isOver && canDrop}
-        </div>,
-    );
+                }
+                {isOver && canDrop}
+            </div>,
+        );
     }
 }
 
@@ -193,6 +200,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default compose(
-  DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
-  connect(mapStateToProps, mapDispatchToProps),
+    DropTarget(Types.ASSIGNEECARD, stageSpotTarget, collect),
+    connect(mapStateToProps, mapDispatchToProps),
 )(StageSlot);

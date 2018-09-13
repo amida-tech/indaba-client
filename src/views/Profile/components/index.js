@@ -19,7 +19,8 @@ class ProfileContainer extends Component {
                     onSubmit={(values) => {
                         this.props.actions.updateProfile(
                             values,
-                            this.props.vocab.ERROR);
+                            this.props.vocab.ERROR,
+                        );
                     }} />
                 <ResetPasswordPanel {...this.props} />
             </div>
@@ -33,11 +34,11 @@ ProfileContainer.propTypes = {
     profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (store) => {
     return {
-        vocab: state.settings.language.vocabulary,
-        ui: state.user.ui,
-        profile: state.user.profile,
+        vocab: store.settings.language.vocabulary,
+        ui: store.user.ui,
+        profile: store.user.profile,
     };
 };
 

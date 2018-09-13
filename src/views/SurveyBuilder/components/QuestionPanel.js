@@ -14,7 +14,7 @@ class QuestionPanel extends Component {
                 <div className='question-panel__top'>
                     <div className= 'question-panel__menu'>
                         <div className='question-panel__question-number'>
-                        {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
+                            {`${this.props.vocab.PROJECT.QUESTION_ + (this.props.questionIndex + 1)}: `}
                         </div>
                         <div className='question-panel__top-right'>
                             <button className='question-panel__menu-button'
@@ -22,18 +22,20 @@ class QuestionPanel extends Component {
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
                                     -1,
-                                    this.props.vocab.ERROR)}>
-                                    <IonIcon icon='ion-arrow-up-c'
-                                        className='question-panel__menu-icon'/>
+                                    this.props.vocab.ERROR,
+                                )}>
+                                <IonIcon icon='ion-arrow-up-c'
+                                    className='question-panel__menu-icon'/>
                             </button>
                             <button className='question-panel__menu-button'
                                 onClick={() => this.props.actions.moveQuestion(
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
                                     1,
-                                    this.props.vocab.ERROR)}>
-                                    <IonIcon icon='ion-arrow-down-c'
-                                        className='question-panel__menu-icon'/>
+                                    this.props.vocab.ERROR,
+                                )}>
+                                <IonIcon icon='ion-arrow-down-c'
+                                    className='question-panel__menu-icon'/>
                             </button>
                             <button className='question-panel__menu-button'
                                 onClick={() => this.props.actions.deleteQuestion(
@@ -59,9 +61,9 @@ class QuestionPanel extends Component {
                             )} />
                     </div>
                 </div>
-                {DYNAMIC.includes(this.props.question.type) ?
-                    <DynamicQuestion {...this.props} /> :
-                    <StaticQuestion
+                {DYNAMIC.includes(this.props.question.type)
+                    ? <DynamicQuestion {...this.props} />
+                    : <StaticQuestion
                         type={this.props.question.type}
                         vocab={this.props.vocab}/>
                 }
@@ -76,40 +78,44 @@ class QuestionPanel extends Component {
                                             this.props.sectionIndex,
                                             this.props.questionIndex,
                                             'meta',
-                                            { file: true });
+                                            { file: true },
+                                        );
                                     } else {
                                         this.props.actions.resetMeta(
                                             this.props.sectionIndex,
                                             this.props.questionIndex,
-                                            'file');
+                                            'file',
+                                        );
                                     }
                                 }} />
                             <IonIcon icon='ion-paperclip'
                                 className='question-panel__attach-icon' />
                             <span className='question-panel__icon-label'
-                            title= {this.props.vocab.SURVEY.ATTACH_TOOLTIP}>
+                                title= {this.props.vocab.SURVEY.ATTACH_TOOLTIP}>
                                 {this.props.vocab.SURVEY.ATTACH_FILE}
                             </span>
                         </div>
                         <div className='question-panel__checkboxes'>
-                        <input type='checkbox'
-                            checked={has(this.props.question, 'meta.publication')}
-                            onChange={(event) => {
-                                if (event.target.checked) {
-                                    this.props.actions.updateQuestion(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        'meta',
-                                        { publication: {} });
-                                } else {
-                                    this.props.actions.resetMeta(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        'publication');
-                                }
-                            }} />
+                            <input type='checkbox'
+                                checked={has(this.props.question, 'meta.publication')}
+                                onChange={(event) => {
+                                    if (event.target.checked) {
+                                        this.props.actions.updateQuestion(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'meta',
+                                            { publication: {} },
+                                        );
+                                    } else {
+                                        this.props.actions.resetMeta(
+                                            this.props.sectionIndex,
+                                            this.props.questionIndex,
+                                            'publication',
+                                        );
+                                    }
+                                }} />
                             <span className='question-panel__label'
-                            title= {this.props.vocab.SURVEY.LINK_TOOLTIP}>
+                                title= {this.props.vocab.SURVEY.LINK_TOOLTIP}>
                                 {this.props.vocab.SURVEY.ADD_A_LINK}
                             </span>
                         </div>
@@ -120,15 +126,16 @@ class QuestionPanel extends Component {
                                     this.props.sectionIndex,
                                     this.props.questionIndex,
                                     'required',
-                                    event.target.checked)} />
+                                    event.target.checked,
+                                )} />
                             <span className='question-panel__label'
-                            title= {this.props.vocab.SURVEY.REQUIRED_TOOLTIP}>
+                                title= {this.props.vocab.SURVEY.REQUIRED_TOOLTIP}>
                                 {this.props.vocab.SURVEY.REQUIRED_QUESTION}
                             </span>
                         </div>
                     </div>
-                    {WEIGHTED.includes(this.props.question.type) &&
-                        <div className='question-panel__checkboxes'>
+                    {WEIGHTED.includes(this.props.question.type)
+                        && <div className='question-panel__checkboxes'>
                             <input type='checkbox'
                                 checked={has(this.props.question, 'meta.weight')}
                                 onChange={(event) => {
@@ -137,12 +144,14 @@ class QuestionPanel extends Component {
                                             this.props.sectionIndex,
                                             this.props.questionIndex,
                                             'meta',
-                                            { weight: true });
+                                            { weight: true },
+                                        );
                                     } else {
                                         this.props.actions.resetMeta(
                                             this.props.sectionIndex,
                                             this.props.questionIndex,
-                                            'weight');
+                                            'weight',
+                                        );
                                     }
                                 }}/>
                             <span className='question-panel__label'

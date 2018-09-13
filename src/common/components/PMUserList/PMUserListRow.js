@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import IonIcon from 'react-ionicons';
 import UserStatus from './UserStatus';
-import DeleteIconButton from '../../../common/components/DeleteIconButton';
+import DeleteIconButton from '../DeleteIconButton';
 
 import { renderName } from '../../../utils/User';
 
@@ -16,8 +16,8 @@ class PMUserListRow extends Component {
                     {renderName(this.props.user)}
                 </div>
                 {
-                    this.props.groups !== undefined &&
-                    <div className='pm-user-list-row__cell pm-user-list-row__cell--non-cursor'>
+                    this.props.groups !== undefined
+                    && <div className='pm-user-list-row__cell pm-user-list-row__cell--non-cursor'>
                         {
                             this.props.groups
                                 .filter(g => g.users.includes(this.props.user.id))

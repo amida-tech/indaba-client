@@ -13,13 +13,14 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.resolve('dist'),
-        filename: 'index_bundle.js',
+        filename: '[name].[contenthash].js',
         publicPath: '/',
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 use: [
                     'babel-loader',
                     {
@@ -29,7 +30,6 @@ module.exports = {
                         },
                     },
                 ],
-                exclude: /node_modules/,
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf)$/,

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import scroller from 'react-scroll/modules/mixins/scroller';
-import { find, findIndex, get, some } from 'lodash';
+import {
+    find, findIndex, get, some,
+} from 'lodash';
 
 import { renderName } from '../../../../utils/User';
 import FlagHeader from './FlagHeader';
@@ -20,15 +22,15 @@ class FlagSidebar extends Component {
     }
 
     render() {
-        const userOptions = this.props.projectUsers ?
-            this.props.projectUsers.filter(projUser => projUser !== this.props.profile.id)
-            .map((projUserId) => {
-                const current = find(this.props.users, user => user.id === projUserId);
-                return {
-                    label: renderName(current),
-                    value: current.id,
-                };
-            }) : [];
+        const userOptions = this.props.projectUsers
+            ? this.props.projectUsers.filter(projUser => projUser !== this.props.profile.id)
+                .map((projUserId) => {
+                    const current = find(this.props.users, user => user.id === projUserId);
+                    return {
+                        label: renderName(current),
+                        value: current.id,
+                    };
+                }) : [];
         const initialValues = {
             questionId: this.props.ui.flagSidebar.activeId,
             taskId: this.props.task.id,
@@ -36,12 +38,10 @@ class FlagSidebar extends Component {
             userId: userOptions[0] === undefined ? null : userOptions[0].value,
         };
         const completed = get(this.props, 'task.status') === 'completed';
-        const activeIndex = findIndex(this.props.ui.flags, flag =>
-            parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
-        const formDisabled = !(this.props.taskedUser.id === this.props.profile.id ||
-            some(get(this.props.ui.flags[activeIndex], 'discussion'), chat =>
-            (chat.userId === this.props.profile.id ||
-            chat.userFromId === this.props.profile.id) && !chat.isResolve));
+        const activeIndex = findIndex(this.props.ui.flags, flag => parseInt(flag.questionId, 10) === this.props.ui.flagSidebar.activeId);
+        const formDisabled = !(this.props.taskedUser.id === this.props.profile.id
+            || some(get(this.props.ui.flags[activeIndex], 'discussion'), chat => (chat.userId === this.props.profile.id
+            || chat.userFromId === this.props.profile.id) && !chat.isResolve));
 
         return (
             <Box className='flag-sidebar'>
@@ -57,8 +57,8 @@ class FlagSidebar extends Component {
                             vocab={this.props.vocab}
                             activeIndex={activeIndex}
                             completed={completed} />
-                        {!completed &&
-                            <FlagControlsForm
+                        {!completed
+                            && <FlagControlsForm
                                 {...this.props}
                                 disabled={formDisabled}
                                 userOptions={userOptions}

@@ -25,7 +25,7 @@ At build time, (`yarn develop` or `yarn build`), webpack reads the following val
 1. Survey service (see https://github.com/amida-tech/amida-survey-microservice)
  - `SURVEY_API_URL ('https://localhost:9005/api/v1.0')`
 1. Messaging service (see https://github.com/amida-tech/amida-messaging-microservice)
- - `MESSAGING_API_URL ('http://localhost:4002/api')`
+ - `MESSAGING_API_URL ('http://localhost:4001/api/v1')`
 1. System message sender email
  - `SYS_MESSAGE_USER ('indaba@example.com')`
 
@@ -70,6 +70,4 @@ Login with `test-adm@mail.net` / `testadmin`
 
 ## Building Dockerfile in Linux
 From the base directory of the project run `docker build --tag indaba-client .`
-To run the image `docker run --link indaba_be:indaba_be -e API_URL=http://<address to be/>:3005 -p 3000:3000 --name indaba_fe indaba-client`
-
-operationally it is not clear if API_URL is the URL used to connect from the indaba client _server_ or from the indaba client _browser_. if browser then the value would be the external address.  if server then the value should be "indaba_be" (the name we linked the backend docker instance as to the client docker instance)
+To run the image `docker run -p 3000:80 -v <path to your settings.js>:/usr/share/nginx/html/settings.js --name indaba_fe indaba-client`

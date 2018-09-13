@@ -1,4 +1,4 @@
-$element-background: #f3f5f6;
+$element-background: #fdfdfd;
 $block-class:'pm-dashboard';
 
 @at-root {
@@ -10,6 +10,14 @@ $block-class:'pm-dashboard';
             border: 2px solid $border-color;
             border-radius: 2px;
             background-color: $element-background;
+        }
+
+        &__no-data {
+            @extend .large-font;
+
+            color: #333;
+            text-align: center;
+            margin: 1em;
         }
     }
 }

@@ -9,7 +9,7 @@ class ProfileUserGroupsTab extends Component {
             .filter(group => group.users.includes(this.props.userId));
         return (
             <UserGroupList {...this.props} groups={groups}
-        columnHeaders={true} />
+                columnHeaders={true} />
         );
     }
 }

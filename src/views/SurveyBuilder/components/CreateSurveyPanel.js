@@ -11,16 +11,17 @@ class CreateSurveyPanel extends Component {
     render() {
         return (
             <div className='create-survey-panel'>
-                {this.props.ui.showSectionDeleteConfirmModal > -1 &&
-                    <Modal title={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.TITLE}
-                        bodyText={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.DELETE_WARNING}
-                        onCancel={() => this.props.actions.showSectionDeleteConfirmModal(-1)}
-                        onSave={() => {
-                            this.props.actions.deleteSection(
-                                this.props.ui.showSectionDeleteConfirmModal);
-                            this.props.actions.showSectionDeleteConfirmModal(-1);
-                        }}
-                        saveLabel={this.props.vocab.COMMON.DELETE}/>}
+                {this.props.ui.showSectionDeleteConfirmModal > -1
+                && <Modal title={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.TITLE}
+                    bodyText={this.props.vocab.MODAL.SECTION_DELETE_CONFIRM.DELETE_WARNING}
+                    onCancel={() => this.props.actions.showSectionDeleteConfirmModal(-1)}
+                    onSave={() => {
+                        this.props.actions.deleteSection(
+                            this.props.ui.showSectionDeleteConfirmModal,
+                        );
+                        this.props.actions.showSectionDeleteConfirmModal(-1);
+                    }}
+                    saveLabel={this.props.vocab.COMMON.DELETE}/>}
                 <div className='create-survey-panel__view-controls'>
                     <Select className='create-survey-panel__view-select'
                         options={this.props.options}
@@ -31,11 +32,11 @@ class CreateSurveyPanel extends Component {
                     <div className='create-survey-panel__accordion-buttons'>
                         <button className='create-survey-panel__button-expand'
                             onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                                {this.props.vocab.PROJECT.EXPAND_ALL}
-                            </button>
+                            {this.props.vocab.PROJECT.EXPAND_ALL}
+                        </button>
                         <button className='create-survey-panel__button-collapse'
                             onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                                {this.props.vocab.PROJECT.COLLAPSE_ALL}
+                            {this.props.vocab.PROJECT.COLLAPSE_ALL}
                         </button>
                     </div>
                 </div>
@@ -53,46 +54,52 @@ class CreateSurveyPanel extends Component {
                                     return false;
                                 });
                             });
+                            const blankSection = some(this.props.form.sections, (section) => {
+                                return (section.name.match(/^\s*$/) !== null);
+                            });
                             if (blanks) {
                                 toast(this.props.vocab.ERROR.BLANKS);
-                            } else {
+                            }
+                            if (blankSection) {
+                                toast(this.props.vocab.ERROR.BLANK_SECTION);
+                            }
+                            if (!blanks && !blankSection) {
                                 this.props.actions.patchSurvey(
                                     this.props.form,
                                     this.props.vocab.SURVEY.SUCCESS,
-                                    this.props.vocab.ERROR);
+                                    this.props.vocab.ERROR,
+                                );
                             }
-                        }
-                    }>
+                        }}>
                         {this.props.vocab.SURVEY.SAVE_PROGRESS}
                     </button>
                 </div>
-                    <div className='create-survey-panel__instructions'>
-                        {this.props.vocab.PROJECT.INSTRUCTIONS}
-                        <textarea className='create-survey-panel__instructions-entry'
-                            placeholder={this.props.vocab.SURVEY.ENTER_INSTRUCTIONS}
-                            value={this.props.form.description}
-                            onChange={event =>
-                                this.props.actions.updateInstructions(event.target.value)} />
-                    </div>
+                <div className='create-survey-panel__instructions'>
+                    {this.props.vocab.PROJECT.INSTRUCTIONS}
+                    <textarea className='create-survey-panel__instructions-entry'
+                        placeholder={this.props.vocab.SURVEY.ENTER_INSTRUCTIONS}
+                        value={this.props.form.description}
+                        onChange={event => this.props.actions.updateInstructions(event.target.value)}/>
+                </div>
                 <div className='create-survey-panel__sections-list'>
-                {this.props.ui.sectionView === -1 ?
-                    this.props.form.sections.map((section, sectionIndex) => (
-                        <CreateSectionPanel
-                            key={`key-section-${sectionIndex}`}
+                    {this.props.ui.sectionView === -1
+                        ? this.props.form.sections.map((section, sectionIndex) => (
+                            <CreateSectionPanel
+                                key={`key-section-${sectionIndex}`}
+                                ui={this.props.ui}
+                                section={section}
+                                sectionIndex={sectionIndex}
+                                sectionLength={this.props.form.sections.length}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab}/>
+                        ))
+                        : <CreateSectionPanel
                             ui={this.props.ui}
-                            section={section}
-                            sectionIndex={sectionIndex}
+                            section={this.props.form.sections[this.props.ui.sectionView]}
+                            sectionIndex={this.props.ui.sectionView}
                             sectionLength={this.props.form.sections.length}
                             actions={this.props.actions}
-                            vocab={this.props.vocab} />
-                    )) :
-                    <CreateSectionPanel
-                        ui={this.props.ui}
-                        section={this.props.form.sections[this.props.ui.sectionView]}
-                        sectionIndex={this.props.ui.sectionView}
-                        sectionLength={this.props.form.sections.length}
-                        actions={this.props.actions}
-                        vocab={this.props.vocab} />}
+                            vocab={this.props.vocab}/>}
                 </div>
             </div>
         );

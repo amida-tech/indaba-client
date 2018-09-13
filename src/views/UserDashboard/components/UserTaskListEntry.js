@@ -19,12 +19,12 @@ class UserTaskListEntry extends Component {
                     {this.props.subject}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--task'>
-                    {this.props.late &&
-                    <StatusLabel label={this.props.vocab.COMMON.LATE}
-                                 type={StatusLabelType.BAD}/>}
-                    {!this.props.late && this.props.new &&
-                    <StatusLabel label={this.props.vocab.COMMON.NEW}
-                                 type={StatusLabelType.GOOD} />}
+                    {this.props.late
+                    && <StatusLabel label={this.props.vocab.COMMON.LATE}
+                        type={StatusLabelType.BAD}/>}
+                    {!this.props.late && this.props.new
+                    && <StatusLabel label={this.props.vocab.COMMON.NEW}
+                        type={StatusLabelType.GOOD} />}
                     {this.props.task.title}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--due'>

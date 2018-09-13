@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 
 import config from '../../../../config';
 import * as actions from '../../actions';
 import * as userActions from '../../../../common/actions/userActions';
-
 import InboxTabs from './InboxTabs';
 import Filter from '../../../../common/components/Filter';
 import InboxMessageList from './InboxMessageList';
@@ -40,8 +38,7 @@ class Inbox extends Component {
     }
 
     getMessageIdsByThread(originalMessageId) {
-        return this.props.inboxList.find(thread =>
-            thread.originalMessageId === originalMessageId).messageIds;
+        return this.props.inboxList.find(thread => thread.originalMessageId === originalMessageId).messageIds;
     }
 
     handleFilterClick(filter) {
@@ -70,7 +67,7 @@ class Inbox extends Component {
             ).then(this.loadCurrentFilter);
         } else {
             messageAction(id)
-            .then(this.loadCurrentFilter);
+                .then(this.loadCurrentFilter);
         }
     }
 
@@ -81,6 +78,7 @@ class Inbox extends Component {
             this.props.actions.archiveMessage,
         );
     }
+
     handleUnarchive(id) {
         this.handleAction(
             id,
@@ -88,6 +86,7 @@ class Inbox extends Component {
             this.props.actions.unarchiveMessage,
         );
     }
+
     handleDelete(id) {
         this.handleAction(
             id,
@@ -95,6 +94,7 @@ class Inbox extends Component {
             this.props.actions.deleteMessage,
         );
     }
+
     handleMarkAsRead(id) {
         this.handleAction(
             id,
@@ -102,6 +102,7 @@ class Inbox extends Component {
             this.props.actions.markAsRead,
         );
     }
+
     handleMarkAsUnread(id) {
         if (this.props.messages.ui.filter === FILTERS.ALL_MESSAGES) {
             this.props.actions.markAsUnread(
@@ -109,7 +110,7 @@ class Inbox extends Component {
             ).then(this.loadCurrentFilter);
         } else {
             this.props.actions.markAsUnread(id)
-            .then(this.loadCurrentFilter);
+                .then(this.loadCurrentFilter);
         }
     }
 
@@ -180,8 +181,8 @@ class Inbox extends Component {
         const filters = Object.keys(FILTERS).map(key => ({
             key, label: this.props.vocab.MESSAGES.INBOX_FILTER[FILTERS[key]],
         }));
-        const noNext = this.props.messages.inboxCount <=
-            (INBOX_COUNT * (this.props.messages.inboxPage + 1));
+        const noNext = this.props.messages.inboxCount
+            <= (INBOX_COUNT * (this.props.messages.inboxPage + 1));
         const noPrevious = this.props.messages.inboxPage === 0;
         return (
             <div className='inbox'>
@@ -192,10 +193,10 @@ class Inbox extends Component {
                     <InboxTabs active={this.props.messages.ui.inboxTab}
                         vocab={this.props.vocab}
                         onSelectTab={this.handleTabClick}/>
-                    <Button className='inbox__new-message-button'
-                        primary={true}
-                        label={this.props.vocab.MESSAGES.NEW_MESSAGE}
-                        path='/messages/new' />
+                    <button className='inbox__new-message-button'
+                        onClick={this.props.goToNew}>
+                        <span>{this.props.vocab.MESSAGES.NEW_MESSAGE}</span>
+                    </button>
                 </div>
                 <hr className='divider'/>
                 <div className='inbox__filter'>
@@ -217,21 +218,21 @@ class Inbox extends Component {
                 <div className='inbox__pager'>
                     <div className='inbox__pager-content'>
                         {
-                            !noPrevious &&
-                            <button className={'inbox__pager-button'}
+                            !noPrevious
+                            && <button className={'inbox__pager-button'}
                                 onClick={this.handlePrevious}>
                                 {this.props.vocab.MESSAGES.PREVIOUS}
                             </button>
                         }
                         {
-                            (this.props.messages.inboxPage !== 0 || !noNext) &&
-                            <div className='inbox__page'>
+                            (this.props.messages.inboxPage !== 0 || !noNext)
+                            && <div className='inbox__page'>
                                 {this.props.messages.inboxPage + 1}
                             </div>
                         }
                         {
-                            !noNext &&
-                            <button className={'inbox__pager-button'}
+                            !noNext
+                            && <button className={'inbox__pager-button'}
                                 onClick={this.handleNext}>
                                 {this.props.vocab.MESSAGES.NEXT}
                             </button>
@@ -250,16 +251,17 @@ Inbox.propTypes = {
     goToMessage: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    messages: state.messages,
-    users: state.user.users,
-    profile: state.user.profile,
-    inboxList: state.messages.inboxList,
+const mapStateToProps = store => ({
+    vocab: store.settings.language.vocabulary,
+    messages: store.messages,
+    users: store.user.users,
+    profile: store.user.profile,
+    inboxList: store.messages.inboxList,
 });
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, userActions), dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
+    goToNew: () => dispatch(push('/messages/new')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);

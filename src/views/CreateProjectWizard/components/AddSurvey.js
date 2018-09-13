@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { SurveyBuilder } from '../../../views/SurveyBuilder';
+import { SurveyBuilder } from '../../SurveyBuilder';
 
 class AddSurvey extends Component {
     render() {

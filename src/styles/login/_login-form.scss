@@ -22,7 +22,9 @@ $block-class:'login-form';
             }
         }
 
-        &__sign-in-button {
+        &__signin-button {
+            @extend .standard-button;
+
             margin: 1em 0;
             width: 100%;
         }

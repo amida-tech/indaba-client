@@ -28,6 +28,15 @@ $block-class: 'subject-list';
         &__header-title {
             font-size: 14px;
             color: $lead-font-color;
+            padding: 5px;
+
+            &--name {
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken(#fdfdfd, 10);
+                }
+            }
         }
 
         .grommetux-button--plain .grommetux-button__icon {

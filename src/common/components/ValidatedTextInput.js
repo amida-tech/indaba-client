@@ -5,15 +5,16 @@ const ValidatedTextInput = ({
     meta: { touched, error },
     input,
     placeholder,
+    vocab,
     className,
-    password }) => {
+    password,
+}) => {
     const finalClassName = [
         'validated-text-input',
         (touched && error) ? 'validated-text-input--error' : '',
         className || '',
     ].join(' ');
-    const finalPlaceholder = (touched && error) ? error : placeholder;
-
+    const finalPlaceholder = placeholder + ((touched && error) ? vocab._IS_REQUIRED : '');
     return (
         <input type={password ? 'password' : 'text'}
             className={finalClassName}

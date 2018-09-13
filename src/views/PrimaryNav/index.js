@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { Button } from 'grommet';
 import { Icon } from 'react-fa';
 import { get, has } from 'lodash';
+import cookie from 'react-cookies';
+import { push } from 'react-router-redux';
 
 import * as actions from '../../common/actions/navActions';
 import { getUsers, getProfile } from '../../common/actions/userActions';
@@ -15,7 +16,35 @@ import CreateNewProject from './CreateNewProject';
 import IndabaLogoWhite from '../../assets/indaba-logo-white.svg';
 
 class PrimaryNavContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleLogOut = this.handleLogOut.bind(this);
+        this.handleShowCreateProject = this.handleShowCreateProject.bind(this);
+        this.checkAuth = this.checkAuth.bind(this);
+    }
+
+    handleLogOut() {
+        this.props.actions.logOut('');
+    }
+
+    checkAuth() {
+        const timeLeft = cookie.load('indaba-expire') - Date.now();
+        if (timeLeft < 180000) {
+            if (cookie.load('indaba-refresh') !== undefined) {
+                this.props.actions.checkRefresh();
+            }
+        }
+    }
+
+    handleShowCreateProject() {
+        this.props.actions.showCreateProject(true);
+    }
+
     componentWillMount() {
+        if (cookie.load('indaba-auth') === undefined) {
+            this.props.redirectToLogin();
+        }
         if (!has(this.props.user.profile, 'roleID')) {
             this.props.actions.getProfile(this.props.vocab.ERROR);
         }
@@ -25,14 +54,21 @@ class PrimaryNavContainer extends Component {
         }
     }
 
+    componentDidMount() {
+        if (cookie.load('indaba-refresh') !== undefined) {
+            setInterval(this.checkAuth, 60000);
+        }
+    }
+
     render() {
-        const isProjectManager = ((this.props.user.profile.roleID === 2) ||
-            (this.props.user.profile.roleID === 1));
+        const isProjectManager = ((this.props.user.profile.roleID === 2)
+            || (this.props.user.profile.roleID === 1));
         return (
             <nav className='primary-nav'>
-                {this.props.ui.showCreateProject &&
-                <CreateNewProject vocab={this.props.vocab}
-                    onCancel={() => this.props.actions.showCreateProject(false)}/>}
+                {this.props.ui.showCreateProject
+                && <CreateNewProject vocab={this.props.vocab}
+                    showCreateProject={this.props.actions.showCreateProject}
+                    goToNewProject={this.props.goToNewProject}/>}
 
                 <div className='primary-nav__left'>
                     <Link to={isProjectManager ? '/project' : '/task'}>
@@ -44,26 +80,26 @@ class PrimaryNavContainer extends Component {
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.MY_TASKS}
                     </Link>
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/project'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/project'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.PROJECT.PROJECTS}
                     </Link>}
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/users'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/users'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_USERS}
                     </Link>}
-                    {isProjectManager &&
-                    <Link className='primary-nav__item-nav' to='/subjects'
+                    {isProjectManager
+                    && <Link className='primary-nav__item-nav' to='/subjects'
                         activeClassName='primary-nav__item-nav--active'>
                         {this.props.vocab.COMMON.ALL_SUBJECTS}
                     </Link>}
-                    {isProjectManager &&
-                    <Button
-                        className={'primary-nav__item-nav primary-nav__button'}
-                        label={this.props.vocab.COMMON.CREATE}
-                        onClick={() => this.props.actions.showCreateProject(true)}/>}
+                    {isProjectManager
+                        && <button className='primary-nav__item-nav primary-nav__button'
+                            onClick={this.handleShowCreateProject}>
+                            <span>{this.props.vocab.COMMON.CREATE}</span>
+                        </button>}
                 </div>
                 <div className='primary-nav__right'>
                     <div className='primary-nav__welcome'>
@@ -82,7 +118,7 @@ class PrimaryNavContainer extends Component {
                             size='2x' />
                     </Link>
                     <Link className='primary-nav__logout'
-                        onClick={() => this.props.actions.logOut('')}
+                        onClick={this.handleLogOut}
                         to='/login'>
                         {this.props.vocab.COMMON.LOG_OUT}
                     </Link>
@@ -102,6 +138,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions,
         { getProfile, getUsers, getProjects }), dispatch),
+    redirectToLogin: () => dispatch(push('/login')),
+    goToNewProject: () => dispatch(push('/create-new-project')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavContainer);

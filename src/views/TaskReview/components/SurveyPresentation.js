@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Accordion from 'grommet/components/Accordion';
+import Element from 'react-scroll/modules/components/Element';
 import PropTypes from 'prop-types';
 import QuestionContainer from './QuestionContainer';
 
@@ -8,28 +8,32 @@ class SurveyPresentation extends Component {
     render() {
         return (
             <div className='survey-presentation'>
-                <Accordion
-                    active={this.props.ui.showQuestions}
-                    openMulti={true}
-                    animate={false}>
-                    {this.props.survey.map((question, index) =>
-                        <QuestionContainer
-                            key={`questionpanel${index}`}
-                            questionIndex={index}
-                            question={question}
-                            {...this.props} />,
-                    )}
-                </Accordion>
-                {!this.props.taskDisabled &&
-                    <div className='survey-presentation__submit'>
+                {this.props.survey.map((question, index) => {
+                    return (
+                        <div className='survey-presentation__question'
+                            key={`questionpanel${index}`}>
+                            {question.sectionName
+                              && (<div className='survey-presentation__section-name'>
+                                  {question.sectionName}
+                              </div>)}
+                            <Element name={`question${index}`}>
+                                <QuestionContainer
+                                    questionIndex={index}
+                                    question={question}
+                                    {...this.props} />
+                            </Element>
+                        </div>);
+                })}
+                {!this.props.taskDisabled
+                    && <div className='survey-presentation__submit'>
                         <div className='survey-presentation__submit-instructions'>
                             {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS}
                             <br></br>
-                            {(this.props.stage.allowEdit ||
-                                this.props.stage.discussionParticipation) &&
-                                this.props.vocab.SURVEY.REVIEW_INSTRUCTIONS }
-                            {!this.props.stage.discussionParticipation &&
-                                <div className='survey-presentation__additional-instructions'>
+                            {(this.props.stage.allowEdit
+                                || this.props.stage.discussionParticipation)
+                                && this.props.vocab.SURVEY.REVIEW_INSTRUCTIONS }
+                            {!this.props.stage.discussionParticipation
+                                && <div className='survey-presentation__additional-instructions'>
                                     {this.props.vocab.SURVEY.SUBMIT_INSTRUCTIONS_2}
                                     <Link className='survey-presentation__link' to='/task'>
                                         {this.props.vocab.COMMON.MY_TASKS}
@@ -39,12 +43,12 @@ class SurveyPresentation extends Component {
                         </div>
                         <button className={`survey-presentation__submit-button
                             survey-presentation__submit-button${!this.props.preventComplete ? '' : '--disabled'}`}
-                            type='button'
-                            onClick={this.props.onCompleteTask}>
+                        type='button'
+                        onClick={this.props.onCompleteTask}>
                             {this.props.vocab.SURVEY.SUBMIT_TASK}
                         </button>
-                        {this.props.stage.discussionParticipation &&
-                            <button className='survey-presentation__submit-button'
+                        {this.props.stage.discussionParticipation
+                            && <button className='survey-presentation__submit-button'
                                 type='submit'>
                                 {this.props.vocab.SURVEY.SAVE_REVIEW}
                             </button>}

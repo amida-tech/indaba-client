@@ -43,12 +43,14 @@
         "REMOVE": "Remove",
         "DELETE": "Delete",
         "TIMEOUT": "Your authentication has timed out. Please re-enter your email and password.",
-        "WELCOME_": "Welcome "
+        "WELCOME_": "Welcome ",
+        "POWERED_BY_AMIDA": "Powered by Amida",
+        "VERSION_": "Version ",
+        "STAY_LOGGED_IN": "Stay logged in"
     },
     "TOAST": {
         "EXISTS": "The user is already in the system. If you are on a Project page, we will add them to the project for you.",
-        "INVITED": "An invite has been sent to the user.",
-        "ACTIVATION_SUCCESS": "Your account has been activated. You will be redirected to the login page."
+        "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
         "DUPLICATE": "Attempted to enter a duplicate value. Please enter a unique value instead.",
@@ -88,23 +90,32 @@
         "FILE_WARNING": "Please choose a file pertinent to your answer, then click the 'Add File' button.",
         "REQUIRE_ANSWERS": "Please answer all required questions.",
         "FLAGGED_QUESTIONS": "You cannot complete a task if there are flagged questions awaiting resolution.",
-        "INVALID_TOKEN": "The activation token is invalid. Your account has not been activated",
-        "PASSWORD_REQUIRED": "A password is required. Your account has not been activated",
-        "ACTIVATION_FAILURE": "An error occurred and your account has not been activated",
+        "INVALID_TOKEN": "The activation token is invalid and your account has not been activated. Please contact your administrator to receive a new one.",
+        "ACTIVATE_SUBMISSION_INVALID": "Either you have not provided your first name, a password, or the password does not follow the criteria in the instructions. Please try again.",
+        "ACTIVATION_FAILURE": "The authentication services could not be reached, or maybe down for maintenance. Please try again later.",
         "MIN_MAX_INVALID": "The minimum cannot be greater than the maximum for a scale type question.",
         "REQUIRE_FLAG_USER": "You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM": "Each survey must have a minimum of one section.",
         "EMPTY_TEXT": "Please enter text into the field.",
         "BLANKS": "There are unfilled questions or options in the question list. Please give them a value or delete them.",
+        "BLANK_SECTION": "The are unfilled section names. Please give them a value or delete them.",
         "DISAGREE_COMMENTS": "All other responses have been recorded, but please disagree and provide a comment for the following questions: ",
         "DATA_REQUEST": "There has been a problem with downloading your data.",
+        "PASSWORD_BLANK": "Please provide a valid password.",
+        "FIRSTNAME_BLANK": "Please provide your first name.",
         "COMING_SOON": "Coming soon."
+    },
+    "ACTIVATE": {
+        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account.",
+        "PASSWORD_INSTRUCTIONS": "Your password must be a minimum of 8 characters long, and must contain at least one uppercase letter, one number, and one symbol.",
+        "ACTIVATION_SUCCESS": "Your account has been activated. You will be redirected to the login page."
     },
     "VALIDATE": {
         "EMAIL": "Invalid email address.",
         "LETTERS": "Entry should not contain numbers.",
         "NUMBER": "Not a number.",
-        "FIELD_REQUIRED": "Required field must not be blank."
+        "FIELD_REQUIRED": "Required field must not be blank.",
+        "_IS_REQUIRED": " is a required field."
     },
     "COMMON_BUTTONS": {
         "YES": "Yes",
@@ -157,6 +168,7 @@
             "ASSIGNEE": "Assignee",
             "DUE_IN": "Due in ",
             "DAYS": " Days",
+            "DUE_TODAY": "Due Today",
             "DUE_TOMORROW": "Due Tomorrow",
             "MORE_OPTIONS": "More Options",
             "TASK_OPTIONS": "Task Options"
@@ -173,7 +185,6 @@
             "NOTIFY_MESSAGE": "Your task has been forced to the next step. If you have questions, contact the project manager."
         },
         "PROJECT": "Project",
-        "PROJECT_TITLE": "Project Title",
         "PROJECTS": "Projects",
         "SURVEY": "Survey",
         "TITLE": "Title",
@@ -210,6 +221,7 @@
         "DISAGREE": "Disagree (Comment Required)",
         "COMMENT_TIP": "Enter your comment here",
         "TASK_COMPLETED": "Task completed!",
+        "PROGRESS_SAVED": "Progress saved.",
         "ACTIVITY_OPTIONS": [
             "Complete Survey",
             "Review",
@@ -301,7 +313,8 @@
         "NEW_SURVEY_NAME": "New Survey Name",
         "ANSWERED": "Answered",
         "TASK": "Task",
-        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time."
+        "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time.",
+        "NO_PROJECTS": "Please click the Create button to begin a new project."
     },
     "MESSAGES": {
         "TO_REQUIRED": "One or more recipients must be added",
@@ -378,7 +391,6 @@
         "DELETE_QUESTION": "Delete Question",
         "SELECT_FILE": "Select a file",
         "NO_FILE": "No file chosen",
-        "ADD_FILE": "Add File",
         "REMOVE_FILE": "Remove File",
         "FILE_NAME_PLACEHOLDER": "File name",
         "ADD_LINK": "Add Link",
@@ -400,6 +412,7 @@
         "SUBMIT_INSTRUCTIONS_3":" and finish later. All progress will be saved.",
         "REVIEW_INSTRUCTIONS": "Click 'Save Review Progress' if you wish to commit your comments.",
         "NAME_OPTIONAL": " Name (Optional)",
+        "NAME": " Name",
         "USER_ENTERS": "Enter your answer here.",
         "BP_ENTERS": "And a new text field will appear here.",
         "NUM_ENTER": "Number goes here.",
@@ -444,7 +457,6 @@
         "INACTIVE": "Inactive",
         "NOTES": "Notes",
         "NOTES_INTERNAL_MESSAGE": "Internal, only you can see this",
-        "ACTIVATE_INSTRUCTIONS": "Enter your first and last name and choose a password to activate your account",
         "ACTIVATE": "Activate"
     },
     "EXPORT": {
@@ -471,6 +483,7 @@
         "DOWNLOAD_IN_PROGRESS": "Download In Progress"
     },
     "RESET_PASSWORD": {
+        "NEW_PASSWORD": "New Password",
         "INSTRUCTIONS": "Enter a new password and click the link below to reset your password.",
         "LINK": "Reset",
         "EMAIL_REQUIRED": "Enter your email to reset your password.",

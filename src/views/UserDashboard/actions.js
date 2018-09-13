@@ -19,39 +19,32 @@ export function setFilter(filter) {
 
 export function userDashGetMessages() {
     return (dispatch) => {
-        apiService.messaging.list((err, response) => {
-            if (err) {
-                dispatch(_getMessagesFailure());
-            } else {
-                dispatch(_getMessagesSuccess(response));
-            }
-        }, {
+        apiService.messaging.list({
             archived: false,
             limit: 4,
             received: true,
-        });
+        })
+            .then((response) => {
+                dispatch(_getMessagesSuccess(response));
+                return response;
+            })
+            .catch((error) => {
+                dispatch(_getMessagesFailure(error));
+            });
     };
 }
 
 export function getDashboardData(errorMessages, userId) {
-    return (dispatch) => {
-        (userId !== undefined ?
-            apiService.tasks.getTasksByUser.bind(null, userId) :
-            apiService.tasks.getSelfTasks
-        )(
-            (taskErr, taskResp) => {
-                if (taskErr) {
-                    dispatch(_reportError(errorMessages.FETCH_TASKS));
-                } else if (taskResp && taskResp.length > 0) {
-                    dispatch(_getTasksSuccess(taskResp));
-                    taskResp.forEach(task =>
-                        dispatch(_getAnswers(task.assessmentId, errorMessages)));
-                    uniq(taskResp.map(task => task.surveyId)).forEach(surveyId =>
-                        dispatch(_getSurveyById(surveyId, errorMessages)));
-                }
-            },
-        );
-    };
+    return dispatch => (userId !== undefined
+        ? apiService.tasks.getTasksByUser(userId)
+        : apiService.tasks.getSelfTasks()
+    )
+        .then((taskResp) => {
+            dispatch(_getTasksSuccess(taskResp));
+            taskResp.forEach(task => dispatch(_getAnswers(task.assessmentId, errorMessages)));
+            uniq(taskResp.map(task => task.surveyId)).forEach(surveyId => dispatch(_getSurveyById(surveyId, errorMessages)));
+        })
+        .catch(() => dispatch(_reportError(errorMessages.FETCH_TASKS)));
 }
 
 function _reportError(message) {
@@ -63,28 +56,28 @@ function _reportError(message) {
 
 function _getAnswers(assessmentId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getAnswers(
-            assessmentId,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportError(errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_getAnswersSuccess(answerResp, assessmentId));
-                }
-            },
-        );
+        return apiService.surveys.getAnswers(assessmentId)
+            .then((answerResp) => {
+                dispatch(_getAnswersSuccess(answerResp, assessmentId));
+                return answerResp;
+            })
+            .catch((answerErr) => {
+                dispatch(_reportError(errorMessages.ANSWER_REQUEST));
+                throw answerErr;
+            });
     };
 }
 
 function _getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveyById(surveyId,
-            (surveyErr, surveyResp) => {
-                if (surveyErr) {
-                    _reportError(errorMessages.SURVEY_REQUEST);
-                } else {
-                    dispatch(_getSurveyByIdSuccess(surveyResp));
-                }
+        apiService.surveys.getSurveyById(surveyId)
+            .then((surveyResp) => {
+                dispatch(_getSurveyByIdSuccess(surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportError(errorMessages.SURVEY_REQUEST));
+                throw surveyErr;
             });
     };
 }

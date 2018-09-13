@@ -20,11 +20,10 @@ const initialState = {
     inboxPage: 0,
 };
 
-const transformServerMessageToReduxMessage = message =>
-    Object.assign(message, {
-        systemMessage: message.from === config.SYS_MESSAGE_USER,
-        unread: message.readAt === null,
-    });
+const transformServerMessageToReduxMessage = message => Object.assign(message, {
+    systemMessage: message.from === config.SYS_MESSAGE_USER,
+    unread: message.readAt === null,
+});
 
 export default (state = initialState, action) => {
     const threadIndex = state.thread.findIndex(message => message.id === action.id);
@@ -41,32 +40,42 @@ export default (state = initialState, action) => {
     case actionTypes.SET_INBOX_PAGE:
         return update(state, { inboxPage: { $set: action.page } });
     case actionTypes.START_REPLY:
-        return update(state, { ui: {
-            reply: { $set: action.reply },
-        } });
-    case actionTypes.DISCARD_REPLY:
-        return update(state, { ui: {
-            reply: { $set: false },
-        } });
-    case actionTypes.PUT_MESSAGE_SUCCESS:
-        return threadIndex === -1 ?
-        state :
-        update(state, { thread:
-            { [threadIndex]: { $set: transformServerMessageToReduxMessage(action.message) } },
+        return update(state, {
+            ui: {
+                reply: { $set: action.reply },
+            },
         });
+    case actionTypes.DISCARD_REPLY:
+        return update(state, {
+            ui: {
+                reply: { $set: false },
+            },
+        });
+    case actionTypes.PUT_MESSAGE_SUCCESS:
+        return threadIndex === -1
+            ? state
+            : update(state, {
+                thread:
+            { [threadIndex]: { $set: transformServerMessageToReduxMessage(action.message) } },
+            });
     case actionTypes.EXPAND_MESSAGES:
-        return update(state, { ui: {
-            expandedMessages: { $push: action.messageIds },
-        } });
+        return update(state, {
+            ui: {
+                expandedMessages: { $push: action.messageIds },
+            },
+        });
     case actionTypes.SET_EXPANDED_MESSAGES:
-        return update(state, { ui: {
-            expandedMessages: { $set: action.messageIds },
-        } });
+        return update(state, {
+            ui: {
+                expandedMessages: { $set: action.messageIds },
+            },
+        });
     case actionTypes.GET_THREAD_SUCCESS:
         return update(state, {
-            thread: { $set:
+            thread: {
+                $set:
                 sortBy(action.thread, 'createdAt').reverse()
-                .map(transformServerMessageToReduxMessage),
+                    .map(transformServerMessageToReduxMessage),
             },
         });
     case actionTypes.GET_INBOX_THREADS_SUCCESS:

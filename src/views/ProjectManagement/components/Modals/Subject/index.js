@@ -28,8 +28,7 @@ SubjectModal.propTypes = {
 };
 
 const subjectMapping = (values) => {
-    return values.subjects.split(/\s*,\s*/).filter(subject =>
-        subject).map((subject) => { return { name: subject }; });
+    return values.subjects.split(/\s*,\s*/).filter(subject => subject).map((subject) => { return { name: subject }; });
 };
 
 export default SubjectModal;

@@ -11,20 +11,21 @@ import CreateSurveyPanel from './CreateSurveyPanel';
 
 class SurveyBuilder extends Component {
     render() {
-        const options = this.props.form.sections ?
-            this.props.form.sections.map((section, index) =>
-                ({ value: index,
-                    label: (section.name ||
-                    this.props.vocab.SURVEY.SECTION_ + (index + 1)) })) : [];
+        const options = this.props.form.sections
+            ? this.props.form.sections.map((section, index) => ({
+                value: index,
+                label: (section.name
+                    || this.props.vocab.SURVEY.SECTION_ + (index + 1)),
+            })) : [];
         const allOptions = cloneDeep(options);
         allOptions.unshift({ value: -1, label: this.props.vocab.SURVEY.VIEW_ALL });
         return (
             <div className='survey-builder'>
-                    {
-                    this.props.form.status === 'published' &&
-                    <div className='survey-builder__draft-warning'>
-                    {this.props.vocab.SURVEY.DRAFT_WARNING}</div>
-                    }
+                {
+                    this.props.form.status === 'published'
+                    && <div className='survey-builder__draft-warning'>
+                        {this.props.vocab.SURVEY.DRAFT_WARNING}</div>
+                }
                 <div className={`survey-builder__contents survey-builder__contents--${this.props.form.status === 'draft' ? 'draft' : 'published'}`} >
                     <AddQuestionPanel className='survey-builder__add-question'
                         sectionView={this.props.ui.sectionView}

@@ -50,12 +50,14 @@ class UserDashboard extends Component {
             return true;
         }
     }
+
     searchRow(row) {
         const lowerQuery = this.props.ui.searchQuery.toLowerCase();
-        return row.subject.toLowerCase().includes(lowerQuery) ||
-            row.task.title.toLowerCase().includes(lowerQuery) ||
-            row.survey.toLowerCase().includes(lowerQuery);
+        return row.subject.toLowerCase().includes(lowerQuery)
+            || row.task.title.toLowerCase().includes(lowerQuery)
+            || row.survey.toLowerCase().includes(lowerQuery);
     }
+
     render() {
         return (
             <div className='user-dashboard'>
@@ -73,8 +75,8 @@ class UserDashboard extends Component {
                     <UserTaskListHeader vocab={this.props.vocab} />
                     {
                         this.props.rows.filter(this.filterRow.bind(this))
-                        .filter(this.searchRow.bind(this))
-                        .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
+                            .filter(this.searchRow.bind(this))
+                            .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
                     }
                 </div>
             </div>
@@ -89,7 +91,8 @@ const mapStateToProps = (state) => {
         .filter(task => get(
             state.projects.data.find(findProject => findProject.id === task.projectId),
             'status',
-            0) === 1)
+            0,
+        ) === 1)
         .map(task => _generateRow(state, task.projectId, task));
     return {
         glance: {
@@ -114,23 +117,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const _generateRow = (state, projectId, task) => { // TODO: INBA-439
-    const project = state.projects.data[0].name ?
-        state.projects.data.find(findProject => findProject.id === projectId) :
-        state.projects.data[0];
+    const project = state.projects.data[0].name
+        ? state.projects.data.find(findProject => findProject.id === projectId)
+        : state.projects.data[0];
     const stage = project.stages.find(step => step.id === task.stepId);
-    const subject = project !== undefined ?
-        project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
-    const answers = state.userdashboard.answers.find(findAnswers =>
-        findAnswers.assessmentId === task.assessmentId);
-    const survey = state.userdashboard.surveys.find(findSurvey =>
-        findSurvey.id === task.surveyId);
+    const subject = project !== undefined
+        ? project.subjects.find(elem => elem.id === task.uoaId) : { name: '' };
+    const answers = state.userdashboard.answers.find(findAnswers => findAnswers.assessmentId === task.assessmentId);
+    const survey = state.userdashboard.surveys.find(findSurvey => findSurvey.id === task.surveyId);
     const surveyLength = survey ? questionListLengthFromSurvey(survey) : 0;
     const answered = get(answers, 'answers.length', 0);
-    const late = !!(task && answers &&
-        TaskStatus.endDateInPast(task) &&
-        !TaskStatus.responsesComplete({ response: answers.answers }, surveyLength));
+    const late = !!(task && answers
+        && TaskStatus.endDateInPast(task)
+        && !TaskStatus.responsesComplete({ response: answers.answers }, surveyLength));
     const complete = task.complete;
-
     return {
         key: task.id,
         projectId,

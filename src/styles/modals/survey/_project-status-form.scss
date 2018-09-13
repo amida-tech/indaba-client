@@ -1,0 +1,66 @@
+$block-class: 'project-status-form';
+
+@at-root {
+    .#{$block-class} {
+        &__top-section {
+            padding: 0 1.5em 0.3em;
+
+            input {
+                float: right;
+            }
+        }
+
+        &__section {
+            padding: 0 1.5em 0.3em;
+        }
+
+        input:checked ~ .project-status-form__field > .project-status-form__text {
+            color: $brand-color;
+        }
+
+        &__text {
+            @extend .med-font;
+
+            font-size: 500;
+        }
+
+        &__label {
+            color: $font-color;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        &__description {
+            max-width: 576px;
+
+            span {
+                @extend .lead-font;
+
+                margin-top: 24px;
+                margin-bottom: 24px;
+                display: block;
+            }
+        }
+
+        &__confirmation {
+            span {
+                font-weight: 500;
+                color: $header-font-color;
+                margin-top: 24px;
+                margin-bottom: 1em;
+                font-size: 16px;
+                line-height: 1.375;
+                display: block;
+            }
+
+            input {
+                margin-right: 1em;
+            }
+
+            label {
+                font-weight: normal;
+                color: $header-font-color;
+            }
+        }
+    }
+}

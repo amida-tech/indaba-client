@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { find, merge } from 'lodash';
 import { toast } from 'react-toastify';
 
 import SubNav from './SubNav';
@@ -12,10 +12,11 @@ import WorkflowContainer from './Workflow';
 import Subjects from './Subjects';
 import Users from './Users';
 import Export from './Export';
-import StatusChange from './Modals/StatusChange';
+import ProjectStatus from './Modals/ProjectStatus';
+import SurveyStatus from './Modals/SurveyStatus';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
-import { SurveyBuilder } from '../../../views/SurveyBuilder';
+import { SurveyBuilder } from '../../SurveyBuilder';
 import * as actions from '../actions';
 import * as navActions from '../../../common/actions/navActions';
 import * as projectActions from '../../../common/actions/projectActions';
@@ -23,34 +24,29 @@ import * as surveyActions from '../../../common/actions/surveyActions';
 import { addNewUser } from '../../../common/actions/userActions';
 import * as taskActions from '../../../common/actions/taskActions';
 import StageModal from './Modals/Stage';
-import InactiveConfirm from './Modals/StatusChange/InactiveConfirm';
+import InactiveConfirm from './Modals/ProjectStatus/InactiveConfirm';
 import Modal from '../../../common/components/Modal';
 import apiService from '../../../services/api';
 
 class ProjectManagementContainer extends Component {
     componentWillMount() {
-        this.props.actions.getProjectById(
-            this.props.params.projectId,
-            true,
-            this.props.vocab.ERROR);
+        this.props.actions.checkProtection(this.props.profile)
+            .then(this.props.actions.getProjectById(
+                this.props.params.projectId,
+                true,
+                this.props.vocab.ERROR,
+            ));
     }
 
     stageHasData(stageId) {
         return Promise.all(
-            this.props.tasks.filter(task => task.stepId === stageId &&
-                task.productId === this.props.project.productId).map(task =>
-                    new Promise((statusResolve, statusReject) => {
-                        apiService.surveys.getAssessmentAnswersStatus(task.assessmentId,
-                            (statusErr, statusResp) =>
-                                (statusErr ?
-                                statusReject(statusErr) :
-                                statusResolve(statusResp.status)),
-                        );
-                    }),
-            ),
+            this.props.tasks
+                .filter(task => task.stepId === stageId
+                && task.productId === this.props.project.productId)
+                .map(task => apiService.surveys.getAssessmentAnswersStatus(task.assessmentId)),
         )
-        .then(statuses => statuses.some(status => status !== 'new'))
-        .catch(() => toast(this.props.vocab.ERROR.STAGE_REQUEST));
+            .then(statuses => statuses.some(status => status !== 'new'))
+            .catch(() => toast(this.props.vocab.ERROR.STAGE_REQUEST));
     }
 
     handleStageDelete(stageId) {
@@ -65,10 +61,6 @@ class ProjectManagementContainer extends Component {
     }
 
     render() {
-        const modalEntities = {
-            projectstatusmodal: 'project',
-            surveystatusmodal: 'survey',
-        };
         let body;
         switch (this.props.tab) {
         case 'workflow':
@@ -81,7 +73,8 @@ class ProjectManagementContainer extends Component {
             body = <Users
                 vocab={this.props.vocab}
                 users={this.props.project.users.map(
-                    userId => this.props.users.find(user => user.id === userId))}
+                    userId => this.props.users.find(user => user.id === userId),
+                )}
                 allUsers={this.props.users}
                 tasks={this.props.tasks}
                 project={this.props.project}
@@ -90,12 +83,14 @@ class ProjectManagementContainer extends Component {
                 ui={this.props.ui}/>;
             break;
         case 'subject':
-            body = <Subjects vocab={this.props.vocab}
-                    project={this.props.project}
-                    subjects={this.props.project.subjects}
-                    actions={this.props.actions}
-                    tasks={this.props.tasks}
-                    ui={this.props.ui}/>;
+            body = <Subjects
+                isOrderedByNameAscending={this.props.isOrderedByNameAscending}
+                vocab={this.props.vocab}
+                project={this.props.project}
+                subjects={this.props.project.subjects}
+                actions={this.props.actions}
+                tasks={this.props.tasks}
+                ui={this.props.ui}/>;
             break;
         case 'export':
             body = <Export vocab={this.props.vocab}
@@ -107,9 +102,10 @@ class ProjectManagementContainer extends Component {
                     this.props.actions.exportData(
                         this.props.project.productId,
                         this.props.project.name,
-                        this.props.vocab.ERROR)
-                    .then(() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS))
-                    .catch(() => toast(this.props.vocab.ERROR.DATA_REQUEST));
+                        this.props.vocab.ERROR,
+                    )
+                        .then(() => toast(this.props.vocab.EXPORT.DOWNLOAD_IN_PROGRESS))
+                        .catch(() => toast(this.props.vocab.ERROR.DATA_REQUEST));
                 }}/>;
             break;
         default:
@@ -117,40 +113,43 @@ class ProjectManagementContainer extends Component {
             break;
         }
         return (
-                <div>
-                    {
-                        this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal &&
-                        <StatusChange vocab={this.props.vocab}
-                            project={this.props.project}
-                            survey={this.props.survey}
-                            actions={this.props.actions}
-                            vocab={this.props.vocab}
-                            entity={modalEntities[this.props.ui.statusModalId]} />
-                    }
-                    {
-                        this.props.ui.showInactiveConfirmModal &&
-                        <InactiveConfirm vocab={this.props.vocab}
+            <div>
+                {
+                    this.props.ui.statusModalId && !this.props.ui.showInactiveConfirmModal
+                        && (this.props.ui.statusModalId === 'projectstatusmodal'
+                            ? <ProjectStatus vocab={this.props.vocab}
+                                project={this.props.project}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} />
+                            : <SurveyStatus vocab={this.props.vocab}
+                                survey={this.props.survey}
+                                actions={this.props.actions}
+                                vocab={this.props.vocab} />)
+                }
+                {
+                    this.props.ui.showInactiveConfirmModal
+                        && <InactiveConfirm vocab={this.props.vocab}
                             project={this.props.project}
                             actions={this.props.actions} />
-                    }
-                    {
-                        this.props.ui.showProjectTitleModal &&
-                        <ProjectTitleModal vocab={this.props.vocab}
+                }
+                {
+                    this.props.ui.showProjectTitleModal
+                        && <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             project={this.props.project}
                             onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
-                    }
-                    {
-                        this.props.ui.showSurveyTitleModal &&
-                        <SurveyTitleModal vocab={this.props.vocab}
+                }
+                {
+                    this.props.ui.showSurveyTitleModal
+                        && <SurveyTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             survey={this.props.survey}
                             project={this.props.project}
                             onCloseModal={this.props.actions.pmHideSurveyTitleModal}/>
-                    }
-                    {
-                        this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal &&
-                        <StageModal
+                }
+                {
+                    this.props.ui.showStage && !this.props.ui.showStageDeleteConfirmModal
+                        && <StageModal
                             vocab={this.props.vocab}
                             project={this.props.project}
                             stageId={this.props.ui.editStage}
@@ -162,42 +161,44 @@ class ProjectManagementContainer extends Component {
                                     this.props.project,
                                     stage,
                                     false,
-                                    this.props.vocab.ERROR);
+                                    this.props.vocab.ERROR,
+                                );
                             }}
                             userGroups={this.props.project.userGroups} />
-                    }
-                    {
-                        this.props.ui.showStageDeleteConfirmModal &&
-                        <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
+                }
+                {
+                    this.props.ui.showStageDeleteConfirmModal
+                        && <Modal title={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.TITLE}
                             bodyText={this.props.vocab.MODAL.STAGE_DELETE_CONFIRM.DELETE_NO_DATA}
                             onCancel={this.props.actions.pmHideStageDeleteConfirmModal}
                             onSave={() => this.props.actions.pmDeleteStage(
                                 this.props.project.id,
-                                this.props.ui.showStageDeleteConfirmModal.stageId)
-                            .then(() => {
-                                this.props.actions.showStageModal(false);
-                                this.props.actions.pmHideStageDeleteConfirmModal();
-                            }).catch(() => {
-                                toast(this.props.vocab.ERROR.STAGE_REQUEST,
-                                    { type: 'error', autoClose: false });
-                                this.props.actions.pmHideStageDeleteConfirmModal();
-                            }) }
+                                this.props.ui.showStageDeleteConfirmModal.stageId,
+                            )
+                                .then(() => {
+                                    this.props.actions.showStageModal(false);
+                                    this.props.actions.pmHideStageDeleteConfirmModal();
+                                }).catch(() => {
+                                    toast(this.props.vocab.ERROR.STAGE_REQUEST,
+                                        { type: 'error', autoClose: false });
+                                    this.props.actions.pmHideStageDeleteConfirmModal();
+                                }) }
                             saveLabel={this.props.vocab.COMMON.DELETE} />
-                    }
-                    <Summary
-                        actions={this.props.actions}
-                        project={this.props.project}
-                        survey={this.props.survey}
-                        onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
-                        onProjectEditClick={this.props.actions.pmShowProjectTitleModal}
-                        onSurveyEditClick={this.props.actions.pmShowSurveyTitleModal}
-                        vocab={this.props.vocab}/>
-                    <SubNav vocab={this.props.vocab}
-                        subnavigate={this.props.actions.subnavigate}
-                        selected={this.props.ui.subnav}/>
-                    <hr className='divider main-divider' />
-                    {body}
-                </div>
+                }
+                <Summary
+                    actions={this.props.actions}
+                    project={this.props.project}
+                    survey={this.props.survey}
+                    onStatusChangeClick={id => this.props.actions.updateStatusChange(id)}
+                    onProjectEditClick={this.props.actions.pmShowProjectTitleModal}
+                    onSurveyEditClick={this.props.actions.pmShowSurveyTitleModal}
+                    vocab={this.props.vocab}/>
+                <SubNav vocab={this.props.vocab}
+                    subnavigate={this.props.actions.subnavigate}
+                    selected={this.props.ui.subnav}/>
+                <hr className='divider main-divider' />
+                {body}
+            </div>
         );
     }
 }
@@ -210,22 +211,25 @@ ProjectManagementContainer.propTypes = {
     tab: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const projectId = parseInt(ownProps.params.projectId, 10) || state.projects[0].id;
-    const project = state.projects.data[0].name ?
-        _.find(state.projects.data, current => current.id === projectId) :
-        state.projects.data[0];
+const mapStateToProps = (store, ownProps) => {
+    const projectId = parseInt(ownProps.params.projectId, 10) || store.projects[0].id;
+    const project = store.projects.data.length !== 0
+        ? find(store.projects.data, current => current.id === projectId)
+        : store.projects.empty;
     return {
         project,
-        tasks: state.tasks.data,
-        responses: state.discuss,
-        vocab: state.settings.language.vocabulary,
-        ui: _.merge({}, state.manager.ui, state.projects.ui, state.nav.ui, state.surveys.ui),
-        survey: _.find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
-        tab: state.manager.ui.subnav,
-        users: state.user.users,
-        profile: state.user.profile,
+        tasks: store.tasks.data,
+        responses: store.discuss,
+        vocab: store.settings.language.vocabulary,
+        ui: merge({}, store.manager.ui, store.projects.ui, store.nav.ui, store.surveys.ui),
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId)
+            || {
+                id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
+            },
+        tab: store.manager.ui.subnav,
+        users: store.user.users,
+        profile: store.user.profile,
+        isOrderedByNameAscending: store.manager.ui.isOrderedByNameAscending,
     };
 };
 
@@ -237,13 +241,14 @@ const mapDispatchToProps = dispatch => ({
         surveyActions,
         taskActions,
         { addNewUser },
-        { sendMessage: user => dispatch(push(
-            {
-                pathname: '/messages/new',
-                state: { message: { to: [user.email] } },
-            },
-        )) },
-    ), dispatch),
+        {
+            sendMessage: user => dispatch(push(
+                {
+                    pathname: '/messages/new',
+                    state: { message: { to: [user.email] } },
+                },
+            )),
+        }), dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectManagementContainer);

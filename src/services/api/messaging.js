@@ -1,58 +1,54 @@
 import * as requests from './requests';
 import config from '../../config';
 
-const rootURI = config.MESSAGING_API_URL;
+const rootURI = config.MESSAGING_MICROSERVICE_URL;
 
 const messaging = {
-    send: (message, callback) => {
+    send: (message) => {
         const path = `${rootURI}/message/send`;
         const body = message;
-        requests.apiPostRequest(path, body, callback);
+        return requests.apiPostRequest(path, body);
     },
-    reply: (id, message, callback) => {
+    reply: (id, message) => {
         const path = `${rootURI}/message/reply/${id}`;
         const body = message;
-        requests.apiPostRequest(path, body, callback);
+        return requests.apiPostRequest(path, body);
     },
-    list: (callback, params) => {
+    list: (params) => {
         const path = requests.addQueryParams(`${rootURI}/message/list`, params);
-        requests.apiGetRequest(path, callback);
+        return requests.apiGetRequest(path);
     },
-    listArchived: (callback) => {
-        const path = `${rootURI}/message/list?archived=true`;
-        requests.apiGetRequest(path, callback);
-    },
-    get: (id, callback) => {
+    get: (id) => {
         const path = `${rootURI}/message/get/${id}`;
-        requests.apiGetRequest(path, callback);
+        return requests.apiGetRequest(path);
     },
-    archive: (id, callback) => {
+    archive: (id) => {
         const path = `${rootURI}/message/archive/${id}`;
-        requests.apiPutRequest(path, {}, callback);
+        return requests.apiPutRequest(path, {});
     },
-    unarchive: (id, callback) => {
+    unarchive: (id) => {
         const path = `${rootURI}/message/unarchive/${id}`;
-        requests.apiPutRequest(path, {}, callback);
+        return requests.apiPutRequest(path, {});
     },
-    delete: (id, callback) => {
+    delete: (id) => {
         const path = `${rootURI}/message/delete/${id}`;
-        requests.apiDeleteRequest(path, {}, callback);
+        return requests.apiDeleteRequest(path, {});
     },
-    getThread: (originalMessageId, callback) => {
+    getThread: (originalMessageId) => {
         const path = `${rootURI}/thread/${originalMessageId}`;
-        requests.apiGetRequest(path, callback);
+        return requests.apiGetRequest(path);
     },
-    listThreads: (callback, params) => {
+    listThreads: (params) => {
         const path = requests.addQueryParams(`${rootURI}/thread`, params);
-        requests.apiGetRequest(path, callback);
+        return requests.apiGetRequest(path);
     },
-    markAsRead: (id, callback) => {
+    markAsRead: (id) => {
         const path = `${rootURI}/message/markAsRead/${id}`;
-        requests.apiPutRequest(path, {}, callback);
+        return requests.apiPutRequest(path, {});
     },
-    markAsUnread: (id, callback) => {
+    markAsUnread: (id) => {
         const path = `${rootURI}/message/markAsUnread/${id}`;
-        requests.apiPutRequest(path, {}, callback);
+        return requests.apiPutRequest(path, {});
     },
 };
 

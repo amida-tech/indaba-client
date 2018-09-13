@@ -1,5 +1,5 @@
 export function isValid(rules, value, validateMessages) { // rules as array of rules
-    if (rules.includes('number') && !isNaN(value)) {
+    if (rules.includes('number') && !Number.isNaN(value)) {
         return validateMessages.NUMBER;
     }
     if (rules.includes('letters') && !_isLetters(value)) {

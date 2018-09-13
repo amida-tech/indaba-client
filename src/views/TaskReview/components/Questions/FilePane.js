@@ -5,8 +5,8 @@ class FilePane extends Component {
     render() {
         return (
             <div className='file-pane'>
-                {this.props.file === undefined &&
-                    <div className='file-pane__add-form'>
+                {this.props.file === undefined
+                    && <div className='file-pane__add-form'>
                         <input name={'file'}
                             className='file-pane__file-input'
                             disabled={this.props.disabled} />
@@ -16,14 +16,14 @@ class FilePane extends Component {
                             {this.props.vocab.SURVEY.ADD_FILE}
                         </button>
                     </div>}
-                {this.props.file !== undefined &&
-                    <div className='file-pane__remove-form'>
+                {this.props.file !== undefined
+                    && <div className='file-pane__remove-form'>
                         <div className='file-pane__current-file-name'>
                             {this.props.file.filename}
                         </div>
                         {
-                            !this.props.disabled &&
-                            <button className='file-pane__submit file-pane__submit--remove'>
+                            !this.props.disabled
+                            && <button className='file-pane__submit file-pane__submit--remove'>
                                 {this.props.vocab.SURVEY.REMOVE_FILE}
                             </button>
                         }

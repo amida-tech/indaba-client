@@ -12,6 +12,20 @@ $block-class:'login-panel';
             padding-bottom: 1em;
         }
 
+        &__remember-me {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__remember-checkbox {
+            margin: 0;
+        }
+
+        &__remember-text {
+            margin: 4px 0 0 5px;
+        }
+
         &__link {
             cursor: pointer;
         }

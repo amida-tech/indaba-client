@@ -19,8 +19,6 @@ $block-class:'task-details';
 
         &__header-label {
             @extend .x-small-font;
-
-            text-transform: uppercase;
         }
 
         &__header-name {
@@ -57,7 +55,6 @@ $block-class:'task-details';
 
             &-label {
                 font-size: 12px;
-                text-transform: uppercase;
                 color: $lead-font-color;
             }
 

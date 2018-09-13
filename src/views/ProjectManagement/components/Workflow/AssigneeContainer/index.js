@@ -10,7 +10,6 @@ import UserSidebar from './UserSidebar';
 import { renderName } from '../../../../../utils/User';
 
 class AssigneeContainer extends Component {
-
     constructor(props) {
         super(props);
         this.onSearch = this.onSearch.bind(this);
@@ -18,13 +17,13 @@ class AssigneeContainer extends Component {
     }
 
     searchFilter(value) {
-        return !this.props.search.query ||
-            value.toLowerCase().includes(this.props.search.query.toLowerCase());
+        return !this.props.search.query
+            || value.toLowerCase().includes(this.props.search.query.toLowerCase());
     }
 
     groupFilter(unassignee) {
-        return !this.props.search.group ||
-            this.props.search.group.users.some(user => user === unassignee.id);
+        return !this.props.search.group
+            || this.props.search.group.users.some(user => user === unassignee.id);
     }
 
     onSearch(evt) {
@@ -39,13 +38,21 @@ class AssigneeContainer extends Component {
         const unassigned = this.props.project.users
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => this.searchFilter(renderName(user)))
-            .filter(user => this.groupFilter(user))
-            .map(unassignee =>
-                React.createElement(AssigneeCard, this.props, unassignee),
+            .filter(user => this.groupFilter(user));
+        const unassignedCards = unassigned.map((unassignee) => {
+            return (
+                <AssigneeCard
+                    key={unassignee.id}
+                    actions={this.props.actions}
+                    project={this.props.project}
+                    vocab={this.props.vocab}
+                >
+                    {unassignee}
+                </AssigneeCard>
             );
+        });
 
-        const groupFilters = this.props.project.userGroups.map(group =>
-            ({ label: group.title, value: group }));
+        const groupFilters = this.props.project.userGroups.map(group => ({ label: group.title, value: group }));
         groupFilters.push({ label: this.props.vocab.COMMON.ALL, value: null });
 
         return (
@@ -53,7 +60,7 @@ class AssigneeContainer extends Component {
                 separator='all'>
                 <UserSidebar
                     groupFilters={groupFilters}
-                    unassigned={unassigned}
+                    unassignedCards={unassignedCards}
                     onSearch={this.onSearch}
                     search={this.props.search}
                     onGroupFilter={this.onGroupFilter}
@@ -65,8 +72,9 @@ class AssigneeContainer extends Component {
                         this.props.project.id,
                         this.props.profile.organizationId,
                         this.props.vocab.TOAST,
-                        this.props.vocab.ERROR)}
-                    />
+                        this.props.vocab.ERROR,
+                    )}
+                />
             </Box>
         );
     }

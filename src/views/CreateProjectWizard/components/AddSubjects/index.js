@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'grommet';
 import { toast } from 'react-toastify';
 
 import apiService from '../../../../services/api';
@@ -15,39 +14,38 @@ class AddSubjects extends Component {
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleModalSave = this.handleModalSave.bind(this);
     }
+
     handleDeleteClick(subjectId) {
         // if used in any other project, do DELETE, otherwise, do disassociate
         apiService.projects.getProjects()
-        .then((projects) => {
-            const deleteType =
-                projects.some(project =>
-                    project.id !== this.props.project.id &&
-                    project.subjects.some(subjectIter => subjectIter.id === subjectId)) ?
-                DELETE_TYPE.DISASSOCIATE_FROM_PROJECT :
-                DELETE_TYPE.DELETE;
-            this.props.actions.wizardShowSubjectDeleteConfirmModal(subjectId, deleteType);
-        })
-        .catch(() => {
-            toast(this.props.vocab.ERROR.SUBJECT_REQUEST, {
-                autoClose: false, type: 'error',
+            .then((projects) => {
+                const deleteType = projects.some(project => project.id !== this.props.project.id
+                    && project.subjects.some(subjectIter => subjectIter.id === subjectId))
+                    ? DELETE_TYPE.DISASSOCIATE_FROM_PROJECT
+                    : DELETE_TYPE.DELETE;
+                this.props.actions.wizardShowSubjectDeleteConfirmModal(subjectId, deleteType);
+            })
+            .catch(() => {
+                toast(this.props.vocab.ERROR.SUBJECT_REQUEST, {
+                    autoClose: false, type: 'error',
+                });
             });
-        });
     }
+
     handleModalSave() {
         if (this.props.ui.showSubjectDeleteConfirmModal.deleteType === DELETE_TYPE.DELETE) {
-            apiService.subjects.deleteSubject(
-                this.props.ui.showSubjectDeleteConfirmModal.id,
-                (subjectErr) => {
-                    if (subjectErr) {
-                        toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                            { autoClose: false, type: 'error' });
-                    }
+            apiService.subjects.deleteSubject(this.props.ui.showSubjectDeleteConfirmModal.id)
+                .catch(() => {
+                    toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                        { autoClose: false, type: 'error' });
+                })
+                .then(() => {
                     this.props.actions.getProjectById(
                         this.props.project.id,
                         false,
-                        this.props.vocab.ERROR);
-                },
-            );
+                        this.props.vocab.ERROR,
+                    );
+                });
             this.props.actions.wizardHideSubjectDeleteConfirmModal();
         } else {
             apiService.projects.deleteUOA(
@@ -55,32 +53,36 @@ class AddSubjects extends Component {
                 {
                     productId: this.props.project.productId,
                     uoaId: this.props.ui.showSubjectDeleteConfirmModal.id,
+                },
+            )
+                .catch(() => {
+                    toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
+                        { autoClose: false, type: 'error' });
                 })
-            .catch(() => {
-                toast(this.props.vocab.ERROR.SUBJECT_REQUEST,
-                    { autoClose: false, type: 'error' });
-            })
-            .then(() => this.props.actions.getProjectById(
-                this.props.project.id,
-                false,
-                this.props.vocab.ERROR),
-            );
+                .then(() => this.props.actions.getProjectById(
+                    this.props.project.id,
+                    false,
+                    this.props.vocab.ERROR,
+                ));
             this.props.actions.wizardHideSubjectDeleteConfirmModal();
         }
     }
+
     render() {
         return (
             <div className='add-subjects'>
                 {
-                    this.props.ui.showSubjectDeleteConfirmModal &&
-                    <Modal title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
+                    this.props.ui.showSubjectDeleteConfirmModal
+                    && <Modal title={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.TITLE}
                         bodyText={this.props.vocab.MODAL.SUBJECT_DELETE_CONFIRM.SIMPLE_CONFIRM}
                         onCancel={() => this.props.actions.wizardHideSubjectDeletConfirmModal()}
                         onSave={this.handleModalSave}/>
                 }
                 <hr className='divider'/>
                 <div className='add-subjects__import-row'>
-                    <Button label={this.props.vocab.PROJECT.IMPORT_SUBJECTS} />
+                    <button className='add-subjects__import-button' disabled>
+                        <span>{this.props.vocab.PROJECT.IMPORT_SUBJECTS}</span>
+                    </button>
                 </div>
                 <hr className='divider'/>
                 <p className='add-subjects__instructions'>
@@ -90,14 +92,12 @@ class AddSubjects extends Component {
                     project={this.props.project}
                     addSubject={this.props.actions.addSubject}
                     vocab={this.props.vocab} />
-                {this.props.project.subjects &&
-                    this.props.project.subjects.map(subject =>
-                    <div className='add-subjects__table-row'
+                {this.props.project.subjects
+                    && this.props.project.subjects.map(subject => <div className='add-subjects__table-row'
                         key={`subject${subject.name}${subject.id}`}>
                         {subject.name}
                         <DeleteIconButton onClick={() => this.handleDeleteClick(subject.id)} />
-                    </div>,
-                )}
+                    </div>)}
             </div>
         );
     }

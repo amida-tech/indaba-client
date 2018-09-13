@@ -6,7 +6,7 @@ class TitleForm extends Component {
     render() {
         return (
             <form className='title-form'
-              onSubmit={this.props.handleSubmit}>
+                onSubmit={this.props.handleSubmit}>
                 <label className='title-form__title-label'>
                     {this.props.label}
                     <Field name='title'

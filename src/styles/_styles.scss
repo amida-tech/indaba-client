@@ -34,7 +34,7 @@ $footer-height-with-padding: 64px;
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
-    font-family: 'Roboto';
+    font-family: Roboto, sans-serif;
     background-color: $page-background-color;
     color: $header-font-color;
     overflow-y: auto;

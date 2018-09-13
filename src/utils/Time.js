@@ -46,18 +46,18 @@ export default {
     renderEndDateForTaskList(time, vocab) {
         return moment(time).calendar(null, {
             sameDay(now) {
-                return (this.isBefore(now) ?
-                    `[${vocab.TIME.OVERDUE}]` :
-                    `[${vocab.TIME.DUE_TODAY}]`);
+                return (this.isBefore(now)
+                    ? `[${vocab.TIME.OVERDUE}]`
+                    : `[${vocab.TIME.DUE_TODAY}]`);
             },
             nextDay: `[${vocab.TIME.DUE_TOMORROW}]`,
             nextWeek: 'MMM DD Y',
             lastDay: `[${vocab.TIME.OVERDUE}]`,
             lastWeek: `[${vocab.TIME.OVERDUE}]`,
             sameElse(now) {
-                return (this.isBefore(now) ?
-                `[${vocab.TIME.OVERDUE}]` :
-                'MMM DD Y');
+                return (this.isBefore(now)
+                    ? `[${vocab.TIME.OVERDUE}]`
+                    : 'MMM DD Y');
             },
         });
     },
@@ -65,16 +65,10 @@ export default {
         return moment().isAfter(time);
     },
     isToday(time) {
-        return moment(time).isBetween(
-            moment().startOf('day'),
-            moment().endOf('day'),
-        );
+        return moment(time).isSame(moment(), 'day');
     },
     isTomorrow(time) {
-        return moment(time).isBetween(
-            moment().endOf('day'),
-            moment().endOf('day').add(1, 'day'),
-        );
+        return moment(time).isSame(moment().add(1, 'day'), 'day');
     },
     isThisWeek(time) {
         return moment(time).isBetween(

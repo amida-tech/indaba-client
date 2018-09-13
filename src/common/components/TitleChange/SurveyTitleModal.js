@@ -18,12 +18,14 @@ class SurveyTitleModal extends Component {
                             this.props.actions.patchSurvey(
                                 { name, id: this.props.survey.id },
                                 this.props.vocab.SURVEY.SUCCESS,
-                                this.props.vocab.ERROR);
+                                this.props.vocab.ERROR,
+                            );
                         } else {
                             this.props.actions.postSurvey(
                                 Object.assign({}, this.props.survey, { name }),
                                 this.props.project,
-                                this.props.vocab.ERROR);
+                                this.props.vocab.ERROR,
+                            );
                         }
                         this.props.onCloseModal();
                     }}/>

@@ -1,7 +1,7 @@
 $element-background: #f3f5f6;
 $search-input-background: #fff;
 
-$block-class: 'search-input';
+$block-class: 'filter-input';
 
 @at-root {
     .#{$block-class} {
@@ -20,8 +20,8 @@ $block-class: 'search-input';
             background-color: $search-input-background;
             padding: 8px;
 
-            &:focus,
-            &:active {
+            &:active,
+            &:focus {
                 border: 2px solid $brand-color;
                 outline: none;
             }
@@ -32,6 +32,24 @@ $block-class: 'search-input';
 
             position: absolute;
             right: 0.5em;
+        }
+
+        &__list {
+            background-color: #fdfdfd;
+        }
+
+        &__entry {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 16px;
+
+            @extend .lead-font;
+
+            &:hover {
+                background-color: #ededed;
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
+import { checkProtection } from '../../../common/actions/navActions';
 
 import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
@@ -18,8 +19,11 @@ import ProjectListEntry from './ProjectListEntry';
 
 class PMDashboard extends Component {
     componentWillMount() {
-        this.props.actions.getProjects(this.props.vocab.ERROR);
-        this.props.actions.pmDashGetMessages();
+        this.props.actions.checkProtection(this.props.profile)
+            .then(() => {
+                this.props.actions.getProjects(this.props.vocab.ERROR);
+                this.props.actions.pmDashGetMessages();
+            });
     }
 
     filterRow(row) {
@@ -66,11 +70,16 @@ class PMDashboard extends Component {
                     filter={this.props.ui.filter} />
                 <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
-                    {this.props.rows.filter(this.filterRow.bind(this))
-                        .filter(this.searchRow.bind(this))
-                        .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                            vocab={this.props.vocab}
-                        />)}
+                    { this.props.ui.noData
+                        ? (<div className='pm-dashboard__no-data'>
+                            {this.props.vocab.PROJECT.NO_PROJECTS}
+                        </div>)
+                        : this.props.rows.filter(this.filterRow.bind(this))
+                            .filter(this.searchRow.bind(this))
+                            .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
+                                vocab={this.props.vocab}
+                            />)
+                    }
                 </div>
             </div>
         );
@@ -82,27 +91,30 @@ PMDashboard.propTypes = {
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    vocab: state.settings.language.vocabulary,
-    ui: state.pmdashboard.ui,
-    rows: state.projects.data.map(project => ({
+const mapStateToProps = store => ({
+    vocab: store.settings.language.vocabulary,
+    ui: store.pmdashboard.ui,
+    profile: store.user.profile,
+    rows: store.projects.data.map(project => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
-        survey: _.pick(state.surveys.data.find(survey =>
-            survey.id === project.surveyId), ['name', 'status', 'id']),
+        survey: _.pick(store.surveys.data.find(survey => survey.id === project.surveyId), ['name', 'status', 'id']),
         flags: project.flags || 0,
     })),
     glance: {
-        projects: state.projects.data.length,
-        active: state.projects.data.filter(project => project.status === 1).length,
-        inactive: state.projects.data.filter(project => project.status === 0).length,
+        projects: store.projects.data.length,
+        active: store.projects.data.filter(project => project.status === 1).length,
+        inactive: store.projects.data.filter(project => project.status === 0).length,
         // flags calculated inline from rows.flags
     },
-    messages: state.pmdashboard.messages.slice(0, 4),
-    users: state.user.users,
+    messages: store.pmdashboard.messages.slice(0, 4),
+    users: store.user.users,
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, actions, { getProjects }), dispatch),
+    actions: bindActionCreators(Object.assign({},
+        actions,
+        { getProjects, checkProtection }),
+    dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 

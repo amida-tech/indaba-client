@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compact, filter, get } from 'lodash';
 import { toast } from 'react-toastify';
 
-import Modal from '../../../common/components/Modal';
+import Modal from '../Modal';
 import FilteredList from './FilteredList';
 import { renderName } from '../../../utils/User';
 
@@ -26,18 +26,23 @@ class SelectGroupUsers extends Component {
         this.handleRemoveAll = this.handleRemoveAll.bind(this);
         this.createUserListItem = this.createUserListItem.bind(this);
     }
+
     nonGroupIds() {
         return this.props.users.filter(userId => !this.state.groupUserIds.includes(userId));
     }
+
     handleGroupTitle(evt) {
         this.setState({ groupTitle: evt.target.value });
     }
+
     handleProjectUsersSelect(selection) {
         this.setState({ projectUsersSelected: selection.length ? selection : [selection] });
     }
+
     handleGroupUsersSelect(selection) {
         this.setState({ groupUsersSelected: selection.length ? selection : [selection] });
     }
+
     handleAdd() {
         const nonGroupIds = this.nonGroupIds();
         const newGroupUserIds = [...this.state.groupUserIds];
@@ -49,9 +54,10 @@ class SelectGroupUsers extends Component {
                 ...this.state.groupUserIds,
                 ...this.state.projectUsersSelected.map(userIndex => nonGroupIds[userIndex]),
             ],
-            projectUsersSelected: [] },
-        );
+            projectUsersSelected: [],
+        });
     }
+
     handleAddAll() {
         this.setState({
             groupUserIds:
@@ -59,16 +65,18 @@ class SelectGroupUsers extends Component {
             projectUsersSelected: [],
         });
     }
+
     handleRemove() {
         const selectedIds = this.state.groupUsersSelected
             .map(index => this.state.groupUserIds[index]);
         this.setState({
             groupUserIds: this.state.groupUserIds
-                    .filter(userId => !selectedIds.includes(userId)),
+                .filter(userId => !selectedIds.includes(userId)),
             groupUsersSelected: [],
             projectUsersSelected: [],
         });
     }
+
     handleRemoveAll() {
         this.setState({
             groupUserIds: [],
@@ -76,6 +84,7 @@ class SelectGroupUsers extends Component {
             projectUsersSelected: [],
         });
     }
+
     createUserListItem(userId) {
         const user = this.props.allUsers.find(allUser => allUser.id === userId);
         return {
@@ -85,16 +94,16 @@ class SelectGroupUsers extends Component {
             label: renderName(user),
         };
     }
+
     render() {
         const nonGroupIds = this.nonGroupIds();
         return (
             <Modal
                 onCancel={this.props.onCancel}
-                onSave={(this.state.groupTitle !== '') ?
-                    () => {
+                onSave={(this.state.groupTitle !== '')
+                    ? () => {
                         const groupId = get(this.props, 'group.id', null);
-                        const duplicates = filter(this.props.userGroups, group =>
-                            group.title === this.state.groupTitle && group.id !== groupId);
+                        const duplicates = filter(this.props.userGroups, group => group.title === this.state.groupTitle && group.id !== groupId);
                         if (duplicates.length > 0) {
                             toast(this.props.vocab.ERROR.DUPLICATE);
                         } else {
@@ -103,8 +112,8 @@ class SelectGroupUsers extends Component {
                                 users: this.state.groupUserIds,
                             });
                         }
-                    } :
-                    undefined}
+                    }
+                    : undefined}
                 title={this.props.vocab.PROJECT.ADD_USER_GROUP}>
                 <div className='select-group-users'>
                     {this.props.vocab.STAGE.GROUP_NAME}
@@ -119,7 +128,8 @@ class SelectGroupUsers extends Component {
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}
-                                selected={this.state.projectUsersSelected}/>
+                                selected={this.state.projectUsersSelected}
+                            />
                         </div>
                         <div className='select-group-users__buttons'>
                             <div className='select-group-users__button'
@@ -136,7 +146,9 @@ class SelectGroupUsers extends Component {
                             <FilteredList
                                 placeHolder={this.props.vocab.COMMON.SEARCH}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
-                                onSelect={this.handleGroupUsersSelect}/>
+                                onSelect={this.handleGroupUsersSelect}
+                                selected={this.state.groupUsersSelected}
+                            />
                         </div>
                     </div>
                 </div>

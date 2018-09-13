@@ -20,15 +20,10 @@ $block-class: 'profile-form';
         }
 
         &__button {
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            color: #7e848f;
-            background-color: #fff;
-            border-radius: 2px;
+            @extend .alt-button;
 
             &:hover {
-                letter-spacing: 0.8px;
-                font-weight: 400;
+                color: #fff;
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
             }

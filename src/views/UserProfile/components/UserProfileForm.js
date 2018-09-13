@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm, FormSection } from 'redux-form';
 import PropTypes from 'prop-types';
 
-import { Tabs, Tab } from 'grommet';
+import Tabs from '../../../common/components/Tabs/Tabs';
+import Tab from '../../../common/components/Tabs/Tab';
 import UserNameInput from './UserNameInput';
 import AccountTab from './AccountTab';
 import ProfileUserGroupsTab from './ProfileUserGroupsTab';
@@ -19,7 +20,7 @@ class UserProfileForm extends Component {
                 </FormSection>
                 <Tabs className='user-profile-form__tabs'>
                     <Tab className='user-profile-form__tab'
-                    title={this.props.vocab.COMMON.ACCOUNT}>
+                        title={this.props.vocab.COMMON.ACCOUNT}>
                         <FormSection name='account'>
                             <AccountTab vocab={this.props.vocab}
                                 user={this.props.user}
@@ -27,8 +28,8 @@ class UserProfileForm extends Component {
                         </FormSection>
                     </Tab>
                     {
-                        this.props.projectId !== undefined &&
-                        <Tab className='user-profile-form__tab'
+                        this.props.projectId !== undefined
+                        && <Tab className='user-profile-form__tab'
                             title={this.props.vocab.PROJECT.USER_GROUPS}>
                             <ProfileUserGroupsTab project={this.props.project}
                                 userId={this.props.userId}
@@ -37,8 +38,8 @@ class UserProfileForm extends Component {
                         </Tab>
                     }
                     {
-                        this.props.projectId !== undefined &&
-                        <Tab className='user-profile-form__tab'
+                        this.props.projectId !== undefined
+                        && <Tab className='user-profile-form__tab'
                             title={this.props.vocab.PROJECT.TASKS}>
                             <TasksTab project={this.props.project}
                                 tasks={this.props.tasks}

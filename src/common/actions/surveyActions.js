@@ -8,13 +8,15 @@ import { updateProjectWithSurvey } from './projectActions';
 // Survey API calls.
 export function getSurveys(errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveys(
-            (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _getSurveysSuccess(surveyResp) :
-                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            },
-        );
+        apiService.surveys.getSurveys()
+            .then((surveyResp) => {
+                dispatch(_getSurveysSuccess(surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
@@ -25,27 +27,22 @@ export function postSurvey(survey, project, errorMessages) {
         status: 'draft',
     };
     return (dispatch) => {
-        apiService.surveys.postSurvey(
-            requestBody,
-            (surveyErr, surveyResp) => {
-                if (!surveyErr && surveyResp) {
-                    const updateBody = {
-                        id: project.productId,
-                        surveyId: surveyResp.id,
-                    };
-                    apiService.projects.putSurveyToProduct(project.productId, updateBody)
+        apiService.surveys.postSurvey(requestBody)
+            .then((surveyResp) => {
+                const updateBody = {
+                    id: project.productId,
+                    surveyId: surveyResp.id,
+                };
+                return apiService.projects.putSurveyToProduct(project.productId, updateBody)
                     .then(() => {
                         dispatch(_postSurveySuccess(Object.assign({}, survey, surveyResp)));
                         dispatch(updateProjectWithSurvey(project.id, surveyResp.id));
-                    })
-                    .catch(productErr =>
-                        dispatch(_reportSurveyError(productErr, errorMessages.SURVEY_REQUEST)),
-                    );
-                } else {
-                    dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
-                }
-            },
-        );
+                    });
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.SURVEY_REQUEST));
+                throw surveyErr;
+            });
     };
 }
 
@@ -59,57 +56,31 @@ export function patchSurvey(survey, successMessage, errorMessages) {
     }, identity);
 
     return (dispatch) => {
-        apiService.surveys.patchSurvey(
-            survey.id,
-            requestBody,
-            (surveyErr, surveyResp) => {
-                if (!surveyErr && surveyResp.length === 0) {
-                    dispatch(_patchSurveySuccess(survey.id, requestBody));
-                    toast(successMessage);
-                    apiService.projects.editSurvey(survey.id);
-                } else {
-                    dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-                }
-            },
-        );
+        apiService.surveys.patchSurvey(survey.id, requestBody)
+            .then((surveyResp) => {
+                dispatch(_patchSurveySuccess(survey.id, requestBody));
+                toast(successMessage);
+                apiService.projects.editSurvey(survey.id);
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
 export function getSurveyById(surveyId, errorMessages) {
     return (dispatch) => {
-        apiService.surveys.getSurveyById(
-            surveyId,
-            (surveyErr, surveyResp) => {
-                dispatch((!surveyErr && surveyResp) ?
-                    _getSurveyByIdSuccess(surveyResp.id, surveyResp) :
-                    _reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
-            },
-        );
-    };
-}
-
-export function getAssessment(errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.getAssessment(
-            (assessErr, assessResp) => {
-                dispatch((!assessErr && assessResp) ?
-                    _getAssessmentSuccess(assessResp) :
-                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
-            },
-        );
-    };
-}
-
-export function postAssessment(requestBody, errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.postAssessment(
-            requestBody,
-            (assessErr, assessResp) => {
-                dispatch((!assessErr && assessResp) ?
-                    _postAssessmentSuccess(assessResp) :
-                    _reportSurveyError(assessErr, errorMessages.FETCH_ASSESSMENT));
-            },
-        );
+        apiService.surveys.getSurveyById(surveyId)
+            .then((surveyResp) => {
+                dispatch(_getSurveyByIdSuccess(surveyResp.id, surveyResp));
+                return surveyResp;
+            })
+            .catch((surveyErr) => {
+                dispatch(_reportSurveyError(surveyErr, errorMessages.FETCH_SURVEYS));
+                throw surveyErr;
+            });
     };
 }
 
@@ -119,51 +90,36 @@ export function completeAssessment(assessmentId, errorMessages) {
         answers: [],
     };
 
-    return dispatch => new Promise((resolve, reject) => {
-        apiService.surveys.postAnswer(
-            assessmentId,
-            requestBody,
-            (assessErr) => {
-                if (assessErr) {
-                    dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
-                    reject();
-                } else {
-                    resolve();
-                }
-            },
-        );
-    });
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
+        .catch((assessErr) => {
+            dispatch(_reportSurveyError(assessErr, errorMessages.ANSWER_REQUEST));
+            throw assessErr;
+        });
 }
 
 export function getAnswers(assessmentId, errorMessages) {
-    return dispatch =>
-        apiService.surveys.getAnswers(
-            assessmentId,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_getAnswersSuccess(answerResp.answers));
-                }
-            },
-    );
+    return dispatch => apiService.surveys.getAnswers(assessmentId)
+        .then((answerResp) => {
+            dispatch(_getAnswersSuccess(answerResp.answers));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
 }
 
 // Answer related.
 export function postAnswer(assessmentId, requestBody, errorMessages) {
-    return (dispatch) => {
-        apiService.surveys.postAnswer(
-            assessmentId,
-            requestBody,
-            (answerErr, answerResp) => {
-                if (answerErr) {
-                    dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                } else if (answerResp || []) {
-                    dispatch(_postAnswerSuccess(requestBody));
-                }
-            },
-        );
-    };
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
+        .then((answerResp) => {
+            dispatch(_postAnswerSuccess(requestBody));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
+        });
 }
 
 export function postReview(assessmentId, answers, errorMessages) {
@@ -171,23 +127,15 @@ export function postReview(assessmentId, answers, errorMessages) {
         status: 'in-progress',
         answers,
     };
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            apiService.surveys.postAnswer(
-                assessmentId,
-                requestBody,
-                (answerErr, answerResp) => {
-                    if (answerErr) {
-                        dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
-                        reject(answerErr);
-                    } else if (answerResp || []) {
-                        dispatch(getAnswers(assessmentId, errorMessages));
-                        resolve(answerResp);
-                    }
-                },
-            );
+    return dispatch => apiService.surveys.postAnswer(assessmentId, requestBody)
+        .then((answerResp) => {
+            dispatch(getAnswers(assessmentId, errorMessages));
+            return answerResp;
+        })
+        .catch((answerErr) => {
+            dispatch(_reportSurveyError(answerErr, errorMessages.ANSWER_REQUEST));
+            throw answerErr;
         });
-    };
 }
 
 // UI component related.
@@ -226,20 +174,6 @@ function _getSurveyByIdSuccess(surveyId, survey) {
         type: actionTypes.GET_SURVEY_BY_ID_SUCCESS,
         surveyId,
         survey,
-    };
-}
-
-function _getAssessmentSuccess(assessment) {
-    return {
-        type: actionTypes.GET_ASSESSMENT_SUCCESS,
-        assessment,
-    };
-}
-
-function _postAssessmentSuccess(assessmentId) {
-    return {
-        type: actionTypes.POST_ASSESSMENT_SUCCESS,
-        assessmentId,
     };
 }
 

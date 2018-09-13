@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from 'grommet';
+import Select from 'grommet/components/Select';
 
 class ProfileSelect extends Component {
     render() {
@@ -7,9 +7,9 @@ class ProfileSelect extends Component {
         if (this.props.input.value === '') {
             value = this.props.options[this.props.options.length - 1];
         } else {
-            value = typeof this.props.input.value === 'number' ?
-                this.props.options[this.props.input.value] :
-                this.props.input.value;
+            value = typeof this.props.input.value === 'number'
+                ? this.props.options[this.props.input.value]
+                : this.props.input.value;
         }
 
         return (

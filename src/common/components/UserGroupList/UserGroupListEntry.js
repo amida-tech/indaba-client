@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import UserBadge from '../UserBadge';
-import DeleteIconButton from '../../../common/components/DeleteIconButton';
+import DeleteIconButton from '../DeleteIconButton';
 
 class UserGroupListEntry extends Component {
     render() {
         const users = this.props.group.users.map(
-            userId => this.props.users.find(user => user.id === userId));
+            userId => this.props.users.find(user => user.id === userId),
+        );
         return (
             <div className='user-group-list-entry'
                 onClick={this.props.onGroupClick} >
@@ -15,12 +16,10 @@ class UserGroupListEntry extends Component {
                     {this.props.group.title}
                 </div>
                 <div className='user-group-list-entry__badge-string'>
-                    {users.map(user =>
-                        user && <UserBadge key={user.id} user={user}/>,
-                    )}
+                    {users.map(user => user && <UserBadge key={user.id} user={user}/>)}
                 </div>
-                {this.props.onDeleteClick &&
-                    <DeleteIconButton onClick={(event) => {
+                {this.props.onDeleteClick
+                    && <DeleteIconButton onClick={(event) => {
                         this.props.onDeleteClick(this.props.group.id);
                         event.stopPropagation();
                     } } />

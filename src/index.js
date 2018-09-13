@@ -1,4 +1,4 @@
-/** Modules **/
+/** Modules * */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -8,7 +8,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { get } from 'lodash';
 
-/** Developer Tools **/
+/** Developer Tools * */
 import ChartMonitor from 'redux-devtools-chart-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 import LogMonitor from 'redux-devtools-log-monitor';
@@ -22,11 +22,11 @@ import 'react-select/dist/react-select.css';
 import './styles/main.scss';
 import { logOut } from './common/actions/navActions';
 
-/** User Imports **/
+/** User Imports * */
 import reducers from './reducers';
 import routes from './routes';
 
-const DEVELOP = process.env.NODE_ENV === 'development';
+const DEVELOP = process.env.NODE_ENV === 'development' && !(navigator.userAgent.match('MSIE|Trident/7.0|Edge'));
 
 const authInterceptor = ({ dispatch }) => next => (action) => {
     if (get(action, 'err.response.status') === 401) {
@@ -42,25 +42,25 @@ if (DEVELOP) {
     middleware = [...middleware, createLogger()];
 }
 
-const DevTools = DEVELOP ?
-createDevTools(
-  <DockMonitor
-    toggleVisibilityKey="ctrl-h"
-    changePositionKey="ctrl-q"
-    changeMonitorKey="ctrl-m"
-    fluid={true}
-    defaultSize={0.2}
-    defaultIsVisible={false}>
-      <LogMonitor />
-      <SliderMonitor />
-      <ChartMonitor />
-  </DockMonitor>,
-) :
-null;
+const DevTools = DEVELOP
+    ? createDevTools(
+        <DockMonitor
+            toggleVisibilityKey="ctrl-h"
+            changePositionKey="ctrl-q"
+            changeMonitorKey="ctrl-m"
+            fluid={true}
+            defaultSize={0.2}
+            defaultIsVisible={false}>
+            <LogMonitor />
+            <SliderMonitor />
+            <ChartMonitor />
+        </DockMonitor>,
+    )
+    : null;
 
-const enhancer = DEVELOP ?
-compose(applyMiddleware(...middleware), DevTools.instrument()) :
-applyMiddleware(...middleware);
+const enhancer = DEVELOP
+    ? compose(applyMiddleware(...middleware), DevTools.instrument())
+    : applyMiddleware(...middleware);
 
 const store = createStore(
     reducers,
@@ -73,15 +73,12 @@ const history = syncHistoryWithStore(browserHistory, store, {
 
 ReactDOM.render(
     <Provider store={store}>
-      <div className="main-page">
-          <Router history={history}>
-              {routes}
-          </Router>
-          {
-              DEVELOP &&
-              <DevTools />
-          }
-      </div>
+        <div className="main-page">
+            <Router history={history}>
+                {routes}
+            </Router>
+            { DEVELOP && <DevTools /> }
+        </div>
     </Provider>,
     document.getElementById('root'),
 );

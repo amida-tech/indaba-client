@@ -7,28 +7,26 @@ import Time from '../../../../utils/Time';
 
 class Date extends Component {
     render() {
-        let currentAnswer = get(this.props, 'answer.dateValue', undefined);
-        if (currentAnswer) {
-            currentAnswer = Time.renderForQuestion(currentAnswer);
-        }
+        const currentAnswer = get(this.props, 'answer.dateValue', undefined);
         return (
             <div className='date'>
                 {
-                    (this.props.displayMode &&
-                    (
-                        currentAnswer ?
-                        <div className='date__field'>
-                            {currentAnswer}
-                        </div> :
-                        this.props.vocab.SURVEY.NO_DATE_ENTERED
-                    )) ||
-                    <DateInput className='date__field'
+                    (this.props.displayMode
+                    && (
+                        currentAnswer
+                            ? <div className='date__field'>
+                                {currentAnswer}
+                            </div>
+                            : this.props.vocab.SURVEY.NO_DATE_ENTERED
+                    ))
+                    || <DateInput className='date__field'
                         value={currentAnswer}
                         inline={true}
                         onChange={(date) => {
                             if (Time.validateTime(date)) {
                                 this.props.upsertAnswer(
-                                    { dateValue: Time.renderForSurvey(date) });
+                                    { dateValue: Time.renderForSurvey(date) },
+                                );
                             }
                         }} />
                 }

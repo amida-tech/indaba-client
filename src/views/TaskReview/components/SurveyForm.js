@@ -36,7 +36,7 @@ export default reduxForm({
         const answers = compact(values.answers.map((answer, index) => {
             if (get(answer, 'comment.reason') === undefined) {
                 return null;
-            } else if (answer.comment.reason === 'disagree' && !answer.comment.text) {
+            } if (answer.comment.reason === 'disagree' && !answer.comment.text) {
                 disagreeCheck.push(index + 1);
                 return null;
             }
@@ -44,11 +44,10 @@ export default reduxForm({
         }));
         if (disagreeCheck.length > 0) {
             toast(`${ownProps.vocab.ERROR.DISAGREE_COMMENTS}${disagreeCheck.join(', ')}`);
+            return Promise.reject();
         }
-        const postResponse = ownProps.actions.postReview(values.assessmentId,
+        return ownProps.actions.postReview(values.assessmentId,
             answers,
-            ownProps.vocab.ERROR,
-        );
-        return disagreeCheck.length > 0 ? Promise.reject() : postResponse;
+            ownProps.vocab.ERROR).then(toast(ownProps.vocab.PROJECT.PROGRESS_SAVED));
     },
 })(SurveyForm);

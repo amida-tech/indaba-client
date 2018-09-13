@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
-import { Tabs, Tab } from 'grommet';
+import { goBack, push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { find, has, get } from 'lodash';
 
+import Tabs from '../../../common/components/Tabs/Tabs';
+import Tab from '../../../common/components/Tabs/Tab';
 import Summary from '../../../common/components/Summary';
 import ProjectTitleModal from '../../../common/components/TitleChange/ProjectTitleModal';
 import SurveyTitleModal from '../../../common/components/TitleChange/SurveyTitleModal';
@@ -19,16 +20,13 @@ import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
-import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 import { addNewUser } from '../../../common/actions/userActions';
+import { checkProtection } from '../../../common/actions/navActions';
+import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 
 const NUM_WIZARD_STEPS = 4;
 
 class CreateProjectWizard extends Component {
-    componentWillMount() {
-        this.props.actions.surveyBuilderReset();
-        this.props.actions.projectWizardInitialize();
-    }
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);
@@ -37,15 +35,19 @@ class CreateProjectWizard extends Component {
         this.handleContinue = this.handleContinue.bind(this);
         this.changeStep = this.changeStep.bind(this);
     }
+
     handleBack() {
         this.changeStep(this.props.ui.step - 1);
     }
+
     handleSkip() {
         this.handleContinue();
     }
+
     handleCancel() {
         this.props.onWizardCancel();
     }
+
     handleContinue() {
         if (this.props.ui.step < NUM_WIZARD_STEPS - 1) {
             if (this.props.ui.step === 0) {
@@ -60,14 +62,24 @@ class CreateProjectWizard extends Component {
             this.props.actions.showCompleteWizard(true);
         }
     }
+
     changeStep(step) {
         const newStep = Math.min(Math.max(step, 0), NUM_WIZARD_STEPS);
         this.props.actions.goToStep(newStep);
     }
+
+    componentWillMount() {
+        this.props.actions.checkProtection(this.props.user.profile)
+            .then(() => {
+                this.props.actions.surveyBuilderReset();
+                this.props.actions.projectWizardInitialize();
+            });
+    }
+
     render() {
-        const surveyComplete = has(this.props.survey, 'id') &&
-            get(this.props.survey, 'sections', []).length > 0 &&
-            this.props.survey.sections.some(section => section.questions.length > 0);
+        const surveyComplete = has(this.props.survey, 'id')
+            && get(this.props.survey, 'sections', []).length > 0
+            && this.props.survey.sections.some(section => section.questions.length > 0);
         const summary = (
             <Summary project={this.props.project}
                 survey={this.props.survey}
@@ -76,10 +88,10 @@ class CreateProjectWizard extends Component {
                 onProjectEditClick={this.props.actions.wizardShowProjectTitleModal}
                 onSurveyEditClick={this.props.actions.wizardShowSurveyTitleModal} />
         );
-        return (!this.props.ui.showComplete ?
-            <div className='project-wizard'>
-                {this.props.ui.showProjectTitle &&
-                    <NewProjectTitle
+        return (!this.props.ui.showComplete
+            ? <div className='project-wizard'>
+                {this.props.ui.showProjectTitle
+                    && <NewProjectTitle
                         profile={this.props.user.profile}
                         errorMessage={this.props.ui.errorMessage}
                         actions={this.props.actions}
@@ -88,25 +100,25 @@ class CreateProjectWizard extends Component {
                         vocab={this.props.vocab} />
                 }
                 {
-                    this.props.ui.showProjectTitleModal &&
-                    <ProjectTitleModal vocab={this.props.vocab}
+                    this.props.ui.showProjectTitleModal
+                    && <ProjectTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         project={this.props.project}
                         onCloseModal={this.props.actions.wizardHideProjectTitleModal} />
                 }
                 {
-                    this.props.ui.showSurveyTitleModal &&
-                    <SurveyTitleModal vocab={this.props.vocab}
+                    this.props.ui.showSurveyTitleModal
+                    && <SurveyTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         survey={this.props.survey}
                         project={this.props.project}
                         onCloseModal={this.props.actions.wizardHideSurveyTitleModal} />
                 }
                 <Tabs className='project-wizard__tabs'
-                    activeIndex={this.props.ui.step}
-                    onActive={this.changeStep}
-                    responsive={true} >
-                    <Tab className={`project-wizard__tab project-wizard__tab--${surveyComplete ? 'complete' : 'incomplete'}`}
+                    activeTabIndex={this.props.ui.step}
+                    onActive={this.changeStep}>
+                    <Tab className='project-wizard__tab'
+                        classModifier={surveyComplete ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.CREATE_SURVEY}>
                         {summary}
                         <AddSurvey
@@ -115,7 +127,8 @@ class CreateProjectWizard extends Component {
                             profile={this.props.user.profile}
                             vocab={this.props.vocab} />
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.subjects.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_SUBJECTS}>
                         {summary}
                         <AddSubjects
@@ -125,7 +138,8 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             ui={this.props.ui}/>
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.users.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.users.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_USERS}>
                         {summary}
                         <AddUsers
@@ -136,7 +150,8 @@ class CreateProjectWizard extends Component {
                             vocab={this.props.vocab}
                             user={this.props.user} />
                     </Tab>
-                    <Tab className={`project-wizard__tab project-wizard__tab--${this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}`}
+                    <Tab className='project-wizard__tab'
+                        classModifier={this.props.project.stages.length > 0 ? 'complete' : 'incomplete'}
                         title={this.props.vocab.PROJECT.ADD_STAGES}>
                         {summary}
                         <AddStages
@@ -151,14 +166,16 @@ class CreateProjectWizard extends Component {
                     vocab={this.props.vocab}
                     finalStep={this.props.ui.step === NUM_WIZARD_STEPS - 1}
                     onBack={this.props.ui.step !== 0 ? this.handleBack : undefined}
-                    onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1) ?
-                        this.handleSkip : undefined}
+                    onSkip={this.props.ui.step < (NUM_WIZARD_STEPS - 1)
+                        ? this.handleSkip : undefined}
+                    step={this.props.ui.step}
                     onCancel={this.handleCancel}
                     onContinue={ this.handleContinue } />
-            </div> :
-            <div className='project-wizard project-wizard--complete'>
+            </div>
+            : <div className='project-wizard project-wizard--complete'>
                 <WizardComplete
                     vocab={this.props.vocab}
+                    onWizardComplete={this.props.onWizardComplete}
                     projectLink={this.props.ui.projectLink}
                     project={this.props.project}
                     survey={this.props.survey}/>
@@ -180,25 +197,32 @@ CreateProjectWizard.propTypes = {
     vocab: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-    const project = state.wizard.ui.projectLink > 0 ?
-            find(state.projects.data, item => item.id === state.wizard.ui.projectLink) :
-            state.wizard.project;
+const mapStateToProps = (store) => {
+    const project = store.wizard.ui.projectLink > 0
+        ? find(store.projects.data, item => item.id === store.wizard.ui.projectLink)
+        : store.wizard.project;
     return {
         project,
-        survey: find(state.surveys.data, survey => survey.id === project.surveyId) ||
-            { id: -1, name: state.surveys.ui.newSurveyName, status: 'draft', sections: [] },
-        inProgressSurvey: state.surveybuilder.form,
-        user: state.user,
-        ui: state.wizard.ui,
-        vocab: state.settings.language.vocabulary,
+        survey: find(store.surveys.data, survey => survey.id === project.surveyId)
+            || {
+                id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
+            },
+        inProgressSurvey: store.surveybuilder.form,
+        user: store.user,
+        ui: store.wizard.ui,
+        vocab: store.settings.language.vocabulary,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
-        actions, projectActions, surveyActions, { addNewUser, surveyBuilderReset }), dispatch),
+        actions,
+        projectActions,
+        surveyActions,
+        { addNewUser, surveyBuilderReset, checkProtection }),
+    dispatch),
     onWizardCancel: () => dispatch(goBack()),
+    onWizardComplete: link => dispatch(push(`/project/${link}`)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProjectWizard);

@@ -5,14 +5,16 @@ $block-class: 'add-users';
     .#{$block-class} {
         cursor: pointer;
 
-        &__import-row {
+        &__control-row {
             display: flex;
             justify-content: flex-end;
             padding: 1em 2em;
             margin-right: 10%;
         }
 
-        &__import-row-button {
+        &__control-row-button {
+            @extend .standard-button;
+
             margin-left: 1em;
             border-radius: 2px;
             letter-spacing: 0.8px;
@@ -22,6 +24,10 @@ $block-class: 'add-users';
                 background: darken(#4eb276, 10);
                 border-color: darken(#4eb276, 10);
             }
+        }
+
+        &__control-row-import-button {
+            @extend .disabled-button;
         }
 
         &__instructions {
@@ -41,30 +47,12 @@ $block-class: 'add-users';
             }
         }
 
-        .grommetux-tab--active {
-            background-color: $element-background;
-            border: 2px solid $border-color;
-        }
-
-        .grommetux-tabs--justify-center {
-            justify-content: flex-start;
+        &__tabs__nav {
+            display: flex;
+            border-bottom: 1px solid $border-color;
             margin-left: 10%;
             margin-right: 10%;
-        }
-
-        .grommetux-tab {
-            width: 150px;
-            display: flex;
-        }
-
-        .grommetux-tab__label {
-            @extend .lead-font;
-
-            color: $header-font-color;
-            width: 150px;
-            display: flex;
-            padding-bottom: 4px;
-            padding-top: 4px;
+            margin-bottom: 0;
         }
 
         .divider {

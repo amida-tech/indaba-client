@@ -7,8 +7,8 @@ const makeQueryParams = (params) => {
         return '';
     }
     return `?${Object.keys(params)
-    .map(key => `${key}=${encodeURIComponent(params[key])}`)
-    .join('&')}`;
+        .map(key => `${key}=${encodeURIComponent(params[key])}`)
+        .join('&')}`;
 };
 
 export function addQueryParams(url, params) {
@@ -16,11 +16,9 @@ export function addQueryParams(url, params) {
 }
 
 /**
- * Executes a POST request on the given URI
+ * Executes a POST request specific to auth on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
 * */
 export function apiAuthPostRequest(fullURI, requestBodyObject) {
     const encodedRequestBodyObject = formurlencoded(requestBodyObject);
@@ -33,41 +31,33 @@ export function apiAuthPostRequest(fullURI, requestBodyObject) {
         },
         body: encodedRequestBodyObject,
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
-
-const optionalCallbackSuccess = callback => response =>
-    (callback ? callback(null, response) : response);
-const optionalCallbackError = callback => response =>
-    (callback ? callback(response) : Promise.reject(response));
 
 /**
  * Executes a GET request on the given URI
  * @param {String} fullURI
- * @param {Function} callback
- * @return {Any} handled by callback. Generally the response data.
 * */
-export function apiGetRequest(fullURI, callback) {
+export function apiGetRequest(fullURI) {
     return fetch(fullURI, {
         method: 'GET',
         headers: {
             Authorization: cookie.load('indaba-auth'),
             Accept: 'application/json',
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache,no-store,must-revalidate', // ,max-age=-1,private'
+            Pragma: 'no-cache',
         },
     })
-    .then(callback ? handleResponse : handleResponseRejectWithResponse)
-    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
+        .then(handleResponse);
 }
 
 /**
  * Executes a POST request on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
 * */
-export function apiPostRequest(fullURI, requestBody, callback) {
+export function apiPostRequest(fullURI, requestBody) {
     return fetch(fullURI, {
         method: 'POST',
         headers: {
@@ -77,18 +67,15 @@ export function apiPostRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(callback ? handleResponse : handleResponseRejectWithResponse)
-    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
+        .then(handleResponse);
 }
 
 /**
  * Executes a PATCH request on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
 * */
-export function apiPatchRequest(fullURI, requestBody, callback) {
+export function apiPatchRequest(fullURI, requestBody) {
     return fetch(fullURI, {
         method: 'PATCH',
         headers: {
@@ -98,18 +85,15 @@ export function apiPatchRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(callback ? handleResponse : handleResponseRejectWithResponse)
-    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
+        .then(handleResponse);
 }
 
 /**
  * Executes a PUT request on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
 * */
-export function apiPutRequest(fullURI, requestBody, callback) {
+export function apiPutRequest(fullURI, requestBody) {
     return fetch(fullURI, {
         method: 'PUT',
         headers: {
@@ -119,18 +103,15 @@ export function apiPutRequest(fullURI, requestBody, callback) {
         },
         body: JSON.stringify(requestBody),
     })
-    .then(callback ? handleResponse : handleResponseRejectWithResponse)
-    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
+        .then(handleResponse);
 }
 
 /**
  * Executes a DELETE request on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
- * @param {Function} callback
- * @return {Any} handled by callback.
 * */
-export function apiDeleteRequest(fullURI, requestBody, callback) {
+export function apiDeleteRequest(fullURI, requestBody) {
     const call = {
         method: 'DELETE',
         headers: {
@@ -144,9 +125,7 @@ export function apiDeleteRequest(fullURI, requestBody, callback) {
         call.body = JSON.stringify(requestBody);
     }
 
-    return fetch(fullURI, call)
-    .then(callback ? handleResponse : handleResponseRejectWithResponse)
-    .then(optionalCallbackSuccess(callback), optionalCallbackError(callback));
+    return fetch(fullURI, call).then(handleResponse);
 }
 
 export function multipartFormDataPostRequest(fullURI, data) {
@@ -173,36 +152,17 @@ export function putObjectRequest(file, fullURI) {
         method: 'PUT',
         body: file,
     })
-    .then(handleResponse);
+        .then(handleResponse);
 }
 
 // ////////////////
 // Private Helpers
 // ////////////////
-
 function handleResponse(response) {
     if (response.ok) {
         return decodeResponse(response);
     }
-    return decodeResponse(response).then((body) => {
-        // reject with a normalized error structure that includes the original
-        // response object and the decoded body
-        // currently only for 401 so the auth middleware can detect it without
-        // having to change every other error handler that just expects the body
-        if (response.status === 401) {
-            return Promise.reject({ response, body });
-        }
-        return Promise.reject(body);
-    });
-}
-
-function handleResponseRejectWithResponse(response) {
-    if (response.ok) {
-        return decodeResponse(response);
-    }
-    return decodeResponse(response).then(body =>
-        Promise.reject({ response, body }),
-    );
+    return decodeResponse(response).then(body => Promise.reject({ response, body }));
 }
 
 function decodeResponse(res) {
