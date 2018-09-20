@@ -54,6 +54,7 @@
     },
     "ERROR": {
         "DUPLICATE": "Attempted to enter a duplicate value. Please enter a unique value instead.",
+        "ALREADY_ASSIGNED": "The user is already assigned to this project.",
         "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
         "INVALID_LOGIN": "We weren't able to find your username or password.",
         "FETCH_PROFILE": "Something has gone wrong and we couldn't obtain the user's information. Please try again later.",
