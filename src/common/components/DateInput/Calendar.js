@@ -7,9 +7,6 @@ const Calendar = ({ onChange, value, pickerProps = {} }) => (
     <InfiniteCalendar
         {...pickerProps}
 
-        displayOptions={Object.assign({},
-            { layout: 'portrait' },
-            pickerProps.displayOptions)}
 
         theme={Object.assign({}, {
             selectionColor: 'rgb(48, 130, 82)',

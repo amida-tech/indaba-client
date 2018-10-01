@@ -1,67 +1,38 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import IonIcon from 'react-ionicons';
+// import IonIcon from 'react-ionicons';
 import enhanceWithClickOutside from 'react-click-outside';
-
-import Time from '../../../utils/Time';
-import Calendar from './Calendar';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 class DateInput extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            expanded: false,
+            startDate: null,
+            endDate: null,
+            focusedInput: null,
         };
-
-        this.expand = this.expand.bind(this);
-    }
-
-    handleClickOutside() {
-        this.setState({ expanded: false });
-    }
-
-    expand() {
-        this.setState({ expanded: true });
     }
 
     render() {
-        const {
-            value, onChange, inline, pickerProps,
-        } = this.props;
-        const { expanded } = this.state;
         return (
             <div className='date-input'>
-                {
-                    expanded
-                        ? <div className={`date-input__calendar-wrapper ${inline ? 'date-input__calendar-wrapper--inline' : ''}`}>
-                            <Calendar value={value} onChange={onChange}
-                                pickerProps={pickerProps} />
-                        </div>
-                        : <div className='date-input__value'
-                            onClick={this.expand}>
-                            {Time.renderCommon(value)}
-                            <IonIcon icon='ion-android-calendar'
-                                className='date-input__value-icon'/>
-                        </div>
-                }
+                <DateRangePicker
+                    startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                    startDateId="StartDate" // PropTypes.string.isRequired,
+                    endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                    endDateId="EndDate" // PropTypes.string.isRequired,
+                    onDatesChange={({ startDate, endDate }) => this.setState({
+                        startDate,
+                        endDate,
+                    })} // PropTypes.func.isRequired,
+                    focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                    onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                />
             </div>
         );
     }
 }
-
-DateInput.propTypes = {
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object,
-    ]),
-    onChange: PropTypes.func.isRequired,
-    // true if the expanded picker should be kept in the document flow
-    // otherwise, the expanded picker will have absolute position and
-    // overlap other elements until collapsed
-    inline: PropTypes.bool,
-    // any props that will be passed down to the third party date picker component
-    pickerProps: PropTypes.object,
-};
 
 export default enhanceWithClickOutside(DateInput);
