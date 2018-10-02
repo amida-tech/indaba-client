@@ -16,13 +16,15 @@ class DateInput extends Component {
     }
 
     render() {
+        console.log('dateinput');
+        console.log(this.props);
         return (
             <div className='date-input'>
                 <DateRangePicker
                     startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                    startDateId="StartDate" // PropTypes.string.isRequired,
+                    startDateId="startDate" // PropTypes.string.isRequired,
                     endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                    endDateId="EndDate" // PropTypes.string.isRequired,
+                    endDateId="endDate" // PropTypes.string.isRequired,
                     onDatesChange={({ startDate, endDate }) => this.setState({
                         startDate,
                         endDate,

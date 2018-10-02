@@ -3,6 +3,8 @@ import DateInput from '../../../../../common/components/DateInput';
 
 class StageDateTime extends Component {
     render() {
+        console.log('sdt');
+        console.log(this.props);
         return (
             <DateInput
                 {...this.props.input}
