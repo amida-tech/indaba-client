@@ -66,7 +66,7 @@ class StageForm extends Component {
                     <hr className='stage-form__divider'/>
                     <div className='stage-form__date'>
                         <label className='stage-form__date-label'>
-                            {this.props.vocab.PROJECT.DATE_RANGES}
+                            {this.props.vocab.PROJECT.DATE_RANGE}
                         </label>
                         <div className='stage-form__date-input-div'>
                             <Fields
