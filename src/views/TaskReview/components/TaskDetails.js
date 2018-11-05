@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
-import DateInput from '../../../common/components/DateInput';
+import SingleDateInput from '../../../common/components/Dates/SingleDateInput';
 
 class TaskDetails extends Component {
     render() {
@@ -51,7 +51,7 @@ class TaskDetails extends Component {
                             {this.props.vocab.PROJECT.TASK_DUE_DATE}
                         </div>
                         { this.props.profile.roleID === 2
-                            ? <DateInput value={this.props.task.endDate}
+                            ? <SingleDateInput value={this.props.task.endDate}
                                 onChange={(event) => {
                                     this.props.actions.updateTask(
                                         this.props.task.id,

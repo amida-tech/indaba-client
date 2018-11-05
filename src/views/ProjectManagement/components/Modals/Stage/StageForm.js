@@ -5,8 +5,7 @@ import { compose } from 'redux';
 import {
     Field, Fields, reduxForm, form, formValueSelector,
 } from 'redux-form';
-
-import StageDateTime from './StageDateTime';
+import MultiDateInput from '../../../../../common/components/Dates/MultiDateInput';
 import StageSelect from './StageSelect';
 
 class StageForm extends Component {
@@ -71,7 +70,7 @@ class StageForm extends Component {
                         <div className='stage-form__date-input-div'>
                             <Fields
                                 names={['startDate', 'endDate']}
-                                component={StageDateTime} />
+                                component={MultiDateInput} />
                         </div>
                     </div>
                     <div className='stage-form__clear'></div>

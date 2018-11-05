@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import DateInput from '../../../../common/components/DateInput';
+import SingleDateInput from '../../../../common/components/Dates/SingleDateInput';
 import Time from '../../../../utils/Time';
 
 class Date extends Component {
@@ -19,7 +19,7 @@ class Date extends Component {
                             </div>
                             : this.props.vocab.SURVEY.NO_DATE_ENTERED
                     ))
-                    || <DateInput className='date__field'
+                    || <SingleDateInput className='date__field'
                         value={currentAnswer}
                         inline={true}
                         onChange={(date) => {
