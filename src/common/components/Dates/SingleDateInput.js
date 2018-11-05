@@ -17,9 +17,9 @@ class SingleDateInput extends Component {
         };
     }
 
-    onDateChange(event) {
-        this.props.onDateChange(event);
-        this.setState({ date: event });
+    onDateChange(date) {
+        this.props.onDateChange(date);
+        this.setState({ date });
     }
 
     onFocusChange(focused) {

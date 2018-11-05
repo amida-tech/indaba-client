@@ -13,9 +13,9 @@ class Date extends Component {
     }
 
     onDateChange(event) {
-        if (Time.validateTime(event.target.value)) {
+        if (Time.validateTime(event)) {
             this.props.upsertAnswer(
-                { dateValue: Time.renderForSurvey(event.target.value) },
+                { dateValue: Time.renderForSurvey(event) },
             );
         }
     }
@@ -26,7 +26,6 @@ class Date extends Component {
 
     render() {
         const currentAnswer = get(this.props, 'answer.dateValue', undefined);
-        console.log(currentAnswer);
         return (
             <div className='date'>
                 {
@@ -41,8 +40,7 @@ class Date extends Component {
                     || <SingleDateInput
                         value={currentAnswer}
                         onDateChange={this.onDateChange}
-                        focused={true}
-                        onFocusChange={this.onFocusChange} />
+                        id={`date_pick_question${this.props.id}`} />
                 }
             </div>
         );

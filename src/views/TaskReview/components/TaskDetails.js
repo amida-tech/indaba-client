@@ -9,7 +9,6 @@ class TaskDetails extends Component {
     constructor(props) {
         super(props);
         this.onDateChange = this.onDateChange.bind(this);
-        this.onFocusChange = this.onFocusChange.bind(this);
     }
 
     onDateChange(event) {
@@ -19,10 +18,6 @@ class TaskDetails extends Component {
             event,
             this.props.vocab.ERROR,
         );
-    }
-
-    onFocusChange() {
-        return true;
     }
 
     render() {
