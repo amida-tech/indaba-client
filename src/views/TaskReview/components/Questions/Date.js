@@ -6,8 +6,27 @@ import SingleDateInput from '../../../../common/components/Dates/SingleDateInput
 import Time from '../../../../utils/Time';
 
 class Date extends Component {
+    constructor(props) {
+        super(props);
+        this.onDateChange = this.onDateChange.bind(this);
+        this.onFocusChange = this.onFocusChange.bind(this);
+    }
+
+    onDateChange(event) {
+        if (Time.validateTime(event.target.value)) {
+            this.props.upsertAnswer(
+                { dateValue: Time.renderForSurvey(event.target.value) },
+            );
+        }
+    }
+
+    onFocusChange() {
+        return true;
+    }
+
     render() {
         const currentAnswer = get(this.props, 'answer.dateValue', undefined);
+        console.log(currentAnswer);
         return (
             <div className='date'>
                 {
@@ -19,16 +38,11 @@ class Date extends Component {
                             </div>
                             : this.props.vocab.SURVEY.NO_DATE_ENTERED
                     ))
-                    || <SingleDateInput className='date__field'
+                    || <SingleDateInput
                         value={currentAnswer}
-                        inline={true}
-                        onChange={(date) => {
-                            if (Time.validateTime(date)) {
-                                this.props.upsertAnswer(
-                                    { dateValue: Time.renderForSurvey(date) },
-                                );
-                            }
-                        }} />
+                        onDateChange={this.onDateChange}
+                        focused={true}
+                        onFocusChange={this.onFocusChange} />
                 }
             </div>
         );
