@@ -52,7 +52,6 @@
 @import './icons.scss';
 @import './user-status.scss';
 @import './validated-text-input.scss';
-@import './dateinput.scss';
 @import './tabs.scss';
 @import './tab.scss';
 @import './app.scss';
@@ -156,3 +155,5 @@
 @import './activate/activate-form.scss';
 // Reset Password
 @import './resetpassword/reset-password-form.scss';
+// Common
+@import './common/react-dates-override.scss';

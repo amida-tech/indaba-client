@@ -45,18 +45,16 @@ class MultiDateInput extends Component {
 
     render() {
         return (
-            <div className='date-input'>
-                <DateRangePicker
-                    startDate={this.state.startDate}
-                    startDateId='startDate'
-                    endDate={this.state.endDate}
-                    endDateId='endDate'
-                    isOutsideRange={this.pastDates}
-                    onDatesChange={this.onDatesChanged}
-                    focusedInput={this.state.focusedInput}
-                    onFocusChange={this.onChangeFocusedInput}
-                />
-            </div>
+            <DateRangePicker
+                startDate={this.state.startDate}
+                startDateId='startDate'
+                endDate={this.state.endDate}
+                endDateId='endDate'
+                isOutsideRange={this.pastDates}
+                onDatesChange={this.onDatesChanged}
+                focusedInput={this.state.focusedInput}
+                onFocusChange={this.onChangeFocusedInput}
+            />
         );
     }
 }

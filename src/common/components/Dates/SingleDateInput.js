@@ -28,16 +28,14 @@ class SingleDateInput extends Component {
 
     render() {
         return (
-            <div className='date-input'>
-                <SingleDatePicker
-                    date={this.state.date}
-                    onDateChange={this.onDateChange}
-                    focused={this.state.focused}
-                    onFocusChange={this.onFocusChange}
-                    numberOfMonths={1}
-                    id={this.props.id}
-                />
-            </div>
+            <SingleDatePicker
+                date={this.state.date}
+                onDateChange={this.onDateChange}
+                focused={this.state.focused}
+                onFocusChange={this.onFocusChange}
+                numberOfMonths={1}
+                id={this.props.id}
+            />
         );
     }
 }
