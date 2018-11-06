@@ -2,10 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import DateInput from '../../../../common/components/DateInput';
+import SingleDateInput from '../../../../common/components/Dates/SingleDateInput';
 import Time from '../../../../utils/Time';
 
 class Date extends Component {
+    constructor(props) {
+        super(props);
+        this.onDateChange = this.onDateChange.bind(this);
+        this.onFocusChange = this.onFocusChange.bind(this);
+    }
+
+    onDateChange(event) {
+        if (Time.validateTime(event)) {
+            this.props.upsertAnswer(
+                { dateValue: Time.renderForSurvey(event) },
+            );
+        }
+    }
+
+    onFocusChange() {
+        return true;
+    }
+
     render() {
         const currentAnswer = get(this.props, 'answer.dateValue', undefined);
         return (
@@ -19,16 +37,10 @@ class Date extends Component {
                             </div>
                             : this.props.vocab.SURVEY.NO_DATE_ENTERED
                     ))
-                    || <DateInput className='date__field'
+                    || <SingleDateInput
                         value={currentAnswer}
-                        inline={true}
-                        onChange={(date) => {
-                            if (Time.validateTime(date)) {
-                                this.props.upsertAnswer(
-                                    { dateValue: Time.renderForSurvey(date) },
-                                );
-                            }
-                        }} />
+                        onDateChange={this.onDateChange}
+                        id={`date_pick_question${this.props.id}`} />
                 }
             </div>
         );

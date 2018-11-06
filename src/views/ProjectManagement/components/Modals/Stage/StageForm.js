@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
-    Field, reduxForm, form, formValueSelector,
+    Field, Fields, reduxForm, form, formValueSelector,
 } from 'redux-form';
-
-import StageDateTime from './StageDateTime';
+import MultiDateInput from '../../../../../common/components/Dates/MultiDateInput';
 import StageSelect from './StageSelect';
 
 class StageForm extends Component {
@@ -68,30 +67,13 @@ class StageForm extends Component {
                         <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                         </label>
-                    </div>
-                    <div className='stage-form__select'>
-                        <div className='stage-form__select-start'>
-                            <label className='stage-form__select-start-label'>
-                                {this.props.vocab.PROJECT.START_DATE}</label>
-                            <div className='stage-form__date-input-div'>
-                                <Field
-                                    id='StartDate'
-                                    name='startDate'
-                                    component={StageDateTime} />
-                            </div>
+                        <div className='stage-form__date-input-div'>
+                            <Fields
+                                names={['startDate', 'endDate']}
+                                component={MultiDateInput} />
                         </div>
-                        <div className='stage-form__select-end'>
-                            <label className='stage-form__select-end-label'>
-                                {this.props.vocab.PROJECT.END_DATE}</label>
-                            <div className='stage-form__date-input-div'>
-                                <Field
-                                    id='endDate'
-                                    name='endDate'
-                                    component={StageDateTime} />
-                            </div>
-                        </div>
-                        <div className='stage-form__clear'></div>
                     </div>
+                    <div className='stage-form__clear'></div>
                 </div>
             </form>
         );

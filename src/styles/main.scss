@@ -52,7 +52,6 @@
 @import './icons.scss';
 @import './user-status.scss';
 @import './validated-text-input.scss';
-@import './dateinput.scss';
 @import './tabs.scss';
 @import './tab.scss';
 @import './app.scss';
@@ -89,7 +88,6 @@
 @import './modals/task-options-form.scss';
 @import './modals/subject/subject-form.scss';
 @import './modals/stage/stage-form.scss';
-@import './modals/stage/stage-date-time.scss';
 @import './modals/survey/project-status-form.scss';
 @import './modals/survey/survey-status-form.scss';
 @import './modals/title-form.scss';
@@ -157,3 +155,5 @@
 @import './activate/activate-form.scss';
 // Reset Password
 @import './resetpassword/reset-password-form.scss';
+// Common
+@import './common/react-dates-override.scss';

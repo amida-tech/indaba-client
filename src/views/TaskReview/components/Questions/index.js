@@ -40,6 +40,7 @@ class Questions extends Component {
             QuestionType = (<Date
                 {...this.props}
                 upsertAnswer={upsertAnswer}
+                id={this.props.id}
                 answer={value ? value.answer : undefined} />);
             break;
         case 'choice':

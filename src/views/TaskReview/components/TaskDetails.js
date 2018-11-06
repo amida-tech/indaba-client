@@ -3,9 +3,23 @@ import PropTypes from 'prop-types';
 
 import Time from '../../../utils/Time';
 import { renderName } from '../../../utils/User';
-import DateInput from '../../../common/components/DateInput';
+import SingleDateInput from '../../../common/components/Dates/SingleDateInput';
 
 class TaskDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.onDateChange = this.onDateChange.bind(this);
+    }
+
+    onDateChange(event) {
+        this.props.actions.updateTask(
+            this.props.task.id,
+            this.props.task.userIds,
+            event,
+            this.props.vocab.ERROR,
+        );
+    }
+
     render() {
         return (
             <div className='task-details'>
@@ -50,16 +64,11 @@ class TaskDetails extends Component {
                         <div className='task-details__info-box-label'>
                             {this.props.vocab.PROJECT.TASK_DUE_DATE}
                         </div>
-                        { this.props.profile.roleID === 2
-                            ? <DateInput value={this.props.task.endDate}
-                                onChange={(event) => {
-                                    this.props.actions.updateTask(
-                                        this.props.task.id,
-                                        this.props.task.userIds,
-                                        event,
-                                        this.props.vocab.ERROR,
-                                    );
-                                }} />
+                        { (this.props.profile.roleID === 2 && this.props.task.endDate)
+                            ? <SingleDateInput
+                                value={this.props.task.endDate}
+                                onDateChange={this.onDateChange}
+                                id='task-details-date-pick' />
                             : <div className='task-details__info-box-title'>
                                 {Time.renderCommon(this.props.task.endDate)}
                             </div>

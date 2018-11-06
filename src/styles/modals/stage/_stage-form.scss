@@ -84,21 +84,6 @@ $block-class:'stage-form';
             justify-content: space-between;
         }
 
-        &__select-start-label {
-            @extend .small-font;
-
-            color: $form-text;
-            margin-left: 16px;
-        }
-
-        &__select-end-label {
-            @extend .small-font;
-
-            color: $form-text;
-            margin-right: 60px;
-            margin-left: 16px;
-        }
-
         &__clear {
             clear: both;
         }
