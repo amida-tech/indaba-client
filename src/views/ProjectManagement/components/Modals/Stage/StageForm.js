@@ -5,8 +5,8 @@ import { compose } from 'redux';
 import {
     Field, Fields, reduxForm, form, formValueSelector,
 } from 'redux-form';
-// import Element from 'react-scroll/modules/components/Element';
-import { animateScroll, Element } from 'react-scroll';
+import Element from 'react-scroll/modules/components/Element';
+import scroller from 'react-scroll/modules/mixins/scroller';
 import MultiDateInput from '../../../../../common/components/Dates/MultiDateInput';
 import StageSelect from './StageSelect';
 
@@ -17,14 +17,10 @@ class StageForm extends Component {
     }
 
     onDateClick() {
-        animateScroll.scrollToBottom();
-        // setTimeout(() => {
-        //     console.log('Go!');
-        //     scroll.scrollToBottom({
-        //         smooth: true,
-        //         containerId: 'stage-form',
-        //     });
-        // }, 1000);
+        scroller.scrollTo('stage-form__date', {
+            smooth: true,
+            containerId: '-535349499', // Due to grommet, which has to go.
+        });
     }
 
     render() {
