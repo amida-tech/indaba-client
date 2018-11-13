@@ -4,7 +4,6 @@ import {
     find, get, has, merge, omit,
 } from 'lodash';
 import DateTime from 'grommet/components/DateTime';
-
 import FileForm from './FileForm';
 import FilePane from './FilePane';
 import Bullet from './Bullet';
@@ -196,6 +195,7 @@ Questions.propTypes = {
     common: PropTypes.bool,
     text: PropTypes.string.isRequired,
     choices: PropTypes.array,
+    questionIndex: PropTypes.number,
 };
 
 export default Questions;

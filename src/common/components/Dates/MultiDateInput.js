@@ -68,6 +68,8 @@ MultiDateInput.propTypes = {
         PropTypes.string,
         PropTypes.object,
     ]),
+    scrollTarget: PropTypes.string,
+    containerId: PropTypes.string,
 };
 
 export default enhanceWithClickOutside(MultiDateInput);
