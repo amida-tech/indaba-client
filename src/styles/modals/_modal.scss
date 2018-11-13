@@ -7,6 +7,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
     .grommetux-layer .grommetux-layer__container {
         display: block;
         flex-direction: none;
+        overflow: initial;
     }
 
     .#{$block-class} {

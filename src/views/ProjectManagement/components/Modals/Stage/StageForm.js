@@ -19,7 +19,7 @@ class StageForm extends Component {
     onDateClick() {
         scroller.scrollTo('stage-form__date', {
             smooth: true,
-            containerId: '-535349499', // Due to grommet, which has to go.
+            containerId: 'modal-c',
         });
     }
 

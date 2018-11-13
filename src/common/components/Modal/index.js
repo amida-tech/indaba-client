@@ -12,6 +12,7 @@ class Modal extends Component {
             <Layer align='top'
                 closer={false}
                 flush={true}
+                id='modal-c'
                 onClose={this.props.onCancel}>
                 <div className={`modal-c ${this.props.class || ''}`}>
                     {
