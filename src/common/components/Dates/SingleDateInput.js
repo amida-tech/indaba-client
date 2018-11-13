@@ -26,7 +26,7 @@ class SingleDateInput extends Component {
 
     onFocusChange(focused) {
         this.setState(focused);
-        if (this.props.scrollTarget) {
+        if (this.props.scrollTarget && focused.focused) {
             scroller.scrollTo(this.props.scrollTarget, {
                 smooth: true,
                 containerId: get(this.props, 'containerId', 'task-review__details-and-survey'),

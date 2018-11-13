@@ -5,24 +5,10 @@ import { compose } from 'redux';
 import {
     Field, Fields, reduxForm, form, formValueSelector,
 } from 'redux-form';
-import Element from 'react-scroll/modules/components/Element';
-import scroller from 'react-scroll/modules/mixins/scroller';
 import MultiDateInput from '../../../../../common/components/Dates/MultiDateInput';
 import StageSelect from './StageSelect';
 
 class StageForm extends Component {
-    constructor(props) {
-        super(props);
-        this.onDateClick = this.onDateClick.bind(this);
-    }
-
-    onDateClick() {
-        scroller.scrollTo('stage-form__date', {
-            smooth: true,
-            containerId: 'modal-c',
-        });
-    }
-
     render() {
         return (
             <form className='stage-form'
@@ -56,7 +42,6 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
-
                     <div className='stage-form__activities'>
                         <label className='stage-form__activities-label'>
                             {this.props.vocab.PROJECT.PERMISSIONS}
@@ -79,9 +64,8 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                     </div>
                     <hr className='stage-form__divider'/>
-                    <Element className='stage-form__date'
-                        name='stage-form__date'
-                        onClick={this.onDateClick}>
+                    <div className='stage-form__date'
+                        name='stage-form__date'>
                         <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                         </label>
@@ -90,7 +74,7 @@ class StageForm extends Component {
                                 names={['startDate', 'endDate']}
                                 component={MultiDateInput} />
                         </div>
-                    </Element>
+                    </div>
                     <div className='stage-form__clear'></div>
                 </div>
             </form>
