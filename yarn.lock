@@ -8192,7 +8192,7 @@ react-cookies@^0.1.0:
     cookie "^0.3.1"
     object-assign "^4.1.1"
 
-react-dates@^18.1.0:
+react-dates@18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-18.1.0.tgz#85deabb78ae13aff833355d2f35dc5db922dd79c"
   dependencies:
