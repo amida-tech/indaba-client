@@ -120,7 +120,7 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
         userIds,
         endDate,
     }, identity);
-    
+
     if (requestBody.endDate !== undefined) {
         if (moment.isMoment(requestBody.endDate)) {
             requestBody.endDate = requestBody.endDate.endOf('day');
