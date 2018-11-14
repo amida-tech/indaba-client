@@ -48,6 +48,7 @@ class SingleDateInput extends Component {
                 onFocusChange={this.onFocusChange}
                 numberOfMonths={1}
                 id={this.props.id}
+                hideKeyboardShortcutsPanel={true}
             />
         );
     }

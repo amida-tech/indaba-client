@@ -59,6 +59,7 @@ class MultiDateInput extends Component {
                 onDatesChange={this.onDatesChanged}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={this.onChangeFocusedInput}
+                hideKeyboardShortcutsPanel={true}
             />
         );
     }
