@@ -313,7 +313,9 @@
         "ANSWERED": "Answered",
         "TASK": "Task",
         "WIZARD_COMPLETE": "Indaba lets Project Managers determine which users participate in a particular stage. Stage dates ensure users access the survey in the correct order, at the correct time.",
-        "NO_PROJECTS": "Please click the Create button to begin a new project."
+        "NO_PROJECTS": "Please click the Create button to begin a new project.",
+        "WIZARD_INSTRUCTIONS": "You can publish a survey or activate a project once you've completed the wizard.",
+        "SURVEY_DRAFT_INSTRUCTIONS": "You cannot make the survey a draft if the project is active. Please deactivate the project."
     },
     "MESSAGES": {
         "TO_REQUIRED": "One or more recipients must be added",
