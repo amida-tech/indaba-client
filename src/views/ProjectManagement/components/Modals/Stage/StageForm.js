@@ -11,7 +11,9 @@ import StageSelect from './StageSelect';
 class StageForm extends Component {
     render() {
         return (
-            <form className='stage-form' onSubmit={this.props.handleSubmit}>
+            <form className='stage-form'
+                onSubmit={this.props.handleSubmit}
+                id='stage-form'>
                 <div>
                     <div className='stage-form__title'>
                         <label className='stage-form__title-label'>
@@ -40,7 +42,6 @@ class StageForm extends Component {
                                 assignGroups={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS} />
                         </div>
                     </div>
-
                     <div className='stage-form__activities'>
                         <label className='stage-form__activities-label'>
                             {this.props.vocab.PROJECT.PERMISSIONS}
@@ -63,7 +64,8 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                     </div>
                     <hr className='stage-form__divider'/>
-                    <div className='stage-form__date'>
+                    <div className='stage-form__date'
+                        name='stage-form__date'>
                         <label className='stage-form__date-label'>
                             {this.props.vocab.PROJECT.DATE_RANGE}
                         </label>

@@ -42,6 +42,7 @@ class QuestionContainer extends Component {
                     <Questions className='question-container__questions'
                         {...this.props.question}
                         assessmentId={this.props.task.assessmentId}
+                        questionIndex={this.props.questionIndex + this.props.offset}
                         answers={this.props.answers}
                         fileEntryMode={!this.props.stage.discussionParticipation}
                         displayMode={this.props.taskDisabled || this.props.stage.blindReview

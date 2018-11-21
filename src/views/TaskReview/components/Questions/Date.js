@@ -40,7 +40,8 @@ class Date extends Component {
                     || <SingleDateInput
                         value={currentAnswer}
                         onDateChange={this.onDateChange}
-                        id={`date_pick_question${this.props.id}`} />
+                        id={`date_pick_question${this.props.id}`}
+                        scrollTarget={`question${this.props.questionIndex}`} />
                 }
             </div>
         );
@@ -51,6 +52,7 @@ Date.propTypes = {
     answer: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     assessmentId: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    questionIndex: PropTypes.number.isRequired,
     text: PropTypes.string,
     type: PropTypes.string.isRequired,
     displayMode: PropTypes.bool,

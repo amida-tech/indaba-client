@@ -4,6 +4,7 @@ import moment from 'moment';
 import { get } from 'lodash';
 import enhanceWithClickOutside from 'react-click-outside';
 import 'react-dates/initialize';
+import scroller from 'react-scroll/modules/mixins/scroller';
 import { DateRangePicker } from 'react-dates';
 
 class MultiDateInput extends Component {
@@ -21,6 +22,10 @@ class MultiDateInput extends Component {
 
     onChangeFocusedInput(focusedInput) {
         this.setState({ focusedInput });
+        scroller.scrollTo(this.props.scrollTarget, {
+            smooth: true,
+            containerId: this.props.containerId,
+        });
     }
 
     onDatesChanged(selectedDates) {
@@ -54,6 +59,7 @@ class MultiDateInput extends Component {
                 onDatesChange={this.onDatesChanged}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={this.onChangeFocusedInput}
+                hideKeyboardShortcutsPanel={true}
             />
         );
     }
@@ -68,6 +74,13 @@ MultiDateInput.propTypes = {
         PropTypes.string,
         PropTypes.object,
     ]),
+    scrollTarget: PropTypes.string,
+    containerId: PropTypes.string,
+};
+
+MultiDateInput.defaultProps = {
+    scrollTarget: 'stage-form__date',
+    containerId: 'modal-c',
 };
 
 export default enhanceWithClickOutside(MultiDateInput);
