@@ -8,7 +8,7 @@ class FlagCount extends Component {
         return (
             <div className='flag-count'>
                 <IonIcon icon='ion-ios-flag'
-                    className='flag-count__icon'/>
+                    className={`flag-count__icon${this.props.flagHistory ? '--history' : ''}`}/>
                 {this.props.value > 0
                         && <div className='flag-count__value'>
                             {this.props.value}
@@ -21,6 +21,7 @@ class FlagCount extends Component {
 
 FlagCount.propTypes = {
     value: PropTypes.number.isRequired,
+    flagHistory: PropTypes.bool,
 };
 
 export default FlagCount;

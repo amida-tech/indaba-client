@@ -8,6 +8,12 @@ $block-class: 'flag-count';
             position: absolute;
 
             @extend .primary-icon;
+
+            &--history {
+                fill: $brand-color;
+
+                @extend .primary-icon;
+            }
         }
 
         &__value {
