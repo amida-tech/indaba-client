@@ -139,6 +139,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         due: task.endDate,
         survey: survey ? survey.name : '',
         flags: task.flagCount,
+        flagHistory: task.flagHistory || false,
         progress: `${answered}/${surveyLength} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
         activity: renderPermissions(stage),
         new: get(answers, 'status') === 'new',
