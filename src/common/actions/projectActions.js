@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { get } from 'lodash';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
@@ -28,7 +29,10 @@ export function postProject(requestBody, errorMessages) {
             return projectResp;
         })
         .catch((projectErr) => {
-            dispatch(_reportProjectError(projectErr, errorMessages.DUPLICATE_PROJECT_NAME));
+            const displayMessage = get(projectErr, 'body.e') === 403
+                ? errorMessages.DUPLICATE_PROJECT_NAME
+                : errorMessages.PROJECT_REQUEST;
+            dispatch(_reportProjectError(projectErr, displayMessage));
             throw projectErr;
         });
 }
