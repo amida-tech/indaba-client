@@ -24,10 +24,11 @@ export function postProject(requestBody, errorMessages) {
     return dispatch => apiService.projects.postProject(requestBody)
         .then((projectResp) => {
             dispatch(_postProjectSuccess(projectResp));
+            dispatch(_clearProjectError());
             return projectResp;
         })
         .catch((projectErr) => {
-            dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+            dispatch(_reportProjectError(projectErr, errorMessages.DUPLICATE_PROJECT_NAME));
             throw projectErr;
         });
 }
@@ -326,6 +327,12 @@ function _deleteProjectUserSuccess(userId, projectId) {
         type: actionTypes.DELETE_PROJECT_USER_SUCCESS,
         userId,
         projectId,
+    };
+}
+
+function _clearProjectError() {
+    return {
+        type: actionTypes.CLEAR_PROJECT_ERROR,
     };
 }
 

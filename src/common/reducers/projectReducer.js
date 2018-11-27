@@ -157,6 +157,8 @@ export const ProjectReducer = (state = initialState, action) => {
         });
     case type.REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
+    case type.CLEAR_PROJECT_ERROR:
+        return update(state, { ui: { errorMessage: { $set: '' } } });
     case LOG_OUT:
         return initialState;
     default:

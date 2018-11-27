@@ -13,6 +13,16 @@ $block-class: 'new-project-title-form';
             flex-direction: column;
         }
 
+        &__instructions {
+            margin-bottom: 12px;
+        }
+
+        &__error {
+            color: red;
+            margin-top: 5px;
+            min-height: 20px;
+        }
+
         &__summary-container {
             padding-bottom: 0.5em;
         }
