@@ -31,11 +31,11 @@ class UserDashboard extends Component {
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_TASKS:
-            return true;
+            return !row.complete;
         case FILTERS.NEW_TASKS:
             return row.new;
         case FILTERS.LATE_TASKS:
-            return row.late;
+            return !row.complete && row.late;
         case FILTERS.DUE_TODAY:
             return Time.isToday(row.due) && !row.complete;
         case FILTERS.FLAGS:
