@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
 import { required } from '../../../common/validation';
@@ -9,6 +10,9 @@ class NewProjectTitleForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit}
                 className='new-project-title-form'>
+                <div className='new-project-title-form__instructions'>
+                    {this.props.vocab.PROJECT.TITLE_INSTRUCTIONS}
+                </div>
                 <div className='new-project-title-form__field'>
                     <Field component={ValidatedTextInput}
                         name='project.codeName'
@@ -23,20 +27,18 @@ class NewProjectTitleForm extends Component {
                         placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
                         validate={[required]} />
                 </div>
-                <div className='new-project-title-form__summary-container'>
-                    <Field component='textarea'
-                        name='project.description'
-                        placeholder={this.props.vocab.PROJECT.SUMMARY}
-                        className='new-project-title-form__summary' />
+                <div className='new-project-title-form__error'>
+                    {this.props.errorMessage}
                 </div>
-                {this.props.errorMessage
-                    && <div className='new-project-title-form__error'>
-                        {this.props.errorMessage}
-                    </div>
-                }
             </form>
         );
     }
 }
+
+NewProjectTitleForm.propTypes = {
+    vocab: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+};
 
 export default reduxForm({ form: 'new-project-title-form' })(NewProjectTitleForm);

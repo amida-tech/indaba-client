@@ -170,7 +170,7 @@ class CreateProjectWizard extends Component {
                         ? this.handleSkip : undefined}
                     step={this.props.ui.step}
                     onCancel={this.handleCancel}
-                    onContinue={ this.handleContinue } />
+                    onContinue={this.handleContinue} />
             </div>
             : <div className='project-wizard project-wizard--complete'>
                 <WizardComplete

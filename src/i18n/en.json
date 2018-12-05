@@ -104,6 +104,7 @@
         "DATA_REQUEST": "There has been a problem with downloading your data.",
         "PASSWORD_BLANK": "Please provide a valid password.",
         "FIRSTNAME_BLANK": "Please provide your first name.",
+        "DUPLICATE_PROJECT_NAME": "This name has already been used for another project. Please provide a unique project name.",
         "COMING_SOON": "Coming soon."
     },
     "ACTIVATE": {
@@ -190,8 +191,10 @@
         "SURVEY": "Survey",
         "TITLE": "Title",
         "SUBJECT": "Subject",
+        "CREATE_TITLES": "Project and Survey Titles",
         "PROJECT_TITLE": "Project Title",
         "SURVEY_TITLE": "Survey Title",
+        "TITLE_INSTRUCTIONS": "Please provide names for the project and survey. The project name must be unique, but you can change titles later.",
         "SUBJECT_NAME": "Subject Name",
         "STATUS": "Status",
         "SUMMARY": "Summary",
