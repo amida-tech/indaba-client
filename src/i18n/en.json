@@ -53,7 +53,8 @@
         "INVITED": "An invite has been sent to the user."
     },
     "ERROR": {
-        "DUPLICATE": "You have previously created a user with this email address. Please enter a unique email address for this user.",
+        "DUPLICATE_USER": "You have previously created a user with this email address. Please enter a unique email address for this user.",
+        "DUPLICATE_USER_GROUP": "Attempted to enter a duplicate value. Please enter a unique value instead.",
         "ALREADY_ASSIGNED": "The user is already assigned to this project.",
         "SERVER_ISSUE": "The server seems to be having some issues or is down. Please try again later.",
         "INVALID_LOGIN": "We weren't able to find your username or password.",

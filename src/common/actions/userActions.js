@@ -116,7 +116,7 @@ export function addNewUser(userData, projectId, orgId, toastMessages, errorMessa
                 if (errorCode === 409 && requestBody.projectId) {
                     toast(errorMessages.ALREADY_ASSIGNED);
                 } else if (errorCode === 409 || errorCode === 403) {
-                    toast(errorMessages.DUPLICATE);
+                    toast(errorMessages.DUPLICATE_USER);
                 }
                 dispatch(_reportUserError(userErr, errorMessages.USER_REQUEST));
             });
