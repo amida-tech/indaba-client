@@ -6,23 +6,33 @@ $block-class:'primary-nav';
 @at-root {
     .#{$block-class} {
         display: flex;
+        flex: auto;
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
+        padding-left: 5%;
+        padding-right: 5%;
         background-color: nth($brand-neutral-colors, 1);
         height: $primary-nav-height;
 
+        @media screen and (min-width: 768px){
+  article {
+    font-size: .5em;
+  }
+}
+
         &__left {
             display: flex;
-            align-items: center;
-            margin-left: 10%;
+            flex: auto;
+            align-items: baseline;
         }
 
         &__right {
             display: flex;
+            flex-basis: auto;
             align-items: baseline;
             flex-direction: row;
-            margin-right: 10%;
+            margin-left: auto;
         }
 
         &__indaba-logo {
@@ -34,16 +44,14 @@ $block-class:'primary-nav';
         }
 
         &__item-nav {
+            list-style-type: none;
             justify-content: space-between;
             align-items: center;
             color: $nav-text-color;
             font-size: 16px;
-            margin-left: 20px;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            padding-left: 8px;
-            padding-right: 8px;
             position: relative;
 
             &:hover {
