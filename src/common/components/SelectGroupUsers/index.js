@@ -105,7 +105,7 @@ class SelectGroupUsers extends Component {
                         const groupId = get(this.props, 'group.id', null);
                         const duplicates = filter(this.props.userGroups, group => group.title === this.state.groupTitle && group.id !== groupId);
                         if (duplicates.length > 0) {
-                            toast(this.props.vocab.ERROR.DUPLICATE);
+                            toast(this.props.vocab.ERROR.DUPLICATE_USER_GROUP);
                         } else {
                             this.props.onSave({
                                 title: this.state.groupTitle,
