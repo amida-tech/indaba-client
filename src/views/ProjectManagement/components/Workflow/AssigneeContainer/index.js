@@ -37,6 +37,7 @@ class AssigneeContainer extends Component {
     render() {
         const unassigned = this.props.project.users
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
+            .filter(user => user !== undefined)
             .filter(user => this.searchFilter(renderName(user)))
             .filter(user => this.groupFilter(user));
         const unassignedCards = unassigned.map((unassignee) => {
@@ -45,8 +46,7 @@ class AssigneeContainer extends Component {
                     key={unassignee.id}
                     actions={this.props.actions}
                     project={this.props.project}
-                    vocab={this.props.vocab}
-                >
+                    vocab={this.props.vocab}>
                     {unassignee}
                 </AssigneeCard>
             );
