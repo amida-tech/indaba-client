@@ -14,7 +14,10 @@ const auth = {
     },
     requestResetToken: (email) => {
         const path = `${rootURI}/auth/reset-password`;
-        const body = { email };
+        const body = {
+            email,
+            resetPageUrl: `${config.INDABA_CLIENT_URL}/reset-password`,
+        };
         return requests.apiAuthPostRequest(path, body);
     },
     resetPassword: (token, password) => {
