@@ -15,12 +15,6 @@ $block-class:'primary-nav';
         background-color: nth($brand-neutral-colors, 1);
         height: $primary-nav-height;
 
-        @media screen and (min-width: 768px){
-  article {
-    font-size: .5em;
-  }
-}
-
         &__left {
             display: flex;
             flex: auto;
