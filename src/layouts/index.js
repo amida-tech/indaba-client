@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import NavContainer from '../views/PrimaryNav';
 
 class Layout extends Component {
-
     render() {
         return (
-      <div>
-        <NavContainer {...this.props} />
-      </div>
+            <div>
+                <NavContainer {...this.props} />
+            </div>
         );
     }
 }
