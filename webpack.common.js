@@ -49,4 +49,9 @@ module.exports = {
         ScriptExtHtmlWebpackPluginConfig,
         new Dotenv(),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
 };
