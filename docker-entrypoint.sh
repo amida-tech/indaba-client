@@ -46,9 +46,4 @@ SET_COOKIE_HEADER_NGINX_DIRECTIVE="add_header Set-Cookie 'orangeClinicalConfig={
 
 echo $SET_COOKIE_HEADER_NGINX_DIRECTIVE >> /etc/nginx/indaba-client-nginx-set-header-directive.conf
 
-# Notes from Aaron, not sure if they apply here:
-# The default CMD in the nginx official Dockerfile is
-# CMD ["nginx", "-g", "daemon off;"]
-# Therefore, here, I need to run `nginx`, but the `-g "daemon off;" part
-# isn't working, so I just put that directive in the nginx.conf file`
-nginx
+nginx -g 'daemon off;'
