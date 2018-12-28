@@ -5,6 +5,7 @@ module.exports = {
         "react",
         "babel"
     ],
+    "parser":"babel-eslint" ,
     "rules": {
         "react/jsx-uses-vars": 1,
         "react/react-in-jsx-scope": 1,
@@ -20,9 +21,27 @@ module.exports = {
         "import/named":0,
         "max-len":0,
         "prefer-destructuring":0,
-        "prefer-promise-reject-errors":0
+        "prefer-promise-reject-errors":0,
+        "radix":0,
+        "consistent-return": 0,
+        "no-alert":0,
+        "func-names":0,
+        "no-unused-expressions": 0,
+        "no-named-as-default": 0,
+        "no-restricted-globals": 0,
+        "no-console": 0,
+        "no-param-reassign": 0,
+        "no-case-declarations": 0,
+        "default-case": 0,
+        "array-callback-return": 0,
+        "import/no-named-as-default": 0,
+        "no-shadow": 0,
+        "no-unused-vars":0,
+        "import/no-unresolved": 0,
+        "no-plusplus": 0
     },
     "parserOptions": {
+        "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {
           "jsx": true

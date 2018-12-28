@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-
 const StyleLintPluginConfig = new StyleLintPlugin({
     files: 'src/styles/**/*.scss',
 });
