@@ -42,6 +42,6 @@ SET_CONFIG="NODE_ENV=\"$NODE_ENV\";
     INDABA_CLIENT_DEFAULT_REALM=\"$INDABA_CLIENT_DEFAULT_REALM\";
     SYS_MESSAGE_USER=\"$SYS_MESSAGE_USER\";"
 
-echo $SET_CONFIG >> /usr/share/nginx/html/config.js
+echo $SET_CONFIG >> /usr/share/nginx/html/settings.js
 
 nginx -g 'daemon off;'

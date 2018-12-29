@@ -1,4 +1,3 @@
-console.log(window.INDABA_CLIENT_URL);
 export default {
     NODE_ENV: 'production',
     INDABA_CLIENT_URL: window.INDABA_CLIENT_URL || process.env.INDABA_CLIENT_URL,
