@@ -33,7 +33,7 @@ if [ -z ${SYS_MESSAGE_USER+x} ]
   then echo "Environment variable SYS_MESSAGE_USER is required, but it is not set. Exiting."; exit 1;
 fi
 
-SET_COOKIE_HEADER_NGINX_DIRECTIVE="add_header Set-Cookie 'orangeClinicalConfig={
+SET_COOKIE_HEADER_NGINX_DIRECTIVE="add_header Set-Cookie 'indabaConfig={
     \"NODE_ENV\":\""$NODE_ENV"\",
     \"INDABA_CLIENT_URL\":\""$INDABA_CLIENT_URL"\",
     \"GREYSCALE_URL\":\""$GREYSCALE_URL"\",
