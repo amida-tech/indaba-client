@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from 'grommet/components/Box';
 import _ from 'lodash';
 
 import TaskStatus from '../../../../utils/TaskStatus';
@@ -25,10 +24,7 @@ class StageSummary extends Component {
                 <div className='stage-summary__header'>
                     {this.props.stage.title}
                 </div>
-                <Box direction='row'
-                    justify='between'
-                    responsive={false}
-                    className='stage-summary__row'>
+                <div className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
                             {Time.renderCommon(this.props.stage.startDate)}
@@ -45,11 +41,8 @@ class StageSummary extends Component {
                             {this.props.vocab.STAGE.USER_GROUP}
                         </div>
                     </div>
-                </Box>
-                <Box direction='row'
-                    justify='between'
-                    responsive={false}
-                    className='stage-summary__row'>
+                </div>
+                <div className='stage-summary__row'>
                     <div className='stage-summary__left'>
                         <div className='stage-summary__value'>
                             {Time.renderCommon(this.props.stage.endDate)}
@@ -66,7 +59,7 @@ class StageSummary extends Component {
                             {this.props.vocab.STAGE.PERMISSIONS}
                         </div>
                     </div>
-                </Box>
+                </div>
             </div>
         );
     }
