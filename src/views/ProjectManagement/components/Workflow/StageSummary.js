@@ -19,7 +19,7 @@ class StageSummary extends Component {
         }
 
         return (
-            <div className='stage-summary'
+            <div className={`stage-summary stage-summary${this.props.fromWizard ? '--wizard' : ''}`}
                 onClick={this.props.onClick}>
                 <div className='stage-summary__header'>
                     {this.props.stage.title}
@@ -68,6 +68,7 @@ class StageSummary extends Component {
 StageSummary.propTypes = {
     vocab: PropTypes.object.isRequired,
     stage: PropTypes.object.isRequired,
+    fromWizard: PropTypes.boolean,
     userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
     onClick: PropTypes.func.isRequired,
 };
