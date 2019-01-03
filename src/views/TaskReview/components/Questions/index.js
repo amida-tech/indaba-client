@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
     find, get, has, merge, omit,
 } from 'lodash';
-import DateTime from 'grommet/components/DateTime';
 import FileForm from './FileForm';
 import FilePane from './FilePane';
 import Bullet from './Bullet';
@@ -15,10 +14,12 @@ import Integer from './Integer';
 import Scale from './Scale';
 import Text from './Text';
 import Time from '../../../../utils/Time';
+import SingleDatePicker from '../../../../common/components/Search';
 
 class Questions extends Component {
     render() {
         let QuestionType;
+        let readOnly;
         const value = find(this.props.answers, item => item.questionId === this.props.id);
         const upsertAnswer = newAnswer => this.props.actions.upsertAnswer(
             this.props.assessmentId,
@@ -162,26 +163,22 @@ class Questions extends Component {
                                         { publication: { author: event.target.value } }),
                                     this.props.vocab.ERROR,
                                 )} />
-                            { (noValue || this.props.displayMode)
-                                ? <input className='questions__date-disabled'
-                                    value={get(value, 'meta.publication.date', 'MM/DD/YYYY')}
-                                    disabled={true} />
-                                : <DateTime className='questions__date-input'
-                                    value={get(value, 'meta.publication.date', '')}
-                                    format='MM/DD/YYYY'
-                                    onChange={(event) => {
-                                        if (Time.validateTime(event)) {
-                                            this.props.actions.upsertAnswer(
-                                                this.props.assessmentId,
-                                                this.props.id,
-                                                value.answer,
-                                                merge(value.meta,
-                                                    { publication: { date: event } }),
-                                                this.props.vocab.ERROR,
-                                            );
-                                        }
-                                    }} />
-                            }
+                            <SingleDatePicker className='questions__date-input'
+                                value={get(value, 'meta.publication.date', '')}
+                                format='MM/DD/YYYY'
+                                disabled={(noValue || this.props.displayMode)}
+                                onDateChange={(event) => {
+                                    if (Time.validateTime(event)) {
+                                        this.props.actions.upsertAnswer(
+                                            this.props.assessmentId,
+                                            this.props.id,
+                                            value.answer,
+                                            merge(value.meta,
+                                                { publication: { date: event } }),
+                                            this.props.vocab.ERROR,
+                                        );
+                                    }
+                                }} />
                         </div>
                     </div>
                 }
