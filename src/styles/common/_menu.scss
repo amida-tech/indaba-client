@@ -1,0 +1,33 @@
+$block-class: 'menu';
+
+@at-root {
+    .#{$block-class} {
+        &__icon {
+            @extend .x-small-icon;
+            fill: $lead-font-color;
+        }
+
+        &__insert-label {
+            padding: 0.5em;
+            font-size: 12px;
+        }
+
+        &__options {
+            border-style: solid;
+            border-color: $border-color;
+            border-width: 1px;
+            border-radius: 2px;
+        }
+
+        &__button {
+            border-bottom: 2px solid $border-color;
+            padding: 0.5em;
+            color: $lead-font-color;
+            font-size: 14px;
+
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+}

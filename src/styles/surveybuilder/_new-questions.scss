@@ -13,33 +13,6 @@ $block-class: 'new-questions';
             align-items: center;
         }
 
-        &__icon {
-            @extend .x-small-icon;
-        }
-
-        &__insert-label {
-            padding: 0.5em;
-            font-size: 12px;
-        }
-
-        &__menu-dropdown {
-            border-style: solid;
-            border-color: $border-color;
-            border-width: 1px;
-            border-radius: 2px;
-        }
-
-        &__menu-button {
-            border-bottom: 2px solid $border-color;
-            padding: 0.5em;
-            color: $lead-font-color;
-            font-size: 14px;
-
-            &:hover {
-                color: #333;
-            }
-        }
-
         &__masked-button {
             background-color: Transparent;
             border: none;
