@@ -40,7 +40,7 @@ class NewQuestions extends Component {
                                     vocab={this.props.vocab}
                                     options={this.props.options}
                                     type={type}
-                                    handleInsert={this.handleInsert} />
+                                    handleOptionSelection={this.handleInsert} />
                                 : <button className='new-questions__masked-button'
                                     onClick={() => this.handleInsert(type, this.props.sectionView)}>
                                     <IonIcon icon='ion-ios-plus'

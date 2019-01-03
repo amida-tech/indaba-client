@@ -10,39 +10,44 @@ class Menu extends Component {
         }
         this.openMenu = this.openMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     openMenu(event) {
         event.preventDefault();
-        this.setState({
-            showMenu: true,
+        this.setState({ showMenu: true }, () => {
+            document.addEventListener('click', this.closeMenu);
         });
     }
 
     closeMenu() {
         this.setState({ showMenu: false }, () => {
-            console.log('replication?');
             document.removeEventListener('click', this.closeMenu);
         });
     }
 
+    handleClick(event) {
+        this.props.handleOptionSelection(this.props.type, event.target.value);
+    }
+
     render() {
         return (
-            <div className='menu'>
+            <div className='menu'
+                onClick={this.openMenu}>
                 <IonIcon icon='ion-ios-plus'
-                    className='menu__icon'
-                    onClick={this.openMenu}/>
+                    className='menu__icon'/>
                 { this.state.showMenu ? (
                     <div className='menu__dropdown'>
                         <span className='menu__insert-label'>
                             {this.props.vocab.SURVEY.INSERT_INTO}
                         </span>
                         <div className='menu__options'>
-                            {this.props.options.map(option => <div className='menu__button'
+                            {this.props.options.map(option => <button className='menu__button'
                                 key={`question-menu${this.props.type}${option.value}`}
-                                onClick={this.props.handleInsert(this.props.type, option.value)}>
+                                value={option.value}
+                                onClick={this.handleClick}>
                                 {option.label}
-                            </div>)}
+                            </button>)}
                         </div>
                     </div>
                     ) : (null)
@@ -56,7 +61,7 @@ Menu.propTypes = {
     vocab: PropTypes.object.isRequired,
     options: PropTypes.arrayOf(PropTypes.object).isRequired,
     type: PropTypes.string.isRequired,
-    handleInsert: PropTypes.func.isRequired,
+    handleOptionSelection: PropTypes.func.isRequired,
 };
 
 export default Menu;

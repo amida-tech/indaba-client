@@ -4,6 +4,7 @@ $block-class: 'menu';
     .#{$block-class} {
         &__icon {
             @extend .x-small-icon;
+
             fill: $lead-font-color;
         }
 
@@ -13,6 +14,8 @@ $block-class: 'menu';
         }
 
         &__options {
+            display: flex;
+            flex-direction: column;
             border-style: solid;
             border-color: $border-color;
             border-width: 1px;
