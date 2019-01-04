@@ -45,6 +45,7 @@ class SingleDateInput extends Component {
                 isOutsideRange={this.pastDates}
                 onDateChange={this.onDateChange}
                 focused={this.state.focused}
+                displayFormat="MM/DD/YYYY"
                 onFocusChange={this.onFocusChange}
                 numberOfMonths={1}
                 id={this.props.id}
