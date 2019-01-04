@@ -14,7 +14,7 @@ import Integer from './Integer';
 import Scale from './Scale';
 import Text from './Text';
 import Time from '../../../../utils/Time';
-import SingleDatePicker from '../../../../common/components/Search';
+import SingleDatePicker from '../../../../common/components/Dates/SingleDateInput';
 
 class Questions extends Component {
     render() {
