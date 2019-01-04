@@ -7,8 +7,7 @@ $block-class: 'select-group-users';
         flex-direction: column;
         color: $header-font-color;
 
-        &__group-name-input,
-        .grommet &__group-name-input:not(.grommetux-input) {
+        &__group-name-input {
             margin: 1em;
         }
 
