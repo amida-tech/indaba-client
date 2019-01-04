@@ -6,7 +6,9 @@ import { submit } from 'redux-form';
 
 import * as actions from '../../../common/actions/userActions';
 import ProfileForm from './ProfileForm';
-import ResetPasswordPanel from './ResetPasswordPanel';
+
+//TODO: Change reset password from a single button to a "change password" field.
+// import ResetPasswordPanel from './ResetPasswordPanel';
 
 class ProfileContainer extends Component {
     render() {
@@ -22,7 +24,7 @@ class ProfileContainer extends Component {
                             this.props.vocab.ERROR,
                         );
                     }} />
-                <ResetPasswordPanel {...this.props} />
+                {/* <ResetPasswordPanel {...this.props} /> */}
             </div>
         );
     }
