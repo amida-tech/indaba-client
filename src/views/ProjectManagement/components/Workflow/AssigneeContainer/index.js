@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Box from 'grommet/components/Box';
 import PropTypes from 'prop-types';
 
 import AssigneeCard from './AssigneeCard';
@@ -56,8 +55,7 @@ class AssigneeContainer extends Component {
         groupFilters.push({ label: this.props.vocab.COMMON.ALL, value: null });
 
         return (
-            <Box appCentered={false}
-                separator='all'>
+            <div className='assignee-container'>
                 <UserSidebar
                     groupFilters={groupFilters}
                     unassignedCards={unassignedCards}
@@ -75,7 +73,7 @@ class AssigneeContainer extends Component {
                         this.props.vocab.ERROR,
                     )}
                 />
-            </Box>
+            </div>
         );
     }
 }

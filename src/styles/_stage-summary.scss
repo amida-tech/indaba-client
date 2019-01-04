@@ -5,6 +5,10 @@ $block-class:'stage-summary';
         display: flex;
         flex-direction: column;
 
+        &--wizard {
+            border-right: 1px solid $border-color;
+        }
+
         &__header {
             font-size: 18px;
             font-weight: 400;
