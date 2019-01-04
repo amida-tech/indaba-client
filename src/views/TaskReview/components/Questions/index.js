@@ -163,7 +163,9 @@ class Questions extends Component {
                                     this.props.vocab.ERROR,
                                 )} />
                             <SingleDatePicker className='questions__date-input'
-                                value={get(value, 'meta.publication.date', '')}
+                                value={get(value, 'meta.publication.date')}
+                                align='right'
+                                placeholder={this.props.vocab.COMMON.ENTER_DATE}
                                 disabled={(noValue || this.props.displayMode)}
                                 onDateChange={(event) => {
                                     if (Time.validateTime(event)) {
@@ -186,6 +188,7 @@ class Questions extends Component {
 }
 
 Questions.propTypes = {
+    vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     common: PropTypes.bool,
     text: PropTypes.string.isRequired,

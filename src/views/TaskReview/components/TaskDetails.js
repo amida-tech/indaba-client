@@ -67,6 +67,7 @@ class TaskDetails extends Component {
                         { (this.props.profile.roleID === 2 && this.props.task.endDate)
                             ? <SingleDateInput
                                 value={this.props.task.endDate}
+                                placeholder={this.props.vocab.COMMON.ENTER_DATE}
                                 onDateChange={this.onDateChange}
                                 id='task-details-date-pick' />
                             : <div className='task-details__info-box-title'>

@@ -30,6 +30,7 @@ class Date extends Component {
             <div className='date'>
                 <SingleDateInput
                     value={currentAnswer}
+                    placeholder={this.props.vocab.COMMON.ENTER_DATE}
                     onDateChange={this.onDateChange}
                     id={`date_pick_question${this.props.id}`}
                     scrollTarget={`question${this.props.questionIndex}`}
