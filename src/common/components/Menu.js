@@ -27,7 +27,11 @@ class Menu extends Component {
     }
 
     handleClick(event) {
-        this.props.handleOptionSelection(this.props.type, event.target.value);
+        if (this.props.type) {
+            this.props.handleOptionSelection(this.props.type, event.target.value);
+        } else {
+            this.props.handleOptionSelection(event.target.value);
+        }
     }
 
     render() {
@@ -60,7 +64,7 @@ class Menu extends Component {
 Menu.propTypes = {
     vocab: PropTypes.object.isRequired,
     options: PropTypes.arrayOf(PropTypes.object).isRequired,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
     handleOptionSelection: PropTypes.func.isRequired,
 };
 
