@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Box from 'grommet/components/Box';
 import scroller from 'react-scroll/modules/mixins/scroller';
 import {
     find, findIndex, get, some,
@@ -44,7 +43,7 @@ class FlagSidebar extends Component {
             || chat.userFromId === this.props.profile.id) && !chat.isResolve));
 
         return (
-            <Box className='flag-sidebar'>
+            <div className='flag-sidebar'>
                 <FlagHeader {...this.props} />
                 <div className='flag-sidebar__container'>
                     <FlagQuestionList {...this.props} />
@@ -66,7 +65,7 @@ class FlagSidebar extends Component {
                         }
                     </div>
                 </div>
-            </Box>
+            </div>
         );
     }
 }
