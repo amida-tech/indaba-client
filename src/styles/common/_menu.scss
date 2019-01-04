@@ -8,6 +8,16 @@ $block-class: 'menu';
             fill: $lead-font-color;
         }
 
+        &__dropdown {
+            display: block;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            z-index: 1;
+        }
+
         &__insert-label {
             padding: 0.5em;
             font-size: 12px;
