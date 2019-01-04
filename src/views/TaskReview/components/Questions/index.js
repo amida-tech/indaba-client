@@ -19,7 +19,6 @@ import SingleDatePicker from '../../../../common/components/Dates/SingleDateInpu
 class Questions extends Component {
     render() {
         let QuestionType;
-        let readOnly;
         const value = find(this.props.answers, item => item.questionId === this.props.id);
         const upsertAnswer = newAnswer => this.props.actions.upsertAnswer(
             this.props.assessmentId,
