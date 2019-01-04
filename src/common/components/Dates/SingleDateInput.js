@@ -50,7 +50,7 @@ class SingleDateInput extends Component {
                 numberOfMonths={1}
                 id={this.props.id}
                 hideKeyboardShortcutsPanel={true}
-                disabled={this.props.disable}
+                disabled={this.props.disabled}
             />
         );
     }
@@ -66,7 +66,7 @@ SingleDateInput.propTypes = {
     scrollTarget: PropTypes.string,
     id: PropTypes.string.isRequired,
     onDateChange: PropTypes.func.isRequired,
-    disable: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default enhanceWithClickOutside(SingleDateInput);

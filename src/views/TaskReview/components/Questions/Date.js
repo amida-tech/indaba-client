@@ -28,21 +28,13 @@ class Date extends Component {
         const currentAnswer = get(this.props, 'answer.dateValue', undefined);
         return (
             <div className='date'>
-                {
-                    (this.props.displayMode
-                    && (
-                        currentAnswer
-                            ? <div className='date__field'>
-                                {currentAnswer}
-                            </div>
-                            : this.props.vocab.SURVEY.NO_DATE_ENTERED
-                    ))
-                    || <SingleDateInput
-                        value={currentAnswer}
-                        onDateChange={this.onDateChange}
-                        id={`date_pick_question${this.props.id}`}
-                        scrollTarget={`question${this.props.questionIndex}`} />
-                }
+                <SingleDateInput
+                    value={currentAnswer}
+                    onDateChange={this.onDateChange}
+                    id={`date_pick_question${this.props.id}`}
+                    scrollTarget={`question${this.props.questionIndex}`}
+                    disabled={this.props.displayMode}
+                />
             </div>
         );
     }

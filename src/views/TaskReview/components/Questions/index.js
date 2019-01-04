@@ -165,7 +165,6 @@ class Questions extends Component {
                                 )} />
                             <SingleDatePicker className='questions__date-input'
                                 value={get(value, 'meta.publication.date', '')}
-                                format='MM/DD/YYYY'
                                 disabled={(noValue || this.props.displayMode)}
                                 onDateChange={(event) => {
                                     if (Time.validateTime(event)) {
