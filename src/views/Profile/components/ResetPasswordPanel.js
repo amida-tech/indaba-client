@@ -12,8 +12,8 @@ class ResetPasswordPanel extends Component {
                     {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
                 </div>
                 <button className='reset-password-panel__button'
-                        onClick={() => this.props.actions.resetPassword(this.props.vocab.ERROR)}>
-                        <span>{this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}</span>
+                    onClick={() => this.props.actions.resetPassword(this.props.vocab.ERROR)}>
+                    <span>{this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}</span>
                 </button>
             </div>
         );

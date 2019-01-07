@@ -35,7 +35,7 @@ class TaskOptionsModal extends Component {
                 title={this.props.vocab.PROJECT.OPTIONS_MODAL.TITLE}
                 class='task-options'
                 onCancel={this.props.actions.closeTaskOptionsModal}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.task.status === 'completed' ? null : this.props.onClickToSubmit}>
                 <TaskOptionsForm
                     vocab={this.props.vocab}
                     task={this.props.task}
