@@ -46,7 +46,8 @@
         "WELCOME_":"Welcome ",
         "POWERED_BY_AMIDA":"Powered by Amida",
         "VERSION_":"Version ",
-        "STAY_LOGGED_IN":"Stay logged in"
+        "STAY_LOGGED_IN":"Stay logged in",
+        "ENTER_DATE": "Enter Date"
     },
     "TOAST":{
         "EXISTS":"The user is already in the system. If you are on a Project page, we will add them to the project for you.",
