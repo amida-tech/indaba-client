@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { DYNAMIC } from '../../constants';
 import Menu from '../../../../common/components/Menu';
+
 class NewQuestions extends Component {
     constructor(props) {
         super(props);

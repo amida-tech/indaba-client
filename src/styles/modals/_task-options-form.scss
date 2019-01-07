@@ -9,10 +9,27 @@ $block-class:'task-options-form';
 
         &__header {
             margin-top: 40px;
+
+            &--hidden {
+                display: none;
+            }
         }
 
         &__header-paragraph {
             padding-left: 35px;
+        }
+
+        &__radio-button {
+            &--checked {
+                color: #4eb276;
+            }
+
+            &--unchecked {
+                // color: #4eb276;
+            }
+
+            font-size: 1.5em;
+            margin-right: 12px;
         }
 
         &__header-text-box {
