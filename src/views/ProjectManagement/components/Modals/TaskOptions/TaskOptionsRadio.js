@@ -1,22 +1,7 @@
 import React, { Component } from 'react';
-import RadioButton from 'grommet/components/RadioButton';
 
 class TaskOptionsRadio extends Component {
     render() {
-        const checkedRadioButton = (
-            <span
-                id={this.props.input.value}
-                className={'far fa-dot-circle task-options-form__radio-button task-options-form__radio-button--checked'}
-            />
-        );
-
-        const uncheckedRadioButton = (
-            <span
-                id={this.props.input.value}
-                className={'far fa-circle task-options-form__radio-button task-options-form__radio-button--unchecked'}
-            />
-        );
-
         return (
             <label for={this.props.input.value}>
                 <div>
@@ -28,11 +13,14 @@ class TaskOptionsRadio extends Component {
                         label={this.props.label}
                         {...this.props.input}
                     />
-                    {
-                        this.props.input.checked
-                            ? checkedRadioButton
-                            : uncheckedRadioButton
-                    }
+                    <span
+                        id={this.props.input.value}
+                        className={`
+                            far fa-${this.props.input.checked ? 'dot-' : ''}circle
+                            task-options-form__radio-button
+                            task-options-form__radio-button--${this.props.input.checked ? 'checked' : 'unchecked'}
+                        `}
+                    />
                     {this.props.label}
                 </div>
             </label>
