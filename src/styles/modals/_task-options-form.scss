@@ -1,8 +1,19 @@
 $block-class:'task-options-form';
 
+.#{$block-class} {
+    &__container {
+        &--disabled {
+            color: #d9d9d9 !important;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+}
+
 @at-root {
     .#{$block-class} {
         width: 700px;
+        margin-top: 20px;
         margin-bottom: 40px;
         margin-left: 50px;
         margin-right: 50px;
@@ -20,12 +31,18 @@ $block-class:'task-options-form';
         }
 
         &__radio-button {
-            &--checked {
+            vertical-align: middle;
+
+            &:hover {
                 color: #4eb276;
             }
 
-            &--unchecked {
-                // color: #4eb276;
+            &:focus {
+                color: red;
+            }
+
+            &--checked {
+                color: #4eb276;
             }
 
             font-size: 1.5em;

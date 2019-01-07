@@ -8,7 +8,9 @@ class TaskOptionsSelect extends Component {
                 value={this.props.input.value.option || this.props.input.value}
                 onChange={(event) => { this.props.input.onChange(event.value); }}
                 className='task-options-form__header-text-box'
-                options={this.props.userOptions} />
+                options={this.props.userOptions}
+                disabled={this.props.disabled}
+            />
         );
     }
 }
