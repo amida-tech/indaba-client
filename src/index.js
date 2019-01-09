@@ -7,7 +7,6 @@ import { Router, browserHistory } from 'react-router'; // Scaled back to 3.0.2 b
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { get } from 'lodash';
-
 /** Developer Tools * */
 import ChartMonitor from 'redux-devtools-chart-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
@@ -20,13 +19,15 @@ import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/main.scss';
+
+import config from './config';
 import { logOut } from './common/actions/navActions';
 
 /** User Imports * */
 import reducers from './reducers';
 import routes from './routes';
 
-const DEVELOP = process.env.NODE_ENV === 'development' && !(navigator.userAgent.match('MSIE|Trident/7.0|Edge'));
+const DEVELOP = config.NODE_ENV === 'development' && !(navigator.userAgent.match('MSIE|Trident/7.0|Edge'));
 
 const authInterceptor = ({ dispatch }) => next => (action) => {
     if (get(action, 'err.response.status') === 401) {

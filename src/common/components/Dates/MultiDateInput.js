@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import enhanceWithClickOutside from 'react-click-outside';
 import 'react-dates/initialize';
 import scroller from 'react-scroll/modules/mixins/scroller';
-import { DateRangePicker } from 'react-dates';
+import { DateRangePicker, SingleDatePicker } from 'react-dates';
 
 class MultiDateInput extends Component {
     constructor(props) {
@@ -60,6 +60,7 @@ class MultiDateInput extends Component {
                 focusedInput={this.state.focusedInput}
                 onFocusChange={this.onChangeFocusedInput}
                 hideKeyboardShortcutsPanel={true}
+                displayFormat="MM/DD/YYYY"
             />
         );
     }

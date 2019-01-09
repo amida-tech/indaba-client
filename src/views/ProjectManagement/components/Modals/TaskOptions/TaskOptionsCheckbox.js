@@ -8,7 +8,9 @@ class TaskOptionsCheckbox extends Component {
                 checked={!!this.props.input.value}
                 onChange={this.props.input.onChange}
                 className='task-options-form__header'
-                label={this.props.label} />
+                label={this.props.label}
+                disabled={this.props.disabled}
+            />
         );
     }
 }

@@ -13,8 +13,7 @@ $block-class:'preference-tab';
             flex-direction: column;
         }
 
-        &__input-select,
-        .grommet &__input-select {
+        &__input-select {
             color: #51545c;
             font-weight: 400;
         }
