@@ -137,6 +137,19 @@ export function deleteUser(userId, errorMessages) {
     };
 }
 
+// This gets all groups for selection and copying into projects. So it's not really
+// a part of projects directly.
+export function getGroups(organizationId, errorMessages) {
+    return dispatch => apiService.projects.getGroups(organizationId)
+        .then((groupResp) => {
+            dispatch(_getGroupsSuccess(groupResp));
+        })
+        .catch((groupErr) => {
+            dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
+            throw groupErr;
+        });
+}
+
 // Private
 function _deleteUser() {
     return {
@@ -162,6 +175,14 @@ function _getUsersSuccess(users) {
         type: actionTypes.GET_USERS_SUCCESS,
         users,
     };
+}
+
+
+function _getGroupsSuccess(groups) {
+    return {
+        type: actionTypes.GET_GROUPS_SUCCESS,
+        groups,
+    }
 }
 
 // err is shorthand for the error response, errorMessage is the display message taken from props.

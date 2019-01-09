@@ -28,6 +28,7 @@ const initialState = {
         organizationId: null,
     },
     users: [],
+    groups: [],
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -40,6 +41,8 @@ export const UserReducer = (state = initialState, action) => {
         return update(state, { users: { $set: action.users } });
     case type.REPORT_USER_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
+    case type.GET_GROUPS_SUCCESS:
+        return update(state, { groups: { $set: action.groups } });
     case type.DELETE_USER_SUCCESS: {
         const userIndex = state.users.findIndex(user => user.id === action.userId);
         return update(state, { users: { $splice: [[userIndex, 1]] } });
