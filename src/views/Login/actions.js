@@ -20,6 +20,7 @@ export function login(username, password, realm, referrer, errorMessages) {
                     .then((profileResp) => {
                         dispatch(getProfileSuccess(profileResp));
                         cookie.save('indaba-roleID', profileResp.roleID, { path: '/' });
+                        cookie.save('indaba-organizationId', profileResp.organizationId, { path: '/' });
                         if (referrer) {
                             dispatch(push(referrer));
                         } else {

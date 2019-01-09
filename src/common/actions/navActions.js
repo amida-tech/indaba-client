@@ -49,6 +49,7 @@ export function logOut(timeoutRef) {
     cookie.remove('indaba-refresh', { path: '/' });
     cookie.remove('indaba-realm', { path: '/' });
     cookie.remove('indaba-roleID', { path: '/' });
+    cookie.remove('indaba-organizationId', { path: '/' });
     return (dispatch) => {
         dispatch(_logOutSuccess(timeoutRef));
     };

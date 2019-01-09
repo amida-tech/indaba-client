@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
+import cookie from 'react-cookies';
 import apiService from '../../services/api';
 import * as actionTypes from '../actionTypes/userActionTypes';
 
@@ -139,13 +140,14 @@ export function deleteUser(userId, errorMessages) {
 
 // This gets all groups for selection and copying into projects. So it's not really
 // a part of projects directly.
-export function getGroups(organizationId, errorMessages) {
-    return dispatch => apiService.projects.getGroups(organizationId)
+export function getGroups(errorMessages) {
+    const organizationId = cookie.load('indaba-organizationId');
+    return dispatch => apiService.users.getGroups(organizationId)
         .then((groupResp) => {
             dispatch(_getGroupsSuccess(groupResp));
         })
         .catch((groupErr) => {
-            dispatch(_reportProjectError(groupErr, errorMessages.GROUP_REQUEST));
+            dispatch(_reportUserError(groupErr, errorMessages.GROUP_REQUEST));
             throw groupErr;
         });
 }
