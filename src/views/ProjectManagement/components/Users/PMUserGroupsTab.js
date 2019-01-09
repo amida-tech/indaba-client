@@ -85,7 +85,7 @@ class PMUserGroupsTab extends Component {
                             .map(group => ({
                                 label: group.title,
                                 value: group,
-                                hint: `(${this.props.vocab.PROJECT.z_PROJECT} "${group.projectName}",
+                                hint: `(${this.props.vocab.PROJECT.OF_PROJECT} "${group.projectName}",
                                     ${this.props.vocab.PROJECT.USER_COUNT}
                                     ${group.userIds.length})`
                             }))}
