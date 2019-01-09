@@ -110,6 +110,7 @@ $block-class: 'profile-form';
 
         &__checkbox {
             @extend .small-icon;
+
             font-size: 1.75em;
 
             &-hidden {
@@ -118,13 +119,12 @@ $block-class: 'profile-form';
             }
 
             &-checked {
-                color:darken(#4eb276, 10);
+                color: darken(#4eb276, 10);
             }
 
             &-unchecked {
-                color:darken($font-color, 10);
+                color: darken($font-color, 10);
             }
-
         }
     }
 }
