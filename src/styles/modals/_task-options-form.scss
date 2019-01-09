@@ -77,10 +77,18 @@ $block-class:'task-options-form';
             margin-top: 40px;
         }
 
+        &__check-container {
+            @extend .divider;
+
+            margin-top: 12px;
+        }
+
         &__checkbox {
             @extend .small-icon;
 
             font-size: 1.75em;
+            margin-right: 10px;
+            margin-bottom: 10px;
 
             &-hidden {
                 display: none;
@@ -89,10 +97,18 @@ $block-class:'task-options-form';
 
             &-checked {
                 color: darken(#4eb276, 10);
+
+                &:hover {
+                    color: #000;
+                }
             }
 
             &-unchecked {
                 color: darken($font-color, 10);
+
+                &:hover {
+                    color: #000;
+                }
             }
         }
     }
