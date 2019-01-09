@@ -56,5 +56,10 @@ $block-class: 'search';
                 background-color: #ededed;
             }
         }
+
+        &__hint {
+            font-style: italic;
+            font-size: 11px;
+        }
     }
 }

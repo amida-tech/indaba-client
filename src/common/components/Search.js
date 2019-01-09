@@ -31,7 +31,9 @@ class Search extends Component {
                     <li className='search__entry'
                         onMouseDown={() => { this.props.onSelect(item); }}
                         key={item.value.id}>
-                        {item.label}</li>
+                        {item.label}{item.hint ?
+                            <span className = 'search__hint'>{item.hint}</span> :''}
+                        </li>
                 ))} </ul>}
         </div>;
     }

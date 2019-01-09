@@ -90,6 +90,7 @@ class Users extends Component {
                         <PMUserGroupsTab columnHeaders={true}
                             project={this.props.project}
                             users={this.props.users}
+                            groups={this.props.groups}
                             vocab={this.props.vocab}
                             projectId={this.props.project.id}
                             onDeleteClick={this.props.actions.deleteUserGroup}
@@ -106,6 +107,7 @@ class Users extends Component {
 Users.propTypes = {
     vocab: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     project: PropTypes.object.isRequired,
     profile: PropTypes.shape({
         organizationId: PropTypes.number.isRequired,

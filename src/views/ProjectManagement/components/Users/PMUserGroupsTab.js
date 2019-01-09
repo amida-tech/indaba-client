@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import apiService from '../../../../services/api';
 import Modal from '../../../../common/components/Modal';
 import UserGroupList from '../../../../common/components/UserGroupList';
+import Search from '../../../../common/components/Search';
 import { updateUserGroupListSearchQuery } from '../../actions';
 
 const NO_STAGES = 0;
@@ -15,6 +16,7 @@ class PMUserGroupsTab extends Component {
     constructor(props) {
         super(props);
 
+        this.filterGroup = this.filterGroup.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
     }
@@ -48,8 +50,10 @@ class PMUserGroupsTab extends Component {
             });
     }
 
-    filterGroup(group, query) {
-        return group.title.toLowerCase().includes(query.toLowerCase());
+    filterGroup(group) {
+        return group.title.toLowerCase()
+            .includes((this.props.ui.userGroupListSearchQuery).toLowerCase())
+            && group.projectId !== this.props.project.id;
     }
 
     render() {
@@ -69,6 +73,20 @@ class PMUserGroupsTab extends Component {
                         saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
                 <div className='pm-user-groups-tab__search-container'>
+                    <Search
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_COPY_USER_GROUP}
+                        value={this.props.ui.userGroupListSearchQuery}
+                        list={this.props.groups.filter(this.filterGroup)
+                            .map(group => ({
+                                label: group.title,
+                                value: group,
+                                hint: `(${this.props.vocab.PROJECT.OF_PROJECT} "${group.projectName}",
+                                    ${this.props.vocab.PROJECT.USER_COUNT}
+                                    ${group.userIds.length})`
+                            }))}
+                        onChange={evt =>
+                            this.props.actions.updateUserGroupListSearchQuery(evt.target.value)}
+                        onSelect={this.handleSearchSelect}/>
                     <input type='text' className='pm-user-groups-tab__input'
                         onChange={evt => this.props.onSearch(evt.target.value)}
                         placeholder={this.props.vocab.COMMON.SEARCH} />
@@ -88,6 +106,7 @@ class PMUserGroupsTab extends Component {
 PMUserGroupsTab.propTypes = {
     columnHeaders: PropTypes.bool,
     users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     project: PropTypes.object.isRequired,
     vocab: PropTypes.object,
     onDeleteClick: PropTypes.func,

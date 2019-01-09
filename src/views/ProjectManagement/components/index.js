@@ -77,6 +77,7 @@ class ProjectManagementContainer extends Component {
                     userId => this.props.users.find(user => user.id === userId),
                 )}
                 allUsers={this.props.users}
+                groups={this.props.groups}
                 tasks={this.props.tasks}
                 project={this.props.project}
                 profile={this.props.profile}
@@ -229,6 +230,7 @@ const mapStateToProps = (store, ownProps) => {
             },
         tab: store.manager.ui.subnav,
         users: store.user.users,
+        groups: store.user.groups,
         profile: store.user.profile,
         isOrderedByNameAscending: store.manager.ui.isOrderedByNameAscending,
     };
