@@ -4,13 +4,6 @@ import CheckBox from 'grommet/components/CheckBox';
 class TaskOptionsCheckbox extends Component {
     render() {
         return (
-            // <CheckBox
-            //     checked={!!this.props.input.value}
-            //     onChange={this.props.input.onChange}
-            //     className='task-options-form__header'
-            //     label={this.props.label}
-            //     disabled={this.props.disabled}
-            // />
             <label
                 htmlFor={this.props.input.value}
                 className='task-options-form__check-container'
