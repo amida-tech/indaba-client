@@ -42,7 +42,11 @@ class Search extends Component {
 Search.propTypes = {
     placeholder: PropTypes.string,
     value: PropTypes.string,
-    list: PropTypes.array,
+    list: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.object.isRequired,
+        hint: PropTypes.string,
+    })).isRequired,
     onChange: PropTypes.func,
     onSelect: PropTypes.func,
 };

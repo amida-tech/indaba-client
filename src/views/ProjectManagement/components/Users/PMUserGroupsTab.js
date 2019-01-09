@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
@@ -19,6 +18,7 @@ class PMUserGroupsTab extends Component {
         this.filterGroup = this.filterGroup.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
+        this.handleSearchSelect = this.handleSearchSelect.bind(this);
     }
 
     getDataState(userGroupId) {
@@ -50,6 +50,11 @@ class PMUserGroupsTab extends Component {
             });
     }
 
+    handleSearchSelect(selection) {
+            this.props.actions.updateUserGroupListSearchQuery('');
+            // this.props.actions. ADD GROUP WHATEVER
+        }
+
     filterGroup(group) {
         return group.title.toLowerCase()
             .includes((this.props.ui.userGroupListSearchQuery).toLowerCase())
@@ -80,16 +85,13 @@ class PMUserGroupsTab extends Component {
                             .map(group => ({
                                 label: group.title,
                                 value: group,
-                                hint: `(${this.props.vocab.PROJECT.OF_PROJECT} "${group.projectName}",
+                                hint: `(${this.props.vocab.PROJECT.z_PROJECT} "${group.projectName}",
                                     ${this.props.vocab.PROJECT.USER_COUNT}
                                     ${group.userIds.length})`
                             }))}
                         onChange={evt =>
                             this.props.actions.updateUserGroupListSearchQuery(evt.target.value)}
                         onSelect={this.handleSearchSelect}/>
-                    <input type='text' className='pm-user-groups-tab__input'
-                        onChange={evt => this.props.onSearch(evt.target.value)}
-                        placeholder={this.props.vocab.COMMON.SEARCH} />
                 </div>
                 <UserGroupList columnHeaders={true}
                     groups={this.props.project.userGroups
@@ -116,12 +118,4 @@ PMUserGroupsTab.propTypes = {
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    query: state.manager.ui.userGroupListSearchQuery,
-});
-
-const mapDispatchToProps = dispatch => ({
-    onSearch: query => dispatch(updateUserGroupListSearchQuery(query)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PMUserGroupsTab);
+export default PMUserGroupsTab;
