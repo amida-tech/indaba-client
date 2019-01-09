@@ -68,9 +68,13 @@ class StageSummary extends Component {
 StageSummary.propTypes = {
     vocab: PropTypes.object.isRequired,
     stage: PropTypes.object.isRequired,
-    fromWizard: PropTypes.boolean,
+    fromWizard: PropTypes.bool,
     userGroups: PropTypes.arrayOf(PropTypes.object).isRequired,
     onClick: PropTypes.func.isRequired,
 };
+
+StageSummary.defaultProps = {
+    fromWizard: false,
+}
 
 export default StageSummary;
