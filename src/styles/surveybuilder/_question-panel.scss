@@ -6,6 +6,7 @@ $block-class: 'question-panel';
         border-radius: 2px;
         background-color: #fff;
         padding: 1em;
+        margin-bottom: 1em;
 
         &__header {
             font-size: 1.3em;
@@ -33,7 +34,7 @@ $block-class: 'question-panel';
                 outline: none;
                 border: 1px solid $border-color;
                 border-radius: 2px;
-                padding: .5em;
+                padding: 1em;
 
                 &:focus,
                 &:active {
