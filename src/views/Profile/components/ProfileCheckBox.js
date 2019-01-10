@@ -13,14 +13,13 @@ class ProfileCheckBox extends Component {
                         name={this.props.input.value}
                         onChange={this.props.input.onChange}
                         disabled={true}
-                        className='profile-form__checkbox-hidden'
+                        className='profile-form__checkbox--hidden'
                     />
                     <label
                         for={this.props.input.value}
                         className={`
                             far fa-${this.props.input.checked ? 'check-' : ''}square
-                            profile-form__checkbox
-                            profile-form__checkbox-${this.props.input.checked ? 'checked' : 'unchecked'}
+                            profile-form__checkbox--disabled
                         `}
                     />
                 </form>
