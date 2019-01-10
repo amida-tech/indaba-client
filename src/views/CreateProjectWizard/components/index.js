@@ -20,7 +20,7 @@ import WizardComplete from './WizardComplete';
 import * as actions from '../actions';
 import * as projectActions from '../../../common/actions/projectActions';
 import * as surveyActions from '../../../common/actions/surveyActions';
-import { addNewUser } from '../../../common/actions/userActions';
+import { addNewUser, getGroups } from '../../../common/actions/userActions';
 import { checkProtection } from '../../../common/actions/navActions';
 import { surveyBuilderReset } from '../../SurveyBuilder/actions';
 
@@ -73,7 +73,8 @@ class CreateProjectWizard extends Component {
             .then(() => {
                 this.props.actions.surveyBuilderReset();
                 this.props.actions.projectWizardInitialize();
-            });
+            })
+            .then(this.props.actions.getGroups(this.props.vocab.ERROR));
     }
 
     render() {
@@ -219,7 +220,7 @@ const mapDispatchToProps = dispatch => ({
         actions,
         projectActions,
         surveyActions,
-        { addNewUser, surveyBuilderReset, checkProtection }),
+        { addNewUser, getGroups, surveyBuilderReset, checkProtection }),
     dispatch),
     onWizardCancel: () => dispatch(goBack()),
     onWizardComplete: link => dispatch(push(`/project/${link}`)),

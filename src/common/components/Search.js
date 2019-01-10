@@ -10,6 +10,10 @@ class Search extends Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
+    // TODO: Moving away from letting Redux control every UI element.
+    // In future, stop feeding value and onChange, let Search state handle it.
+    // Move filtering functionality here but allow prop overrides.
+
     handleClickOutside() {
         this.setState(() => ({ listOpen: false }));
     }
@@ -20,8 +24,8 @@ class Search extends Component {
                 <input className='search__input'
                     type='text'
                     placeholder={this.props.placeholder}
-                    value={this.props.value}
-                    onChange={this.props.onChange}
+                    value={this.props.value ? this.props.value : this.state.query}
+                    onChange={this.handleChange}
                     onClick={() => { this.setState(prev => ({ listOpen: !prev.listOpen })); }}
                 />
                 <IonIcon className='search__icon' icon='ion-android-search'/>

@@ -17,6 +17,7 @@ class PMUserGroupsTab extends Component {
         super(props);
 
         this.filterGroup = this.filterGroup.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
@@ -27,6 +28,16 @@ class PMUserGroupsTab extends Component {
             return NO_STAGES;
         }
         return STAGES;
+    }
+
+    filterGroup(group) {
+        return group.title.toLowerCase()
+            .includes((this.props.ui.userGroupListSearchQuery).toLowerCase())
+            && group.projectId !== this.props.project.id;
+    }
+
+    handleChange(evt) {
+        this.props.actions.updateUserGroupListSearchQuery(evt.target.value);
     }
 
     handleDeleteClick(userGroupId) {
@@ -52,7 +63,8 @@ class PMUserGroupsTab extends Component {
     }
 
     handleSearchSelect(selection) {
-        const duplicates = filter(this.props.project.userGroups, group => group.title === selection.value.title);
+        const duplicates = filter(this.props.project.userGroups, group =>
+            group.title === selection.value.title);
         if (duplicates.length > 0) {
             toast(this.props.vocab.ERROR.DUPLICATE_GROUP_CHOICE);
         } else {
@@ -64,12 +76,6 @@ class PMUserGroupsTab extends Component {
                 this.props.vocab.ERROR
             );
         }
-    }
-
-    filterGroup(group) {
-        return group.title.toLowerCase()
-            .includes((this.props.ui.userGroupListSearchQuery).toLowerCase())
-            && group.projectId !== this.props.project.id;
     }
 
     render() {
@@ -100,13 +106,11 @@ class PMUserGroupsTab extends Component {
                                     ${this.props.vocab.PROJECT.USER_COUNT}
                                     ${group.users.length})`
                             }))}
-                        onChange={evt =>
-                            this.props.actions.updateUserGroupListSearchQuery(evt.target.value)}
+                        onChange={this.handleChange}
                         onSelect={this.handleSearchSelect}/>
                 </div>
                 <UserGroupList columnHeaders={true}
-                    groups={this.props.project.userGroups
-                        .filter(group => this.filterGroup(group, this.props.query))}
+                    groups={this.props.project.userGroups}
                     users={this.props.users}
                     vocab={this.props.vocab}
                     onDeleteClick={this.handleDeleteClick}

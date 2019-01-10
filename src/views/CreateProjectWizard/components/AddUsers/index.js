@@ -61,11 +61,13 @@ class AddUsers extends Component {
                     <Tab title={this.props.vocab.PROJECT.USER_GROUPS}>
                         <UserGroupsTab
                             vocab={this.props.vocab}
-                            groups={this.props.project.userGroups}
+                            project={this.props.project}
                             filter={this.props.ui.groupsFilter}
-                            allUsers={this.props.user.users}
-                            actions={this.props.actions}
-                            projectId={this.props.project.id}/>
+                            users={this.props.user.users}
+                            groups={this.props.user.groups}
+                            organizationId={this.props.user.profile.organizationId}
+                            projectId={this.props.project.id}
+                            actions={this.props.actions}/>
                     </Tab>
                 </Tabs>
             </div>
