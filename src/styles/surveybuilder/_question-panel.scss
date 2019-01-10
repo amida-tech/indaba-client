@@ -3,10 +3,10 @@ $block-class: 'question-panel';
 @at-root {
     .#{$block-class} {
         border: 2px solid $border-color;
-        padding: 8px;
-        margin-bottom: 24px;
         border-radius: 2px;
         background-color: #fff;
+        padding: 1em;
+        margin-bottom: 1em;
 
         &__header {
             font-size: 1.3em;
@@ -17,8 +17,7 @@ $block-class: 'question-panel';
         &__question {
             display: flex;
             flex-direction: column;
-            padding: 8px;
-            width: 100%;
+            width: 75%;
 
             &-number {
                 @extend .small-font;
@@ -28,15 +27,14 @@ $block-class: 'question-panel';
             }
 
             &-text {
+                display: flex;
                 color: #000;
                 font-size: 16px;
-                overflow: hidden;
                 background-color: #fafafa;
-                resize: none;
                 outline: none;
                 border: 1px solid $border-color;
                 border-radius: 2px;
-                padding: 8px;
+                padding: 1em;
 
                 &:focus,
                 &:active {
@@ -50,8 +48,6 @@ $block-class: 'question-panel';
             display: flex;
             justify-content: space-between;
             border: none;
-            padding-top: 8px;
-            padding-left: 8px;
         }
 
         &__menu-button {
@@ -111,6 +107,9 @@ $block-class: 'question-panel';
             vertical-align: sub;
             height: 16px;
             fill: $font-color;
+        }
+        .textarea {
+
         }
     }
 }
