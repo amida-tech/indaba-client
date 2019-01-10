@@ -15,14 +15,14 @@ class TaskOptionsCheckbox extends Component {
                     label={this.props.label}
                     onChange={this.props.input.onChange}
                     disabled={this.props.disabled}
-                    className='task-options-form__checkbox-hidden'
+                    className='task-options-form__checkbox--hidden'
                 />
                 <span
                     id={this.props.input.value}
                     className={`
                             far fa-${this.props.input.checked ? 'check-' : ''}square
-                            task-options-form__checkbox
-                            task-options-form__checkbox-${this.props.input.checked ? 'checked' : 'unchecked'}
+                            task-options-form__checkbox--${this.props.input.checked ? 'checked' : 'unchecked'}
+                            task-options-form__checkbox${this.props.disabled ? '--disabled' : ''}
                         `}
                 />
                 {this.props.label}
