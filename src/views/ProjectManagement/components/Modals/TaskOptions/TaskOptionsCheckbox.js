@@ -21,7 +21,6 @@ class TaskOptionsCheckbox extends Component {
                     id={this.props.input.value}
                     className={`
                             far fa-${this.props.input.checked ? 'check-' : ''}square
-                            task-options-form__checkbox--${this.props.input.checked ? 'checked' : 'unchecked'}
                             task-options-form__checkbox${this.props.disabled ? '--disabled' : ''}
                         `}
                 />
