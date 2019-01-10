@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { filter } from 'lodash';
 
 import apiService from '../../../../services/api';
 import Modal from '../../../../common/components/Modal';
@@ -51,9 +52,19 @@ class PMUserGroupsTab extends Component {
     }
 
     handleSearchSelect(selection) {
+        const duplicates = filter(this.props.project.userGroups, group => group.title === selection.value.title);
+        if (duplicates.length > 0) {
+            toast(this.props.vocab.ERROR.DUPLICATE_GROUP_CHOICE);
+        } else {
             this.props.actions.updateUserGroupListSearchQuery('');
-            // this.props.actions. ADD GROUP WHATEVER
+            this.props.actions.addUserGroup(
+                selection.value,
+                this.props.project.id,
+                this.props.organizationId,
+                this.props.vocab.ERROR
+            );
         }
+    }
 
     filterGroup(group) {
         return group.title.toLowerCase()
@@ -87,7 +98,7 @@ class PMUserGroupsTab extends Component {
                                 value: group,
                                 hint: `(${this.props.vocab.PROJECT.OF_PROJECT} "${group.projectName}",
                                     ${this.props.vocab.PROJECT.USER_COUNT}
-                                    ${group.userIds.length})`
+                                    ${group.users.length})`
                             }))}
                         onChange={evt =>
                             this.props.actions.updateUserGroupListSearchQuery(evt.target.value)}
@@ -107,13 +118,19 @@ class PMUserGroupsTab extends Component {
 
 PMUserGroupsTab.propTypes = {
     columnHeaders: PropTypes.bool,
-    users: PropTypes.arrayOf(PropTypes.object).isRequired,
-    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     project: PropTypes.object.isRequired,
+    users: PropTypes.arrayOf(PropTypes.object).isRequired,
+    groups: PropTypes.arrayOf(PropTypes.shape({
+        projectId: PropTypes.number,
+        projectName: PropTypes.string.isRequired,
+        id: PropTypes.number,
+        title: PropTypes.string.isRequired,
+        users: PropTypes.array.isRequired,
+    })).isRequired,
+    organizationId: PropTypes.number.isRequired,
     vocab: PropTypes.object,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
-    onSearch: PropTypes.func,
     ui: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
 };

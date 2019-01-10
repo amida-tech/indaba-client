@@ -55,7 +55,8 @@
     },
     "ERROR":{
         "DUPLICATE_USER":"You have previously created a user with this email address. Please enter a unique email address for this user.",
-        "DUPLICATE_USER_GROUP":"You have previously created a User Group with this name. Please enter a unique name for this User Group.",
+        "DUPLICATE_GROUP":"You have previously created a User Group with this name. Please enter a unique name for this User Group.",
+        "DUPLICATE_GROUP_CHOICE":"You already have a User Group with that name in this project. Either change the name of existing User Group, or choose another.",
         "ALREADY_ASSIGNED":"The user is already assigned to this project.",
         "SERVER_ISSUE":"The server seems to be having some issues or is down. Please try again later.",
         "INVALID_LOGIN":"We weren't able to find your username or password.",

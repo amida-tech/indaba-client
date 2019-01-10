@@ -36,11 +36,10 @@ class UserGroupsTab extends Component {
             <div className='wrapper'>
                 <div className='user-groups-tab'>
                     <Search className='user-groups-tab__search-input'
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_COPY_USER_GROUP}
                         value={this.props.filter}
                         list={this.props.filterGroup}
                         onSelect={this.lookupUser}/>
-
                     <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
                         users={this.props.allUsers}
                         onDeleteClick={this.handleDeleteClick}/>

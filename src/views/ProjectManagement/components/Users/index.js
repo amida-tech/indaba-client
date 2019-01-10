@@ -91,8 +91,8 @@ class Users extends Component {
                             project={this.props.project}
                             users={this.props.users}
                             groups={this.props.groups}
+                            organizationId={this.props.profile.organizationId}
                             vocab={this.props.vocab}
-                            projectId={this.props.project.id}
                             onDeleteClick={this.props.actions.deleteUserGroup}
                             onGroupClick={groupId => this.setState({ modalName: 'updategroup', modalId: groupId }) }
                             ui={this.props.ui}
