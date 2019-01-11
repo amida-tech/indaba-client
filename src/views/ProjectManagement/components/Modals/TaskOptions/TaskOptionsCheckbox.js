@@ -3,7 +3,6 @@ import CheckBox from 'grommet/components/CheckBox';
 
 class TaskOptionsCheckbox extends Component {
     render() {
-        console.log(this.props.input);
         return (
             <label
                 htmlFor={this.props.input.name}
