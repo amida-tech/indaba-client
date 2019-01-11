@@ -12,7 +12,6 @@ class TaskOptionsCheckbox extends Component {
                     id={this.props.input.value}
                     checked={typeof this.props.input.value === 'boolean'
                         ? this.props.input.value : false}
-                    label={this.props.label}
                     onChange={this.props.input.onChange}
                     disabled={this.props.disabled}
                     className='task-options-form__checkbox--hidden'
