@@ -20,7 +20,7 @@ $block-class: 'inbox';
         }
 
         &__new-message-button {
-            @extend .alt-button;
+            @extend .secondary-button;
 
             letter-spacing: 0.8px;
             font-weight: 400;

@@ -23,7 +23,7 @@ $block-class:'login-form';
         }
 
         &__signin-button {
-            @extend .standard-button;
+            @extend .button;
 
             margin: 1em 0;
             width: 100%;

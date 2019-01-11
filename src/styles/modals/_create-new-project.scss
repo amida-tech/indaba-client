@@ -14,15 +14,7 @@ $block-class:'create-new-project';
         }
 
         &__create-button {
-            @extend .standard-button;
-
-            background-color: #4eb276 !important; // INBA-897.
-            color: #fff !important; // INBA-897.
-
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
+            @extend .button;
         }
     }
 }

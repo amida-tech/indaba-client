@@ -20,7 +20,7 @@ $block-class: 'profile-form';
         }
 
         &__button {
-            @extend .alt-button;
+            @extend .secondary-button;
 
             &:hover {
                 color: #fff;

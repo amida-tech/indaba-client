@@ -13,7 +13,7 @@ $block-class: 'users';
             margin-bottom: 40px;
 
             &--left {
-                @extend .standard-button;
+                @extend .button;
 
                 &:hover {
                     background: darken(#4eb276, 10);
@@ -22,7 +22,7 @@ $block-class: 'users';
             }
 
             &--right {
-                @extend .standard-button;
+                @extend .button;
 
                 &:hover {
                     background: darken(#4eb276, 10);

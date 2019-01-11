@@ -51,7 +51,7 @@ $block-class: 'wizard-complete';
         }
 
         &__button {
-            @extend .alt-button;
+            @extend .secondary-button;
 
             letter-spacing: 0.8px;
 
