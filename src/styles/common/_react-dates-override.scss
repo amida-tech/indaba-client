@@ -1,25 +1,26 @@
+@import './_color.scss';
 // NOTE: the order of these styles DO matter
 
 // Will edit everything selected including everything between a range of dates
 .CalendarDay__selected_span {
-    background: #ddd; //background
+    background: $light-grey; //background
     color: white; //text
     border: 1px solid #637282; //default styles include a border
 }
 
 .CalendarDay__selected_span:hover {
-    background: #bbb;
+    background: $hover-green;
 }
 
 // Will edit selected date or the endpoints of a range of dates
 .CalendarDay__selected {
-    background: #4eb276;
+    background: $accent-green;
     color: white;
 }
 
 // Will edit when hovered over. _span style also has this property
 .CalendarDay__selected:hover {
-    background: #308253;
+    background: $hover-green;
     color: white;
 }
 
@@ -27,9 +28,9 @@
 // is not yet selected. Edits the dates between your mouse and said date
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
-    background: #bbb;
+    background: $light-grey;
 }
 
 .DateInput_input__focused {
-    border-bottom: 2px solid #308253; //default styles include a border
+    border-bottom: 2px solid $accent-green; //default styles include a border
 }
