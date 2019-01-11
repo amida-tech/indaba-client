@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CheckBox from 'grommet/components/CheckBox';
 
 class TaskOptionsCheckbox extends Component {
     render() {
