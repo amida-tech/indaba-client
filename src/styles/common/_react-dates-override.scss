@@ -4,7 +4,7 @@
 // Will edit everything selected including everything between a range of dates
 .CalendarDay__selected_span {
     background: $light-grey; //background
-    color: white; //text
+    color: $secondary-grey; //text
     border: 1px solid #637282; //default styles include a border
 }
 
