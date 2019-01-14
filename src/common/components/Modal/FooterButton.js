@@ -5,7 +5,7 @@ class FooterButton extends Component {
     render() {
         return (
             <div className={`footer-button ${this.props.primary
-                ? 'footer-button__primary' : ''}`}
+                ? 'footer-button__primary' : 'footer-button__cancel'}`}
             onClick={this.props.onClick}>
                 {this.props.label}
             </div>

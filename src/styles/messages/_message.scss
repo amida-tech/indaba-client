@@ -58,11 +58,6 @@ $block-class: 'message';
 
         &__body-cancel-button {
             @extend .secondary-button;
-
-            color: $header-font-color;
-            border-radius: 2px;
-            background-color: #d9dcde;
-            border: 2px solid $header-font-color;
         }
 
         &__body-send-button {
@@ -79,10 +74,6 @@ $block-class: 'message';
             padding: 0.5em 1em;
             cursor: pointer;
             color: $font-color;
-        }
-
-        .grommetux-button:not(.grommetux-button--fill) {
-            border-radius: 2px;
         }
     }
 }

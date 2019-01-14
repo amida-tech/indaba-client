@@ -21,12 +21,6 @@ $block-class: 'profile-form';
 
         &__button {
             @extend .secondary-button;
-
-            &:hover {
-                color: #fff;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
         }
 
         &__user-info {

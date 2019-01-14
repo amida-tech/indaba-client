@@ -134,18 +134,7 @@ $block-class: 'export';
         }
 
         &__export-button {
-            @extend .small-font;
-
-            border: 2px solid $brand-color;
-            border-radius: 3px;
-            background-color: #f7f8f9;
-            align-self: stretch;
-            padding: 6px 0;
-
-            &:hover {
-                background-color: nth($brand-neutral-colors, 1);
-                color: $font-inverse-color;
-            }
+            @extend .button;
         }
     }
 }

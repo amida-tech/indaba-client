@@ -21,18 +21,6 @@ $block-class: 'inbox';
 
         &__new-message-button {
             @extend .secondary-button;
-
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            border-radius: 2px;
-
-            &:hover {
-                letter-spacing: 0.8px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                text-decoration: none;
-            }
         }
 
         &__filter {
@@ -65,24 +53,7 @@ $block-class: 'inbox';
         }
 
         &__pager-button {
-            padding: 4px 8px;
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            color: #7e848f;
-            border-radius: 2px;
-            border-color: $border-color;
-            cursor: pointer;
-            border: none;
-            outline: none;
-
-            &:hover {
-                letter-spacing: 0.8px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                color: #fff;
-                text-decoration: none;
-            }
+            @extend button;
         }
     }
 }
