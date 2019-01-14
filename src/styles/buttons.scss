@@ -1,9 +1,7 @@
-@import "./common/_color.scss";
-
 .standard-button {
-    background-color: $accent-green;
+    background-color: $LIGHT_GREEN;
     margin-left: 1em;
-    border: 2px solid $accent-green;
+    border: 2px solid $LIGHT_GREEN;
     border-radius: 4px;
     font-size: 1.1875rem;
     line-height: 24px;
@@ -19,7 +17,7 @@
 .alt-button {
     background-color: transparent;
     margin-left: 1em;
-    border: 2px solid $accent-green;
+    border: 2px solid $LIGHT_GREEN;
     border-radius: 4px;
     font-size: 1.1875rem;
     line-height: 24px;
@@ -35,7 +33,7 @@
 .disabled-button {
     margin-left: 1em;
     background-color: transparent;
-    border: 2px solid $accent-green;
+    border: 2px solid $LIGHT_GREEN;
     border-radius: 4px;
     color: #333;
     font-size: 1.1875rem;

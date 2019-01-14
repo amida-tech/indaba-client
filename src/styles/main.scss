@@ -1,6 +1,8 @@
 // Okay, for the purposes of sanity, let's start grouping these under folders in styles,
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
+@import './common/semantic_colors.scss';
+@import './common/named_colors.scss';
 @import './styles.scss';
 @import './buttons.scss';
 @import './user-badge.scss';
