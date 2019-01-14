@@ -1,3 +1,5 @@
+@import './_color.scss';
+
 $font-color-for-labels: #757575;
 $block-class:'account-tab';
 
@@ -8,7 +10,7 @@ $block-class:'account-tab';
         padding: 2em;
 
         &__label {
-            color: $font-color-for-labels;
+            color: $secondary-grey;
             font-weight: 400;
             font-size: 14px;
             display: flex;
@@ -29,11 +31,11 @@ $block-class:'account-tab';
         }
 
         &__date {
-            color: $lead-font-color;
+            color: $secondary-grey;
         }
 
         button.account-tab__button {
-            color: $lead-font-color;
+            color: $secondary-grey;
             font-weight: 500;
             font-size: 14px;
             background-color: #fff;
@@ -42,7 +44,7 @@ $block-class:'account-tab';
             margin-top: 1.5em;
 
             &:hover {
-                background-color: nth($brand-neutral-colors, 1);
+                background-color: nth($primary-grey, 1);
                 color: $font-inverse-color;
             }
         }
