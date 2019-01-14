@@ -52,13 +52,6 @@ $block-class: 'wizard-complete';
 
         &__button {
             @extend .secondary-button;
-
-            letter-spacing: 0.8px;
-
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
         }
     }
 }

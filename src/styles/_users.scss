@@ -14,20 +14,10 @@ $block-class: 'users';
 
             &--left {
                 @extend .button;
-
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
             }
 
             &--right {
                 @extend .button;
-
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
             }
         }
     }
