@@ -8,7 +8,15 @@ $block-class: 'select-group-users';
         color: $header-font-color;
 
         &__group-name-input {
-            margin: 1em;
+            line-height: 1.5;
+            padding: 11px;
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+            outline: none;
+            background-color: transparent;
+            color: inherit;
+            font: inherit;
+            margin: 0;
         }
 
         &__wrapper {
