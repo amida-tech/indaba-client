@@ -4,12 +4,6 @@ $header-footer: #f2f2f2;
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
 @at-root {
-    .grommetux-layer .grommetux-layer__container {
-        display: block;
-        flex-direction: none;
-        overflow: initial;
-    }
-
     .#{$block-class} {
         position: fixed;
         top: 0;
@@ -102,7 +96,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.add-subject-layer {
+        &--add-subject-layer {
             width: 30em;
 
             input {
@@ -114,7 +108,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.add-stage-layer {
+        &--add-stage-layer {
             width: 60em;
 
             input[type=text] {
@@ -150,7 +144,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.project-status-change-layer {
+        &--project-status-change-layer {
             .ion-replaced-checkbox {
                 display: none;
 

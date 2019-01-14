@@ -9,7 +9,7 @@ class Modal extends Component {
     render() {
         return (
             <div className='modal-c' id='modal-c'>
-                <div className={`modal-c__container ${this.props.class || ''}`}>
+                <div className={`modal-c__container modal-c--${this.props.class || ''}`}>
                     {
                         this.props.title
                         && <div className='modal-c__title'>{this.props.title}</div>
