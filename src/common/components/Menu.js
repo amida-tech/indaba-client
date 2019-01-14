@@ -7,7 +7,7 @@ class Menu extends Component {
         super();
         this.state = {
             showMenu: false,
-        }
+        };
         this.openMenu = this.openMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -54,10 +54,10 @@ class Menu extends Component {
                             </button>)}
                         </div>
                     </div>
-                    ) : (null)
+                ) : (null)
                 }
             </div>
-        )
+        );
     }
 }
 

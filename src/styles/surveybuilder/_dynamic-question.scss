@@ -2,7 +2,6 @@ $block-class: 'dynamic-question';
 
 @at-root {
     .#{$block-class} {
-
         &__choices {
             display: flex;
             flex-direction: column;
