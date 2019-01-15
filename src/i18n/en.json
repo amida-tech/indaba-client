@@ -16,6 +16,7 @@
         "CLEAR":"Clear",
         "INVITE":"Invite",
         "SEARCH":"Search",
+        "FILTER": "Filter",
         "SAVE":"Save",
         "SEND":"Send",
         "CANCEL":"Cancel",
