@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class TaskOptionsRadio extends Component {
     render() {
         return (
-            <label htmlFor={this.props.input.value}>
+            <label className='task-options-form__header'
+                htmlFor={this.props.input.value}>
                 <input
                     name={this.props.name}
                     disabled={this.props.disabled}
