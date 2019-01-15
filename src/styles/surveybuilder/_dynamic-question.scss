@@ -27,7 +27,7 @@ $block-class: 'dynamic-question';
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -53,7 +53,7 @@ $block-class: 'dynamic-question';
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -84,7 +84,7 @@ $block-class: 'dynamic-question';
 
             &:focus,
             &:active {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
             }
         }

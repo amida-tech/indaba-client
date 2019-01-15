@@ -4,6 +4,8 @@ $block-class:'footer-button';
     .#{$block-class} {
         &__primary {
             @extend .button;
+
+            margin-left: 15px;
         }
 
         &__cancel {

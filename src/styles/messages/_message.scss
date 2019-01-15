@@ -5,7 +5,7 @@ $block-class: 'message';
         margin-top: 1em;
 
         &--active {
-            border: 2px solid $brand-color;
+            border: 2px solid $LIGHT_GREEN;
             border-radius: 4px;
         }
 

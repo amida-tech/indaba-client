@@ -43,7 +43,7 @@ $filter-background: #fff;
             cursor: pointer;
 
             &--active {
-                background-color: darken($brand-color, 10%);
+                background-color: darken($LIGHT_GREEN, 10%);
                 color: $font-inverse-color;
                 border-color: transparent;
             }

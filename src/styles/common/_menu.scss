@@ -34,9 +34,7 @@ $block-class: 'menu';
         &__button {
             @extend .button;
 
-            &:hover {
-                text-decoration: none;
-            }
+            margin-right: 15px;
         }
     }
 }

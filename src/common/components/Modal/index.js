@@ -27,10 +27,10 @@ class Modal extends Component {
                         {this.props.children}
                     </div>
                     <div className='modal-c__footer'>
-                        <div className='modal-c__left-button-wrapper'>
+                        <div>
                             {(this.props.buttons || []).map(button => <FooterButton {...button} key={button.key}/>)}
                         </div>
-                        <div className='modal-c__button-wrapper'>
+                        <div>
                             {this.props.onCancel
                                 && <FooterButton
                                     label={this.props.vocab.COMMON.CANCEL}

@@ -73,7 +73,7 @@ $block-class: 'profile-form';
 
                 &:focus {
                     outline: none;
-                    border: 1px solid $brand-color;
+                    border: 1px solid $LIGHT_GREEN;
                     border-top: none;
                     border-left: none;
                     border-right: none;
@@ -98,7 +98,7 @@ $block-class: 'profile-form';
 
             &:focus {
                 outline: none;
-                border: 1px solid $brand-color;
+                border: 1px solid $LIGHT_GREEN;
             }
         }
 

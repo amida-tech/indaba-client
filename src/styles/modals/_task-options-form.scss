@@ -54,7 +54,7 @@ $block-class:'task-options-form';
             margin-right: 50px;
 
             &:focus {
-                border-color: $brand-color;
+                border-color: $LIGHT_GREEN;
             }
         }
 
@@ -68,7 +68,7 @@ $block-class:'task-options-form';
             width: 100%;
             resize: none;
             line-height: 40px;
-            background-color: $header-footer;
+            background-color: $LIGHT_GRAY;
         }
 
         &__divider {

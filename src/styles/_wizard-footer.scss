@@ -13,8 +13,6 @@ $block-class: 'wizard-footer';
         width: 100%;
 
         &__button {
-            height: 3.3em;
-
             &--continue {
                 @extend .button;
 
@@ -23,6 +21,8 @@ $block-class: 'wizard-footer';
 
             &--back {
                 @extend .secondary-button;
+
+                margin-right: 16px;
             }
 
             &--disabled {
@@ -31,10 +31,14 @@ $block-class: 'wizard-footer';
 
             &--skip {
                 @extend .secondary-button;
+
+                margin-right: 16px;
             }
 
             &--cancel {
                 @extend .secondary-button;
+
+                margin-right: 16px;
             }
         }
     }

@@ -1,59 +1,51 @@
 @import 'common/semantic_colors';
 
-.button {
-    background-color: transparent;
-    border: 1px solid $LIGHT_GREEN;
+@mixin button-font {
     font-family: PTSans-Bold, sans-serif;
     text-transform: uppercase;
     font-size: 15px;
-    color: $LIGHT_GREEN;
     letter-spacing: 1.5px;
     text-align: center;
-    padding: 16px 16px;
+}
+
+@mixin button-padding {
     cursor: pointer;
-    outline: none;
     min-width: 120px;
     max-width: 384px;
+    padding: 16px 16px;
+}
+
+.button {
+    @include button-font;
+    @include button-padding;
+
+    background-color: transparent;
+    border: 1px solid $LIGHT_GREEN;
+    color: $LIGHT_GREEN;
 
     &:hover {
-        background: $DARK_GREEN;
+        background-color: $DARK_GREEN;
         color: white;
     }
 }
 
 .secondary-button {
+    @include button-font;
+    @include button-padding;
+
     background-color: transparent;
-    font-family: PTSans-Bold, sans-serif;
-    text-transform: uppercase;
-    font-size: 15px;
-    color: $LIGHT_GREEN;
-    letter-spacing: 1.5px;
-    text-align: center;
     border: none;
-    border-radius: 4px;
-    line-height: 24px;
-    cursor: pointer;
+    color: $LIGHT_GREEN;
     outline: none;
-    min-width: 120px;
-    max-width: 384px;
-    padding: 16px 16px;
 }
 
 .disabled-button {
-    background: $PRIMARY_GRAY;
-    font-family: PTSans-Bold, sans-serif;
-    font-size: 15px;
+    @include button-font;
+    @include button-padding;
+
+    background: transparent;
+    border: none;
     color: $LIGHT_GRAY;
-    letter-spacing: 1.5px;
-    text-align: center;
-    margin-left: 1em;
-    border: 2px solid $LIGHT_GREEN;
-    border-radius: 4px;
-    line-height: 24px;
-    font-weight: 600;
-    outline: none;
-    min-width: 120px;
-    max-width: 384px;
     opacity: 0.3;
-    padding: 16px 16px;
+    outline: none;
 }

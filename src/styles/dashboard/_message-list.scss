@@ -33,7 +33,7 @@ $block-class: 'message-list';
 
             &--unread {
                 .#{$block-class}__unread-indicator {
-                    background-color: $brand-color;
+                    background-color: $LIGHT_GREEN;
                 }
 
                 .#{$block-class}__name,

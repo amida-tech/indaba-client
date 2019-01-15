@@ -30,7 +30,7 @@ $block-class: 'new-questions';
             fill: $lead-font-color;
 
             &:active {
-                fill: $brand-color;
+                fill: $LIGHT_GREEN;
                 outline: none;
             }
         }

@@ -15,7 +15,7 @@ $block-class: 'project-status-form';
         }
 
         input:checked ~ .project-status-form__field > .project-status-form__text {
-            color: $brand-color;
+            color: $LIGHT_GREEN;
         }
 
         &__text {

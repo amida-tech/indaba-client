@@ -50,6 +50,8 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__button-wrapper {
+            @extend .button;
+
             float: right;
         }
 
