@@ -108,10 +108,27 @@ $block-class: 'profile-form';
             }
         }
 
-        .grommetux-control-icon {
+        &__checkbox {
             @extend .small-icon;
 
-            stroke: $header-font-color;
+            font-size: 1.75em;
+            color: darken(#4eb276, 10);
+
+            &--hidden {
+                display: none;
+                cursor: not-allowed;
+            }
+
+            &--disabled {
+                @extend .small-icon;
+
+                font-size: 1.75em;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                color: #d9d9d9 !important;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
         }
     }
 }
