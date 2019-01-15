@@ -28,7 +28,7 @@ $block-class: 'add-stages';
         &__grid {
             display: flex;
             background-color: #fff;
-            border: 1px solid $border-color;
+            border: 1px solid $LIGHT_GRAY;
             border-top: none;
             height: 200px;
             cursor: pointer;
@@ -37,24 +37,23 @@ $block-class: 'add-stages';
                 display: flex;
                 flex-direction: column;
                 width: 25%;
-                border-right: 1px solid $border-color;
+                border-right: 1px solid $LIGHT_GRAY;
                 border-top: none;
                 border-bottom: none;
                 padding: 8px;
                 cursor: pointer;
-
-                &:hover {
-                    background-color: darken(#fff, 2);
-                }
+                color: $DARK_GRAY;
 
                 &--title {
-                    @extend .lead-font;
-
                     padding: 8px;
                 }
 
+                &:hover {
+                    background-color: $DARK_GREEN;
+                    color: white;
+                }
+
                 &--summary {
-                    color: $font-color;
                     display: flex;
                     flex-direction: row;
                     justify-content: center;

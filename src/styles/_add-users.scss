@@ -21,8 +21,8 @@ $block-class: 'add-users';
             font-weight: 400;
 
             &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
+                background: $DARK_GREEN;
+                border-color: $DARK_GREEN;
             }
         }
 
@@ -49,7 +49,7 @@ $block-class: 'add-users';
 
         &__tabs__nav {
             display: flex;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $LIGHT_GRAY;
             margin-left: 10%;
             margin-right: 10%;
             margin-bottom: 0;
