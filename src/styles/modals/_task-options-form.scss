@@ -76,5 +76,40 @@ $block-class:'task-options-form';
 
             margin-top: 40px;
         }
+
+        &__check-container {
+            @extend .divider;
+
+            margin-top: 12px;
+        }
+
+        &__checkbox {
+            @extend .small-icon;
+
+            font-size: 1.75em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: darken(#4eb276, 10);
+
+            &--hidden {
+                display: none;
+                cursor: not-allowed;
+            }
+
+            &:hover {
+                color: #000;
+            }
+
+            &--disabled {
+                @extend .small-icon;
+
+                font-size: 1.75em;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                color: #d9d9d9 !important;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+        }
     }
 }
