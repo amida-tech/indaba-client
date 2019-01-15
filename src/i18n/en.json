@@ -291,7 +291,7 @@
         "SEARCH_FOR_USER_GROUPS":"Search for user groups",
         "SEARCH_PROJECT":"Search Projects",
         "SEARCH_TASKS":"Search for tasks",
-        "SEARCH_FOR_SUBJECTS":"Search for a subject",
+        "FILTER_SUBJECTS":"Filter subjects",
         "IMPORT_STAGE":"Import Stage",
         "ADD_STAGES_CLARIFICATION":"Stages are the steps in your project workflow. Click the blank cell to add a new stage.",
         "SELECT_TO_EDIT_STAGE":"Select to edit stage",
