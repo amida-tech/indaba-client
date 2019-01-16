@@ -20,9 +20,14 @@ $block-class:'task-options-form';
 
         &__header {
             margin-top: 40px;
+            color: #666;
 
             &--hidden {
                 display: none;
+            }
+
+            &:hover {
+                color: #000;
             }
         }
 
@@ -50,8 +55,7 @@ $block-class:'task-options-form';
         }
 
         &__header-text-box {
-            margin-left: 50px;
-            margin-right: 50px;
+            border-radius: 4px;
 
             &:focus {
                 border-color: $brand-color;
@@ -68,7 +72,6 @@ $block-class:'task-options-form';
             width: 100%;
             resize: none;
             line-height: 40px;
-            background-color: $header-footer;
         }
 
         &__divider {

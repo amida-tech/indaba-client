@@ -24,7 +24,7 @@ class StageForm extends Component {
                                 name='title'
                                 component='input'
                                 type='text'
-                                className='form__input-field'
+                                className='stage-form__input-field'
                                 placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION} />
                         </div>
                     </div>
