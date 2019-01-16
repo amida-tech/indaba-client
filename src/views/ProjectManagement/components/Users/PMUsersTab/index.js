@@ -92,7 +92,7 @@ class PMUsersTab extends Component {
                 </div>
                 <div className='pm-users-tab__search-container'>
                     <Search
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         value={this.props.ui.userListSearchQuery}
                         list={this.props.allUsers.filter(this.filterUser)
                             .map(user => ({

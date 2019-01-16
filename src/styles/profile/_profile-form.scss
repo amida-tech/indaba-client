@@ -20,13 +20,7 @@ $block-class: 'profile-form';
         }
 
         &__button {
-            @extend .alt-button;
-
-            &:hover {
-                color: #fff;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
+            @extend .secondary-button;
         }
 
         &__user-info {
@@ -79,7 +73,7 @@ $block-class: 'profile-form';
 
                 &:focus {
                     outline: none;
-                    border: 1px solid $brand-color;
+                    border: 1px solid $LIGHT_GREEN;
                     border-top: none;
                     border-left: none;
                     border-right: none;
@@ -104,14 +98,31 @@ $block-class: 'profile-form';
 
             &:focus {
                 outline: none;
-                border: 1px solid $brand-color;
+                border: 1px solid $LIGHT_GREEN;
             }
         }
 
-        .grommetux-control-icon {
+        &__checkbox {
             @extend .small-icon;
 
-            stroke: $header-font-color;
+            font-size: 1.75em;
+            color: darken(#4eb276, 10);
+
+            &--hidden {
+                display: none;
+                cursor: not-allowed;
+            }
+
+            &--disabled {
+                @extend .small-icon;
+
+                font-size: 1.75em;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                color: #d9d9d9 !important;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
         }
     }
 }

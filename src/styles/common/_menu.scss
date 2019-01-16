@@ -32,23 +32,9 @@ $block-class: 'menu';
         }
 
         &__button {
-            letter-spacing: 0.3px;
-            font-size: 12px;
-            font-weight: 400;
-            color: $font-inverse-color;
-            background-color: #4eb276;
-            border-radius: 2px;
-            padding: 4px 8px;
-            margin-bottom: 8px;
+            @extend .button;
 
-            &:hover {
-                letter-spacing: 0.3px;
-                font-size: 12px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                text-decoration: none;
-            }
+            margin-right: 15px;
         }
     }
 }

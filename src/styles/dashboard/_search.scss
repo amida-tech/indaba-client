@@ -21,7 +21,7 @@ $block-class: 'search';
 
             &:focus,
             &:active {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
             }
         }

@@ -20,9 +20,14 @@ $block-class:'task-options-form';
 
         &__header {
             margin-top: 40px;
+            color: #666;
 
             &--hidden {
                 display: none;
+            }
+
+            &:hover {
+                color: #000;
             }
         }
 
@@ -50,11 +55,10 @@ $block-class:'task-options-form';
         }
 
         &__header-text-box {
-            margin-left: 50px;
-            margin-right: 50px;
+            border-radius: 4px;
 
             &:focus {
-                border-color: $brand-color;
+                border-color: $LIGHT_GREEN;
             }
         }
 
@@ -65,16 +69,52 @@ $block-class:'task-options-form';
         }
 
         &__notify-user-warning-text-box {
+            @include text-input;
+
             width: 100%;
             resize: none;
             line-height: 40px;
-            background-color: $header-footer;
         }
 
         &__divider {
             @extend .divider;
 
             margin-top: 40px;
+        }
+
+        &__check-container {
+            @extend .divider;
+
+            margin-top: 12px;
+        }
+
+        &__checkbox {
+            @extend .small-icon;
+
+            font-size: 1.75em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: $DARK_GREEN;
+
+            &--hidden {
+                display: none;
+                cursor: not-allowed;
+            }
+
+            &:hover {
+                color: $BLACK;
+            }
+
+            &--disabled {
+                @extend .small-icon;
+
+                font-size: 1.75em;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                color: $LIGHT_GRAY !important;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ $block-class: 'subjects';
         }
 
         &__action-button {
-            @extend .standard-button;
+            @extend .button;
         }
 
         &__table {

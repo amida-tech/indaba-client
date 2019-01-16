@@ -5,6 +5,17 @@ $block-class:'create-new-project';
         &__button-panel {
             padding: 2em 2em 0;
             text-align: center;
+
+            p {
+                max-width: 576px;
+                margin-left: 0;
+                margin-top: 24px;
+                margin-bottom: 24px;
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 1.375;
+                color: #666;
+            }
         }
 
         &__import-button {
@@ -14,15 +25,7 @@ $block-class:'create-new-project';
         }
 
         &__create-button {
-            @extend .standard-button;
-
-            background-color: #4eb276 !important; // INBA-897.
-            color: #fff !important; // INBA-897.
-
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
+            @extend .button;
         }
     }
 }

@@ -18,7 +18,7 @@ $block-class: 'create-survey-panel';
         }
 
         &__view-select {
-            width: 60%;
+            width: 50%;
         }
 
         &__accordion-buttons {
@@ -27,38 +27,15 @@ $block-class: 'create-survey-panel';
         }
 
         &__button-expand {
-            border-radius: 2px;
-            color: $font-inverse-color;
-            letter-spacing: 0.3px;
-            font-size: 12px;
-            font-weight: 400;
-            margin-right: 8px;
-            background-color: lighten($lead-font-color, 5%);
-            outline: none;
-            padding: 4px 8px;
+            @extend .button;
 
-            &:hover {
-                background-color: darken(#a4aebf, 10);
-                padding: 4px 8px;
-            }
+            margin-left: 16px;
         }
 
         &__button-collapse {
-            color: $lead-font-color;
-            border-radius: 2px;
-            background-color: #fff;
-            border: 1px solid lighten($lead-font-color, 5%);
-            letter-spacing: 0.3px;
-            font-size: 12px;
-            font-weight: 400;
-            outline: none;
-            box-sizing: border-box;
-            padding: 4px 8px;
+            @extend .button;
 
-            &:hover {
-                background-color: darken($font-inverse-color, 3);
-                padding: 4px 8px;
-            }
+            margin-left: 16px;
         }
 
         &__survey-controls {
@@ -89,7 +66,7 @@ $block-class: 'create-survey-panel';
             background-color: #fafafa;
 
             &:focus {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
                 padding: 8px;
                 box-sizing: border-box;
@@ -97,22 +74,7 @@ $block-class: 'create-survey-panel';
         }
 
         &__survey-save {
-            letter-spacing: 0.3px;
-            font-size: 12px;
-            font-weight: 400;
-            color: $font-inverse-color;
-            background-color: nth($brand-neutral-colors, 2);
-            border-radius: 2px;
-            padding: 4px 8px;
-
-            &:hover {
-                letter-spacing: 0.3px;
-                font-size: 12px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                text-decoration: none;
-            }
+            @extend .button;
         }
     }
 }

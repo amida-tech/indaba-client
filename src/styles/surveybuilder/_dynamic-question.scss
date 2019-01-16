@@ -2,10 +2,6 @@ $block-class: 'dynamic-question';
 
 @at-root {
     .#{$block-class} {
-        padding: 0 1em 0.5em;
-        display: flex;
-        flex-direction: column;
-
         &__choices {
             display: flex;
             flex-direction: column;
@@ -23,11 +19,11 @@ $block-class: 'dynamic-question';
 
             &__input {
                 padding: 4px;
-                width: 50vw;
+                width: 42vw;
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -37,7 +33,6 @@ $block-class: 'dynamic-question';
             &-field {
                 display: flex;
                 flex-direction: row;
-                padding: 4px;
                 margin-bottom: 8px;
             }
 
@@ -53,7 +48,7 @@ $block-class: 'dynamic-question';
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -84,7 +79,7 @@ $block-class: 'dynamic-question';
 
             &:focus,
             &:active {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
             }
         }
@@ -92,8 +87,7 @@ $block-class: 'dynamic-question';
         &__instructions {
             @extend .small-font;
 
-            margin-top: 8px;
-            margin-bottom: 8px;
+            margin-top: 1em;
         }
     }
 }

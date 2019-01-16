@@ -3,29 +3,29 @@ $block-class:'login-form';
 @at-root {
     .#{$block-class} {
         text-align: center;
+        padding-bottom: 16px;
 
         &__field {
-            padding-bottom: 0.25em;
-            width: 30em;
+            padding-bottom: 16px;
+            width: 384px;
         }
 
         &__input {
-            background-color: #fff;
+            background-color: white;
             width: 100%;
-            padding: 8px;
-            border: 2px solid $border-color;
+            padding: 16px;
+            border: 2px solid $LIGHT_GRAY;
 
             &:focus,
             &:active {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
             }
         }
 
         &__signin-button {
-            @extend .standard-button;
+            @extend .button;
 
-            margin: 1em 0;
             width: 100%;
         }
     }
