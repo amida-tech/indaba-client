@@ -98,7 +98,7 @@ PMUserGroupsTab.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    query: state.manager.ui.userGroupListSearchQuery,
+    query: state.manager.ui.userGroupListFilterQuery,
 });
 
 const mapDispatchToProps = dispatch => ({
