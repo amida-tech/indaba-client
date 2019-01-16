@@ -2,6 +2,8 @@ $block-class:'survey-pane';
 
 @at-root {
     .#{$block-class} {
+        background-color: $BACKGROUND_WHITE;
+
         &__controls {
             display: flex;
             justify-content: space-between;
@@ -30,7 +32,7 @@ $block-class:'survey-pane';
             outline: none;
 
             &:hover {
-                background-color: darken($FONT_INVERSE_COLOR, 3);
+                background-color: $FONT_INVERSE_COLOR;
             }
         }
 

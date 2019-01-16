@@ -18,6 +18,7 @@ $block-class: 'pm-user-list-row';
         }
 
         &__mail-button {
+            // TODO: change mail icon, colors dont work.
             @extend .small-icon;
         }
     }

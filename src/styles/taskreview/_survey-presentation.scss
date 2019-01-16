@@ -31,7 +31,7 @@ $block-class: 'survey-presentation';
             @extend .large-font;
 
             color: #333;
-            border-bottom: 2px solid darken($BORDER_COLOR, 5);
+            border-bottom: 2px solid $BORDER_COLOR;
             padding: 16px 0;
             margin-bottom: 16px;
             margin-left: 15px;

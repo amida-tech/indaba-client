@@ -1,10 +1,9 @@
-$card-background: rgba(243, 245, 246, 0.5);
 $block-class: 'status-card';
 
 @at-root {
     .#{$block-class} {
         border: 1px solid $BORDER_COLOR;
-        background-color: $card-background;
+        background-color: $PRIMARY_GRAY;
         border-radius: 2px;
         display: flex;
         flex-direction: row;
@@ -39,7 +38,7 @@ $block-class: 'status-card';
             cursor: pointer;
 
             &:hover {
-                color: nth($BRAND_NEUTRAL_COLORS, 2);
+                color: $HOVER_GREEN;
             }
         }
 
@@ -51,7 +50,7 @@ $block-class: 'status-card';
             font-weight: 300;
 
             &:hover {
-                color: nth($BRAND_NEUTRAL_COLORS, 2);
+                color: $HOVER_GREEN;
             }
 
             &--editable {
@@ -60,20 +59,11 @@ $block-class: 'status-card';
         }
 
         &__create-icon {
-            width: 1.6em;
-            fill: $HEADER_FONT_COLOR;
-
-            &:hover {
-                fill: nth($BRAND_NEUTRAL_COLORS, 2);
-            }
+            @extend .small-icon;
         }
 
         &__edit-icon {
-            fill: $LEAD_FONT_COLOR;
-
-            &:hover {
-                fill: nth($BRAND_NEUTRAL_COLORS, 2);
-            }
+            @extend .small-icon;
         }
     }
 }

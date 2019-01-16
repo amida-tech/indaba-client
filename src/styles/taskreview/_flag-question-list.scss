@@ -15,12 +15,12 @@ $block-class:'flag-question-list';
             cursor: pointer;
 
             &:hover {
-                background-color: darken($ELEMENT_BACKGROUND, 5);
+                background-color: $ELEMENT_BACKGROUND;
                 color: $LEAD_FONT_COLOR;
             }
 
             &--selected {
-                background-color: darken($ELEMENT_BACKGROUND, 5);
+                background-color: $ELEMENT_BACKGROUND;
                 border-right: 3px solid #4eb276;
                 color: $LEAD_FONT_COLOR;
                 font-size: 12px;
