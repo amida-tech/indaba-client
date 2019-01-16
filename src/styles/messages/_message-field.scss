@@ -27,7 +27,7 @@ $block-class: 'message-field';
             }
 
             &--error {
-                outline: 1px solid red;
+                outline: 1px solid $ERROR_RED;
             }
         }
     }

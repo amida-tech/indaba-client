@@ -7,7 +7,7 @@ $block-class: 'menu';
         &__icon {
             @extend .x-small-icon;
 
-            fill: $lead-font-color;
+            fill: $LEAD_FONT_COLOR;
         }
 
         &__dropdown {

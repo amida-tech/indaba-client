@@ -38,19 +38,19 @@ $filter-background: #fff;
             display: flex;
             align-items: center;
             padding: 4px 8px;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             background-color: $filter-background;
             cursor: pointer;
 
             &--active {
-                background-color: darken($LIGHT_GREEN, 10%);
-                color: $font-inverse-color;
+                background-color: $HOVER_GREEN;
+                color: $FONT_INVERSE_COLOR;
                 border-color: transparent;
             }
 
             &:hover:not(&--active) {
                 background-color: darken(#fafafa, 5%);
-                color: $lead-font-color;
+                color: $LEAD_FONT_COLOR;
             }
         }
     }

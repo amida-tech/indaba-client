@@ -4,7 +4,7 @@ $block-class: 'button-panel';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
-        border: 1px solid $border-color;
+        border: 1px solid $BORDER_COLOR;
         border-radius: 2px;
         overflow: hidden;
         align-items: center;
@@ -19,7 +19,7 @@ $block-class: 'button-panel';
             cursor: pointer;
 
             &:not(:first-child) {
-                border-left: 1px solid $border-color;
+                border-left: 1px solid $BORDER_COLOR;
             }
         }
     }

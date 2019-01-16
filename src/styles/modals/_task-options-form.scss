@@ -39,15 +39,15 @@ $block-class:'task-options-form';
             vertical-align: middle;
 
             &:hover {
-                color: #4eb276;
+                color: $HOVER_GREEN;
             }
 
             &:focus {
-                color: red;
+                color: $ERROR_RED;
             }
 
             &--checked {
-                color: #4eb276;
+                color: $LIGHT_GREEN;
             }
 
             font-size: 1.5em;

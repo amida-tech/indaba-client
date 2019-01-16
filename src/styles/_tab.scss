@@ -11,9 +11,9 @@ $block-class:'tab';
         &__link {
             &--active {
                 background-color: $element-background;
-                border-left: 2px solid $border-color;
-                border-right: 2px solid $border-color;
-                border-top: 2px solid $border-color;
+                border-left: 2px solid $BORDER_COLOR;
+                border-right: 2px solid $BORDER_COLOR;
+                border-top: 2px solid $BORDER_COLOR;
             }
         }
 
@@ -23,7 +23,7 @@ $block-class:'tab';
             line-height: 24px;
             display: flex;
             font-size: 14px;
-            color: $header-font-color;
+            color: $HEADER_FONT_COLOR;
             padding: 5px 12px;
             border-bottom: none;
             justify-content: center;

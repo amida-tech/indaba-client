@@ -17,7 +17,7 @@ $block-class:'questions';
         }
 
         &__link-fields-top {
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             display: flex;
             flex-direction: row;
             flex: 1;
@@ -32,7 +32,7 @@ $block-class:'questions';
 
         &__link-input {
             border: none;
-            border-left: 1px solid $border-color;
+            border-left: 1px solid $BORDER_COLOR;
             width: 90%;
         }
 
@@ -43,7 +43,7 @@ $block-class:'questions';
 
             input {
                 padding: 0.3em;
-                border: 1px solid $border-color;
+                border: 1px solid $BORDER_COLOR;
             }
         }
 
@@ -62,7 +62,7 @@ $block-class:'questions';
             .grommetux-date-time__input:focus {
                 border-radius: 0;
                 font-size: 14px;
-                border: 1px solid $border-color;
+                border: 1px solid $BORDER_COLOR;
                 padding: 0.3em;
             }
         }

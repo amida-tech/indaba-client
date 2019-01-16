@@ -35,7 +35,7 @@ $block-class: 'profile-form';
 
         &__section-header {
             font-size: 14px;
-            color: $font-color;
+            color: $FONT_COLOR;
         }
 
         &__name-row {
@@ -48,7 +48,7 @@ $block-class: 'profile-form';
             flex-direction: column;
 
             &-label {
-                color: $font-color;
+                color: $FONT_COLOR;
                 font-size: 12px;
                 font-weight: 400;
                 padding-top: 16px;
@@ -63,11 +63,11 @@ $block-class: 'profile-form';
 
                 min-width: 100%;
                 font-weight: 100;
-                color: $header-font-color;
+                color: $HEADER_FONT_COLOR;
                 border-top: none;
                 border-left: none;
                 border-right: none;
-                border-bottom: 1px solid $border-color;
+                border-bottom: 1px solid $BORDER_COLOR;
                 flex-grow: 1;
                 margin-right: 8px;
 

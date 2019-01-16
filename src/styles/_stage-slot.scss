@@ -4,7 +4,7 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: $lead-font-color;
+        color: $LEAD_FONT_COLOR;
         font-size: 16px;
         padding: 16px;
         min-height: 104px;
@@ -27,7 +27,7 @@ $block-class:'stage-slot';
 
         &__name-row {
             text-transform: none;
-            color: $header-font-color;
+            color: $HEADER_FONT_COLOR;
             font-size: 18px;
             font-weight: 400;
 
@@ -48,7 +48,7 @@ $block-class:'stage-slot';
             font-weight: 400;
             letter-spacing: 0.3px;
             align-items: flex-start;
-            color: lighten($font-color, 5%);
+            color: lighten($FONT_COLOR, 5%);
         }
 
         &__masked-button {
@@ -72,14 +72,14 @@ $block-class:'stage-slot';
         &__left-icon {
             width: 16px;
             height: 16px;
-            fill: $header-font-color;
+            fill: $HEADER_FONT_COLOR;
             float: left;
             margin-right: 5px;
             margin-top: 2px;
             cursor: pointer;
 
             &:hover {
-                fill: $font-color;
+                fill: $FONT_COLOR;
             }
         }
 
@@ -103,7 +103,7 @@ $block-class:'stage-slot';
 
         .grommetux-search--inline,
         .grommetux-control-icon-search {
-            fill: $header-font-color;
+            fill: $HEADER_FONT_COLOR;
         }
     }
 }

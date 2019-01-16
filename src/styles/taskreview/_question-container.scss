@@ -2,7 +2,7 @@ $block-class:'question-container';
 
 @at-root {
     .#{$block-class} {
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid $BORDER_COLOR;
         padding: 16px;
 
         summary::-webkit-details-marker {

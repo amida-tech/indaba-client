@@ -7,11 +7,11 @@ $block-class: 'message-list';
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
         min-height: 220px;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid $BORDER_COLOR;
 
         &__title {
             justify-content: space-between;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
             display: flex;
             padding: 16px;
             font-size: 18px;
@@ -29,7 +29,7 @@ $block-class: 'message-list';
             flex-direction: row;
             align-items: center;
             background: #fff;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
 
             &--unread {
                 .#{$block-class}__unread-indicator {

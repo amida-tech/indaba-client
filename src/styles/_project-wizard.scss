@@ -55,14 +55,14 @@ $block-class: 'project-wizard';
 
         .project-wizard__tab--complete {
             &::after {
-                background-color: nth($brand-neutral-colors, 2);
-                border: 2px solid nth($brand-neutral-colors, 1);
+                background-color: nth($BRAND_NEUTRAL_COLORS, 2);
+                border: 2px solid nth($BRAND_NEUTRAL_COLORS, 1);
             }
         }
 
         .project-wizard__tab--incomplete {
             &::after {
-                background-color: $page-background-color;
+                background-color: $PAGE_BACKGROUND_COLOR;
                 border: 2px solid $LIGHT_GREEN;
             }
         }

@@ -2,7 +2,7 @@ $block-class: 'pm-user-groups-tab';
 
 @at-root {
     .#{$block-class} {
-        border: 2px solid $border-color;
+        border: 2px solid $BORDER_COLOR;
         border-radius: 2px;
         justify-content: center;
         background-color: #fdfdfd;
@@ -14,7 +14,7 @@ $block-class: 'pm-user-groups-tab';
         &__input {
             padding: 5px 5px 5px 10px;
             width: 100%;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
 
             &:focus,
             &:active {

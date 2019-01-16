@@ -7,7 +7,7 @@ $block-class: 'collapsed-message';
         flex-direction: column;
         background-color: white;
         padding: 0.5em 1em;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid $BORDER_COLOR;
         cursor: pointer;
 
         &__from {

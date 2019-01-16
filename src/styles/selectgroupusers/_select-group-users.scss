@@ -5,7 +5,7 @@ $block-class: 'select-group-users';
         min-width: 800px;
         display: flex;
         flex-direction: column;
-        color: $header-font-color;
+        color: $HEADER_FONT_COLOR;
 
         &__group-name-input {
             line-height: 1.5;

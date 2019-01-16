@@ -4,8 +4,8 @@ $block-class: 'new-questions';
     .#{$block-class} {
         &__types {
             font-size: 14px;
-            color: $lead-font-color;
-            border-bottom: 1px solid $border-color;
+            color: $LEAD_FONT_COLOR;
+            border-bottom: 1px solid $BORDER_COLOR;
             padding: 1em;
             display: flex;
             flex-direction: row;
@@ -27,7 +27,7 @@ $block-class: 'new-questions';
         }
 
         &__section-icon {
-            fill: $lead-font-color;
+            fill: $LEAD_FONT_COLOR;
 
             &:active {
                 fill: $LIGHT_GREEN;
@@ -43,7 +43,7 @@ $block-class: 'new-questions';
             margin-top: 40px;
             border-width: 1px 0;
             border-style: solid;
-            border-color: $border-color;
+            border-color: $BORDER_COLOR;
         }
     }
 }

@@ -1,13 +1,9 @@
 $block-class: 'stamp';
 
-$bad-color: #af1212;
-$good-color: #68997d;
-$neutral-color: #e6edef;
-
 @at-root {
     .#{$block-class} {
         flex: 1;
-        border: 2px solid $neutral-color;
+        border: 2px solid $LIGHT_GRAY;
         border-radius: 50%;
         margin: 0 8px;
         position: relative;
@@ -15,18 +11,18 @@ $neutral-color: #e6edef;
         min-width: 100px;
 
         &--bad {
-            border-color: $bad-color;
-            color: $bad-color;
+            border-color: $ERROR_RED;
+            color: $ERROR_RED;
         }
 
         &--good {
-            border-color: $good-color;
-            color: $good-color;
+            border-color: $LIGHT_GREEN;
+            color: $LIGHT_GREEN;
         }
 
         &--neutral {
-            border-color: $neutral-color;
-            color: $lead-font-color;
+            border-color: $LIGHT_GRAY;
+            color: $LEAD_FONT_COLOR;
         }
 
         &::before {

@@ -67,13 +67,13 @@ $block-class: 'dynamic-question';
 
             @extend .small-icon;
 
-            fill: lighten($header-font-color, 10%);
+            fill: lighten($HEADER_FONT_COLOR, 10%);
         }
 
         &__weight-input {
             width: 5%;
             text-align: center;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             outline: none;
             flex-shrink: 0;
 

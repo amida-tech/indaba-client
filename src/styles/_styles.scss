@@ -1,42 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-$page-background-color: #fdfdfd;
-$header-font-color: #8a8f99;
-$lead-font-color: #637282;
-$font-color: #82909c;
-$border-color: #e6e6e6;
-$element-background: #f3f5f6;
-$font-inverse-color: #f7f8f9;
-// grommet brand colors
-$brand-color: #4eb276;
-$off-brand-color: #4eb276;
-$brand-font-family: 'Roboto';
-$layer-overlay-background-color: rgba(white, 0.8);
-$layer-background-color: none;
-// TODO still need override
-$brand-neutral-colors: (#308253, #4d8061);
-$brand-accent-colors: #4eb276;
-$brand-link-color: #00854e;
-$brand-status-colors: (
-    critical: #ff324d,
-    error: #ff324d,
-    warning: #ffd602,
-    ok: #8cc800,
-    unknown: #a8a8a8,
-    disabled: #a8a8a8
-) !default;
-$brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
-$brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
-
 $primary-nav-height: 64px;
 $footer-height: 48px;
 $footer-height-with-padding: 64px;
+$brand-font-family: 'Roboto';
 
 @import 'grommet/scss/grommet-core/index.scss';
 
 body {
     font-family: Roboto, sans-serif;
-    background-color: $page-background-color;
-    color: $header-font-color;
+    background-color: $PAGE_BACKGROUND_COLOR;
+    color: $HEADER_FONT_COLOR;
     overflow-y: auto;
 }
 
@@ -103,7 +76,7 @@ body,
 
 .workflow {
     div {
-        color: $font-color;
+        color: $FONT_COLOR;
         text-transform: uppercase;
     }
 }
@@ -146,7 +119,7 @@ body,
     padding-top: 16px;
     font-size: 16px;
     font-weight: 400;
-    color: $lead-font-color;
+    color: $LEAD_FONT_COLOR;
 }
 
 .center {

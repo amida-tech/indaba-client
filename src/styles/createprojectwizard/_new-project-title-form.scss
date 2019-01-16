@@ -18,7 +18,7 @@ $block-class: 'new-project-title-form';
         }
 
         &__error {
-            color: red;
+            color: $ERROR_RED;
             margin-top: 5px;
             min-height: 20px;
         }

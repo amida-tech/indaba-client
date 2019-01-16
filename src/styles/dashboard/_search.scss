@@ -8,13 +8,13 @@ $block-class: 'search';
         display: flex;
         align-items: center;
         position: relative;
-        color: $lead-font-color;
+        color: $LEAD_FONT_COLOR;
 
         @extend .small-font;
 
         &__input {
             flex: 1;
-            border: 2px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
             border-radius: 2px;
             background-color: $search-input-background;
             padding: 8px;

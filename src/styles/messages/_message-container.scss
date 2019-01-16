@@ -21,7 +21,7 @@ $block-class: 'message-container';
 
             display: flex;
             align-items: center;
-            color: $header-font-color;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__back-icon {

@@ -19,14 +19,14 @@ $block-class: 'user-profile-form';
             &__nav {
                 display: flex;
                 margin: 0 0 1em;
-                border-bottom: 1px solid $border-color;
+                border-bottom: 1px solid $BORDER_COLOR;
             }
         }
 
         &__tab {
             display: flex;
             margin: 12px 0 0;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
             font-size: 14px;
             color: $font-color-for-labels;
             font-weight: 400;
@@ -46,7 +46,7 @@ $block-class: 'user-profile-form';
 
             &__link {
                 &--active {
-                    border-bottom: 2px solid nth($brand-neutral-colors, 2);
+                    border-bottom: 2px solid nth($BRAND_NEUTRAL_COLORS, 2);
                 }
             }
         }

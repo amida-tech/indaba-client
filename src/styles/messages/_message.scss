@@ -16,11 +16,11 @@ $block-class: 'message';
         &__content {
             background-color: white;
             padding: 0.5em 1em;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
         }
 
         &__row {
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -73,7 +73,7 @@ $block-class: 'message';
             background-color: white;
             padding: 0.5em 1em;
             cursor: pointer;
-            color: $font-color;
+            color: $FONT_COLOR;
         }
     }
 }

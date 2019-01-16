@@ -4,8 +4,8 @@ $block-class:'review-pane';
     .#{$block-class} {
         &__display {
             margin: 1em 2em;
-            color: $font-color;
-            border: 1px solid $font-color;
+            color: $FONT_COLOR;
+            border: 1px solid $FONT_COLOR;
             background-color: #fafafa;
             padding: 0.5em;
             width: 75%;

@@ -40,13 +40,13 @@ $block-class: 'inbox';
             display: flex;
             justify-content: center;
             align-items: baseline;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             background-color: #fff;
         }
 
         &__page {
             padding: 4px 8px;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             text-align: center;
         }
 

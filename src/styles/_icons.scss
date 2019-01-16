@@ -1,29 +1,29 @@
 .primary-icon {
     width: 32px;
     height: 32px;
-    fill: $header-font-color;
+    fill: $HEADER_FONT_COLOR;
 
     &:hover {
-        fill: $lead-font-color;
+        fill: $LEAD_FONT_COLOR;
     }
 }
 
 .small-icon {
     width: 24px;
     height: 24px;
-    fill: $header-font-color;
+    fill: $HEADER_FONT_COLOR;
 
     &:hover {
-        fill: $lead-font-color;
+        fill: $LEAD_FONT_COLOR;
     }
 }
 
 .x-small-icon {
     width: 16px;
     height: 16px;
-    fill: $header-font-color;
+    fill: $HEADER_FONT_COLOR;
 
     &:hover {
-        fill: $lead-font-color;
+        fill: $LEAD_FONT_COLOR;
     }
 }

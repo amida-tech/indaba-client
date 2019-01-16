@@ -11,7 +11,7 @@ $block-class: 'project-list-entry';
 
         &:hover {
             background-color: darken(#fafafa, 5%);
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
         }
 
         &__name {

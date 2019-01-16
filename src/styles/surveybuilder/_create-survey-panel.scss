@@ -14,7 +14,7 @@ $block-class: 'create-survey-panel';
             border-radius: 2px;
             background-color: #f9f9f9;
             align-items: center;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
         }
 
         &__view-select {
@@ -40,7 +40,7 @@ $block-class: 'create-survey-panel';
 
         &__survey-controls {
             padding: 16px;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -50,15 +50,15 @@ $block-class: 'create-survey-panel';
             display: flex;
             flex-direction: column;
             padding: 16px;
-            border: 1px solid $border-color;
-            color: $font-color;
+            border: 1px solid $BORDER_COLOR;
+            color: $FONT_COLOR;
         }
 
         &__instructions-entry {
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             border-radius: 2px;
             padding: 8px;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             height: 5em;
             resize: none;
             margin-bottom: 4px;

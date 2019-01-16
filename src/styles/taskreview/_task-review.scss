@@ -4,7 +4,7 @@ $block-class:'task-review';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
-        border-left: 2px solid $border-color;
+        border-left: 2px solid $BORDER_COLOR;
 
         &__details-and-survey {
             width: 65%;
@@ -15,15 +15,15 @@ $block-class:'task-review';
 
         &__flag-sidebar {
             width: 35%;
-            background: $element-background;
-            border-right: 2px solid $border-color;
+            background: $ELEMENT_BACKGROUND;
+            border-right: 2px solid $BORDER_COLOR;
         }
 
         &__back-link {
             display: flex;
             align-items: flex-end;
             padding-top: 24px;
-            background-color: $element-background;
+            background-color: $ELEMENT_BACKGROUND;
         }
 
         &__back-arrow {

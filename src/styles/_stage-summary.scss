@@ -10,13 +10,13 @@ $block-class:'stage-summary';
         }
 
         &--wizard {
-            border-right: 1px solid $border-color;
+            border-right: 1px solid $BORDER_COLOR;
         }
 
         &__header {
             font-size: 18px;
             font-weight: 400;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             padding: 8px 4px;
         }
 
@@ -66,7 +66,7 @@ $block-class:'stage-summary';
             float: right;
             font-size: 16px;
             font-weight: 300;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
 
             &--no-clip {
                 width: auto;
@@ -77,7 +77,7 @@ $block-class:'stage-summary';
         &__label {
             font-size: 12px;
             letter-spacing: 0.3px;
-            color: lighten($font-color, 5%);
+            color: lighten($FONT_COLOR, 5%);
             overflow: hidden;
             white-space: nowrap;
             font-weight: 400;

@@ -1,1 +1,30 @@
 $HOVER_GREEN: $DARK_GREEN;
+$ERROR_RED: red; // change when color is selected
+
+// found in styles moving to named colors
+$PAGE_BACKGROUND_COLOR: $PRIMARY_GRAY;
+
+// TODO: fix these with proper colors
+$HEADER_FONT_COLOR: #8a8f99;
+$LEAD_FONT_COLOR: #637282;
+$FONT_COLOR: #82909c;
+$BORDER_COLOR: #e6e6e6;
+$ELEMENT_BACKGROUND: #f3f5f6;
+$FONT_INVERSE_COLOR: #f7f8f9;
+
+// grommet brand colors (we should be able to remove this now that grommet is gone)
+$INDABA_GREEN: $LIGHT_GREEN;
+$LAYER_OVERLAY_BACKGROUND_COLOR: $PRIMARY_GRAY;
+$LAYER_BACKGROUND_COLOR: none;
+
+$BRAND_NEUTRAL_COLORS: (#308253, #4d8061); // TODO: change these, not brand neutral
+$BRAND_LINK_COLOR: $INDABA_GREEN;
+$STATUS_COLORS: (
+    critical: #ff324d,
+    error: #ff324d,
+    warning: #ffd602,
+    ok: #8cc800,
+    unknown: #a8a8a8,
+    disabled: #a8a8a8
+) !default;
+$BRAND_GRAY_COLORS: ($PRIMARY_GRAY, $LIGHT_GRAY, $DARK_GRAY, $BLACK);

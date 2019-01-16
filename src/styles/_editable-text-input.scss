@@ -4,14 +4,14 @@ $block-class: 'editable-text-input';
     .#{$block-class} {
         font-size: 22px;
         font-weight: 300;
-        color: $lead-font-color;
+        color: $LEAD_FONT_COLOR;
         display: flex;
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context
         &__text-input,
         .grommet &__text-input:not(.grommetux-input) {
             border-radius: 2px;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             flex: 1;
             text-overflow: ellipsis;
         }

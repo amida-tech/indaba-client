@@ -2,7 +2,7 @@ $block-class:'task-details';
 
 @at-root {
     .#{$block-class} {
-        background-color: $element-background;
+        background-color: $ELEMENT_BACKGROUND;
         padding-top: 0.5em;
 
         &__header {
@@ -35,7 +35,7 @@ $block-class:'task-details';
 
         &__info {
             min-width: 100%;
-            border: 2px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
             border-left: none;
             border-radius: 2px;
             display: inline-flex;
@@ -47,7 +47,7 @@ $block-class:'task-details';
             padding-top: 8px;
             padding-bottom: 8px;
             padding-left: 8px;
-            border-left: 2px solid $border-color;
+            border-left: 2px solid $BORDER_COLOR;
             width: 25%;
             display: inline-block;
             position: relative;
@@ -55,7 +55,7 @@ $block-class:'task-details';
 
             &-label {
                 font-size: 12px;
-                color: $lead-font-color;
+                color: $LEAD_FONT_COLOR;
             }
 
             &-survey {
@@ -69,7 +69,7 @@ $block-class:'task-details';
             &-title {
                 @extend .med-font;
 
-                color: $lead-font-color;
+                color: $LEAD_FONT_COLOR;
                 display: flex;
             }
 

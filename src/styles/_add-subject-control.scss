@@ -5,7 +5,7 @@ $block-class: 'add-subject-control';
         &__form {
             display: flex;
             flex-direction: column;
-            border: 2px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
             border-radius: 2px;
             margin-left: 10%;
             margin-right: 10%;
@@ -44,11 +44,11 @@ $block-class: 'add-subject-control';
         &__plus-icon {
             margin-right: 10px;
             margin-left: 10px;
-            fill: $font-color;
+            fill: $FONT_COLOR;
             cursor: pointer;
 
             &:hover {
-                fill: darken($font-color, 10);
+                fill: darken($FONT_COLOR, 10);
             }
         }
     }

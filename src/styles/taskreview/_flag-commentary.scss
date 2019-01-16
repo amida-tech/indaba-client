@@ -5,7 +5,7 @@ $block-class:'flag-commentary';
 @at-root {
     .#{$block-class} {
         &__frame {
-            color: $font-color;
+            color: $FONT_COLOR;
             padding: 1em;
             background: #fff;
             font-size: 14px;

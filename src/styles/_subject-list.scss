@@ -27,7 +27,7 @@ $block-class: 'subject-list';
 
         &__header-title {
             font-size: 14px;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             padding: 5px;
 
             &--name {
@@ -44,7 +44,7 @@ $block-class: 'subject-list';
             height: 12px;
 
             &:hover {
-                fill: darken($font-color, 10);
+                fill: darken($FONT_COLOR, 10);
             }
         }
     }

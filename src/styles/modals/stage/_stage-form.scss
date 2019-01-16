@@ -2,7 +2,7 @@ $block-class:'stage-form';
 
 @at-root {
     .#{$block-class} {
-        color: $lead-font-color;
+        color: $LEAD_FONT_COLOR;
         padding: 24px 24px 32px;
 
         &__input-field {
@@ -15,7 +15,7 @@ $block-class:'stage-form';
             color: $DARK_GRAY;
 
             &-label {
-                color: $font-color;
+                color: $FONT_COLOR;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 500;
@@ -26,7 +26,7 @@ $block-class:'stage-form';
             margin-bottom: 24px;
 
             &-name {
-                color: $font-color;
+                color: $FONT_COLOR;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 500;
@@ -37,7 +37,7 @@ $block-class:'stage-form';
             margin-bottom: 8px;
 
             &-label {
-                color: $font-color;
+                color: $FONT_COLOR;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 500;
@@ -52,7 +52,7 @@ $block-class:'stage-form';
             padding: 8px 16px;
 
             &-label {
-                color: $font-color;
+                color: $FONT_COLOR;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 500;
@@ -96,7 +96,7 @@ $block-class:'stage-form';
         .Select--multi .Select-value {
             color: $DARK_GRAY;
             background-color: #f1f4f7;
-            border: 1px solid  nth($brand-neutral-colors, 2);
+            border: 1px solid  nth($BRAND_NEUTRAL_COLORS, 2);
         }
 
         .Select--multi .Select-value-label {

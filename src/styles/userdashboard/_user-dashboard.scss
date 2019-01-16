@@ -6,9 +6,9 @@ $block-class:'user-dashboard';
         margin-right: 5%;
 
         &__table {
-            border: 2px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
             border-radius: 2px;
-            background-color: $page-background-color;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
     }
 }

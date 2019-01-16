@@ -3,7 +3,7 @@ $block-class: 'status-card';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $border-color;
+        border: 1px solid $BORDER_COLOR;
         background-color: $card-background;
         border-radius: 2px;
         display: flex;
@@ -26,32 +26,32 @@ $block-class: 'status-card';
         }
 
         &__name-label {
-            color: $font-color;
+            color: $FONT_COLOR;
             font-size: 14px;
             line-height: 14px;
         }
 
         &__name-value {
             display: flex;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             font-size: 24px;
             font-weight: 100;
             cursor: pointer;
 
             &:hover {
-                color: nth($brand-neutral-colors, 2);
+                color: nth($BRAND_NEUTRAL_COLORS, 2);
             }
         }
 
         &__status {
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             margin-top: 20px;
             font-size: 24px;
             display: flex;
             font-weight: 300;
 
             &:hover {
-                color: nth($brand-neutral-colors, 2);
+                color: nth($BRAND_NEUTRAL_COLORS, 2);
             }
 
             &--editable {
@@ -61,18 +61,18 @@ $block-class: 'status-card';
 
         &__create-icon {
             width: 1.6em;
-            fill: $header-font-color;
+            fill: $HEADER_FONT_COLOR;
 
             &:hover {
-                fill: nth($brand-neutral-colors, 2);
+                fill: nth($BRAND_NEUTRAL_COLORS, 2);
             }
         }
 
         &__edit-icon {
-            fill: $lead-font-color;
+            fill: $LEAD_FONT_COLOR;
 
             &:hover {
-                fill: nth($brand-neutral-colors, 2);
+                fill: nth($BRAND_NEUTRAL_COLORS, 2);
             }
         }
     }

@@ -14,10 +14,10 @@ $block-class: 'addressee';
         &__delete-icon {
             display: block;
             margin-left: 4px;
-            fill: $font-color;
+            fill: $FONT_COLOR;
 
             &:hover {
-                fill: darken($font-color, 10);
+                fill: darken($FONT_COLOR, 10);
             }
         }
     }

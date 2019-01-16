@@ -4,8 +4,8 @@ $block-class: 'subjects';
     .#{$block-class} {
         &__action {
             display: flex;
-            background-color: $element-background;
-            border: 1px solid $border-color;
+            background-color: $ELEMENT_BACKGROUND;
+            border: 1px solid $BORDER_COLOR;
             padding: 24px;
             justify-content: flex-end;
             align-items: center;
@@ -18,7 +18,7 @@ $block-class: 'subjects';
         }
 
         &__table {
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
         }
 
         &__search-wrapper {
@@ -26,7 +26,7 @@ $block-class: 'subjects';
             width: 100%;
             flex: 1;
             background-color: #fff;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
         }
     }
 }

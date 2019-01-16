@@ -25,7 +25,7 @@ $block-class: 'project-status-form';
         }
 
         &__label {
-            color: $font-color;
+            color: $FONT_COLOR;
             font-size: 12px;
             text-transform: uppercase;
         }
@@ -45,7 +45,7 @@ $block-class: 'project-status-form';
         &__confirmation {
             span {
                 font-weight: 500;
-                color: $header-font-color;
+                color: $HEADER_FONT_COLOR;
                 margin-top: 24px;
                 margin-bottom: 1em;
                 font-size: 16px;
@@ -59,7 +59,7 @@ $block-class: 'project-status-form';
 
             label {
                 font-weight: normal;
-                color: $header-font-color;
+                color: $HEADER_FONT_COLOR;
             }
         }
     }

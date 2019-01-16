@@ -7,8 +7,8 @@ $block-class: 'export';
 
         &__wrapper {
             display: flex;
-            background-color: $element-background;
-            border: 1px solid $border-color;
+            background-color: $ELEMENT_BACKGROUND;
+            border: 1px solid $BORDER_COLOR;
             padding: 24px;
             align-items: center;
             margin-top: 40px;
@@ -28,13 +28,13 @@ $block-class: 'export';
 
         &__configuration {
             flex: 1;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             background-color: #f7f8f9;
         }
 
         &__type-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
 
             &--inactive {
                 opacity: 0.5;
@@ -61,15 +61,15 @@ $block-class: 'export';
 
         &__explanation {
             font-size: 14px;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             margin-left: 32px;
         }
 
         &__custom-choices {
             margin: 16px;
             padding: 16px 12px;
-            border: 1px solid $border-color;
-            background-color: $page-background-color;
+            border: 1px solid $BORDER_COLOR;
+            background-color: $PAGE_BACKGROUND_COLOR;
             display: flex;
             flex-wrap: wrap;
         }
@@ -86,11 +86,11 @@ $block-class: 'export';
 
         &__custom-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
         }
 
         &__custom-section--inactive {
-            color: lighten($font-color, 20%);
+            color: lighten($FONT_COLOR, 20%);
 
             .#{$block-class} {
                 &__custom-action {
@@ -120,7 +120,7 @@ $block-class: 'export';
             flex-basis: 240px;
             margin-left: 30px;
             background-color: #f7f8f9;
-            border: 1px solid $border-color;
+            border: 1px solid $BORDER_COLOR;
             display: flex;
             flex-direction: column;
             align-items: center;

@@ -19,7 +19,7 @@ $block-class:'flag-controls-form';
 
         &__mark-resolve-section {
             display: flex;
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             margin-top: 16px;
             margin-bottom: 16px;
             margin-left: 8px;
@@ -30,7 +30,7 @@ $block-class:'flag-controls-form';
         }
 
         &__notify-section {
-            color: $lead-font-color;
+            color: $LEAD_FONT_COLOR;
             margin-bottom: 1em;
 
             .Select-control {

@@ -8,21 +8,21 @@ $block-class:'flag-question-list';
             @extend .small-font;
 
             padding: 1em 2em;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
             font-size: 12px;
             white-space: nowrap;
             overflow: hidden;
             cursor: pointer;
 
             &:hover {
-                background-color: darken($element-background, 5);
-                color: $lead-font-color;
+                background-color: darken($ELEMENT_BACKGROUND, 5);
+                color: $LEAD_FONT_COLOR;
             }
 
             &--selected {
-                background-color: darken($element-background, 5);
+                background-color: darken($ELEMENT_BACKGROUND, 5);
                 border-right: 3px solid #4eb276;
-                color: $lead-font-color;
+                color: $LEAD_FONT_COLOR;
                 font-size: 12px;
             }
 

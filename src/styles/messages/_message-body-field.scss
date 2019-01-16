@@ -10,12 +10,12 @@ $block-class: 'message-body-field';
             border: none;
             outline: none;
             resize: none;
-            color: darken($font-color, 30);
+            color: darken($FONT_COLOR, 30);
             padding-top: 16px;
             line-height: 1.5;
 
             &--error {
-                outline: 1px solid red;
+                outline: 1px solid $ERROR_RED;
             }
         }
     }

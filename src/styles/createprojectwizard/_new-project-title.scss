@@ -1,5 +1,4 @@
 $block-class:'new-project-title';
-$bad-color: #af1212;
 
 @at-root {
     .#{$block-class} {
@@ -9,7 +8,7 @@ $bad-color: #af1212;
 
         &__error {
             width: 50%;
-            color: $bad-color;
+            color: $ERROR_RED;
         }
     }
 }
