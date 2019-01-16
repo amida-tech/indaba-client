@@ -11,8 +11,7 @@ export const UPDATE_USER_FILTER_GROUP = 'UPDATE_USER_FILTER_GROUP';
 export const UPDATE_USER_FILTER_QUERY = 'UPDATE_USER_FILTER_QUERY';
 export const INVITE_USER = 'INVITE_USER'; // Not yet used.
 
-// Users/User Groups list
-export const UPDATE_USER_GROUP_LIST_FILTER_QUERY = 'UPDATE_USER_GROUP_FILTER_QUERY';
+// Users List
 export const UPDATE_USER_LIST_SEARCH_QUERY = 'UPDATE_USER_LIST_SEARCH_QUERY';
 
 // Task Options Modal:

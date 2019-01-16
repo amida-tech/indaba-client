@@ -48,10 +48,6 @@ class PMUserGroupsTab extends Component {
             });
     }
 
-    filterGroup(group, query) {
-        return group.title.toLowerCase().includes(query.toLowerCase());
-    }
-
     render() {
         const deleteModal = this.props.ui.showUserGroupDeleteConfirmModal;
         return (
@@ -68,14 +64,8 @@ class PMUserGroupsTab extends Component {
                         onSave={this.handleDeleteModalSave}
                         saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
-                <div className='pm-user-groups-tab__filter-container'>
-                    <input type='text' className='pm-user-groups-tab__input'
-                        onChange={evt => this.props.onFilter(evt.target.value)}
-                        placeholder={this.props.vocab.COMMON.FILTER} />
-                </div>
                 <UserGroupList columnHeaders={true}
-                    groups={this.props.project.userGroups
-                        .filter(group => this.filterGroup(group, this.props.query))}
+                    groups={this.props.project.userGroups}
                     users={this.props.users}
                     vocab={this.props.vocab}
                     onDeleteClick={this.handleDeleteClick}
@@ -92,17 +82,8 @@ PMUserGroupsTab.propTypes = {
     vocab: PropTypes.object,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
-    onFilter: PropTypes.func,
     ui: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    query: state.manager.ui.userGroupListFilterQuery,
-});
-
-const mapDispatchToProps = dispatch => ({
-    onFilter: query => dispatch(updateUserGroupListFilterQuery(query)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PMUserGroupsTab);
+export default PMUserGroupsTab;

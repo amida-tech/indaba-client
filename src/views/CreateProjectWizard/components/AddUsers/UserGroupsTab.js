@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-import Search from 'grommet/components/Search';
 
 import apiService from '../../../../services/api';
 import UserGroupList from '../../../../common/components/UserGroupList';
@@ -9,7 +8,6 @@ import UserGroupList from '../../../../common/components/UserGroupList';
 class UserGroupsTab extends Component {
     constructor(props) {
         super(props);
-        this.filterGroup = this.filterGroup.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
     }
 
@@ -23,25 +21,13 @@ class UserGroupsTab extends Component {
             });
     }
 
-    filterGroup(group) {
-        return group.title.toLowerCase().includes(this.props.filter.toLowerCase());
-    }
-
-    lookupUser(userId) {
-        return this.props.allUsers.find(user => user.id === userId);
-    }
-
     render() {
         return (
             <div className='wrapper'>
                 <div className='user-groups-tab'>
-                    <Search className='user-groups-tab__search-input'
-                        placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        fill={true}
-                        inline={true}
-                        onSelect={this.handleSearchSelect}/>
-
-                    <UserGroupList groups={this.props.groups.filter(this.filterGroup)}
+                    <UserGroupList columnHeaders={true}
+                        vocab={this.props.vocab}
+                        groups={this.props.groups}
                         users={this.props.allUsers}
                         onDeleteClick={this.handleDeleteClick}/>
                 </div>
@@ -55,7 +41,6 @@ UserGroupsTab.propTypes = {
     allUsers: PropTypes.arrayOf(PropTypes.object).isRequired,
     vocab: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
-    filter: PropTypes.string.isRequired,
     projectId: PropTypes.number.isRequired,
     actions: PropTypes.shape({
         removeUser: PropTypes.func.isRequired,

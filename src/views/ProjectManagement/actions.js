@@ -51,13 +51,6 @@ export function updateUserFilterQuery(query) {
     };
 }
 
-export function updateUserGroupListFilterQuery(query) {
-    return {
-        type: actionTypes.UPDATE_USER_GROUP_LIST_FILTER_QUERY,
-        query,
-    };
-}
-
 export function updateUserListSearchQuery(query) {
     return {
         type: actionTypes.UPDATE_USER_LIST_SEARCH_QUERY,
