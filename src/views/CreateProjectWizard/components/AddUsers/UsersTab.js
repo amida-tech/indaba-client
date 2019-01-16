@@ -63,7 +63,7 @@ class UsersTab extends Component {
                         }} />
                     <div className='users-tab__search'>
                         <Search
-                            placeHolder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                            placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                             value={this.props.filter}
                             list={this.props.allUsers.filter(this.searchFilter)
                                 .map(user => ({
