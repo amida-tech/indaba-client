@@ -34,7 +34,7 @@ class FilteredList extends Component {
                 <List
                     {...listProps}
                     items={this.props.items.filter((item) =>
-                        item.searchKey.toLowerCase().includes(this.state.query.toLowerCase()))}
+                        item.filterKey.toLowerCase().includes(this.state.query.toLowerCase()))}
                 />
             </div>
         );

@@ -6,7 +6,7 @@ import { FILTERS } from './constants';
 
 const initialState = {
     ui: {
-        searchQuery: '',
+        filterQuery: '',
         filter: FILTERS.ALL_TASKS,
     },
     messages: [],
@@ -17,10 +17,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case actionTypes.USER_DASH_SET_SEARCH_QUERY:
+    case actionTypes.USER_DASH_SET_FILTER_QUERY:
         return update(state, {
             ui: {
-                searchQuery: { $set: action.searchQuery },
+                filterQuery: { $set: action.filterQuery },
             },
         });
     case actionTypes.USER_DASH_SET_FILTER:

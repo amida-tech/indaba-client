@@ -46,7 +46,7 @@ class PMDashboard extends Component {
     }
 
     searchRow(row) {
-        const lowerQuery = this.props.ui.searchQuery.toLowerCase();
+        const lowerQuery = this.props.ui.filterQuery.toLowerCase();
         if (_.isEmpty(row.survey)) {
             return row.project.name.toLowerCase().includes(lowerQuery);
         }

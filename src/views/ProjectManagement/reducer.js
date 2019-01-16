@@ -6,7 +6,7 @@ export const initialState = {
     ui: {
         subnav: 'workflow',
         showProfile: false,
-        userSidebarSearch: {
+        userSidebarFilter: {
             query: '',
             groups: {},
         },
@@ -17,8 +17,8 @@ export const initialState = {
             task: {},
             userGroups: [],
         },
-        userGroupListSearchQuery: '',
-        userListSearchQuery: '',
+        userGroupListFilterQuery: '',
+        userListFilterQuery: '',
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
@@ -59,28 +59,28 @@ export default (state = initialState, action) => {
                 showInactiveConfirmModal: { $set: action.show },
             },
         });
-    case type.UPDATE_USER_SEARCH_GROUP:
+    case type.UPDATE_USER_FILTER_GROUP:
         return (update(state, {
             ui: {
-                userSidebarSearch: {
+                userSidebarFilter: {
                     group: { $set: action.group },
                 },
             },
         }));
-    case type.UPDATE_USER_SEARCH_QUERY:
+    case type.UPDATE_USER_FILTER_QUERY:
         return update(state, {
             ui: {
-                userSidebarSearch: { query: { $set: action.query } },
+                userSidebarFilter: { query: { $set: action.query } },
             },
         });
-    case type.UPDATE_USER_GROUP_LIST_SEARCH_QUERY:
+    case type.UPDATE_USER_GROUP_LIST_FILTER_QUERY:
         return update(state, {
-            ui: { userGroupListSearchQuery: { $set: action.query } },
+            ui: { userGroupListFilterQuery: { $set: action.query } },
         });
-    case type.UPDATE_USER_LIST_SEARCH_QUERY:
+    case type.UPDATE_USER_LIST_FILTER_QUERY:
         return update(state, {
             ui: {
-                userListSearchQuery: { $set: action.query },
+                userListFilterQuery: { $set: action.query },
             },
         });
     case type.SHOW_TASK_OPTIONS_MODAL:

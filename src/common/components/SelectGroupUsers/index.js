@@ -89,7 +89,7 @@ class SelectGroupUsers extends Component {
         const user = this.props.allUsers.find(allUser => allUser.id === userId);
         return {
             key: user.id,
-            searchKey: renderName(user),
+            filterKey: renderName(user),
             value: user,
             label: renderName(user),
         };
