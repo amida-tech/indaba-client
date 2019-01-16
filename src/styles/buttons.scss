@@ -9,10 +9,10 @@
 }
 
 @mixin button-padding {
-    cursor: pointer;
     min-width: 120px;
     max-width: 384px;
     padding: 16px 16px;
+    outline: none;
 }
 
 .button {
@@ -22,6 +22,7 @@
     background-color: transparent;
     border: 1px solid $LIGHT_GREEN;
     color: $LIGHT_GREEN;
+    cursor: pointer;
 
     &:hover {
         background-color: $DARK_GREEN;
@@ -36,7 +37,7 @@
     background-color: transparent;
     border: none;
     color: $LIGHT_GREEN;
-    outline: none;
+    cursor: pointer;
 }
 
 .disabled-button {
@@ -46,6 +47,6 @@
     background: transparent;
     border: none;
     color: $LIGHT_GRAY;
+    cursor: not-allowed;
     opacity: 0.3;
-    outline: none;
 }

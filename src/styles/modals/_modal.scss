@@ -4,12 +4,6 @@ $header-footer: #f2f2f2;
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
 @at-root {
-    .grommetux-layer .grommetux-layer__container {
-        display: block;
-        flex-direction: none;
-        overflow: initial;
-    }
-
     .#{$block-class} {
         margin: 4em 1em 1em;
         max-height: 100%;
@@ -40,10 +34,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__footer {
-            padding-right: 1em;
-            background-color: $header-footer;
-            line-height: 3em;
-            overflow: auto;
+            background-color: $PRIMARY_GRAY;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -51,8 +42,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
 
         &__button-wrapper {
             @extend .button;
-
-            float: right;
         }
 
         &__container {
@@ -78,10 +67,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                     display: inline-block;
                     box-sizing: content-box;
                     width: 20%;
-
-                    .grommetux-date-time__input {
-                        padding-right: 0 !important;
-                    }
                 }
             }
         }

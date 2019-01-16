@@ -89,7 +89,7 @@ $block-class:'task-options-form';
             font-size: 1.75em;
             margin-right: 10px;
             margin-bottom: 10px;
-            color: darken(#4eb276, 10);
+            color: $DARK_GREEN;
 
             &--hidden {
                 display: none;
@@ -97,7 +97,7 @@ $block-class:'task-options-form';
             }
 
             &:hover {
-                color: #000;
+                color: $BLACK;
             }
 
             &--disabled {
@@ -106,7 +106,7 @@ $block-class:'task-options-form';
                 font-size: 1.75em;
                 margin-right: 10px;
                 margin-bottom: 10px;
-                color: #d9d9d9 !important;
+                color: $LIGHT_GRAY !important;
                 cursor: not-allowed;
                 pointer-events: none;
             }

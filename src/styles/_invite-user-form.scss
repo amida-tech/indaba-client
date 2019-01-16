@@ -10,14 +10,11 @@ $block-class: 'invite-user-form';
         width: 100%;
 
         &__text-input {
-            background-color: #fff;
-            border: 1px solid $border-color;
-            outline: none;
+            @include invite-input;
+
             font-size: 14px;
-            -webkit-box-shadow: 0 0 1000px #fff inset;
             flex: 1;
             margin-right: 4px;
-            padding: 8px;
 
             &:focus {
                 border: 2px solid $LIGHT_GREEN;
@@ -26,22 +23,7 @@ $block-class: 'invite-user-form';
         }
 
         &__submit-form {
-            background-color: $font-color;
-            width: 50px;
-            height: 30px;
-            border: none;
-            letter-spacing: 0.8px;
-            color: darken(#fafafa, 5%);
-            font-size: 12px;
-
-            &:focus {
-                border: 2px solid darken($font-color, 10);
-                outline: none;
-            }
-
-            &:hover {
-                background-color: darken($font-color, 10);
-            }
+            @extend .button;
         }
     }
 }
