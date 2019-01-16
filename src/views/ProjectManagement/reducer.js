@@ -18,7 +18,7 @@ export const initialState = {
             userGroups: [],
         },
         userGroupListFilterQuery: '',
-        userListFilterQuery: '',
+        userListSearchQuery: '',
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
         assignTaskInput: false,
@@ -77,10 +77,10 @@ export default (state = initialState, action) => {
         return update(state, {
             ui: { userGroupListFilterQuery: { $set: action.query } },
         });
-    case type.UPDATE_USER_LIST_FILTER_QUERY:
+    case type.UPDATE_USER_LIST_SEARCH_QUERY:
         return update(state, {
             ui: {
-                userListFilterQuery: { $set: action.query },
+                userListSearchQuery: { $set: action.query },
             },
         });
     case type.SHOW_TASK_OPTIONS_MODAL:
