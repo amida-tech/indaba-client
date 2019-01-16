@@ -1,16 +1,44 @@
-$brand-color: #4eb276;
-$header-footer: #f2f2f2;
 
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
 @at-root {
     .#{$block-class} {
-        margin: 4em 1em 1em;
-        max-height: 100%;
-        border: 1px solid $border-color;
-        border-radius: 3px;
-        background-color: rgba(255, 255, 255, 1);
-        box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.8);
+        height: 100vh;
+        overflow: auto;
+
+        &__container {
+            position: absolute;
+            animation: slide-down 0.2s ease-in-out forwards;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            margin: 4em 1em 1em;
+            max-height: 100%;
+            max-width: 100%;
+            border: 1px solid $border-color;
+            border-radius: 3px;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
+
+            input[type=text] {
+                font: inherit;
+                line-height: 1.5;
+                border: 1px solid #e6e6e6;
+                border-radius: 4px;
+                outline: none;
+                background-color: transparent;
+                color: inherit;
+                margin: 0;
+                padding: 11px;
+            }
+        }
         // space at the top for positioning, space on the other side to show box-shadow
 
         &__title {
@@ -44,7 +72,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             @extend .button;
         }
 
-        &__container {
+        &__contents {
             background-color: #fff;
             border-bottom: 1px solid $border-color;
             height: 100%;
@@ -71,7 +99,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.add-subject-layer {
+        &--add-subject-layer {
             width: 30em;
 
             input {
@@ -83,7 +111,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.add-stage-layer {
+        &--add-stage-layer {
             width: 60em;
 
             input[type=text] {
@@ -119,7 +147,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             }
         }
 
-        &.project-status-change-layer {
+        &--project-status-change-layer {
             .ion-replaced-checkbox {
                 display: none;
 
@@ -134,11 +162,11 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 display: none;
 
                 &:checked ~ .toggle {
-                    border-color: $brand-color;
+                    border-color: $LIGHT_GREEN;
                 }
 
                 &:checked ~ .toggle::after {
-                    background-color: $brand-color;
+                    background-color: $LIGHT_GREEN;
                     left: 30px;
                 }
             }

@@ -16,10 +16,29 @@ $block-class:'preference-tab';
         &__input-select {
             color: #51545c;
             font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 11px 23px;
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+            outline: none;
+            background-color: transparent;
+            margin: 0;
         }
 
         .preference-tab__input-textarea {
             @extend .lead-font;
+
+            color: #51545c;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 11px 23px;
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+            outline: none;
+            background-color: transparent;
+            margin: 0;
         }
     }
 }

@@ -51,7 +51,7 @@ $block-class: 'wizard-complete';
         }
 
         &__button {
-            @extend .secondary-button;
+            @extend .button;
         }
     }
 }

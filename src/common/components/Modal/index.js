@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Layer from 'grommet/components/Layer';
 import { submit } from 'redux-form';
 
 import FooterButton from './FooterButton';
@@ -9,17 +8,13 @@ import FooterButton from './FooterButton';
 class Modal extends Component {
     render() {
         return (
-            <Layer align='top'
-                closer={false}
-                flush={true}
-                id='modal-c'
-                onClose={this.props.onCancel}>
-                <div className={`modal-c ${this.props.class || ''}`}>
+            <div className='modal-c' id='modal-c'>
+                <div className={`modal-c__container modal-c--${this.props.class || ''}`}>
                     {
                         this.props.title
                         && <div className='modal-c__title'>{this.props.title}</div>
                     }
-                    <div className='modal-c__container'>
+                    <div className='modal-c__contents'>
                         {
                             this.props.bodyText
                             && <div className='modal-c__body-text'>{this.props.bodyText}</div>
@@ -46,7 +41,7 @@ class Modal extends Component {
                         </div>
                     </div>
                 </div>
-            </Layer>
+            </div>
         );
     }
 }

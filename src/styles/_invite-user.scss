@@ -1,20 +1,5 @@
 $block-class:'invite-user';
 
-@mixin invite-input {
-    border-radius: 2px;
-    border: 1px solid $LIGHT_GRAY;
-    background-color: transparent;
-    padding: 16px;
-    flex-grow: 0;
-    overflow: hidden;
-
-    &:focus,
-    &:active {
-        border: 2px solid $LIGHT_GREEN;
-        outline: none;
-    }
-}
-
 @at-root {
     .#{$block-class} {
         background-color: $PRIMARY_GRAY;
@@ -25,9 +10,11 @@ $block-class:'invite-user';
         }
 
         &__email {
-            @include invite-input;
+            @include text-input;
 
             width: 100%;
+            flex-grow: 0;
+            overflow: hidden;
         }
 
         &__name-inputs {
@@ -38,10 +25,12 @@ $block-class:'invite-user';
         }
 
         &__name-input {
-            @include invite-input;
+            @include text-input;
 
             margin-left: 0.5em;
             border-radius: 2px;
+            flex-grow: 0;
+            overflow: hidden;
         }
 
         &__buttons {

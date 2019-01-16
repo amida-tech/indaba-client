@@ -10,7 +10,7 @@ $block-class: 'invite-user-form';
         width: 100%;
 
         &__text-input {
-            @include invite-input;
+            @include text-input;
 
             font-size: 14px;
             flex: 1;
