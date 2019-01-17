@@ -2,7 +2,7 @@ $block-class: 'users';
 
 @mixin workflow-header {
     display: flex;
-    // background-color: $BLACK;
+    background-color: $LIGHT_GRAY;
     border: 1px solid $border-color;
     padding: 24px;
     align-items: center;
