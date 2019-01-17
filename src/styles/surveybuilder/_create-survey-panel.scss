@@ -26,18 +26,6 @@ $block-class: 'create-survey-panel';
             flex-direction: row;
         }
 
-        &__button-expand {
-            @extend .button;
-
-            margin-left: 16px;
-        }
-
-        &__button-collapse {
-            @extend .button;
-
-            margin-left: 16px;
-        }
-
         &__survey-controls {
             padding: 16px;
             border: 1px solid $border-color;

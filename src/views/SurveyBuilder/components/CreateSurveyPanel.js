@@ -29,16 +29,6 @@ class CreateSurveyPanel extends Component {
                         clearable={false}
                         disabled={this.props.options.length === 1}
                         onChange={event => this.props.actions.changeSectionView(event.value)}/>
-                    <div className='create-survey-panel__accordion-buttons'>
-                        <button className='create-survey-panel__button-expand'
-                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                            {this.props.vocab.PROJECT.EXPAND_ALL}
-                        </button>
-                        <button className='create-survey-panel__button-collapse'
-                            onClick={() => toast(this.props.vocab.ERROR.COMING_SOON)}>
-                            {this.props.vocab.PROJECT.COLLAPSE_ALL}
-                        </button>
-                    </div>
                 </div>
                 <div className='create-survey-panel__survey-controls'>
                     <button className='create-survey-panel__survey-save'
