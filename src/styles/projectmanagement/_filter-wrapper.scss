@@ -2,7 +2,7 @@ $block-class: 'filter-wrapper';
 
 @at-root {
     .#{$block-class} {
-        @include workflow-header;
+        @include pm-sub-header;
 
         justify-content: space-between;
 
