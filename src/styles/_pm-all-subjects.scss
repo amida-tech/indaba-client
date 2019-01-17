@@ -8,8 +8,8 @@ $block-class: 'pm-all-subjects';
 
         margin-top: 5em;
 
-        &__search-wrapper {
-            @extend .subjects__search-wrapper;
+        &__filter-wrapper {
+            @extend .subjects__filter-wrapper;
         }
     }
 }

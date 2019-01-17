@@ -93,9 +93,9 @@ class PMAllSubjects extends Component {
                         }}
                         saveLabel={this.props.vocab.COMMON.DELETE}/>
                 }
-                <div className='pm-all-subjects__search-wrapper'>
-                    <FilterInput className='pm-all-subjects__search'
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_SUBJECTS}
+                <div className='pm-all-subjects__filter-wrapper'>
+                    <FilterInput className='pm-all-subjects__filter'
+                        placeholder={this.props.vocab.PROJECT.FILTER_SUBJECTS}
                         onChange={evt => this.props.actions.pmAllSubjectsSetQuery(evt.target.value)} />
                 </div>
                 <SubjectList

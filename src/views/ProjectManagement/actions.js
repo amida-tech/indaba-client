@@ -37,23 +37,16 @@ export function inviteUser(user, projectId) {
     };
 }
 
-export function updateUserSearchGroup(group) {
+export function updateUserFilterGroup(group) {
     return {
-        type: actionTypes.UPDATE_USER_SEARCH_GROUP,
+        type: actionTypes.UPDATE_USER_FILTER_GROUP,
         group,
     };
 }
 
-export function updateUserSearchQuery(query) {
+export function updateUserFilterQuery(query) {
     return {
-        type: actionTypes.UPDATE_USER_SEARCH_QUERY,
-        query,
-    };
-}
-
-export function updateUserGroupListSearchQuery(query) {
-    return {
-        type: actionTypes.UPDATE_USER_GROUP_LIST_SEARCH_QUERY,
+        type: actionTypes.UPDATE_USER_FILTER_QUERY,
         query,
     };
 }

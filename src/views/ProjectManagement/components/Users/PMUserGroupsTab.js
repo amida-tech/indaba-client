@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import apiService from '../../../../services/api';
 import Modal from '../../../../common/components/Modal';
 import UserGroupList from '../../../../common/components/UserGroupList';
-import { updateUserGroupListSearchQuery } from '../../actions';
+import { updateUserGroupListFilterQuery } from '../../actions';
 
 const NO_STAGES = 0;
 const STAGES = 1;
@@ -48,10 +48,6 @@ class PMUserGroupsTab extends Component {
             });
     }
 
-    filterGroup(group, query) {
-        return group.title.toLowerCase().includes(query.toLowerCase());
-    }
-
     render() {
         const deleteModal = this.props.ui.showUserGroupDeleteConfirmModal;
         return (
@@ -68,14 +64,8 @@ class PMUserGroupsTab extends Component {
                         onSave={this.handleDeleteModalSave}
                         saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
-                <div className='pm-user-groups-tab__search-container'>
-                    <input type='text' className='pm-user-groups-tab__input'
-                        onChange={evt => this.props.onSearch(evt.target.value)}
-                        placeholder={this.props.vocab.COMMON.SEARCH} />
-                </div>
                 <UserGroupList columnHeaders={true}
-                    groups={this.props.project.userGroups
-                        .filter(group => this.filterGroup(group, this.props.query))}
+                    groups={this.props.project.userGroups}
                     users={this.props.users}
                     vocab={this.props.vocab}
                     onDeleteClick={this.handleDeleteClick}
@@ -92,17 +82,8 @@ PMUserGroupsTab.propTypes = {
     vocab: PropTypes.object,
     onDeleteClick: PropTypes.func,
     onGroupClick: PropTypes.func,
-    onSearch: PropTypes.func,
     ui: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-    query: state.manager.ui.userGroupListSearchQuery,
-});
-
-const mapDispatchToProps = dispatch => ({
-    onSearch: query => dispatch(updateUserGroupListSearchQuery(query)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PMUserGroupsTab);
+export default PMUserGroupsTab;
