@@ -2,13 +2,13 @@ $block-class: 'users';
 
 @mixin workflow-header {
     display: flex;
-    background-color: $element-background;
+    // background-color: $BLACK;
     border: 1px solid $border-color;
     padding: 24px;
     align-items: center;
     margin-top: 40px;
     margin-bottom: 40px;
-}
+ }
 
 @at-root {
     .#{$block-class} {
