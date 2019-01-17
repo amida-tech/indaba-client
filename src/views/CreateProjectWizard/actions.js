@@ -56,13 +56,6 @@ export function addUsersSetUsersFilter(filter) {
     };
 }
 
-export function addUsersSetGroupsFilter(filter) {
-    return {
-        type: actionTypes.ADD_USERS_SET_GROUPS_FILTER,
-        filter,
-    };
-}
-
 export function wizardShowStageModal(show, stageId) {
     return {
         type: actionTypes.WIZARD_SHOW_STAGE_MODAL,

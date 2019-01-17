@@ -12,6 +12,11 @@ $block-class: 'search';
 
         @extend .small-font;
 
+        &__hint {
+            font-style: italic;
+            font-size: 11px;
+        }
+
         &__input {
             flex: 1;
             border: 2px solid $border-color;

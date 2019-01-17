@@ -6,7 +6,7 @@ import { FILTERS } from './constants';
 
 const initialState = {
     ui: {
-        searchQuery: '',
+        filterQuery: '',
         filter: FILTERS.ALL_PROJECTS,
         noData: false,
         names: [{
@@ -20,8 +20,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case actionTypes.PM_DASH_SET_SEARCH_QUERY:
-        return update(state, { ui: { searchQuery: { $set: action.searchQuery } } });
+    case actionTypes.PM_DASH_SET_FILTER_QUERY:
+        return update(state, { ui: { filterQuery: { $set: action.filterQuery } } });
     case GET_PROJECTS_SUCCESS:
         return update(state, { ui: { noData: { $set: (action.projects.length === 0) } } });
     case actionTypes.PM_DASH_SET_FILTER:

@@ -15,7 +15,6 @@ const initialState = {
             tab: 0,
             showSelectGroupUsers: false,
             usersFilter: '',
-            groupsFilter: '',
         },
         errorMessage: '',
         projectLink: -1,
@@ -99,8 +98,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
-    case type.ADD_USERS_SET_GROUPS_FILTER:
-        return update(state, { ui: { addUsers: { groupsFilter: { $set: action.filter } } } });
     case REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case REPORT_USER_ERROR:

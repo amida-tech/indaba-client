@@ -10,8 +10,8 @@ class ProjectListControls extends Component {
             <div className='project-list-controls'>
                 <div className='project-list-controls__search'>
                     <FilterInput
-                        placeholder={this.props.vocab.PROJECT.SEARCH_PROJECT}
-                        onChange={evt => this.props.actions.setSearchQuery(evt.target.value)} />
+                        placeholder={this.props.vocab.PROJECT.FILTER_PROJECTS}
+                        onChange={evt => this.props.actions.setFilterQuery(evt.target.value)} />
                 </div>
                 <div className='project-list-controls__filter'>
                     <ProjectFilter active={this.props.filter}

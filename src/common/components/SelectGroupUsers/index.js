@@ -89,7 +89,7 @@ class SelectGroupUsers extends Component {
         const user = this.props.allUsers.find(allUser => allUser.id === userId);
         return {
             key: user.id,
-            searchKey: renderName(user),
+            filterKey: renderName(user),
             value: user,
             label: renderName(user),
         };
@@ -125,7 +125,7 @@ class SelectGroupUsers extends Component {
                         <div className='select-group-users__non-group-user-list'>
                             {this.props.vocab.COMMON.ALL_USERS}
                             <FilteredList
-                                placeHolder={this.props.vocab.COMMON.SEARCH}
+                                placeholder={this.props.vocab.COMMON.FILTER}
                                 items={nonGroupIds.map(this.createUserListItem)}
                                 onSelect={this.handleProjectUsersSelect}
                                 selected={this.state.projectUsersSelected}
@@ -144,7 +144,7 @@ class SelectGroupUsers extends Component {
                         <div className='select-group-users__group-user-list'>
                             {this.props.vocab.STAGE.USER_GROUP}
                             <FilteredList
-                                placeHolder={this.props.vocab.COMMON.SEARCH}
+                                placeholder={this.props.vocab.COMMON.FILTER}
                                 items={this.state.groupUserIds.map(this.createUserListItem)}
                                 onSelect={this.handleGroupUsersSelect}
                                 selected={this.state.groupUsersSelected}
