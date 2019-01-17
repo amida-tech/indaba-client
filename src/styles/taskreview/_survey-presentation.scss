@@ -4,14 +4,6 @@ $block-class: 'survey-presentation';
     .#{$block-class} {
         border: 1px solid $border-color;
 
-        // .grommetux-header {
-        //     min-height: 0;
-        // }
-
-        // .grommetux-box--separator-bottom {
-        //     border-bottom: 0;
-        // }
-
         &__submit {
             width: 100%;
             margin-right: 5%;

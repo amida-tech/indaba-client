@@ -12,20 +12,6 @@ $block-class: 'filter-input';
 
         @extend .small-font;
 
-        // &__input,
-        // .grommet &__input:not(.grommetux-input) {
-        //     flex: 1;
-        //     border: 2px solid $border-color;
-        //     border-radius: 2px;
-        //     background-color: $search-input-background;
-        //     padding: 8px;
-
-        //     &:active,
-        //     &:focus {
-        //         border: 2px solid $brand-color;
-        //         outline: none;
-        //     }
-        // }
         &__icon {
             @extend .small-icon;
 
