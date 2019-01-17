@@ -14,10 +14,6 @@ $block-class: 'pm-all-users';
             @extend .pm-users-tab__search-container;
         }
 
-        // .grommetux-control-icon {
-        //     @extend .small-icon;
-        // }
-
         input::-webkit-input-placeholder {
             color: #333;
         }

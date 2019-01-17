@@ -39,6 +39,10 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 color: inherit;
                 margin: 0;
                 padding: 11px;
+
+                &:focus {
+                    border: 2px solid #4eb276;
+                }
             }
         }
         // space at the top for positioning, space on the other side to show box-shadow
@@ -100,10 +104,6 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                     display: inline-block;
                     box-sizing: content-box;
                     width: 20%;
-
-                    // .grommetux-date-time__input {
-                    //     padding-right: 0 !important;
-                    // }
                 }
             }
         }

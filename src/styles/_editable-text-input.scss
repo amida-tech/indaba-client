@@ -6,21 +6,6 @@ $block-class: 'editable-text-input';
         font-weight: 300;
         color: $lead-font-color;
         display: flex;
-        // .grommet selectors to exceed grommet styling specificity if
-        // this component happens to be in a grommet context
-        // &__text-input,
-        // .grommet &__text-input:not(.grommetux-input) {
-        //     border-radius: 2px;
-        //     border: 1px solid $border-color;
-        //     flex: 1;
-        //     text-overflow: ellipsis;
-        // }
-
-        // &__text-input:not(:focus),
-        // .grommet &__text-input:not(.grommetux-input):not(:focus) {
-        //     border-color: transparent;
-        //     background: none;
-        // }
 
         &__icon {
             @extend .small-icon;
