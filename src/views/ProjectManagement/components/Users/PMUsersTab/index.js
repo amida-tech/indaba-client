@@ -11,7 +11,7 @@ import Search from '../../../../../common/components/Search';
 class PMUsersTab extends Component {
     constructor(props) {
         super(props);
-        this.filterUser = this.filterUser.bind(this);
+        this.searchUser = this.searchUser.bind(this);
         this.handleSearchSelect = this.handleSearchSelect.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.handleDeleteModalSave = this.handleDeleteModalSave.bind(this);
@@ -36,7 +36,7 @@ class PMUsersTab extends Component {
         this.props.actions.pmHideUserDeleteConfirmModal();
     }
 
-    filterUser(user) {
+    searchUser(user) {
         return renderName(user).toLowerCase()
             .includes((this.props.ui.userListSearchQuery).toLowerCase());
     }
@@ -94,7 +94,7 @@ class PMUsersTab extends Component {
                     <Search
                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         value={this.props.ui.userListSearchQuery}
-                        list={this.props.allUsers.filter(this.filterUser)
+                        list={this.props.allUsers.filter(this.searchUser)
                             .map(user => ({
                                 label: renderName(user),
                                 value: user,
