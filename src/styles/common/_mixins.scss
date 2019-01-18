@@ -1,3 +1,6 @@
+/*
+    Text Input - Used anywhere text can be written into field.
+ */
 @mixin text-input {
     border-radius: 2px;
     border: 1px solid $LIGHT_GRAY;
@@ -9,8 +12,17 @@
         border: 2px solid $LIGHT_GREEN;
         outline: none;
     }
+
+    &:disabled {
+        background-color: $LIGHT_GRAY;
+        border: 1px solid $LIGHT_GRAY;
+        cursor: not-allowed;
+    }
 }
 
+/*
+    PM Sub Header - PM/Project headers above Workflow, Survey, Users, Subject and Export.
+ */
 @mixin pm-sub-header {
     display: flex;
     background-color: $LIGHT_GRAY;
