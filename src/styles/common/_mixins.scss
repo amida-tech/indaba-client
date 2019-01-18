@@ -5,7 +5,7 @@
     border-radius: 2px;
     border: 1px solid $LIGHT_GRAY;
     background-color: transparent;
-    padding: 12px;
+    padding: 12px 14px;
 
     &:focus,
     &:active {
@@ -14,7 +14,7 @@
     }
 
     &:disabled {
-        background-color: $LIGHT_GRAY;
+        background-color: $PRIMARY_GRAY;
         border: 1px solid $LIGHT_GRAY;
         cursor: not-allowed;
     }
