@@ -27,20 +27,7 @@ $block-class: 'question-panel';
             }
 
             &-text {
-                display: flex;
-                color: #000;
-                font-size: 16px;
-                background-color: #fafafa;
-                outline: none;
-                border: 1px solid $border-color;
-                border-radius: 2px;
-                padding: 1em;
-
-                &:focus,
-                &:active {
-                    border: 2px solid $LIGHT_GREEN;
-                    outline: none;
-                }
+                @include text-input;
             }
         }
 
@@ -51,8 +38,7 @@ $block-class: 'question-panel';
         }
 
         &__menu-button {
-            background-color: Transparent;
-            border: none;
+            @extend .secondary-button;
         }
 
         &__menu-icon {
