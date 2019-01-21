@@ -47,6 +47,10 @@
     border: none;
     color: $LIGHT_GREEN;
     cursor: pointer;
+
+    &:hover {
+        color: $DARK_GREEN;
+    }
 }
 
 .disabled-button {
