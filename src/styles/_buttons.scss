@@ -1,3 +1,6 @@
+/*
+ * Button Font - proper styling of font inside buttons.
+ */
 @mixin button-font {
     font-family: PTSans-Bold, sans-serif;
     text-transform: uppercase;
@@ -6,6 +9,9 @@
     text-align: center;
 }
 
+/*
+ * Button Padding - sizing, and styling of border of button.
+ */
 @mixin button-padding {
     min-width: 120px;
     max-width: 384px;
@@ -26,6 +32,10 @@
     &:hover {
         background-color: $DARK_GREEN;
         color: white;
+    }
+
+    &:disabled {
+        @extend .disabled-button;
     }
 }
 

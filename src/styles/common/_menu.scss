@@ -13,7 +13,7 @@ $block-class: 'menu';
         &__dropdown {
             display: block;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: $PRIMARY_GRAY;
             min-width: 160px;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             padding: 6px;
@@ -34,7 +34,9 @@ $block-class: 'menu';
         &__button {
             @extend .button;
 
-            margin-right: 15px;
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-bottom: 8px;
         }
     }
 }
