@@ -56,14 +56,14 @@ $block-class: 'project-wizard';
         .project-wizard__tab--complete {
             &::after {
                 background-color: $LIGHT_GREEN;
-                border: 2px solid $DARK_GREEN;
+                border: 2px solid $DARKEST_GREEN;
             }
         }
 
         .project-wizard__tab--incomplete {
             &::after {
                 background-color: $PRIMARY_GRAY;
-                border: 2px solid $DARK_GREEN;
+                border: 2px solid $DARKEST_GREEN;
             }
         }
     }

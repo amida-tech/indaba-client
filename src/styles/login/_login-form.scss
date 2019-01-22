@@ -11,14 +11,16 @@ $block-class:'login-form';
         }
 
         &__input {
-            background-color: white;
+            background-color: $LIGHT_GRAY;
+            color: $ANCHOR_GRAY;
             width: 100%;
             padding: 16px;
-            border: 2px solid $LIGHT_GRAY;
+            border: 1.5px solid $LIGHT_GRAY;
+            border-radius: 4px;
 
             &:focus,
             &:active {
-                border: 2px solid $LIGHT_GREEN;
+                border: 2px solid $CLOUD_GRAY;
                 outline: none;
             }
         }

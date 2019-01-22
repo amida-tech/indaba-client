@@ -8,7 +8,7 @@
 }
 
 .CalendarDay__selected_span:hover {
-    background: $DARK_GREEN;
+    background: $DARKEST_GREEN;
 }
 
 // Will edit selected date or the endpoints of a range of dates
@@ -19,7 +19,7 @@
 
 // Will edit when hovered over. _span style also has this property
 .CalendarDay__selected:hover {
-    background: $DARK_GREEN;
+    background: $DARKEST_GREEN;
     color: white;
 }
 

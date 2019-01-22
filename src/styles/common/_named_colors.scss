@@ -1,9 +1,9 @@
-$HOVER_GREEN: $DARK_GREEN;
+$HOVER_GREEN: $DARKEST_GREEN;
 $ERROR_RED: red; // change when color is selected
 $BACKGROUND_WHITE: white;
 
 // found in styles moving to named colors
-$PAGE_BACKGROUND_COLOR: $PRIMARY_GRAY;
+$PAGE_BACKGROUND_COLOR: $WHITE;
 
 // TODO: fix these with proper colors
 $HEADER_FONT_COLOR: $BLACK;
@@ -13,14 +13,14 @@ $BORDER_COLOR: $LIGHT_GRAY; // going to replace with shadow box in future
 $ELEMENT_BACKGROUND: $BACKGROUND_WHITE;
 $FONT_INVERSE_COLOR: $BACKGROUND_WHITE;
 $ICON_COLOR: $LIGHT_GREEN;
-$ICON_COLOR_HOVER: $DARK_GREEN;
+$ICON_COLOR_HOVER: $DARKEST_GREEN;
 
 // grommet brand colors (we should be able to remove this now that grommet is gone)
 $INDABA_GREEN: $LIGHT_GREEN;
 $LAYER_OVERLAY_BACKGROUND_COLOR: $PRIMARY_GRAY;
 $LAYER_BACKGROUND_COLOR: none;
 
-$BRAND_NEUTRAL_COLORS: ($LIGHT_GREEN, $DARK_GREEN); // TODO: change these, not brand neutral
+$BRAND_NEUTRAL_COLORS: ($LIGHT_GREEN, $DARKEST_GREEN); // TODO: change these, not brand neutral
 $BRAND_LINK_COLOR: $INDABA_GREEN;
 $STATUS_COLORS: (
     critical: #ff324d,

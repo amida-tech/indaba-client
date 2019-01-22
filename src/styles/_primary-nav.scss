@@ -67,7 +67,7 @@ $block-class:'primary-nav';
 
         &__button {
             height: 40px;
-            background-color: $DARK_GREEN;
+            background-color: $DARKEST_GREEN;
             border: 1px;
             color: $PRIMARY_GRAY;
             border-radius: 3px;
@@ -129,7 +129,7 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 20%);
+                color: $DARK_GREEN;
             }
 
             &:focus {

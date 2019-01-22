@@ -6,7 +6,7 @@ $block-class:'secondary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: nth($BRAND_NEUTRAL_COLORS, 1);
+        background-color: $PRIMARY_GREEN;
         height: $primary-nav-height;
 
         &__left {
@@ -21,6 +21,7 @@ $block-class:'secondary-nav';
             height: 64px;
             margin-left: 10%;
             margin-bottom: 2px;
+            color: white;
         }
     }
 }

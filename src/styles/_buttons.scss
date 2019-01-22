@@ -20,13 +20,15 @@
     @include button-padding;
 
     background-color: transparent;
-    border: 1px solid $LIGHT_GREEN;
-    color: $LIGHT_GREEN;
+    border: 1.5px solid $AVOCADO_GREEN;
+    border-radius: 4px;
+    color: $AVOCADO_GREEN;
     cursor: pointer;
 
     &:hover {
-        background-color: $DARK_GREEN;
-        color: white;
+        background-color: $AVOCADO_GREEN;
+        color: $LIGHTEST_GREEN;
+        border: 1.5px solid $AVOCADO_GREEN;
     }
 }
 
