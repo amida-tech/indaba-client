@@ -24,6 +24,11 @@ $block-class:'preference-tab';
             outline: none;
             background-color: transparent;
             margin: 0;
+
+            &:focus {
+                padding: 9px 21px;
+                border: 2px solid #4eb276;
+            }
         }
 
         .preference-tab__input-textarea {
@@ -39,6 +44,11 @@ $block-class:'preference-tab';
             outline: none;
             background-color: transparent;
             margin: 0;
+
+            &:focus {
+                padding: 9px 21px;
+                border: 2px solid #4eb276;
+            }
         }
     }
 }

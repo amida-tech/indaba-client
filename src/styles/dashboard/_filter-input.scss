@@ -23,6 +23,23 @@ $block-class: 'filter-input';
             background-color: #fdfdfd;
         }
 
+        &__input {
+            color: #909da7;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: 1px solid #e6edef;
+            border-radius: 1px;
+
+            &:focus {
+                border: 2px solid #4eb276;
+                outline: none;
+                margin-bottom: -2px;
+            }
+        }
+
         &__entry {
             display: flex;
             justify-content: space-between;
