@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "Updating $(date)";
+
 if [ -z ${NODE_ENV+x} ]
   then echo "Environment variable NODE_ENV is required, but it is not set. Exiting."; exit 1;
 fi
@@ -40,8 +42,7 @@ AUTH_MICROSERVICE_URL=\"$AUTH_MICROSERVICE_URL\";\n
 SURVEY_MICROSERVICE_URL=\"$SURVEY_MICROSERVICE_URL\";\n
 MESSAGING_MICROSERVICE_URL=\"$MESSAGING_MICROSERVICE_URL\";\n
 INDABA_CLIENT_DEFAULT_REALM=\"$INDABA_CLIENT_DEFAULT_REALM\";\n
-SYS_MESSAGE_USER=\"$SYS_MESSAGE_USER\";\n
-LAST_UPDATED=\"${date}\";\n"
+SYS_MESSAGE_USER=\"$SYS_MESSAGE_USER\";\n"
 
 echo -e $SET_CONFIG >> /usr/share/nginx/html/settings.js
 
