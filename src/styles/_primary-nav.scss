@@ -6,7 +6,7 @@ $block-class:'primary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: $LIGHT_GREEN;
+        background-color: $NAVIGATION_BACKGROUND_COLOR;
         height: $primary-nav-height;
 
         &__left {
@@ -33,7 +33,7 @@ $block-class:'primary-nav';
         &__item-nav {
             justify-content: space-between;
             align-items: center;
-            color: $PRIMARY_GRAY;
+            color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
             margin-left: 20px;
             font-weight: 400;
@@ -45,7 +45,7 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 30%);
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
             }
 
             &:focus,
@@ -56,27 +56,28 @@ $block-class:'primary-nav';
             }
 
             &:focus {
-                color: $PRIMARY_GRAY;
+                color: $NAVIGATION_ITEM_FOCUS_COLOR;
             }
 
             &--active,
             &--active:focus {
-                color: darken($LIGHT_GREEN, 30%);
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
             }
         }
 
         &__button {
             height: 40px;
-            background-color: $DARKEST_GREEN;
-            border: 1px;
-            color: $PRIMARY_GRAY;
+            background-color: $PRIMARY_BUTTON_BACKGROUND_COLOR;
+            border: 1.5px solid $PRIMARY_BUTTON_BORDER_COLOR;
+            color: $PRIMARY_BUTTON_TEXT_COLOR;
             border-radius: 3px;
             min-width: 10px;
             font-size: 14px;
             padding: 6px 22px;
 
             &:hover {
-                color: $PRIMARY_GRAY;
+                background-color: $PRIMARY_BUTTON_HOVER_BACKGROUND_COLOR;
+                color: $PRIMARY_BUTTON_HOVER_TEXT_COLOR;
             }
 
             &:active {
@@ -89,7 +90,7 @@ $block-class:'primary-nav';
             width: 16px;
             height: 16px;
             align-items: center;
-            color: $PRIMARY_GRAY;
+            color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
@@ -97,20 +98,20 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 20%);
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
             }
 
             &:focus,
             &:active {
                 text-decoration: none;
                 font-weight: 400;
-                color: darken($LIGHT_GREEN, 30%);
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
             }
         }
 
         &__welcome {
             align-items: center;
-            color: $PRIMARY_GRAY;
+            color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
             font-weight: 400;
             margin-left: 8px;
@@ -120,7 +121,7 @@ $block-class:'primary-nav';
 
         &__logout {
             align-items: center;
-            color: $PRIMARY_GRAY;
+            color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
             font-weight: 400;
             margin-left: 8px;
@@ -129,17 +130,17 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: $DARK_GREEN;
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
             }
 
             &:focus {
                 font-weight: 400;
-                color: $PRIMARY_GRAY;
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
             }
         }
-
+        //what is this??
         &__link {
-            color: $PRIMARY_GRAY;
+            color: $BLACK;
             padding-right: 16px;
             padding-left: 16px;
         }

@@ -19,16 +19,16 @@
     @include button-font;
     @include button-padding;
 
-    background-color: transparent;
-    border: 1.5px solid $AVOCADO_GREEN;
+    background-color: $PRIMARY_BUTTON_BACKGROUND_COLOR;
+    border: 1.5px solid $PRIMARY_BUTTON_BORDER_COLOR;
     border-radius: 4px;
-    color: $AVOCADO_GREEN;
+    color: $PRIMARY_BUTTON_TEXT_COLOR;
     cursor: pointer;
 
     &:hover {
-        background-color: $AVOCADO_GREEN;
-        color: $LIGHTEST_GREEN;
-        border: 1.5px solid $AVOCADO_GREEN;
+        background-color: $PRIMARY_BUTTON_HOVER_BACKGROUND_COLOR;
+        color: $PRIMARY_BUTTON_HOVER_TEXT_COLOR;
+        border: 1.5px solid $PRIMARY_BUTTON_HOVER_BORDER_COLOR;
     }
 }
 
@@ -36,10 +36,16 @@
     @include button-font;
     @include button-padding;
 
-    background-color: transparent;
+    background-color: $SECONDARY_BUTTON_BACKGROUND_COLOR;
     border: none;
-    color: $LIGHT_GREEN;
+    color: $SECONDARY_BUTTON_TEXT_COLOR;
     cursor: pointer;
+
+    &:hover {
+        background-color: $SECONDARY_BUTTON_HOVER_BACKGROUND_COLOR;
+        border: none;
+        color: $SECONDARY_BUTTON_HOVER_TEXT_COLOR;
+    }
 }
 
 .disabled-button {

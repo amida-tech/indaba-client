@@ -6,7 +6,7 @@ $block-class:'secondary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: $PRIMARY_GREEN;
+        background-color: $NAVIGATION_BACKGROUND_COLOR;
         height: $primary-nav-height;
 
         &__left {
