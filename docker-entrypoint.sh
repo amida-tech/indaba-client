@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Updating $(date)";
+echo "Updating settings.js on $(date)";
 
 if [ -z ${NODE_ENV+x} ]
   then echo "Environment variable NODE_ENV is required, but it is not set. Exiting."; exit 1;
