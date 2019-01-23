@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "Updating $(date)";
+
 if [ -z ${NODE_ENV+x} ]
   then echo "Environment variable NODE_ENV is required, but it is not set. Exiting."; exit 1;
 fi
