@@ -36,8 +36,9 @@ $block-class: 'static-question';
         }
 
         &__date {
-            width: 15%;
+            width: 25%;
             padding: 0.2em;
+            padding-right: 0;
             border: 1px solid #adadad;
             text-transform: uppercase;
         }
