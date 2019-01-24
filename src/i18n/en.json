@@ -152,7 +152,8 @@
             "NOTES":"Notes"
         },
         "PASSWORD":{
-            "RESET_PASSWORD":"Reset Password",
+            "CHANGE_PASSWORD": "Change Password",
+            "CURRENT_PASSWORD": "Current Password",
             "INSTRUCTIONS":"If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
         }
     },

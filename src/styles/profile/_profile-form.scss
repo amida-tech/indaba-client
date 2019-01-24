@@ -32,7 +32,6 @@ $block-class: 'profile-form';
         &__user-info {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
@@ -96,7 +95,6 @@ $block-class: 'profile-form';
             margin-right: 20%;
             margin-bottom: 24px;
         }
-
         &__textarea {
             @extend .lead-font;
 
