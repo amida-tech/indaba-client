@@ -3,7 +3,6 @@ import Select from 'react-select';
 
 class TaskOptionsSelect extends Component {
     render() {
-        console.log(this.props);
         return (
             <Select
                 value={this.props.input.value.option || this.props.input.value}
