@@ -28,6 +28,16 @@ $block-class: 'profile-form';
                 border-color: darken(#4eb276, 10);
             }
         }
+          &__button-pw {
+            @extend .alt-button;
+            margin-top: 1em;
+
+            &:hover {
+                color: #fff;
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+            }
+        }
 
         &__user-info {
             display: flex;
@@ -87,6 +97,15 @@ $block-class: 'profile-form';
         }
 
         &__settings {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 24px;
+        }
+           &__password {
             display: flex;
             flex-direction: column;
             background-color: #fff;
