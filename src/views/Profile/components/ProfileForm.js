@@ -82,12 +82,33 @@ class ProfileForm extends Component {
                         component='textarea'
                         className='profile-form__textarea'/>
                 </div>
+        <div className="profile-form__password">
             <div className='profile-form__section-header'>
                         {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
             </div>
             <label className='profile-form__field-label'>
                         {this.props.vocab.PROFILE.PASSWORD.CURRENT_PASSWORD} </label>
-
+                         <Field name='password'
+                                component='input'
+                                type='text'
+                                className='profile-form__field-input'/>
+            <label className='profile-form__field-label'>
+                        {this.props.vocab.PROFILE.PASSWORD.NEW_PASSWORD} </label>
+                         <Field name='password'
+                                component='input'
+                                type='text'
+                                className='profile-form__field-input'/>
+            <label className='profile-form__field-label'>
+                    {this.props.vocab.PROFILE.PASSWORD.CONFIRM_PASSWORD} </label>
+                        <Field name='password'
+                            component='input'
+                            type='text'
+                            className='profile-form__field-input'/>
+             <button className='profile-form__button-pw'
+                        onClick={       }>
+                        <span>{this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}</span>
+                    </button>
+            </div>    
             </form>
         );
     }
