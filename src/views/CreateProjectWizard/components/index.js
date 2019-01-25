@@ -71,6 +71,7 @@ class CreateProjectWizard extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.user.profile)
             .then(() => {
+                this.props.actions.getSurveys(this.props.vocab.ERROR);
                 this.props.actions.surveyBuilderReset();
                 this.props.actions.projectWizardInitialize();
             });
@@ -97,6 +98,7 @@ class CreateProjectWizard extends Component {
                         actions={this.props.actions}
                         onCancel={this.props.onWizardCancel}
                         survey={this.props.survey}
+                        allSurveys={this.props.allSurveys}
                         vocab={this.props.vocab} />
                 }
                 {
@@ -208,6 +210,7 @@ const mapStateToProps = (store) => {
                 id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
             },
         inProgressSurvey: store.surveybuilder.form,
+        allSurveys: store.surveys.data,
         user: store.user,
         ui: store.wizard.ui,
         vocab: store.settings.language.vocabulary,

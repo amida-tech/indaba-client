@@ -11,24 +11,37 @@ class NewProjectTitle extends Component {
     }
 
     handleProjectSubmission(values) {
-        this.props.actions.postProject(
-            Object.assign({},
-                {
-                    user: {
-                        realmUserId: this.props.profile.id,
-                        organizationId: this.props.profile.organizationId,
-                    },
-                    langId: 1,
-                },
-                values.project),
-            this.props.vocab.ERROR,
-        ).then((project) => {
-            this.props.actions.postSurvey(
-                Object.assign({}, this.props.survey, values.survey),
-                project,
-                this.props.vocab.ERROR,
-            );
-        });
+        const trimValues = {
+            project: {
+                codeName: values.project.codeName.trim(),
+            },
+            survey: {
+                name: values.survey.name.trim(),
+            }
+        };
+        if (!this.props.allSurveys.find((survey) =>
+            survey.name === trimValues.survey.name)) {
+                this.props.actions.postProject(
+                    Object.assign({},
+                        {
+                            user: {
+                                realmUserId: this.props.profile.id,
+                                organizationId: this.props.profile.organizationId,
+                            },
+                            langId: 1,
+                        },
+                        trimValues.project),
+                    this.props.vocab.ERROR,
+                ).then((project) => {
+                    this.props.actions.postSurvey(
+                        Object.assign({}, this.props.survey, trimValues.survey),
+                        project,
+                        this.props.vocab.ERROR,
+                    );
+                });
+            } else {
+                this.props.actions.wizardUIReportError(this.props.vocab.ERROR.SURVEY_NAME_IN_USED);
+            }
     }
 
     render() {
@@ -52,6 +65,8 @@ NewProjectTitle.propTypes = {
         id: PropTypes.number.isRequired,
         organizationId: PropTypes.number.isRequired,
     }),
+    survey: PropTypes.object,
+    allSurveys: PropTypes.arrayOf(PropTypes.object).isRequired,
     errorMessage: PropTypes.string,
     actions: PropTypes.object.isRequired,
 };

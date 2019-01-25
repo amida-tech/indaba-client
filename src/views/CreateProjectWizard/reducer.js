@@ -98,6 +98,8 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
+    case type.WIZARD_UI_REPORT_ERROR:
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case REPORT_USER_ERROR:
