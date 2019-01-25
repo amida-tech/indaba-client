@@ -154,6 +154,8 @@
         "PASSWORD":{
             "CHANGE_PASSWORD": "Change Password",
             "CURRENT_PASSWORD": "Current Password",
+            "NEW_PASSWORD": "New Password",
+            "CONFIRM_PASSWORD": "Confirm New Password",
             "INSTRUCTIONS":"If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
         }
     },
