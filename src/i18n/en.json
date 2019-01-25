@@ -156,7 +156,9 @@
             "CURRENT_PASSWORD": "Current Password",
             "NEW_PASSWORD": "New Password",
             "CONFIRM_PASSWORD": "Confirm New Password",
-            "INSTRUCTIONS":"If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
+            "PASSWORD_ERROR": "Passwords do not match, re-enter password",
+            "PASSWORD_SUCCESS": "Your password successfully updated",
+            "INSTRUCTIONS":"Safe passwords are 15 characters OR at least 8 characters including a number and a lowercase letter."
         }
     },
     "PROJECT":{
