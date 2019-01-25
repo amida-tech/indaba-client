@@ -105,7 +105,7 @@ class ProfileForm extends Component {
                             type='text'
                             className='profile-form__field-input'/>
              <button className='profile-form__button-pw'
-                        onClick={       }>
+                        onClick={this.props.handleSubmit}>
                         <span>{this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}</span>
                     </button>
             </div>    
