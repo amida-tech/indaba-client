@@ -18,6 +18,7 @@ class NewProjectTitleForm extends Component {
                         name='project.codeName'
                         vocab={this.props.vocab.VALIDATE}
                         placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
+                        className='new-project-title-form__input'
                         validate={[required]} />
                 </div>
                 <div className='new-project-title-form__field'>
@@ -25,6 +26,7 @@ class NewProjectTitleForm extends Component {
                         name='survey.name'
                         vocab={this.props.vocab.VALIDATE}
                         placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
+                        className='new-project-title-form__input'
                         validate={[required]} />
                 </div>
                 <div className='new-project-title-form__error'>

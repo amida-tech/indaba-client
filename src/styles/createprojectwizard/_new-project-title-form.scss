@@ -31,5 +31,9 @@ $block-class: 'new-project-title-form';
             resize: none;
             width: 100%;
         }
+
+        &__input {
+            @extend .basic-input;
+        }
     }
 }
