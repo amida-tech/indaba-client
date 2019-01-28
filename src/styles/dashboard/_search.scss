@@ -41,14 +41,19 @@ $block-class: 'search';
         &__list {
             z-index: 20;
             position: absolute;
-            width: 75%;
-            margin-left: 0;
-            background-color: rgba(248, 248, 248, 0.95);
+            width: 78%;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(245, 245, 245, 0.95);
         }
 
         &__entry {
             display: flex;
+            cursor: pointer;
             justify-content: space-between;
+            border-style: solid;
+            border-width: 2px 2px 0 2px;
+            border-color: $border-color;
             flex-direction: row;
             align-items: center;
             padding: 8px 16px;
@@ -59,6 +64,10 @@ $block-class: 'search';
 
             &:hover {
                 background-color: #ededed;
+            }
+
+            &:last-child {
+                border-bottom-width: 2px;
             }
         }
     }
