@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
@@ -12,7 +13,6 @@ class AssigneeContainer extends Component {
     constructor(props) {
         super(props);
         this.onFilter = this.onFilter.bind(this);
-        this.onGroupFilter = this.onGroupFilter.bind(this);
     }
 
     filterQuery(value) {
@@ -21,16 +21,12 @@ class AssigneeContainer extends Component {
     }
 
     groupFilter(unassignee) {
-        return !this.props.filter.group
-            || this.props.filter.group.users.some(user => user === unassignee.id);
+        return !get(this.props.filter, 'group.value')
+            || get(this.props.filter, 'group.value.users').some(user => user === unassignee.id);
     }
 
     onFilter(evt) {
         this.props.actions.updateUserFilterQuery(evt.target.value);
-    }
-
-    onGroupFilter(evt) {
-        this.props.actions.updateUserFilterGroup(evt.value);
     }
 
     render() {
@@ -61,7 +57,7 @@ class AssigneeContainer extends Component {
                     unassignedCards={unassignedCards}
                     onFilter={this.onFilter}
                     filter={this.props.filter}
-                    onGroupFilter={this.onGroupFilter}
+                    onGroupFilter={this.props.actions.updateUserFilterGroup}
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
