@@ -16,6 +16,10 @@ $block-class:'account-tab';
             padding-bottom: 1em;
         }
 
+        &__field {
+            @extend .basic-input;
+        }
+
         &__date {
             color: $lead-font-color;
         }

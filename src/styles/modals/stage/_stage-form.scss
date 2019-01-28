@@ -9,6 +9,8 @@ $block-class:'stage-form';
         &__input-field {
             border-radius: 2;
             width: 100%;
+
+            @extend .basic-input;
         }
 
         &__title {

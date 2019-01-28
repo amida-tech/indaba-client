@@ -9,8 +9,10 @@ $block-class: 'editable-text-input';
         border: 1px solid $border-color;
 
         &__field {
+            @extend .basic-input;
+
             width: 90%;
-            border: 0 !important;
+            border: 0;
         }
 
         &__icon {

@@ -13,7 +13,7 @@ class AccountTab extends Component {
                     <Field name='email'
                         component='input'
                         type='text'
-                        className='account-tab__label--text-input'/>
+                        className='account-tab__field'/>
                 </label>
                 <label className='account-tab__label'>
                     {this.props.vocab.PROJECT.USER_TITLE}
@@ -21,7 +21,7 @@ class AccountTab extends Component {
                     <Field name='title'
                         component='input'
                         type='text'
-                        className='account-tab__label--text-input'/>
+                        className='account-tab__field'/>
                 </label>
                 <div className='account-tab__label'>
                     {this.props.vocab.PROJECT.ACCOUNT_SINCE}
