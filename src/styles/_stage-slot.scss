@@ -54,7 +54,7 @@ $block-class:'stage-slot';
         &__masked-button {
             background-color: Transparent;
             background-repeat: no-repeat;
-            border: none !important;
+            border: none;
             padding: 0;
             height: 1em;
         }

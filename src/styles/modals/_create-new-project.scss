@@ -20,15 +20,13 @@ $block-class:'create-new-project';
 
         &__import-button {
             @extend .disabled-button;
-
-            cursor: default !important; // INBA-897.
         }
 
         &__create-button {
             @extend .standard-button;
 
-            background-color: #4eb276 !important; // INBA-897.
-            color: #fff !important; // INBA-897.
+            background-color: #4eb276; // INBA-897.
+            color: #fff; // INBA-897.
 
             &:hover {
                 background: darken(#4eb276, 10);
