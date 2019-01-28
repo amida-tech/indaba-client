@@ -73,6 +73,14 @@ $block-class: 'profile-form';
                 font-size: 12px;
                 font-weight: 400;
                 padding-top: 16px;
+
+                &--disabled {
+                    @extend .small-icon;
+
+                    color: #d9d9d9 !important;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                }
             }
 
             &-spaced {
@@ -98,6 +106,22 @@ $block-class: 'profile-form';
                     border-top: none;
                     border-left: none;
                     border-right: none;
+                }
+
+                &--disabled {
+                    @extend .large-font;
+
+                    min-width: 100%;
+                    font-weight: 100;
+                    color: $header-font-color;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 1px solid $border-color;
+                    flex-grow: 1;
+                    margin-right: 8px;
+                    cursor: not-allowed;
+                    pointer-events: none;
                 }
             }
         }

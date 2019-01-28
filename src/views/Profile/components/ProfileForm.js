@@ -4,6 +4,7 @@ import { Field, form, reduxForm } from 'redux-form';
 
 import ProfileSelect from './ProfileSelect';
 import ProfileCheckBox from './ProfileCheckBox';
+import ResetPAsswprdPanel from './ResetPasswordPanel';
 
 class ProfileForm extends Component {
     render() {
@@ -33,7 +34,7 @@ class ProfileForm extends Component {
                                 value={this.props.profile.firstName}
                                 component='input'
                                 type='text'
-                                className='profile-form__field-input'/>
+                                className='profile-form__field-input' />
                         </div>
                         <div className='profile-form__field-spaced'>
                             <label className='profile-form__field-label'>
@@ -42,7 +43,7 @@ class ProfileForm extends Component {
                                 value={this.props.profile.lastName}
                                 component='input'
                                 type='text'
-                                className='profile-form__field-input'/>
+                                className='profile-form__field-input' />
                         </div>
                     </div>
                     <div className='profile-form__field'>
@@ -53,7 +54,7 @@ class ProfileForm extends Component {
                             component='input'
                             disabled={true}
                             type='email'
-                            className='profile-form__field-input'/>
+                            className='profile-form__field-input' />
                     </div>
                 </div>
                 <div className='profile-form__settings'>
@@ -68,56 +69,26 @@ class ProfileForm extends Component {
                         options={notifyOptions}
                         type='select' />
                     {isProjectManager
-                    && <label className='profile-form__field-label'>
-                        {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>}
+                        && <label className='profile-form__field-label'>
+                            {this.props.vocab.PROFILE.FORM.ACTIVE_STATUS} </label>}
                     {isProjectManager
-                    && <Field name='isActive'
-                        value={this.props.profile.isActive}
-                        component={ProfileCheckBox}
-                        type='checkbox'/>}
+                        && <Field name='isActive'
+                            value={this.props.profile.isActive}
+                            component={ProfileCheckBox}
+                            type='checkbox' />}
                     <label className='profile-form__field-label'>
                         {this.props.vocab.PROFILE.FORM.NOTES} </label>
                     <Field name='bio'
                         value={this.props.profile.isActive}
                         component='textarea'
-                        className='profile-form__textarea'/>
+                        className='profile-form__textarea' />
                 </div>
-        <div className="profile-form__password">
-            <div className='profile-form__section-header'>
-                        {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
-            </div>
-            <div className='profile-form__password-instruction'>
-                {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
-                </div>
-            <label className='profile-form__field-label'>
-                        {this.props.vocab.PROFILE.PASSWORD.CURRENT_PASSWORD} </label>
-                         <Field name='password'
-                                component='input'
-                                type='text'
-                                className='profile-form__field-input'/>
-            <label className='profile-form__field-label'>
-                        {this.props.vocab.PROFILE.PASSWORD.NEW_PASSWORD} </label>
-                         <Field name='password'
-                                component='input'
-                                type='text'
-                                className='profile-form__field-input'/>
-            <label className='profile-form__field-label'>
-                    {this.props.vocab.PROFILE.PASSWORD.CONFIRM_PASSWORD} </label>
-                        <Field name='password'
-                            component='input'
-                            type='text'
-                            className='profile-form__field-input'/>
-             
-            <div className='profile-form__confirm'>
-             <button className='profile-form__button-pw'
-                        onClick={this.props.handleSubmit}>
-                        <span>{this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}</span>
-                    </button>
-                     <label className='profile-form__confirm-label'>
-                     {this.props.vocab.PROFILE.PASSWORD.PASSWORD_SUCCESS}
-                     </label>
-            </div>
-            </div>    
+
+                <ResetPAsswprdPanel
+                    vocab={this.props.vocab}
+                    handleSubmit={this.props.handleSubmit}
+
+                />
             </form>
         );
     }
