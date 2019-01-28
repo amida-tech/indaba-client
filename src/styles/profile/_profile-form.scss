@@ -28,12 +28,14 @@ $block-class: 'profile-form';
                 border-color: darken(#4eb276, 10);
             }
         }
-          &__button-pw {
+
+        &__button-pw {
             @extend .alt-button;
+
             margin-top: 1em;
             margin-left: 0;
-            margin-right: .5em;
-            width:25%;
+            margin-right: 0.5em;
+            width: 25%;
             flex-direction: row;
 
             &:hover {
@@ -109,7 +111,8 @@ $block-class: 'profile-form';
             margin-right: 20%;
             margin-bottom: 24px;
         }
-           &__password {
+
+        &__password {
             display: flex;
             flex-direction: column;
             background-color: #fff;
@@ -117,18 +120,20 @@ $block-class: 'profile-form';
             margin-left: 20%;
             margin-right: 20%;
             margin-bottom: 24px;
-            
+
             &-instruction {
-            @extend .lead-font;
-            margin-top: .5em;
-            width:70%;
+                @extend .lead-font;
+
+                margin-top: 0.5em;
+                width: 70%;
             }
 
-        &__confirm-label {
-            display: flex;
-            flex-direction: row;
+            &__confirm-label {
+                display: flex;
+                flex-direction: row;
+            }
         }
-        }
+
         &__textarea {
             @extend .lead-font;
 
