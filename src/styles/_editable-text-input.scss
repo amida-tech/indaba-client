@@ -6,9 +6,17 @@ $block-class: 'editable-text-input';
         font-weight: 300;
         color: $lead-font-color;
         display: flex;
+        border: 1px solid $border-color;
+
+        &__field {
+            width: 90%;
+            border: 0 !important;
+        }
 
         &__icon {
-            @extend .small-icon;
+            @extend .primary-icon;
+
+            margin-top: 0.4em;
         }
     }
 }
