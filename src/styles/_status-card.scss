@@ -61,10 +61,18 @@ $block-class: 'status-card';
 
         &__create-icon {
             @extend .small-icon;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
 
         &__edit-icon {
             @extend .small-icon;
+
+            &:hover {
+                fill: nth($brand-neutral-colors, 2);
+            }
         }
     }
 }
