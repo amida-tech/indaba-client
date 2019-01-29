@@ -60,20 +60,11 @@ $block-class: 'status-card';
         }
 
         &__create-icon {
-            width: 1.6em;
-            fill: $header-font-color;
-
-            &:hover {
-                fill: nth($brand-neutral-colors, 2);
-            }
+            @extend .small-icon;
         }
 
         &__edit-icon {
-            fill: $lead-font-color;
-
-            &:hover {
-                fill: nth($brand-neutral-colors, 2);
-            }
+            @extend .small-icon;
         }
     }
 }
