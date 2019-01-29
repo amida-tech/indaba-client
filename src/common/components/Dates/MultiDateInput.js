@@ -59,6 +59,7 @@ class MultiDateInput extends Component {
                 onDatesChange={this.onDatesChanged}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={this.onChangeFocusedInput}
+                minimumNights={0}
                 hideKeyboardShortcutsPanel={true}
                 displayFormat="MM/DD/YYYY"
             />
