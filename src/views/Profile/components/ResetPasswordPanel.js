@@ -1,59 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, form, reduxForm } from 'redux-form';
+import { required } from '../../../common/validation';
+import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
+
+
 
 class ResetPasswordPanel extends Component {
     render() {
         return (
-            // <div className='reset-password-panel'>
-            //     <div className='reset-password-panel__title'>
-            //         {this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}
-            //     </div>
-            //     <div className='reset-password-panel__instructions'>
-            //         {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
-            //     </div>
-            //     <button className='reset-password-panel__button'
-            //         onClick={() => this.props.actions.resetPassword(this.props.vocab.ERROR)}>
-            //         <span>{this.props.vocab.PROFILE.PASSWORD.RESET_PASSWORD}</span>
-            //     </button>
-            // </div>
-
-            <div className="profile-form__password">
-                <div className='profile-form__section-header'>
-                    {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
-                </div>
-                <div className='profile-form__password-instruction'>
-                    {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
-                </div>
-                <label className='profile-form__field-label'>
-                    {this.props.vocab.PROFILE.PASSWORD.CURRENT_PASSWORD} </label>
-                <Field name='password'
-                    component='input'
-                    type='text'
-                    className='profile-form__field-input--disabled' 
+            <div className='profile-form__password'>
+                <form>
+                    <div className='profile-form__section-header'>
+                        {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
+                    </div>
+                    <div className='profile-form__password-instruction'>
+                        {this.props.vocab.PROFILE.PASSWORD.INSTRUCTIONS}
+                    </div>
+                    <label className='profile-form__field-label'>
+                        {this.props.vocab.PROFILE.PASSWORD.NEW_PASSWORD} </label>
+                    <Field component={ValidatedTextInput}
+                        // value={this.props.user.formState.newPassword}
+                        className='profile-form__field-input'
+                        password={true}
+                        name='passwordNew'
+                        placeholder={this.props.vocab.PROFILE.PASSWORD.NEW_PASSWORD}
+                        vocab={this.props.vocab.VALIDATE}
+                        validate={[required]}
                     />
-                <label className='profile-form__field-label'>
-                    {this.props.vocab.PROFILE.PASSWORD.NEW_PASSWORD} </label>
-                <Field name='new_password'
-                    component='input'
-                    type='text'
-                    className='profile-form__field-input' />
-                <label className='profile-form__field-label'>
-                    {this.props.vocab.PROFILE.PASSWORD.CONFIRM_PASSWORD} </label>
-                <Field name='confirm_password'
-                    component='input'
-                    type='text'
-                    className='profile-form__field-input' />
-
-                <div className='profile-form__confirm'>
+                    <label className='profile-form__field-label'>
+                        {this.props.vocab.PROFILE.PASSWORD.CONFIRM_PASSWORD} </label>
+                    <Field component={ValidatedTextInput}
+                        // value={this.props.user.formState.confirmPassword}
+                        className='profile-form__field-input'
+                        password={true}
+                        name='passwordConfirm'
+                        placeholder={this.props.vocab.PROFILE.PASSWORD.CONFIRM_PASSWORD}
+                        vocab={this.props.vocab.VALIDATE}
+                        validate={[required]}
+                    />
                     <button className='profile-form__button-pw'
-                        onClick={this.props.handleSubmit}>
-                        <span>{this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}</span>
+                        type='button'
+                        onClick={this.props.handleSubmit}
+                    >
+                        {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
                     </button>
-                    <label className='profile-form__confirm-label'>
-                        {this.props.vocab.PROFILE.PASSWORD.PASSWORD_SUCCESS}
-                    </label>
-                </div>
+                </form>
             </div>
         );
     }
@@ -61,9 +53,6 @@ class ResetPasswordPanel extends Component {
 
 ResetPasswordPanel.propTypes = {
     vocab: PropTypes.object.isRequired,
-    actions: PropTypes.shape({
-        resetPassword: PropTypes.func.isRequired,
-    }),
 };
 
-export default ResetPasswordPanel;
+export default reduxForm({ form: 'reset-password-panel' })(ResetPasswordPanel);
