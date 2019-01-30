@@ -105,9 +105,10 @@ export function wizardHideSurveyTitleModal() {
     };
 }
 
-export function wizardUIReportError(errorMessage) {
+export function wizardUIMessage(message, isError) {
     return {
-        type: actionTypes.WIZARD_UI_REPORT_ERROR,
-        errorMessage,
+        type: actionTypes.WIZARD_UI_MESSAGE,
+        message,
+        isError,
     }
 }

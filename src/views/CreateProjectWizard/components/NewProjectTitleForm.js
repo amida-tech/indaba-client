@@ -28,7 +28,7 @@ class NewProjectTitleForm extends Component {
                         validate={[required]} />
                 </div>
                 <div className='new-project-title-form__error'>
-                    {this.props.errorMessage}
+                    {this.props.message}
                 </div>
             </form>
         );
@@ -38,7 +38,7 @@ class NewProjectTitleForm extends Component {
 NewProjectTitleForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
+    message: PropTypes.string,
 };
 
 export default reduxForm({ form: 'new-project-title-form' })(NewProjectTitleForm);

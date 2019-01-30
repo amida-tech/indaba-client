@@ -6,6 +6,8 @@ import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
+        message: '',
+        isError: false,
         showProjectTitle: true,
         showAddStage: false,
         stageEditId: null,
@@ -16,7 +18,6 @@ const initialState = {
             showSelectGroupUsers: false,
             usersFilter: '',
         },
-        errorMessage: '',
         projectLink: -1,
         showSubjectDeleteConfirmModal: null,
         showStageDeleteConfirmModal: null,
@@ -46,7 +47,8 @@ export default (state = initialState, action) => {
                 ui: {
                     showProjectTitle: { $set: false },
                     projectLink: { $set: action.project.id },
-                    errorMessage: { $set: '' },
+                    message: { $set: '' },
+                    isError: { $set: false },
                 },
             });
     case type.WIZARD_SHOW_STAGE_MODAL: {
@@ -98,12 +100,21 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
-    case type.WIZARD_UI_REPORT_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
+    case type.WIZARD_UI_MESSAGE:
+        return update(state, { ui: {
+            message: { $set: action.errorMessage },
+            isError: { $set: action.isError },
+        } });
     case REPORT_PROJECT_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
+        return update(state, { ui: {
+            message: { $set: action.errorMessage },
+            isError: { $set: true },
+        } });
     case REPORT_USER_ERROR:
-        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
+        return update(state, { ui: {
+            message: { $set: action.errorMessage },
+            isError: { $set: true },
+        } });
     case type.WIZARD_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
         return update(state, {
             ui: {

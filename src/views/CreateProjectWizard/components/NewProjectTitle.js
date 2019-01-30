@@ -53,7 +53,7 @@ class NewProjectTitle extends Component {
                 <NewProjectTitleForm
                     onSubmit={this.handleProjectSubmission}
                     vocab={this.props.vocab}
-                    errorMessage={this.props.errorMessage} />
+                    message={this.props.message} />
             </Modal>
         );
     }
@@ -67,7 +67,7 @@ NewProjectTitle.propTypes = {
     }),
     survey: PropTypes.object,
     allSurveys: PropTypes.arrayOf(PropTypes.object).isRequired,
-    errorMessage: PropTypes.string,
+    message: PropTypes.string,
     actions: PropTypes.object.isRequired,
 };
 
