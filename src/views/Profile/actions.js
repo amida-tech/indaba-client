@@ -6,15 +6,15 @@ export function updatePassword(oldPassword, password, messages) {
     return (dispatch) => {
         apiService.auth.updatePassword(oldPassword, password)
             .then((authResponse) => {
-                dispatch(updateProfileUIMessage(messages.PASSWORD_SUCCESS, false));
+                dispatch(profileUIMessage(messages.PASSWORD_SUCCESS, false));
             })
             .catch((authError) => {
-                dispatch(updateProfileUIMessage(messages.PASSWORD_UPDATE_FAILURE, true));
+                dispatch(profileUIMessage(messages.PASSWORD_UPDATE_FAILURE, true));
             })
     }
 };
 
-export function updateProfileUIMessage(message, isError) {
+export function profileUIMessage(message, isError) {
     return {
         type: actionTypes.PROFILE_UI_MESSAGE,
         message,

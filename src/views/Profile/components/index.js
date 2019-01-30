@@ -21,7 +21,7 @@ class ProfileContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.actions.updateProfileUIMessage('', false);
+        this.props.actions.profileUIMessage('', false);
     }
 
     handleProfileUpdateSubmit(values) {
@@ -33,7 +33,7 @@ class ProfileContainer extends Component {
 
     handlePasswordUpdateSubmit(values) {
         if (values.password !== values.passwordConfirm) {
-            this.props.actions.updateProfileUIMessage(
+            this.props.actions.profileUIMessage(
                 this.props.vocab.PROFILE.PASSWORD.PASSWORD_UNMATCHING,
                 true,
             );
