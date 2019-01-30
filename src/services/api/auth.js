@@ -25,6 +25,11 @@ const auth = {
         const body = { password };
         return requests.apiAuthPostRequest(path, body);
     },
+    updatePassword: (oldPassword, password) => {
+        const path = `${rootURI}/auth/update-password`;
+        const body = { oldPassword, password };
+        return requests.apiAuthPostRequest(path, body);
+    },
     requestRefreshToken: (username, refreshToken) => {
         const path = `${rootURI}/auth/token`;
         const body = { username, refreshToken };

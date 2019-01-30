@@ -6,7 +6,7 @@ import { submit } from 'redux-form';
 import cookie from 'react-cookies';
 
 import * as userActions from '../../../common/actions/userActions';
-import * as resetPasswordActions from './actions';
+import * as resetPasswordActions from '../actions';
 import ProfileForm from './ProfileForm';
 
 // TODO: Change reset password from a single button to a "change password" field.
