@@ -158,6 +158,12 @@ $block-class: 'profile-form';
             }
         }
 
+        &__ui-message {
+            &--error {
+                color: $bad-color;
+            }
+        }
+
         &__textarea {
             @extend .lead-font;
 

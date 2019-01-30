@@ -75,7 +75,7 @@
         "DISCUSS_REQUEST":"The system failed to make any kind of update to discussions.",
         "GROUP_DELETE":"The system failed to delete the user group.",
         "SUBJECT_REQUEST":"Something has gone wrong with subject(s) insertion or deletion. Please try again.",
-        "PROFILE_REQUEST":"Failed to insert or delete profile request.",
+        "PROFILE_REQUEST":"Failed to insert, update or delete profile request.",
         "USER_REQUEST":"Failed to insert or delete user.",
         "TASK_REQUEST":"Failed to insert or delete task.",
         "ASSESSMENT_REQUEST":"Failed to insert assessment.",
@@ -152,11 +152,12 @@
             "NOTES":"Notes"
         },
         "PASSWORD":{
+            "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
             "CHANGE_PASSWORD": "Change Password",
             "CURRENT_PASSWORD": "Current Password",
             "NEW_PASSWORD": "New Password",
             "CONFIRM_PASSWORD": "Confirm New Password",
-            "PASSWORD_ERROR": "Passwords do not match, re-enter passwords",
+            "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
             "PASSWORD_SUCCESS": "Your password successfully updated",
             "PASSWORD_NEW_MISSING":"Please enter a new password",
             "PASSWORD_CONFIRM_MISSING":"Please confirm your password",

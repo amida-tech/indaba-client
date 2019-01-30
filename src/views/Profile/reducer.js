@@ -1,24 +1,23 @@
 import update from 'immutability-helper';
-
 import * as actionTypes from './actionTypes';
+import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 
 export const initialState = {
-    ui: {},
-    tasks: [],
+    ui: {
+        message: '',
+        isError: false,
+    },
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.GET_TASKS_FOR_UPDATE_PW_SUCCESS:
-            return update(state, {
-                tasks: { $set: action.tasks },
-            });
-        case actionTypes.LOGIN_SUCCESS:
-            return update(state, { ui: { timeoutRef: { $set: '' } } });
-        case actionTypes.LOGIN_ERROR:
-            return update(state, { ui: { error: { $set: action.error } } });
-        case actionTypes.GET_CURRENT_USER_FAILURE:
-            return update(state, { ui: { error: { $set: action.error } } });
+        case actionTypes.PROFILE_UI_MESSAGE:
+            return update(state, { ui: {
+                message: { $set: action.message },
+                isError: { $set: action.isError }
+            } });
+        case LOG_OUT:
+            return initialState;
         default:
             return state;
     }
