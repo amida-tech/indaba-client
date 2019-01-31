@@ -152,16 +152,16 @@
             "NOTES":"Notes"
         },
         "PASSWORD":{
-            "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
             "CHANGE_PASSWORD": "Change Password",
             "CURRENT_PASSWORD": "Current Password",
-            "NEW_PASSWORD": "New Password",
             "CONFIRM_PASSWORD": "Confirm New Password",
-            "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
+            "INCORRECT_PASSWORD":"The Current Password you entered is incorrect",
+            "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number.",
+            "NEW_PASSWORD": "New Password",
             "PASSWORD_SUCCESS": "Your password successfully updated",
-            "PASSWORD_NEW_MISSING":"Please enter a new password",
-            "PASSWORD_CONFIRM_MISSING":"Please confirm your password",
-            "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number."
+            "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
+            "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
+            "PASSWORD_WEAK": "Your password does not meet the minimum requirements"
         }
     },
     "PROJECT":{

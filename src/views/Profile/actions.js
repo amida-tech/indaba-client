@@ -9,7 +9,16 @@ export function updatePassword(oldPassword, password, messages) {
                 dispatch(profileUIMessage(messages.PASSWORD_SUCCESS, false));
             })
             .catch((authError) => {
-                dispatch(profileUIMessage(messages.PASSWORD_UPDATE_FAILURE, true));
+                switch (authError.body.code) {
+                    case "INCORRECT_PASSWORD":
+                        dispatch(profileUIMessage(messages.INCORRECT_PASSWORD, true));
+                        break;
+                    case "STRONG_PASS_REQUIRED":
+                        dispatch(profileUIMessage(messages.PASSWORD_WEAK, true));
+                        break;
+                    default:
+                        dispatch(profileUIMessage(messages.PASSWORD_UPDATE_FAILURE, true));
+                };
             })
     }
 };
