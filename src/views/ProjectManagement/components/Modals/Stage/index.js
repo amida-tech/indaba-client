@@ -36,9 +36,6 @@ class StageModal extends Component {
             };
         }
 
-        // userGroup starts an array of the group ids. For this form, they're
-        // turned into a fuller display group for Select, then turned back into
-        // the plain array for upload.
         this.state.userGroups = this.state.userGroups.map((userGroup) =>
             this.displayGroups.find((group) => group.value === userGroup));
         this.state.startDate = moment(this.state.startDate);
