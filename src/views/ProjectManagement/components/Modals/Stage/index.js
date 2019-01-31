@@ -129,8 +129,8 @@ StageModal.propTypes = {
 const stageMapping = (values) => {
     const stage = {
         title: values.title,
-        startDate: values.startDate.startOf('day'),
-        endDate: values.endDate.endOf('day'),
+        startDate: values.startDate.startOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        endDate: values.endDate.endOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
         userGroups: values.userGroups.map((userGroup) => userGroup.value),
         position: values.position,
         provideResponses: true,
