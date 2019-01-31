@@ -155,13 +155,13 @@
             "CHANGE_PASSWORD": "Change Password",
             "CURRENT_PASSWORD": "Current Password",
             "CONFIRM_PASSWORD": "Confirm New Password",
-            "INCORRECT_PASSWORD":"The Current Password you entered is incorrect",
+            "INCORRECT_PASSWORD":"The Current Password you entered is incorrect.",
             "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number.",
             "NEW_PASSWORD": "New Password",
-            "PASSWORD_SUCCESS": "Your password successfully updated",
+            "PASSWORD_SUCCESS": "Your password successfully updated.",
             "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
             "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
-            "PASSWORD_WEAK": "Your password does not meet the minimum requirements"
+            "PASSWORD_WEAK": "Your password does not meet the minimum requirements."
         }
     },
     "PROJECT":{
