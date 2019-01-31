@@ -39,9 +39,9 @@ $block-class: 'profile-form';
             flex-direction: row;
 
             &:hover {
-                color: #fff;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
+                color: white;
+                background: darken($brand-color, 10);
+                border-color: darken($brand-color, 10);
             }
         }
 
@@ -73,14 +73,6 @@ $block-class: 'profile-form';
                 font-size: 12px;
                 font-weight: 400;
                 padding-top: 16px;
-
-                &--disabled {
-                    @extend .small-icon;
-
-                    color: #d9d9d9 !important;
-                    cursor: not-allowed;
-                    pointer-events: none;
-                }
             }
 
             &-spaced {
@@ -139,7 +131,7 @@ $block-class: 'profile-form';
         &__password {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
+            background-color: white;
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
