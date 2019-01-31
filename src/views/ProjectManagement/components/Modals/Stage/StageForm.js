@@ -8,23 +8,23 @@ class StageForm extends Component {
         return (
             <form className='stage-form'>
                 <div className='stage-form__title'>
-                    <label className={`stage-form__title-label ${this.props.titleFlag ?
-                        'stage-form__title-label--flag': ''}`}>
+                    <label className={`stage-form__title-label ${this.props.titleFlag
+                        ? 'stage-form__title-label--flag' : ''}`}>
                         {this.props.vocab.PROJECT.STAGE_TITLE_}
-                        {this.props.titleFlag &&
-                            <span>
+                        {this.props.titleFlag
+                            && <span>
                                 {this.props.vocab.PROJECT.STAGE_TITLE_REQUIRED}
                             </span>
                         }
                     </label>
                     <div>
-                        <input className={`stage-form__input-field ${this.props.titleFlag ?
-                            'stage-form__input-field--flag' : ''}`}
-                            placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
-                            type='text'
-                            value={this.props.title}
-                            onChange={this.props.handleTitle}
-                            onBlur={this.props.handleValidate} />
+                        <input className={`stage-form__input-field ${this.props.titleFlag
+                            ? 'stage-form__input-field--flag' : ''}`}
+                        placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
+                        type='text'
+                        value={this.props.title}
+                        onChange={this.props.handleTitle}
+                        onBlur={this.props.handleValidate} />
                     </div>
                 </div>
                 <div className='stage-form__group'>
@@ -32,13 +32,13 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                     </label>
                     <div>
-                    <Select className='stage-form__input-field'
-                        value={this.props.userGroups}
-                        onChange={this.props.handleUserGroups}
-                        options={this.props.displayGroups}
-                        placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
-                        clearable={true}
-                        multi />
+                        <Select className='stage-form__input-field'
+                            value={this.props.userGroups}
+                            onChange={this.props.handleUserGroups}
+                            options={this.props.displayGroups}
+                            placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
+                            clearable={true}
+                            multi />
                     </div>
                 </div>
                 <div className='stage-form__activities'>
@@ -46,8 +46,7 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.PERMISSIONS}
                     </label>
                     <div className='stage-form__radio-control'>
-                        {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) =>
-                            <label className='stage-form__radio-button' key={index}>
+                        {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
                             <input name='permissions'
                                 type='radio'
                                 value={index}
@@ -68,9 +67,9 @@ class StageForm extends Component {
                     <label className={`stage-form__date-label ${this.props.dateFlag
                         ? 'stage-form__date-label--flag' : ''}`}>
                         {this.props.vocab.PROJECT.DATE_RANGE_}
-                        {this.props.dateFlag ?
-                            this.props.vocab.PROJECT.DATE_REQUIRED :
-                            this.props.vocab.PROJECT.DATE_INSTRUCTIONS
+                        {this.props.dateFlag
+                            ? this.props.vocab.PROJECT.DATE_REQUIRED
+                            : this.props.vocab.PROJECT.DATE_INSTRUCTIONS
                         }
                     </label>
                     <div className={`stage-form__date-input-div ${this.props.dateFlag

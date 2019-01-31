@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import Select from 'react-select';
@@ -12,8 +12,8 @@ class Dropdown extends Component {
             currentValue = {
                 value: currentValue,
                 label: this.props.choices.find(choice => choice.id === currentValue.choice).text,
-            }
-        };
+            };
+        }
 
         this.state = {
             options: this.props.choices.map((entry) => {
@@ -21,12 +21,12 @@ class Dropdown extends Component {
             }),
             currentValue,
         };
-        
+
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(evt) {
-        this.setState({currentValue: evt});
+        this.setState({ currentValue: evt });
         this.props.upsertAnswer({ choice: evt.value });
     }
 

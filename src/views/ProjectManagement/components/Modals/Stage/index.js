@@ -9,11 +9,11 @@ import StageForm from './StageForm';
 class StageModal extends Component {
     constructor(props) {
         super(props);
-        this.displayGroups = this.props.userGroups.map((group, key) =>
-            ({ value: group.id, label: group.title, key }));
+        this.displayGroups = this.props.userGroups.map((group, key) => ({ value: group.id, label: group.title, key }));
         if (this.props.stageId && this.props.project) {
             this.state = Object.assign({}, this.props.project.stages.find(
-                stage => stage.id === this.props.stageId));
+                stage => stage.id === this.props.stageId,
+            ));
             if (this.state.blindReview) {
                 this.state.permissions = '1';
             } else if (this.state.discussionParticipation) {
@@ -36,8 +36,7 @@ class StageModal extends Component {
             };
         }
 
-        this.state.userGroups = this.state.userGroups.map((userGroup) =>
-            this.displayGroups.find((group) => group.value === userGroup));
+        this.state.userGroups = this.state.userGroups.map(userGroup => this.displayGroups.find(group => group.value === userGroup));
         this.state.startDate = moment(this.state.startDate);
         this.state.endDate = moment(this.state.endDate);
 
@@ -77,7 +76,6 @@ class StageModal extends Component {
     }
 
     handleSubmit() {
-        console.log(this.state);
         if (!this.state.dateFlag && !this.state.titleFlag) {
             this.props.onAddStage(stageMapping(this.state), this.props.project.id);
         }
@@ -131,7 +129,7 @@ const stageMapping = (values) => {
         title: values.title,
         startDate: values.startDate.startOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
         endDate: values.endDate.endOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
-        userGroups: values.userGroups.map((userGroup) => userGroup.value),
+        userGroups: values.userGroups.map(userGroup => userGroup.value),
         position: values.position,
         provideResponses: true,
         discussionParticipation: values.permissions === '2',
