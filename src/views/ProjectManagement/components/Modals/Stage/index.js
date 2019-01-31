@@ -31,6 +31,7 @@ class StageModal extends Component {
                 permissions: '0',
                 startDate: new Date(),
                 endDate: new Date(),
+                titleFlag: false,
             };
         }
 
@@ -69,12 +70,12 @@ class StageModal extends Component {
     }
 
     handleSubmit() {
-        const stage = Object.assign({}, this.state);
-        stage.userGroups = stage.userGroups.map((userGroup) => userGroup.value);
-        stage.startDate = stage.startDate.startOf('day');
-        stage.endDate = stage.endDate.endOf('day');
-        console.log(stage);
-        // this.props.onAddStage(stageMapping(stage), this.props.project.id);
+        if(!this.state.title) {
+            console.log('crap');
+            this.setState({ titleFlag: true });
+        } else {
+            this.props.onAddStage(stageMapping(this.state), this.props.project.id);
+        }
     }
 
     render() {
@@ -92,6 +93,7 @@ class StageModal extends Component {
                     }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
+                    titleFlag={this.state.titleFlag}
                     title={this.state.title}
                     displayGroups={this.displayGroups}
                     userGroups={this.state.userGroups}
@@ -120,40 +122,23 @@ StageModal.propTypes = {
 const stageMapping = (values) => {
     const stage = {
         title: values.title,
-        startDate: values.startDate,
-        endDate: values.endDate,
-        userGroups: values.userGroups,
+        startDate: values.startDate.startOf('day'),
+        endDate: values.endDate.endOf('day'),
+        userGroups: values.userGroups.map((userGroup) => userGroup.value),
         position: values.position,
         provideResponses: true,
-        discussionParticipation: false,
-        blindReview: false,
+        discussionParticipation: values.permissions === '2',
+        blindReview: values.permissions === '1',
         seeOthersResponses: false,
         allowTranslate: false,
         writeToAnswers: false,
-        allowEdit: false,
+        allowEdit: values.permissions === '3',
     };
     if (values.id) {
         stage.id = values.id;
     }
     if (values.workflowId) {
         stage.workflowId = values.workflowId;
-    }
-    switch (values.permissions) {
-    case '1': { // Review
-        stage.blindReview = true;
-        break;
-    }
-    case '2': { // Review and Comment
-        stage.discussionParticipation = true;
-        break;
-    }
-    case '3': { // Review and Edit
-        stage.allowEdit = true;
-        break;
-    }
-    default: { // Complete survey
-        break;
-    }
     }
     return stage;
 };

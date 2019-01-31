@@ -14,8 +14,11 @@ class StageForm extends Component {
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </label>
                     <div>
-                        <input className='stage-form__input-field'
-                            placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
+                        <input className={`stage-form__input-field ${
+                            this.props.titleFlag ? 'stage-form__input-field--flag' : ''}`}
+                            placeholder={this.props.titleFlag ?
+                                this.props.vocab.PROJECT.STAGE_TITLE_REQUIRED :
+                                this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
                             type='text'
                             value={this.props.title}
                             onChange={this.props.handleTitle} />
@@ -77,6 +80,7 @@ class StageForm extends Component {
 
 StageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
+    titleFlag: PropTypes.bool,
     title: PropTypes.string,
     permissions: PropTypes.string,
     userGroups: PropTypes.array,
