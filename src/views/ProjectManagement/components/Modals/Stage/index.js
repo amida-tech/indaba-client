@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Modal from '../../../../../common/components/Modal';
 import StageForm from './StageForm';
@@ -8,7 +9,7 @@ import StageForm from './StageForm';
 class StageModal extends Component {
     constructor(props) {
         super(props);
-        this.groups = this.props.userGroups.map((group, key) =>
+        this.displayGroups = this.props.userGroups.map((group, key) =>
             ({ value: group.id, label: group.title, key }));
         if (this.props.stageId && this.props.project) {
             this.state = Object.assign({}, this.props.project.stages.find(
@@ -33,8 +34,18 @@ class StageModal extends Component {
             };
         }
 
+        // userGroup starts an array of the group ids. For this form, they're
+        // turned into a fuller display group for Select, then turned back into
+        // the plain array for upload.
+        this.state.userGroups = this.state.userGroups.map((userGroup) =>
+            this.displayGroups.find((group) => group.value === userGroup));
+        this.state.startDate = moment(this.state.startDate);
+        this.state.endDate = moment(this.state.endDate);
+
         this.handleTitle = this.handleTitle.bind(this);
+        this.handleUserGroups = this.handleUserGroups.bind(this);
         this.handlePermissions = this.handlePermissions.bind(this);
+        this.handleDates = this.handleDates.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -42,12 +53,28 @@ class StageModal extends Component {
         this.setState({ title: evt.target.value });
     }
 
+    handleUserGroups(evt) {
+        this.setState({ userGroups: evt });
+    }
+
     handlePermissions(evt) {
         this.setState({ permissions: evt.target.value });
     }
 
+    handleDates(selectedDates) {
+        this.setState({
+            startDate: selectedDates.startDate,
+            endDate: selectedDates.endDate || selectedDates.startDate,
+        });
+    }
+
     handleSubmit() {
-        this.props.onAddStage(stageMapping(this.state), this.props.project.id);
+        const stage = Object.assign({}, this.state);
+        stage.userGroups = stage.userGroups.map((userGroup) => userGroup.value);
+        stage.startDate = stage.startDate.startOf('day');
+        stage.endDate = stage.endDate.endOf('day');
+        console.log(stage);
+        // this.props.onAddStage(stageMapping(stage), this.props.project.id);
     }
 
     render() {
@@ -66,13 +93,15 @@ class StageModal extends Component {
                 <StageForm
                     vocab={this.props.vocab}
                     title={this.state.title}
-                    groups={this.groups}
+                    displayGroups={this.displayGroups}
                     userGroups={this.state.userGroups}
                     permissions={this.state.permissions}
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}
                     handleTitle={this.handleTitle}
-                    handlePermissions={this.handlePermissions} />
+                    handleUserGroups={this.handleUserGroups}
+                    handlePermissions={this.handlePermissions}
+                    handleDates={this.handleDates} />
             </Modal>
         );
     }

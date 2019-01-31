@@ -7,8 +7,6 @@ import MultiDateInput from '../../../../../common/components/Dates/MultiDateInpu
 
 class StageForm extends Component {
     render() {
-        console.log('STageForm Props');
-        console.log(this.props);
         return (
             <form className='stage-form'>
                 <div className='stage-form__title'>
@@ -29,8 +27,9 @@ class StageForm extends Component {
                     </label>
                     <div>
                     <Select className='stage-form__input-field'
-                        value={this.props.userGroups.map(group => group.value)}
-                        options={this.props.groups}
+                        value={this.props.userGroups}
+                        onChange={this.props.handleUserGroups}
+                        options={this.props.displayGroups}
                         placeholder={this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                         clearable={true}
                         multi />
@@ -45,7 +44,7 @@ class StageForm extends Component {
                             <label className='stage-form__radio-button' key={index}>
                             <input name='permissions'
                                 type='radio'
-                                value={`${index}`}
+                                value={index}
                                 onChange={this.props.handlePermissions}
                                 checked={index === parseInt(this.props.permissions, 10)} />
                             <span className='stage-form__permission-label-text'>
@@ -66,7 +65,8 @@ class StageForm extends Component {
                     <div className='stage-form__date-input-div'>
                         <MultiDateInput
                             startDate={this.props.startDate}
-                            endDate={this.props.endDate} />
+                            endDate={this.props.endDate}
+                            handleDates={this.props.handleDates} />
                     </div>
                 </div>
                 <div className='stage-form__clear'></div>
@@ -80,7 +80,7 @@ StageForm.propTypes = {
     title: PropTypes.string,
     permissions: PropTypes.string,
     userGroups: PropTypes.array,
-    groups: PropTypes.array,
+    displayGroups: PropTypes.array,
     startDate: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
@@ -90,7 +90,9 @@ StageForm.propTypes = {
         PropTypes.object,
     ]),
     handleTitle: PropTypes.func,
+    handleUserGroups: PropTypes.func,
     handlePermissions: PropTypes.func,
+    handleDates: PropTypes.func,
 };
 
 export default StageForm;

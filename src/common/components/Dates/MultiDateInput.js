@@ -14,8 +14,6 @@ class MultiDateInput extends Component {
         this.onDatesChanged = this.onDatesChanged.bind(this);
         this.pastDates = this.pastDates.bind(this);
         this.state = {
-            startDate: moment(get(this.props, 'startDate')),
-            endDate: moment(get(this.props, 'endDate')),
             focusedInput: null,
         };
     }
@@ -29,19 +27,16 @@ class MultiDateInput extends Component {
     }
 
     onDatesChanged(selectedDates) {
-        this.setState({
-            startDate: selectedDates.startDate,
-            endDate: selectedDates.endDate,
-        });
         if (this.state.focusedInput === 'startDate') {
             this.props.startDate.input.onChange(
                 selectedDates.startDate.format('YYYY-MM-DDTHH:mm:ss.SSSZZ'),
             );
-        } else if (selectedDates.endDate){
+        } else if (selectedDates.endDate) {
             this.props.endDate.input.onChange(
                 selectedDates.endDate.format('YYYY-MM-DDTHH:mm:ss.SSSZZ'),
             );
         }
+        this.props.handleDates(selectedDates);
     }
 
     pastDates() {
@@ -51,12 +46,12 @@ class MultiDateInput extends Component {
     render() {
         return (
             <DateRangePicker
-                startDate={this.state.startDate}
+                startDate={this.props.startDate}
                 startDateId='startDate'
-                endDate={this.state.endDate}
+                endDate={this.props.endDate}
                 endDateId='endDate'
                 isOutsideRange={this.pastDates}
-                onDatesChange={this.onDatesChanged}
+                onDatesChange={this.props.handleDates}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={this.onChangeFocusedInput}
                 minimumNights={0}
@@ -78,6 +73,7 @@ MultiDateInput.propTypes = {
     ]),
     scrollTarget: PropTypes.string,
     containerId: PropTypes.string,
+    handleDates: PropTypes.func,
 };
 
 MultiDateInput.defaultProps = {
