@@ -242,7 +242,9 @@
             "View previous user's survey answers and comments and edit them."
         ],
         "TASK_BACK":"Back",
-        "DATE_RANGE":"Date Range (The date the task will begin and end)",
+        "DATE_RANGE_":"Date Range ",
+        "DATE_INSTRUCTIONS": "(The date the task will begin and end.)",
+        "DATE_REQUIRED": "(A valid start and end date are required for the stage.)",
         "STAGE":"Stage",
         "ADD_SUBJECT":"Add Subject",
         "ADD_SUBJECTS":"Add Subjects",

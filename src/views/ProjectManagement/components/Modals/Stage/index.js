@@ -32,6 +32,7 @@ class StageModal extends Component {
                 startDate: new Date(),
                 endDate: new Date(),
                 titleFlag: false,
+                dateFlag: false,
             };
         }
 
@@ -70,9 +71,13 @@ class StageModal extends Component {
     }
 
     handleSubmit() {
-        if(!this.state.title) {
-            this.setState({ titleFlag: true });
-        } else {
+        const dateCheck = (this.state.startDate !== null
+            && this.state.endDate !== null);
+        this.setState({
+            titleFlag: !this.state.title,
+            dateFlag: !dateCheck,
+        });
+        if (dateCheck && this.state.title) {
             this.props.onAddStage(stageMapping(this.state), this.props.project.id);
         }
     }
@@ -93,6 +98,7 @@ class StageModal extends Component {
                 <StageForm
                     vocab={this.props.vocab}
                     titleFlag={this.state.titleFlag}
+                    dateFlag={this.state.dateFlag}
                     title={this.state.title}
                     displayGroups={this.displayGroups}
                     userGroups={this.state.userGroups}

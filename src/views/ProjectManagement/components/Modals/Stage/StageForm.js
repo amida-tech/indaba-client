@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import MultiDateInput from '../../../../../common/components/Dates/MultiDateInput';
 
 class StageForm extends Component {
@@ -10,12 +8,13 @@ class StageForm extends Component {
         return (
             <form className='stage-form'>
                 <div className='stage-form__title'>
-                    <label className='stage-form__title-label'>
+                    <label className={`stage-form__title-label ${this.props.titleFlag ?
+                        'stage-form__title-label--flag': ''}`}>
                         {this.props.vocab.PROJECT.STAGE_TITLE}
                     </label>
                     <div>
-                        <input className={`stage-form__input-field ${
-                            this.props.titleFlag ? 'stage-form__input-field--flag' : ''}`}
+                        <input className={`stage-form__input-field ${this.props.titleFlag ?
+                            'stage-form__input-field--flag' : ''}`}
                             placeholder={this.props.titleFlag ?
                                 this.props.vocab.PROJECT.STAGE_TITLE_REQUIRED :
                                 this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
@@ -62,8 +61,13 @@ class StageForm extends Component {
                 <hr className='stage-form__divider'/>
                 <div className='stage-form__date'
                     name='stage-form__date'>
-                    <label className='stage-form__date-label'>
-                        {this.props.vocab.PROJECT.DATE_RANGE}
+                    <label className={`stage-form__date-label ${this.props.dateFlag
+                        ? 'stage-form__date-label--flag' : ''}`}>
+                        {this.props.vocab.PROJECT.DATE_RANGE_}
+                        {this.props.dateFlag ?
+                            this.props.vocab.PROJECT.DATE_REQUIRED :
+                            this.props.vocab.PROJECT.DATE_INSTRUCTIONS
+                        }
                     </label>
                     <div className='stage-form__date-input-div'>
                         <MultiDateInput
@@ -81,6 +85,7 @@ class StageForm extends Component {
 StageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     titleFlag: PropTypes.bool,
+    dateFlag: PropTypes.bool,
     title: PropTypes.string,
     permissions: PropTypes.string,
     userGroups: PropTypes.array,
