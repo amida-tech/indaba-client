@@ -11,7 +11,7 @@ $block-class:'stage-form';
             width: 100%;
 
             &--flag {
-                border-color: red !important;
+                border-color: $error-color !important;
             }
         }
 
@@ -26,7 +26,7 @@ $block-class:'stage-form';
                 font-weight: 500;
 
                 &--flag {
-                    color: red;
+                    color: $error-color;
                 }
             }
         }
@@ -65,7 +65,7 @@ $block-class:'stage-form';
             font-weight: 500;
 
             &--flag {
-                color: red;
+                color: $error-color;
             }
         }
 
@@ -87,7 +87,7 @@ $block-class:'stage-form';
             margin-left: 16px;
 
             &--flag > .DateRangePicker.DateRangePicker_1 > div > .DateRangePickerInput__withBorder {
-                border: 1px solid red;
+                border: 1px solid $error-color;
             }
         }
 
