@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../../common/components/Modal';
 import StageForm from './StageForm';
 
 class StageModal extends Component {
-    render() {
-        const groups = this.props.userGroups.map((group, key) => ({ value: group.id, label: group.title, key }));
-
-        let initialValues;
+    constructor(props) {
+        super(props);
+        this.groups = this.props.userGroups.map((group, key) =>
+            ({ value: group.id, label: group.title, key }));
         if (this.props.stageId && this.props.project) {
-            initialValues = Object.assign({}, this.props.project.stages.find(stage => stage.id === this.props.stageId));
-            if (initialValues.blindReview) {
-                initialValues.permissions = '1';
-            } else if (initialValues.discussionParticipation) {
-                initialValues.permissions = '2';
-            } else if (initialValues.allowEdit) {
-                initialValues.permissions = '3';
+            this.state = Object.assign({}, this.props.project.stages.find(
+                stage => stage.id === this.props.stageId));
+            if (this.state.blindReview) {
+                this.state.permissions = '1';
+            } else if (this.state.discussionParticipation) {
+                this.state.permissions = '2';
+            } else if (this.state.allowEdit) {
+                this.state.permissions = '3';
             } else {
-                initialValues.permissions = '0';
+                this.state.permissions = '0';
             }
         } else {
-            initialValues = {
+            this.state = {
                 title: '',
                 userGroups: [],
                 position: this.props.project.stages.length,
@@ -33,12 +33,30 @@ class StageModal extends Component {
             };
         }
 
+        this.handleTitle = this.handleTitle.bind(this);
+        this.handlePermissions = this.handlePermissions.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleTitle(evt) {
+        this.setState({ title: evt.target.value });
+    }
+
+    handlePermissions(evt) {
+        this.setState({ permissions: evt.target.value });
+    }
+
+    handleSubmit() {
+        this.props.onAddStage(stageMapping(this.state), this.props.project.id);
+    }
+
+    render() {
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}
+                onSave={this.handleSubmit}
                 buttons={(this.props.stageId !== undefined && this.props.stageId !== null)
                     ? [{
                         key: 'delete-button',
@@ -47,10 +65,14 @@ class StageModal extends Component {
                     }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
-                    groups={groups}
-                    initialValues={initialValues}
-                    onSubmit={values => this.props.onAddStage(stageMapping(values), this.props.project.id)
-                    } />
+                    title={this.state.title}
+                    groups={this.groups}
+                    userGroups={this.state.userGroups}
+                    permissions={this.state.permissions}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                    handleTitle={this.handleTitle}
+                    handlePermissions={this.handlePermissions} />
             </Modal>
         );
     }
@@ -61,8 +83,6 @@ StageModal.propTypes = {
     userGroups: PropTypes.array.isRequired,
     stageId: PropTypes.number,
     project: PropTypes.object.isRequired,
-
-    onClickToSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onAddStage: PropTypes.func.isRequired,
     onDeleteClick: PropTypes.func,
@@ -109,8 +129,4 @@ const stageMapping = (values) => {
     return stage;
 };
 
-const mapDispatchToProps = dispatch => ({
-    onClickToSubmit: () => dispatch(submit('stage-form')),
-});
-
-export default connect(null, mapDispatchToProps)(StageModal);
+export default StageModal;

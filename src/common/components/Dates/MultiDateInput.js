@@ -14,8 +14,8 @@ class MultiDateInput extends Component {
         this.onDatesChanged = this.onDatesChanged.bind(this);
         this.pastDates = this.pastDates.bind(this);
         this.state = {
-            startDate: moment(get(this.props, 'startDate.input.value')),
-            endDate: moment(get(this.props, 'endDate.input.value')),
+            startDate: moment(get(this.props, 'startDate')),
+            endDate: moment(get(this.props, 'endDate')),
             focusedInput: null,
         };
     }
@@ -37,7 +37,7 @@ class MultiDateInput extends Component {
             this.props.startDate.input.onChange(
                 selectedDates.startDate.format('YYYY-MM-DDTHH:mm:ss.SSSZZ'),
             );
-        } else {
+        } else if (selectedDates.endDate){
             this.props.endDate.input.onChange(
                 selectedDates.endDate.format('YYYY-MM-DDTHH:mm:ss.SSSZZ'),
             );
