@@ -6,7 +6,7 @@ import scroller from 'react-scroll/modules/mixins/scroller';
 import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
-import { ANCHOR_LEFT, ANCHOR_RIGHT } from 'react-dates/constants'
+import { ANCHOR_LEFT, ANCHOR_RIGHT } from 'react-dates/constants';
 
 class SingleDateInput extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class SingleDateInput extends Component {
         this.pastDates = this.pastDates.bind(this);
         const existingDate = get(this.props, 'value');
         this.state = {
-            date: existingDate ? moment(existingDate): existingDate,
+            date: existingDate ? moment(existingDate) : existingDate,
             focused: null,
         };
     }
@@ -49,7 +49,7 @@ class SingleDateInput extends Component {
                 onDateChange={this.onDateChange}
                 focused={this.state.focused}
                 displayFormat="MM/DD/YYYY"
-                anchorDirection={this.props.align === "right" ? ANCHOR_RIGHT : ANCHOR_LEFT}
+                anchorDirection={this.props.align === 'right' ? ANCHOR_RIGHT : ANCHOR_LEFT}
                 onFocusChange={this.onFocusChange}
                 numberOfMonths={1}
                 id={this.props.id}
