@@ -40,7 +40,7 @@ class ProfileContainer extends Component {
             return;
         }
         this.props.actions.updatePassword(
-            values.oldPassword,
+            values.oldPassword.trim(),
             values.password,
             this.props.vocab.PROFILE.PASSWORD,
         );
