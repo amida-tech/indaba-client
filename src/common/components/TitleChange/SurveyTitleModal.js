@@ -5,6 +5,29 @@ import TitleForm from './TitleForm';
 
 
 class SurveyTitleModal extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit({ title: name }) {
+        if (this.props.survey.id > 0) {
+            this.props.actions.patchSurvey(
+                { name, id: this.props.survey.id },
+                this.props.vocab.SURVEY.SUCCESS,
+                this.props.vocab.ERROR,
+            );
+        } else {
+            this.props.actions.postSurvey(
+                Object.assign({}, this.props.survey, { name }),
+                this.props.project,
+                this.props.vocab.ERROR,
+            );
+        }
+        this.props.onCloseModal();
+    }
+
     render() {
         return (
             <Modal title={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
@@ -13,22 +36,7 @@ class SurveyTitleModal extends Component {
                 <TitleForm form='survey-title'
                     label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL}
                     initialValues={{ title: this.props.survey.id > 0 ? this.props.survey.name : '' }}
-                    onSubmit={({ title: name }) => {
-                        if (this.props.survey.id > 0) {
-                            this.props.actions.patchSurvey(
-                                { name, id: this.props.survey.id },
-                                this.props.vocab.SURVEY.SUCCESS,
-                                this.props.vocab.ERROR,
-                            );
-                        } else {
-                            this.props.actions.postSurvey(
-                                Object.assign({}, this.props.survey, { name }),
-                                this.props.project,
-                                this.props.vocab.ERROR,
-                            );
-                        }
-                        this.props.onCloseModal();
-                    }}/>
+                    onSubmit={this.handleSubmit}/>
             </Modal>
         );
     }
