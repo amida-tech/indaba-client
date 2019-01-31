@@ -45,6 +45,7 @@ class StageModal extends Component {
         this.handleUserGroups = this.handleUserGroups.bind(this);
         this.handlePermissions = this.handlePermissions.bind(this);
         this.handleDates = this.handleDates.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -67,14 +68,17 @@ class StageModal extends Component {
         });
     }
 
-    handleSubmit() {
-        const dateCheck = (this.state.startDate !== null
-            && this.state.endDate !== null);
+    handleValidate() {
         this.setState({
             titleFlag: !this.state.title,
-            dateFlag: !dateCheck,
+            dateFlag: (this.state.startDate === null
+                || this.state.endDate === null),
         });
-        if (dateCheck && this.state.title) {
+    }
+
+    handleSubmit() {
+        console.log(this.state);
+        if (!this.state.dateFlag && !this.state.titleFlag) {
             this.props.onAddStage(stageMapping(this.state), this.props.project.id);
         }
     }
@@ -105,7 +109,8 @@ class StageModal extends Component {
                     handleTitle={this.handleTitle}
                     handleUserGroups={this.handleUserGroups}
                     handlePermissions={this.handlePermissions}
-                    handleDates={this.handleDates} />
+                    handleDates={this.handleDates}
+                    handleValidate={this.handleValidate} />
             </Modal>
         );
     }

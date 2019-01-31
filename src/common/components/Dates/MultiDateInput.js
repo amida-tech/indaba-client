@@ -24,6 +24,7 @@ class MultiDateInput extends Component {
             smooth: true,
             containerId: this.props.containerId,
         });
+        this.props.handleValidate();
     }
 
     onDatesChanged(selectedDates) {
@@ -74,6 +75,7 @@ MultiDateInput.propTypes = {
     scrollTarget: PropTypes.string,
     containerId: PropTypes.string,
     handleDates: PropTypes.func,
+    handleValidate: PropTypes.func,
 };
 
 MultiDateInput.defaultProps = {

@@ -10,17 +10,21 @@ class StageForm extends Component {
                 <div className='stage-form__title'>
                     <label className={`stage-form__title-label ${this.props.titleFlag ?
                         'stage-form__title-label--flag': ''}`}>
-                        {this.props.vocab.PROJECT.STAGE_TITLE}
+                        {this.props.vocab.PROJECT.STAGE_TITLE_}
+                        {this.props.titleFlag &&
+                            <span>
+                                {this.props.vocab.PROJECT.STAGE_TITLE_REQUIRED}
+                            </span>
+                        }
                     </label>
                     <div>
                         <input className={`stage-form__input-field ${this.props.titleFlag ?
                             'stage-form__input-field--flag' : ''}`}
-                            placeholder={this.props.titleFlag ?
-                                this.props.vocab.PROJECT.STAGE_TITLE_REQUIRED :
-                                this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
+                            placeholder={this.props.vocab.PROJECT.STAGE_TITLE_INSTRUCTION}
                             type='text'
                             value={this.props.title}
-                            onChange={this.props.handleTitle} />
+                            onChange={this.props.handleTitle}
+                            onBlur={this.props.handleValidate} />
                     </div>
                 </div>
                 <div className='stage-form__group'>
@@ -69,11 +73,13 @@ class StageForm extends Component {
                             this.props.vocab.PROJECT.DATE_INSTRUCTIONS
                         }
                     </label>
-                    <div className='stage-form__date-input-div'>
+                    <div className={`stage-form__date-input-div ${this.props.dateFlag
+                        ? 'stage-form__date-input-div--flag' : ''}`}>
                         <MultiDateInput
                             startDate={this.props.startDate}
                             endDate={this.props.endDate}
-                            handleDates={this.props.handleDates} />
+                            handleDates={this.props.handleDates}
+                            handleValidate={this.props.handleValidate} />
                     </div>
                 </div>
                 <div className='stage-form__clear'></div>
@@ -102,6 +108,7 @@ StageForm.propTypes = {
     handleUserGroups: PropTypes.func,
     handlePermissions: PropTypes.func,
     handleDates: PropTypes.func,
+    handleValidate: PropTypes.func,
 };
 
 export default StageForm;
