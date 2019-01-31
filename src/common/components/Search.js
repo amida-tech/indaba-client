@@ -26,7 +26,7 @@ class Search extends Component {
     }
 
     handleSelect(evt) {
-        this.props.onSelect(find(this.props.list, (group) => group.value.id === evt.target.value));
+        this.props.onSelect(find(this.props.list, group => group.value.id === evt.target.value));
     }
 
     render() {
@@ -47,9 +47,9 @@ class Search extends Component {
                         onMouseDown={this.handleSelect}
                         value={item.value.id}
                         key={item.value.id}>
-                        {item.label}{item.hint ?
-                            <span className = 'search__hint'>{item.hint}</span> :''}
-                        </li>
+                        {item.label}{item.hint
+                            ? <span className = 'search__hint'>{item.hint}</span> : ''}
+                    </li>
                 ))} </ul>}
         </div>;
     }

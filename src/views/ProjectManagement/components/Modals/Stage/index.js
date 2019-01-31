@@ -1,44 +1,93 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { submit } from 'redux-form';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import Modal from '../../../../../common/components/Modal';
 import StageForm from './StageForm';
 
 class StageModal extends Component {
-    render() {
-        const groups = this.props.userGroups.map((group, key) => ({ value: group.id, label: group.title, key }));
-
-        let initialValues;
+    constructor(props) {
+        super(props);
+        this.displayGroups = this.props.userGroups.map((group, key) => ({ value: group.id, label: group.title, key }));
         if (this.props.stageId && this.props.project) {
-            initialValues = Object.assign({}, this.props.project.stages.find(stage => stage.id === this.props.stageId));
-            if (initialValues.blindReview) {
-                initialValues.permissions = '1';
-            } else if (initialValues.discussionParticipation) {
-                initialValues.permissions = '2';
-            } else if (initialValues.allowEdit) {
-                initialValues.permissions = '3';
+            this.state = Object.assign({}, this.props.project.stages.find(
+                stage => stage.id === this.props.stageId,
+            ));
+            if (this.state.blindReview) {
+                this.state.permissions = '1';
+            } else if (this.state.discussionParticipation) {
+                this.state.permissions = '2';
+            } else if (this.state.allowEdit) {
+                this.state.permissions = '3';
             } else {
-                initialValues.permissions = '0';
+                this.state.permissions = '0';
             }
         } else {
-            initialValues = {
+            this.state = {
                 title: '',
                 userGroups: [],
                 position: this.props.project.stages.length,
                 permissions: '0',
                 startDate: new Date(),
                 endDate: new Date(),
+                titleFlag: false,
+                dateFlag: false,
             };
         }
 
+        this.state.userGroups = this.state.userGroups.map(userGroup => this.displayGroups.find(group => group.value === userGroup));
+        this.state.startDate = moment(this.state.startDate);
+        this.state.endDate = moment(this.state.endDate);
+
+        this.handleTitle = this.handleTitle.bind(this);
+        this.handleUserGroups = this.handleUserGroups.bind(this);
+        this.handlePermissions = this.handlePermissions.bind(this);
+        this.handleDates = this.handleDates.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleTitle(evt) {
+        this.setState({ title: evt.target.value });
+    }
+
+    handleUserGroups(evt) {
+        this.setState({ userGroups: evt });
+    }
+
+    handlePermissions(evt) {
+        this.setState({ permissions: evt.target.value });
+    }
+
+    handleDates(selectedDates) {
+        this.setState({
+            startDate: selectedDates.startDate,
+            endDate: selectedDates.endDate || selectedDates.startDate,
+        });
+    }
+
+    handleValidate() {
+        this.setState({
+            titleFlag: !this.state.title,
+            dateFlag: (this.state.startDate === null
+                || this.state.endDate === null),
+        });
+    }
+
+    handleSubmit() {
+        if (!this.state.dateFlag && !this.state.titleFlag) {
+            this.props.onAddStage(stageMapping(this.state), this.props.project.id);
+        }
+    }
+
+    render() {
         return (
             <Modal
                 title={this.props.vocab.PROJECT.STAGE_SETTINGS}
                 class='add-stage-layer'
                 onCancel={this.props.onCancel}
-                onSave={this.props.onClickToSubmit}
+                onSave={this.handleSubmit}
                 buttons={(this.props.stageId !== undefined && this.props.stageId !== null)
                     ? [{
                         key: 'delete-button',
@@ -47,10 +96,19 @@ class StageModal extends Component {
                     }] : null}>
                 <StageForm
                     vocab={this.props.vocab}
-                    groups={groups}
-                    initialValues={initialValues}
-                    onSubmit={values => this.props.onAddStage(stageMapping(values), this.props.project.id)
-                    } />
+                    titleFlag={this.state.titleFlag}
+                    dateFlag={this.state.dateFlag}
+                    title={this.state.title}
+                    displayGroups={this.displayGroups}
+                    userGroups={this.state.userGroups}
+                    permissions={this.state.permissions}
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                    handleTitle={this.handleTitle}
+                    handleUserGroups={this.handleUserGroups}
+                    handlePermissions={this.handlePermissions}
+                    handleDates={this.handleDates}
+                    handleValidate={this.handleValidate} />
             </Modal>
         );
     }
@@ -61,8 +119,6 @@ StageModal.propTypes = {
     userGroups: PropTypes.array.isRequired,
     stageId: PropTypes.number,
     project: PropTypes.object.isRequired,
-
-    onClickToSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onAddStage: PropTypes.func.isRequired,
     onDeleteClick: PropTypes.func,
@@ -71,17 +127,17 @@ StageModal.propTypes = {
 const stageMapping = (values) => {
     const stage = {
         title: values.title,
-        startDate: values.startDate,
-        endDate: values.endDate,
-        userGroups: values.userGroups,
+        startDate: values.startDate.startOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        endDate: values.endDate.endOf('day').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+        userGroups: values.userGroups.map(userGroup => userGroup.value),
         position: values.position,
         provideResponses: true,
-        discussionParticipation: false,
-        blindReview: false,
+        discussionParticipation: values.permissions === '2',
+        blindReview: values.permissions === '1',
         seeOthersResponses: false,
         allowTranslate: false,
         writeToAnswers: false,
-        allowEdit: false,
+        allowEdit: values.permissions === '3',
     };
     if (values.id) {
         stage.id = values.id;
@@ -89,28 +145,7 @@ const stageMapping = (values) => {
     if (values.workflowId) {
         stage.workflowId = values.workflowId;
     }
-    switch (values.permissions) {
-    case '1': { // Review
-        stage.blindReview = true;
-        break;
-    }
-    case '2': { // Review and Comment
-        stage.discussionParticipation = true;
-        break;
-    }
-    case '3': { // Review and Edit
-        stage.allowEdit = true;
-        break;
-    }
-    default: { // Complete survey
-        break;
-    }
-    }
     return stage;
 };
 
-const mapDispatchToProps = dispatch => ({
-    onClickToSubmit: () => dispatch(submit('stage-form')),
-});
-
-export default connect(null, mapDispatchToProps)(StageModal);
+export default StageModal;
