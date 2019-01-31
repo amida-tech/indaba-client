@@ -161,7 +161,7 @@
             "PASSWORD_SUCCESS": "Your password successfully updated",
             "PASSWORD_NEW_MISSING":"Please enter a new password",
             "PASSWORD_CONFIRM_MISSING":"Please confirm your password",
-            "INSTRUCTIONS":"Safe passwords are 15 characters OR at least 8 characters including a number and a lowercase letter."
+            "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number."
         }
     },
     "PROJECT":{
