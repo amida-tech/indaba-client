@@ -71,7 +71,6 @@ class StageModal extends Component {
 
     handleSubmit() {
         if(!this.state.title) {
-            console.log('crap');
             this.setState({ titleFlag: true });
         } else {
             this.props.onAddStage(stageMapping(this.state), this.props.project.id);
