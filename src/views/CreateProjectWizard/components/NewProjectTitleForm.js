@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-
-import { required } from '../../../common/validation';
-import ValidatedTextInput from '../../../common/components/ValidatedTextInput';
 
 class NewProjectTitleForm extends Component {
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit}
-                className='new-project-title-form'>
+            <form className='new-project-title-form'>
                 <div className='new-project-title-form__instructions'>
                     {this.props.vocab.PROJECT.TITLE_INSTRUCTIONS}
                 </div>
-                <div className='new-project-title-form__field'>
-                    <Field component={ValidatedTextInput}
-                        name='project.codeName'
-                        vocab={this.props.vocab.VALIDATE}
-                        placeholder={this.props.vocab.PROJECT.PROJECT_TITLE}
-                        validate={[required]} />
-                </div>
-                <div className='new-project-title-form__field'>
-                    <Field component={ValidatedTextInput}
-                        name='survey.name'
-                        vocab={this.props.vocab.VALIDATE}
-                        placeholder={this.props.vocab.PROJECT.SURVEY_TITLE}
-                        validate={[required]} />
-                </div>
+                <input className={`new-project-title-form__field ${this.props.data.projectFlag ?
+                    'new-project-title-form__field--flag' : ''}`}
+                        name='projectTitle'
+                        value={this.props.data.codeName}
+                        placeholder={this.props.data.projectFlag ?
+                            this.props.vocab.PROJECT.PROJECT_TITLE_REQUIRED :
+                            this.props.vocab.PROJECT.PROJECT_TITLE}
+                        onBlur={this.props.handleValidate}
+                        onChange={this.props.handleProjectTitle} />
+                <input className={`new-project-title-form__field ${this.props.data.surveyFlag ?
+                    'new-project-title-form__field--flag' : ''}`}
+                        name='surveyTitle'
+                        value={this.props.data.name}
+                        placeholder={this.props.data.surveyFlag ?
+                            this.props.vocab.PROJECT.SURVEY_TITLE_REQUIRED :
+                            this.props.vocab.PROJECT.SURVEY_TITLE}
+                        onBlur={this.props.handleValidate}
+                        onChange={this.props.handleSurveyTitle} />
                 <div className='new-project-title-form__error'>
-                    {this.props.message}
+                    {this.props.data.uiMessage}
                 </div>
             </form>
         );
@@ -37,8 +36,10 @@ class NewProjectTitleForm extends Component {
 
 NewProjectTitleForm.propTypes = {
     vocab: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    message: PropTypes.string,
+    data: PropTypes.object.isRequired,
+    handleProjectTitle: PropTypes.func.isRequired,
+    handleSurveyTitle: PropTypes.func.isRequired,
+    handleValidate: PropTypes.func.isRequired,
 };
 
-export default reduxForm({ form: 'new-project-title-form' })(NewProjectTitleForm);
+export default NewProjectTitleForm;

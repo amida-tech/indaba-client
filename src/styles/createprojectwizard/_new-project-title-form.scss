@@ -4,13 +4,19 @@ $block-class: 'new-project-title-form';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        padding: 3em 2em;
+        padding: 2em 1em;
 
         &__field {
+            @extend .basic-input;
+
             margin-bottom: 8px;
             display: flex;
             align-items: stretch;
             flex-direction: column;
+
+            &--flag {
+                border: 1px solid $error-color;
+            }
         }
 
         &__instructions {
@@ -18,7 +24,7 @@ $block-class: 'new-project-title-form';
         }
 
         &__error {
-            color: $bad-color;
+            color: $error-color;
             margin-top: 5px;
             min-height: 20px;
         }

@@ -94,7 +94,6 @@ class CreateProjectWizard extends Component {
                 {this.props.ui.showProjectTitle
                     && <NewProjectTitle
                         profile={this.props.user.profile}
-                        message={this.props.ui.message}
                         actions={this.props.actions}
                         onCancel={this.props.onWizardCancel}
                         survey={this.props.survey}
@@ -192,7 +191,7 @@ CreateProjectWizard.propTypes = {
     }).isRequired,
     survey: PropTypes.object.isRequired,
     ui: PropTypes.shape({
-        message: PropTypes.string,
+        errorMessage: PropTypes.string,
         showComplete: PropTypes.bool.isRequired,
         step: PropTypes.number.isRequired,
         projectLink: PropTypes.number.isRequired,

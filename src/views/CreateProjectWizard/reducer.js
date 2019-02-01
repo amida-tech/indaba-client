@@ -6,8 +6,7 @@ import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
-        message: '',
-        isError: false,
+        errorMessage: '',
         showProjectTitle: true,
         showAddStage: false,
         stageEditId: null,
@@ -100,21 +99,10 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
-    case type.WIZARD_UI_MESSAGE:
-        return update(state, { ui: {
-            message: { $set: action.errorMessage },
-            isError: { $set: action.isError },
-        } });
     case REPORT_PROJECT_ERROR:
-        return update(state, { ui: {
-            message: { $set: action.errorMessage },
-            isError: { $set: true },
-        } });
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case REPORT_USER_ERROR:
-        return update(state, { ui: {
-            message: { $set: action.errorMessage },
-            isError: { $set: true },
-        } });
+        return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case type.WIZARD_SHOW_STAGE_DELETE_CONFIRM_MODAL: {
         return update(state, {
             ui: {

@@ -104,11 +104,3 @@ export function wizardHideSurveyTitleModal() {
         type: actionTypes.WIZARD_HIDE_SURVEY_TITLE_MODAL,
     };
 }
-
-export function wizardUIMessage(message, isError) {
-    return {
-        type: actionTypes.WIZARD_UI_MESSAGE,
-        message,
-        isError,
-    }
-}

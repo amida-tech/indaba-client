@@ -7,53 +7,90 @@ import NewProjectTitleForm from './NewProjectTitleForm';
 class NewProjectTitle extends Component {
     constructor(props) {
         super(props);
-        this.handleProjectSubmission = this.handleProjectSubmission.bind(this);
+
+        this.state = {
+            projectFlag: false,
+            surveyFlag : false,
+            uiMessage: '',
+            codeName: '',
+            name: '',
+        };
+
+        this.handleProjectTitle = this.handleProjectTitle.bind(this);
+        this.handleSurveyTitle = this.handleSurveyTitle.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleSubmission = this.handleSubmission.bind(this);
     }
 
-    handleProjectSubmission(values) {
+    handleProjectTitle(evt) {
+        this.setState({ codeName: evt.target.value});
+    }
+
+    handleSurveyTitle(evt) {
+        this.setState({ name: evt.target.value});
+    }
+
+    handleValidate(evt) {
+        if (evt.target.name === 'projectTitle') {
+            this.setState({ projectFlag: evt.target.value === '' });
+        } else {
+            this.setState({ surveyFlag: evt.target.value === '' });
+        }
+    }
+
+    handleSubmission() {
+        if (this.state.codeName === '' || this.state.name === '') {
+            return;
+        }
+        this.setState({
+            productFlag: false,
+            surveyFlag : false,
+            uiMessage: '',
+        });
         const trimValues = {
-            project: {
-                codeName: values.project.codeName.trim(),
-            },
-            survey: {
-                name: values.survey.name.trim(),
-            }
+            project: { codeName: this.state.codeName.trim() },
+            survey: { name: this.state.name.trim() },
         };
-        if (!this.props.allSurveys.find((survey) =>
+        if (this.props.allSurveys.find((survey) =>
             survey.name === trimValues.survey.name)) {
-                this.props.actions.postProject(
-                    Object.assign({},
-                        {
-                            user: {
-                                realmUserId: this.props.profile.id,
-                                organizationId: this.props.profile.organizationId,
-                            },
-                            langId: 1,
-                        },
-                        trimValues.project),
-                    this.props.vocab.ERROR,
-                ).then((project) => {
-                    this.props.actions.postSurvey(
-                        Object.assign({}, this.props.survey, trimValues.survey),
-                        project,
-                        this.props.vocab.ERROR,
-                    );
+                this.setState({
+                    surveyFlag: true,
+                    uiMessage: this.props.vocab.ERROR.SURVEY_NAME_IN_USED
                 });
-            } else {
-                this.props.actions.wizardUIReportError(this.props.vocab.ERROR.SURVEY_NAME_IN_USED);
-            }
+        } else {
+            this.props.actions.postProject(
+                Object.assign({},
+                    {
+                        user: {
+                            realmUserId: this.props.profile.id,
+                            organizationId: this.props.profile.organizationId,
+                        },
+                        langId: 1,
+                    },
+                    trimValues.project),
+                this.props.vocab.ERROR,
+            ).then((project) => {
+                this.props.actions.postSurvey(
+                    Object.assign({}, this.props.survey, trimValues.survey),
+                    project,
+                    this.props.vocab.ERROR,
+                );
+            });
+        }
     }
 
     render() {
         return (
             <Modal title={this.props.vocab.PROJECT.CREATE_TITLES}
                 class='new-project-title__layer'
-                form='new-project-title-form'
-                onCancel={this.props.onCancel}>
+                onCancel={this.props.onCancel}
+                onSave={this.handleSubmission}>
                 <NewProjectTitleForm
-                    onSubmit={this.handleProjectSubmission}
                     vocab={this.props.vocab}
-                    message={this.props.message} />
+                    data={this.state}
+                    handleProjectTitle={this.handleProjectTitle}
+                    handleSurveyTitle={this.handleSurveyTitle}
+                    handleValidate={this.handleValidate} />
             </Modal>
         );
     }

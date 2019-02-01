@@ -153,3 +153,19 @@ body,
 .center {
     float: left;
 }
+
+.basic-input {
+    font: inherit;
+    line-height: 1.5;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+    margin: 0;
+    padding: 11px;
+
+    &:focus {
+        border: 2px solid #4eb276;
+    }
+}
