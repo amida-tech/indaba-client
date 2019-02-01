@@ -113,6 +113,7 @@ class CreateProjectWizard extends Component {
                     && <SurveyTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         survey={this.props.survey}
+                        allSurveys={this.props.allSurveys}
                         project={this.props.project}
                         onCloseModal={this.props.actions.wizardHideSurveyTitleModal} />
                 }

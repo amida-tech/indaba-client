@@ -577,7 +577,9 @@
         },
         "SURVEY_TITLE_MODAL":{
             "TITLE":"Survey title",
-            "TITLE_INPUT_LABEL":"Title"
+            "TITLE_INPUT_LABEL_":"Title ",
+            "TITLE_REQUIRED":"(The survey title is required.)",
+            "TITLE_USED": "(That survey title is currently used.)"
         },
         "SECTION_DELETE_CONFIRM":{
             "TITLE":"Delete section?",

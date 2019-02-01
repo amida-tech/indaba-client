@@ -144,6 +144,7 @@ class ProjectManagementContainer extends Component {
                         && <SurveyTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             survey={this.props.survey}
+                            allSurveys={this.props.allSurveys}
                             project={this.props.project}
                             onCloseModal={this.props.actions.pmHideSurveyTitleModal}/>
                 }
@@ -226,6 +227,7 @@ const mapStateToProps = (store, ownProps) => {
             || {
                 id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
             },
+        allSurveys: store.surveys.data,
         tab: store.manager.ui.subnav,
         users: store.user.users,
         profile: store.user.profile,
