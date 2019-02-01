@@ -1,0 +1,1 @@
+export const PROFILE_UI_MESSAGE = 'PROFILE_UI_MESSAGE';
