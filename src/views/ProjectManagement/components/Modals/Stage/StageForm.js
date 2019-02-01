@@ -48,7 +48,6 @@ class StageForm extends Component {
                     <div className='stage-form__radio-control'>
                         {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
                             <input name='permissions'
-                                disabled={this.props.permissionsFlag}
                                 type='radio'
                                 value={index}
                                 onChange={this.props.handlePermissions}
@@ -63,7 +62,8 @@ class StageForm extends Component {
                     {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                 </div>
                 <hr className='stage-form__divider'/>
-                <div className='stage-form__date'>
+                <div className='stage-form__date'
+                    name='stage-form__date'>
                     <label className={`stage-form__date-label ${this.props.dateFlag
                         ? 'stage-form__date-label--flag' : ''}`}>
                         {this.props.vocab.PROJECT.DATE_RANGE_}
@@ -81,7 +81,7 @@ class StageForm extends Component {
                             handleValidate={this.props.handleValidate} />
                     </div>
                 </div>
-                <div className='stage-form__clear'/>
+                <div className='stage-form__clear'></div>
             </form>
         );
     }
@@ -91,7 +91,6 @@ StageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     titleFlag: PropTypes.bool,
     dateFlag: PropTypes.bool,
-    permissionsFlag: PropTypes.bool,
     title: PropTypes.string,
     permissions: PropTypes.string,
     userGroups: PropTypes.array,

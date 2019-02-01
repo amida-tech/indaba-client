@@ -164,9 +164,7 @@ class ProjectManagementContainer extends Component {
                                     this.props.vocab.ERROR,
                                 );
                             }}
-                            userGroups={this.props.project.userGroups}
-                            tasks={this.props.tasks}
-                        />
+                            userGroups={this.props.project.userGroups} />
                 }
                 {
                     this.props.ui.showStageDeleteConfirmModal
