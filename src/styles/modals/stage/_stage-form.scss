@@ -73,6 +73,10 @@ $block-class:'stage-form';
             font-weight: 400;
             margin-left: 8px;
             margin-right: 16px;
+
+            &--disabled {
+                color: $font-color;
+            }
         }
 
         &__text-description {
