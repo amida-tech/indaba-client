@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -14,6 +13,17 @@ class StageModal extends Component {
             this.state = Object.assign({}, this.props.project.stages.find(
                 stage => stage.id === this.props.stageId,
             ));
+            // check for ability to change permissions.
+            this.state.permissionsFlag = false;
+            if (this.props.tasks.length > 0) {
+                this.props.tasks.forEach((task) => {
+                    if (task.stepId === this.props.stageId) {
+                        if (task.status !== 'waiting') {
+                            this.state.permissionsFlag = true;
+                        }
+                    }
+                });
+            }
             if (this.state.blindReview) {
                 this.state.permissions = '1';
             } else if (this.state.discussionParticipation) {
@@ -33,6 +43,7 @@ class StageModal extends Component {
                 endDate: new Date(),
                 titleFlag: false,
                 dateFlag: false,
+                permissionsFlag: false,
             };
         }
 
@@ -70,8 +81,7 @@ class StageModal extends Component {
     handleValidate() {
         this.setState({
             titleFlag: !this.state.title,
-            dateFlag: (this.state.startDate === null
-                || this.state.endDate === null),
+            dateFlag: (this.state.startDate === null || this.state.endDate === null),
         });
     }
 
@@ -98,6 +108,7 @@ class StageModal extends Component {
                     vocab={this.props.vocab}
                     titleFlag={this.state.titleFlag}
                     dateFlag={this.state.dateFlag}
+                    permissionsFlag={this.state.permissionsFlag}
                     title={this.state.title}
                     displayGroups={this.displayGroups}
                     userGroups={this.state.userGroups}
