@@ -9,40 +9,54 @@ class SurveyTitleModal extends Component {
         super(props);
 
         this.state = {
-            titleFlag: false,
+            surveyFlag: false,
             uiMessage: '',
+            name: this.props.survey.name || '',
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSurveyTitle = this.handleSurveyTitle.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleSubmission = this.handleSubmission.bind(this);
     }
 
-    handleSubmit({ title: name }) {
-        this.setState({
-            titleFlag: false,
-            uiMessage: '',
-        });
-        if (name === '') {
+    handleSurveyTitle(evt) {
+        this.setState({ name: evt.target.value });
+    }
+
+    handleValidate(evt) {
+        if (this.state.name === '') {
             this.setState({
-                titleFlag: true,
+                surveyFlag: true,
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
             });
-        } else if (this.props.allSurveys.find((survey) =>
-            survey.name === name.trim())) {
+        } else {
+            this.setState({
+                surveyFlag: false,
+                uiMessage: '',
+            });
+        }
+    }
+
+    handleSubmission() {
+        if (this.state.name === '') {
+            return;
+        }
+        if (this.props.allSurveys.find((survey) =>
+            survey.name === this.state.name.trim())) {
                 this.setState({
-                    titleFlag: true,
+                    surveyFlag: true,
                     uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED,
                 });
         } else {
             if (this.props.survey.id > 0) {
-                console.log('k?');
                 this.props.actions.patchSurvey(
-                    { name: name.trim(), id: this.props.survey.id },
+                    { name: this.state.name.trim(), id: this.props.survey.id },
                     this.props.vocab.SURVEY.SUCCESS,
                     this.props.vocab.ERROR,
                 );
             } else {
                 this.props.actions.postSurvey(
-                    Object.assign({}, this.props.survey, { name: name.trim() }),
+                    Object.assign({}, this.props.survey, { name: this.state.name.trim() }),
                     this.props.project,
                     this.props.vocab.ERROR,
                 );
@@ -55,13 +69,15 @@ class SurveyTitleModal extends Component {
         return (
             <Modal title={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
                 onCancel={this.props.onCloseModal}
-                form='survey-title'>
-                <TitleForm form='survey-title'
+                onSave={this.handleSubmission}>
+                <TitleForm
                     label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL_}
-                    initialValues={{ title: this.props.survey.id > 0 ? this.props.survey.name : '' }}
-                    titleFlag={this.state.titleFlag}
+                    titleFlag={this.state.surveyFlag}
+                    placeholder={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
                     uiMessage={this.state.uiMessage}
-                    onSubmit={this.handleSubmit}/>
+                    value={this.state.name}
+                    handleTitle={this.handleSurveyTitle}
+                    handleValidate={this.handleValidate} />
             </Modal>
         );
     }
@@ -70,9 +86,9 @@ class SurveyTitleModal extends Component {
 SurveyTitleModal.propTypes = {
     vocab: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
-    survey: PropTypes.object,
-    allSurveys: PropTypes.array,
-    project: PropTypes.object,
+    survey: PropTypes.object.isRequired,
+    allSurveys: PropTypes.array.isRequired,
+    project: PropTypes.object.isRequired,
     onCloseModal: PropTypes.func.isRequired,
 };
 

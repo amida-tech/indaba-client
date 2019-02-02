@@ -16,6 +16,8 @@ $block-class:'title-form';
         }
 
         &__title-input {
+            @extend .basic-input;
+
             width: 43vw;
             margin-top: 8px;
             padding: 8px;

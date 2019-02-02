@@ -575,7 +575,9 @@
         },
         "PROJECT_TITLE_MODAL":{
             "TITLE":"Project title",
-            "TITLE_INPUT_LABEL":"Title"
+            "TITLE_INPUT_LABEL_":"Title ",
+            "TITLE_REQUIRED":"(The project title is required.)",
+            "TITLE_USED": "(That project title is currently used.)"
         },
         "SURVEY_TITLE_MODAL":{
             "TITLE":"Survey title",

@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, Field } from 'redux-form';
 
 class TitleForm extends Component {
     render() {
         return (
-            <form className='title-form'
-                onSubmit={this.props.handleSubmit}>
+            <form className='title-form'>
                 <label className={`title-form__title-label ${this.props.titleFlag
                     ? 'title-form__title-label--flag' : ''}`}>
                     {this.props.label}
                     {this.props.titleFlag && this.props.uiMessage}
-                    <Field name='title'
-                        component='input'
-                        type='text'
-                        className={`title-form__title-input ${this.props.titleFlag
-                            ? 'title-form__title-input--flag' : ''}`} />
+                    <input className={`title-form__title-input ${this.props.titleFlag ?
+                        'title-form__title-input--flag' : ''}`}
+                        value={this.props.value}
+                        placeholder={this.props.placeholder}
+                        onBlur={this.props.handleValidate}
+                        onChange={this.props.handleTitle} />
                 </label>
             </form>
         );
@@ -24,8 +23,11 @@ class TitleForm extends Component {
 
 TitleForm.propTypes = {
     label: PropTypes.string.isRequired,
-    titleFlag: PropTypes.bool,
+    titleFlag: PropTypes.bool.isRequired,
     uiMessage: PropTypes.string,
+    value: PropTypes.string,
+    handleTitle: PropTypes.func.isRequired,
+    handleValidate: PropTypes.func.isRequired,
 };
 
-export default reduxForm({})(TitleForm);
+export default TitleForm;
