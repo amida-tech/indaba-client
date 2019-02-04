@@ -200,7 +200,7 @@
         "PROJECT_TITLE_REQUIRED":"A project title is required.",
         "SURVEY_TITLE":"Survey Title",
         "SURVEY_TITLE_REQUIRED":"A survey title is required.",
-        "TITLE_INSTRUCTIONS":"Please provide names for the project and survey. The project name must be unique, but you can change titles later.",
+        "TITLE_INSTRUCTIONS":"Please provide names for the project and survey. Both must be unique, but you can change titles later.",
         "SUBJECT_NAME":"Subject Name",
         "STATUS":"Status",
         "SUMMARY":"Summary",
