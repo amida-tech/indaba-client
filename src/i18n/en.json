@@ -75,7 +75,7 @@
         "DISCUSS_REQUEST":"The system failed to make any kind of update to discussions.",
         "GROUP_DELETE":"The system failed to delete the user group.",
         "SUBJECT_REQUEST":"Something has gone wrong with subject(s) insertion or deletion. Please try again.",
-        "PROFILE_REQUEST":"Failed to insert or delete profile request.",
+        "PROFILE_REQUEST":"Failed to insert, update or delete profile request.",
         "USER_REQUEST":"Failed to insert or delete user.",
         "TASK_REQUEST":"Failed to insert or delete task.",
         "ASSESSMENT_REQUEST":"Failed to insert assessment.",
@@ -153,8 +153,16 @@
             "NOTES":"Notes"
         },
         "PASSWORD":{
-            "RESET_PASSWORD":"Reset Password",
-            "INSTRUCTIONS":"If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
+            "CHANGE_PASSWORD": "Change Password",
+            "CURRENT_PASSWORD": "Current Password",
+            "CONFIRM_PASSWORD": "Confirm New Password",
+            "INCORRECT_PASSWORD":"The Current Password you entered is incorrect.",
+            "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number.",
+            "NEW_PASSWORD": "New Password",
+            "PASSWORD_SUCCESS": "Your password successfully updated.",
+            "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
+            "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
+            "PASSWORD_WEAK": "Your password does not meet the minimum requirements."
         }
     },
     "PROJECT":{

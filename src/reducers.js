@@ -11,6 +11,7 @@ import { PMDashboardReducer } from './views/PMDashboard';
 import { UserDashboardReducer } from './views/UserDashboard';
 import { MessagesReducer } from './views/Messages';
 import { UserProfileReducer } from './views/UserProfile';
+import { ProfileReducer } from './views/Profile';
 import { PMAllUsersReducer } from './views/PMAllUsers';
 import { PMAllSubjectsReducer } from './views/PMAllSubjects';
 
@@ -32,6 +33,7 @@ const reducers = {
     pmdashboard: PMDashboardReducer,
     userdashboard: UserDashboardReducer,
     userprofile: UserProfileReducer,
+    profile: ProfileReducer,
     pmallusers: PMAllUsersReducer,
     pmallsubjects: PMAllSubjectsReducer,
 };
