@@ -2,41 +2,40 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+
 import Time from '../../../utils/Time';
 import FlagCount from '../../../common/components/Dashboard/FlagCount';
 
 class ProjectListEntry extends Component {
     render() {
         return (
-            <div className='project-list-entry'
+            <TableRow
                 onClick={() => this.props.router.push(`/project/${this.props.project.id}`)}>
-                <div className='project-list-entry__name'>
+                <TableCell>
                     {this.props.project.name}
-                </div>
-                <div className={`project-list-entry__status${
-                    this.props.project.status
-                        ? ' project-list-entry__status--active' : ''}`}>
+                </TableCell>
+                <TableCell>
                     { this.props.project.status
                         ? this.props.vocab.PROJECT.STATUS_ACTIVE
                         : this.props.vocab.PROJECT.STATUS_INACTIVE}
-                </div>
-                <div className='project-list-entry__name'>
+                </TableCell>
+                <TableCell>
                     {this.props.survey.name}
-                </div>
-                <div className={`project-list-entry__status${
-                    this.props.survey.status
-                        ? ' project-list-entry__status--active' : ''}`}>
+                </TableCell>
+                <TableCell>
                     {this.props.survey.status === 'published'
                         ? this.props.vocab.SURVEY.STATUS_PUBLISHED
                         : this.props.vocab.SURVEY.STATUS_DRAFT}
-                </div>
-                <div className='project-list-entry__flags'>
+                </TableCell>
+                <TableCell>
                     {this.props.flagHistory && <FlagCount value={this.props.flags}/>}
-                </div>
-                <div className='project-list-entry__last-updated'>
+                </TableCell>
+                <TableCell>
                     {Time.renderCommon(this.props.project.lastUpdated)}
-                </div>
-            </div>
+                </TableCell>
+            </TableRow>
         );
     }
 }

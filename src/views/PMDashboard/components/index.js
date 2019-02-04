@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
@@ -68,19 +71,21 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <div className='pm-dashboard__table'>
+                <Table>
                     <ProjectListHeader vocab={this.props.vocab} />
-                    { this.props.ui.noData
-                        ? (<div className='pm-dashboard__no-data'>
-                            {this.props.vocab.PROJECT.NO_PROJECTS}
-                        </div>)
-                        : this.props.rows.filter(this.filterRow.bind(this))
-                            .filter(this.searchRow.bind(this))
-                            .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                                vocab={this.props.vocab}
-                            />)
-                    }
-                </div>
+                    <TableBody>
+                        { this.props.ui.noData
+                            ? (<TableRow>
+                                {this.props.vocab.PROJECT.NO_PROJECTS}
+                            </TableRow>)
+                            : this.props.rows.filter(this.filterRow.bind(this))
+                                .filter(this.searchRow.bind(this))
+                                .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
+                                    vocab={this.props.vocab}
+                                />)
+                        }
+                    </TableBody>
+                </Table>
             </div>
         );
     }
