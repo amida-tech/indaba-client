@@ -15,7 +15,9 @@ class StageModal extends Component {
             ));
             // check for ability to change permissions.
             this.state.permissionsFlag = false;
-            if (this.props.tasks.length > 0) {
+            const now = new Date();
+            const startDate = new Date(this.state.startDate);
+            if (startDate <= now && this.props.tasks.length > 0) {
                 this.props.tasks.forEach((task) => {
                     if (task.stepId === this.props.stageId) {
                         if (task.status !== 'waiting') {
