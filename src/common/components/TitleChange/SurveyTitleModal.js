@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import TitleForm from './TitleForm';
 
-
 class SurveyTitleModal extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +28,12 @@ class SurveyTitleModal extends Component {
                 surveyFlag: true,
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
             });
+        } else if (this.props.allSurveys.some((survey) =>
+            survey.name.toLowerCase() === this.state.name.trim().toLowerCase())) {
+            this.setState({
+                surveyFlag: true,
+                uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED,
+            });
         } else {
             this.setState({
                 surveyFlag: false,
@@ -38,31 +43,30 @@ class SurveyTitleModal extends Component {
     }
 
     handleSubmission() {
-        if (this.state.name === '') {
+        if (this.state.name === '') { // Unlikely entry state but why risk it.
+            this.setState({
+                surveyFlag: true,
+                uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
+            });
             return;
         }
-        if (this.props.allSurveys.find((survey) =>
-            survey.name === this.state.name.trim())) {
-                this.setState({
-                    surveyFlag: true,
-                    uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED,
-                });
-        } else {
-            if (this.props.survey.id > 0) {
-                this.props.actions.patchSurvey(
-                    { name: this.state.name.trim(), id: this.props.survey.id },
-                    this.props.vocab.SURVEY.SUCCESS,
-                    this.props.vocab.ERROR,
-                );
-            } else {
-                this.props.actions.postSurvey(
-                    Object.assign({}, this.props.survey, { name: this.state.name.trim() }),
-                    this.props.project,
-                    this.props.vocab.ERROR,
-                );
-            }
-            this.props.onCloseModal();
+        if  (this.state.surveyFlag) {
+            return;
         }
+        if (this.props.survey.id > 0) {
+            this.props.actions.patchSurvey(
+                { name: this.state.name.trim(), id: this.props.survey.id },
+                this.props.vocab.SURVEY.SUCCESS,
+                this.props.vocab.ERROR,
+            );
+        } else {
+            this.props.actions.postSurvey(
+                Object.assign({}, this.props.survey, { name: this.state.name.trim() }),
+                this.props.project,
+                this.props.vocab.ERROR,
+            );
+        }
+        this.props.onCloseModal();
     }
 
     render() {

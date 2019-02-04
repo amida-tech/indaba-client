@@ -28,6 +28,12 @@ class ProjectTitleModal extends Component {
                 projectFlag: true,
                 uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_REQUIRED,
             });
+        } else if (this.props.allProjects.some((project) =>
+            project.name.toLowerCase() === this.state.codeName.trim().toLowerCase())) {
+            this.setState({
+                projectFlag: true,
+                uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED,
+            });
         } else {
             this.setState({
                 projectFlag: false,
@@ -38,35 +44,34 @@ class ProjectTitleModal extends Component {
 
     handleSubmission() {
         if (this.state.codeName === '') {
+            this.setState({
+                projectFlag: true,
+                uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_REQUIRED,
+            });
             return;
         }
-        if (this.props.allProjects.find((project) =>
-            project.name === this.state.codeName.trim())) {
-                this.setState({
-                    projectFlag: true,
-                    uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED,
-                });
-        } else {
-            this.props.actions.putProject({
-                id: this.props.project.id,
-                name: this.state.codeName.trim(),
-            });
-            this.props.onCloseModal();
+        if (this.state.projectFlag) {
+            return;
         }
+        this.props.actions.putProject({
+            id: this.props.project.id,
+            name: this.state.codeName.trim(),
+        });
+        this.props.onCloseModal();
     }
 
     render() {
         return (
             <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
                 onCancel={this.props.onCloseModal}
-                form='project-title'>
+                onSave={this.handleSubmission}>
                 <TitleForm
                     label={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_INPUT_LABEL_}
                     titleFlag={this.state.projectFlag}
                     placeholder={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
                     uiMessage={this.state.uiMessage}
                     value={this.state.codeName}
-                    handleTitle={this.handleSurveyTitle}
+                    handleTitle={this.handleProjectTitle}
                     handleValidate={this.handleValidate} />
             </Modal>
         );

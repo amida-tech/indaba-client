@@ -56,9 +56,14 @@ class NewProjectTitle extends Component {
         }
     }
 
-    handleSubmission() {
-        if (this.state.codeName === '' || this.state.name === '' ||
-            this.state.projectFlag || this.state.surveyFlag) {
+    handleSubmission() { // Blank checks because initial state sans
+        if (this.state.codeName === '' || this.state.name === '') {
+            this.setState({
+                productFlag: this.state.codeName === '',
+                surveyFlag : this.state.name === '',
+            });
+        }
+        if (this.state.projectFlag || this.state.surveyFlag) {
             return;
         }
         this.setState({
