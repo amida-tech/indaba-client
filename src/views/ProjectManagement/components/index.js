@@ -31,11 +31,14 @@ import apiService from '../../../services/api';
 class ProjectManagementContainer extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.profile)
-            .then(this.props.actions.getProjectById(
-                this.props.params.projectId,
-                true,
-                this.props.vocab.ERROR,
-            ));
+            .then(() => {
+                this.props.actions.getProjectById(
+                    this.props.params.projectId,
+                    true,
+                    this.props.vocab.ERROR,
+                );
+                this.props.actions.getProjects(this.props.vocab.ERROR);
+            });
     }
 
     stageHasData(stageId) {
@@ -137,6 +140,7 @@ class ProjectManagementContainer extends Component {
                         && <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             project={this.props.project}
+                            allProjects={this.props.allProjects}
                             onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
                 }
                 {
@@ -219,6 +223,7 @@ const mapStateToProps = (store, ownProps) => {
         : store.projects.empty;
     return {
         project,
+        allProjects: store.projects.data,
         tasks: store.tasks.data,
         responses: store.discuss,
         vocab: store.settings.language.vocabulary,

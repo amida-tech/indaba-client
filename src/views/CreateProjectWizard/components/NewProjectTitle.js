@@ -31,15 +31,34 @@ class NewProjectTitle extends Component {
     }
 
     handleValidate(evt) {
+        const checkProjectName = this.props.allProjects.some((project) =>
+            project.name.toLowerCase() === this.state.codeName.trim().toLowerCase());
+        const checkSurveyName = this.props.allSurveys.some((survey) =>
+            survey.name.toLowerCase() === this.state.name.trim().toLowerCase());
+        let uiMessage = '';
+        if (checkProjectName && checkSurveyName) {
+            uiMessage = this.props.vocab.MODAL.PROJECT_TITLE_MODAL.BOTH_USED;
+        } else if (checkProjectName) {
+            uiMessage = this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED;
+        } else if (checkSurveyName) {
+            uiMessage = this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED;
+        }
         if (evt.target.name === 'projectTitle') {
-            this.setState({ projectFlag: evt.target.value === '' });
+            this.setState({
+                projectFlag: checkProjectName || evt.target.value === '',
+                uiMessage,
+            });
         } else {
-            this.setState({ surveyFlag: evt.target.value === '' });
+            this.setState({
+                surveyFlag: checkSurveyName || evt.target.value === '',
+                uiMessage,
+            });
         }
     }
 
     handleSubmission() {
-        if (this.state.codeName === '' || this.state.name === '') {
+        if (this.state.codeName === '' || this.state.name === '' ||
+            this.state.projectFlag || this.state.surveyFlag) {
             return;
         }
         this.setState({
@@ -51,13 +70,7 @@ class NewProjectTitle extends Component {
             project: { codeName: this.state.codeName.trim() },
             survey: { name: this.state.name.trim() },
         };
-        if (this.props.allSurveys.find((survey) =>
-            survey.name === trimValues.survey.name)) {
-                this.setState({
-                    surveyFlag: true,
-                    uiMessage: this.props.vocab.ERROR.SURVEY_NAME_IN_USED
-                });
-        } else {
+        if(!this.state.projectFlag && !this.state.surveyFlag) {
             this.props.actions.postProject(
                 Object.assign({},
                     {
@@ -104,6 +117,7 @@ NewProjectTitle.propTypes = {
     }),
     survey: PropTypes.object,
     allSurveys: PropTypes.arrayOf(PropTypes.object).isRequired,
+    allProjects: PropTypes.arrayOf(PropTypes.object).isRequired,
     message: PropTypes.string,
     actions: PropTypes.object.isRequired,
 };

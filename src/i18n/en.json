@@ -577,7 +577,8 @@
             "TITLE":"Project title",
             "TITLE_INPUT_LABEL_":"Title ",
             "TITLE_REQUIRED":"(The project title is required.)",
-            "TITLE_USED": "(That project title is currently used.)"
+            "TITLE_USED": "(That project title is currently used.)",
+            "BOTH_USED": "(Both that project title and survey title are currently in use.)"
         },
         "SURVEY_TITLE_MODAL":{
             "TITLE":"Survey title",
