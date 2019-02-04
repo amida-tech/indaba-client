@@ -58,16 +58,18 @@ class NewProjectTitle extends Component {
 
     handleSubmission() { // Blank checks because initial state sans
         if (this.state.codeName === '' || this.state.name === '') {
+            console.log(this.state);
             this.setState({
-                productFlag: this.state.codeName === '',
+                projectFlag: this.state.codeName === '',
                 surveyFlag : this.state.name === '',
             });
+            return;
         }
         if (this.state.projectFlag || this.state.surveyFlag) {
             return;
         }
         this.setState({
-            productFlag: false,
+            projectFlag: false,
             surveyFlag : false,
             uiMessage: '',
         });
