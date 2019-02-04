@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 
@@ -71,21 +72,23 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <Table>
-                    <ProjectListHeader vocab={this.props.vocab} />
-                    <TableBody>
-                        { this.props.ui.noData
-                            ? (<TableRow>
-                                {this.props.vocab.PROJECT.NO_PROJECTS}
-                            </TableRow>)
-                            : this.props.rows.filter(this.filterRow.bind(this))
-                                .filter(this.searchRow.bind(this))
-                                .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                                    vocab={this.props.vocab}
-                                />)
-                        }
-                    </TableBody>
-                </Table>
+                <Paper>
+                    <Table>
+                        <ProjectListHeader vocab={this.props.vocab} />
+                        <TableBody>
+                            { this.props.ui.noData
+                                ? (<TableRow>
+                                    {this.props.vocab.PROJECT.NO_PROJECTS}
+                                </TableRow>)
+                                : this.props.rows.filter(this.filterRow.bind(this))
+                                    .filter(this.searchRow.bind(this))
+                                    .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
+                                        vocab={this.props.vocab}
+                                    />)
+                            }
+                        </TableBody>
+                    </Table>
+                </Paper>
             </div>
         );
     }
