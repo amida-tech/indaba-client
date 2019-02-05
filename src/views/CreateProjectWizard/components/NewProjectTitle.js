@@ -23,11 +23,11 @@ class NewProjectTitle extends Component {
     }
 
     handleProjectTitle(evt) {
-        this.setState({ codeName: evt.target.value});
+        this.setState({ codeName: evt.target.value });
     }
 
     handleSurveyTitle(evt) {
-        this.setState({ name: evt.target.value});
+        this.setState({ name: evt.target.value });
     }
 
     handleValidate(evt) {
@@ -43,7 +43,7 @@ class NewProjectTitle extends Component {
         } else if (checkSurveyName) {
             uiMessage = this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED;
         }
-        if (!evt) { // User hit 'enter.' Check everything because evt would be synth.
+        if (!evt) { // User hit enter. Check everything because giving evt would be synth.
             const projectFlag = checkProjectName || this.state.codeName === '';
             const surveyFlag = checkSurveyName || this.state.name === '';
             this.setState({
