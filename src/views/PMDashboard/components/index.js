@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
 import { getProjects } from '../../../common/actions/projectActions';
@@ -18,8 +14,7 @@ import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
-import ProjectListHeader from './ProjectListHeader';
-import ProjectListEntry from './ProjectListEntry';
+import ProjectListTable from './ProjectListTable';
 
 class PMDashboard extends Component {
     componentWillMount() {
@@ -72,23 +67,11 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <Paper>
-                    <Table>
-                        <ProjectListHeader vocab={this.props.vocab} />
-                        <TableBody>
-                            { this.props.ui.noData
-                                ? (<TableRow>
-                                    {this.props.vocab.PROJECT.NO_PROJECTS}
-                                </TableRow>)
-                                : this.props.rows.filter(this.filterRow.bind(this))
-                                    .filter(this.searchRow.bind(this))
-                                    .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                                        vocab={this.props.vocab}
-                                    />)
-                            }
-                        </TableBody>
-                    </Table>
-                </Paper>
+                <ProjectListTable
+                    rows={this.props.rows.filter(this.filterRow.bind(this))
+                        .filter(this.searchRow.bind(this))}
+                    vocab={this.props.vocab}
+                    ui={this.props.ui}/>
             </div>
         );
     }

@@ -25,12 +25,11 @@ class ProjectListEntry extends Component {
                     {this.props.survey.name}
                 </TableCell>
                 <TableCell>
-                    {this.props.survey.status === 'published'
-                        ? this.props.vocab.SURVEY.STATUS_PUBLISHED
-                        : this.props.vocab.SURVEY.STATUS_DRAFT}
+                    {this.props.survey.status}
                 </TableCell>
                 <TableCell>
-                    {this.props.flagHistory && <FlagCount value={this.props.flags}/>}
+                    {this.props.flags}
+                    {/* {this.props.flagHistory && <FlagCount value={this.props.flags}/>} */}
                 </TableCell>
                 <TableCell>
                     {Time.renderCommon(this.props.project.lastUpdated)}
