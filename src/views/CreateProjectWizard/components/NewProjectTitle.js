@@ -19,7 +19,7 @@ class NewProjectTitle extends Component {
         this.handleProjectTitle = this.handleProjectTitle.bind(this);
         this.handleSurveyTitle = this.handleSurveyTitle.bind(this);
         this.handleValidate = this.handleValidate.bind(this);
-        this.handleSubmission = this.handleSubmission.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleProjectTitle(evt) {
@@ -56,7 +56,8 @@ class NewProjectTitle extends Component {
         }
     }
 
-    handleSubmission() { // Blank checks because initial state is empty.
+    handleSubmit(evt) { // Blank checks because initial state is empty.
+        evt.preventDefault();
         if (this.state.codeName === '' || this.state.name === '') {
             this.setState({
                 projectFlag: this.state.codeName === '',
@@ -103,13 +104,14 @@ class NewProjectTitle extends Component {
             <Modal title={this.props.vocab.PROJECT.CREATE_TITLES}
                 class='new-project-title__layer'
                 onCancel={this.props.onCancel}
-                onSave={this.handleSubmission}>
+                onSave={this.handleSubmit}>
                 <NewProjectTitleForm
                     vocab={this.props.vocab}
                     data={this.state}
                     handleProjectTitle={this.handleProjectTitle}
                     handleSurveyTitle={this.handleSurveyTitle}
-                    handleValidate={this.handleValidate} />
+                    handleValidate={this.handleValidate}
+                    handleSubmit={this.handleSubmit} />
             </Modal>
         );
     }

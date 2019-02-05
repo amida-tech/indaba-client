@@ -15,7 +15,7 @@ class SurveyTitleModal extends Component {
 
         this.handleSurveyTitle = this.handleSurveyTitle.bind(this);
         this.handleValidate = this.handleValidate.bind(this);
-        this.handleSubmission = this.handleSubmission.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSurveyTitle(evt) {
@@ -42,7 +42,8 @@ class SurveyTitleModal extends Component {
         }
     }
 
-    handleSubmission() {
+    handleSubmit(evt) {
+        evt.preventDefault();
         if (this.state.name === '') { // Unlikely entry state but why risk it.
             this.setState({
                 surveyFlag: true,
@@ -73,7 +74,7 @@ class SurveyTitleModal extends Component {
         return (
             <Modal title={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE}
                 onCancel={this.props.onCloseModal}
-                onSave={this.handleSubmission}>
+                onSave={this.handleSubmit}>
                 <TitleForm
                     label={this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_INPUT_LABEL_}
                     titleFlag={this.state.surveyFlag}
@@ -81,7 +82,8 @@ class SurveyTitleModal extends Component {
                     uiMessage={this.state.uiMessage}
                     value={this.state.name}
                     handleTitle={this.handleSurveyTitle}
-                    handleValidate={this.handleValidate} />
+                    handleValidate={this.handleValidate}
+                    handleSubmit={this.handleSubmit} />
             </Modal>
         );
     }

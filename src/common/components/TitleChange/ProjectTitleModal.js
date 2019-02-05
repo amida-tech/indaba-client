@@ -15,7 +15,7 @@ class ProjectTitleModal extends Component {
 
         this.handleProjectTitle = this.handleProjectTitle.bind(this);
         this.handleValidate = this.handleValidate.bind(this);
-        this.handleSubmission = this.handleSubmission.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleProjectTitle(evt) {
@@ -42,7 +42,8 @@ class ProjectTitleModal extends Component {
         }
     }
 
-    handleSubmission() {
+    handleSubmit(evt) {
+        evt.preventDefault();
         if (this.state.codeName === '') {
             this.setState({
                 projectFlag: true,
@@ -64,7 +65,7 @@ class ProjectTitleModal extends Component {
         return (
             <Modal title={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE}
                 onCancel={this.props.onCloseModal}
-                onSave={this.handleSubmission}>
+                onSave={this.handleSubmit}>
                 <TitleForm
                     label={this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_INPUT_LABEL_}
                     titleFlag={this.state.projectFlag}
@@ -72,7 +73,8 @@ class ProjectTitleModal extends Component {
                     uiMessage={this.state.uiMessage}
                     value={this.state.codeName}
                     handleTitle={this.handleProjectTitle}
-                    handleValidate={this.handleValidate} />
+                    handleValidate={this.handleValidate}
+                    handleSubmit={this.handleSubmit} />
             </Modal>
         );
     }

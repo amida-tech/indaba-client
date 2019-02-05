@@ -28,5 +28,9 @@ $block-class:'title-form';
                 border: 1px solid $error-color !important;
             }
         }
+
+        &__hidden-button {
+            display: none;
+        }
     }
 }

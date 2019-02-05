@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 class NewProjectTitleForm extends Component {
     render() {
         return (
-            <form className='new-project-title-form'>
+            <form className='new-project-title-form'
+                onSubmit={this.props.handleSubmit}>
                 <div className='new-project-title-form__instructions'>
                     {this.props.vocab.PROJECT.TITLE_INSTRUCTIONS}
                 </div>
@@ -29,6 +30,7 @@ class NewProjectTitleForm extends Component {
                 <div className='new-project-title-form__error'>
                     {this.props.data.uiMessage}
                 </div>
+                <button className='new-project-title-form__hidden-button' />
             </form>
         );
     }
@@ -40,6 +42,7 @@ NewProjectTitleForm.propTypes = {
     handleProjectTitle: PropTypes.func.isRequired,
     handleSurveyTitle: PropTypes.func.isRequired,
     handleValidate: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
 };
 
 export default NewProjectTitleForm;
