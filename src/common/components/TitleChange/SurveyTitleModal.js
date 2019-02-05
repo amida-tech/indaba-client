@@ -22,36 +22,31 @@ class SurveyTitleModal extends Component {
         this.setState({ name: evt.target.value });
     }
 
-    handleValidate(evt) {
+    handleValidate() {
         if (this.state.name === '') {
             this.setState({
                 surveyFlag: true,
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
             });
+            return true;
         } else if (this.props.allSurveys.some((survey) =>
             survey.name.toLowerCase() === this.state.name.trim().toLowerCase())) {
             this.setState({
                 surveyFlag: true,
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED,
             });
-        } else {
-            this.setState({
-                surveyFlag: false,
-                uiMessage: '',
-            });
+            return true;
         }
+        this.setState({
+            surveyFlag: false,
+            uiMessage: '',
+        });
+        return false;
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
-        if (this.state.name === '') { // Unlikely entry state but why risk it.
-            this.setState({
-                surveyFlag: true,
-                uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
-            });
-            return;
-        }
-        if  (this.state.surveyFlag) {
+        if (this.handleValidate()) {
             return;
         }
         if (this.props.survey.id > 0) {

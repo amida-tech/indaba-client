@@ -22,36 +22,31 @@ class ProjectTitleModal extends Component {
         this.setState({ codeName: evt.target.value });
     }
 
-    handleValidate(evt) {
+    handleValidate() {
         if (this.state.codeName === '') {
             this.setState({
                 projectFlag: true,
                 uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_REQUIRED,
             });
+            return true;
         } else if (this.props.allProjects.some((project) =>
             project.name.toLowerCase() === this.state.codeName.trim().toLowerCase())) {
             this.setState({
                 projectFlag: true,
                 uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED,
             });
-        } else {
-            this.setState({
-                projectFlag: false,
-                uiMessage: '',
-            });
+            return true;
         }
+        this.setState({
+            projectFlag: false,
+            uiMessage: '',
+        });
+        return false;
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
-        if (this.state.codeName === '') {
-            this.setState({
-                projectFlag: true,
-                uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_REQUIRED,
-            });
-            return;
-        }
-        if (this.state.projectFlag) {
+        if (this.handleValidate()) {
             return;
         }
         this.props.actions.putProject({

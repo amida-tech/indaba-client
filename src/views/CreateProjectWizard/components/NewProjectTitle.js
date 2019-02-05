@@ -43,6 +43,16 @@ class NewProjectTitle extends Component {
         } else if (checkSurveyName) {
             uiMessage = this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED;
         }
+        if (!evt) { // User hit 'enter.' Check everything because evt would be synth.
+            const projectFlag = checkProjectName || this.state.codeName === '';
+            const surveyFlag = checkSurveyName || this.state.name === '';
+            this.setState({
+                projectFlag,
+                surveyFlag,
+                uiMessage,
+            });
+            return projectFlag || surveyFlag;
+        }
         if (evt.target.name === 'projectTitle') {
             this.setState({
                 projectFlag: checkProjectName || evt.target.value === '',
@@ -58,21 +68,9 @@ class NewProjectTitle extends Component {
 
     handleSubmit(evt) { // Blank checks because initial state is empty.
         evt.preventDefault();
-        if (this.state.codeName === '' || this.state.name === '') {
-            this.setState({
-                projectFlag: this.state.codeName === '',
-                surveyFlag : this.state.name === '',
-            });
+        if (this.handleValidate()) {
             return;
         }
-        if (this.state.projectFlag || this.state.surveyFlag) {
-            return;
-        }
-        this.setState({
-            projectFlag: false,
-            surveyFlag : false,
-            uiMessage: '',
-        });
         const trimValues = {
             project: { codeName: this.state.codeName.trim() },
             survey: { name: this.state.name.trim() },
