@@ -49,8 +49,8 @@ class StageForm extends Component {
                             : <span>{this.props.vocab.PROJECT.PERMISSION.EXPLANATION}</span>
                         }
                     </label>
-                    <div className='stage-form__radio-control'>
-                        {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
+                    <div className='stage-form__activities-control'>
+                        {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__activities-button' key={index}>
                             <input name='permissions'
                                 disabled={this.props.permissionsFlag}
                                 type='radio'
@@ -62,9 +62,9 @@ class StageForm extends Component {
                             </span>
                         </label>)}
                     </div>
-                </div>
-                <div className='stage-form__text-description'>
-                    {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
+                        <div className='stage-form__text-description'>
+                        {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
+                        </div>
                 </div>
                 <hr className='stage-form__divider'/>
                 <div className='stage-form__date'>
