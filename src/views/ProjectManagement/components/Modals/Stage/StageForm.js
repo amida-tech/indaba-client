@@ -57,7 +57,7 @@ class StageForm extends Component {
                                 value={index}
                                 onChange={this.props.handlePermissions}
                                 checked={index === parseInt(this.props.permissions, 10)} />
-                            <span className={`stage-form__permission-label-text ${this.props.permissionsFlag ? 'stage-form__permission-label-text--disabled' : ''}`}>
+                            <span className={`stage-form__permission-label-text ${this.props.permissionsFlag ? 'stage-form__activities-label-text--disabled' : ''}`}>
                                 {permission}
                             </span>
                         </label>)}

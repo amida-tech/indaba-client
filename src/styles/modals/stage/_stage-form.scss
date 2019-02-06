@@ -42,7 +42,8 @@ $block-class:'stage-form';
 
         &__activities {
             margin-bottom: 8px;
-            background-color: hsl(210, 20%, 98%);
+            padding:24px;   
+            background-color: $element-background;
             border: 2px solid $border-color;
             border-radius: 2px;
 
