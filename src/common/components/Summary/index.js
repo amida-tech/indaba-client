@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IonIcon from 'react-ionicons';
 import { toast } from 'react-toastify';
+import { has, some } from 'lodash';
 
 import StatusCard from './StatusCard';
 
@@ -21,10 +22,33 @@ class Summary extends Component {
     }
 
     onSurveyStatusClick() {
+        // check survey was finished (no blanks)
+        const blanks = some(this.props.survey.sections, (section) => {
+            return some(section.questions, (question) => {
+                if (question.text.match(/^\s*$/) !== null) {
+                    return true;
+                }
+                if (has(question, 'choices')) {
+                    return some(question.choices, choice => choice.text.match(/^\s*$/) !== null);
+                }
+                return false;
+            });
+        });
+        const blankSection = some(this.props.survey.sections, (section) => {
+            return (section.name.match(/^\s*$/) !== null);
+        });
+        if (blanks) {
+            toast(this.props.vocab.ERROR.BLANKS);
+        }
+        if (blankSection) {
+            toast(this.props.vocab.ERROR.BLANK_SECTION);
+        }
         if (this.props.project.status) {
             toast(this.props.vocab.PROJECT.SURVEY_DRAFT_INSTRUCTIONS);
         } else if (this.props.onStatusChangeClick) {
-            this.props.onStatusChangeClick('surveystatusmodal');
+            if (!blanks && !blankSection) {
+                this.props.onStatusChangeClick('surveystatusmodal');
+            }   
         } else {
             toast(this.props.vocab.PROJECT.WIZARD_INSTRUCTIONS);
         }
