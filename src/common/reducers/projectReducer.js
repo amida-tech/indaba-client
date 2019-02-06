@@ -36,9 +36,7 @@ export const ProjectReducer = (state = initialState, action) => {
 
     switch (action.type) {
     case type.POST_PROJECT_SUCCESS:
-        return state.data.length === 0
-            ? update(state, { data: { $push: [action.project] } })
-            : update(state, { data: { $set: [action.project] } });
+        return update(state, { data: { $push: [action.project] } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
