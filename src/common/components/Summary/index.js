@@ -48,7 +48,7 @@ class Summary extends Component {
         } else if (this.props.onStatusChangeClick) {
             if (!blanks && !blankSection) {
                 this.props.onStatusChangeClick('surveystatusmodal');
-            }   
+            }
         } else {
             toast(this.props.vocab.PROJECT.WIZARD_INSTRUCTIONS);
         }
