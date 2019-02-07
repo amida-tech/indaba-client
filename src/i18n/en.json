@@ -75,7 +75,7 @@
         "DISCUSS_REQUEST":"The system failed to make any kind of update to discussions.",
         "GROUP_DELETE":"The system failed to delete the user group.",
         "SUBJECT_REQUEST":"Something has gone wrong with subject(s) insertion or deletion. Please try again.",
-        "PROFILE_REQUEST":"Failed to insert or delete profile request.",
+        "PROFILE_REQUEST":"Failed to insert, update or delete profile request.",
         "USER_REQUEST":"Failed to insert or delete user.",
         "TASK_REQUEST":"Failed to insert or delete task.",
         "ASSESSMENT_REQUEST":"Failed to insert assessment.",
@@ -102,6 +102,7 @@
         "REQUIRE_FLAG_USER":"You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM":"Each survey must have a minimum of one section.",
         "EMPTY_TEXT":"Please enter text into the field.",
+        "UNFILLED_SURVEY": "Please finish creating survey before publishing. Don't forget to save your progress.",
         "BLANKS":"There are unfilled questions or options in the question list. Please give them a value or delete them.",
         "BLANK_SECTION":"The are unfilled section names. Please give them a value or delete them.",
         "DISAGREE_COMMENTS":"All other responses have been recorded, but please disagree and provide a comment for the following questions: ",
@@ -109,6 +110,7 @@
         "PASSWORD_BLANK":"Please provide a valid password.",
         "FIRSTNAME_BLANK":"Please provide your first name.",
         "DUPLICATE_PROJECT_NAME":"This name has already been used for another project. Please provide a unique project name.",
+        "SURVEY_NAME_IN_USED": "You've already used this survey name already. Please provide another name.",
         "COMING_SOON":"Coming soon."
     },
     "ACTIVATE":{
@@ -153,8 +155,16 @@
             "NOTES":"Notes"
         },
         "PASSWORD":{
-            "RESET_PASSWORD":"Reset Password",
-            "INSTRUCTIONS":"If you cannot remember your password, click the 'Reset Password Button. You will receive an email with instructions to reset your password."
+            "CHANGE_PASSWORD": "Change Password",
+            "CURRENT_PASSWORD": "Current Password",
+            "CONFIRM_PASSWORD": "Confirm New Password",
+            "INCORRECT_PASSWORD":"The Current Password you entered is incorrect.",
+            "INSTRUCTIONS":"Password must contain at least 8 characters, an uppercase and lowercase letter, and a number.",
+            "NEW_PASSWORD": "New Password",
+            "PASSWORD_SUCCESS": "Your password successfully updated.",
+            "PASSWORD_UPDATE_FAILURE": "Something has gone wrong with your request. Please try again later.",
+            "PASSWORD_UNMATCHING": "Passwords do not match, please re-enter passwords.",
+            "PASSWORD_WEAK": "Your password does not meet the minimum requirements."
         }
     },
     "PROJECT":{
@@ -196,8 +206,10 @@
         "SUBJECT":"Subject",
         "CREATE_TITLES":"Project and Survey Titles",
         "PROJECT_TITLE":"Project Title",
+        "PROJECT_TITLE_REQUIRED":"A project title is required.",
         "SURVEY_TITLE":"Survey Title",
-        "TITLE_INSTRUCTIONS":"Please provide names for the project and survey. The project name must be unique, but you can change titles later.",
+        "SURVEY_TITLE_REQUIRED":"A survey title is required.",
+        "TITLE_INSTRUCTIONS":"Please provide names for the project and survey. Both must be unique, but you can change titles later.",
         "SUBJECT_NAME":"Subject Name",
         "STATUS":"Status",
         "SUMMARY":"Summary",
@@ -577,11 +589,16 @@
         },
         "PROJECT_TITLE_MODAL":{
             "TITLE":"Project title",
-            "TITLE_INPUT_LABEL":"Title"
+            "TITLE_INPUT_LABEL_":"Title ",
+            "TITLE_REQUIRED":"(The project title is required.)",
+            "TITLE_USED": "(That project title is currently used.)",
+            "BOTH_USED": "(Both that project title and survey title are currently in use.)"
         },
         "SURVEY_TITLE_MODAL":{
             "TITLE":"Survey title",
-            "TITLE_INPUT_LABEL":"Title"
+            "TITLE_INPUT_LABEL_":"Title ",
+            "TITLE_REQUIRED":"(The survey title is required.)",
+            "TITLE_USED": "(That survey title is currently used.)"
         },
         "SECTION_DELETE_CONFIRM":{
             "TITLE":"Delete section?",

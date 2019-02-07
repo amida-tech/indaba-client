@@ -71,6 +71,8 @@ class CreateProjectWizard extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.user.profile)
             .then(() => {
+                this.props.actions.getSurveys(this.props.vocab.ERROR);
+                this.props.actions.getProjects(this.props.vocab.ERROR);
                 this.props.actions.surveyBuilderReset();
                 this.props.actions.projectWizardInitialize();
             });
@@ -93,10 +95,11 @@ class CreateProjectWizard extends Component {
                 {this.props.ui.showProjectTitle
                     && <NewProjectTitle
                         profile={this.props.user.profile}
-                        errorMessage={this.props.ui.errorMessage}
                         actions={this.props.actions}
                         onCancel={this.props.onWizardCancel}
                         survey={this.props.survey}
+                        allSurveys={this.props.allSurveys}
+                        allProjects={this.props.allProjects}
                         vocab={this.props.vocab} />
                 }
                 {
@@ -104,6 +107,7 @@ class CreateProjectWizard extends Component {
                     && <ProjectTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         project={this.props.project}
+                        allProjects={this.props.allProjects}
                         onCloseModal={this.props.actions.wizardHideProjectTitleModal} />
                 }
                 {
@@ -111,6 +115,7 @@ class CreateProjectWizard extends Component {
                     && <SurveyTitleModal vocab={this.props.vocab}
                         actions={this.props.actions}
                         survey={this.props.survey}
+                        allSurveys={this.props.allSurveys}
                         project={this.props.project}
                         onCloseModal={this.props.actions.wizardHideSurveyTitleModal} />
                 }
@@ -203,11 +208,13 @@ const mapStateToProps = (store) => {
         : store.wizard.project;
     return {
         project,
+        allProjects: store.projects.data,
         survey: find(store.surveys.data, survey => survey.id === project.surveyId)
             || {
                 id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
             },
         inProgressSurvey: store.surveybuilder.form,
+        allSurveys: store.surveys.data,
         user: store.user,
         ui: store.wizard.ui,
         vocab: store.settings.language.vocabulary,
