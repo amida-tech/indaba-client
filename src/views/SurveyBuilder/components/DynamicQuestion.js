@@ -5,6 +5,56 @@ import { get, has } from 'lodash';
 import { toast } from 'react-toastify';
 
 class DynamicQuestion extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleScaleMinValidate = this.handleScaleMinValidate.bind(this);
+        this.handleScaleMaxValidate = this.handleScaleMaxValidate.bind(this);
+        this.handleScaleMinChange = this.handleScaleMinChange.bind(this);
+        this.handleScaleMaxChange = this.handleScaleMaxChange.bind(this);
+    }
+
+    handleScaleMinValidate(evt) {
+        let value = parseInt(evt.target.value, 10);
+        const minValue = get(this.props.question, 'scaleLimits.min', 1);
+        if (value < minValue) {
+            toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
+            value = minValue + 1;
+        }
+        this.props.actions.upsertScale(this.props.sectionIndex,
+            this.props.questionIndex, true, value);
+    }
+
+    handleScaleMaxValidate(evt) {
+        let value = parseInt(event.target.value, 10);
+        const maxValue = get(this.props.question, 'scaleLimits.max', 10);
+        if (value > maxValue) {
+            toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
+            value = maxValue - 1;
+        }
+        this.props.actions.upsertScale(this.props.sectionIndex,
+            this.props.questionIndex, false, value);
+    }
+
+    handleScaleMinChange(evt) {
+        this.props.actions.upsertScale(
+            this.props.sectionIndex,
+            this.props.questionIndex,
+            true,
+            parseInt(evt.target.value, 10)
+        );
+    }
+
+    handleScaleMaxChange(evt) {
+        this.props.actions.upsertScale(
+            this.props.sectionIndex,
+            this.props.questionIndex,
+            false,
+            parseInt(event.target.value, 10)
+        );
+    }
+
+
     render() {
         let QuestionDisplay;
         if (this.props.question.type === 'scale') {
@@ -19,22 +69,8 @@ class DynamicQuestion extends Component {
                             placeholder={10}
                             min={get(this.props.question, 'scaleLimits.min', 1) + 1}
                             value={get(this.props.question, 'scaleLimits.max', '')}
-                            onChange={(event) => {
-                                this.props.actions.upsertScale(this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    true,
-                                    parseInt(event.target.value, 10));
-                            }}
-                            onBlur={(event) => {
-                                let value = parseInt(event.target.value, 10);
-                                const minValue = get(this.props.question, 'scaleLimits.min', 1);
-                                if (value < minValue) {
-                                    toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
-                                    value = minValue + 1;
-                                }
-                                this.props.actions.upsertScale(this.props.sectionIndex,
-                                    this.props.questionIndex, true, value);
-                            }} />
+                            onChange={this.handleScaleMinChange}
+                            onBlur={this.handleScaleMinValidate} />
                     </div>
                     <div className='dynamic-question__scale-field'>
                         <span className='dynamic-question__scale-label'>
@@ -45,22 +81,8 @@ class DynamicQuestion extends Component {
                             placeholder={0}
                             max={get(this.props.question, 'scaleLimits.max', 10) - 1}
                             value={get(this.props.question, 'scaleLimits.min', '')}
-                            onChange={(event) => {
-                                this.props.actions.upsertScale(this.props.sectionIndex,
-                                    this.props.questionIndex,
-                                    false,
-                                    parseInt(event.target.value, 10));
-                            }}
-                            onBlur={(event) => {
-                                let value = parseInt(event.target.value, 10);
-                                const maxValue = get(this.props.question, 'scaleLimits.max', 10);
-                                if (value > maxValue) {
-                                    toast(this.props.vocab.ERROR.MIN_MAX_INVALID);
-                                    value = maxValue - 1;
-                                }
-                                this.props.actions.upsertScale(this.props.sectionIndex,
-                                    this.props.questionIndex, false, value);
-                            }} />
+                            onChange={this.handleScaleMaxChange}
+                            onBlur={this.handleScaleMaxValidate} />
                     </div>
                 </div>);
         } else {
