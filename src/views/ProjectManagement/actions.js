@@ -188,5 +188,5 @@ export function pmUIMessage(message, isError) {
         type: actionTypes.PM_UI_MESSAGE,
         message,
         isError,
-    }
+    };
 }

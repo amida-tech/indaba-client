@@ -10,7 +10,7 @@ class NewProjectTitle extends Component {
 
         this.state = {
             projectFlag: false,
-            surveyFlag : false,
+            surveyFlag: false,
             uiMessage: '',
             codeName: '',
             name: '',
@@ -31,10 +31,8 @@ class NewProjectTitle extends Component {
     }
 
     handleValidate(evt) {
-        const checkProjectName = this.props.allProjects.some((project) =>
-            project.name.toLowerCase() === this.state.codeName.trim().toLowerCase());
-        const checkSurveyName = this.props.allSurveys.some((survey) =>
-            survey.name.toLowerCase() === this.state.name.trim().toLowerCase());
+        const checkProjectName = this.props.allProjects.some(project => project.name.toLowerCase() === this.state.codeName.trim().toLowerCase());
+        const checkSurveyName = this.props.allSurveys.some(survey => survey.name.toLowerCase() === this.state.name.trim().toLowerCase());
         let uiMessage = '';
         if (checkProjectName && checkSurveyName) {
             uiMessage = this.props.vocab.MODAL.PROJECT_TITLE_MODAL.BOTH_USED;
@@ -75,7 +73,7 @@ class NewProjectTitle extends Component {
             project: { codeName: this.state.codeName.trim() },
             survey: { name: this.state.name.trim() },
         };
-        if(!this.state.projectFlag && !this.state.surveyFlag) {
+        if (!this.state.projectFlag && !this.state.surveyFlag) {
             this.props.actions.postProject(
                 Object.assign({},
                     {
