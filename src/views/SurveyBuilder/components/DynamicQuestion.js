@@ -102,7 +102,7 @@ class DynamicQuestion extends Component {
                         {has(this.props.question, 'meta.weight')
                                 && <input className='dynamic-question__weight-input'
                                     placeholder={0}
-                                    defaultValue={get(this.props.question, `choices[${index}].weight`, undefined)}
+                                    value={get(this.props.question, `choices[${index}].weight`, undefined)}
                                     onBlur={event => this.props.actions.upsertWeight(
                                         this.props.sectionIndex,
                                         this.props.questionIndex,
