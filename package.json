@@ -13,7 +13,8 @@
         "build": "webpack --config webpack.prod.js",
         "test": "CI=true react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
-        "eslint": "./node_modules/.bin/eslint --fix src",
+        "lint --fix": "./node_modules/.bin/eslint --fix src",
+        "lint": "./node_modules/.bin/eslint src",
         "stylelint": "./node_modules/.bin/stylelint \"src/styles/**/*.scss\""
     },
     "dependencies": {
@@ -98,7 +99,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "yarn eslint && yarn stylelint"
+            "pre-push": "yarn lint && yarn stylelint"
         }
     }
 }

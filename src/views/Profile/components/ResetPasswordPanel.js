@@ -51,7 +51,7 @@ class ResetPasswordPanel extends Component {
                         {this.props.vocab.PROFILE.PASSWORD.CHANGE_PASSWORD}
                     </button>
                     <span className={`profile-form__ui-message ${this.props.ui.isError
-                        ? 'profile-form__ui-message--error' :''}`}>
+                        ? 'profile-form__ui-message--error' : ''}`}>
                         {this.props.ui.message}
                     </span>
                 </form>
