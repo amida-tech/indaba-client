@@ -11,14 +11,16 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.PROFILE_UI_MESSAGE:
-            return update(state, { ui: {
+    case actionTypes.PROFILE_UI_MESSAGE:
+        return update(state, {
+            ui: {
                 message: { $set: action.message },
-                isError: { $set: action.isError }
-            } });
-        case LOG_OUT:
-            return initialState;
-        default:
-            return state;
+                isError: { $set: action.isError },
+            },
+        });
+    case LOG_OUT:
+        return initialState;
+    default:
+        return state;
     }
 };
