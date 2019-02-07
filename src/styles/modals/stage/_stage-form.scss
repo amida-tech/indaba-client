@@ -56,21 +56,21 @@ $block-class:'stage-form';
             &-label {
                 @include form-font;
             }
-             &-control {
-            margin-top: 8px;
-            color: $font-color;
-            font-size: 14px;
-            line-height: 20px;
-            font-weight: 500;
+
+            &-control {
+                margin-top: 8px;
+                color: $font-color;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 500;
             }
 
-          &-description {
-            @include form-font;
+            &-description {
+                @include form-font;
 
-            margin-left: 24px;
+                margin-left: 24px;
+            }
         }
-        }
-
 
         &__date-label {
             padding: 8px 16px;
