@@ -9,24 +9,24 @@ class NewProjectTitleForm extends Component {
                 <div className='new-project-title-form__instructions'>
                     {this.props.vocab.PROJECT.TITLE_INSTRUCTIONS}
                 </div>
-                <input className={`new-project-title-form__field ${this.props.data.projectFlag ?
-                    'new-project-title-form__field--flag' : ''}`}
-                        name='projectTitle'
-                        value={this.props.data.codeName}
-                        placeholder={this.props.data.projectFlag ?
-                            this.props.vocab.PROJECT.PROJECT_TITLE_REQUIRED :
-                            this.props.vocab.PROJECT.PROJECT_TITLE}
-                        onBlur={this.props.handleValidate}
-                        onChange={this.props.handleProjectTitle} />
-                <input className={`new-project-title-form__field ${this.props.data.surveyFlag ?
-                    'new-project-title-form__field--flag' : ''}`}
-                        name='surveyTitle'
-                        value={this.props.data.name}
-                        placeholder={this.props.data.surveyFlag ?
-                            this.props.vocab.PROJECT.SURVEY_TITLE_REQUIRED :
-                            this.props.vocab.PROJECT.SURVEY_TITLE}
-                        onBlur={this.props.handleValidate}
-                        onChange={this.props.handleSurveyTitle} />
+                <input className={`new-project-title-form__field ${this.props.data.projectFlag
+                    ? 'new-project-title-form__field--flag' : ''}`}
+                name='projectTitle'
+                value={this.props.data.codeName}
+                placeholder={this.props.data.projectFlag
+                    ? this.props.vocab.PROJECT.PROJECT_TITLE_REQUIRED
+                    : this.props.vocab.PROJECT.PROJECT_TITLE}
+                onBlur={this.props.handleValidate}
+                onChange={this.props.handleProjectTitle} />
+                <input className={`new-project-title-form__field ${this.props.data.surveyFlag
+                    ? 'new-project-title-form__field--flag' : ''}`}
+                name='surveyTitle'
+                value={this.props.data.name}
+                placeholder={this.props.data.surveyFlag
+                    ? this.props.vocab.PROJECT.SURVEY_TITLE_REQUIRED
+                    : this.props.vocab.PROJECT.SURVEY_TITLE}
+                onBlur={this.props.handleValidate}
+                onChange={this.props.handleSurveyTitle} />
                 <div className='new-project-title-form__error'>
                     {this.props.data.uiMessage}
                 </div>

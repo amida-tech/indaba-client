@@ -29,8 +29,7 @@ class ProjectTitleModal extends Component {
                 uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_REQUIRED,
             });
             return true;
-        } else if (this.props.allProjects.some((project) =>
-            project.name.toLowerCase() === this.state.codeName.trim().toLowerCase())) {
+        } if (this.props.allProjects.some(project => project.name.toLowerCase() === this.state.codeName.trim().toLowerCase())) {
             this.setState({
                 projectFlag: true,
                 uiMessage: this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED,

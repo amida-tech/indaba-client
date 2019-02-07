@@ -10,12 +10,12 @@ class TitleForm extends Component {
                     ? 'title-form__title-label--flag' : ''}`}>
                     {this.props.label}
                     {this.props.titleFlag && this.props.uiMessage}
-                    <input className={`title-form__title-input ${this.props.titleFlag ?
-                        'title-form__title-input--flag' : ''}`}
-                        value={this.props.value}
-                        placeholder={this.props.placeholder}
-                        onBlur={this.props.handleValidate}
-                        onChange={this.props.handleTitle} />
+                    <input className={`title-form__title-input ${this.props.titleFlag
+                        ? 'title-form__title-input--flag' : ''}`}
+                    value={this.props.value}
+                    placeholder={this.props.placeholder}
+                    onBlur={this.props.handleValidate}
+                    onChange={this.props.handleTitle} />
                 </label>
                 <button className='title-form__hidden-button' />
             </form>

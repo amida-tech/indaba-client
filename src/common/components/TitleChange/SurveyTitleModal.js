@@ -29,8 +29,7 @@ class SurveyTitleModal extends Component {
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_REQUIRED,
             });
             return true;
-        } else if (this.props.allSurveys.some((survey) =>
-            survey.name.toLowerCase() === this.state.name.trim().toLowerCase())) {
+        } if (this.props.allSurveys.some(survey => survey.name.toLowerCase() === this.state.name.trim().toLowerCase())) {
             this.setState({
                 surveyFlag: true,
                 uiMessage: this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED,
