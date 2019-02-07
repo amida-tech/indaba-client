@@ -29,10 +29,25 @@ $block-class: 'profile-form';
             }
         }
 
+        &__button-pw {
+            @extend .alt-button;
+
+            margin-top: 1em;
+            margin-left: 0;
+            margin-right: 0.5em;
+            width: 25%;
+            flex-direction: row;
+
+            &:hover {
+                color: white;
+                background: darken($brand-color, 10);
+                border-color: darken($brand-color, 10);
+            }
+        }
+
         &__user-info {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
@@ -84,6 +99,22 @@ $block-class: 'profile-form';
                     border-left: none;
                     border-right: none;
                 }
+
+                &--disabled {
+                    @extend .large-font;
+
+                    min-width: 100%;
+                    font-weight: 100;
+                    color: $header-font-color;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 1px solid $border-color;
+                    flex-grow: 1;
+                    margin-right: 8px;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                }
             }
         }
 
@@ -95,6 +126,34 @@ $block-class: 'profile-form';
             margin-left: 20%;
             margin-right: 20%;
             margin-bottom: 24px;
+        }
+
+        &__password {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 24px;
+
+            &-instruction {
+                @extend .lead-font;
+
+                margin-top: 0.5em;
+                width: 70%;
+            }
+
+            &__confirm-label {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        &__ui-message {
+            &--error {
+                color: $bad-color;
+            }
         }
 
         &__textarea {

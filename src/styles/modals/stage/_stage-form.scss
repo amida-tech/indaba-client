@@ -1,3 +1,4 @@
+$form-text: #333;
 $block-class:'stage-form';
 
 @mixin header-form-font {
@@ -18,6 +19,7 @@ $block-class:'stage-form';
         padding: 24px 24px 32px;
 
         &__input-field {
+            border-radius: 2;
             width: 100%;
 
             &--flag {
@@ -125,7 +127,7 @@ $block-class:'stage-form';
         }
 
         .Select-option.is-focused {
-            background-color: $background-color;
+            background-color: #f1f4f7;
         }
     }
 }

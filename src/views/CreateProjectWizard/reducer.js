@@ -6,6 +6,7 @@ import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
+        errorMessage: '',
         showProjectTitle: true,
         showAddStage: false,
         stageEditId: null,
@@ -16,7 +17,6 @@ const initialState = {
             showSelectGroupUsers: false,
             usersFilter: '',
         },
-        errorMessage: '',
         projectLink: -1,
         showSubjectDeleteConfirmModal: null,
         showStageDeleteConfirmModal: null,
@@ -46,7 +46,8 @@ export default (state = initialState, action) => {
                 ui: {
                     showProjectTitle: { $set: false },
                     projectLink: { $set: action.project.id },
-                    errorMessage: { $set: '' },
+                    message: { $set: '' },
+                    isError: { $set: false },
                 },
             });
     case type.WIZARD_SHOW_STAGE_MODAL: {
