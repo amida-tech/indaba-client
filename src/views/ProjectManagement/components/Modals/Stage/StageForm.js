@@ -62,9 +62,9 @@ class StageForm extends Component {
                             </div>
                         </label>)}
                     </div>
-                        <div className='stage-form__text-description'>
+                    <div className='stage-form__text-description'>
                         {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
-                        </div>
+                    </div>
                 </div>
                 <hr className='stage-form__divider'/>
                 <div className='stage-form__date'>
