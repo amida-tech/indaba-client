@@ -38,7 +38,7 @@ class Summary extends Component {
             return (section.name.match(/^\s*$/) !== null);
         });
         if (blanks || blankSection) {
-            toast(this.props.vocab.ERROR.UNFILLED_SURVEY);
+            toast(this.props.vocab.ERROR.UNFILLED_SURVEY, { autoClose: false });
         }
         if (this.props.project.status) {
             toast(this.props.vocab.PROJECT.SURVEY_DRAFT_INSTRUCTIONS);
