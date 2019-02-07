@@ -41,7 +41,7 @@ class DynamicQuestion extends Component {
             this.props.sectionIndex,
             this.props.questionIndex,
             true,
-            parseInt(evt.target.value, 10)
+            parseInt(evt.target.value, 10),
         );
     }
 
@@ -50,10 +50,9 @@ class DynamicQuestion extends Component {
             this.props.sectionIndex,
             this.props.questionIndex,
             false,
-            parseInt(event.target.value, 10)
+            parseInt(event.target.value, 10),
         );
     }
-
 
     render() {
         let QuestionDisplay;
@@ -69,8 +68,8 @@ class DynamicQuestion extends Component {
                             placeholder={10}
                             min={get(this.props.question, 'scaleLimits.min', 1) + 1}
                             value={get(this.props.question, 'scaleLimits.max', '')}
-                            onChange={this.handleScaleMinChange}
-                            onBlur={this.handleScaleMinValidate} />
+                            onBlur={this.handleScaleMinValidate}
+                            onChange={this.handleScaleMinChange} />
                     </div>
                     <div className='dynamic-question__scale-field'>
                         <span className='dynamic-question__scale-label'>
@@ -81,8 +80,8 @@ class DynamicQuestion extends Component {
                             placeholder={0}
                             max={get(this.props.question, 'scaleLimits.max', 10) - 1}
                             value={get(this.props.question, 'scaleLimits.min', '')}
-                            onChange={this.handleScaleMaxChange}
-                            onBlur={this.handleScaleMaxValidate} />
+                            onBlur={this.handleScaleMaxValidate}
+                            onChange={this.handleScaleMaxChange} />
                     </div>
                 </div>);
         } else {
@@ -124,8 +123,8 @@ class DynamicQuestion extends Component {
                         {has(this.props.question, 'meta.weight')
                                 && <input className='dynamic-question__weight-input'
                                     placeholder={0}
-                                    value={get(this.props.question, `choices[${index}].weight`, undefined)}
-                                    onBlur={event => this.props.actions.upsertWeight(
+                                    value={this.props.question.choices[index].weight || ''}
+                                    onChange={event => this.props.actions.upsertWeight(
                                         this.props.sectionIndex,
                                         this.props.questionIndex,
                                         index,
