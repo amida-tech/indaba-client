@@ -37,11 +37,8 @@ class Summary extends Component {
         const blankSection = some(this.props.survey.sections, (section) => {
             return (section.name.match(/^\s*$/) !== null);
         });
-        if (blanks) {
-            toast(this.props.vocab.ERROR.BLANKS);
-        }
-        if (blankSection) {
-            toast(this.props.vocab.ERROR.BLANK_SECTION);
+        if (blanks || blankSection) {
+            toast(this.props.vocab.ERROR.UNFILLED_SURVEY);
         }
         if (this.props.project.status) {
             toast(this.props.vocab.PROJECT.SURVEY_DRAFT_INSTRUCTIONS);

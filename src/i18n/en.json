@@ -102,6 +102,7 @@
         "REQUIRE_FLAG_USER":"You must specify a user to receive a flag notification.",
         "SECTION_MINIMUM":"Each survey must have a minimum of one section.",
         "EMPTY_TEXT":"Please enter text into the field.",
+        "UNFILLED_SURVEY": "Finish creating survey before publishing.",
         "BLANKS":"There are unfilled questions or options in the question list. Please give them a value or delete them.",
         "BLANK_SECTION":"The are unfilled section names. Please give them a value or delete them.",
         "DISAGREE_COMMENTS":"All other responses have been recorded, but please disagree and provide a comment for the following questions: ",
