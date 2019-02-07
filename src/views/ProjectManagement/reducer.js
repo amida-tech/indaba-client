@@ -4,6 +4,8 @@ import * as type from './actionTypes';
 
 export const initialState = {
     ui: {
+        message: '',
+        isError: false,
         subnav: 'workflow',
         showProfile: false,
         userSidebarFilter: {
@@ -218,6 +220,13 @@ export default (state = initialState, action) => {
         return update(state, {
             ui: {
                 isOrderedByNameAscending: { $set: false },
+            },
+        });
+    case type.PM_UI_MESSAGE:
+        return update(state, {
+            ui: {
+                message: { $set: action.message },
+                isError: { $set: action.isError },
             },
         });
     default:
