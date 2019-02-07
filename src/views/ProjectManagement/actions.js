@@ -182,3 +182,11 @@ export function pmProjectSubjectsOrderByNameDescending() {
         type: actionTypes.PM_PROJECT_SUBJECTS_ORDER_BY_NAME_DESC,
     };
 }
+
+export function pmUIMessage(message, isError) {
+    return {
+        type: actionTypes.PM_UI_MESSAGE,
+        message,
+        isError,
+    }
+}
