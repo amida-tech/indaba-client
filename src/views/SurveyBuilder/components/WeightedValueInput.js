@@ -5,10 +5,6 @@ class WeightedValueInput extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            weight: this.props.weight || '',
-        };
-
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -20,7 +16,6 @@ class WeightedValueInput extends Component {
     }
 
     handleChange(evt) {
-        this.setState({ weight: evt.target.value });
         this.props.upsertWeight(
             this.props.sectionIndex,
             this.props.questionIndex,
@@ -34,8 +29,7 @@ class WeightedValueInput extends Component {
             <input className='weighted-value-input'
                 type='number'
                 placeholder={0}
-                value={this.state.weight}
-                pattern='\d+'
+                value={this.props.weight || ''}
                 onKeyDown={this.handleKeyDown}
                 onChange={this.handleChange} />
         );
