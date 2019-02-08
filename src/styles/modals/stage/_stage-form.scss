@@ -2,10 +2,10 @@ $form-text: #333;
 $block-class:'stage-form';
 
 @mixin stage-header {
-    margin-bottom: 24px;
-
     &-header {
         @extend .stage-font-bold;
+
+        margin: 8px 0 16px;
 
         &--flag {
             color: $error-color !important;
@@ -18,7 +18,7 @@ $block-class:'stage-form';
         @include multi-select-styles;
 
         color: $lead-font-color;
-        padding: 24px 24px 32px;
+        padding: 16px 24px 26px;
 
         &__input-field {
             border-radius: 4px;
@@ -35,6 +35,8 @@ $block-class:'stage-form';
 
         &__group {
             @include stage-header;
+
+            margin-bottom: 16px;
         }
 
         &__activities {
@@ -56,8 +58,8 @@ $block-class:'stage-form';
         }
 
         &__icon {
-            color: $header-font-color;
-            margin: 8px 24px 16px 16px;
+            color: $disabled-font-color;
+            margin: 0 8px 8px 8px;
         }
 
         &__permission-label-text {

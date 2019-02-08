@@ -45,8 +45,14 @@ class StageForm extends Component {
                 <div className='stage-form__activities'>
                     <div>
                         {this.props.permissionsFlag
-                            ? <i className="fa fa-lock fa-3x stage-form__icon" aria-hidden="true"/>
-                            : <i className="fa fa-unlock-alt fa-3x stage-form__icon" aria-hidden="true"/>
+                            ? <span className="fa-stack fa-2x stage-form__icon">
+                                <i className="fa fa-circle-thin fa-stack-2x icon-background"/>
+                                <i className="fa fa-lock fa-stack-1x"/>
+                            </span>
+                            : <span className="fa-stack fa-2x stage-form__icon">
+                                <i className="fa fa-circle-thin fa-stack-2x icon-background"/>
+                                <i className="fa fa-unlock-alt fa-stack-1x"/>
+                            </span>
                         }
                         <label className='stage-form__activities-header'>
                             {this.props.vocab.PROJECT.PERMISSION.TITLE}
