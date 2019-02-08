@@ -5,16 +5,27 @@ class WeightedValueInput extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            weight: this.props.weight || '',
+        };
+
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+    handleKeyDown(evt) {
+        if (evt.key === 'e' || evt.key === '.') {
+            evt.preventDefault();
+        }
+    }
+
     handleChange(evt) {
-        console.log(evt.target.value);
+        this.setState({ weight: evt.target.value });
         this.props.upsertWeight(
             this.props.sectionIndex,
             this.props.questionIndex,
             this.props.index,
-            event.target.value,
+            evt.target.value,
         )
     }
 
@@ -23,7 +34,9 @@ class WeightedValueInput extends Component {
             <input className='weighted-value-input'
                 type='number'
                 placeholder={0}
-                value={this.props.weight || ''}
+                value={this.state.weight}
+                pattern='\d+'
+                onKeyDown={this.handleKeyDown}
                 onChange={this.handleChange} />
         );
     }
@@ -31,7 +44,10 @@ class WeightedValueInput extends Component {
 
 WeightedValueInput.propTypes = {
     index: PropTypes.number.isRequired,
-    weight: PropTypes.number,
+    weight: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
     sectionIndex: PropTypes.number.isRequired,
     questionIndex: PropTypes.number.isRequired,
     upsertWeight: PropTypes.func.isRequired,
