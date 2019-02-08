@@ -58,7 +58,8 @@ $block-class:'stage-form';
         }
 
         &__icon {
-            color: $disabled-font-color;
+            color: $font-color;
+            opacity: 0.6;
             margin: 0 8px 8px 8px;
         }
 
