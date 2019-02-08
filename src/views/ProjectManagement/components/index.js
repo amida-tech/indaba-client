@@ -31,14 +31,14 @@ import apiService from '../../../services/api';
 class ProjectManagementContainer extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.profile)
-            .then(() => {
-                this.props.actions.getProjectById(
-                    this.props.params.projectId,
-                    true,
-                    this.props.vocab.ERROR,
-                );
-                this.props.actions.getProjects(this.props.vocab.ERROR);
-            });
+            .then(this.props.actions.getProjects(this.props.vocab.ERROR)
+                .then(() => {
+                    this.props.actions.getProjectById(
+                        this.props.params.projectId,
+                        true,
+                        this.props.vocab.ERROR,
+                    );
+                }));
     }
 
     stageHasData(stageId) {
