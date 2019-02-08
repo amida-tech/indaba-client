@@ -21,7 +21,7 @@ class WeightedValueInput extends Component {
             this.props.questionIndex,
             this.props.index,
             evt.target.value,
-        )
+        );
     }
 
     render() {
