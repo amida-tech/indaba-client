@@ -3,6 +3,7 @@ import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 import { get, has } from 'lodash';
 import { toast } from 'react-toastify';
+import WeightedValueInput from './WeightedValueInput';
 
 class DynamicQuestion extends Component {
     constructor(props) {
@@ -121,15 +122,12 @@ class DynamicQuestion extends Component {
                             </button>
                         </div>
                         {has(this.props.question, 'meta.weight')
-                                && <input className='dynamic-question__weight-input'
-                                    placeholder={0}
-                                    value={this.props.question.choices[index].weight || ''}
-                                    onChange={event => this.props.actions.upsertWeight(
-                                        this.props.sectionIndex,
-                                        this.props.questionIndex,
-                                        index,
-                                        event.target.value,
-                                    )} />
+                            && <WeightedValueInput
+                                index={index}
+                                weight={this.props.question.choices[index].weight}
+                                sectionIndex={this.props.sectionIndex}
+                                questionIndex={this.props.questionIndex}
+                                upsertWeight={this.props.actions.upsertWeight} />
                         }
                     </div>)}
                 </div>);
