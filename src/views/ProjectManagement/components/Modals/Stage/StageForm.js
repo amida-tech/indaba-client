@@ -9,8 +9,8 @@ class StageForm extends Component {
         return (
             <form className={className}>
                 <div className={`${className}__title`}>
-                    <label className={`stage-form__title-label ${this.props.titleFlag
-                        ? 'stage-form__title-label--flag' : ''}`}>
+                    <label className={`stage-form__title-header ${this.props.titleFlag
+                        ? 'stage-form__title-header--flag' : ''}`}>
                         {this.props.vocab.PROJECT.STAGE_TITLE_}
                         {this.props.titleFlag
                             && <span>
@@ -29,7 +29,7 @@ class StageForm extends Component {
                     </div>
                 </div>
                 <div className='stage-form__group'>
-                    <label className='stage-form__group-name'>
+                    <label className='stage-form__group-header'>
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                     </label>
                     <div>
@@ -48,7 +48,7 @@ class StageForm extends Component {
                             ? <i className="fa fa-lock fa-3x stage-form__icon" aria-hidden="true"/>
                             : <i className="fa fa-unlock-alt fa-3x stage-form__icon" aria-hidden="true"/>
                         }
-                        <label className='stage-form__activities-label'>
+                        <label className='stage-form__activities-header'>
                             {this.props.vocab.PROJECT.PERMISSION.TITLE}
                             <br/>
                             {this.props.permissionsFlag
@@ -64,7 +64,7 @@ class StageForm extends Component {
                                 value={index}
                                 onChange={this.props.handlePermissions}
                                 checked={index === parseInt(this.props.permissions, 10)} />
-                            <span title={`${!this.props.permissionsFlag ? 'Stage Activities' : 'Activities Denied'}`}
+                            <span title={`${!this.props.permissionsFlag ? 'Stage Activities' : 'Activities Disabled'}`}
                                 className={`stage-form__permission-label-text ${(this.props.permissionsFlag && !(index === parseInt(this.props.permissions, 10))) ? 'stage-form__permission-label-text--disabled' : ''}`}>
                                 {permission}
                             </span>
@@ -76,8 +76,8 @@ class StageForm extends Component {
                     </div>
                 </div>
                 <div className='stage-form__date'>
-                    <label className={`stage-form__date-label ${this.props.dateFlag
-                        ? 'stage-form__date-label--flag' : ''}`}>
+                    <label className={`stage-form__date ${this.props.dateFlag
+                        ? 'stage-form__date-header--flag' : 'stage-form__date-header'}`}>
                         {this.props.vocab.PROJECT.DATE_RANGE_}
                         {this.props.dateFlag
                             ? this.props.vocab.PROJECT.DATE_REQUIRED

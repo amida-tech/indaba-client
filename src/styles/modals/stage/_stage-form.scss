@@ -1,6 +1,18 @@
 $form-text: #333;
 $block-class:'stage-form';
 
+@mixin stage-header {
+    margin-bottom: 24px;
+
+    &-header {
+        @extend .stage-font-bold;
+
+        &--flag {
+            color: $error-color !important;
+        }
+    }
+}
+
 @at-root {
     .#{$block-class} {
         color: $lead-font-color;
@@ -16,56 +28,34 @@ $block-class:'stage-form';
         }
 
         &__title {
-            margin-bottom: 24px;
-            color: $lead-font-color;
-
-            &-label {
-                @extend .stage-font-bold;
-
-                &--flag {
-                    color: $error-color;
-                }
-            }
+            @include stage-header;
         }
 
         &__group {
-            margin-bottom: 24px;
-
-            &-name {
-                @extend .stage-font-bold;
-            }
+            @include stage-header;
         }
 
         &__activities {
+            @include stage-header;
+
             padding: 8px 8px 8px 8px;
-            margin-bottom: 8px;
             border-radius: 4px;
             border: 1px solid $border-color;
-
-            &-label {
-                @extend .stage-font-bold;
-
-                margin: 4px 8px 4px 8px;
-            }
         }
 
         &__radio-control {
             margin: 8px 16px;
         }
 
-        &__date-label {
-            @extend .stage-font-bold;
+        &__date {
+            @include stage-header;
 
             margin: 8px 0 16px;
-
-            &--flag {
-                color: $error-color;
-            }
         }
 
         &__icon {
             color: $header-font-color;
-            margin: 8px 8px 16px 16px;
+            margin: 8px 24px 16px 16px;
         }
 
         &__permission-label-text {
@@ -79,10 +69,10 @@ $block-class:'stage-form';
         }
 
         &__text-description {
+            @extend .med-font;
+
             margin: 8px 16px 8px 16px;
             text-align: center;
-
-            @extend .med-font;
 
             &--disabled {
                 color: $disabled-font-color;
@@ -90,7 +80,7 @@ $block-class:'stage-form';
         }
 
         &__date-input-div {
-            margin-left: 16px;
+            // edit spacing on the date range picker
         }
 
         &__select {
