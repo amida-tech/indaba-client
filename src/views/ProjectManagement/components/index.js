@@ -37,9 +37,8 @@ class ProjectManagementContainer extends Component {
                         this.props.params.projectId,
                         true,
                         this.props.vocab.ERROR,
-                    )
-                })
-            );
+                    );
+                }));
     }
 
     stageHasData(stageId) {
