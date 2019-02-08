@@ -77,7 +77,7 @@ class StageForm extends Component {
                         </label>)}
                     </div>
                     <hr className='stage-form__divider'/>
-                    <div className={`stage-form__text-description ${this.props.permissionsFlag ? 'stage-form__text-description--disabled' : ''}`}>
+                    <div className={'stage-form__text-description'}>
                         {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
                     </div>
                 </div>
