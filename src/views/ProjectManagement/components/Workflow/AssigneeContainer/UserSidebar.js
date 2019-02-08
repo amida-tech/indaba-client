@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'grommet/components/Select';
+import Select from 'react-select';
+import { get } from 'lodash';
 import FilterInput from '../../../../../common/components/Dashboard/FilterInput';
 
 class UserSidebar extends Component {
@@ -12,15 +13,15 @@ class UserSidebar extends Component {
                 </div>
                 <div className='user-sidebar__wrapper'>
                     <FilterInput
-                        placeholder={this.props.vocab.COMMON.SEARCH}
-                        onChange={this.props.onSearch}
+                        placeholder={this.props.vocab.COMMON.FILTER}
+                        onChange={this.props.onFilter}
                     />
                 </div>
                 <Select className='user-sidebar__user-filter-by-group'
-                    placeHolder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
+                    placeholder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
-                    value={this.props.search.group && this.props.search.group.title}
                     onChange={this.props.onGroupFilter}
+                    value={this.props.filter.group}
                 />
                 <div className='filtered-list'>{this.props.unassignedCards}</div>
             </div>
@@ -30,10 +31,10 @@ class UserSidebar extends Component {
 
 UserSidebar.propTypes = {
     vocab: PropTypes.object.isRequired,
-    search: PropTypes.object.isRequired,
+    filter: PropTypes.object.isRequired,
     unassignedCards: PropTypes.array.isRequired,
     groupFilters: PropTypes.array.isRequired,
-    onSearch: PropTypes.func.isRequired,
+    onFilter: PropTypes.func.isRequired,
     onGroupFilter: PropTypes.func.isRequired,
 };
 

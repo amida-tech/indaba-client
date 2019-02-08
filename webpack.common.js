@@ -1,16 +1,19 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './public/index.html',
     filename: 'index.html',
     inject: 'body',
 });
+const ScriptExtHtmlWebpackPlugin = require ('script-ext-html-webpack-plugin');
+const ScriptExtHtmlWebpackPluginConfig = new ScriptExtHtmlWebpackPlugin({
+    defaultAttribute: 'defer',
+});
+
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve('dist'),
         filename: '[name].[contenthash].js',
@@ -43,6 +46,12 @@ module.exports = {
     },
     plugins: [
         HtmlWebpackPluginConfig,
+        ScriptExtHtmlWebpackPluginConfig,
         new Dotenv(),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
 };

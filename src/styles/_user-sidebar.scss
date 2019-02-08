@@ -32,11 +32,5 @@ $block-class:'user-sidebar';
             width: calc(100% - 1em);
             background-color: #fff;
         }
-
-        .grommetux-control-icon {
-            @extend .small-icon;
-
-            stroke: $header-font-color;
-        }
     }
 }

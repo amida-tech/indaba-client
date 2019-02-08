@@ -1,23 +1,61 @@
 $block-class:'task-options-form';
 
+.#{$block-class} {
+    &__container {
+        &--disabled {
+            color: #d9d9d9 !important;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+}
+
 @at-root {
     .#{$block-class} {
         width: 700px;
+        margin-top: 20px;
         margin-bottom: 40px;
         margin-left: 50px;
         margin-right: 50px;
 
         &__header {
             margin-top: 40px;
+            color: #666;
+
+            &--hidden {
+                display: none;
+            }
+
+            &:hover {
+                color: #000;
+            }
         }
 
         &__header-paragraph {
             padding-left: 35px;
         }
 
+        &__radio-button {
+            vertical-align: middle;
+
+            &:hover {
+                color: #4eb276;
+            }
+
+            &:focus {
+                color: red;
+            }
+
+            &--checked {
+                color: #4eb276;
+            }
+
+            font-size: 1.5em;
+            margin-right: 12px;
+        }
+
         &__header-text-box {
-            margin-left: 50px;
-            margin-right: 50px;
+            border-radius: 4px;
 
             &:focus {
                 border-color: $brand-color;
@@ -34,13 +72,47 @@ $block-class:'task-options-form';
             width: 100%;
             resize: none;
             line-height: 40px;
-            background-color: $header-footer;
         }
 
         &__divider {
             @extend .divider;
 
             margin-top: 40px;
+        }
+
+        &__check-container {
+            @extend .divider;
+
+            margin-top: 12px;
+        }
+
+        &__checkbox {
+            @extend .small-icon;
+
+            font-size: 1.75em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: darken(#4eb276, 10);
+
+            &--hidden {
+                display: none;
+                cursor: not-allowed;
+            }
+
+            &:hover {
+                color: #000;
+            }
+
+            &--disabled {
+                @extend .small-icon;
+
+                font-size: 1.75em;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                color: #d9d9d9 !important;
+                cursor: not-allowed;
+                pointer-events: none;
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
-import Menu from 'grommet/components/Menu';
 import IonIcon from 'react-ionicons';
 import PropTypes from 'prop-types';
 
 import { DYNAMIC } from '../../constants';
+import Menu from '../../../../common/components/Menu';
 
 class NewQuestions extends Component {
     constructor(props) {
@@ -37,24 +37,15 @@ class NewQuestions extends Component {
                             key={`question-type${type}`}>
                             {this.props.vocab.SURVEY.QUESTIONS_TYPES[type]}
                             {this.props.sectionView < 0
-                                ? <Menu responsive={true}
-                                    icon={<IonIcon icon='ion-ios-plus'
-                                        className='new-questions__icon'/>}>
-                                    <span className='new-questions__insert-label'>
-                                        {this.props.vocab.SURVEY.INSERT_INTO}
-                                    </span>
-                                    <div className='new-questions__menu-dropdown'>
-                                        {this.props.options.map(option => <div className='new-questions__menu-button'
-                                            key={`question-menu${type}${option.value}`}
-                                            onClick={() => this.handleInsert(type, option.value)}>
-                                            {option.label}
-                                        </div>)}
-                                    </div>
-                                </Menu>
+                                ? <Menu
+                                    vocab={this.props.vocab}
+                                    options={this.props.options}
+                                    type={type}
+                                    handleOptionSelection={this.handleInsert} />
                                 : <button className='new-questions__masked-button'
                                     onClick={() => this.handleInsert(type, this.props.sectionView)}>
                                     <IonIcon icon='ion-ios-plus'
-                                        className='new-questions__icon'/>
+                                        className='new-questions__masked-button-icon'/>
                                 </button>}
                         </div>
                     );
@@ -62,7 +53,7 @@ class NewQuestions extends Component {
                 <div className='new-questions__break'>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
                     <button className='new-questions__masked-button'
-                        onClick={() => this.props.actions.insertSection()}>
+                        onClick={this.props.actions.insertSection}>
                         <IonIcon icon='ion-minus'
                             className='new-questions__section-icon'/>
                     </button>

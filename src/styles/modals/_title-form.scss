@@ -9,13 +9,28 @@ $block-class:'title-form';
 
         &__title-label {
             @extend .lead-font;
+
+            &--flag {
+                color: $error-color;
+            }
         }
 
-        &__title-input,
-        input:not(.grommetux-input) {
+        &__title-input {
+            @extend .basic-input;
+
             width: 43vw;
             margin-top: 8px;
             padding: 8px;
+
+            &--flag {
+                @extend .lead-font;
+
+                border: 1px solid $error-color !important;
+            }
+        }
+
+        &__hidden-button {
+            display: none;
         }
     }
 }

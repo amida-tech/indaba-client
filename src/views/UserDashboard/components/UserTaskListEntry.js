@@ -19,7 +19,7 @@ class UserTaskListEntry extends Component {
                     {this.props.subject}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--task'>
-                    {this.props.late
+                    {this.props.late && !this.props.complete
                     && <StatusLabel label={this.props.vocab.COMMON.LATE}
                         type={StatusLabelType.BAD}/>}
                     {!this.props.late && this.props.new
@@ -39,7 +39,7 @@ class UserTaskListEntry extends Component {
                     {this.props.survey}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--flags'>
-                    <FlagCount value={this.props.flags}/>
+                    {this.props.flagHistory && <FlagCount value={this.props.flags}/>}
                 </div>
                 <div className='user-task-list-entry__cell user-task-list-entry__cell--activity'
                     title={this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.activity]}>
@@ -56,6 +56,7 @@ UserTaskListEntry.propTypes = {
     due: PropTypes.string.isRequired,
     survey: PropTypes.string.isRequired,
     flags: PropTypes.number.isRequired,
+    flagHistory: PropTypes.bool.isRequired,
     progress: PropTypes.string.isRequired,
     vocab: PropTypes.object.isRequired,
     new: PropTypes.bool.isRequired,

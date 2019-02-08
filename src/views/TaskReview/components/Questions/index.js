@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {
     find, get, has, merge, omit,
 } from 'lodash';
-import DateTime from 'grommet/components/DateTime';
-
 import FileForm from './FileForm';
 import FilePane from './FilePane';
 import Bullet from './Bullet';
@@ -16,6 +14,7 @@ import Integer from './Integer';
 import Scale from './Scale';
 import Text from './Text';
 import Time from '../../../../utils/Time';
+import SingleDatePicker from '../../../../common/components/Dates/SingleDateInput';
 
 class Questions extends Component {
     render() {
@@ -40,6 +39,7 @@ class Questions extends Component {
             QuestionType = (<Date
                 {...this.props}
                 upsertAnswer={upsertAnswer}
+                id={this.props.id}
                 answer={value ? value.answer : undefined} />);
             break;
         case 'choice':
@@ -162,26 +162,23 @@ class Questions extends Component {
                                         { publication: { author: event.target.value } }),
                                     this.props.vocab.ERROR,
                                 )} />
-                            { (noValue || this.props.displayMode)
-                                ? <input className='questions__date-disabled'
-                                    value={get(value, 'meta.publication.date', 'MM/DD/YYYY')}
-                                    disabled={true} />
-                                : <DateTime className='questions__date-input'
-                                    value={get(value, 'meta.publication.date', '')}
-                                    format='MM/DD/YYYY'
-                                    onChange={(event) => {
-                                        if (Time.validateTime(event)) {
-                                            this.props.actions.upsertAnswer(
-                                                this.props.assessmentId,
-                                                this.props.id,
-                                                value.answer,
-                                                merge(value.meta,
-                                                    { publication: { date: event } }),
-                                                this.props.vocab.ERROR,
-                                            );
-                                        }
-                                    }} />
-                            }
+                            <SingleDatePicker className='questions__date-input'
+                                value={get(value, 'meta.publication.date')}
+                                align='right'
+                                placeholder={this.props.vocab.COMMON.ENTER_DATE}
+                                disabled={(noValue || this.props.displayMode)}
+                                onDateChange={(event) => {
+                                    if (Time.validateTime(event)) {
+                                        this.props.actions.upsertAnswer(
+                                            this.props.assessmentId,
+                                            this.props.id,
+                                            value.answer,
+                                            merge(value.meta,
+                                                { publication: { date: event } }),
+                                            this.props.vocab.ERROR,
+                                        );
+                                    }
+                                }} />
                         </div>
                     </div>
                 }
@@ -191,10 +188,12 @@ class Questions extends Component {
 }
 
 Questions.propTypes = {
+    vocab: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     common: PropTypes.bool,
     text: PropTypes.string.isRequired,
     choices: PropTypes.array,
+    questionIndex: PropTypes.number,
 };
 
 export default Questions;

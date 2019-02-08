@@ -31,7 +31,7 @@ class ProjectListEntry extends Component {
                         : this.props.vocab.SURVEY.STATUS_DRAFT}
                 </div>
                 <div className='project-list-entry__flags'>
-                    <FlagCount value={this.props.flags} />
+                    {this.props.flagHistory && <FlagCount value={this.props.flags}/>}
                 </div>
                 <div className='project-list-entry__last-updated'>
                     {Time.renderCommon(this.props.project.lastUpdated)}
@@ -54,6 +54,7 @@ ProjectListEntry.propTypes = {
         status: PropTypes.string,
     }),
     flags: PropTypes.number.isRequired,
+    flagHistory: PropTypes.bool.isRequired,
 };
 
 export default withRouter(ProjectListEntry);

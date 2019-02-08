@@ -46,7 +46,7 @@ class PMDashboard extends Component {
     }
 
     searchRow(row) {
-        const lowerQuery = this.props.ui.searchQuery.toLowerCase();
+        const lowerQuery = this.props.ui.filterQuery.toLowerCase();
         if (_.isEmpty(row.survey)) {
             return row.project.name.toLowerCase().includes(lowerQuery);
         }
@@ -99,6 +99,7 @@ const mapStateToProps = store => ({
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(store.surveys.data.find(survey => survey.id === project.surveyId), ['name', 'status', 'id']),
         flags: project.flags || 0,
+        flagHistory: project.flagHistory || false,
     })),
     glance: {
         projects: store.projects.data.length,

@@ -8,9 +8,9 @@ class UserTaskListControls extends Component {
     render() {
         return (
             <div className='user-task-list-controls'>
-                <div className='user-task-list-controls__search'>
-                    <FilterInput placeholder={this.props.vocab.PROJECT.SEARCH_TASKS}
-                        onChange={evt => this.props.actions.setSearchQuery(evt.target.value)}/>
+                <div className='user-task-list-controls__filter-query'>
+                    <FilterInput placeholder={this.props.vocab.PROJECT.FILTER_TASKS}
+                        onChange={evt => this.props.actions.setFilterQuery(evt.target.value)}/>
                 </div>
                 <div className='user-task-list-controls__filter'>
                     <UserTaskFilter active={this.props.filter}

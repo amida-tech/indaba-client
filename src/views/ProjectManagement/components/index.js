@@ -31,11 +31,14 @@ import apiService from '../../../services/api';
 class ProjectManagementContainer extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.profile)
-            .then(this.props.actions.getProjectById(
-                this.props.params.projectId,
-                true,
-                this.props.vocab.ERROR,
-            ));
+            .then(() => {
+                this.props.actions.getProjectById(
+                    this.props.params.projectId,
+                    true,
+                    this.props.vocab.ERROR,
+                );
+                this.props.actions.getProjects(this.props.vocab.ERROR);
+            });
     }
 
     stageHasData(stageId) {
@@ -137,6 +140,7 @@ class ProjectManagementContainer extends Component {
                         && <ProjectTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             project={this.props.project}
+                            allProjects={this.props.allProjects}
                             onCloseModal={this.props.actions.pmHideProjectTitleModal}/>
                 }
                 {
@@ -144,6 +148,7 @@ class ProjectManagementContainer extends Component {
                         && <SurveyTitleModal vocab={this.props.vocab}
                             actions={this.props.actions}
                             survey={this.props.survey}
+                            allSurveys={this.props.allSurveys}
                             project={this.props.project}
                             onCloseModal={this.props.actions.pmHideSurveyTitleModal}/>
                 }
@@ -218,6 +223,7 @@ const mapStateToProps = (store, ownProps) => {
         : store.projects.empty;
     return {
         project,
+        allProjects: store.projects.data,
         tasks: store.tasks.data,
         responses: store.discuss,
         vocab: store.settings.language.vocabulary,
@@ -226,6 +232,7 @@ const mapStateToProps = (store, ownProps) => {
             || {
                 id: -1, name: store.surveys.ui.newSurveyName, status: 'draft', sections: [],
             },
+        allSurveys: store.surveys.data,
         tab: store.manager.ui.subnav,
         users: store.user.users,
         profile: store.user.profile,

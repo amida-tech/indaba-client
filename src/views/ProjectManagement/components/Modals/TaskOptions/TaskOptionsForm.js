@@ -9,47 +9,60 @@ import { renderName } from '../../../../../utils/User';
 
 class TaskOptionsForm extends Component {
     render() {
+        const disabled = this.props.task.status === 'completed';
         return (
-            <form className='task-options-form'
-                onSubmit={this.props.handleSubmit}>
-                <Field
-                    name='choice'
-                    component={TaskOptionsRadio}
-                    type='radio'
-                    value='force'
-                    label={this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE} />
-                <div className='task-options-form__header-paragraph'>
-                    {this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE_PARAGRAPH}
-                </div>
-                <Field
-                    name='choice'
-                    component={TaskOptionsRadio}
-                    type='radio'
-                    value='reassign'
-                    label={this.props.vocab.PROJECT.OPTIONS_MODAL.REASSIGN} />
-                <Field
-                    name='reassignUser'
-                    component={TaskOptionsSelect}
-                    type='select'
-                    currentUser={this.props.currentUser}
-                    userOptions={this.props.userOptions}/>
-                <hr className='task-options-form__divider'/>
-                <Field
-                    name='notify'
-                    component={TaskOptionsCheckbox}
-                    type='checkbox'
-                    value='false'
-                    label={this.props.vocab.PROJECT.OPTIONS_MODAL.NOTIFY} />
-                <div className='task-options__notify-user-warning'>
-                    { renderName(this.props.currentUser)
-                            + this.props.vocab.PROJECT.OPTIONS_MODAL._WILL_BE_NOTIFIED }
-                </div>
-                <Field
-                    name='message'
-                    className={'task-options-form__header-text-box'
-                            + ' task-options-form__notify-user-warning-text-box'}
-                    component='textarea' />
-            </form>
+            <div className={`task-options-form__container${disabled ? ' task-options-form__container--disabled' : ''}`}>
+                <form className='task-options-form'
+                    onSubmit={this.props.handleSubmit}>
+                    <Field
+                        name='choice'
+                        component={TaskOptionsRadio}
+                        type='radio'
+                        value='force'
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE}
+                        disabled={disabled}
+                    />
+                    <div className='task-options-form__header-paragraph'>
+                        {this.props.vocab.PROJECT.OPTIONS_MODAL.FORCE_PARAGRAPH}
+                    </div>
+                    <Field
+                        name='choice'
+                        component={TaskOptionsRadio}
+                        type='radio'
+                        value='reassign'
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.REASSIGN}
+                        disabled={disabled}
+                    />
+                    <Field
+                        name='reassignUser'
+                        component={TaskOptionsSelect}
+                        type='select'
+                        currentUser={this.props.currentUser}
+                        userOptions={this.props.userOptions}
+                        disabled={disabled}
+                    />
+                    <hr className='task-options-form__divider'/>
+                    <Field
+                        name='notify'
+                        component={TaskOptionsCheckbox}
+                        type='checkbox'
+                        value='false'
+                        label={this.props.vocab.PROJECT.OPTIONS_MODAL.NOTIFY}
+                        disabled={disabled}
+                    />
+                    <div className='task-options__notify-user-warning'>
+                        { renderName(this.props.currentUser)
+                                + this.props.vocab.PROJECT.OPTIONS_MODAL._WILL_BE_NOTIFIED }
+                    </div>
+                    <Field
+                        name='message'
+                        className={'task-options-form__header-text-box'
+                                + ' task-options-form__notify-user-warning-text-box'}
+                        component='textarea'
+                        disabled={disabled}
+                    />
+                </form>
+            </div>
         );
     }
 }

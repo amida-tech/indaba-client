@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Box from 'grommet/components/Box';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -62,9 +61,10 @@ class AddStages extends Component {
                 {this.props.vocab.PROJECT.ADD_STAGES_CLARIFICATION}
             </p>
             <hr className='divider' />
-            <Box className='add-stages__grid' direction='row'>
+            <div className='add-stages__grid'>
                 {this.props.project.stages.map((stage) => {
                     return <StageSummary stage={stage}
+                        fromWizard={true}
                         onClick={() => this.props.actions.wizardShowStageModal(true, stage.id)}
                         vocab={this.props.vocab}
                         userGroups={this.props.project.userGroups}
@@ -83,7 +83,7 @@ class AddStages extends Component {
                         </div>
                     </div>
                 }
-            </Box>
+            </div>
         </div>);
     }
 }

@@ -140,7 +140,7 @@ class StageSlot extends Component {
                         <span className='stage-slot__role-span'>
                             {this.props.vocab.PROJECT.CARD.ASSIGNEE}
                         </span>
-                        {this.props.task.flagged
+                        {this.props.task.flagHistory
                             && <div className='stage-slot__right-icon-container'>
                                 <IonIcon className='stage-slot__right-icon' icon='ion-ios-flag'/>
                             </div>
@@ -161,6 +161,7 @@ class StageSlot extends Component {
                       ? <div className='stage-slot__assign-task-input'>
                           <Search
                               value={this.props.assignTaskQuery}
+                              placeholder={this.props.vocab.PROJECT.CARD.ASSIGN_TASK}
                               list={this.props.users
                                   .filter(this.filterToStageGroups)
                                   .filter(this.filterToQuery)

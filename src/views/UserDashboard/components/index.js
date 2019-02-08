@@ -31,11 +31,11 @@ class UserDashboard extends Component {
     filterRow(row) {
         switch (this.props.ui.filter) {
         case FILTERS.ALL_TASKS:
-            return true;
+            return !row.complete;
         case FILTERS.NEW_TASKS:
             return row.new;
         case FILTERS.LATE_TASKS:
-            return row.late;
+            return !row.complete && row.late;
         case FILTERS.DUE_TODAY:
             return Time.isToday(row.due) && !row.complete;
         case FILTERS.FLAGS:
@@ -51,8 +51,8 @@ class UserDashboard extends Component {
         }
     }
 
-    searchRow(row) {
-        const lowerQuery = this.props.ui.searchQuery.toLowerCase();
+    filterRowQuery(row) {
+        const lowerQuery = this.props.ui.filterQuery.toLowerCase();
         return row.subject.toLowerCase().includes(lowerQuery)
             || row.task.title.toLowerCase().includes(lowerQuery)
             || row.survey.toLowerCase().includes(lowerQuery);
@@ -75,7 +75,7 @@ class UserDashboard extends Component {
                     <UserTaskListHeader vocab={this.props.vocab} />
                     {
                         this.props.rows.filter(this.filterRow.bind(this))
-                            .filter(this.searchRow.bind(this))
+                            .filter(this.filterRowQuery.bind(this))
                             .map(row => <UserTaskListEntry {...row} vocab={this.props.vocab}/>)
                     }
                 </div>
@@ -139,6 +139,7 @@ const _generateRow = (state, projectId, task) => { // TODO: INBA-439
         due: task.endDate,
         survey: survey ? survey.name : '',
         flags: task.flagCount,
+        flagHistory: task.flagHistory || false,
         progress: `${answered}/${surveyLength} ${state.settings.language.vocabulary.PROJECT.ANSWERED}`,
         activity: renderPermissions(stage),
         new: get(answers, 'status') === 'new',

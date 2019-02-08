@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import { pickBy, identity } from 'lodash';
 import { push } from 'react-router-redux';
+import moment from 'moment';
 
 import { getAnswers } from './surveyActions';
 import { getProjectById } from './projectActions';
@@ -121,7 +122,11 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
     }, identity);
 
     if (requestBody.endDate !== undefined) {
-        requestBody.endDate.setHours(23, 59, 59, 999);
+        if (moment.isMoment(requestBody.endDate)) {
+            requestBody.endDate = requestBody.endDate.endOf('day');
+        } else {
+            requestBody.endDate.setHours(23, 59, 59, 999);
+        }
     }
 
     return (dispatch) => {

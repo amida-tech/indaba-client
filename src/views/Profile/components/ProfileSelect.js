@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select from 'grommet/components/Select';
+import Select from 'react-select';
 
 class ProfileSelect extends Component {
     render() {
@@ -17,7 +17,8 @@ class ProfileSelect extends Component {
                 value={value}
                 onChange={(event) => { this.props.input.onChange(event.value); }}
                 className='update-profile-form__select-box'
-                options={this.props.options} />
+                options={this.props.options}
+                clearable={false} />
         );
     }
 }

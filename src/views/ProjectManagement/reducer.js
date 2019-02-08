@@ -4,9 +4,11 @@ import * as type from './actionTypes';
 
 export const initialState = {
     ui: {
+        message: '',
+        isError: false,
         subnav: 'workflow',
         showProfile: false,
-        userSidebarSearch: {
+        userSidebarFilter: {
             query: '',
             groups: {},
         },
@@ -17,7 +19,6 @@ export const initialState = {
             task: {},
             userGroups: [],
         },
-        userGroupListSearchQuery: '',
         userListSearchQuery: '',
         showSubjectDeleteConfirmModalForId: null,
         showUserDeleteConfirmModal: null,
@@ -59,23 +60,19 @@ export default (state = initialState, action) => {
                 showInactiveConfirmModal: { $set: action.show },
             },
         });
-    case type.UPDATE_USER_SEARCH_GROUP:
+    case type.UPDATE_USER_FILTER_GROUP:
         return (update(state, {
             ui: {
-                userSidebarSearch: {
+                userSidebarFilter: {
                     group: { $set: action.group },
                 },
             },
         }));
-    case type.UPDATE_USER_SEARCH_QUERY:
+    case type.UPDATE_USER_FILTER_QUERY:
         return update(state, {
             ui: {
-                userSidebarSearch: { query: { $set: action.query } },
+                userSidebarFilter: { query: { $set: action.query } },
             },
-        });
-    case type.UPDATE_USER_GROUP_LIST_SEARCH_QUERY:
-        return update(state, {
-            ui: { userGroupListSearchQuery: { $set: action.query } },
         });
     case type.UPDATE_USER_LIST_SEARCH_QUERY:
         return update(state, {
@@ -223,6 +220,13 @@ export default (state = initialState, action) => {
         return update(state, {
             ui: {
                 isOrderedByNameAscending: { $set: false },
+            },
+        });
+    case type.PM_UI_MESSAGE:
+        return update(state, {
+            ui: {
+                message: { $set: action.message },
+                isError: { $set: action.isError },
             },
         });
     default:

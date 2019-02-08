@@ -1,0 +1,54 @@
+$block-class: 'menu';
+
+@at-root {
+    .#{$block-class} {
+        padding-top: 5px;
+
+        &__icon {
+            @extend .x-small-icon;
+
+            fill: $lead-font-color;
+        }
+
+        &__dropdown {
+            display: block;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            z-index: 1;
+        }
+
+        &__insert-label {
+            padding: 0.5em;
+            font-size: 12px;
+        }
+
+        &__options {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+        }
+
+        &__button {
+            letter-spacing: 0.3px;
+            font-size: 12px;
+            font-weight: 400;
+            color: $font-inverse-color;
+            background-color: #4eb276;
+            border-radius: 2px;
+            padding: 4px 8px;
+            margin-bottom: 8px;
+
+            &:hover {
+                letter-spacing: 0.3px;
+                font-size: 12px;
+                font-weight: 400;
+                background: darken(#4eb276, 10);
+                border-color: darken(#4eb276, 10);
+                text-decoration: none;
+            }
+        }
+    }
+}

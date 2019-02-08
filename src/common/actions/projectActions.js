@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { get } from 'lodash';
 
 import * as actionTypes from '../actionTypes/projectActionTypes';
 import { getSurveys, getSurveyById } from './surveyActions'; // getSurveysList
@@ -24,10 +25,14 @@ export function postProject(requestBody, errorMessages) {
     return dispatch => apiService.projects.postProject(requestBody)
         .then((projectResp) => {
             dispatch(_postProjectSuccess(projectResp));
+            dispatch(_clearProjectError());
             return projectResp;
         })
         .catch((projectErr) => {
-            dispatch(_reportProjectError(projectErr, errorMessages.PROJECT_REQUEST));
+            const displayMessage = get(projectErr, 'body.e') === 403
+                ? errorMessages.DUPLICATE_PROJECT_NAME
+                : errorMessages.PROJECT_REQUEST;
+            dispatch(_reportProjectError(projectErr, displayMessage));
             throw projectErr;
         });
 }
@@ -78,9 +83,6 @@ export function putStage(project, stage, fromWizard, errorMessages) {
             startDate: stage.startDate,
             endDate: stage.endDate,
         })];
-    if (typeof requestBody[0].endDate === 'object') {
-        requestBody[0].endDate.setHours(23, 59, 59, 999);
-    }
 
     return dispatch => apiService.projects.putWorkflowSteps(project.workflowId, requestBody)
         .then((stepResp) => {
@@ -326,6 +328,12 @@ function _deleteProjectUserSuccess(userId, projectId) {
         type: actionTypes.DELETE_PROJECT_USER_SUCCESS,
         userId,
         projectId,
+    };
+}
+
+function _clearProjectError() {
+    return {
+        type: actionTypes.CLEAR_PROJECT_ERROR,
     };
 }
 

@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
 import apiService from '../../services/api';
 
-export function setSearchQuery(searchQuery) {
+export function setFilterQuery(filterQuery) {
     return {
-        type: actionTypes.PM_DASH_SET_SEARCH_QUERY,
-        searchQuery,
+        type: actionTypes.PM_DASH_SET_FILTER_QUERY,
+        filterQuery,
     };
 }
 

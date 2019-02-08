@@ -11,7 +11,10 @@ import Modal from '../../../../../common/components/Modal';
 import TaskOptionsForm from './TaskOptionsForm';
 
 class TaskOptionsModal extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
         const currentUser = find(this.props.users, user => user.id === this.props.task.userIds[0]);
         const userOptions = this.props.users.filter(user => intersection(user.usergroupId, this.props.userGroups).length > 0).map((user) => {
             return user === currentUser
@@ -22,52 +25,64 @@ class TaskOptionsModal extends Component {
                 }
                 : { value: user, label: renderName(user) };
         });
-        const initialValues = {
+
+        this.state.initialValues = {
             choice: null,
             notify: true,
             message: this.props.vocab.PROJECT.OPTIONS_MODAL.NOTIFY_MESSAGE,
             reassignUser: userOptions[0],
             task: this.props.task,
         };
+        this.state.currentUser = currentUser;
+        this.state.userOptions = userOptions;
 
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(values) {
+        if (values.choice === 'reassign') {
+            if (values.reassignUser.value.id === this.state.currentUser.id) {
+                toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
+                return;
+            }
+            this.props.actions.updateTask(
+                this.props.task.id,
+                [values.reassignUser.value.id],
+                undefined,
+                this.props.vocab.ERROR,
+            );
+        } else if (values.choice === 'force') {
+            this.props.actions.forceTaskCompletion(
+                this.props.task.productId,
+                this.props.task.uoaId,
+                this.props.vocab.ERROR,
+            );
+        }
+        if (values.notify === true) {
+            systemMessageService.send({
+                to: this.state.currentUser.email,
+                message: values.message,
+            }).catch(() => toast(this.props.vocab.ERROR.NOTIFY_FAILURE));
+        }
+        this.props.actions.closeTaskOptionsModal();
+    }
+
+    render() {
         return (
             <Modal
                 title={this.props.vocab.PROJECT.OPTIONS_MODAL.TITLE}
                 class='task-options'
                 onCancel={this.props.actions.closeTaskOptionsModal}
-                onSave={this.props.onClickToSubmit}>
+                onSave={this.props.task.status === 'completed' ? null : this.props.onClickToSubmit}>
                 <TaskOptionsForm
                     vocab={this.props.vocab}
                     task={this.props.task}
                     users={this.props.users}
                     projectId={this.props.projectId}
-                    currentUser={currentUser}
-                    userOptions={userOptions}
-                    initialValues={initialValues}
-                    onSubmit={ (values) => {
-                        if (values.choice === 'reassign') {
-                            this.props.actions.updateTask(
-                                this.props.task.id,
-                                [values.reassignUser.value.id],
-                                undefined,
-                                this.props.vocab.ERROR,
-                            );
-                        } else if (values.choice === 'force') {
-                            this.props.actions.forceTaskCompletion(
-                                this.props.task.productId,
-                                this.props.task.uoaId,
-                                this.props.vocab.ERROR,
-                            );
-                        }
-                        if (values.notify === true) {
-                            systemMessageService.send({
-                                to: currentUser.email,
-                                message: values.message,
-                            }).catch(() => toast(this.props.vocab.ERROR.NOTIFY_FAILURE));
-                        }
-                        this.props.actions.closeTaskOptionsModal();
-                    }
-                    } />
+                    currentUser={this.state.currentUser}
+                    userOptions={this.state.userOptions}
+                    initialValues={this.state.initialValues}
+                    onSubmit={this.handleSubmit} />
             </Modal>
         );
     }

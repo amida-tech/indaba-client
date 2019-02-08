@@ -6,6 +6,7 @@ import { REPORT_USER_ERROR } from '../../common/actionTypes/userActionTypes';
 
 const initialState = {
     ui: {
+        errorMessage: '',
         showProjectTitle: true,
         showAddStage: false,
         stageEditId: null,
@@ -15,9 +16,7 @@ const initialState = {
             tab: 0,
             showSelectGroupUsers: false,
             usersFilter: '',
-            groupsFilter: '',
         },
-        errorMessage: '',
         projectLink: -1,
         showSubjectDeleteConfirmModal: null,
         showStageDeleteConfirmModal: null,
@@ -47,7 +46,8 @@ export default (state = initialState, action) => {
                 ui: {
                     showProjectTitle: { $set: false },
                     projectLink: { $set: action.project.id },
-                    errorMessage: { $set: '' },
+                    message: { $set: '' },
+                    isError: { $set: false },
                 },
             });
     case type.WIZARD_SHOW_STAGE_MODAL: {
@@ -99,8 +99,6 @@ export default (state = initialState, action) => {
         return update(state, { ui: { addUsers: { tab: { $set: action.tab } } } });
     case type.ADD_USERS_SET_USERS_FILTER:
         return update(state, { ui: { addUsers: { usersFilter: { $set: action.filter } } } });
-    case type.ADD_USERS_SET_GROUPS_FILTER:
-        return update(state, { ui: { addUsers: { groupsFilter: { $set: action.filter } } } });
     case REPORT_PROJECT_ERROR:
         return update(state, { ui: { errorMessage: { $set: action.errorMessage } } });
     case REPORT_USER_ERROR:

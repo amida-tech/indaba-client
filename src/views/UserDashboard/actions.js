@@ -3,10 +3,10 @@ import { uniq } from 'lodash';
 import * as actionTypes from './actionTypes';
 import apiService from '../../services/api';
 
-export function setSearchQuery(searchQuery) {
+export function setFilterQuery(filterQuery) {
     return {
-        type: actionTypes.USER_DASH_SET_SEARCH_QUERY,
-        searchQuery,
+        type: actionTypes.USER_DASH_SET_FILTER_QUERY,
+        filterQuery,
     };
 }
 
