@@ -5,9 +5,10 @@ import MultiDateInput from '../../../../../common/components/Dates/MultiDateInpu
 
 class StageForm extends Component {
     render() {
+        const className = 'stage-form';
         return (
-            <form className='stage-form'>
-                <div className='stage-form__title'>
+            <form className={className}>
+                <div className={`${className}__title`}>
                     <label className={`stage-form__title-label ${this.props.titleFlag
                         ? 'stage-form__title-label--flag' : ''}`}>
                         {this.props.vocab.PROJECT.STAGE_TITLE_}
@@ -42,13 +43,19 @@ class StageForm extends Component {
                     </div>
                 </div>
                 <div className='stage-form__activities'>
-                    <label className='stage-form__activities-label'>
-                        {this.props.vocab.PROJECT.PERMISSION.TITLE}
+                    <div>
                         {this.props.permissionsFlag
-                            ? <span>{this.props.vocab.PROJECT.PERMISSION.DENIED}</span>
-                            : <span>{this.props.vocab.PROJECT.PERMISSION.EXPLANATION}</span>
+                            ? <i className="fa fa-lock fa-3x stage-form__icon" aria-hidden="true"/>
+                            : <i className="fa fa-unlock-alt fa-3x stage-form__icon" aria-hidden="true"/>
                         }
-                    </label>
+                        <label className='stage-form__activities-label'>
+                            {this.props.vocab.PROJECT.PERMISSION.TITLE}
+                            <br/>
+                            {this.props.permissionsFlag
+                                ? <span>{this.props.vocab.PROJECT.PERMISSION.DENIED}</span>
+                                : <span>{this.props.vocab.PROJECT.PERMISSION.EXPLANATION}</span>}
+                        </label>
+                    </div>
                     <div className='stage-form__radio-control'>
                         {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
                             <input name='permissions'
@@ -57,16 +64,17 @@ class StageForm extends Component {
                                 value={index}
                                 onChange={this.props.handlePermissions}
                                 checked={index === parseInt(this.props.permissions, 10)} />
-                            <span className={`stage-form__permission-label-text ${this.props.permissionsFlag ? 'stage-form__permission-label-text--disabled' : ''}`}>
+                            <span title={`${!this.props.permissionsFlag ? 'Stage Activities' : 'Activities Denied'}`}
+                                className={`stage-form__permission-label-text ${(this.props.permissionsFlag && !(index === parseInt(this.props.permissions, 10))) ? 'stage-form__permission-label-text--disabled' : ''}`}>
                                 {permission}
                             </span>
                         </label>)}
                     </div>
+                    <hr className='stage-form__divider'/>
+                    <div className={`stage-form__text-description ${this.props.permissionsFlag ? 'stage-form__text-description--disabled' : ''}`}>
+                        {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
+                    </div>
                 </div>
-                <div className='stage-form__text-description'>
-                    {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
-                </div>
-                <hr className='stage-form__divider'/>
                 <div className='stage-form__date'>
                     <label className={`stage-form__date-label ${this.props.dateFlag
                         ? 'stage-form__date-label--flag' : ''}`}>
