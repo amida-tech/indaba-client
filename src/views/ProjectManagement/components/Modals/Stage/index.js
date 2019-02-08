@@ -17,12 +17,11 @@ class StageModal extends Component {
             this.state.permissionsFlag = false;
             const now = new Date();
             const startDate = new Date(this.state.startDate);
+
             if (startDate <= now && this.props.tasks.length > 0) {
                 this.props.tasks.forEach((task) => {
-                    if (task.stepId === this.props.stageId) {
-                        if (task.status !== 'waiting') {
-                            this.state.permissionsFlag = true;
-                        }
+                    if (task.stepId === this.props.stageId && task.status !== 'waiting') {
+                        this.state.permissionsFlag = true;
                     }
                 });
             }
