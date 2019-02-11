@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.0.0",
+        "antd": "^3.13.2",
         "bootstrap": "^3.3.7",
         "details-element-polyfill": "^2.0.1",
         "dotenv-webpack": "^1.5.4",

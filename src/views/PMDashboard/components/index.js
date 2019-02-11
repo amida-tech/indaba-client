@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+import { Table } from 'antd';
 
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
@@ -17,6 +18,39 @@ import ProjectListControls from './ProjectListControls';
 import ProjectListHeader from './ProjectListHeader';
 import ProjectListEntry from './ProjectListEntry';
 
+const columns = [
+    {
+        title: 'Project',
+        dataIndex: 'project.name',
+        key: 'project.id'
+    },
+    {
+        title: 'Active',
+        dataIndex: 'project.status',
+        key: 'projectActive'
+    },
+    {
+        title: 'Survey',
+        dataIndex: 'survey.name',
+        key: 'survey.id'
+    },
+    {
+        title: 'Published',
+        dataIndex: 'survey.status',
+        key: 'surveyPublished'
+    },
+    {
+        title: 'Flags',
+        dataIndex: 'project.flags',
+        key: 'flags'
+    },
+    {
+        title: 'Last Updated',
+        dataIndex: 'project.lastUpdated',
+        key: 'lastUpdated'
+    }
+]
+
 class PMDashboard extends Component {
     componentWillMount() {
         this.props.actions.checkProtection(this.props.profile)
@@ -28,20 +62,20 @@ class PMDashboard extends Component {
 
     filterRow(row) {
         switch (this.props.ui.filter) {
-        case FILTERS.ALL_FILTERS:
-            return true;
-        case FILTERS.ACTIVE_PROJECTS:
-            return row.project.status === 1;
-        case FILTERS.INACTIVE_PROJECTS:
-            return row.project.status === 0;
-        case FILTERS.PUBLISHED_SURVEYS:
-            return row.survey.status === SURVEY_STATUS.PUBLISHED;
-        case FILTERS.SURVEYS_IN_DRAFT_MODE:
-            return row.survey.status === SURVEY_STATUS.DRAFT;
-        case FILTERS.SURVEYS_WITH_FLAGS:
-            return row.flags > 0;
-        default:
-            return true;
+            case FILTERS.ALL_FILTERS:
+                return true;
+            case FILTERS.ACTIVE_PROJECTS:
+                return row.project.status === 1;
+            case FILTERS.INACTIVE_PROJECTS:
+                return row.project.status === 0;
+            case FILTERS.PUBLISHED_SURVEYS:
+                return row.survey.status === SURVEY_STATUS.PUBLISHED;
+            case FILTERS.SURVEYS_IN_DRAFT_MODE:
+                return row.survey.status === SURVEY_STATUS.DRAFT;
+            case FILTERS.SURVEYS_WITH_FLAGS:
+                return row.flags > 0;
+            default:
+                return true;
         }
     }
 
@@ -57,20 +91,21 @@ class PMDashboard extends Component {
     render() {
         return (
             <div className='pm-dashboard'>
+                {console.log(this.props.rows)}
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
                         messages={this.props.messages}
                         users={this.props.users}
-                        onMessageClick={this.props.goToMessage}/>
+                        onMessageClick={this.props.goToMessage} />
                     <ProjectGlance vocab={this.props.vocab} {...this.props.glance}
-                        flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)}/>
+                        flags={this.props.rows.reduce((sum, row) => sum + row.flags, 0)} />
                 </SplitLayout>
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
                 <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
-                    { this.props.ui.noData
+                    {this.props.ui.noData
                         ? (<div className='pm-dashboard__no-data'>
                             {this.props.vocab.PROJECT.NO_PROJECTS}
                         </div>)
@@ -80,6 +115,19 @@ class PMDashboard extends Component {
                                 vocab={this.props.vocab}
                             />)
                     }
+                </div>
+                <div>
+                    <Table
+                        dataSource = {this.props.rows}
+                        columns = {columns}
+                        pagination = {false}
+                        onRow = {(record, rowIndex) => {
+                            return {
+                                // onClick: (event) => { this.props.router.push(`/project/${this.props.project.id}`)}// click row
+                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`)}
+                            };
+                        }}
+                    />
                 </div>
             </div>
         );
@@ -115,7 +163,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions,
         { getProjects, checkProtection }),
-    dispatch),
+        dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
