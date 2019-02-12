@@ -13,15 +13,17 @@ class StageModal extends Component {
             this.state = Object.assign({}, this.props.project.stages.find(
                 stage => stage.id === this.props.stageId,
             ));
+
             // check for ability to change permissions.
             this.state.permissionsFlag = false;
             const now = new Date();
-            const startDate = new Date(this.state.startDate);
-
-            if (startDate <= now && this.props.tasks.length > 0) {
+            if (this.props.tasks.length > 0) {
                 this.props.tasks.forEach((task) => {
-                    if (task.stepId === this.props.stageId && task.status !== 'waiting') {
-                        this.state.permissionsFlag = true;
+                    const startDate = new Date(task.startDate);
+                    if (task.stepId === this.props.stageId && startDate <= now) {
+                        if (task.status !== 'waiting' && task.status !== undefined) {
+                            this.state.permissionsFlag = true;
+                        }
                     }
                 });
             }
