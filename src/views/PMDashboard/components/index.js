@@ -17,39 +17,40 @@ import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
 import ProjectListHeader from './ProjectListHeader';
 import ProjectListEntry from './ProjectListEntry';
+import Time from '../../../utils/Time';
 
 const columns = [
     {
         title: 'Project',
         dataIndex: 'project.name',
-        key: 'project.id'
+        key: 'project.id',
     },
     {
         title: 'Active',
         dataIndex: 'project.status',
-        key: 'projectActive'
+        key: 'projectActive',
     },
     {
         title: 'Survey',
         dataIndex: 'survey.name',
-        key: 'survey.id'
+        key: 'survey.id',
     },
     {
         title: 'Published',
         dataIndex: 'survey.status',
-        key: 'surveyPublished'
+        key: 'surveyPublished',
     },
     {
         title: 'Flags',
         dataIndex: 'project.flags',
-        key: 'flags'
+        key: 'flags',
     },
     {
         title: 'Last Updated',
         dataIndex: 'project.lastUpdated',
-        key: 'lastUpdated'
-    }
-]
+        key: 'lastUpdated',
+    },
+];
 
 class PMDashboard extends Component {
     componentWillMount() {
@@ -62,20 +63,20 @@ class PMDashboard extends Component {
 
     filterRow(row) {
         switch (this.props.ui.filter) {
-            case FILTERS.ALL_FILTERS:
-                return true;
-            case FILTERS.ACTIVE_PROJECTS:
-                return row.project.status === 1;
-            case FILTERS.INACTIVE_PROJECTS:
-                return row.project.status === 0;
-            case FILTERS.PUBLISHED_SURVEYS:
-                return row.survey.status === SURVEY_STATUS.PUBLISHED;
-            case FILTERS.SURVEYS_IN_DRAFT_MODE:
-                return row.survey.status === SURVEY_STATUS.DRAFT;
-            case FILTERS.SURVEYS_WITH_FLAGS:
-                return row.flags > 0;
-            default:
-                return true;
+        case FILTERS.ALL_FILTERS:
+            return true;
+        case FILTERS.ACTIVE_PROJECTS:
+            return row.project.status === 1;
+        case FILTERS.INACTIVE_PROJECTS:
+            return row.project.status === 0;
+        case FILTERS.PUBLISHED_SURVEYS:
+            return row.survey.status === SURVEY_STATUS.PUBLISHED;
+        case FILTERS.SURVEYS_IN_DRAFT_MODE:
+            return row.survey.status === SURVEY_STATUS.DRAFT;
+        case FILTERS.SURVEYS_WITH_FLAGS:
+            return row.flags > 0;
+        default:
+            return true;
         }
     }
 
@@ -89,9 +90,12 @@ class PMDashboard extends Component {
     }
 
     render() {
+        let tableData = (this.props.rows);
+        console.log((this.props.rows).map( entry => {
+            entry.project.lastUpdated = Time.renderCommon(entry.project.lastUpdated)
+        }));
         return (
             <div className='pm-dashboard'>
-                {console.log(this.props.rows)}
                 <SplitLayout>
                     <MessageList vocab={this.props.vocab}
                         messages={this.props.messages}
@@ -118,13 +122,12 @@ class PMDashboard extends Component {
                 </div>
                 <div>
                     <Table
-                        dataSource = {this.props.rows}
+                        dataSource = {tableData}
                         columns = {columns}
                         pagination = {false}
                         onRow = {(record, rowIndex) => {
                             return {
-                                // onClick: (event) => { this.props.router.push(`/project/${this.props.project.id}`)}// click row
-                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`)}
+                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`); }
                             };
                         }}
                     />
@@ -163,7 +166,7 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({},
         actions,
         { getProjects, checkProtection }),
-        dispatch),
+    dispatch),
     goToMessage: id => dispatch(push(`/messages/${id}`)),
 });
 
