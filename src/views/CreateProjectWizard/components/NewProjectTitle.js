@@ -7,40 +7,107 @@ import NewProjectTitleForm from './NewProjectTitleForm';
 class NewProjectTitle extends Component {
     constructor(props) {
         super(props);
-        this.handleProjectSubmission = this.handleProjectSubmission.bind(this);
+
+        this.state = {
+            projectFlag: false,
+            surveyFlag: false,
+            uiMessage: '',
+            codeName: '',
+            name: '',
+        };
+
+        this.handleProjectTitle = this.handleProjectTitle.bind(this);
+        this.handleSurveyTitle = this.handleSurveyTitle.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleProjectSubmission(values) {
-        this.props.actions.postProject(
-            Object.assign({},
-                {
-                    user: {
-                        realmUserId: this.props.profile.id,
-                        organizationId: this.props.profile.organizationId,
+    handleProjectTitle(evt) {
+        this.setState({ codeName: evt.target.value });
+    }
+
+    handleSurveyTitle(evt) {
+        this.setState({ name: evt.target.value });
+    }
+
+    handleValidate(evt) {
+        const checkProjectName = this.props.allProjects.some(project => project.name.toLowerCase() === this.state.codeName.trim().toLowerCase());
+        const checkSurveyName = this.props.allSurveys.some(survey => survey.name.toLowerCase() === this.state.name.trim().toLowerCase());
+        let uiMessage = '';
+        if (checkProjectName && checkSurveyName) {
+            uiMessage = this.props.vocab.MODAL.PROJECT_TITLE_MODAL.BOTH_USED;
+        } else if (checkProjectName) {
+            uiMessage = this.props.vocab.MODAL.PROJECT_TITLE_MODAL.TITLE_USED;
+        } else if (checkSurveyName) {
+            uiMessage = this.props.vocab.MODAL.SURVEY_TITLE_MODAL.TITLE_USED;
+        }
+        if (!evt) { // User hit enter. Check everything because giving evt would be synth.
+            const projectFlag = checkProjectName || this.state.codeName === '';
+            const surveyFlag = checkSurveyName || this.state.name === '';
+            this.setState({
+                projectFlag,
+                surveyFlag,
+                uiMessage,
+            });
+            return projectFlag || surveyFlag;
+        }
+        if (evt.target.name === 'projectTitle') {
+            this.setState({
+                projectFlag: checkProjectName || evt.target.value === '',
+                uiMessage,
+            });
+        } else {
+            this.setState({
+                surveyFlag: checkSurveyName || evt.target.value === '',
+                uiMessage,
+            });
+        }
+    }
+
+    handleSubmit(evt) { // Blank checks because initial state is empty.
+        evt.preventDefault();
+        if (this.handleValidate()) {
+            return;
+        }
+        const trimValues = {
+            project: { codeName: this.state.codeName.trim() },
+            survey: { name: this.state.name.trim() },
+        };
+        if (!this.state.projectFlag && !this.state.surveyFlag) {
+            this.props.actions.postProject(
+                Object.assign({},
+                    {
+                        user: {
+                            realmUserId: this.props.profile.id,
+                            organizationId: this.props.profile.organizationId,
+                        },
+                        langId: 1,
                     },
-                    langId: 1,
-                },
-                values.project),
-            this.props.vocab.ERROR,
-        ).then((project) => {
-            this.props.actions.postSurvey(
-                Object.assign({}, this.props.survey, values.survey),
-                project,
+                    trimValues.project),
                 this.props.vocab.ERROR,
-            );
-        });
+            ).then((project) => {
+                this.props.actions.postSurvey(
+                    Object.assign({}, this.props.survey, trimValues.survey),
+                    project,
+                    this.props.vocab.ERROR,
+                );
+            });
+        }
     }
 
     render() {
         return (
             <Modal title={this.props.vocab.PROJECT.CREATE_TITLES}
                 class='new-project-title__layer'
-                form='new-project-title-form'
-                onCancel={this.props.onCancel}>
+                onCancel={this.props.onCancel}
+                onSave={this.handleSubmit}>
                 <NewProjectTitleForm
-                    onSubmit={this.handleProjectSubmission}
                     vocab={this.props.vocab}
-                    errorMessage={this.props.errorMessage} />
+                    data={this.state}
+                    handleProjectTitle={this.handleProjectTitle}
+                    handleSurveyTitle={this.handleSurveyTitle}
+                    handleValidate={this.handleValidate}
+                    handleSubmit={this.handleSubmit} />
             </Modal>
         );
     }
@@ -52,7 +119,10 @@ NewProjectTitle.propTypes = {
         id: PropTypes.number.isRequired,
         organizationId: PropTypes.number.isRequired,
     }),
-    errorMessage: PropTypes.string,
+    survey: PropTypes.object,
+    allSurveys: PropTypes.arrayOf(PropTypes.object).isRequired,
+    allProjects: PropTypes.arrayOf(PropTypes.object).isRequired,
+    message: PropTypes.string,
     actions: PropTypes.object.isRequired,
 };
 

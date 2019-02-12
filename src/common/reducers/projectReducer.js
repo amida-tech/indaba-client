@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import _ from 'lodash';
+import { concat, findIndex } from 'lodash';
 
 import * as type from '../actionTypes/projectActionTypes';
 import { LOG_OUT } from '../actionTypes/navActionTypes';
@@ -29,16 +29,14 @@ export const ProjectReducer = (state = initialState, action) => {
     let projectIndex;
     let groupIndex;
     if (action.project !== undefined) {
-        projectIndex = _.findIndex(state.data, project => project.id === action.project.id);
+        projectIndex = findIndex(state.data, project => project.id === action.project.id);
     } else if (action.projectId !== undefined) {
-        projectIndex = _.findIndex(state.data, project => project.id === action.projectId);
+        projectIndex = findIndex(state.data, project => project.id === action.projectId);
     }
 
     switch (action.type) {
     case type.POST_PROJECT_SUCCESS:
-        return state.data.length === 0
-            ? update(state, { data: { $push: [action.project] } })
-            : update(state, { data: { $set: [action.project] } });
+        return update(state, { data: { $push: [action.project] } });
     case type.SHOW_ADD_SUBJECT_MODAL:
         return update(state, { ui: { showAddSubject: { $set: action.show } } });
     case type.GET_PROJECTS_SUCCESS:
@@ -58,7 +56,7 @@ export const ProjectReducer = (state = initialState, action) => {
             },
         });
     case type.PUT_STAGE_SUCCESS: {
-        const stageIndex = _.findIndex(state.data[projectIndex].stages,
+        const stageIndex = findIndex(state.data[projectIndex].stages,
             stage => stage.id === action.stage.id);
         if (stageIndex >= 0) {
             return update(state, {
@@ -82,7 +80,7 @@ export const ProjectReducer = (state = initialState, action) => {
         return update(state, {
             data: {
                 [projectIndex]: {
-                    subjects: { $set: _.concat(state.data[projectIndex].subjects, action.subjects) },
+                    subjects: { $set: concat(state.data[projectIndex].subjects, action.subjects) },
                     lastUpdated: { $set: new Date().toISOString() },
                 },
             },

@@ -18,10 +18,10 @@ class UserSidebar extends Component {
                     />
                 </div>
                 <Select className='user-sidebar__user-filter-by-group'
-                    placeholder={get(this.props.filter, 'group.title')
-                        || this.props.vocab.PROJECT.FILTER_BY_GROUP}
+                    placeholder={this.props.vocab.PROJECT.FILTER_BY_GROUP}
                     options={this.props.groupFilters}
                     onChange={this.props.onGroupFilter}
+                    value={this.props.filter.group}
                 />
                 <div className='filtered-list'>{this.props.unassignedCards}</div>
             </div>

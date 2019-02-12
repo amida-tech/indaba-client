@@ -38,7 +38,8 @@ module.exports = {
         "no-shadow": 0,
         "no-unused-vars":0,
         "import/no-unresolved": 0,
-        "no-plusplus": 0
+        "no-plusplus": 0,
+        "linebreak-style": 0
     },
     "parserOptions": {
         "ecmaVersion": 6,

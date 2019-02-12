@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { has, some } from 'lodash';
+import { forEach } from 'lodash';
 import { toast } from 'react-toastify';
 
 import Modal from '../../../common/components/Modal';
@@ -33,33 +33,16 @@ class CreateSurveyPanel extends Component {
                 <div className='create-survey-panel__survey-controls'>
                     <button className='create-survey-panel__survey-save'
                         onClick={() => {
-                            const blanks = some(this.props.form.sections, (section) => {
-                                return some(section.questions, (question) => {
-                                    if (question.text.match(/^\s*$/) !== null) {
-                                        return true;
-                                    }
-                                    if (has(question, 'choices')) {
-                                        return some(question.choices, choice => choice.text.match(/^\s*$/) !== null);
-                                    }
-                                    return false;
-                                });
+                            forEach(this.props.form.sections, (section, index) => {
+                                if (section.name === undefined || section.name.match(/^\s*$/) !== null) {
+                                    this.props.form.sections[index].name = `${this.props.vocab.SURVEY.SECTION_} ${(index + 1)}`;
+                                }
                             });
-                            const blankSection = some(this.props.form.sections, (section) => {
-                                return (section.name.match(/^\s*$/) !== null);
-                            });
-                            if (blanks) {
-                                toast(this.props.vocab.ERROR.BLANKS);
-                            }
-                            if (blankSection) {
-                                toast(this.props.vocab.ERROR.BLANK_SECTION);
-                            }
-                            if (!blanks && !blankSection) {
-                                this.props.actions.patchSurvey(
-                                    this.props.form,
-                                    this.props.vocab.SURVEY.SUCCESS,
-                                    this.props.vocab.ERROR,
-                                );
-                            }
+                            this.props.actions.patchSurvey(
+                                this.props.form,
+                                this.props.vocab.SURVEY.SUCCESS,
+                                this.props.vocab.ERROR,
+                            );
                         }}>
                         {this.props.vocab.SURVEY.SAVE_PROGRESS}
                     </button>

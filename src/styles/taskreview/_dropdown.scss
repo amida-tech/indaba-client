@@ -4,12 +4,11 @@ $block-class:'dropdown';
     .#{$block-class} {
         &__field {
             width: 50%;
-        }
 
-        &__field-disabled {
-            width: 50%;
-            background-color: #ebebe4;
-            padding: 0.1em;
+            &--disabled {
+                background-color: #ebebe4;
+                padding: 0.1em;
+            }
         }
     }
 }
