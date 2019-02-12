@@ -90,9 +90,9 @@ class PMDashboard extends Component {
     }
 
     render() {
-        let tableData = (this.props.rows);
-        console.log((this.props.rows).map( entry => {
-            entry.project.lastUpdated = Time.renderCommon(entry.project.lastUpdated)
+        const tableData = (this.props.rows);
+        console.log((this.props.rows).map((entry) => {
+            entry.project.lastUpdated = Time.renderCommon(entry.project.lastUpdated);
         }));
         return (
             <div className='pm-dashboard'>
@@ -127,7 +127,7 @@ class PMDashboard extends Component {
                         pagination = {false}
                         onRow = {(record, rowIndex) => {
                             return {
-                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`); }
+                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`); },
                             };
                         }}
                     />
