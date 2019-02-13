@@ -3,31 +3,19 @@ $block-class: 'users';
 @at-root {
     .#{$block-class} {
         &__action-btn {
-            display: flex;
-            background-color: $element-background;
-            border: 1px solid $border-color;
-            padding: 24px;
+            @include pm-sub-header;
+
             justify-content: flex-end;
-            align-items: center;
-            margin-top: 40px;
-            margin-bottom: 40px;
 
             &--left {
-                @extend .standard-button;
-
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
+                @extend .button;
             }
 
             &--right {
-                @extend .standard-button;
+                @extend .button;
 
-                &:hover {
-                    background: darken(#4eb276, 10);
-                    border-color: darken(#4eb276, 10);
-                }
+                margin-left: 8px;
+                border-radius: 2px;
             }
         }
     }

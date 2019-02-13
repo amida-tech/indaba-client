@@ -5,7 +5,7 @@ $block-class: 'message';
         margin-top: 1em;
 
         &--active {
-            border: 2px solid $brand-color;
+            border: 2px solid $LIGHT_GREEN;
             border-radius: 4px;
         }
 
@@ -57,16 +57,11 @@ $block-class: 'message';
         }
 
         &__body-cancel-button {
-            @extend .alt-button;
-
-            color: $header-font-color;
-            border-radius: 2px;
-            background-color: #d9dcde;
-            border: 2px solid $header-font-color;
+            @extend .secondary-button;
         }
 
         &__body-send-button {
-            @extend .standard-button;
+            @extend .button;
         }
 
         &__body-timestamp {
@@ -79,10 +74,6 @@ $block-class: 'message';
             padding: 0.5em 1em;
             cursor: pointer;
             color: $font-color;
-        }
-
-        .grommetux-button:not(.grommetux-button--fill) {
-            border-radius: 2px;
         }
     }
 }

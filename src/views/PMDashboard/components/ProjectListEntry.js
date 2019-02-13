@@ -24,11 +24,11 @@ class ProjectListEntry extends Component {
                     {this.props.survey.name}
                 </div>
                 <div className={`project-list-entry__status${
-                    this.props.survey.status
+                    this.props.survey.status === 'published'
                         ? ' project-list-entry__status--active' : ''}`}>
                     {this.props.survey.status === 'published'
-                        ? this.props.vocab.SURVEY.STATUS_PUBLISHED
-                        : this.props.vocab.SURVEY.STATUS_DRAFT}
+                        ? this.props.vocab.SURVEY.PUBLISHED
+                        : this.props.vocab.SURVEY.DRAFT}
                 </div>
                 <div className='project-list-entry__flags'>
                     {this.props.flagHistory && <FlagCount value={this.props.flags}/>}

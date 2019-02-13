@@ -22,7 +22,7 @@ $block-class: 'filter-input';
 
             &:active,
             &:focus {
-                border: 2px solid $brand-color;
+                border: 2px solid $LIGHT_GREEN;
                 outline: none;
             }
         }

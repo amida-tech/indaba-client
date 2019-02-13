@@ -1,33 +1,15 @@
-
 $block-class: 'filter-wrapper';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        background-color: $element-background;
-        border: 1px solid $border-color;
-        padding: 24px;
+        @include pm-sub-header;
+
         justify-content: space-between;
-        align-items: center;
-        margin-top: 40px;
-        margin-bottom: 40px;
 
         &__add-button {
-            background-color: nth($brand-neutral-colors, 2);
-            color: #fdfdfd;
-            border: none;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-            margin-left: 8px;
-            border-radius: 2px;
-            outline: none;
+            @extend .button;
 
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
+            margin-left: 8px;
         }
     }
 }

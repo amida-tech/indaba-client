@@ -3,7 +3,7 @@ $block-class: 'wizard-footer';
 @at-root {
     .#{$block-class} {
         display: flex;
-        background-color: #f2f2f2;
+        background-color: $PRIMARY_GRAY;
         justify-content: space-between;
         padding: 1.5rem;
         position: fixed;
@@ -13,20 +13,16 @@ $block-class: 'wizard-footer';
         width: 100%;
 
         &__button {
-            height: 3.3em;
-
             &--continue {
-                @extend .standard-button;
+                @extend .button;
 
-                border-radius: 2px;
                 margin-right: 16px;
             }
 
             &--back {
-                @extend .alt-button;
+                @extend .secondary-button;
 
-                background-color: #f2f2f2;
-                color: $header-font-color;
+                margin-right: 16px;
             }
 
             &--disabled {
@@ -34,20 +30,15 @@ $block-class: 'wizard-footer';
             }
 
             &--skip {
-                @extend .alt-button;
+                @extend .secondary-button;
 
-                border: 2px solid $header-font-color;
-                color: $header-font-color;
-                border-radius: 2px;
+                margin-right: 16px;
             }
 
             &--cancel {
-                @extend .alt-button;
+                @extend .secondary-button;
 
-                color: $header-font-color;
-                border-radius: 2px;
-                background-color: #d9dcde;
-                border: 2px solid $header-font-color;
+                margin-left: 16px;
             }
         }
     }

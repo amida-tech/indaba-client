@@ -22,7 +22,7 @@ $block-class: 'project-list-entry';
             flex: 1;
 
             &--active {
-                color: darken($brand-color, 10%);
+                color: darken($LIGHT_GREEN, 10%);
             }
         }
 
