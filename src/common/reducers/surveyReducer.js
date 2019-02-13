@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { findIndex } from 'lodash';
+import { findIndex, get } from 'lodash';
 import * as type from '../actionTypes/surveyActionTypes';
 import { LOG_OUT } from '../actionTypes/navActionTypes';
 
