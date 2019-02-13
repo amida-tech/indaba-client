@@ -70,20 +70,6 @@ $block-class: 'dynamic-question';
             fill: lighten($header-font-color, 10%);
         }
 
-        &__weight-input {
-            width: 5%;
-            text-align: center;
-            color: $lead-font-color;
-            outline: none;
-            flex-shrink: 0;
-
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
-        }
-
         &__instructions {
             @extend .small-font;
 
