@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import List from './List';
 import FilterInput from '../Dashboard/FilterInput';
 
@@ -7,10 +8,6 @@ class FilteredList extends Component {
         super(props);
         this.state = { query: '' };
         this.handleQuery = this.handleQuery.bind(this);
-    }
-
-    filter(item) {
-        return item.searchKey.toLowerCase().includes(this.state.query.toLowerCase());
     }
 
     handleQuery(evt) {
@@ -30,16 +27,22 @@ class FilteredList extends Component {
         return (
             <div>
                 <FilterInput
-                    placeholder={this.props.placeHolder}
+                    placeholder={this.props.placeholder}
                     onChange={this.handleQuery}
+                    value={this.state.query}
                 />
                 <List
                     {...listProps}
-                    items={this.props.items}
+                    items={this.props.items.filter(item => item.filterKey.toLowerCase().includes(this.state.query.toLowerCase()))}
                 />
             </div>
         );
     }
 }
+
+FilteredList.propTypes = {
+    placeholder: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default FilteredList;

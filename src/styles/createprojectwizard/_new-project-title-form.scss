@@ -4,13 +4,19 @@ $block-class: 'new-project-title-form';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        padding: 3em 2em;
+        padding: 2em 1em;
 
         &__field {
+            @extend .basic-input;
+
             margin-bottom: 8px;
             display: flex;
             align-items: stretch;
             flex-direction: column;
+
+            &--flag {
+                border: 1px solid $ERROR_RED;
+            }
         }
 
         &__instructions {
@@ -30,6 +36,10 @@ $block-class: 'new-project-title-form';
         &__summary {
             resize: none;
             width: 100%;
+        }
+
+        &__hidden-button {
+            display: none;
         }
     }
 }

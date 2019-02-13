@@ -16,13 +16,17 @@ $block-class: 'new-questions';
         &__masked-button {
             background-color: Transparent;
             border: none;
-            padding: 1em;
-            margin-left: 2px;
-            margin-bottom: 3.2px;
+            padding: 5px 0 0 0;
             outline: none;
 
             &:active {
                 outline: none;
+            }
+
+            &-icon {
+                @extend .x-small-icon;
+
+                fill: $LEAD_FONT_COLOR;
             }
         }
 

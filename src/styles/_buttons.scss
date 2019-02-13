@@ -1,5 +1,6 @@
-@import 'common/semantic_colors';
-
+/*
+ * Button Font - proper styling of font inside buttons.
+ */
 @mixin button-font {
     font-family: PTSans-Bold, sans-serif;
     text-transform: uppercase;
@@ -8,11 +9,15 @@
     text-align: center;
 }
 
+/*
+ * Button Padding - sizing, and styling of border of button.
+ */
 @mixin button-padding {
     min-width: 120px;
     max-width: 384px;
-    padding: 16px 16px;
+    padding: 12px 14px;
     outline: none;
+    border-radius: 4px !important;
 }
 
 .button {
@@ -29,6 +34,10 @@
         background-color: $PRIMARY_BUTTON_HOVER_BACKGROUND_COLOR;
         color: $PRIMARY_BUTTON_HOVER_TEXT_COLOR;
         border: 1.5px solid $PRIMARY_BUTTON_HOVER_BORDER_COLOR;
+    }
+
+    &:disabled {
+        @extend .disabled-button;
     }
 }
 

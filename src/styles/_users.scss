@@ -1,19 +1,9 @@
 $block-class: 'users';
 
-@mixin workflow-header {
-    display: flex;
-    background-color: $ELEMENT_BACKGROUND;
-    border: 1px solid $BORDER_COLOR;
-    padding: 24px;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
 @at-root {
     .#{$block-class} {
         &__action-btn {
-            @include workflow-header;
+            @include pm-sub-header;
 
             justify-content: flex-end;
 

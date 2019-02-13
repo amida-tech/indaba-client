@@ -11,8 +11,8 @@ $block-class:'login-form';
         }
 
         &__input {
-            background-color: $INPUT_COLOR;
-            color: $INPUT_TEXT_COLOR;
+            @include text-input;
+
             width: 100%;
             padding: 16px;
             border: 1.5px solid $INPUT_BORDER_COLOR;

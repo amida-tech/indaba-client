@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import AssigneeCard from './AssigneeCard';
 import InviteUser from './InviteUser';
@@ -11,33 +12,28 @@ import { renderName } from '../../../../../utils/User';
 class AssigneeContainer extends Component {
     constructor(props) {
         super(props);
-        this.onSearch = this.onSearch.bind(this);
-        this.onGroupFilter = this.onGroupFilter.bind(this);
+        this.onFilter = this.onFilter.bind(this);
     }
 
-    searchFilter(value) {
-        return !this.props.search.query
-            || value.toLowerCase().includes(this.props.search.query.toLowerCase());
+    filterQuery(value) {
+        return !this.props.filter.query
+            || value.toLowerCase().includes(this.props.filter.query.toLowerCase());
     }
 
     groupFilter(unassignee) {
-        return !this.props.search.group
-            || this.props.search.group.users.some(user => user === unassignee.id);
+        return !get(this.props.filter, 'group.value')
+            || get(this.props.filter, 'group.value.users').some(user => user === unassignee.id);
     }
 
-    onSearch(evt) {
-        this.props.actions.updateUserSearchQuery(evt.target.value);
-    }
-
-    onGroupFilter(evt) {
-        this.props.actions.updateUserSearchGroup(evt.option.value);
+    onFilter(evt) {
+        this.props.actions.updateUserFilterQuery(evt.target.value);
     }
 
     render() {
         const unassigned = this.props.project.users
             .map(userId => this.props.users.find(userObject => userObject.id === userId))
             .filter(user => user !== undefined)
-            .filter(user => this.searchFilter(renderName(user)))
+            .filter(user => this.filterQuery(renderName(user)))
             .filter(user => this.groupFilter(user));
         const unassignedCards = unassigned.map((unassignee) => {
             return (
@@ -59,9 +55,9 @@ class AssigneeContainer extends Component {
                 <UserSidebar
                     groupFilters={groupFilters}
                     unassignedCards={unassignedCards}
-                    onSearch={this.onSearch}
-                    search={this.props.search}
-                    onGroupFilter={this.onGroupFilter}
+                    onFilter={this.onFilter}
+                    filter={this.props.filter}
+                    onGroupFilter={this.props.actions.updateUserFilterGroup}
                     vocab={this.props.vocab} />
                 <InviteUser
                     vocab={this.props.vocab}
@@ -79,18 +75,18 @@ class AssigneeContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    search: state.manager.ui.userSidebarSearch,
+    filter: state.manager.ui.userSidebarFilter,
 });
 
 AssigneeContainer.propTypes = {
     vocab: PropTypes.object.isRequired,
-    search: PropTypes.object.isRequired,
+    filter: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     users: PropTypes.arrayOf(PropTypes.object),
     actions: PropTypes.shape({
-        updateUserSearchGroup: PropTypes.func.isRequired,
-        updateUserSearchQuery: PropTypes.func.isRequired,
+        updateUserFilterGroup: PropTypes.func.isRequired,
+        updateUserFilterQuery: PropTypes.func.isRequired,
         addNewUser: PropTypes.func.isRequired,
     }).isRequired,
 };

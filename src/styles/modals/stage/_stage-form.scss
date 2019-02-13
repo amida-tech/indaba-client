@@ -1,80 +1,85 @@
 $block-class:'stage-form';
 
+@mixin stage-header {
+    &-header {
+        @extend .stage-font-bold;
+
+        margin: 8px 0 16px;
+
+        &--flag {
+            color: $ERROR_RED !important;
+        }
+    }
+}
+
 @at-root {
     .#{$block-class} {
+        @include multi-select-styles;
+
         color: $LEAD_FONT_COLOR;
-        padding: 24px 24px 32px;
+        padding: 16px 24px 26px;
 
         &__input-field {
-            border-radius: 2;
+            border-radius: 4px;
             width: 100%;
+
+            &--flag {
+                border-color: $ERROR_RED !important;
+            }
         }
 
         &__title {
-            margin-bottom: 24px;
-            color: $DARK_GRAY;
-
-            &-label {
-                color: $FONT_COLOR;
-                font-size: 14px;
-                line-height: 20px;
-                font-weight: 500;
-            }
+            @include stage-header;
         }
 
         &__group {
-            margin-bottom: 24px;
+            @include stage-header;
 
-            &-name {
-                color: $FONT_COLOR;
-                font-size: 14px;
-                line-height: 20px;
-                font-weight: 500;
-            }
+            margin-bottom: 16px;
         }
 
         &__activities {
-            margin-bottom: 8px;
+            @include stage-header;
 
-            &-label {
-                color: $FONT_COLOR;
-                font-size: 14px;
-                line-height: 20px;
-                font-weight: 500;
-            }
+            padding: 8px 8px 8px 8px;
+            border-radius: 4px;
+            border: 1px solid $border-color;
         }
 
         &__radio-control {
-            margin-top: 8px;
+            margin: 8px 16px;
         }
 
         &__date {
-            padding: 8px 16px;
+            @include stage-header;
 
-            &-label {
-                color: $FONT_COLOR;
-                font-size: 14px;
-                line-height: 20px;
-                font-weight: 500;
-            }
+            margin: 8px 0 16px;
+        }
+
+        &__icon {
+            color: $FONT_COLOR;
+            opacity: 0.6;
+            margin: 0 8px 8px 8px;
         }
 
         &__permission-label-text {
-            color: $DARK_GRAY;
-            font-size: 16px;
-            font-weight: 400;
-            margin-left: 8px;
-            margin-right: 16px;
+            @extend .lead-font;
+
+            margin: 16px 16px 16px 8px;
+
+            &--disabled {
+                color: $DISABLED_FONT_COLOR;
+            }
         }
 
         &__text-description {
-            margin-left: 24px;
-            color: $DARK_GRAY;
-            font-size: 16px;
+            @extend .med-font;
+
+            margin: 8px 16px 8px 16px;
         }
 
         &__date-input-div {
-            margin-left: 16px;
+            // edit spacing on the date range picker
         }
 
         &__select {
@@ -91,22 +96,6 @@ $block-class:'stage-form';
 
             margin-top: 16px;
             margin-bottom: 16px;
-        }
-
-        .Select--multi .Select-value {
-            color: $DARK_GRAY;
-            background-color: #f1f4f7;
-            border: 1px solid  nth($BRAND_NEUTRAL_COLORS, 2);
-        }
-
-        .Select--multi .Select-value-label {
-            font-size: 14px;
-            padding: 2px;
-            color: #333;
-        }
-
-        .Select-option.is-focused {
-            background-color: #f1f4f7;
         }
     }
 }

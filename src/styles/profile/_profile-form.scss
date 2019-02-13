@@ -23,10 +23,13 @@ $block-class: 'profile-form';
             @extend .secondary-button;
         }
 
+        &__button-pw {
+            @extend .secondary-button;
+        }
+
         &__user-info {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
@@ -78,6 +81,22 @@ $block-class: 'profile-form';
                     border-left: none;
                     border-right: none;
                 }
+
+                &--disabled {
+                    @extend .large-font;
+
+                    min-width: 100%;
+                    font-weight: 100;
+                    color: $HEADER_FONT_COLOR;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 1px solid $border-color;
+                    flex-grow: 1;
+                    margin-right: 8px;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                }
             }
         }
 
@@ -89,6 +108,34 @@ $block-class: 'profile-form';
             margin-left: 20%;
             margin-right: 20%;
             margin-bottom: 24px;
+        }
+
+        &__password {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 24px;
+
+            &-instruction {
+                @extend .lead-font;
+
+                margin-top: 0.5em;
+                width: 70%;
+            }
+
+            &__confirm-label {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        &__ui-message {
+            &--error {
+                color: $bad-color;
+            }
         }
 
         &__textarea {

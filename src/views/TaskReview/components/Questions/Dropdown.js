@@ -4,33 +4,43 @@ import { get } from 'lodash';
 import Select from 'react-select';
 
 class Dropdown extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+
         let currentValue = get(this.props, 'answer', undefined);
         if (currentValue) {
-            currentValue = this.props.choices.find(choice => choice.id === currentValue.choice).text;
+            currentValue = {
+                value: currentValue,
+                label: this.props.choices.find(choice => choice.id === currentValue.choice).text,
+            };
         }
+
+        this.state = {
+            options: this.props.choices.map((entry) => {
+                return { label: entry.text, value: entry.id };
+            }),
+            currentValue,
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(evt) {
+        this.setState({ currentValue: evt });
+        this.props.upsertAnswer({ choice: evt.value });
+    }
+
+    render() {
         return (
             <div className='dropdown'>
-                {
-                    this.props.displayMode
-                        ? <select className='dropdown__field-disabled'
-                            value={currentValue}
-                            placeholder={this.props.vocab.PROJECT.SELECT_OPTION}
-                            disabled={true}>
-                            <option className='dropdown__option'
-                                label={currentValue} />
-                        </select>
-                        : <Select className='dropdown__field'
-                            value={currentValue}
-                            placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
-                            readOnly={this.props.displayMode}
-                            options={this.props.choices.map((entry) => {
-                                return { label: entry.text, value: entry.id };
-                            })}
-                            onChange={(event) => {
-                                this.props.upsertAnswer({ choice: event.option.value });
-                            }} />
-                }
+                <Select className={`dropdown__field dropdown__field${this.props.displayMode ? '--disabled' : ''}`}
+                    value={this.state.currentValue}
+                    disabled={this.props.displayMode}
+                    placeHolder={this.props.vocab.PROJECT.SELECT_OPTION}
+                    readOnly={this.props.displayMode}
+                    options={this.state.options}
+                    clearable={false}
+                    onChange={this.handleChange} />
             </div>
         );
     }

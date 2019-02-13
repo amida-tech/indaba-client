@@ -27,7 +27,7 @@ class Menu extends Component {
     }
 
     handleClick(event) {
-        if (this.props.type) {
+        if (this.props.type) { // To allow the handleClick to be agnostic to its use.
             this.props.handleOptionSelection(this.props.type, event.target.value);
         } else {
             this.props.handleOptionSelection(event.target.value);

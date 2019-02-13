@@ -49,3 +49,10 @@
     letter-spacing: -0.8px;
     color: $LEAD_FONT_COLOR;
 }
+
+.stage-font-bold {
+    @extend .small-font;
+
+    font-weight: 500;
+    line-height: 20px;
+}

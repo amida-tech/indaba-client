@@ -161,6 +161,7 @@ class StageSlot extends Component {
                       ? <div className='stage-slot__assign-task-input'>
                           <Search
                               value={this.props.assignTaskQuery}
+                              placeholder={this.props.vocab.PROJECT.CARD.ASSIGN_TASK}
                               list={this.props.users
                                   .filter(this.filterToStageGroups)
                                   .filter(this.filterToQuery)

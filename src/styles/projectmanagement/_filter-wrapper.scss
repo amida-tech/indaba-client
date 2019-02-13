@@ -2,7 +2,7 @@ $block-class: 'filter-wrapper';
 
 @at-root {
     .#{$block-class} {
-        @include workflow-header;
+        @include pm-sub-header;
 
         justify-content: space-between;
 
@@ -10,7 +10,6 @@ $block-class: 'filter-wrapper';
             @extend .button;
 
             margin-left: 8px;
-            border-radius: 2px;
         }
     }
 }

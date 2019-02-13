@@ -45,7 +45,7 @@ class NewQuestions extends Component {
                                 : <button className='new-questions__masked-button'
                                     onClick={() => this.handleInsert(type, this.props.sectionView)}>
                                     <IonIcon icon='ion-ios-plus'
-                                        className='new-questions__icon'/>
+                                        className='new-questions__masked-button-icon'/>
                                 </button>}
                         </div>
                     );
@@ -53,7 +53,7 @@ class NewQuestions extends Component {
                 <div className='new-questions__break'>
                     {this.props.vocab.SURVEY.SECTION_BREAK}
                     <button className='new-questions__masked-button'
-                        onClick={() => this.props.actions.insertSection()}>
+                        onClick={this.props.actions.insertSection}>
                         <IonIcon icon='ion-minus'
                             className='new-questions__section-icon'/>
                     </button>

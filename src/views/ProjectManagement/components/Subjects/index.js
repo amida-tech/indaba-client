@@ -105,8 +105,8 @@ class Subjects extends Component {
                 </div>
                 <hr className='divider' />
                 <div className='subjects__table'>
-                    <div className='subjects__search-wrapper'>
-                        <FilterInput className='subjects__search'
+                    <div className='subjects__filter-wrapper'>
+                        <FilterInput className='subjects__filter'
                             placeholder={this.props.vocab.PROJECT.FILTER_SUBJECTS}
                             onChange={evt => this.setState({ query: evt.target.value })} />
                     </div>

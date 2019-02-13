@@ -1,12 +1,6 @@
 $block-class:'user-groups-tab';
 
 @at-root {
-    .#{$block-class} {
-        &__search-input {
-            background-color: #fff;
-        }
-    }
-
     .wrapper {
         background-color: #fafafa;
         border: 1px solid $BORDER_COLOR;

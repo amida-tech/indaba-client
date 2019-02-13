@@ -70,7 +70,7 @@ SingleDateInput.propTypes = {
     placeholder: PropTypes.string,
     containerId: PropTypes.string,
     scrollTarget: PropTypes.string,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     onDateChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
 };
