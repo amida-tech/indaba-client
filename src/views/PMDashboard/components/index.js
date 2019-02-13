@@ -29,6 +29,15 @@ const columns = [
         title: 'Active',
         dataIndex: 'project.status',
         key: 'projectActive',
+        filters: [{
+            text: 'Active',
+            value: "1"
+        },{
+            text: 'Inactive',
+            value: "0"
+        }],
+        filterMultiple: false,
+        onFilter: (value, record) => record.projectActive.indexOf(value) === 0
     },
     {
         title: 'Survey',
@@ -90,10 +99,11 @@ class PMDashboard extends Component {
     }
 
     render() {
-        const tableData = (this.props.rows);
-        console.log((this.props.rows).map((entry) => {
-            entry.project.lastUpdated = Time.renderCommon(entry.project.lastUpdated);
-        }));
+        const tableData = 
+        this.props.rows;
+        // this.props.rows.map((entry) => {
+        //     entry.project.lastUpdated = Time.renderCommon(entry.project.lastUpdated);
+        // });
         return (
             <div className='pm-dashboard'>
                 <SplitLayout>
@@ -107,7 +117,7 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <div className='pm-dashboard__table'>
+                {/* <div className='pm-dashboard__table'>
                     <ProjectListHeader vocab={this.props.vocab} />
                     {this.props.ui.noData
                         ? (<div className='pm-dashboard__no-data'>
@@ -119,7 +129,7 @@ class PMDashboard extends Component {
                                 vocab={this.props.vocab}
                             />)
                     }
-                </div>
+                </div> */}
                 <div>
                     <Table
                         dataSource = {tableData}
@@ -127,7 +137,8 @@ class PMDashboard extends Component {
                         pagination = {false}
                         onRow = {(record, rowIndex) => {
                             return {
-                                onClick: (event) => { this.props.router.push(`/project/${record.project.id}`); },
+                                onClick: (event) => {
+                                    this.props.router.push(`/project/${record.project.id}`); },
                             };
                         }}
                     />
