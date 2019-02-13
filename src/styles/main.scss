@@ -1,6 +1,7 @@
 // Okay, for the purposes of sanity, let's start grouping these under folders in styles,
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
+@import '~antd/dist/antd.css';
 @import './styles.scss';
 @import './buttons.scss';
 @import './user-badge.scss';

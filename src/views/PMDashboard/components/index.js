@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+import { Table } from 'antd';
 
 import { FILTERS, SURVEY_STATUS } from '../constants';
 import * as actions from '../actions';
@@ -14,8 +15,8 @@ import SplitLayout from '../../../common/components/Dashboard/SplitLayout';
 import MessageList from '../../../common/components/Dashboard/MessageList';
 import ProjectGlance from './ProjectGlance';
 import ProjectListControls from './ProjectListControls';
-import ProjectListHeader from './ProjectListHeader';
-import ProjectListEntry from './ProjectListEntry';
+import FlagCount from '../../../common/components/Dashboard/FlagCount';
+import Time from '../../../utils/Time';
 
 class PMDashboard extends Component {
     componentWillMount() {
@@ -68,18 +69,49 @@ class PMDashboard extends Component {
                 <ProjectListControls vocab={this.props.vocab}
                     actions={this.props.actions}
                     filter={this.props.ui.filter} />
-                <div className='pm-dashboard__table'>
-                    <ProjectListHeader vocab={this.props.vocab} />
-                    { this.props.ui.noData
-                        ? (<div className='pm-dashboard__no-data'>
-                            {this.props.vocab.PROJECT.NO_PROJECTS}
-                        </div>)
-                        : this.props.rows.filter(this.filterRow.bind(this))
-                            .filter(this.searchRow.bind(this))
-                            .map(row => <ProjectListEntry key={`proj${row.project.id}`} {...row}
-                                vocab={this.props.vocab}
-                            />)
-                    }
+                <div>
+                    <Table dataSource={this.props.rows.filter(this.filterRow.bind(this)).filter(this.searchRow.bind(this))}
+                        onRowClick={row => this.props.router.push(`/project/${row.project.id}`)}
+                        columns={[{
+                            title: this.props.vocab.PROJECT.PROJECT,
+                            dataIndex: 'project.name',
+                            key: 'projectName',
+                        },
+                        {
+                            title: this.props.vocab.PROJECT.STATUS,
+                            dataIndex: 'project.status',
+                            key: 'projectStatus',
+                            render: status => (status
+                                ? this.props.vocab.PROJECT.STATUS_ACTIVE
+                                : this.props.vocab.PROJECT.STATUS_INACTIVE),
+                        },
+                        {
+                            title: this.props.vocab.PROJECT.SURVEY,
+                            dataIndex: 'survey.name',
+                            key: 'surveyName',
+                        },
+                        {
+                            title: 'Published',
+                            dataIndex: 'survey.status',
+                            key: 'surveyStatus',
+                            render: status => ((status === 'published')
+                                ? this.props.vocab.SURVEY.PUBLISHED
+                                : this.props.vocab.SURVEY.DRAFT),
+                        },
+                        {
+                            title: this.props.vocab.PROJECT.FLAGS,
+                            dataIndex: 'flags',
+                            key: 'flags',
+                            render: flag => <FlagCount value={flag}/>,
+                        },
+                        {
+                            title: this.props.vocab.PROJECT.LAST_UPDATED,
+                            dataIndex: 'project.lastUpdated',
+                            key: 'lastUpdated',
+                            render: date => Time.renderCommon(date),
+                        }]
+                        }
+                    />
                 </div>
             </div>
         );
@@ -96,6 +128,7 @@ const mapStateToProps = store => ({
     ui: store.pmdashboard.ui,
     profile: store.user.profile,
     rows: store.projects.data.map(project => ({
+        key: project.id,
         project: _.pick(project, ['name', 'status', 'id', 'lastUpdated']),
         survey: _.pick(store.surveys.data.find(survey => survey.id === project.surveyId), ['name', 'status', 'id']),
         flags: project.flags || 0,
