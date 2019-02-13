@@ -1,8 +1,12 @@
 // Okay, for the purposes of sanity, let's start grouping these under folders in styles,
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
+@import './common/semantic_colors.scss';
+@import './common/named_colors.scss';
+@import 'common/mixins';
 @import './styles.scss';
 @import './buttons.scss';
+@import 'common/react-select-override';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -12,6 +16,7 @@
 @import './account-tab.scss';
 @import './preference-tab.scss';
 @import './tasks-tab.scss';
+@import './subjects.scss';
 @import './pm-user-list-header.scss';
 @import './pm-user-list-row.scss';
 @import './pm-user-groups-tab.scss';
@@ -37,7 +42,6 @@
 @import './add-subjects.scss';
 @import './add-subject-control.scss';
 @import './users.scss';
-@import './subjects.scss';
 @import './subject-list.scss';
 @import './pm-dashboard.scss';
 @import './status-label.scss';

@@ -20,19 +20,7 @@ $block-class: 'inbox';
         }
 
         &__new-message-button {
-            @extend .alt-button;
-
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            border-radius: 2px;
-
-            &:hover {
-                letter-spacing: 0.8px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                text-decoration: none;
-            }
+            @extend .secondary-button;
         }
 
         &__filter {
@@ -53,36 +41,17 @@ $block-class: 'inbox';
             justify-content: center;
             align-items: baseline;
             border: 1px solid $border-color;
-            border-width: 0 1px 1px;
             background-color: #fff;
         }
 
         &__page {
             padding: 4px 8px;
             border: 1px solid $border-color;
-            border-width: 0 1px;
             text-align: center;
         }
 
         &__pager-button {
-            padding: 4px 8px;
-            letter-spacing: 0.8px;
-            font-weight: 400;
-            color: #7e848f;
-            border-radius: 2px;
-            border-color: $border-color;
-            cursor: pointer;
-            border: none;
-            outline: none;
-
-            &:hover {
-                letter-spacing: 0.8px;
-                font-weight: 400;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-                color: #fff;
-                text-decoration: none;
-            }
+            @extend button;
         }
     }
 }

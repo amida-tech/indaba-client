@@ -3,7 +3,7 @@ $block-class:'confirmation-checkbox';
 @at-root {
     .#{$block-class} {
         &--true {
-            fill: $brand-color;
+            fill: $LIGHT_GREEN;
         }
 
         &--false {

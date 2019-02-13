@@ -5,11 +5,12 @@ import MultiDateInput from '../../../../../common/components/Dates/MultiDateInpu
 
 class StageForm extends Component {
     render() {
+        const className = 'stage-form';
         return (
-            <form className='stage-form'>
-                <div className='stage-form__title'>
-                    <label className={`stage-form__title-label ${this.props.titleFlag
-                        ? 'stage-form__title-label--flag' : ''}`}>
+            <form className={className}>
+                <div className={`${className}__title`}>
+                    <label className={`stage-form__title-header ${this.props.titleFlag
+                        ? 'stage-form__title-header--flag' : ''}`}>
                         {this.props.vocab.PROJECT.STAGE_TITLE_}
                         {this.props.titleFlag
                             && <span>
@@ -28,7 +29,7 @@ class StageForm extends Component {
                     </div>
                 </div>
                 <div className='stage-form__group'>
-                    <label className='stage-form__group-name'>
+                    <label className='stage-form__group-header'>
                         {this.props.vocab.PROJECT.ASSIGN_USER_GROUPS}
                     </label>
                     <div>
@@ -42,30 +43,47 @@ class StageForm extends Component {
                     </div>
                 </div>
                 <div className='stage-form__activities'>
-                    <label className='stage-form__activities-label'>
-                        {this.props.vocab.PROJECT.PERMISSIONS}
-                    </label>
+                    <div>
+                        {this.props.permissionsFlag
+                            ? <span className="fa-stack fa-2x stage-form__icon">
+                                <i className="fa fa-circle-thin fa-stack-2x icon-background"/>
+                                <i className="fa fa-lock fa-stack-1x"/>
+                            </span>
+                            : <span className="fa-stack fa-2x stage-form__icon">
+                                <i className="fa fa-circle-thin fa-stack-2x icon-background"/>
+                                <i className="fa fa-unlock-alt fa-stack-1x"/>
+                            </span>
+                        }
+                        <label className='stage-form__activities-header'>
+                            {this.props.vocab.PROJECT.PERMISSION.TITLE}
+                            <br/>
+                            {this.props.permissionsFlag
+                                ? <span>{this.props.vocab.PROJECT.PERMISSION.DENIED}</span>
+                                : <span>{this.props.vocab.PROJECT.PERMISSION.EXPLANATION}</span>}
+                        </label>
+                    </div>
                     <div className='stage-form__radio-control'>
                         {this.props.vocab.PROJECT.ACTIVITY_OPTIONS.map((permission, index) => <label className='stage-form__radio-button' key={index}>
                             <input name='permissions'
+                                disabled={this.props.permissionsFlag}
                                 type='radio'
                                 value={index}
                                 onChange={this.props.handlePermissions}
                                 checked={index === parseInt(this.props.permissions, 10)} />
-                            <span className='stage-form__permission-label-text'>
+                            <span title={`${!this.props.permissionsFlag ? 'Stage Activities' : 'Activities Disabled'}`}
+                                className={`stage-form__permission-label-text ${(this.props.permissionsFlag && !(index === parseInt(this.props.permissions, 10))) ? 'stage-form__permission-label-text--disabled' : ''}`}>
                                 {permission}
                             </span>
                         </label>)}
                     </div>
+                    <hr className='stage-form__divider'/>
+                    <div className={'stage-form__text-description'}>
+                        {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
+                    </div>
                 </div>
-                <div className='stage-form__text-description'>
-                    {this.props.vocab.PROJECT.ACTIVITY_DESC[this.props.permissions]}
-                </div>
-                <hr className='stage-form__divider'/>
-                <div className='stage-form__date'
-                    name='stage-form__date'>
-                    <label className={`stage-form__date-label ${this.props.dateFlag
-                        ? 'stage-form__date-label--flag' : ''}`}>
+                <div className='stage-form__date'>
+                    <label className={`stage-form__date ${this.props.dateFlag
+                        ? 'stage-form__date-header--flag' : 'stage-form__date-header'}`}>
                         {this.props.vocab.PROJECT.DATE_RANGE_}
                         {this.props.dateFlag
                             ? this.props.vocab.PROJECT.DATE_REQUIRED
@@ -81,7 +99,7 @@ class StageForm extends Component {
                             handleValidate={this.props.handleValidate} />
                     </div>
                 </div>
-                <div className='stage-form__clear'></div>
+                <div className='stage-form__clear'/>
             </form>
         );
     }
@@ -91,6 +109,7 @@ StageForm.propTypes = {
     vocab: PropTypes.object.isRequired,
     titleFlag: PropTypes.bool,
     dateFlag: PropTypes.bool,
+    permissionsFlag: PropTypes.bool,
     title: PropTypes.string,
     permissions: PropTypes.string,
     userGroups: PropTypes.array,

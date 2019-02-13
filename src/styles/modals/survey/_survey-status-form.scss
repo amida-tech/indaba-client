@@ -15,7 +15,7 @@ $block-class: 'survey-status-form';
         }
 
         input:checked ~ .survey-status-form__field > .survey-status-form__text {
-            color: $brand-color;
+            color: $LIGHT_GREEN;
         }
 
         &__text {
