@@ -1,5 +1,3 @@
-$brand-color: #4eb276;
-$header-footer: #f2f2f2;
 
 $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
@@ -52,17 +50,14 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__footer {
-            padding-right: 1em;
-            background-color: $header-footer;
-            line-height: 3em;
-            overflow: auto;
+            background-color: $PRIMARY_GRAY;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
         }
 
         &__button-wrapper {
-            float: right;
+            @extend .button;
         }
 
         &__contents {
@@ -155,11 +150,11 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 display: none;
 
                 &:checked ~ .toggle {
-                    border-color: $brand-color;
+                    border-color: $LIGHT_GREEN;
                 }
 
                 &:checked ~ .toggle::after {
-                    background-color: $brand-color;
+                    background-color: $LIGHT_GREEN;
                     left: 30px;
                 }
             }

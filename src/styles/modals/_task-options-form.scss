@@ -58,7 +58,7 @@ $block-class:'task-options-form';
             border-radius: 4px;
 
             &:focus {
-                border-color: $brand-color;
+                border-color: $LIGHT_GREEN;
             }
         }
 
@@ -69,6 +69,8 @@ $block-class:'task-options-form';
         }
 
         &__notify-user-warning-text-box {
+            @include text-input;
+
             width: 100%;
             resize: none;
             line-height: 40px;
@@ -93,7 +95,7 @@ $block-class:'task-options-form';
             font-size: 1.75em;
             margin-right: 10px;
             margin-bottom: 10px;
-            color: darken(#4eb276, 10);
+            color: $DARK_GREEN;
 
             &--hidden {
                 display: none;
@@ -101,7 +103,7 @@ $block-class:'task-options-form';
             }
 
             &:hover {
-                color: #000;
+                color: $BLACK;
             }
 
             &--disabled {
