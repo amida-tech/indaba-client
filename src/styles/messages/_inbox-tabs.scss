@@ -16,11 +16,11 @@ $block-class: 'inbox-tabs';
             padding-bottom: 1em;
 
             &--active {
-                border-color: $brand-color;
-                color: $brand-color;
+                border-color: $LIGHT_GREEN;
+                color: $LIGHT_GREEN;
 
                 .#{$block-class}__icon {
-                    fill: $brand-color;
+                    fill: $LIGHT_GREEN;
                 }
             }
         }

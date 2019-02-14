@@ -17,11 +17,9 @@ $block-class:'questions';
         }
 
         &__link-fields-top {
-            border: 1px solid $border-color;
+            margin-top: 0.4em;
             display: flex;
             flex-direction: row;
-            flex: 1;
-            background-color: #fff;
         }
 
         &__add-link {
@@ -31,8 +29,8 @@ $block-class:'questions';
         }
 
         &__link-input {
-            border: none;
-            border-left: 1px solid $border-color;
+            @include text-input;
+
             width: 90%;
         }
 
@@ -40,18 +38,17 @@ $block-class:'questions';
             margin-top: 0.4em;
             display: flex;
             flex-direction: row;
-
-            input {
-                padding: 0.3em;
-                border: 1px solid $border-color;
-            }
         }
 
         &__title-input {
+            @include text-input;
+
             width: 50%;
         }
 
         &__author-input {
+            @include text-input;
+
             width: 35%;
         }
 

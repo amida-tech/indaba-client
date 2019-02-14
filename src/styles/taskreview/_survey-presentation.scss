@@ -33,27 +33,10 @@ $block-class: 'survey-presentation';
         }
 
         &__submit-button {
-            padding: 8px 16px;
-            margin: 8px;
-            background-color: $font-inverse-color;
-            border: 2px solid #308253;
-            border-radius: 2px;
-            color: nth($brand-neutral-colors, 1);
-            outline: none;
-
-            &:hover {
-                background-color: nth($brand-neutral-colors, 1);
-                color: $font-inverse-color;
-            }
+            @extend .button;
 
             &--disabled {
-                color: #a4aebf;
-                border: 2px solid #a4aebf;
-
-                &:hover {
-                    background-color: #e4e9eb;
-                    color: #a4aebf;
-                }
+                @extend .disabled-button;
             }
         }
     }

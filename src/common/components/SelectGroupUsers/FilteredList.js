@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import List from './List';
 import FilterInput from '../Dashboard/FilterInput';
-import PropTypes from 'prop-types';
 
 class FilteredList extends Component {
     constructor(props) {
@@ -33,8 +33,7 @@ class FilteredList extends Component {
                 />
                 <List
                     {...listProps}
-                    items={this.props.items.filter((item) =>
-                        item.filterKey.toLowerCase().includes(this.state.query.toLowerCase()))}
+                    items={this.props.items.filter(item => item.filterKey.toLowerCase().includes(this.state.query.toLowerCase()))}
                 />
             </div>
         );

@@ -17,7 +17,7 @@ class SurveyStatusForm extends Component {
                         type='checkbox'
                         name='published'
                         className='toggle-native-check'/>
-                    <label htmlFor='survey-status-check' className='toggle'></label>
+                    <label htmlFor='survey-status-check' className='toggle'/>
                     <div className='survey-status-form__field'>
                         <div className='survey-status-form__text'>
                             {this.props.published ? vocab.SURVEY.PUBLISHED : vocab.SURVEY.DRAFT}

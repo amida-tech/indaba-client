@@ -20,19 +20,16 @@ $block-class: 'profile-form';
         }
 
         &__button {
-            @extend .alt-button;
+            @extend .secondary-button;
+        }
 
-            &:hover {
-                color: #fff;
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
+        &__button-pw {
+            @extend .secondary-button;
         }
 
         &__user-info {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             padding: 16px;
             margin-left: 20%;
             margin-right: 20%;
@@ -79,10 +76,26 @@ $block-class: 'profile-form';
 
                 &:focus {
                     outline: none;
-                    border: 1px solid $brand-color;
+                    border: 1px solid $LIGHT_GREEN;
                     border-top: none;
                     border-left: none;
                     border-right: none;
+                }
+
+                &--disabled {
+                    @extend .large-font;
+
+                    min-width: 100%;
+                    font-weight: 100;
+                    color: $header-font-color;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 1px solid $border-color;
+                    flex-grow: 1;
+                    margin-right: 8px;
+                    cursor: not-allowed;
+                    pointer-events: none;
                 }
             }
         }
@@ -97,6 +110,34 @@ $block-class: 'profile-form';
             margin-bottom: 24px;
         }
 
+        &__password {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 24px;
+
+            &-instruction {
+                @extend .lead-font;
+
+                margin-top: 0.5em;
+                width: 70%;
+            }
+
+            &__confirm-label {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        &__ui-message {
+            &--error {
+                color: $bad-color;
+            }
+        }
+
         &__textarea {
             @extend .lead-font;
 
@@ -104,7 +145,7 @@ $block-class: 'profile-form';
 
             &:focus {
                 outline: none;
-                border: 1px solid $brand-color;
+                border: 1px solid $LIGHT_GREEN;
             }
         }
 
@@ -125,7 +166,7 @@ $block-class: 'profile-form';
                 font-size: 1.75em;
                 margin-right: 10px;
                 margin-bottom: 10px;
-                color: #d9d9d9;
+                color: #d9d9d9 !important;
                 cursor: not-allowed;
                 pointer-events: none;
             }

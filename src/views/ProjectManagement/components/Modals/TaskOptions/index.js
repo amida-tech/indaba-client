@@ -35,13 +35,13 @@ class TaskOptionsModal extends Component {
         };
         this.state.currentUser = currentUser;
         this.state.userOptions = userOptions;
-        
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(values) {
         if (values.choice === 'reassign') {
-            if(values.reassignUser.value.id === this.state.currentUser.id) {
+            if (values.reassignUser.value.id === this.state.currentUser.id) {
                 toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
                 return;
             }

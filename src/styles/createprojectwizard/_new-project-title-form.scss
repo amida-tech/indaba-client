@@ -4,13 +4,19 @@ $block-class: 'new-project-title-form';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        padding: 3em 2em;
+        padding: 2em 1em;
 
         &__field {
+            @extend .basic-input;
+
             margin-bottom: 8px;
             display: flex;
             align-items: stretch;
             flex-direction: column;
+
+            &--flag {
+                border: 1px solid $error-color;
+            }
         }
 
         &__instructions {
@@ -18,22 +24,13 @@ $block-class: 'new-project-title-form';
         }
 
         &__error {
-            color: red;
+            color: $error-color;
             margin-top: 5px;
             min-height: 20px;
         }
 
-        &__summary-container {
-            padding-bottom: 0.5em;
-        }
-
-        &__summary {
-            resize: none;
-            width: 100%;
-        }
-
-        &__input {
-            @extend .basic-input;
+        &__hidden-button {
+            display: none;
         }
     }
 }

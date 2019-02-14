@@ -23,7 +23,7 @@ $block-class: 'dynamic-question';
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -48,7 +48,7 @@ $block-class: 'dynamic-question';
 
                 &:focus,
                 &:active {
-                    border: 2px solid $brand-color;
+                    border: 2px solid $LIGHT_GREEN;
                     outline: none;
                 }
             }
@@ -68,20 +68,6 @@ $block-class: 'dynamic-question';
             @extend .small-icon;
 
             fill: lighten($header-font-color, 10%);
-        }
-
-        &__weight-input {
-            width: 5%;
-            text-align: center;
-            color: $lead-font-color;
-            outline: none;
-            flex-shrink: 0;
-
-            &:focus,
-            &:active {
-                border: 2px solid $brand-color;
-                outline: none;
-            }
         }
 
         &__instructions {

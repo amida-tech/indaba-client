@@ -19,18 +19,23 @@ export function addQueryParams(url, params) {
  * Executes a POST request specific to auth on the given URI
  * @param {String} fullURI
  * @param {Object} requestBody
+ * @param {Boolean} includeToken
 * */
-export function apiAuthPostRequest(fullURI, requestBodyObject) {
+export function apiAuthPostRequest(fullURI, requestBodyObject, includeToken) {
     const encodedRequestBodyObject = formurlencoded(requestBodyObject);
 
-    return fetch(fullURI, {
+    const request = {
         method: 'POST',
         headers: {
             Accept: '*/*',
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: encodedRequestBodyObject,
-    })
+    };
+    if (includeToken) {
+        request.headers.Authorization = cookie.load('indaba-auth');
+    }
+    return fetch(fullURI, request)
         .then(handleResponse);
 }
 
