@@ -40,25 +40,6 @@ class TaskOptionsModal extends Component {
     }
 
     handleSubmit(values) {
-        // if (values.choice === 'reassign') {
-        //     if (values.reassignUser.value.id === this.state.currentUser.id) {
-        //         toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
-        //         return;
-        //     }
-        //     this.props.actions.updateTask(
-        //         this.props.task.id,
-        //         [values.reassignUser.value.id],
-        //         undefined,
-        //         this.props.vocab.ERROR,
-        //     );
-        // } else if (values.choice === 'force') {
-        //     this.props.actions.forceTaskCompletion(
-        //         this.props.task.productId,
-        //         this.props.task.uoaId,
-        //         this.props.vocab.ERROR,
-        //     );
-        // }
-
         switch (values.choice) {
         case 'reassign':
             if (values.reassignUser.value.id === this.state.currentUser.id) {

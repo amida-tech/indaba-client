@@ -10,7 +10,6 @@ import { renderName } from '../../../../../utils/User';
 class TaskOptionsForm extends Component {
     render() {
         const disabled = this.props.task.status === 'completed';
-        console.log(this.props.userOptions);
         return (
             <div className={`task-options-form__container${disabled ? ' task-options-form__container--disabled' : ''}`}>
                 <form className='task-options-form'
