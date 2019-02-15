@@ -60,40 +60,39 @@ class TaskOptionsModal extends Component {
         // }
 
         switch (values.choice) {
-            case 'reassign':
-                if (values.reassignUser.value.id === this.state.currentUser.id) {
-                    toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
-                    return;
-                }
-                this.props.actions.updateTask(
-                    this.props.task.id,
-                    [values.reassignUser.value.id],
-                    undefined,
-                    this.props.vocab.ERROR,
-                );
-                break;
+        case 'reassign':
+            if (values.reassignUser.value.id === this.state.currentUser.id) {
+                toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
+                return;
+            }
+            this.props.actions.updateTask(
+                this.props.task.id,
+                [values.reassignUser.value.id],
+                undefined,
+                this.props.vocab.ERROR,
+            );
+            break;
 
-            case 'unassign':
-                this.props.actions.deleteTask(
-                    this.props.task.id,
-                );
-                break;
+        case 'unassign':
+            this.props.actions.deleteTask(
+                this.props.task.id,
+            );
+            break;
 
-            case 'force':
-                this.props.actions.forceTaskCompletion(
-                    this.props.task.productId,
-                    this.props.task.uoaId,
-                    this.props.vocab.ERROR,
-                );
-                break;
-        };
+        case 'force':
+            this.props.actions.forceTaskCompletion(
+                this.props.task.productId,
+                this.props.task.uoaId,
+                this.props.vocab.ERROR,
+            );
+            break;
+        }
         if (values.notify === true) {
             systemMessageService.send({
                 to: this.state.currentUser.email,
                 message: values.message,
             }).catch(() => toast(this.props.vocab.ERROR.NOTIFY_FAILURE));
         }
-
 
 
         this.props.actions.closeTaskOptionsModal();

@@ -136,7 +136,7 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
     };
 }
 
-export function deleteTask(taskId) {
+export function deleteTask(taskId, errorMessages) {
     return (dispatch) => {
         apiService.tasks.deleteTask(taskId)
             .then(() => dispatch(_deleteTaskSuccess(taskId)))
