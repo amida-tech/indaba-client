@@ -1,6 +1,3 @@
-$nav-text-color: #e0e0e0;
-$nav-dark-color: #308253;
-
 $block-class:'primary-nav';
 
 @at-root {
@@ -9,7 +6,7 @@ $block-class:'primary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: nth($brand-neutral-colors, 1);
+        background-color: $LIGHT_GREEN;
         height: $primary-nav-height;
 
         &__left {
@@ -36,7 +33,7 @@ $block-class:'primary-nav';
         &__item-nav {
             justify-content: space-between;
             align-items: center;
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             font-size: 16px;
             margin-left: 20px;
             font-weight: 400;
@@ -48,7 +45,7 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($nav-dark-color, 30%);
+                color: darken($LIGHT_GREEN, 30%);
             }
 
             &:focus,
@@ -59,32 +56,31 @@ $block-class:'primary-nav';
             }
 
             &:focus {
-                color: $nav-text-color;
+                color: $PRIMARY_GRAY;
             }
 
             &--active,
             &--active:focus {
-                color: darken($nav-dark-color, 30%);
+                color: darken($LIGHT_GREEN, 30%);
             }
         }
 
         &__button {
             height: 40px;
-            background-color: darken($nav-dark-color, 10%);
+            background-color: $DARK_GREEN;
             border: 1px;
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             border-radius: 3px;
             min-width: 10px;
             font-size: 14px;
             padding: 6px 22px;
 
             &:hover {
-                color: $nav-text-color;
-                font-weight: 700;
+                color: $PRIMARY_GRAY;
             }
 
             &:active {
-                color: $nav-text-color;
+                color: $PRIMARY_GRAY;
             }
         }
 
@@ -93,7 +89,7 @@ $block-class:'primary-nav';
             width: 16px;
             height: 16px;
             align-items: center;
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             font-size: 16px;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
@@ -101,20 +97,20 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($nav-dark-color, 20%);
+                color: darken($LIGHT_GREEN, 20%);
             }
 
             &:focus,
             &:active {
                 text-decoration: none;
                 font-weight: 400;
-                color: darken($nav-dark-color, 30%);
+                color: darken($LIGHT_GREEN, 30%);
             }
         }
 
         &__welcome {
             align-items: center;
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             font-size: 16px;
             font-weight: 400;
             margin-left: 8px;
@@ -124,7 +120,7 @@ $block-class:'primary-nav';
 
         &__logout {
             align-items: center;
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             font-size: 16px;
             font-weight: 400;
             margin-left: 8px;
@@ -133,17 +129,17 @@ $block-class:'primary-nav';
 
             &:hover {
                 text-decoration: none;
-                color: darken($nav-dark-color, 20%);
+                color: darken($LIGHT_GREEN, 20%);
             }
 
             &:focus {
                 font-weight: 400;
-                color: $nav-text-color;
+                color: $PRIMARY_GRAY;
             }
         }
 
         &__link {
-            color: $nav-text-color;
+            color: $PRIMARY_GRAY;
             padding-right: 16px;
             padding-left: 16px;
         }

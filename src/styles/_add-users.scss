@@ -13,17 +13,9 @@ $block-class: 'add-users';
         }
 
         &__control-row-button {
-            @extend .standard-button;
+            @extend .button;
 
             margin-left: 1em;
-            border-radius: 2px;
-            letter-spacing: 0.8px;
-            font-weight: 400;
-
-            &:hover {
-                background: darken(#4eb276, 10);
-                border-color: darken(#4eb276, 10);
-            }
         }
 
         &__control-row-import-button {
