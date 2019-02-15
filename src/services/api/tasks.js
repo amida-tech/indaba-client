@@ -13,6 +13,7 @@ const tasks = {
     postTask: requestBody => requests.apiPostRequest(getFullPath('tasks'), requestBody),
     putTask: (taskId, requestBody) => requests.apiPutRequest(getFullPath(`tasks/${taskId}`), requestBody),
     getTasks: () => requests.apiGetRequest(getFullPath('tasks')),
+    deleteTask: (taskId) => requests.apiDeleteRequest(getFullPath(`tasks/${taskId}`)),
 };
 
 export default tasks;
