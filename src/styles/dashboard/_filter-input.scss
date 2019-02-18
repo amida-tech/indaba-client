@@ -12,8 +12,7 @@ $block-class: 'filter-input';
 
         @extend .small-font;
 
-        &__input,
-        .grommet &__input:not(.grommetux-input) {
+        &__input {
             flex: 1;
             border: 2px solid $border-color;
             border-radius: 2px;
@@ -32,6 +31,7 @@ $block-class: 'filter-input';
 
             position: absolute;
             right: 0.5em;
+            top: 0.2em;
         }
 
         &__list {

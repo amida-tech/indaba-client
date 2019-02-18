@@ -3,7 +3,7 @@ $block-class:'task-options-form';
 .#{$block-class} {
     &__container {
         &--disabled {
-            color: #d9d9d9 !important;
+            color: #d9d9d9;
             cursor: not-allowed;
             pointer-events: none;
         }
@@ -74,6 +74,7 @@ $block-class:'task-options-form';
             width: 100%;
             resize: none;
             line-height: 40px;
+            min-height: 80px;
         }
 
         &__divider {
