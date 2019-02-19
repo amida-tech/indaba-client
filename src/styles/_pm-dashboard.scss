@@ -30,24 +30,30 @@ $block-class: 'project-list-header';
 
         &__title {
             color: $HEADER_FONT_COLOR;
-            font-size: 15px;
+            font-size: 16px;
 
             &--project {
-                flex: 4;
+                flex: 3;
+                text-align: left;
+                margin-left: 14px;
             }
 
             &--survey {
-                flex: 4;
+                flex: 3;
+                text-align: left;
+                margin-left: 56px;
             }
 
             &--flags {
                 flex: 1;
+                text-align: left;
+                margin-left: 40px;
             }
 
             &--last-updated {
-                flex: 3;
+                flex: 1;
+                text-align: left;
                 display: flex;
-                justify-content: flex-end;
             }
         }
     }

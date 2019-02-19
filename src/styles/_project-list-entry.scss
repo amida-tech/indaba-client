@@ -5,7 +5,7 @@ $block-class: 'project-list-entry';
         display: flex;
         align-items: center;
         cursor: pointer;
-        padding: 8px 16px;
+        padding: 14px 20px;
 
         @extend .lead-font;
 
@@ -15,11 +15,15 @@ $block-class: 'project-list-entry';
         }
 
         &__name {
-            flex: 3;
+            flex: 2;
+            text-align: left;
+            margin-left: 14px;
         }
 
         &__status {
             flex: 1;
+            text-align: left;
+            margin-right: 48px;
 
             &--active {
                 color: $KALE_GREEN;
@@ -33,9 +37,9 @@ $block-class: 'project-list-entry';
         }
 
         &__last-updated {
-            flex: 3;
+            flex: 1;
             display: flex;
-            justify-content: flex-end;
+            text-align: right;
         }
     }
 }
