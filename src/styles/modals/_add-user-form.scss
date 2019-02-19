@@ -8,6 +8,13 @@ $block-class: 'add-user-form';
             min-width: 800px;
             padding: 1em;
             color: $FONT_COLOR;
+
+            &__input {
+                @include text-input;
+
+                width: 75%;
+                margin-top: 8px;
+            }
         }
     }
 }
