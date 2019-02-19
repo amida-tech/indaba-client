@@ -10,7 +10,7 @@ $block-class: 'project-list-entry';
         @extend .lead-font;
 
         &:hover {
-            background-color: darken(#fafafa, 5%);
+            background-color: $LIGHTEST_GREEN;
             color: $HEADER_FONT_COLOR;
         }
 
@@ -22,7 +22,7 @@ $block-class: 'project-list-entry';
             flex: 1;
 
             &--active {
-                color: darken($LIGHT_GREEN, 10%);
+                color: $KALE_GREEN;
             }
         }
 

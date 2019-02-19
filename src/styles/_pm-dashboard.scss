@@ -1,4 +1,3 @@
-$element-background: #fdfdfd;
 $block-class:'pm-dashboard';
 
 @at-root {
@@ -8,14 +7,14 @@ $block-class:'pm-dashboard';
 
         &__table {
             border: 2px solid $BORDER_COLOR;
-            border-radius: 2px;
-            background-color: $element-background;
+            border-radius: 4px;
+            background-color: $WHITE;
         }
 
         &__no-data {
             @extend .large-font;
 
-            color: #333;
+            color: $ANCHOR_GRAY;
             text-align: center;
             margin: 1em;
         }
