@@ -1,7 +1,8 @@
-$block-class:'pm-dashboard';
+$block-class-dashboard:'pm-dashboard';
+$block-class: 'project-list-header';
 
 @at-root {
-    .#{$block-class} {
+    .#{$block-class-dashboard} {
         margin-left: 5%;
         margin-right: 5%;
 
@@ -17,6 +18,37 @@ $block-class:'pm-dashboard';
             color: $ANCHOR_GRAY;
             text-align: center;
             margin: 1em;
+        }
+    }
+}
+
+@at-root {
+    .#{$block-class} {
+        display: flex;
+        padding: 16px 16px;
+        background-color: $LIGHT_GRAY;
+
+        &__title {
+            color: $HEADER_FONT_COLOR;
+            font-size: 15px;
+
+            &--project {
+                flex: 4;
+            }
+
+            &--survey {
+                flex: 4;
+            }
+
+            &--flags {
+                flex: 1;
+            }
+
+            &--last-updated {
+                flex: 3;
+                display: flex;
+                justify-content: flex-end;
+            }
         }
     }
 }
