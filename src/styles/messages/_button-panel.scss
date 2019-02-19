@@ -4,8 +4,8 @@ $block-class: 'button-panel';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
-        border: 1px solid $BORDER_COLOR;
-        border-radius: 2px;
+        border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
         overflow: hidden;
         align-items: center;
 

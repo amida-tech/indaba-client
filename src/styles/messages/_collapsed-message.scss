@@ -5,7 +5,7 @@ $block-class: 'collapsed-message';
         margin-top: 1em;
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: $PAGE_BACKGROUND_COLOR;
         padding: 0.5em 1em;
         border-bottom: 1px solid $BORDER_COLOR;
         cursor: pointer;

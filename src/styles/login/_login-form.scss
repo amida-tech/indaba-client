@@ -15,14 +15,6 @@ $block-class:'login-form';
 
             width: 100%;
             padding: 16px;
-            border: 1.5px solid $INPUT_BORDER_COLOR;
-            border-radius: 4px;
-
-            &:focus,
-            &:active {
-                border: 2px solid $INPUT_ACTIVE_BORDER_COLOR;
-                outline: none;
-            }
         }
 
         &__signin-button {
