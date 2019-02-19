@@ -1,6 +1,3 @@
-$element-background: #f3f5f6;
-$search-input-background: #fff;
-
 $block-class: 'search';
 
 @at-root {
@@ -8,7 +5,6 @@ $block-class: 'search';
         display: flex;
         align-items: center;
         position: relative;
-        color: $HEADER_FONT_COLOR;
 
         @extend .small-font;
 
@@ -19,16 +15,8 @@ $block-class: 'search';
 
         &__input {
             flex: 1;
-            border: 2px solid $BORDER_COLOR;
-            border-radius: 2px;
-            background-color: $search-input-background;
-            padding: 8px;
 
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+            @include text-input;
         }
 
         &__icon {
@@ -43,7 +31,7 @@ $block-class: 'search';
             position: absolute;
             width: 75%;
             margin-left: 0;
-            background-color: rgba(248, 248, 248, 0.95);
+            background-color: $LIGHT_GRAY;
         }
 
         &__entry {
@@ -52,13 +40,11 @@ $block-class: 'search';
             flex-direction: row;
             align-items: center;
             padding: 8px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            font-weight: 400;
-            color: #82909c;
+
+            @extend .small-font;
 
             &:hover {
-                background-color: #ededed;
+                background-color: $LIGHTEST_GRAY;
             }
         }
     }

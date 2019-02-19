@@ -36,7 +36,6 @@ $block-class: 'message-list';
             flex-direction: row;
             align-items: center;
             background: $WHITE;
-            //border-bottom: 1px solid $BORDER_COLOR;
 
             &--unread {
                 .#{$block-class}__unread-indicator {
@@ -46,7 +45,7 @@ $block-class: 'message-list';
                 .#{$block-class}__name,
                 .#{$block-class}__subject,
                 .#{$block-class}__time {
-                    color: #333;
+                    color: $DARK_GRAY;
                     font-weight: 500;
                 }
             }
@@ -64,27 +63,27 @@ $block-class: 'message-list';
         }
 
         &__name {
+            @extend .lead-font;
+
             flex: 1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 15px;
-            color: $HEADER_FONT_COLOR;
         }
 
         &__subject {
+            @extend .lead-font;
+
             flex: 2;
-            font-size: 15px;
-            color: $HEADER_FONT_COLOR;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         &__time {
-            font-size: 15px;
+            @extend .lead-font;
+
             flex: 1;
-            color: $HEADER_FONT_COLOR;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;

@@ -1,5 +1,4 @@
 $block-class: 'filter';
-$filter-background: #fff;
 
 @at-root {
     .#{$block-class} {
@@ -39,7 +38,7 @@ $filter-background: #fff;
             align-items: center;
             padding: 4px 8px;
             border: 1px solid $BORDER_COLOR;
-            background-color: $filter-background;
+            background-color: $PAGE_BACKGROUND_COLOR;
             cursor: pointer;
 
             &--active {
@@ -49,7 +48,7 @@ $filter-background: #fff;
             }
 
             &:hover:not(&--active) {
-                background-color: darken(#fafafa, 5%);
+                background-color: $LIGHT_GRAY;
                 color: $HEADER_FONT_COLOR;
             }
         }
