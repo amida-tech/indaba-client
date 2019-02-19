@@ -22,7 +22,7 @@ $block-class: 'stamp';
 
         &--neutral {
             border-color: $LIGHT_GRAY;
-            color: $LEAD_FONT_COLOR;
+            color: $HEADER_FONT_COLOR;
         }
 
         &::before {

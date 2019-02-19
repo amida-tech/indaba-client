@@ -70,10 +70,6 @@ class Summary extends Component {
                     status={this.props.vocab.SURVEY[this.props.survey.status.toUpperCase()]}
                     onStatusChangeClick={this.onSurveyStatusClick}
                     onEditClick={this.props.onSurveyEditClick} >
-                    <IonIcon
-                        icon='ion-ios-paper-outline'
-                        fontSize='4em'
-                        className='summary__survey-icon' />
                 </StatusCard>
             </div>
         );

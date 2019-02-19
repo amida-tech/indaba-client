@@ -18,7 +18,7 @@
 
     // TODO: fix the disabled
     &:disabled {
-        color: lighten($INPUT_TEXT_COLOR, 40%);
+        color: $DISABLED_FONT_COLOR;
         cursor: not-allowed;
     }
 }

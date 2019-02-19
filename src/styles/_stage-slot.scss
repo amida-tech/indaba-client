@@ -4,7 +4,7 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: $LEAD_FONT_COLOR;
+        color: $HEADER_FONT_COLOR;
         font-size: 16px;
         padding: 16px;
         min-height: 104px;

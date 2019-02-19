@@ -2,9 +2,9 @@ $block-class: 'status-card';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $BORDER_COLOR;
-        background-color: $PRIMARY_GRAY;
-        border-radius: 2px;
+        border: 2px solid $BORDER_COLOR;
+        background-color: $PAGE_BACKGROUND_COLOR;
+        border-radius: 4px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -12,10 +12,6 @@ $block-class: 'status-card';
         flex: 1;
         padding: 0.5em 2em;
         margin: 0 0.5em;
-
-        &--icon {
-            padding-left: 0.5em;
-        }
 
         &__left {
             display: flex;
@@ -25,45 +21,36 @@ $block-class: 'status-card';
         }
 
         &__name-label {
-            color: $FONT_COLOR;
-            font-size: 14px;
-            line-height: 14px;
+            color: $STEEL_GRAY;
+
+            @extend .med-font;
         }
 
         &__name-value {
-            display: flex;
-            color: $LEAD_FONT_COLOR;
-            font-size: 24px;
-            font-weight: 100;
-            cursor: pointer;
+            @extend .x-large-font;
 
-            &:hover {
-                color: $HOVER_GREEN;
-            }
+            display: flex;
+            cursor: pointer;
         }
 
         &__status {
-            color: $LEAD_FONT_COLOR;
-            margin-top: 20px;
-            font-size: 24px;
+            @extend .large-font;
+
+            margin-top: 36px;
             display: flex;
-            font-weight: 300;
-
-            &:hover {
-                color: $HOVER_GREEN;
-            }
-
-            &--editable {
-                cursor: pointer;
-            }
+            cursor: pointer;
         }
 
         &__create-icon {
             @extend .small-icon;
+
+            margin-left: 8px;
         }
 
         &__edit-icon {
             @extend .small-icon;
+
+            margin-left: 4px;
         }
     }
 }

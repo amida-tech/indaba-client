@@ -4,7 +4,7 @@ $block-class: 'editable-text-input';
     .#{$block-class} {
         font-size: 22px;
         font-weight: 300;
-        color: $LEAD_FONT_COLOR;
+        color: $HEADER_FONT_COLOR;
         display: flex;
         // .grommet selectors to exceed grommet styling specificity if
         // this component happens to be in a grommet context

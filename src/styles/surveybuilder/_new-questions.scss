@@ -4,7 +4,7 @@ $block-class: 'new-questions';
     .#{$block-class} {
         &__types {
             font-size: 14px;
-            color: $LEAD_FONT_COLOR;
+            color: $HEADER_FONT_COLOR;
             border-bottom: 1px solid $BORDER_COLOR;
             padding: 1em;
             display: flex;
@@ -26,12 +26,12 @@ $block-class: 'new-questions';
             &-icon {
                 @extend .x-small-icon;
 
-                fill: $LEAD_FONT_COLOR;
+                fill: $HEADER_FONT_COLOR;
             }
         }
 
         &__section-icon {
-            fill: $LEAD_FONT_COLOR;
+            fill: $HEADER_FONT_COLOR;
 
             &:active {
                 fill: $LIGHT_GREEN;

@@ -11,7 +11,7 @@ $block-class: 'user-task-list-entry';
 
         &:hover {
             background-color: darken(#fafafa, 5%);
-            color: $LEAD_FONT_COLOR;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__cell {

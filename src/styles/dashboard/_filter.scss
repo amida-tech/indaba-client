@@ -50,7 +50,7 @@ $filter-background: #fff;
 
             &:hover:not(&--active) {
                 background-color: darken(#fafafa, 5%);
-                color: $LEAD_FONT_COLOR;
+                color: $HEADER_FONT_COLOR;
             }
         }
     }

@@ -3,14 +3,14 @@
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
-    color: $LEAD_FONT_COLOR;
+    color: $HEADER_FONT_COLOR;
 }
 
 .lead-font-bold {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 500;
-    color: $LEAD_FONT_COLOR;
+    color: $HEADER_FONT_COLOR;
 }
 
 .x-small-font {
@@ -31,15 +31,14 @@
     font-size: 18px;
     line-height: 1.5;
     font-weight: 400;
-    color: $LEAD_FONT_COLOR;
 }
 
 .large-font {
     font-size: 22px;
     line-height: 1.5;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: -0.8px;
-    color: $LEAD_FONT_COLOR;
+    color: $HEADER_FONT_COLOR;
 }
 
 .x-large-font {
@@ -47,7 +46,7 @@
     line-height: 1.5;
     font-weight: 300;
     letter-spacing: -0.8px;
-    color: $LEAD_FONT_COLOR;
+    color: $HEADER_FONT_COLOR;
 }
 
 .stage-font-bold {

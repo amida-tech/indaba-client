@@ -16,7 +16,7 @@ $block-class:'stage-form';
     .#{$block-class} {
         @include multi-select-styles;
 
-        color: $LEAD_FONT_COLOR;
+        color: $HEADER_FONT_COLOR;
         padding: 16px 24px 26px;
 
         &__input-field {
