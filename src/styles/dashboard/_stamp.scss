@@ -7,8 +7,9 @@ $block-class: 'stamp';
         border-radius: 50%;
         margin: 0 8px;
         position: relative;
-        max-width: 128px;
+        max-width: 100px;
         min-width: 100px;
+        flex-direction: column;
 
         &--bad {
             border-color: $ERROR_RED;

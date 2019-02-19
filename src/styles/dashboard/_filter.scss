@@ -9,8 +9,7 @@ $block-class: 'filter';
             margin-left: -8px;
 
             .#{$block-class}__button {
-                margin-left: 8px;
-                border-radius: 3px;
+                margin-left: 14px;
             }
         }
 
@@ -36,9 +35,10 @@ $block-class: 'filter';
             text-align: center;
             display: flex;
             align-items: center;
-            padding: 4px 8px;
-            border: 1px solid $BORDER_COLOR;
+            padding: 8px 16px;
+            border: 2px solid $BORDER_COLOR;
             background-color: $PAGE_BACKGROUND_COLOR;
+            border-radius: 500px;
             cursor: pointer;
 
             &--active {
