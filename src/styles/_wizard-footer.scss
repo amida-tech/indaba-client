@@ -3,7 +3,8 @@ $block-class: 'wizard-footer';
 @at-root {
     .#{$block-class} {
         display: flex;
-        background-color: $PRIMARY_GRAY;
+        background-color: $PAGE_BACKGROUND_COLOR;
+        border-top: 2px solid $LIGHT_GRAY;
         justify-content: space-between;
         padding: 1.5rem;
         position: fixed;

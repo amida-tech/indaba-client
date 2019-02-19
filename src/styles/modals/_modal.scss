@@ -8,7 +8,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         right: 0;
         bottom: 0;
         z-index: 10;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: $MODAL_BACKGROUND_COLOR;
         height: 100vh;
         overflow: auto;
 
@@ -23,13 +23,13 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             max-width: 100%;
             border: 1px solid $BORDER_COLOR;
             border-radius: 3px;
-            background-color: rgba(255, 255, 255, 1);
-            box-shadow: 2px 0 6px 0 rgba(128, 134, 145, 0.6);
+            background-color: $PAGE_BACKGROUND_COLOR;
+            box-shadow: 2px 0 6px 0 $ANCHOR_GRAY;
 
             input[type=text] {
                 font: inherit;
                 line-height: 1.5;
-                border: 1px solid #e6e6e6;
+                border: 2px solid $BORDER_COLOR;
                 border-radius: 4px;
                 outline: none;
                 background-color: transparent;
@@ -42,9 +42,9 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
 
         &__title {
             padding-left: 1em;
-            background-color: #f2f2f2;
+            background-color: $LIGHT_GRAY;
             line-height: 48px;
-            border-bottom: 1px solid $BORDER_COLOR;
+            border-bottom: 2px solid $BORDER_COLOR;
             color: $HEADER_FONT_COLOR;
             text-align: left;
             font-size: 18px;
@@ -61,7 +61,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__footer {
-            background-color: $PRIMARY_GRAY;
+            background-color: $PAGE_BACKGROUND_COLOR;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -72,8 +72,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
         }
 
         &__contents {
-            background-color: #fff;
-            border-bottom: 1px solid $BORDER_COLOR;
+            background-color: $PAGE_BACKGROUND_COLOR;
             height: 100%;
 
             // specific layers
@@ -132,7 +131,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 input[role=combobox] {
                     border: none;
                     color: transparent;
-                    text-shadow: 0 0 0 gray;
+                    text-shadow: 0 0 0 $DARK_GRAY;
                     text-align: center;
 
                     &:focus {

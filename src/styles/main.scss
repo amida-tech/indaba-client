@@ -7,7 +7,7 @@
 @import './common/named_colors.scss';
 @import './common/text-input.scss';
 @import './icons.scss';
-@import 'common/mixins';
+@import 'common/header';
 @import './styles.scss';
 @import './buttons.scss';
 
@@ -51,7 +51,7 @@
 @import './subject-list.scss';
 @import './pm-dashboard.scss';
 @import './status-label.scss';
-@import './fonts.scss';
+@import 'common/fonts';
 @import './add-stages.scss';
 @import './project-wizard';
 @import './wizard-footer.scss';

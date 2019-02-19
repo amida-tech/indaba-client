@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IonIcon from 'react-ionicons';
 import { toast } from 'react-toastify';
 import { has, some } from 'lodash';
 

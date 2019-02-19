@@ -21,4 +21,9 @@
         color: $DISABLED_FONT_COLOR;
         cursor: not-allowed;
     }
+
+    &--flag {
+        color: $BLACK;
+        border: 2px solid $BLACK;
+    }
 }
