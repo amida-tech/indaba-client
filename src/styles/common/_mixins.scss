@@ -4,7 +4,7 @@
 @mixin pm-sub-header {
     display: flex;
     background-color: $LIGHT_GRAY;
-    border: 1px solid $border-color;
+    border: 1px solid $LIGHT_GRAY;
     padding: 24px;
     align-items: center;
     margin-top: 40px;

@@ -2,20 +2,23 @@
     Text Input - Used anywhere text can be written into field.
  */
 @mixin text-input {
+    @extend .lead-font;
+
     border-radius: 2px;
-    border: 1px solid $LIGHT_GRAY;
-    background-color: transparent;
+    color: $INPUT_TEXT_COLOR;
+    border: 1px solid $INPUT_BORDER_COLOR;
+    background-color: $INPUT_COLOR;
     padding: 12px 14px;
 
     &:focus,
     &:active {
-        border: 2px solid $LIGHT_GREEN;
+        border: 2px solid $INPUT_ACTIVE_BORDER_COLOR;
         outline: none;
     }
 
+    // TODO: fix the disabled
     &:disabled {
-        background-color: $PRIMARY_GRAY;
-        border: 1px solid $LIGHT_GRAY;
+        color: lighten($INPUT_TEXT_COLOR, 40%);
         cursor: not-allowed;
     }
 }
