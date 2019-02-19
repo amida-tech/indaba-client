@@ -1,15 +1,19 @@
 // Okay, for the purposes of sanity, let's start grouping these under folders in styles,
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
+
+// Common
 @import './common/semantic_colors.scss';
 @import './common/named_colors.scss';
 @import './common/text-input.scss';
 @import './icons.scss';
 @import 'common/mixins';
 @import './styles.scss';
-@import './buttons';
 @import './buttons.scss';
-@import 'common/react-select-override';
+
+// Vendors
+@import 'vendors/react-dates-override';
+@import 'vendors/react-select-override';
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -163,5 +167,4 @@
 // Reset Password
 @import './resetpassword/reset-password-form.scss';
 // Common
-@import './common/react-dates-override.scss';
 @import './common/menu.scss';

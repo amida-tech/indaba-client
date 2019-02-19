@@ -3,9 +3,10 @@
  */
 @mixin multi-select-styles {
     .Select--multi .Select-value {
-        color: $form-text;
+        @extend .med-font;
+
         background-color: $background-color;
-        border: 1px solid $brand-color;
+        border: 1px solid $INDABA_GREEN;
     }
 
     .Select--multi .Select-value-label {
