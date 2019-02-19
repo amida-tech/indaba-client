@@ -9,10 +9,9 @@ $block-class: 'add-user-form';
             padding: 1em;
             color: $FONT_COLOR;
 
-            &__input {
+            &--input {
                 @include text-input;
 
-                width: 75%;
                 margin-top: 8px;
             }
         }
