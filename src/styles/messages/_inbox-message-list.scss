@@ -22,8 +22,6 @@ $block-class: 'inbox-message-list';
             box-shadow: none;
             cursor: default;
             background-color: $LIGHT_GRAY;
-            border-radius: 4px;
-            border-color: $BORDER_COLOR;
         }
 
         &__entry {

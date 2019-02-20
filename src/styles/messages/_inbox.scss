@@ -12,6 +12,11 @@ $block-class: 'inbox';
             margin-bottom: 1em;
         }
 
+        &__table {
+            border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
+        }
+
         &__top-row {
             display: flex;
             flex-direction: row;

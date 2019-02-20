@@ -204,17 +204,19 @@ class Inbox extends Component {
                         active={this.props.messages.ui.filter}
                         onFilterClick={this.handleFilterClick}/>
                 </div>
-                <InboxMessageList entries={this.props.inboxList}
-                    thread={isThreadList}
-                    vocab={this.props.vocab}
-                    onMessageClick={this.handleThreadClick}
-                    actions={this.props.actions}
-                    users={this.props.users}
-                    onArchive={this.handleArchive}
-                    onUnarchive={this.handleUnarchive}
-                    onMarkAsRead={this.handleMarkAsRead}
-                    onMarkAsUnread={this.handleMarkAsUnread}
-                    onDelete={this.handleDelete}/>
+                <div className='inbox__table'>
+                    <InboxMessageList entries={this.props.inboxList}
+                        thread={isThreadList}
+                        vocab={this.props.vocab}
+                        onMessageClick={this.handleThreadClick}
+                        actions={this.props.actions}
+                        users={this.props.users}
+                        onArchive={this.handleArchive}
+                        onUnarchive={this.handleUnarchive}
+                        onMarkAsRead={this.handleMarkAsRead}
+                        onMarkAsUnread={this.handleMarkAsUnread}
+                        onDelete={this.handleDelete}/>
+                </div>
                 <div className='inbox__pager'>
                     <div className='inbox__pager-content'>
                         {
