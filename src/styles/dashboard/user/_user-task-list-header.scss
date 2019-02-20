@@ -2,14 +2,9 @@ $block-class: 'user-task-list-header';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        padding: 16px 16px;
-        background-color: $LIGHT_GRAY;
+        @include table-header;
 
         &__title {
-            color: $HEADER_FONT_COLOR;
-            font-size: 16px;
-
             &--subject,
             &--task,
             &--survey {

@@ -3,17 +3,7 @@ $block-class-header: 'project-list-header';
 
 @at-root {
     .#{$block-class} {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        padding: 14px 14px;
-
-        @extend .lead-font;
-
-        &:hover {
-            background-color: $LIGHTEST_GRAY;
-            color: $HEADER_FONT_COLOR;
-        }
+        @extend .table-body;
 
         &__name {
             flex: 2;
@@ -47,14 +37,9 @@ $block-class-header: 'project-list-header';
 
 @at-root {
     .#{$block-class-header} {
-        display: flex;
-        padding: 16px 16px;
-        background-color: $LIGHT_GRAY;
+        @include table-header;
 
         &__title {
-            color: $HEADER_FONT_COLOR;
-            font-size: 16px;
-
             &--project {
                 flex: 3;
                 text-align: left;

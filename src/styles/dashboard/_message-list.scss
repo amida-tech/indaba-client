@@ -2,22 +2,21 @@ $block-class: 'message-list';
 
 @at-root {
     .#{$block-class} {
+        @extend .table-full;
+
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
         min-height: 220px;
-        border: 2px solid $BORDER_COLOR;
-        border-radius: 4px;
         margin-top: 64px;
 
         &__title {
+            @include table-header;
+
             justify-content: space-between;
-            background: $LIGHT_GRAY;
-            border: 2px solid $BORDER_COLOR;
             display: flex;
             padding: 8px;
             font-size: 18px;
-            color: $HEADER_FONT_COLOR;
         }
 
         &__title-link {
@@ -30,11 +29,11 @@ $block-class: 'message-list';
         }
 
         &__row {
+            @extend .table-body;
+
             height: 3em;
             padding-left: 8px;
-            display: flex;
             flex-direction: row;
-            align-items: center;
             background: $WHITE;
 
             &--unread {
@@ -48,10 +47,6 @@ $block-class: 'message-list';
                     color: $DARK_GRAY;
                     font-weight: 500;
                 }
-            }
-
-            &:hover {
-                background-color: $LIGHTEST_GRAY;
             }
         }
 
