@@ -2,13 +2,13 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
-        background-color: $WHITE;
+        background-color: $PAGE_BACKGROUND_COLOR;
         border: 2px solid $BORDER_COLOR;
         margin-bottom: 80px;
         border-radius: 4px;
 
         &__invite-container {
-            background-color: $WHITE;
+            background-color: $PAGE_BACKGROUND_COLOR;
             border-bottom: 2px solid $BORDER_COLOR;
             display: flex;
             flex-direction: column;
@@ -20,19 +20,7 @@ $block-class: 'pm-users-tab';
         }
 
         &__text-input {
-            padding: 8px;
-            width: 100%;
-            border: 1px solid $BORDER_COLOR;
-
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
-        }
-
-        .grommetux-control-icon {
-            @extend .small-icon;
+            @include text-input;
         }
     }
 }

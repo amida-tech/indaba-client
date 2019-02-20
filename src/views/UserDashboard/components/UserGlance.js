@@ -6,18 +6,16 @@ import Stamp, { StampType } from '../../../common/components/Dashboard/Stamp';
 class UserGlance extends Component {
     render() {
         return (
-            <div className='user-glance'>
-                <div className='user-glance__group'>
+            <div className='glance'>
+                <div className='glance__group'>
                     <Stamp label={this.props.vocab.PROJECT.TASKS_TO_DO}
                         value={this.props.tasks} />
                     <Stamp label={this.props.vocab.PROJECT.NEW_TASK}
-                        value={this.props.newTasks}
-                        type={StampType.GOOD} />
+                        value={this.props.newTasks} />
                 </div>
-                <div className='user-glance__group'>
+                <div className='glance__group'>
                     <Stamp label={this.props.vocab.PROJECT.LATE_TASK}
-                        value={this.props.lateTasks}
-                        type={StampType.BAD} />
+                        value={this.props.lateTasks} />
                     <Stamp label={this.props.vocab.PROJECT.FLAGGED}
                         value={this.props.flagged} />
                 </div>

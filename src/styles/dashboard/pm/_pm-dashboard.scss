@@ -1,0 +1,22 @@
+$block-class-dashboard:'pm-dashboard';
+
+@at-root {
+    .#{$block-class-dashboard} {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        &__table {
+            border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
+            background-color: $WHITE;
+        }
+
+        &__no-data {
+            @extend .large-font;
+
+            color: $ANCHOR_GRAY;
+            text-align: center;
+            margin: 1em;
+        }
+    }
+}

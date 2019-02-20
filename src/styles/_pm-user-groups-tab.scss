@@ -5,7 +5,7 @@ $block-class: 'pm-user-groups-tab';
         border: 2px solid $BORDER_COLOR;
         border-radius: 2px;
         justify-content: center;
-        background-color: #fdfdfd;
+        background-color: $PAGE_BACKGROUND_COLOR;
 
         &__filter-container {
             padding: 1em;
