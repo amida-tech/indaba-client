@@ -8,7 +8,7 @@ $block-class: 'pm-user-list-row';
         @extend .lead-font;
 
         &:hover {
-            background-color: #ededed;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
 
         &__cell {
@@ -18,7 +18,7 @@ $block-class: 'pm-user-list-row';
         }
 
         &__mail-button {
-            // TODO: change mail icon, colors dont work.
+            // TODO: change mail icon, colors don't work.
             @extend .small-icon;
         }
     }

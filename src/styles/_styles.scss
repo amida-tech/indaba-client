@@ -26,35 +26,6 @@ body,
     padding-bottom: $footer-height-with-padding;
 }
 
-.grommetux-text-input {
-    margin-bottom: 1em;
-}
-
-.grommetux-search .grommetux-search__input {
-    font-size: 16px;
-    padding: 7px 4px;
-    border-radius: 0;
-}
-
-.grommetux-search__drop,
-.grommetux-search__suggestion {
-    @extend .small-font;
-}
-
-.grommetux-search--fill {
-    width: 100%;
-}
-
-.invite-user {
-    .grommetux-box--direction-column.grommetux-box--pad-between-small > *:not(:last-child) {
-        margin-bottom: 4px;
-    }
-
-    .grommetux-box--direction-row.grommetux-box--pad-between-small > *:not(:last-child) {
-        margin-right: 4px;
-    }
-}
-
 .divider {
     margin-top: 0;
     margin-bottom: 0;
@@ -124,20 +95,4 @@ body,
 
 .center {
     float: left;
-}
-
-.basic-input {
-    font: inherit;
-    line-height: 1.5;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    outline: none;
-    background-color: transparent;
-    color: inherit;
-    margin: 0;
-    padding: 11px;
-
-    &:focus {
-        border: 2px solid #4eb276;
-    }
 }

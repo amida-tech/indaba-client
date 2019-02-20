@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import UserTaskFilter from './UserTaskFilter';
-import FilterInput from '../../../common/components/Dashboard/FilterInput';
 
 class UserTaskListControls extends Component {
     render() {
         return (
             <div className='user-task-list-controls'>
-                <div className='user-task-list-controls__filter-query'>
-                    <FilterInput placeholder={this.props.vocab.PROJECT.FILTER_TASKS}
-                        onChange={evt => this.props.actions.setFilterQuery(evt.target.value)}/>
-                </div>
                 <div className='user-task-list-controls__filter'>
                     <UserTaskFilter active={this.props.filter}
                         vocab={this.props.vocab}
