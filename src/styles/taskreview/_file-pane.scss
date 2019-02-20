@@ -29,7 +29,7 @@ $block-class: 'file-pane';
             }
 
             &:disabled {
-                color: graytext;
+                color: $DISABLED_FONT_COLOR;
             }
         }
 

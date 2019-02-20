@@ -6,7 +6,7 @@ $block-class:'dropdown';
             width: 50%;
 
             &--disabled {
-                background-color: #ebebe4;
+                background-color: $PAGE_BACKGROUND_COLOR;
                 padding: 0.1em;
             }
         }

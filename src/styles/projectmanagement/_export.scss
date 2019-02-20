@@ -22,13 +22,13 @@ $block-class: 'export';
 
         &__configuration {
             flex: 1;
-            border: 1px solid $BORDER_COLOR;
-            background-color: #f7f8f9;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
 
         &__type-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $BORDER_COLOR;
+            border-bottom: 2px solid $BORDER_COLOR;
 
             &--inactive {
                 opacity: 0.5;
@@ -62,7 +62,7 @@ $block-class: 'export';
         &__custom-choices {
             margin: 16px;
             padding: 16px 12px;
-            border: 1px solid $BORDER_COLOR;
+            border: 2px solid $BORDER_COLOR;
             background-color: $PAGE_BACKGROUND_COLOR;
             display: flex;
             flex-wrap: wrap;
@@ -80,15 +80,15 @@ $block-class: 'export';
 
         &__custom-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $BORDER_COLOR;
+            border-bottom: 2px solid $BORDER_COLOR;
         }
 
         &__custom-section--inactive {
-            color: lighten($FONT_COLOR, 20%);
+            color: $DISABLED_FONT_COLOR;
 
             .#{$block-class} {
                 &__custom-action {
-                    color: lighten(#3757bc, 30%);
+                    color: $AVOCADO_GREEN;
                 }
             }
         }
@@ -101,7 +101,7 @@ $block-class: 'export';
         &__custom-action {
             margin-left: 16px;
             cursor: pointer;
-            color: #3757bc;
+            color: $AVOCADO_GREEN;
         }
 
         &__custom-title {
@@ -113,8 +113,8 @@ $block-class: 'export';
         &__download {
             flex-basis: 240px;
             margin-left: 30px;
-            background-color: #f7f8f9;
-            border: 1px solid $BORDER_COLOR;
+            background-color: $PAGE_BACKGROUND_COLOR;
+            border: 2px solid $BORDER_COLOR;
             display: flex;
             flex-direction: column;
             align-items: center;

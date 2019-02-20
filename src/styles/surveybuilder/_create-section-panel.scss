@@ -2,7 +2,7 @@ $block-class: 'create-section-panel';
 
 @at-root {
     .#{$block-class} {
-        border-top: 1px solid $BORDER_COLOR;
+        border-top: 2px solid $BORDER_COLOR;
 
         &__section-header {
             display: flex;
@@ -13,12 +13,11 @@ $block-class: 'create-section-panel';
         &__section-name {
             @extend .large-font;
 
-            color: #333;
             border: none;
             padding: 16px;
             margin-left: 2px;
             width: 100%;
-            background-color: #fafafa;
+            background-color: $PAGE_BACKGROUND_COLOR;
             outline: none;
 
             &:focus {

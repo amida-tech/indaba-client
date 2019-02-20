@@ -6,9 +6,9 @@ $block-class: 'add-question-panel';
         flex-direction: column;
         position: relative;
         width: 320px;
-        border: 1px solid $BORDER_COLOR;
+        border: 2px solid $BORDER_COLOR;
         margin-top: 48px;
-        background-color: #f7f7f7;
+        background-color: $PAGE_BACKGROUND_COLOR;
 
         &__instructions {
             text-align: center;
@@ -21,9 +21,9 @@ $block-class: 'add-question-panel';
             &__link--active {
                 @extend .tab__link--active !optional;
 
-                border-left: 1px solid $BORDER_COLOR;
-                border-right: 1px solid $BORDER_COLOR;
-                border-top: 1px solid $BORDER_COLOR;
+                border-left: 2px solid $BORDER_COLOR;
+                border-right: 2px solid $BORDER_COLOR;
+                border-top: 2px solid $BORDER_COLOR;
             }
 
             &__label {

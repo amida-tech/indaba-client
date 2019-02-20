@@ -10,6 +10,8 @@ $block-class: 'profile-form';
 @at-root {
     .#{$block-class} {
         &__header {
+            @include profile-form-sections;
+
             width: 60%;
             flex-direction: row;
             padding-top: 80px;
@@ -67,6 +69,7 @@ $block-class: 'profile-form';
                 @include text-input;
 
                 min-width: 100%;
+                flex-grow: 1;
                 margin-right: 8px;
             }
         }

@@ -2,9 +2,8 @@ $block-class: 'sub-nav-entry';
 
 @at-root {
     .#{$block-class} {
-        font-size: 14px;
-        line-height: 18px;
-        color: #727882;
+        @extend .lead-font;
+
         text-align: center;
         cursor: pointer;
 

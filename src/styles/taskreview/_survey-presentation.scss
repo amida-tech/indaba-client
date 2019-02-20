@@ -2,15 +2,7 @@ $block-class: 'survey-presentation';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $BORDER_COLOR;
-
-        .grommetux-header {
-            min-height: 0;
-        }
-
-        .grommetux-box--separator-bottom {
-            border-bottom: 0;
-        }
+        border: 2px solid $BORDER_COLOR;
 
         &__submit {
             width: 100%;
@@ -30,13 +22,12 @@ $block-class: 'survey-presentation';
         &__section-name {
             @extend .large-font;
 
-            color: #333;
             border-bottom: 2px solid $BORDER_COLOR;
             padding: 16px 0;
             margin-bottom: 16px;
             margin-left: 15px;
             width: 100%;
-            background-color: #fafafa;
+            background-color: $PAGE_BACKGROUND_COLOR;
             outline: none;
         }
 
