@@ -2,7 +2,7 @@ $block-class: 'pm-all-subjects';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
+        background-color: $WHITE;
 
         @extend .subjects__table;
 
