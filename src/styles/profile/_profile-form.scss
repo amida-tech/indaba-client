@@ -1,12 +1,18 @@
 $block-class: 'profile-form';
 
+@mixin profile-form-sections {
+    margin-left: 20%;
+    margin-right: 20%;
+    display: flex;
+    margin-bottom: 8px;
+}
+
 @at-root {
     .#{$block-class} {
         &__header {
+            @include profile-form-sections;
+
             width: 60%;
-            margin-left: 20%;
-            margin-right: 20%;
-            display: flex;
             flex-direction: row;
             padding-top: 80px;
             padding-bottom: 8px;
@@ -16,7 +22,7 @@ $block-class: 'profile-form';
         &__form-title {
             @extend .large-font;
 
-            padding-top: 6px;
+            padding-top: 8px;
         }
 
         &__button {
@@ -25,20 +31,19 @@ $block-class: 'profile-form';
 
         &__button-pw {
             @extend .secondary-button;
+
+            margin-top: 16px;
         }
 
         &__user-info {
-            display: flex;
+            @include profile-form-sections;
+
             flex-direction: column;
             padding: 16px;
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-bottom: 24px;
         }
 
         &__section-header {
-            font-size: 14px;
-            color: $FONT_COLOR;
+            @extend .med-font;
         }
 
         &__name-row {
@@ -51,10 +56,9 @@ $block-class: 'profile-form';
             flex-direction: column;
 
             &-label {
-                color: $FONT_COLOR;
-                font-size: 12px;
-                font-weight: 400;
-                padding-top: 16px;
+                @extend .small-font;
+
+                padding-top: 24px;
             }
 
             &-spaced {
@@ -62,62 +66,26 @@ $block-class: 'profile-form';
             }
 
             &-input {
-                @extend .large-font;
+                @include text-input;
 
                 min-width: 100%;
-                font-weight: 100;
-                color: $HEADER_FONT_COLOR;
-                border-top: none;
-                border-left: none;
-                border-right: none;
-                border-bottom: 1px solid $BORDER_COLOR;
                 flex-grow: 1;
                 margin-right: 8px;
-
-                &:focus {
-                    outline: none;
-                    border: 1px solid $LIGHT_GREEN;
-                    border-top: none;
-                    border-left: none;
-                    border-right: none;
-                }
-
-                &--disabled {
-                    @extend .large-font;
-
-                    min-width: 100%;
-                    font-weight: 100;
-                    color: $HEADER_FONT_COLOR;
-                    border-top: none;
-                    border-left: none;
-                    border-right: none;
-                    border-bottom: 1px solid $border-color;
-                    flex-grow: 1;
-                    margin-right: 8px;
-                    cursor: not-allowed;
-                    pointer-events: none;
-                }
             }
         }
 
         &__settings {
-            display: flex;
+            @include profile-form-sections;
+
             flex-direction: column;
-            background-color: #fff;
             padding: 16px;
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-bottom: 24px;
         }
 
         &__password {
-            display: flex;
+            @include profile-form-sections;
+
             flex-direction: column;
-            background-color: white;
             padding: 16px;
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-bottom: 24px;
 
             &-instruction {
                 @extend .lead-font;
@@ -134,26 +102,20 @@ $block-class: 'profile-form';
 
         &__ui-message {
             &--error {
-                color: $bad-color;
+                color: $ERROR_RED;
             }
         }
 
         &__textarea {
-            @extend .lead-font;
+            @include text-input;
 
-            min-height: 100px;
-
-            &:focus {
-                outline: none;
-                border: 1px solid $LIGHT_GREEN;
-            }
+            min-height: 150px;
         }
 
         &__checkbox {
-            @extend .small-icon;
+            @extend .primary-icon;
 
             font-size: 1.75em;
-            color: darken(#4eb276, 10);
 
             &--hidden {
                 display: none;
@@ -161,14 +123,10 @@ $block-class: 'profile-form';
             }
 
             &--disabled {
-                @extend .small-icon;
-
-                font-size: 1.75em;
-                margin-right: 10px;
-                margin-bottom: 10px;
-                color: #d9d9d9 !important;
+                color: $DISABLED_FONT_COLOR !important;
                 cursor: not-allowed;
                 pointer-events: none;
+                font-size: 1.75em;
             }
         }
     }

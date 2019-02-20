@@ -4,9 +4,9 @@
 @mixin text-input {
     @extend .lead-font;
 
-    border-radius: 2px;
+    border-radius: 4px;
     color: $INPUT_TEXT_COLOR;
-    border: 1px solid $INPUT_BORDER_COLOR;
+    border: 2px solid $INPUT_BORDER_COLOR;
     background-color: $INPUT_COLOR;
     padding: 12px 14px;
 
@@ -22,6 +22,7 @@
         cursor: not-allowed;
     }
 
+    &--error,
     &--flag {
         color: $BLACK;
         border: 2px solid $BLACK;

@@ -12,7 +12,7 @@ $block-class: 'create-survey-panel';
             flex-direction: row;
             justify-content: space-between;
             border-radius: 2px;
-            background-color: #f9f9f9;
+            background-color: $PAGE_BACKGROUND_COLOR;
             align-items: center;
             border: 1px solid $BORDER_COLOR;
         }
@@ -38,7 +38,7 @@ $block-class: 'create-survey-panel';
             display: flex;
             flex-direction: column;
             padding: 16px;
-            border: 1px solid $BORDER_COLOR;
+            border: 2px solid $BORDER_COLOR;
             color: $FONT_COLOR;
         }
 
@@ -51,7 +51,7 @@ $block-class: 'create-survey-panel';
             resize: none;
             margin-bottom: 4px;
             margin-top: 4px;
-            background-color: #fafafa;
+            background-color: $PAGE_BACKGROUND_COLOR;
 
             &:focus {
                 border: 2px solid $LIGHT_GREEN;

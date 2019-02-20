@@ -27,15 +27,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
             box-shadow: 2px 0 6px 0 $ANCHOR_GRAY;
 
             input[type=text] {
-                font: inherit;
-                line-height: 1.5;
-                border: 2px solid $BORDER_COLOR;
-                border-radius: 4px;
-                outline: none;
-                background-color: transparent;
-                color: inherit;
-                margin: 0;
-                padding: 11px;
+                @include text-input;
             }
         }
         // space at the top for positioning, space on the other side to show box-shadow

@@ -21,13 +21,13 @@ $block-class:'flag-question-list';
 
             &--selected {
                 background-color: $ELEMENT_BACKGROUND;
-                border-right: 3px solid #4eb276;
+                border-right: 3px solid $AVOCADO_GREEN;
                 color: $HEADER_FONT_COLOR;
                 font-size: 12px;
             }
 
             &--inactive {
-                border-right: 2px solid #4eb276;
+                border-right: 2px solid $AVOCADO_GREEN;
             }
         }
     }

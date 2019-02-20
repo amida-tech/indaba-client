@@ -6,7 +6,7 @@ $block-class:'review-pane';
             margin: 1em 2em;
             color: $FONT_COLOR;
             border: 1px solid $FONT_COLOR;
-            background-color: #fafafa;
+            background-color: $PAGE_BACKGROUND_COLOR;
             padding: 0.5em;
             width: 75%;
         }
@@ -15,7 +15,7 @@ $block-class:'review-pane';
             margin: 0 0.5em;
 
             &-reason {
-                color: #399862;
+                color: $INDABA_GREEN;
                 font-weight: bold;
             }
 

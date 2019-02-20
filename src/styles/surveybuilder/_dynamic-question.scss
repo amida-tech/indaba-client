@@ -21,11 +21,7 @@ $block-class: 'dynamic-question';
                 padding: 4px;
                 width: 42vw;
 
-                &:focus,
-                &:active {
-                    border: 2px solid $LIGHT_GREEN;
-                    outline: none;
-                }
+                @include text-input;
             }
         }
 
@@ -46,11 +42,7 @@ $block-class: 'dynamic-question';
                 width: 20%;
                 text-align: center;
 
-                &:focus,
-                &:active {
-                    border: 2px solid $LIGHT_GREEN;
-                    outline: none;
-                }
+                @include text-input;
             }
         }
 
@@ -66,22 +58,14 @@ $block-class: 'dynamic-question';
             height: 18px;
 
             @extend .small-icon;
-
-            fill: lighten($HEADER_FONT_COLOR, 10%);
         }
 
         &__weight-input {
             width: 5%;
             text-align: center;
-            color: $HEADER_FONT_COLOR;
-            outline: none;
             flex-shrink: 0;
 
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+            @include text-input;
         }
 
         &__instructions {

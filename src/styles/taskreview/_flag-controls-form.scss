@@ -10,7 +10,7 @@ $block-class:'flag-controls-form';
             height: 20em;
             resize: none;
             border: 0;
-            background-color: #fff;
+            background-color: $WHITE;
             margin-right: 0;
             padding-left: 20px;
             padding-right: 20px;
@@ -49,9 +49,5 @@ $block-class:'flag-controls-form';
                 @extend .button;
             }
         }
-    }
-
-    .grommetux-check-box__label {
-        margin-right: 0;
     }
 }
