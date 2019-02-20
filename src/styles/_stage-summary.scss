@@ -6,7 +6,7 @@ $block-class:'stage-summary';
         flex-direction: column;
 
         &:hover {
-            background-color: darken(#fff, 2);
+            background-color: $LIGHTEST_GRAY;
         }
 
         &--wizard {
@@ -77,7 +77,7 @@ $block-class:'stage-summary';
         &__label {
             font-size: 12px;
             letter-spacing: 0.3px;
-            color: lighten($FONT_COLOR, 5%);
+            color: $FONT_COLOR;
             overflow: hidden;
             white-space: nowrap;
             font-weight: 400;

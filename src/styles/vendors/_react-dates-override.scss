@@ -3,7 +3,7 @@
 // Will edit everything selected including everything between a range of dates
 .CalendarDay__selected_span {
     background: $LIGHT_GRAY; //background
-    color: white; //text
+    color: $WHITE; //text
     border: 1px solid $DARK_GRAY; //default styles include a border
 }
 
@@ -14,13 +14,13 @@
 // Will edit selected date or the endpoints of a range of dates
 .CalendarDay__selected {
     background: $LIGHT_GREEN;
-    color: white;
+    color: $WHITE;
 }
 
 // Will edit when hovered over. _span style also has this property
 .CalendarDay__selected:hover {
     background: $DARKEST_GREEN;
-    color: white;
+    color: $WHITE;
 }
 
 // Will edit when the second date (end date) in a range of dates

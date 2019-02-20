@@ -2,6 +2,6 @@ $block-class: 'subject-popup-contents';
 
 @at-root {
     .#{$block-class} {
-        background-color: white;
+        background-color: $WHITE;
     }
 }

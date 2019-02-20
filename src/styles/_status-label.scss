@@ -1,9 +1,5 @@
 $block-class: 'status-label';
 
-$bad-color: #af1212;
-$good-color: #68997d;
-$neutral-color: #a4aebf;
-
 @at-root {
     .#{$block-class} {
         color: white;
@@ -15,15 +11,15 @@ $neutral-color: #a4aebf;
         border-radius: 2px;
 
         &--bad {
-            background-color: $bad-color;
+            background-color: $ERROR_RED;
         }
 
         &--good {
-            background-color: $good-color;
+            background-color: $INDABA_GREEN;
         }
 
         &--neutral {
-            background-color: $neutral-color;
+            background-color: $LIGHT_GRAY;
             min-width: 85px;
         }
     }

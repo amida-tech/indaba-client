@@ -1,4 +1,3 @@
-$font-color-for-labels: #757575;
 $block-class:'tasks-tab';
 
 @at-root {
@@ -12,7 +11,7 @@ $block-class:'tasks-tab';
             @extend .lead-font;
 
             &:hover {
-                background-color: #f3f3f3;
+                background-color: $LIGHTEST_GRAY;
             }
         }
 
@@ -20,9 +19,7 @@ $block-class:'tasks-tab';
             flex: 1;
 
             &--header {
-                font-size: 14px;
-                color: $font-color-for-labels;
-                font-weight: 400;
+                @extend .small-font;
             }
         }
     }
