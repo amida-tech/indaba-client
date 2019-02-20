@@ -8,7 +8,7 @@ $block-class: 'user-group-list-entry';
         padding: 8px 16px;
 
         &:hover {
-            background-color: #f3f3f3;
+            background-color: $LIGHTEST_GRAY;
         }
 
         &__name {

@@ -14,15 +14,15 @@ $block-class: 'subjects';
         }
 
         &__table {
-            border: 1px solid $BORDER_COLOR;
+            border: 2px solid $BORDER_COLOR;
         }
 
         &__filter-wrapper {
             padding: 1em;
             width: 100%;
             flex: 1;
-            background-color: #fff;
-            border: 1px solid $BORDER_COLOR;
+            background-color: $WHITE;
+            border: 2px solid $BORDER_COLOR;
         }
     }
 }

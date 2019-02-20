@@ -19,7 +19,7 @@ $block-class: 'pm-all-users';
         }
 
         input::-webkit-input-placeholder {
-            color: #333;
+            color: $ANCHOR_GRAY;
         }
     }
 }

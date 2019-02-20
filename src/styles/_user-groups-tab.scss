@@ -2,8 +2,8 @@ $block-class:'user-groups-tab';
 
 @at-root {
     .wrapper {
-        background-color: #fafafa;
-        border: 1px solid $BORDER_COLOR;
+        background-color: $PAGE_BACKGROUND_COLOR;
+        border: 2px solid $BORDER_COLOR;
         padding: 1rem;
         margin-left: 10%;
         margin-right: 10%;

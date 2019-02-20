@@ -1,4 +1,3 @@
-$font-color-for-labels: #757575;
 $block-class:'user-group-list';
 
 @at-root {
@@ -7,7 +6,7 @@ $block-class:'user-group-list';
         flex-direction: column;
 
         &__header {
-            color: $font-color-for-labels;
+            color: $ANCHOR_GRAY;
             font-weight: 400;
             font-size: 14px;
             display: flex;

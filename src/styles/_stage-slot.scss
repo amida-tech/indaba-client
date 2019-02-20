@@ -40,7 +40,7 @@ $block-class:'stage-slot';
             font-size: 14px;
             display: flex;
             justify-content: space-between;
-            color: #5d5d5d;
+            color: $ANCHOR_GRAY;
         }
 
         &__role-span {
@@ -99,11 +99,6 @@ $block-class:'stage-slot';
             margin-right: 4px;
             margin-top: 8px;
             cursor: pointer;
-        }
-
-        .grommetux-search--inline,
-        .grommetux-control-icon-search {
-            fill: $HEADER_FONT_COLOR;
         }
     }
 }

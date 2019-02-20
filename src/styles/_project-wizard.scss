@@ -12,7 +12,7 @@ $block-class: 'project-wizard';
 
                 &::after {
                     content: '';
-                    border-bottom: 2px solid #ccc;
+                    border-bottom: 2px solid $BORDER_COLOR;
                     width: 80%;
                     position: absolute;
                     z-index: -1;
@@ -39,7 +39,7 @@ $block-class: 'project-wizard';
 
             &__link--active > .project-wizard__tab__title {
                 font-weight: 600;
-                color: #707680;
+                color: $HEADER_FONT_COLOR;
             }
 
             &__title {
@@ -47,7 +47,7 @@ $block-class: 'project-wizard';
 
                 cursor: pointer;
                 font-size: 14px;
-                color: #7e848f;
+                color: $HEADER_FONT_COLOR;
                 border-bottom: none;
                 padding-bottom: 0;
             }

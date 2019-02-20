@@ -1,4 +1,3 @@
-$element-background: #f3f5f6;
 $block-class:'tab';
 
 @at-root {
@@ -10,24 +9,24 @@ $block-class:'tab';
 
         &__link {
             &--active {
-                background-color: $element-background;
+                background-color: $PAGE_BACKGROUND_COLOR;
                 border-left: 2px solid $BORDER_COLOR;
                 border-right: 2px solid $BORDER_COLOR;
                 border-top: 2px solid $BORDER_COLOR;
+                border-radius: 4px;
             }
         }
 
         &__title {
+            @extend .lead-font;
+
             width: 150px;
-            font-weight: 400;
-            line-height: 24px;
             display: flex;
-            font-size: 14px;
-            color: $HEADER_FONT_COLOR;
             padding: 5px 12px;
             border-bottom: none;
             justify-content: center;
             cursor: pointer;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
     }
 }

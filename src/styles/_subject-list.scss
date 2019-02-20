@@ -2,20 +2,12 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
-
         &__entry {
-            display: flex;
+            @extend .table-body;
+
             justify-content: space-between;
             flex-direction: row;
             align-items: center;
-            padding: 8px 16px;
-
-            @extend .lead-font;
-
-            &:hover {
-                background-color: #ededed;
-            }
         }
 
         &__header {
@@ -26,25 +18,16 @@ $block-class: 'subject-list';
         }
 
         &__header-title {
-            font-size: 14px;
-            color: $HEADER_FONT_COLOR;
+            @extend .lead-font;
+
             padding: 5px;
 
             &--name {
                 cursor: pointer;
 
                 &:hover {
-                    background-color: darken(#fdfdfd, 10);
+                    background-color: $LIGHTEST_GRAY;
                 }
-            }
-        }
-
-        .grommetux-button--plain .grommetux-button__icon {
-            width: 12px;
-            height: 12px;
-
-            &:hover {
-                fill: darken($FONT_COLOR, 10);
             }
         }
     }

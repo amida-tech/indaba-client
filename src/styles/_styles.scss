@@ -4,8 +4,6 @@ $footer-height: 48px;
 $footer-height-with-padding: 64px;
 $brand-font-family: 'Roboto';
 
-@import 'grommet/scss/grommet-core/index.scss';
-
 body {
     font-family: Roboto, sans-serif;
     background-color: $PAGE_BACKGROUND_COLOR;

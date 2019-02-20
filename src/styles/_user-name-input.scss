@@ -1,4 +1,3 @@
-$font-color-for-labels: #757575;
 $block-class:'user-name-input';
 
 @at-root {
@@ -6,9 +5,8 @@ $block-class:'user-name-input';
         display: flex;
 
         &__label {
-            font-size: 14px;
-            font-weight: 400;
-            color: $font-color-for-labels;
+            @extend .small-font;
+
             flex: 1;
             padding: 16px;
         }
