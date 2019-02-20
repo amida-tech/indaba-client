@@ -10,8 +10,9 @@ $block-class: 'pm-user-list-header';
         &__cell {
             flex: 6;
             color: $HEADER_FONT_COLOR;
-            padding: 8px 16px;
+            padding: 14px 16px;
             justify-content: center;
+            margin-left: 24px;
         }
     }
 }

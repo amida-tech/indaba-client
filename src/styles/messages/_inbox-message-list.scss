@@ -33,7 +33,7 @@ $block-class: 'inbox-message-list';
             @extend .lead-font;
 
             &:hover {
-                background-color: #f7f7f7;
+                background-color: $LIGHTEST_GRAY;
             }
 
             &:last-child {
@@ -53,7 +53,7 @@ $block-class: 'inbox-message-list';
             margin-right: 6px;
 
             &--unread {
-                background-color: $LIGHT_GREEN;
+                background-color: $KALE_GREEN;
             }
         }
 
@@ -79,7 +79,7 @@ $block-class: 'inbox-message-list';
         }
 
         &__action-icon {
-            fill: #7e848f;
+            fill: $PRIMARY_GREEN;
             flex: 1;
         }
     }

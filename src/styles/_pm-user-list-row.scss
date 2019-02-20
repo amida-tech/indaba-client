@@ -12,9 +12,10 @@ $block-class: 'pm-user-list-row';
         }
 
         &__cell {
-            padding: 8px 16px;
+            padding: 14px 16px;
             display: inline-flex;
             flex: 6;
+            margin-left: 24px;
         }
 
         &__mail-button {

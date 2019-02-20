@@ -2,13 +2,14 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
+        background-color: $WHITE;
         border: 2px solid $BORDER_COLOR;
         margin-bottom: 80px;
+        border-radius: 4px;
 
         &__invite-container {
-            background-color: #f9f9f9;
-            border-bottom: 1px solid $BORDER_COLOR;
+            background-color: $WHITE;
+            border-bottom: 2px solid $BORDER_COLOR;
             display: flex;
             flex-direction: column;
             padding: 16px;
