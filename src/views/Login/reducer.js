@@ -21,10 +21,12 @@ export default (state = initialState, action) => {
     case actionTypes.LOGIN_UI_MESSAGE:
         return update(state, { ui: { error: { $set: action.error } } });
     case actionTypes.LOGIN_CLEAR_FORM:
-        return update(state, { ui: {
-            username: { $set: '' },
-            showForgotPassword: { $set: false },
-        } });
+        return update(state, {
+            ui: {
+                username: { $set: '' },
+                showForgotPassword: { $set: false },
+            },
+        });
     case actionTypes.LOGIN_SHOW_FORGOT_PASSWORD:
         return update(state, { ui: { showForgotPassword: { $set: action.show } } });
     case LOG_OUT:

@@ -22,7 +22,7 @@ class ForgotModal extends Component {
         ).then(() => {
             toast(this.props.vocab.MODAL.FORGOT_PASSWORD.EMAIL_SENT);
             this.props.actions.showForgotPasswordModal(false);
-        })
+        });
     }
 
     render() {

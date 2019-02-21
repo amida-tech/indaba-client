@@ -56,28 +56,28 @@ class LoginForm extends Component {
     }
 
     render() {
-        return ( //login-form__field
+        return ( // login-form__field
             <form className='login-form' onSubmit={this.handleSubmit}>
                 <input className={`login-form__input ${this.state.usernameFlag
                     ? 'login-form__input--flag' : ''}`}
-                    name='username'
-                    type='text'
-                    value={this.props.ui.username}
-                    placeholder={this.state.usernameFlag ?
-                        this.props.vocab.COMMON.USERNAME_REQUIRED :
-                        this.props.vocab.COMMON.USERNAME_OR_EMAIL}
-                    onChange={this.handleUsername}
-                    onBlur={this.handleValidate} />
+                name='username'
+                type='text'
+                value={this.props.ui.username}
+                placeholder={this.state.usernameFlag
+                    ? this.props.vocab.COMMON.USERNAME_REQUIRED
+                    : this.props.vocab.COMMON.USERNAME_OR_EMAIL}
+                onChange={this.handleUsername}
+                onBlur={this.handleValidate} />
                 <input className={`login-form__input ${this.state.passwordFlag
                     ? 'login-form__input--flag' : ''}`}
-                    name='password'
-                    type='password'
-                    value={this.state.password}
-                    placeholder={this.state.passwordFlag ?
-                        this.props.vocab.COMMON.PASSWORD_REQUIRED :
-                        this.props.vocab.COMMON.PASSWORD}
-                    onChange={this.handlePassword}
-                    onBlur={this.handleValidate} />
+                name='password'
+                type='password'
+                value={this.state.password}
+                placeholder={this.state.passwordFlag
+                    ? this.props.vocab.COMMON.PASSWORD_REQUIRED
+                    : this.props.vocab.COMMON.PASSWORD}
+                onChange={this.handlePassword}
+                onBlur={this.handleValidate} />
                 <button className='login-form__signin-button'
                     onClick={this.handleSubmit}
                     type='submit'>
