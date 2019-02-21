@@ -97,9 +97,10 @@ export function moveTask(productId, uoaId, errorMessages) {
         });
 }
 
-export function forceTaskCompletion(productId, uoaId, errorMessages) {
+export function forceTaskCompletion(productId, uoaId, errorMessages, taskId) {
     return (dispatch) => {
         return apiService.tasks.forceMoveTask(productId, uoaId)
+            .then(() => dispatch(_forceTaskSuccess(taskId)))
             .catch((workflowErr) => {
                 dispatch(_reportTasksError(workflowErr, errorMessages.TASK_REQUEST));
             });
@@ -182,5 +183,12 @@ function _reportTasksError(err, errorMessage) {
         type: actionTypes.REPORT_TASKS_ERROR,
         err,
         errorMessage,
+    };
+}
+
+function _forceTaskSuccess(taskId) {
+    return {
+        type: actionTypes.FORCE_TASK_SUCCESS,
+        taskId,
     };
 }
