@@ -20,8 +20,6 @@ $block-class:'stage-form';
         padding: 16px 24px 26px;
 
         &__input-field {
-            @include text-input;
-
             width: 100%;
         }
 

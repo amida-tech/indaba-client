@@ -4,6 +4,8 @@ $block-class:'survey-pane';
     .#{$block-class} {
         background-color: $BACKGROUND_WHITE;
 
+        @include multi-select-styles;
+
         &__controls {
             display: flex;
             justify-content: space-between;
@@ -42,12 +44,6 @@ $block-class:'survey-pane';
 
                 display: block;
             }
-        }
-
-        .Select-control {
-            border-radius: 2px;
-            color: $HEADER_FONT_COLOR;
-            border: 2px solid $BORDER_COLOR;
         }
     }
 }

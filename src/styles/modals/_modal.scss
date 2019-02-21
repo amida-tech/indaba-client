@@ -117,21 +117,7 @@ $block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -
                 width: 100%;
             }
 
-            // TODO - move to react select folder and import.
-            .Select-control {
-                width: 100%;
-
-                input[role=combobox] {
-                    border: none;
-                    color: transparent;
-                    text-shadow: 0 0 0 $DARK_GRAY;
-                    text-align: center;
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
+            @include multi-select-styles;
 
             .layer-body-container {
                 padding: 1em 1em 0;

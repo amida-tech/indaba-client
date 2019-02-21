@@ -1,6 +1,8 @@
 $block-class:'user-sidebar';
 
 @at-root {
+    @include multi-select-styles;
+
     .#{$block-class} {
         display: flex;
         flex-direction: column;
