@@ -7,7 +7,7 @@ class EditableTextInput extends Component {
     render() {
         return (
             <div className='editable-text-input'>
-                <input className='editable-text-input__text-input'
+                <input className='editable-text-input__field'
                     type='text'
                     {...this.props.input}>
                 </input>

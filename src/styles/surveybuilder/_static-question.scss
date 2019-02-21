@@ -38,7 +38,8 @@ $block-class: 'static-question';
         &__date {
             width: 15%;
             padding: 0.2em;
-            border: 1px solid $LIGHT_GRAY;
+            padding-right: 0;
+            border: 2px solid $LIGHT_GRAY;
             text-transform: uppercase;
         }
 

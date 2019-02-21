@@ -27,7 +27,7 @@ $block-class: 'add-stages';
 
         &__grid {
             display: flex;
-            background-color: #fff;
+            background-color: $WHITE;
             border: 1px solid $LIGHT_GRAY;
             border-top: none;
             height: 200px;

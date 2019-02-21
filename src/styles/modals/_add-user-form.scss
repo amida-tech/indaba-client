@@ -15,5 +15,9 @@ $block-class: 'add-user-form';
                 margin-top: 8px;
             }
         }
+
+        input[type=text] {
+            @extend .basic-input;
+        }
     }
 }

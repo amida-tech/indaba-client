@@ -11,10 +11,14 @@
 @import './styles.scss';
 @import 'common/buttons';
 @import './common/table';
+@import './common/mixins';
+@import './common/menu.scss';
 
 // Vendors
 @import 'vendors/react-dates-override';
 @import 'vendors/react-select-override';
+
+// Views
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -89,6 +93,7 @@
 @import './surveybuilder/question-panel.scss';
 @import './surveybuilder/static-question.scss';
 @import './surveybuilder/dynamic-question.scss';
+@import './surveybuilder/weighted-value-input.scss';
 
 // Modals:
 @import './modals/modal.scss';
@@ -165,5 +170,3 @@
 @import './activate/activate-form.scss';
 // Reset Password
 @import './resetpassword/reset-password-form.scss';
-// Common
-@import './common/menu.scss';

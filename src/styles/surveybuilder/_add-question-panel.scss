@@ -32,6 +32,8 @@ $block-class: 'add-question-panel';
 
             &__title {
                 @extend .tab__title !optional;
+
+                padding-inline-start: 0;
             }
         }
     }

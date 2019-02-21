@@ -39,8 +39,7 @@ $block-class: 'message';
         }
 
         &__action-icon {
-            fill: #7e848f;
-            flex: 1;
+            @extend .small-icon;
         }
 
         &__body-field-wrapper {

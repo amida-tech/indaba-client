@@ -6,24 +6,19 @@ $block-class: 'editable-text-input';
         font-weight: 300;
         color: $HEADER_FONT_COLOR;
         display: flex;
-        // .grommet selectors to exceed grommet styling specificity if
-        // this component happens to be in a grommet context
-        &__text-input,
-        .grommet &__text-input:not(.grommetux-input) {
-            border-radius: 2px;
-            border: 1px solid $BORDER_COLOR;
-            flex: 1;
-            text-overflow: ellipsis;
-        }
+        border: 2px solid $BORDER_COLOR;
 
-        &__text-input:not(:focus),
-        .grommet &__text-input:not(.grommetux-input):not(:focus) {
-            border-color: transparent;
-            background: none;
+        &__field {
+            @include text-input;
+
+            width: 90%;
+            border: 0;
         }
 
         &__icon {
-            @extend .small-icon;
+            @extend .primary-icon;
+
+            margin-top: 0.4em;
         }
     }
 }

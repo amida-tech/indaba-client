@@ -11,7 +11,6 @@ $block-class: 'user-profile-form';
         margin-right: 20px;
 
         &__tabs {
-            justify-content: flex-start;
             flex-flow: row nowrap;
             margin-top: 1em;
             cursor: pointer;
@@ -20,6 +19,7 @@ $block-class: 'user-profile-form';
                 display: flex;
                 margin: 0 0 1em;
                 border-bottom: 1px solid $BORDER_COLOR;
+                padding-left: 0;
             }
         }
 
