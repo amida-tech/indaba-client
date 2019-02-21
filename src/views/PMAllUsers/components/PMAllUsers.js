@@ -44,29 +44,31 @@ class PMAllUsers extends Component {
         const deleteModal = this.props.ui.showDeleteConfirmModal;
         return (
             <div className='pm-all-users'>
-                <div className='pm-all-users__invite-container'>
-                    <InviteUserForm vocab={this.props.vocab}
-                        onSubmit={(values) => {
-                            this.props.actions.addNewUser(
-                                values,
-                                null, // no project id
-                                this.props.organizationId,
-                                this.props.vocab.TOAST,
-                                this.props.vocab.ERROR,
-                            );
-                        }}/>
-                </div>
-                <div className='pm-all-users__search-container'>
-                    <Search
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        value={this.props.ui.listQuery}
-                        list={this.props.users.filter(this.filterUser)
-                            .map(user => ({
-                                label: renderName(user),
-                                value: user,
-                            }))}
-                        onChange={evt => this.props.actions.pmAllUsersSetListQuery(evt.target.value)}
-                        onSelect={this.handleSearchSelect}/>
+                <div className='pm-all-users__header'>
+                    <div className='pm-all-users__invite-container'>
+                        <InviteUserForm vocab={this.props.vocab}
+                            onSubmit={(values) => {
+                                this.props.actions.addNewUser(
+                                    values,
+                                    null, // no project id
+                                    this.props.organizationId,
+                                    this.props.vocab.TOAST,
+                                    this.props.vocab.ERROR,
+                                );
+                            }}/>
+                    </div>
+                    <div className='pm-all-users__search-container'>
+                        <Search
+                            placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                            value={this.props.ui.listQuery}
+                            list={this.props.users.filter(this.filterUser)
+                                .map(user => ({
+                                    label: renderName(user),
+                                    value: user,
+                                }))}
+                            onChange={evt => this.props.actions.pmAllUsersSetListQuery(evt.target.value)}
+                            onSelect={this.handleSearchSelect}/>
+                    </div>
                 </div>
                 <PMUserList {...this.props}
                     onUserNameClick={this.props.actions.pmAllUsersShowProfile}

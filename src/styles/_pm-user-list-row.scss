@@ -5,7 +5,7 @@ $block-class: 'pm-user-list-row';
         display: flex;
         cursor: pointer;
 
-        @extend .lead-font;
+        @extend .table-body;
 
         &:hover {
             background-color: $PAGE_BACKGROUND_COLOR;

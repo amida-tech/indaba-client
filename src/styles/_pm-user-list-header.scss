@@ -5,14 +5,12 @@ $block-class: 'pm-user-list-header';
         width: 100%;
         display: inline-flex;
 
-        @extend .small-font;
+        @include table-header;
 
         &__cell {
             flex: 6;
-            color: $HEADER_FONT_COLOR;
-            padding: 14px 16px;
             justify-content: center;
-            margin-left: 24px;
+            margin-left: 40px;
         }
     }
 }

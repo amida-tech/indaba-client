@@ -17,5 +17,9 @@ $block-class: 'pm-all-users';
         input::-webkit-input-placeholder {
             color: $ANCHOR_GRAY;
         }
+
+        &__header {
+            @extend .table-full;
+        }
     }
 }

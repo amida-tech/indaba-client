@@ -7,7 +7,7 @@ import PMUserListRow from './PMUserListRow';
 class PMUserList extends Component {
     render() {
         return (
-            <div className='pm-user-list'>
+            <div className='pm-users-tab__table'>
                 <PMUserListHeader vocab={this.props.vocab} groups={!!this.props.groups} />
                 {
                     this.props.users.map(user => <PMUserListRow user={user}

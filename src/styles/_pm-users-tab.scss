@@ -2,14 +2,12 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
-        background-color: $PAGE_BACKGROUND_COLOR;
-        border: 2px solid $BORDER_COLOR;
+        background-color: transparent;
         margin-bottom: 80px;
         border-radius: 4px;
 
         &__invite-container {
-            background-color: $PAGE_BACKGROUND_COLOR;
-            border-bottom: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
             display: flex;
             flex-direction: column;
             padding: 16px;
@@ -17,10 +15,21 @@ $block-class: 'pm-users-tab';
 
         &__search-container {
             padding: 1em;
+            background-color: $WHITE;
         }
 
         &__text-input {
             @include text-input;
+        }
+
+        &__header {
+            @extend .table-full;
+        }
+
+        &__table {
+            @extend .table-full;
+
+            margin-top: 32px;
         }
     }
 }
