@@ -17,12 +17,12 @@ $block-class: 'create-section-panel';
             padding: 16px;
             margin-left: 2px;
             width: 100%;
-            background-color: $PAGE_BACKGROUND_COLOR;
+            background-color: transparent;
             outline: none;
 
             &:focus {
                 outline: none;
-                border-bottom: 2px solid $LIGHT_GREEN;
+                border-bottom: 2px solid $PRIMARY_GREEN;
                 border-top: none;
                 border-left: none;
                 border-right: none;

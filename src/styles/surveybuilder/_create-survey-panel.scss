@@ -43,22 +43,12 @@ $block-class: 'create-survey-panel';
         }
 
         &__instructions-entry {
-            border: 1px solid $BORDER_COLOR;
-            border-radius: 2px;
+            @include text-input;
+
             padding: 8px;
-            color: $HEADER_FONT_COLOR;
             height: 5em;
-            resize: none;
             margin-bottom: 4px;
             margin-top: 4px;
-            background-color: $PAGE_BACKGROUND_COLOR;
-
-            &:focus {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-                padding: 8px;
-                box-sizing: border-box;
-            }
         }
 
         &__survey-save {

@@ -62,7 +62,7 @@ $block-class: 'project-wizard';
 
         .project-wizard__tab--incomplete {
             &::after {
-                background-color: $PRIMARY_GRAY;
+                background-color: $PAGE_BACKGROUND_COLOR;
                 border: 2px solid $DARKEST_GREEN;
             }
         }
