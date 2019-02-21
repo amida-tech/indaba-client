@@ -4,7 +4,7 @@ $block-class: 'question-panel';
     .#{$block-class} {
         border: 2px solid $BORDER_COLOR;
         border-radius: 4px;
-        background-color: $PAGE_BACKGROUND_COLOR;
+        background-color: $WHITE;
         padding: 1em;
         margin-bottom: 1em;
 
@@ -64,7 +64,7 @@ $block-class: 'question-panel';
         &__checkboxes {
             margin-right: 10px;
             vertical-align: bottom;
-            background-color: $PAGE_BACKGROUND_COLOR;
+            background-color: $WHITE;
 
             input {
                 margin-bottom: 6px;

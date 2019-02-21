@@ -7,8 +7,9 @@ $block-class: 'add-question-panel';
         position: relative;
         width: 320px;
         border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
         margin-top: 48px;
-        background-color: $PAGE_BACKGROUND_COLOR;
+        background-color: $WHITE;
 
         &__instructions {
             text-align: center;

@@ -31,5 +31,9 @@ $block-class: 'subject-list';
                 }
             }
         }
+
+        &__icon {
+            @extend .small-icon;
+        }
     }
 }

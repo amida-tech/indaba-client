@@ -29,8 +29,7 @@ class CreateSectionPanel extends Component {
                                 );
                             }
                         }}>
-                        <IonIcon icon='ion-trash-b'
-                            className='create-section-panel__menu-icon'/>
+                        <i className='far fa-trash-alt fa-lg create-section-panel__menu-icon'/>
                     </button>
                 </div>
                 {get(this.props.section, 'questions', []).map((question, questionIndex) => (
