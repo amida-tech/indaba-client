@@ -9,7 +9,7 @@ $block-class:'tab';
 
         &__link {
             &--active {
-                background-color: $PAGE_BACKGROUND_COLOR;
+                background-color: $WHITE;
                 border-left: 2px solid $BORDER_COLOR;
                 border-right: 2px solid $BORDER_COLOR;
                 border-top: 2px solid $BORDER_COLOR;

@@ -6,6 +6,7 @@ $block-class:'tabs';
             display: flex;
             margin: 12px 0 0;
             border-bottom: 2px solid $BORDER_COLOR;
+            padding-inline-start: 0;
         }
     }
 }
