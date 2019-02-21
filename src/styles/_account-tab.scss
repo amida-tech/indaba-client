@@ -16,7 +16,7 @@ $block-class:'account-tab';
         }
 
         &__field {
-            @extend .basic-input;
+            @include text-input;
         }
 
         &__date {

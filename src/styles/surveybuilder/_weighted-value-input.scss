@@ -2,16 +2,12 @@ $block-class: 'weighted-value-input';
 
 @at-root {
     .#{$block-class} {
+        @include text-input;
+
         width: 5%;
         text-align: center;
-        color: $lead-font-color;
+        color: $FONT_COLOR;
         outline: none;
         flex-shrink: 0;
-
-        &:focus,
-        &:active {
-            border: 2px solid $LIGHT_GREEN;
-            outline: none;
-        }
     }
 }

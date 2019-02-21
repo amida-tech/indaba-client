@@ -12,7 +12,7 @@ $block-class:'subject-form';
         }
 
         &__input-field {
-            @extend .basic-input;
+            @include text-input;
 
             width: 100%;
         }
