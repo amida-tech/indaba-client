@@ -3,7 +3,7 @@ $block-class: 'status-card';
 @at-root {
     .#{$block-class} {
         border: 2px solid $BORDER_COLOR;
-        background-color: $PAGE_BACKGROUND_COLOR;
+        background-color: $WHITE;
         border-radius: 4px;
         display: flex;
         flex-direction: row;
