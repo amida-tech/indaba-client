@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import IonIcon from 'react-ionicons';
 import UserStatus from './UserStatus';
-import DeleteIconButton from '../DeleteIconButton';
 
 import { renderName } from '../../../utils/User';
 
@@ -29,10 +27,11 @@ class PMUserListRow extends Component {
                     <UserStatus user={this.props.user} vocab={this.props.vocab}/>
                 </div>
                 <div className='pm-user-list-row__cell pm-user-list-row__cell--hover'>
-                    <DeleteIconButton onClick={this.props.onDeleteClick}/>
-                    <div className='pm-user-list-row__mail-button'
-                        onClick={this.props.onMailClick}>
-                        <IonIcon icon='ion-android-mail'color='#7e848f' />
+                    <div className='pm-user-list-row__icon'>
+                        <i className='far fa-envelope fa-lg' onClick={this.props.onMailClick}/>
+                    </div>
+                    <div className='pm-user-list-row__icon'>
+                        <i className='far fa-trash-alt fa-lg' onClick={this.props.onDeleteClick}/>
                     </div>
                 </div>
             </div>

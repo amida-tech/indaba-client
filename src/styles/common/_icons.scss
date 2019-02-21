@@ -1,9 +1,11 @@
 @mixin icon-color {
     fill: $ICON_COLOR;
+    color: $ICON_COLOR;
 
     &--inactive,
     &:hover {
         fill: $ICON_COLOR_HOVER;
+        color: $ICON_COLOR_HOVER;
     }
 }
 

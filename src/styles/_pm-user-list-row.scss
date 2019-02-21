@@ -7,20 +7,16 @@ $block-class: 'pm-user-list-row';
 
         @extend .table-body;
 
-        &:hover {
-            background-color: $PAGE_BACKGROUND_COLOR;
-        }
-
         &__cell {
-            padding: 14px 16px;
             display: inline-flex;
             flex: 6;
             margin-left: 24px;
         }
 
-        &__mail-button {
-            // TODO: change mail icon, colors don't work.
+        &__icon {
             @extend .small-icon;
+
+            padding-right: 32px;
         }
     }
 }
