@@ -10,17 +10,7 @@ $block-class: 'filter-input';
         @extend .small-font;
 
         &__input {
-            flex: 1;
-            border: 2px solid $BORDER_COLOR;
-            border-radius: 2px;
-            background-color: $PRIMARY_GRAY;
-            padding: 8px;
-
-            &:active,
-            &:focus {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+            @include text-input;
         }
 
         &__icon {

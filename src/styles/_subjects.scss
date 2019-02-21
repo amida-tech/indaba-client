@@ -15,6 +15,7 @@ $block-class: 'subjects';
 
         &__table {
             border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
         }
 
         &__filter-wrapper {
@@ -22,7 +23,6 @@ $block-class: 'subjects';
             width: 100%;
             flex: 1;
             background-color: $WHITE;
-            border: 2px solid $BORDER_COLOR;
         }
     }
 }

@@ -15,6 +15,7 @@ $block-class: 'subject-list';
             flex-direction: row;
             justify-content: space-between;
             padding: 8px 16px;
+            background-color: $LIGHT_GRAY;
         }
 
         &__header-title {
