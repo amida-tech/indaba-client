@@ -6,7 +6,6 @@ $block-class: 'editable-text-input';
         font-weight: 300;
         color: $HEADER_FONT_COLOR;
         display: flex;
-        border: 2px solid $BORDER_COLOR;
 
         &__field {
             @include text-input;
