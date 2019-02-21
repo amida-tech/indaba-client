@@ -4,16 +4,18 @@ $block-class:'login-form';
     .#{$block-class} {
         text-align: center;
         padding-bottom: 16px;
-
-        &__field {
-            padding-bottom: 16px;
-            width: 384px;
-        }
+        display: flex;
+        flex-direction: column;
 
         &__input {
             @include text-input;
 
-            width: 100%;
+            margin-bottom: 16px;
+            width: 384px;
+
+            &--flag {
+                border: 1px solid $error-color;
+            }
         }
 
         &__signin-button {

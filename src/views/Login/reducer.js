@@ -5,28 +5,30 @@ import { LOG_OUT } from '../../common/actionTypes/navActionTypes';
 
 const initialState = {
     ui: {
+        username: '',
         error: '',
         timeoutRef: '',
-        showForgotPasswordFor: null,
+        showForgotPassword: false,
     },
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case actionTypes.LOGIN:
-        return state;
+    case actionTypes.UPDATE_LOGIN_USERNAME:
+        return update(state, { ui: { username: { $set: action.username } } });
     case actionTypes.LOGIN_SUCCESS:
         return update(state, { ui: { timeoutRef: { $set: '' } } });
-    case actionTypes.LOGIN_ERROR:
+    case actionTypes.LOGIN_UI_MESSAGE:
         return update(state, { ui: { error: { $set: action.error } } });
-    case actionTypes.GET_CURRENT_USER_FAILURE:
-        return update(state, { ui: { error: { $set: action.error } } });
-    case actionTypes.GET_USERS_FAILURE:
-        return update(state, { ui: { error: { $set: action.error } } });
+    case actionTypes.LOGIN_CLEAR_FORM:
+        return update(state, { ui: {
+            username: { $set: '' },
+            showForgotPassword: { $set: false },
+        } });
+    case actionTypes.LOGIN_SHOW_FORGOT_PASSWORD:
+        return update(state, { ui: { showForgotPassword: { $set: action.show } } });
     case LOG_OUT:
         return update(state, { ui: { timeoutRef: { $set: action.timeoutRef } } });
-    case actionTypes.SHOW_FORGOT_PASSWORD_FOR:
-        return update(state, { ui: { showForgotPasswordFor: { $set: action.email } } });
     default:
         return state;
     }
