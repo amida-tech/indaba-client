@@ -15,11 +15,11 @@ $block-class: 'status-label';
         }
 
         &--good {
-            background-color: $INDABA_GREEN;
+            background-color: $KALE_GREEN;
         }
 
         &--neutral {
-            background-color: $LIGHT_GRAY;
+            background-color: $PRIMARY_GRAY;
             min-width: 85px;
         }
     }

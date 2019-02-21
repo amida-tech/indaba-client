@@ -37,8 +37,8 @@ $block-class: 'user-profile-form';
                 line-height: 24px;
                 display: flex;
                 font-size: 14px;
-                color: $font-color-for-labels;
-                padding: 5px 12px;
+                color: $PRIMARY_GREEN;
+                padding-right: 12px;
                 border-bottom: none;
                 justify-content: center;
                 cursor: pointer;
@@ -46,7 +46,7 @@ $block-class: 'user-profile-form';
 
             &__link {
                 &--active {
-                    border-bottom: 2px solid nth($BRAND_NEUTRAL_COLORS, 2);
+                    border-bottom: 2px solid $PRIMARY_GREEN;
                 }
             }
         }

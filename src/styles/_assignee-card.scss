@@ -6,8 +6,8 @@ $block-class:'assignee-card';
         width: 100%;
         padding: 16px;
         font-size: 16px;
-        color: #5d5d5d;
-        background-color: #fff;
+        color: $ANCHOR_GRAY;
+        background-color: $WHITE;
         border: 2px solid $BORDER_COLOR;
         border-radius: 2px;
     }
