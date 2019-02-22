@@ -2,7 +2,7 @@ $block-class:'invite-user';
 
 @at-root {
     .#{$block-class} {
-        background-color: $PAGE_BACKGROUND_COLOR;
+        background-color: $WHITE;
         padding: 16px;
 
         &__header {
