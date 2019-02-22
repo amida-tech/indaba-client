@@ -8,8 +8,9 @@ $block-class:'login-panel';
         padding: 1em 2em;
 
         &__title {
-            font-size: 20px;
-            padding-bottom: 1em;
+            @extend .large-font;
+
+            margin-bottom: 16px;
         }
 
         &__remember-me {

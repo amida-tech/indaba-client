@@ -513,6 +513,10 @@
     },
     "RESET_PASSWORD":{
         "NEW_PASSWORD":"New Password",
+        "NEW_PASSWORD_REQUIRED": "Password required",
+        "CONFIRM_PASSWORD":"Confirm Password",
+        "CONFIRM_PASSWORD_REQUIRED": "Password confirmation required",
+        "PASSWORD_MATCH": "Your password and confirm password do not match.",
         "INSTRUCTIONS":"Enter a new password and click the link below to reset your password.",
         "LINK":"Reset",
         "EMAIL_REQUIRED":"Enter your email to reset your password.",
