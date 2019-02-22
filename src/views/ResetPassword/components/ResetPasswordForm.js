@@ -65,20 +65,20 @@ class ResetPasswordForm extends Component {
                 </div>
                 <input className={`reset-password-form__input ${this.state.passwordFlag
                     ? 'reset-password-form__input--flag' : ''}`}
-                    name='password'
-                    placeholder={this.state.passwordFlag
-                        ? this.props.vocab.RESET_PASSWORD.NEW_PASSWORD_REQUIRED
-                        : this.props.vocab.RESET_PASSWORD.NEW_PASSWORD}
-                    onBlur={this.handleValidate}
-                    onChange={this.handlePassword}/>
+                name='password'
+                placeholder={this.state.passwordFlag
+                    ? this.props.vocab.RESET_PASSWORD.NEW_PASSWORD_REQUIRED
+                    : this.props.vocab.RESET_PASSWORD.NEW_PASSWORD}
+                onBlur={this.handleValidate}
+                onChange={this.handlePassword}/>
                 <input className={`reset-password-form__input ${this.state.confirmPasswordFlag
                     ? 'reset-password-form__input--flag' : ''}`}
-                    name='confirmPassword'
-                    placeholder={this.state.confirmPasswordFlag
-                        ? this.props.vocab.RESET_PASSWORD.CONFIRM_PASSWORD_REQUIRED
-                        : this.props.vocab.RESET_PASSWORD.CONFIRM_PASSWORD}
-                    onBlur={this.handleValidate}
-                    onChange={this.handlePassword}/>
+                name='confirmPassword'
+                placeholder={this.state.confirmPasswordFlag
+                    ? this.props.vocab.RESET_PASSWORD.CONFIRM_PASSWORD_REQUIRED
+                    : this.props.vocab.RESET_PASSWORD.CONFIRM_PASSWORD}
+                onBlur={this.handleValidate}
+                onChange={this.handlePassword}/>
                 <button className='reset-password-form__button'
                     type='submit'>
                     {this.props.vocab.RESET_PASSWORD.LINK}

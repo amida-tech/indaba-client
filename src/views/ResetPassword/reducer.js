@@ -12,10 +12,12 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case actionTypes.RESET_PASSWORD_UI_MESSAGE:
-        return update(state, { ui: {
-            message: { $set: action.message },
-            error: { $set: action.error || true },
-        } });
+        return update(state, {
+            ui: {
+                message: { $set: action.message },
+                error: { $set: action.error || true },
+            },
+        });
     default:
         return state;
     }
