@@ -33,15 +33,18 @@ $block-class:'primary-nav';
         &__item-nav {
             justify-content: space-between;
             align-items: center;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        &__item-nav-cell {
             color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
-            margin-left: 20px;
+            padding-left: 8px;
+            padding-right: 8px;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            padding-left: 8px;
-            padding-right: 8px;
-            position: relative;
 
             &:hover {
                 text-decoration: none;
@@ -66,23 +69,14 @@ $block-class:'primary-nav';
         }
 
         &__button {
+            @extend .button;
+
             height: 40px;
-            background-color: $PRIMARY_BUTTON_BACKGROUND_COLOR;
-            border: 1.5px solid $PRIMARY_BUTTON_BORDER_COLOR;
-            color: $PRIMARY_BUTTON_TEXT_COLOR;
             border-radius: 3px;
             min-width: 10px;
             font-size: 14px;
             padding: 6px 22px;
-
-            &:hover {
-                background-color: $PRIMARY_BUTTON_HOVER_BACKGROUND_COLOR;
-                color: $PRIMARY_BUTTON_HOVER_TEXT_COLOR;
-            }
-
-            &:active {
-                color: $PRIMARY_GRAY;
-            }
+            margin-right: 14px;
         }
 
         &__envelope,
