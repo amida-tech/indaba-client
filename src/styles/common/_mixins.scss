@@ -18,6 +18,10 @@
         border: 1px solid $LIGHT_GRAY;
         cursor: not-allowed;
     }
+
+    &--flag {
+        border: 1px solid $error-color;
+    }
 }
 
 /*

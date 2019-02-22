@@ -12,10 +12,6 @@ $block-class:'login-form';
 
             margin-bottom: 16px;
             width: 384px;
-
-            &--flag {
-                border: 1px solid $error-color;
-            }
         }
 
         &__signin-button {
