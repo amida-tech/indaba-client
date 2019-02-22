@@ -21,12 +21,10 @@ $block-class: 'message-container';
 
             display: flex;
             align-items: center;
-            color: $HEADER_FONT_COLOR;
         }
 
         &__back-icon {
-            fill: #7e848f;
-            height: 16px;
+            @extend .small-icon;
         }
     }
 }

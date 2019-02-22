@@ -11,10 +11,8 @@ $block-class:'create-new-project';
                 margin-left: 0;
                 margin-top: 24px;
                 margin-bottom: 24px;
-                font-size: 16px;
-                font-weight: 300;
-                line-height: 1.375;
-                color: #666;
+
+                @extend .lead-font;
             }
         }
 

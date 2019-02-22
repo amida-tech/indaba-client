@@ -3,7 +3,7 @@ $block-class:'task-options-form';
 .#{$block-class} {
     &__container {
         &--disabled {
-            color: #d9d9d9;
+            color: $DISABLED_FONT_COLOR;
             cursor: not-allowed;
             pointer-events: none;
         }
@@ -20,14 +20,14 @@ $block-class:'task-options-form';
 
         &__header {
             margin-top: 40px;
-            color: #666;
+            color: $HEADER_FONT_COLOR;
 
             &--hidden {
                 display: none;
             }
 
             &:hover {
-                color: #000;
+                color: $BLACK;
             }
         }
 
@@ -47,7 +47,7 @@ $block-class:'task-options-form';
             }
 
             &--checked {
-                color: $LIGHT_GREEN;
+                color: $AVOCADO_GREEN;
             }
 
             font-size: 1.5em;

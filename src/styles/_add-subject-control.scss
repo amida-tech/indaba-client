@@ -27,7 +27,7 @@ $block-class: 'add-subject-control';
         &:-webkit-autofill,
         :-webkit-autofill:hover,
         :-webkit-autofill:focus {
-            background-color: #fff;
+            background-color: $WHITE;
             width: 100%;
             margin-left: 0.5em;
             margin-bottom: 0.5em;
@@ -44,12 +44,9 @@ $block-class: 'add-subject-control';
         &__plus-icon {
             margin-right: 10px;
             margin-left: 10px;
-            fill: $FONT_COLOR;
             cursor: pointer;
 
-            &:hover {
-                fill: darken($FONT_COLOR, 10);
-            }
+            @extend .small-icon;
         }
     }
 }

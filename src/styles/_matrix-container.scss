@@ -6,14 +6,13 @@ $block-class:'matrix-container';
         display: flex;
         flex-direction: row;
         flex: 1;
-        background-color: #fff;
+        background-color: $WHITE;
 
         &__subject {
-            background-color: #fff;
-            font-size: 16px;
-            font-weight: 400;
+            @extend .lead-font;
+
+            background-color: $WHITE;
             vertical-align: bottom;
-            color: #5d5d5d;
         }
 
         &__task-matrix {

@@ -27,7 +27,7 @@ body,
 .divider {
     margin-top: 0;
     margin-bottom: 0;
-    border-top-color: #d8d8d8;
+    border-top-color: $BORDER_COLOR;
     clear: both;
 }
 
@@ -60,12 +60,12 @@ body,
 
     .stage-slot-cell,
     .stage-summary-cell {
-        background-color: white;
+        background-color: $WHITE;
         cursor: pointer;
     }
 
     .stage-summary-cell:hover {
-        background-color: darken(#fff, 2);
+        background-color: $LIGHTEST_GRAY;
     }
 
     margin-bottom: 0;
@@ -86,9 +86,8 @@ body,
 
 .table-bordered .grid-subject {
     padding-top: 16px;
-    font-size: 16px;
-    font-weight: 400;
-    color: $HEADER_FONT_COLOR;
+
+    @extend .lead-font;
 }
 
 .center {

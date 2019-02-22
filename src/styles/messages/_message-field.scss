@@ -22,12 +22,12 @@ $block-class: 'message-field';
             :-webkit-autofill:focus,
             :active,
             :focus {
-                background-color: #fff;
+                background-color: $WHITE;
                 transition: background-color 5000s ease-in-out 0s;
             }
 
             &--error {
-                outline: 1px solid $ERROR_RED;
+                outline: 2px solid $ERROR_RED;
             }
         }
     }
