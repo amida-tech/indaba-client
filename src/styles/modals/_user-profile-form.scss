@@ -34,25 +34,16 @@ $block-class: 'user-profile-form';
 
                 line-height: 24px;
                 display: flex;
-<<<<<<< HEAD
-                padding: 5px 12px;
-=======
-                font-size: 14px;
-                color: $PRIMARY_GREEN;
                 padding-right: 12px;
->>>>>>> 3c3c2279bc91fd6e6cb0677eb2c6bd7b58a0034d
                 border-bottom: none;
                 justify-content: center;
                 cursor: pointer;
+                color: $PRIMARY_GREEN;
             }
 
             &__link {
                 &--active {
-<<<<<<< HEAD
-                    border-bottom: 2px solid $AVOCADO_GREEN;
-=======
                     border-bottom: 2px solid $PRIMARY_GREEN;
->>>>>>> 3c3c2279bc91fd6e6cb0677eb2c6bd7b58a0034d
                 }
             }
         }
