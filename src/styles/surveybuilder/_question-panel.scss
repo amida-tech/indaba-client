@@ -78,7 +78,6 @@ $block-class: 'question-panel';
             vertical-align: top;
             margin-left: -4px;
             margin-bottom: -4px;
-            fill: $FONT_COLOR;
         }
 
         &__icon-label {
@@ -96,7 +95,6 @@ $block-class: 'question-panel';
 
             vertical-align: sub;
             height: 16px;
-            fill: $FONT_COLOR;
         }
     }
 }
