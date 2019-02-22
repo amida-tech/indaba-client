@@ -8,9 +8,9 @@ $block-class: 'sub-nav-entry';
         cursor: pointer;
 
         &--selected {
-            border-bottom: 5px solid $INDABA_GREEN;
-            padding-bottom: 5px;
-            color: $INDABA_GREEN;
+            border-bottom: 2px solid $PRIMARY_GREEN;
+            padding-bottom: 0.25px;
+            color: $PRIMARY_GREEN;
         }
     }
 }
