@@ -10,7 +10,7 @@ rules:
     no-descending-specificity: null
     color-no-hex: true
     color-named: never
-    string-quotes: double
+    string-quotes: single
     order/properties-order:
         - display
         - position

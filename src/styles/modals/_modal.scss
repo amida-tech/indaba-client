@@ -1,4 +1,4 @@
-$block-class:"modal-c"; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
+$block-class:'modal-c'; // Bootstrap is doing its crap again. Call this with a -c suffix then change later.
 
 @at-root {
     .#{$block-class} {
@@ -164,7 +164,7 @@ $block-class:"modal-c"; // Bootstrap is doing its crap again. Call this with a -
                 transition: left 0.2s;
                 border-radius: 50%;
                 background-color: $FONT_COLOR;
-                content: "";
+                content: '';
             }
         }
     }

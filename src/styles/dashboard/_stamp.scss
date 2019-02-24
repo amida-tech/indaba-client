@@ -1,4 +1,4 @@
-$block-class: "stamp";
+$block-class: 'stamp';
 
 @at-root {
     .#{$block-class} {
@@ -30,7 +30,7 @@ $block-class: "stamp";
         &::before {
             display: block;
             padding-top: 100%;
-            content: "";
+            content: '';
         }
 
         &__content {
