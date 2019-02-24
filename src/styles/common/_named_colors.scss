@@ -50,15 +50,3 @@ $SECONDARY_BUTTON_HOVER_TEXT_COLOR: $DARKEST_GREEN;
 $INDABA_GREEN: $LIGHT_GREEN;
 $LAYER_OVERLAY_BACKGROUND_COLOR: $PRIMARY_GRAY;
 $LAYER_BACKGROUND_COLOR: none;
-
-$BRAND_NEUTRAL_COLORS: ($LIGHT_GREEN, $DARKEST_GREEN); // TODO: change these, not brand neutral
-$BRAND_LINK_COLOR: $INDABA_GREEN;
-$STATUS_COLORS: (
-    critical: #ff324d,
-    error: #ff324d,
-    warning: #ffd602,
-    ok: #8cc800,
-    unknown: #a8a8a8,
-    disabled: #a8a8a8
-) !default;
-$BRAND_GRAY_COLORS: ($PRIMARY_GRAY, $LIGHT_GRAY, $DARK_GRAY, $BLACK);
