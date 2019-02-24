@@ -1,4 +1,4 @@
-$block-class:'user-group-list';
+$block-class:"user-group-list";
 
 @at-root {
     .#{$block-class} {
@@ -6,13 +6,13 @@ $block-class:'user-group-list';
         flex-direction: column;
 
         &__header {
-            color: $ANCHOR_GRAY;
-            font-weight: 400;
-            font-size: 14px;
             display: flex;
             flex-direction: row;
-            padding: 8px 16px;
             justify-content: space-between;
+            padding: 8px 16px;
+            color: $ANCHOR_GRAY;
+            font-size: 14px;
+            font-weight: 400;
         }
 
         &__header-section {
@@ -21,8 +21,8 @@ $block-class:'user-group-list';
 
             &--action {
                 display: flex;
-                justify-content: flex-end;
                 flex: 1;
+                justify-content: flex-end;
             }
         }
     }

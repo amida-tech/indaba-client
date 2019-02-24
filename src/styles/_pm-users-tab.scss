@@ -1,16 +1,16 @@
-$block-class: 'pm-users-tab';
+$block-class: "pm-users-tab";
 
 @at-root {
     .#{$block-class} {
-        background-color: transparent;
         margin-bottom: 80px;
         border-radius: 4px;
+        background-color: transparent;
 
         &__invite-container {
-            background-color: $WHITE;
             display: flex;
             flex-direction: column;
             padding: 16px;
+            background-color: $WHITE;
         }
 
         &__search-container {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import UserBadge from '../UserBadge';
-import DeleteIconButton from '../DeleteIconButton';
 
 class UserGroupListEntry extends Component {
     render() {
@@ -19,7 +18,7 @@ class UserGroupListEntry extends Component {
                     {users.map(user => user && <UserBadge key={user.id} user={user}/>)}
                 </div>
                 {this.props.onDeleteClick
-                    && <DeleteIconButton onClick={(event) => {
+                    && <i className='far fa-trash-alt fa-lg small-icon' onClick={(event) => {
                         this.props.onDeleteClick(this.props.group.id);
                         event.stopPropagation();
                     } } />

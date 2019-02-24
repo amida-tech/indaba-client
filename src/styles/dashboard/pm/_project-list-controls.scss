@@ -1,14 +1,14 @@
-$block-class: 'project-list-controls';
+$block-class: "project-list-controls";
 
 @at-root {
     .#{$block-class} {
-        padding: 24px;
         display: flex;
         flex-direction: column;
+        padding: 24px;
 
         &__search {
-            margin-left: 5%;
             margin-right: 5%;
+            margin-left: 5%;
         }
 
         &__filter {

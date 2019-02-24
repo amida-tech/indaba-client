@@ -1,4 +1,4 @@
-$block-class: 'activate';
+$block-class: "activate";
 
 @at-root {
     .#{$block-class} {
@@ -8,11 +8,11 @@ $block-class: 'activate';
         padding: 1em 2em;
 
         &__instructions {
-            font-size: 20px;
-            padding-bottom: 1em;
             display: flex;
             flex-direction: column;
             width: 35em;
+            padding-bottom: 1em;
+            font-size: 20px;
         }
 
         &__statement {

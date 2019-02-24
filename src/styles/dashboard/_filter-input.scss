@@ -1,10 +1,10 @@
-$block-class: 'filter-input';
+$block-class: "filter-input";
 
 @at-root {
     .#{$block-class} {
         display: flex;
-        align-items: center;
         position: relative;
+        align-items: center;
         color: $HEADER_FONT_COLOR;
 
         @extend .small-font;
@@ -19,8 +19,8 @@ $block-class: 'filter-input';
             @extend .small-icon;
 
             position: absolute;
-            right: 0.5em;
             top: 1em;
+            right: 0.5em;
         }
 
         &__list {
@@ -29,9 +29,9 @@ $block-class: 'filter-input';
 
         &__entry {
             display: flex;
-            justify-content: space-between;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             padding: 8px 16px;
 
             @extend .lead-font;

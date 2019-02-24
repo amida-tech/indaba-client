@@ -1,12 +1,12 @@
-$block-class: 'subjects';
+$block-class: "subjects";
 
 @at-root {
     .#{$block-class} {
         &__action {
             @include pm-sub-header;
 
-            justify-content: flex-end;
             align-items: center;
+            justify-content: flex-end;
         }
 
         &__action-button {
@@ -19,9 +19,9 @@ $block-class: 'subjects';
         }
 
         &__filter-wrapper {
-            padding: 1em;
-            width: 100%;
             flex: 1;
+            width: 100%;
+            padding: 1em;
             background-color: $WHITE;
         }
     }

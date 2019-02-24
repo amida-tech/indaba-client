@@ -1,17 +1,17 @@
-$block-class: 'wizard-footer';
+$block-class: "wizard-footer";
 
 @at-root {
     .#{$block-class} {
         display: flex;
-        background-color: $PAGE_BACKGROUND_COLOR;
-        border-top: 2px solid $LIGHT_GRAY;
-        justify-content: space-between;
-        padding: 1.5rem;
         position: fixed;
-        bottom: 0;
         right: 0;
+        bottom: 0;
         left: 0;
+        justify-content: space-between;
         width: 100%;
+        padding: 1.5rem;
+        border-top: 2px solid $LIGHT_GRAY;
+        background-color: $PAGE_BACKGROUND_COLOR;
 
         &__button {
             &--continue {

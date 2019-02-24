@@ -5,8 +5,8 @@
     .Select--multi .Select-value {
         @extend .med-font;
 
-        background-color: $WHITE;
         border: 2px solid $LAVA_GREY;
+        background-color: $WHITE;
         color: $PRIMARY_GREEN;
 
         &:hover {
@@ -25,7 +25,7 @@
     }
 
     .Select-option.is-focused .Select-option.is-focused:not(.is-open) {
-        background-color: $PAGE_BACKGROUND_COLOR;
         border-color: $BORDER_COLOR;
+        background-color: $PAGE_BACKGROUND_COLOR;
     }
 }

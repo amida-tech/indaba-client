@@ -1,16 +1,16 @@
-$block-class: 'search';
+$block-class: "search";
 
 @at-root {
     .#{$block-class} {
         display: flex;
-        align-items: center;
         position: relative;
+        align-items: center;
 
         @extend .small-font;
 
         &__hint {
-            font-style: italic;
             font-size: 11px;
+            font-style: italic;
         }
 
         &__input {
@@ -23,29 +23,29 @@ $block-class: 'search';
             @extend .small-icon;
 
             position: absolute;
-            right: 0.5em;
             top: 1em;
+            right: 0.5em;
         }
 
         &__list {
-            z-index: 20;
             position: absolute;
             width: 78%;
             margin: 0;
             padding: 0;
             background-color: $LIGHT_GRAY;
+            z-index: 20;
         }
 
         &__entry {
             display: flex;
-            cursor: pointer;
-            justify-content: space-between;
-            border-style: solid;
-            border-width: 2px 2px 0 2px;
-            border-color: $BORDER_COLOR;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             padding: 8px 16px;
+            border-width: 2px 2px 0 2px;
+            border-style: solid;
+            border-color: $BORDER_COLOR;
+            cursor: pointer;
 
             @extend .small-font;
 

@@ -1,13 +1,13 @@
-$block-class: 'weighted-value-input';
+$block-class: "weighted-value-input";
 
 @at-root {
     .#{$block-class} {
         @include text-input;
 
-        width: 5%;
-        text-align: center;
-        color: $FONT_COLOR;
-        outline: none;
         flex-shrink: 0;
+        width: 5%;
+        outline: none;
+        color: $FONT_COLOR;
+        text-align: center;
     }
 }

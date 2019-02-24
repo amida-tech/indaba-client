@@ -1,4 +1,4 @@
-$block-class: 'inbox-tabs';
+$block-class: "inbox-tabs";
 
 @at-root {
     .#{$block-class} {
@@ -7,13 +7,13 @@ $block-class: 'inbox-tabs';
         align-items: center;
 
         &__tab {
-            cursor: pointer;
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-right: 1em;
-            border-bottom: 2px solid transparent;
             padding-bottom: 0.25em;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
 
             &--active {
                 border-color: $PRIMARY_GREEN;

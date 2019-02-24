@@ -22,9 +22,9 @@
 .table-body {
     display: flex;
     align-items: center;
-    cursor: pointer;
     padding: 14px 14px;
     background-color: $WHITE;
+    cursor: pointer;
 
     @extend .lead-font;
 

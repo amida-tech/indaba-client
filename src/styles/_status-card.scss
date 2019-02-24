@@ -1,17 +1,17 @@
-$block-class: 'status-card';
+$block-class: "status-card";
 
 @at-root {
     .#{$block-class} {
-        border: 2px solid $BORDER_COLOR;
-        background-color: $WHITE;
-        border-radius: 4px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
         flex: 1;
-        padding: 0.5em 2em;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         margin: 0 0.5em;
+        padding: 0.5em 2em;
+        border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
+        background-color: $WHITE;
 
         &__left {
             display: flex;
@@ -36,8 +36,8 @@ $block-class: 'status-card';
         &__status {
             @extend .large-font;
 
-            margin-top: 36px;
             display: flex;
+            margin-top: 36px;
             cursor: pointer;
         }
 

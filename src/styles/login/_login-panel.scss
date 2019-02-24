@@ -1,4 +1,4 @@
-$block-class:'login-panel';
+$block-class:"login-panel";
 
 @at-root {
     .#{$block-class} {
@@ -8,8 +8,8 @@ $block-class:'login-panel';
         padding: 1em 2em;
 
         &__title {
-            font-size: 20px;
             padding-bottom: 1em;
+            font-size: 20px;
         }
 
         &__remember-me {

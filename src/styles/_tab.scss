@@ -1,32 +1,31 @@
-$block-class:'tab';
+$block-class:"tab";
 
 @at-root {
     .#{$block-class} {
-        min-width: 150px;
         display: flex;
         justify-content: start;
+        min-width: 150px;
         font-family: $brand-font-family;
 
         &__link {
             &--active {
-                background-color: $WHITE;
-                border-left: 2px solid $BORDER_COLOR;
-                border-right: 2px solid $BORDER_COLOR;
                 border-top: 2px solid $BORDER_COLOR;
+                border-right: 2px solid $BORDER_COLOR;
+                border-left: 2px solid $BORDER_COLOR;
                 border-radius: 4px;
+                background-color: $WHITE;
             }
         }
 
         &__title {
             @extend .lead-font;
 
-            width: 150px;
             display: flex;
+            justify-content: center;
+            width: 150px;
             padding: 5px 12px;
             border-bottom: none;
-            justify-content: center;
             cursor: pointer;
-            background-color: $WHITE;
         }
     }
 }

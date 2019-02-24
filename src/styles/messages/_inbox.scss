@@ -1,4 +1,4 @@
-$block-class: 'inbox';
+$block-class: "inbox";
 
 @at-root {
     .#{$block-class} {
@@ -20,8 +20,8 @@ $block-class: 'inbox';
         &__top-row {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         &__new-message-button {
@@ -37,14 +37,14 @@ $block-class: 'inbox';
 
         &__pager {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
         &__pager-content {
             display: flex;
-            justify-content: center;
             align-items: baseline;
+            justify-content: center;
             border: 2px solid $BORDER_COLOR;
             background-color: $WHITE;
         }

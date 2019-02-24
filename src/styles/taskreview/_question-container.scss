@@ -1,9 +1,9 @@
-$block-class:'question-container';
+$block-class:"question-container";
 
 @at-root {
     .#{$block-class} {
-        border-bottom: 2px solid $BORDER_COLOR;
         padding: 16px;
+        border-bottom: 2px solid $BORDER_COLOR;
 
         summary::-webkit-details-marker {
             font-size: 15px;

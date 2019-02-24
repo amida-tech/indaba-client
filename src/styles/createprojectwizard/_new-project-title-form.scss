@@ -1,4 +1,4 @@
-$block-class: 'new-project-title-form';
+$block-class: "new-project-title-form";
 
 @at-root {
     .#{$block-class} {
@@ -9,8 +9,8 @@ $block-class: 'new-project-title-form';
         &__field {
             @include text-input;
 
-            margin-bottom: 8px;
             display: flex;
+            margin-bottom: 8px;
         }
 
         &__instructions {
@@ -20,9 +20,9 @@ $block-class: 'new-project-title-form';
         }
 
         &__error {
-            color: $ERROR_RED;
-            margin-top: 5px;
             min-height: 20px;
+            margin-top: 5px;
+            color: $ERROR_RED;
         }
 
         &__hidden-button {

@@ -1,9 +1,9 @@
-$block-class:'user-dashboard';
+$block-class:"user-dashboard";
 
 @at-root {
     .#{$block-class} {
-        margin-left: 5%;
         margin-right: 5%;
+        margin-left: 5%;
 
         &__table {
             @extend .table-full;

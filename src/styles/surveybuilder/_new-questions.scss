@@ -1,23 +1,23 @@
-$block-class: 'new-questions';
+$block-class: "new-questions";
 
 @at-root {
     .#{$block-class} {
         &__types {
-            font-size: 14px;
-            color: $HEADER_FONT_COLOR;
-            border-bottom: 2px solid $BORDER_COLOR;
-            padding: 1em;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            border-bottom: 2px solid $BORDER_COLOR;
+            color: $HEADER_FONT_COLOR;
+            font-size: 14px;
         }
 
         &__masked-button {
-            background-color: Transparent;
-            border: none;
             padding: 5px 0 0 0;
+            border: none;
             outline: none;
+            background-color: Transparent;
 
             &:active {
                 outline: none;
@@ -34,10 +34,10 @@ $block-class: 'new-questions';
 
         &__break {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0 1em;
+            justify-content: space-between;
             margin-top: 40px;
+            padding: 0 1em;
             border-width: 1px 0;
             border-style: solid;
             border-color: $BORDER_COLOR;

@@ -1,4 +1,4 @@
-$block-class:'survey-pane';
+$block-class:"survey-pane";
 
 @at-root {
     .#{$block-class} {
@@ -8,11 +8,11 @@ $block-class:'survey-pane';
 
         &__controls {
             display: flex;
-            justify-content: space-between;
             align-items: baseline;
-            border-bottom: 1px solid $BORDER_COLOR;
-            padding: 16px;
+            justify-content: space-between;
             width: 100%;
+            padding: 16px;
+            border-bottom: 1px solid $BORDER_COLOR;
         }
 
         &__accordion-buttons {
@@ -35,8 +35,8 @@ $block-class:'survey-pane';
             padding: 16px;
 
             &-header {
-                font-size: 12px;
                 color: $ANCHOR_GRAY;
+                font-size: 12px;
             }
 
             &-explained {

@@ -103,7 +103,6 @@ class Subjects extends Component {
                         <span>{this.props.vocab.PROJECT.ADD_SUBJECT}</span>
                     </button>
                 </div>
-                <hr className='divider' />
                 <div className='subjects__table'>
                     <div className='subjects__filter-wrapper'>
                         <FilterInput className='subjects__filter'

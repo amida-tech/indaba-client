@@ -1,13 +1,13 @@
-$block-class: 'user-profile-form';
+$block-class: "user-profile-form";
 
 @at-root {
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        min-height: 500px;
         min-width: 800px;
-        margin-left: 20px;
+        min-height: 500px;
         margin-right: 20px;
+        margin-left: 20px;
 
         &__tabs {
             flex-flow: row nowrap;
@@ -17,8 +17,8 @@ $block-class: 'user-profile-form';
             &__nav {
                 display: flex;
                 margin: 0 0 1em;
-                border-bottom: 2px solid $BORDER_COLOR;
                 padding-left: 0;
+                border-bottom: 2px solid $BORDER_COLOR;
             }
         }
 
@@ -32,13 +32,13 @@ $block-class: 'user-profile-form';
             &__title {
                 @extend .small-font;
 
-                line-height: 24px;
                 display: flex;
+                justify-content: center;
                 padding-right: 12px;
                 border-bottom: none;
-                justify-content: center;
-                cursor: pointer;
                 color: $PRIMARY_GREEN;
+                line-height: 24px;
+                cursor: pointer;
             }
 
             &__link {

@@ -1,21 +1,21 @@
-$block-class: 'add-subject-control';
+$block-class: "add-subject-control";
 
 @at-root {
     .#{$block-class} {
         &__form {
             display: flex;
             flex-direction: column;
+            margin-right: 10%;
+            margin-left: 10%;
             border: 2px solid $BORDER_COLOR;
             border-radius: 2px;
-            margin-left: 10%;
-            margin-right: 10%;
         }
 
         &__header {
             display: flex;
             justify-content: space-between;
-            padding: 0.5em;
             width: 100%;
+            padding: 0.5em;
         }
 
         &__fields {
@@ -30,8 +30,8 @@ $block-class: 'add-subject-control';
             @include text-input;
 
             width: 100%;
-            margin-left: 0.5em;
             margin-bottom: 0.5em;
+            margin-left: 0.5em;
         }
 
         &__plus-icon {

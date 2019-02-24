@@ -1,4 +1,4 @@
-$block-class: 'message';
+$block-class: "message";
 
 @at-root {
     .#{$block-class} {
@@ -14,22 +14,22 @@ $block-class: 'message';
         }
 
         &__content {
-            background-color: white;
             padding: 0.5em 1em;
             border-bottom: 1px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__row {
-            border-bottom: 1px solid $BORDER_COLOR;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             padding: 0.5em 0;
+            border-bottom: 1px solid $BORDER_COLOR;
         }
 
         &__timestamp {
-            font-weight: 400;
             font-size: 14px;
+            font-weight: 400;
         }
 
         &__body-actions {
@@ -43,8 +43,8 @@ $block-class: 'message';
         }
 
         &__body-field-wrapper {
-            min-height: 8em;
             display: flex;
+            min-height: 8em;
         }
 
         &__body-buttons {
@@ -69,10 +69,10 @@ $block-class: 'message';
 
         &__inline-reply {
             min-height: 8em;
-            background-color: white;
             padding: 0.5em 1em;
-            cursor: pointer;
+            background-color: $WHITE;
             color: $FONT_COLOR;
+            cursor: pointer;
         }
     }
 }

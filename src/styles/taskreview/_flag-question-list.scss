@@ -1,4 +1,4 @@
-$block-class:'flag-question-list';
+$block-class:"flag-question-list";
 
 @at-root {
     .#{$block-class} {
@@ -11,8 +11,8 @@ $block-class:'flag-question-list';
             border-bottom: 1px solid $BORDER_COLOR;
             font-size: 12px;
             white-space: nowrap;
-            overflow: hidden;
             cursor: pointer;
+            overflow: hidden;
 
             &:hover {
                 background-color: $ELEMENT_BACKGROUND;
@@ -20,8 +20,8 @@ $block-class:'flag-question-list';
             }
 
             &--selected {
-                background-color: $ELEMENT_BACKGROUND;
                 border-right: 3px solid $AVOCADO_GREEN;
+                background-color: $ELEMENT_BACKGROUND;
                 color: $HEADER_FONT_COLOR;
                 font-size: 12px;
             }

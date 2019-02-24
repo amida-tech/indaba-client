@@ -1,9 +1,9 @@
-$block-class-dashboard:'pm-dashboard';
+$block-class-dashboard:"pm-dashboard";
 
 @at-root {
     .#{$block-class-dashboard} {
-        margin-left: 5%;
         margin-right: 5%;
+        margin-left: 5%;
 
         &__table {
             @extend .table-full;
@@ -12,9 +12,9 @@ $block-class-dashboard:'pm-dashboard';
         &__no-data {
             @extend .large-font;
 
+            margin: 1em;
             color: $ANCHOR_GRAY;
             text-align: center;
-            margin: 1em;
         }
     }
 }

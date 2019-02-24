@@ -1,4 +1,4 @@
-$block-class:'task-options-form';
+$block-class:"task-options-form";
 
 .#{$block-class} {
     &__container {
@@ -14,9 +14,9 @@ $block-class:'task-options-form';
     .#{$block-class} {
         width: 700px;
         margin-top: 20px;
+        margin-right: 50px;
         margin-bottom: 40px;
         margin-left: 50px;
-        margin-right: 50px;
 
         &__header {
             margin-top: 40px;
@@ -36,6 +36,8 @@ $block-class:'task-options-form';
         }
 
         &__radio-button {
+            margin-right: 12px;
+            font-size: 1.5em;
             vertical-align: middle;
 
             &:hover {
@@ -49,9 +51,6 @@ $block-class:'task-options-form';
             &--checked {
                 color: $AVOCADO_GREEN;
             }
-
-            font-size: 1.5em;
-            margin-right: 12px;
         }
 
         &__header-text-box {
@@ -63,18 +62,18 @@ $block-class:'task-options-form';
         }
 
         &__notify-user-warning {
-            font-size: 12px;
-            margin-left: 55px;
             margin-bottom: 5px;
+            margin-left: 55px;
+            font-size: 12px;
         }
 
         &__notify-user-warning-text-box {
             @include text-input;
 
             width: 100%;
+            min-height: 80px;
             resize: none;
             line-height: 40px;
-            min-height: 80px;
         }
 
         &__divider {
@@ -92,10 +91,10 @@ $block-class:'task-options-form';
         &__checkbox {
             @extend .small-icon;
 
-            font-size: 1.75em;
             margin-right: 10px;
             margin-bottom: 10px;
             color: $DARKEST_GREEN;
+            font-size: 1.75em;
 
             &--hidden {
                 display: none;
@@ -109,10 +108,10 @@ $block-class:'task-options-form';
             &--disabled {
                 @extend .small-icon;
 
-                font-size: 1.75em;
                 margin-right: 10px;
                 margin-bottom: 10px;
                 color: $LIGHT_GRAY !important;
+                font-size: 1.75em;
                 cursor: not-allowed;
                 pointer-events: none;
             }

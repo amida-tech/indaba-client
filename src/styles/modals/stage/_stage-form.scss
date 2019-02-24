@@ -1,4 +1,4 @@
-$block-class:'stage-form';
+$block-class:"stage-form";
 
 @mixin stage-header {
     &-header {
@@ -16,8 +16,8 @@ $block-class:'stage-form';
     .#{$block-class} {
         @include multi-select-styles;
 
-        color: $HEADER_FONT_COLOR;
         padding: 16px 24px 26px;
+        color: $HEADER_FONT_COLOR;
 
         &__input-field {
             width: 100%;
@@ -37,8 +37,8 @@ $block-class:'stage-form';
             @include stage-header;
 
             padding: 8px 8px 8px 8px;
-            border-radius: 4px;
             border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
         }
 
         &__radio-control {
@@ -52,9 +52,9 @@ $block-class:'stage-form';
         }
 
         &__icon {
-            color: $FONT_COLOR;
-            opacity: 0.6;
             margin: 0 8px 8px 8px;
+            opacity: 0.6;
+            color: $FONT_COLOR;
         }
 
         &__permission-label-text {

@@ -1,4 +1,4 @@
-$block-class:'account-tab';
+$block-class:"account-tab";
 
 @at-root {
     .#{$block-class} {
@@ -7,12 +7,12 @@ $block-class:'account-tab';
         padding: 2em;
 
         &__label {
-            color: $DARK_GRAY;
-            font-weight: 400;
-            font-size: 14px;
             display: flex;
             flex-direction: column;
             padding-bottom: 1em;
+            color: $DARK_GRAY;
+            font-size: 14px;
+            font-weight: 400;
         }
 
         &__field {

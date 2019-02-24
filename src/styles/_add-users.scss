@@ -1,5 +1,5 @@
 
-$block-class: 'add-users';
+$block-class: "add-users";
 
 @at-root {
     .#{$block-class} {
@@ -8,8 +8,8 @@ $block-class: 'add-users';
         &__control-row {
             display: flex;
             justify-content: flex-end;
-            padding: 1em 2em;
             margin-right: 10%;
+            padding: 1em 2em;
         }
 
         &__control-row-button {
@@ -30,8 +30,8 @@ $block-class: 'add-users';
             margin: 0 auto;
 
             &--top {
-                margin-top: 24px;
                 justify-content: center;
+                margin-top: 24px;
             }
 
             &--bottom {
@@ -41,15 +41,15 @@ $block-class: 'add-users';
 
         &__tabs__nav {
             display: flex;
-            border-bottom: 1px solid $LIGHT_GRAY;
-            margin-left: 10%;
             margin-right: 10%;
             margin-bottom: 0;
+            margin-left: 10%;
+            border-bottom: 1px solid $LIGHT_GRAY;
         }
 
         .divider {
-            margin-left: 10%;
             margin-right: 10%;
+            margin-left: 10%;
         }
     }
 }

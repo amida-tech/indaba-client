@@ -1,10 +1,10 @@
-$block-class: 'profile-form';
+$block-class: "profile-form";
 
 @mixin profile-form-sections {
-    margin-left: 20%;
-    margin-right: 20%;
     display: flex;
+    margin-right: 20%;
     margin-bottom: 8px;
+    margin-left: 20%;
 }
 
 @at-root {
@@ -12,11 +12,11 @@ $block-class: 'profile-form';
         &__header {
             @include profile-form-sections;
 
-            width: 60%;
             flex-direction: row;
+            justify-content: space-between;
+            width: 60%;
             padding-top: 80px;
             padding-bottom: 8px;
-            justify-content: space-between;
         }
 
         &__form-title {
@@ -68,8 +68,8 @@ $block-class: 'profile-form';
             &-input {
                 @include text-input;
 
-                min-width: 100%;
                 flex-grow: 1;
+                min-width: 100%;
                 margin-right: 8px;
             }
         }
@@ -90,8 +90,8 @@ $block-class: 'profile-form';
             &-instruction {
                 @extend .lead-font;
 
-                margin-top: 0.5em;
                 width: 70%;
+                margin-top: 0.5em;
             }
 
             &__confirm-label {
@@ -124,9 +124,9 @@ $block-class: 'profile-form';
 
             &--disabled {
                 color: $DISABLED_FONT_COLOR !important;
+                font-size: 1.75em;
                 cursor: not-allowed;
                 pointer-events: none;
-                font-size: 1.75em;
             }
         }
     }

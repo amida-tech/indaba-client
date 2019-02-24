@@ -1,4 +1,4 @@
-$block-class:'create-new-project';
+$block-class:"create-new-project";
 
 @at-root {
     .#{$block-class} {
@@ -8,9 +8,9 @@ $block-class:'create-new-project';
 
             p {
                 max-width: 576px;
-                margin-left: 0;
                 margin-top: 24px;
                 margin-bottom: 24px;
+                margin-left: 0;
 
                 @extend .lead-font;
             }

@@ -1,14 +1,14 @@
-$block-class: 'user-badge';
+$block-class: "user-badge";
 
 @at-root {
     .#{$block-class} {
         width: 2.2em;
         height: 2.2em;
         margin-right: 2px;
+        border-radius: 50%;
+        background-color: $PRIMARY_GREEN;
+        color: $WHITE;
         line-height: 2.2em;
         text-align: center;
-        background-color: $PRIMARY_GREEN;
-        border-radius: 50%;
-        color: white;
     }
 }

@@ -1,16 +1,16 @@
-$block-class:'flag-sidebar';
+$block-class:"flag-sidebar";
 
 @at-root {
     .#{$block-class} {
         margin: 1em;
 
         &__container {
-            margin-top: 1em;
             display: flex;
+            position: relative;
             flex-flow: nowrap;
             flex-direction: row;
             justify-content: flex-end;
-            position: relative;
+            margin-top: 1em;
             background-color: $ELEMENT_BACKGROUND;
         }
 

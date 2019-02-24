@@ -1,17 +1,17 @@
-$block-class: 'message-body-field';
+$block-class: "message-body-field";
 
 @at-root {
     .#{$block-class} {
         flex: 1;
 
         &__value {
-            height: 100%;
             width: 100%;
+            height: 100%;
+            padding-top: 16px;
+            resize: none;
             border: none;
             outline: none;
-            resize: none;
             color: darken($FONT_COLOR, 30);
-            padding-top: 16px;
             line-height: 1.5;
 
             &--error {

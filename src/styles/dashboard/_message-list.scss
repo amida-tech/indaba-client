@@ -1,20 +1,20 @@
-$block-class: 'message-list';
+$block-class: "message-list";
 
 @at-root {
     .#{$block-class} {
         @extend .table-full;
 
+        min-height: 220px;
+        margin-top: 64px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
-        min-height: 220px;
-        margin-top: 64px;
 
         &__title {
             @include table-header;
 
-            justify-content: space-between;
             display: flex;
+            justify-content: space-between;
             padding: 8px;
             font-size: 18px;
         }
@@ -24,16 +24,16 @@ $block-class: 'message-list';
         }
 
         &__title-header {
-            color: $HEADER_FONT_COLOR;
             padding: 8px;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__row {
             @extend .table-body;
 
+            flex-direction: row;
             height: 3em;
             padding-left: 8px;
-            flex-direction: row;
             background: $WHITE;
 
             &--unread {
@@ -53,35 +53,35 @@ $block-class: 'message-list';
         &__unread-indicator {
             width: 6px;
             height: 6px;
-            border-radius: 50%;
             margin-right: 6px;
+            border-radius: 50%;
         }
 
         &__name {
             @extend .lead-font;
 
             flex: 1;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         &__subject {
             @extend .lead-font;
 
             flex: 2;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         &__time {
             @extend .lead-font;
 
             flex: 1;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
     }
 }

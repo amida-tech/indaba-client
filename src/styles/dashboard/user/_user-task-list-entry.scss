@@ -1,4 +1,4 @@
-$block-class: 'user-task-list-entry';
+$block-class: "user-task-list-entry";
 
 @at-root {
     .#{$block-class} {
@@ -20,9 +20,9 @@ $block-class: 'user-task-list-entry';
             &--task,
             &--survey {
                 flex: 1;
-                overflow-x: hidden;
-                white-space: nowrap;
                 text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow-x: hidden;
             }
         }
     }

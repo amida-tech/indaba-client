@@ -1,4 +1,4 @@
-$block-class: 'export';
+$block-class: "export";
 
 @at-root {
     .#{$block-class} {
@@ -23,12 +23,11 @@ $block-class: 'export';
         &__configuration {
             flex: 1;
             border: 2px solid $BORDER_COLOR;
-            background-color: $PAGE_BACKGROUND_COLOR;
+            background-color: $WHITE;
         }
 
         &__type-section {
             padding: 16px 32px;
-            border-bottom: 2px solid $BORDER_COLOR;
 
             &--inactive {
                 opacity: 0.5;
@@ -42,6 +41,8 @@ $block-class: 'export';
 
         // input prefix needed to exceed bootstrap rule specifity
         input.#{$block-class}__type-input {
+            @include text-input;
+
             margin-right: 16px;
             cursor: pointer;
         }
@@ -54,18 +55,18 @@ $block-class: 'export';
         }
 
         &__explanation {
-            font-size: 14px;
-            color: $HEADER_FONT_COLOR;
             margin-left: 32px;
+            color: $HEADER_FONT_COLOR;
+            font-size: 14px;
         }
 
         &__custom-choices {
+            display: flex;
+            flex-wrap: wrap;
             margin: 16px;
             padding: 16px 12px;
             border: 2px solid $BORDER_COLOR;
-            background-color: $PAGE_BACKGROUND_COLOR;
-            display: flex;
-            flex-wrap: wrap;
+            background-color: $WHITE;
         }
 
         &__custom-choice {
@@ -100,8 +101,8 @@ $block-class: 'export';
 
         &__custom-action {
             margin-left: 16px;
-            cursor: pointer;
             color: $AVOCADO_GREEN;
+            cursor: pointer;
         }
 
         &__custom-title {
@@ -111,14 +112,14 @@ $block-class: 'export';
         }
 
         &__download {
-            flex-basis: 240px;
-            margin-left: 30px;
-            background-color: $PAGE_BACKGROUND_COLOR;
-            border: 2px solid $BORDER_COLOR;
             display: flex;
+            flex-basis: 240px;
             flex-direction: column;
             align-items: center;
+            margin-left: 30px;
             padding: 8px 8px 16px;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__download-instruction {

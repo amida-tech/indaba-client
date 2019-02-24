@@ -1,12 +1,12 @@
-$block-class: 'invite-user-form';
+$block-class: "invite-user-form";
 
 @at-root {
     .#{$block-class} {
         display: inline-flex;
         flex-direction: row;
         justify-content: center;
-        margin-bottom: 0.5rem;
         width: 100%;
+        margin-bottom: 0.5rem;
 
         &__text-input {
             @include text-input;

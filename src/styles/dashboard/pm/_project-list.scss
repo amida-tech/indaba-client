@@ -1,5 +1,5 @@
-$block-class: 'project-list-entry';
-$block-class-header: 'project-list-header';
+$block-class: "project-list-entry";
+$block-class-header: "project-list-header";
 
 @at-root {
     .#{$block-class} {
@@ -7,14 +7,14 @@ $block-class-header: 'project-list-header';
 
         &__name {
             flex: 2;
-            text-align: left;
             margin-left: 14px;
+            text-align: left;
         }
 
         &__status {
             flex: 1;
-            text-align: left;
             margin-right: 48px;
+            text-align: left;
 
             &--active {
                 color: $KALE_GREEN;
@@ -28,8 +28,8 @@ $block-class-header: 'project-list-header';
         }
 
         &__last-updated {
-            flex: 1;
             display: flex;
+            flex: 1;
             text-align: left;
         }
     }
@@ -42,26 +42,26 @@ $block-class-header: 'project-list-header';
         &__title {
             &--project {
                 flex: 3;
-                text-align: left;
                 margin-left: 14px;
+                text-align: left;
             }
 
             &--survey {
                 flex: 3;
-                text-align: left;
                 margin-left: 56px;
+                text-align: left;
             }
 
             &--flags {
                 flex: 1;
-                text-align: left;
                 margin-left: 40px;
+                text-align: left;
             }
 
             &--last-updated {
+                display: flex;
                 flex: 1;
                 text-align: left;
-                display: flex;
             }
         }
     }

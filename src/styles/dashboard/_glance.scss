@@ -1,18 +1,18 @@
-$block-class: 'glance';
+$block-class: "glance";
 
 @at-root {
     .#{$block-class} {
         display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         align-items: center;
         width: 90%;
-        flex-wrap: wrap;
-        flex-direction: column;
         margin-top: 48px;
         margin-left: 24px;
 
         &__group {
-            flex: 1;
             display: flex;
+            flex: 1;
             justify-content: center;
             margin: 8px 16px;
         }

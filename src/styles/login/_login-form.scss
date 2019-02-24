@@ -1,13 +1,13 @@
-$block-class:'login-form';
+$block-class:"login-form";
 
 @at-root {
     .#{$block-class} {
-        text-align: center;
         padding-bottom: 16px;
+        text-align: center;
 
         &__field {
-            padding-bottom: 16px;
             width: 384px;
+            padding-bottom: 16px;
         }
 
         &__input {

@@ -1,13 +1,13 @@
-$block-class: 'subject-list';
+$block-class: "subject-list";
 
 @at-root {
     .#{$block-class} {
         &__entry {
             @extend .table-body;
 
-            justify-content: space-between;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
         }
 
         &__header {

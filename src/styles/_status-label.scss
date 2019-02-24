@@ -1,14 +1,14 @@
-$block-class: 'status-label';
+$block-class: "status-label";
 
 @at-root {
     .#{$block-class} {
-        color: white;
-        font-size: 10px; // em dependent calc
         display: inline-block;
         height: $tag-height; // 20px
-        padding: 0 1em;
         margin-right: 5px;
+        padding: 0 1em;
         border-radius: 2px;
+        color: $WHITE;
+        font-size: 10px; // em dependent calc
 
         &--bad {
             background-color: $ERROR_RED;
@@ -19,8 +19,8 @@ $block-class: 'status-label';
         }
 
         &--neutral {
-            background-color: $PRIMARY_GRAY;
             min-width: 85px;
+            background-color: $PRIMARY_GRAY;
         }
     }
 }

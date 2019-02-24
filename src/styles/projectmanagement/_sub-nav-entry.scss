@@ -1,4 +1,4 @@
-$block-class: 'sub-nav-entry';
+$block-class: "sub-nav-entry";
 
 @at-root {
     .#{$block-class} {
@@ -8,8 +8,8 @@ $block-class: 'sub-nav-entry';
         cursor: pointer;
 
         &--selected {
-            border-bottom: 2px solid $PRIMARY_GREEN;
             padding-bottom: 0.25px;
+            border-bottom: 2px solid $PRIMARY_GREEN;
             color: $PRIMARY_GREEN;
         }
     }

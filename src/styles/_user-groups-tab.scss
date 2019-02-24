@@ -1,12 +1,12 @@
-$block-class:'user-groups-tab';
+$block-class:"user-groups-tab";
 
 @at-root {
     .wrapper {
-        background-color: $PAGE_BACKGROUND_COLOR;
-        border: 2px solid $BORDER_COLOR;
-        padding: 1rem;
-        margin-left: 10%;
-        margin-right: 10%;
         min-height: 500px;
+        margin-right: 10%;
+        margin-left: 10%;
+        padding: 1rem;
+        border: 2px solid $BORDER_COLOR;
+        background-color: $PAGE_BACKGROUND_COLOR;
     }
 }

@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
 $primary-nav-height: 64px;
 $footer-height: 48px;
 $footer-height-with-padding: 64px;
-$brand-font-family: 'Roboto';
+$brand-font-family: "Roboto";
 
 body {
-    font-family: Roboto, sans-serif;
     background-color: $PAGE_BACKGROUND_COLOR;
     color: $HEADER_FONT_COLOR;
+    font-family: Roboto, sans-serif;
     overflow-y: auto;
 }
 
@@ -19,28 +19,28 @@ body,
 }
 
 .app {
-    min-height: 100%;
     position: relative;
+    min-height: 100%;
     padding-bottom: $footer-height-with-padding;
 }
 
 .divider {
     margin-top: 0;
     margin-bottom: 0;
-    border-top-color: $BORDER_COLOR;
     clear: both;
+    border-top-color: $BORDER_COLOR;
 }
 
 .main-divider {
     position: absolute;
-    left: 0;
     right: 0;
+    left: 0;
 }
 
 .main-body {
-    margin-left: 10%;
-    margin-right: 10%;
     width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 
 .workflow {
@@ -51,8 +51,8 @@ body,
 }
 
 .grid-column {
-    overflow-x: auto;
     border-right: none;
+    overflow-x: auto;
 }
 
 .workflow-table {

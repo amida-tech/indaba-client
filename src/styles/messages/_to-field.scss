@@ -1,12 +1,12 @@
-$block-class: 'to-field';
+$block-class: "to-field";
 
 @at-root {
     .#{$block-class} {
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
-        margin-top: -4px;
         min-height: 41px;
+        margin-top: -4px;
 
         &__search-wrapper {
             position: relative;
@@ -15,8 +15,8 @@ $block-class: 'to-field';
             margin-bottom: -16px;
 
             &--error {
-                outline: 1px solid $ERROR_RED;
                 padding-right: 15px;
+                outline: 1px solid $ERROR_RED;
             }
         }
     }

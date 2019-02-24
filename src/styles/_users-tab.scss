@@ -1,17 +1,17 @@
-$block-class: 'users-tab';
+$block-class: "users-tab";
 
 @at-root {
     .#{$block-class} {
-        border: 2px solid $BORDER_COLOR;
         width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
         min-height: 500px;
+        margin-right: 10%;
+        margin-left: 10%;
+        border: 2px solid $BORDER_COLOR;
 
         &__wrapper {
-            background-color: $PAGE_BACKGROUND_COLOR;
-            padding: 1rem;
             height: 50%;
+            padding: 1rem;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
 
         &__invite-container {
@@ -24,22 +24,22 @@ $block-class: 'users-tab';
         }
 
         &__invite-wrapper {
-            background-color: $PAGE_BACKGROUND_COLOR;
             display: flex;
             flex: 1;
             flex-direction: column;
+            background-color: $PAGE_BACKGROUND_COLOR;
         }
 
         &__text-input {
-            flex: 1;
             display: flex;
+            flex: 1;
             min-width: 100%;
         }
 
         &__entry {
             display: flex;
-            padding: 8px 16px;
             justify-content: space-between;
+            padding: 8px 16px;
             border-bottom: 1px solid $BORDER_COLOR;
 
             &:nth-child(even) {
@@ -57,12 +57,12 @@ $block-class: 'users-tab';
         }
 
         &__search {
-            background-color: $WHITE;
             margin-bottom: 1rem;
+            background-color: $WHITE;
 
             &__input {
-                padding: 5px 5px 5px 10px;
                 width: 100%;
+                padding: 5px 5px 5px 10px;
                 border: 1px solid $BORDER_COLOR;
             }
 

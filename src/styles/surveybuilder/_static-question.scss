@@ -1,15 +1,15 @@
-$block-class: 'static-question';
+$block-class: "static-question";
 
 @at-root {
     .#{$block-class} {
-        padding: 0 1em 0.5em;
         display: flex;
         flex-direction: column;
+        padding: 0 1em 0.5em;
 
         &__bool {
             &-field {
-                margin-left: 5px;
                 margin-bottom: 24px;
+                margin-left: 5px;
             }
 
             &-label {
@@ -26,8 +26,8 @@ $block-class: 'static-question';
 
         &__bulletpoint1 {
             width: 40%;
-            padding: 0.2em;
             margin-bottom: 8px;
+            padding: 0.2em;
         }
 
         &__bulletpoint2 {

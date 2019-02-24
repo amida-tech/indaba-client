@@ -1,4 +1,4 @@
-$block-class:'secondary-nav';
+$block-class:"secondary-nav";
 
 @at-root {
     .#{$block-class} {
@@ -6,8 +6,8 @@ $block-class:'secondary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: $NAVIGATION_BACKGROUND_COLOR;
         height: $primary-nav-height;
+        background-color: $NAVIGATION_BACKGROUND_COLOR;
 
         &__left {
             display: flex;
@@ -16,12 +16,12 @@ $block-class:'secondary-nav';
         }
 
         &__indaba-logo {
-            padding-top: 2px;
             width: 140px;
             height: 64px;
-            margin-left: 10%;
             margin-bottom: 2px;
-            color: white;
+            margin-left: 10%;
+            padding-top: 2px;
+            color: $WHITE;
         }
     }
 }

@@ -1,11 +1,11 @@
-$block-class: 'editable-text-input';
+$block-class: "editable-text-input";
 
 @at-root {
     .#{$block-class} {
+        display: flex;
+        color: $HEADER_FONT_COLOR;
         font-size: 22px;
         font-weight: 300;
-        color: $HEADER_FONT_COLOR;
-        display: flex;
 
         &__field {
             @include text-input;

@@ -2,9 +2,9 @@
 
 // Will edit everything selected including everything between a range of dates
 .CalendarDay__selected_span {
+    border: 1px solid $WHITE; //default styles include a border
     background: $LIGHT_GRAY; //background
     color: $DARK_GRAY; //text
-    border: 1px solid $WHITE; //default styles include a border
 }
 
 .CalendarDay__selected_span:hover {

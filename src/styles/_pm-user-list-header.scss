@@ -1,9 +1,9 @@
-$block-class: 'pm-user-list-header';
+$block-class: "pm-user-list-header";
 
 @at-root {
     .#{$block-class} {
-        width: 100%;
         display: inline-flex;
+        width: 100%;
 
         @include table-header;
 

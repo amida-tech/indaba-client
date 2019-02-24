@@ -1,12 +1,12 @@
-$block-class: 'split-layout';
+$block-class: "split-layout";
 
 @at-root {
     .#{$block-class} {
         display: flex;
 
         &__child {
-            flex: 1;
             display: flex;
+            flex: 1;
             flex-direction: column;
             justify-content: space-around;
         }

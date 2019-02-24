@@ -1,18 +1,18 @@
-$block-class:'user-sidebar';
+$block-class:"user-sidebar";
 
 @at-root {
     @include multi-select-styles;
 
     .#{$block-class} {
         display: flex;
-        flex-direction: column;
         position: relative;
+        flex-direction: column;
         min-width: 320px;
         padding: 16px;
 
         &__user-dropdown {
-            overflow-y: scroll;
             height: 340px;
+            overflow-y: scroll;
         }
 
         &__instructions {
@@ -26,11 +26,11 @@ $block-class:'user-sidebar';
         }
 
         &__user-filter-by-group {
-            overflow: visible;
+            width: calc(100% - 1em);
             margin: 0.5em;
             margin-top: 0;
-            width: calc(100% - 1em);
             background-color: $WHITE;
+            overflow: visible;
         }
     }
 }

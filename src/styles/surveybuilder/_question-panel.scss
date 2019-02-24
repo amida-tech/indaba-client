@@ -1,17 +1,17 @@
-$block-class: 'question-panel';
+$block-class: "question-panel";
 
 @at-root {
     .#{$block-class} {
+        margin-bottom: 1em;
+        padding: 1em;
         border: 2px solid $BORDER_COLOR;
         border-radius: 4px;
         background-color: $WHITE;
-        padding: 1em;
-        margin-bottom: 1em;
 
         &__header {
-            font-size: 1.3em;
             display: flex;
             justify-content: space-between;
+            font-size: 1.3em;
         }
 
         &__question {
@@ -50,9 +50,9 @@ $block-class: 'question-panel';
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            border-top: 2px solid $BORDER_COLOR;
             margin-top: 24px;
             padding-top: 16px;
+            border-top: 2px solid $BORDER_COLOR;
         }
 
         &__additions {
@@ -63,8 +63,8 @@ $block-class: 'question-panel';
 
         &__checkboxes {
             margin-right: 10px;
-            vertical-align: bottom;
             background-color: $WHITE;
+            vertical-align: bottom;
 
             input {
                 margin-bottom: 6px;
@@ -75,9 +75,9 @@ $block-class: 'question-panel';
         &__attach-icon {
             @extend .small-icon;
 
-            vertical-align: top;
-            margin-left: -4px;
             margin-bottom: -4px;
+            margin-left: -4px;
+            vertical-align: top;
         }
 
         &__icon-label {
@@ -93,8 +93,8 @@ $block-class: 'question-panel';
         &__help-icon {
             @extend .small-icon;
 
-            vertical-align: sub;
             height: 16px;
+            vertical-align: sub;
         }
     }
 }

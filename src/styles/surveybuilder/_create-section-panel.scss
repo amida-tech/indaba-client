@@ -1,4 +1,4 @@
-$block-class: 'create-section-panel';
+$block-class: "create-section-panel";
 
 @at-root {
     .#{$block-class} {
@@ -11,26 +11,26 @@ $block-class: 'create-section-panel';
         &__section-name {
             @extend .large-font;
 
-            border: none;
-            padding: 16px;
-            margin-left: 2px;
             width: 100%;
-            background-color: transparent;
+            margin-left: 2px;
+            padding: 16px;
+            border: none;
             outline: none;
+            background-color: transparent;
 
             &:focus {
-                outline: none;
-                border-bottom: 2px solid $PRIMARY_GREEN;
                 border-top: none;
-                border-left: none;
                 border-right: none;
+                border-bottom: 2px solid $PRIMARY_GREEN;
+                border-left: none;
+                outline: none;
             }
         }
 
         &__menu-button {
-            background-color: Transparent;
-            border: none;
             margin: 0 10px;
+            border: none;
+            background-color: Transparent;
         }
 
         &__menu-icon {

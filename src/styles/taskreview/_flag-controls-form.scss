@@ -1,4 +1,4 @@
-$block-class:'flag-controls-form';
+$block-class:"flag-controls-form";
 
 @at-root {
     .#{$block-class} {
@@ -8,21 +8,21 @@ $block-class:'flag-controls-form';
         &__discussion {
             width: 100%;
             height: 20em;
+            margin-right: 0;
+            padding-right: 20px;
+            padding-left: 20px;
             resize: none;
             border: 0;
-            background-color: $WHITE;
-            margin-right: 0;
-            padding-left: 20px;
-            padding-right: 20px;
             outline: none;
+            background-color: $WHITE;
         }
 
         &__mark-resolve-section {
             display: flex;
-            color: $HEADER_FONT_COLOR;
             margin-top: 16px;
             margin-bottom: 16px;
             margin-left: 8px;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__resolve-text {
@@ -30,8 +30,8 @@ $block-class:'flag-controls-form';
         }
 
         &__notify-section {
-            color: $HEADER_FONT_COLOR;
             margin-bottom: 1em;
+            color: $HEADER_FONT_COLOR;
 
             @include multi-select-styles;
         }

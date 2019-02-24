@@ -1,19 +1,19 @@
-$block-class: 'add-question-panel';
+$block-class: "add-question-panel";
 
 @at-root {
     .#{$block-class} {
         display: flex;
-        flex-direction: column;
         position: relative;
+        flex-direction: column;
         width: 320px;
+        margin-top: 48px;
         border: 2px solid $BORDER_COLOR;
         border-radius: 4px;
-        margin-top: 48px;
         background-color: $WHITE;
 
         &__instructions {
-            text-align: center;
             margin: 8px;
+            text-align: center;
         }
 
         &__tab {
@@ -22,9 +22,9 @@ $block-class: 'add-question-panel';
             &__link--active {
                 @extend .tab__link--active !optional;
 
-                border-left: 2px solid $BORDER_COLOR;
-                border-right: 2px solid $BORDER_COLOR;
                 border-top: 2px solid $BORDER_COLOR;
+                border-right: 2px solid $BORDER_COLOR;
+                border-left: 2px solid $BORDER_COLOR;
             }
 
             &__label {

@@ -1,4 +1,4 @@
-$block-class: 'menu';
+$block-class: "menu";
 
 @at-root {
     .#{$block-class} {
@@ -11,10 +11,10 @@ $block-class: 'menu';
         &__dropdown {
             display: block;
             position: absolute;
-            background-color: $PAGE_BACKGROUND_COLOR;
             min-width: 160px;
-            box-shadow: 0 4px 16px 0 $DARK_GRAY;
             padding: 6px;
+            background-color: $PAGE_BACKGROUND_COLOR;
+            box-shadow: 0 4px 16px 0 $DARK_GRAY;
             z-index: 1;
         }
 

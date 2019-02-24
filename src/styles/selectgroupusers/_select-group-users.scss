@@ -1,21 +1,21 @@
-$block-class: 'select-group-users';
+$block-class: "select-group-users";
 
 @at-root {
     .#{$block-class} {
-        min-width: 800px;
         display: flex;
         flex-direction: column;
+        min-width: 800px;
         color: $HEADER_FONT_COLOR;
 
         &__group-name-input {
-            line-height: 1.5;
+            margin: 0;
             padding: 11px;
             border: 2px solid $BORDER_COLOR;
             border-radius: 4px;
             outline: none;
             background-color: transparent;
             color: inherit;
-            margin: 0;
+            line-height: 1.5;
         }
 
         &__wrapper {
@@ -34,13 +34,13 @@ $block-class: 'select-group-users';
 
         &__buttons {
             display: flex;
-            margin-bottom: 2px;
-            flex-direction: column;
-            justify-content: center;
-            cursor: pointer;
-            align-items: center;
             top: 350px;
             left: 408px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2px;
+            cursor: pointer;
         }
     }
 }

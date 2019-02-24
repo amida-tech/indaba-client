@@ -1,12 +1,12 @@
-$block-class: 'add-subjects';
+$block-class: "add-subjects";
 
 @at-root {
     .#{$block-class} {
         &__import-row {
             display: flex;
             justify-content: flex-end;
-            padding: 1em 2em;
             margin-right: 10%;
+            padding: 1em 2em;
         }
 
         &__import-button {
@@ -16,12 +16,12 @@ $block-class: 'add-subjects';
         &__table-row {
             display: flex;
             align-content: center;
-            padding: 8px 16px;
-            margin-left: 10%;
+            justify-content: space-between;
             margin-right: 10%;
+            margin-left: 10%;
+            padding: 8px 16px;
             border: 2px solid $BORDER_COLOR;
             border-top-width: 0;
-            justify-content: space-between;
 
             &:nth-child(even) {
                 background-color: $WHITE;
@@ -32,12 +32,12 @@ $block-class: 'add-subjects';
             @extend .lead-font;
 
             display: flex;
+            justify-content: center;
+            width: 75%;
             margin-top: 24px;
             margin-bottom: 32px;
             margin-left: 10%;
             padding-left: 1rem;
-            width: 75%;
-            justify-content: center;
         }
     }
 }
