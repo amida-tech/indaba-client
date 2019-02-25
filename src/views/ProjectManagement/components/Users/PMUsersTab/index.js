@@ -94,8 +94,7 @@ class PMUsersTab extends Component {
                     <Search
                         placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                         value={this.props.ui.userListSearchQuery}
-                        list={this.props.allUsers.filter((user) =>
-                            !this.props.project.users.includes(user.id))
+                        list={this.props.allUsers.filter(user => !this.props.project.users.includes(user.id))
                             .filter(this.searchUser)
                             .map(user => ({
                                 label: renderName(user),
