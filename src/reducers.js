@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import * as CommonReducers from './common/reducers';
 import { LoginReducer } from './views/Login';
+import { ResetPasswordReducer } from './views/ResetPassword';
 import { ProjectManagementReducer } from './views/ProjectManagement';
 import { TaskReviewReducer } from './views/TaskReview';
 import { SurveyBuilderReducer } from './views/SurveyBuilder';
@@ -24,6 +25,7 @@ const reducers = {
     tasks: CommonReducers.TaskReducer,
     messages: MessagesReducer,
     login: LoginReducer,
+    resetpassword: ResetPasswordReducer,
     routing: routerReducer,
     manager: ProjectManagementReducer,
     taskreview: TaskReviewReducer,
