@@ -10,11 +10,11 @@ $block-class:'stage-slot';
         font-size: 16px;
 
         &--accept {
-            background: rgba(0, 155, 50, 0.3);
+            background: rgba(0, 155, 50, 0.3); // leave for opacity
         }
 
         &--deny {
-            background: rgba(255, 0, 0, 0.2);
+            background: rgba(255, 0, 0, 0.2); // leave for opacity
         }
 
         &__container > * {
@@ -44,10 +44,9 @@ $block-class:'stage-slot';
         }
 
         &__role-span {
+            @extend .x-small-font;
+
             align-items: flex-start;
-            color: lighten($FONT_COLOR, 5%);
-            font-size: 12px;
-            font-weight: 400;
             letter-spacing: 0.3px;
         }
 
@@ -70,17 +69,14 @@ $block-class:'stage-slot';
         }
 
         &__left-icon {
+            @extend .small-icon;
+
             width: 16px;
             height: 16px;
             margin-top: 2px;
             margin-right: 5px;
             float: left;
-            fill: $HEADER_FONT_COLOR;
             cursor: pointer;
-
-            &:hover {
-                fill: $FONT_COLOR;
-            }
         }
 
         &__flag-row {

@@ -30,6 +30,18 @@
     background: $LIGHT_GRAY;
 }
 
-.DateInput_input__focused {
-    border-bottom: 2px solid $DARKEST_GREEN; //default styles include a border
+.SingleDatePickerInput {
+    border: none;
+}
+
+.DateRangePickerInput {
+    border: none;
+}
+
+.DateInput_input {
+    @include text-input;
+
+    &__focused {
+        border-bottom: 2px solid $DARKEST_GREEN !important; //default styles include a border
+    }
 }

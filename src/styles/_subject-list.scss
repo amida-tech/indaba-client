@@ -11,23 +11,24 @@ $block-class: 'subject-list';
         }
 
         &__header {
+            @include table-header;
+
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             padding: 8px 16px;
-            background-color: $LIGHT_GRAY;
+            border-top: 2px solid $BORDER_COLOR;
         }
 
         &__header-title {
-            @extend .lead-font;
-
             padding: 5px;
+            color: $STEEL_GRAY;
 
             &--name {
                 cursor: pointer;
 
                 &:hover {
-                    background-color: $LIGHTEST_GRAY;
+                    border-bottom: 2px solid $PRIMARY_GREEN;
                 }
             }
         }

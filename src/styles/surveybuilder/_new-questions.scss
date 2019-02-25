@@ -2,6 +2,8 @@ $block-class: 'new-questions';
 
 @at-root {
     .#{$block-class} {
+        border-top: 2px solid $BORDER_COLOR;
+
         &__types {
             display: flex;
             flex-direction: row;
@@ -38,9 +40,7 @@ $block-class: 'new-questions';
             justify-content: space-between;
             margin-top: 40px;
             padding: 0 1em;
-            border-width: 1px 0;
-            border-style: solid;
-            border-color: $BORDER_COLOR;
+            border-top: 2px solid $BORDER_COLOR;
         }
     }
 }

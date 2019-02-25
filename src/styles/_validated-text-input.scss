@@ -3,5 +3,9 @@ $block-class: 'validated-text-input';
 @at-root {
     .#{$block-class} {
         @include text-input;
+
+        input[type=text] {
+            border: 1px solid $BLACK !important;
+        }
     }
 }

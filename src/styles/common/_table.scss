@@ -11,11 +11,14 @@
 @mixin table-header {
     display: flex;
     padding: 16px 16px;
-    background-color: $LIGHT_GRAY;
+    border-bottom: 2px solid $BORDER_COLOR;
+    background-color: $SNOW;
 
     &__title,
     &__cell {
-        @extend .lead-font;
+        @extend .small-font;
+
+        color: $STEEL_GRAY !important;
     }
 }
 
