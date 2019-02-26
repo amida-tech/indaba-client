@@ -56,6 +56,9 @@ export const TaskReducer = (state = initialState, action) => {
         });
     case type.PUT_TASK_SUCCESS:
         return update(state, { data: { [taskIndex]: { $merge: action.taskChanges } } });
+
+    case type.FORCE_TASK_SUCCESS:
+        return update(state, { data: { [taskIndex]: { status: { $set: 'completed' } } } });
     case DELETE_PROJECT_USER_SUCCESS:
         return update(state, {
             data: {

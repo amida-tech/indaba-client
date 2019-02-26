@@ -20,8 +20,6 @@ $block-class:'create-new-project';
 
         &__import-button {
             @extend .disabled-button;
-
-            cursor: default !important; // INBA-897.
         }
 
         &__create-button {

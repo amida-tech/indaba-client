@@ -4,7 +4,7 @@
 @mixin multi-select-styles {
     .Select--multi .Select-value {
         color: $form-text;
-        background-color: $background-color;
+        background-color: $WHITE;
         border: 1px solid $brand-color;
     }
 
@@ -13,6 +13,6 @@
     }
 
     .Select-option.is-focused {
-        background-color: $background-color;
+        background-color: $WHITE;
     }
 }

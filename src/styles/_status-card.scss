@@ -45,7 +45,7 @@ $block-class: 'status-card';
 
         &__status {
             color: $lead-font-color;
-            margin-top: 20px;
+            margin-top: 13.64px;
             font-size: 24px;
             display: flex;
             font-weight: 300;
@@ -60,8 +60,7 @@ $block-class: 'status-card';
         }
 
         &__create-icon {
-            width: 1.6em;
-            fill: $header-font-color;
+            @extend .small-icon;
 
             &:hover {
                 fill: nth($brand-neutral-colors, 2);
@@ -69,7 +68,7 @@ $block-class: 'status-card';
         }
 
         &__edit-icon {
-            fill: $lead-font-color;
+            @extend .small-icon;
 
             &:hover {
                 fill: nth($brand-neutral-colors, 2);

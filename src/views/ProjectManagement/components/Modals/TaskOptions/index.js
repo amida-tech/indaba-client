@@ -65,6 +65,7 @@ class TaskOptionsModal extends Component {
                 this.props.task.productId,
                 this.props.task.uoaId,
                 this.props.vocab.ERROR,
+                this.props.task.id,
             );
             break;
         }

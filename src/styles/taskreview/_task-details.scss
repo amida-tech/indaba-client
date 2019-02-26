@@ -82,15 +82,3 @@ $block-class:'task-details';
         }
     }
 }
-
-.grommetux-date-time__input,
-.grommetux-date-time__input:focus {
-    @extend .lead-font;
-
-    padding: 0;
-    border: none;
-}
-
-.grommetux-button__icon .grommetux-control-icon {
-    vertical-align: vertical;
-}

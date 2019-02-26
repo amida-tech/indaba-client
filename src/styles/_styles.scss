@@ -10,7 +10,7 @@ $disabled-font-color: lighten($font-color, 30%);
 $border-color: #e6e6e6;
 $element-background: #f3f5f6;
 $font-inverse-color: #f7f8f9;
-// grommet brand colors
+//brand colors
 $brand-color: #4eb276;
 $off-brand-color: #4eb276;
 $brand-font-family: 'Roboto';
@@ -36,8 +36,6 @@ $primary-nav-height: 64px;
 $footer-height: 48px;
 $footer-height-with-padding: 64px;
 
-@import 'grommet/scss/grommet-core/index.scss';
-
 body {
     font-family: Roboto, sans-serif;
     background-color: $page-background-color;
@@ -56,35 +54,6 @@ body,
     min-height: 100%;
     position: relative;
     padding-bottom: $footer-height-with-padding;
-}
-
-.grommetux-text-input {
-    margin-bottom: 1em;
-}
-
-.grommetux-search .grommetux-search__input {
-    font-size: 16px;
-    padding: 7px 4px;
-    border-radius: 0;
-}
-
-.grommetux-search__drop,
-.grommetux-search__suggestion {
-    @extend .small-font;
-}
-
-.grommetux-search--fill {
-    width: 100%;
-}
-
-.invite-user {
-    .grommetux-box--direction-column.grommetux-box--pad-between-small > *:not(:last-child) {
-        margin-bottom: 4px;
-    }
-
-    .grommetux-box--direction-row.grommetux-box--pad-between-small > *:not(:last-child) {
-        margin-right: 4px;
-    }
 }
 
 .divider {

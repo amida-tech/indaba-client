@@ -14,18 +14,10 @@ $block-class:'account-tab';
             display: flex;
             flex-direction: column;
             padding-bottom: 1em;
+        }
 
-            &--text-input,
-            .grommet &--text-input:not(.grommetux-input) {
-                color: #51545c;
-                border-top: none;
-                border-left: none;
-                border-right: none;
-                padding-left: 0;
-                font-size: 1.5em;
-                font-weight: 100;
-                border-radius: 0;
-            }
+        &__field {
+            @extend .basic-input;
         }
 
         &__date {

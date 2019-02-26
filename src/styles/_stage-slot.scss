@@ -54,7 +54,7 @@ $block-class:'stage-slot';
         &__masked-button {
             background-color: Transparent;
             background-repeat: no-repeat;
-            border: none !important;
+            border: none;
             padding: 0;
             height: 1em;
         }
@@ -99,11 +99,6 @@ $block-class:'stage-slot';
             margin-right: 4px;
             margin-top: 8px;
             cursor: pointer;
-        }
-
-        .grommetux-search--inline,
-        .grommetux-control-icon-search {
-            fill: $header-font-color;
         }
     }
 }

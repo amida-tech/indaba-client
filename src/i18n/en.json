@@ -7,8 +7,10 @@
         "SIGN_IN":"Sign In",
         "EMAIL":"Email",
         "PASSWORD":"Password",
+        "PASSWORD_REQUIRED":"Password required",
         "USERNAME":"Username",
         "USERNAME_OR_EMAIL":"Email",
+        "USERNAME_REQUIRED": "Email required",
         "NAME":"Name",
         "FIRST_NAME":"First Name",
         "LAST_NAME":"Last Name",
@@ -328,7 +330,7 @@
         "NEW_TASK":"New Task",
         "LATE_TASK":"Late Task",
         "FLAGGED":"Flagged",
-        "USER_TITLE":"Title",
+        "USER_TITLE":"Title ",
         "OPTIONAL_MESSAGE":"Optional, only you can see this",
         "TITLE_OPTIONAL":"Title (Optional)",
         "ACCOUNT_SINCE":"Account Since",
@@ -513,6 +515,10 @@
     },
     "RESET_PASSWORD":{
         "NEW_PASSWORD":"New Password",
+        "NEW_PASSWORD_REQUIRED": "Password required",
+        "CONFIRM_PASSWORD":"Confirm Password",
+        "CONFIRM_PASSWORD_REQUIRED": "Password confirmation required",
+        "PASSWORD_MATCH": "Your password and confirm password do not match.",
         "INSTRUCTIONS":"Enter a new password and click the link below to reset your password.",
         "LINK":"Reset",
         "EMAIL_REQUIRED":"Enter your email to reset your password.",
@@ -612,7 +618,7 @@
         },
         "FORGOT_PASSWORD":{
             "TITLE":"Reset Password",
-            "BODY":"If you cannot remember your password, click the 'Reset Password' Button. You will receive an email with instructions to reset your password.",
+            "BODY":"If you cannot remember your password, click the 'Reset Password' Button. You will receive an email with instructions to reset your password for username:",
             "BUTTON_LABEL":"Reset Password",
             "EMAIL_SENT":"A link to reset your password has been sent to your email address."
         }
