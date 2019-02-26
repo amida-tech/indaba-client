@@ -5,10 +5,22 @@ import apiService from '../../services/api';
 import { getProfileSuccess } from '../../common/actions/userActions';
 import * as actionTypes from './actionTypes';
 
+export function updateLoginUsername(username) {
+    return {
+        type: actionTypes.UPDATE_LOGIN_USERNAME,
+        username,
+    };
+}
+
+export function loginUIMessage(error) {
+    return {
+        type: actionTypes.LOGIN_UI_MESSAGE,
+        error,
+    };
+}
+
 export function login(username, password, realm, referrer, errorMessages) {
     return (dispatch) => {
-        dispatch(_login());
-
         const authPayload = {
             username,
             password,
@@ -27,14 +39,14 @@ export function login(username, password, realm, referrer, errorMessages) {
                         }
                     })
                     .catch(() => {
-                        dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                        dispatch(loginUIMessage(errorMessages.SERVER_ISSUE));
                     });
             })
             .catch((err) => {
                 if (err.response) {
-                    dispatch(_loginError(errorMessages.INVALID_LOGIN));
+                    dispatch(loginUIMessage(errorMessages.INVALID_LOGIN));
                 } else {
-                    dispatch(_loginError(errorMessages.SERVER_ISSUE));
+                    dispatch(loginUIMessage(errorMessages.SERVER_ISSUE));
                 }
                 dispatch(_clearLoginForm());
             });
@@ -48,22 +60,16 @@ export function requestResetToken(email) {
     };
 }
 
-export function showForgotPasswordFor(email) {
+export function showForgotPasswordModal(show) {
     return {
-        type: actionTypes.SHOW_FORGOT_PASSWORD_FOR,
-        email,
+        type: actionTypes.LOGIN_SHOW_FORGOT_PASSWORD,
+        show,
     };
 }
 
 // ////////////////
 // Private Actions
 // ////////////////
-
-function _login() {
-    return {
-        type: actionTypes.LOGIN,
-    };
-}
 
 function _loginSuccess(username, response, realm) {
     cookie.save('indaba-username', username, { path: '/' });
@@ -81,15 +87,7 @@ function _loginSuccess(username, response, realm) {
 
 function _clearLoginForm() {
     return {
-        type: actionTypes.CLEAR_LOGIN_FORM,
-    };
-}
-
-
-function _loginError(error) {
-    return {
-        type: actionTypes.LOGIN_ERROR,
-        error,
+        type: actionTypes.LOGIN_CLEAR_FORM,
     };
 }
 

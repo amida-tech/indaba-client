@@ -34,22 +34,16 @@ LoginContainer.propTypes = {
     ui: PropTypes.object.isRequired,
 };
 
-const LOGIN_FORM_NAME = 'login-form';
-
-const selector = formValueSelector(LOGIN_FORM_NAME);
-
 const mapStateToProps = (state, ownProps) => {
     return {
-        realm: ownProps.params.realm || config.INDABA_CLIENT_DEFAULT_REALM || 'testorg',
+        realm: ownProps.params.realm || config.INDABA_CLIENT_DEFAULT_REALM || 'develop',
         vocab: state.settings.language.vocabulary,
         ui: state.login.ui,
-        currentEmail: selector(state, 'username'),
     };
 };
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, actions, { checkRefresh }), dispatch),
-    onClickToSubmit: () => dispatch(submit(LOGIN_FORM_NAME)),
     onRedirectToHome: roleId => dispatch(push(roleId === '2' ? '/project' : '/task')),
 });
 
