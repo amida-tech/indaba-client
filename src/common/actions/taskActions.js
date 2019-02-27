@@ -137,6 +137,14 @@ export function updateTask(taskId, userIds, endDate, errorMessages) {
     };
 }
 
+export function deleteTask(taskId, errorMessages) {
+    return (dispatch) => {
+        apiService.tasks.deleteTask(taskId)
+            .then(() => dispatch(_deleteTaskSuccess(taskId)))
+            .catch(taskErr => dispatch(_reportTasksError(taskErr, errorMessages.TASK_REQUEST)));
+    };
+}
+
 // Private
 function _getTasksByProductSuccess(projectId, tasks) {
     return {
@@ -174,6 +182,13 @@ function _putTaskSuccess(taskId, taskChanges) {
         type: actionTypes.PUT_TASK_SUCCESS,
         taskId,
         taskChanges,
+    };
+}
+
+function _deleteTaskSuccess(taskId) {
+    return {
+        type: actionTypes.DELETE_TASK_SUCCESS,
+        taskId,
     };
 }
 

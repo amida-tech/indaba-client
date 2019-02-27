@@ -48,6 +48,12 @@ export const TaskReducer = (state = initialState, action) => {
                         { $merge: { endDate: action.endDate } },
             },
         });
+    case type.DELETE_TASK_SUCCESS:
+        return update(state, {
+            data: {
+                $apply: data => data.filter(task => task.id !== action.taskId),
+            },
+        });
     case type.PUT_TASK_SUCCESS:
         return update(state, { data: { [taskIndex]: { $merge: action.taskChanges } } });
 

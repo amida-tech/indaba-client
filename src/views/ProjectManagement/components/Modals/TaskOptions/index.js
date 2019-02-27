@@ -21,7 +21,7 @@ class TaskOptionsModal extends Component {
                 ? {
                     value: user,
                     label: renderName(user)
-                    + this.props.vocab.PROJECT.OPTIONS_MODAL._CURRENTLY_ASSIGNED,
+                        + this.props.vocab.PROJECT.OPTIONS_MODAL._CURRENTLY_ASSIGNED,
                 }
                 : { value: user, label: renderName(user) };
         });
@@ -40,7 +40,8 @@ class TaskOptionsModal extends Component {
     }
 
     handleSubmit(values) {
-        if (values.choice === 'reassign') {
+        switch (values.choice) {
+        case 'reassign':
             if (values.reassignUser.value.id === this.state.currentUser.id) {
                 toast(this.props.vocab.ERROR.USER_ALREADY_ASSIGNED);
                 return;
@@ -51,13 +52,22 @@ class TaskOptionsModal extends Component {
                 undefined,
                 this.props.vocab.ERROR,
             );
-        } else if (values.choice === 'force') {
+            break;
+
+        case 'unassign':
+            this.props.actions.deleteTask(
+                this.props.task.id,
+            );
+            break;
+
+        case 'force':
             this.props.actions.forceTaskCompletion(
                 this.props.task.productId,
                 this.props.task.uoaId,
                 this.props.vocab.ERROR,
                 this.props.task.id,
             );
+            break;
         }
         if (values.notify === true) {
             systemMessageService.send({
@@ -65,6 +75,8 @@ class TaskOptionsModal extends Component {
                 message: values.message,
             }).catch(() => toast(this.props.vocab.ERROR.NOTIFY_FAILURE));
         }
+
+
         this.props.actions.closeTaskOptionsModal();
     }
 
