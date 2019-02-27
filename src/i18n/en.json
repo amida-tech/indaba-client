@@ -196,6 +196,8 @@
             "FORCE":"Force Complete (You Can't Undo This)",
             "FORCE_PARAGRAPH":"Force complete to push the survey to the next stage. The person assigned to the next stage cannot start that task until its specified start date. To edit the start date of the next step, click on the date of the task cell.",
             "REASSIGN":"Reassign (Does not apply if task is force completed.)",
+            "UNASSIGN":"Unassign (You Can't Undo This)",
+            "UNASSIGN_PARAGRAPH":"This will remove the assigned user from this stage, and revert it to an unassigned state as though it has been newly created.",
             "_CURRENTLY_ASSIGNED":" (Currently Assigned)",
             "NOTIFY":"Notify User. (User will receive default message unless changed.)",
             "_WILL_BE_NOTIFIED":" will be notified.",
