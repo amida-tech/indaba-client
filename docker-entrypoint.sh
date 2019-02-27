@@ -35,6 +35,17 @@ if [ -z ${SYS_MESSAGE_USER+x} ]
   then echo "Environment variable SYS_MESSAGE_USER is required, but it is not set. Exiting."; exit 1;
 fi
 
+if [ -z ${INDABA_HOTJAR_ID+x} ]
+  then echo "No tracking script id set. Deploying without one."
+else
+    SCRIPT_1="<script>\n(function(h,o,t,j,a,r){\nh.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n"
+    SCRIPT_2="h._hjSettings={hjid:$INDABA_HOTJAR_ID,hjsv:6};\na=o.getElementsByTagName('head')[0];\n"
+    SCRIPT_3="r=o.createElement('script');r.async=1;\nr.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n"
+    SCRIPT_4="a.appendChild(r);\n})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n</script>"
+    SCRIPT="$SCRIPT_1$SCRIPT_2$SCRIPT_3$SCRIPT_4"
+    sed -i '19i/'$SCRIPT /usr/share/nginx/html/index.html
+fi
+
 SET_CONFIG="NODE_ENV=\"$NODE_ENV\";\n
 INDABA_CLIENT_URL=\"$INDABA_CLIENT_URL\";\n
 GREYSCALE_URL=\"$GREYSCALE_URL\";\n
