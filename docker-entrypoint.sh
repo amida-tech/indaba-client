@@ -43,7 +43,7 @@ else
     SCRIPT_3="r=o.createElement('script');r.async=1;\nr.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n"
     SCRIPT_4="a.appendChild(r);\n})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');\n</script>"
     SCRIPT="$SCRIPT_1$SCRIPT_2$SCRIPT_3$SCRIPT_4"
-    sed -i '19i/'$SCRIPT /usr/share/nginx/html/index.html
+    sed -i '17i/'$SCRIPT /usr/share/nginx/html/index.html
 fi
 
 SET_CONFIG="NODE_ENV=\"$NODE_ENV\";\n
