@@ -96,11 +96,11 @@ class PMUsersTab extends Component {
                             placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
                             value={this.props.ui.userListSearchQuery}
                             list={this.props.allUsers.filter(user => !this.props.project.users.includes(user.id))
-                            .filter(this.searchUser)
-                            .map(user => ({
-                                label: renderName(user),
-                                value: user,
-                            }))}
+                                .filter(this.searchUser)
+                                .map(user => ({
+                                    label: renderName(user),
+                                    value: user,
+                                }))}
                             onChange={evt => this.props.actions.updateUserListSearchQuery(evt.target.value)}
                             onSelect={this.handleSearchSelect}/>
                     </div>
