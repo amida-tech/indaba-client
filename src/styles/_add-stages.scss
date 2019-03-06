@@ -4,8 +4,8 @@ $block-class: 'add-stages';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        margin-left: 10%;
         margin-right: 10%;
+        margin-left: 10%;
 
         &__import-row {
             display: flex;
@@ -27,37 +27,37 @@ $block-class: 'add-stages';
 
         &__grid {
             display: flex;
-            background-color: #fff;
-            border: 1px solid $border-color;
             height: 200px;
+            border: 1px solid $LIGHT_GRAY;
+            border-top: none;
+            background-color: $WHITE;
             cursor: pointer;
 
             &-row {
                 display: flex;
                 flex-direction: column;
                 width: 25%;
-                border-right: 1px solid $border-color;
-                border-top: none;
-                border-bottom: none;
                 padding: 8px;
+                border-top: none;
+                border-right: 1px solid $LIGHT_GRAY;
+                border-bottom: none;
+                color: $DARK_GRAY;
                 cursor: pointer;
 
-                &:hover {
-                    background-color: darken(#fff, 2);
-                }
-
                 &--title {
-                    @extend .lead-font;
-
                     padding: 8px;
                 }
 
+                &:hover {
+                    background-color: $DARKEST_GREEN;
+                    color: $WHITE;
+                }
+
                 &--summary {
-                    color: $font-color;
                     display: flex;
                     flex-direction: row;
-                    justify-content: center;
                     align-items: center;
+                    justify-content: center;
                     padding-top: 10%;
                 }
             }

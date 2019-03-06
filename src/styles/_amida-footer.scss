@@ -2,16 +2,15 @@ $block-class: 'amida-footer';
 
 @at-root {
     .#{$block-class} {
+        display: flex;
         position: absolute;
         bottom: 0;
-        padding-left: 10%;
-        padding-right: 10%;
-        display: flex;
-        justify-content: space-between;
         align-items: center;
-        background-color: hsl(216, 2, 93);
+        justify-content: space-between;
         width: 100%;
         height: $footer-height;
+        padding-right: 10%;
+        padding-left: 10%;
 
         &__version {
             margin-left: 1em;
@@ -27,8 +26,8 @@ $block-class: 'amida-footer';
         }
 
         &__indaba-service-mark {
-            height: 40px;
             width: 37.06px;
+            height: 40px;
             padding-top: 2px;
             padding-bottom: 2px;
         }

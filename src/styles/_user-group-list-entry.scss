@@ -2,13 +2,13 @@ $block-class: 'user-group-list-entry';
 
 @at-root {
     .#{$block-class} {
-        flex-direction: row;
         display: flex;
+        flex-direction: row;
         align-items: center;
         padding: 8px 16px;
 
         &:hover {
-            background-color: #f3f3f3;
+            background-color: $LIGHTEST_GRAY;
         }
 
         &__name {
@@ -18,8 +18,8 @@ $block-class: 'user-group-list-entry';
         }
 
         &__badge-string {
-            flex: 2;
             display: flex;
+            flex: 2;
             flex-direction: row;
             margin-right: 5px;
         }

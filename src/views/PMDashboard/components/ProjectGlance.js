@@ -6,14 +6,14 @@ import Stamp from '../../../common/components/Dashboard/Stamp';
 class ProjectGlance extends Component {
     render() {
         return (
-            <div className='project-glance'>
-                <div className='project-glance__group'>
+            <div className='glance'>
+                <div className='glance__group'>
                     <Stamp label={this.props.vocab.PROJECT.PROJECTS}
                         value={this.props.projects} />
                     <Stamp label={this.props.vocab.PROJECT.STATUS_ACTIVE}
                         value={this.props.active} />
                 </div>
-                <div className='project-glance__group'>
+                <div className='glance__group'>
                     <Stamp label={this.props.vocab.PROJECT.STATUS_INACTIVE}
                         value={this.props.inactive} />
                     <Stamp label={this.props.vocab.PROJECT.FLAGS}

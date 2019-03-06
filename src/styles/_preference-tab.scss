@@ -1,4 +1,3 @@
-$font-color-for-labels: #757575;
 $block-class:'preference-tab';
 
 @at-root {
@@ -6,21 +5,20 @@ $block-class:'preference-tab';
         padding: 1em;
 
         &__label {
-            color: $font-color-for-labels;
-            font-size: 14px;
-            font-weight: 400;
+            @extend .lead-font;
+
             display: flex;
             flex-direction: column;
         }
 
         &__input-select {
-            @include preference-tab-inputs;
+            @include text-input;
+
+            padding: 12px 14px;
         }
 
         .preference-tab__input-textarea {
-            @extend .lead-font;
-
-            @include preference-tab-inputs;
+            @include text-input;
         }
     }
 }

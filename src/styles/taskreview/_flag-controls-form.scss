@@ -8,21 +8,21 @@ $block-class:'flag-controls-form';
         &__discussion {
             width: 100%;
             height: 20em;
+            margin-right: 0;
+            padding-right: 20px;
+            padding-left: 20px;
             resize: none;
             border: 0;
-            background-color: #fff;
-            margin-right: 0;
-            padding-left: 20px;
-            padding-right: 20px;
             outline: none;
+            background-color: $WHITE;
         }
 
         &__mark-resolve-section {
             display: flex;
-            color: $lead-font-color;
             margin-top: 16px;
             margin-bottom: 16px;
             margin-left: 8px;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__resolve-text {
@@ -30,14 +30,10 @@ $block-class:'flag-controls-form';
         }
 
         &__notify-section {
-            color: $lead-font-color;
             margin-bottom: 1em;
+            color: $HEADER_FONT_COLOR;
 
-            .Select-control {
-                border-radius: 2px;
-                height: 24px;
-                margin-top: 8px;
-            }
+            @include multi-select-styles;
         }
 
         &__button {

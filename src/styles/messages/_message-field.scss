@@ -5,29 +5,29 @@ $block-class: 'message-field';
         @extend .med-font;
 
         display: flex;
-        flex-direction: row;
         flex: 1;
+        flex-direction: row;
 
         &__label {
             margin-right: 1em;
         }
 
         &__value {
+            flex: 1;
             border: none;
             outline: none;
-            flex: 1;
 
             &:-webkit-autofill,
             :-webkit-autofill:hover,
             :-webkit-autofill:focus,
             :active,
             :focus {
-                background-color: #fff;
                 transition: background-color 5000s ease-in-out 0s;
+                background-color: $WHITE;
             }
 
             &--error {
-                outline: 1px solid red;
+                outline: 2px solid $ERROR_RED;
             }
         }
     }

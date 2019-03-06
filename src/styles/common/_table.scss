@@ -1,0 +1,38 @@
+/*
+    Table Styles to be used across the app
+ */
+
+// Full Table - to be used at top of block
+.table-full {
+    border: 2px solid $BORDER_COLOR;
+    border-radius: 4px;
+}
+
+@mixin table-header {
+    display: flex;
+    padding: 16px 16px;
+    border-bottom: 2px solid $BORDER_COLOR;
+    background-color: $SNOW;
+
+    &__title,
+    &__cell {
+        @extend .small-font;
+
+        color: $STEEL_GRAY !important;
+    }
+}
+
+.table-body {
+    display: flex;
+    align-items: center;
+    padding: 14px 14px;
+    background-color: $WHITE;
+    cursor: pointer;
+
+    @extend .lead-font;
+
+    &:hover {
+        background-color: $LIGHTEST_GRAY;
+        color: $HEADER_FONT_COLOR;
+    }
+}

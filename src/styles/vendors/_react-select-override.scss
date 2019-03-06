@@ -1,0 +1,31 @@
+/*
+    React Select - overrides values of select and selected values.
+ */
+@mixin multi-select-styles {
+    .Select--multi .Select-value {
+        @extend .med-font;
+
+        border: 2px solid $LAVA_GREY;
+        background-color: $WHITE;
+        color: $PRIMARY_GREEN;
+
+        &:hover {
+            border-color: $PRIMARY_GREEN;
+        }
+    }
+
+    .Select--multi .Select-value-label {
+        @extend .small-font;
+    }
+
+    .Select .Select-control {
+        @include text-input;
+
+        padding: 4px 4px 4px 4px;
+    }
+
+    .Select-option.is-focused .Select-option.is-focused:not(.is-open) {
+        border-color: $BORDER_COLOR;
+        background-color: $PAGE_BACKGROUND_COLOR;
+    }
+}

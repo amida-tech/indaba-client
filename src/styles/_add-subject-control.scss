@@ -5,17 +5,17 @@ $block-class: 'add-subject-control';
         &__form {
             display: flex;
             flex-direction: column;
-            border: 2px solid $border-color;
-            border-radius: 2px;
-            margin-left: 10%;
             margin-right: 10%;
+            margin-left: 10%;
+            border: 2px solid $BORDER_COLOR;
+            border-radius: 2px;
         }
 
         &__header {
             display: flex;
             justify-content: space-between;
-            padding: 0.5em;
             width: 100%;
+            padding: 0.5em;
         }
 
         &__fields {
@@ -27,29 +27,19 @@ $block-class: 'add-subject-control';
         &:-webkit-autofill,
         :-webkit-autofill:hover,
         :-webkit-autofill:focus {
-            background-color: #fff;
-            width: 100%;
-            margin-left: 0.5em;
-            margin-bottom: 0.5em;
-            transition: background-color 5000s ease-in-out 0s;
-            padding: 8px;
+            @include text-input;
 
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+            width: 100%;
+            margin-bottom: 0.5em;
+            margin-left: 0.5em;
         }
 
         &__plus-icon {
             margin-right: 10px;
             margin-left: 10px;
-            fill: $font-color;
             cursor: pointer;
 
-            &:hover {
-                fill: darken($font-color, 10);
-            }
+            @extend .small-icon;
         }
     }
 }

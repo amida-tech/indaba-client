@@ -1,45 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
-
-$page-background-color: #fdfdfd;
-$header-font-color: #8a8f99;
-$lead-font-color: #637282;
-$font-color: #82909c;
-$form-text: #333;
-$disabled-font-color: lighten($font-color, 30%);
-$border-color: #e6e6e6;
-$element-background: #f3f5f6;
-$font-inverse-color: #f7f8f9;
-//brand colors
-$brand-color: #4eb276;
-$off-brand-color: #4eb276;
-$brand-font-family: 'Roboto';
-$layer-overlay-background-color: rgba(white, 0.8);
-$layer-background-color: none;
-// TODO still need override
-$brand-neutral-colors: (#308253, #4d8061);
-$brand-accent-colors: #4eb276;
-$brand-link-color: #00854e;
-$brand-status-colors: (
-    critical: #ff324d,
-    error: #ff324d,
-    warning: #ffd602,
-    ok: #8cc800,
-    unknown: #a8a8a8,
-    disabled: #a8a8a8
-) !default;
-$error-color: red;
-$brand-grey-colors: (#ebebeb, #333, #3b3b3b, #434343, #666);
-$brand-status-colors: (critical: #ff324d, error: #ff324d, warning: #ffd602, ok: #8cc800, unknown: #a8a8a8, disabled: #a8a8a8) !default;
-
 $primary-nav-height: 64px;
 $footer-height: 48px;
 $footer-height-with-padding: 64px;
+$brand-font-family: 'Roboto';
 
 body {
+    background-color: $PAGE_BACKGROUND_COLOR;
+    color: $HEADER_FONT_COLOR;
     font-family: Roboto, sans-serif;
-    background-color: $page-background-color;
-    color: $header-font-color;
     overflow-y: auto;
 }
 
@@ -51,40 +19,40 @@ body,
 }
 
 .app {
-    min-height: 100%;
     position: relative;
+    min-height: 100%;
     padding-bottom: $footer-height-with-padding;
 }
 
 .divider {
     margin-top: 0;
     margin-bottom: 0;
-    border-top-color: #d8d8d8;
     clear: both;
+    border-top: 2px solid $BORDER_COLOR;
 }
 
 .main-divider {
     position: absolute;
-    left: 0;
     right: 0;
+    left: 0;
 }
 
 .main-body {
-    margin-left: 10%;
-    margin-right: 10%;
     width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 
 .workflow {
     div {
-        color: $font-color;
+        color: $FONT_COLOR;
         text-transform: uppercase;
     }
 }
 
 .grid-column {
-    overflow-x: auto;
     border-right: none;
+    overflow-x: auto;
 }
 
 .workflow-table {
@@ -92,12 +60,12 @@ body,
 
     .stage-slot-cell,
     .stage-summary-cell {
-        background-color: white;
+        background-color: $WHITE;
         cursor: pointer;
     }
 
     .stage-summary-cell:hover {
-        background-color: darken(#fff, 2);
+        background-color: $LIGHTEST_GRAY;
     }
 
     margin-bottom: 0;
@@ -118,27 +86,10 @@ body,
 
 .table-bordered .grid-subject {
     padding-top: 16px;
-    font-size: 16px;
-    font-weight: 400;
-    color: $lead-font-color;
+
+    @extend .lead-font;
 }
 
 .center {
     float: left;
-}
-
-.basic-input {
-    font: inherit;
-    line-height: 1.5;
-    border: 1px solid #e6e6e6;
-    border-radius: 4px;
-    outline: none;
-    background-color: transparent;
-    color: inherit;
-    margin: 0;
-    padding: 11px;
-
-    &:focus {
-        border: 2px solid #4eb276;
-    }
 }

@@ -18,14 +18,14 @@ $block-class: 'file-form';
         }
 
         &__submit {
-            color: #333;
+            color: $HEADER_FONT_COLOR;
 
             &--remove {
                 margin-left: 8px;
             }
 
             &:disabled {
-                color: graytext;
+                color: $DISABLED_FONT_COLOR;
             }
         }
 

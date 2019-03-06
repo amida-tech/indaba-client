@@ -1,14 +1,14 @@
-$block-class: 'user-task-list-controls';
+$block-class: 'project-list-controls';
 
 @at-root {
     .#{$block-class} {
-        padding: 2em;
         display: flex;
         flex-direction: column;
+        padding: 24px;
 
-        &__filter-query {
-            margin-left: 5%;
+        &__search {
             margin-right: 5%;
+            margin-left: 5%;
         }
 
         &__filter {

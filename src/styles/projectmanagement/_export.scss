@@ -22,13 +22,12 @@ $block-class: 'export';
 
         &__configuration {
             flex: 1;
-            border: 1px solid $border-color;
-            background-color: #f7f8f9;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__type-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $border-color;
 
             &--inactive {
                 opacity: 0.5;
@@ -42,6 +41,8 @@ $block-class: 'export';
 
         // input prefix needed to exceed bootstrap rule specifity
         input.#{$block-class}__type-input {
+            @include text-input;
+
             margin-right: 16px;
             cursor: pointer;
         }
@@ -54,18 +55,18 @@ $block-class: 'export';
         }
 
         &__explanation {
-            font-size: 14px;
-            color: $lead-font-color;
             margin-left: 32px;
+            color: $HEADER_FONT_COLOR;
+            font-size: 14px;
         }
 
         &__custom-choices {
-            margin: 16px;
-            padding: 16px 12px;
-            border: 1px solid $border-color;
-            background-color: $page-background-color;
             display: flex;
             flex-wrap: wrap;
+            margin: 16px;
+            padding: 16px 12px;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__custom-choice {
@@ -80,15 +81,15 @@ $block-class: 'export';
 
         &__custom-section {
             padding: 16px 32px;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 2px solid $BORDER_COLOR;
         }
 
         &__custom-section--inactive {
-            color: lighten($font-color, 20%);
+            color: $DISABLED_FONT_COLOR;
 
             .#{$block-class} {
                 &__custom-action {
-                    color: lighten(#3757bc, 30%);
+                    color: $AVOCADO_GREEN;
                 }
             }
         }
@@ -100,8 +101,8 @@ $block-class: 'export';
 
         &__custom-action {
             margin-left: 16px;
+            color: $AVOCADO_GREEN;
             cursor: pointer;
-            color: #3757bc;
         }
 
         &__custom-title {
@@ -111,14 +112,14 @@ $block-class: 'export';
         }
 
         &__download {
-            flex-basis: 240px;
-            margin-left: 30px;
-            background-color: #f7f8f9;
-            border: 1px solid $border-color;
             display: flex;
+            flex-basis: 240px;
             flex-direction: column;
             align-items: center;
+            margin-left: 30px;
             padding: 8px 8px 16px;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__download-instruction {

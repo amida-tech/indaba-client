@@ -5,8 +5,8 @@ $block-class: 'subjects';
         &__action {
             @include pm-sub-header;
 
-            justify-content: flex-end;
             align-items: center;
+            justify-content: flex-end;
         }
 
         &__action-button {
@@ -14,15 +14,15 @@ $block-class: 'subjects';
         }
 
         &__table {
-            border: 1px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
         }
 
         &__filter-wrapper {
-            padding: 1em;
-            width: 100%;
             flex: 1;
-            background-color: #fff;
-            border: 1px solid $border-color;
+            width: 100%;
+            padding: 1em;
+            background-color: $WHITE;
         }
     }
 }

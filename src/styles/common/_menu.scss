@@ -5,18 +5,16 @@ $block-class: 'menu';
         padding-top: 5px;
 
         &__icon {
-            @extend .x-small-icon;
-
-            fill: $lead-font-color;
+            @extend .small-icon;
         }
 
         &__dropdown {
             display: block;
             position: absolute;
-            background-color: $PRIMARY_GRAY;
             min-width: 160px;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             padding: 6px;
+            background-color: $PAGE_BACKGROUND_COLOR;
+            box-shadow: 0 4px 16px 0 $DARK_GRAY;
             z-index: 1;
         }
 
@@ -34,8 +32,6 @@ $block-class: 'menu';
         &__button {
             @extend .secondary-button;
 
-            margin-left: 8px;
-            margin-right: 8px;
             margin-bottom: 8px;
         }
     }

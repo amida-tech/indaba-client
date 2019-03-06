@@ -8,26 +8,26 @@ $block-class:'flag-question-list';
             @extend .small-font;
 
             padding: 1em 2em;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid $BORDER_COLOR;
             font-size: 12px;
             white-space: nowrap;
-            overflow: hidden;
             cursor: pointer;
+            overflow: hidden;
 
             &:hover {
-                background-color: darken($element-background, 5);
-                color: $lead-font-color;
+                background-color: $ELEMENT_BACKGROUND;
+                color: $HEADER_FONT_COLOR;
             }
 
             &--selected {
-                background-color: darken($element-background, 5);
-                border-right: 3px solid #4eb276;
-                color: $lead-font-color;
+                border-right: 3px solid $AVOCADO_GREEN;
+                background-color: $ELEMENT_BACKGROUND;
+                color: $HEADER_FONT_COLOR;
                 font-size: 12px;
             }
 
             &--inactive {
-                border-right: 2px solid #4eb276;
+                border-right: 2px solid $AVOCADO_GREEN;
             }
         }
     }

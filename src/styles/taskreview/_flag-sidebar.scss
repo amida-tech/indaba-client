@@ -1,6 +1,3 @@
-$font-color: #a4aebf;
-$brand-neutral-colors: (#308253, #4eb276);
-
 $block-class:'flag-sidebar';
 
 @at-root {
@@ -8,13 +5,13 @@ $block-class:'flag-sidebar';
         margin: 1em;
 
         &__container {
-            margin-top: 1em;
             display: flex;
+            position: relative;
             flex-flow: nowrap;
             flex-direction: row;
             justify-content: flex-end;
-            position: relative;
-            background-color: $element-background;
+            margin-top: 1em;
+            background-color: $ELEMENT_BACKGROUND;
         }
 
         &__controls {

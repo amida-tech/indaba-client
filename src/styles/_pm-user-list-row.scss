@@ -5,20 +5,18 @@ $block-class: 'pm-user-list-row';
         display: flex;
         cursor: pointer;
 
-        @extend .lead-font;
-
-        &:hover {
-            background-color: #ededed;
-        }
+        @extend .table-body;
 
         &__cell {
-            padding: 8px 16px;
             display: inline-flex;
             flex: 6;
+            margin-left: 24px;
         }
 
-        &__mail-button {
+        &__icon {
             @extend .small-icon;
+
+            padding-right: 32px;
         }
     }
 }

@@ -9,7 +9,7 @@ $block-class: 'summary';
         margin-bottom: 24px;
 
         &__survey-icon {
-            fill: $LIGHT_GREEN;
+            @extend .small-icon;
         }
     }
 }

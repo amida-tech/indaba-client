@@ -1,12 +1,23 @@
 // Okay, for the purposes of sanity, let's start grouping these under folders in styles,
 // and then start categorizing them by those folders. See the bottom for an example under
 // Modals and Login.
+
+// Common
 @import './common/semantic_colors.scss';
 @import './common/named_colors.scss';
-@import './common/mixins';
+@import './common/text-input.scss';
+@import 'common/icons';
+@import 'common/header';
 @import './styles.scss';
-@import './buttons.scss';
-@import '/common/react-select-override';
+@import 'common/buttons';
+@import './common/table';
+@import './common/menu.scss';
+
+// Vendors
+@import 'vendors/react-dates-override';
+@import 'vendors/react-select-override';
+
+// Views
 @import './user-badge.scss';
 @import './user-group-list-entry.scss';
 @import './user-sidebar.scss';
@@ -17,17 +28,16 @@
 @import './preference-tab.scss';
 @import './tasks-tab.scss';
 @import './subjects.scss';
-@import './pm-user-list-header.scss';
-@import './pm-user-list-row.scss';
-@import './pm-user-groups-tab.scss';
+@import 'pm-user-list-header';
+@import 'pm-user-list-row';
+@import 'pm-user-groups-tab';
 @import './user-name-input.scss';
 @import './matrix-container.scss';
 @import './subject-popup-contents.scss';
 @import './confirmation-checkbox.scss';
-@import './project-glance.scss';
-@import './project-list-controls.scss';
-@import './project-list-header.scss';
-@import './project-list-entry.scss';
+@import 'dashboard/glance';
+@import 'dashboard/pm/project-list-controls';
+@import 'dashboard/pm/project-list';
 @import './stage-slot.scss';
 @import './stage-summary.scss';
 @import './status-card.scss';
@@ -43,9 +53,9 @@
 @import './add-subject-control.scss';
 @import './users.scss';
 @import './subject-list.scss';
-@import './pm-dashboard.scss';
+@import 'dashboard/pm/pm-dashboard';
 @import './status-label.scss';
-@import './fonts.scss';
+@import 'common/fonts';
 @import './add-stages.scss';
 @import './project-wizard';
 @import './wizard-footer.scss';
@@ -53,7 +63,6 @@
 @import './wizard-complete.scss';
 @import './amida-footer';
 @import './secondary-nav';
-@import './icons.scss';
 @import './user-status.scss';
 @import './validated-text-input.scss';
 @import './tabs.scss';
@@ -104,19 +113,18 @@
 @import './profile/profile-form.scss';
 @import './profile/reset-password-panel.scss';
 // Shared Dashboard:
-@import './dashboard/filter.scss';
-@import './dashboard/flag-count.scss';
-@import './dashboard/split-layout.scss';
-@import './dashboard/stamp.scss';
-@import './dashboard/search.scss';
-@import './dashboard/filter-input.scss'; // To be removed.
-@import './dashboard/message-list.scss';
+@import 'dashboard/filter';
+@import 'dashboard/flag-count';
+@import 'dashboard/split-layout';
+@import 'dashboard/stamp';
+@import 'dashboard/search';
+@import 'dashboard/filter-input'; // To be removed.
+@import 'dashboard/message-list';
 // User Dashboard
-@import './userdashboard/user-dashboard.scss';
-@import './userdashboard/user-glance.scss';
-@import './userdashboard/user-task-list-controls.scss';
-@import './userdashboard/user-task-list-header.scss';
-@import './userdashboard/user-task-list-entry.scss';
+@import 'dashboard/user/user-dashboard';
+@import 'dashboard/user/user-task-list-controls';
+@import 'dashboard/user/user-task-list-header';
+@import 'dashboard/user/user-task-list-entry';
 // Messages
 @import './messages/inbox.scss';
 @import './messages/inbox-tabs.scss';
@@ -162,6 +170,3 @@
 // Reset Password
 @import './resetpassword/reset-password.scss';
 @import './resetpassword/reset-password-form.scss';
-// Common
-@import './common/react-dates-override.scss';
-@import './common/menu.scss';

@@ -1,8 +1,32 @@
-// color hexs for all indaba
-$PRIMARY_GRAY: #f9fafa;
-$DARK_GRAY: #637282;
-$LIGHT_GRAY: #bcc9d0;
+/* stylelint-disable */
+//------------------------
+// _semantic_colors.scss:
+//------------------------
+
+// General Colors used throughout Indaba
+
+// Indaba Green shades from darkest to lightest
+
+$DARKEST_GREEN: #0f6346;
+$DARK_GREEN: #13704b;
+$AVOCADO_GREEN: #198052;
+$KALE_GREEN: #1f8c57;
+$PRIMARY_GREEN: #279c5e;
+$FERN_GREEN: #4eb583;
+$MINT_GREEN: #7ccfa9;
+$LIGHT_GREEN: #b5e8d3;
+$LIGHTEST_GREEN: #f2fffa;
+
+// Primary Grey shades from darkest to lightest
+
 $BLACK: #0d131c;
-$LIGHT_GREEN: #279c5e;
-$DARK_GREEN: #277e40;
+$DARK_GRAY: #283547;
+$ANCHOR_GRAY: #4b5b73;
+$STEEL_GRAY: #77869e;
+$PRIMARY_GRAY: #a9b6c9;
+$LAVA_GREY: #bdc8d9;
+$CLOUD_GRAY: #ccd6e6;
+$LIGHT_GRAY: #dfe7f2;
+$LIGHTEST_GRAY: #f7faff;
+$SNOW: #fcfdff;
 $WHITE: #fff;

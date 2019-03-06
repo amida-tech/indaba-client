@@ -2,22 +2,22 @@ $block-class: 'addressee';
 
 @at-root {
     .#{$block-class} {
-        border: 2px solid $LIGHT_GREEN;
-        border-radius: 3px;
-        padding: 3px 9px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: 8px;
         margin-top: 4px;
+        margin-left: 8px;
+        padding: 3px 9px;
+        border: 2px solid $LIGHT_GREEN;
+        border-radius: 3px;
 
         &__delete-icon {
             display: block;
             margin-left: 4px;
-            fill: $font-color;
+            fill: $FONT_COLOR;
 
             &:hover {
-                fill: darken($font-color, 10);
+                fill: darken($FONT_COLOR, 10);
             }
         }
     }

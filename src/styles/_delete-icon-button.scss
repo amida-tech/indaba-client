@@ -4,12 +4,6 @@ $block-class: 'delete-icon-button';
     .#{$block-class} {
         &__icon {
             @extend .small-icon;
-
-            cursor: pointer;
-
-            &:hover {
-                fill: darken($font-color, 10);
-            }
         }
     }
 }

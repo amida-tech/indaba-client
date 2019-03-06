@@ -2,32 +2,34 @@ $block-class: 'pm-users-tab';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
-        border: 2px solid $border-color;
         margin-bottom: 80px;
+        border-radius: 4px;
+        background-color: transparent;
 
         &__invite-container {
-            background-color: #f9f9f9;
-            border-bottom: 1px solid $border-color;
             display: flex;
             flex-direction: column;
             padding: 16px;
+            background-color: $WHITE;
         }
 
         &__search-container {
             padding: 1em;
+            background-color: $WHITE;
         }
 
         &__text-input {
-            padding: 8px;
-            width: 100%;
-            border: 1px solid $border-color;
+            @include text-input;
+        }
 
-            &:focus,
-            &:active {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+        &__header {
+            @extend .table-full;
+        }
+
+        &__table {
+            @extend .table-full;
+
+            margin-top: 32px;
         }
     }
 }

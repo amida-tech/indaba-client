@@ -3,19 +3,19 @@ $block-class:'review-pane';
 @at-root {
     .#{$block-class} {
         &__display {
-            margin: 1em 2em;
-            color: $font-color;
-            border: 1px solid $font-color;
-            background-color: #fafafa;
-            padding: 0.5em;
             width: 75%;
+            margin: 1em 2em;
+            padding: 0.5em;
+            border: 1px solid $FONT_COLOR;
+            background-color: $PAGE_BACKGROUND_COLOR;
+            color: $FONT_COLOR;
         }
 
         &__comment {
             margin: 0 0.5em;
 
             &-reason {
-                color: #399862;
+                color: $INDABA_GREEN;
                 font-weight: bold;
             }
 
@@ -33,9 +33,9 @@ $block-class:'review-pane';
         }
 
         &__text {
-            margin: 0 2em 1em;
             width: 75%;
             height: 7em;
+            margin: 0 2em 1em;
         }
     }
 }

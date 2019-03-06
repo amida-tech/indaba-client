@@ -1,86 +1,87 @@
-$title-color: #333;
 $block-class: 'message-list';
 
 @at-root {
     .#{$block-class} {
+        @extend .table-full;
+
+        min-height: 220px;
+        margin-top: 64px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
-        min-height: 220px;
-        border-bottom: 1px solid $border-color;
 
         &__title {
-            justify-content: space-between;
-            border-bottom: 1px solid $border-color;
+            @include table-header;
+
             display: flex;
-            padding: 16px;
+            justify-content: space-between;
+            padding: 8px;
             font-size: 18px;
-            color: $title-color;
         }
 
         &__title-link {
-            font-size: 18px;
+            @extend .secondary-button;
+        }
+
+        &__title-header {
+            padding: 8px;
+            color: $HEADER_FONT_COLOR;
         }
 
         &__row {
+            @extend .table-body;
+
+            flex-direction: row;
             height: 3em;
             padding-left: 8px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background: #fff;
-            border-bottom: 1px solid $border-color;
+            background: $WHITE;
 
             &--unread {
                 .#{$block-class}__unread-indicator {
-                    background-color: $LIGHT_GREEN;
+                    background-color: $FERN_GREEN;
                 }
 
                 .#{$block-class}__name,
                 .#{$block-class}__subject,
                 .#{$block-class}__time {
-                    color: #333;
+                    color: $DARK_GRAY;
                     font-weight: 500;
                 }
-            }
-
-            &:hover {
-                background-color: darken(#fafafa, 2%);
             }
         }
 
         &__unread-indicator {
             width: 6px;
             height: 6px;
-            border-radius: 50%;
             margin-right: 6px;
+            border-radius: 50%;
         }
 
         &__name {
+            @extend .lead-font;
+
             flex: 1;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 15px;
-            color: $title-color;
         }
 
         &__subject {
+            @extend .lead-font;
+
             flex: 2;
-            font-size: 15px;
-            color: $title-color;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         &__time {
-            font-size: 15px;
+            @extend .lead-font;
+
             flex: 1;
-            color: $title-color;
+            text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
     }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IonIcon from 'react-ionicons';
 import { toast } from 'react-toastify';
 import { has, some } from 'lodash';
 
@@ -70,10 +69,6 @@ class Summary extends Component {
                     status={this.props.vocab.SURVEY[this.props.survey.status.toUpperCase()]}
                     onStatusChangeClick={this.onSurveyStatusClick}
                     onEditClick={this.props.onSurveyEditClick} >
-                    <IonIcon
-                        icon='ion-ios-paper-outline'
-                        fontSize='4em'
-                        className='summary__survey-icon' />
                 </StatusCard>
             </div>
         );

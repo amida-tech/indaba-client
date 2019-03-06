@@ -2,16 +2,21 @@ $block-class:'login-form';
 
 @at-root {
     .#{$block-class} {
-        text-align: center;
-        padding-bottom: 16px;
         display: flex;
         flex-direction: column;
+        padding-bottom: 16px;
+        text-align: center;
+
+        &__field {
+            width: 384px;
+            padding-bottom: 16px;
+        }
 
         &__input {
             @include text-input;
 
-            margin-bottom: 16px;
-            width: 384px;
+            width: 100%;
+            padding: 16px;
         }
 
         &__signin-button {

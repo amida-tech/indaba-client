@@ -9,7 +9,9 @@ class MessageList extends Component {
         return (
             <div className='message-list'>
                 <div className='message-list__title'>
-                    {this.props.vocab.MESSAGES.RECENT_MESSAGES}
+                    <div className='message-list__title-header'>
+                        {this.props.vocab.MESSAGES.RECENT_MESSAGES}
+                    </div>
                     <Link to='/messages' className='message-list__title-link'>
                         {this.props.vocab.MESSAGES.GO_MESSAGE_LINK}
                     </Link>

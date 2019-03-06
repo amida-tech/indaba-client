@@ -4,17 +4,17 @@ $block-class:'stage-slot';
 
 @at-root {
     .#{$block-class} {
-        color: $lead-font-color;
-        font-size: 16px;
-        padding: 16px;
         min-height: 104px;
+        padding: 16px;
+        color: $HEADER_FONT_COLOR;
+        font-size: 16px;
 
         &--accept {
-            background: rgba(0, 155, 50, 0.3);
+            background: rgba(0, 155, 50, 0.3); // leave for opacity
         }
 
         &--deny {
-            background: rgba(255, 0, 0, 0.2);
+            background: rgba(255, 0, 0, 0.2); // leave for opacity
         }
 
         &__container > * {
@@ -26,10 +26,10 @@ $block-class:'stage-slot';
         }
 
         &__name-row {
-            text-transform: none;
-            color: $header-font-color;
+            color: $HEADER_FONT_COLOR;
             font-size: 18px;
             font-weight: 400;
+            text-transform: none;
 
             span {
                 cursor: pointer;
@@ -37,50 +37,46 @@ $block-class:'stage-slot';
         }
 
         &__due-row {
-            font-size: 14px;
             display: flex;
             justify-content: space-between;
-            color: #5d5d5d;
+            color: $ANCHOR_GRAY;
+            font-size: 14px;
         }
 
         &__role-span {
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.3px;
+            @extend .x-small-font;
+
             align-items: flex-start;
-            color: lighten($font-color, 5%);
+            letter-spacing: 0.3px;
         }
 
         &__masked-button {
+            height: 1em;
+            padding: 0;
+            border: none;
             background-color: Transparent;
             background-repeat: no-repeat;
-            border: none;
-            padding: 0;
-            height: 1em;
         }
 
         &__right-icon {
             float: right;
-            fill: $LIGHT_GREEN;
+            fill: $KALE_GREEN;
         }
 
         &__right-icon-container {
-            padding-bottom: 10px;
             margin-top: -7px;
+            padding-bottom: 10px;
         }
 
         &__left-icon {
+            @extend .small-icon;
+
             width: 16px;
             height: 16px;
-            fill: $header-font-color;
-            float: left;
-            margin-right: 5px;
             margin-top: 2px;
+            margin-right: 5px;
+            float: left;
             cursor: pointer;
-
-            &:hover {
-                fill: $font-color;
-            }
         }
 
         &__flag-row {
@@ -90,14 +86,14 @@ $block-class:'stage-slot';
 
         &__assign-task-input {
             display: flex;
-            width: 100%;
             align-content: center;
+            width: 100%;
         }
 
         &__assign-task-input-cancel {
-            margin-left: 6px;
-            margin-right: 4px;
             margin-top: 8px;
+            margin-right: 4px;
+            margin-left: 6px;
             cursor: pointer;
         }
     }

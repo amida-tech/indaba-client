@@ -1,0 +1,12 @@
+$block-class:'user-dashboard';
+
+@at-root {
+    .#{$block-class} {
+        margin-right: 5%;
+        margin-left: 5%;
+
+        &__table {
+            @extend .table-full;
+        }
+    }
+}

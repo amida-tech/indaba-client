@@ -2,14 +2,13 @@ $block-class: 'editable-text-input';
 
 @at-root {
     .#{$block-class} {
+        display: flex;
+        color: $HEADER_FONT_COLOR;
         font-size: 22px;
         font-weight: 300;
-        color: $lead-font-color;
-        display: flex;
-        border: 1px solid $border-color;
 
         &__field {
-            @extend .basic-input;
+            @include text-input;
 
             width: 90%;
             border: 0;

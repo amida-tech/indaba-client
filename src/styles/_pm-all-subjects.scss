@@ -2,11 +2,10 @@ $block-class: 'pm-all-subjects';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
+        margin-top: 5em;
+        background-color: $PAGE_BACKGROUND_COLOR;
 
         @extend .subjects__table;
-
-        margin-top: 5em;
 
         &__filter-wrapper {
             @extend .subjects__filter-wrapper;

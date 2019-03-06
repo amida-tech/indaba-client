@@ -1,19 +1,17 @@
-$timestamp-green: #429664;
-
 $block-class:'flag-commentary';
 
 @at-root {
     .#{$block-class} {
         &__frame {
-            color: $font-color;
             padding: 1em;
-            background: #fff;
+            background: $WHITE;
+            color: $FONT_COLOR;
             font-size: 14px;
         }
 
         &__timestamp {
             margin-bottom: 3px;
-            color: $timestamp-green;
+            color: $AVOCADO_GREEN;
             font-weight: bold;
         }
     }

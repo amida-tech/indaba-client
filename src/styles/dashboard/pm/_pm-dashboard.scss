@@ -1,0 +1,20 @@
+$block-class-dashboard:'pm-dashboard';
+
+@at-root {
+    .#{$block-class-dashboard} {
+        margin-right: 5%;
+        margin-left: 5%;
+
+        &__table {
+            @extend .table-full;
+        }
+
+        &__no-data {
+            @extend .large-font;
+
+            margin: 1em;
+            color: $ANCHOR_GRAY;
+            text-align: center;
+        }
+    }
+}

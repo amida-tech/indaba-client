@@ -4,12 +4,6 @@ $block-class: 'user-status';
     .#{$block-class} {
         &__icon {
             @extend .small-icon;
-
-            fill: #4eb276;
-
-            &--inactive {
-                fill: #7e848f;
-            }
         }
     }
 }

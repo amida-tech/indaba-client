@@ -1,16 +1,15 @@
-$form-text: #333;
 $block-class: 'survey-builder';
 
 @at-root {
     .#{$block-class} {
-        flex: 1;
         display: block;
+        flex: 1;
 
         &__draft-warning {
+            padding: 32px;
+            color: $HEADER_FONT_COLOR;
             font-size: 18px;
             font-weight: 100;
-            color: $form-text;
-            padding: 32px;
         }
 
         &__contents {

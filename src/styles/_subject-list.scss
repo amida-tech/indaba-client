@@ -2,41 +2,39 @@ $block-class: 'subject-list';
 
 @at-root {
     .#{$block-class} {
-        background-color: #fdfdfd;
-
         &__entry {
-            display: flex;
-            justify-content: space-between;
+            @extend .table-body;
+
             flex-direction: row;
             align-items: center;
-            padding: 8px 16px;
-
-            @extend .lead-font;
-
-            &:hover {
-                background-color: #ededed;
-            }
+            justify-content: space-between;
         }
 
         &__header {
+            @include table-header;
+
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             padding: 8px 16px;
+            border-top: 2px solid $BORDER_COLOR;
         }
 
         &__header-title {
-            font-size: 14px;
-            color: $lead-font-color;
             padding: 5px;
+            color: $STEEL_GRAY;
 
             &--name {
                 cursor: pointer;
 
                 &:hover {
-                    background-color: darken(#fdfdfd, 10);
+                    border-bottom: 2px solid $PRIMARY_GREEN;
                 }
             }
+        }
+
+        &__icon {
+            @extend .small-icon;
         }
     }
 }

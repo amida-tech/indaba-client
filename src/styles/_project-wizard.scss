@@ -7,63 +7,63 @@ $block-class: 'project-wizard';
 
             &__nav {
                 display: flex;
-                margin: 12px 0 0;
                 justify-content: center;
+                margin: 12px 0 0;
 
                 &::after {
-                    content: '';
-                    border-bottom: 2px solid #ccc;
-                    width: 80%;
                     position: absolute;
-                    z-index: -1;
+                    width: 80%;
                     margin-top: 37px;
+                    border-bottom: 2px solid $BORDER_COLOR;
+                    content: '';
+                    z-index: -1;
                 }
             }
         }
 
         .project-wizard__tab {
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-bottom: none;
             padding: 0 12px;
+            border-bottom: none;
+            cursor: pointer;
 
             &::after {
-                content: '';
+                display: block;
                 width: 24px;
                 height: 24px;
                 border-radius: 50%;
-                display: block;
+                content: '';
             }
 
             &__link--active > .project-wizard__tab__title {
+                color: $HEADER_FONT_COLOR;
                 font-weight: 600;
-                color: #707680;
             }
 
             &__title {
                 @extend .lead-font;
 
-                cursor: pointer;
-                font-size: 14px;
-                color: #7e848f;
-                border-bottom: none;
                 padding-bottom: 0;
+                border-bottom: none;
+                color: $HEADER_FONT_COLOR;
+                font-size: 14px;
+                cursor: pointer;
             }
         }
 
         .project-wizard__tab--complete {
             &::after {
-                background-color: nth($brand-neutral-colors, 2);
-                border: 2px solid nth($brand-neutral-colors, 1);
+                border: 2px solid $DARKEST_GREEN;
+                background-color: $LIGHT_GREEN;
             }
         }
 
         .project-wizard__tab--incomplete {
             &::after {
-                background-color: $page-background-color;
-                border: 2px solid $LIGHT_GREEN;
+                border: 2px solid $DARKEST_GREEN;
+                background-color: $PAGE_BACKGROUND_COLOR;
             }
         }
     }

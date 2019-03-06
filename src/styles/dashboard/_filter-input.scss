@@ -1,54 +1,43 @@
-$element-background: #f3f5f6;
-$search-input-background: #fff;
-
 $block-class: 'filter-input';
 
 @at-root {
     .#{$block-class} {
         display: flex;
-        align-items: center;
         position: relative;
-        color: $lead-font-color;
+        align-items: center;
+        color: $HEADER_FONT_COLOR;
 
         @extend .small-font;
 
         &__input {
             flex: 1;
-            border: 2px solid $border-color;
-            border-radius: 2px;
-            background-color: $search-input-background;
-            padding: 8px;
 
-            &:active,
-            &:focus {
-                border: 2px solid $LIGHT_GREEN;
-                outline: none;
-            }
+            @include text-input;
         }
 
         &__icon {
             @extend .small-icon;
 
             position: absolute;
+            top: 1em;
             right: 0.5em;
-            top: 0.2em;
         }
 
         &__list {
-            background-color: #fdfdfd;
+            background-color: $PRIMARY_GRAY;
         }
 
         &__entry {
             display: flex;
-            justify-content: space-between;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             padding: 8px 16px;
 
             @extend .lead-font;
 
             &:hover {
-                background-color: #ededed;
+                background-color: $PRIMARY_GRAY;
             }
         }
     }

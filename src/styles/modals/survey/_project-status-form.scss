@@ -25,7 +25,7 @@ $block-class: 'project-status-form';
         }
 
         &__label {
-            color: $font-color;
+            color: $FONT_COLOR;
             font-size: 12px;
             text-transform: uppercase;
         }
@@ -36,21 +36,21 @@ $block-class: 'project-status-form';
             span {
                 @extend .lead-font;
 
+                display: block;
                 margin-top: 24px;
                 margin-bottom: 24px;
-                display: block;
             }
         }
 
         &__confirmation {
             span {
-                font-weight: 500;
-                color: $header-font-color;
+                display: block;
                 margin-top: 24px;
                 margin-bottom: 1em;
+                color: $HEADER_FONT_COLOR;
                 font-size: 16px;
+                font-weight: 500;
                 line-height: 1.375;
-                display: block;
             }
 
             input {
@@ -58,8 +58,8 @@ $block-class: 'project-status-form';
             }
 
             label {
+                color: $HEADER_FONT_COLOR;
                 font-weight: normal;
-                color: $header-font-color;
             }
         }
     }

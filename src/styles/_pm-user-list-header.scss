@@ -2,16 +2,15 @@ $block-class: 'pm-user-list-header';
 
 @at-root {
     .#{$block-class} {
-        width: 100%;
         display: inline-flex;
+        width: 100%;
 
-        @extend .small-font;
+        @include table-header;
 
         &__cell {
             flex: 6;
-            color: $lead-font-color;
-            padding: 8px 16px;
             justify-content: center;
+            margin-left: 24px;
         }
     }
 }

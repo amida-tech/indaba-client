@@ -4,22 +4,22 @@ $block-class: 'button-panel';
     .#{$block-class} {
         display: flex;
         flex-direction: row;
-        border: 1px solid $border-color;
-        border-radius: 2px;
-        overflow: hidden;
         align-items: center;
+        border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
+        overflow: hidden;
 
         &__button {
-            width: 30px;
-            height: 30px;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 30px;
+            height: 30px;
             cursor: pointer;
+            overflow: hidden;
 
             &:not(:first-child) {
-                border-left: 1px solid $border-color;
+                border-left: 1px solid $BORDER_COLOR;
             }
         }
     }

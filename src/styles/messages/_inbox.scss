@@ -12,11 +12,16 @@ $block-class: 'inbox';
             margin-bottom: 1em;
         }
 
+        &__table {
+            border: 2px solid $BORDER_COLOR;
+            border-radius: 4px;
+        }
+
         &__top-row {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         &__new-message-button {
@@ -32,21 +37,21 @@ $block-class: 'inbox';
 
         &__pager {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
         &__pager-content {
             display: flex;
-            justify-content: center;
             align-items: baseline;
-            border: 1px solid $border-color;
-            background-color: #fff;
+            justify-content: center;
+            border: 2px solid $BORDER_COLOR;
+            background-color: $WHITE;
         }
 
         &__page {
             padding: 4px 8px;
-            border: 1px solid $border-color;
+            border: 2px solid $BORDER_COLOR;
             text-align: center;
         }
 

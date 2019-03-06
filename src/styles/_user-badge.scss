@@ -5,10 +5,10 @@ $block-class: 'user-badge';
         width: 2.2em;
         height: 2.2em;
         margin-right: 2px;
+        border-radius: 50%;
+        background-color: $PRIMARY_GREEN;
+        color: $WHITE;
         line-height: 2.2em;
         text-align: center;
-        background-color: $header-font-color;
-        border-radius: 50%;
-        color: white;
     }
 }

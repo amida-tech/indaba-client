@@ -6,8 +6,8 @@ $block-class:'primary-nav';
         flex-direction: row;
         align-items: baseline;
         justify-content: space-between;
-        background-color: $LIGHT_GREEN;
         height: $primary-nav-height;
+        background-color: $NAVIGATION_BACKGROUND_COLOR;
 
         &__left {
             display: flex;
@@ -17,131 +17,126 @@ $block-class:'primary-nav';
 
         &__right {
             display: flex;
-            align-items: baseline;
             flex-direction: row;
+            align-items: baseline;
             margin-right: 10%;
         }
 
         &__indaba-logo {
-            padding-top: 2px;
             width: 140px;
             height: 64px;
-            margin-left: 2%;
             margin-bottom: 2px;
+            margin-left: 2%;
+            padding-top: 2px;
         }
 
         &__item-nav {
-            justify-content: space-between;
+            position: relative;
             align-items: center;
-            color: $PRIMARY_GRAY;
-            font-size: 16px;
+            justify-content: space-between;
             margin-left: 20px;
-            font-weight: 400;
+        }
+
+        &__item-nav-cell {
+            padding-right: 8px;
+            padding-left: 8px;
+            color: $NAVIGATION_ITEM_COLOR;
+            font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            padding-left: 8px;
-            padding-right: 8px;
-            position: relative;
+            font-weight: 400;
 
             &:hover {
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 30%);
             }
 
             &:focus,
             &:active,
             &:visited {
-                text-decoration: none;
                 font-weight: 400;
+                text-decoration: none;
             }
 
             &:focus {
-                color: $PRIMARY_GRAY;
+                color: $NAVIGATION_ITEM_FOCUS_COLOR;
             }
 
             &--active,
             &--active:focus {
-                color: darken($LIGHT_GREEN, 30%);
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
             }
         }
 
         &__button {
-            height: 40px;
-            background-color: $DARK_GREEN;
-            border: 1px;
-            color: $PRIMARY_GRAY;
-            border-radius: 3px;
+            @extend .button;
+
             min-width: 10px;
-            font-size: 14px;
+            height: 40px;
+            margin-right: 14px;
             padding: 6px 22px;
-
-            &:hover {
-                color: $PRIMARY_GRAY;
-            }
-
-            &:active {
-                color: $PRIMARY_GRAY;
-            }
+            border-radius: 3px;
+            font-size: 14px;
         }
 
         &__envelope,
         &__user {
+            align-items: center;
             width: 16px;
             height: 16px;
-            align-items: center;
-            color: $PRIMARY_GRAY;
+            color: $NAVIGATION_ITEM_COLOR;
             font-size: 16px;
-            font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-weight: 400;
 
             &:hover {
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 20%);
             }
 
             &:focus,
             &:active {
-                text-decoration: none;
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
                 font-weight: 400;
-                color: darken($LIGHT_GREEN, 30%);
+                text-decoration: none;
             }
         }
 
         &__welcome {
             align-items: center;
-            color: $PRIMARY_GRAY;
-            font-size: 16px;
-            font-weight: 400;
             margin-left: 8px;
+            color: $NAVIGATION_ITEM_COLOR;
+            font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-weight: 400;
         }
 
         &__logout {
             align-items: center;
-            color: $PRIMARY_GRAY;
-            font-size: 16px;
-            font-weight: 400;
             margin-left: 8px;
+            color: $NAVIGATION_ITEM_COLOR;
+            font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-weight: 400;
 
             &:hover {
+                color: $NAVIGATION_ITEM_HOVER_COLOR;
                 text-decoration: none;
-                color: darken($LIGHT_GREEN, 20%);
             }
 
             &:focus {
+                color: $NAVIGATION_ITEM_ACTIVE_FOCUS_COLOR;
                 font-weight: 400;
-                color: $PRIMARY_GRAY;
             }
         }
-
+        //what is this??
         &__link {
-            color: $PRIMARY_GRAY;
             padding-right: 16px;
             padding-left: 16px;
+            color: $BLACK;
         }
     }
 }

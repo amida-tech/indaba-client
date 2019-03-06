@@ -4,29 +4,25 @@ $block-class: 'new-project-title-form';
     .#{$block-class} {
         display: flex;
         flex-direction: column;
-        padding: 2em 1em;
+        padding: 2em;
 
         &__field {
-            @extend .basic-input;
+            @include text-input;
 
-            margin-bottom: 8px;
             display: flex;
-            align-items: stretch;
-            flex-direction: column;
-
-            &--flag {
-                border: 1px solid $error-color;
-            }
+            margin-bottom: 8px;
         }
 
         &__instructions {
-            margin-bottom: 12px;
+            @extend .small-font;
+
+            margin-bottom: 14px;
         }
 
         &__error {
-            color: $error-color;
-            margin-top: 5px;
             min-height: 20px;
+            margin-top: 5px;
+            color: $ERROR_RED;
         }
 
         &__hidden-button {

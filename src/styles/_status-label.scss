@@ -1,30 +1,26 @@
 $block-class: 'status-label';
 
-$bad-color: #af1212;
-$good-color: #68997d;
-$neutral-color: #a4aebf;
-
 @at-root {
     .#{$block-class} {
-        color: white;
-        font-size: 10px; // em dependent calc
         display: inline-block;
         height: $tag-height; // 20px
-        padding: 0 1em;
         margin-right: 5px;
+        padding: 0 1em;
         border-radius: 2px;
+        color: $WHITE;
+        font-size: 10px; // em dependent calc
 
         &--bad {
-            background-color: $bad-color;
+            background-color: $ERROR_RED;
         }
 
         &--good {
-            background-color: $good-color;
+            background-color: $KALE_GREEN;
         }
 
         &--neutral {
-            background-color: $neutral-color;
             min-width: 85px;
+            background-color: $PRIMARY_GRAY;
         }
     }
 }

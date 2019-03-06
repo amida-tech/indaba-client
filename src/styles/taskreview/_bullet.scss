@@ -6,9 +6,9 @@ $block-class:'bullet';
         flex-direction: column;
 
         &__field {
-            padding: 0.2em;
-            margin: 0.2em;
             width: 50%;
+            margin: 0.2em;
+            padding: 0.2em;
         }
     }
 }

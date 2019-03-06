@@ -7,12 +7,12 @@ $block-class:'subject-form';
         &__instructions {
             @extend .small-font;
 
-            color: $form-text;
             margin-bottom: 1em;
+            color: $DARK_GRAY;
         }
 
         &__input-field {
-            @extend .basic-input;
+            @include text-input;
 
             width: 100%;
         }

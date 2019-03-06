@@ -2,6 +2,7 @@ $block-class: 'assignee-container';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid #e6e6e6;
+        border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
     }
 }

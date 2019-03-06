@@ -1,32 +1,30 @@
-$element-background: #f3f5f6;
 $block-class:'tab';
 
 @at-root {
     .#{$block-class} {
-        min-width: 150px;
         display: flex;
         justify-content: start;
+        min-width: 150px;
         font-family: $brand-font-family;
 
         &__link {
             &--active {
-                background-color: $element-background;
-                border-left: 2px solid $border-color;
-                border-right: 2px solid $border-color;
-                border-top: 2px solid $border-color;
+                border-top: 2px solid $BORDER_COLOR;
+                border-right: 2px solid $BORDER_COLOR;
+                border-left: 2px solid $BORDER_COLOR;
+                border-radius: 4px;
+                background-color: $WHITE;
             }
         }
 
         &__title {
-            width: 150px;
-            font-weight: 400;
-            line-height: 24px;
+            @extend .lead-font;
+
             display: flex;
-            font-size: 14px;
-            color: $header-font-color;
+            justify-content: center;
+            width: 150px;
             padding: 5px 12px;
             border-bottom: none;
-            justify-content: center;
             cursor: pointer;
         }
     }

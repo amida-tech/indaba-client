@@ -1,0 +1,12 @@
+/*
+    PM Sub Header - PM/Project headers above Workflow, Survey, Users, Subject and Export.
+ */
+@mixin pm-sub-header {
+    @extend .med-font;
+
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 24px;
+}

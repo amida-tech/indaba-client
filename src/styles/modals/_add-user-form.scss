@@ -7,11 +7,17 @@ $block-class: 'add-user-form';
             flex-direction: column;
             min-width: 800px;
             padding: 1em;
-            color: $font-color;
+            color: $FONT_COLOR;
+
+            &--input {
+                @include text-input;
+
+                margin-top: 8px;
+            }
         }
 
         input[type=text] {
-            @extend .basic-input;
+            @include text-input;
         }
     }
 }

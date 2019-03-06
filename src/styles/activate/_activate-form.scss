@@ -2,23 +2,23 @@ $block-class: 'activate-form';
 
 @at-root {
     .#{$block-class} {
-        text-align: center;
         width: 30em;
+        text-align: center;
 
         &__label {
-            padding-bottom: 0.25em;
             display: flex;
-            justify-content: space-around;
             align-items: center;
+            justify-content: space-around;
+            padding-bottom: 0.25em;
 
             @extend .small-font;
         }
 
         &__field {
-            border: 1px solid $border-color;
-            padding: 0.5em 1em;
-            margin-left: 8px;
             width: 20em;
+            margin-left: 8px;
+            padding: 0.5em 1em;
+            border: 1px solid $BORDER_COLOR;
 
             &:focus,
             &:active {

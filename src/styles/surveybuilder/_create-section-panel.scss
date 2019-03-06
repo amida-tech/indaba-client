@@ -2,38 +2,35 @@ $block-class: 'create-section-panel';
 
 @at-root {
     .#{$block-class} {
-        border-top: 1px solid $border-color;
-
         &__section-header {
             display: flex;
             margin-bottom: 24px;
-            border-bottom: 2px solid darken($border-color, 5);
+            border-bottom: 2px solid $BORDER_COLOR;
         }
 
         &__section-name {
             @extend .large-font;
 
-            color: #333;
-            border: none;
-            padding: 16px;
-            margin-left: 2px;
             width: 100%;
-            background-color: #fafafa;
+            margin-left: 2px;
+            padding: 16px;
+            border: none;
             outline: none;
+            background-color: transparent;
 
             &:focus {
-                outline: none;
-                border-bottom: 2px solid $LIGHT_GREEN;
                 border-top: none;
-                border-left: none;
                 border-right: none;
+                border-bottom: 2px solid $PRIMARY_GREEN;
+                border-left: none;
+                outline: none;
             }
         }
 
         &__menu-button {
-            background-color: Transparent;
-            border: none;
             margin: 0 10px;
+            border: none;
+            background-color: Transparent;
         }
 
         &__menu-icon {

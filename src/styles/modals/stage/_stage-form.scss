@@ -7,7 +7,7 @@ $block-class:'stage-form';
         margin: 8px 0 16px;
 
         &--flag {
-            color: $error-color !important;
+            color: $ERROR_RED !important;
         }
     }
 }
@@ -16,18 +16,11 @@ $block-class:'stage-form';
     .#{$block-class} {
         @include multi-select-styles;
 
-        color: $lead-font-color;
         padding: 16px 24px 26px;
+        color: $HEADER_FONT_COLOR;
 
         &__input-field {
-            @extend .basic-input;
-
-            border-radius: 4px;
             width: 100%;
-
-            &--flag {
-                border-color: $error-color !important;
-            }
         }
 
         &__title {
@@ -44,8 +37,8 @@ $block-class:'stage-form';
             @include stage-header;
 
             padding: 8px 8px 8px 8px;
+            border: 2px solid $BORDER_COLOR;
             border-radius: 4px;
-            border: 1px solid $border-color;
         }
 
         &__radio-control {
@@ -59,9 +52,9 @@ $block-class:'stage-form';
         }
 
         &__icon {
-            color: $font-color;
-            opacity: 0.6;
             margin: 0 8px 8px 8px;
+            opacity: 0.6;
+            color: $FONT_COLOR;
         }
 
         &__permission-label-text {
@@ -70,7 +63,7 @@ $block-class:'stage-form';
             margin: 16px 16px 16px 8px;
 
             &--disabled {
-                color: $disabled-font-color;
+                color: $DISABLED_FONT_COLOR;
             }
         }
 

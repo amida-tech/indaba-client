@@ -1,22 +1,17 @@
-$card-background: rgba(243, 245, 246, 0.5);
 $block-class: 'status-card';
 
 @at-root {
     .#{$block-class} {
-        border: 1px solid $border-color;
-        background-color: $card-background;
-        border-radius: 2px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
         flex: 1;
-        padding: 0.5em 2em;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         margin: 0 0.5em;
-
-        &--icon {
-            padding-left: 0.5em;
-        }
+        padding: 0.5em 2em;
+        border: 2px solid $BORDER_COLOR;
+        border-radius: 4px;
+        background-color: $WHITE;
 
         &__left {
             display: flex;
@@ -26,53 +21,36 @@ $block-class: 'status-card';
         }
 
         &__name-label {
-            color: $font-color;
-            font-size: 14px;
-            line-height: 14px;
+            color: $STEEL_GRAY;
+
+            @extend .med-font;
         }
 
         &__name-value {
-            display: flex;
-            color: $lead-font-color;
-            font-size: 24px;
-            font-weight: 100;
-            cursor: pointer;
+            @extend .x-large-font;
 
-            &:hover {
-                color: nth($brand-neutral-colors, 2);
-            }
+            display: flex;
+            cursor: pointer;
         }
 
         &__status {
-            color: $lead-font-color;
-            margin-top: 13.64px;
-            font-size: 24px;
+            @extend .large-font;
+
             display: flex;
-            font-weight: 300;
-
-            &:hover {
-                color: nth($brand-neutral-colors, 2);
-            }
-
-            &--editable {
-                cursor: pointer;
-            }
+            margin-top: 36px;
+            cursor: pointer;
         }
 
         &__create-icon {
             @extend .small-icon;
 
-            &:hover {
-                fill: nth($brand-neutral-colors, 2);
-            }
+            margin-left: 8px;
         }
 
         &__edit-icon {
             @extend .small-icon;
 
-            &:hover {
-                fill: nth($brand-neutral-colors, 2);
-            }
+            margin-left: 4px;
         }
     }
 }

@@ -4,7 +4,7 @@ $block-class:'app';
     .#{$block-class} {
         &__toast {
             .toastify__progress {
-                background: $off-brand-color;
+                background: $INDABA_GREEN;
             }
         }
     }

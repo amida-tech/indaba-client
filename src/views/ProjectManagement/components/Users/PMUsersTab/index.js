@@ -78,32 +78,35 @@ class PMUsersTab extends Component {
                         onSave={this.handleDeleteModalSave}
                         saveLabel={this.props.vocab.COMMON.REMOVE}/>
                 }
-                <div className='pm-users-tab__invite-container'>
-                    <InviteUserForm vocab={this.props.vocab}
-                        onSubmit={(values) => {
-                            this.props.actions.addNewUser(
-                                values,
-                                this.props.project.id,
-                                this.props.profile.organizationId,
-                                this.props.vocab.TOAST,
-                                this.props.vocab.ERROR,
-                            );
-                        }}/>
-                </div>
-                <div className='pm-users-tab__search-container'>
-                    <Search
-                        placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
-                        value={this.props.ui.userListSearchQuery}
-                        list={this.props.allUsers.filter(user => !this.props.project.users.includes(user.id))
-                            .filter(this.searchUser)
-                            .map(user => ({
-                                label: renderName(user),
-                                value: user,
-                            }))}
-                        onChange={evt => this.props.actions.updateUserListSearchQuery(evt.target.value)}
-                        onSelect={this.handleSearchSelect}/>
+                <div className='pm-users-tab__header'>
+                    <div className='pm-users-tab__invite-container'>
+                        <InviteUserForm vocab={this.props.vocab}
+                            onSubmit={(values) => {
+                                this.props.actions.addNewUser(
+                                    values,
+                                    this.props.project.id,
+                                    this.props.profile.organizationId,
+                                    this.props.vocab.TOAST,
+                                    this.props.vocab.ERROR,
+                                );
+                            }}/>
+                    </div>
+                    <div className='pm-users-tab__search-container'>
+                        <Search
+                            placeholder={this.props.vocab.PROJECT.SEARCH_FOR_A_USER}
+                            value={this.props.ui.userListSearchQuery}
+                            list={this.props.allUsers.filter(user => !this.props.project.users.includes(user.id))
+                                .filter(this.searchUser)
+                                .map(user => ({
+                                    label: renderName(user),
+                                    value: user,
+                                }))}
+                            onChange={evt => this.props.actions.updateUserListSearchQuery(evt.target.value)}
+                            onSelect={this.handleSearchSelect}/>
+                    </div>
                 </div>
                 <PMUserList
+                    className='pm-users-tab__table'
                     users={this.props.users}
                     vocab={this.props.vocab}
                     groups={this.props.project.userGroups}

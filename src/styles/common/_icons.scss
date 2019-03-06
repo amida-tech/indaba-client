@@ -1,0 +1,31 @@
+@mixin icon-color {
+    fill: $ICON_COLOR;
+    color: $ICON_COLOR;
+
+    &--inactive,
+    &:hover {
+        fill: $ICON_COLOR_HOVER;
+        color: $ICON_COLOR_HOVER;
+    }
+}
+
+.primary-icon {
+    @include icon-color;
+
+    width: 32px;
+    height: 32px;
+}
+
+.small-icon {
+    @include icon-color;
+
+    width: 24px;
+    height: 24px;
+}
+
+.x-small-icon {
+    @include icon-color;
+
+    width: 16px;
+    height: 16px;
+}

@@ -2,9 +2,10 @@ $block-class: 'validated-text-input';
 
 @at-root {
     .#{$block-class} {
-        &--error,
+        @include text-input;
+
         input[type=text] {
-            border: 1px solid red !important;
+            border: 1px solid $BLACK !important;
         }
     }
 }

@@ -44,7 +44,7 @@ class SubjectList extends Component {
                     <div className='subject-list__entry-name'>
                         {subject.name}
                     </div>
-                    <DeleteIconButton onClick={() => this.props.onDeleteClick(subject)} />
+                    <i className='far fa-trash-alt fa-lg subject-list__icon' onClick={this.props.onDeleteClick}/>
                 </div>)
                 }
             </div>);

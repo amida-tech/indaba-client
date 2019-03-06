@@ -9,8 +9,8 @@ $block-class: 'dynamic-question';
             &-fields {
                 display: flex;
                 justify-content: space-between;
-                padding: 4px;
                 margin-bottom: 8px;
+                padding: 4px;
             }
 
             &-group {
@@ -18,14 +18,10 @@ $block-class: 'dynamic-question';
             }
 
             &__input {
-                padding: 4px;
                 width: 42vw;
+                padding: 4px;
 
-                &:focus,
-                &:active {
-                    border: 2px solid $LIGHT_GREEN;
-                    outline: none;
-                }
+                @include text-input;
             }
         }
 
@@ -42,32 +38,34 @@ $block-class: 'dynamic-question';
             }
 
             &-input {
-                padding: 4px;
                 width: 20%;
+                padding: 4px;
                 text-align: center;
 
-                &:focus,
-                &:active {
-                    border: 2px solid $LIGHT_GREEN;
-                    outline: none;
-                }
+                @include text-input;
             }
         }
 
         &__masked-button {
-            background-color: Transparent;
-            border: none;
-            padding: 0;
-            margin-left: 2px;
             margin-bottom: -5px;
+            margin-left: 2px;
+            padding: 0;
+            border: none;
+            background-color: Transparent;
         }
 
         &__icon {
             height: 18px;
 
             @extend .small-icon;
+        }
 
-            fill: lighten($header-font-color, 10%);
+        &__weight-input {
+            flex-shrink: 0;
+            width: 5%;
+            text-align: center;
+
+            @include text-input;
         }
 
         &__instructions {

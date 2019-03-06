@@ -7,30 +7,31 @@ $block-class: 'inbox-tabs';
         align-items: center;
 
         &__tab {
-            cursor: pointer;
             display: flex;
             flex-direction: row;
             align-items: center;
             margin-right: 1em;
-            border-bottom: 3px solid transparent;
-            padding-bottom: 1em;
+            padding-bottom: 0.25em;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
 
             &--active {
-                border-color: $LIGHT_GREEN;
-                color: $LIGHT_GREEN;
+                border-color: $PRIMARY_GREEN;
+                color: $PRIMARY_GREEN;
 
                 .#{$block-class}__icon {
-                    fill: $LIGHT_GREEN;
+                    fill: $PRIMARY_GREEN;
                 }
             }
         }
 
         &__icon--inbox {
             margin-right: 4px;
+            fill: $STEEL_GRAY;
         }
 
         &__icon--archive {
-            fill: #7e848f;
+            fill: $STEEL_GRAY;
         }
     }
 }

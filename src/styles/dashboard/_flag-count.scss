@@ -16,12 +16,12 @@ $block-class: 'flag-count';
             left: 16px;
             width: 14px;
             height: 14px;
-            color: $font-inverse-color;
-            background-color: $LIGHT_GREEN;
             border-radius: 50%;
+            background-color: $DARK_GRAY;
+            color: $FONT_INVERSE_COLOR;
             font-size: 10px;
-            text-align: center;
             line-height: 16px;
+            text-align: center;
         }
     }
 }
