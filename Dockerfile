@@ -7,7 +7,7 @@ COPY ./ /app
 RUN yarn
 RUN yarn build
 
-FROM nginx:1.15.3
+FROM nginx:1.25.1
 
 RUN apt-get update && apt-get install gzip
 
